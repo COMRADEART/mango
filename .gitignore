@@ -1,0 +1,35 @@
+# --- Data: raw/processed corpora are reproducible from source manifests; do
+#     not commit bulk datasets ---
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# --- Model artifacts: multi-GB ---
+training/checkpoints/*
+training/adapters/*/adapter_model.safetensors
+training/logs/*.out
+rag/index/*
+rag/embeddings/*
+rag/corpus/*.jsonl
+
+# --- Evaluation predictions can be large; keep metrics/manifests ---
+evaluations/*/predictions.jsonl
+
+# --- Secrets: NEVER commit credentials or tokens ---
+.env
+*.env
+kaggle.json
+hf_token.txt
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+tests/.pytest_tmp/
+build/
+dist/
+.venv/
+venv/
+.idea/
+.vscode/
+*.log

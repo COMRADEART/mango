@@ -1,0 +1,59 @@
+# Dataset pipeline configuration (T1).
+paths:
+  raw: data/raw
+  processed: data/processed
+  train: data/train
+  validation: data/validation
+  test: data/test
+  manifests: data/manifests
+  licenses: data/licenses
+
+# Target domain mix for the training corpus (fractions, sums to 1.000).
+# These are targets to steer collection, not hard filters.
+target_mix:
+  mathematics: 0.40
+  physics: 0.15
+  chemistry: 0.12
+  biology: 0.12
+  general_science: 0.08
+  scientific_reasoning: 0.08
+  tool_use: 0.05
+  astronomy: 0.00            # folded into general_science until sources exist
+  earth_science: 0.00
+  computer_science: 0.00
+
+# Which source datasets are allowed into TRAIN (must be license_status=APPROVED
+# in data/manifests/datasets.json). Evaluation-only datasets are always routed
+# to test/validation by build_splits.py and never appear in train/.
+sources:
+  allowed_training: []       # populated from verified manifests only
+  eval_only: []              # recognized benchmarks (T2) land here permanently
+
+quality:
+  min_question_chars: 12
+  max_question_chars: 4000
+  max_answer_chars: 2000
+  max_solution_chars: 16000
+
+split:
+  seed: 42
+  test_fraction: 0.10
+  validation_fraction: 0.05
+  # Group key controls leakage: examples sharing the group stay in one split.
+  group_by: normalized_question   # normalized_question | source_id | template_hash
+  # Whole sources held out of training entirely (contamination hard limit).
+  holdout_sources: []             # e.g. a benchmark whose name appears in train
+
+dedup:
+  exact: true
+  normalized: true
+  near_duplicate:
+    enabled: true
+    ngram_size: 4                 # character n-grams
+    threshold: 0.85               # Jaccard similarity to count as duplicate
+    max_scan_pairs: 2000000       # safety valve for pathological corpora
+
+leakage:
+  fingerprint: normalized_text    # exact-match check basis
+  near_threshold: 0.90            # Jaccard above this across splits = leakage
+  fail_on_direct: true            # refuse to emit splits on direct leakage

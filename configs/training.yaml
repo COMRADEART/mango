@@ -1,0 +1,51 @@
+# QLoRA training configuration. Defaults are CONSERVATIVE for a 6 GB VRAM GPU
+# (RTX 4050 Laptop class). hardware.auto_profile=true lets train_lora.py
+# override batch size / quantization based on measured VRAM (see
+# src/sciencemath/utils/hardware.py) to avoid CUDA OOM.
+model:
+  base_model_id: null               # resolved from configs/model.yaml selected.*
+  trust_remote_code: false
+
+training:
+  output_dir: training/checkpoints
+  adapter_output_dir: training/adapters/sciencemath-v0.1
+  num_train_epochs: 2
+  max_seq_length: 1024              # 1024 fits 6 GB; increase only after measuring
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8    # effective batch = 16
+  learning_rate: 2.0e-4             # 7x more conservative than typical 1e-3... kept low for stability
+  warmup_ratio: 0.03
+  weight_decay: 0.01
+  lr_scheduler_type: cosine
+  max_grad_norm: 1.0
+  seed: 42
+  gradient_checkpointing: true
+  bf16: auto                        # auto => use bf16 if GPU supports it, else fp16
+  logging_steps: 10
+  save_steps: 200
+  eval_steps: 200
+  save_total_limit: 3
+  packing: false                    # packing complicates loss masking; keep off
+
+quantization:                       # 4-bit NF4 QLoRA
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: bfloat16  # auto-resolved to float16 when bf16 unsupported
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules:                   # all linear projections; keeps adapter general
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+evaluation_during_training:
+  enabled: false                    # in-training eval costs VRAM; run evaluate_tuned.py after instead
+  metric: math_verifier_pass_rate

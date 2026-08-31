@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sciencemath"
+version = "0.1.0"
+description = "ScienceMath-v0.1: compact local math/science assistant (QLoRA fine-tune + SymPy tool verification + Wikipedia RAG)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "ScienceMath project" }]
+
+# Core runtime dependencies (must stay installable on CPU-only Windows).
+# Heavy ML dependencies (torch, transformers, peft, bitsandbytes, faiss) are
+# listed in requirements.txt as optional extras because they are only needed
+# from T2 onward and are GPU/platform specific.
+dependencies = [
+    "numpy>=1.26",
+    "PyYAML>=6.0",
+    "sympy>=1.12",
+]
+
+[project.optional-dependencies]
+ml = [
+    "torch>=2.2",
+    "transformers>=4.44",
+    "peft>=0.12",
+    "accelerate>=0.33",
+    "bitsandbytes>=0.43; platform_system == 'Linux' or platform_system == 'Windows'",
+    "datasets>=2.20",
+]
+rag = [
+    "faiss-cpu>=1.7.4",
+    "sentence-transformers>=2.7",
+]
+download = [
+    "kaggle>=1.6",
+]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# basetemp pinned repo-locally: users' default %TEMP%/pytest-of-<user> may
+# be ACL-broken (seen on Windows where a previous elevated run created it).
+addopts = "-q --basetemp=tests/.pytest_tmp"

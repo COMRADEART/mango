@@ -1,0 +1,31 @@
+# Wikipedia RAG configuration (T5). Ingestion/indexing are not implemented
+# until T5; this file pins the target design now so interfaces don't shift.
+ingestion:
+  categories:            # Wikipedia page seeds per subject (curated, NOT the
+                         # full dump; engineering rules forbid blind dumping)
+    mathematics: [Algebra, Geometry, Calculus, Statistics, Number theory, Discrete mathematics]
+    physics: [Mechanics, Electromagnetism, Thermodynamics, Quantum mechanics, Theory of relativity]
+    chemistry: [Organic chemistry, Inorganic chemistry, Physical chemistry, Biochemistry]
+    biology: [Cell biology, Genetics, Evolution, Molecular biology, Ecology]
+    astronomy: [Astronomy, Star, Solar System]
+    earth_science: [Geology, Meteorology, Oceanography]
+    computer_science: [Computer science, Algorithm, Data structure]
+  max_depth: 1                    # link expansion depth (0 = seed pages only)
+  max_pages_per_subject: 40
+
+chunking:
+  chunk_size_tokens: 650          # target 500-1000; revisit after T5 retrieval eval
+  chunk_overlap_tokens: 80
+  preserve_sections: true         # keeps section heading per chunk
+
+metadata_per_chunk: [title, pageid, url, section_heading, revision_id, license, chunk_id]
+
+embedding:
+  model: sentence-transformers/all-MiniLM-L6-v2   # ~80 MB, CPU-friendly
+  batch_size: 64
+
+retrieval:
+  vector_store: faiss             # interface abstracted; swap later
+  top_k: 5
+  similarity_threshold: 0.30      # below => answer with explicit uncertainty
+  min_sources_for_citation: 1

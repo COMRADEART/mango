@@ -1,0 +1,33 @@
+# ScienceMath-v0.1 requirements
+#
+# Core dependencies (also declared in pyproject.toml):
+#   numpy, PyYAML, sympy
+#
+# pip install -r requirements.txt installs the T0/T1 dataset-pipeline stack
+# plus the ML stack. If you only want the dataset pipeline (T1), install the
+# package itself:  pip install -e .
+#
+# GPU note: torch+cu121 (~2.5 GB download) is required for training/inference
+# on the 6 GB VRAM target. On Kaggle/Colab, torch and CUDA are preinstalled.
+numpy>=1.26
+PyYAML>=6.0
+sympy>=1.12
+pytest>=8.0
+
+# --- ML stack (T2+) ---
+torch>=2.2
+transformers>=4.44
+peft>=0.12
+accelerate>=0.33
+datasets>=2.20
+# bitsandbytes provides 4-bit quantization for QLoRA.
+# Windows wheels are available via pip for bitsandbytes>=0.43.
+bitsandbytes>=0.43
+
+# --- RAG stack (T5+) ---
+sentence-transformers>=2.7
+faiss-cpu>=1.7.4
+
+# --- Downloads (Kaggle API authentication lives in ~/.kaggle/kaggle.json;
+#     never embed credentials in this repository) ---
+kaggle>=1.6
