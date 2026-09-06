@@ -1,0 +1,36 @@
+{
+  "repository": {
+    "url": "https://github.com/COMRADEART/mango.git",
+    "commit_sha": "6f9942092879a9431e48cf9168bb5cbd08d0cc63",
+    "branch": "main",
+    "git_state_clean": true,
+    "restored_replay_corpus_hashes_correct": true,
+    "line_endings_pinned": true,
+    "no_frozen_artifact_mutation": true
+  },
+  "production_model": {
+    "mango_v0_1_loads": true,
+    "exact_historical_t3_adapter_sha": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "adapter_sha_matches": true,
+    "adapter_active": true
+  },
+  "tests": {
+    "total_passed": 715,
+    "total_failed": 0,
+    "total_errors": 0,
+    "t4_tests_passed": 31,
+    "t9_correction_tests_passed": 8,
+    "t4_safety_false_pass": "0 / 638 (verified by test suite)",
+    "t5r_integrity": "historical/frozen integrity available",
+    "t8s_artifacts_checksums_valid": true
+  },
+  "gpu": {
+    "no_stale_jobs": true
+  },
+  "clean_clone_validation": {
+    "performed": true,
+    "result": "PASS",
+    "report": "evaluations/t9/t3_clean_clone_validation.json"
+  },
+  "overall": "PASS"
+}
