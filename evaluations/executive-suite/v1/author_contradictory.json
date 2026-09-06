@@ -1,0 +1,74 @@
+[
+  {
+    "question_id": "mq-contr-01",
+    "class": "contradictory",
+    "question": "A cargo train travels at 80 km/h. Later in the same trip description, the train is stated to travel at 60 km/h. At this speed, what distance, in kilometers, does the train cover in 2 hours?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "INSUFFICIENT",
+    "notes": "Two explicit speeds in km/h (80 vs 60) are given for the same train, so the distance cannot be computed."
+  },
+  {
+    "question_id": "mq-contr-02",
+    "class": "contradictory",
+    "question": "A 2.5 kg bag of rice costs $12. Elsewhere in the receipt, the same 2.5 kg bag of rice is listed at $9. If Amina buys 4 kg of rice, how much does she pay, in dollars?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "INSUFFICIENT",
+    "notes": "The price of the same bag is given as two different dollar amounts; the unit-price computation is undetermined."
+  },
+  {
+    "question_id": "mq-contr-03",
+    "class": "contradictory",
+    "question": "A chemistry lab manual states that the reaction releases 250 kJ per mole of product. A footnote on the same page states the reaction releases 180 kJ per mole. How much energy, in kJ, is released when 3 moles react?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "INSUFFICIENT",
+    "notes": "Two conflicting molar enthalpy values (250 vs 180 kJ/mol) for the same reaction make the total energy indeterminate."
+  },
+  {
+    "question_id": "mq-contr-04",
+    "class": "contradictory",
+    "question": "A rectangular garden is described as 12 m long. A later sentence in the same description says the garden is 15 m long. What is the area of the garden, in square meters, if its width is 8 m?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "INSUFFICIENT",
+    "notes": "The same garden's length is given as both 12 m and 15 m, so the area cannot be uniquely computed."
+  },
+  {
+    "question_id": "mq-contr-05",
+    "class": "contradictory",
+    "question": "An electronics datasheet first says a resistor has resistance 220 ohms. A revision note on the same datasheet says the resistor has resistance 330 ohms. What current, in amperes, flows through it when connected to a 9 V battery?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "INSUFFICIENT",
+    "notes": "Two explicit resistance values (220 vs 330 ohms) for the same resistor conflict, so Ohm's law gives no single answer."
+  },
+  {
+    "question_id": "mq-contr-06",
+    "class": "contradictory",
+    "question": "A runner's log says she finished a 10 km race in 50 minutes. The race results sheet lists her finishing time for the same 10 km race as 44 minutes. What was her average speed in the race, in km/min?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "INSUFFICIENT",
+    "notes": "The finishing time for the same race is given as two different minute values, so the average speed is undetermined."
+  },
+  {
+    "question_id": "mq-contr-07",
+    "class": "contradictory",
+    "question": "A water tank initially contains 400 liters of water. One paragraph later, the same tank is described as initially containing 250 liters. If the tank drains at 20 liters per minute, how many liters remain after 5 minutes?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "INSUFFICIENT",
+    "notes": "The same tank's initial volume is given as both 400 L and 250 L, making the remaining volume ambiguous."
+  },
+  {
+    "question_id": "mq-contr-08",
+    "class": "contradictory",
+    "question": "A student group raises money selling cupcakes at $3 each. A later flyer for the same sale states the price is $2.50 per cupcake. If the group sells 60 cupcakes, how much money do they raise, in dollars?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "INSUFFICIENT",
+    "notes": "The same cupcake's price is given as two different dollar values, so the total raised cannot be determined."
+  }
+]

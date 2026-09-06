@@ -1,0 +1,24 @@
+{
+  "measured_tokens": {
+    "mathematics": 34429,
+    "sciences": 25057,
+    "general": 1605
+  },
+  "mixture": {
+    "mathematics": 0.5636,
+    "sciences": 0.4102,
+    "general": 0.0263
+  },
+  "targets": {
+    "mathematics": 0.5,
+    "sciences": 0.35,
+    "cross_domain": 0.0,
+    "general": 0.15
+  },
+  "deltas_pp": {
+    "mathematics": 6.4,
+    "general": -12.4,
+    "cross_domain": 0.0,
+    "sciences": 6.0
+  }
+}

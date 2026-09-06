@@ -1,0 +1,10 @@
+{
+  "contamination_report.json": "5b958aa85ce8dfe67cdd8baadd737bc26e3716da04b43f5efbb7ff05d65b9064",
+  "domain_distribution.json": "240ced0a8e7ab2ee05b37d0047f53daa64e3a28567a3fd2a3fa81e67d74f3e5e",
+  "license_manifest.json": "d572d385652255a3fa89f0d8d54bda98da3c5d7ac5cacc96ab33b50d371b3f42",
+  "manifest.json": "a58b8d085226f00199381b57dc034ed871a8231e22dac767189ce54040b8577f",
+  "quality_report.json": "598b1fb2eac70824459e4f1032f07090f5d8cb907a3ffb719914542c5f13249b",
+  "source_manifest.json": "9fe7fcd91bb84c321f65558c9e888777209337a3d656d3df86112e650933d88c",
+  "train.jsonl": "a3ba26fe4980fd21335ee727391a5266037b348c5ead33fe823a1dcede26655a",
+  "validation.jsonl": "d79f4203663e8af483d518b6f0fc027c1765209c9dd402ac9ec6ab81a769837d"
+}

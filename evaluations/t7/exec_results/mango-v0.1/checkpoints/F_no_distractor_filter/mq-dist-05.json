@@ -1,0 +1,218 @@
+{
+ "state": {
+  "run_id": "mq-dist-05",
+  "problem": "A pump fills a tank at a steady rate of 8 liters per minute. How many liters are in the tank after 15 minutes of pumping? (Unrelated fact: light travels through a vacuum at about 299,792,458 meters per second, a value fixed internationally in 1983.)",
+  "goal": "",
+  "problem_type": "MIXED",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "How many liters are in the tank after 15 minutes of pumping"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-19916594:health_and_safety_vapour_669fb9b0:0 | wiki-1800:production_from_amp_and_adp_atp_recyclin_2b71ea77:0 | wiki-1800:production_from_amp_and_adp_production_a_67a84eb9:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-19916594:health_and_safety_vapour_669fb9b0:0",
+       "text": "Prolonged inhalation exposure (eight hours) to acetic acid vapours at 10 ppm can produce some irritation of eyes, nose, and throat; at 100 ppm marked lung irritation and possible damage to lungs, eyes, and skin may result. Vapour concentrations of 1,000 ppm cause marked irritation of eyes, nose and upper respiratory tract and cannot be tolerated. These predictions were based on animal experiments and industrial exposure. In 12 workers exposed for two or more years to an airborne average concentration of 51 ppm acetic acid (estimated), symptoms of conjunctive irritation, upper respiratory tract"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-1800:production_from_amp_and_adp_atp_recyclin_2b71ea77:0",
+       "text": "The total quantity of ATP in the human body is about 0.1 mol/L. The majority of ATP is recycled from ADP by the aforementioned processes. Thus, at any given time, the total amount of ATP + ADP remains fairly constant. The energy used by human cells in an adult requires the hydrolysis of 100 to 150 mol/L of ATP daily, which means a human will typically use their body weight worth of ATP over the course of the day. Each equivalent of ATP is recycled 1000–1500 times during a single day (150 / 0.1 = 1500), at approximately 9×1020 molecules/s."
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-1800:production_from_amp_and_adp_production_a_67a84eb9:0",
+       "text": "A typical intracellular concentration of ATP is 1–10 μmol per gram of muscle tissue in a variety of eukaryotes. The dephosphorylation of ATP and rephosphorylation of ADP and AMP occur repeatedly in the course of aerobic metabolism. ATP can be produced by a number of distinct cellular processes; the three main pathways in eukaryotes are (1) glycolysis, (2) the citric acid cycle/oxidative phosphorylation, and (3) beta-oxidation. The overall process of oxidizing glucose to carbon dioxide, the combination of pathways 1 and 2, known as cellular respiration, produces about 30 equivalents of ATP from"
+      }
+     ],
+     "signature": "d288856694a9114c"
+    },
+    "latency_s": 0.5533181000209879,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "120 liters",
+    "detail": {
+     "raw": "Answer: 120 liters\n\n15 minutes x 8 liters/minute = 120 liters",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 3.9588156000245363,
+    "input_tokens": 504,
+    "output_tokens": 24
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "120 liters",
+    "detail": {
+     "raw": "Answer: 120 liters",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.4233457999944221,
+    "input_tokens": 484,
+    "output_tokens": 8
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 14.505645500001265,
+   "input_tokens": 988,
+   "output_tokens": 32
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A pump fills a tank at a steady rate of 8 liters per minute.",
+   "How many liters are in the tank after 15 minutes of pumping?",
+   "(Unrelated fact: light travels through a vacuum at about 299,792,458 meters per second, a value fixed internationally in 1983.)"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-19916594:health_and_safety_vapour_669fb9b0:0 | wiki-1800:production_from_amp_and_adp_atp_recyclin_2b71ea77:0 | wiki-1800:production_from_amp_and_adp_production_a_67a84eb9:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "120 liters",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "120 liters",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-19916594:health_and_safety_vapour_669fb9b0:0 | wiki-1800:production_from_amp_and_adp_atp_recyclin_2b71ea77:0 | wiki-1800:production_from_amp_and_adp_production_a_67a84eb9:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "120 liters",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "120 liters",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

@@ -1,0 +1,259 @@
+{
+ "state": {
+  "run_id": "mq-mhs-06",
+  "problem": "To the nearest hundred, how many times farther from Earth is the Sun than the Moon is?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "SIMPLE",
+  "resources": "MATH_TOOL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "how many times farther from Earth is the Sun than the Moon is"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "REASON",
+     "description": "Reason over the question using provided context only",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s4",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s3"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3",
+   "s4"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-26903:general_characteristics_distances_and_sc_157e1952:0 | wiki-26903:general_characteristics_orbits_5d2a76bf:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-26903:general_characteristics_distances_and_sc_157e1952:0",
+       "text": "The radius of the Sun is 0.0047 AU (700,000 km; 400,000 mi). Thus, the Sun occupies 0.00001% (1 part in 107) of the volume of a sphere with a radius the size of Earth's orbit, whereas Earth's volume is roughly 1 millionth (10−6) that of the Sun. Jupiter, the largest planet, is 5.2 AU from the Sun and has a radius of 71,000 km (0.00047 AU; 44,000 mi), whereas the most distant planet, Neptune, is 30 AU from the Sun. With a few exceptions, the farther a planet or belt is from the Sun, the larger the distance between its orbit and the orbit of the next nearest object to the Sun. For example, Venus"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-26903:general_characteristics_orbits_5d2a76bf:0",
+       "text": "The planets and other large objects in orbit around the Sun lie near the invariable plane of the Solar System, as does Earth's orbit, known as the ecliptic, and most closely the orbit of Jupiter, with an inclination to it of 0.3219°. Smaller icy objects such as comets frequently orbit at significantly greater angles to this plane. Most of the planets in the Solar System have secondary systems of their own, being orbited by natural satellites called moons. All of the largest natural satellites are in synchronous rotation, with one face permanently turned toward their parent. The four giant plan"
+      }
+     ],
+     "signature": "dadfa1b7348d313d"
+    },
+    "latency_s": 0.41202429999248125,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "300",
+    "detail": {
+     "raw": "Answer: 300\n300000/1000 = 300",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 3.2073017000220716,
+    "input_tokens": 391,
+    "output_tokens": 24
+   },
+   {
+    "step_id": "s3",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "300",
+    "detail": {
+     "raw": "Answer: 300",
+     "signature": "948d2733440d3d2b"
+    },
+    "latency_s": 0.8458388999861199,
+    "input_tokens": 112,
+    "output_tokens": 7
+   },
+   {
+    "step_id": "s4",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "300",
+    "detail": {
+     "raw": "Answer: 300",
+     "signature": "cff9105501d72cb9"
+    },
+    "latency_s": 1.3747047999931965,
+    "input_tokens": 431,
+    "output_tokens": 7
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 5,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 12.65063449999434,
+   "input_tokens": 934,
+   "output_tokens": 38
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "To the nearest hundred, how many times farther from Earth is the Sun than the Moon is?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-26903:general_characteristics_distances_and_sc_157e1952:0 | wiki-26903:general_characteristics_orbits_5d2a76bf:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "300",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "300",
+     "step_id": "s3"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s4",
+     "content": "300",
+     "step_id": "s4"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s3",
+     "dst": "step:s4",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-26903:general_characteristics_distances_and_sc_157e1952:0 | wiki-26903:general_characteristics_orbits_5d2a76bf:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "300",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "300",
+    "step_id": "s3"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s4",
+    "content": "300",
+    "step_id": "s4"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s3",
+    "dst": "step:s4",
+    "relation": "produced"
+   }
+  ]
+ }
+}

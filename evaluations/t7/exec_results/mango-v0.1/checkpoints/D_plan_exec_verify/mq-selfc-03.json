@@ -1,0 +1,152 @@
+{
+ "state": {
+  "run_id": "mq-selfc-03",
+  "problem": "A train moves at a constant 90 kilometers per hour. How many meters does it travel in one second?",
+  "goal": "",
+  "problem_type": "GENERAL",
+  "complexity": "MULTI_STEP",
+  "resources": "MATH_TOOL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [],
+     "input": ""
+    },
+    {
+     "id": "s1",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s2",
+   "s1"
+  ],
+  "observations": [
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "90 kilometers per hour = 90000 meters per hour",
+    "detail": {
+     "raw": "Answer: 90 kilometers per hour = 90000 meters per hour\n1 hour = 3600 seconds\n90000 meters per hour = 90000/3600 meters per second\n90000/3600 = 25\nFinal answer: \\boxed{25}",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 13.142882300016936,
+    "input_tokens": 113,
+    "output_tokens": 78
+   },
+   {
+    "step_id": "s1",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "25 meters per second [evidence: c1]",
+    "detail": {
+     "raw": "Answer: 25 meters per second [evidence: c1]",
+     "signature": "77b174e6c05a7a30"
+    },
+    "latency_s": 2.763777200016193,
+    "input_tokens": 155,
+    "output_tokens": 16
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 28.292286800016882,
+   "input_tokens": 268,
+   "output_tokens": 94
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A train moves at a constant 90 kilometers per hour.",
+   "How many meters does it travel in one second?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "90 kilometers per hour = 90000 meters per hour",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s1",
+     "content": "25 meters per second [evidence: c1]",
+     "step_id": "s1"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s2",
+     "dst": "step:s1",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "90 kilometers per hour = 90000 meters per hour",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s1",
+    "content": "25 meters per second [evidence: c1]",
+    "step_id": "s1"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s2",
+    "dst": "step:s1",
+    "relation": "produced"
+   }
+  ]
+ }
+}

@@ -1,0 +1,18 @@
+{
+  "label": "smollm3-3b",
+  "model": "HuggingFaceTB/SmolLM3-3B",
+  "arm": "model",
+  "overall": 0.7394957983193278,
+  "math_macro": 0.7586206896551724,
+  "science_macro": 0.6666666666666666,
+  "cross_domain": 0.75,
+  "compositional": 0.5833333333333334,
+  "counterfactual": 0.75,
+  "distractor": 0.9166666666666666,
+  "uncertainty": 0.375,
+  "decomposition": 0.0,
+  "self_correction": 0.5161290322580645,
+  "tool_routing": 0.0,
+  "retrieval_routing": null,
+  "extraction": 0.8991596638655462
+}

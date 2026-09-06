@@ -1,0 +1,54 @@
+{
+  "adapter_dir": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\sciencemath-v0.1-t3",
+  "model_id": "Qwen/Qwen3-1.7B",
+  "adapter_active_at_load": {
+    "is_peft_model": true,
+    "adapter_names": [
+      "t3"
+    ],
+    "adapter_active": true,
+    "adapters_disabled": false
+  },
+  "ablation": {
+    "n_questions": 4,
+    "outputs_differ": 4,
+    "adapter_on_active_all": true,
+    "adapter_off_active_none": true,
+    "genuine_adapter_effect": true,
+    "records": [
+      {
+        "eval_id": "ev1-0054033fb1ce",
+        "adapter_on_active": true,
+        "adapter_off_active": false,
+        "outputs_differ": true,
+        "output_on_preview": "[asy] pair A,B,C,D; A = (0,0); B = (105,0); C = (0,70); D = (0,35); draw(A--B--C--cycle); draw(A--D); label(\"$A$\",A,SW);",
+        "output_off_preview": "We are given a right triangle $ \\triangle ABC $ with $ \\angle ABC = 90^\\circ $, and a point $ D $ on segment $ BC $ such"
+      },
+      {
+        "eval_id": "ev1-008c59f8e02f",
+        "adapter_on_active": true,
+        "adapter_off_active": false,
+        "outputs_differ": true,
+        "output_on_preview": "Answer: \\boxed{April 12, 2023}\nThe next magnitude-9 earthquake will strike the Pacific Ring of Fire on April 12, 2023.",
+        "output_off_preview": "The exact date of the next magnitude-9 earthquake on the Pacific Ring of Fire cannot be determined with certainty from c"
+      },
+      {
+        "eval_id": "ev1-010819b51b76",
+        "adapter_on_active": true,
+        "adapter_off_active": false,
+        "outputs_differ": true,
+        "output_on_preview": "Answer: \\boxed{A}",
+        "output_off_preview": "The correct answer is **A. the synapse**.\n\n**Explanation**:  \nThe space between a neuron and the next cell is called the"
+      },
+      {
+        "eval_id": "ev1-016978277697",
+        "adapter_on_active": true,
+        "adapter_off_active": false,
+        "outputs_differ": true,
+        "output_on_preview": "Since George picked 15,832 pounds of apples in 8 hours, he picked 15,832/8 = 1979 pounds of apples per hour.\nTherefore, ",
+        "output_off_preview": "We are given that George Adrian picked **15,832 pounds of apples in 8 hours**, and we are told he maintained a **constan"
+      }
+    ]
+  },
+  "recorded_at": "2026-09-03T04:14:30.633419+00:00"
+}

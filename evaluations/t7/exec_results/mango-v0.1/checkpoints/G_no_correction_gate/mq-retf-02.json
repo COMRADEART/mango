@@ -1,0 +1,200 @@
+{
+ "state": {
+  "run_id": "mq-retf-02",
+  "problem": "What is the hardest naturally occurring mineral on Earth?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "SIMPLE",
+  "resources": "NONE",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What is the hardest naturally occurring mineral on Earth"
+    },
+    {
+     "id": "s3",
+     "action": "REASON",
+     "description": "Reason over the question using provided context only",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s2",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s3"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s3",
+   "s2"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "FAILED",
+    "summary": "retrieval returned no evidence",
+    "detail": {
+     "error_type": "RETRIEVAL_EMPTY",
+     "signature": "d382d12551df9a6d"
+    },
+    "latency_s": 0.0,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s3",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "<final answer for this step>",
+    "detail": {
+     "raw": "Answer: <final answer for this step>",
+     "signature": "948d2733440d3d2b"
+    },
+    "latency_s": 1.0072449000144843,
+    "input_tokens": 94,
+    "output_tokens": 10
+   },
+   {
+    "step_id": "s2",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "Answer: The hardest naturally occurring mineral is diamond.",
+    "detail": {
+     "raw": "Answer: Answer: The hardest naturally occurring mineral is diamond.",
+     "signature": "c28a4e64dd24a8c1"
+    },
+    "latency_s": 1.27957489999244,
+    "input_tokens": 140,
+    "output_tokens": 13
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 6.269228300021496,
+   "input_tokens": 234,
+   "output_tokens": 23
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "What is the hardest naturally occurring mineral on Earth?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "retrieval returned no evidence",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "<final answer for this step>",
+     "step_id": "s3"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "Answer: The hardest naturally occurring mineral is diamond.",
+     "step_id": "s2"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s3",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s3",
+     "dst": "step:s2",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_empty": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "retrieval returned no evidence",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "<final answer for this step>",
+    "step_id": "s3"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "Answer: The hardest naturally occurring mineral is diamond.",
+    "step_id": "s2"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s3",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s3",
+    "dst": "step:s2",
+    "relation": "produced"
+   }
+  ]
+ }
+}

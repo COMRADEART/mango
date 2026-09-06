@@ -1,0 +1,27 @@
+tests/test_corpus_and_comparison.py: 11
+tests/test_dedup.py: 7
+tests/test_eval_suite.py: 12
+tests/test_extraction.py: 28
+tests/test_gates_and_attach.py: 15
+tests/test_hardware.py: 5
+tests/test_leakage.py: 9
+tests/test_licenses.py: 8
+tests/test_normalize.py: 12
+tests/test_prompts.py: 6
+tests/test_rag_core.py: 54
+tests/test_rag_index_and_retrieval.py: 18
+tests/test_rag_pipeline.py: 5
+tests/test_rag_t5r.py: 53
+tests/test_report.py: 4
+tests/test_router.py: 25
+tests/test_schema.py: 9
+tests/test_sft_data.py: 6
+tests/test_sft_format.py: 13
+tests/test_splits.py: 8
+tests/test_t4_regressions.py: 31
+tests/test_taxonomy.py: 12
+tests/test_tools_core.py: 53
+tests/test_tools_safety.py: 63
+tests/test_training_config_and_checkpoint.py: 16
+tests/test_verifier.py: 77
+

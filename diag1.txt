@@ -1,0 +1,19 @@
+﻿FACTUAL: NORAG acc 0.9166666666666666
+--- rdv1-cfdc61c3ebfe exp= Au
+  NORAG True 'Au'
+  C     True 'Au' chunks 0
+--- rdv1-1b9fae2dcbfd exp= Saturn
+  NORAG True 'Saturn'
+  C     False None chunks 1
+--- rdv1-0e8dea83d236 exp= red blood cells
+  NORAG True 'red blood cells'
+  C     False None chunks 3
+--- rdv1-4ab614567aef exp= chlorophyll
+  NORAG True 'chlorophyll'
+  C     False None chunks 4
+--- rdv1-e6c7e77e7f72 exp= nitrogen
+  NORAG True 'nitrogen'
+  C     False None chunks 4
+--- rdv1-b8034c11873f exp= nucleus
+  NORAG True 'nucleus'
+  C     False None chunks 2

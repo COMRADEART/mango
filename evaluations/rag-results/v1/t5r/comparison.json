@@ -1,0 +1,86 @@
+{
+  "comparison": "frozen",
+  "variants": {
+    "NORAG": {
+      "variant": "NORAG",
+      "n": 58,
+      "correct": 26,
+      "accuracy": 0.4483,
+      "per_category_accuracy": {
+        "conflicting_evidence": 0.0,
+        "distractor_retrieval": 0.0,
+        "factual_science_qa": 0.8333,
+        "insufficient_evidence": 0.0,
+        "mixed_math_science": 0.6667,
+        "multi_hop_science_qa": 1.0,
+        "quantitative_science": 0.6,
+        "source_attribution": 0.0
+      },
+      "uncertainty_accuracy": 0.0,
+      "retrieval_invocation": {
+        "expected_true": 42,
+        "retrieved_when_expected": 0,
+        "invoked_but_not_expected": 0,
+        "precision": null,
+        "recall": 0.0
+      },
+      "retrieval_used_on_math_route": 0,
+      "citation_summary": {
+        "n_questions_with_citations": 0,
+        "n_fabricated": 0,
+        "n_unsupported": 0,
+        "n_invalid_refs": 0
+      },
+      "compression_mean_ratio": null,
+      "mean_prompt_tokens_in": 120,
+      "avg_latency_s": 8.026
+    },
+    "D": {
+      "variant": "D",
+      "n": 58,
+      "correct": 32,
+      "accuracy": 0.5517,
+      "per_category_accuracy": {
+        "conflicting_evidence": 0.5,
+        "distractor_retrieval": 0.0,
+        "factual_science_qa": 0.75,
+        "insufficient_evidence": 0.25,
+        "mixed_math_science": 0.6667,
+        "multi_hop_science_qa": 1.0,
+        "quantitative_science": 0.9,
+        "source_attribution": 0.0
+      },
+      "uncertainty_accuracy": 0.3333,
+      "retrieval_invocation": {
+        "expected_true": 42,
+        "retrieved_when_expected": 34,
+        "invoked_but_not_expected": 13,
+        "precision": 0.7234,
+        "recall": 0.8095
+      },
+      "retrieval_used_on_math_route": 0,
+      "citation_summary": {
+        "n_questions_with_citations": 16,
+        "n_fabricated": 0,
+        "n_unsupported": 0,
+        "n_invalid_refs": 0
+      },
+      "compression_mean_ratio": 6.007,
+      "mean_prompt_tokens_in": 290,
+      "avg_latency_s": 4.309,
+      "delta_vs_norag_pp": 10.34
+    }
+  },
+  "per_category_pp_delta_vs_norag": {
+    "D": {
+      "conflicting_evidence": 50.0,
+      "distractor_retrieval": 0.0,
+      "factual_science_qa": -8.33,
+      "insufficient_evidence": 25.0,
+      "mixed_math_science": 0.0,
+      "multi_hop_science_qa": 0.0,
+      "quantitative_science": 30.0,
+      "source_attribution": 0.0
+    }
+  }
+}

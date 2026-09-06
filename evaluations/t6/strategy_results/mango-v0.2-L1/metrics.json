@@ -1,0 +1,14 @@
+{
+  "decomposition": {
+    "n": 20,
+    "json_valid_rate": 0.0,
+    "schema_valid_rate": 0.0,
+    "routing_agreement": null
+  },
+  "self_correction": {
+    "wrong_items": 90,
+    "correction_rate": 0.022222222222222223,
+    "overcorrection_rate": 0.21311475409836064,
+    "n_correct_sampled": 61
+  }
+}

@@ -1,0 +1,185 @@
+{
+ "state": {
+  "run_id": "mq-contr-05",
+  "problem": "An electronics datasheet first says a resistor has resistance 220 ohms. A revision note on the same datasheet says the resistor has resistance 330 ohms. What current, in amperes, flows through it when connected to a 9 V battery?",
+  "goal": "",
+  "problem_type": "MIXED",
+  "complexity": "MULTI_STEP",
+  "resources": "RETRIEVAL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What current, in amperes, flows through it when connected to a 9 V battery"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "0.045 A",
+    "detail": {
+     "raw": "Answer: 0.045 A",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 1.335324399988167,
+    "input_tokens": 194,
+    "output_tokens": 10
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{0.045}",
+    "detail": {
+     "raw": "Answer: \\boxed{0.045}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.647124699986307,
+    "input_tokens": 189,
+    "output_tokens": 12
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 14.811870400008047,
+   "input_tokens": 383,
+   "output_tokens": 22
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "An electronics datasheet first says a resistor has resistance 220 ohms.",
+   "A revision note on the same datasheet says the resistor has resistance 330 ohms.",
+   "What current, in amperes, flows through it when connected to a 9 V battery?"
+  ],
+  "conflicts": [
+   {
+    "unit": "ohm",
+    "values": [
+     220.0,
+     330.0
+    ],
+    "sentences": [
+     "A revision note on the same datasheet says the resistor has resistance 330 ohms.",
+     "An electronics datasheet first says a resistor has resistance 220 ohms."
+    ]
+   }
+  ],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "0.045 A",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{0.045}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "0.045 A",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{0.045}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

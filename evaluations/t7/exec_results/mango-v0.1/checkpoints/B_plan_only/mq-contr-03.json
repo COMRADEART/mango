@@ -1,0 +1,185 @@
+{
+ "state": {
+  "run_id": "mq-contr-03",
+  "problem": "A chemistry lab manual states that the reaction releases 250 kJ per mole of product. A footnote on the same page states the reaction releases 180 kJ per mole. How much energy, in kJ, is released when 3 moles react?",
+  "goal": "",
+  "problem_type": "MIXED",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "How much energy, in kJ, is released when 3 moles react"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "750 kJ",
+    "detail": {
+     "raw": "Answer: 750 kJ",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 1.1803246999916155,
+    "input_tokens": 192,
+    "output_tokens": 9
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{750}",
+    "detail": {
+     "raw": "Answer: \\boxed{750}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.3873913999996148,
+    "input_tokens": 187,
+    "output_tokens": 10
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 10.03156289999606,
+   "input_tokens": 379,
+   "output_tokens": 19
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A chemistry lab manual states that the reaction releases 250 kJ per mole of product.",
+   "A footnote on the same page states the reaction releases 180 kJ per mole.",
+   "How much energy, in kJ, is released when 3 moles react?"
+  ],
+  "conflicts": [
+   {
+    "unit": "kj",
+    "values": [
+     180.0,
+     250.0
+    ],
+    "sentences": [
+     "A chemistry lab manual states that the reaction releases 250 kJ per mole of product.",
+     "A footnote on the same page states the reaction releases 180 kJ per mole."
+    ]
+   }
+  ],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "750 kJ",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{750}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "750 kJ",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{750}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

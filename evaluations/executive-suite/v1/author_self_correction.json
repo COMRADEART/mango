@@ -1,0 +1,56 @@
+[
+  {
+    "question_id": "mq-selfc-01",
+    "class": "self_correction",
+    "question": "A jacket is priced at 80 dollars. At checkout, a 15 percent discount is applied. What is the final price, in dollars?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "68",
+    "notes": "Classic discount trap: adding the 12 dollar discount instead of subtracting gives 92; the correct price is 68."
+  },
+  {
+    "question_id": "mq-selfc-02",
+    "class": "self_correction",
+    "question": "A fence is built along a straight 60 meter boundary, with posts placed every 5 meters, including a post at each end. How many posts are needed?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "13",
+    "notes": "Off-by-one fencepost trap: dividing 60 by 5 gives 12, but the post at each end makes 13."
+  },
+  {
+    "question_id": "mq-selfc-03",
+    "class": "self_correction",
+    "question": "A train moves at a constant 90 kilometers per hour. How many meters does it travel in one second?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "25",
+    "notes": "Unit-confusion trap: converting only hours to minutes gives 1500 m/min; correct conversion gives 25 m per second."
+  },
+  {
+    "question_id": "mq-selfc-04",
+    "class": "self_correction",
+    "question": "After a store applies a 25 percent markup, a tablet sells for 500 dollars. What was the original price before the markup, in dollars?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "400",
+    "notes": "Reverse-percentage trap: subtracting 25 percent of 500 gives 375; correctly dividing by 1.25 gives 400."
+  },
+  {
+    "question_id": "mq-selfc-05",
+    "class": "self_correction",
+    "question": "A cyclist covers 45 kilometers in 1.5 hours at a constant speed. What is her average speed, in kilometers per hour?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "30",
+    "notes": "Divide-vs-multiply trap: multiplying 45 by 1.5 gives 67.5; the correct average speed is 45 divided by 1.5, which is 30."
+  },
+  {
+    "question_id": "mq-selfc-06",
+    "class": "self_correction",
+    "question": "An employee works 7.5 hours per day for 8 days at a wage of 15 dollars per hour. What are the total wages, in dollars?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "900",
+    "notes": "Operation-confusion trap: adding or partially multiplying the quantities (e.g. 60 + 15) gives wrong totals; the correct total is 7.5 * 8 * 15 = 900."
+  }
+]

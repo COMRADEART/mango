@@ -1,0 +1,375 @@
+{
+  "items": [
+    {
+      "category": "biology",
+      "capability_track": "bio_cells",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": true,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "exact_answer",
+      "question": "In 1831, a Scottish botanist studying plant cells became the first person to discover the nucleus. What is his name?",
+      "expected_answer": "robert brown",
+      "difficulty": 2,
+      "source_fact": {
+        "corpus_title": "Cell biology",
+        "quote": "in 1831, Robert Brown discovered the nucleus."
+      },
+      "license": "CC0-1.0",
+      "author_note": "Measures cell-biology history recall (discoverer of the nucleus) grounded in the retrieval corpus."
+    },
+    {
+      "category": "biology",
+      "capability_track": "bio_cells",
+      "generalization_split": "COMPOSITIONAL",
+      "requires_math_tool": false,
+      "requires_retrieval": false,
+      "insufficient_info": false,
+      "multi_hop": true,
+      "answer_type": "multiple_choice",
+      "question": "An experimental drug blocks the electron transport chain in a eukaryotic cell. ATP output falls sharply in the double-membrane organelle that carries its own small circular genome. Which organelle is directly affected?",
+      "choices": [
+        "Ribosome",
+        "Mitochondrion",
+        "Golgi apparatus",
+        "Central vacuole"
+      ],
+      "expected_answer": "B",
+      "difficulty": 3,
+      "license": "CC0-1.0",
+      "author_note": "Combines electron-transport knowledge with organelle structural features to identify the mitochondrion."
+    },
+    {
+      "category": "biology",
+      "capability_track": "bio_genetics",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": true,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "multiple_choice",
+      "question": "Gregor Mendel presented his paper describing his inheritance experiments in pea plants to the Naturforschender Verein, a scientific society in Brno. In what year was the paper presented?",
+      "choices": [
+        "1859",
+        "1865",
+        "1866",
+        "1900"
+      ],
+      "expected_answer": "B",
+      "difficulty": 2,
+      "source_fact": {
+        "corpus_title": "Genetics",
+        "quote": "presented in 1865 to the Naturforschender Verein (Society for Research in Nature) in Brno, Mendel traced the inheritance patterns of certain traits in pea plants"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Retrieval-grounded fact: year of Mendel's Brno lecture on pea hybridization."
+    },
+    {
+      "category": "biology",
+      "capability_track": "bio_genetics",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": false,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "exact_answer",
+      "question": "In pea plants, tall stem (T) is dominant over short stem (t). Two heterozygous tall plants (Tt x Tt) are crossed. What ratio of tall to short offspring is expected in the F2 generation? Give the answer in the form 'a:b'.",
+      "expected_answer": "3:1",
+      "difficulty": 1,
+      "license": "CC0-1.0",
+      "author_note": "Basic monohybrid Punnett-square ratio (3:1) with clean format."
+    },
+    {
+      "category": "biology",
+      "capability_track": "bio_genetics",
+      "generalization_split": "COMPOSITIONAL",
+      "requires_math_tool": true,
+      "requires_retrieval": false,
+      "insufficient_info": false,
+      "multi_hop": true,
+      "answer_type": "numeric",
+      "question": "In a dihybrid testcross between an F1 pea plant heterozygous for both seed shape (Rr) and seed colour (Yy) and a double-recessive plant (rryy), all four phenotype classes occur equally often. If 320 offspring are produced, how many are expected to show both recessive traits (wrinkled and green)?",
+      "expected_answer": "80",
+      "difficulty": 3,
+      "tool_check": {
+        "tool": "calculator",
+        "args": {
+          "expression": "320/4"
+        },
+        "field": "value"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Dihybrid testcross ratio (1/4) applied to a count of 320 offspring; benefits from the calculator."
+    },
+    {
+      "category": "biology",
+      "capability_track": "bio_molecular_biology",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": true,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "exact_answer",
+      "question": "The Avery-MacLeod-McCarty experiment followed up on Griffith's 1928 work with bacteria. Which molecule did this 1944 experiment identify as the transforming substance?",
+      "expected_answer": "dna",
+      "difficulty": 2,
+      "source_fact": {
+        "corpus_title": "Genetics",
+        "quote": "in 1944, the Avery–MacLeod–McCarty experiment identified DNA as the molecule responsible for transformation."
+      },
+      "license": "CC0-1.0",
+      "author_note": "Retrieval-grounded molecular-biology fact: DNA identified as the transforming molecule."
+    },
+    {
+      "category": "biology",
+      "capability_track": "bio_molecular_biology",
+      "generalization_split": "COMPOSITIONAL",
+      "requires_math_tool": true,
+      "requires_retrieval": false,
+      "insufficient_info": false,
+      "multi_hop": true,
+      "answer_type": "numeric",
+      "question": "A double-stranded DNA molecule is 1200 nucleotides long in total, and sequencing shows it contains 300 adenine bases. Applying Chargaff's base-pairing rules, how many guanine bases does the molecule contain?",
+      "expected_answer": "300",
+      "difficulty": 4,
+      "tool_check": {
+        "tool": "calculator",
+        "args": {
+          "expression": "(1200-2*300)/2"
+        },
+        "field": "value"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Combines Chargaff's rules with multi-step arithmetic on nucleotide counts."
+    },
+    {
+      "category": "biology",
+      "capability_track": "bio_physiology",
+      "generalization_split": "IID",
+      "requires_math_tool": true,
+      "requires_retrieval": false,
+      "insufficient_info": false,
+      "multi_hop": true,
+      "answer_type": "numeric",
+      "question": "At rest, a person's heart pumps a stroke volume of 70 mL of blood per beat at a rate of 75 beats per minute. Calculate this person's cardiac output and give the answer in litres per minute.",
+      "expected_answer": "5.25",
+      "difficulty": 3,
+      "tool_check": {
+        "tool": "calculator",
+        "args": {
+          "expression": "70*75/1000"
+        },
+        "field": "value"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Cardiac output = stroke volume x heart rate, with unit conversion from mL to litres."
+    },
+    {
+      "category": "biology",
+      "capability_track": "bio_evolution",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": true,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "multiple_choice",
+      "question": "One British naturalist is famous for authoring On the Origin of Species. A second British naturalist independently conceived the theory of evolution by natural selection in the mid-19th century. Who was he?",
+      "choices": [
+        "Thomas Henry Huxley",
+        "Jean-Baptiste Lamarck",
+        "Alfred Russel Wallace",
+        "Gregor Mendel"
+      ],
+      "expected_answer": "C",
+      "difficulty": 2,
+      "source_fact": {
+        "corpus_title": "Evolution",
+        "quote": "conceived independently by two British naturalists, Charles Darwin and Alfred Russel Wallace, in the mid-19th century as an explanation for why organisms are adapted"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Retrieval-grounded evolution-history fact: Wallace's independent conception of natural selection."
+    },
+    {
+      "category": "biology",
+      "capability_track": "bio_ecology",
+      "generalization_split": "OUT_OF_TEMPLATE",
+      "requires_math_tool": false,
+      "requires_retrieval": false,
+      "insufficient_info": false,
+      "multi_hop": true,
+      "answer_type": "numeric",
+      "question": "Field notebook, Rowan Pond reserve, 6 August. Entry reads: 'Macrophyte beds fixed an estimated 20,000 kJ of solar energy per square metre this season.' Assuming a transfer efficiency of ten percent between successive trophic levels, how many kilojoules per square metre are expected to reach the pond's secondary consumers?",
+      "expected_answer": "200",
+      "difficulty": 3,
+      "tool_check": {
+        "tool": "calculator",
+        "args": {
+          "expression": "20000*0.1*0.1"
+        },
+        "field": "value"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Ten-percent energy-transfer rule applied twice down a trophic pyramid, framed as a field-log narrative."
+    },
+    {
+      "category": "earth_space",
+      "capability_track": "earth_geology",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": true,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "numeric",
+      "question": "In what year did Alfred Wegener propose that the continents slowly drift around the Earth, the idea later known as the continental drift hypothesis?",
+      "expected_answer": "1912",
+      "difficulty": 2,
+      "source_fact": {
+        "corpus_title": "Alfred Wegener",
+        "quote": "the originator of the continental drift hypothesis by suggesting in 1912 that the continents are slowly drifting around the Earth"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Retrieval-grounded geology-history fact: year of Wegener's continental drift proposal."
+    },
+    {
+      "category": "earth_space",
+      "capability_track": "earth_geology",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": true,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "numeric",
+      "question": "A shallow magnitude-4.2 earthquake beneath Mount St. Helens on 20 March 1980 signalled the volcano's return from a long period of dormancy. For how many years had the volcano been in this dormant 'hibernation'?",
+      "expected_answer": "123",
+      "difficulty": 2,
+      "source_fact": {
+        "corpus_title": "1980 eruption of Mount St. Helens",
+        "quote": "signaled the volcano's return from 123 years of hibernation"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Retrieval-grounded volcanology fact: length of Mount St. Helens dormancy before 1980."
+    },
+    {
+      "category": "earth_space",
+      "capability_track": "earth_climate",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": false,
+      "insufficient_info": true,
+      "multi_hop": false,
+      "answer_type": "text",
+      "question": "Between 1900 and 2020, global mean surface temperature increased by about 1.1 degrees Celsius. A report assumes that greenhouse gas emissions continue at their current rate through the rest of the century. What will the global mean surface temperature increase, in degrees Celsius relative to 1900, be in the year 2100?",
+      "expected_answer": "__UNKNOWN__",
+      "difficulty": 3,
+      "license": "CC0-1.0",
+      "author_note": "Unanswerable future prediction; correct behaviour is to state that the information is insufficient."
+    },
+    {
+      "category": "earth_space",
+      "capability_track": "earth_meteorology",
+      "generalization_split": "CROSS_DOMAIN",
+      "requires_math_tool": false,
+      "requires_retrieval": true,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "multiple_choice",
+      "question": "Fresh snow, dry sand, open water, and dark soil are exposed to the same midday sun. Which surface reflects the greatest fraction of the incoming radiation and therefore raises a region's albedo the most?",
+      "choices": [
+        "Dark soil",
+        "Open water",
+        "Dry sand",
+        "Fresh snow"
+      ],
+      "expected_answer": "D",
+      "difficulty": 2,
+      "source_fact": {
+        "corpus_title": "Atmospheric physics",
+        "quote": "Snow reflects 88% of UV rays, while sand reflects 12%, and water reflects only 4% of incoming UV radiation."
+      },
+      "license": "CC0-1.0",
+      "author_note": "Links radiation physics (reflectance fractions) to climate albedo; corpus-grounded."
+    },
+    {
+      "category": "earth_space",
+      "capability_track": "space_planetary",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": true,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "numeric",
+      "question": "What percentage of the Solar System's total mass is accounted for by the Sun?",
+      "expected_answer": "99.86",
+      "difficulty": 2,
+      "source_fact": {
+        "corpus_title": "Solar System",
+        "quote": "The Sun accounts for 99.86% of the Solar System's total mass."
+      },
+      "license": "CC0-1.0",
+      "author_note": "Retrieval-grounded planetary fact: the Sun's share of Solar System mass."
+    },
+    {
+      "category": "earth_space",
+      "capability_track": "space_planetary",
+      "generalization_split": "OUT_OF_TEMPLATE",
+      "requires_math_tool": true,
+      "requires_retrieval": false,
+      "insufficient_info": false,
+      "multi_hop": true,
+      "answer_type": "numeric",
+      "question": "Scale model brief: Solar System built at 1:1,000,000,000. Jupiter's actual radius: 71,000 km. Report the model's Jupiter radius in centimetres.",
+      "expected_answer": "7.1",
+      "difficulty": 4,
+      "tool_check": {
+        "tool": "calculator",
+        "args": {
+          "expression": "71000*1000/1000000000*100"
+        },
+        "field": "value"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Scale-model geometry with km-to-cm unit conversion on Jupiter's radius; calculator-aided."
+    },
+    {
+      "category": "earth_space",
+      "capability_track": "space_stellar",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": true,
+      "insufficient_info": false,
+      "multi_hop": false,
+      "answer_type": "numeric",
+      "question": "Over its whole life, roughly what percentage of a star's lifetime is spent fusing hydrogen into helium in its core, that is, on the main sequence?",
+      "expected_answer": "90",
+      "difficulty": 2,
+      "source_fact": {
+        "corpus_title": "Star",
+        "quote": "Stars spend about 90% of their lifetimes fusing hydrogen into helium in high-temperature-and-pressure reactions in their cores. Such stars are said to be on the main sequence"
+      },
+      "license": "CC0-1.0",
+      "author_note": "Retrieval-grounded stellar-evolution fact: fraction of lifetime on the main sequence."
+    },
+    {
+      "category": "earth_space",
+      "capability_track": "space_cosmology",
+      "generalization_split": "IID",
+      "requires_math_tool": false,
+      "requires_retrieval": false,
+      "insufficient_info": false,
+      "multi_hop": true,
+      "answer_type": "multiple_choice",
+      "question": "Spectra of distant galaxies show their spectral lines shifted toward longer wavelengths, and the size of this shift grows with the galaxies' distance from Earth. Which cosmological explanation does this observation most directly support?",
+      "choices": [
+        "A static, unchanging universe",
+        "The expansion of the universe",
+        "Stellar nucleosynthesis in galaxies",
+        "Gravitational lensing by dark matter"
+      ],
+      "expected_answer": "B",
+      "difficulty": 3,
+      "license": "CC0-1.0",
+      "author_note": "Connects redshift-distance observation to the expanding-universe cosmology."
+    }
+  ]
+}

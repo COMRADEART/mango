@@ -1,0 +1,38 @@
+{
+  "artifact": "mango-eval-core-v1",
+  "suite_version": "mango-eval-core-v1",
+  "frozen_at": "2026-09-04T01:18:05.826425+00:00",
+  "immutable": true,
+  "questions": 145,
+  "eval_id_prefix": "mec1-",
+  "checksum_contract": "sha256 of each raw questions.jsonl line keyed by eval_id",
+  "categories": {
+    "physics": 18,
+    "mixed_quantitative": 14,
+    "calculus": 9,
+    "tool_routing": 13,
+    "probability_statistics": 11,
+    "trig": 12,
+    "geometry": 11,
+    "interdisciplinary": 8,
+    "biology": 5,
+    "math_foundation": 20,
+    "algebra": 12,
+    "chemistry": 11,
+    "earth_space": 1
+  },
+  "generalization_splits": {
+    "OUT_OF_TEMPLATE": 145
+  },
+  "routing_labels": {
+    "TOOL": 126,
+    "NONE": 19
+  },
+  "license": "self-authored synthetic items under CC0-1.0",
+  "contamination": "re-checked at every corpus freeze (T6.4)",
+  "build_config": {
+    "derived_from": "mango-eval-core-v1",
+    "purpose": "T6.17 robustness probes"
+  },
+  "note": "frozen before the first curriculum training run (T6.2); never trained on; permanent capability-retention suite"
+}

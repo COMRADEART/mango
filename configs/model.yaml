@@ -2,44 +2,56 @@
 #
 # These are CANDIDATES evaluated in T2 (baseline evaluation decides). None is
 # "the chosen model" until evaluations/base/ contains measured results.
+# License/metadata verification details live in evaluations/model_manifest.json
+# (verified against primary HF pages on 2026-08-31).
 #
 # Memory guideline for 6 GB VRAM: max_model ~4B parameters with 4-bit QLoRA.
 # Everything here is downloadable with a free Hugging Face account.
 candidates:
-  - name: Qwen/Qwen2.5-1.5B-Instruct
-    params_b: 1.5
+  - name: Qwen/Qwen3-1.7B
+    candidate_key: A
+    params_b: 1.7
     license: apache-2.0
-    license_verified: true          # Apache-2.0 is stated on the model card
+    license_verified: true
     context_length: 32768
-    notes: >-
-      Strong math baseline for its size, Apache-2.0 (no redistribution
-      restrictions), well supported by transformers+PEFT. Primary T2 candidate.
+    thinking_mode: dual (enable_thinking)
+    notes: >
+      PRIMARY general ScienceMath candidate: modern compact dual-mode
+      reasoning model.
   - name: Qwen/Qwen2.5-Math-1.5B-Instruct
+    candidate_key: B
     params_b: 1.5
     license: apache-2.0
     license_verified: true
     context_length: 4096
-    notes: >-
-      Math-specialized sibling of Qwen2.5-1.5B; best raw GSM8K/MATH scores at
-      this scale, but shorter context restricts RAG use (T5/T6).
-  - name: Qwen/Qwen2.5-3B-Instruct
-    params_b: 3.1
+    thinking_mode: none
+    notes: >
+      Math-specialized CONTROL: measures specialized-vs-general math
+      capability delta. Shorter context restricts RAG use (T5/T6).
+  - name: Qwen/Qwen2.5-1.5B-Instruct
+    candidate_key: C
+    params_b: 1.54
     license: apache-2.0
     license_verified: true
     context_length: 32768
-    notes: >-
-      Larger fallback if 1.5B proves too weak in T2 baselines; should still fit
-      4-bit QLoRA within 6 GB (verify with evaluate_base.py before training).
-  - name: microsoft/Phi-3-mini-4k-instruct
-    params_b: 3.8
-    license: mit
-    license_verified: true
-    context_length: 4096
-    notes: >-
-      MIT license, strong reasoning; 4k context is tight for RAG-augmented
-      prompting but workable with small retrieved context.
+    thinking_mode: none
+    notes: >
+      OPTIONAL legacy/control baseline; run only after A and B if
+      compute/storage/time permit.
+
+# NOT an automatic candidate: license is 'qwen-research' (verified on the
+# model card 2026-08-31, NOT apache-2.0). Requires explicit license review
+# before it can be considered. See evaluations/model_manifest.json.
+#   Qwen/Qwen2.5-3B-Instruct        (excluded)
+#
+# Stretch candidate, DO NOT run automatically (dry-run memory + license
+# verification required first):
+stretch_candidates:
+  - name: Qwen/Qwen3-4B-Instruct-2507
+    license_unverified: true
 
 # Placeholder until T2 completes. evaluate_base.py refuses to train from this.
 selected:
-  model_id: null                    # set after T2 baseline comparison
+  model_id: Qwen/Qwen3-1.7B          # set by T2 baseline comparison
+  selection_evidence: evaluations/base/comparison.json
   selection_evidence: null          # path to evaluations/base/manifest.json

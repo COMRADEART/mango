@@ -1,0 +1,23 @@
+{
+  "label": "mango-v0.1",
+  "suite": "mango-counterfactual-v1",
+  "n_variants": 145,
+  "behavior_pass_rate": 0.4827586206896552,
+  "by_kind": {
+    "add_distractor": {
+      "n": 95,
+      "pass_rate": 0.5052631578947369,
+      "expected_behavior": "ANSWER_UNCHANGED"
+    },
+    "alter_unit": {
+      "n": 1,
+      "pass_rate": 1.0,
+      "expected_behavior": "ANSWER_CHANGES"
+    },
+    "change_value": {
+      "n": 49,
+      "pass_rate": 0.42857142857142855,
+      "expected_behavior": "ANSWER_CHANGES"
+    }
+  }
+}

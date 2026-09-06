@@ -1,0 +1,95 @@
+{
+  "file": "reasoning_uncertainty.json",
+  "verdicts": [
+    {
+      "index": 0,
+      "verdict": "CONFIRM",
+      "reason": "Same seeds/pots/soil/watering rule out genetics (A), pot size (C), watering (D); B (more sunlight) is the only hypothesis the observation directly supports. Difficulty 2 sane."
+    },
+    {
+      "index": 1,
+      "verdict": "CONFIRM",
+      "reason": "Thermal expansion of the pendulum rod increases effective length, T=2*sqrt(L/g) grows, clock runs slow - D is correct physics. A contradicts the observation, C is untestable, B is factually wrong (hot air is less dense) and air drag barely affects period. Difficulty 4 acceptable for the multi-hop physics link."
+    },
+    {
+      "index": 2,
+      "verdict": "CONFIRM",
+      "reason": "Identical-looking inactive pill is the definition of a placebo; unambiguous single canonical answer."
+    },
+    {
+      "index": 3,
+      "verdict": "CONFIRM",
+      "reason": "Main flaw is the light confound plus lack of a treated-matched control; A is the only option that fixes both. B/C/D leave the confound or worsen the design."
+    },
+    {
+      "index": 4,
+      "verdict": "CONFIRM",
+      "reason": "Hot weather is the classic common cause; B (trucks) does not plausibly cause drownings, A/D are irrelevant. Difficulty 2 sane."
+    },
+    {
+      "index": 5,
+      "verdict": "CONFIRM",
+      "reason": "'Correlation, not evidence of causation' - the single completing word is 'causation'; no defensible alternative single word."
+    },
+    {
+      "index": 6,
+      "verdict": "CONFIRM",
+      "reason": "Sum 10.05 / 5 = 2.01, independently recomputed. Item explicitly says take all five trials as valid, so the 'clicked late' note is not a trap. requires_math_tool=true is sane for 5-value decimal mean."
+    },
+    {
+      "index": 7,
+      "verdict": "CONFIRM",
+      "reason": "Constant 3 g offset independent of the object is the textbook definition of systematic error (vs random scatter); no defensible alternative term of equal standard standing."
+    },
+    {
+      "index": 8,
+      "verdict": "CONFIRM",
+      "reason": "N/m^2 is the pascal; straightforward dimensional derivation, unique correct answer."
+    },
+    {
+      "index": 9,
+      "verdict": "CONFIRM",
+      "reason": "Independent, controlled, large-sample (500 vs 500) test at 41% is clearly the strongest support; founder claim, reviews, and single anecdote are weak evidence. Difficulty 3 sane."
+    },
+    {
+      "index": 10,
+      "verdict": "CONFIRM",
+      "reason": "Third side only constrained to 2 < x < 12 by the triangle inequality; underdetermined, __UNKNOWN__ correct. A knowledgeable model cannot produce a unique length."
+    },
+    {
+      "index": 11,
+      "verdict": "CONFIRM",
+      "reason": "Entry time never given, so hours parked (and fee) are undetermined; __UNKNOWN__ correct."
+    },
+    {
+      "index": 12,
+      "verdict": "CONFIRM",
+      "reason": "Impact speed v=sqrt(2gh) requires drop height, which is absent (the 0.5 kg mass is a red herring and does not determine speed); __UNKNOWN__ correct."
+    },
+    {
+      "index": 13,
+      "verdict": "CONFIRM",
+      "reason": "Orbital period alone underdetermines mass; Kepler's third law needs orbital radius. __UNKNOWN__ correct; difficulty 4 sane since the missing variable requires orbital mechanics to spot."
+    },
+    {
+      "index": 14,
+      "verdict": "CONFIRM",
+      "reason": "1:1 HCl/NaOH stoichiometry gives c_acid = 0.10 * V_base / 20.0, but the endpoint base volume is never stated; __UNKNOWN__ correct."
+    },
+    {
+      "index": 15,
+      "verdict": "CONFIRM",
+      "reason": "Person is unnamed and the 'discovery' unspecified, so no unique year exists even with retrieval; __UNKNOWN__ correct."
+    },
+    {
+      "index": 16,
+      "verdict": "CONFIRM",
+      "reason": "Specific 2040 global temperature anomaly is a future, unknowable value (no projection is uniquely specified); __UNKNOWN__ correct."
+    },
+    {
+      "index": 17,
+      "verdict": "CONFIRM",
+      "reason": "Outcome data from the locked binder is never provided; count of significant results is unknowable. __UNKNOWN__ correct."
+    }
+  ]
+}

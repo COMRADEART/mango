@@ -1,0 +1,13 @@
+{
+  "suite_version": "sciencemath-eval-v1",
+  "frozen_at": "2026-08-31T17:10:34.244343+00:00",
+  "files": {
+    "category_manifest.json": "6734d97dab3e8416020a5c7d918615ec4e22d235a60d10caef41dd6fe7e935c5",
+    "leakage_check.json": "9ccef4df994ccd1264a970c676b981c96b1a64363f9d02d5b2870cd01eb9aab1",
+    "manifest.json": "ccad82032217fd4e8d8ab8abb9b8683675c9f6b94d1bec1f00de9820f08039ff",
+    "questions.jsonl": "f1f6f25b2ac3c0920e7dda9a5cd18324d9acb7a13cf76d6a65abb60ea4a6ba36",
+    "source_manifest.json": "c06330f482cfcb29fbae4a2a6b4ee819be5625d9386bfaba36bfba83192d2d6d"
+  },
+  "immutable": true,
+  "verify": "recompute sha256 of each listed file; any mismatch means the suite was tampered with and no baseline is valid"
+}

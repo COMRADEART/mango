@@ -1,0 +1,152 @@
+{
+ "state": {
+  "run_id": "mq-msm-05",
+  "problem": "One typist works at 60 words per minute and a second at 45 words per minute. Working together at these rates, how many minutes do they need to type a 4200-word manuscript?",
+  "goal": "",
+  "problem_type": "GENERAL",
+  "complexity": "MULTI_STEP",
+  "resources": "MATH_TOOL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [],
+     "input": ""
+    },
+    {
+     "id": "s1",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s2",
+   "s1"
+  ],
+  "observations": [
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "4200/60+45 = 10+7 = 17 minutes",
+    "detail": {
+     "raw": "Answer: 4200/60+45 = 10+7 = 17 minutes",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 3.1657287999987602,
+    "input_tokens": 157,
+    "output_tokens": 25
+   },
+   {
+    "step_id": "s1",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{17}",
+    "detail": {
+     "raw": "Answer: \\boxed{17}",
+     "signature": "77b174e6c05a7a30"
+    },
+    "latency_s": 1.3167471000051592,
+    "input_tokens": 183,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 10.893796899996232,
+   "input_tokens": 340,
+   "output_tokens": 34
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "One typist works at 60 words per minute and a second at 45 words per minute.",
+   "Working together at these rates, how many minutes do they need to type a 4200-word manuscript?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "4200/60+45 = 10+7 = 17 minutes",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s1",
+     "content": "\\boxed{17}",
+     "step_id": "s1"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s2",
+     "dst": "step:s1",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "4200/60+45 = 10+7 = 17 minutes",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s1",
+    "content": "\\boxed{17}",
+    "step_id": "s1"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s2",
+    "dst": "step:s1",
+    "relation": "produced"
+   }
+  ]
+ }
+}

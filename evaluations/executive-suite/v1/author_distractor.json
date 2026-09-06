@@ -1,0 +1,110 @@
+[
+  {
+    "question_id": "mq-dist-01",
+    "class": "distractor",
+    "question": "A passenger train covers 240 kilometers in 3 hours at a constant speed. What is its average speed in kilometers per hour? (Historical aside: the railway era began in earnest after George Stephenson's locomotive won the 1829 Rainhill Trials, and the Trans-Siberian Railway, finished in 1916, spans about 9,289 km.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "80",
+    "notes": "Core computation is 240/3; the railway-history numbers (1829, 1916, 9289) are topically adjacent but irrelevant, so quoting one yields a wrong answer."
+  },
+  {
+    "question_id": "mq-dist-02",
+    "class": "distractor",
+    "question": "A market stall sells 6 identical apples for a total of 4.50 dollars. What is the price of one apple, in dollars? (Aside: the apple tree is thought to have been domesticated in Central Asia roughly 4,000 years ago, and the world's largest apple by weight once weighed about 1.85 kg.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "0.75",
+    "notes": "Unit-price division 4.50/6; the apple-history facts (4000 years, 1.85 kg) are irrelevant trivia whose numbers would give a wrong result."
+  },
+  {
+    "question_id": "mq-dist-03",
+    "class": "distractor",
+    "question": "A rectangular garden plot measures 12 meters long and 7 meters wide. What is its area in square meters? (Unrelated fact: Mount Everest rises roughly 8.85 km above sea level and was first summited in 1953 by a two-person expedition team.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "84",
+    "notes": "Simple area 12*7; Everest figures (8848.9, 1953) are clearly unrelated distractors that a number-anchored model might wrongly substitute."
+  },
+  {
+    "question_id": "mq-dist-04",
+    "class": "distractor",
+    "question": "A savings deposit of 2,000 dollars earns simple interest at a rate of 5 percent per year. How much interest, in dollars, does it earn over 3 years? (Aside: Beethoven completed 9 symphonies and was born in 1770 in Bonn, which today has roughly 330,000 residents.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "300",
+    "notes": "Simple interest 2000*0.05*3; the Beethoven/bonn facts (9, 1770, 330000) are unrelated numeric bait."
+  },
+  {
+    "question_id": "mq-dist-05",
+    "class": "distractor",
+    "question": "A pump fills a tank at a steady rate of 8 liters per minute. How many liters are in the tank after 15 minutes of pumping? (Unrelated fact: light travels through a vacuum at about 299,792,458 meters per second, a value fixed internationally in 1983.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "120",
+    "notes": "Rate-time product 8*15; the speed-of-light constants (299792458, 1983) are wildly unrelated distractors."
+  },
+  {
+    "question_id": "mq-dist-06",
+    "class": "distractor",
+    "question": "A jacket is listed at 40 dollars and the store applies a 25 percent discount. What is the sale price in dollars? (Aside: the Amazon rainforest covers roughly 5.5 million square kilometers, and the 1992 Earth Summit in Rio de Janeiro drew about 172 participating countries.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "30",
+    "notes": "Percentage discount 40*(1-0.25); Amazon/Rio figures (5.5 million, 172, 1992) are topically unrelated numeric noise."
+  },
+  {
+    "question_id": "mq-dist-07",
+    "class": "distractor",
+    "question": "A stationery supplier packs 540 identical pencils equally into 12 boxes. How many pencils go in each box? (Unrelated fact: the tallest known tree, a coast redwood named Hyperion, measures about 115.9 meters and was discovered in 2006.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "45",
+    "notes": "Equal-division 540/12; the tree facts (115.9, 2006) are unrelated numbers that would mislead a distractor-sensitive model."
+  },
+  {
+    "question_id": "mq-dist-08",
+    "class": "distractor",
+    "question": "A student scores 80, 90, and 91 points on three physics quizzes, each out of 100. What is the mean score across the three quizzes, in points? (Aside: the FIFA World Cup held in Qatar in 2022 featured 32 teams and Messi scored 7 goals in that tournament.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "87",
+    "notes": "Mean of 80, 90, 91; World Cup figures (32, 7, 2022) are unrelated distractors sharing only a loose 'scores' flavor."
+  },
+  {
+    "question_id": "mq-dist-09",
+    "class": "distractor",
+    "question": "A typist works at a constant rate of 45 words per minute. How many words does she produce in 12 minutes of typing? (Unrelated fact: a resting human heart beats roughly 60 to 100 times per minute and about 2.5 billion times over an average lifetime.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "540",
+    "notes": "Rate-time product 45*12; heart-rate numbers (60, 100, 2.5 billion) are per-minute quantities deliberately chosen to tempt rate confusion."
+  },
+  {
+    "question_id": "mq-dist-10",
+    "class": "distractor",
+    "question": "A car consumes 6 liters of fuel for every 100 kilometers driven. How many liters does it use on a 350-kilometer trip? (Aside: the RMS Titanic sank in 1912 with approximately 1,517 fatalities, and its wreck lies about 3,800 meters below the Atlantic surface.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "21",
+    "notes": "Proportional fuel use 6*350/100; Titanic facts (1912, 1517, 3800) are unrelated numeric bait in an adjacent travel context."
+  },
+  {
+    "question_id": "mq-dist-11",
+    "class": "distractor",
+    "question": "A triangular metal bracket has side lengths 9 centimeters, 11 centimeters, and 14 centimeters. What is its perimeter in centimeters? (Unrelated fact: the Solar System has 8 planets, and Jupiter's Great Red Spot is a storm about 16,000 kilometers wide that has raged for centuries.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "34",
+    "notes": "Simple sum 9+11+14; planetary facts (8, 16000) are clearly unrelated quantities."
+  },
+  {
+    "question_id": "mq-dist-12",
+    "class": "distractor",
+    "question": "A plumber charges a fixed 45-dollar call-out fee plus 30 dollars for each hour of work. What is the total bill, in dollars, for a job that takes 5 hours? (Aside: the Great Wall of China stretches roughly 21,196 kilometers in total, and construction on its earliest sections began as far back as the 7th century BCE.)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "195",
+    "notes": "Two-step linear cost 45+30*5; Great Wall figures (21196, 7th century BCE) are unrelated distractors."
+  }
+]

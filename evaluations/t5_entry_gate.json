@@ -1,0 +1,48 @@
+{
+  "gate": "T5.0_entry_gate",
+  "milestone": "T5 — Scientific Knowledge and Retrieval Layer",
+  "date": "2026-09-03",
+  "git": {
+    "repository": "C:/Users/allam/Documents/new/model/sciencemath",
+    "branch": "master",
+    "head_before_t5": "662e08f",
+    "head_subject": "T0+T1: repository foundation and dataset pipeline",
+    "working_tree_note": "uncommitted T2/T3/T4 artifacts present in tree (evaluations/*, training/*, src/tools, tests) — preserved as-is; T5 adds new files and does not modify frozen T4 artifacts"
+  },
+  "tests": {
+    "collected": 430,
+    "exit_code": 0,
+    "verdict": "430/430 PASS (pytest terminal summary line not flushed through Git Bash pipe on this Windows/pytest 9.1.1 setup; ground truth = --co count 430 + exit code 0. Exact summary re-captured at T5 close.)"
+  },
+  "t4_artifacts_intact": {
+    "evaluations/tool-suite/v1": true,
+    "t4_metrics_present": true,
+    "predictions_and_failures_present": true,
+    "tuned_adapter_present": "training/adapters/sciencemath-v0.1-t3 (Mango-v0.1)"
+  },
+  "environment": {
+    "python": "3.12",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB (5622 MiB free at gate time)",
+    "cuda_available": true,
+    "torch_cuda_version": "12.1",
+    "installed_for_t5": ["faiss-cpu 1.15.0", "sentence-transformers 6.0.1", "rank_bm25 0.2.2"],
+    "network": {"wikipedia_api": "reachable", "huggingface": "reachable"}
+  },
+  "adapter_loads": true,
+  "math_tools_function": true,
+  "retrieval_conflict_check": {
+    "src/sciencemath/rag": "T0 placeholder only (raises ImportError; docstring plans T5) — replaced by the T5 implementation",
+    "rag/corpus|embeddings|index": "empty directories — no prior index",
+    "scripts/build_rag_index.py + ingest_wikipedia.py": "T0 stubs (exit 90) — replaced by T5 implementations",
+    "configs/rag.yaml": "T0 design-pinning config only",
+    "conflict": "none — no prior retrieval implementation to conflict with"
+  },
+  "license_gate_check": {
+    "source_registry": "data/science_sources/source_registry.json (registry_version 1.0.0, deny-by-default)",
+    "wikipedia_en": "APPROVED, approved_for_local_index=true",
+    "arxiv": "RETRIEVAL_ONLY — indexing denied (verified in code gate)",
+    "unknown_source": "denied (verified in code gate)"
+  },
+  "blocked_if": "T4 regression discovered — none found at gate time",
+  "decision": "T5 UNBLOCKED"
+}

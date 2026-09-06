@@ -1,0 +1,170 @@
+{
+  "analysis": "evaluations/t8/pareto_analysis.json",
+  "generated_at": "2026-09-05T09:45:49.805774+00:00",
+  "suite": "mango-capacity-eval-v1",
+  "arm": "model-only (T8.6: executive scaffolding disabled)",
+  "capability_vectors": {
+    "phi4-mini-instruct": {
+      "model": "microsoft/Phi-4-mini-instruct",
+      "overall": 0.5714285714285714,
+      "math_macro": 0.8620689655172413,
+      "science_macro": 0.5,
+      "cross_domain": 0.4166666666666667,
+      "compositional": 0.16666666666666666,
+      "counterfactual": 0.3333333333333333,
+      "distractor": 0.75,
+      "uncertainty": 0.6,
+      "decomposition": 0.6666666666666666,
+      "self_correction": 0.17647058823529413,
+      "tool_routing": 0.6666666666666666,
+      "extraction": 1.0,
+      "retrieval_routing": null
+    },
+    "phi4-mini-reasoning": {
+      "model": "microsoft/Phi-4-mini-reasoning",
+      "overall": 0.8067226890756303,
+      "math_macro": 0.7931034482758621,
+      "science_macro": 0.9,
+      "cross_domain": 0.75,
+      "compositional": 0.5833333333333334,
+      "counterfactual": 0.5833333333333334,
+      "distractor": 1.0,
+      "uncertainty": null,
+      "decomposition": 0.2916666666666667,
+      "self_correction": 0.043478260869565216,
+      "tool_routing": 0.2916666666666667,
+      "extraction": 0.9159663865546218,
+      "retrieval_routing": null
+    },
+    "qwen3-1.7b-control": {
+      "model": "Qwen/Qwen3-1.7B",
+      "overall": 0.8151260504201681,
+      "math_macro": 0.8620689655172413,
+      "science_macro": 0.8,
+      "cross_domain": 0.9166666666666666,
+      "compositional": 0.6666666666666666,
+      "counterfactual": 0.5833333333333334,
+      "distractor": 0.9166666666666666,
+      "uncertainty": 0.26666666666666666,
+      "decomposition": 0.0,
+      "self_correction": 0.18181818181818182,
+      "tool_routing": 0.0,
+      "extraction": 0.9747899159663865,
+      "retrieval_routing": null
+    },
+    "qwen3-4b-instruct": {
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "overall": 0.8151260504201681,
+      "math_macro": 0.7931034482758621,
+      "science_macro": 0.8333333333333334,
+      "cross_domain": 0.8333333333333334,
+      "compositional": 0.75,
+      "counterfactual": 0.6666666666666666,
+      "distractor": 0.9166666666666666,
+      "uncertainty": 0.761904761904762,
+      "decomposition": 0.375,
+      "self_correction": -0.22727272727272727,
+      "tool_routing": 0.375,
+      "extraction": 1.0,
+      "retrieval_routing": null
+    },
+    "smollm3-3b": {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "overall": 0.7394957983193278,
+      "math_macro": 0.7586206896551724,
+      "science_macro": 0.6666666666666666,
+      "cross_domain": 0.75,
+      "compositional": 0.5833333333333334,
+      "counterfactual": 0.75,
+      "distractor": 0.9166666666666666,
+      "uncertainty": 0.375,
+      "decomposition": 0.0,
+      "self_correction": 0.5161290322580645,
+      "tool_routing": 0.0,
+      "extraction": 0.8991596638655462,
+      "retrieval_routing": null
+    }
+  },
+  "pareto_front": [
+    "phi4-mini-instruct",
+    "phi4-mini-reasoning",
+    "qwen3-1.7b-control",
+    "qwen3-4b-instruct",
+    "smollm3-3b"
+  ],
+  "pareto_rank": [
+    "phi4-mini-instruct",
+    "phi4-mini-reasoning",
+    "qwen3-1.7b-control",
+    "qwen3-4b-instruct",
+    "smollm3-3b"
+  ],
+  "dimension_winners": {
+    "overall": "qwen3-1.7b-control",
+    "math_macro": "phi4-mini-instruct",
+    "science_macro": "phi4-mini-reasoning",
+    "cross_domain": "qwen3-1.7b-control",
+    "compositional": "qwen3-4b-instruct",
+    "counterfactual": "smollm3-3b",
+    "distractor": "phi4-mini-reasoning",
+    "uncertainty": "qwen3-4b-instruct",
+    "decomposition": "phi4-mini-instruct",
+    "self_correction": "smollm3-3b",
+    "tool_routing": "phi4-mini-instruct",
+    "extraction": "phi4-mini-instruct"
+  },
+  "migration_recommendations": {
+    "phi4-mini-instruct": {
+      "model": "microsoft/Phi-4-mini-instruct",
+      "decision": "DO_NOT_MIGRATE",
+      "reason": "major math/science regression {'math_macro': 0.0, 'science_macro': -0.3}; overall delta -0.244, 2 capacity dimensions improved",
+      "license_gate": "APPROVED"
+    },
+    "phi4-mini-reasoning": {
+      "model": "microsoft/Phi-4-mini-reasoning",
+      "decision": "DO_NOT_MIGRATE",
+      "reason": "major math/science regression {'math_macro': -0.069, 'science_macro': 0.1}; overall delta -0.008, 2 capacity dimensions improved",
+      "license_gate": "APPROVED"
+    },
+    "qwen3-4b-instruct": {
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "decision": "DO_NOT_MIGRATE",
+      "reason": "major math/science regression {'math_macro': -0.069, 'science_macro': 0.033}; overall delta +0.000, 4 capacity dimensions improved",
+      "license_gate": "APPROVED"
+    },
+    "smollm3-3b": {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "decision": "DO_NOT_MIGRATE",
+      "reason": "major math/science regression {'math_macro': -0.103, 'science_macro': -0.133}; overall delta -0.076, 3 capacity dimensions improved",
+      "license_gate": "APPROVED"
+    }
+  },
+  "hardware_efficiency": {
+    "phi4-mini-instruct": {
+      "mean_capability_gain": -0.2587,
+      "capability_gain_per_gb_vram": -0.0361,
+      "capability_gain_per_second_per_1k_tps": -21.1876
+    },
+    "phi4-mini-reasoning": {
+      "mean_capability_gain": -0.0121,
+      "capability_gain_per_gb_vram": -0.0017,
+      "capability_gain_per_second_per_1k_tps": -0.6875
+    },
+    "qwen3-1.7b-control": {
+      "mean_capability_gain": 0.0,
+      "capability_gain_per_gb_vram": 0.0,
+      "capability_gain_per_second_per_1k_tps": 0.0
+    },
+    "qwen3-4b-instruct": {
+      "mean_capability_gain": 0.0262,
+      "capability_gain_per_gb_vram": 0.0035,
+      "capability_gain_per_second_per_1k_tps": 2.1044
+    },
+    "smollm3-3b": {
+      "mean_capability_gain": -0.0458,
+      "capability_gain_per_gb_vram": -0.008,
+      "capability_gain_per_second_per_1k_tps": -3.2761
+    }
+  },
+  "note": "Pareto dimensions = all capability-vector dimensions; candidates win on BALANCE, not single-dimension strength (T8.13). Missing dims count as 0 for dominance."
+}

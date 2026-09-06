@@ -1,0 +1,8 @@
+{
+  "checked_against": [
+    "mango-eval-core-v1",
+    "sciencemath-eval-suite-v1"
+  ],
+  "flagged": [],
+  "ok": true
+}

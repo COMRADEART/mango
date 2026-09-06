@@ -1,0 +1,28 @@
+{
+  "suite": "mango-executive-eval-v1",
+  "frozen_date": "2026-09-04",
+  "total": 102,
+  "per_class": {
+    "contradictory": 8,
+    "counterfactual": 6,
+    "distractor": 12,
+    "missing_info": 10,
+    "mixed": 12,
+    "multi_hop_science": 12,
+    "multi_step_math": 12,
+    "retrieval_failure": 6,
+    "self_correction": 6,
+    "simple": 12,
+    "tool_failure": 6
+  },
+  "source_files": {
+    "author_tool_failure.json": 6
+  },
+  "schema": "question_id, eval_id(=question_id), class, question, answer_type, choices, expected_answer, harness, notes",
+  "insufficient_classes": [
+    "contradictory",
+    "missing_info"
+  ],
+  "usage": "evaluation ONLY \u2014 never used for training (T7.20)",
+  "questions_sha256": "309ffa22a08923b55abea187656f3ff5afbf69e3ec2bc2d701d56ccaf6d66bcb"
+}

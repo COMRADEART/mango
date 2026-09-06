@@ -1,0 +1,53 @@
+{
+  "model_id": "Qwen/Qwen2.5-Math-1.5B-Instruct",
+  "model_revision": "aafeb0fc6f22cbf0eaeed126eff8be45b0360a35",
+  "status": "COMPLETE",
+  "mode": "cot",
+  "thinking_enabled": null,
+  "quantized_4bit": true,
+  "suite": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\suite\\v1",
+  "questions_total": 188,
+  "questions_answered": 188,
+  "generation": {
+    "seed": 42,
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "max_new_tokens": 1024
+  },
+  "runtime_s": 4767.3,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 1179743232,
+    "peak_vram_bytes": 1179743232,
+    "reserved_vram_bytes": 1201668096,
+    "smoke_latency_s": 0.93
+  },
+  "candidate_key": "B",
+  "variant": "primary",
+  "suite_check": {
+    "suite_version": "sciencemath-eval-v1",
+    "frozen_at": "2026-08-31T17:10:34.244343+00:00",
+    "verified": true,
+    "problems": [],
+    "files": [
+      "category_manifest.json",
+      "leakage_check.json",
+      "manifest.json",
+      "questions.jsonl",
+      "source_manifest.json"
+    ],
+    "extra_unlisted_files": [],
+    "verified_at": "2026-09-01T21:23:59.765705+00:00"
+  },
+  "license_status": "APPROVED",
+  "license": "apache-2.0",
+  "prompt_note": "greedy decoding per Qwen2.5-Math model card; CoT convention \\boxed{} (no TIR: T4 tools out of T2 scope)",
+  "config_change_note": null,
+  "t2_environment": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t2_environment.json",
+  "suite_version": "sciencemath-eval-v1",
+  "finished_at": "2026-09-01T22:43:39.689333+00:00"
+}

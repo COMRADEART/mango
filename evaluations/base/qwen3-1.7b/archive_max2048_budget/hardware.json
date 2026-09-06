@@ -1,0 +1,11 @@
+{
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2284549632,
+    "peak_vram_bytes": 2284549632,
+    "reserved_vram_bytes": 2325741568,
+    "smoke_latency_s": 2.96
+  }
+}

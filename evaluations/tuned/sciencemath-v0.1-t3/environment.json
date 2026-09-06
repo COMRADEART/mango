@@ -1,0 +1,8 @@
+{
+  "recorded_at": "2026-09-03T05:19:33.720875+00:00",
+  "torch": "2.5.1+cu121",
+  "transformers": "5.16.1",
+  "peft": "0.20.0",
+  "bitsandbytes": "0.50.2",
+  "accelerate": "1.14.0"
+}

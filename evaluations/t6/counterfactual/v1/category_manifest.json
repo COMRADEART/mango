@@ -1,0 +1,41 @@
+{
+  "math_foundation": {
+    "count": 20
+  },
+  "algebra": {
+    "count": 12
+  },
+  "geometry": {
+    "count": 11
+  },
+  "trig": {
+    "count": 12
+  },
+  "calculus": {
+    "count": 9
+  },
+  "probability_statistics": {
+    "count": 11
+  },
+  "physics": {
+    "count": 18
+  },
+  "chemistry": {
+    "count": 11
+  },
+  "biology": {
+    "count": 5
+  },
+  "earth_space": {
+    "count": 1
+  },
+  "mixed_quantitative": {
+    "count": 14
+  },
+  "interdisciplinary": {
+    "count": 8
+  },
+  "tool_routing": {
+    "count": 13
+  }
+}

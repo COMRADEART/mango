@@ -1,0 +1,9 @@
+{
+  "model_id": "Qwen/Qwen3-1.7B",
+  "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "gated": false,
+  "declared_mode": "thinking",
+  "thinking_enabled": true,
+  "quantized_4bit": true,
+  "note": "quantization applies to inference only; base weights unmodified"
+}

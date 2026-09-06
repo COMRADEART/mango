@@ -1,0 +1,7 @@
+{"ts": 1788498936.049556, "run_id": "mq-simple-01", "event": "classified", "payload": {"problem_type": "GENERAL", "complexity": "SIMPLE", "resources": "MATH_TOOL", "tools": [], "domain": "general"}}
+{"ts": 1788498936.049556, "run_id": "mq-simple-01", "event": "understanding", "payload": {"question_target": "What is 7 + 5", "knowns": ["7", "5"], "unknowns": ["What is 7 + 5"], "expression": "", "constraints": [], "missing": []}}
+{"ts": 1788498941.167758, "run_id": "mq-simple-01", "event": "error", "payload": {"error": "deterministic fallback plan invalid: [\"duplicate step id 's2'\"]"}}
+{"ts": 1788498941.1785865, "run_id": "mq-simple-02", "event": "classified", "payload": {"problem_type": "GENERAL", "complexity": "SIMPLE", "resources": "MATH_TOOL", "tools": [], "domain": "general"}}
+{"ts": 1788498941.1785865, "run_id": "mq-simple-02", "event": "understanding", "payload": {"question_target": "What is 3 * 9", "knowns": ["3", "9"], "unknowns": ["What is 3 * 9"], "expression": "", "constraints": [], "missing": []}}
+{"ts": 1788498947.2186513, "run_id": "mq-simple-02", "event": "error", "payload": {"error": "deterministic fallback plan invalid: [\"duplicate step id 's2'\"]"}}
+{"ts": 1788498947.2186513, "run_id": "mq-simple-03", "event": "classified", "payload": {"problem_type": "GENERAL", "complexity": "SIMPLE", "resources": "NONE", "tools": [], "domain": "general"}}

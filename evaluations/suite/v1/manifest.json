@@ -1,0 +1,32 @@
+{
+  "version": "sciencemath-eval-v1",
+  "frozen_at": "2026-08-31T17:10:34.244343+00:00",
+  "seed": 42,
+  "n_questions": 188,
+  "categories": {
+    "arithmetic": 40,
+    "algebra": 40,
+    "geometry": 10,
+    "trigonometry_precalculus": 10,
+    "calculus": 0,
+    "probability_statistics": 10,
+    "physics": 0,
+    "chemistry": 0,
+    "biology": 0,
+    "astronomy_earth_science": 0,
+    "general_science": 60,
+    "interdisciplinary": 0,
+    "instruction_following": 10,
+    "uncertainty_calibration": 8
+  },
+  "sources": {
+    "math-competition": 70,
+    "synthetic-v1": 18,
+    "sciq": 30,
+    "ai2-arc": 30,
+    "gsm8k": 40
+  },
+  "leakage_gate": "PASS",
+  "scoring": "deterministic only (exact_choice_match, numeric_exact_match with tolerance, normalized_text_match, uncertainty signal detection); no LLM judging",
+  "immutability": "frozen; corrections require sciencemath-eval-v2"
+}

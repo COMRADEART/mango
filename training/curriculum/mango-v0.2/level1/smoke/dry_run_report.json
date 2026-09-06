@@ -1,0 +1,34 @@
+{
+  "status": "COMPLETE",
+  "dry_run": true,
+  "resumed_from_checkpoint": null,
+  "train_examples": 16,
+  "validation_examples": 4,
+  "steps": 3,
+  "final_train_loss": null,
+  "best_eval_loss": 0.2677316665649414,
+  "peak_vram_bytes": 3386460672,
+  "base_vram_bytes": 2596759552,
+  "train_time_s": 26.0,
+  "adapter_dir": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\curriculum\\mango-v0.2\\level1\\smoke\\adapter",
+  "parent_adapter": "training/adapters/sciencemath-v0.1-t3",
+  "parent_adapter_info": {
+    "ok": true,
+    "weights": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\sciencemath-v0.1-t3\\adapter_model.safetensors",
+    "lora_tensors": 392
+  },
+  "tokenize_stats": {
+    "train": {
+      "kept": 16,
+      "question_shortened": 0,
+      "dropped_too_long": 0
+    },
+    "validation": {
+      "kept": 4,
+      "question_shortened": 0,
+      "dropped_too_long": 0
+    }
+  },
+  "reload_ok": true,
+  "loss_divergence": null
+}

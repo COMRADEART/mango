@@ -1,0 +1,70 @@
+{
+  "arithmetic": {
+    "count": 40,
+    "synthetic": false
+  },
+  "algebra": {
+    "count": 40,
+    "synthetic": false
+  },
+  "geometry": {
+    "count": 10,
+    "synthetic": false
+  },
+  "trigonometry_precalculus": {
+    "count": 10,
+    "synthetic": false
+  },
+  "calculus": {
+    "count": 0,
+    "synthetic": false,
+    "status": "INSUFFICIENT_VERIFIED_EVAL_DATA",
+    "note": "no license-verified calculus evaluation source available; the MATH precalculus subject is the closest verified content and is kept under trigonometry_precalculus"
+  },
+  "probability_statistics": {
+    "count": 10,
+    "synthetic": false
+  },
+  "physics": {
+    "count": 0,
+    "synthetic": false,
+    "status": "INSUFFICIENT_VERIFIED_EVAL_DATA",
+    "note": "no verified subject-labeled physics evaluation source ingested"
+  },
+  "chemistry": {
+    "count": 0,
+    "synthetic": false,
+    "status": "INSUFFICIENT_VERIFIED_EVAL_DATA",
+    "note": "no verified subject-labeled chemistry evaluation source ingested"
+  },
+  "biology": {
+    "count": 0,
+    "synthetic": false,
+    "status": "INSUFFICIENT_VERIFIED_EVAL_DATA",
+    "note": "no verified subject-labeled biology evaluation source ingested"
+  },
+  "astronomy_earth_science": {
+    "count": 0,
+    "synthetic": false,
+    "status": "INSUFFICIENT_VERIFIED_EVAL_DATA",
+    "note": "no verified astronomy/earth-science evaluation source ingested"
+  },
+  "general_science": {
+    "count": 60,
+    "synthetic": false
+  },
+  "interdisciplinary": {
+    "count": 0,
+    "synthetic": false,
+    "status": "INSUFFICIENT_VERIFIED_EVAL_DATA",
+    "note": "no verified interdisciplinary evaluation source ingested"
+  },
+  "instruction_following": {
+    "count": 10,
+    "synthetic": true
+  },
+  "uncertainty_calibration": {
+    "count": 8,
+    "synthetic": true
+  }
+}

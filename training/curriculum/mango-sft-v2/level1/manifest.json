@@ -1,0 +1,78 @@
+{
+  "corpus": "mango-sft-v2",
+  "level": 1,
+  "level_name": "foundations",
+  "curriculum_version": "1.0.0",
+  "seed": 42,
+  "immutable": true,
+  "frozen_before_training": true,
+  "target_examples": 900,
+  "counts": {
+    "generated_new": 754,
+    "validation": 39,
+    "train": 850,
+    "replay": 135
+  },
+  "generation_stats": {
+    "math_arithmetic": {
+      "requested": 70,
+      "generated": 70
+    },
+    "math_fractions": {
+      "requested": 70,
+      "generated": 70
+    },
+    "math_ratios": {
+      "requested": 70,
+      "generated": 70
+    },
+    "math_percentages": {
+      "requested": 70,
+      "generated": 70
+    },
+    "math_linear_equations": {
+      "requested": 70,
+      "generated": 70
+    },
+    "phys_mechanics": {
+      "requested": 70,
+      "generated": 70
+    },
+    "phys_energy_momentum": {
+      "requested": 69,
+      "generated": 58
+    },
+    "chem_stoichiometry": {
+      "requested": 69,
+      "generated": 69
+    },
+    "sci_measurements": {
+      "requested": 69,
+      "generated": 69
+    }
+  },
+  "verification": {
+    "parse_gate": {
+      "candidates": 616,
+      "parsed": 616,
+      "failed": 0,
+      "unknown": 0
+    },
+    "tool_cross_check": {
+      "cross_checked": 616,
+      "kept": 616,
+      "dropped": 0,
+      "dropped_samples": []
+    },
+    "grounding_rejected": [],
+    "authored_problems": []
+  },
+  "replay_fraction": 0.15,
+  "token_mixture": {
+    "mathematics": 0.5636,
+    "sciences": 0.4102,
+    "general": 0.0263
+  },
+  "contamination_ok": true,
+  "regression_gates_ref": "configs/curriculum.yaml (pre-declared)"
+}

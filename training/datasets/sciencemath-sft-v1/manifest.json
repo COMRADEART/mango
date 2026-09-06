@@ -1,0 +1,47 @@
+{
+  "version": "sciencemath-sft-v1",
+  "frozen_at": "2026-09-02T20:42:41.475727+00:00",
+  "seed": 42,
+  "git_commit": "662e08f172cb98b333dab4960d9ff3ea81ab21d0",
+  "format": "canonical ScienceMath SFT: user question / assistant concise visible reasoning + boxed final-answer closure (no reasoning blocks; enable_thinking=False protocol)",
+  "counts": {
+    "train": 2910,
+    "validation": 121,
+    "total": 3031
+  },
+  "mix_measured": {
+    "math": 0.5447,
+    "science": 0.3959,
+    "general": 0.0594
+  },
+  "mix_targets": {
+    "math": 0.54,
+    "science": 0.4,
+    "general": 0.06
+  },
+  "answer_contract": {
+    "math": "Final answer: \\boxed{...}",
+    "science": "Answer: \\boxed{...}"
+  },
+  "reasoning_budgets": {
+    "math": 1600,
+    "science": 700,
+    "general": 400
+  },
+  "immutability": "frozen; changes require sciencemath-sft-v2",
+  "eval_suite": "sciencemath-eval-v1 (unchanged; contamination gate rerun at freeze time and recorded in contamination_report.json)",
+  "provenance_per_example": [
+    "id",
+    "source",
+    "source_id",
+    "domain",
+    "subject",
+    "difficulty",
+    "license",
+    "question",
+    "answer",
+    "solution",
+    "explanation",
+    "target_response"
+  ]
+}

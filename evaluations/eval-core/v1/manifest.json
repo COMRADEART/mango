@@ -1,0 +1,56 @@
+{
+  "artifact": "mango-eval-core-v1",
+  "suite_version": "mango-eval-core-v1",
+  "frozen_at": "2026-09-04T01:13:43.092415+00:00",
+  "immutable": true,
+  "questions": 151,
+  "eval_id_prefix": "mec1-",
+  "checksum_contract": "sha256 of each raw questions.jsonl line keyed by eval_id",
+  "categories": {
+    "physics": 12,
+    "uncertainty_calibration": 8,
+    "mixed_quantitative": 8,
+    "calculus": 10,
+    "tool_routing": 8,
+    "probability_statistics": 10,
+    "trig": 8,
+    "scientific_reasoning": 10,
+    "geometry": 10,
+    "interdisciplinary": 8,
+    "biology": 10,
+    "math_foundation": 12,
+    "chemistry": 10,
+    "earth_space": 8,
+    "algebra": 12,
+    "retrieval_routing": 7
+  },
+  "generalization_splits": {
+    "IID": 98,
+    "COMPOSITIONAL": 18,
+    "CROSS_DOMAIN": 12,
+    "OUT_OF_TEMPLATE": 23
+  },
+  "routing_labels": {
+    "TOOL": 83,
+    "INSUFFICIENT_INFO": 9,
+    "NONE": 36,
+    "BOTH": 2,
+    "RETRIEVAL": 21
+  },
+  "license": "self-authored synthetic items under CC0-1.0",
+  "contamination": "re-checked at every corpus freeze (T6.4)",
+  "build_config": {
+    "merged_from": [
+      "biology_earth_space.json",
+      "calculus_probability.json",
+      "geometry_trig.json",
+      "math_foundation_algebra.json",
+      "mixed_interdisciplinary.json",
+      "physics_chemistry.json",
+      "reasoning_uncertainty.json",
+      "routing_labels.json"
+    ],
+    "excluded_count": 1
+  },
+  "note": "frozen before the first curriculum training run (T6.2); never trained on; permanent capability-retention suite"
+}

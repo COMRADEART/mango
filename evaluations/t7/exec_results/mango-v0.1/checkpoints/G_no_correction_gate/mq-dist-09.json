@@ -1,0 +1,208 @@
+{
+ "state": {
+  "run_id": "mq-dist-09",
+  "problem": "A typist works at a constant rate of 45 words per minute. How many words does she produce in 12 minutes of typing? (Unrelated fact: a resting human heart beats roughly 60 to 100 times per minute and about 2.5 billion times over an average lifetime.)",
+  "goal": "",
+  "problem_type": "MATH",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "How many words does she produce in 12 minutes of typing"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-61338:performing_addition_single_digit_additio_25e9f6c9:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-61338:performing_addition_single_digit_additio_25e9f6c9:0",
+       "text": "An ability to add a pair of single digits (numbers from 0 to 9) is a prerequisite for addition of arbitrary numbers in the decimal system. With 10 choices for each of the two digits to be added, this makes 100 single-digit \"addition facts\", which can be presented in an addition table.  Learning to fluently and accurately compute single-digit additions is a major focus of early schooling in arithmetic. Sometimes students are encouraged to memorize the full addition table by rote, but pattern-based strategies are typically more enlightening and, for most people, more efficient:  Commutative prop"
+      }
+     ],
+     "signature": "0294a13097c89e43"
+    },
+    "latency_s": 0.3929436999897007,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "45*12=540 words",
+    "detail": {
+     "raw": "Answer: 45*12=540 words",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 1.7904434999800287,
+    "input_tokens": 337,
+    "output_tokens": 14
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "540 [s1]",
+    "detail": {
+     "raw": "Answer: 540 [s1]",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.4137341000023298,
+    "input_tokens": 328,
+    "output_tokens": 11
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 8.368761799996719,
+   "input_tokens": 665,
+   "output_tokens": 25
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A typist works at a constant rate of 45 words per minute.",
+   "How many words does she produce in 12 minutes of typing?",
+   "(Unrelated fact: a resting human heart beats roughly 60 to 100 times per minute and about 2.5 billion times over an average lifetime.)"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-61338:performing_addition_single_digit_additio_25e9f6c9:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "45*12=540 words",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "540 [s1]",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-61338:performing_addition_single_digit_additio_25e9f6c9:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "45*12=540 words",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "540 [s1]",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

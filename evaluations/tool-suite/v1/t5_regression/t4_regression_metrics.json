@@ -1,0 +1,13 @@
+{
+  "purpose": "T5.22 T4-regression check (frozen artifacts untouched)",
+  "frozen_no_tool_accuracy": 0.7066666666666667,
+  "current_no_tool_accuracy": 0.7067,
+  "n_questions": 150,
+  "verifier_agreement": {
+    "agree": 150,
+    "disagree": 0
+  },
+  "regenerated_fresh": 30,
+  "regression_gate": "PASS",
+  "disagreements": []
+}

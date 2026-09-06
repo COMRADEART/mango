@@ -1,0 +1,35 @@
+{
+  "artifact": "mango-capacity-eval-v1",
+  "suite_version": "mango-capacity-eval-v1",
+  "frozen_at": "2026-09-04T22:38:00.215549+00:00",
+  "immutable": true,
+  "questions": 131,
+  "eval_id_prefix": "mce1-",
+  "license": "self-authored synthetic items under CC0-1.0",
+  "capacity_dimensions": {
+    "compositional": 12,
+    "counterfactual": 12,
+    "cross_domain": 12,
+    "distractor_clean": 12,
+    "distractor_loaded": 12,
+    "math": 29,
+    "science": 30,
+    "uncertainty": 12
+  },
+  "categories": {
+    "algebra": 12,
+    "biology": 13,
+    "calculus": 6,
+    "chemistry": 13,
+    "earth_space": 11,
+    "geometry": 8,
+    "interdisciplinary": 12,
+    "mixed_quantitative": 5,
+    "physics": 24,
+    "probability_statistics": 10,
+    "scientific_reasoning": 1,
+    "trig": 4,
+    "uncertainty_calibration": 12
+  },
+  "note": "T8 capacity benchmark — targets the measured weaknesses of the 1.7B base (T5R/T6/T7): decomposition, composition, counterfactual, uncertainty, distractors, cross-domain."
+}

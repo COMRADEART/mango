@@ -1,0 +1,201 @@
+{
+  "diagnostic_of": "evaluations/base/qwen3-1.7b/predictions.jsonl (FROZEN; not modified)",
+  "purpose": "decompose the 37 EXTRACTION_FAILURE rows by root cause; diagnostic only, no rescoring",
+  "token_budget": 4096,
+  "note": "all TRUNCATED_GENERATION rows hit exactly the 4096-token cap with the think block still open; additionally 5 rows carry the runner taxonomy label TRUNCATED_OUTPUT (budget exhausted but gradable-but-wrong text), for 41/188 budget-exhausted total",
+  "counts": {
+    "UNFINISHED_THINK_BLOCK": 0,
+    "TRUNCATED_GENERATION": 36,
+    "EMPTY_VISIBLE_ANSWER": 0,
+    "MALFORMED_VISIBLE_ANSWER": 1,
+    "OTHER_EXTRACTION_FAILURE": 0
+  },
+  "total": 37,
+  "rows": [
+    {
+      "eval_id": "ev1-0054033fb1ce",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-0953e8219e27",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-14a35fb0060d",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-17cff5e0d02c",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-2323f7825810",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-2636a5bc5326",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-2932e0e59cbb",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-2bb83dacd161",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-3418804a4b36",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-3b24669b4a76",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-3c675901c606",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-4826156af9b8",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-4fef0a98f059",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-5c9d65b01b71",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-5dd5a29852b9",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-713810a31b86",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-747f9554ec25",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-7891dd951e2b",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-798498945cc1",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-80f01e6c7cee",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-89624b14b049",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-96b81fb8e742",
+      "category_diag": "MALFORMED_VISIBLE_ANSWER",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-a77d6d70b221",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-a9990263c6e9",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-abca40451f97",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-b37cc0b86619",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-b7649dfeff9c",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-bc7b0e671a00",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-c3d384afd6a6",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-c7e0a43c64b1",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-cbcfcbfb7078",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-cc659b90805e",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-dbe28a9fa6df",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-e1a290a65ded",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-e24fda0d05e5",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-e57a0d1646ed",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    },
+    {
+      "eval_id": "ev1-e95b90140942",
+      "category_diag": "TRUNCATED_GENERATION",
+      "output_tokens": 4096
+    }
+  ]
+}

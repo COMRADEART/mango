@@ -1,0 +1,225 @@
+{
+ "state": {
+  "run_id": "mq-contr-03",
+  "problem": "A chemistry lab manual states that the reaction releases 250 kJ per mole of product. A footnote on the same page states the reaction releases 180 kJ per mole. How much energy, in kJ, is released when 3 moles react?",
+  "goal": "",
+  "problem_type": "MIXED",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "How much energy, in kJ, is released when 3 moles react"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-57555:factors_that_affect_pka_values_thermodyn_1f6a991d:0 | wiki-26808:nuclear_fusion_reaction_pathways_dea6544f:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-57555:factors_that_affect_pka_values_thermodyn_1f6a991d:0",
+       "text": "An equilibrium constant is related to the standard Gibbs energy change for the reaction, so for an acid dissociation constant     Δ  G  ⊖   = − R T ln ⁡  K  a   ≈ 2.303 R T   p   K  a     {\\displaystyle \\Delta G^{\\ominus }=-RT\\ln K_{\\text{a}}\\approx 2.303RT\\ \\mathrm {p} K_{\\text{a}}}  . R is the gas constant and T is the absolute temperature. Note that pKa = −log(Ka) and 2.303 ≈ ln(10). At 25 °C, ΔG⊖ in kJ·mol−1 ≈ 5.708 pKa (1 kJ·mol−1 = 1000 joules per mole). Free energy is made up of an enthalpy term and an entropy term.     Δ  G  ⊖   = Δ  H  ⊖   − T Δ  S  ⊖     {\\displaystyle \\Delta G^{\\omi"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-26808:nuclear_fusion_reaction_pathways_dea6544f:0",
+       "text": "When nuclei fuse, the mass of the fused product is less than the mass of the original parts. This lost mass is converted to electromagnetic energy, according to the mass–energy equivalence relationship    E = m  c  2     {\\displaystyle E=mc^{2}}  . A variety of nuclear fusion reactions take place in the cores of stars, that depend upon their mass and composition. The hydrogen fusion process is temperature-sensitive, so a moderate increase in the core temperature will result in a significant increase in the fusion rate. As a result, the core temperature of main-sequence stars only varies from 4"
+      }
+     ],
+     "signature": "0e5b52b9874d484f"
+    },
+    "latency_s": 0.5083681000105571,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "750 kJ",
+    "detail": {
+     "raw": "Answer: 750 kJ\n\n3 moles x 250 kJ/mole = 750 kJ",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 6.247634100000141,
+    "input_tokens": 473,
+    "output_tokens": 29
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "750 kJ",
+    "detail": {
+     "raw": "Answer: 750 kJ",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 2.269945199979702,
+    "input_tokens": 468,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 21.165186500002164,
+   "input_tokens": 941,
+   "output_tokens": 38
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A chemistry lab manual states that the reaction releases 250 kJ per mole of product.",
+   "A footnote on the same page states the reaction releases 180 kJ per mole.",
+   "How much energy, in kJ, is released when 3 moles react?"
+  ],
+  "conflicts": [
+   {
+    "unit": "kj",
+    "values": [
+     180.0,
+     250.0
+    ],
+    "sentences": [
+     "A chemistry lab manual states that the reaction releases 250 kJ per mole of product.",
+     "A footnote on the same page states the reaction releases 180 kJ per mole."
+    ]
+   }
+  ],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-57555:factors_that_affect_pka_values_thermodyn_1f6a991d:0 | wiki-26808:nuclear_fusion_reaction_pathways_dea6544f:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "750 kJ",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "750 kJ",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-57555:factors_that_affect_pka_values_thermodyn_1f6a991d:0 | wiki-26808:nuclear_fusion_reaction_pathways_dea6544f:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "750 kJ",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "750 kJ",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

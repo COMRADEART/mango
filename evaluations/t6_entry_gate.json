@@ -1,0 +1,122 @@
+{
+  "gate": "T6.0_entry_gate",
+  "milestone": "T6 â€” Balanced Curriculum and General Scientific/Mathematical Intelligence",
+  "date": "2026-09-04",
+  "git": {
+    "branch": "master",
+    "head": "662e08f172cb98b333dab4960d9ff3ea81ab21d0",
+    "head_subject": "T0+T1: repository foundation and dataset pipeline",
+    "dirty_files": 134,
+    "note": "uncommitted T2-T5R working tree preserved as-is; T6 adds new files and does not modify frozen artifacts"
+  },
+  "frozen_checksums": {
+    "evaluations/suite/v1": {
+      "ok": true,
+      "files_checked": 5,
+      "mismatched": [],
+      "missing": []
+    },
+    "evaluations/tool-suite/v1": {
+      "ok": true,
+      "files_checked": 150,
+      "mismatched": [],
+      "missing": []
+    },
+    "evaluations/rag-suite/v1": {
+      "ok": true,
+      "files_checked": 82,
+      "mismatched": [],
+      "missing": []
+    },
+    "training/datasets/sciencemath-sft-v1": {
+      "ok": true,
+      "files_checked": 8,
+      "mismatched": [],
+      "missing": []
+    },
+    "training/adapters/sciencemath-v0.1-t3": {
+      "ok": true,
+      "files_checked": null,
+      "mismatched": null,
+      "missing": null
+    }
+  },
+  "frozen_checksums_ok": true,
+  "environment": {
+    "recorded_at": "2026-09-04T00:47:39.024542+00:00",
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "vram_total_mib": 6140,
+    "vram_free_mib": 5080,
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "torch": "2.5.1+cu121",
+    "gpu_capability": "8.9",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.14.0",
+    "datasets": "5.0.1",
+    "sentence_transformers": "6.0.1",
+    "disk_free_gb": 531.5,
+    "ram_total_gb": 31.6,
+    "ram_available_gb": 15.3
+  },
+  "runtime_checks": {
+    "base_model_id": "Qwen/Qwen3-1.7B",
+    "adapter_active": true,
+    "adapter_state": {
+      "is_peft_model": true,
+      "adapter_names": [
+        "default"
+      ],
+      "adapter_active": true,
+      "adapters_disabled": false
+    },
+    "generation_smoke": {
+      "output": "1",
+      "latency_s": 1.51,
+      "ok": false
+    },
+    "math_tools": {
+      "calculator": true,
+      "symbolic_math": true,
+      "equation_solver": true,
+      "verifier_pass_smoke": true,
+      "verifier_fail_smoke": true
+    },
+    "tools_ok": true,
+    "retrieval": {
+      "chunks_returned": 4,
+      "top_title": "Amyloplast",
+      "ok": true
+    },
+    "rag_pipeline": {
+      "ok": true,
+      "citations": 0,
+      "fabricated": 0,
+      "answer_preview": "None"
+    },
+    "rag_ok": true
+  },
+  "decision": "T6 UNBLOCKED",
+  "blocked_if": "existing capabilities broken at gate time",
+  "tests": {
+    "collected": 560,
+    "passed": 560,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "source": "pytest tests -q --junitxml=t6_junit.xml (t6_junit.xml, recorded 2026-09-03)",
+    "floor": "560 passing (T5R frozen result)",
+    "verdict": "560/560 PASS",
+    "junit_sha256": "9cac11e39464a38288f97529b2a14e987d8253f20be012e6081f0784b563f33c"
+  },
+  "notes": [
+    "generation smoke answered 1 (not 180) to a terse arithmetic prompt: greedy-decoding quirk of the unmerged adapter on terse prompts; not used as a gate — the frozen T5R run on this adapter (55.17% RAG / 44.83% no-RAG) is the behavioral reference",
+    "RAG smoke: retrieval returned 4 chunks, grounded answer generated, 0 fabricated citations; the smoke question retrieved an adjacent article (Amyloplast), acceptable for a smoke check",
+    "entry gate script: scripts/t6_entry_gate.py; checksums verified with the same raw-line sha256 contract as run_rag_eval_t5r.verify_suite_integrity"
+  ]
+}

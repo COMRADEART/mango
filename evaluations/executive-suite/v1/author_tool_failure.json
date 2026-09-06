@@ -1,0 +1,86 @@
+[
+ {
+  "question_id": "mq-toolf-01",
+  "class": "tool_failure",
+  "question": "A cyclist rides 34 kilometers at a constant speed of 17 kilometers per hour. How many hours did the ride take?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "2",
+  "notes": "Simple rate division (34/17) that must be computed mentally when the calculator tool is unavailable.",
+  "harness": {
+   "fail_tools": [
+    "calculator"
+   ]
+  }
+ },
+ {
+  "question_id": "mq-toolf-02",
+  "class": "tool_failure",
+  "question": "A 2 kg brick rests on a table. Using g = 9.8 m/s^2, what is its weight in newtons?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "19.6",
+  "notes": "Physics formula W = m*g with a small one-digit times decimal product, solvable by hand without a tool.",
+  "harness": {
+   "fail_tools": [
+    "calculator"
+   ]
+  }
+ },
+ {
+  "question_id": "mq-toolf-03",
+  "class": "tool_failure",
+  "question": "A rectangular garden plot is 12 meters long and 7 meters wide. What is its area in square meters?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "84",
+  "notes": "Two-digit by one-digit multiplication (12*7) testing graceful degradation to mental arithmetic.",
+  "harness": {
+   "fail_tools": [
+    "calculator"
+   ]
+  }
+ },
+ {
+  "question_id": "mq-toolf-04",
+  "class": "tool_failure",
+  "question": "A farmer fills 7 crates with 13 apples each. How many apples are there in total?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "91",
+  "notes": "Small repeated multiplication (7*13) that a careful model must compute itself with the calculator disabled.",
+  "harness": {
+   "fail_tools": [
+    "calculator"
+   ]
+  }
+ },
+ {
+  "question_id": "mq-toolf-05",
+  "class": "tool_failure",
+  "question": "A 4 kg ball rolls in a straight line at 3 m/s. What is its kinetic energy in joules, from KE = (1/2)*m*v^2?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "18",
+  "notes": "Physics computation with a small square (3^2) and halving; exactly solvable by hand when the tool fails.",
+  "harness": {
+   "fail_tools": [
+    "calculator"
+   ]
+  }
+ },
+ {
+  "question_id": "mq-toolf-06",
+  "class": "tool_failure",
+  "question": "A car uses 8 liters of fuel for every 100 kilometers driven. How many liters does it use on a 250 kilometer trip?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "20",
+  "notes": "Two-step proportional reasoning (250/100 then times 8) with clean numbers, forcing unaided computation.",
+  "harness": {
+   "fail_tools": [
+    "calculator"
+   ]
+  }
+ }
+]

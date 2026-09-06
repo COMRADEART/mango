@@ -1,0 +1,34 @@
+{
+  "n_questions": 82,
+  "n_with_expected_route": 16,
+  "routing_accuracy": 0.875,
+  "route_distribution": {
+    "SCIENCE": 37,
+    "MATH": 6,
+    "MIXED": 18,
+    "GENERAL": 21
+  },
+  "confusion": {
+    "?": {
+      "SCIENCE": 33,
+      "MIXED": 15,
+      "GENERAL": 16,
+      "MATH": 2
+    },
+    "SCIENCE": {
+      "SCIENCE": 4,
+      "GENERAL": 1
+    },
+    "MATH": {
+      "MATH": 4,
+      "GENERAL": 1
+    },
+    "MIXED": {
+      "MIXED": 3
+    },
+    "GENERAL": {
+      "GENERAL": 3
+    }
+  },
+  "router": "sciencemath.rag.route.classify_route (rules, frozen T4 route_question underneath)"
+}

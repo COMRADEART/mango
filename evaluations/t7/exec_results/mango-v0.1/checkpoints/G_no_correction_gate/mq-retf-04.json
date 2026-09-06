@@ -1,0 +1,152 @@
+{
+ "state": {
+  "run_id": "mq-retf-04",
+  "problem": "Newton's law that states every action has an equal and opposite reaction is known by what ordinal name, in the form 'Newton's X law'?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "RETRIEVAL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "what ordinal name, in the form 'Newton's X law'"
+    },
+    {
+     "id": "s2",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "FAILED",
+    "summary": "retrieval returned no evidence",
+    "detail": {
+     "error_type": "RETRIEVAL_EMPTY",
+     "signature": "a63a06a1a011611e"
+    },
+    "latency_s": 0.0,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "Newton's law that states every action has an equal and opposite reaction is known by the second law.",
+    "detail": {
+     "raw": "Answer: Newton's law that states every action has an equal and opposite reaction is known by the second law.",
+     "signature": "c28a4e64dd24a8c1"
+    },
+    "latency_s": 2.2373132000211626,
+    "input_tokens": 150,
+    "output_tokens": 23
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 3,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 8.690710499999113,
+   "input_tokens": 150,
+   "output_tokens": 23
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "Newton's law that states every action has an equal and opposite reaction is known by what ordinal name, in the form 'Newton's X law'?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "retrieval returned no evidence",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "Newton's law that states every action has an equal and opposite reaction is known by the second law.",
+     "step_id": "s2"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_empty": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "retrieval returned no evidence",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "Newton's law that states every action has an equal and opposite reaction is known by the second law.",
+    "step_id": "s2"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   }
+  ]
+ }
+}

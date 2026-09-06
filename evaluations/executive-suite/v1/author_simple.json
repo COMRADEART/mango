@@ -1,0 +1,110 @@
+[
+  {
+    "question_id": "mq-simple-01",
+    "class": "simple",
+    "question": "What is 7 + 5?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "12",
+    "notes": "Single addition of two small integers; one arithmetic operation."
+  },
+  {
+    "question_id": "mq-simple-02",
+    "class": "simple",
+    "question": "What is 3 * 9?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "27",
+    "notes": "Single multiplication of two single-digit integers."
+  },
+  {
+    "question_id": "mq-simple-03",
+    "class": "simple",
+    "question": "What is half of 18?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "9",
+    "notes": "One-step halving phrased in words rather than symbols."
+  },
+  {
+    "question_id": "mq-simple-04",
+    "class": "simple",
+    "question": "A shipment of 12 crates weighs 30 kilograms in total, with each crate identical. How many kilograms does one crate weigh?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "2.5",
+    "notes": "Single division producing a non-integer answer; tests decimal formatting."
+  },
+  {
+    "question_id": "mq-simple-05",
+    "class": "simple",
+    "question": "A train ticket costs 14 dollars and a passenger buys 6 tickets. How many dollars does the passenger pay in total?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "84",
+    "notes": "One multiplication embedded in a plain word-problem framing."
+  },
+  {
+    "question_id": "mq-simple-06",
+    "class": "simple",
+    "question": "A runner had 2500 dollars in an account and withdrew 400 dollars. How many dollars remain in the account?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "2100",
+    "notes": "Single subtraction with four-digit numbers in context."
+  },
+  {
+    "question_id": "mq-simple-07",
+    "class": "simple",
+    "question": "What is 15% of 60?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "9",
+    "notes": "One percentage-of operation, a common executive-report calculation."
+  },
+  {
+    "question_id": "mq-simple-08",
+    "class": "simple",
+    "question": "How many minutes are in 2 hours?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "120",
+    "notes": "Direct unit fact combined with one small multiplication."
+  },
+  {
+    "question_id": "mq-simple-09",
+    "class": "simple",
+    "question": "What is the chemical symbol for the element gold?",
+    "answer_type": "text",
+    "choices": null,
+    "expected_answer": "Au",
+    "notes": "One direct general-knowledge fact; short unique term."
+  },
+  {
+    "question_id": "mq-simple-10",
+    "class": "simple",
+    "question": "How many sides does a hexagon have?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "6",
+    "notes": "Direct factual recall, no arithmetic at all."
+  },
+  {
+    "question_id": "mq-simple-11",
+    "class": "simple",
+    "question": "What is 144 divided by 12?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "12",
+    "notes": "Single division from an exact times-table fact."
+  },
+  {
+    "question_id": "mq-simple-12",
+    "class": "simple",
+    "question": "A bar graph shows quarterly revenue of 30, 45, 40, and 25 thousand dollars. How many thousand dollars of revenue were earned in total across the four quarters?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "140",
+    "notes": "One multi-term addition of explicitly given values; sums to a clean total."
+  }
+]

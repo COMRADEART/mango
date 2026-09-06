@@ -1,0 +1,102 @@
+{
+ "state": {
+  "run_id": "mq-selfc-06",
+  "problem": "An employee works 7.5 hours per day for 8 days at a wage of 15 dollars per hour. What are the total wages, in dollars?",
+  "goal": "",
+  "problem_type": "GENERAL",
+  "complexity": "MULTI_STEP",
+  "resources": "NONE",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "900 [e1]",
+    "detail": {
+     "raw": "Answer: 900 [e1]",
+     "signature": "77b174e6c05a7a30"
+    },
+    "latency_s": 2.2887716999975964,
+    "input_tokens": 149,
+    "output_tokens": 11
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 3,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 10.003208999987692,
+   "input_tokens": 149,
+   "output_tokens": 11
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "An employee works 7.5 hours per day for 8 days at a wage of 15 dollars per hour.",
+   "What are the total wages, in dollars?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s1",
+     "content": "900 [e1]",
+     "step_id": "s1"
+    }
+   ],
+   "edges": []
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s1",
+    "content": "900 [e1]",
+    "step_id": "s1"
+   }
+  ],
+  "edges": []
+ }
+}

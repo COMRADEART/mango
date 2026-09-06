@@ -1,0 +1,40 @@
+{
+  "evaluated_at": "2026-09-03",
+  "corpus_version": "mango-science-corpus-v0.1",
+  "embedding_model": "intfloat/e5-small-v2",
+  "embedding_revision": "ffb93f3bd4047442299a41ebb6fa998a38507c52",
+  "n_probes": 20,
+  "support_threshold": 0.45,
+  "ground_truth": "claim_support_score(supporting_fact, chunk) >= 0.45 (corpus-refresh tolerant)",
+  "results": {
+    "none": {
+      "arm": "none",
+      "reranker": "none",
+      "n_probes": 20,
+      "recall_at_5": 0.7,
+      "mrr": 0.675,
+      "ndcg_at_5": 0.6487,
+      "mean_latency_s": 0.0233
+    },
+    "bm25": {
+      "arm": "bm25",
+      "reranker": "bm25-candidate-rerank",
+      "n_probes": 20,
+      "recall_at_5": 0.75,
+      "mrr": 0.5825,
+      "ndcg_at_5": 0.6023,
+      "mean_latency_s": 0.019
+    },
+    "cross-encoder": {
+      "arm": "cross-encoder",
+      "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "n_probes": 20,
+      "recall_at_5": 0.75,
+      "mrr": 0.645,
+      "ndcg_at_5": 0.6396,
+      "mean_latency_s": 0.3065
+    }
+  },
+  "selection_rule": "mean(recall@5, MRR, nDCG@5); reranker adopted only if it beats the embedding-only arm",
+  "adopted_reranker": "cross-encoder"
+}

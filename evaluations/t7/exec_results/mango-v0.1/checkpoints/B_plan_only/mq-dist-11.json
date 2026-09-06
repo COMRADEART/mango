@@ -1,0 +1,173 @@
+{
+ "state": {
+  "run_id": "mq-dist-11",
+  "problem": "A triangular metal bracket has side lengths 9 centimeters, 11 centimeters, and 14 centimeters. What is its perimeter in centimeters? (Unrelated fact: the Solar System has 8 planets, and Jupiter's Great Red Spot is a storm about 16,000 kilometers wide that has raged for centuries.)",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What is its perimeter in centimeters"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "9+11+14=34",
+    "detail": {
+     "raw": "Answer: 9+11+14=34\n\nFinal answer: \\boxed{34}",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 2.9037717999890447,
+    "input_tokens": 224,
+    "output_tokens": 24
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{34}",
+    "detail": {
+     "raw": "Answer: \\boxed{34}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.205546500015771,
+    "input_tokens": 208,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 18.576848800003063,
+   "input_tokens": 432,
+   "output_tokens": 33
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A triangular metal bracket has side lengths 9 centimeters, 11 centimeters, and 14 centimeters.",
+   "What is its perimeter in centimeters?",
+   "(Unrelated fact: the Solar System has 8 planets, and Jupiter's Great Red Spot is a storm about 16,000 kilometers wide that has raged for centuries.)"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "9+11+14=34",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{34}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "9+11+14=34",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{34}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

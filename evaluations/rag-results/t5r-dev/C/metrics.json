@@ -1,0 +1,34 @@
+{
+  "variant": "C",
+  "n": 52,
+  "correct": 26,
+  "accuracy": 0.5,
+  "per_category_accuracy": {
+    "conflicting_evidence": 0.5,
+    "distractor_retrieval": 0.0,
+    "factual_science_qa": 0.75,
+    "insufficient_evidence": 0.5,
+    "mixed_math_science": 0.5,
+    "multi_hop_science_qa": 0.8333,
+    "quantitative_science": 0.6667,
+    "source_attribution": 0.0
+  },
+  "uncertainty_accuracy": 0.5,
+  "retrieval_invocation": {
+    "expected_true": 40,
+    "retrieved_when_expected": 31,
+    "invoked_but_not_expected": 9,
+    "precision": 0.775,
+    "recall": 0.775
+  },
+  "retrieval_used_on_math_route": 0,
+  "citation_summary": {
+    "n_questions_with_citations": 0,
+    "n_fabricated": 0,
+    "n_unsupported": 0,
+    "n_invalid_refs": 0
+  },
+  "compression_mean_ratio": 5.802,
+  "mean_prompt_tokens_in": 281,
+  "avg_latency_s": 4.074
+}

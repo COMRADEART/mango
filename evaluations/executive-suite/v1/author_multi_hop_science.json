@@ -1,0 +1,110 @@
+[
+ {
+  "question_id": "mq-mhs-01",
+  "class": "multi_hop_science",
+  "question": "Which element is both a halogen and a liquid at room temperature?",
+  "answer_type": "text",
+  "choices": null,
+  "expected_answer": "Bromine",
+  "notes": "Neither clue is individually sufficient: five halogens and two liquid elements (mercury, bromine) exist; only their intersection is unique."
+ },
+ {
+  "question_id": "mq-mhs-02",
+  "class": "multi_hop_science",
+  "question": "The Juno spacecraft entered orbit around its target planet in July 2016 to study that planet's deep atmosphere beneath its cloud tops. What is the name of the moon of that planet that is the most volcanically active body in the solar system?",
+  "answer_type": "text",
+  "choices": null,
+  "expected_answer": "Io",
+  "notes": "Restructured away from the 'spacecraft event to planet to element namesake' template. Two-hop chain: identify Jupiter as Juno's target planet (entered orbit July 2016), then name Io, the moon of Jupiter that is the most volcanically active body in the solar system. Neither fact alone states the answer: the spacecraft observation alone gives only a planet, and 'most volcanically active body' alone does not tie it to Juno's target. Gold Io does not appear in the question text; Neptune's Triton was deliberately avoided because eval-core mec1-d4e2a0fa679c already asks for it."
+ },
+ {
+  "question_id": "mq-mhs-03",
+  "class": "multi_hop_science",
+  "question": "The element with atomic number 1 reacts with oxygen to form water. How many atoms of that element are in one molecule of water?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "2",
+  "notes": "Two hops: identify hydrogen from its atomic number, then recall water's composition."
+ },
+ {
+  "question_id": "mq-mhs-04",
+  "class": "multi_hop_science",
+  "question": "Which planet in our solar system has a moon that is larger than the planet Mercury, yet is not the most massive planet in the solar system?",
+  "answer_type": "text",
+  "choices": null,
+  "expected_answer": "Saturn",
+  "notes": "Intersecting constraints: moons larger than Mercury (Ganymede, Titan) leave Jupiter and Saturn; excluding the most massive planet leaves Saturn alone."
+ },
+ {
+  "question_id": "mq-mhs-05",
+  "class": "multi_hop_science",
+  "question": "Which organ stores the greenish digestive fluid that is produced by the largest internal organ of the human body?",
+  "answer_type": "text",
+  "choices": null,
+  "expected_answer": "Gallbladder",
+  "notes": "Two-hop chain: the largest internal organ is the liver, and the greenish digestive fluid it produces is bile, which is stored in the gallbladder. Neither fact alone states the answer: 'largest internal organ' gives only the liver, and the storage site cannot be named until the fluid is identified as bile. No arithmetic needed; gold is Gallbladder, which does not appear in the question text. Distinct from mq-retf-01 (insulin/pancreas) and mq-retf-02 (hardest mineral/diamond); replaces the former vitamin-D/calcium item."
+ },
+ {
+  "question_id": "mq-mhs-06",
+  "class": "multi_hop_science",
+  "question": "To the nearest hundred, how many times farther from Earth is the Sun than the Moon is?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "400",
+  "notes": "Two recalled distances (Sun-Earth about 150 million km, Earth-Moon about 384,400 km) give a ratio near 390, which rounds to 400; no values are stated in the prompt."
+ },
+ {
+  "question_id": "mq-mhs-07",
+  "class": "multi_hop_science",
+  "question": "How many chambers does the heart of the animal class that includes frogs and salamanders have?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "3",
+  "notes": "Two-hop recall: frogs and salamanders are amphibians, and amphibians have three-chambered hearts; neither fact is stated in the prompt."
+ },
+ {
+  "question_id": "mq-mhs-08",
+  "class": "multi_hop_science",
+  "question": "How many of the eight planets in our solar system are larger than Earth?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "4",
+  "notes": "Arithmetic recomputed: planets larger than Earth (in both diameter and mass) are Jupiter, Saturn, Uranus, and Neptune; Mercury, Venus, and Mars are smaller. Count = 4. Requires recalling the size ordering of all eight planets; no value is stated in the prompt and the answer does not appear in the text."
+ },
+ {
+  "question_id": "mq-mhs-09",
+  "class": "multi_hop_science",
+  "question": "The dominant enzyme in human saliva hydrolyzes a polysaccharide found in potatoes and rice. What simple sugar is ultimately produced by the complete digestion of this polysaccharide?",
+  "answer_type": "text",
+  "choices": null,
+  "expected_answer": "glucose",
+  "notes": "Two hops: recall that the starch-digesting salivary enzyme (amylase) acts on starch, then recall that starch is a glucose polymer; the sugar is never named in the question."
+ },
+ {
+  "question_id": "mq-mhs-10",
+  "class": "multi_hop_science",
+  "question": "How many legs, in total, do one spider and one insect have?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "14",
+  "notes": "Two recalled biological facts (spiders have 8 legs, insects have 6) combined arithmetically; neither value is stated in the prompt."
+ },
+ {
+  "question_id": "mq-mhs-11",
+  "class": "multi_hop_science",
+  "question": "The planet named after the Roman messenger god is the closest to the Sun. Approximately how many Earth days does it take that planet to complete one orbit of the Sun?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "88",
+  "notes": "Two-hop recall: the planet named after the messenger god nearest the Sun is Mercury, and Mercury completes one orbit in about 88 Earth days (sidereal period 87.97 days). Neither fact alone states the answer: the identification gives only a planet, and no orbital period is stated in the prompt. No digits appear in the question text; gold 88 does not appear in the question and is unique in the file. Replaces the former radiocarbon/atomic-number item, whose gold leaked into the question."
+ },
+ {
+  "question_id": "mq-mhs-12",
+  "class": "multi_hop_science",
+  "question": "Acid rain damages buildings and forests. What is the chemical formula of the main acid in acid rain, which forms in the atmosphere when the gas released by burning coal and by volcanic eruptions reacts with oxygen and water vapor?",
+  "answer_type": "text",
+  "choices": null,
+  "expected_answer": "H2SO4",
+  "notes": "Two-hop chain: the gas released by coal combustion and volcanoes is sulfur dioxide, whose atmospheric oxidation with water yields sulfuric acid, the main acid in acid rain; recall its formula H2SO4. Neither fact alone states the answer. Gold H2SO4 does not appear in the question text and is unique in the file. Replaces the former common-name-to-formula item (baking soda); hydrogen sulfide was avoided because eval-core mec1-cd9abf920405 already uses it as a gold."
+ }
+]

@@ -1,0 +1,153 @@
+{
+ "state": {
+  "run_id": "mq-selfc-01",
+  "problem": "A jacket is priced at 80 dollars. At checkout, a 15 percent discount is applied. What is the final price, in dollars?",
+  "goal": "",
+  "problem_type": "GENERAL",
+  "complexity": "MULTI_STEP",
+  "resources": "MATH_TOOL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [],
+     "input": ""
+    },
+    {
+     "id": "s1",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s2",
+   "s1"
+  ],
+  "observations": [
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "68",
+    "detail": {
+     "raw": "The discount is 80*0.15 = 12 dollars.\nThe final price is 80-12 = 68 dollars.\nAnswer: 68",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 6.725637299998198,
+    "input_tokens": 130,
+    "output_tokens": 39
+   },
+   {
+    "step_id": "s1",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{68}",
+    "detail": {
+     "raw": "Answer: \\boxed{68}",
+     "signature": "77b174e6c05a7a30"
+    },
+    "latency_s": 1.8269948000088334,
+    "input_tokens": 150,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 17.40384859999176,
+   "input_tokens": 280,
+   "output_tokens": 48
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A jacket is priced at 80 dollars.",
+   "At checkout, a 15 percent discount is applied.",
+   "What is the final price, in dollars?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "68",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s1",
+     "content": "\\boxed{68}",
+     "step_id": "s1"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s2",
+     "dst": "step:s1",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "68",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s1",
+    "content": "\\boxed{68}",
+    "step_id": "s1"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s2",
+    "dst": "step:s1",
+    "relation": "produced"
+   }
+  ]
+ }
+}

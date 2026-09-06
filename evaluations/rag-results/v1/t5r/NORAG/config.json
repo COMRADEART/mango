@@ -1,0 +1,7 @@
+{
+  "features": null,
+  "max_evidence_tokens": 350,
+  "t5r_extraction": false,
+  "top_n": null,
+  "reranker": "adopted"
+}

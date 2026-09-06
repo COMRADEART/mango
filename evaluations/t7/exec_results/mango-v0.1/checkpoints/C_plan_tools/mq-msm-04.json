@@ -1,0 +1,102 @@
+{
+ "state": {
+  "run_id": "mq-msm-04",
+  "problem": "A jacket is priced at $80, and sales tax is 8.5%. What is the total price in dollars including tax?",
+  "goal": "",
+  "problem_type": "GENERAL",
+  "complexity": "MULTI_STEP",
+  "resources": "NONE",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "$80*1.085=\\boxed{86.80}",
+    "detail": {
+     "raw": "Answer: $80*1.085=\\boxed{86.80}",
+     "signature": "77b174e6c05a7a30"
+    },
+    "latency_s": 4.047477100015385,
+    "input_tokens": 143,
+    "output_tokens": 21
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 3,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 13.834855099994456,
+   "input_tokens": 143,
+   "output_tokens": 21
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A jacket is priced at $80, and sales tax is 8.5%.",
+   "What is the total price in dollars including tax?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s1",
+     "content": "$80*1.085=\\boxed{86.80}",
+     "step_id": "s1"
+    }
+   ],
+   "edges": []
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s1",
+    "content": "$80*1.085=\\boxed{86.80}",
+    "step_id": "s1"
+   }
+  ],
+  "edges": []
+ }
+}

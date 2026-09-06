@@ -1,0 +1,222 @@
+[
+  {
+    "eval_id": "mec1-2430cf39e911",
+    "category": "physics",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{0.63}\n\nEnergy conservation gives the spring's maximum compression as 0.63 m.",
+    "latency_s": 3.8,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-5485650e0924",
+    "category": "physics",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{12000}\n\nEnergy delivered = Voltage x Current x Time = 12 V x 2.5 A x 40 s = 12000 J.",
+    "latency_s": 5.97,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-00aeb6203674",
+    "category": "physics",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{3.0}\n\nThe two cars lock together, so we can use the equation for conservation of momentum: $m_1v_1 + m_2v_2 = (m_1 + m_2)v$. We can solve for $v$ to find the common speed immediately after the collision: $v = \\frac{m_1v_1 + m_2v_2}{m_1 + m_2} = \\frac{1200(15) + 800(0)}{1200 + 800} = \\frac{18000}{2000} = 9.0$ m/s.",
+    "latency_s": 19.72,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-e7fb3277248d",
+    "category": "mixed_quantitative",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{2400}\n\nThe bulb produces 60 watts of heat energy per second, so it produces 60 x 30 = 1800 joules of heat energy per second. The bulb produces 1800 x 80 = 2400 joules of heat energy while running for 30 seconds.",
+    "latency_s": 12.04,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-38f2b0183b67",
+    "category": "calculus",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{1000}\n\nThe population doubles every 2 hours, so at t = 6 hours, the population is 100 x 2^3 = 1000.",
+    "latency_s": 6.87,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-ca19d6655aee",
+    "category": "tool_routing",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{12000}\n\nThe population doubles every 3 hours, so after 24 hours, there are 2^(24/3) = 2^8 = 256 doublings. The population after 24 hours is 150 x 2^8 = 12000 cells.",
+    "latency_s": 10.8,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-231fe2f6252a",
+    "category": "mixed_quantitative",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{10000}\n\nThe population doubles every 20 minutes, so after 2 hours = 60 minutes, there are 2^3 = 8 doublings. Thus, there are 250 x 8 = 10000 cells.",
+    "latency_s": 7.44,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-8451ca2d90af",
+    "category": "physics",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{1}\n\nsubproblems: {\"id\": 1, \"goal\": \"Find the time to reach the highest point\", \"needs_math_tool\": true, \"needs_retrieval\": true}",
+    "latency_s": 5.42,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-932650a57ab9",
+    "category": "probability_statistics",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{1}\n\nExpected value of coin flip: 0.5 dollars. Expected value of die roll: 3.5 dollars. Expected value of game: 0.5 + 3.5 = 4 dollars.",
+    "latency_s": 6.18,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-e35eca332873",
+    "category": "calculus",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{15}\n\nThe net displacement is the integral of the velocity function from t = 0 to t = 2, which is 15 meters.",
+    "latency_s": 4.55,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-6814de7f8789",
+    "category": "tool_routing",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{125}\n\nThe area of a circle is πr², so increasing the radius by 25% increases the area by 25% × π(1.25r)² / πr² = 125%.",
+    "latency_s": 6.86,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-17ae16a4327d",
+    "category": "interdisciplinary",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{4.0}\n\nThe power-sector emissions drop by 25%: 5.2 x 0.75 = 3.9 gigatonnes. The new total is 5.2 - 3.9 = 4.0.",
+    "latency_s": 7.91,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-326950299bda",
+    "category": "mixed_quantitative",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{21.6}\n\nThe average speed is 54 km / 1.5 h = 36 km/h. 1 km/h = 1000 m / 3600 s = 0.2778 m/s, so 36 x 0.2778 = 10.38 m/s.",
+    "latency_s": 10.76,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-599860dfffc9",
+    "category": "calculus",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{-3}\n\nh'(t) = 3t^2 - 18t + 24. At t = 3, h'(3) = -3.",
+    "latency_s": 5.61,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-f8b1b51ace5b",
+    "category": "biology",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{600}\n\nChargaff's rules state that the number of adenine bases is equal to the number of thymine bases, and the number of guanine bases is equal to the number of cytosine bases. Since the molecule is double-stranded, the total number of bases is twice the number of each base. Therefore, the number of guanine bases is 1200 / 2 / 3 = 600.",
+    "latency_s": 11.66,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-246a66692c70",
+    "category": "probability_statistics",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{0.2373}\n\nThe probability of getting exactly 3 heads is equal to the binomial probability of 5 flips with 3 successes and 2 failures, which is equal to $\\binom{5}{3} \\left(\\frac{1}{2}\\right)^5 = \\frac{10}{32} = 0.2373.$",
+    "latency_s": 9.62,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-25fb83ef6426",
+    "category": "probability_statistics",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{0.9444}\n\nThe probability that the product of the two rolls is odd is the probability that both rolls are odd, which is $1/2 \\cdot 1/2 = 1/4$. Therefore, the probability that the product of the two rolls is even is $1 - 1/4 = 3/4 = 0.75$.",
+    "latency_s": 9.85,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-8c77c292d385",
+    "category": "mixed_quantitative",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{6}\n\nThe technician adds 250 mL of water, so the new solution has 500 + 250 = 750 mL. The salt concentration is 12 g / 100 mL / 750 mL = 6 g / 100 mL.",
+    "latency_s": 8.42,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-60bf81d3f5c5",
+    "category": "tool_routing",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{539.2}\n\nFirst, find the discount amount: 640 * 15% = 96. Then subtract the discount from the list price: 640 - 96 = 544. Then find the final price after the second discount: 544 * (1 - 8%) = 539.2.",
+    "latency_s": 9.9,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  },
+  {
+    "eval_id": "mec1-a9ad3c8108bf",
+    "category": "math_foundation",
+    "expected_routing_label": "TOOL",
+    "raw_model_output": "Answer: \\boxed{12}\n\nreal distance = map distance / scale factor = 4.8 cm / 25000 = 0.00192 km.",
+    "latency_s": 4.91,
+    "plan_valid": false,
+    "json_valid": false,
+    "plan_routing_label": null,
+    "routing_agreement": null
+  }
+]

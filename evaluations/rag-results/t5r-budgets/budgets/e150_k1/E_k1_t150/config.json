@@ -1,0 +1,15 @@
+{
+  "features": {
+    "retrieve_gate": true,
+    "compression": true,
+    "firewall": true,
+    "decompose": true,
+    "mixed_plan": true,
+    "deterministic_citations": true
+  },
+  "max_evidence_tokens": 150,
+  "t5r_extraction": true,
+  "top_n": 1,
+  "reranker": "adopted",
+  "budget": 150
+}

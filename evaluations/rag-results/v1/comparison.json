@@ -1,0 +1,27 @@
+{
+  "comparison": "T5.19 no-RAG vs RAG (matched generation settings)",
+  "suite": "mango-rag-eval-v1",
+  "n_norag": 58,
+  "n_rag": 58,
+  "accuracy_norag": 0.4483,
+  "accuracy_rag": 0.4138,
+  "absolute_delta_pp": -3.45,
+  "per_category_pp_delta": {
+    "conflicting_evidence": 0.0,
+    "distractor_retrieval": 0.0,
+    "factual_science_qa": 8.34,
+    "insufficient_evidence": 12.5,
+    "mixed_math_science": -33.34,
+    "multi_hop_science_qa": -33.33,
+    "quantitative_science": 0.0,
+    "source_attribution": 0.0
+  },
+  "uncertainty_accuracy_norag": 0.0,
+  "uncertainty_accuracy_rag": 0.0833,
+  "t5_22_math_retrieval_violations": 0,
+  "citations_rag": {
+    "n_citations": 14,
+    "n_fabricated": 1,
+    "n_unsupported": 11
+  }
+}

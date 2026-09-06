@@ -1,0 +1,62 @@
+{
+  "retrieval_relevance": {
+    "n": 8,
+    "answer_types": [
+      "exact_answer"
+    ]
+  },
+  "factual_science_qa": {
+    "n": 12,
+    "answer_types": [
+      "exact_answer"
+    ]
+  },
+  "multi_hop_science_qa": {
+    "n": 6,
+    "answer_types": [
+      "exact_answer"
+    ]
+  },
+  "quantitative_science": {
+    "n": 10,
+    "answer_types": [
+      "numeric"
+    ]
+  },
+  "insufficient_evidence": {
+    "n": 8,
+    "answer_types": [
+      "uncertainty"
+    ]
+  },
+  "distractor_retrieval": {
+    "n": 6,
+    "answer_types": [
+      "exact_answer"
+    ]
+  },
+  "conflicting_evidence": {
+    "n": 4,
+    "answer_types": [
+      "uncertainty"
+    ]
+  },
+  "source_attribution": {
+    "n": 6,
+    "answer_types": [
+      "exact_answer"
+    ]
+  },
+  "domain_routing": {
+    "n": 16,
+    "answer_types": [
+      "exact_answer"
+    ]
+  },
+  "mixed_math_science": {
+    "n": 6,
+    "answer_types": [
+      "numeric"
+    ]
+  }
+}

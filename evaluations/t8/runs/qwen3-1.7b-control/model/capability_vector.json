@@ -1,0 +1,18 @@
+{
+  "label": "qwen3-1.7b-control",
+  "model": "Qwen/Qwen3-1.7B",
+  "arm": "model",
+  "overall": 0.8151260504201681,
+  "math_macro": 0.8620689655172413,
+  "science_macro": 0.8,
+  "cross_domain": 0.9166666666666666,
+  "compositional": 0.6666666666666666,
+  "counterfactual": 0.5833333333333334,
+  "distractor": 0.9166666666666666,
+  "uncertainty": 0.26666666666666666,
+  "decomposition": 0.0,
+  "self_correction": 0.18181818181818182,
+  "tool_routing": 0.0,
+  "retrieval_routing": null,
+  "extraction": 0.9747899159663865
+}

@@ -1,0 +1,47 @@
+{
+  "gates": {
+    "G1_overall_gain_pp": {
+      "measured": 0.0,
+      "threshold": 3.0,
+      "pass": false
+    },
+    "G2_distractor_robustness_pp": {
+      "measured": null,
+      "threshold": 5.0,
+      "pass": false
+    },
+    "G3_uncertainty_precision_min": {
+      "measured": null,
+      "threshold": 0.5,
+      "pass": false
+    },
+    "G4_uncertainty_recall_min": {
+      "measured": 0.0,
+      "threshold": 0.5,
+      "pass": false
+    },
+    "G5_plan_validity_improvement": {
+      "measured": 0.0,
+      "threshold": 0.3,
+      "baseline": 0.1,
+      "pass": false
+    },
+    "G6_correction_net_gain": {
+      "measured": null,
+      "overcorrection_proxy_fp": 0,
+      "threshold": 0.0,
+      "pass": false
+    },
+    "G7_regression_bound_pp": {
+      "measured": null,
+      "threshold": 5.0,
+      "pass": false
+    },
+    "G8_t4_t5r_preservation": {
+      "measured": "citation fabrication tracked in rag-level runs; executive synthesizes only from supplied chunk ids",
+      "pass": true
+    }
+  },
+  "decision": "NOT PROMOTED",
+  "note": "thresholds pre-registered in configs/executive.yaml before any ON-arm measurement (2026-09-04)"
+}

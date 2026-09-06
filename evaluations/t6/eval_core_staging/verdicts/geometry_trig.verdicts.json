@@ -1,0 +1,23 @@
+{
+  "file": "geometry_trig.json",
+  "verdicts": [
+    {"index": 0, "verdict": "CONFIRM", "reason": "180*4/9 = 80; largest angle of 2:3:4 ratio triangle is 80 deg. Tool check reproduces."},
+    {"index": 1, "verdict": "CONFIRM", "reason": "Exterior angle of regular 15-gon = 360/15 = 24 deg. Tool check reproduces."},
+    {"index": 2, "verdict": "CONFIRM", "reason": "sqrt(13^2-5^2)=sqrt(69)=8.3066 -> 8.31 at 2 dp. Tool check reproduces."},
+    {"index": 3, "verdict": "CONFIRM", "reason": "sqrt(12^2+6^2)=sqrt(180)=13.4164 -> 13.42 at 2 dp. Tool check reproduces."},
+    {"index": 4, "verdict": "CONFIRM", "reason": "Slope (11-3)/(6-2)=2; y = 2x - 1, y-intercept -1. Uniquely determined."},
+    {"index": 5, "verdict": "CONFIRM", "reason": "|3*4+4*3-1|/sqrt(9+16)=23/5=4.6 exactly. Tool check reproduces."},
+    {"index": 6, "verdict": "CONFIRM", "reason": "Cone volume (1/3)*pi*9*7 = 65.9734 -> 65.97 at 2 dp. Tool check reproduces."},
+    {"index": 7, "verdict": "CONFIRM", "reason": "Closed cylinder total surface 2*pi*4*(4+10) = 351.8584 -> 351.86 at 2 dp. Tool check reproduces."},
+    {"index": 8, "verdict": "CONFIRM", "reason": "Base 8 on x-axis, height 5 -> area 0.5*8*5 = 20 (shoelace confirms). Tool check reproduces."},
+    {"index": 9, "verdict": "CONFIRM", "reason": "90 deg CCW rotation maps (x,y)->(-y,x): (6,-1)->(1,6); x-coordinate 1."},
+    {"index": 10, "verdict": "CONFIRM", "reason": "sin = sqrt(1-0.36) = 0.8, positive in quadrant II. Tool check reproduces."},
+    {"index": 11, "verdict": "CONFIRM", "reason": "sin(25)cos(65)+cos(25)sin(65) = sin(90 deg) = 1 exactly. Tool check reproduces."},
+    {"index": 12, "verdict": "CONFIRM", "reason": "Law of cosines: sqrt(49+64-56)=sqrt(57)=7.5498 -> 7.55 at 2 dp. Tool check reproduces."},
+    {"index": 13, "verdict": "CONFIRM", "reason": "Law of sines: q = 9*sin(65)/sin(40) = 12.6897 -> 12.69 at 2 dp. Tool check reproduces."},
+    {"index": 14, "verdict": "CONFIRM", "reason": "atan(0.75/6) = 7.1250 deg -> 7.13 at 2 dp. Tool check reproduces."},
+    {"index": 15, "verdict": "CONFIRM", "reason": "Arc length s = r*theta = 4*1.5 = 6 cm. Tool check reproduces."},
+    {"index": 16, "verdict": "CONFIRM", "reason": "Period 2*pi/b = 2*pi/3 implies b = 3. Uniquely determined."},
+    {"index": 17, "verdict": "CONFIRM", "reason": "v(pi/12) = 3*sin(pi/6)+1 = 2.5 exactly. Tool check reproduces."}
+  ]
+}

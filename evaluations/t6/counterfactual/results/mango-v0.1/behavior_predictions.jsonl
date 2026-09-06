@@ -1,0 +1,1452 @@
+[
+  {
+    "eval_id": "mec1-9551a901ba36",
+    "parent_eval_id": "mec1-3119e9f7d499",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "24",
+    "extracted_answer": "2.67 K",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-dd42ce71e9c6",
+    "parent_eval_id": "mec1-3119e9f7d499",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "23.0769",
+    "extracted_answer": "6.0",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-e704ee35e6fa",
+    "parent_eval_id": "mec1-2430cf39e911",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "0.171464",
+    "extracted_answer": "0.54",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-fed9b919ae0a",
+    "parent_eval_id": "mec1-2430cf39e911",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "0.21",
+    "extracted_answer": "0.63",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-c60dc71445f4",
+    "parent_eval_id": "mec1-5485650e0924",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1200",
+    "extracted_answer": "1300",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-1788cf662e69",
+    "parent_eval_id": "mec1-5485650e0924",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "1248",
+    "extracted_answer": "1248",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-bd6abee8d781",
+    "parent_eval_id": "mec1-00aeb6203674",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "9",
+    "extracted_answer": "9",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-15a2b6ad01da",
+    "parent_eval_id": "mec1-00aeb6203674",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "9.6",
+    "extracted_answer": "1.6",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-4f41a0860de7",
+    "parent_eval_id": "mec1-e7fb3277248d",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1440",
+    "extracted_answer": "1440",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-3db3e6b5b666",
+    "parent_eval_id": "mec1-38f2b0183b67",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "800",
+    "extracted_answer": "110",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-29fcac80e556",
+    "parent_eval_id": "mec1-ca19d6655aee",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "38400",
+    "extracted_answer": "38400",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-93fd35b16df5",
+    "parent_eval_id": "mec1-ca19d6655aee",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "40960",
+    "extracted_answer": "40960",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-3164002f76f0",
+    "parent_eval_id": "mec1-231fe2f6252a",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "16000",
+    "extracted_answer": "128000",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-6a719904211f",
+    "parent_eval_id": "mec1-231fe2f6252a",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "16640",
+    "extracted_answer": "16640",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-16e67843db5e",
+    "parent_eval_id": "mec1-8451ca2d90af",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "4",
+    "extracted_answer": "\\text{unknown}",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-e343a9981238",
+    "parent_eval_id": "mec1-932650a57ab9",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "2.75",
+    "extracted_answer": "5",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-4dee8432914a",
+    "parent_eval_id": "mec1-e35eca332873",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "4",
+    "extracted_answer": "4",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-8252bc5a6e4e",
+    "parent_eval_id": "mec1-0b7b95d1c9d1",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "6",
+    "extracted_answer": "6",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-36291d96dc9f",
+    "parent_eval_id": "mec1-0b7b95d1c9d1",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "6.4",
+    "extracted_answer": "6.4",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-533101dfa027",
+    "parent_eval_id": "mec1-6814de7f8789",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "56.25",
+    "extracted_answer": "56.25",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-f6f6d1255d47",
+    "parent_eval_id": "mec1-6814de7f8789",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "58.76",
+    "extracted_answer": "58.76",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-5501f5e99f4f",
+    "parent_eval_id": "mec1-ba29e01dab2e",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "9.42478",
+    "extracted_answer": "3.00",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-ca324da2b92d",
+    "parent_eval_id": "mec1-ba29e01dab2e",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "65.97",
+    "extracted_answer": "65.97",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-51646d79f4b6",
+    "parent_eval_id": "mec1-17ae16a4327d",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "4.42",
+    "extracted_answer": "2.808",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-851907a861e5",
+    "parent_eval_id": "mec1-17ae16a4327d",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "5.27",
+    "extracted_answer": "5.27",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-c3df6b1ca846",
+    "parent_eval_id": "mec1-326950299bda",
+    "kind": "alter_unit",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "36",
+    "extracted_answer": "36",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-c63e3b730f52",
+    "parent_eval_id": "mec1-326950299bda",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "10",
+    "extracted_answer": "10",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-a2b84f05eb7b",
+    "parent_eval_id": "mec1-130c81013b36",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "2.7",
+    "extracted_answer": "2.25",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-a57f28aa0683",
+    "parent_eval_id": "mec1-599860dfffc9",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "-3",
+    "extracted_answer": "10",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-3e861e57d667",
+    "parent_eval_id": "mec1-0b8a30a8b38f",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "2.25",
+    "extracted_answer": "2.25",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-c52d6236f82c",
+    "parent_eval_id": "mec1-0b8a30a8b38f",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "2.3",
+    "extracted_answer": "2.06",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-0b0efe09a509",
+    "parent_eval_id": "mec1-f8b1b51ace5b",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "300",
+    "extracted_answer": "300",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-e3a897d05a0e",
+    "parent_eval_id": "mec1-8b5afe036107",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "441",
+    "extracted_answer": "441",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-98097cec2544",
+    "parent_eval_id": "mec1-8b5afe036107",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "442.8",
+    "extracted_answer": "442.8",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-58f6b1b078a2",
+    "parent_eval_id": "mec1-c61b1d982c97",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "0.375",
+    "extracted_answer": "0.75",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-8ebb224612a6",
+    "parent_eval_id": "mec1-246a66692c70",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "0.3125",
+    "extracted_answer": "0.125",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-dc92db096ecf",
+    "parent_eval_id": "mec1-25fb83ef6426",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "0.75",
+    "extracted_answer": "3/4",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-a0f06e8c385f",
+    "parent_eval_id": "mec1-1fec21dfb16f",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "439208",
+    "extracted_answer": "437952",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-bc18559d70a2",
+    "parent_eval_id": "mec1-1fec21dfb16f",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "446936",
+    "extracted_answer": "446948",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-ec959ecc7e8a",
+    "parent_eval_id": "mec1-8c77c292d385",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "8",
+    "extracted_answer": "1.6",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-42295531cf29",
+    "parent_eval_id": "mec1-8c77c292d385",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "9.6",
+    "extracted_answer": "84.7",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-3da8f0a2d0fb",
+    "parent_eval_id": "mec1-60bf81d3f5c5",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "147.2",
+    "extracted_answer": "533.12",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-4066ad4b6d90",
+    "parent_eval_id": "mec1-60bf81d3f5c5",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "500.48",
+    "extracted_answer": "503.68",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-01e3c3fc8bb2",
+    "parent_eval_id": "mec1-a9ad3c8108bf",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1.2",
+    "extracted_answer": "1.2",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-11d33118c8b9",
+    "parent_eval_id": "mec1-a9ad3c8108bf",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "1.248",
+    "extracted_answer": "1.248",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-94b3b637273b",
+    "parent_eval_id": "mec1-080d7a5a3ea1",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "137.812",
+    "extracted_answer": "138",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-c08788f6ff74",
+    "parent_eval_id": "mec1-080d7a5a3ea1",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "45",
+    "extracted_answer": "45",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-e724de7adc81",
+    "parent_eval_id": "mec1-a957e0e448fa",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "3.125",
+    "extracted_answer": "87.5",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-504d2a3846bc",
+    "parent_eval_id": "mec1-f17058307079",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "0.5",
+    "extracted_answer": "102",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-4d6e71e0c5f6",
+    "parent_eval_id": "mec1-f17058307079",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "0.52",
+    "extracted_answer": "0.05",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-7641ab849f08",
+    "parent_eval_id": "mec1-ccc51e33a7e8",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "3600",
+    "extracted_answer": "3600",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-1b8b21d13bcf",
+    "parent_eval_id": "mec1-ccc51e33a7e8",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "900",
+    "extracted_answer": "900",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-b05945db62fe",
+    "parent_eval_id": "mec1-d968cc6a15c2",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "8",
+    "extracted_answer": "3",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-4708035e65d5",
+    "parent_eval_id": "mec1-46ffa230d345",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "24",
+    "extracted_answer": "24",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-cbe8adc18957",
+    "parent_eval_id": "mec1-46ffa230d345",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "22.5",
+    "extracted_answer": "22.5",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-5e530ada4bbe",
+    "parent_eval_id": "mec1-86d60af1819c",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "5.5",
+    "extracted_answer": "5.5",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-bc4abbed30bf",
+    "parent_eval_id": "mec1-86d60af1819c",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "5.65625",
+    "extracted_answer": "5.6625",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-30096e7a7ff5",
+    "parent_eval_id": "mec1-8e0b9ee1d249",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "2.5",
+    "extracted_answer": "2.5",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-e2a7e37afbad",
+    "parent_eval_id": "mec1-7fb627b2499c",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "7",
+    "extracted_answer": "10.5",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-b1d4a2242d56",
+    "parent_eval_id": "mec1-7fb627b2499c",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "6.96903",
+    "extracted_answer": "7",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-046a16aa494c",
+    "parent_eval_id": "mec1-0800d8d606f7",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "20",
+    "extracted_answer": "20",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-bb984ea5532d",
+    "parent_eval_id": "mec1-0800d8d606f7",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "28.8",
+    "extracted_answer": "24",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-452104bee2c0",
+    "parent_eval_id": "mec1-11f372901356",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "15322",
+    "extracted_answer": "15262",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-1f0230d21a96",
+    "parent_eval_id": "mec1-11f372901356",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "18142",
+    "extracted_answer": "19256",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-7b314b16060f",
+    "parent_eval_id": "mec1-01a335297e65",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "13",
+    "extracted_answer": "130",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-0ca256f676d0",
+    "parent_eval_id": "mec1-01a335297e65",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "13.2",
+    "extracted_answer": "14.4",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-9c88a5ac929f",
+    "parent_eval_id": "mec1-8415e1be4381",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "9",
+    "extracted_answer": "9",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-a4a1da25acf7",
+    "parent_eval_id": "mec1-8415e1be4381",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "9.072",
+    "extracted_answer": "8.82",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-0b2c20015c8e",
+    "parent_eval_id": "mec1-5217737491a2",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1",
+    "extracted_answer": "1.0",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-c2d149245dfe",
+    "parent_eval_id": "mec1-5217737491a2",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "1.02222",
+    "extracted_answer": "1.022",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-33235fe66ce3",
+    "parent_eval_id": "mec1-18d53850d08e",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "1.52753",
+    "extracted_answer": "1.55",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-e55d2bdba919",
+    "parent_eval_id": "mec1-18d53850d08e",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "7.13",
+    "extracted_answer": "12.99",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-3be80920c524",
+    "parent_eval_id": "mec1-32bc75cf0816",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "2",
+    "extracted_answer": "2.0",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-596d741deb16",
+    "parent_eval_id": "mec1-32bc75cf0816",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "6",
+    "extracted_answer": "12",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-bb119c217801",
+    "parent_eval_id": "mec1-3fa35fd861e1",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "70",
+    "extracted_answer": "70",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-d43d4a5ef665",
+    "parent_eval_id": "mec1-3fa35fd861e1",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "72.8",
+    "extracted_answer": "0.112",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-3a8ae29978d7",
+    "parent_eval_id": "mec1-02de060ff074",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "12",
+    "extracted_answer": "82",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-24e00df373b1",
+    "parent_eval_id": "mec1-6089778e7823",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "15",
+    "extracted_answer": "15",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-66755720339d",
+    "parent_eval_id": "mec1-fbaea084144f",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "0.75",
+    "extracted_answer": "0.75",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-8e222de724a8",
+    "parent_eval_id": "mec1-fbaea084144f",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "5.25",
+    "extracted_answer": "5.25",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-ac164cfb4fec",
+    "parent_eval_id": "mec1-2898dc11c134",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "16",
+    "extracted_answer": "14",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-078a20d29bd0",
+    "parent_eval_id": "mec1-d4d0e63143c6",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "14.85",
+    "extracted_answer": "35.55",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-751d10d2836b",
+    "parent_eval_id": "mec1-d4d0e63143c6",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "35.5",
+    "extracted_answer": "35.5",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-f958593699bf",
+    "parent_eval_id": "mec1-76dd655e9687",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "22",
+    "extracted_answer": "10",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-9ba0da4dadca",
+    "parent_eval_id": "mec1-bb6f0f887b45",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "400",
+    "extracted_answer": "410",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-99790e387d54",
+    "parent_eval_id": "mec1-bb6f0f887b45",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "416",
+    "extracted_answer": "416",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-4d596bd00054",
+    "parent_eval_id": "mec1-4da7809bdfa7",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "847",
+    "extracted_answer": "847",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-9e7167b3b802",
+    "parent_eval_id": "mec1-4da7809bdfa7",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "913",
+    "extracted_answer": "913",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-0ea31ffdea8d",
+    "parent_eval_id": "mec1-d194c4c282a3",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1.375",
+    "extracted_answer": "1.375",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-ab885a52df6a",
+    "parent_eval_id": "mec1-d194c4c282a3",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "1.5",
+    "extracted_answer": "1.5",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-40e7934e267b",
+    "parent_eval_id": "mec1-d66a9823f6f2",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "12",
+    "extracted_answer": "12",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-7d7840bda9d0",
+    "parent_eval_id": "mec1-28acc89746b1",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "2",
+    "extracted_answer": "4",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-b852a826b01c",
+    "parent_eval_id": "mec1-3f0d6acf63fa",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1",
+    "extracted_answer": "1",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-8a3ec85e26fc",
+    "parent_eval_id": "mec1-3f0d6acf63fa",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "0.999848",
+    "extracted_answer": "1",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-8dd409d02619",
+    "parent_eval_id": "mec1-f0b661287a5e",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1.5",
+    "extracted_answer": "\\frac{3}{2}",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-5bc43b35a071",
+    "parent_eval_id": "mec1-31d6e6bf157e",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "0.2",
+    "extracted_answer": "0.2",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-2078bee3d48f",
+    "parent_eval_id": "mec1-31d6e6bf157e",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "0.24",
+    "extracted_answer": "0.24",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-35a638d4c85d",
+    "parent_eval_id": "mec1-9f699021042c",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "200",
+    "extracted_answer": "2000",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-f1e668176206",
+    "parent_eval_id": "mec1-979179a87fa8",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "2329.5",
+    "extracted_answer": "2329.5",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-003cfb848fa5",
+    "parent_eval_id": "mec1-979179a87fa8",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "3214.5",
+    "extracted_answer": "2,999",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-c08d422c6065",
+    "parent_eval_id": "mec1-4a4edb3c91d4",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "4.6",
+    "extracted_answer": "3.8",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-96df9c9117fb",
+    "parent_eval_id": "mec1-c08ea0c4ab16",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "18",
+    "extracted_answer": "18.0",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-32ebb07a04e9",
+    "parent_eval_id": "mec1-b59955591ace",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "8.31",
+    "extracted_answer": null,
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-4b17f39ffc59",
+    "parent_eval_id": "mec1-1a2aa6afe2f9",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "0.8",
+    "extracted_answer": "0.8",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-67063c4ec176",
+    "parent_eval_id": "mec1-e9b845369bce",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "80",
+    "extracted_answer": "80",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-c3a50c919d4d",
+    "parent_eval_id": "mec1-120d01707c40",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "48",
+    "extracted_answer": "64",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-c83a33531240",
+    "parent_eval_id": "mec1-b77364067315",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "38.7",
+    "extracted_answer": "38.7",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-ef9b0cd39ebc",
+    "parent_eval_id": "mec1-b77364067315",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "44.1",
+    "extracted_answer": "44.1",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-11b2496da36a",
+    "parent_eval_id": "mec1-4db85b5d0f49",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "7.54983",
+    "extracted_answer": "7.81",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-2525478bfd13",
+    "parent_eval_id": "mec1-4db85b5d0f49",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "7.55",
+    "extracted_answer": "20",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-52adf58cd6e8",
+    "parent_eval_id": "mec1-45aa69ed4fc2",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "12.69",
+    "extracted_answer": "8.53",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-228fedf52123",
+    "parent_eval_id": "mec1-45aa69ed4fc2",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "12.791",
+    "extracted_answer": "12.33",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-59d04fcdb72f",
+    "parent_eval_id": "mec1-bdcc33ddedc9",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "1631",
+    "extracted_answer": "3239",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-0483368af079",
+    "parent_eval_id": "mec1-bdcc33ddedc9",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1697",
+    "extracted_answer": "2105",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-ba00804c9aba",
+    "parent_eval_id": "mec1-4d8d02805b81",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "29",
+    "extracted_answer": "31",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-364d35a6fa69",
+    "parent_eval_id": "mec1-95b87eb31718",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1",
+    "extracted_answer": "1",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-980dbbf33f2c",
+    "parent_eval_id": "mec1-ac063e5ef06b",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "8",
+    "extracted_answer": "8",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-2cc28ee49540",
+    "parent_eval_id": "mec1-a3f5f77015b9",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "25.2",
+    "extracted_answer": "18",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-ea85be3d7149",
+    "parent_eval_id": "mec1-85c509268024",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "45",
+    "extracted_answer": "3150",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-d773afd5b5b5",
+    "parent_eval_id": "mec1-85c509268024",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "315",
+    "extracted_answer": "315",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-ff81bb6b9785",
+    "parent_eval_id": "mec1-5370c69c351d",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "72",
+    "extracted_answer": "-72 N",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-41293a78227f",
+    "parent_eval_id": "mec1-5370c69c351d",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "288",
+    "extracted_answer": "1000",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-db493e35d1a2",
+    "parent_eval_id": "mec1-4d645eba3692",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "7.1",
+    "extracted_answer": "71000",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-25eb6574e196",
+    "parent_eval_id": "mec1-c757b1a38b97",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "20",
+    "extracted_answer": "21.5",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-41f5ff674fef",
+    "parent_eval_id": "mec1-6e9e256011d5",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "9",
+    "extracted_answer": "9",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-4af215728d0e",
+    "parent_eval_id": "mec1-376128b9a50e",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "7",
+    "extracted_answer": "7",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-dc5af56cb594",
+    "parent_eval_id": "mec1-77a5885c63de",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "-6",
+    "extracted_answer": "-6",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-5d500caedb9e",
+    "parent_eval_id": "mec1-d40bb796dc93",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "8",
+    "extracted_answer": "8",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-0acf2557de6b",
+    "parent_eval_id": "mec1-2b8bb3ea3e2f",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "-3",
+    "extracted_answer": "-3",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-23517638bca4",
+    "parent_eval_id": "mec1-8598c5f71267",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "460",
+    "extracted_answer": "460",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-a389b6185cbb",
+    "parent_eval_id": "mec1-8598c5f71267",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "1780",
+    "extracted_answer": "1780",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-563e5a70b5dd",
+    "parent_eval_id": "mec1-1b6ab2ee7cc2",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "-2.5",
+    "extracted_answer": "-2.5",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-8e955159cf43",
+    "parent_eval_id": "mec1-1b6ab2ee7cc2",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "-3",
+    "extracted_answer": "-3",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-69305131bae8",
+    "parent_eval_id": "mec1-ee18890946ba",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "48",
+    "extracted_answer": "48",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-cf277c147685",
+    "parent_eval_id": "mec1-ee18890946ba",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "12",
+    "extracted_answer": "12",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-75fbf9b924b4",
+    "parent_eval_id": "mec1-a857c4d093b9",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "80",
+    "extracted_answer": "72",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-25991c1128fb",
+    "parent_eval_id": "mec1-9bf9c71d4d8f",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "351.86",
+    "extracted_answer": "603.18",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-23fbe5c3f176",
+    "parent_eval_id": "mec1-b2bf9c24f253",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "3",
+    "extracted_answer": "3",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-53a98842b34b",
+    "parent_eval_id": "mec1-2b20498224c9",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "6",
+    "extracted_answer": "6",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-6cbae6478050",
+    "parent_eval_id": "mec1-0f0d2af29c17",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "3.96e-06",
+    "extracted_answer": "3.96",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-5bf117aba636",
+    "parent_eval_id": "mec1-0f0d2af29c17",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "3.96",
+    "extracted_answer": "3.96",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-fd5fe5fa0c8d",
+    "parent_eval_id": "mec1-dcb92aa91205",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "180",
+    "extracted_answer": "180",
+    "correct": true,
+    "behavior_passed": true
+  },
+  {
+    "eval_id": "mec1-b7c1d58786b4",
+    "parent_eval_id": "mec1-ffab26b82e9f",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "26.5",
+    "extracted_answer": "12.5",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-d51fd0603214",
+    "parent_eval_id": "mec1-ffab26b82e9f",
+    "kind": "change_value",
+    "expected_behavior": "ANSWER_CHANGES",
+    "expected_answer": "27.56",
+    "extracted_answer": "27.6",
+    "correct": false,
+    "behavior_passed": false
+  },
+  {
+    "eval_id": "mec1-8f01ddf43b10",
+    "parent_eval_id": "mec1-00910c220f26",
+    "kind": "add_distractor",
+    "expected_behavior": "ANSWER_UNCHANGED",
+    "expected_answer": "13.42",
+    "extracted_answer": "24.49",
+    "correct": false,
+    "behavior_passed": false
+  }
+]

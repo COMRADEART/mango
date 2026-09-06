@@ -1,0 +1,81 @@
+# T7 — Executive layer configuration.
+#
+# BUDGETS: bounded axes for every executive run (T7.34).
+# GATES: PRE-REGISTERED BEFORE the matched OFF/ON comparison (T7.19/T7.38).
+#   These thresholds were fixed 2026-09-04, before any ON-arm results
+#   existed. Do NOT change them after seeing T7 results (T7.37).
+
+budgets:
+  max_plan_attempts: 2      # model-proposed plan tries incl. schema retry
+  max_plan_steps: 6         # actions per plan
+  max_replans: 2            # event-triggered replans per run
+  max_model_calls: 16
+  max_tool_calls: 8
+  max_retrievals: 3
+  max_total_seconds: 180.0
+  max_step_seconds: 60.0
+
+fast_path:
+  enabled: true             # T7.22 simple-question bypass
+
+retrieval:
+  k: 3                      # T5R budget matrix: k=3 best measured
+
+# PRE-REGISTERED PROMOTION GATES for the executive architecture
+# (executive ON vs matched OFF on the same checkpoint, Mango-v0.1).
+# All thresholds are absolute; the comparison suite is
+# mango-executive-eval-v1 (+ mango-eval-core-v1 regression check).
+# Decision: PROMOTED if ALL of G1-G8 pass; NOT PROMOTED otherwise
+# (T7.40; PARTIAL - EXECUTIVE NOT PROMOTED is the honest outcome).
+gates:
+  G1_overall_gain_pp:            # ON accuracy >= OFF + 3 pp overall
+    metric: accuracy.overall
+    on_off_delta_min: 3.0
+  G2_distractor_robustness_pp:   # distractor class accuracy ON - OFF
+    metric: accuracy.distractor
+    on_off_delta_min: 5.0
+  G3_uncertainty_precision_min:  # T6 baseline was 0.0000; must now be > 0
+    metric: uncertainty.precision
+    min: 0.5
+  G4_uncertainty_recall_min:
+    metric: uncertainty.recall
+    min: 0.5
+  G5_plan_validity_improvement:  # T6 model-plan JSON validity 0.10
+    metric: plan.first_attempt_validity
+    min: 0.3                     # >= 3x the 0.10 baseline, i.e. >= 0.30
+  G6_correction_net_gain:        # correction gain must exceed
+    metric: correction.net_gain  # overcorrection harm
+    min: 0.0
+  G7_regression_bound_pp:        # simple/maths accuracy must not regress
+    metric: accuracy.simple
+    max_regression: 5.0
+  G8_t4_t5r_preservation:        # citation fabrication = 0 (absolute)
+    metric: citations.fabricated
+    max: 0
+
+# Ablation arms (T7.38) — feature flags applied to the executive runner.
+# A = executive OFF (matched baseline); B..G as declared.
+ablations:
+  A_off:        {executive: false}
+  B_plan_only:  {executive: true, model_plan: true, tools: false,
+                 retrieval: false, verification: false, replanning: false,
+                 correction_gate: false, distractor_filter: false}
+  C_plan_tools: {executive: true, model_plan: true, tools: true,
+                 retrieval: true, verification: false, replanning: false,
+                 correction_gate: false, distractor_filter: false}
+  D_plan_exec_verify: {executive: true, model_plan: true, tools: true,
+                       retrieval: true, verification: true,
+                       replanning: false, correction_gate: false,
+                       distractor_filter: false}
+  E_full_executive:   {executive: true, model_plan: true, tools: true,
+                       retrieval: true, verification: true,
+                       replanning: true, correction_gate: true,
+                       distractor_filter: true}
+  F_no_distractor_filter: {executive: true, model_plan: true,
+                           tools: true, retrieval: true,
+                           verification: true, replanning: true,
+                           correction_gate: true, distractor_filter: false}
+  G_no_correction_gate:   {executive: true, model_plan: true,
+                           tools: true, retrieval: true,
+                           verification: true, replanning: true,
+                           correction_gate: false, distractor_filter: true}

@@ -1,0 +1,212 @@
+{
+ "state": {
+  "run_id": "mq-mhs-11",
+  "problem": "The planet named after the Roman messenger god is the closest to the Sun. Approximately how many Earth days does it take that planet to complete one orbit of the Sun?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "how many Earth days does it take that planet to complete one orbit of the Sun"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-358086:orbit_b6c22d03:0 | wiki-26903:galactic_position_3875b80e:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-358086:orbit_b6c22d03:0",
+       "text": "Ixion orbits the Sun's barycenter with a semi-major axis of 39.5 astronomical units (AU), putting it in the Kuiper belt beyond Neptune's orbit. Ixion takes 248 years to complete one orbit, which places it in a 2:3 mean-motion resonance with Neptune. For every two revolutions it makes around the Sun, Neptune makes exactly three. It is therefore a member of the plutinos, a large population of trans-Neptunian objects named after its largest member Pluto. Ixion's orbit closely resembles that of Pluto's, as both are plutinos. Ixion has an orbital eccentricity of 0.24 and an inclination of 19.6° wit"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-26903:galactic_position_3875b80e:0",
+       "text": "The Solar System is located in the Milky Way, a barred spiral galaxy with a diameter of about 100,000 light-years containing more than 100 billion stars. The Sun is part of one of the Milky Way's outer spiral arms, known as the Orion–Cygnus Arm or Local Spur. It is a member of the thin disk population of stars orbiting close to the galactic plane. Its speed around the center of the Milky Way is about 220 km/s, so that it completes one revolution every 240 million years. This revolution is known as the Solar System's galactic year. The solar apex, the direction of the Sun's path through interst"
+      }
+     ],
+     "signature": "c86ab80f76bae2ca"
+    },
+    "latency_s": 0.4157495999825187,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "248",
+    "detail": {
+     "raw": "Answer: 248",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 1.2641571999993175,
+    "input_tokens": 384,
+    "output_tokens": 7
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "[s1] Ixion takes 248 years to complete one orbit, which places it in a 2:3 mean-motion resonance with Neptune.",
+    "detail": {
+     "raw": "Answer: [s1] Ixion takes 248 years to complete one orbit, which places it in a 2:3 mean-motion resonance with Neptune.",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 4.454458399995929,
+    "input_tokens": 401,
+    "output_tokens": 36
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 15.100013599992963,
+   "input_tokens": 785,
+   "output_tokens": 43
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "The planet named after the Roman messenger god is the closest to the Sun.",
+   "Approximately how many Earth days does it take that planet to complete one orbit of the Sun?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-358086:orbit_b6c22d03:0 | wiki-26903:galactic_position_3875b80e:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "248",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "[s1] Ixion takes 248 years to complete one orbit, which places it in a 2:3 mean-motion resonance with Neptune.",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-358086:orbit_b6c22d03:0 | wiki-26903:galactic_position_3875b80e:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "248",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "[s1] Ixion takes 248 years to complete one orbit, which places it in a 2:3 mean-motion resonance with Neptune.",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

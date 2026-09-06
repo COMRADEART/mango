@@ -1,0 +1,78 @@
+{
+  "total_examples": 3031,
+  "train": 2910,
+  "validation": 121,
+  "accepted": 3031,
+  "rejected_at_normalize_or_target": 2276,
+  "rejected_reasons": {
+    "answer": 138,
+    "target": 2132,
+    "question": 2,
+    "malformed_answer": 4
+  },
+  "duplicates_removed": 98,
+  "near_duplicates_removed": 26,
+  "contamination_removed": 1,
+  "by_domain": {
+    "general_science": 1200,
+    "mathematics": 1651,
+    "scientific_reasoning": 180
+  },
+  "by_subject": {
+    "science_qa": 1200,
+    "arithmetic_word_problems": 842,
+    "precalculus": 78,
+    "science_vocabulary": 23,
+    "intermediate_algebra": 132,
+    "geometry": 117,
+    "prealgebra": 140,
+    "instruction_following": 52,
+    "algebra": 202,
+    "number_theory": 70,
+    "time_arithmetic": 20,
+    "uncertainty": 12,
+    "quantitative_comparison": 11,
+    "unit_conversion": 40,
+    "counting_and_probability": 70,
+    "logic_deduction": 10,
+    "scientific_reasoning": 12
+  },
+  "by_source": {
+    "sciq": 1200,
+    "gsm8k": 842,
+    "math-competition": 809,
+    "synthetic-sft-v1": 180
+  },
+  "by_difficulty": {
+    "None": 2042,
+    "4": 172,
+    "1": 179,
+    "3": 199,
+    "2": 199,
+    "5": 240
+  },
+  "answer_formats": {
+    "free_text": 1200,
+    "numeric": 882,
+    "expression": 809,
+    "text": 140
+  },
+  "with_solution": 809,
+  "without_explanation": 2002,
+  "mix": {
+    "math": 0.5447,
+    "science": 0.3959,
+    "general": 0.0594
+  },
+  "mix_targets": {
+    "math": 0.54,
+    "science": 0.4,
+    "general": 0.06
+  },
+  "mix_within_contract": true,
+  "duplicate_breakdown": {
+    "exact": 64,
+    "normalized": 8,
+    "near_duplicate": 26
+  }
+}

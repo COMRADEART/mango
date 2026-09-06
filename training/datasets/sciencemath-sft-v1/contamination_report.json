@@ -1,0 +1,20 @@
+{
+  "gate": "sciencemath-sft-v1 vs sciencemath-eval-v1",
+  "run_at": "2026-09-02T20:42:41.009501+00:00",
+  "suite_questions": 188,
+  "candidates_checked": 24459,
+  "direct_leakage_found": 1,
+  "near_leakage_found": 0,
+  "records_removed": 1,
+  "remediation": "contaminated records (direct and near >= 0.90 Jaccard) REMOVED from the SFT corpus before freeze; full list in contamination_report.json removals; corpus not frozen unless this gate ran",
+  "removed_records": [
+    {
+      "id": "synthetic-sft-v1--c1628e4f43be82b7",
+      "source": "synthetic-sft-v1",
+      "source_id": "synth-sft-111",
+      "kind": "direct",
+      "similarity": 1.0
+    }
+  ],
+  "passed_after_remediation": true
+}

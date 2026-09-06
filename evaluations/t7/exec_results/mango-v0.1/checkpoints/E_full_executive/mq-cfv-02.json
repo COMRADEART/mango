@@ -1,0 +1,218 @@
+{
+ "state": {
+  "run_id": "mq-cfv-02",
+  "problem": "Calcium carbonate decomposes when heated according to CaCO3 -> CaO + CO2. If 0.75 mol of CaCO3 fully decomposes, how many grams of CO2 are produced? (Molar mass of CO2 = 44 g/mol)",
+  "goal": "",
+  "problem_type": "MIXED",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "when heated according to CaCO3 -> CaO + CO2"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-2763:synthesis_from_calcium_carbide_6168464f:0 | wiki-639:chemical_properties_reactions_with_oxyge_0904f66e:0 | wiki-498127:scope_reactions_of_aldols_db8d48ce:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-2763:synthesis_from_calcium_carbide_6168464f:0",
+       "text": "Classically, acetylene was prepared by hydrolysis (protonation) of calcium carbide (Ca2+[:C≡C:]2–):       Ca  2  +     [ C  ≡  C ]   2 −   + 2  HOH ⟶ HC  ≡  CH +  Ca  2  +    [   (  HO  −   )   2      ]     {\\displaystyle {\\ce {Ca^{2+}[C#C]^2- + 2 HOH -> HC#CH + Ca^{2+}[(HO^{-})2]}}}   which was in turn synthesized by combining quicklime and coke in an electric arc furnace at 2200 °C:      CaO + 3  C  ( amorphous )  ⟶  CaC  2      + CO    {\\displaystyle {\\ce {CaO + 3 C (amorphous) -> CaC2 + CO}}}   This was an industrially important process which provided access to hydrocarbons from coal resou"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-639:chemical_properties_reactions_with_oxyge_0904f66e:0",
+       "text": "All alkanes react with oxygen in a combustion reaction, although they become increasingly difficult to ignite as the number of carbon atoms increases. The general equation for complete combustion is:  CnH2n+2 + (⁠3/2⁠n + ⁠1/2⁠) O2 → (n + 1) H2O + n CO2 or CnH2n+2 + (⁠3n + 1/2⁠) O2 → (n + 1) H2O + n CO2 In the absence of sufficient oxygen, carbon monoxide or even soot can be formed, as shown below:  CnH2n+2 + (n + ⁠1/2⁠) O2 → (n + 1) H2O + n CO CnH2n+2 + (⁠1/2⁠n + ⁠1/2⁠) O2 → (n + 1) H2O + n C For example, methane:  2 CH4 + 3 O2 → 4 H2O + 2 CO CH4 + O2 → 2 H2O + C See the alkane heat of formati"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-498127:scope_reactions_of_aldols_db8d48ce:0",
+       "text": "Aldols dehydrate:  CH3CH2CH(OH)CH(CH3)CHO → CH3CH2CH=C(CH3)CHO + H2O Because this conversion is facile, it is sometimes assumed. It is for this reason that the aldol reaction is sometimes called the aldol condensation."
+      }
+     ],
+     "signature": "573d2b53f108bc63"
+    },
+    "latency_s": 0.315249400009634,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "0.75 mol * 44 g/mol = 33 g",
+    "detail": {
+     "raw": "Answer: 0.75 mol * 44 g/mol = 33 g\n\nFinal answer: \\boxed{33}",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 4.043999000015901,
+    "input_tokens": 556,
+    "output_tokens": 30
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{33}",
+    "detail": {
+     "raw": "Answer: \\boxed{33}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.680564799986314,
+    "input_tokens": 562,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 15.217246400017757,
+   "input_tokens": 1118,
+   "output_tokens": 39
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "Calcium carbonate decomposes when heated according to CaCO3 -> CaO + CO2.",
+   "If 0.75 mol of CaCO3 fully decomposes, how many grams of CO2 are produced?",
+   "(Molar mass of CO2 = 44 g/mol)"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-2763:synthesis_from_calcium_carbide_6168464f:0 | wiki-639:chemical_properties_reactions_with_oxyge_0904f66e:0 | wiki-498127:scope_reactions_of_aldols_db8d48ce:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "0.75 mol * 44 g/mol = 33 g",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{33}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-2763:synthesis_from_calcium_carbide_6168464f:0 | wiki-639:chemical_properties_reactions_with_oxyge_0904f66e:0 | wiki-498127:scope_reactions_of_aldols_db8d48ce:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "0.75 mol * 44 g/mol = 33 g",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{33}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

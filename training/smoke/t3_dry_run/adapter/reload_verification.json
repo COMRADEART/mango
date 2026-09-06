@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "adapter_state": {
+    "is_peft_model": true,
+    "adapter_names": [
+      "default"
+    ],
+    "adapter_active": true,
+    "adapters_disabled": false
+  },
+  "smoke_output": "2 + 2 = 4"
+}

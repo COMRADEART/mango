@@ -1,0 +1,48 @@
+{
+  "recorded_at": "2026-09-02T20:30:18.937740+00:00",
+  "milestone": "T3.0 entry gate",
+  "git_commit": "662e08f172cb98b333dab4960d9ff3ea81ab21d0",
+  "git_dirty": true,
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.5.1+cu121",
+  "torch_cuda_version": "12.1",
+  "torch_cuda_available": true,
+  "transformers": "5.16.1",
+  "peft": "0.20.0",
+  "bitsandbytes": "0.50.2",
+  "accelerate": "1.14.0",
+  "datasets": "5.0.1",
+  "trl": null,
+  "hardware_report": {
+    "platform_name": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.10",
+    "torch_installed": true,
+    "torch_version": "2.5.1+cu121",
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "device_count": 1,
+    "total_vram_bytes": 6438780928,
+    "compute_capability": [
+      8,
+      9
+    ],
+    "bf16_supported": true,
+    "recommendations": {
+      "device": "cuda",
+      "can_train_qlora": true,
+      "precision": "bfloat16",
+      "load_in_4bit": true,
+      "per_device_train_batch_size": 2,
+      "gradient_accumulation_steps": 8,
+      "max_seq_length": 1024,
+      "max_model_params_b": 4.0,
+      "measured_vram_gb": 6.0,
+      "gradient_checkpointing": true
+    }
+  },
+  "nvidia_smi": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 610.62",
+  "ram_total_gb": "31.61",
+  "disk_free_gb": "582.1"
+}

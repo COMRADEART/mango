@@ -1,0 +1,1882 @@
+{
+  "label": "phi4-mini-reasoning",
+  "model": "microsoft/Phi-4-mini-reasoning",
+  "suite": "mango-tool-eval-v1",
+  "max_new_tokens": 2048,
+  "max_new_tokens_exception": true,
+  "recorded_at": "2026-09-05T20:43:28.174820+00:00",
+  "verifier_selftest": {
+    "gold_cases": 150,
+    "gold_pass_rate": 1.0,
+    "gold_unknown_rate": 0.0,
+    "gold_unknown_cases": [],
+    "wrong_cases": 638,
+    "false_pass_rate": 0.0,
+    "wrong_unknown_rate": 0.004702194357366771,
+    "false_pass_cases": [],
+    "critical_gate": "PASS"
+  },
+  "router_metrics": {
+    "tp": 30,
+    "fp": 4,
+    "fn": 0,
+    "invocation_precision": 0.8823529411764706,
+    "invocation_recall": 1.0,
+    "math_routing_coverage": 0.32,
+    "per_question": [
+      {
+        "eval_id": "ev1-016978277697",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-0953e8219e27",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-14a35fb0060d",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-17cff5e0d02c",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-1d994dd1daa9",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-1e99c1d90fc6",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-1fda18dc7f15",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-2062af991854",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-21a0019d4638",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-2636a5bc5326",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-2932e0e59cbb",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-2a264be5da64",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-2a33e519658e",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-2b384cb4f897",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-2bb83dacd161",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-30fd4c1c6f2d",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-3285b07a41ac",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-3418804a4b36",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-355813d4888d",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-389ad3fa066c",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-3a2cdabb3be9",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-3b24669b4a76",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-3c675901c606",
+        "routed": [
+          "numerical_math"
+        ],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-40241f3dad33",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-435d6c8ffbc1",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-462c549076a8",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-47886ef49836",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-47a9c0841557",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-47b34facafea",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-4826156af9b8",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-4b2fa846dbc2",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-4c4a9c2e28b7",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-529d57c91348",
+        "routed": [
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-57b6e08bbf63",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-5dd5a29852b9",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-63bd08a27e3b",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-63f1ef01caaa",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-67f789981821",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-68bf33e13a57",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-6ac834dacfa5",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-6ba75de565e6",
+        "routed": [
+          "numerical_math"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-713810a31b86",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-7479fd813af9",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-747f9554ec25",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-7891dd951e2b",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-7d84b1a4cc61",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-808b5e2031dc",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-80f01e6c7cee",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-832d14c17a5a",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-89624b14b049",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-8bc54618e2eb",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-8ecb9b0e629d",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-8fd383539cdf",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-920b32f70c6e",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-96582eedfd5b",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-96b81fb8e742",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-98973f85dd33",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-98db6aa3c972",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-98e6be8aa31e",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-9ab2bf2625d8",
+        "routed": [
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-9ac574182f2a",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-9bb66bc8ad42",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-9c2054af16a0",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-9f1ce7c63847",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-a0a718303942",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-a20a44e2385a",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-a77d6d70b221",
+        "routed": [
+          "numerical_math"
+        ],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-a9990263c6e9",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-aaa1a63251bd",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-ab74a8d3320b",
+        "routed": [
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-abca40451f97",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-abe4a8335f43",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-ae8f7694e7f3",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-b37cc0b86619",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-b5dd8e35c3d9",
+        "routed": [
+          "numerical_math"
+        ],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-b7649dfeff9c",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-bbdc18356a98",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-bc7b0e671a00",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-c3b8420853ba",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-c3d384afd6a6",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-c6c3ec4cd761",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-c7e0a43c64b1",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-c7fdc75c9303",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-c91b537c61e4",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-cbcfcbfb7078",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-cc659b90805e",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-ccd1e8e0598f",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-cdfed5e3b9a1",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-da1877869490",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-dbe28a9fa6df",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-e1a290a65ded",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-e24fda0d05e5",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-e57a0d1646ed",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-f1a80a32e346",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-f2a838435f97",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "numerical_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-f943b244ef72",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-fb0fe264e033",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-fb5f68bd99f6",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-fb9d44e73359",
+        "routed": [],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-ffe53f95b483",
+        "routed": [
+          "calculator"
+        ],
+        "correct_tools": [
+          "calculator",
+          "equation_solver",
+          "numerical_math",
+          "symbolic_math"
+        ],
+        "annotation_kind": "plausible"
+      },
+      {
+        "eval_id": "ev1-010819b51b76",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-04742503014d",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-0f7536210ea0",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-120dacd7013b",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-12a044b6cae6",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-12a7312580e6",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-188c8dd469a6",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-19be35b5c413",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-2a3e7d52b1e8",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-2a8b7921c5d3",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-2cc533a13637",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-2f115c812a70",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-2f1fd3265f5b",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-315a192527a2",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-327883371080",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-3a713205a9c6",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-3c8905366a14",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-434d62d65de9",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-435dfdc8bddd",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "ev1-44e37b1be886",
+        "routed": [],
+        "correct_tools": [],
+        "annotation_kind": "strict",
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-8ca08ccffc72",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-9f9a83954e84",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-c7e2035251d1",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-fc2fbaf3447e",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-8799f90cb111",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-9dd2e442b6e6",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-9d314c031feb",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-0fa6c30c3733",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-ab382f1b078b",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-13ccb2884d96",
+        "routed": [
+          "unit_converter"
+        ],
+        "correct_tools": [
+          "unit_converter"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "unit_converter"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-8a305d593b35",
+        "routed": [
+          "calculator",
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [
+          "calculator"
+        ],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-3dcd65d87e81",
+        "routed": [
+          "calculator",
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [
+          "calculator"
+        ],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-33685d8b5f6b",
+        "routed": [
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-222ba76f66ec",
+        "routed": [
+          "calculator",
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [
+          "calculator"
+        ],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-28845b431921",
+        "routed": [
+          "calculator",
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [
+          "calculator"
+        ],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-11d78d951117",
+        "routed": [
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-ae74c6e05cc6",
+        "routed": [
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-80d85b676ade",
+        "routed": [
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-e4b1eefd688e",
+        "routed": [
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-60c20614f83a",
+        "routed": [
+          "equation_solver"
+        ],
+        "correct_tools": [
+          "equation_solver"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "equation_solver"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-d12eddb506af",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-7fbc0b623835",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-7ec17855ad55",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-f913d9afbd33",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-cc12dd6e6cd5",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-2ba237884f94",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-9b22f1b97f48",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-a3a611fdb79c",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-ec808bd2f654",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      {
+        "eval_id": "mev1-1af2cc9c611f",
+        "routed": [
+          "symbolic_math"
+        ],
+        "correct_tools": [
+          "symbolic_math"
+        ],
+        "annotation_kind": "strict",
+        "tp": [
+          "symbolic_math"
+        ],
+        "fp": [],
+        "fn": []
+      }
+    ]
+  },
+  "comparison": {
+    "n_questions": 150,
+    "no_tool_accuracy": 0.5533333333333333,
+    "tool_enabled_accuracy": 0.6866666666666666,
+    "delta": 0.1333333333333333,
+    "by_category": {
+      "algebra": {
+        "n": 40,
+        "no_tool_accuracy": 0.375,
+        "tool_enabled_accuracy": 0.525
+      },
+      "arithmetic": {
+        "n": 40,
+        "no_tool_accuracy": 0.875,
+        "tool_enabled_accuracy": 0.875
+      },
+      "equations": {
+        "n": 10,
+        "no_tool_accuracy": 0.5,
+        "tool_enabled_accuracy": 0.9
+      },
+      "general_science": {
+        "n": 20,
+        "no_tool_accuracy": 0.45,
+        "tool_enabled_accuracy": 0.85
+      },
+      "probability_statistics": {
+        "n": 10,
+        "no_tool_accuracy": 0.3,
+        "tool_enabled_accuracy": 0.4
+      },
+      "symbolic": {
+        "n": 10,
+        "no_tool_accuracy": 0.5,
+        "tool_enabled_accuracy": 0.6
+      },
+      "trigonometry_precalculus": {
+        "n": 10,
+        "no_tool_accuracy": 0.2,
+        "tool_enabled_accuracy": 0.2
+      },
+      "units": {
+        "n": 10,
+        "no_tool_accuracy": 0.9,
+        "tool_enabled_accuracy": 0.9
+      }
+    },
+    "verdict_counts": {
+      "PASS": 103,
+      "FAIL": 10,
+      "UNKNOWN": 37
+    },
+    "tool_usage": {
+      "questions_with_tool_call": 0.21333333333333335,
+      "mean_tool_calls_per_question": 0.24
+    }
+  },
+  "arms": {
+    "t4_notool": {
+      "status": "COMPLETE",
+      "questions_run": 150
+    },
+    "t4_tool": {
+      "status": "COMPLETE",
+      "questions_run": 150
+    }
+  }
+}

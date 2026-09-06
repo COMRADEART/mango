@@ -3,13 +3,13 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "sciencemath"
+name = "sciencemath"              # package name kept for import stability (Stage C rename deferred); public model identity is Mango
 version = "0.1.0"
-description = "ScienceMath-v0.1: compact local math/science assistant (QLoRA fine-tune + SymPy tool verification + Wikipedia RAG)"
+description = "Mango-v0.1: local-first scientific reasoning model (balanced SFT, deterministic math verification from T4, scientific RAG from T5)"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "ScienceMath project" }]
+authors = [{ name = "Mango project" }]
 
 # Core runtime dependencies (must stay installable on CPU-only Windows).
 # Heavy ML dependencies (torch, transformers, peft, bitsandbytes, faiss) are

@@ -1,0 +1,39 @@
+{
+  "model_id": "Qwen/Qwen3-1.7B",
+  "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "status": "COMPLETE",
+  "mode": "non_thinking",
+  "thinking_enabled": false,
+  "quantized_4bit": true,
+  "suite": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\suite\\v1",
+  "questions_total": 188,
+  "questions_answered": 188,
+  "generation": {
+    "seed": 42,
+    "do_sample": false,
+    "max_new_tokens": 1024
+  },
+  "runtime_s": 3853.5,
+  "load": {
+    "ok": true,
+    "provided_by_caller": true,
+    "note": "model loaded by caller (adapter attached externally)"
+  },
+  "adapter": {
+    "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\sciencemath-v0.1-t3",
+    "ablation_genuine": true,
+    "training_manifest": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\sciencemath-v0.1-t3\\training_manifest.json",
+    "protocol": {
+      "mode": "non_thinking",
+      "enable_thinking": false,
+      "max_seq_tokens": 8192,
+      "generation": {
+        "seed": 42,
+        "do_sample": false,
+        "max_new_tokens": 1024
+      },
+      "note": "matches the T2 Qwen3 non-thinking diagnostic run exactly; not tuned per question"
+    }
+  },
+  "adapter_metadata": "adapter_metadata.json"
+}

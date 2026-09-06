@@ -1,0 +1,205 @@
+{
+  "artifact": "Mango-v0.2-L1",
+  "parent_adapter": "training/adapters/sciencemath-v0.1-t3",
+  "adapter_lineage": "unified (T6.21): LoRA weights initialized from the parent adapter",
+  "created_at": "2026-09-04T03:17:14.931739+00:00",
+  "dry_run": false,
+  "base_model": {
+    "model_id": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "license": "apache-2.0",
+    "quantization": "4bit-nf4-double (training and inference)"
+  },
+  "dataset": {
+    "version": "mango-sft-v2-level1",
+    "dir": "training/curriculum/mango-sft-v2/level1",
+    "checksums": {
+      "contamination_report.json": "80c8ec6c9857ba11ce0972e478e453b5f37f725ff481aa764ff1b730b0011bd3",
+      "domain_distribution.json": "7ee16f4e09c7787f954f381fe311c7a630b535631c50a3c6471224ac0c0a2557",
+      "license_manifest.json": "a1cf72e57988e9687bd99f0bbd021cc70c30ce99dd766a82bfa602694df65e8a",
+      "manifest.json": "3963607a98c442b268554df6783f69eb5aaaaeb2cf6fae8aedf03363b656cd9f",
+      "replay.jsonl": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+      "replay_report.json": "33105c15cb9f73023d2074ff24c52b47c2acd34ae55a2f0e979a3c827d3a3dd1",
+      "token_mixture.json": "5e5048538a1267812086288e7d138dfe886e0b93aeae7f53ea56060b28aab22b",
+      "train.jsonl": "432379f5dc7897f208de76daa723379983f665b9fdf44e6c23f2b59cfd093d22",
+      "validation.jsonl": "429b8b4294b217aefffaf025afbe22550f75254b41c53fd072a9843202407b5d"
+    },
+    "tokenize_stats": {
+      "train": {
+        "kept": 850,
+        "question_shortened": 0,
+        "dropped_too_long": 0
+      },
+      "validation": {
+        "kept": 39,
+        "question_shortened": 0,
+        "dropped_too_long": 0
+      }
+    },
+    "examples": {
+      "train": 850,
+      "validation": 39
+    }
+  },
+  "training_config": {
+    "output_dir": "training/curriculum/mango-v0.2/level1/checkpoints",
+    "adapter_output_dir": "training/adapters/mango-v0.2-L1",
+    "num_train_epochs": 2,
+    "max_seq_length": 1024,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "learning_rate": 5e-05,
+    "warmup_ratio": 0.03,
+    "weight_decay": 0.01,
+    "lr_scheduler_type": "cosine",
+    "max_grad_norm": 1.0,
+    "seed": 42,
+    "gradient_checkpointing": true,
+    "bf16": "auto",
+    "logging_steps": 10,
+    "save_steps": 100,
+    "eval_steps": 100,
+    "save_total_limit": 3,
+    "packing": false,
+    "dataloader_num_workers": 0,
+    "lora": {
+      "r": 32,
+      "lora_alpha": 64,
+      "lora_dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "quantization": {
+      "load_in_4bit": true,
+      "bnb_4bit_quant_type": "nf4",
+      "bnb_4bit_compute_dtype": "bfloat16",
+      "bnb_4bit_use_double_quant": true
+    }
+  },
+  "results": {
+    "final_train_loss": 0.28337912559509276,
+    "best_eval_loss": 0.2295066863298416,
+    "peak_vram_bytes": 4715992576,
+    "train_time_s": 964.9,
+    "resumed_from_checkpoint": false
+  },
+  "loss_history": [
+    {
+      "loss": 0.6243378639221191,
+      "grad_norm": 1.1124331951141357,
+      "learning_rate": 4.959823971496574e-05,
+      "epoch": 0.18823529411764706,
+      "step": 10
+    },
+    {
+      "loss": 0.48718652725219724,
+      "grad_norm": 0.9419044852256775,
+      "learning_rate": 4.718964472511386e-05,
+      "epoch": 0.3764705882352941,
+      "step": 20
+    },
+    {
+      "loss": 0.3761049032211304,
+      "grad_norm": 0.98103928565979,
+      "learning_rate": 4.280940242378362e-05,
+      "epoch": 0.5647058823529412,
+      "step": 30
+    },
+    {
+      "loss": 0.35168933868408203,
+      "grad_norm": 0.501854658126831,
+      "learning_rate": 3.6846716561824965e-05,
+      "epoch": 0.7529411764705882,
+      "step": 40
+    },
+    {
+      "loss": 0.33708040714263915,
+      "grad_norm": 0.92341148853302,
+      "learning_rate": 2.9831397944888833e-05,
+      "epoch": 0.9411764705882353,
+      "step": 50
+    },
+    {
+      "loss": 0.3068643569946289,
+      "grad_norm": 0.6049277782440186,
+      "learning_rate": 2.238678841830867e-05,
+      "epoch": 1.1129411764705883,
+      "step": 60
+    },
+    {
+      "loss": 0.25219073295593264,
+      "grad_norm": 0.5316712260246277,
+      "learning_rate": 1.5174374208651912e-05,
+      "epoch": 1.3011764705882354,
+      "step": 70
+    },
+    {
+      "loss": 0.3048285245895386,
+      "grad_norm": 0.5698562860488892,
+      "learning_rate": 8.835009969605012e-06,
+      "epoch": 1.4894117647058824,
+      "step": 80
+    },
+    {
+      "loss": 0.2674022912979126,
+      "grad_norm": 0.6676766872406006,
+      "learning_rate": 3.931976033649021e-06,
+      "epoch": 1.6776470588235295,
+      "step": 90
+    },
+    {
+      "loss": 0.28337912559509276,
+      "grad_norm": 0.7721372842788696,
+      "learning_rate": 9.009284826036691e-07,
+      "epoch": 1.8658823529411763,
+      "step": 100
+    },
+    {
+      "eval_loss": 0.22972434759140015,
+      "eval_runtime": 1.4869,
+      "eval_samples_per_second": 26.229,
+      "eval_steps_per_second": 6.726,
+      "epoch": 1.8658823529411763,
+      "step": 100
+    },
+    {
+      "eval_loss": 0.2295066863298416,
+      "eval_runtime": 1.469,
+      "eval_samples_per_second": 26.548,
+      "eval_steps_per_second": 6.807,
+      "epoch": 2.0,
+      "step": 108
+    },
+    {
+      "train_runtime": 964.5462,
+      "train_samples_per_second": 1.762,
+      "train_steps_per_second": 0.112,
+      "total_flos": 1228754677555200.0,
+      "train_loss": 0.35117572766763194,
+      "epoch": 2.0,
+      "step": 108
+    }
+  ],
+  "environment": {
+    "recorded_at": "2026-09-04T03:17:14.931739+00:00",
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.5.1+cu121",
+    "cuda": "12.1",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.14.0",
+    "datasets": "5.0.1"
+  },
+  "seed": 42,
+  "git_commit": "662e08f172cb98b333dab4960d9ff3ea81ab21d0",
+  "adapter_format": "PEFT/LoRA (unmerged)"
+}

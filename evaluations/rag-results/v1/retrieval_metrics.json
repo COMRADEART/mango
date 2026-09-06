@@ -1,0 +1,103 @@
+{
+  "n_queries": 14,
+  "metrics": {
+    "n_queries": 14,
+    "recall_at_1": 0.7857,
+    "recall_at_3": 0.8571,
+    "recall_at_5": 0.9286,
+    "mrr": 0.8274,
+    "ndcg_at_5": 0.8407,
+    "domain_routing_accuracy": 0.5714,
+    "irrelevant_chunk_rate": 0.0429,
+    "per_domain": {
+      "earth_science": {
+        "n": 6,
+        "recall_at_5": 0.8333,
+        "routing_accuracy": 0.1667
+      },
+      "physics": {
+        "n": 3,
+        "recall_at_5": 1.0,
+        "routing_accuracy": 1.0
+      },
+      "biology": {
+        "n": 3,
+        "recall_at_5": 1.0,
+        "routing_accuracy": 1.0
+      },
+      "chemistry": {
+        "n": 1,
+        "recall_at_5": 1.0,
+        "routing_accuracy": 0.0
+      },
+      "astronomy": {
+        "n": 1,
+        "recall_at_5": 1.0,
+        "routing_accuracy": 1.0
+      }
+    }
+  },
+  "per_grading": {
+    "domain_match": {
+      "n_queries": 6,
+      "recall_at_1": 0.8333,
+      "recall_at_3": 1.0,
+      "recall_at_5": 1.0,
+      "mrr": 0.8889,
+      "ndcg_at_5": 0.9033,
+      "domain_routing_accuracy": 0.1667,
+      "irrelevant_chunk_rate": 0.1,
+      "per_domain": {
+        "earth_science": {
+          "n": 5,
+          "recall_at_5": 1.0,
+          "routing_accuracy": 0.0
+        },
+        "physics": {
+          "n": 1,
+          "recall_at_5": 1.0,
+          "routing_accuracy": 1.0
+        }
+      }
+    },
+    "supporting_fact": {
+      "n_queries": 8,
+      "recall_at_1": 0.75,
+      "recall_at_3": 0.75,
+      "recall_at_5": 0.875,
+      "mrr": 0.7812,
+      "ndcg_at_5": 0.7938,
+      "domain_routing_accuracy": 0.875,
+      "irrelevant_chunk_rate": 0.0,
+      "per_domain": {
+        "physics": {
+          "n": 2,
+          "recall_at_5": 1.0,
+          "routing_accuracy": 1.0
+        },
+        "biology": {
+          "n": 3,
+          "recall_at_5": 1.0,
+          "routing_accuracy": 1.0
+        },
+        "earth_science": {
+          "n": 1,
+          "recall_at_5": 0.0,
+          "routing_accuracy": 1.0
+        },
+        "chemistry": {
+          "n": 1,
+          "recall_at_5": 1.0,
+          "routing_accuracy": 0.0
+        },
+        "astronomy": {
+          "n": 1,
+          "recall_at_5": 1.0,
+          "routing_accuracy": 1.0
+        }
+      }
+    }
+  },
+  "corpus": "rag/corpus (checksum-verified)",
+  "note": "supporting_fact grading is corpus-refresh tolerant; domain grading is a weaker secondary signal"
+}

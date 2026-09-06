@@ -1,0 +1,68 @@
+{
+  "label": "phi4-mini-reasoning",
+  "model": "microsoft/Phi-4-mini-reasoning",
+  "revision": null,
+  "recorded_at": "2026-09-05T03:58:32.195003+00:00",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "vram_total_mib": 6140,
+  "ram_before_gb": 14.93,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2985558528,
+    "peak_vram_bytes": 2985558528,
+    "reserved_vram_bytes": 3131047936,
+    "smoke_latency_s": 1.44
+  },
+  "cpu_offload": false,
+  "offload_devices": [],
+  "disk_size_gb": 7.17,
+  "smoke": [
+    {
+      "eval_id": "mce1-2c0e13557510",
+      "latency_s": 18.08,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "<think>\n\nOkay, let's see. I need to find the hydrogen ion concentration after mixing 50.0 mL of 0.200 M HCl with 30.0 mL"
+    },
+    {
+      "eval_id": "mce1-19be3e9a939b",
+      "latency_s": 18.1,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "<think>\n\nOkay, let's see. I need to find the tension in the string of a conical pendulum. The problem says there's a 0.2"
+    },
+    {
+      "eval_id": "mce1-7f8430191127",
+      "latency_s": 18.07,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "<think>\n\nOkay, let's see. The problem is about a robot cart moving with a given velocity function v(t) = 6t\u00b2 - 12t m/s o"
+    },
+    {
+      "eval_id": "mce1-cdba4e530e88",
+      "latency_s": 18.05,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "<think>\n\nOkay, let's see. I need to find the area of the image formed by a converging lens. The object is 2.0 cm tall an"
+    },
+    {
+      "eval_id": "mce1-570727e589bb",
+      "latency_s": 18.7,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "<think>\n\nOkay, let's see. I need to find the final gas pressure in this rigid vessel after some reactions happen. Let me"
+    }
+  ],
+  "tokens_per_s_median": 14.16,
+  "latency_median_s": 18.08,
+  "peak_gen_vram_mib": 3046.0,
+  "ram_after_gb": 15.66,
+  "ok": true
+}

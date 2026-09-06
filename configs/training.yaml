@@ -1,31 +1,47 @@
-# QLoRA training configuration. Defaults are CONSERVATIVE for a 6 GB VRAM GPU
-# (RTX 4050 Laptop class). hardware.auto_profile=true lets train_lora.py
-# override batch size / quantization based on measured VRAM (see
-# src/sciencemath/utils/hardware.py) to avoid CUDA OOM.
+# QLoRA training configuration for ScienceMath-v0.1-T3 (6 GB RTX 4050 Laptop).
+#
+# Values below are the CONSERVATIVE starting profile required by T3; the
+# T3.2 dry run measures actual VRAM and the run manifest records what was
+# really used. hardware.auto_profile overrides batch size only on measured OOM.
 model:
   base_model_id: null               # resolved from configs/model.yaml selected.*
   trust_remote_code: false
 
+corpus:
+  version: sciencemath-sft-v1
+  dir: training/datasets/sciencemath-sft-v1
+  require_checksum_match: true      # refuse to train on a tampered corpus
+
 training:
-  output_dir: training/checkpoints
-  adapter_output_dir: training/adapters/sciencemath-v0.1
-  num_train_epochs: 2
-  max_seq_length: 1024              # 1024 fits 6 GB; increase only after measuring
-  per_device_train_batch_size: 2
-  gradient_accumulation_steps: 8    # effective batch = 16
-  learning_rate: 2.0e-4             # 7x more conservative than typical 1e-3... kept low for stability
+  output_dir: training/checkpoints/sciencemath-v0.1-t3
+  adapter_output_dir: training/adapters/sciencemath-v0.1-t3
+  num_train_epochs: 3
+  max_seq_length: 1024              # 1024 fits 6 GB; only raise after measuring
+  per_device_train_batch_size: 1    # raised to 2 only if the dry run shows headroom
+  gradient_accumulation_steps: 16   # effective batch = 16
+  learning_rate: 1.0e-4             # conservative QLoRA LR for r=32
   warmup_ratio: 0.03
   weight_decay: 0.01
   lr_scheduler_type: cosine
   max_grad_norm: 1.0
   seed: 42
   gradient_checkpointing: true
-  bf16: auto                        # auto => use bf16 if GPU supports it, else fp16
+  bf16: auto                        # auto => bf16 if supported, else fp16
   logging_steps: 10
-  save_steps: 200
-  eval_steps: 200
+  save_steps: 100
+  eval_steps: 100
   save_total_limit: 3
   packing: false                    # packing complicates loss masking; keep off
+  dataloader_num_workers: 0
+
+evaluation_during_training:
+  enabled: true                     # validation loss tracked; required by the
+                                    # overfitting controls (never select on
+                                    # training loss alone)
+  batch_size: 4
+  load_best_model_at_end: true
+  metric_for_best_model: eval_loss
+  greater_is_better: false
 
 quantization:                       # 4-bit NF4 QLoRA
   load_in_4bit: true
@@ -34,8 +50,8 @@ quantization:                       # 4-bit NF4 QLoRA
   bnb_4bit_use_double_quant: true
 
 lora:
-  r: 16
-  lora_alpha: 32
+  r: 32
+  lora_alpha: 64
   lora_dropout: 0.05
   target_modules:                   # all linear projections; keeps adapter general
     - q_proj
@@ -46,6 +62,21 @@ lora:
     - up_proj
     - down_proj
 
-evaluation_during_training:
-  enabled: false                    # in-training eval costs VRAM; run evaluate_tuned.py after instead
-  metric: math_verifier_pass_rate
+# Declared BEFORE the tuned evaluation (T3 protocol rule): the catastrophic
+# forgetting gate is fixed here, not chosen after seeing tuned results.
+catastrophic_forgetting:
+  reference_baseline: evaluations/base/qwen3-1.7b_non_thinking/metrics.json
+  reference_science_macro: 0.7667   # T2 Qwen3 non-thinking diagnostic
+  science_macro_drop_threshold_pp: 5.0   # absolute percentage points
+  flag_name: SCIENCE_REGRESSION
+
+# Declared T3 primary evaluation protocol (fixed before tuned results):
+evaluation_protocol:
+  mode: non_thinking
+  enable_thinking: false
+  max_seq_tokens: 8192              # must equal the T2 baseline run (8192)
+  generation:
+    seed: 42
+    do_sample: false
+    max_new_tokens: 1024
+  note: "matches the T2 Qwen3 non-thinking diagnostic run exactly; not tuned per question"

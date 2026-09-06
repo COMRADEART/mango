@@ -1,0 +1,213 @@
+{
+ "state": {
+  "run_id": "mq-dist-07",
+  "problem": "A stationery supplier packs 540 identical pencils equally into 12 boxes. How many pencils go in each box? (Unrelated fact: the tallest known tree, a coast redwood named Hyperion, measures about 115.9 meters and was discovered in 2006.)",
+  "goal": "",
+  "problem_type": "MATH",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "How many pencils go in each box"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-655:history_europe_russia_eb8da6f6:0 | wiki-148060:contents_the_syntaxis_mathematica_books_5b428b50:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-655:history_europe_russia_eb8da6f6:0",
+       "text": "The Russian abacus, the schoty (Russian: счёты, plural from Russian: счёт, counting), usually has a single slanted deck, with ten beads on each wire (except one wire with four beads for quarter-ruble fractions). 4-bead wire was introduced for quarter-kopeks, which were minted until 1916. The Russian abacus is used vertically, with each wire running horizontally. The wires are usually bowed upward in the center, to keep the beads pinned to either side. It is cleared when all the beads are moved to the right. During manipulation, beads are moved to the left. For easy viewing, the middle 2 beads "
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-148060:contents_the_syntaxis_mathematica_books_5b428b50:0",
+       "text": "The Syntaxis Mathematica consists of thirteen sections, called books. As with many medieval manuscripts that were handcopied or, particularly, printed in the early years of printing, there were considerable differences between various editions of the same text, as the process of transcription was highly personal. An example illustrating how the Syntaxis was organized is given below; it is a Latin edition printed in 1515 at Venice by Petrus Lichtenstein.  Book I contains an outline of Aristotle's cosmology: on the spherical form of the heavens, with the spherical Earth lying motionless as the c"
+      }
+     ],
+     "signature": "7eb649a6376d9b2f"
+    },
+    "latency_s": 0.3972868999990169,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "540/12=45",
+    "detail": {
+     "raw": "Answer: 540/12=45\nFinal answer: \\boxed{45}",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 3.206321300007403,
+    "input_tokens": 436,
+    "output_tokens": 23
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{45}",
+    "detail": {
+     "raw": "Answer: \\boxed{45}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.5276804000022821,
+    "input_tokens": 428,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 10.06212799999048,
+   "input_tokens": 864,
+   "output_tokens": 32
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A stationery supplier packs 540 identical pencils equally into 12 boxes.",
+   "How many pencils go in each box?",
+   "(Unrelated fact: the tallest known tree, a coast redwood named Hyperion, measures about 115.9 meters and was discovered in 2006.)"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-655:history_europe_russia_eb8da6f6:0 | wiki-148060:contents_the_syntaxis_mathematica_books_5b428b50:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "540/12=45",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{45}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-655:history_europe_russia_eb8da6f6:0 | wiki-148060:contents_the_syntaxis_mathematica_books_5b428b50:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "540/12=45",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{45}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

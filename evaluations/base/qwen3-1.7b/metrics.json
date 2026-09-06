@@ -1,0 +1,33 @@
+{
+  "total": 188,
+  "overall_accuracy": 0.6543,
+  "correct": 123,
+  "per_category_accuracy": {
+    "algebra": 0.4,
+    "arithmetic": 0.85,
+    "general_science": 0.85,
+    "geometry": 0.4,
+    "instruction_following": 0.9,
+    "probability_statistics": 0.4,
+    "trigonometry_precalculus": 0.4,
+    "uncertainty_calibration": 0.125
+  },
+  "macro_category_accuracy": 0.5406,
+  "math_macro_accuracy": 0.49,
+  "science_macro_accuracy": 0.85,
+  "extraction_success_rate": 0.7979,
+  "invalid_response_rate": 0.1968,
+  "refusal_rate": 0.0106,
+  "failure_counts": {
+    "EXTRACTION_FAILURE": 37,
+    "TRUNCATED_OUTPUT": 5,
+    "WRONG_ANSWER": 21,
+    "REFUSAL": 2
+  },
+  "avg_latency_s": 220.411,
+  "median_latency_s": 139.474,
+  "avg_input_tokens": 84.9,
+  "avg_output_tokens": 2106.0,
+  "peak_vram_bytes": 2284549632,
+  "model_load_vram_bytes": 2284549632
+}

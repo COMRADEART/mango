@@ -1,0 +1,33 @@
+{
+  "recorded_at": "2026-09-03",
+  "purpose": "T3.2 worst-case VRAM measurement to decide micro-batch size",
+  "probe_script": "scripts/dev_vram_probe.py",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB total, ~861 MiB used by other desktop apps",
+  "dry_run": {
+    "peak_vram_bytes": 4697718272,
+    "base_vram_bytes": 2596759552,
+    "note": "16 examples (mostly ~150-token sequences), 3 optimizer steps, batch 1, eval batch 4; train_time 28.5 s; adapter reload verified (reload_ok=true); adapter isolated under training/smoke/t3_dry_run/adapter (not deleted, quarantined from the real adapter dir)"
+  },
+  "probes": [
+    {
+      "batch": 2,
+      "seq_len": 1024,
+      "base_vram_bytes": 2596807168,
+      "worst_case_peak_bytes": 7265212928,
+      "verdict": "OOM - exceeds 6141 MiB total; micro-batch 2 REJECTED"
+    },
+    {
+      "batch": 1,
+      "seq_len": 1024,
+      "base_vram_bytes": 2596784128,
+      "worst_case_peak_bytes": 4693999616,
+      "verdict": "fits with ~1.4 GB headroom; worst case = the 2 longest corpus examples padded to 1024"
+    }
+  ],
+  "decision": {
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "effective_batch": 16,
+    "rationale": "batch 2 measured OOM on worst-case (longest) sequences; batch 1 worst case 4.69 GB fits. Dry-run average-case peak was essentially identical (4.70 GB), so activation memory at batch 1 is dominated by the longest sequence, not the average."
+  }
+}

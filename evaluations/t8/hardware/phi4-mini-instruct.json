@@ -1,0 +1,68 @@
+{
+  "label": "phi4-mini-instruct",
+  "model": "microsoft/Phi-4-mini-instruct",
+  "revision": null,
+  "recorded_at": "2026-09-05T02:36:14.779232+00:00",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "vram_total_mib": 6140,
+  "ram_before_gb": 15.77,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2985558528,
+    "peak_vram_bytes": 2985558528,
+    "reserved_vram_bytes": 3124756480,
+    "smoke_latency_s": 0.42
+  },
+  "cpu_offload": false,
+  "offload_devices": [],
+  "disk_size_gb": 7.17,
+  "smoke": [
+    {
+      "eval_id": "mce1-2c0e13557510",
+      "latency_s": 13.26,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "4. Calculate moles of H+ ions remaining:",
+      "preview": "To solve this problem, we need to determine the moles of HCl and NaOH, then find the moles of H+ ions remaining after th"
+    },
+    {
+      "eval_id": "mce1-19be3e9a939b",
+      "latency_s": 13.2,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "- Horiz",
+      "preview": "To solve this problem, we need to break down the forces acting on the bob and use trigonometry to find the tension in th"
+    },
+    {
+      "eval_id": "mce1-7f8430191127",
+      "latency_s": 12.68,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "For 2 <= t <= 3 s, the",
+      "preview": "To find the total distance traveled by the cart, we need to integrate the absolute value of the velocity function over t"
+    },
+    {
+      "eval_id": "mce1-cdba4e530e88",
+      "latency_s": 12.94,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "Now, let's find the area of the image (",
+      "preview": "To solve this problem, we will use the lens formula and magnification formula. The lens formula is given by:\n\n1/f = 1/do"
+    },
+    {
+      "eval_id": "mce1-570727e589bb",
+      "latency_s": 13.11,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "To solve this problem, we will follow these steps:\n\n1. Determine the initial conditions and the reaction stoichiometry.\n"
+    }
+  ],
+  "tokens_per_s_median": 19.52,
+  "latency_median_s": 13.11,
+  "peak_gen_vram_mib": 3046.0,
+  "ram_after_gb": 16.73,
+  "ok": true
+}

@@ -1,0 +1,21 @@
+{
+  "file": "mixed_interdisciplinary.json",
+  "verdicts": [
+    {"index": 0, "verdict": "CONFIRM", "reason": "54 km / 1.5 h = 36 km/h = 10 m/s; answer '10' correct; unit_converter tool_check consistent."},
+    {"index": 1, "verdict": "CONFIRM", "reason": "60 g salt / 750 mL * 100 = 8% (w/v); answer '8' correct."},
+    {"index": 2, "verdict": "CONFIRM", "reason": "28 cm * 250 = 7000 cm = 70 m; answer '70' correct."},
+    {"index": 3, "verdict": "CONFIRM", "reason": "352 g / 64 cm^3 = 5.5 g/cm3; answer '5.5' correct."},
+    {"index": 4, "verdict": "CONFIRM", "reason": "60 W * 30 s = 1800 J total, 80% heat = 1440 J; answer '1440' correct."},
+    {"index": 5, "verdict": "CONFIRM", "reason": "2 h / 20 min = 6 doublings; 250 * 2^6 = 16000; answer correct."},
+    {"index": 6, "verdict": "CONFIRM", "reason": "96 m / 8 m/s = 12 s; answer '12' correct."},
+    {"index": 7, "verdict": "CONFIRM", "reason": "(54-12)/6 = 7 m/s; 7*3.6 = 25.2 km/h; answer '25.2' correct."},
+    {"index": 8, "verdict": "CONFIRM", "reason": "R = 21^2 * sin(90 deg)/9.8 = 441/9.8 = 45 m; answer '45' correct; trig + physics mechanics."},
+    {"index": 9, "verdict": "CONFIRM", "reason": "Parallel R = 2 ohm; I = 12/2 = 6 A (2 A + 4 A branch check); answer '6' correct."},
+    {"index": 10, "verdict": "CONFIRM", "reason": "8 g / 16 g/mol = 0.5 mol CH4 -> 0.5 mol CO2 * 44 = 22 g; answer '22' correct."},
+    {"index": 11, "verdict": "CONFIRM", "reason": "40 d / 8 d = 5 half-lives; 0.5^5 = 3.125%; answer correct."},
+    {"index": 12, "verdict": "CONFIRM", "reason": "q = sqrt(0.16) = 0.4, p = 0.6; 2pq = 0.48 = 48%; answer '48' correct."},
+    {"index": 13, "verdict": "CONFIRM", "reason": "Mendel 3:1 quote verified verbatim in Genetics doc (wiki line 1872); 1260/4 = 315 recessive; answer correct."},
+    {"index": 14, "verdict": "CONFIRM", "reason": "Proxima Centauri 4.2465 ly quote verified verbatim in Star doc (wiki line 2447); 4.2465/0.1 = 42.465 years; answer correct."},
+    {"index": 15, "verdict": "CONFIRM", "reason": "5.2*0.4 + 5.2*0.6*0.75 = 2.08 + 2.34 = 4.42 Gt; answer '4.42' correct."}
+  ]
+}

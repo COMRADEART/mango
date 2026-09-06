@@ -1,0 +1,110 @@
+[
+  {
+    "question_id": "mq-msm-01",
+    "class": "multi_step_math",
+    "question": "A laser printer outputs 45 pages per minute. At that constant rate, how many minutes does it take to print a 720-page report?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "16",
+    "notes": "Rate problem: divide total pages by pages-per-minute to get time."
+  },
+  {
+    "question_id": "mq-msm-02",
+    "class": "multi_step_math",
+    "question": "An office supply store starts the month with 240 pens in stock. It sells 65 pens during the first week and 88 pens during the second week. How many pens remain in stock after the two weeks?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "87",
+    "notes": "Requires summing two subtrahends before subtracting from the starting total."
+  },
+  {
+    "question_id": "mq-msm-03",
+    "class": "multi_step_math",
+    "question": "A car travels at a steady speed of 90 kilometers per hour. How many kilometers does it cover in 25 minutes?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "37.5",
+    "notes": "Unit conversion of minutes to hours, then rate-times-time multiplication."
+  },
+  {
+    "question_id": "mq-msm-04",
+    "class": "multi_step_math",
+    "question": "A jacket is priced at $80, and sales tax is 8.5%. What is the total price in dollars including tax?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "86.8",
+    "notes": "Percent of a quantity plus the base: compute tax amount then add it."
+  },
+  {
+    "question_id": "mq-msm-05",
+    "class": "multi_step_math",
+    "question": "One typist works at 60 words per minute and a second at 45 words per minute. Working together at these rates, how many minutes do they need to type a 4200-word manuscript?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "40",
+    "notes": "Combines two rates into a joint rate, then divides the workload by it."
+  },
+  {
+    "question_id": "mq-msm-06",
+    "class": "multi_step_math",
+    "question": "A water tank holds 1500 liters. On Monday 340 liters are drained for irrigation, and on Tuesday 275 liters are pumped back in. How many liters are in the tank after Tuesday?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "1435",
+    "notes": "Chained before/after arithmetic: subtract then add against a starting total."
+  },
+  {
+    "question_id": "mq-msm-07",
+    "class": "multi_step_math",
+    "question": "A baking recipe requires 0.4 kilograms of flour per batch. How many grams of flour are needed for 7 batches?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "2800",
+    "notes": "Kilogram-to-gram conversion followed by multiplication by the batch count."
+  },
+  {
+    "question_id": "mq-msm-08",
+    "class": "multi_step_math",
+    "question": "An employee earns $2400 per month and receives a 12.5% raise. What is the new monthly salary in dollars?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "2700",
+    "notes": "Percent increase of a quantity: compute the raise and add it to the base."
+  },
+  {
+    "question_id": "mq-msm-09",
+    "class": "multi_step_math",
+    "question": "A delivery train travels 300 kilometers in 2.5 hours, then another 180 kilometers in 1.5 hours without stopping. What is its average speed for the whole trip, in kilometers per hour?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "120",
+    "notes": "Two-step average: sum the distances, sum the times, then divide."
+  },
+  {
+    "question_id": "mq-msm-10",
+    "class": "multi_step_math",
+    "question": "A bookstore sold 34 books on Monday, 27 on Tuesday, and 41 on Wednesday, all at the same price of $12 per book. What was the total revenue in dollars for the three days?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "1224",
+    "notes": "Total-before-multiplication: sum unit sales across days, then multiply by price."
+  },
+  {
+    "question_id": "mq-msm-11",
+    "class": "multi_step_math",
+    "question": "A shirt marked at $45 is discounted by 20%. At checkout, an additional coupon takes 10% off the already-discounted price. What is the final price in dollars?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "32.4",
+    "notes": "Successive percent reductions applied in sequence to the running price."
+  },
+  {
+    "question_id": "mq-msm-12",
+    "class": "multi_step_math",
+    "question": "A pump moves 3 liters of water per second. How many liters does it transfer while running for 12 minutes?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "2160",
+    "notes": "Converts minutes to seconds, then multiplies by the per-second rate."
+  }
+]

@@ -1,0 +1,164 @@
+{
+ "state": {
+  "run_id": "mq-mhs-02",
+  "problem": "The Juno spacecraft entered orbit around its target planet in July 2016 to study that planet's deep atmosphere beneath its cloud tops. What is the name of the moon of that planet that is the most volcanically active body in the solar system?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "RETRIEVAL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What is the name of the moon of that planet that is the most volcanically active body in the solar system"
+    },
+    {
+     "id": "s2",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-26903:inner_solar_system_inner_planets_756e4f5a:0 | wiki-26903:outer_solar_system_outer_planets_df780e81:1",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-26903:inner_solar_system_inner_planets_756e4f5a:0",
+       "text": "The four terrestrial or inner planets have dense, rocky compositions, few or no moons, and no ring systems. They are composed largely of refractory minerals such as silicates—which form their crusts and mantles—and metals such as iron and nickel which form their cores. Three of the four inner planets (Venus, Earth, and Mars) have atmospheres substantial enough to generate weather; all have impact craters and tectonic surface features, such as rift valleys and volcanoes.  Mercury (0.31–0.59 AU from the Sun) is the smallest planet in the Solar System. Its surface is grayish, with an expansive ru"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-26903:outer_solar_system_outer_planets_df780e81:1",
+       "text": "Irregular satellites, having more distant and eccentric orbits than the other objects. Neptune (29.9–30.5 AU) is the furthest planet known in the Solar System. Its outer atmosphere has a slightly muted cyan color, with occasional storms on the surface that look like dark spots. Like Uranus, many atmospheric phenomena of Neptune are unexplained, such as the thermosphere's abnormally high temperature or the strong tilt (47°) of its magnetosphere. As of 2026, Neptune has 16 confirmed satellites, divided into two groups: Regular satellites, which have circular orbits that lie near Neptune's equato"
+      }
+     ],
+     "signature": "718514bd0ba4f9a7"
+    },
+    "latency_s": 0.42503660000511445,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "The most volcanically active body in the solar system is Io, the moon of Jupiter.",
+    "detail": {
+     "raw": "Answer: The most volcanically active body in the solar system is Io, the moon of Jupiter.",
+     "signature": "c28a4e64dd24a8c1"
+    },
+    "latency_s": 3.0603438999969512,
+    "input_tokens": 401,
+    "output_tokens": 21
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 3,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 10.775709000008646,
+   "input_tokens": 401,
+   "output_tokens": 21
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "The Juno spacecraft entered orbit around its target planet in July 2016 to study that planet's deep atmosphere beneath its cloud tops.",
+   "What is the name of the moon of that planet that is the most volcanically active body in the solar system?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-26903:inner_solar_system_inner_planets_756e4f5a:0 | wiki-26903:outer_solar_system_outer_planets_df780e81:1",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "The most volcanically active body in the solar system is Io, the moon of Jupiter.",
+     "step_id": "s2"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-26903:inner_solar_system_inner_planets_756e4f5a:0 | wiki-26903:outer_solar_system_outer_planets_df780e81:1",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "The most volcanically active body in the solar system is Io, the moon of Jupiter.",
+    "step_id": "s2"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   }
+  ]
+ }
+}

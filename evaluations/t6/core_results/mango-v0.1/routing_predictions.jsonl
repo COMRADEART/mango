@@ -1,0 +1,854 @@
+[
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "BOTH",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "BOTH",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": false,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "TOOL",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "RETRIEVAL",
+    "invoked_tool": false,
+    "invoked_retrieval": true,
+    "signalled_insufficient": false
+  },
+  {
+    "routing_label": "NONE",
+    "invoked_tool": true,
+    "invoked_retrieval": false,
+    "signalled_insufficient": false
+  }
+]

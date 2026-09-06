@@ -1,0 +1,3221 @@
+{
+ "items": [
+  {
+   "answer_type": "numeric",
+   "capability_track": "algebra_linear_systems",
+   "capacity_dimension": "math",
+   "category": "algebra",
+   "difficulty": 2,
+   "expected_answer": "4",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-alg-01",
+   "multi_hop": false,
+   "question": "Solve the system of linear equations 3x + 2y = 16 and x - y = 2 for real numbers x and y. What is the value of x?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "From x - y = 2, substitute x = y + 2 into 3x + 2y = 16: 3y + 6 + 2y = 16, so 5y = 10 and y = 2. Then x = 2 + 2 = 4."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "algebra_quadratic_roots",
+   "capacity_dimension": "math",
+   "category": "algebra",
+   "difficulty": 3,
+   "expected_answer": "-7",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "math-alg-02",
+   "multi_hop": true,
+   "question": "The quadratic equation x^2 + bx + 10 = 0 has exactly two real roots, 2 and 5. Using the relationship between the roots and the coefficients of a quadratic, what is the value of b?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The roots 2 and 5 have sum 7, and for x^2 + bx + c the coefficient b equals the negative of the sum of the roots. Therefore b = -(2 + 5) = -7 (consistent with (x-2)(x-5) = x^2 - 7x + 10)."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "algebra_exponent_equations",
+   "capacity_dimension": "math",
+   "category": "algebra",
+   "difficulty": 3,
+   "expected_answer": "3",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "math-alg-03",
+   "multi_hop": true,
+   "question": "Find the real value of x that satisfies the equation 4^x = 8^(x - 1).",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Write both sides as powers of 2: 4^x = 2^(2x) and 8^(x-1) = 2^(3x-3). Equating exponents gives 2x = 3x - 3, so x = 3. Check: 4^3 = 64 and 8^2 = 64."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "algebra_inequalities",
+   "capacity_dimension": "math",
+   "category": "algebra",
+   "difficulty": 2,
+   "expected_answer": "12",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-alg-04",
+   "multi_hop": false,
+   "question": "Consider the inequality 3x - 8 < 2x + 5 restricted to integer values of x. What is the largest integer x that satisfies it?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Subtract 2x from both sides: x - 8 < 5, so x < 13. The largest integer strictly less than 13 is 12."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "geometry_pythagoras",
+   "capacity_dimension": "math",
+   "category": "geometry",
+   "difficulty": 1,
+   "expected_answer": "12",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-geo-01",
+   "multi_hop": false,
+   "question": "A straight ladder 13 meters long leans against a vertical wall with its base 5 meters from the wall on flat horizontal ground, forming a right triangle. How many meters up the wall does the top of the ladder reach?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The wall height h is a leg of a right triangle with hypotenuse 13 and other leg 5: h = sqrt(13^2 - 5^2) = sqrt(169 - 25) = sqrt(144) = 12 meters."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "geometry_solid_surface",
+   "capacity_dimension": "math",
+   "category": "geometry",
+   "difficulty": 2,
+   "expected_answer": "94",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-geo-02",
+   "multi_hop": false,
+   "question": "A closed rectangular box has edge lengths 3 cm, 4 cm, and 5 cm. What is its total surface area, in square centimeters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Total surface area = 2(lw + lh + wh) = 2(3*4 + 3*5 + 4*5) = 2(12 + 15 + 20) = 2 * 47 = 94 square centimeters."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "geometry_plane_area",
+   "capacity_dimension": "math",
+   "category": "geometry",
+   "difficulty": 1,
+   "expected_answer": "55",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-geo-03",
+   "multi_hop": false,
+   "question": "A trapezoid has two parallel sides of lengths 8 and 14, and the perpendicular distance between them is 5. What is the area of the trapezoid?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Area of a trapezoid = (1/2)(sum of parallel sides)(height) = ((8 + 14)/2) * 5 = 11 * 5 = 55."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "geometry_angle_ratios",
+   "capacity_dimension": "math",
+   "category": "geometry",
+   "difficulty": 2,
+   "expected_answer": "80",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "math-geo-04",
+   "multi_hop": true,
+   "question": "The three interior angles of a triangle are in the ratio 2 : 3 : 4. What is the measure of the largest angle, in degrees?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The angles sum to 180 degrees and split into 2 + 3 + 4 = 9 parts, so each part is 180/9 = 20 degrees. The largest angle is 4 parts, i.e. 4 * 20 = 80 degrees."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "calculus_derivatives",
+   "capacity_dimension": "math",
+   "category": "calculus",
+   "difficulty": 2,
+   "expected_answer": "8",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-calc-01",
+   "multi_hop": false,
+   "question": "Let f(x) = 3x^2 - 4x + 1. What is the value of the derivative f'(2)?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "f'(x) = 6x - 4, so f'(2) = 6*2 - 4 = 12 - 4 = 8."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "calculus_definite_integrals",
+   "capacity_dimension": "math",
+   "category": "calculus",
+   "difficulty": 2,
+   "expected_answer": "10",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-calc-02",
+   "multi_hop": false,
+   "question": "Evaluate the definite integral of (3x^2 + 1) with respect to x from x = 0 to x = 2.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "An antiderivative of 3x^2 + 1 is x^3 + x. Evaluating from 0 to 2 gives (2^3 + 2) - (0 + 0) = 8 + 2 = 10."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "calculus_chain_rule",
+   "capacity_dimension": "math",
+   "category": "calculus",
+   "difficulty": 3,
+   "expected_answer": "54",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "math-calc-03",
+   "multi_hop": false,
+   "question": "Let f(x) = (2x + 1)^3. What is the value of the derivative f'(1)?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "By the chain rule, f'(x) = 3(2x + 1)^2 * 2 = 6(2x + 1)^2. At x = 1 this is 6 * (3)^2 = 6 * 9 = 54."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "calculus_definite_integrals",
+   "capacity_dimension": "math",
+   "category": "calculus",
+   "difficulty": 3,
+   "expected_answer": "1",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "math-calc-04",
+   "multi_hop": false,
+   "question": "Evaluate the definite integral of 1/x with respect to x from x = 1 to x = e, where e is Euler's number.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "An antiderivative of 1/x for x > 0 is ln(x). Evaluating from 1 to e gives ln(e) - ln(1) = 1 - 0 = 1."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "math",
+   "category": "probability_statistics",
+   "difficulty": 2,
+   "expected_answer": "11",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-prob-01",
+   "multi_hop": false,
+   "question": "A charity game uses a spinner with three outcomes: with probability 0.1 the player wins 50 dollars, with probability 0.3 the player wins 20 dollars, and otherwise the player wins nothing. What is the expected payout of one spin, in dollars?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Expected payout = 0.1*50 + 0.3*20 + 0.4*0 = 5 + 6 = 11 dollars."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "combinatorics_counting",
+   "capacity_dimension": "math",
+   "category": "probability_statistics",
+   "difficulty": 2,
+   "expected_answer": "40",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-prob-02",
+   "multi_hop": false,
+   "question": "A lab must form a 3-person review panel from 5 chemists and 4 physicists, and the panel must contain exactly 1 physicist. How many distinct panels are possible?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Choose 1 physicist from 4 and 2 chemists from 5: C(4,1)*C(5,2) = 4*10 = 40 panels."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "prob_binomial",
+   "capacity_dimension": "math",
+   "category": "probability_statistics",
+   "difficulty": 2,
+   "expected_answer": "0.3125",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-prob-03",
+   "multi_hop": false,
+   "question": "A biased coin lands heads with probability 0.5 and is flipped 5 times. What is the probability of getting exactly 2 heads? Give your answer as a decimal.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Binomial: C(5,2)*(0.5)^2*(0.5)^3 = 10/32 = 0.3125."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "prob_conditional",
+   "capacity_dimension": "math",
+   "category": "probability_statistics",
+   "difficulty": 3,
+   "expected_answer": "0.425",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "math-prob-04",
+   "multi_hop": true,
+   "question": "Bag A contains 3 red and 2 blue marbles; bag B contains 1 red and 3 blue marbles. A fair coin is flipped to choose one bag (heads: bag A, tails: bag B), then one marble is drawn from that bag. What is the probability that the marble is red? Give your answer as a decimal.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "P(red) = 0.5*(3/5) + 0.5*(1/4) = 0.3 + 0.125 = 0.425."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "pattern_recognition",
+   "capacity_dimension": "math",
+   "category": "algebra",
+   "difficulty": 2,
+   "expected_answer": "42",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-sym-01",
+   "multi_hop": false,
+   "question": "A sequence begins 2, 6, 12, 20, 30, where each term follows a simple quadratic rule in its position n (n = 1, 2, 3, ...). What is the 6th term of the sequence?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The nth term is n(n+1): 2, 6, 12, 20, 30. The 6th term is 6*7 = 42."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "functional_algebra",
+   "capacity_dimension": "math",
+   "category": "algebra",
+   "difficulty": 3,
+   "expected_answer": "3.75",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "math-sym-02",
+   "multi_hop": true,
+   "question": "The function f satisfies f(x) = 3x + c for some constant c. If f(f(2)) = 33, what is the value of c?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "f(2) = 6 + c, then f(f(2)) = 3(6 + c) + c = 18 + 4c = 33, so c = 15/4 = 3.75."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "algebraic_structure",
+   "capacity_dimension": "math",
+   "category": "algebra",
+   "difficulty": 3,
+   "expected_answer": "23",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "math-sym-03",
+   "multi_hop": true,
+   "question": "An operation is defined on numbers: a @ b = a + b + a*b. What is the value of (2 @ 3) @ 1?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "2 @ 3 = 2 + 3 + 6 = 11; then 11 @ 1 = 11 + 1 + 11 = 23."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "algebraic_structure",
+   "capacity_dimension": "math",
+   "category": "algebra",
+   "difficulty": 3,
+   "expected_answer": "23",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "math-sym-04",
+   "multi_hop": false,
+   "question": "A positive number x satisfies x + 1/x = 5. What is the value of x^2 + 1/x^2?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Square both sides: x^2 + 2 + 1/x^2 = 25, so x^2 + 1/x^2 = 23."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "multistep_mixture",
+   "capacity_dimension": "math",
+   "category": "mixed_quantitative",
+   "difficulty": 3,
+   "expected_answer": "5",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-mps-01",
+   "multi_hop": true,
+   "question": "A chemist has 20 liters of a 30% acid solution and adds some volume of an 80% acid solution. The resulting mixture is exactly 40% acid. How many liters of the 80% solution were added?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Acid balance: 20*0.3 + 0.8x = 0.4*(20 + x). This gives 6 + 0.8x = 8 + 0.4x, so 0.4x = 2 and x = 5 liters."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "multistep_rates",
+   "capacity_dimension": "math",
+   "category": "mixed_quantitative",
+   "difficulty": 3,
+   "expected_answer": "3",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "math-mps-02",
+   "multi_hop": true,
+   "question": "Pipe A can fill a tank in 6 hours and pipe B can fill it in 4 hours, while drain C can empty the full tank in 12 hours. With all three open and the tank empty at the start, how many hours does it take to fill the tank?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Net rate = 1/6 + 1/4 - 1/12 = 1/3 tank per hour, so filling takes 1/(1/3) = 3 hours."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "multistep_finance",
+   "capacity_dimension": "math",
+   "category": "mixed_quantitative",
+   "difficulty": 2,
+   "expected_answer": "90",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-mps-03",
+   "multi_hop": true,
+   "question": "A retailer lists a jacket at 80 dollars. During a sale the price is cut by 25%, and after the sale the discounted price is increased by 50% for the final online listing. What is the final listing price in dollars?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Discounted price = 80*0.75 = 60 dollars; final listing = 60*1.5 = 90 dollars."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "multistep_kinematics",
+   "capacity_dimension": "math",
+   "category": "mixed_quantitative",
+   "difficulty": 3,
+   "expected_answer": "48",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "math-mps-04",
+   "multi_hop": true,
+   "question": "A delivery van travels a 240 km route. It covers the first 120 km at 40 km/h and the remaining 120 km at 60 km/h. What is its average speed for the whole trip in km/h?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Time = 120/40 + 120/60 = 3 + 2 = 5 hours; average speed = 240/5 = 48 km/h."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_mechanics",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "4.0",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "sci-phys-01",
+   "multi_hop": false,
+   "question": "A worker pulls a 12 kg crate along a horizontal floor with a horizontal force of 80 N while kinetic friction opposes the motion with a force of 32 N. What is the crate's acceleration in m/s^2?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Net horizontal force is 80 N - 32 N = 48 N. By Newton's second law, a = F_net/m = 48/12 = 4.0 m/s^2.",
+   "tool_check": {
+    "args": {
+     "expression": "(80-32)/12"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_thermo",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "54000",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-phys-02",
+   "multi_hop": false,
+   "question": "A 2.0 kg metal block has a specific heat capacity of 450 J/(kg*K). How much energy in joules is required to raise the block's temperature from 20 degrees C to 80 degrees C (i.e. by 60 K)?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Q = m*c*deltaT = 2.0 kg * 450 J/(kg*K) * 60 K = 54000 J. A change of 60 degrees C equals a change of 60 K.",
+   "tool_check": {
+    "args": {
+     "expression": "2*450*(80-20)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_em",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 3,
+   "expected_answer": "6.0",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "sci-phys-03",
+   "multi_hop": true,
+   "question": "A 6.0-ohm resistor and a 3.0-ohm resistor are connected in parallel across an ideal 12 V battery. What is the total current in amperes supplied by the battery?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Parallel resistors combine as 1/R = 1/6 + 1/3 = 1/2, so R_eq = 2 ohms. Then I = V/R = 12/2 = 6.0 A.",
+   "tool_check": {
+    "args": {
+     "expression": "12/(1/(1/6+1/3))"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_energy",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 1,
+   "expected_answer": "58.8",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-phys-04",
+   "multi_hop": false,
+   "question": "A 0.4 kg book is lifted 15 m vertically at constant speed near Earth's surface. Using g = 9.8 m/s^2, how much gravitational potential energy in joules does the book gain?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "At constant speed the applied work equals the gain in gravitational potential energy: deltaPE = m*g*h = 0.4 * 9.8 * 15 = 58.8 J.",
+   "tool_check": {
+    "args": {
+     "expression": "0.4*9.8*15"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_stoichiometry",
+   "capacity_dimension": "science",
+   "category": "chemistry",
+   "difficulty": 3,
+   "expected_answer": "22",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "sci-chem-01",
+   "multi_hop": true,
+   "question": "Calcium carbonate decomposes according to CaCO3 -> CaO + CO2. Using molar masses Ca = 40, C = 12, O = 16 g/mol, what mass of CO2 in grams is released when 50 g of CaCO3 completely decomposes?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "M(CaCO3) = 40 + 12 + 3*16 = 100 g/mol, so 50 g is 0.5 mol, yielding 0.5 mol CO2. M(CO2) = 12 + 32 = 44 g/mol, so the mass released is 0.5 * 44 = 22 g.",
+   "tool_check": {
+    "args": {
+     "expression": "50/(40+12+3*16)*44"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "exact_answer",
+   "capability_track": "chem_bonding",
+   "capacity_dimension": "science",
+   "category": "chemistry",
+   "difficulty": 2,
+   "expected_answer": "16",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-chem-02",
+   "multi_hop": false,
+   "question": "In the Lewis structure of a carbon dioxide (CO2) molecule, how many total valence electrons are counted around all atoms?",
+   "requires_math_tool": false,
+   "requires_retrieval": true,
+   "solution_outline": "Carbon has 4 valence electrons and each oxygen has 6, so the total is 4 + 6 + 6 = 16 valence electrons."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_reaction_reasoning",
+   "capacity_dimension": "science",
+   "category": "chemistry",
+   "difficulty": 3,
+   "expected_answer": "6",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "sci-chem-03",
+   "multi_hop": true,
+   "question": "The Haber process follows the balanced equation N2 + 3 H2 -> 2 NH3. A sealed vessel contains 5 mol of N2 and 9 mol of H2. How many moles of NH3 are formed when the reaction runs to completion?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "H2 is limiting: 9 mol H2 / 3 = 3 reaction units, while 5 mol N2 would allow 5 units. Each unit makes 2 mol NH3, so 3 * 2 = 6 mol NH3 form.",
+   "tool_check": {
+    "args": {
+     "expression": "9/3*2"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_solutions",
+   "capacity_dimension": "science",
+   "category": "chemistry",
+   "difficulty": 2,
+   "expected_answer": "0.4",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-chem-04",
+   "multi_hop": false,
+   "question": "20 mL of a 2.0 mol/L NaCl solution is diluted with water to a final volume of 100 mL. What is the final concentration in mol/L?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Moles of solute are conserved: C2 = C1*V1/V2 = 2.0 mol/L * 20 mL / 100 mL = 0.4 mol/L.",
+   "tool_check": {
+    "args": {
+     "expression": "2.0*20/100"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "exact_answer",
+   "capability_track": "bio_genetics",
+   "capacity_dimension": "science",
+   "category": "biology",
+   "difficulty": 2,
+   "expected_answer": "3/4",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-bio-01",
+   "multi_hop": false,
+   "question": "In pea plants, yellow seed color (Y) is dominant to green seed color (y). Two plants with genotype Yy are crossed. What fraction of the offspring is expected to have yellow seeds?",
+   "requires_math_tool": false,
+   "requires_retrieval": false,
+   "solution_outline": "The Yy x Yy cross gives genotypes 1 YY : 2 Yy : 1 yy. Every offspring except yy (1/4) shows the dominant yellow phenotype, so 3/4 are yellow."
+  },
+  {
+   "answer_type": "text",
+   "capability_track": "bio_physiology",
+   "capacity_dimension": "science",
+   "category": "biology",
+   "difficulty": 1,
+   "expected_answer": "mitochondria",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-bio-02",
+   "multi_hop": false,
+   "question": "In eukaryotic cells, which organelle carries out oxidative phosphorylation and therefore synthesizes most of the cell's ATP?",
+   "requires_math_tool": false,
+   "requires_retrieval": true,
+   "solution_outline": "Oxidative phosphorylation (the electron transport chain and ATP synthase) takes place on the inner mitochondrial membrane, so the mitochondria are the organelle that synthesizes most cellular ATP."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "bio_cell_division",
+   "capacity_dimension": "science",
+   "category": "biology",
+   "difficulty": 1,
+   "expected_answer": "12",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-bio-03",
+   "multi_hop": false,
+   "question": "A diploid organism has 24 chromosomes in each of its somatic cells. How many chromosomes are present in each gamete produced by meiosis?",
+   "requires_math_tool": false,
+   "requires_retrieval": false,
+   "solution_outline": "Meiosis halves the diploid chromosome number, so each gamete receives 24 / 2 = 12 chromosomes (the haploid number).",
+   "tool_check": {
+    "args": {
+     "expression": "24/2"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "bio_processes",
+   "capacity_dimension": "science",
+   "category": "biology",
+   "difficulty": 2,
+   "expected_answer": "6",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-bio-04",
+   "multi_hop": false,
+   "question": "In oxygenic photosynthesis, how many molecules of carbon dioxide must be fixed by the Calvin cycle to build one molecule of glucose (C6H12O6)?",
+   "requires_math_tool": false,
+   "requires_retrieval": true,
+   "solution_outline": "Glucose contains 6 carbon atoms, and each CO2 fixed by the Calvin cycle contributes one carbon, so 6 CO2 molecules must be fixed per glucose. This is reflected in the balanced photosynthesis equation 6 CO2 + 6 H2O -> C6H12O6 + 6 O2."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "astro_orbital_mechanics",
+   "capacity_dimension": "science",
+   "category": "earth_space",
+   "difficulty": 3,
+   "expected_answer": "8",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-astro-01",
+   "multi_hop": false,
+   "question": "A planet orbits a star whose mass equals the Sun's, at a semi-major axis of 4 AU. Using Kepler's third law in the form T^2 = a^3, where T is the orbital period in Earth years and a is the semi-major axis in AU, what is the planet's orbital period in Earth years?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "By Kepler's third law T^2 = a^3 = 4^3 = 64, so T = sqrt(64) = 8 years.",
+   "tool_check": {
+    "args": {
+     "expression": "4**1.5"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "astro_distance_scale",
+   "capacity_dimension": "science",
+   "category": "earth_space",
+   "difficulty": 2,
+   "expected_answer": "20",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "sci-astro-02",
+   "multi_hop": false,
+   "question": "A star's annual parallax is measured to be 0.05 arcseconds. Using the relation distance in parsecs = 1 / parallax in arcseconds, what is the star's distance in parsecs?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Distance = 1 / 0.05 = 20 parsecs by the parallax relation.",
+   "tool_check": {
+    "args": {
+     "expression": "1/0.05"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "radiometric_dating",
+   "capacity_dimension": "science",
+   "category": "earth_space",
+   "difficulty": 3,
+   "expected_answer": "11460",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-earth-01",
+   "multi_hop": true,
+   "question": "The half-life of carbon-14 is 5730 years. A wooden artifact retains exactly 25% of the carbon-14 expected in a living organism. Assuming no contamination, how old is the artifact in years?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "25% remaining means two half-lives have elapsed (100% -> 50% -> 25%), so the age is 2 x 5730 = 11460 years.",
+   "tool_check": {
+    "args": {
+     "expression": "2*5730"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "atmospheric_lapse_rate",
+   "capacity_dimension": "science",
+   "category": "earth_space",
+   "difficulty": 2,
+   "expected_answer": "15",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "sci-earth-02",
+   "multi_hop": false,
+   "question": "Moving upward through the troposphere, air temperature decreases at an environmental lapse rate of 6.5 degrees Celsius per kilometer. If the surface temperature is 28 degrees Celsius, what is the air temperature in degrees Celsius at an altitude of 2 km, assuming the lapse rate is constant?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Temperature drop over 2 km is 6.5 x 2 = 13 degrees Celsius, so the temperature at 2 km is 28 - 13 = 15 degrees Celsius.",
+   "tool_check": {
+    "args": {
+     "expression": "28 - 6.5*2"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "text",
+   "capability_track": "atomic_structure",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 1,
+   "expected_answer": "electron",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-phys-01",
+   "multi_hop": false,
+   "question": "In the standard model of atomic structure, which subatomic particle carries a negative electric charge and occupies the region surrounding the nucleus?",
+   "requires_math_tool": false,
+   "requires_retrieval": true,
+   "solution_outline": "The electron is the negatively charged subatomic particle found in the region around the atomic nucleus; protons are positive and neutrons are neutral."
+  },
+  {
+   "answer_type": "text",
+   "capability_track": "cell_biology",
+   "capacity_dimension": "science",
+   "category": "biology",
+   "difficulty": 1,
+   "expected_answer": "mitochondria",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "sci-bio-01",
+   "multi_hop": false,
+   "question": "In eukaryotic cells, which organelle is the primary site of ATP synthesis through aerobic respiration?",
+   "requires_math_tool": false,
+   "requires_retrieval": true,
+   "solution_outline": "Mitochondria carry out aerobic respiration and oxidative phosphorylation, producing most of the cell's ATP, which is why they are called the cell's powerhouse."
+  },
+  {
+   "answer_type": "exact_answer",
+   "capability_track": "chemical_formulas",
+   "capacity_dimension": "science",
+   "category": "chemistry",
+   "difficulty": 1,
+   "expected_answer": "NaCl",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-chem-01",
+   "multi_hop": false,
+   "question": "Table salt is an ionic compound formed when sodium reacts with chlorine gas. What is its chemical formula?",
+   "requires_math_tool": false,
+   "requires_retrieval": true,
+   "solution_outline": "Sodium (Na) donates one electron to chlorine (Cl), forming a 1:1 ionic lattice of Na+ and Cl- ions, so the formula is NaCl."
+  },
+  {
+   "answer_type": "text",
+   "capability_track": "earth_interior",
+   "capacity_dimension": "science",
+   "category": "earth_space",
+   "difficulty": 2,
+   "expected_answer": "mantle",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "sci-earth-03",
+   "multi_hop": false,
+   "question": "The Mohorovicic discontinuity marks the boundary between Earth's crust and the layer of rock directly beneath it. What is the name of that underlying layer?",
+   "requires_math_tool": false,
+   "requires_retrieval": true,
+   "solution_outline": "The Moho separates the crust from the mantle, the thick silicate rock layer that lies directly beneath the crust and above the core."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "data_interpretation",
+   "capacity_dimension": "science",
+   "category": "scientific_reasoning",
+   "difficulty": 2,
+   "expected_answer": "30",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "sci-infer-01",
+   "multi_hop": false,
+   "question": "An enzyme-catalyzed reaction was run at five temperatures with identical substrate concentrations, and the reaction rate was measured each time: at 10 degrees Celsius the rate was 2 micromol/min; at 20 degrees Celsius, 8; at 30 degrees Celsius, 15; at 40 degrees Celsius, 4; at 50 degrees Celsius, 0.5. Based only on these data, at what temperature in degrees Celsius was the reaction rate at its maximum?",
+   "requires_math_tool": false,
+   "requires_retrieval": false,
+   "solution_outline": "The measured rates are 2, 8, 15, 4, and 0.5 micromol/min at 10, 20, 30, 40, and 50 degrees Celsius respectively. The maximum rate (15) occurs at 30 degrees Celsius.",
+   "tool_check": {
+    "args": {
+     "expression": "max(2,8,15,4,0.5)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "density_measurement",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "1.8",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-infer-02",
+   "multi_hop": false,
+   "question": "A student measures a rectangular metal block and records a mass of 540 g, with length 10 cm, width 6 cm, and height 5 cm. Using density = mass / volume, what is the density of the block in g/cm^3?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Volume = 10 x 6 x 5 = 300 cm^3, so density = 540 / 300 = 1.8 g/cm^3.",
+   "tool_check": {
+    "args": {
+     "expression": "540/(10*6*5)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "photosynthesis_rate",
+   "capacity_dimension": "science",
+   "category": "biology",
+   "difficulty": 2,
+   "expected_answer": "6.25",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "sci-infer-03",
+   "multi_hop": false,
+   "question": "In a photosynthesis experiment, the oxygen bubbles released by an aquatic plant were counted for one minute at each light distance: at 10 cm from the lamp the count was 25 bubbles, and at 100 cm the count was 4 bubbles. How many times greater is the rate at 10 cm than at 100 cm?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The rate ratio is 25 bubbles/min divided by 4 bubbles/min, which equals 6.25, so the rate at 10 cm is 6.25 times the rate at 100 cm.",
+   "tool_check": {
+    "args": {
+     "expression": "25/4"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "periodic_motion",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "0.5",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "sci-infer-04",
+   "multi_hop": false,
+   "question": "A student times 20 complete oscillations of a pendulum of length 0.25 m and measures a total time of 10.0 seconds. What is the period of this pendulum in seconds?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The period is the time per oscillation: 10.0 s divided by 20 oscillations = 0.5 s per oscillation.",
+   "tool_check": {
+    "args": {
+     "expression": "10.0/20"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "gas_stoichiometry",
+   "capacity_dimension": "compositional",
+   "category": "chemistry",
+   "difficulty": 3,
+   "expected_answer": "0.25",
+   "insufficient_info": false,
+   "key": "comp-gas-stoich-01",
+   "multi_hop": true,
+   "question": "A rigid 22.4 L vessel at 273 K initially holds 1.00 mol of hydrogen gas, giving an initial pressure of exactly 1.00 atm. Then 0.750 mol of oxygen gas is injected and the mixture reacts completely according to 2 H2 + O2 -> 2 H2O, with all the water condensing to liquid of negligible volume. The vessel stays rigid and at 273 K throughout. What is the final gas pressure in the vessel, in atm?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The reaction consumes 0.500 mol O2 for the 1.00 mol H2 (2:1 ratio), leaving 0.250 mol O2 as the only gas. At fixed V and T, pressure is proportional to moles, so P_final = 1.00 atm * (0.250/1.00) = 0.25 atm.",
+   "tool_check": {
+    "args": {
+     "expression": "1.00*(0.750-0.500)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "acid_base_stoichiometry",
+   "capacity_dimension": "compositional",
+   "category": "chemistry",
+   "difficulty": 2,
+   "expected_answer": "0.0875",
+   "insufficient_info": false,
+   "key": "comp-neutralization-dilution-01",
+   "multi_hop": true,
+   "question": "50.0 mL of 0.200 M hydrochloric acid is mixed with 30.0 mL of 0.100 M sodium hydroxide solution; both are strong electrolytes that fully dissociate and the volumes are additive. What is the hydrogen ion concentration of the resulting solution, in mol/L?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Moles H+ = 0.0500*0.200 = 0.0100 mol; moles OH- = 0.0300*0.100 = 0.0030 mol. Excess H+ = 0.0070 mol in 0.0800 L total, so [H+] = 0.0070/0.0800 = 0.0875 mol/L.",
+   "tool_check": {
+    "args": {
+     "expression": "(0.0500*0.200 - 0.0300*0.100)/(0.0500+0.0300)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "circular_motion_trig",
+   "capacity_dimension": "compositional",
+   "category": "physics",
+   "difficulty": 3,
+   "expected_answer": "5.0",
+   "insufficient_info": false,
+   "key": "comp-conical-pendulum-01",
+   "multi_hop": true,
+   "question": "A conical pendulum consists of a 0.25 kg bob whirling in a horizontal circle at the end of a string that makes a 60 degree angle with the vertical. Taking g = 10 m/s^2, what is the tension in the string, in newtons?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The bob has no vertical acceleration, so the vertical component of tension balances weight: T*cos(60) = mg. Thus T = (0.25*10)/0.5 = 5.0 N.",
+   "tool_check": {
+    "args": {
+     "expression": "0.25*10/0.5"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "optics_thin_lens",
+   "capacity_dimension": "compositional",
+   "category": "physics",
+   "difficulty": 3,
+   "expected_answer": "24",
+   "insufficient_info": false,
+   "key": "comp-thin-lens-area-01",
+   "multi_hop": true,
+   "question": "A rectangular object 2.0 cm tall and 3.0 cm wide is placed 15.0 cm from a converging lens of focal length 10.0 cm, forming a real image. What is the area of the image, in cm^2?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "1/v = 1/10 - 1/15 = 1/30, so the image forms 30 cm from the lens. Linear magnification is 30/15 = 2, so the image measures 4.0 cm by 6.0 cm and its area is 4.0*6.0 = 24 cm^2.",
+   "tool_check": {
+    "args": {
+     "expression": "(30/15)**2 * 2.0 * 3.0"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "optics_total_internal_reflection",
+   "capacity_dimension": "compositional",
+   "category": "physics",
+   "difficulty": 3,
+   "expected_answer": "0.9",
+   "insufficient_info": false,
+   "key": "comp-fiber-tir-01",
+   "multi_hop": true,
+   "question": "An optical fiber has a glass core of refractive index 1.50 surrounded by cladding of refractive index 1.35. For a ray traveling in the core and striking the core-cladding boundary, what is the sine of the critical angle for total internal reflection, as a decimal?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "At the critical angle the refracted ray grazes the boundary, so Snell's law gives n_core*sin(theta_c) = n_cladding*sin(90). Therefore sin(theta_c) = 1.35/1.50 = 0.9.",
+   "tool_check": {
+    "args": {
+     "expression": "1.35/1.50"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "radioactive_dating",
+   "capacity_dimension": "compositional",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "23120",
+   "insufficient_info": false,
+   "key": "comp-c14-dating-01",
+   "multi_hop": true,
+   "question": "A wooden artifact's carbon-14 activity is measured to be 6.25 percent of the activity of an equal mass of fresh wood, assuming its initial activity matched the fresh-wood value. Taking the half-life of carbon-14 as 5730 years, what is the age of the artifact in years?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "6.25% = 1/16 = (1/2)^4, so exactly 4 half-lives have elapsed. Age = 4 * 5730 = 23120 years.",
+   "tool_check": {
+    "args": {
+     "expression": "4*5730"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "mendelian_binomial",
+   "capacity_dimension": "compositional",
+   "category": "biology",
+   "difficulty": 3,
+   "expected_answer": "0.2109375",
+   "insufficient_info": false,
+   "key": "comp-genetics-binomial-01",
+   "multi_hop": true,
+   "question": "In a cross of two pea plants both heterozygous for a trait with complete dominance, the probability that any single offspring shows the recessive phenotype is 1/4, independently for each offspring. What is the probability that exactly 2 of 4 offspring show the recessive phenotype, as a decimal?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "This is a binomial probability with n = 4, k = 2, p = 1/4: C(4,2)*(1/4)^2*(3/4)^2 = 6*(1/16)*(9/16) = 54/256 = 0.2109375.",
+   "tool_check": {
+    "args": {
+     "expression": "6*(0.25**2)*(0.75**2)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "thermal_phase_change",
+   "capacity_dimension": "compositional",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "4176",
+   "insufficient_info": false,
+   "key": "comp-calorimetry-phase-01",
+   "multi_hop": true,
+   "question": "Using a latent heat of fusion for ice of 334 J/g and a specific heat capacity of liquid water of 4.18 J/(g*degC), how much total heat in joules is required to convert 10.0 g of ice at 0 degC into liquid water at 20.0 degC?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Melting requires Q1 = 10.0*334 = 3340 J, and warming the liquid requires Q2 = 10.0*4.18*20.0 = 836 J. Total Q = 3340 + 836 = 4176 J.",
+   "tool_check": {
+    "args": {
+     "expression": "10*334 + 10*4.18*20"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "optimization_geometry",
+   "capacity_dimension": "compositional",
+   "category": "mixed_quantitative",
+   "difficulty": 4,
+   "expected_answer": "40",
+   "insufficient_info": false,
+   "key": "comp-optimization-vessel-01",
+   "multi_hop": true,
+   "question": "An open-top rectangular reaction vessel with a square base of side x (in cm) must hold exactly 32000 cm^3 (32.0 L) of liquid; wall thickness is negligible and the base plus four vertical sides are all that count as surface. What side length x in centimeters minimizes the total surface area of the vessel?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "With h = 32000/x^2, the area is A = x^2 + 4xh = x^2 + 128000/x. Setting dA/dx = 2x - 128000/x^2 = 0 gives x^3 = 64000, so x = 40 cm (and this stationary point is a minimum).",
+   "tool_check": {
+    "args": {
+     "expression": "64000**(1/3)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "kinematics_integration",
+   "capacity_dimension": "compositional",
+   "category": "physics",
+   "difficulty": 4,
+   "expected_answer": "16",
+   "insufficient_info": false,
+   "key": "comp-kinematics-reversal-01",
+   "multi_hop": true,
+   "question": "An object moves along a straight line with velocity v(t) = 6t^2 - 12t m/s (t in seconds) for 0 <= t <= 3 s; the velocity is negative for part of this interval, so the object reverses direction. What total distance does the object travel over the full interval, in meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "v = 0 at t = 0 and t = 2, with v < 0 on (0,2) and v > 0 on (2,3). With displacement antiderivative s = 2t^3 - 6t^2: distance = |s(2)-s(0)| + |s(3)-s(2)| = |-8| + |0-(-8)| = 8 + 8 = 16 m.",
+   "tool_check": {
+    "args": {
+     "expression": "(2*2**3-6*2**2)*(-1) + ((2*3**3-6*3**2)-(2*2**3-6*2**2))"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "standing_waves",
+   "capacity_dimension": "compositional",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "0.85",
+   "insufficient_info": false,
+   "key": "comp-closed-pipe-01",
+   "multi_hop": true,
+   "question": "An organ pipe closed at one end resonates at its fundamental frequency of 100 Hz, for which the pipe length equals one quarter of the wavelength. Taking the speed of sound as 340 m/s, what is the length of the pipe in meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "For a closed pipe the fundamental wavelength is 4L, so f = v/(4L) and L = v/(4f) = 340/(4*100) = 0.85 m.",
+   "tool_check": {
+    "args": {
+     "expression": "340/(4*100)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "orbital_mechanics",
+   "capacity_dimension": "compositional",
+   "category": "earth_space",
+   "difficulty": 3,
+   "expected_answer": "8",
+   "insufficient_info": false,
+   "key": "comp-kepler-ratio-01",
+   "multi_hop": true,
+   "question": "Two planets orbit the same star, with planet B's orbital radius 4 times planet A's orbital radius. By Kepler's third law, the square of the orbital period is proportional to the cube of the orbital radius. What is the ratio of planet B's orbital period to planet A's (T_B/T_A)?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "T_B/T_A = (r_B/r_A)^(3/2) = 4^(3/2) = 8, since 4^(3/2) = (sqrt(4))^3 = 8.",
+   "tool_check": {
+    "args": {
+     "expression": "4**1.5"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_mechanics_kinematics",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 2,
+   "domain_pair": "physics+calculus",
+   "expected_answer": "8",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-physcalc-01",
+   "multi_hop": false,
+   "question": "A particle moves along a straight line with velocity v(t) = 3t^2 m/s, where t is time in seconds. Starting from position 0 at t = 0, what is the particle's displacement, in meters, between t = 0 and t = 2?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Displacement is the integral of velocity: integral of 3t^2 dt from 0 to 2 equals t^3 evaluated from 0 to 2, which is 8 - 0 = 8 meters.",
+   "tool_check": {
+    "args": {
+     "expression": "3*2**3/3"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_mechanics_energy",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 2,
+   "domain_pair": "physics+calculus",
+   "expected_answer": "9",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-physcalc-02",
+   "multi_hop": true,
+   "question": "A spring with stiffness k = 200 N/m obeys Hooke's law, so the restoring force is F(x) = kx. How much work, in joules, is required to stretch the spring quasi-statically from its natural length to an extension of 0.3 m?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Work is the integral of F(x) = kx from 0 to 0.3: W = k*x^2/2 = 200*(0.3)^2/2 = 200*0.09/2 = 9 joules.",
+   "tool_check": {
+    "args": {
+     "expression": "0.5*200*0.3**2"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_mechanics_kinematics",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 3,
+   "domain_pair": "physics+calculus",
+   "expected_answer": "4",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-physcalc-03",
+   "multi_hop": true,
+   "question": "A cart's position along a track is given by x(t) = t^3 - 6*t^2 meters, with t in seconds and t > 0. Velocity is the derivative of position with respect to time. At what time, in seconds, does the cart's velocity equal zero?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Velocity is dx/dt = 3t^2 - 12t = 3t(t - 4). Setting this to zero gives t = 0 or t = 4; since t > 0, the velocity vanishes at t = 4 seconds.",
+   "tool_check": {
+    "args": {
+     "expression": "12/3"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_gases",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 3,
+   "domain_pair": "chemistry+math",
+   "expected_answer": "249.42",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-chemmath-01",
+   "multi_hop": true,
+   "question": "A sealed rigid vessel holds 2.0 mol of an ideal gas at 300 K in a volume of 20.0 L. Using the ideal gas law PV = nRT with R = 8.314 J/(mol*K), what is the gas pressure in kilopascals? (1 Pa = 1 J/m^3; 1 L = 0.001 m^3; 1 kPa = 1000 Pa.)",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Convert volume: 20.0 L = 0.020 m^3. Then P = nRT/V = 2.0*8.314*300/0.020 = 249420 Pa = 249.42 kPa.",
+   "tool_check": {
+    "args": {
+     "expression": "2*8.314*300/0.02/1000"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_kinetics",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 2,
+   "domain_pair": "chemistry+math",
+   "expected_answer": "0.125",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-chemmath-02",
+   "multi_hop": true,
+   "question": "A drug undergoes first-order elimination with a half-life of 8 hours. After one dose and no further dosing, what fraction (as a decimal) of the dose remains in the body after 24 hours?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "For first-order kinetics the amount halves every half-life. 24 hours is 24/8 = 3 half-lives, so the remaining fraction is (1/2)^3 = 0.125.",
+   "tool_check": {
+    "args": {
+     "expression": "0.5**3"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_solutions",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 2,
+   "domain_pair": "chemistry+math",
+   "expected_answer": "0.2",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-chemmath-03",
+   "multi_hop": true,
+   "question": "A glucose solution is prepared by dissolving 9.0 g of glucose (molar mass 180 g/mol) in enough water to make a total solution volume of 250 mL. What is the molar concentration of the solution in mol/L?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Moles of glucose = 9.0/180 = 0.05 mol. Volume = 250 mL = 0.25 L. Molarity = 0.05/0.25 = 0.2 mol/L.",
+   "tool_check": {
+    "args": {
+     "expression": "9/180/0.25"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "bio_population_genetics",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 3,
+   "domain_pair": "biology+statistics",
+   "expected_answer": "0.32",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-biostat-01",
+   "multi_hop": true,
+   "question": "In a large randomly mating population at Hardy-Weinberg equilibrium for an autosomal gene with two alleles, the frequency of the recessive allele is q = 0.2. What is the expected frequency of heterozygous individuals in this population, as a decimal?",
+   "requires_math_tool": true,
+   "requires_retrieval": true,
+   "solution_outline": "With q = 0.2, the dominant allele frequency is p = 1 - 0.2 = 0.8. Under Hardy-Weinberg equilibrium the heterozygote frequency is 2pq = 2*0.8*0.2 = 0.32.",
+   "tool_check": {
+    "args": {
+     "expression": "2*0.8*0.2"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "bio_exponential_growth",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 2,
+   "domain_pair": "biology+statistics",
+   "expected_answer": "25600",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-biostat-02",
+   "multi_hop": true,
+   "question": "A bacterial culture starts with 50 cells and every cell divides so the population doubles every 20 minutes, with no deaths. How many cells are present after 3 hours?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "3 hours = 180 minutes = 180/20 = 9 doubling times. Cell count = 50 * 2^9 = 50 * 512 = 25600 cells.",
+   "tool_check": {
+    "args": {
+     "expression": "50*2**9"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "bio_measurement_statistics",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 2,
+   "domain_pair": "biology+statistics",
+   "expected_answer": "0.8",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-biostat-03",
+   "multi_hop": true,
+   "question": "A biology student measures the diameters of 25 cells drawn at random from a culture. The sample standard deviation of the diameters is 4 micrometers. What is the standard error of the sample mean diameter, in micrometers?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The standard error of the mean is s/sqrt(n) = 4/sqrt(25) = 4/5 = 0.8 micrometers.",
+   "tool_check": {
+    "args": {
+     "expression": "4/25**0.5"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "astro_gravitation",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 3,
+   "domain_pair": "astronomy+mechanics",
+   "expected_answer": "4.9",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-astromech-01",
+   "multi_hop": true,
+   "question": "A planet has exactly twice Earth's mass and twice Earth's radius. Surface gravitational acceleration follows g = GM/R^2. Taking Earth's surface gravity as 9.8 m/s^2, what is the gravitational acceleration at this planet's surface, in m/s^2?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Since g = GM/R^2, doubling M doubles g and doubling R quarters g, so g_planet = 9.8 * 2 / 4 = 4.9 m/s^2.",
+   "tool_check": {
+    "args": {
+     "expression": "9.8*2/4"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "astro_orbital_mechanics",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 2,
+   "domain_pair": "astronomy+mechanics",
+   "expected_answer": "8",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-astromech-02",
+   "multi_hop": true,
+   "question": "An exoplanet orbits a star whose mass equals the Sun's mass, with a semimajor axis of exactly 4 AU. Using Kepler's third law in the form T^2 = a^3 (period T in Earth years, semimajor axis a in AU), what is the planet's orbital period in Earth years?",
+   "requires_math_tool": true,
+   "requires_retrieval": true,
+   "solution_outline": "Kepler's third law gives T = a^(3/2) = 4^(3/2) = (sqrt(4))^3 = 8 Earth years.",
+   "tool_check": {
+    "args": {
+     "expression": "4**1.5"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "astro_gravitation",
+   "capacity_dimension": "cross_domain",
+   "category": "interdisciplinary",
+   "difficulty": 4,
+   "domain_pair": "astronomy+mechanics",
+   "expected_answer": "22.4",
+   "generalization_split": "CROSS_DOMAIN",
+   "insufficient_info": false,
+   "key": "xd-astromech-03",
+   "multi_hop": true,
+   "question": "Escape velocity from a body of mass M and radius R is v = sqrt(2GM/R). A planet has the same average density as Earth but twice Earth's radius. Given that Earth's escape velocity is 11.2 km/s, what is the planet's escape velocity in km/s?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "With fixed density, M scales as R^3, so v = sqrt(2G*(4/3)*pi*rho*R^2 / R) is proportional to R. Doubling the radius doubles the escape velocity: 11.2 * 2 = 22.4 km/s.",
+   "tool_check": {
+    "args": {
+     "expression": "11.2*2"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_mechanics",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 2,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "IID",
+   "insufficient_info": true,
+   "key": "unc-mech-01",
+   "multi_hop": true,
+   "question": "A crate on a frictionless horizontal surface starts from rest and undergoes uniform acceleration for 6.0 s, during which it covers 90 m. What is the net force acting on the crate, in newtons?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The kinematics alone give the acceleration: 90 m in 6.0 s from rest gives a = 2*90/6^2 = 5.0 m/s^2. But Newton's second law F = m*a requires the crate's mass, which is never stated and is not a standard constant, so the force is indeterminate."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_kinetics",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 2,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "IID",
+   "insufficient_info": true,
+   "key": "unc-chem-rate-01",
+   "multi_hop": false,
+   "question": "A reactant decomposes by first-order kinetics with a rate constant of 0.023 s^-1. If the initial concentration of the reactant is 0.80 M, what is its concentration, in mol/L, at the end of the experiment?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "First-order decay needs [A] = 0.80 * exp(-0.023*t), but the elapsed time t of the experiment is never given. The rate constant and initial concentration are both known, so the missing piece is specifically the reaction time; the answer is indeterminate."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "geometry_trig",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 2,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": true,
+   "key": "unc-geo-01",
+   "multi_hop": false,
+   "question": "A ladder leans against a vertical wall with its foot resting on flat ground 2.5 m from the base of the wall. How far up the wall, in meters, does the ladder reach?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The height on the wall equals L*sin(theta), where the ladder length L and the lean angle theta are both unstated. Only the horizontal distance of 2.5 m is given, and infinitely many ladders at infinitely many angles can have that footprint, so the height is indeterminate."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "probability_basics",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 1,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "IID",
+   "insufficient_info": true,
+   "key": "unc-prob-01",
+   "multi_hop": false,
+   "question": "A jar contains only red and blue marbles, and 14 of the marbles are red. If one marble is drawn at random from the jar, what is the probability that it is red?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The probability is 14 divided by the total number of marbles, but the number of blue marbles (and hence the total) is never stated. Any count of blue marbles changes the probability, so it is indeterminate."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_electricity",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 3,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": true,
+   "key": "unc-elec-01",
+   "multi_hop": true,
+   "question": "A copper wire carries current and has a total resistance of 0.85 ohms over its 12 m length. What is the resistivity of the wire's material, in ohm-meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "From R = rho*L/A, the resistivity is rho = R*A/L. Although R = 0.85 ohm and L = 12 m are given, the wire's cross-sectional area A is never stated, and it varies between gauges, so rho cannot be determined."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_nuclear",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 2,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "IID",
+   "insufficient_info": true,
+   "key": "unc-nuc-01",
+   "multi_hop": true,
+   "question": "A medical isotope used in a scan has a half-life of 8.0 days. After 24 days of storage, what mass of the isotope remains in the vial, in grams?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "24 days is exactly 3 half-lives, so one eighth of the original mass remains, but the initial mass in the vial is never given. The decay fraction is computable, the absolute mass in grams is not."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "geometry_area",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 1,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": true,
+   "key": "unc-geo-02",
+   "multi_hop": false,
+   "question": "A rectangular garden plot has a perimeter of 36 m. What is the area of the plot, in square meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The perimeter fixes only the sum of length and width (18 m), and area = length * width varies with that split: 8x10 gives 80 m^2, 9x9 gives 81 m^2. Without a second constraint the area is indeterminate."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_fluids",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 3,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": true,
+   "key": "unc-fluids-01",
+   "multi_hop": true,
+   "question": "A metal block hangs from a scale that reads 4.2 N in air. When the block is fully submerged in a clear, colorless liquid, the scale reads 3.1 N. What is the volume of the block, in cubic meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The apparent weight loss of 1.1 N equals the buoyant force, rho_liquid * g * V. To convert that to a volume one needs the density of the liquid, but the liquid is described only as clear and colorless and its density is never given, so V is indeterminate."
+  },
+  {
+   "answer_type": "exact_answer",
+   "capability_track": "statistics_descriptive",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 2,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "IID",
+   "insufficient_info": true,
+   "key": "unc-stat-01",
+   "multi_hop": false,
+   "question": "A class of 6 students took the same exam, and their scores have a mean of 78. What is the median score of the class?",
+   "requires_math_tool": false,
+   "requires_retrieval": false,
+   "solution_outline": "A mean of 78 fixes only the total of the six scores (468); the individual scores can be arranged in countless ways with different medians (e.g. scores 70,72,74,80,84,88 have median 77 while 60,74,76,82,86,90 have median 79). Without the actual scores the median is indeterminate."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_titration",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 2,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "IID",
+   "insufficient_info": true,
+   "key": "unc-titrate-01",
+   "multi_hop": true,
+   "question": "A 25.0 mL sample of hydrochloric acid of unknown strength is titrated with 0.100 M sodium hydroxide and reaches the equivalence point. What is the molar concentration of the acid, in mol/L?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "At the equivalence point for a 1:1 acid-base reaction, moles of acid equal moles of NaOH, so the acid concentration is 0.100 M times the NaOH volume divided by 25.0 mL. The volume of NaOH delivered is never stated, so the concentration is indeterminate."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_projectiles",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 3,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": true,
+   "key": "unc-proj-01",
+   "multi_hop": true,
+   "question": "A ball rolls off a horizontal rooftop and lands 12 m from the base of the building. What was the ball's horizontal speed when it left the roof, in m/s?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The horizontal speed is 12 m divided by the fall time, and the fall time comes from the height h via t = sqrt(2h/g). The height of the roof is never given, so the time and therefore the launch speed are indeterminate."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "simple_interest",
+   "capacity_dimension": "uncertainty",
+   "category": "uncertainty_calibration",
+   "difficulty": 1,
+   "expected_answer": "__UNKNOWN__",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": true,
+   "key": "unc-fin-01",
+   "multi_hop": false,
+   "question": "A savings deposit of 1,500 dollars earns simple interest for 4 years. What is the account balance at the end, in dollars?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The balance is 1500 * (1 + 4r), but the annual interest rate r is never stated and is specific to this account, not a standard constant. Different rates give different balances, so the answer is indeterminate."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "algebra",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-alg-01",
+   "expected_answer": "26",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-alg-01-clean",
+   "multi_hop": true,
+   "question": "A rectangular garden is 3 meters longer than it is wide, and its area is 40 square meters. What is the perimeter of the garden, in meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Let width be w, so length is w+3: w(w+3)=40 gives w^2+3w-40=0, whose positive root is w=5, so length 8. Perimeter = 2(5+8) = 26 meters."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "algebra",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-alg-01",
+   "expected_answer": "26",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-alg-01-load",
+   "multi_hop": true,
+   "question": "A rectangular garden is 3 meters longer than it is wide, and its area is 40 square meters. The gardener spent 120 dollars on heirloom seeds this spring. The garden sits beside a 12-meter gravel path that was installed in 2015. What is the perimeter of the garden, in meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The seed cost and path details are irrelevant. Let width be w: w(w+3)=40 gives w=5, length 8. Perimeter = 2(5+8) = 26 meters."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "physics",
+   "difficulty": 1,
+   "distractor_pair_key": "dp-phys-01",
+   "expected_answer": "18",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-phys-01-clean",
+   "multi_hop": false,
+   "question": "A 4 kg cart moves in a straight line at a constant speed of 3 m/s. What is the cart's kinetic energy, in joules?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Kinetic energy = 0.5*m*v^2 = 0.5*4*3^2 = 0.5*4*9 = 18 joules."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "physics",
+   "difficulty": 1,
+   "distractor_pair_key": "dp-phys-01",
+   "expected_answer": "18",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-phys-01-load",
+   "multi_hop": false,
+   "question": "A 4 kg cart moves in a straight line at a constant speed of 3 m/s. The cart was assembled in a workshop in 2019 and painted blue. A large fan stands 2 meters away blowing air across the track. What is the cart's kinetic energy, in joules?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Paint color, assembly year, and the nearby fan do not affect kinetic energy of a body at a stated speed. KE = 0.5*4*3^2 = 18 joules."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "chemistry",
+   "difficulty": 1,
+   "distractor_pair_key": "dp-chem-01",
+   "expected_answer": "2",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "dist-chem-01-clean",
+   "multi_hop": false,
+   "question": "Using H = 1 g/mol and O = 16 g/mol, how many moles are in 36 grams of water?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Molar mass of water = 2(1) + 16 = 18 g/mol. Moles = 36/18 = 2."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "chemistry",
+   "difficulty": 1,
+   "distractor_pair_key": "dp-chem-01",
+   "expected_answer": "2",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "dist-chem-01-load",
+   "multi_hop": false,
+   "question": "Using H = 1 g/mol and O = 16 g/mol, how many moles are in 36 grams of water? The sample was drawn from a still installed in 1974. The student running the assay is named Maria, and the beaker is marked 100 mL.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The still's age, the student's name, and the beaker volume are irrelevant. Molar mass = 18 g/mol; 36/18 = 2 moles."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "biology",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-bio-01",
+   "expected_answer": "4000",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-bio-01-clean",
+   "multi_hop": false,
+   "question": "A bacterial culture starts with 500 cells and doubles every 20 minutes. How many cells are present after 60 minutes?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "60 minutes is 3 doubling periods. Cell count = 500 * 2^3 = 4000."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "biology",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-bio-01",
+   "expected_answer": "4000",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-bio-01-load",
+   "multi_hop": false,
+   "question": "A bacterial culture starts with 500 cells and doubles every 20 minutes. The culture was prepared in a laboratory in Nairobi. The petri dish is 9 cm in diameter and the agar is stained pink. How many cells are present after 60 minutes?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The lab location, dish diameter, and stain are irrelevant. 60 minutes is 3 doublings: 500 * 2^3 = 4000 cells."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "earth_space",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-astro-01",
+   "expected_answer": "375000000",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "dist-astro-01-clean",
+   "multi_hop": true,
+   "question": "A radar pulse is sent from Earth to the Moon and its echo returns after 2.5 seconds. The pulse travels at 3×10^8 m/s. What is the distance from Earth to the Moon, in meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The pulse covers twice the Earth-Moon distance. One-way distance = (3×10^8 * 2.5)/2 = 375000000 meters."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "earth_space",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-astro-01",
+   "expected_answer": "375000000",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "dist-astro-01-load",
+   "multi_hop": true,
+   "question": "A radar pulse is sent from Earth to the Moon and its echo returns after 2.5 seconds. The pulse travels at 3×10^8 m/s. The Moon's diameter is 3474 km and its surface gravity is about one sixth of Earth's. Several lunar craters are named after scientists. What is the distance from Earth to the Moon, in meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The Moon's diameter, gravity, and crater names are irrelevant. Round-trip distance = 3×10^8 * 2.5 = 7.5×10^8 m, so one-way = 375000000 m."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "probability_statistics",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-prob-01",
+   "expected_answer": "0.4",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-prob-01-clean",
+   "multi_hop": false,
+   "question": "A bag contains 4 red marbles and 2 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both marbles are red, as a decimal?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "P(first red) = 4/6; P(second red | first red) = 3/5. Product = (4/6)*(3/5) = 12/30 = 0.4."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "probability_statistics",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-prob-01",
+   "expected_answer": "0.4",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-prob-01-load",
+   "multi_hop": false,
+   "question": "A bag contains 4 red marbles and 2 blue marbles. The marbles were won at a carnival in 2008 and kept in a tin box. The bag itself is made of red velvet, and the carnival charged one dollar per draw. Two marbles are drawn at random without replacement. What is the probability that both marbles are red, as a decimal?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The carnival history, tin box, velvet bag, and fee are irrelevant. (4/6)*(3/5) = 0.4."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "geometry",
+   "difficulty": 1,
+   "distractor_pair_key": "dp-geo-01",
+   "expected_answer": "10",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "dist-geo-01-clean",
+   "multi_hop": false,
+   "question": "Using π = 3.14, a circle has a circumference of 31.4 cm. What is the diameter of the circle, in cm?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Circumference C = πd, so d = C/π = 31.4/3.14 = 10 cm."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "geometry",
+   "difficulty": 1,
+   "distractor_pair_key": "dp-geo-01",
+   "expected_answer": "10",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "dist-geo-01-load",
+   "multi_hop": false,
+   "question": "Using π = 3.14, a circle has a circumference of 31.4 cm. The circle is drawn in chalk on a board purchased in 1998. The classroom is kept at 22 degrees Celsius and the board is mounted 1.2 meters above the floor. What is the diameter of the circle, in cm?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The board's age, room temperature, and mounting height are irrelevant. d = 31.4/3.14 = 10 cm."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "chemistry",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-chem-02",
+   "expected_answer": "41840",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-chem-02-clean",
+   "multi_hop": false,
+   "question": "Using a specific heat capacity of 4184 J/(kg·K) for water, how much heat in joules is required to raise the temperature of 0.5 kg of water by 20 kelvin?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Q = mcΔT = 0.5 * 4184 * 20 = 41840 joules."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "chemistry",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-chem-02",
+   "expected_answer": "41840",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-chem-02-load",
+   "multi_hop": false,
+   "question": "Using a specific heat capacity of 4184 J/(kg·K) for water, how much heat in joules is required to raise the temperature of 0.5 kg of water by 20 kelvin? The water was pumped from a well dug in 1963. The kettle is brushed stainless steel, and the kitchen sits at an elevation of 300 meters.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The well, kettle material, and elevation are irrelevant. Q = 0.5 * 4184 * 20 = 41840 joules."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "trig",
+   "difficulty": 1,
+   "distractor_pair_key": "dp-trig-01",
+   "expected_answer": "5",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-trig-01-clean",
+   "multi_hop": false,
+   "question": "A ramp rises at an angle of 30 degrees above the horizontal and is 10 meters long along the slope. How high above the ground does the top of the ramp reach, in meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Height is the side opposite the 30-degree angle: h = 10 * sin(30°) = 10 * 0.5 = 5 meters."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "trig",
+   "difficulty": 1,
+   "distractor_pair_key": "dp-trig-01",
+   "expected_answer": "5",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-trig-01-load",
+   "multi_hop": false,
+   "question": "A ramp rises at an angle of 30 degrees above the horizontal and is 10 meters long along the slope. The ramp was built for a music festival in 2011 and its surface is painted green. The festival drew about 4000 visitors that year. How high above the ground does the top of the ramp reach, in meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The festival year, paint, and visitor count are irrelevant. h = 10 * sin(30°) = 5 meters."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "earth_space",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-earth-01",
+   "expected_answer": "20",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "dist-earth-01-clean",
+   "multi_hop": false,
+   "question": "A storm system travels 36 kilometers in 0.5 hours. What is its average speed in meters per second?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "36 km = 36000 m; 0.5 h = 1800 s. Speed = 36000/1800 = 20 m/s."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "earth_space",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-earth-01",
+   "expected_answer": "20",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "dist-earth-01-load",
+   "multi_hop": false,
+   "question": "A storm system travels 36 kilometers in 0.5 hours. The storm was rated EF2 on the Enhanced Fujita scale, and storm chasers filmed it with a drone that cost 1200 dollars. The county it crossed has about 40000 residents. What is its average speed in meters per second?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The EF rating, drone cost, and county population are irrelevant. 36000 m / 1800 s = 20 m/s."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "biology",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-bio-02",
+   "expected_answer": "50",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "dist-bio-02-clean",
+   "multi_hop": true,
+   "question": "In a food chain, only 10 percent of the energy at one trophic level passes to the next. Grass captures 5000 units of energy, grasshoppers eat the grass, and frogs eat the grasshoppers. How many units of energy reach the frogs?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Two transfer steps: 5000 * 0.1 = 500 units at grasshoppers, then 500 * 0.1 = 50 units at frogs."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "biology",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-bio-02",
+   "expected_answer": "50",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "dist-bio-02-load",
+   "multi_hop": true,
+   "question": "In a food chain, only 10 percent of the energy at one trophic level passes to the next. Grass captures 5000 units of energy, grasshoppers eat the grass, and frogs eat the grasshoppers. The meadow contains oak trees that are over 100 years old. A recent wildlife census counted 120 deer in the area, and the frog species is Rana temporaria. How many units of energy reach the frogs?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Tree age, deer census, and species name are irrelevant. 5000 * 0.1 * 0.1 = 50 units."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_clean",
+   "category": "calculus",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-calc-01",
+   "expected_answer": "26",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-calc-01-clean",
+   "multi_hop": false,
+   "question": "A particle moves along a line so that its position in meters at time t seconds is s(t) = 3t^2 + 2t. What is its velocity in meters per second at t = 4 seconds?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Velocity is the derivative: v(t) = 6t + 2. At t = 4, v = 6*4 + 2 = 26 m/s."
+  },
+  {
+   "answer_type": "numeric",
+   "capacity_dimension": "distractor_loaded",
+   "category": "calculus",
+   "difficulty": 2,
+   "distractor_pair_key": "dp-calc-01",
+   "expected_answer": "26",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "dist-calc-01-load",
+   "multi_hop": false,
+   "question": "A particle moves along a line so that its position in meters at time t seconds is s(t) = 3t^2 + 2t. The particle is a bead sliding on a wire that was demonstrated at a summer physics camp in July. The wire has a mass of 50 grams and a chrome finish. What is the particle's velocity in meters per second at t = 4 seconds?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The camp, wire mass, and finish are irrelevant. v(t) = 6t + 2, so v(4) = 26 m/s."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "algebra_linear",
+   "capacity_dimension": "math",
+   "category": "algebra",
+   "difficulty": 2,
+   "expected_answer": "144",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-alg-01",
+   "multi_hop": false,
+   "question": "A print shop runs a poster press that produces 4 posters per minute. During a 45-minute run, 20 percent of the printed posters are rejected for smudging and the rest are accepted. How many accepted posters come from this run?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The press prints 4 x 45 = 180 posters. Since 20 percent are rejected, 80 percent are accepted: 180 x 80/100 = 144 accepted posters.",
+   "tool_check": {
+    "args": {
+     "expression": "4*45*80/100"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "algebra_linear",
+   "capacity_dimension": "counterfactual",
+   "category": "algebra",
+   "cf_change_type": "numbers",
+   "cf_parent_key": "math-alg-01",
+   "difficulty": 2,
+   "expected_answer": "180",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-alg-01",
+   "multi_hop": false,
+   "question": "A print shop runs a poster press that produces 5 posters per minute. During a 45-minute run, 20 percent of the printed posters are rejected for smudging and the rest are accepted. How many accepted posters come from this run?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The press prints 5 x 45 = 225 posters. Since 20 percent are rejected, 80 percent are accepted: 225 x 80/100 = 180 accepted posters.",
+   "tool_check": {
+    "args": {
+     "expression": "5*45*80/100"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_mechanics",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "1.5",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "sci-phys-02",
+   "multi_hop": false,
+   "question": "On frictionless ice, a 2.0 kg cart moving at 3.0 m/s collides with an identical stationary cart, and the two carts stick together. What is the speed of the combined carts, in meters per second?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Momentum is conserved: 2.0 kg x 3.0 m/s = 4.0 kg m/s. The combined mass is 4.0 kg, so the speed is 4.0/4.0 = 1.5 m/s.",
+   "tool_check": {
+    "args": {
+     "expression": "(2*3)/(2+2)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_mechanics",
+   "capacity_dimension": "counterfactual",
+   "category": "physics",
+   "cf_change_type": "numbers",
+   "cf_parent_key": "sci-phys-02",
+   "difficulty": 2,
+   "expected_answer": "4",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-phys-02",
+   "multi_hop": false,
+   "question": "On frictionless ice, a 2.0 kg cart moving at 8.0 m/s collides with an identical stationary cart, and the two carts stick together. What is the speed of the combined carts, in meters per second?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Momentum is conserved: 2.0 kg x 8.0 m/s = 16.0 kg m/s. The combined mass is 4.0 kg, so the speed is 16.0/4.0 = 4 m/s.",
+   "tool_check": {
+    "args": {
+     "expression": "(2*8)/(2+2)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_kinematics",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "43.2",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-phys-03",
+   "multi_hop": false,
+   "question": "A cyclist rides at a constant speed, covering 720 meters in 60 seconds. What is the cyclist's speed in kilometers per hour?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Speed is 720/60 = 12 m/s. Multiplying by 3.6 converts m/s to km/h: 12 x 3.6 = 43.2 km/h.",
+   "tool_check": {
+    "args": {
+     "expression": "720/60*3.6"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_kinematics",
+   "capacity_dimension": "counterfactual",
+   "category": "physics",
+   "cf_change_type": "units",
+   "cf_parent_key": "sci-phys-03",
+   "difficulty": 1,
+   "expected_answer": "12",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-phys-03",
+   "multi_hop": false,
+   "question": "A cyclist rides at a constant speed, covering 720 meters in 60 seconds. What is the cyclist's speed in meters per second?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Speed is distance over time: 720 m / 60 s = 12 m/s, which is already the requested unit.",
+   "tool_check": {
+    "args": {
+     "expression": "720/60"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_stoichiometry",
+   "capacity_dimension": "science",
+   "category": "chemistry",
+   "difficulty": 1,
+   "expected_answer": "11.2",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "sci-chem-04",
+   "multi_hop": false,
+   "question": "At standard temperature and pressure, one mole of any ideal gas occupies 22.4 liters. What volume, in liters, do 0.50 moles of nitrogen gas occupy at STP?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Volume = moles x molar volume = 0.50 x 22.4 = 11.2 liters.",
+   "tool_check": {
+    "args": {
+     "expression": "0.5*22.4"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "chem_stoichiometry",
+   "capacity_dimension": "counterfactual",
+   "category": "chemistry",
+   "cf_change_type": "units",
+   "cf_parent_key": "sci-chem-04",
+   "difficulty": 2,
+   "expected_answer": "11200",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-chem-04",
+   "multi_hop": false,
+   "question": "At standard temperature and pressure, one mole of any ideal gas occupies 22.4 liters. What volume, in milliliters, do 0.50 moles of nitrogen gas occupy at STP?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Volume = 0.50 x 22.4 = 11.2 liters, and 1 liter = 1000 milliliters, so the volume is 11.2 x 1000 = 11200 mL.",
+   "tool_check": {
+    "args": {
+     "expression": "0.5*22.4*1000"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "geometry_plane",
+   "capacity_dimension": "math",
+   "category": "geometry",
+   "difficulty": 2,
+   "expected_answer": "72",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-geo-05",
+   "multi_hop": false,
+   "question": "A rectangle has a perimeter of 36 meters, and its length is twice its width. What is the area of the rectangle, in square meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Half the perimeter gives length + width = 18 m. With length twice the width, 3w = 18, so w = 6 m and length = 12 m; area = 6 x 12 = 72 square meters.",
+   "tool_check": {
+    "args": {
+     "expression": "(36/2/3)*(36/2/3*2)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "geometry_plane",
+   "capacity_dimension": "counterfactual",
+   "category": "geometry",
+   "cf_change_type": "constraint",
+   "cf_parent_key": "math-geo-05",
+   "difficulty": 3,
+   "expected_answer": "78.75",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-geo-05",
+   "multi_hop": false,
+   "question": "A rectangle has a perimeter of 36 meters, and its length is 3 meters more than its width. What is the area of the rectangle, in square meters?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Length + width = 18 m and length = width + 3, so 2w + 3 = 18, giving w = 7.5 m and length = 10.5 m; area = 7.5 x 10.5 = 78.75 square meters.",
+   "tool_check": {
+    "args": {
+     "expression": "(36/2-3)/2*((36/2-3)/2+3)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "exact_answer",
+   "capability_track": "prob_dependent_events",
+   "capacity_dimension": "math",
+   "category": "probability_statistics",
+   "difficulty": 2,
+   "expected_answer": "5/14",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "math-prob-06",
+   "multi_hop": false,
+   "question": "A jar contains 5 red marbles and 3 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both marbles are red? Give your answer as a fully reduced fraction.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "P(first red) = 5/8 and, without replacement, P(second red) = 4/7. The product is 20/56 = 5/14."
+  },
+  {
+   "answer_type": "exact_answer",
+   "capability_track": "prob_dependent_events",
+   "capacity_dimension": "counterfactual",
+   "category": "probability_statistics",
+   "cf_change_type": "constraint",
+   "cf_parent_key": "math-prob-06",
+   "difficulty": 2,
+   "expected_answer": "25/64",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-prob-06",
+   "multi_hop": false,
+   "question": "A jar contains 5 red marbles and 3 blue marbles. Two marbles are drawn at random with replacement (the first marble is put back before the second draw). What is the probability that both marbles are red? Give your answer as a fully reduced fraction.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "With replacement the jar is unchanged between draws, so the draws are independent: (5/8) x (5/8) = 25/64."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_circuits",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 2,
+   "expected_answer": "1",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "sci-phys-07",
+   "multi_hop": false,
+   "question": "A 12 V ideal battery is connected to two identical 6 ohm resistors wired in series. What is the current through the battery, in amperes?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "In series the resistances add: 6 + 6 = 12 ohms. Ohm's law gives I = 12 V / 12 ohms = 1 A.",
+   "tool_check": {
+    "args": {
+     "expression": "12/(6+6)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_circuits",
+   "capacity_dimension": "counterfactual",
+   "category": "physics",
+   "cf_change_type": "relationship",
+   "cf_parent_key": "sci-phys-07",
+   "difficulty": 3,
+   "expected_answer": "4",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-phys-07",
+   "multi_hop": false,
+   "question": "A 12 V ideal battery is connected to two identical 6 ohm resistors wired in parallel. What is the current through the battery, in amperes?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Two identical 6 ohm resistors in parallel give an equivalent resistance of 36/12 = 3 ohms. Ohm's law gives I = 12 V / 3 ohms = 4 A.",
+   "tool_check": {
+    "args": {
+     "expression": "12/(6*6/(6+6))"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_work_energy",
+   "capacity_dimension": "science",
+   "category": "physics",
+   "difficulty": 1,
+   "expected_answer": "200",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "sci-phys-08",
+   "multi_hop": false,
+   "question": "A worker pushes a crate 5.0 meters across a level floor with a constant 40 newton force directed horizontally. How much work does the force do on the crate, in joules?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The force is parallel to the displacement, so W = Fd = 40 N x 5.0 m = 200 J.",
+   "tool_check": {
+    "args": {
+     "expression": "40*5"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "phys_work_energy",
+   "capacity_dimension": "counterfactual",
+   "category": "physics",
+   "cf_change_type": "relationship",
+   "cf_parent_key": "sci-phys-08",
+   "difficulty": 3,
+   "expected_answer": "100",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-phys-08",
+   "multi_hop": false,
+   "question": "A worker pushes a crate 5.0 meters across a level floor with a constant 40 newton force directed 60 degrees above the horizontal. How much work does the force do on the crate, in joules?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "Only the component of the force along the displacement does work: W = Fd cos(60 degrees) = 40 x 5.0 x 0.5 = 100 J.",
+   "tool_check": {
+    "args": {
+     "expression": "40*5*0.5"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "trig_ratios",
+   "capacity_dimension": "math",
+   "category": "trig",
+   "difficulty": 1,
+   "expected_answer": "0.6",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "math-trig-09",
+   "multi_hop": false,
+   "question": "In a right triangle, the hypotenuse is 10 cm and one leg is 6 cm. What is the sine of the angle opposite the 6 cm leg?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The sine of an angle in a right triangle is the opposite leg over the hypotenuse: 6/10 = 0.6.",
+   "tool_check": {
+    "args": {
+     "expression": "6/10"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "trig_ratios",
+   "capacity_dimension": "counterfactual",
+   "category": "trig",
+   "cf_change_type": "constraint",
+   "cf_parent_key": "math-trig-09",
+   "difficulty": 2,
+   "expected_answer": "0.75",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-trig-09",
+   "multi_hop": false,
+   "question": "In a right triangle, the hypotenuse is 10 cm and one leg is 6 cm. What is the tangent of the angle opposite the 6 cm leg?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The other leg is sqrt(100 - 36) = 8 cm by the Pythagorean theorem. Tangent is opposite over adjacent: 6/8 = 0.75.",
+   "tool_check": {
+    "args": {
+     "expression": "6/8"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "bio_population_growth",
+   "capacity_dimension": "science",
+   "category": "biology",
+   "difficulty": 2,
+   "expected_answer": "4000",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "sci-bio-10",
+   "multi_hop": false,
+   "question": "A bacterial culture starts with 500 cells and the population doubles every 3 hours. Assuming unrestricted exponential growth, how many cells are present after 9 hours?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "In 9 hours the population doubles 9/3 = 3 times: 500 x 2^3 = 4000 cells.",
+   "tool_check": {
+    "args": {
+     "expression": "500*(2**3)"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "bio_population_growth",
+   "capacity_dimension": "counterfactual",
+   "category": "biology",
+   "cf_change_type": "relationship",
+   "cf_parent_key": "sci-bio-10",
+   "difficulty": 2,
+   "expected_answer": "2000",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-bio-10",
+   "multi_hop": false,
+   "question": "A bacterial culture starts with 500 cells and the population grows by 500 cells every 3 hours. Assuming this steady linear growth continues, how many cells are present after 9 hours?",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "In 9 hours the population gains 500 cells 9/3 = 3 times: 500 + 3 x 500 = 2000 cells.",
+   "tool_check": {
+    "args": {
+     "expression": "500+3*500"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "exact_answer",
+   "capability_track": "prob_sample_space",
+   "capacity_dimension": "math",
+   "category": "probability_statistics",
+   "difficulty": 2,
+   "expected_answer": "1/6",
+   "generalization_split": "IID",
+   "insufficient_info": false,
+   "key": "math-prob-11",
+   "multi_hop": false,
+   "question": "A fair six-sided die is rolled twice, and the two results are added. What is the probability that the sum is 7? Give your answer as a fully reduced fraction.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "There are 36 equally likely ordered pairs, and 6 of them sum to 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). So the probability is 6/36 = 1/6."
+  },
+  {
+   "answer_type": "exact_answer",
+   "capability_track": "prob_sample_space",
+   "capacity_dimension": "counterfactual",
+   "category": "probability_statistics",
+   "cf_change_type": "numbers",
+   "cf_parent_key": "math-prob-11",
+   "difficulty": 2,
+   "expected_answer": "1/9",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-prob-11",
+   "multi_hop": false,
+   "question": "A fair six-sided die is rolled twice, and the two results are added. What is the probability that the sum is 5? Give your answer as a fully reduced fraction.",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "There are 36 equally likely ordered pairs, and 4 of them sum to 5: (1,4),(2,3),(3,2),(4,1). So the probability is 4/36 = 1/9."
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "earth_remote_sensing",
+   "capacity_dimension": "science",
+   "category": "earth_space",
+   "difficulty": 3,
+   "expected_answer": "30",
+   "generalization_split": "OUT_OF_TEMPLATE",
+   "insufficient_info": false,
+   "key": "sci-earth-12",
+   "multi_hop": true,
+   "question": "A radar pulse travels at the speed of light, 3.0 x 10^8 m/s. The pulse is emitted, reflects off an aircraft, and returns 2.0 x 10^-4 seconds later. How far away is the aircraft, in kilometers? (The pulse makes a round trip, so use half the total distance traveled.)",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The pulse travels 3.0e8 x 2.0e-4 = 60000 m in total. The aircraft is half that distance away: 30000 m = 30 km.",
+   "tool_check": {
+    "args": {
+     "expression": "3e8*2e-4/2/1000"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  },
+  {
+   "answer_type": "numeric",
+   "capability_track": "earth_remote_sensing",
+   "capacity_dimension": "counterfactual",
+   "category": "earth_space",
+   "cf_change_type": "units",
+   "cf_parent_key": "sci-earth-12",
+   "difficulty": 2,
+   "expected_answer": "30000",
+   "generalization_split": "COMPOSITIONAL",
+   "insufficient_info": false,
+   "key": "cf-earth-12",
+   "multi_hop": true,
+   "question": "A radar pulse travels at the speed of light, 3.0 x 10^8 m/s. The pulse is emitted, reflects off an aircraft, and returns 2.0 x 10^-4 seconds later. How far away is the aircraft, in meters? (The pulse makes a round trip, so use half the total distance traveled.)",
+   "requires_math_tool": true,
+   "requires_retrieval": false,
+   "solution_outline": "The pulse travels 3.0e8 x 2.0e-4 = 60000 m in total. The aircraft is half that distance away: 60000/2 = 30000 m.",
+   "tool_check": {
+    "args": {
+     "expression": "3e8*2e-4/2"
+    },
+    "field": "value",
+    "tool": "calculator"
+   }
+  }
+ ],
+ "audits": [
+  {
+   "comment": "Substitution gives y=2, x=4; expected 4 correct. Unambiguous, well calibrated. NOTE: key collides with the later print-shop item also keyed math-alg-01.",
+   "key": "math-alg-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "sqrt(169-25)=12; correct, self-contained, appropriate difficulty-1.",
+   "key": "math-geo-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "f'(x)=6x-4, f'(2)=8; correct and unambiguous.",
+   "key": "math-calc-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "0.1*50+0.3*20=11 dollars; probabilities sum to 1, units stated, answer correct.",
+   "key": "math-prob-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "n(n+1) fits all five terms; 6th term 42. Stating 'quadratic rule' removes ambiguity about the pattern.",
+   "key": "math-sym-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "6+0.8x=0.4(20+x) gives x=5 L; multi-hop labeling fair, answer correct.",
+   "key": "math-mps-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "(80-32)/12 = 4.0 m/s^2; correct. NOTE: key collides with the electron-recall item also keyed sci-phys-01.",
+   "key": "sci-phys-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "M(CaCO3)=100, 0.5 mol -> 0.5*44=22 g CO2; molar masses supplied, answer correct.",
+   "key": "sci-chem-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Yy x Yy gives 3/4 yellow; correct as reduced fraction, answer_type exact_answer consistent.",
+   "key": "sci-bio-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "T^2=4^3=64 so T=8 years; stellar mass = solar makes T^2=a^3 valid, answer correct.",
+   "key": "sci-astro-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Electron is correct. NOTE: duplicate key with the crate-acceleration item; also requires_retrieval=true is odd since this is internal science knowledge, not retrieval.",
+   "key": "sci-phys-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Max rate 15 occurs at 30 C; 'based only on these data' makes it well-posed. tool_check computes max()=15 (the rate) not the temperature 30 — harmless but mismatched check.",
+   "key": "sci-infer-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "1.00 mol H2 consumes 0.500 mol O2, leaving 0.250 mol gas; P proportional to n at fixed V,T gives 0.25 atm. Condensed water handled correctly.",
+   "key": "comp-gas-stoich-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "sin(theta_c)=n_clad/n_core=1.35/1.50=0.9; correct, decimal format stated.",
+   "key": "comp-fiber-tir-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "A=x^2+128000/x, x^3=64000, x=40 cm; open-top surface spec is explicit so no ambiguity, and 40 is the minimum.",
+   "key": "comp-optimization-vessel-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Integral of 3t^2 from 0 to 2 is 8 m; correct, units stated.",
+   "key": "xd-physcalc-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "3 half-lives -> (1/2)^3=0.125; correct, decimal requested.",
+   "key": "xd-chemmath-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "SE = 4/sqrt(25)=0.8 micrometers; correct and self-contained.",
+   "key": "xd-biostat-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Kinematics give a=5.0 m/s^2 but mass is never given and is not a standard constant; F=ma is genuinely indeterminate. Correctly flagged __UNKNOWN__.",
+   "key": "unc-mech-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Wrongly unanswerable as designed: the wire is identified as copper, so the resistivity is a known standard constant (~1.68e-8 ohm-m) retrievable without the missing cross-sectional area. Removing 'copper' (e.g. 'a metal wire') would make the __UNKNOWN__ label sound.",
+   "key": "unc-elec-01",
+   "verdict": "AMBIGUOUS"
+  },
+  {
+   "comment": "Both counterexample sets sum to 468 and give medians 77 and 79; mean alone cannot determine the median. Genuinely unanswerable, correctly labeled.",
+   "key": "unc-stat-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "w=5, l=8, perimeter 26 m; correct. Distractor counterpart absent from batch so pair effect unverified here.",
+   "key": "dist-alg-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "36/18=2 mol; correct and self-contained with molar masses given.",
+   "key": "dist-chem-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Echo is round-trip: 3e8*2.5/2 = 375000000 m; correct, and the round-trip structure is stated clearly enough.",
+   "key": "dist-astro-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "31.4/3.14=10 cm; pi value pinned, answer exact.",
+   "key": "dist-geo-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "10*sin(30 deg)=5 m; unambiguous which side is asked (height above ground).",
+   "key": "dist-trig-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Two 10% transfers: 5000*0.01=50 units at frogs; correct.",
+   "key": "dist-bio-02-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "4*45=180 printed, 80% accepted = 144; correct. NOTE: duplicate key — collides with the linear-system item earlier in the batch; one must be renamed.",
+   "key": "math-alg-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "12 m/s * 3.6 = 43.2 km/h; unit conversion stated, answer correct.",
+   "key": "sci-phys-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "l+w=18, 3w=18, w=6, area 72 m^2; correct.",
+   "key": "math-geo-05",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Series: 12/(6+6)=1 A; correct; 'identical' and 'series' make it unambiguous.",
+   "key": "sci-phys-07",
+   "verdict": "OK"
+  },
+  {
+   "comment": "sin = opposite/hypotenuse = 6/10 = 0.6; correct, angle unambiguously specified.",
+   "key": "math-trig-09",
+   "verdict": "OK"
+  },
+  {
+   "comment": "6/36 = 1/6; reduced-fraction format requested, answer correct.",
+   "key": "math-prob-11",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Roots 2 and 5 give x^2-7x+10, so b=-7; unambiguous and consistent with the stated relationship.",
+   "key": "math-alg-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "2(12+15+20)=94 cm^2; units stated, clean solve.",
+   "key": "math-geo-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "[x^3+x] from 0 to 2 = 10; straightforward and correctly stated.",
+   "key": "math-calc-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "C(4,1)*C(5,2)=40; 'exactly 1 physicist' removes ambiguity about the split.",
+   "key": "math-prob-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "18+4c=33 gives c=3.75; exact decimal, no rounding needed.",
+   "key": "math-sym-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Net rate 1/6+1/4-1/12=1/3 tank/h -> 3 h; units consistent.",
+   "key": "math-mps-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Q=2.0*450*60=54000 J; the deltaT-in-K equivalence is helpfully stated.",
+   "key": "sci-phys-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "4+6+6=16 valence electrons; standard knowledge, answer correct (retrieval flag is arguably unnecessary but harmless).",
+   "key": "sci-chem-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Oxidative phosphorylation occurs in mitochondria; answer correct.",
+   "key": "sci-bio-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "1/0.05=20 parsecs; relation explicitly given.",
+   "key": "sci-astro-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Answer correct (mitochondria), but this is a near-duplicate of sci-bio-02 (same answer, same fact, trivially reworded) — redundant coverage rather than a correctness defect.",
+   "key": "sci-bio-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "540/(10*6*5)=1.8 g/cm^3; units stated.",
+   "key": "sci-infer-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "(0.0100-0.0030)/0.0800=0.0875 mol/L; volumes additive stated, no ambiguity.",
+   "key": "comp-neutralization-dilution-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "6.25%=1/16=(1/2)^4, so exactly 4 half-lives: 4*5730=23120 years; no rounding ambiguity.",
+   "key": "comp-c14-dating-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "v=0 at t=2, s=2t^3-6t^2; distance |−8|+|8|=16 m; reversal correctly handled.",
+   "key": "comp-kinematics-reversal-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "W=0.5*200*0.3^2=9 J; Hooke's law integral correctly set up.",
+   "key": "xd-physcalc-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "(9/180)/0.25=0.2 mol/L; molar mass given, no retrieval needed.",
+   "key": "xd-chemmath-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "g scales as M/R^2: 9.8*2/4=4.9 m/s^2; reasoning airtight.",
+   "key": "xd-astromech-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Genuinely unanswerable: rate constant and initial concentration given but elapsed time t is never stated.",
+   "key": "unc-chem-rate-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Genuinely unanswerable: 3 half-lives gives the fraction (1/8) but initial mass is never given.",
+   "key": "unc-nuc-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Genuinely unanswerable: equivalence point is reached but the NaOH volume delivered is never stated.",
+   "key": "unc-titrate-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "w(w+3)=40 -> 5x8, perimeter 26 m; seed cost, path length, and year are genuinely inert distractors.",
+   "key": "dist-alg-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "36/18=2 mol; still year, student name, and beaker marking cannot change the answer.",
+   "key": "dist-chem-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "One-way time 1.25 s -> 3.75e8 m; diameter/gravity/crater distractors irrelevant to radar ranging.",
+   "key": "dist-astro-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "31.4/3.14=10 cm; board age, temperature, and mounting height are inert.",
+   "key": "dist-geo-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "10*sin(30 deg)=5 m; festival year, paint, and attendance are inert.",
+   "key": "dist-trig-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "5000*0.1*0.1=50 units; tree age, deer census, and species name are inert.",
+   "key": "dist-bio-02-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "5*45=225, 80% accepted -> 180; self-contained and correctly re-solved for a numbers-change child.",
+   "key": "cf-alg-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "720/60=12 m/s; units change is handled cleanly and answer is right.",
+   "key": "cf-phys-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "L+W=18, L=W+3 -> 7.5x10.5=78.75 m^2; constraint-change child solves correctly.",
+   "key": "cf-geo-05",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Two 6-ohm in parallel = 3 ohm; I=12/3=4 A; relationship change (series->parallel) re-solved correctly.",
+   "key": "cf-phys-07",
+   "verdict": "OK"
+  },
+  {
+   "comment": "6-8-10 triangle, tan = 6/8 = 0.75; angle specification (opposite the 6 cm leg) is unambiguous.",
+   "key": "cf-trig-09",
+   "verdict": "OK"
+  },
+  {
+   "comment": "4 of 36 ordered pairs sum to 5; 1/9 fully reduced as requested.",
+   "key": "cf-prob-11",
+   "verdict": "OK"
+  },
+  {
+   "comment": "2^(2x)=2^(3x-3) gives x=3; verified 4^3=64=8^2. Clean, self-contained.",
+   "key": "math-alg-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "((8+14)/2)*5 = 55. Correct and unambiguous.",
+   "key": "math-geo-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Chain rule: f'(x)=6(2x+1)^2; f'(1)=54. Correct.",
+   "key": "math-calc-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "C(5,2)(0.5)^5 = 0.3125. Minor wording flaw: a coin with p=0.5 is not 'biased', but the stated probability governs and the answer is correct.",
+   "key": "math-prob-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "(2@3)@1 = 11@1 = 23. Left-associative reading is the only natural one; correct.",
+   "key": "math-sym-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "80*0.75=60, 60*1.5=90. Sequential percent changes applied correctly.",
+   "key": "math-mps-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "R_eq=2 ohms, I=12/2=6.0 A. Correct; units stated.",
+   "key": "sci-phys-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "H2 limiting (9/3=3 units vs 5 for N2); 3*2=6 mol NH3. Correct.",
+   "key": "sci-chem-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "24/2=12 haploid chromosomes. Correct, appropriate for difficulty 1.",
+   "key": "sci-bio-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "25% remaining = 2 half-lives = 2*5730 = 11460 years. Correct.",
+   "key": "sci-earth-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "NaCl is correct. Fact-recall but consistent with difficulty 1 exact-answer format.",
+   "key": "sci-chem-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "25/4 = 6.25. Rate ratio well-defined since both counts are per minute.",
+   "key": "sci-infer-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "T*cos60 = mg gives T = (0.25*10)/0.5 = 5.0 N. Vertical equilibrium determines T regardless of speed; correct.",
+   "key": "comp-conical-pendulum-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "C(4,2)(1/4)^2(3/4)^2 = 54/256 = 0.2109375. Exact decimal, correctly stated.",
+   "key": "comp-genetics-binomial-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "L = v/(4f) = 340/400 = 0.85 m. Correct; the quarter-wavelength relation is given in the question, so it is self-contained.",
+   "key": "comp-closed-pipe-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "v=3t^2-12t=3t(t-4)=0 at t=4 for t>0. Correct; t=0 correctly excluded by the stated domain.",
+   "key": "xd-physcalc-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "p=0.8, 2pq = 0.32. Standard Hardy-Weinberg; correct.",
+   "key": "xd-biostat-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "T = 4^(3/2) = 8 years; the Kepler form is supplied, so no retrieval needed despite the flag.",
+   "key": "xd-astromech-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Genuinely unanswerable: neither ladder length nor lean angle is given; height = L*sin(theta) is indeterminate from footprint alone.",
+   "key": "unc-geo-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Genuinely unanswerable: perimeter fixes only l+w=18; area varies (80, 81, ...). Not merely hard.",
+   "key": "unc-geo-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Genuinely unanswerable: launch speed = 12/t with t = sqrt(2h/g) and roof height h never given.",
+   "key": "unc-proj-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "KE = 0.5*4*3^2 = 18 J. Correct.",
+   "key": "dist-phys-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "3 doublings: 500*2^3 = 4000. Correct.",
+   "key": "dist-bio-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "(4/6)*(3/5) = 0.4 without replacement. Correct.",
+   "key": "dist-prob-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Q = 0.5*4184*20 = 41840 J. Correct; units stated.",
+   "key": "dist-chem-02-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "36000 m / 1800 s = 20 m/s. Correct unit conversion.",
+   "key": "dist-earth-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "v(t)=6t+2; v(4)=26 m/s. Correct.",
+   "key": "dist-calc-01-clean",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Perfectly inelastic collision: (2*3)/(2+2) = 1.5 m/s. Correct.",
+   "key": "sci-phys-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "0.50*22.4 = 11.2 L at STP. Correct.",
+   "key": "sci-chem-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "(5/8)*(4/7) = 20/56 = 5/14, fully reduced as requested. Correct.",
+   "key": "math-prob-06",
+   "verdict": "OK"
+  },
+  {
+   "comment": "W = 40 N * 5.0 m = 200 J, force parallel to displacement. Correct.",
+   "key": "sci-phys-08",
+   "verdict": "OK"
+  },
+  {
+   "comment": "9/3 = 3 doublings: 500*2^3 = 4000. Correct.",
+   "key": "sci-bio-10",
+   "verdict": "OK"
+  },
+  {
+   "comment": "3e8*2e-4 = 60000 m round trip; half = 30000 m = 30 km. The round-trip hint removes the classic ambiguity.",
+   "key": "sci-earth-12",
+   "verdict": "OK"
+  },
+  {
+   "comment": "x<13 so largest integer is 12; unambiguous, well calibrated.",
+   "key": "math-alg-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "9 parts of 180 deg, largest = 4x20 = 80; correct.",
+   "key": "math-geo-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Integral of 1/x from 1 to e is 1; correct and self-contained (e defined).",
+   "key": "math-calc-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "0.5*(3/5)+0.5*(1/4)=0.425; decimal convention stated.",
+   "key": "math-prob-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Squaring gives x^2+1/x^2=25-2=23; positive-x condition removes sign ambiguity harmlessly.",
+   "key": "math-sym-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "3h+2h=5h total, 240/5=48 km/h; classic harmonic-mean case, correct.",
+   "key": "math-mps-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "mgh = 0.4*9.8*15 = 58.8 J; g specified, units stated.",
+   "key": "sci-phys-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "C1*V1/V2 = 2.0*20/100 = 0.4 mol/L; correct.",
+   "key": "sci-chem-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "6 CO2 per glucose; a known fact but flagged requires_retrieval, difficulty 2 is fair.",
+   "key": "sci-bio-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "28 - 6.5*2 = 15 degC; lapse rate and assumptions stated.",
+   "key": "sci-earth-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Moho separates crust from mantle; unambiguous single-word answer.",
+   "key": "sci-earth-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "10.0 s / 20 oscillations = 0.5 s; length given is a distractor but harmless and realistic.",
+   "key": "sci-infer-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "v=30 cm (1/10-1/15=1/30), m=2, image 4x6 cm, area 24 cm^2; correct.",
+   "key": "comp-thin-lens-area-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "3340 + 836 = 4176 J; both constants supplied in question.",
+   "key": "comp-calorimetry-phase-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "T ratio = 4^(3/2) = 8; law stated in question, so self-contained.",
+   "key": "comp-kepler-ratio-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "2*8.314*300/0.020 = 249420 Pa = 249.42 kPa; conversion factors supplied, units consistent.",
+   "key": "xd-chemmath-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "9 doublings: 50*2^9 = 25600; correct.",
+   "key": "xd-biostat-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Constant density means v proportional to R, so 2x11.2 = 22.4 km/s; formula and Earth value given, hard but tractable.",
+   "key": "xd-astromech-03",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Blue-marble count and hence total never given; genuinely indeterminate, not merely hard.",
+   "key": "unc-prob-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Buoyant force 1.1 N = rho_liquid*g*V but liquid density never stated (clear/colorless does not imply water); genuinely unanswerable.",
+   "key": "unc-fluids-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Simple interest rate never given and is not a standard constant; balance 1500(1+4r) indeterminate.",
+   "key": "unc-fin-01",
+   "verdict": "OK"
+  },
+  {
+   "comment": "KE = 0.5*4*3^2 = 18 J; color, year, and fan are genuinely inert.",
+   "key": "dist-phys-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "3 doublings in 60 min: 500*8 = 4000; location/dish/stain do not affect the count.",
+   "key": "dist-bio-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "(4/6)*(3/5) = 0.4; carnival/box/fee distractors cannot alter the probability.",
+   "key": "dist-prob-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Q = 0.5*4184*20 = 41840 J; well/kettle/elevation are inert.",
+   "key": "dist-chem-02-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "36000 m / 1800 s = 20 m/s; EF rating, drone cost, population are inert.",
+   "key": "dist-earth-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "v(t)=6t+2, v(4)=26 m/s; camp/wire-mass/finish are inert.",
+   "key": "dist-calc-01-load",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Perfectly inelastic collision: 16 kg m/s over 4 kg = 4 m/s; changed numbers are all stated in the child text.",
+   "key": "cf-phys-02",
+   "verdict": "OK"
+  },
+  {
+   "comment": "0.5*22.4 L = 11.2 L = 11200 mL; unit conversion executed correctly.",
+   "key": "cf-chem-04",
+   "verdict": "OK"
+  },
+  {
+   "comment": "With replacement draws are independent: (5/8)^2 = 25/64, already fully reduced; constraint change clearly stated.",
+   "key": "cf-prob-06",
+   "verdict": "OK"
+  },
+  {
+   "comment": "W = 40*5*cos60 = 100 J; angle specified explicitly so child is self-contained.",
+   "key": "cf-phys-08",
+   "verdict": "OK"
+  },
+  {
+   "comment": "Linear growth: 500 + 3*500 = 2000 cells after 9 h; relationship change from exponential is stated in the question.",
+   "key": "cf-bio-10",
+   "verdict": "OK"
+  },
+  {
+   "comment": "3e8*2e-4 = 60000 m round trip, half = 30000 m; round-trip hint included, units stated.",
+   "key": "cf-earth-12",
+   "verdict": "OK"
+  }
+ ]
+}

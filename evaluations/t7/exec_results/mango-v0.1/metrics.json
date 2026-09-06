@@ -1,0 +1,337 @@
+{
+  "per_arm": {
+    "B_plan_only": {
+      "arm": "B_plan_only",
+      "n": 72,
+      "accuracy": 0.5138888888888888,
+      "accuracy_by_class": {
+        "contradictory": 0.0,
+        "distractor": 1.0,
+        "missing_info": 0.0,
+        "mixed": 0.4166666666666667,
+        "multi_step_math": 0.6666666666666666,
+        "retrieval_failure": 0.6666666666666666,
+        "self_correction": 0.3333333333333333,
+        "tool_failure": 1.0
+      },
+      "uncertainty": {
+        "precision": 1.0,
+        "recall": 0.4444444444444444,
+        "tp": 8,
+        "fp": 0,
+        "fn": 10
+      },
+      "plan": {
+        "first_attempt_validity": 0.0,
+        "retry_validity": 0.0,
+        "fallback_rate": 0.9722222222222222
+      },
+      "self_correction_accuracy": 0.3333333333333333,
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "verified_solution_rate": 0.0,
+      "avg_plan_attempts": 1.944,
+      "avg_steps": 2.014,
+      "avg_replans": 0.0,
+      "avg_latency_s": 246.582,
+      "avg_input_tokens": 301.931,
+      "avg_output_tokens": 49.986,
+      "total_tool_calls": 0,
+      "total_retrievals": 0,
+      "citations_fabricated": 0,
+      "citations_unaudited": 0,
+      "stalled_rate": 0.0,
+      "error_rate": 0.0,
+      "fast_path_rate": 0.027777777777777776,
+      "termination_reasons": {
+        "CONFLICTING_EVIDENCE": 8,
+        "SOLVED_UNVERIFIED": 61,
+        "BUDGET_EXHAUSTED": 3
+      },
+      "failure_categories": {
+        "None": 69,
+        "max_step_seconds": 1,
+        "max_total_seconds": 2
+      },
+      "evidence_statuses": {
+        "CONFLICTING_EVIDENCE": 8,
+        "UNCERTAIN": 59,
+        "None": 3,
+        "PARTIALLY_SUPPORTED": 2
+      }
+    },
+    "C_plan_tools": {
+      "arm": "C_plan_tools",
+      "n": 72,
+      "accuracy": 0.4722222222222222,
+      "accuracy_by_class": {
+        "contradictory": 0.0,
+        "distractor": 0.8333333333333334,
+        "missing_info": 0.0,
+        "mixed": 0.4166666666666667,
+        "multi_step_math": 0.6666666666666666,
+        "retrieval_failure": 0.5,
+        "self_correction": 0.3333333333333333,
+        "tool_failure": 1.0
+      },
+      "uncertainty": {
+        "precision": 0.6666666666666666,
+        "recall": 0.3333333333333333,
+        "tp": 6,
+        "fp": 3,
+        "fn": 12
+      },
+      "plan": {
+        "first_attempt_validity": 0.0,
+        "retry_validity": 0.0,
+        "fallback_rate": 0.9722222222222222
+      },
+      "self_correction_accuracy": 0.3333333333333333,
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "verified_solution_rate": 0.0,
+      "avg_plan_attempts": 1.944,
+      "avg_steps": 1.986,
+      "avg_replans": 0.0,
+      "avg_latency_s": 31.805,
+      "avg_input_tokens": 376.278,
+      "avg_output_tokens": 50.486,
+      "total_tool_calls": 0,
+      "total_retrievals": 14,
+      "citations_fabricated": 0,
+      "citations_unaudited": 0,
+      "stalled_rate": 0.0,
+      "error_rate": 0.0,
+      "fast_path_rate": 0.027777777777777776,
+      "termination_reasons": {
+        "CONFLICTING_EVIDENCE": 6,
+        "BUDGET_EXHAUSTED": 4,
+        "SOLVED_UNVERIFIED": 59,
+        "INSUFFICIENT_INFORMATION": 3
+      },
+      "failure_categories": {
+        "None": 68,
+        "max_step_seconds": 2,
+        "max_total_seconds": 2
+      },
+      "evidence_statuses": {
+        "CONFLICTING_EVIDENCE": 6,
+        "None": 4,
+        "UNCERTAIN": 48,
+        "PARTIALLY_SUPPORTED": 11,
+        "INSUFFICIENT_INFORMATION": 3
+      }
+    },
+    "D_plan_exec_verify": {
+      "arm": "D_plan_exec_verify",
+      "n": 72,
+      "accuracy": 0.4722222222222222,
+      "accuracy_by_class": {
+        "contradictory": 0.0,
+        "distractor": 0.8333333333333334,
+        "missing_info": 0.0,
+        "mixed": 0.4166666666666667,
+        "multi_step_math": 0.6666666666666666,
+        "retrieval_failure": 0.5,
+        "self_correction": 0.3333333333333333,
+        "tool_failure": 1.0
+      },
+      "uncertainty": {
+        "precision": 0.7272727272727273,
+        "recall": 0.4444444444444444,
+        "tp": 8,
+        "fp": 3,
+        "fn": 10
+      },
+      "plan": {
+        "first_attempt_validity": 0.0,
+        "retry_validity": 0.0,
+        "fallback_rate": 0.9722222222222222
+      },
+      "self_correction_accuracy": 0.3333333333333333,
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "verified_solution_rate": 0.0,
+      "avg_plan_attempts": 1.944,
+      "avg_steps": 2.014,
+      "avg_replans": 0.0,
+      "avg_latency_s": 27.465,
+      "avg_input_tokens": 381.181,
+      "avg_output_tokens": 50.778,
+      "total_tool_calls": 0,
+      "total_retrievals": 14,
+      "citations_fabricated": 0,
+      "citations_unaudited": 0,
+      "stalled_rate": 0.0,
+      "error_rate": 0.0,
+      "fast_path_rate": 0.027777777777777776,
+      "termination_reasons": {
+        "CONFLICTING_EVIDENCE": 8,
+        "SOLVED_UNVERIFIED": 59,
+        "BUDGET_EXHAUSTED": 2,
+        "INSUFFICIENT_INFORMATION": 3
+      },
+      "failure_categories": {
+        "None": 70,
+        "max_total_seconds": 2
+      },
+      "evidence_statuses": {
+        "CONFLICTING_EVIDENCE": 8,
+        "UNCERTAIN": 48,
+        "PARTIALLY_SUPPORTED": 11,
+        "None": 2,
+        "INSUFFICIENT_INFORMATION": 3
+      }
+    },
+    "F_no_distractor_filter": {
+      "arm": "F_no_distractor_filter",
+      "n": 72,
+      "accuracy": 0.4722222222222222,
+      "accuracy_by_class": {
+        "contradictory": 0.0,
+        "distractor": 0.8333333333333334,
+        "missing_info": 0.0,
+        "mixed": 0.4166666666666667,
+        "multi_step_math": 0.6666666666666666,
+        "retrieval_failure": 0.5,
+        "self_correction": 0.3333333333333333,
+        "tool_failure": 1.0
+      },
+      "uncertainty": {
+        "precision": 0.7272727272727273,
+        "recall": 0.4444444444444444,
+        "tp": 8,
+        "fp": 3,
+        "fn": 10
+      },
+      "plan": {
+        "first_attempt_validity": 0.0,
+        "retry_validity": 0.0,
+        "fallback_rate": 0.9722222222222222
+      },
+      "self_correction_accuracy": 0.3333333333333333,
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "verified_solution_rate": 0.0,
+      "avg_plan_attempts": 1.944,
+      "avg_steps": 2.083,
+      "avg_replans": 0.0,
+      "avg_latency_s": 19.186,
+      "avg_input_tokens": 401.167,
+      "avg_output_tokens": 53.056,
+      "total_tool_calls": 0,
+      "total_retrievals": 15,
+      "citations_fabricated": 0,
+      "citations_unaudited": 0,
+      "stalled_rate": 0.041666666666666664,
+      "error_rate": 0.0,
+      "fast_path_rate": 0.027777777777777776,
+      "termination_reasons": {
+        "CONFLICTING_EVIDENCE": 8,
+        "SOLVED_UNVERIFIED": 61,
+        "STALLED": 3
+      },
+      "failure_categories": {
+        "None": 69,
+        "LOOP_STALLED": 3
+      },
+      "evidence_statuses": {
+        "CONFLICTING_EVIDENCE": 8,
+        "UNCERTAIN": 49,
+        "PARTIALLY_SUPPORTED": 12,
+        "None": 3
+      }
+    },
+    "G_no_correction_gate": {
+      "arm": "G_no_correction_gate",
+      "n": 72,
+      "accuracy": 0.4722222222222222,
+      "accuracy_by_class": {
+        "contradictory": 0.0,
+        "distractor": 0.8333333333333334,
+        "missing_info": 0.0,
+        "mixed": 0.4166666666666667,
+        "multi_step_math": 0.6666666666666666,
+        "retrieval_failure": 0.5,
+        "self_correction": 0.3333333333333333,
+        "tool_failure": 1.0
+      },
+      "uncertainty": {
+        "precision": 0.7272727272727273,
+        "recall": 0.4444444444444444,
+        "tp": 8,
+        "fp": 3,
+        "fn": 10
+      },
+      "plan": {
+        "first_attempt_validity": 0.0,
+        "retry_validity": 0.0,
+        "fallback_rate": 0.9722222222222222
+      },
+      "self_correction_accuracy": 0.3333333333333333,
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "verified_solution_rate": 0.0,
+      "avg_plan_attempts": 1.944,
+      "avg_steps": 2.083,
+      "avg_replans": 0.0,
+      "avg_latency_s": 15.311,
+      "avg_input_tokens": 398.458,
+      "avg_output_tokens": 52.681,
+      "total_tool_calls": 0,
+      "total_retrievals": 15,
+      "citations_fabricated": 0,
+      "citations_unaudited": 0,
+      "stalled_rate": 0.041666666666666664,
+      "error_rate": 0.0,
+      "fast_path_rate": 0.027777777777777776,
+      "termination_reasons": {
+        "CONFLICTING_EVIDENCE": 8,
+        "SOLVED_UNVERIFIED": 61,
+        "STALLED": 3
+      },
+      "failure_categories": {
+        "None": 69,
+        "LOOP_STALLED": 3
+      },
+      "evidence_statuses": {
+        "CONFLICTING_EVIDENCE": 8,
+        "UNCERTAIN": 49,
+        "PARTIALLY_SUPPORTED": 12,
+        "None": 3
+      }
+    }
+  },
+  "comparison": {
+    "suite": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\executive-suite\\v1",
+    "checkpoint": "Mango-v0.1",
+    "date": "2026-09-04",
+    "arms": [
+      "B_plan_only",
+      "C_plan_tools",
+      "D_plan_exec_verify",
+      "F_no_distractor_filter",
+      "G_no_correction_gate"
+    ]
+  }
+}

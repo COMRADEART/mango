@@ -1,0 +1,68 @@
+{
+  "label": "qwen3-4b-instruct",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": null,
+  "recorded_at": "2026-09-05T00:37:14.032267+00:00",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "vram_total_mib": 6140,
+  "ram_before_gb": 16.23,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2716700672,
+    "peak_vram_bytes": 2716700672,
+    "reserved_vram_bytes": 2732589056,
+    "smoke_latency_s": 0.43
+  },
+  "cpu_offload": false,
+  "offload_devices": [],
+  "disk_size_gb": 7.51,
+  "smoke": [
+    {
+      "eval_id": "mce1-2c0e13557510",
+      "latency_s": 17.4,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "**M",
+      "preview": "We are given:\n\n- 50.0 mL of 0.200 M HCl (hydrochloric acid)\n- 30.0 mL of 0.100 M NaOH (sodium hydroxide)\n\nBoth are stron"
+    },
+    {
+      "eval_id": "mce1-19be3e9a939b",
+      "latency_s": 22.02,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "We are given a conical pendulum problem and need to find the **tension in the string**.\n\n---\n\n### Given:\n- Mass of bob, "
+    },
+    {
+      "eval_id": "mce1-7f8430191127",
+      "latency_s": 19.9,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "So, $t = 0$ or $t =",
+      "preview": "We are given the velocity function of a one-dimensional robot cart:\n\n$$\nv(t) = 6t^2 - 12t \\quad \\text{for } 0 \\leq t \\le"
+    },
+    {
+      "eval_id": "mce1-cdba4e530e88",
+      "latency_s": 16.57,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "Find",
+      "preview": "We are given:\n\n- Height of object (h\u2080) = 2.0 cm  \n- Width of object (w\u2080) = 3.0 cm  \n- Object distance (d\u2080) = 15.0 cm  \n-"
+    },
+    {
+      "eval_id": "mce1-570727e589bb",
+      "latency_s": 16.86,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "- 1.00 mol H\u2082",
+      "preview": "We are given a chemistry problem involving gas reactions and pressure changes in a rigid vessel at constant temperature."
+    }
+  ],
+  "tokens_per_s_median": 14.71,
+  "latency_median_s": 17.4,
+  "peak_gen_vram_mib": 2726.0,
+  "ram_after_gb": 17.02,
+  "ok": true
+}

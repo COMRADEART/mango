@@ -1,0 +1,62 @@
+[
+  {
+    "question_id": "mq-retf-01",
+    "class": "retrieval_failure",
+    "question": "Which organ in the human body produces the hormone insulin?",
+    "answer_type": "text",
+    "choices": null,
+    "expected_answer": "pancreas",
+    "notes": "Parametric anatomy fact; gold is the organ name only, answerable without any retrieval. Replaces the former plant-gas question that was a near-duplicate of mq-retf-03.",
+    "harness": {"fail_retrieval": true}
+  },
+  {
+    "question_id": "mq-retf-02",
+    "class": "retrieval_failure",
+    "question": "What is the hardest naturally occurring mineral on Earth?",
+    "answer_type": "text",
+    "choices": null,
+    "expected_answer": "diamond",
+    "notes": "Widely known materials-science fact; single-word gold from parametric knowledge. Replaces the former gold chemical-symbol item that duplicated mq-simple-09 and shared the symbol template with mq-retf-05.",
+    "harness": {"fail_retrieval": true}
+  },
+  {
+    "question_id": "mq-retf-03",
+    "class": "retrieval_failure",
+    "question": "Which gas do humans primarily need to inhale for cellular respiration?",
+    "answer_type": "text",
+    "choices": null,
+    "expected_answer": "oxygen",
+    "notes": "Basic body/biology fact; unique unambiguous short answer.",
+    "harness": {"fail_retrieval": true}
+  },
+  {
+    "question_id": "mq-retf-04",
+    "class": "retrieval_failure",
+    "question": "Newton's law that states every action has an equal and opposite reaction is known by what ordinal name, in the form 'Newton's X law'?",
+    "answer_type": "text",
+    "choices": null,
+    "expected_answer": "third",
+    "notes": "Basic physics law naming; gold is the ordinal term only.",
+    "harness": {"fail_retrieval": true}
+  },
+  {
+    "question_id": "mq-retf-05",
+    "class": "retrieval_failure",
+    "question": "How many strings does a standard guitar have?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "6",
+    "notes": "Everyday parametric-recall fact; the word 'standard' fixes the count unambiguously. Replaces the former sodium chemical-symbol item whose 'What is the chemical symbol for the element X?' skeleton was an exact template match with mq-simple-09.",
+    "harness": {"fail_retrieval": true}
+  },
+  {
+    "question_id": "mq-retf-06",
+    "class": "retrieval_failure",
+    "question": "By what single common name is the force that pulls objects toward Earth's center known?",
+    "answer_type": "text",
+    "choices": null,
+    "expected_answer": "gravity",
+    "notes": "Elementary physics fact; one-word unambiguous gold term.",
+    "harness": {"fail_retrieval": true}
+  }
+]

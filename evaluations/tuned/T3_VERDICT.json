@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-09-03",
+  "milestone": "T3 — first balanced SFT adapter (Qwen3-1.7B QLoRA)",
+  "verdict": "PARTIAL",
+  "adapter_promotion": {
+    "decision": "REJECT",
+    "note": "checkpoint is kept as historical T3 evidence (training/adapters/sciencemath-v0.1-t3/) but is NOT promoted as a Mango candidate: math regressed materially while science was preserved, violating the balanced-checkpoint requirement"
+  },
+  "comparison": {
+    "baseline": "evaluations/base/qwen3-1.7b_non_thinking/metrics.json (T2 operational baseline, declared reference)",
+    "overall_accuracy": {"base": 0.6862, "tuned": 0.5638, "delta_pp": -12.24},
+    "math_macro": {"base": 0.585, "tuned": 0.34, "delta_pp": -24.5},
+    "science_macro": {"base": 0.7667, "tuned": 0.7667, "delta_pp": 0.0},
+    "extraction_success_rate": {"base": 0.9681, "tuned": 0.9362, "delta_pp": -3.19}
+  },
+  "catastrophic_forgetting_gate": {
+    "flag": "PASS",
+    "rule": "science macro < 71.67% (5.0 pp below the declared 76.67% reference) triggers SCIENCE_REGRESSION",
+    "tuned_science_macro": 0.7667,
+    "drop_pp": 0.0,
+    "threshold_declared_before_evaluation": true
+  },
+  "per_category_deltas_pp": {
+    "algebra": -30.0, "arithmetic": -12.5, "geometry": -30.0,
+    "probability_statistics": -30.0, "trigonometry_precalculus": -20.0,
+    "general_science": 0.0, "instruction_following": 30.0,
+    "uncertainty_calibration": -12.5
+  },
+  "regression_analysis": {
+    "science_preserved": "general_science exactly matches the baseline (0.7667); the SFT science format ('Answer: \\boxed{...}') transfers cleanly",
+    "math_collapsed": "every math category fell 12.5-30 pp. Mechanism (from failure analysis): the adapter was trained toward concise targets (avg output 172 tokens vs baseline 366); the base model's long chain-of-thought was doing real work on multi-step competition math, and the concise SFT style removed it. 16/188 outputs truncated at 1024 tokens; 12 extraction failures (rambling or [asy] diagram echo without reaching a boxed answer); uncertainty_calibration collapsed to 0 (model now confidently fabricates answers instead of admitting undeterminability)",
+    "instruction_following_improved": "0.7 -> 1.0 (the model follows the boxed-answer instruction format more reliably)",
+    "ablation": "genuine adapter effect proven: adapter on/off outputs differ on 4/4 checked questions, active states recorded programmatically",
+    "metric_integrity": "independent recomputation from predictions.jsonl via compute_metrics is IDENTICAL to saved metrics.json; suite verified before evaluation (188/188, checksummed)"
+  },
+  "tests": "181 passed (pytest, post-evaluation)",
+  "lessons_for_next_milestone": [
+    "T4's deterministic verification/tools is now clearly the right lever for math: SFT alone on this corpus made math worse, not better",
+    "future math SFT targets must preserve full multi-step reasoning (or the model must recover it via tools), not terse summaries",
+    "uncertainty calibration needs explicit training coverage and eval protection",
+    "future adapters use Mango naming (mango-v0.x-*); this one is frozen historical evidence"
+  ]
+}

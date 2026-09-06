@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-09-02T03:49:02.457309+00:00",
+  "python": "3.12.10",
+  "torch": "2.5.1+cu121",
+  "torch_cuda_available": true,
+  "torch_cuda_version": "12.1",
+  "transformers": "5.5.4",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "vram_total_bytes": 6438780928,
+  "hardware_report": {
+    "platform_name": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.10",
+    "torch_installed": true,
+    "torch_version": "2.5.1+cu121",
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "device_count": 1,
+    "total_vram_bytes": 6438780928,
+    "compute_capability": [
+      8,
+      9
+    ],
+    "bf16_supported": true,
+    "recommendations": {
+      "device": "cuda",
+      "can_train_qlora": true,
+      "precision": "bfloat16",
+      "load_in_4bit": true,
+      "per_device_train_batch_size": 2,
+      "gradient_accumulation_steps": 8,
+      "max_seq_length": 1024,
+      "max_model_params_b": 4.0,
+      "measured_vram_gb": 6.0,
+      "gradient_checkpointing": true
+    }
+  },
+  "bitsandbytes": "0.50.2",
+  "datasets": "5.0.1"
+}

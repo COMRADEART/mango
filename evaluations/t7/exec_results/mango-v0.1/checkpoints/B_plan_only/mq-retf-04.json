@@ -1,0 +1,123 @@
+{
+ "state": {
+  "run_id": "mq-retf-04",
+  "problem": "Newton's law that states every action has an equal and opposite reaction is known by what ordinal name, in the form 'Newton's X law'?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "RETRIEVAL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "what ordinal name, in the form 'Newton's X law'"
+    },
+    {
+     "id": "s2",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2"
+  ],
+  "observations": [
+   {
+    "step_id": "s2",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "Newton's third law",
+    "detail": {
+     "raw": "Answer: Newton's third law",
+     "signature": "c28a4e64dd24a8c1"
+    },
+    "latency_s": 2.4203986000211444,
+    "input_tokens": 151,
+    "output_tokens": 7
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 3,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 25.86886489999597,
+   "input_tokens": 151,
+   "output_tokens": 7
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "Newton's law that states every action has an equal and opposite reaction is known by what ordinal name, in the form 'Newton's X law'?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "Newton's third law",
+     "step_id": "s2"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "Newton's third law",
+    "step_id": "s2"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   }
+  ]
+ }
+}

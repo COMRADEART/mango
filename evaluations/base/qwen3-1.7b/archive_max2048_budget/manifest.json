@@ -1,0 +1,54 @@
+{
+  "model_id": "Qwen/Qwen3-1.7B",
+  "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "status": "ABANDONED_PARTIAL_RUN_TOKEN_BUDGET",
+  "mode": "thinking",
+  "thinking_enabled": true,
+  "quantized_4bit": true,
+  "suite": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\suite\\v1",
+  "questions_total": 5,
+  "questions_answered": 5,
+  "generation": {
+    "seed": 42,
+    "do_sample": true,
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_new_tokens": 2048
+  },
+  "runtime_s": 5001.9,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2284549632,
+    "peak_vram_bytes": 2284549632,
+    "reserved_vram_bytes": 2325741568,
+    "smoke_latency_s": 3.37
+  },
+  "candidate_key": "A",
+  "variant": "primary",
+  "suite_check": {
+    "suite_version": "sciencemath-eval-v1",
+    "frozen_at": "2026-08-31T17:10:34.244343+00:00",
+    "verified": true,
+    "problems": [],
+    "files": [
+      "category_manifest.json",
+      "leakage_check.json",
+      "manifest.json",
+      "questions.jsonl",
+      "source_manifest.json"
+    ],
+    "extra_unlisted_files": [],
+    "verified_at": "2026-08-31T17:12:05.312663+00:00"
+  },
+  "license_status": "APPROVED",
+  "license": "apache-2.0",
+  "prompt_note": "Qwen3 chat template with enable_thinking=True; gradable text is taken after the closing reasoning tag",
+  "t2_environment": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t2_environment.json",
+  "suite_version": "sciencemath-eval-v1",
+  "finished_at": "2026-08-31T18:36:21.763996+00:00",
+  "abandonment_note": "ABANDONED partial run (74/188 questions). Reason: measurement-validity failure - ALL 25 EXTRACTION_FAILUREs are max_new_tokens=2048 truncations (finish_reason=length, all exactly 2048 output tokens). Accuracy among completed answers 41/45 = 91.1%; overall 42/74 = 56.8% was dominated by budget truncation, i.e. measuring the token budget, not the model. Decision (user-approved 2026-08-31): raise Candidate A budget to 4096 tokens uniformly and re-run all 188 questions from scratch. Config is a measurement-validity fix recorded BEFORE the 4096 run started - per-question prompt/question content was NEVER changed. This archive is kept as provenance; it is not a usable baseline.",
+  "superseded_at": "2026-08-31T00:00:00+00:00"
+}

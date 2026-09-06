@@ -1,0 +1,33 @@
+{
+  "version": "mango-rag-eval-v1",
+  "frozen_at": null,
+  "n_questions": 82,
+  "categories": {
+    "retrieval_relevance": 8,
+    "factual_science_qa": 12,
+    "multi_hop_science_qa": 6,
+    "quantitative_science": 10,
+    "insufficient_evidence": 8,
+    "distractor_retrieval": 6,
+    "conflicting_evidence": 4,
+    "source_attribution": 6,
+    "domain_routing": 16,
+    "mixed_math_science": 6
+  },
+  "additivity": "frozen sciencemath-eval-v1 and mango-tool-eval-v1 untouched; this suite is fully new and synthetic",
+  "annotations": {
+    "expected_route": "domain_routing rows: MATH|SCIENCE|MIXED|GENERAL",
+    "expected_domain": "canonical corpus taxonomy domain",
+    "supporting_fact": "retrieval ground truth (claim-support scored)",
+    "answer_type": "numeric|exact_answer|uncertainty"
+  },
+  "metrics": [
+    "retrieval Recall@1/3/5, MRR, nDCG@5",
+    "domain_routing_accuracy",
+    "irrelevant_chunk_rate",
+    "no_rag_vs_rag_accuracy (matched generation)",
+    "citation_provenance (fabricated/unsupported/valid)",
+    "insufficient_evidence_correctness"
+  ],
+  "separation_note": "kept separate from indexed corpus/rag training data; questions are synthetic and do not overlap ingestion seeds verbatim"
+}

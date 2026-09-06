@@ -6,6 +6,24 @@ import os
 import tempfile
 from pathlib import Path
 
+_REPO_ROOT: Path | None = None
+
+
+def find_repo_root() -> Path:
+    """Locate the repository root (dir containing pyproject.toml).
+
+    Walks up from this file's package location, then from the CWD as a
+    fallback (pip-installed package outside a checkout). Cached."""
+    global _REPO_ROOT
+    if _REPO_ROOT is not None:
+        return _REPO_ROOT
+    for start in (Path(__file__).resolve().parent, Path.cwd()):
+        for candidate in [start, *start.parents]:
+            if (candidate / "pyproject.toml").exists():
+                _REPO_ROOT = candidate
+                return _REPO_ROOT
+    raise FileNotFoundError("repository root (pyproject.toml) not found")
+
 
 def read_jsonl(path: str | os.PathLike) -> list[dict]:
     out = []

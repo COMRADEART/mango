@@ -21,7 +21,13 @@ chunking:
 metadata_per_chunk: [title, pageid, url, section_heading, revision_id, license, chunk_id]
 
 embedding:
-  model: sentence-transformers/all-MiniLM-L6-v2   # ~80 MB, CPU-friendly
+  # T5.7: candidates were MEASURED (scripts/eval_embeddings.py, probe set
+  # in rag/embeddings/embedding_decision.json); e5-small-v2 won on
+  # retrieval quality (recall@1 0.80, MRR 0.90 vs 0.767/0.883) with
+  # negligible latency cost (18.6 ms/query CPU). The decision file, not
+  # this field, drives the index builder.
+  model: intfloat/e5-small-v2                     # measured winner (T5.7)
+  revision: ffb93f3bd4047442299a41ebb6fa998a38507c52
   batch_size: 64
 
 retrieval:

@@ -1,0 +1,213 @@
+{
+ "state": {
+  "run_id": "mq-mixed-02",
+  "problem": "A steel bridge girder is 80 m long on a winter night when the temperature is -5 degrees Celsius. By a summer afternoon it has warmed to 35 degrees Celsius, and steel lengthens by 0.000012 of its length for each 1 degree Celsius rise. By how many millimeters does the girder lengthen?",
+  "goal": "",
+  "problem_type": "MIXED",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "when the temperature is -5 degrees Celsius"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-29952:laws_of_thermodynamics_third_law_c865dd40:0 | wiki-18959138:climate_48578601:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-29952:laws_of_thermodynamics_third_law_c865dd40:0",
+       "text": "The third law of thermodynamics states: As the temperature of a system approaches absolute zero, all processes cease and the entropy of the system approaches a minimum value. This law of thermodynamics is a statistical law of nature regarding entropy and the impossibility of reaching absolute zero of temperature. This law provides an absolute reference point for the determination of entropy. The entropy determined relative to this point is the absolute entropy. Alternative definitions include \"the entropy of all systems and of all states of a system is smallest at absolute zero,\" or equivalent"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-18959138:climate_48578601:0",
+       "text": "Antarctica is the coldest, windiest, and driest of Earth's continents. Near the coast, the temperature can exceed 10 °C in summer and fall to below −40 °C in winter. Over the elevated inland, it can rise to about −30 °C in summer but fall below −80 °C in winter. The lowest natural air temperature ever recorded on Earth was −89.2 °C (−128.6 °F) at the Russian Vostok Station in Antarctica on 21 July 1983. A lower air temperature of −94.7 °C (−138.5 °F) was recorded in 2010 by satellite—however, it may have been influenced by ground temperatures and was not recorded at a height of 2 m (7 ft) abov"
+      }
+     ],
+     "signature": "7fa277a73046f4ab"
+    },
+    "latency_s": 0.4267721999785863,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "0.000012*30=0.0036 m=3.6 mm",
+    "detail": {
+     "raw": "Answer: 0.000012*30=0.0036 m=3.6 mm\n\nFinal answer: \\boxed{3.6}",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 5.084262899996247,
+    "input_tokens": 467,
+    "output_tokens": 39
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{3.6}",
+    "detail": {
+     "raw": "Answer: \\boxed{3.6}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.7475052999798208,
+    "input_tokens": 462,
+    "output_tokens": 10
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 145.60668639998767,
+   "input_tokens": 929,
+   "output_tokens": 49
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A steel bridge girder is 80 m long on a winter night when the temperature is -5 degrees Celsius.",
+   "By a summer afternoon it has warmed to 35 degrees Celsius, and steel lengthens by 0.000012 of its length for each 1 degree Celsius rise.",
+   "By how many millimeters does the girder lengthen?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-29952:laws_of_thermodynamics_third_law_c865dd40:0 | wiki-18959138:climate_48578601:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "0.000012*30=0.0036 m=3.6 mm",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{3.6}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-29952:laws_of_thermodynamics_third_law_c865dd40:0 | wiki-18959138:climate_48578601:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "0.000012*30=0.0036 m=3.6 mm",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{3.6}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

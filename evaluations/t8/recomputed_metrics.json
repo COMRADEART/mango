@@ -1,0 +1,282 @@
+{
+  "generated_at": "2026-09-05T23:28:21.210752+00:00",
+  "suite": "mango-capacity-eval-v1",
+  "runs": {
+    "phi4-mini-instruct": {
+      "model": "microsoft/Phi-4-mini-instruct",
+      "n_predictions": 131,
+      "unique_ids": 131,
+      "missing": 0,
+      "recomputed": {
+        "overall": 0.5714285714285714,
+        "uncertainty_f1": 0.6,
+        "uncertainty_recall": 0.5,
+        "distractor_clean": 0.6666666666666666,
+        "distractor_loaded": 0.75,
+        "extraction_rate": 1.0,
+        "math": 0.8620689655172413,
+        "science": 0.5,
+        "cross_domain": 0.4166666666666667,
+        "compositional": 0.16666666666666666,
+        "counterfactual": 0.3333333333333333,
+        "self_correction_net_benefit": 0.17647058823529413,
+        "self_correction_counts": {
+          "corrected": 9,
+          "overcorrected": 0,
+          "preserved": 12,
+          "n_wrong_total": 51
+        },
+        "decomposition": {
+          "raw_valid_rate": 0.0,
+          "repaired_valid_rate": 0.6666666666666666,
+          "semantic_valid_rate": 0.6666666666666666,
+          "executable_rate": 0.6666666666666666
+        }
+      },
+      "stored_vector": {
+        "overall": 0.5714285714285714,
+        "math_macro": 0.8620689655172413,
+        "science_macro": 0.5,
+        "cross_domain": 0.4166666666666667,
+        "compositional": 0.16666666666666666,
+        "counterfactual": 0.3333333333333333,
+        "distractor": 0.75,
+        "uncertainty": 0.6,
+        "decomposition": 0.6666666666666666,
+        "self_correction": 0.17647058823529413,
+        "tool_routing": 0.6666666666666666,
+        "retrieval_routing": null,
+        "extraction": 1.0
+      },
+      "agrees_with_summary": true,
+      "errors": [],
+      "notes": [
+        "note: raw_valid/repaired_valid judged at runtime against full raw text (raw_extract is truncated in plans.jsonl); aggregate consistency verified here"
+      ],
+      "quantization": "4bit-nf4-double-quant",
+      "generation_profile": "greedy",
+      "config_fingerprint": "dda824a6e3f9"
+    },
+    "phi4-mini-reasoning": {
+      "model": "microsoft/Phi-4-mini-reasoning",
+      "n_predictions": 131,
+      "unique_ids": 131,
+      "missing": 0,
+      "recomputed": {
+        "overall": 0.8067226890756303,
+        "uncertainty_f1": null,
+        "uncertainty_recall": 0.0,
+        "distractor_clean": 0.9166666666666666,
+        "distractor_loaded": 1.0,
+        "extraction_rate": 0.9159663865546218,
+        "math": 0.7931034482758621,
+        "science": 0.9,
+        "cross_domain": 0.75,
+        "compositional": 0.5833333333333334,
+        "counterfactual": 0.5833333333333334,
+        "self_correction_net_benefit": 0.043478260869565216,
+        "self_correction_counts": {
+          "corrected": 13,
+          "overcorrected": 12,
+          "preserved": 0,
+          "n_wrong_total": 23
+        },
+        "decomposition": {
+          "raw_valid_rate": 0.0,
+          "repaired_valid_rate": 0.2916666666666667,
+          "semantic_valid_rate": 0.2916666666666667,
+          "executable_rate": 0.20833333333333334
+        }
+      },
+      "stored_vector": {
+        "overall": 0.8067226890756303,
+        "math_macro": 0.7931034482758621,
+        "science_macro": 0.9,
+        "cross_domain": 0.75,
+        "compositional": 0.5833333333333334,
+        "counterfactual": 0.5833333333333334,
+        "distractor": 1.0,
+        "uncertainty": null,
+        "decomposition": 0.2916666666666667,
+        "self_correction": 0.043478260869565216,
+        "tool_routing": 0.2916666666666667,
+        "retrieval_routing": null,
+        "extraction": 0.9159663865546218
+      },
+      "agrees_with_summary": true,
+      "errors": [],
+      "notes": [
+        "note: raw_valid/repaired_valid judged at runtime against full raw text (raw_extract is truncated in plans.jsonl); aggregate consistency verified here"
+      ],
+      "quantization": "4bit-nf4-double-quant",
+      "generation_profile": "greedy",
+      "config_fingerprint": "dda824a6e3f9"
+    },
+    "qwen3-1.7b-control": {
+      "model": "Qwen/Qwen3-1.7B",
+      "n_predictions": 131,
+      "unique_ids": 131,
+      "missing": 0,
+      "recomputed": {
+        "overall": 0.8151260504201681,
+        "uncertainty_f1": 0.26666666666666666,
+        "uncertainty_recall": 0.16666666666666666,
+        "distractor_clean": 0.9166666666666666,
+        "distractor_loaded": 0.9166666666666666,
+        "extraction_rate": 0.9747899159663865,
+        "math": 0.8620689655172413,
+        "science": 0.8,
+        "cross_domain": 0.9166666666666666,
+        "compositional": 0.6666666666666666,
+        "counterfactual": 0.5833333333333334,
+        "self_correction_net_benefit": 0.18181818181818182,
+        "self_correction_counts": {
+          "corrected": 4,
+          "overcorrected": 0,
+          "preserved": 12,
+          "n_wrong_total": 22
+        },
+        "decomposition": {
+          "raw_valid_rate": 0.0,
+          "repaired_valid_rate": 0.0,
+          "semantic_valid_rate": 0.0,
+          "executable_rate": 0.0
+        }
+      },
+      "stored_vector": {
+        "overall": 0.8151260504201681,
+        "math_macro": 0.8620689655172413,
+        "science_macro": 0.8,
+        "cross_domain": 0.9166666666666666,
+        "compositional": 0.6666666666666666,
+        "counterfactual": 0.5833333333333334,
+        "distractor": 0.9166666666666666,
+        "uncertainty": 0.26666666666666666,
+        "decomposition": 0.0,
+        "self_correction": 0.18181818181818182,
+        "tool_routing": 0.0,
+        "retrieval_routing": null,
+        "extraction": 0.9747899159663865
+      },
+      "agrees_with_summary": true,
+      "errors": [],
+      "notes": [
+        "note: raw_valid/repaired_valid judged at runtime against full raw text (raw_extract is truncated in plans.jsonl); aggregate consistency verified here"
+      ],
+      "quantization": "4bit-nf4-double-quant",
+      "generation_profile": "qwen3-card-non-thinking",
+      "config_fingerprint": "d81db14830a8"
+    },
+    "qwen3-4b-instruct": {
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "n_predictions": 131,
+      "unique_ids": 131,
+      "missing": 0,
+      "recomputed": {
+        "overall": 0.8151260504201681,
+        "uncertainty_f1": 0.761904761904762,
+        "uncertainty_recall": 0.6666666666666666,
+        "distractor_clean": 0.9166666666666666,
+        "distractor_loaded": 0.9166666666666666,
+        "extraction_rate": 1.0,
+        "math": 0.7931034482758621,
+        "science": 0.8333333333333334,
+        "cross_domain": 0.8333333333333334,
+        "compositional": 0.75,
+        "counterfactual": 0.6666666666666666,
+        "self_correction_net_benefit": -0.22727272727272727,
+        "self_correction_counts": {
+          "corrected": 6,
+          "overcorrected": 11,
+          "preserved": 1,
+          "n_wrong_total": 22
+        },
+        "decomposition": {
+          "raw_valid_rate": 0.375,
+          "repaired_valid_rate": 0.375,
+          "semantic_valid_rate": 0.375,
+          "executable_rate": 0.375
+        }
+      },
+      "stored_vector": {
+        "overall": 0.8151260504201681,
+        "math_macro": 0.7931034482758621,
+        "science_macro": 0.8333333333333334,
+        "cross_domain": 0.8333333333333334,
+        "compositional": 0.75,
+        "counterfactual": 0.6666666666666666,
+        "distractor": 0.9166666666666666,
+        "uncertainty": 0.761904761904762,
+        "decomposition": 0.375,
+        "self_correction": -0.22727272727272727,
+        "tool_routing": 0.375,
+        "retrieval_routing": null,
+        "extraction": 1.0
+      },
+      "agrees_with_summary": true,
+      "errors": [],
+      "notes": [
+        "note: raw_valid/repaired_valid judged at runtime against full raw text (raw_extract is truncated in plans.jsonl); aggregate consistency verified here"
+      ],
+      "quantization": "4bit-nf4-double-quant",
+      "generation_profile": "qwen3-card-non-thinking",
+      "config_fingerprint": "ebc24194695b"
+    },
+    "smollm3-3b": {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "n_predictions": 131,
+      "unique_ids": 131,
+      "missing": 0,
+      "recomputed": {
+        "overall": 0.7394957983193278,
+        "uncertainty_f1": 0.375,
+        "uncertainty_recall": 0.25,
+        "distractor_clean": 0.8333333333333334,
+        "distractor_loaded": 0.9166666666666666,
+        "extraction_rate": 0.8991596638655462,
+        "math": 0.7586206896551724,
+        "science": 0.6666666666666666,
+        "cross_domain": 0.75,
+        "compositional": 0.5833333333333334,
+        "counterfactual": 0.75,
+        "self_correction_net_benefit": 0.5161290322580645,
+        "self_correction_counts": {
+          "corrected": 18,
+          "overcorrected": 2,
+          "preserved": 10,
+          "n_wrong_total": 31
+        },
+        "decomposition": {
+          "raw_valid_rate": 0.0,
+          "repaired_valid_rate": 0.0,
+          "semantic_valid_rate": 0.0,
+          "executable_rate": 0.0
+        }
+      },
+      "stored_vector": {
+        "overall": 0.7394957983193278,
+        "math_macro": 0.7586206896551724,
+        "science_macro": 0.6666666666666666,
+        "cross_domain": 0.75,
+        "compositional": 0.5833333333333334,
+        "counterfactual": 0.75,
+        "distractor": 0.9166666666666666,
+        "uncertainty": 0.375,
+        "decomposition": 0.0,
+        "self_correction": 0.5161290322580645,
+        "tool_routing": 0.0,
+        "retrieval_routing": null,
+        "extraction": 0.8991596638655462
+      },
+      "agrees_with_summary": true,
+      "errors": [],
+      "notes": [
+        "note: raw_valid/repaired_valid judged at runtime against full raw text (raw_extract is truncated in plans.jsonl); aggregate consistency verified here"
+      ],
+      "quantization": "4bit-nf4-double-quant",
+      "generation_profile": "smollm3-card",
+      "config_fingerprint": "25854849770a"
+    }
+  },
+  "all_agree": true
+}

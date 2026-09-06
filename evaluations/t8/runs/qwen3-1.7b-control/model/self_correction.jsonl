@@ -1,0 +1,34 @@
+{"eval_id": "mce1-cdba4e530e88", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "180", "revised": "180", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-570727e589bb", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "- H₂ remaining: 1.00 - 1.00 =", "revised": "0.258", "revised_correct": false, "changed": true}
+{"eval_id": "mce1-cd66fd3b985a", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "22800", "revised": "22800", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-7489c235272b", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": null, "revised": "40", "revised_correct": true, "changed": true}
+{"eval_id": "mce1-793191e01ca1", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "1000", "revised": "2000", "revised_correct": true, "changed": true}
+{"eval_id": "mce1-445e0b39789a", "tier": "FAIL_ONLY", "initially_correct": false, "initial": "\\frac{1}{9}", "revised": "\\frac{1}{9}", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-7cb5f959578e", "tier": "FAIL_ONLY", "initially_correct": false, "initial": "\\frac{25}{64}", "revised": "\\frac{25}{64}", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-ebbbba919b36", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "3.0 \\times 10^4", "revised": "3.0 \\times 10^4", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-1c92f877b632", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "\\frac{3}{4}", "revised": "\\frac{3}{4}", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-1c06e9630967", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "249.66", "revised": "249.42", "revised_correct": true, "changed": true}
+{"eval_id": "mce1-2159929d9ee0", "tier": "FAIL_ONLY", "initially_correct": false, "initial": "3.75 \\times 10^8", "revised": "3.75 \\times 10^8", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-34f678a68eba", "tier": "FAIL_ONLY", "initially_correct": false, "initial": "3.75 \\times 10^8", "revised": "3.75 \\times 10^8", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-4bef50169fea", "tier": "FAIL_ONLY", "initially_correct": false, "initial": "\\frac{1}{6}", "revised": "\\frac{1}{6}", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-85b35cbe503d", "tier": "FAIL_ONLY", "initially_correct": false, "initial": "\\frac{5}{14}", "revised": "\\frac{5}{14}", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-b8be78b82a2b", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "\\frac{3}{5}", "revised": "\\frac{3}{5}", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-f32ad314f016", "tier": "FAIL_ONLY", "initially_correct": false, "initial": "\\frac{15}{4}", "revised": "\\frac{15}{4}", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-d4a3e428d9b8", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "5400", "revised": "5400", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-1ebbbcb23ebc", "tier": "FAIL_WITH_RESULT", "initially_correct": false, "initial": "26.0", "revised": "22", "revised_correct": true, "changed": true}
+{"eval_id": "mce1-331a6e4f47aa", "tier": "FAIL_ONLY", "initially_correct": false, "initial": "mitochondrion", "revised": "mitochondrion", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-fc0e218537b0", "tier": "FAIL_ONLY", "initially_correct": false, "initial": null, "revised": "\\text{Mitochondrion}", "revised_correct": false, "changed": true}
+{"eval_id": "mce1-bd5c7f9e29a7", "tier": "FAIL_ONLY", "initially_correct": false, "initial": "1", "revised": "1", "revised_correct": false, "changed": false}
+{"eval_id": "mce1-95758434c6fe", "tier": "FAIL_ONLY", "initially_correct": false, "initial": null, "revised": "\\text{asthenosphere}", "revised_correct": false, "changed": true}
+{"eval_id": "mce1-2c0e13557510", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "0.0875", "revised": "0.0875", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-19be3e9a939b", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "5", "revised": "5", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-7f8430191127", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "16", "revised": "16", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-004d097ce440", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "0.90", "revised": "0.90", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-e9fba3e6ce0c", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "0.85", "revised": "0.85", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-4b3c550901ca", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "0.2109375", "revised": "0.2109375", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-b73f309c7de5", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "8", "revised": "8", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-0e5b785cc92d", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "4176", "revised": "4176", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-a8f5c4f97ba8", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "4", "revised": "4", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-7e932e7c8dfd", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "12", "revised": "12", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-d94e17a2596f", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "180", "revised": "180", "revised_correct": true, "changed": false}
+{"eval_id": "mce1-68a3828aa914", "tier": "FAIL_ONLY", "initially_correct": true, "initial": "78.75", "revised": "78.75", "revised_correct": true, "changed": false}

@@ -1,0 +1,144 @@
+{
+  "gate": "T7.0_entry_gate",
+  "milestone": "T7 — Executive Reasoning and Autonomous Scientific/Mathematical Problem Solving",
+  "date": "2026-09-04",
+  "t6_dependency": {
+    "final_report_exists": true,
+    "promotion_log_entries": 1,
+    "last_decision": "REJECT",
+    "t6_status": "PARTIAL (v0.2 not promoted; v0.1 retained)"
+  },
+  "checkpoint": {
+    "active": "Mango-v0.1",
+    "base_model": "Qwen/Qwen3-1.7B",
+    "adapter": "training\\adapters\\sciencemath-v0.1-t3",
+    "adapter_weights_exist": true,
+    "rejected_l1_not_in_load_path": true,
+    "rejected_l1_exists_for_provenance": true,
+    "no_training_in_t7": true
+  },
+  "git": {
+    "branch": "master",
+    "head": "662e08f172cb98b333dab4960d9ff3ea81ab21d0",
+    "head_subject": "T0+T1: repository foundation and dataset pipeline",
+    "dirty_files": 152,
+    "note": "uncommitted T2-T5R working tree preserved as-is; T6 adds new files and does not modify frozen artifacts"
+  },
+  "frozen_checksums": {
+    "evaluations/suite/v1": {
+      "ok": true,
+      "files_checked": 5,
+      "mismatched": [],
+      "missing": []
+    },
+    "evaluations/tool-suite/v1": {
+      "ok": true,
+      "files_checked": 150,
+      "mismatched": [],
+      "missing": []
+    },
+    "evaluations/rag-suite/v1": {
+      "ok": true,
+      "files_checked": 82,
+      "mismatched": [],
+      "missing": []
+    },
+    "evaluations/eval-core/v1": {
+      "ok": true,
+      "files_checked": 151,
+      "mismatched": [],
+      "missing": []
+    },
+    "evaluations/t6/counterfactual/v1": {
+      "ok": true,
+      "files_checked": 145,
+      "mismatched": [],
+      "missing": []
+    },
+    "training/datasets/sciencemath-sft-v1": {
+      "ok": true,
+      "files_checked": 8,
+      "mismatched": [],
+      "missing": []
+    },
+    "training/adapters/sciencemath-v0.1-t3": {
+      "ok": true,
+      "files_checked": null,
+      "mismatched": null,
+      "missing": null
+    }
+  },
+  "frozen_checksums_ok": true,
+  "stale_t7_state": {
+    "paths": [],
+    "ok": true
+  },
+  "environment": {
+    "recorded_at": "2026-09-04T04:30:09.065178+00:00",
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "vram_total_mib": 6140,
+    "vram_free_mib": 5080,
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "torch": "2.5.1+cu121",
+    "gpu_capability": "8.9",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.14.0",
+    "datasets": "5.0.1",
+    "sentence_transformers": "6.0.1",
+    "disk_free_gb": 529.0,
+    "ram_total_gb": 31.6,
+    "ram_available_gb": 13.8
+  },
+  "runtime_checks": {
+    "base_model_id": "Qwen/Qwen3-1.7B",
+    "adapter_active": true,
+    "adapter_state": {
+      "is_peft_model": true,
+      "adapter_names": [
+        "default"
+      ],
+      "adapter_active": true,
+      "adapters_disabled": false
+    },
+    "generation_smoke": {
+      "output": "1",
+      "latency_s": 1.74,
+      "ok": false
+    },
+    "math_tools": {
+      "calculator": true,
+      "symbolic_math": true,
+      "equation_solver": true,
+      "verifier_pass_smoke": true,
+      "verifier_fail_smoke": true
+    },
+    "tools_ok": true,
+    "retrieval": {
+      "chunks_returned": 4,
+      "top_title": "Amyloplast",
+      "ok": true
+    },
+    "rag_pipeline": {
+      "ok": true,
+      "citations": 0,
+      "fabricated": 0,
+      "answer_preview": "None"
+    },
+    "rag_ok": true
+  },
+  "decision": "T7 UNBLOCKED",
+  "blocked_if": "existing capabilities broken at gate time",
+  "pytest": {
+    "suite": "tests/",
+    "tests": 591,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "junitxml": "artifacts/t7_entry_pytest.xml"
+  }
+}

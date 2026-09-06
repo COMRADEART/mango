@@ -1,0 +1,391 @@
+{
+  "recorded_at": "2026-09-05T23:31:31.440135+00:00",
+  "frozen_suites": {
+    "evaluations/tool-suite/v1": {
+      "questions": 150,
+      "ok": true
+    },
+    "evaluations/rag-suite/v1": {
+      "questions": 82,
+      "ok": true
+    },
+    "evaluations/t8/capacity-suite/v1": {
+      "questions": 131,
+      "ok": true
+    }
+  },
+  "integration": {
+    "qwen3-4b-instruct": {
+      "t4": {
+        "n_questions": 150,
+        "no_tool_accuracy": 0.4666666666666667,
+        "tool_enabled_accuracy": 0.7533333333333333,
+        "delta": 0.2866666666666666,
+        "by_category": {
+          "algebra": {
+            "n": 40,
+            "no_tool_accuracy": 0.6,
+            "tool_enabled_accuracy": 0.65
+          },
+          "arithmetic": {
+            "n": 40,
+            "no_tool_accuracy": 0.45,
+            "tool_enabled_accuracy": 0.925
+          },
+          "equations": {
+            "n": 10,
+            "no_tool_accuracy": 0.7,
+            "tool_enabled_accuracy": 0.7
+          },
+          "general_science": {
+            "n": 20,
+            "no_tool_accuracy": 0.0,
+            "tool_enabled_accuracy": 0.7
+          },
+          "probability_statistics": {
+            "n": 10,
+            "no_tool_accuracy": 0.6,
+            "tool_enabled_accuracy": 0.6
+          },
+          "symbolic": {
+            "n": 10,
+            "no_tool_accuracy": 0.5,
+            "tool_enabled_accuracy": 0.8
+          },
+          "trigonometry_precalculus": {
+            "n": 10,
+            "no_tool_accuracy": 0.4,
+            "tool_enabled_accuracy": 0.5
+          },
+          "units": {
+            "n": 10,
+            "no_tool_accuracy": 0.6,
+            "tool_enabled_accuracy": 1.0
+          }
+        },
+        "verdict_counts": {
+          "PASS": 113,
+          "FAIL": 15,
+          "UNKNOWN": 22
+        },
+        "tool_usage": {
+          "questions_with_tool_call": 0.82,
+          "mean_tool_calls_per_question": 1.0
+        }
+      },
+      "t5r": {
+        "NORAG": {
+          "variant": "NORAG",
+          "n": 58,
+          "correct": 33,
+          "accuracy": 0.569,
+          "per_category_accuracy": {
+            "conflicting_evidence": 0.0,
+            "distractor_retrieval": 0.0,
+            "factual_science_qa": 0.8333,
+            "insufficient_evidence": 0.25,
+            "mixed_math_science": 1.0,
+            "multi_hop_science_qa": 0.8333,
+            "quantitative_science": 1.0,
+            "source_attribution": 0.0
+          },
+          "uncertainty_accuracy": 0.1667,
+          "retrieval_invocation": {
+            "expected_true": 42,
+            "retrieved_when_expected": 0,
+            "invoked_but_not_expected": 0,
+            "precision": null,
+            "recall": 0.0
+          },
+          "retrieval_used_on_math_route": 0,
+          "citation_summary": {
+            "n_questions_with_citations": 0,
+            "n_fabricated": 0,
+            "n_unsupported": 0,
+            "n_invalid_refs": 0
+          },
+          "compression_mean_ratio": null,
+          "mean_prompt_tokens_in": 267,
+          "avg_latency_s": 10.574
+        },
+        "G": {
+          "variant": "G",
+          "n": 58,
+          "correct": 34,
+          "accuracy": 0.5862,
+          "per_category_accuracy": {
+            "conflicting_evidence": 0.5,
+            "distractor_retrieval": 0.0,
+            "factual_science_qa": 0.5833,
+            "insufficient_evidence": 0.5,
+            "mixed_math_science": 0.8333,
+            "multi_hop_science_qa": 1.0,
+            "quantitative_science": 1.0,
+            "source_attribution": 0.0
+          },
+          "uncertainty_accuracy": 0.5,
+          "retrieval_invocation": {
+            "expected_true": 42,
+            "retrieved_when_expected": 34,
+            "invoked_but_not_expected": 13,
+            "precision": 0.7234,
+            "recall": 0.8095
+          },
+          "retrieval_used_on_math_route": 0,
+          "citation_summary": {
+            "n_questions_with_citations": 12,
+            "n_fabricated": 0,
+            "n_unsupported": 0,
+            "n_invalid_refs": 0
+          },
+          "compression_mean_ratio": 6.008,
+          "mean_prompt_tokens_in": 345,
+          "avg_latency_s": 7.895
+        }
+      }
+    },
+    "phi4-mini-reasoning": {
+      "t4": {
+        "n_questions": 150,
+        "no_tool_accuracy": 0.5533333333333333,
+        "tool_enabled_accuracy": 0.6866666666666666,
+        "delta": 0.1333333333333333,
+        "by_category": {
+          "algebra": {
+            "n": 40,
+            "no_tool_accuracy": 0.375,
+            "tool_enabled_accuracy": 0.525
+          },
+          "arithmetic": {
+            "n": 40,
+            "no_tool_accuracy": 0.875,
+            "tool_enabled_accuracy": 0.875
+          },
+          "equations": {
+            "n": 10,
+            "no_tool_accuracy": 0.5,
+            "tool_enabled_accuracy": 0.9
+          },
+          "general_science": {
+            "n": 20,
+            "no_tool_accuracy": 0.45,
+            "tool_enabled_accuracy": 0.85
+          },
+          "probability_statistics": {
+            "n": 10,
+            "no_tool_accuracy": 0.3,
+            "tool_enabled_accuracy": 0.4
+          },
+          "symbolic": {
+            "n": 10,
+            "no_tool_accuracy": 0.5,
+            "tool_enabled_accuracy": 0.6
+          },
+          "trigonometry_precalculus": {
+            "n": 10,
+            "no_tool_accuracy": 0.2,
+            "tool_enabled_accuracy": 0.2
+          },
+          "units": {
+            "n": 10,
+            "no_tool_accuracy": 0.9,
+            "tool_enabled_accuracy": 0.9
+          }
+        },
+        "verdict_counts": {
+          "PASS": 103,
+          "FAIL": 10,
+          "UNKNOWN": 37
+        },
+        "tool_usage": {
+          "questions_with_tool_call": 0.21333333333333335,
+          "mean_tool_calls_per_question": 0.24
+        }
+      },
+      "t5r": {
+        "NORAG": {
+          "variant": "NORAG",
+          "n": 58,
+          "correct": 24,
+          "accuracy": 0.4138,
+          "per_category_accuracy": {
+            "conflicting_evidence": 0.0,
+            "distractor_retrieval": 0.0,
+            "factual_science_qa": 0.5833,
+            "insufficient_evidence": 0.0,
+            "mixed_math_science": 0.8333,
+            "multi_hop_science_qa": 0.6667,
+            "quantitative_science": 0.8,
+            "source_attribution": 0.0
+          },
+          "uncertainty_accuracy": 0.0,
+          "retrieval_invocation": {
+            "expected_true": 42,
+            "retrieved_when_expected": 0,
+            "invoked_but_not_expected": 0,
+            "precision": null,
+            "recall": 0.0
+          },
+          "retrieval_used_on_math_route": 0,
+          "citation_summary": {
+            "n_questions_with_citations": 0,
+            "n_fabricated": 0,
+            "n_unsupported": 0,
+            "n_invalid_refs": 0
+          },
+          "compression_mean_ratio": null,
+          "mean_prompt_tokens_in": 205,
+          "avg_latency_s": 50.894
+        },
+        "G": {
+          "variant": "G",
+          "n": 58,
+          "correct": 29,
+          "accuracy": 0.5,
+          "per_category_accuracy": {
+            "conflicting_evidence": 0.5,
+            "distractor_retrieval": 0.0,
+            "factual_science_qa": 0.5,
+            "insufficient_evidence": 0.375,
+            "mixed_math_science": 0.8333,
+            "multi_hop_science_qa": 0.5,
+            "quantitative_science": 1.0,
+            "source_attribution": 0.0
+          },
+          "uncertainty_accuracy": 0.4167,
+          "retrieval_invocation": {
+            "expected_true": 42,
+            "retrieved_when_expected": 34,
+            "invoked_but_not_expected": 13,
+            "precision": 0.7234,
+            "recall": 0.8095
+          },
+          "retrieval_used_on_math_route": 0,
+          "citation_summary": {
+            "n_questions_with_citations": 0,
+            "n_fabricated": 0,
+            "n_unsupported": 0,
+            "n_invalid_refs": 0
+          },
+          "compression_mean_ratio": 6.008,
+          "mean_prompt_tokens_in": 321,
+          "avg_latency_s": 47.072
+        }
+      }
+    }
+  },
+  "input_sha256": {
+    "evaluations\\t8\\runs\\phi4-mini-instruct\\model\\capability_vector.json": "2d7e060a44fed3d2244e636e89115a2f6612c1652ef05e121604a3e75748aee7",
+    "evaluations\\t8\\runs\\phi4-mini-instruct\\model\\plans.jsonl": "345a144ad19ff2ec4df6d0d7a56c7cf3ba5f6b1fb81b13591a1bd1f9979204f4",
+    "evaluations\\t8\\runs\\phi4-mini-instruct\\model\\predictions.jsonl": "1a0a1ef3baa4dea88007f765f7aeea4c20a0bb05d216627e7d338796c5b81287",
+    "evaluations\\t8\\runs\\phi4-mini-instruct\\model\\self_correction.jsonl": "668fd0476f75236d0eee62871268850cf4a7412f2c00823293a3f6154dd721fb",
+    "evaluations\\t8\\runs\\phi4-mini-instruct\\model\\summary.json": "d0b2a915e33e1eb28b71591aad940b22820f3a4bd1d45d79681f015be7396218",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\model\\capability_vector.json": "aee01e9705a9a6d291eb18bee069bfd0598709878f059f6293c3f52f10f929f3",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\model\\plans.jsonl": "9f145881732ec7a1b292c067245c68664dd41cdf0e1ce71b2e55acc136250d57",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\model\\predictions.jsonl": "dae126468e7d50587c9675c28ea54543df9310e66950d2b1c117e90ad2aa625f",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\model\\self_correction.jsonl": "fcfa615c7694ba75846c02007d9473ba9bcacfe0ebcc29d19d6d6c6dcfa1953d",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\model\\summary.json": "8d054f8f1226f0180a09739fc6e77272dd133642526ed59489ab8262f2736c3f",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t4_arm_summary.json": "f38f219eb3ad6b993f7b6ba5d1a4d796ca159f7fe8e675bff12030dd9c6833b6",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t4_notool\\failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t4_notool\\predictions.jsonl": "80cfa1dbc3f43eab8c9765bccac64429699d86a08fe2edd62bb07c08d81b753f",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t4_tool\\failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t4_tool\\predictions.jsonl": "3b6fa7ee1ee064f1aa0fc10eabd6970d0a9329247b859a910732618a5215a893",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t4_tool\\tool_calls.jsonl": "8ab3435af5b6a9aaa1134517e21116ad7cdb270c1b62e185f7250e61843d35d5",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\audit.jsonl": "eaefb17edabdcccb78ed42996fad251e1955e1a83b64dc98bbf724ff3d0c2f06",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\comparison.json": "9768e966a00cc8c620c4e2f69f3a7688e1cfe038dade286ed394c0a1c18a512e",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\G\\config.json": "575c69a178d696fae8e867d226a9930a63e30a603902db0e82b994e66dcc4d45",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\G\\metrics.json": "5f87d95d399ec9a745d84395ec99f47746e7197ce7d47039e1792c01d587e6ba",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\G\\predictions.jsonl": "735f359188fa3746e210a15171553aa55d2f74c3cba229926a644c28a080f5c1",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\NORAG\\config.json": "511294290f77ee276c62ced12e168520946cf0b83873577f27cead5d829648c3",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\NORAG\\metrics.json": "4d346d57e9ebc25f6097957ff809ad8505bb94d56f836e340d8ed3d97a6a81eb",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\NORAG\\predictions.jsonl": "ebf7b3053147beebb2654b3cc7215edeb00e768fc5e90f389cda0a699d6af576",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\run_summary.json": "998522014bf25cc6d0b5c0a9eba9d555d6b608999d0fc00e1325a7b6d3a61784",
+    "evaluations\\t8\\runs\\phi4-mini-reasoning\\t5r\\tool_calls.jsonl": "cb743a4761bb13344ece06ddf8ac0cfb09e6fd2215321217179980908cd11c10",
+    "evaluations\\t8\\runs\\qwen3-1.7b-control\\model\\capability_vector.json": "adf39ea20217a5e7cba035750e7b90c0218b3e69bb47a5966f727927837f9d1c",
+    "evaluations\\t8\\runs\\qwen3-1.7b-control\\model\\plans.jsonl": "3f6b8fd48ff966fecfb3f580ad0c86aa25b1b46b943dc54a54853e1811af8e76",
+    "evaluations\\t8\\runs\\qwen3-1.7b-control\\model\\predictions.jsonl": "fbbe5e1bc7d27f708e45261736af203a3e5485b718dc15576ca342853d0f4eca",
+    "evaluations\\t8\\runs\\qwen3-1.7b-control\\model\\self_correction.jsonl": "5bdbb44c4bc4b4c6d9eddcd524a2a63bdd8011efdd3dd315e8953cbe783e138f",
+    "evaluations\\t8\\runs\\qwen3-1.7b-control\\model\\summary.json": "79e3efbbab31ffab7dd43ed57e174918cdef4a11c0b0397d67ef5fc855d86b30",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\model\\capability_vector.json": "f5d96b033d341a3423c4b7f5929b2e1c04047a6dd2d4497921fa9ec614034fac",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\model\\plans.jsonl": "ea830082af869ed12035eba17e98388275dacba453647020d551959239cb2e3b",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\model\\predictions.jsonl": "7a54c06fc31c83ed4d86c4bac2949583a7afa9519b37635d4a2cef79c911bfa7",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\model\\self_correction.jsonl": "275c888fea278517d4265c19d632a1f9ef28f887b437173c12e17cc4e2c32fd2",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\model\\summary.json": "5f730be360f2a65f76a11eb66a4bafff4b31573b490c2ba7e674b79a7266f4b8",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t4_arm_summary.json": "39dcf2122cb324d4333890e43519f23e8e5737ec909dccc5ff11add537b8fc70",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t4_notool\\failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t4_notool\\predictions.jsonl": "d1fce8d3505ad662bbb3b8d0354157a92de8c0d7421f5b7f38e19d3aa9b2fcb6",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t4_tool\\failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t4_tool\\predictions.jsonl": "ce5cecb02e8667d4603458ef41f2fab8a9071e6dc5944de86fa69c47b5f7fb79",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t4_tool\\tool_calls.jsonl": "eaca02c5ba6c530d1122bc027985ed4c4212a02612f4f8d7de0d7a0daf22ecea",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\audit.jsonl": "cb7b2f8ebbce8cbe3008f89989f727325108ab36054fdbff9f226bcb254d5937",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\comparison.json": "c16ceec6c22b5d18bf5820d0bfb2aa34a28fd2b3177c6f7762b13e89294eeb04",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\G\\config.json": "79ba3ddc685999d9f814c200e679d4d2a41b2db7497e875bcb694359fdf61c47",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\G\\metrics.json": "58b1ef1f824cf63d2337034d8f1916d7f9b2dd7bf88d5e40987cb52f19006fc5",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\G\\predictions.jsonl": "7de89789a69bd3bfd2e71ee1dda37807bc05bec3cf1d84962f768032b77721fd",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\NORAG\\config.json": "0e687deff52f1d0dfd0784998a50d088534085d8d3204f1a25c85417facef41a",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\NORAG\\metrics.json": "03a864639399432dffced32dba011a02ddb4a63107995f84a07718a55355b86d",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\NORAG\\predictions.jsonl": "140962e22cb6c0bbdcdd734b286921ba5ba6e7cfc3a52d142f65ebad3cd3aa3d",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\run_summary.json": "9231a002fc9b7314c2606cb4c0b0218d6f8a050baa6082195e9ec6d2bc6dfe7a",
+    "evaluations\\t8\\runs\\qwen3-4b-instruct\\t5r\\tool_calls.jsonl": "56f02e46c6770e6497f2f645527344d7761048ea01bbcfb9bbca36ccfdb3b4f5",
+    "evaluations\\t8\\runs\\smollm3-3b\\model\\capability_vector.json": "8ba936bbcd5e1f7f06593ceb162857810c555a9a05f0e1d353205e99ff26918a",
+    "evaluations\\t8\\runs\\smollm3-3b\\model\\plans.jsonl": "18fb701afbbfb2889ed9cb6be6ed3f451f4ae099ff9d74dbfc08433e52eb34a9",
+    "evaluations\\t8\\runs\\smollm3-3b\\model\\predictions.jsonl": "f6bdfb557809553e49bb707b9a17cb3f0ce6f493c8423be706a2ec15ff1de252",
+    "evaluations\\t8\\runs\\smollm3-3b\\model\\self_correction.jsonl": "174623b1c6669fbb4156e5db1745e9e44232df26c0c94264ab2688d6828fa720",
+    "evaluations\\t8\\runs\\smollm3-3b\\model\\summary.json": "6ad5ee20cf87d53f1c35054314947926056e6c678c3ab2c55d6bc076ebdc1cd3"
+  },
+  "verifier_selftest": {
+    "gold_cases": 150,
+    "gold_pass_rate": 1.0,
+    "gold_unknown_rate": 0.0,
+    "gold_unknown_cases": [],
+    "wrong_cases": 638,
+    "false_pass_rate": 0.0,
+    "wrong_unknown_rate": 0.004702194357366771,
+    "false_pass_cases": [],
+    "critical_gate": "PASS"
+  },
+  "model_only_recomputation_ok": true,
+  "checkpoint_reload": {
+    "1": {
+      "checkpoint": "evaluations\\t8\\training_feasibility\\qwen3-4b-instruct\\ckpt_b1\\checkpoint-3",
+      "tensors_equal": true,
+      "tensor_count": 504,
+      "finite_logits": true,
+      "adapter_active": true,
+      "ok": true
+    },
+    "2": {
+      "checkpoint": "evaluations\\t8\\training_feasibility\\qwen3-4b-instruct\\ckpt_b2\\checkpoint-3",
+      "tensors_equal": true,
+      "tensor_count": 504,
+      "finite_logits": true,
+      "adapter_active": true,
+      "ok": true
+    }
+  },
+  "migration_recomputed": {
+    "phi4-mini-instruct": {
+      "decision": "DO_NOT_MIGRATE",
+      "reason": "major math/science regression {'math_macro': 0.0, 'science_macro': -0.3}; overall delta -0.244, 2 capacity dimensions improved"
+    },
+    "phi4-mini-reasoning": {
+      "decision": "DO_NOT_MIGRATE",
+      "reason": "major math/science regression {'math_macro': -0.069, 'science_macro': 0.1}; overall delta -0.008, 2 capacity dimensions improved"
+    },
+    "qwen3-4b-instruct": {
+      "decision": "DO_NOT_MIGRATE",
+      "reason": "major math/science regression {'math_macro': -0.069, 'science_macro': 0.033}; overall delta +0.000, 4 capacity dimensions improved"
+    },
+    "smollm3-3b": {
+      "decision": "DO_NOT_MIGRATE",
+      "reason": "major math/science regression {'math_macro': -0.103, 'science_macro': -0.133}; overall delta -0.076, 3 capacity dimensions improved"
+    }
+  },
+  "tests": {
+    "tests": 707,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "ok": true
+}

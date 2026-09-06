@@ -1,0 +1,86 @@
+# T6.11 — Curriculum regression gates, DECLARED BEFORE ANY CURRICULUM
+# TRAINING RUN (protocol rule: thresholds are never changed after seeing
+# stage results; any change requires a new milestone record explaining why).
+#
+# All thresholds are ABSOLUTE percentage points (drop of the candidate
+# checkpoint vs its parent on the same frozen mango-eval-core-v1 suite).
+# Metrics are fractions in 0..1; the gate evaluator converts.
+#
+# Metric definitions (declared here, computed in evaluation code):
+#   overall            accuracy over the whole core suite
+#   math_macro         macro-average accuracy over math-family categories
+#   science_macro      macro-average over science-family categories
+#   cross_domain       accuracy over cross_domain categories
+#   compositional      accuracy over the COMPOSITIONAL generalization split
+#   tool_routing       mean of tool-needed precision and recall (T6.15)
+#   retrieval_routing  mean of retrieval-needed precision and recall (T6.15)
+#   extraction         1 - extraction-failure rate
+#   uncertainty        insufficient-information correct-behavior rate
+#                      (refusal-to-fabricate rate on those items)
+regression_gates:
+  overall: 3.0            # the aggregate gate — but see per-dimension gates
+  math_macro: 5.0
+  science_macro: 5.0      # science must not be sacrificed for math (T6.23)
+  cross_domain: 5.0       # cross-domain tracks are the fragile ones
+  compositional: 5.0
+  tool_routing: 10.0      # precision/recall on small label sets
+  retrieval_routing: 10.0
+  extraction: 8.0
+  uncertainty: 10.0
+
+# A "material regression" (T6.11) = any single dimension drop above its
+# threshold above. One aggregate improvement NEVER outweighs a material
+# regression: the decision is REJECT if any dimension is violated.
+material_regression_rule: "any dimension drop > its threshold => REJECT"
+
+# T6.23 factual-science protection: closed-book science macro on the core
+# suite must not drop by more than science_macro above; additionally the
+# T5R frozen rag eval must be re-run on any promoted checkpoint.
+science_factual_protection:
+  closed_book_science_gate_pp: 5.0
+  citation_integrity: "zero fabricated citations tolerated"
+  t5r_rerun_required: true
+
+# T6.24 tool protection: invariants that are hard PASS/FAIL, not pp gates.
+tool_protection:
+  adversarial_false_pass_allowed: 0
+  parser_safety_tests_required: true
+  timeouts_required: true
+  arbitrary_eval_forbidden: true
+
+# T6.10 promotion protocol
+promotion:
+  log: training/curriculum/promotion_log.jsonl
+  decision_rule: "KEEP iff no gate dimension is violated AND the candidate
+    is not Pareto-dominated by the current promoted checkpoint"
+  pareto_dimensions: [math_macro, science_macro, cross_domain_macro,
+    generalization_macro, tool_routing, retrieval_routing, extraction,
+    overall]
+  never_overwrite_promoted_checkpoint: true
+
+# T6.28 Mango-v0.2 promotion target — the promoted checkpoint becomes
+# Mango-v0.2 only if ALL of these hold (measured, not assumed):
+mango_v0_2_promotion:
+  requires:
+    math_macro: "not below parent"
+    science_macro: "not below parent"
+    overall: ">= parent + 2.0 pp"
+    cross_domain_macro: ">= parent"
+    t4_safety: preserved
+    t5r_retrieval: preserved
+    extraction: "not below parent"
+  else: "Mango-v0.1 remains the release checkpoint; T6 = PARTIAL acceptable"
+
+# Training efficiency bookkeeping (T6.26)
+efficiency:
+  track: [examples, tokens, gpu_time_s, wall_clock_s, peak_vram_bytes,
+          gain_per_stage]
+  no_repeat_rule: "a stage is not retrained without recorded evidence that
+    another run is justified (gate failure trace or config change)"
+
+# Suite + corpus versions bound to this curriculum declaration
+artifacts:
+  eval_core_suite: mango-eval-core-v1
+  sft_corpus: mango-sft-v2
+  curriculum_levels: 8
+  attempted_levels_note: "levels may stop early if a gate fails; see T6.10"

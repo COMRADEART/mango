@@ -1,0 +1,92 @@
+[
+ {
+  "question_id": "mq-minfo-01",
+  "class": "missing_info",
+  "question": "A car travels for some time at a constant 60 km/h. How many kilometers did it cover in total?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Distance needs the travel time, which is deliberately omitted and not inferable."
+ },
+ {
+  "question_id": "mq-minfo-02",
+  "class": "missing_info",
+  "question": "A factory produces 4 identical metal gears. If each gear has the same mass, what is the total mass of all 4 gears, in grams?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Asks for a total from a common per-item mass that is never given."
+ },
+ {
+  "question_id": "mq-minfo-03",
+  "class": "missing_info",
+  "question": "An isosceles triangle has a perimeter of 36 cm. What is the length of each of its two equal sides, in centimeters?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Missing-side-length structure (replaces the rate-x-omitted-duration template and the crowded water-tank scenario). The perimeter 36 cm is the tempting partial: a careless model treats the triangle as equilateral and answers 36/3 = 12 cm, or splits it as 36/2 = 18 cm. The base length, the one value needed to pin down the equal sides, is omitted and not inferable."
+ },
+ {
+  "question_id": "mq-minfo-04",
+  "class": "missing_info",
+  "question": "A student buys notebooks at the school store for 3 dollars each and pays with a 20-dollar bill. How much change did the student receive, in dollars?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Exactly one omitted value: the number of notebooks. The 20-dollar bill is the tempting partial a careless model computes with (or reports 17)."
+ },
+ {
+  "question_id": "mq-minfo-05",
+  "class": "missing_info",
+  "question": "A rectangle has a width of 6 cm. What is its area, in square centimeters?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Area requires the height, which is omitted; a 6 cm width alone fixes nothing."
+ },
+ {
+  "question_id": "mq-minfo-06",
+  "class": "missing_info",
+  "question": "A simple pendulum swings freely under gravity on Earth, where g = 9.8 m/s^2. What is the period of one full swing, in seconds?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Period depends on the pendulum's length, which is absent; g alone determines nothing. Different scenario from the dropped-ball eval-core item."
+ },
+ {
+  "question_id": "mq-minfo-07",
+  "class": "missing_info",
+  "question": "A trail mix recipe blends peanuts and raisins in a fixed ratio. One batch fills 30 snack bags and contains 9 cups of peanuts. How many cups of raisins does one batch contain?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Ratio-omitted structure on a snack-mix scenario (not the flour recipe shared with mq-msm-07). The necessary omitted value is the peanuts-to-raisins ratio. The 9 cups of peanuts is now a genuinely tempting partial: a careless model answers 9 directly (assuming equal parts), or computes 30 - 9 = 21 or 30/9 from the snack-bag count."
+ },
+ {
+  "question_id": "mq-minfo-08",
+  "class": "missing_info",
+  "question": "An electric kettle connected to a 230 V mains supply draws a current of 8 amperes. How many joules of electrical energy does the kettle consume while bringing water to a boil?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Exactly one omitted value: the heating time. The tempting partial is the power 230 x 8 = 1840 W, which a careless model reports as the energy."
+ },
+ {
+  "question_id": "mq-minfo-09",
+  "class": "missing_info",
+  "question": "A class of 30 students took a test. The 18 girls in the class averaged 82 points. What was the average score of the whole class, in points?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Averaging structure replaces the N-identical-items template: class size and girls' average are tempting partials, but the boys' average is omitted and not inferable."
+ },
+ {
+  "question_id": "mq-minfo-10",
+  "class": "missing_info",
+  "question": "A weather station logged a daytime high of 86 degrees Fahrenheit on a summer day. What was the overnight low temperature at the station that night, in degrees Celsius?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "INSUFFICIENT",
+  "notes": "Temperature-conversion scenario replaces the savings/simple-interest one (which duplicated mq-cfv-05). The omitted necessary value is the overnight low reading itself, never given in either scale. The daytime high 86 F is the tempting partial: a careless model converts it instead, (86 - 32) x 5/9 = 30 C, and answers 30."
+ }
+]

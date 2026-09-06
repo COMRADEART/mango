@@ -1,0 +1,23 @@
+{
+  "file": "biology_earth_space.json",
+  "verdicts": [
+    {"index": 0, "verdict": "CONFIRM", "reason": "Robert Brown discovered the nucleus in 1831; quote found verbatim in 'Cell biology' article; difficulty sane."},
+    {"index": 1, "verdict": "CONFIRM", "reason": "Electron transport chain + own circular genome + double membrane uniquely identifies the mitochondrion (choice B); no defensible alternative among the four choices."},
+    {"index": 2, "verdict": "CONFIRM", "reason": "Mendel's Brno lectures were 1865 (1866 is publication, a distractor not the answer); quote found verbatim in 'Genetics'; choice B matches 1865."},
+    {"index": 3, "verdict": "CONFIRM", "reason": "Tt x Tt monohybrid cross gives 3:1 tall:short; unambiguous."},
+    {"index": 4, "verdict": "CONFIRM", "reason": "Dihybrid testcross (RrYy x rryy) gives 1:1:1:1, so 320/4 = 80 double-recessive; tool_check expression correct."},
+    {"index": 5, "verdict": "CONFIRM", "reason": "Avery-MacLeod-McCarty 1944 identified DNA as the transforming substance; quote found verbatim in 'Genetics'; Griffith 1928 reference correct."},
+    {"index": 6, "verdict": "CONFIRM", "reason": "A pairs with T (300 A -> 300 T), leaving 600 G+C, so G = 300; arithmetic verified; difficulty 4 is at the high end but sane."},
+    {"index": 7, "verdict": "CONFIRM", "reason": "Cardiac output = 70 mL x 75 bpm = 5250 mL/min = 5.25 L/min; correct."},
+    {"index": 8, "verdict": "CONFIRM", "reason": "Wallace (choice C) independently conceived natural selection; Lamarck is French, Huxley and Mendel did not independently conceive it; quote verbatim in 'Evolution'."},
+    {"index": 9, "verdict": "CONFIRM", "reason": "20,000 kJ x 0.1 x 0.1 = 200 kJ at secondary consumers (two transfers); math verified. Minor metadata inconsistency: requires_math_tool=false yet tool_check is present (other tool_check items set it true)."},
+    {"index": 10, "verdict": "CONFIRM", "reason": "Wegener proposed continental drift in 1912; quote found verbatim in 'Alfred Wegener' article."},
+    {"index": 11, "verdict": "CONFIRM", "reason": "Mount St. Helens awoke from 123 years of hibernation (last eruption 1857); quote found verbatim in the 1980-eruption article."},
+    {"index": 12, "verdict": "CONFIRM", "reason": "Genuinely unanswerable: no single correct projection exists; corpus contains no 2100 temperature projection (only an unrelated ocean pH projection); linear extrapolation is not scientifically defensible given ocean thermal inertia, so __UNKNOWN__ is correct."},
+    {"index": 13, "verdict": "CONFIRM", "reason": "Fresh snow has the highest albedo (corpus: 88% vs sand 12% vs water 4%); choice D matches; dark soil cannot be the answer."},
+    {"index": 14, "verdict": "CONFIRM", "reason": "Sun is 99.86% of Solar System mass; quote found verbatim in 'Solar System' article."},
+    {"index": 15, "verdict": "CONFIRM", "reason": "71,000 km / 1e9 = 7.1e-5 km = 7.1 cm; tool_check expression evaluates to 7.1; difficulty 4 appropriate for unit-chain conversion."},
+    {"index": 16, "verdict": "CONFIRM", "reason": "Stars spend about 90% of their lifetimes on the main sequence; quote found verbatim in 'Star' article."},
+    {"index": 17, "verdict": "CONFIRM", "reason": "Redshift increasing with distance directly supports expansion of the universe (choice B); static universe is ruled out by the distance-growth of the shift; no defensible alternative."}
+  ]
+}

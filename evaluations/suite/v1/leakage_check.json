@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "note": "no training data ingested yet (data/train and data/validation empty); leakage check trivially passes and MUST be re-run for any future suite version or any new training ingestion",
+  "direct_leakage": [],
+  "near_leakage": [],
+  "source_overlap": {},
+  "train_records_checked": 0
+}

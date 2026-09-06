@@ -1,0 +1,14 @@
+﻿v         n     acc  d_norag    unc   prec    rec   fab     lat
+NORAG    52  0.4615     None 0.0000   None 0.0000     0   3.223
+A        52  0.3654  -9.6100 0.2000 0.7188 0.5750     3  11.567
+B        52  0.2885 -17.3000 0.1000 0.7632 0.7250     0   2.567
+C        52  0.2885 -17.3000 0.1000 0.7632 0.7250     0   2.171
+D        52  0.2885 -17.3000 0.1000 0.7632 0.7250     0   2.292
+E        52  0.2500 -21.1500 0.1000 0.9355 0.7250     0   2.907
+
+per-cat delta vs NORAG (nonzero):
+A {'factual_science_qa': -41.67, 'insufficient_evidence': 33.33, 'multi_hop_science_qa': -16.66, 'source_attribution': -16.67}
+B {'factual_science_qa': -66.67, 'insufficient_evidence': 16.67, 'mixed_math_science': -16.67, 'source_attribution': -16.67}
+C {'factual_science_qa': -66.67, 'insufficient_evidence': 16.67, 'mixed_math_science': -16.67, 'source_attribution': -16.67}
+D {'factual_science_qa': -66.67, 'insufficient_evidence': 16.67, 'mixed_math_science': -16.67, 'source_attribution': -16.67}
+E {'factual_science_qa': -66.67, 'insufficient_evidence': 16.67, 'mixed_math_science': -16.67, 'multi_hop_science_qa': -33.33, 'source_attribution': -16.67}

@@ -1,0 +1,53 @@
+{
+  "sample_sizes": {
+    "gsm8k": 40,
+    "ai2-arc": 30,
+    "sciq": 30,
+    "math-competition": {
+      "per_subject": 10,
+      "max_total": 70
+    }
+  },
+  "counts": {
+    "math-competition": 70,
+    "synthetic-v1": 18,
+    "sciq": 30,
+    "ai2-arc": 30,
+    "gsm8k": 40
+  },
+  "synthetic_isolation": {
+    "allowed_categories": [
+      "instruction_following",
+      "uncertainty_calibration"
+    ],
+    "policy": "synthetic items carry synthetic=true and source=synthetic-v1 and are used only for the two categories no verified benchmark covers"
+  },
+  "load_log": [
+    {
+      "source": "gsm8k",
+      "status": "OK",
+      "rows": 1319
+    },
+    {
+      "source": "math-competition",
+      "status": "OK",
+      "loader": "EleutherAI/hendrycks_math (parquet mirror, per-subject configs)",
+      "rows": 5000
+    },
+    {
+      "source": "ai2-arc",
+      "status": "OK",
+      "rows": 1172
+    },
+    {
+      "source": "sciq",
+      "status": "OK",
+      "rows": 1000,
+      "note": "CC-BY-NC-3.0 - evaluated only; excluded from any commercial use via data/manifests/datasets.json"
+    }
+  ],
+  "license_verification": "data/manifests/datasets.json + data/licenses/LICENSE_MANIFEST.md (verified 2026-08-31)",
+  "eval_only_sources": [
+    "ai2-arc"
+  ]
+}

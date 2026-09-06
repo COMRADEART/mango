@@ -1,0 +1,230 @@
+{
+ "state": {
+  "run_id": "mq-contr-05",
+  "problem": "An electronics datasheet first says a resistor has resistance 220 ohms. A revision note on the same datasheet says the resistor has resistance 330 ohms. What current, in amperes, flows through it when connected to a 9 V battery?",
+  "goal": "",
+  "problem_type": "MIXED",
+  "complexity": "MULTI_STEP",
+  "resources": "RETRIEVAL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What current, in amperes, flows through it when connected to a 9 V battery"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-9532:history_19th_century_712ddefa:0 | wiki-801420:atmospheric_electricity_e8150b56:0 | wiki-9532:quantities_and_units_162929f8:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-9532:history_19th_century_712ddefa:0",
+       "text": "Electricity and magnetism were originally considered to be two separate forces. This view changed with the publication of James Clerk Maxwell's 1873 A Treatise on Electricity and Magnetism in which the interactions of positive and negative charges were shown to be mediated by one force. There are four main effects resulting from these interactions, all of which have been clearly demonstrated by experiments:  Electric charges attract or repel one another with a force inversely proportional to the square of the distance between them (Coulomb's law): opposite charges attract, like charges repel. "
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-801420:atmospheric_electricity_e8150b56:0",
+       "text": "Atmospheric electricity is the term given to the electrostatics and electrodynamics of the atmosphere (or, more broadly, the atmosphere of any planet). The Earth's surface, the ionosphere, and the atmosphere is known as the global atmospheric electrical circuit. Lightning discharges 30,000 amperes, at up to 100 million volts, and emits light, radio waves, X-rays and even gamma rays. Plasma temperatures in lightning can approach 28,000 kelvins and electron densities may exceed 1024/m3."
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-9532:quantities_and_units_162929f8:0",
+       "text": "Here is a list of common units related to electromagnetism:  In the electromagnetic CGS system, electric current is a fundamental quantity defined via Ampère's law and takes the permeability as a dimensionless quantity (relative permeability) whose value in vacuum is unity. As a consequence, the square of the speed of light appears explicitly in some of the equations interrelating quantities in this system.  Formulas for physical laws of electromagnetism (such as Maxwell's equations) need to be adjusted depending on what system of units one uses. This is because there is no one-to-one correspo"
+      }
+     ],
+     "signature": "f075ec334a7a22f7"
+    },
+    "latency_s": 0.5124141999986023,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "0.045 A",
+    "detail": {
+     "raw": "Answer: 0.045 A",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 1.8718149999913294,
+    "input_tokens": 432,
+    "output_tokens": 10
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{0.045}",
+    "detail": {
+     "raw": "Answer: \\boxed{0.045}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.893709800002398,
+    "input_tokens": 427,
+    "output_tokens": 12
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 20.238298300013412,
+   "input_tokens": 859,
+   "output_tokens": 22
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "An electronics datasheet first says a resistor has resistance 220 ohms.",
+   "A revision note on the same datasheet says the resistor has resistance 330 ohms.",
+   "What current, in amperes, flows through it when connected to a 9 V battery?"
+  ],
+  "conflicts": [
+   {
+    "unit": "ohm",
+    "values": [
+     220.0,
+     330.0
+    ],
+    "sentences": [
+     "A revision note on the same datasheet says the resistor has resistance 330 ohms.",
+     "An electronics datasheet first says a resistor has resistance 220 ohms."
+    ]
+   }
+  ],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-9532:history_19th_century_712ddefa:0 | wiki-801420:atmospheric_electricity_e8150b56:0 | wiki-9532:quantities_and_units_162929f8:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "0.045 A",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{0.045}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-9532:history_19th_century_712ddefa:0 | wiki-801420:atmospheric_electricity_e8150b56:0 | wiki-9532:quantities_and_units_162929f8:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "0.045 A",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{0.045}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

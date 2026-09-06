@@ -1,0 +1,259 @@
+{
+ "state": {
+  "run_id": "mq-mhs-08",
+  "problem": "How many of the eight planets in our solar system are larger than Earth?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "SIMPLE",
+  "resources": "MATH_TOOL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "How many of the eight planets in our solar system are larger than Earth"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "REASON",
+     "description": "Reason over the question using provided context only",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s4",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s3"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3",
+   "s4"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-26903:intro_3cee6746:0 | wiki-26903:general_characteristics_comparison_with__91e78805:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-26903:intro_3cee6746:0",
+       "text": "The Sun accounts for 99.86% of the Solar System's total mass. Inside the Sun's core, hydrogen is fused into helium, releasing energy that is emitted through the Sun's photosphere. This creates the heliosphere and a decreasing temperature gradient across the Solar System. The next most massive objects of the system are the eight planets, which by definition dominate the orbits they occupy. Closest to the Sun in order of increasing distance are the terrestrial planets – Mercury, Venus, Earth and Mars. These four planets are part of the inner Solar System. Earth and Mars are the only planets that"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-26903:general_characteristics_comparison_with__91e78805:0",
+       "text": "Analysis of Kepler data suggests that observed planetary systems in the Milky Way fall into three groups: \"similar\", which comprise planets of similar sizes similar distances apart and with highly circular orbits; \"ordered\", in which the masses of planets tend to increase with distance from their star, and \"mixed\", which show no pattern in masses whatsoever. The Solar System is an ordered system, as are 37% of observed systems. Similar systems however are the majority, comprising 59% of observed systems, while mixed systems comprise just 4%. Compared to many extrasolar systems, the Solar Syste"
+      }
+     ],
+     "signature": "44aa92c4394dc1f7"
+    },
+    "latency_s": 0.4122242000012193,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "1",
+    "detail": {
+     "raw": "Answer: 1",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 1.0215239000099245,
+    "input_tokens": 312,
+    "output_tokens": 5
+   },
+   {
+    "step_id": "s3",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "\\boxed{7}",
+    "detail": {
+     "raw": "Answer: \\boxed{7}",
+     "signature": "948d2733440d3d2b"
+    },
+    "latency_s": 0.9916453000041656,
+    "input_tokens": 102,
+    "output_tokens": 8
+   },
+   {
+    "step_id": "s4",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{7}",
+    "detail": {
+     "raw": "Answer: \\boxed{7}",
+     "signature": "cff9105501d72cb9"
+    },
+    "latency_s": 1.204984300013166,
+    "input_tokens": 354,
+    "output_tokens": 8
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 5,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 10.530431599996518,
+   "input_tokens": 768,
+   "output_tokens": 21
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "How many of the eight planets in our solar system are larger than Earth?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-26903:intro_3cee6746:0 | wiki-26903:general_characteristics_comparison_with__91e78805:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "1",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{7}",
+     "step_id": "s3"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s4",
+     "content": "\\boxed{7}",
+     "step_id": "s4"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s3",
+     "dst": "step:s4",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-26903:intro_3cee6746:0 | wiki-26903:general_characteristics_comparison_with__91e78805:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "1",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{7}",
+    "step_id": "s3"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s4",
+    "content": "\\boxed{7}",
+    "step_id": "s4"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s3",
+    "dst": "step:s4",
+    "relation": "produced"
+   }
+  ]
+ }
+}

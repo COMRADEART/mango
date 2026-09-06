@@ -1,0 +1,234 @@
+{
+  "per_arm": {
+    "A_off": {
+      "arm": "A_off",
+      "n": 3,
+      "accuracy": 0.6666666666666666,
+      "accuracy_by_class": {
+        "simple": 0.6666666666666666
+      },
+      "uncertainty": {
+        "precision": null,
+        "recall": null,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "plan": {
+        "first_attempt_validity": null,
+        "retry_validity": null,
+        "fallback_rate": 0.0
+      },
+      "self_correction_accuracy": null,
+      "verified_solution_rate": 0.0,
+      "avg_plan_attempts": 0.0,
+      "avg_steps": 0.0,
+      "avg_replans": 0.0,
+      "avg_latency_s": 138.12,
+      "avg_input_tokens": 30.0,
+      "avg_output_tokens": 1024.0,
+      "total_tool_calls": 0,
+      "total_retrievals": 0,
+      "stalled_rate": 0.0,
+      "error_rate": 0.0,
+      "fast_path_rate": 0.0,
+      "termination_reasons": {
+        "OFF_BASELINE": 3
+      },
+      "failure_categories": {
+        "None": 3
+      },
+      "evidence_statuses": {
+        "None": 3
+      }
+    },
+    "E_full_executive": {
+      "arm": "E_full_executive",
+      "n": 3,
+      "accuracy": 0.0,
+      "accuracy_by_class": {
+        "simple": 0.0
+      },
+      "uncertainty": {
+        "precision": null,
+        "recall": null,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "plan": {
+        "first_attempt_validity": null,
+        "retry_validity": null,
+        "fallback_rate": 0.0
+      },
+      "self_correction_accuracy": null,
+      "verified_solution_rate": 0.0,
+      "avg_plan_attempts": 0.0,
+      "avg_steps": 0.0,
+      "avg_replans": 0.0,
+      "avg_latency_s": 46.436,
+      "avg_input_tokens": 14.0,
+      "avg_output_tokens": 341.333,
+      "total_tool_calls": 0,
+      "total_retrievals": 0,
+      "stalled_rate": 0.0,
+      "error_rate": 0.6666666666666666,
+      "fast_path_rate": 0.3333333333333333,
+      "termination_reasons": {
+        "SYSTEM_ERROR": 2,
+        "SOLVED_UNVERIFIED": 1
+      },
+      "failure_categories": {
+        "SYSTEM_ERROR": 2,
+        "None": 1
+      },
+      "evidence_statuses": {
+        "None": 2,
+        "PARTIALLY_SUPPORTED": 1
+      }
+    }
+  },
+  "comparison": {
+    "suite": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\executive-suite\\_smoke",
+    "checkpoint": "Mango-v0.1",
+    "date": "2026-09-04",
+    "arms": [
+      "A_off",
+      "E_full_executive"
+    ],
+    "off": {
+      "arm": "A_off",
+      "n": 3,
+      "accuracy": 0.6666666666666666,
+      "accuracy_by_class": {
+        "simple": 0.6666666666666666
+      },
+      "uncertainty": {
+        "precision": null,
+        "recall": null,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "plan": {
+        "first_attempt_validity": null,
+        "retry_validity": null,
+        "fallback_rate": 0.0
+      },
+      "self_correction_accuracy": null,
+      "verified_solution_rate": 0.0,
+      "avg_plan_attempts": 0.0,
+      "avg_steps": 0.0,
+      "avg_replans": 0.0,
+      "avg_latency_s": 138.12,
+      "avg_input_tokens": 30.0,
+      "avg_output_tokens": 1024.0,
+      "total_tool_calls": 0,
+      "total_retrievals": 0,
+      "stalled_rate": 0.0,
+      "error_rate": 0.0,
+      "fast_path_rate": 0.0,
+      "termination_reasons": {
+        "OFF_BASELINE": 3
+      },
+      "failure_categories": {
+        "None": 3
+      },
+      "evidence_statuses": {
+        "None": 3
+      }
+    },
+    "on": {
+      "arm": "E_full_executive",
+      "n": 3,
+      "accuracy": 0.0,
+      "accuracy_by_class": {
+        "simple": 0.0
+      },
+      "uncertainty": {
+        "precision": null,
+        "recall": null,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "plan": {
+        "first_attempt_validity": null,
+        "retry_validity": null,
+        "fallback_rate": 0.0
+      },
+      "self_correction_accuracy": null,
+      "verified_solution_rate": 0.0,
+      "avg_plan_attempts": 0.0,
+      "avg_steps": 0.0,
+      "avg_replans": 0.0,
+      "avg_latency_s": 46.436,
+      "avg_input_tokens": 14.0,
+      "avg_output_tokens": 341.333,
+      "total_tool_calls": 0,
+      "total_retrievals": 0,
+      "stalled_rate": 0.0,
+      "error_rate": 0.6666666666666666,
+      "fast_path_rate": 0.3333333333333333,
+      "termination_reasons": {
+        "SYSTEM_ERROR": 2,
+        "SOLVED_UNVERIFIED": 1
+      },
+      "failure_categories": {
+        "SYSTEM_ERROR": 2,
+        "None": 1
+      },
+      "evidence_statuses": {
+        "None": 2,
+        "PARTIALLY_SUPPORTED": 1
+      }
+    },
+    "gate_evaluation": {
+      "gates": {
+        "G1_overall_gain_pp": {
+          "measured": -66.66666666666666,
+          "threshold": 3.0,
+          "pass": false
+        },
+        "G2_distractor_robustness_pp": {
+          "measured": null,
+          "threshold": 5.0,
+          "pass": false
+        },
+        "G3_uncertainty_precision_min": {
+          "measured": null,
+          "threshold": 0.5,
+          "pass": false
+        },
+        "G4_uncertainty_recall_min": {
+          "measured": null,
+          "threshold": 0.5,
+          "pass": false
+        },
+        "G5_plan_validity_improvement": {
+          "measured": null,
+          "threshold": 0.3,
+          "baseline": 0.1,
+          "pass": false
+        },
+        "G6_correction_net_gain": {
+          "measured": null,
+          "overcorrection_proxy_fp": 0,
+          "threshold": 0.0,
+          "pass": false
+        },
+        "G7_regression_bound_pp": {
+          "measured": 66.66666666666666,
+          "threshold": 5.0,
+          "pass": false
+        },
+        "G8_t4_t5r_preservation": {
+          "measured": "citation fabrication tracked in rag-level runs; executive synthesizes only from supplied chunk ids",
+          "pass": true
+        }
+      },
+      "decision": "NOT PROMOTED",
+      "note": "thresholds pre-registered in configs/executive.yaml before any ON-arm measurement (2026-09-04)"
+    }
+  }
+}

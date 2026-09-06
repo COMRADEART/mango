@@ -1,0 +1,11 @@
+{
+  "requested_fraction": 0.15,
+  "selected": 135,
+  "by_macro": {
+    "mathematics": 0.4296,
+    "sciences": 0.5704
+  },
+  "by_verification_state": {
+    "UNSPECIFIED": 135
+  }
+}

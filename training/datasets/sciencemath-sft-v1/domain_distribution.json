@@ -1,0 +1,41 @@
+{
+  "corpus": "sciencemath-sft-v1",
+  "by_domain": {
+    "scientific_reasoning": 180,
+    "mathematics": 1651,
+    "general_science": 1200
+  },
+  "by_subject": {
+    "algebra": 202,
+    "arithmetic_word_problems": 842,
+    "counting_and_probability": 70,
+    "geometry": 117,
+    "instruction_following": 52,
+    "intermediate_algebra": 132,
+    "logic_deduction": 10,
+    "number_theory": 70,
+    "prealgebra": 140,
+    "precalculus": 78,
+    "quantitative_comparison": 11,
+    "science_qa": 1200,
+    "science_vocabulary": 23,
+    "scientific_reasoning": 12,
+    "time_arithmetic": 20,
+    "uncertainty": 12,
+    "unit_conversion": 40
+  },
+  "by_difficulty": {
+    "1": 179,
+    "2": 199,
+    "3": 199,
+    "4": 172,
+    "5": 240,
+    "None": 2042
+  },
+  "by_source": {
+    "synthetic-sft-v1": 180,
+    "gsm8k": 842,
+    "math-competition": 809,
+    "sciq": 1200
+  }
+}

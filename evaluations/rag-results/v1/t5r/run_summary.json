@@ -1,0 +1,9 @@
+{
+  "suite": "frozen",
+  "variants": [
+    "NORAG",
+    "D"
+  ],
+  "finished_at": "2026-09-03 19:15:00",
+  "generating": "Mango-v0.1 (Qwen3-1.7B + T3 LoRA, unmerged)"
+}

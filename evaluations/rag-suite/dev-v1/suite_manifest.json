@@ -1,0 +1,29 @@
+{
+  "name": "mango-rag-dev-v1",
+  "purpose": "T5R.12 development set for variant comparison; distinct from the frozen mango-rag-eval-v1 suite",
+  "n_questions": 66,
+  "categories": {
+    "factual_science_qa": 12,
+    "multi_hop_science_qa": 6,
+    "quantitative_science": 6,
+    "mixed_math_science": 6,
+    "insufficient_evidence": 6,
+    "distractor_retrieval": 6,
+    "conflicting_evidence": 4,
+    "source_attribution": 6,
+    "domain_routing": 6,
+    "retrieval_relevance": 8
+  },
+  "expected_retrieval_by_category": {
+    "factual_science_qa": true,
+    "multi_hop_science_qa": true,
+    "quantitative_science": false,
+    "insufficient_evidence": true,
+    "distractor_retrieval": true,
+    "conflicting_evidence": true,
+    "source_attribution": true,
+    "mixed_math_science": false
+  },
+  "provenance": "authored for T5R (new questions; schema mirrors mango-rag-eval-v1)",
+  "frozen_suite_untouched": true
+}

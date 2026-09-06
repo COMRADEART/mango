@@ -1,0 +1,56 @@
+[
+  {
+    "question_id": "mq-cfv-01",
+    "class": "counterfactual",
+    "question": "A bottling plant fills bottles at a constant rate of 450 bottles per hour. At that rate, how many bottles does it fill in 7 hours?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "3150",
+    "notes": "Tests sensitivity to a stated quantity: parent rate 450/h gives 3150; if the rate were doubled to 900/h the gold would change to 6300."
+  },
+  {
+    "question_id": "mq-cfv-02",
+    "class": "counterfactual",
+    "question": "Calcium carbonate decomposes when heated according to CaCO3 -> CaO + CO2. If 0.75 mol of CaCO3 fully decomposes, how many grams of CO2 are produced? (Molar mass of CO2 = 44 g/mol)",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "33",
+    "notes": "Derived mass scales linearly with the stated moles: parent 0.75 mol gives 33 g; doubling the moles to 1.5 mol would give 66 g."
+  },
+  {
+    "question_id": "mq-cfv-03",
+    "class": "counterfactual",
+    "question": "A solid metal cube has an edge length of 4 cm. What is its volume, in cubic centimeters?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "64",
+    "notes": "Volume depends nonlinearly on the stated edge: parent edge 4 cm gives 64; doubling the edge to 8 cm would give 512, so the gold changes."
+  },
+  {
+    "question_id": "mq-cfv-04",
+    "class": "counterfactual",
+    "question": "A net force acts on a 2.5 kg object and gives it an acceleration of 6 m/s^2. What is the magnitude of the net force, in newtons?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "15",
+    "notes": "F = m*a with stated mass 2.5 kg gives 15 N; doubling the mass to 5 kg would give 30 N, changing the gold."
+  },
+  {
+    "question_id": "mq-cfv-05",
+    "class": "counterfactual",
+    "question": "A savings deposit of 8000 dollars earns simple interest at an annual rate of 4 percent. How much interest, in dollars, does it earn over 3 years?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "960",
+    "notes": "Simple interest = P*r*t: parent rate 4 percent gives 960; doubling the rate to 8 percent would give 1920."
+  },
+  {
+    "question_id": "mq-cfv-06",
+    "class": "counterfactual",
+    "question": "A delivery van covers 126 kilometers in 1.5 hours while traveling at a constant speed. Maintaining that same speed, how far, in kilometers, does it travel in 5 hours?",
+    "answer_type": "numeric",
+    "choices": null,
+    "expected_answer": "420",
+    "notes": "Speed derived from stated 126 km in 1.5 h is 84 km/h, giving 420 km in 5 h; if the stated distance were doubled to 252 km the speed would be 168 km/h and the gold 840 km."
+  }
+]

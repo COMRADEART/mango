@@ -1,0 +1,121 @@
+{
+  "generated_at": "2026-09-03T05:20:22.897102+00:00",
+  "base_reference": "evaluations/base/qwen3-1.7b_non_thinking/metrics.json",
+  "suite": "sciencemath-eval-v1",
+  "metrics": {
+    "overall_accuracy": {
+      "base": 0.6862,
+      "tuned": 0.5638,
+      "delta": -0.1224,
+      "delta_pp": -12.24
+    },
+    "extraction_success_rate": {
+      "base": 0.9681,
+      "tuned": 0.9362,
+      "delta": -0.0319,
+      "delta_pp": -3.19
+    },
+    "invalid_response_rate": {
+      "base": 0.0319,
+      "tuned": 0.0638,
+      "delta": 0.0319,
+      "delta_pp": 3.19
+    },
+    "refusal_rate": {
+      "base": 0.0,
+      "tuned": 0.0,
+      "delta": 0.0,
+      "delta_pp": 0.0
+    },
+    "median_latency_s": {
+      "base": 24.483,
+      "tuned": 8.791,
+      "delta": -15.692,
+      "delta_pp": -15.69
+    },
+    "avg_latency_s": {
+      "base": 32.294,
+      "tuned": 20.487,
+      "delta": -11.807,
+      "delta_pp": -11.81
+    },
+    "avg_output_tokens": {
+      "base": 365.8,
+      "tuned": 170.9,
+      "delta": -194.9,
+      "delta_pp": -194.9
+    },
+    "avg_input_tokens": {
+      "base": 88.9,
+      "tuned": 88.9,
+      "delta": 0.0,
+      "delta_pp": 0.0
+    }
+  },
+  "per_category": {
+    "algebra": {
+      "base": 0.625,
+      "tuned": 0.325,
+      "delta_pp": -30.0
+    },
+    "arithmetic": {
+      "base": 0.9,
+      "tuned": 0.775,
+      "delta_pp": -12.5
+    },
+    "general_science": {
+      "base": 0.7667,
+      "tuned": 0.7667,
+      "delta_pp": 0.0
+    },
+    "geometry": {
+      "base": 0.5,
+      "tuned": 0.2,
+      "delta_pp": -30.0
+    },
+    "instruction_following": {
+      "base": 0.7,
+      "tuned": 1.0,
+      "delta_pp": 30.0
+    },
+    "probability_statistics": {
+      "base": 0.5,
+      "tuned": 0.2,
+      "delta_pp": -30.0
+    },
+    "trigonometry_precalculus": {
+      "base": 0.4,
+      "tuned": 0.2,
+      "delta_pp": -20.0
+    },
+    "uncertainty_calibration": {
+      "base": 0.125,
+      "tuned": 0.0,
+      "delta_pp": -12.5
+    }
+  },
+  "math_macro": {
+    "base": 0.585,
+    "tuned": 0.34,
+    "delta_pp": -24.5
+  },
+  "science_macro": {
+    "base": 0.7667,
+    "tuned": 0.7667,
+    "delta_pp": 0.0
+  },
+  "primary_macro": {
+    "base": 0.6152833333333333,
+    "tuned": 0.41111666666666674,
+    "delta_pp": -20.42
+  },
+  "catastrophic_forgetting_gate": {
+    "flag_name": "SCIENCE_REGRESSION",
+    "flag": "PASS",
+    "reference_science_macro": 0.7667,
+    "tuned_science_macro": 0.7667,
+    "drop_pp": 0.0,
+    "threshold_pp": 5.0,
+    "declared_in": "configs/training.yaml (fixed before tuned evaluation)"
+  }
+}

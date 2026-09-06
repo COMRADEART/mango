@@ -1,0 +1,79 @@
+{
+  "corpus_version": "mango-science-corpus-v0.1",
+  "built_at": "2026-09-03T17:07:29.594881+00:00",
+  "source_id": "wikipedia_en",
+  "source_license": "CC BY-SA 4.0",
+  "registry_status": "APPROVED",
+  "documents": 241,
+  "chunks": 3847,
+  "domains": {
+    "mathematics": 645,
+    "physics": 619,
+    "biology": 534,
+    "computer_science": 620,
+    "astronomy": 436,
+    "chemistry": 602,
+    "earth_science": 391
+  },
+  "config": {
+    "subjects": [
+      "mathematics",
+      "physics",
+      "chemistry",
+      "biology",
+      "astronomy",
+      "earth_science",
+      "computer_science"
+    ],
+    "max_depth": 1,
+    "max_pages_per_subject": 40,
+    "chunk_size_tokens": 650,
+    "chunk_overlap_tokens": 80
+  },
+  "per_subject": {
+    "mathematics": {
+      "pages": 39,
+      "chunks": 652,
+      "skipped": [
+        "Algebra (disambiguation)"
+      ]
+    },
+    "physics": {
+      "pages": 40,
+      "chunks": 616,
+      "skipped": []
+    },
+    "chemistry": {
+      "pages": 40,
+      "chunks": 591,
+      "skipped": []
+    },
+    "biology": {
+      "pages": 40,
+      "chunks": 542,
+      "skipped": []
+    },
+    "astronomy": {
+      "pages": 40,
+      "chunks": 436,
+      "skipped": []
+    },
+    "earth_science": {
+      "pages": 40,
+      "chunks": 391,
+      "skipped": []
+    },
+    "computer_science": {
+      "pages": 40,
+      "chunks": 619,
+      "skipped": []
+    }
+  },
+  "attribution": "Text from Wikipedia (en), article '<title>', revision <revid>, retrieved <date>, <url>. Licensed CC BY-SA 4.0.",
+  "approved_for_redistribution": false,
+  "notes": "Internal retrieval corpus; not for redistribution or SFT.",
+  "file_checksums": {
+    "wikipedia_en.jsonl": "08a5a997fdaf97292006c96194b8f119b3a3a1ce6b288d22c76b63aa0174c2fe"
+  },
+  "corpus_checksum": "15bccf6c2ce9f3cb"
+}

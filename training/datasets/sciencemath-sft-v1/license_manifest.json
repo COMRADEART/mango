@@ -1,0 +1,39 @@
+{
+  "corpus": "sciencemath-sft-v1",
+  "policy": "only datasets.json entries with license_status=APPROVED and eval_only=false; REVIEW_REQUIRED excluded; eval-only sources excluded from training",
+  "sources": {
+    "gsm8k": {
+      "license": "MIT",
+      "license_status": "APPROVED",
+      "license_verified": true,
+      "allows_training_use": true,
+      "redistribution_permitted": true,
+      "hf_id": "openai/gsm8k",
+      "notes": "Grade-school math word problems; ~7.5k train / 1.3k test. MIT verified on the dataset card."
+    },
+    "math-competition": {
+      "license": "MIT",
+      "license_status": "APPROVED",
+      "license_verified": true,
+      "allows_training_use": true,
+      "redistribution_permitted": true,
+      "hf_id": "hendrycks/competition_math",
+      "notes": "MATH dataset (Hendrycks et al.), MIT. Uses a loading script; with datasets>=3 may require trust_remote_code or a parquet mirror. Do not hide a load failure - record a blocker."
+    },
+    "sciq": {
+      "license": "CC-BY-NC-3.0",
+      "license_status": "APPROVED",
+      "license_verified": true,
+      "allows_training_use": true,
+      "redistribution_permitted": "non-commercial only",
+      "hf_id": "allenai/sciq",
+      "notes": "SciQ crowdsourced science MCQ with supporting evidence. Non-commercial license: usable for this research project; do not use commercially."
+    }
+  },
+  "synthetic-sft-v1": {
+    "license": "MIT",
+    "license_status": "APPROVED (self-authored)",
+    "note": "authored in src/sciencemath/training/synthetic_general.py"
+  },
+  "commercial_use_note": "sciq is CC-BY-NC-3.0 (non-commercial); the corpus inherits that restriction"
+}

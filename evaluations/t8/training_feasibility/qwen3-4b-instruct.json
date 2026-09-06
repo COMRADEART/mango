@@ -1,0 +1,62 @@
+{
+  "dry_run": "T8.19 QLoRA feasibility",
+  "label": "qwen3-4b-instruct",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": null,
+  "recorded_at": "2026-09-05T22:45:04.617412+00:00",
+  "steps": 3,
+  "examples": 24,
+  "max_seq_length": 1024,
+  "lora_rank": 32,
+  "corpus": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\datasets\\sciencemath-sft-v1",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "vram_total_mib": 6140,
+  "micro_batch_1": {
+    "micro_batch": 1,
+    "label": "qwen3-4b-instruct",
+    "features": 24,
+    "adapter_active": true,
+    "after_attach_vram": {
+      "allocated_mib": 3549.7,
+      "reserved_mib": 4212.0
+    },
+    "train_time_s": 3.9,
+    "peak_vram": {
+      "allocated_mib": 4072.9,
+      "reserved_mib": 5760.0
+    },
+    "peak_reserved_mib": 5760.0,
+    "losses": [
+      1.639941692352295,
+      1.747506856918335,
+      1.6811960935592651
+    ],
+    "checkpoint_saved": true,
+    "ok": true
+  },
+  "micro_batch_2": {
+    "micro_batch": 2,
+    "label": "qwen3-4b-instruct",
+    "features": 24,
+    "adapter_active": true,
+    "after_attach_vram": {
+      "allocated_mib": 3566.5,
+      "reserved_mib": 4192.0
+    },
+    "train_time_s": 17.6,
+    "peak_vram": {
+      "allocated_mib": 4074.5,
+      "reserved_mib": 6544.0
+    },
+    "peak_reserved_mib": 6544.0,
+    "losses": [
+      1.8880821466445923,
+      1.5341600179672241,
+      1.4719761610031128
+    ],
+    "checkpoint_saved": true,
+    "ok": true
+  },
+  "feasible_local": true,
+  "conclusion": "QLoRA fits at micro-batch [1, 2] "
+}

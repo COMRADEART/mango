@@ -1,0 +1,22 @@
+{
+  "model_id": "Qwen/Qwen3-1.7B",
+  "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "status": "COMPLETE",
+  "mode": "non_thinking",
+  "thinking_enabled": false,
+  "quantized_4bit": true,
+  "suite": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t6\\counterfactual\\v1",
+  "questions_total": 145,
+  "questions_answered": 145,
+  "generation": {
+    "seed": 42,
+    "do_sample": false,
+    "max_new_tokens": 1024
+  },
+  "runtime_s": 1054.5,
+  "load": {
+    "ok": true,
+    "provided_by_caller": true,
+    "note": "model loaded by caller (adapter attached externally)"
+  }
+}

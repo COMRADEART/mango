@@ -1,0 +1,217 @@
+{
+ "state": {
+  "run_id": "mq-mhs-09",
+  "problem": "The dominant enzyme in human saliva hydrolyzes a polysaccharide found in potatoes and rice. What simple sugar is ultimately produced by the complete digestion of this polysaccharide?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "NONE",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What simple sugar is ultimately produced by the complete digestion of this polysaccharide"
+    },
+    {
+     "id": "s3",
+     "action": "REASON",
+     "description": "Reason over the question using provided context only",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s2",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s3"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s3",
+   "s2"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-3954:metabolism_carbohydrates_as_energy_sourc_f4aa7f2c:0 | wiki-3954:biomolecules_carbohydrates_12204828:0 | wiki-3954:metabolism_carbohydrates_as_energy_sourc_477ef993:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-3954:metabolism_carbohydrates_as_energy_sourc_f4aa7f2c:0",
+       "text": "Glucose is an energy source in most life forms. For instance, polysaccharides are broken down into their monomers by enzymes (glycogen phosphorylase removes glucose residues from glycogen, a polysaccharide). Disaccharides like lactose or sucrose are cleaved into their two component monosaccharides."
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-3954:biomolecules_carbohydrates_12204828:0",
+       "text": "Two of the main functions of carbohydrates are energy storage and providing structure. One of the common sugars known as glucose is a carbohydrate, but not all carbohydrates are sugars. There are more carbohydrates on Earth than any other known type of biomolecule; they are used to store energy and genetic information, as well as play important roles in cell to cell interactions and communications. The simplest type of carbohydrate is a monosaccharide, which among other properties contains carbon, hydrogen, and oxygen, mostly in a ratio of 1:2:1 (generalized formula CnH2nOn, where n is at leas"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-3954:metabolism_carbohydrates_as_energy_sourc_477ef993:0",
+       "text": "Glucose is mainly metabolized by a very important ten-step pathway called glycolysis, the net result of which is to break down one molecule of glucose into two molecules of pyruvate. This also produces a net two molecules of ATP, the energy currency of cells, along with two reducing equivalents of converting NAD+ (nicotinamide adenine dinucleotide: oxidized form) to NADH (nicotinamide adenine dinucleotide: reduced form). This does not require oxygen; if no oxygen is available (or the cell cannot use oxygen), the NAD is restored by converting the pyruvate to lactate (lactic acid) (e.g. in human"
+      }
+     ],
+     "signature": "2950a8990ed12cfc"
+    },
+    "latency_s": 0.38959910001722164,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s3",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "Glucose is the simple sugar produced by the complete digestion of the polysaccharide.",
+    "detail": {
+     "raw": "Answer: Glucose is the simple sugar produced by the complete digestion of the polysaccharide.",
+     "signature": "948d2733440d3d2b"
+    },
+    "latency_s": 2.7750259000167716,
+    "input_tokens": 406,
+    "output_tokens": 21
+   },
+   {
+    "step_id": "s2",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "[wiki-3954:metabolism_carbohydrates_as_energy_sourc_f4aa7f2c:0] Glucose is the simple sugar produced by the complete digestion of the polysaccharide.",
+    "detail": {
+     "raw": "Answer: [wiki-3954:metabolism_carbohydrates_as_energy_sourc_f4aa7f2c:0] Glucose is the simple sugar produced by the complete digestion of the polysaccharide.",
+     "signature": "c28a4e64dd24a8c1"
+    },
+    "latency_s": 6.174953999987338,
+    "input_tokens": 435,
+    "output_tokens": 50
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 19.13494210000499,
+   "input_tokens": 841,
+   "output_tokens": 71
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "The dominant enzyme in human saliva hydrolyzes a polysaccharide found in potatoes and rice.",
+   "What simple sugar is ultimately produced by the complete digestion of this polysaccharide?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-3954:metabolism_carbohydrates_as_energy_sourc_f4aa7f2c:0 | wiki-3954:biomolecules_carbohydrates_12204828:0 | wiki-3954:metabolism_carbohydrates_as_energy_sourc_477ef993:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "Glucose is the simple sugar produced by the complete digestion of the polysaccharide.",
+     "step_id": "s3"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "[wiki-3954:metabolism_carbohydrates_as_energy_sourc_f4aa7f2c:0] Glucose is the simple sugar produced by the complete digestion of the polysaccharide.",
+     "step_id": "s2"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s3",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s3",
+     "dst": "step:s2",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-3954:metabolism_carbohydrates_as_energy_sourc_f4aa7f2c:0 | wiki-3954:biomolecules_carbohydrates_12204828:0 | wiki-3954:metabolism_carbohydrates_as_energy_sourc_477ef993:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "Glucose is the simple sugar produced by the complete digestion of the polysaccharide.",
+    "step_id": "s3"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "[wiki-3954:metabolism_carbohydrates_as_energy_sourc_f4aa7f2c:0] Glucose is the simple sugar produced by the complete digestion of the polysaccharide.",
+    "step_id": "s2"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s3",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s3",
+    "dst": "step:s2",
+    "relation": "produced"
+   }
+  ]
+ }
+}

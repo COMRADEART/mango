@@ -1,0 +1,12 @@
+{
+  "milestone": "T8",
+  "status": "CLOSED_NO_MIGRATION",
+  "decision": "DO_NOT_MIGRATE",
+  "retain": {"checkpoint": "Mango-v0.1", "base_model": "Qwen/Qwen3-1.7B", "adapter": "training/adapters/sciencemath-v0.1-t3"},
+  "best_followup_candidate": "Qwen/Qwen3-4B-Instruct-2507",
+  "reason": "No candidate passes the existing model-only migration gate. Integration gains and a short training smoke test do not override that gate.",
+  "promoted": false,
+  "migration_dependent_training": "NOT_ACTIVATED",
+  "stretch_8b": "NOT_RUNTIME_EVALUATED; excluded from measured comparison",
+  "evidence": ["T8_FINAL_REPORT.md", "final_audit.json", "final_tests.xml", "recomputed_metrics.json", "training_feasibility/reload_verification.json"]
+}

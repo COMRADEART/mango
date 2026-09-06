@@ -1,0 +1,173 @@
+{
+ "state": {
+  "run_id": "mq-mixed-11",
+  "problem": "A weather balloon holds 12 cubic meters of helium on the ground, where the air temperature is 27 degrees Celsius. As it climbs the temperature falls to -3 degrees Celsius and the balloon is free to change volume, keeping its internal pressure equal to the outside air pressure. Treating the helium's volume as proportional to its absolute temperature, what volume does the balloon occupy aloft, in cubic meters?",
+  "goal": "",
+  "problem_type": "MIXED",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "what volume does the balloon occupy aloft, in cubic meters"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "12 cubic meters * (273.15 K / 273.15 K) = 12 cubic meters",
+    "detail": {
+     "raw": "Answer: 12 cubic meters * (273.15 K / 273.15 K) = 12 cubic meters\n\nFinal answer: \\boxed{12}",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 19.306677299988223,
+    "input_tokens": 246,
+    "output_tokens": 43
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{12}",
+    "detail": {
+     "raw": "Answer: \\boxed{12}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 3.690802299999632,
+    "input_tokens": 238,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 41.629149199987296,
+   "input_tokens": 484,
+   "output_tokens": 52
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A weather balloon holds 12 cubic meters of helium on the ground, where the air temperature is 27 degrees Celsius.",
+   "As it climbs the temperature falls to -3 degrees Celsius and the balloon is free to change volume, keeping its internal pressure equal to the outside air pressure.",
+   "Treating the helium's volume as proportional to its absolute temperature, what volume does the balloon occupy aloft, in cubic meters?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "12 cubic meters * (273.15 K / 273.15 K) = 12 cubic meters",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{12}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "12 cubic meters * (273.15 K / 273.15 K) = 12 cubic meters",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{12}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

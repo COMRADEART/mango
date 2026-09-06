@@ -1,0 +1,110 @@
+[
+ {
+  "question_id": "mq-mixed-01",
+  "class": "mixed",
+  "question": "An electric heater rated at 2.2 kW is left running in a living room for 45 minutes. Household electricity meters record energy in kilowatt-hours. How many kWh does the heater use?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "1.65",
+  "notes": "Two steps: 45 min = 0.75 h (time conversion), then energy = 2.2 kW * 0.75 h = 1.65 kWh."
+ },
+ {
+  "question_id": "mq-mixed-02",
+  "class": "mixed",
+  "question": "A steel bridge girder is 80 m long on a winter night when the temperature is -5 degrees Celsius. By a summer afternoon it has warmed to 35 degrees Celsius, and steel lengthens by 0.000012 of its length for each 1 degree Celsius rise. By how many millimeters does the girder lengthen?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "38.4",
+  "notes": "Three steps: temperature rise = 35 - (-5) = 40 C; fractional growth = 80 * 0.000012 * 40 = 0.0384 m; convert to mm: 0.0384 m * 1000 = 38.4 mm."
+ },
+ {
+  "question_id": "mq-mixed-03",
+  "class": "mixed",
+  "question": "Ocean water carries roughly 3.5 percent salt by mass. How many grams of salt does a 2.5 kg sample of seawater contain?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "87.5",
+  "notes": "Two steps: 2.5 kg = 2500 g (unit conversion), then salt = 0.035 * 2500 = 87.5 g."
+ },
+ {
+  "question_id": "mq-mixed-04",
+  "class": "mixed",
+  "question": "A foundry melts 300 g of an alloy that is 20 percent silver together with 200 g of a second alloy that is 5 percent silver. What percentage of the blended metal is silver?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "14",
+  "notes": "Three steps: silver from first alloy = 0.20 * 300 = 60 g; from second = 0.05 * 200 = 10 g; blend = (60 + 10) / (300 + 200) * 100 = 70/500 * 100 = 14 percent."
+ },
+ {
+  "question_id": "mq-mixed-05",
+  "class": "mixed",
+  "question": "An ore body is 40 percent iron(III) oxide, Fe2O3, by mass. Given that Fe2O3 has a relative formula mass of 160, that iron's relative atomic mass is 56, and that each formula unit of Fe2O3 yields two atoms of iron, how many kilograms of pure iron can be smelted from 500 kg of this ore?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "140",
+  "notes": "Multi-step stoichiometry: oxide mass = 0.40 * 500 = 200 kg = 200000 g; moles Fe2O3 = 200000/160 = 1250 mol; iron moles = 2 * 1250 = 2500 mol; iron mass = 2500 * 56 = 140000 g = 140 kg."
+ },
+ {
+  "question_id": "mq-mixed-06",
+  "class": "mixed",
+  "question": "A wetland reserve counted 2400 migratory geese at the start of autumn. After 15 percent of them departed for the coast, 60 more arrived from a drought-stricken marsh nearby. How many geese were in the reserve then?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "2100",
+  "notes": "Two steps: departing geese = 0.15 * 2400 = 360, leaving 2400 - 360 = 2040; then arrivals add 60, giving 2040 + 60 = 2100."
+ },
+ {
+  "question_id": "mq-mixed-07",
+  "class": "mixed",
+  "question": "During an emergency stop, a 1400 kg car slows from 25 m/s to a standstill in 5 s. What braking force, in newtons, acted on it?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "7000",
+  "notes": "Two linked reasonings: deceleration = 25/5 = 5 m/s^2 (kinematics), then force = 1400 * 5 = 7000 N (Newton's second law applied to the result)."
+ },
+ {
+  "question_id": "mq-mixed-08",
+  "class": "mixed",
+  "question": "A pediatrician prescribes an antibiotic at 15 mg for each kilogram of body weight. The medicine is supplied as a liquid containing 30 mg in every milliliter. How many milliliters should be given to a child weighing 22 kg?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "11",
+  "notes": "Two steps: total dose = 15 * 22 = 330 mg (dose rate times body mass), then volume = 330/30 = 11 mL (dose to concentration conversion)."
+ },
+ {
+  "question_id": "mq-mixed-09",
+  "class": "mixed",
+  "question": "A survey ship times a sonar pulse sent through seawater at 1500 m/s: the echo bounced back from the seabed arrives 4 s after emission. How many meters deep is the water at that spot?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "3000",
+  "notes": "Two steps: round-trip distance = 1500 * 4 = 6000 m, then one-way depth = 6000/2 = 3000 m (echo travels down and back)."
+ },
+ {
+  "question_id": "mq-mixed-10",
+  "class": "mixed",
+  "question": "Satellite measurements put a tectonic plate's drift at 2.5 cm per year. At this pace, how many kilometers will the plate have traveled after 60,000 years?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "1.5",
+  "notes": "Two steps: drift distance = 2.5 * 60000 = 150000 cm, then convert 150000 cm = 1500 m = 1.5 km."
+ },
+ {
+  "question_id": "mq-mixed-11",
+  "class": "mixed",
+  "question": "A weather balloon holds 12 cubic meters of helium on the ground, where the air temperature is 27 degrees Celsius. As it climbs the temperature falls to -3 degrees Celsius and the balloon is free to change volume, keeping its internal pressure equal to the outside air pressure. Treating the helium's volume as proportional to its absolute temperature, what volume does the balloon occupy aloft, in cubic meters?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "10.8",
+  "notes": "Three steps: recall Charles's law and convert to kelvin: T1 = 27 + 273 = 300 K, T2 = -3 + 273 = 270 K; then V2 = 12 * 270/300 = 10.8 cubic meters."
+ },
+ {
+  "question_id": "mq-mixed-12",
+  "class": "mixed",
+  "question": "A water pump in an irrigation scheme lifts 300 liters of water each minute from a river up to a channel that sits 12 m higher. Taking 1 liter of water as having a mass of 1 kg and the gravitational field strength as 10 N/kg, how many kilojoules of useful work does the pump do each minute?",
+  "answer_type": "numeric",
+  "choices": null,
+  "expected_answer": "36",
+  "notes": "Three steps with a density recall: mass lifted = 300 L * 1 kg/L = 300 kg; weight = 300 * 10 = 3000 N; work = 3000 * 12 = 36000 J = 36 kJ."
+ }
+]

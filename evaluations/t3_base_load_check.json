@@ -1,0 +1,11 @@
+{
+  "model_id": "Qwen/Qwen3-1.7B",
+  "device": "cpu",
+  "recorded_at": "2026-09-02T20:30:48.446453+00:00",
+  "tokenizer_ok": true,
+  "model_ok": true,
+  "params": 1720574976,
+  "smoke_output": "4",
+  "load_s": 26.3,
+  "ok": true
+}

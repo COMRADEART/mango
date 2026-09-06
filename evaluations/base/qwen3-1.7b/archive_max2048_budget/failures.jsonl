@@ -1,0 +1,32 @@
+{"eval_id": "ev1-0054033fb1ce", "category": "geometry", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "145"}
+{"eval_id": "ev1-016978277697", "category": "algebra", "failure": "TRUNCATED_OUTPUT", "extracted_answer": "---", "expected_answer": "5937"}
+{"eval_id": "ev1-0953e8219e27", "category": "trigonometry_precalculus", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "3^{2007}"}
+{"eval_id": "ev1-14a35fb0060d", "category": "probability_statistics", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "\\frac{1}{2}"}
+{"eval_id": "ev1-17cff5e0d02c", "category": "probability_statistics", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "4"}
+{"eval_id": "ev1-1e99c1d90fc6", "category": "trigonometry_precalculus", "failure": "TRUNCATED_OUTPUT", "extracted_answer": "\\mathbf{a} \\cdot \\mathbf{b} = (2)(1", "expected_answer": "-4"}
+{"eval_id": "ev1-2062af991854", "category": "arithmetic", "failure": "TRUNCATED_OUTPUT", "extracted_answer": "240c = 36000 - 1", "expected_answer": "145"}
+{"eval_id": "ev1-2323f7825810", "category": "geometry", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "23.31"}
+{"eval_id": "ev1-2636a5bc5326", "category": "algebra", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "6"}
+{"eval_id": "ev1-2932e0e59cbb", "category": "algebra", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "\\frac{2}{5}"}
+{"eval_id": "ev1-2bb83dacd161", "category": "trigonometry_precalculus", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "\\frac{9}{10}"}
+{"eval_id": "ev1-2f115c812a70", "category": "general_science", "failure": "WRONG_ANSWER", "extracted_answer": "C", "expected_answer": "3"}
+{"eval_id": "ev1-327883371080", "category": "general_science", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "C"}
+{"eval_id": "ev1-3418804a4b36", "category": "algebra", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "7"}
+{"eval_id": "ev1-389ad3fa066c", "category": "trigonometry_precalculus", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "\\sqrt{51}"}
+{"eval_id": "ev1-3a2cdabb3be9", "category": "algebra", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "2 \\sqrt{5}"}
+{"eval_id": "ev1-3b24669b4a76", "category": "probability_statistics", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "1275"}
+{"eval_id": "ev1-3c675901c606", "category": "probability_statistics", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "48"}
+{"eval_id": "ev1-435d6c8ffbc1", "category": "algebra", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "5"}
+{"eval_id": "ev1-47a9c0841557", "category": "algebra", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "23"}
+{"eval_id": "ev1-4826156af9b8", "category": "algebra", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "7"}
+{"eval_id": "ev1-4b2fa846dbc2", "category": "trigonometry_precalculus", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "\\frac{\\sqrt{3}}{4}"}
+{"eval_id": "ev1-4c4a9c2e28b7", "category": "algebra", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "6\\sqrt3"}
+{"eval_id": "ev1-4ec43c363251", "category": "geometry", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "-\\frac{1}{2}"}
+{"eval_id": "ev1-4fef0a98f059", "category": "geometry", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "55"}
+{"eval_id": "ev1-529d57c91348", "category": "algebra", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "66"}
+{"eval_id": "ev1-52b90604fd5b", "category": "uncertainty_calibration", "failure": "WRONG_ANSWER", "extracted_answer": "E=mc^2", "expected_answer": "__UNKNOWN__"}
+{"eval_id": "ev1-533407f65652", "category": "uncertainty_calibration", "failure": "WRONG_ANSWER", "extracted_answer": "3", "expected_answer": "__UNKNOWN__"}
+{"eval_id": "ev1-57546fee43f5", "category": "general_science", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "A"}
+{"eval_id": "ev1-5c9d65b01b71", "category": "geometry", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "-\\frac{7}{12}"}
+{"eval_id": "ev1-5dd5a29852b9", "category": "trigonometry_precalculus", "failure": "EXTRACTION_FAILURE", "extracted_answer": null, "expected_answer": "\\frac{3}{16}"}
+{"eval_id": "ev1-60b6c4e1f70a", "category": "uncertainty_calibration", "failure": "WRONG_ANSWER", "extracted_answer": "brown", "expected_answer": "__UNKNOWN__"}

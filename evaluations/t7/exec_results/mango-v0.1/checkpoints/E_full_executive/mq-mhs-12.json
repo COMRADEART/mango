@@ -1,0 +1,169 @@
+{
+ "state": {
+  "run_id": "mq-mhs-12",
+  "problem": "Acid rain damages buildings and forests. What is the chemical formula of the main acid in acid rain, which forms in the atmosphere when the gas released by burning coal and by volcanic eruptions reacts with oxygen and water vapor?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "RETRIEVAL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What is the chemical formula of the main acid in acid rain, which forms in the atmosphere when the gas released by burning c"
+    },
+    {
+     "id": "s2",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-57555:definitions_15225baa:0 | wiki-19916594:reactions_organic_chemistry_206680ae:0 | wiki-639:chemical_properties_reactions_with_oxyge_0904f66e:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-57555:definitions_15225baa:0",
+       "text": "According to Arrhenius's original molecular definition, an acid is a substance that dissociates in aqueous solution, releasing the hydrogen ion H+ (a proton):      HA       ↽     −         −     ⇀        A  −   +  H  +      {\\displaystyle {\\ce {HA <=> A- + H+}}}   The equilibrium constant for this dissociation reaction is known as a dissociation constant. The liberated proton combines with a water molecule to give a hydronium (or oxonium) ion H3O+ (naked protons do not exist in solution), and so Arrhenius later proposed that the dissociation should be written as an acid–base reaction:      HA "
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-19916594:reactions_organic_chemistry_206680ae:0",
+       "text": "Acetic acid undergoes the typical chemical reactions of a carboxylic acid. Upon treatment with a standard base, it converts to metal acetate and water. With strong bases (e.g., organolithium reagents), it can be doubly deprotonated to give LiCH2COOLi. Reduction of acetic acid gives ethanol. The OH group is the main site of reaction, as illustrated by the conversion of acetic acid to acetyl chloride. Other substitution derivatives include acetic anhydride; this anhydride is produced by loss of water from two molecules of acetic acid. Esters of acetic acid can likewise be formed via Fischer este"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-639:chemical_properties_reactions_with_oxyge_0904f66e:0",
+       "text": "All alkanes react with oxygen in a combustion reaction, although they become increasingly difficult to ignite as the number of carbon atoms increases. The general equation for complete combustion is:  CnH2n+2 + (⁠3/2⁠n + ⁠1/2⁠) O2 → (n + 1) H2O + n CO2 or CnH2n+2 + (⁠3n + 1/2⁠) O2 → (n + 1) H2O + n CO2 In the absence of sufficient oxygen, carbon monoxide or even soot can be formed, as shown below:  CnH2n+2 + (n + ⁠1/2⁠) O2 → (n + 1) H2O + n CO CnH2n+2 + (⁠1/2⁠n + ⁠1/2⁠) O2 → (n + 1) H2O + n C For example, methane:  2 CH4 + 3 O2 → 4 H2O + 2 CO CH4 + O2 → 2 H2O + C See the alkane heat of formati"
+      }
+     ],
+     "signature": "9c344d6b89de495f"
+    },
+    "latency_s": 0.3967846999876201,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "The chemical formula of the main acid in acid rain is H2SO4.",
+    "detail": {
+     "raw": "Answer: The chemical formula of the main acid in acid rain is H2SO4.",
+     "signature": "c28a4e64dd24a8c1"
+    },
+    "latency_s": 2.6889446999994107,
+    "input_tokens": 435,
+    "output_tokens": 19
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 3,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 18.25611570000183,
+   "input_tokens": 435,
+   "output_tokens": 19
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "Acid rain damages buildings and forests.",
+   "What is the chemical formula of the main acid in acid rain, which forms in the atmosphere when the gas released by burning coal and by volcanic eruptions reacts with oxygen and water vapor?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-57555:definitions_15225baa:0 | wiki-19916594:reactions_organic_chemistry_206680ae:0 | wiki-639:chemical_properties_reactions_with_oxyge_0904f66e:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "The chemical formula of the main acid in acid rain is H2SO4.",
+     "step_id": "s2"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-57555:definitions_15225baa:0 | wiki-19916594:reactions_organic_chemistry_206680ae:0 | wiki-639:chemical_properties_reactions_with_oxyge_0904f66e:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "The chemical formula of the main acid in acid rain is H2SO4.",
+    "step_id": "s2"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   }
+  ]
+ }
+}

@@ -1,0 +1,51 @@
+{
+  "gates": {
+    "G1_overall_gain_pp": {
+      "measured": -9.80392156862745,
+      "threshold": 3.0,
+      "pass": false
+    },
+    "G2_distractor_robustness_pp": {
+      "measured": -8.333333333333325,
+      "threshold": 5.0,
+      "pass": false
+    },
+    "G3_uncertainty_precision_min": {
+      "measured": 0.7272727272727273,
+      "threshold": 0.5,
+      "pass": true
+    },
+    "G4_uncertainty_recall_min": {
+      "measured": 0.4444444444444444,
+      "threshold": 0.5,
+      "pass": false
+    },
+    "G5_plan_validity_improvement": {
+      "measured": 0.0,
+      "threshold": 0.3,
+      "baseline": 0.1,
+      "pass": false
+    },
+    "G6_correction_net_gain": {
+      "measured": 0,
+      "fixes": 0,
+      "breaks": 0,
+      "corrections_used": 0,
+      "overcorrection_proxy_fp": 3,
+      "threshold": 0.0,
+      "pass": false
+    },
+    "G7_regression_bound_pp": {
+      "measured": 0.0,
+      "threshold": 5.0,
+      "pass": true
+    },
+    "G8_t4_t5r_preservation": {
+      "measured": 0,
+      "threshold": 0.0,
+      "pass": true
+    }
+  },
+  "decision": "NOT PROMOTED",
+  "note": "thresholds pre-registered in configs/executive.yaml before any ON-arm measurement (2026-09-04)"
+}

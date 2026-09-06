@@ -1,0 +1,23 @@
+{
+  "log_history": [
+    {
+      "eval_loss": 0.2677316665649414,
+      "eval_runtime": 0.1856,
+      "eval_samples_per_second": 21.549,
+      "eval_steps_per_second": 5.387,
+      "epoch": 3.0,
+      "step": 3
+    },
+    {
+      "train_runtime": 25.6894,
+      "train_samples_per_second": 1.868,
+      "train_steps_per_second": 0.117,
+      "total_flos": 19965660364800.0,
+      "train_loss": 0.5653403600056967,
+      "epoch": 3.0,
+      "step": 3
+    }
+  ],
+  "final_train_loss": null,
+  "best_eval_loss": 0.2677316665649414
+}

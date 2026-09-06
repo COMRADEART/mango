@@ -1,0 +1,271 @@
+{
+  "label": "mango-v0.1",
+  "arms_present": [
+    "B_plan_only",
+    "C_plan_tools",
+    "D_plan_exec_verify",
+    "E_full_executive",
+    "F_no_distractor_filter",
+    "G_no_correction_gate"
+  ],
+  "e_accuracy_by_class": {
+    "contradictory": 0.0,
+    "counterfactual": 1.0,
+    "distractor": 0.8333333333333334,
+    "missing_info": 0.0,
+    "mixed": 0.4166666666666667,
+    "multi_hop_science": 0.25,
+    "multi_step_math": 0.6666666666666666,
+    "retrieval_failure": 0.5,
+    "self_correction": 0.3333333333333333,
+    "simple": 0.9166666666666666,
+    "tool_failure": 1.0
+  },
+  "ablations": {
+    "B_plan_only": {
+      "accuracy": 0.5138888888888888,
+      "accuracy_delta_pp_vs_E": 4.17,
+      "per_class_accuracy_delta_pp_vs_E": {
+        "contradictory": 0.0,
+        "distractor": 16.67,
+        "missing_info": 0.0,
+        "mixed": 0.0,
+        "multi_step_math": 0.0,
+        "retrieval_failure": 16.67,
+        "self_correction": 0.0,
+        "tool_failure": 0.0
+      },
+      "uncertainty": {
+        "precision": 1.0,
+        "recall": 0.4444444444444444,
+        "tp": 8,
+        "fp": 0,
+        "fn": 10
+      },
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "citations_fabricated": 0,
+      "n_compared": 72,
+      "n_e_subset": 72,
+      "plan_first_attempt_validity": 0.0,
+      "cost": {
+        "avg_latency_s": 246.6,
+        "avg_input_tokens": 301.9,
+        "avg_output_tokens": 50.0,
+        "total_model_calls": 272,
+        "total_tool_calls": 0,
+        "total_retrievals": 0
+      },
+      "stalled_rate": 0.0,
+      "error_rate": 0.0
+    },
+    "C_plan_tools": {
+      "accuracy": 0.4722222222222222,
+      "accuracy_delta_pp_vs_E": 0.0,
+      "per_class_accuracy_delta_pp_vs_E": {
+        "contradictory": 0.0,
+        "distractor": 0.0,
+        "missing_info": 0.0,
+        "mixed": 0.0,
+        "multi_step_math": 0.0,
+        "retrieval_failure": 0.0,
+        "self_correction": 0.0,
+        "tool_failure": 0.0
+      },
+      "uncertainty": {
+        "precision": 0.6666666666666666,
+        "recall": 0.3333333333333333,
+        "tp": 6,
+        "fp": 3,
+        "fn": 12
+      },
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "citations_fabricated": 0,
+      "n_compared": 72,
+      "n_e_subset": 72,
+      "plan_first_attempt_validity": 0.0,
+      "cost": {
+        "avg_latency_s": 31.8,
+        "avg_input_tokens": 376.3,
+        "avg_output_tokens": 50.5,
+        "total_model_calls": 271,
+        "total_tool_calls": 0,
+        "total_retrievals": 14
+      },
+      "stalled_rate": 0.0,
+      "error_rate": 0.0
+    },
+    "D_plan_exec_verify": {
+      "accuracy": 0.4722222222222222,
+      "accuracy_delta_pp_vs_E": 0.0,
+      "per_class_accuracy_delta_pp_vs_E": {
+        "contradictory": 0.0,
+        "distractor": 0.0,
+        "missing_info": 0.0,
+        "mixed": 0.0,
+        "multi_step_math": 0.0,
+        "retrieval_failure": 0.0,
+        "self_correction": 0.0,
+        "tool_failure": 0.0
+      },
+      "uncertainty": {
+        "precision": 0.7272727272727273,
+        "recall": 0.4444444444444444,
+        "tp": 8,
+        "fp": 3,
+        "fn": 10
+      },
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "citations_fabricated": 0,
+      "n_compared": 72,
+      "n_e_subset": 72,
+      "plan_first_attempt_validity": 0.0,
+      "cost": {
+        "avg_latency_s": 27.5,
+        "avg_input_tokens": 381.2,
+        "avg_output_tokens": 50.8,
+        "total_model_calls": 273,
+        "total_tool_calls": 0,
+        "total_retrievals": 14
+      },
+      "stalled_rate": 0.0,
+      "error_rate": 0.0
+    },
+    "F_no_distractor_filter": {
+      "accuracy": 0.4722222222222222,
+      "accuracy_delta_pp_vs_E": 0.0,
+      "per_class_accuracy_delta_pp_vs_E": {
+        "contradictory": 0.0,
+        "distractor": 0.0,
+        "missing_info": 0.0,
+        "mixed": 0.0,
+        "multi_step_math": 0.0,
+        "retrieval_failure": 0.0,
+        "self_correction": 0.0,
+        "tool_failure": 0.0
+      },
+      "uncertainty": {
+        "precision": 0.7272727272727273,
+        "recall": 0.4444444444444444,
+        "tp": 8,
+        "fp": 3,
+        "fn": 10
+      },
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "citations_fabricated": 0,
+      "n_compared": 72,
+      "n_e_subset": 72,
+      "plan_first_attempt_validity": 0.0,
+      "cost": {
+        "avg_latency_s": 19.2,
+        "avg_input_tokens": 401.2,
+        "avg_output_tokens": 53.1,
+        "total_model_calls": 278,
+        "total_tool_calls": 0,
+        "total_retrievals": 15
+      },
+      "stalled_rate": 0.041666666666666664,
+      "error_rate": 0.0
+    },
+    "G_no_correction_gate": {
+      "accuracy": 0.4722222222222222,
+      "accuracy_delta_pp_vs_E": 0.0,
+      "per_class_accuracy_delta_pp_vs_E": {
+        "contradictory": 0.0,
+        "distractor": 0.0,
+        "missing_info": 0.0,
+        "mixed": 0.0,
+        "multi_step_math": 0.0,
+        "retrieval_failure": 0.0,
+        "self_correction": 0.0,
+        "tool_failure": 0.0
+      },
+      "uncertainty": {
+        "precision": 0.7272727272727273,
+        "recall": 0.4444444444444444,
+        "tp": 8,
+        "fp": 3,
+        "fn": 10
+      },
+      "correction": {
+        "used": 0,
+        "net_gain": 0,
+        "fixes": 0,
+        "breaks": 0
+      },
+      "citations_fabricated": 0,
+      "n_compared": 72,
+      "n_e_subset": 72,
+      "plan_first_attempt_validity": 0.0,
+      "cost": {
+        "avg_latency_s": 15.3,
+        "avg_input_tokens": 398.5,
+        "avg_output_tokens": 52.7,
+        "total_model_calls": 277,
+        "total_tool_calls": 0,
+        "total_retrievals": 15
+      },
+      "stalled_rate": 0.041666666666666664,
+      "error_rate": 0.0
+    }
+  },
+  "e_full_summary": {
+    "n": 102,
+    "accuracy": 0.5294117647058824,
+    "accuracy_by_class": {
+      "contradictory": 0.0,
+      "counterfactual": 1.0,
+      "distractor": 0.8333333333333334,
+      "missing_info": 0.0,
+      "mixed": 0.4166666666666667,
+      "multi_hop_science": 0.25,
+      "multi_step_math": 0.6666666666666666,
+      "retrieval_failure": 0.5,
+      "self_correction": 0.3333333333333333,
+      "simple": 0.9166666666666666,
+      "tool_failure": 1.0
+    },
+    "uncertainty": {
+      "precision": 0.7272727272727273,
+      "recall": 0.4444444444444444,
+      "tp": 8,
+      "fp": 3,
+      "fn": 10
+    },
+    "correction": {
+      "used": 0,
+      "net_gain": 0,
+      "fixes": 0,
+      "breaks": 0
+    },
+    "citations_fabricated": 0,
+    "stalled_rate": 0.029411764705882353,
+    "error_rate": 0.0,
+    "avg_latency_s": 20.0,
+    "avg_input_tokens": 401.6,
+    "avg_output_tokens": 59.1,
+    "total_model_calls": 386,
+    "total_tool_calls": 0,
+    "total_retrievals": 26,
+    "plan_first_attempt_validity": 0.0
+  }
+}

@@ -1,0 +1,171 @@
+{
+ "state": {
+  "run_id": "mq-retf-06",
+  "problem": "By what single common name is the force that pulls objects toward Earth's center known?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "NONE",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "what single common name is the force that pulls objects toward Earth's center known"
+    },
+    {
+     "id": "s3",
+     "action": "REASON",
+     "description": "Reason over the question using provided context only",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s2",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s3"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s3",
+   "s2"
+  ],
+  "observations": [
+   {
+    "step_id": "s3",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "\\boxed{gravity}",
+    "detail": {
+     "raw": "Answer: \\boxed{gravity}",
+     "signature": "948d2733440d3d2b"
+    },
+    "latency_s": 2.8048251000000164,
+    "input_tokens": 109,
+    "output_tokens": 8
+   },
+   {
+    "step_id": "s2",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{gravity}",
+    "detail": {
+     "raw": "Answer: \\boxed{gravity}",
+     "signature": "c28a4e64dd24a8c1"
+    },
+    "latency_s": 2.688345100003062,
+    "input_tokens": 146,
+    "output_tokens": 8
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 18.791728499985766,
+   "input_tokens": 255,
+   "output_tokens": 16
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "By what single common name is the force that pulls objects toward Earth's center known?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{gravity}",
+     "step_id": "s3"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "\\boxed{gravity}",
+     "step_id": "s2"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s3",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s3",
+     "dst": "step:s2",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{gravity}",
+    "step_id": "s3"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "\\boxed{gravity}",
+    "step_id": "s2"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s3",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s3",
+    "dst": "step:s2",
+    "relation": "produced"
+   }
+  ]
+ }
+}

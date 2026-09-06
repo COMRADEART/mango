@@ -1,0 +1,77 @@
+{
+  "corpus": "sciencemath-sft-v1",
+  "load_log": [
+    {
+      "source": "gsm8k",
+      "hf_id": "openai/gsm8k",
+      "actual_load": "openai/gsm8k#main [train]",
+      "rows": 7473,
+      "kept_with_target": 7473
+    },
+    {
+      "source": "math-competition",
+      "hf_id": "hendrycks/competition_math (canonical ref)",
+      "actual_load": "EleutherAI/hendrycks_math (parquet mirror; script loader incompatible with datasets 5.x)",
+      "rows": 7500,
+      "kept_with_target": 7189
+    },
+    {
+      "source": "sciq",
+      "hf_id": "allenai/sciq",
+      "actual_load": "allenai/sciq [train]",
+      "rows": 11679,
+      "kept_with_target": 9714
+    },
+    {
+      "source": "synthetic-sft-v1",
+      "hf_id": null,
+      "actual_load": "authored in sciencemath/training/synthetic_general.py",
+      "rows": 181,
+      "kept_with_target": 181
+    }
+  ],
+  "sampling_plan": {
+    "general": 180,
+    "gsm8k": 842,
+    "math:algebra": 202,
+    "math:prealgebra": 140,
+    "math:intermediate_algebra": 132,
+    "math:geometry": 117,
+    "math:precalculus": 78,
+    "math:counting_and_probability": 70,
+    "math:number_theory": 70,
+    "sciq": 1200
+  },
+  "sources": {
+    "gsm8k": {
+      "license": "MIT",
+      "train": 806,
+      "validation": 36
+    },
+    "math-competition": {
+      "license": "MIT",
+      "train": 779,
+      "validation": 30
+    },
+    "sciq": {
+      "license": "CC-BY-NC-3.0",
+      "train": 1152,
+      "validation": 48
+    },
+    "synthetic-sft-v1": {
+      "license": "MIT",
+      "train": 173,
+      "validation": 7
+    }
+  },
+  "excluded": {
+    "ai2-arc": "license_status=APPROVED but eval_only=true (evaluation integrity); excluded from SFT training",
+    "kaggle-unverified-candidates": "license_status=REVIEW_REQUIRED; excluded from SFT training"
+  },
+  "eval_separation": {
+    "eval_suite": "sciencemath-eval-v1 (frozen 2026-08-31, 188 questions)",
+    "contamination_gate": "sciencemath-sft-v1 vs sciencemath-eval-v1",
+    "direct_removed": 1,
+    "near_removed": 0
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "label": "qwen3-4b-instruct",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "arm": "model",
+  "overall": 0.8151260504201681,
+  "math_macro": 0.7931034482758621,
+  "science_macro": 0.8333333333333334,
+  "cross_domain": 0.8333333333333334,
+  "compositional": 0.75,
+  "counterfactual": 0.6666666666666666,
+  "distractor": 0.9166666666666666,
+  "uncertainty": 0.761904761904762,
+  "decomposition": 0.375,
+  "self_correction": -0.22727272727272727,
+  "tool_routing": 0.375,
+  "retrieval_routing": null,
+  "extraction": 1.0
+}

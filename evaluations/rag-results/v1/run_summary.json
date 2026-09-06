@@ -1,0 +1,39 @@
+{
+  "ran_arms": [
+    "norag",
+    "rag"
+  ],
+  "finished_at": "2026-09-03 15:06:53",
+  "results_index": {
+    "norag": {
+      "arm": "norag",
+      "n": 58,
+      "correct": 26,
+      "accuracy": 0.4483,
+      "uncertainty_accuracy": 0.0,
+      "retrieval_used_on_math_route": 0,
+      "avg_latency_s": 7.754
+    },
+    "rag": {
+      "arm": "rag",
+      "n": 58,
+      "correct": 24,
+      "accuracy": 0.4138,
+      "uncertainty_accuracy": 0.0833,
+      "retrieval_used_on_math_route": 0,
+      "avg_latency_s": 10.964
+    },
+    "comparison": {
+      "comparison": "T5.19 no-RAG vs RAG (matched generation settings)",
+      "suite": "mango-rag-eval-v1",
+      "n_norag": 58,
+      "n_rag": 58,
+      "accuracy_norag": 0.4483,
+      "accuracy_rag": 0.4138,
+      "absolute_delta_pp": -3.45,
+      "uncertainty_accuracy_norag": 0.0,
+      "uncertainty_accuracy_rag": 0.0833,
+      "t5_22_math_retrieval_violations": 0
+    }
+  }
+}

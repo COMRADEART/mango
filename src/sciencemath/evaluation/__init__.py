@@ -1,17 +1,21 @@
-"""Evaluation (T2/T4 — not implemented yet).
+"""Evaluation engine (T2).
 
-Planned public surface: prompt builders, answer extraction, the PASS/FAIL/
-UNKNOWN math verifier, exact-match metrics, and evaluation writers producing
-manifest.json / predictions.jsonl / metrics.json / metrics.md / failures.jsonl
-under evaluations/base and evaluations/tuned.
+Public surface:
+  build_prompt          - standardized evaluation prompt (content, not template)
+  apply_chat_template   - model-specific chat-template wrapping
+  extract_answer        - MCQ / numeric / text answer extraction
+  classify_failure      - deterministic failure taxonomy
+  compute_metrics       - accuracy/latency/token metrics
+  load_model_safely     - VRAM-safe model loading + smoke test
+  evaluate_model        - resume-capable frozen-suite runner
 """
-__all__: list[str] = []
-
-_NOT_IMPLEMENTED = (
-    "sciencemath.evaluation is planned for milestones T2 (baseline) and T4 "
-    "(verifier). This import is a placeholder so the package layout exists."
+from sciencemath.evaluation.extraction import (  # noqa: F401
+    extract_answer,
+    strip_think_block,
+    normalize_symbolic,
 )
-
-
-def __getattr__(name):
-    raise ImportError(_NOT_IMPLEMENTED)
+from sciencemath.evaluation.taxonomy import (  # noqa: F401
+    classify_failure,
+    is_refusal,
+)
+from sciencemath.evaluation.metrics import compute_metrics  # noqa: F401

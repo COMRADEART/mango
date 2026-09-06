@@ -1,0 +1,29 @@
+{
+  "version": "mango-tool-eval-v1",
+  "frozen_at": null,
+  "seed": 42,
+  "n_questions": 150,
+  "composition": {
+    "reused_math_from_sciencemath_eval_v1": 100,
+    "reused_science_distractors_from_sciencemath_eval_v1": 20,
+    "new_synthetic_tool_questions": 30
+  },
+  "categories": {
+    "algebra": 40,
+    "arithmetic": 40,
+    "equations": 10,
+    "general_science": 20,
+    "probability_statistics": 10,
+    "symbolic": 10,
+    "trigonometry_precalculus": 10,
+    "units": 10
+  },
+  "additivity": "frozen sciencemath-eval-v1 untouched; this suite only reads it",
+  "metrics": [
+    "no_tool_vs_tool_enabled_accuracy",
+    "router_invocation_precision_recall",
+    "verifier_correctness",
+    "false_pass_rate (critical, target ~0)",
+    "unknown_rate"
+  ]
+}

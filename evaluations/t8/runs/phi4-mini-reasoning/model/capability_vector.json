@@ -1,0 +1,18 @@
+{
+  "label": "phi4-mini-reasoning",
+  "model": "microsoft/Phi-4-mini-reasoning",
+  "arm": "model",
+  "overall": 0.8067226890756303,
+  "math_macro": 0.7931034482758621,
+  "science_macro": 0.9,
+  "cross_domain": 0.75,
+  "compositional": 0.5833333333333334,
+  "counterfactual": 0.5833333333333334,
+  "distractor": 1.0,
+  "uncertainty": null,
+  "decomposition": 0.2916666666666667,
+  "self_correction": 0.043478260869565216,
+  "tool_routing": 0.2916666666666667,
+  "retrieval_routing": null,
+  "extraction": 0.9159663865546218
+}

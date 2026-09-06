@@ -1,0 +1,53 @@
+{
+  "model_id": "Qwen/Qwen3-1.7B",
+  "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "status": "COMPLETE",
+  "mode": "non_thinking",
+  "thinking_enabled": false,
+  "quantized_4bit": true,
+  "suite": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\suite\\v1",
+  "questions_total": 188,
+  "questions_answered": 188,
+  "generation": {
+    "seed": 42,
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "max_new_tokens": 1024
+  },
+  "runtime_s": 3494.9,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2284549632,
+    "peak_vram_bytes": 2284549632,
+    "reserved_vram_bytes": 2325741568,
+    "smoke_latency_s": 1.77
+  },
+  "candidate_key": "A",
+  "variant": "non_thinking",
+  "suite_check": {
+    "suite_version": "sciencemath-eval-v1",
+    "frozen_at": "2026-08-31T17:10:34.244343+00:00",
+    "verified": true,
+    "problems": [],
+    "files": [
+      "category_manifest.json",
+      "leakage_check.json",
+      "manifest.json",
+      "questions.jsonl",
+      "source_manifest.json"
+    ],
+    "extra_unlisted_files": [],
+    "verified_at": "2026-09-02T03:48:57.699237+00:00"
+  },
+  "license_status": "APPROVED",
+  "license": "apache-2.0",
+  "prompt_note": "Qwen3 chat template with enable_thinking=False (secondary comparison run, not part of primary table)",
+  "config_change_note": null,
+  "t2_environment": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t2_environment.json",
+  "suite_version": "sciencemath-eval-v1",
+  "finished_at": "2026-09-02T04:47:34.438738+00:00"
+}

@@ -1,0 +1,8 @@
+{
+  "suite": "dev",
+  "variants": [
+    "D"
+  ],
+  "finished_at": "2026-09-03 18:58:40",
+  "generating": "Mango-v0.1 (Qwen3-1.7B + T3 LoRA, unmerged)"
+}

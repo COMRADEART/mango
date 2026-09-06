@@ -1,0 +1,212 @@
+{
+ "state": {
+  "run_id": "mq-minfo-10",
+  "problem": "A weather station logged a daytime high of 86 degrees Fahrenheit on a summer day. What was the overnight low temperature at the station that night, in degrees Celsius?",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "NONE",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What was the overnight low temperature at the station that night, in degrees Celsius"
+    },
+    {
+     "id": "s3",
+     "action": "REASON",
+     "description": "Reason over the question using provided context only",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s2",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s3"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s3",
+   "s2"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-18959138:climate_48578601:0 | wiki-1331018:biography_fourth_greenland_expedition_de_b2b3592e:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-18959138:climate_48578601:0",
+       "text": "Antarctica is the coldest, windiest, and driest of Earth's continents. Near the coast, the temperature can exceed 10 °C in summer and fall to below −40 °C in winter. Over the elevated inland, it can rise to about −30 °C in summer but fall below −80 °C in winter. The lowest natural air temperature ever recorded on Earth was −89.2 °C (−128.6 °F) at the Russian Vostok Station in Antarctica on 21 July 1983. A lower air temperature of −94.7 °C (−138.5 °F) was recorded in 2010 by satellite—however, it may have been influenced by ground temperatures and was not recorded at a height of 2 m (7 ft) abov"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-1331018:biography_fourth_greenland_expedition_de_b2b3592e:0",
+       "text": "Wegener's last Greenland expedition was in 1930. The 14 participants under his leadership were to establish three permanent stations from which the thickness of the Greenland ice sheet could be measured and year-round Arctic weather observations made. They would travel on the ice cap using two innovative, propeller-driven snowmobiles, in addition to ponies and dog sleds. Wegener felt personally responsible for the expedition's success, as the German government had contributed $120,000 ($1.5 million in 2007 dollars). Success depended on enough provisions being transferred from West camp to Eism"
+      }
+     ],
+     "signature": "5c9e6386571a96b8"
+    },
+    "latency_s": 0.37924380000913516,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s3",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "86 degrees Fahrenheit is 30 degrees Celsius.",
+    "detail": {
+     "raw": "Answer: 86 degrees Fahrenheit is 30 degrees Celsius.",
+     "signature": "948d2733440d3d2b"
+    },
+    "latency_s": 1.6789939000154845,
+    "input_tokens": 392,
+    "output_tokens": 15
+   },
+   {
+    "step_id": "s2",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "30 degrees Celsius.",
+    "detail": {
+     "raw": "Answer: 30 degrees Celsius.",
+     "signature": "c28a4e64dd24a8c1"
+    },
+    "latency_s": 0.9472569999925327,
+    "input_tokens": 418,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 8.54345870000543,
+   "input_tokens": 810,
+   "output_tokens": 24
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A weather station logged a daytime high of 86 degrees Fahrenheit on a summer day.",
+   "What was the overnight low temperature at the station that night, in degrees Celsius?"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-18959138:climate_48578601:0 | wiki-1331018:biography_fourth_greenland_expedition_de_b2b3592e:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "86 degrees Fahrenheit is 30 degrees Celsius.",
+     "step_id": "s3"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "30 degrees Celsius.",
+     "step_id": "s2"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s3",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s3",
+     "dst": "step:s2",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-18959138:climate_48578601:0 | wiki-1331018:biography_fourth_greenland_expedition_de_b2b3592e:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "86 degrees Fahrenheit is 30 degrees Celsius.",
+    "step_id": "s3"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "30 degrees Celsius.",
+    "step_id": "s2"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s3",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s3",
+    "dst": "step:s2",
+    "relation": "produced"
+   }
+  ]
+ }
+}

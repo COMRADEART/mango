@@ -1,0 +1,40 @@
+{
+  "status": "COMPLETE",
+  "dry_run": false,
+  "resumed_from_checkpoint": null,
+  "train_examples": 850,
+  "validation_examples": 39,
+  "steps": 108,
+  "final_train_loss": 0.28337912559509276,
+  "best_eval_loss": 0.2295066863298416,
+  "peak_vram_bytes": 4715992576,
+  "base_vram_bytes": 4695419904,
+  "train_time_s": 964.9,
+  "adapter_dir": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\mango-v0.2-L1",
+  "parent_adapter": "training/adapters/sciencemath-v0.1-t3",
+  "parent_adapter_info": {
+    "ok": true,
+    "weights": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\sciencemath-v0.1-t3\\adapter_model.safetensors",
+    "lora_tensors": 392
+  },
+  "tokenize_stats": {
+    "train": {
+      "kept": 850,
+      "question_shortened": 0,
+      "dropped_too_long": 0
+    },
+    "validation": {
+      "kept": 39,
+      "question_shortened": 0,
+      "dropped_too_long": 0
+    }
+  },
+  "reload_ok": true,
+  "loss_divergence": {
+    "first_eval_loss": 0.22972434759140015,
+    "last_eval_loss": 0.2295066863298416,
+    "eval_trend": "falling",
+    "final_train_loss": 0.28337912559509276,
+    "likely_overfitting": false
+  }
+}

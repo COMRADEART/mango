@@ -1,0 +1,42 @@
+{
+  "suite": "mango-eval-core-v1",
+  "built_at": "2026-09-04T01:13:43Z",
+  "builder": "scripts/build_eval_core.py",
+  "provenance": {
+    "authored_by": "workflow wf_32e82c1d-a6f (8 author agents, adversarial verifier pass, 16 agents total)",
+    "staging_dir": "evaluations/t6/eval_core_staging/authored",
+    "verdicts_dir": "evaluations/t6/eval_core_staging/verdicts"
+  },
+  "counts": {
+    "authored": 152,
+    "kept": 151,
+    "excluded": 1
+  },
+  "excluded": [
+    {
+      "file": "routing_labels.json",
+      "verdict": "REJECT",
+      "reason": "Answer leaked in question stem: 'A 1925 doctoral thesis' already states 1925, then asks for the year"
+    }
+  ],
+  "remaps_applied": {
+    "math_unit_conversion": "sci_measurements (1 item)",
+    "uncertainty_calibration": "sci_error_uncertainty (8 items)",
+    "sci_retrieval_facts": "per-item domain match (8 items): space_planetary, space_stellar x2, chem_bonding, bio_cells, earth_meteorology x2, earth_oceanography"
+  },
+  "gates_passed": {
+    "schema_validation": true,
+    "adversarial_verdicts": "151 CONFIRM / 1 REJECT / 0 UNSURE",
+    "tool_check_reverification": "every item with tool_check re-executed against the live T4 registry; 0 mismatches (rounded expectations compared at declared decimal precision)",
+    "grounding_quotes": "verbatim presence in rag/corpus/wikipedia_en.jsonl verified for all source_fact items",
+    "duplicate_eval_ids": 0,
+    "contamination_vs_training_and_suites": {"flagged": 0, "references": ["sciencemath-sft-v1 train+validation", "evaluations/suite/v1", "evaluations/rag-suite/v1"]}
+  },
+  "frozen": {
+    "questions": 151,
+    "categories": {"math_foundation": 12, "algebra": 12, "geometry": 10, "trig": 8, "calculus": 10, "probability_statistics": 10, "physics": 12, "chemistry": 10, "biology": 10, "earth_space": 8, "scientific_reasoning": 10, "mixed_quantitative": 8, "interdisciplinary": 8, "uncertainty_calibration": 8, "tool_routing": 8, "retrieval_routing": 7},
+    "generalization_splits": {"IID": 98, "COMPOSITIONAL": 18, "OUT_OF_TEMPLATE": 23, "CROSS_DOMAIN": 12},
+    "routing_labels": {"TOOL": 83, "RETRIEVAL": 21, "BOTH": 2, "NONE": 36, "INSUFFICIENT_INFO": 9},
+    "checksums_verified": true
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "recorded_at": "2026-09-02T21:10:00+00:00",
+  "milestone": "T3.0 entry gate",
+  "result": "PASS",
+  "checks": {
+    "model_selection_committed": {
+      "ok": true,
+      "detail": "configs/model.yaml selected.model_id = Qwen/Qwen3-1.7B with selection_evidence = evaluations/base/comparison.json (T2 evidence)"
+    },
+    "selection_decision_recorded": {
+      "ok": true,
+      "detail": "evaluations/base/SELECTION_DECISION.md exists (T2 artifact)"
+    },
+    "pytest": {
+      "ok": true,
+      "detail": "python -m pytest -q: 181 passed (120 prior T0-T2 tests + 61 new T3 tests), 0 failed, 2026-09-02"
+    },
+    "environment_recorded": {
+      "ok": true,
+      "artifact": "evaluations/t3_environment.json",
+      "detail": "git 662e08f (dirty: T2/T3 working tree, uncommitted), RTX 4050 Laptop 6 GB, CUDA 12.1, torch 2.5.1+cu121, transformers 5.16.1, peft 0.20.0, bitsandbytes 0.50.2, accelerate 1.14.0, RAM 31.61 GB, disk free 579 GB"
+    },
+    "disk_space": {
+      "ok": true,
+      "detail": "579 GB free on C: (corpus + checkpoints + adapter need < 5 GB)"
+    },
+    "base_model_loads": {
+      "ok": true,
+      "artifact": "evaluations/t3_base_load_check.json",
+      "detail": "Qwen/Qwen3-1.7B loaded on CPU: ok=true, 1,720,574,976 params, smoke generation produced output. GPU load verified in the T3.2 dry run (GPU occupied by an external user process at gate time; dry run blocked on GPU availability)"
+    }
+  },
+  "notes": "Gate conditions on the training GPU (free VRAM) could not be checked at gate time because the user's external process (PID 28452) occupies 5.9/6.1 GB; per the user's instruction we wait for it to finish. Training does not start until the dry run measures free-GPU VRAM. No gate failure: T3 not BLOCKED."
+}

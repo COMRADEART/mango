@@ -1,0 +1,16 @@
+{
+  "suite": "frozen",
+  "variants": [
+    "NORAG",
+    "G"
+  ],
+  "finished_at": "2026-09-05 18:43:41",
+  "generating": "microsoft/Phi-4-mini-reasoning",
+  "model_id": "microsoft/Phi-4-mini-reasoning",
+  "adapter": null,
+  "generation": {
+    "seed": 42,
+    "do_sample": false,
+    "max_new_tokens": 2048
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "1": {
+    "checkpoint": "evaluations\\t8\\training_feasibility\\qwen3-4b-instruct\\ckpt_b1\\checkpoint-3",
+    "tensors_equal": true,
+    "tensor_count": 504,
+    "finite_logits": true,
+    "adapter_active": true,
+    "ok": true
+  },
+  "2": {
+    "checkpoint": "evaluations\\t8\\training_feasibility\\qwen3-4b-instruct\\ckpt_b2\\checkpoint-3",
+    "tensors_equal": true,
+    "tensor_count": 504,
+    "finite_logits": true,
+    "adapter_active": true,
+    "ok": true
+  }
+}

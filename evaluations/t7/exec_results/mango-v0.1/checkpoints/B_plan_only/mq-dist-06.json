@@ -1,0 +1,221 @@
+{
+ "state": {
+  "run_id": "mq-dist-06",
+  "problem": "A jacket is listed at 40 dollars and the store applies a 25 percent discount. What is the sale price in dollars? (Aside: the Amazon rainforest covers roughly 5.5 million square kilometers, and the 1992 Earth Summit in Rio de Janeiro drew about 172 participating countries.)",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "MATH_TOOL",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What is the sale price in dollars"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "REASON",
+     "description": "Reason over the question using provided context only",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s4",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s3"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3",
+   "s4"
+  ],
+  "observations": [
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "40*0.75=30",
+    "detail": {
+     "raw": "Answer: 40*0.75=30\n\nFinal answer: \\boxed{30}",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 3.2703439999895636,
+    "input_tokens": 214,
+    "output_tokens": 24
+   },
+   {
+    "step_id": "s3",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "\\boxed{30}",
+    "detail": {
+     "raw": "Answer: \\boxed{30}",
+     "signature": "948d2733440d3d2b"
+    },
+    "latency_s": 1.316985699988436,
+    "input_tokens": 217,
+    "output_tokens": 9
+   },
+   {
+    "step_id": "s4",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{30}",
+    "detail": {
+     "raw": "Answer: \\boxed{30}",
+     "signature": "cff9105501d72cb9"
+    },
+    "latency_s": 1.3729206999996677,
+    "input_tokens": 212,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 5,
+   "tool_calls": 0,
+   "retrievals": 0,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 11.46116930001881,
+   "input_tokens": 643,
+   "output_tokens": 42
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A jacket is listed at 40 dollars and the store applies a 25 percent discount.",
+   "What is the sale price in dollars?",
+   "(Aside: the Amazon rainforest covers roughly 5.5 million square kilometers, and the 1992 Earth Summit in Rio de Janeiro drew about 172 participating countries.)"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "40*0.75=30",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{30}",
+     "step_id": "s3"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s4",
+     "content": "\\boxed{30}",
+     "step_id": "s4"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s3",
+     "dst": "step:s4",
+     "relation": "produced"
+    }
+   ]
+  }
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "40*0.75=30",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{30}",
+    "step_id": "s3"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s4",
+    "content": "\\boxed{30}",
+    "step_id": "s4"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s3",
+    "dst": "step:s4",
+    "relation": "produced"
+   }
+  ]
+ }
+}

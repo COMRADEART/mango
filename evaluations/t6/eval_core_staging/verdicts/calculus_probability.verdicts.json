@@ -1,0 +1,25 @@
+{
+  "file": "calculus_probability.json",
+  "verdicts": [
+    {"index": 0, "verdict": "CONFIRM", "reason": "lim factored = (x^2+1)/(x+1) -> 3/2 = 1.5, sympy limit confirms 3/2; tool_check (3*1^2)/(2*1) via calculator -> 1.5. '1.5' is an exact decimal."},
+    {"index": 1, "verdict": "CONFIRM", "reason": "sin(3x)/x -> 3 as x->0 (small-angle limit); answer fully determined."},
+    {"index": 2, "verdict": "CONFIRM", "reason": "f'(x)=3x^2-4, f'(2)=8; tool_check via calculator -> 8."},
+    {"index": 3, "verdict": "CONFIRM", "reason": "f'(x)=2x/(x^2+1), f'(1)=1; tool_check via calculator -> 1.0."},
+    {"index": 4, "verdict": "CONFIRM", "reason": "h'(t)=3t^2-18t+24, h'(3)=27-54+24=-3 m/s (sympy confirms); tool_check -> -3; units stated (m/s)."},
+    {"index": 5, "verdict": "CONFIRM", "reason": "Integral of 3x^2+2x on [0,2] = x^3+x^2 -> 8+4=12; tool_check -> 12."},
+    {"index": 6, "verdict": "CONFIRM", "reason": "Integral of sin on [0,pi] = 2 (sympy confirms); tool_check '-cos(pi)-(-cos(0))' -> 2.0; calculator supports pi."},
+    {"index": 7, "verdict": "CONFIRM", "reason": "Net displacement = integral of 6t-3t^2 on [0,2] = 3t^2-t^3 -> 12-8=4 (sympy confirms); tool_check -> 4."},
+    {"index": 8, "verdict": "CONFIRM", "reason": "Geometric series a=6, r=0.5: 6/(1-0.5)=12; tool_check -> 12.0."},
+    {"index": 9, "verdict": "CONFIRM", "reason": "Doubling every 2h over 6h = 3 doublings: 100*2^3=800; tool_check -> 800."},
+    {"index": 10, "verdict": "CONFIRM", "reason": "C(3,2)/8 = 3/8 = 0.375; tool_check -> 0.375; decimal format matches instruction."},
+    {"index": 11, "verdict": "CONFIRM", "reason": "Independent events: 0.4*0.5=0.2; tool_check -> 0.2."},
+    {"index": 12, "verdict": "CONFIRM", "reason": "Product even: 1 - P(odd,odd) = 1-0.25 = 0.75; direct enumeration over 36 outcomes confirms 0.75; tool_check -> 0.75."},
+    {"index": 13, "verdict": "CONFIRM", "reason": "C(5,3)*0.5^5 = 10/32 = 0.3125; tool_check -> 0.3125."},
+    {"index": 14, "verdict": "CONFIRM", "reason": "E[X] = 0.25+1.0+1.0 = 2.25; distribution sums to 1; tool_check -> 2.25."},
+    {"index": 15, "verdict": "CONFIRM", "reason": "0.5*E[die]=0.5*3.5 + 0.5*2 = 2.75; tool_check -> 2.75; units (dollars) stated."},
+    {"index": 16, "verdict": "CONFIRM", "reason": "Mean=2, Var=(1-2)^2*0.25+0+(3-2)^2*0.25=0.5; direct weighted-squared-deviation computation confirms; tool_check -> 0.5."},
+    {"index": 17, "verdict": "CONFIRM", "reason": "p=0.03 < alpha=0.05 -> reject null; choice A states exactly that; distractors are standard misinterpretations."},
+    {"index": 18, "verdict": "CONFIRM", "reason": "Sum 120/6 = 20 kg; tool_check -> 20.0; units (kg) stated."},
+    {"index": 19, "verdict": "CONFIRM", "reason": "Sorted [21,22,24,26,27], median (middle of 5) = 24; unusual terse surface does not change the answer."}
+  ]
+}

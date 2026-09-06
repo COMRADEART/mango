@@ -1,0 +1,218 @@
+{
+ "state": {
+  "run_id": "mq-dist-03",
+  "problem": "A rectangular garden plot measures 12 meters long and 7 meters wide. What is its area in square meters? (Unrelated fact: Mount Everest rises roughly 8.85 km above sea level and was first summited in 1953 by a two-person expedition team.)",
+  "goal": "",
+  "problem_type": "MATH",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What is its area in square meters"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-61338:properties_units_990b7790:0 | wiki-18973446:main_concepts_measures_length_area_and_v_d32208ef:0 | wiki-2839:history_law_of_areas_conservation_of_ang_fde40fd2:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-61338:properties_units_990b7790:0",
+       "text": "To numerically add physical quantities with units, they must be expressed with common units. For example, adding 50 milliliters to 150 milliliters gives 200 milliliters. However, if a measure of 5 feet is extended by 2 inches, the sum is 62 inches, since 60 inches is synonymous with 5 feet. On the other hand, it is usually meaningless to try to add 3 meters and 4 square meters, since those units are incomparable; this sort of consideration is fundamental in dimensional analysis."
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-18973446:main_concepts_measures_length_area_and_v_d32208ef:0",
+       "text": "Length, area, and volume describe the size or extent of an object in one dimension, two dimension, and three dimensions respectively. In Euclidean geometry and analytic geometry, the length of a line segment can often be calculated by the Pythagorean theorem. Area and volume can be defined as fundamental quantities separate from length, or they can be described and calculated in terms of lengths in a plane or 3-dimensional space. Mathematicians have found many explicit formulas for area and formulas for volume of various geometric objects. In calculus, area and volume can be defined in terms o"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-2839:history_law_of_areas_conservation_of_ang_fde40fd2:0",
+       "text": "The proportionality of angular momentum to the area swept out by a moving object can be understood by realizing that the bases of the triangles, that is, the lines from S to the object, are equivalent to the radius r, and that the heights of the triangles are proportional to the perpendicular component of velocity v⊥. Hence, if the area swept per unit time is constant, then by the triangular area formula ⁠1/2⁠(base)(height), the product (base)(height) and therefore the product rv⊥ are constant: if r and the base length are decreased, v⊥ and height must increase proportionally. Mass is constant"
+      }
+     ],
+     "signature": "cc40d503f0b53c4f"
+    },
+    "latency_s": 0.22628619999159127,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "12*7=84",
+    "detail": {
+     "raw": "Answer: 12*7=84\n\nFinal answer: \\boxed{84}",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 3.5245812000066508,
+    "input_tokens": 465,
+    "output_tokens": 21
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{84}",
+    "detail": {
+     "raw": "Answer: \\boxed{84}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.7383376999932807,
+    "input_tokens": 458,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 11.00332379998872,
+   "input_tokens": 923,
+   "output_tokens": 30
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A rectangular garden plot measures 12 meters long and 7 meters wide.",
+   "What is its area in square meters?",
+   "(Unrelated fact: Mount Everest rises roughly 8.85 km above sea level and was first summited in 1953 by a two-person expedition team.)"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-61338:properties_units_990b7790:0 | wiki-18973446:main_concepts_measures_length_area_and_v_d32208ef:0 | wiki-2839:history_law_of_areas_conservation_of_ang_fde40fd2:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "12*7=84",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{84}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-61338:properties_units_990b7790:0 | wiki-18973446:main_concepts_measures_length_area_and_v_d32208ef:0 | wiki-2839:history_law_of_areas_conservation_of_ang_fde40fd2:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "12*7=84",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{84}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

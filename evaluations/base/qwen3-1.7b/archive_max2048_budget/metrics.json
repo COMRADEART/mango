@@ -1,0 +1,27 @@
+{
+  "total": 5,
+  "overall_accuracy": 0.6,
+  "correct": 3,
+  "per_category_accuracy": {
+    "algebra": 0.0,
+    "general_science": 1.0,
+    "geometry": 0.0,
+    "uncertainty_calibration": 1.0
+  },
+  "macro_category_accuracy": 0.5,
+  "math_macro_accuracy": 0.0,
+  "science_macro_accuracy": 1.0,
+  "extraction_success_rate": 0.8,
+  "invalid_response_rate": 0.2,
+  "refusal_rate": 0.0,
+  "failure_counts": {
+    "EXTRACTION_FAILURE": 1,
+    "TRUNCATED_OUTPUT": 1
+  },
+  "avg_latency_s": 1000.375,
+  "median_latency_s": 331.402,
+  "avg_input_tokens": 78.8,
+  "avg_output_tokens": 1440.4,
+  "peak_vram_bytes": 2284549632,
+  "model_load_vram_bytes": 2284549632
+}

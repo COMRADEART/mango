@@ -1,0 +1,3 @@
+{"question_id": "mq-simple-01", "class": "simple", "question": "What is 7 + 5?", "answer_type": "numeric", "choices": null, "expected_answer": "12", "notes": "Single addition of two small integers; one arithmetic operation.", "eval_id": "mq-simple-01"}
+{"question_id": "mq-simple-02", "class": "simple", "question": "What is 3 * 9?", "answer_type": "numeric", "choices": null, "expected_answer": "27", "notes": "Single multiplication of two single-digit integers.", "eval_id": "mq-simple-02"}
+{"question_id": "mq-simple-03", "class": "simple", "question": "What is half of 18?", "answer_type": "numeric", "choices": null, "expected_answer": "9", "notes": "One-step halving phrased in words rather than symbols.", "eval_id": "mq-simple-03"}

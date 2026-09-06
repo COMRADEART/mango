@@ -1,0 +1,29 @@
+{
+  "corpus": "mango-sft-v2-level1",
+  "by_macro_new": {
+    "mathematics": 350,
+    "sciences": 404
+  },
+  "by_track_new": {
+    "math_arithmetic": 70,
+    "math_fractions": 70,
+    "math_ratios": 70,
+    "math_percentages": 70,
+    "math_linear_equations": 70,
+    "phys_mechanics": 70,
+    "phys_energy_momentum": 58,
+    "chem_stoichiometry": 69,
+    "sci_measurements": 69,
+    "bio_cells": 69,
+    "sci_dimensional_reasoning": 69
+  },
+  "by_difficulty_new": {
+    "1": 381,
+    "2": 373
+  },
+  "by_source_new": {
+    "mango-curriculum-gen": 616,
+    "mango-authored-level1": 138
+  },
+  "replay_count": 135
+}

@@ -1,0 +1,68 @@
+{
+  "label": "qwen3-1.7b",
+  "model": "Qwen/Qwen3-1.7B",
+  "revision": null,
+  "recorded_at": "2026-09-04T22:34:41.299333+00:00",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "vram_total_mib": 6140,
+  "ram_before_gb": 18.2,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2284549632,
+    "peak_vram_bytes": 2284549632,
+    "reserved_vram_bytes": 2325741568,
+    "smoke_latency_s": 1.7
+  },
+  "cpu_offload": false,
+  "offload_devices": [],
+  "disk_size_gb": 3.8,
+  "smoke": [
+    {
+      "eval_id": "mce1-2c0e13557510",
+      "latency_s": 28.06,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "We are given:\n\n- Volume of HCl: $ V_{\\text{HCl}} = 50.0 \\, \\text{mL} = 0.0500 \\, \\text{L} $\n- Concentration of HCl: $ C_"
+    },
+    {
+      "eval_id": "mce1-19be3e9a939b",
+      "latency_s": 27.49,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "T = \\frac{(0.25)(1",
+      "preview": "We are given:\n\n- Mass of the bob, $ m = 0.25 \\, \\text{kg} $\n- Angle of the string with the vertical, $ \\theta = 60^\\circ"
+    },
+    {
+      "eval_id": "mce1-7f8430191127",
+      "latency_s": 27.75,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "t = 0 \\quad \\text{and} \\quad t = 2",
+      "preview": "We are given the velocity function of a one-dimensional robot cart:\n\n$$\nv(t) = 6t^2 - 12t \\quad \\text{for } 0 \\leq t \\le"
+    },
+    {
+      "eval_id": "mce1-cdba4e530e88",
+      "latency_s": 26.35,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "d_i = 30 \\",
+      "preview": "To solve this problem, we will use the **thin lens formula**:\n\n$$\n\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}\n$$\n\nWhere:"
+    },
+    {
+      "eval_id": "mce1-570727e589bb",
+      "latency_s": 25.65,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "We are given the following:\n\n- Initial volume of the vessel: $ V = 22.4 \\, \\text{L} $\n- Initial temperature: $ T = 273 \\"
+    }
+  ],
+  "tokens_per_s_median": 9.31,
+  "latency_median_s": 27.49,
+  "peak_gen_vram_mib": 2276.0,
+  "ram_after_gb": 18.99,
+  "ok": true
+}

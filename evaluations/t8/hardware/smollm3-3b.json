@@ -1,0 +1,68 @@
+{
+  "label": "smollm3-3b",
+  "model": "HuggingFaceTB/SmolLM3-3B",
+  "revision": null,
+  "recorded_at": "2026-09-05T08:11:57.032252+00:00",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "vram_total_mib": 6140,
+  "ram_before_gb": 15.21,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2030444544,
+    "peak_vram_bytes": 2081207296,
+    "reserved_vram_bytes": 2116026368,
+    "smoke_latency_s": 1.74
+  },
+  "cpu_offload": false,
+  "offload_devices": [],
+  "disk_size_gb": 5.74,
+  "smoke": [
+    {
+      "eval_id": "mce1-2c0e13557510",
+      "latency_s": 15.75,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "To find the hydrogen ion concentration of the resulting solution, we need to follow these steps:\n\n1. **Calculate moles o"
+    },
+    {
+      "eval_id": "mce1-19be3e9a939b",
+      "latency_s": 15.68,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "T_x = T \\sin(60^\\circ",
+      "preview": "To solve this problem, we need to consider the forces acting on the bob of the conical pendulum. These forces are the te"
+    },
+    {
+      "eval_id": "mce1-7f8430191127",
+      "latency_s": 15.75,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "To find the total distance traveled by the robot cart, we need to calculate the distance traveled in each interval where"
+    },
+    {
+      "eval_id": "mce1-cdba4e530e88",
+      "latency_s": 15.75,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": "\\frac{",
+      "preview": "To find the area of the image formed by the converging lens, we can follow these steps:\n\n1. **Find the image distance us"
+    },
+    {
+      "eval_id": "mce1-570727e589bb",
+      "latency_s": 15.92,
+      "new_tokens": 256,
+      "ok": true,
+      "extracted": null,
+      "preview": "To solve this problem, we need to follow these steps:\n\n1. **Initial Conditions**: The vessel has an initial volume of 22"
+    }
+  ],
+  "tokens_per_s_median": 16.25,
+  "latency_median_s": 15.75,
+  "peak_gen_vram_mib": 2038.0,
+  "ram_after_gb": 16.16,
+  "ok": true
+}

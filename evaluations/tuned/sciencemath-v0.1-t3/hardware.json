@@ -1,0 +1,21 @@
+{
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2284549632,
+    "peak_vram_bytes": 2284549632,
+    "reserved_vram_bytes": 2325741568,
+    "smoke_latency_s": 0.88,
+    "adapter_state": {
+      "is_peft_model": true,
+      "adapter_names": [
+        "t3"
+      ],
+      "adapter_active": true,
+      "adapters_disabled": false
+    },
+    "adapter_dir": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\sciencemath-v0.1-t3"
+  },
+  "recorded_at": "2026-09-03T04:14:30.631414+00:00"
+}

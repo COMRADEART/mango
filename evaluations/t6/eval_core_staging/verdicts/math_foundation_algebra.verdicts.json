@@ -1,0 +1,29 @@
+{
+  "file": "math_foundation_algebra.json",
+  "verdicts": [
+    {"index": 0, "verdict": "CONFIRM", "reason": "386*47=18142 verified via T4 calculator; tool_check reproduces exactly."},
+    {"index": 1, "verdict": "CONFIRM", "reason": "134*12+89=1697 verified via T4 calculator; tool_check reproduces."},
+    {"index": 2, "verdict": "CONFIRM", "reason": "8x7=56; no tool needed, flag consistent."},
+    {"index": 3, "verdict": "CONFIRM", "reason": "2389-1476=913 verified via T4 calculator."},
+    {"index": 4, "verdict": "CONFIRM", "reason": "5/8+3/4=1.375 verified via calculator; decimal format as instructed."},
+    {"index": 5, "verdict": "CONFIRM", "reason": "7/10-2/15=17/30 confirmed with Python Fraction; lowest terms, exact-answer format."},
+    {"index": 6, "verdict": "CONFIRM", "reason": "3/8 of 2.4 kg = 2400*3/8 = 900 g verified via calculator."},
+    {"index": 7, "verdict": "CONFIRM", "reason": "Red share = 450*7/10 = 315 ml verified via calculator."},
+    {"index": 8, "verdict": "CONFIRM", "reason": "4.8*25000=120000 cm = 1.2 km verified via calculator; units (cm-to-km) correct."},
+    {"index": 9, "verdict": "CONFIRM", "reason": "0.18*2450=441 verified via calculator."},
+    {"index": 10, "verdict": "CONFIRM", "reason": "12.5*0.72=9.0 exactly; expected_answer '9' verified via calculator."},
+    {"index": 11, "verdict": "CONFIRM", "reason": "(2.5e6)(1.6e-4)=4e2=400 verified via calculator."},
+    {"index": 12, "verdict": "CONFIRM", "reason": "5x+13=48 -> x=7; equation_solver returns solutions[0].x='7', matches field path and answer."},
+    {"index": 13, "verdict": "CONFIRM", "reason": "7-2x=19 -> x=-6; equation_solver returns -6."},
+    {"index": 14, "verdict": "CONFIRM", "reason": "(19.25-3.5)/2.25=7.0 verified via calculator."},
+    {"index": 15, "verdict": "CONFIRM", "reason": "4x+y=14, 3x-y=0 gives x=2,y=6 (sympy cross-check); x+y=8; tool_check expression 14/7+3*(14/7)=8 reproduces."},
+    {"index": 16, "verdict": "CONFIRM", "reason": "2a+b=11, 3a-b=9 -> a=4, b=3; second number is 3; tool_check 11-2*(20/5)=3 reproduces."},
+    {"index": 17, "verdict": "CONFIRM", "reason": "x^2+6x+9=0 has repeated root -3 (sympy confirms single root); equation_solver returns -3 at solutions[0].x."},
+    {"index": 18, "verdict": "CONFIRM", "reason": "Sum of roots = -b/a = -5/2 = -2.5 (sympy cross-check: roots -3 and 1/2); decimal format matches."},
+    {"index": 19, "verdict": "CONFIRM", "reason": "4x-9>15 -> x>6; direction preserved (positive coefficient); exact_answer format."},
+    {"index": 20, "verdict": "CONFIRM", "reason": "-3x+7<=22 -> -3x<=15 -> x>=-5; sign flip handled correctly."},
+    {"index": 21, "verdict": "CONFIRM", "reason": "4.9*3^2=44.1 verified via calculator; meters as asked."},
+    {"index": 22, "verdict": "CONFIRM", "reason": "(2x+3)^2 = 4x^2+12x+9 (sympy expansion); coefficient of x is 12."},
+    {"index": 23, "verdict": "CONFIRM", "reason": "f(g(-3))=3*(-3)^2+2=29 verified via calculator."}
+  ]
+}

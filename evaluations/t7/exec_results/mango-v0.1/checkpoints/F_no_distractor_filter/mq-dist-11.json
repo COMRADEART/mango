@@ -1,0 +1,218 @@
+{
+ "state": {
+  "run_id": "mq-dist-11",
+  "problem": "A triangular metal bracket has side lengths 9 centimeters, 11 centimeters, and 14 centimeters. What is its perimeter in centimeters? (Unrelated fact: the Solar System has 8 planets, and Jupiter's Great Red Spot is a storm about 16,000 kilometers wide that has raged for centuries.)",
+  "goal": "",
+  "problem_type": "SCIENCE",
+  "complexity": "MULTI_STEP",
+  "resources": "BOTH",
+  "status": "OBSERVING",
+  "knowns": [],
+  "unknowns": [],
+  "constraints": [],
+  "distractors": [],
+  "missing_information": [],
+  "plan": {
+   "steps": [
+    {
+     "id": "s1",
+     "action": "RETRIEVE",
+     "description": "Retrieve factual evidence for the question target",
+     "depends_on": [],
+     "input": "What is its perimeter in centimeters"
+    },
+    {
+     "id": "s2",
+     "action": "REASON",
+     "description": "Work out the required quantity step by step, showing arithmetic",
+     "depends_on": [
+      "s1"
+     ],
+     "input": ""
+    },
+    {
+     "id": "s3",
+     "action": "SYNTHESIZE",
+     "description": "Produce the final answer from step observations",
+     "depends_on": [
+      "s2"
+     ],
+     "input": ""
+    }
+   ],
+   "source": "deterministic_fallback"
+  },
+  "plan_version": 1,
+  "completed_steps": [
+   "s1",
+   "s2",
+   "s3"
+  ],
+  "observations": [
+   {
+    "step_id": "s1",
+    "action": "RETRIEVE",
+    "status": "OK",
+    "summary": "evidence: wiki-902:properties_shape_and_size_c79057fc:0 | wiki-19916559:intro_3cee6746:0 | wiki-639:physical_properties_spectroscopic_proper_e3ba1cb5:0",
+    "detail": {
+     "chunks": [
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-902:properties_shape_and_size_c79057fc:0",
+       "text": "Atoms lack a well-defined outer boundary, so their dimensions are usually described in terms of an atomic radius. This is a measure of the distance out to which the electron cloud extends from the nucleus. This assumes the atom to exhibit a spherical shape, which is only obeyed for atoms in vacuum or free space. Atomic radii may be derived from the distances between two nuclei when the two atoms are joined in a chemical bond. The radius varies with the location of an atom on the atomic chart, the type of chemical bond, the number of neighboring atoms (coordination number) and a quantum mechani"
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-19916559:intro_3cee6746:0",
+       "text": "The diameter of the nucleus is in the range of 1.70 fm (1.70×10−15 m) for hydrogen (the diameter of a single proton) to about 11.7 fm for uranium. These dimensions are much smaller than the diameter of the atom itself (nucleus + electron cloud), by a factor of about 27,000 (uranium's atomic radius is about 156 pm (156×10−12 m)) to about 60,000 (hydrogen's atomic radius is about 52.92 pm). The branch of physics involved with the study and understanding of the atomic nucleus, including its composition and the forces that bind it together, is called nuclear physics."
+      },
+      {
+       "source_id": "wikipedia_en",
+       "chunk_id": "wiki-639:physical_properties_spectroscopic_proper_e3ba1cb5:0",
+       "text": "The C-H stretching mode gives strong absorptions between 2850 and 2960 cm−1 and weaker bands for the C-C stretching mode absorbs between 800 and 1300 cm−1. The carbon–hydrogen bending modes depend on the nature of the group: methyl groups show bands at 1450 cm−1 and 1375 cm−1, while methylene groups show bands at 1465 cm−1 and 1450 cm−1. Carbon chains with more than four carbon atoms show a weak absorption at around 725 cm−1."
+      }
+     ],
+     "signature": "332d3959f059a5f7"
+    },
+    "latency_s": 0.48020869999891147,
+    "input_tokens": 0,
+    "output_tokens": 0
+   },
+   {
+    "step_id": "s2",
+    "action": "REASON",
+    "status": "OK",
+    "summary": "9+11+14=34",
+    "detail": {
+     "raw": "Answer: 9+11+14=34\n\nFinal answer: \\boxed{34}",
+     "signature": "fccc29d7781cec48"
+    },
+    "latency_s": 3.7068117999879178,
+    "input_tokens": 476,
+    "output_tokens": 24
+   },
+   {
+    "step_id": "s3",
+    "action": "SYNTHESIZE",
+    "status": "OK",
+    "summary": "\\boxed{34}",
+    "detail": {
+     "raw": "Answer: \\boxed{34}",
+     "signature": "dd5d82adb6485936"
+    },
+    "latency_s": 1.5441158000030555,
+    "input_tokens": 460,
+    "output_tokens": 9
+   }
+  ],
+  "verification": [],
+  "tool_calls": [],
+  "retrieval_calls": [],
+  "replans": 0,
+  "plan_attempts": 0,
+  "failure_fingerprints": [],
+  "termination_reason": null,
+  "evidence_status": null,
+  "final_answer": null,
+  "transitions": [
+   "RECEIVED",
+   "CLASSIFYING",
+   "PLANNING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING",
+   "VERIFYING",
+   "EXECUTING",
+   "OBSERVING"
+  ],
+  "budget_usage": {
+   "model_calls": 4,
+   "tool_calls": 0,
+   "retrievals": 1,
+   "replans": 0,
+   "plan_attempts": 0,
+   "steps_executed": 0,
+   "elapsed_s": 26.368779499985976,
+   "input_tokens": 936,
+   "output_tokens": 33
+  },
+  "schema_version": "1.0.0",
+  "included_facts": [
+   "A triangular metal bracket has side lengths 9 centimeters, 11 centimeters, and 14 centimeters.",
+   "What is its perimeter in centimeters?",
+   "(Unrelated fact: the Solar System has 8 planets, and Jupiter's Great Red Spot is a storm about 16,000 kilometers wide that has raged for centuries.)"
+  ],
+  "conflicts": [],
+  "evidence_graph": {
+   "nodes": [
+    {
+     "kind": "retrieval",
+     "ref": "step:s1",
+     "content": "evidence: wiki-902:properties_shape_and_size_c79057fc:0 | wiki-19916559:intro_3cee6746:0 | wiki-639:physical_properties_spectroscopic_proper_e3ba1cb5:0",
+     "step_id": "s1"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s2",
+     "content": "9+11+14=34",
+     "step_id": "s2"
+    },
+    {
+     "kind": "claim",
+     "ref": "step:s3",
+     "content": "\\boxed{34}",
+     "step_id": "s3"
+    }
+   ],
+   "edges": [
+    {
+     "src": "step:s1",
+     "dst": "step:s2",
+     "relation": "produced"
+    },
+    {
+     "src": "step:s2",
+     "dst": "step:s3",
+     "relation": "produced"
+    }
+   ]
+  },
+  "retrieval_ok": true
+ },
+ "evidence_graph": {
+  "nodes": [
+   {
+    "kind": "retrieval",
+    "ref": "step:s1",
+    "content": "evidence: wiki-902:properties_shape_and_size_c79057fc:0 | wiki-19916559:intro_3cee6746:0 | wiki-639:physical_properties_spectroscopic_proper_e3ba1cb5:0",
+    "step_id": "s1"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s2",
+    "content": "9+11+14=34",
+    "step_id": "s2"
+   },
+   {
+    "kind": "claim",
+    "ref": "step:s3",
+    "content": "\\boxed{34}",
+    "step_id": "s3"
+   }
+  ],
+  "edges": [
+   {
+    "src": "step:s1",
+    "dst": "step:s2",
+    "relation": "produced"
+   },
+   {
+    "src": "step:s2",
+    "dst": "step:s3",
+    "relation": "produced"
+   }
+  ]
+ }
+}

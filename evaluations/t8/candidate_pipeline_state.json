@@ -1,0 +1,33 @@
+{
+  "candidates": {
+    "qwen3-4b-instruct": {
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "max_new_tokens": 1024,
+      "probe_ok": true,
+      "eval_exit_code": 0,
+      "eval_ok": true
+    },
+    "phi4-mini-instruct": {
+      "model": "microsoft/Phi-4-mini-instruct",
+      "max_new_tokens": 1024,
+      "probe_ok": true,
+      "eval_exit_code": 0,
+      "eval_ok": true
+    },
+    "phi4-mini-reasoning": {
+      "model": "microsoft/Phi-4-mini-reasoning",
+      "max_new_tokens": 2048,
+      "note": "long-CoT comparator: card-guided 2048 max_new_tokens (T8.7 exception)",
+      "probe_ok": true,
+      "eval_exit_code": 0,
+      "eval_ok": true
+    },
+    "smollm3-3b": {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "max_new_tokens": 1024,
+      "probe_ok": true,
+      "eval_exit_code": 0,
+      "eval_ok": true
+    }
+  }
+}

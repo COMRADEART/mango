@@ -1,0 +1,57 @@
+{
+  "algebra": {
+    "n": 40,
+    "correct_tools": [
+      "calculator",
+      "equation_solver",
+      "symbolic_math",
+      "numerical_math"
+    ]
+  },
+  "arithmetic": {
+    "n": 40,
+    "correct_tools": [
+      "calculator",
+      "equation_solver",
+      "symbolic_math",
+      "numerical_math"
+    ]
+  },
+  "equations": {
+    "n": 10,
+    "correct_tools": [
+      "equation_solver"
+    ]
+  },
+  "general_science": {
+    "n": 20,
+    "correct_tools": []
+  },
+  "probability_statistics": {
+    "n": 10,
+    "correct_tools": [
+      "calculator",
+      "numerical_math"
+    ]
+  },
+  "symbolic": {
+    "n": 10,
+    "correct_tools": [
+      "symbolic_math"
+    ]
+  },
+  "trigonometry_precalculus": {
+    "n": 10,
+    "correct_tools": [
+      "calculator",
+      "equation_solver",
+      "symbolic_math"
+    ]
+  },
+  "units": {
+    "n": 10,
+    "correct_tools": [
+      "unit_converter"
+    ]
+  }
+}

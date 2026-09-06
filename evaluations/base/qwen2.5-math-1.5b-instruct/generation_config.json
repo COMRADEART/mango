@@ -1,0 +1,14 @@
+{
+  "generation": {
+    "seed": 42,
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "max_new_tokens": 1024
+  },
+  "mode": "cot",
+  "thinking_enabled": null,
+  "max_seq_tokens": 4096,
+  "determinism_note": "greedy where do_sample=false; sampled thinking mode uses the recorded sampling config with fixed torch seed per question"
+}

@@ -1,0 +1,21 @@
+{
+  "file": "routing_labels.json",
+  "verdicts": [
+    {"index": 0, "verdict": "CONFIRM", "reason": "347*28*46 = 446936 recomputed exactly; three-factor 6-digit product is genuinely unreliable mentally; difficulty 3 sane."},
+    {"index": 1, "verdict": "CONFIRM", "reason": "640*0.85*0.92 = 500.48 recomputed; chained percentage reduction is a real mental-arithmetic trap."},
+    {"index": 2, "verdict": "CONFIRM", "reason": "45 m/min = 45*60/1000 = 2.7 km/h, correct and unique; compound unit conversion is a plausible slip source, though difficulty 3 is slightly generous for this conversion."},
+    {"index": 3, "verdict": "CONFIRM", "reason": "2(2W+3)+2W=54 -> 6W+6=54 -> W=8, correct; requires translating word problem to equation before solving."},
+    {"index": 4, "verdict": "CONFIRM", "reason": "(1.25^2-1)*100 = 56.25 recomputed; area-quadratic scaling composed with percentage is a classic trap (25%/50% distractors); answer unique."},
+    {"index": 5, "verdict": "CONFIRM", "reason": "24h/3h = 8 doublings, 150*2^8 = 38400 recomputed; exponential count invites arithmetic slips."},
+    {"index": 6, "verdict": "CONFIRM", "reason": "17(x-3)=9x+21 -> 17x-51=9x+21 -> 8x=72 -> x=9, correct; difficulty 2 sane."},
+    {"index": 7, "verdict": "CONFIRM", "reason": "(1287+856)/2 = 1071.5; total 1287+856+1071.5 = 3214.5 recomputed; multi-step extraction + average routing."},
+    {"index": 8, "verdict": "CONFIRM", "reason": "Triton is Neptune's large retrograde moon; quote 'Neptune's moon Triton is the largest to orbit in the opposite, retrograde manner' appears verbatim in corpus; answer uniquely determined."},
+    {"index": 9, "verdict": "REJECT", "reason": "Answer leaked in question stem: 'A 1925 doctoral thesis' already states 1925, then asks for the year - no retrieval required, defeats the item's stated purpose despite verbatim corpus quote."},
+    {"index": 10, "verdict": "CONFIRM", "reason": "C60 truncated icosahedron has 12 pentagonal faces; quote 'to form a hollow sphere with 12 pentagonal and 20 hexagonal faces' appears verbatim; answer 12 correct."},
+    {"index": 11, "verdict": "CONFIRM", "reason": "Quote 'ATP production by a non-photosynthetic aerobic eukaryote occurs mainly in the mitochondria, which comprise nearly 25% of the volume of a typical cell' appears verbatim; answer 25 matches."},
+    {"index": 12, "verdict": "CONFIRM", "reason": "Quote 'Ozone is most effective in absorbing radiation around 0.25 micrometers, where UV-c rays lie in the spectrum' appears verbatim; choice A (0.25 um, UV-C) matches fact and Hartley band."},
+    {"index": 13, "verdict": "CONFIRM", "reason": "Quote 'Helium was discovered in this way in the spectrum of the Sun 23 years before it was found on Earth' appears verbatim in Atom article; answer 23 matches corpus; note historical 1868->1895 is 27 years but corpus is authoritative for retrieval."},
+    {"index": 14, "verdict": "CONFIRM", "reason": "Quote 'Seawater is slightly alkaline and had a preindustrial pH of about 8.2' appears verbatim; choice C (8.2) matches accepted preindustrial ocean pH."},
+    {"index": 15, "verdict": "CONFIRM", "reason": "Quote 'H2S which has a characteristic foul odor of rotten eggs and can be smelt in concentrations as low as 0.47 ppb' appears verbatim; 0.47 ppb + rotten-egg odor uniquely identifies hydrogen sulfide."}
+  ]
+}

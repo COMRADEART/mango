@@ -1,0 +1,48 @@
+{
+  "label": "mango-v0.1",
+  "adapter": "training\\adapters\\sciencemath-v0.1-t3",
+  "suite": "mango-eval-core-v1",
+  "metrics": {
+    "overall": 0.5695364238410596,
+    "math_macro": 0.6774193548387096,
+    "science_macro": 0.54,
+    "cross_domain": 0.5,
+    "compositional": 0.6666666666666666,
+    "tool_routing": 0.74245,
+    "retrieval_routing": 0.5644,
+    "extraction": 0.9867549668874173,
+    "uncertainty": 0.0,
+    "generalization_macro": 0.535024154589372,
+    "cross_domain_macro": 0.4166666666666667,
+    "splits": {
+      "COMPOSITIONAL": 0.6666666666666666,
+      "OUT_OF_TEMPLATE": 0.5217391304347826,
+      "CROSS_DOMAIN": 0.4166666666666667
+    },
+    "routing_details": {
+      "tool_needed_precision": 0.8143,
+      "tool_needed_recall": 0.6706,
+      "retrieval_needed_precision": 0.3462,
+      "retrieval_needed_recall": 0.7826,
+      "both_accuracy": 0.0,
+      "insufficient_info_rate": null,
+      "unnecessary_tool_invocation_rate": 0.0915,
+      "unnecessary_retrieval_invocation_rate": 0.2394,
+      "label_counts": {
+        "NONE": 36,
+        "TOOL": 83,
+        "RETRIEVAL": 21,
+        "BOTH": 2,
+        "INSUFFICIENT_INFO": 0
+      }
+    },
+    "rag_arm": {
+      "accuracy": 0.2608695652173913,
+      "n": 23,
+      "fabricated_citations": 0
+    },
+    "counts": {
+      "graded": 151
+    }
+  }
+}
