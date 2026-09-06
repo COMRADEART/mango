@@ -68,6 +68,11 @@ def _after_hash_marker(text: str) -> str | None:
 
 _ANSWER_IS_RE = re.compile(
     r"(?:answer\s*is|answer:)\s*\$?([^$\n]+?)\$?\s*$", re.IGNORECASE)
+_STRUCTURED_ANSWER_RE = re.compile(
+    r'["\']?(?:final_?answer|answer)["\']?\s*[:=]\s*["\']?([^\n,}\"]+)',
+    re.IGNORECASE)
+_CONCISE_VALUE_RE = re.compile(
+    r"^(?:therefore|thus|so),?\s+(.+?)\.?$", re.IGNORECASE)
 
 # ---------------------------------------------------------------- symbolic
 def normalize_symbolic(text: str) -> str:
@@ -75,6 +80,7 @@ def normalize_symbolic(text: str) -> str:
     symbolic answers. NOT symbolic equivalence (that arrives with the T4
     SymPy verifier) — documented limitation of T2 scoring."""
     a = (text or "").strip()
+    a = re.sub(r"^(?:\*\*|__)(.*)(?:\*\*|__)$", r"\1", a)
     a = a.strip("$ ")
     # strip \left \right wrappers
     a = a.replace("\\left", "").replace("\\right", "")
@@ -159,12 +165,22 @@ def extract_answer(raw: str, answer_type: str,
         if m:
             candidate = m.group(1).strip()
     if candidate is None:
+        m = _STRUCTURED_ANSWER_RE.search(gradable.strip().splitlines()[-1])
+        if m:
+            candidate = m.group(1).strip(" '\"")
+    if candidate is None:
+        m = _CONCISE_VALUE_RE.fullmatch(gradable.strip())
+        if m and len(m.group(1)) <= 80:
+            candidate = m.group(1)
+    if candidate is None:
         # last non-empty short line as a last resort for bare outputs
         lines = [l.strip() for l in gradable.strip().splitlines() if l.strip()]
         if lines and len(lines[-1]) <= 40:
             candidate = lines[-1]
     if candidate is None:
         return None
+    candidate = candidate.strip()
+    candidate = re.sub(r"^(?:\*\*|__)(.*)(?:\*\*|__)$", r"\1", candidate)
     return candidate.strip()
 
 

@@ -1,0 +1,19 @@
+{
+  "registered_before_final_run": true,
+  "candidate_name": "MANGO_4B_SYSTEM_PROMOTION_CANDIDATE",
+  "weight_promotion_automatic": false,
+  "targets": {
+    "false_feedback_preservation_min": 0.9,
+    "overcorrection_max": 0.1,
+    "true_correction_min": 0.4,
+    "net_correction_benefit_min_exclusive": 0,
+    "t4_false_pass_max": 0,
+    "t4_material_regression_pp_max": 3.0,
+    "t5r_fabricated_max": 0,
+    "t5r_unsupported_max": 0,
+    "t5r_invalid_max": 0,
+    "generalization_overall_floor": 0.7,
+    "local_peak_vram_mib_max": 6141
+  },
+  "notes": "Targets registered before T9 model evaluation. No weights are promoted by this gate."
+}

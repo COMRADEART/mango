@@ -1,0 +1,39 @@
+{
+  "milestone": "T9",
+  "recorded_at": "2026-09-06T13:40:23Z",
+  "git_commit": "a2b25b0232ca74fc9624356bec5701546654ee07",
+  "status": "FAIL",
+  "pytest": {
+    "result": "706 passed, 1 failed",
+    "required_floor": 737,
+    "failure": "tests/test_curriculum_core.py::test_stage_corpus_frozen_and_checksummed",
+    "detail": "training/curriculum/mango-sft-v2/level1/replay.jsonl SHA-256 does not match its committed checksums.json"
+  },
+  "production": {
+    "name": "Mango-v0.1",
+    "base_model": "Qwen/Qwen3-1.7B",
+    "adapter": "training/adapters/sciencemath-v0.1-t3",
+    "metadata_active": true,
+    "loadable_from_repository": false,
+    "load_blocker": "adapter_model.safetensors is absent"
+  },
+  "experimental": {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "adapter": null,
+    "promoted": false
+  },
+  "t4_false_pass_gate": {"status": "PASS", "false_pass_rate": 0.0, "wrong_probes": 638},
+  "t5r_citation_integrity": {"fabricated": 0, "unsupported": 0, "invalid": 0,
+    "source": "evaluations/t8/runs/qwen3-4b-instruct/t5r/G/metrics.json"},
+  "t8_hashes": {
+    "tool_suite": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+    "rag_suite": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+    "capacity_suite": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+    "recomputed_metrics": "b0d594c30f2404a75a08bcef5e28fed9b2e72838c1637df9e4c549e7bf624552",
+    "final_decision": "433938ca04c8fa1e9d9ce76c69ed772d8b5be296aa51ce37b64136dd52ae48e0"
+  },
+  "environment": {"os": "Microsoft Windows 11 Pro 10.0.26200 64-bit",
+    "python": "3.12.10", "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "vram_mib": 6141, "driver": "616.56"},
+  "stale_gpu_jobs": {"found": false, "memory_used_mib": 0}
+}

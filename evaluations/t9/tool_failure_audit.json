@@ -1,0 +1,419 @@
+{
+  "source": "evaluations\\t8\\runs\\qwen3-4b-instruct\\t4_tool\\tool_calls.jsonl",
+  "tool_invocations": 150,
+  "valid": 121,
+  "failures": 29,
+  "failure_categories": {
+    "MALFORMED_ARGUMENT": 12,
+    "PARSER_REJECTION": 5,
+    "TOOL_INTERNAL_FAILURE": 1,
+    "UNSUPPORTED_EXPRESSION": 5,
+    "WRONG_TOOL": 6
+  },
+  "ownership": {
+    "MODEL_INVOCATION": 28,
+    "TOOL_IMPLEMENTATION": 1
+  },
+  "rows": [
+    {
+      "question_id": "ev1-3c675901c606",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "ncr",
+        "n": 3,
+        "r": 2
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "'n'/'k' must be integers"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-4826156af9b8",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "mod",
+        "value": 140,
+        "mod": 11
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "unknown operation 'mod'"
+      },
+      "category": "UNSUPPORTED_EXPRESSION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-5dd5a29852b9",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "multiply",
+        "values": [
+          "cos(10)",
+          "cos(30)",
+          "cos(50)",
+          "cos(70)"
+        ]
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "'matrix' must be a list of lists"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-63f1ef01caaa",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "factorial",
+        "value": 5
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "'n' must be a non-negative int"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-63f1ef01caaa",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "factorial",
+        "value": 5
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "'n' must be a non-negative int"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-8bc54618e2eb",
+      "tool": "calculator",
+      "arguments": {
+        "expression": "194 mod 11"
+      },
+      "error": {
+        "code": "PARSE_ERROR",
+        "message": "invalid expression: invalid syntax (<unknown>, line 1)"
+      },
+      "category": "PARSER_REJECTION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-8ecb9b0e629d",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "add",
+        "values": [
+          6,
+          30,
+          48
+        ]
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "unknown operation 'add'"
+      },
+      "category": "UNSUPPORTED_EXPRESSION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-9ab2bf2625d8",
+      "tool": "symbolic_math",
+      "arguments": {
+        "operation": "evaluate",
+        "expression": "0, 2*pi/3, 4*pi/3, 2*pi"
+      },
+      "error": {
+        "code": "INTERNAL_ERROR",
+        "message": "AttributeError: 'Tuple' object has no attribute 'evalf'"
+      },
+      "category": "TOOL_INTERNAL_FAILURE",
+      "ownership": "TOOL_IMPLEMENTATION"
+    },
+    {
+      "question_id": "ev1-ab74a8d3320b",
+      "tool": "symbolic_math",
+      "arguments": {},
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "missing or empty 'operation'"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-ab74a8d3320b",
+      "tool": "equation_solver",
+      "arguments": {
+        "equation": "4*e + 18 = 17*e - 8"
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "no variables in equation (nothing to solve)"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-ab74a8d3320b",
+      "tool": "equation_solver",
+      "arguments": {
+        "equation": "4*e + 18 = 17*e - 8",
+        "variables": [
+          "e"
+        ]
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "variable e not present in equations"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-b5dd8e35c3d9",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "ncr",
+        "n": 15,
+        "r": 4
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "'n'/'k' must be integers"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-b5dd8e35c3d9",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "ncr",
+        "n": 15,
+        "r": 4
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "'n'/'k' must be integers"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-b5dd8e35c3d9",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "ncr",
+        "n": 15,
+        "r": 4
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "'n'/'k' must be integers"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-c7e0a43c64b1",
+      "tool": "symbolic_math",
+      "arguments": {
+        "operation": "divide",
+        "expression": "6*x^3 + 9*x^2 - 17*x + 11",
+        "divisor": "2*x^2 + 5*x - 1"
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "unknown operation 'divide'"
+      },
+      "category": "UNSUPPORTED_EXPRESSION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-cc659b90805e",
+      "tool": "equation_solver",
+      "arguments": {
+        "equation": "x > 3*sqrt(5) and x < 5*sqrt(3) and x == integer"
+      },
+      "error": {
+        "code": "DISALLOWED_EXPRESSION",
+        "message": "construct BoolOp not allowed"
+      },
+      "category": "UNSUPPORTED_EXPRESSION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-f943b244ef72",
+      "tool": "symbolic_math",
+      "arguments": {
+        "operation": "evaluate",
+        "expression": "f(1,2) = -5"
+      },
+      "error": {
+        "code": "PARSE_ERROR",
+        "message": "invalid expression: invalid syntax (<unknown>, line 1)"
+      },
+      "category": "PARSER_REJECTION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-fb5f68bd99f6",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "multiply",
+        "value1": 10,
+        "value2": 3
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "'matrix' must be a list of lists"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-ffe53f95b483",
+      "tool": "equation_solver",
+      "arguments": {
+        "equation": "5*x - 2*y = 7, 3*x + y = 2"
+      },
+      "error": {
+        "code": "PARSE_ERROR",
+        "message": "invalid expression: invalid syntax (<unknown>, line 1)"
+      },
+      "category": "PARSER_REJECTION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-ffe53f95b483",
+      "tool": "equation_solver",
+      "arguments": {
+        "equation": "5*x - 2*y = 7, 3*x + y = 2"
+      },
+      "error": {
+        "code": "PARSE_ERROR",
+        "message": "invalid expression: invalid syntax (<unknown>, line 1)"
+      },
+      "category": "PARSER_REJECTION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-ffe53f95b483",
+      "tool": "symbolic_math",
+      "arguments": {
+        "operation": "solve",
+        "expression": "5*x - 2*y = 7, 3*x + y = 2"
+      },
+      "error": {
+        "code": "PARSE_ERROR",
+        "message": "invalid expression: invalid syntax (<unknown>, line 1)"
+      },
+      "category": "PARSER_REJECTION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-010819b51b76",
+      "tool": "none",
+      "arguments": {},
+      "error": {
+        "code": "UNKNOWN_TOOL",
+        "message": "no tool named 'none'"
+      },
+      "category": "WRONG_TOOL",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-04742503014d",
+      "tool": "numerical_math",
+      "arguments": {
+        "operation": "multiply",
+        "value1": 2,
+        "value2": 3
+      },
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "'matrix' must be a list of lists"
+      },
+      "category": "MALFORMED_ARGUMENT",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-0f7536210ea0",
+      "tool": "none",
+      "arguments": {},
+      "error": {
+        "code": "UNKNOWN_TOOL",
+        "message": "no tool named 'none'"
+      },
+      "category": "WRONG_TOOL",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-12a044b6cae6",
+      "tool": "none",
+      "arguments": {},
+      "error": {
+        "code": "UNKNOWN_TOOL",
+        "message": "no tool named 'none'"
+      },
+      "category": "WRONG_TOOL",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-2a3e7d52b1e8",
+      "tool": "none",
+      "arguments": {},
+      "error": {
+        "code": "UNKNOWN_TOOL",
+        "message": "no tool named 'none'"
+      },
+      "category": "WRONG_TOOL",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-434d62d65de9",
+      "tool": "none",
+      "arguments": {},
+      "error": {
+        "code": "UNKNOWN_TOOL",
+        "message": "no tool named 'none'"
+      },
+      "category": "WRONG_TOOL",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-435dfdc8bddd",
+      "tool": "unit_converter",
+      "arguments": {
+        "value": 143,
+        "from_unit": "thousand",
+        "to_unit": "km"
+      },
+      "error": {
+        "code": "UNKNOWN_UNIT",
+        "message": "unknown unit 'thousand'"
+      },
+      "category": "UNSUPPORTED_EXPRESSION",
+      "ownership": "MODEL_INVOCATION"
+    },
+    {
+      "question_id": "ev1-44e37b1be886",
+      "tool": "none",
+      "arguments": {},
+      "error": {
+        "code": "UNKNOWN_TOOL",
+        "message": "no tool named 'none'"
+      },
+      "category": "WRONG_TOOL",
+      "ownership": "MODEL_INVOCATION"
+    }
+  ]
+}

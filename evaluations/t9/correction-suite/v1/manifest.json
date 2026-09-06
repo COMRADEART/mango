@@ -1,0 +1,25 @@
+{
+  "name": "mango-correction-eval-v1",
+  "frozen": true,
+  "questions": 40,
+  "class_counts": {
+    "TRUE_FAIL": 10,
+    "FALSE_FAIL": 10,
+    "PARTIAL_FAIL": 10,
+    "AMBIGUOUS": 10
+  },
+  "domains": [
+    "arithmetic",
+    "algebra",
+    "equations",
+    "calculus",
+    "units",
+    "physics",
+    "chemistry",
+    "biology",
+    "mixed_math_science",
+    "retrieval_science"
+  ],
+  "sha256": "dc77ccf845f539d4bf6df23964207d504962d75b56f02c981d0e15eb632a445b",
+  "tuning_performed_before_freeze": false
+}

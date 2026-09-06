@@ -17,6 +17,58 @@ from pathlib import Path
 
 from sciencemath.tools.base import ToolRegistry, ToolResult
 
+MAX_ARGUMENT_CHARS = 4096
+
+
+def _normalize_arguments_once(arguments: object) -> tuple[object, bool]:
+    """One deterministic recovery pass for JSON strings and common wrappers."""
+    if isinstance(arguments, str):
+        try:
+            return json.loads(arguments), True
+        except json.JSONDecodeError:
+            return arguments, False
+    if isinstance(arguments, dict) and set(arguments) == {"arguments"}:
+        return arguments["arguments"], True
+    return arguments, False
+
+
+def prevalidate_tool_call(registry: ToolRegistry, tool_name: str,
+                          arguments: object) -> dict:
+    """Validate a proposed call before execution without weakening tool safety."""
+    tool = registry.get(tool_name)
+    if tool is None:
+        return {"ok": False, "category": "WRONG_TOOL", "arguments": None,
+                "normalized": False, "error": f"unknown tool {tool_name!r}"}
+    args, normalized = _normalize_arguments_once(arguments)
+    if not isinstance(args, dict):
+        return {"ok": False, "category": "MALFORMED_ARGUMENT", "arguments": None,
+                "normalized": normalized, "error": "arguments must be an object"}
+    try:
+        encoded = json.dumps(args, ensure_ascii=False, allow_nan=False)
+    except (TypeError, ValueError):
+        return {"ok": False, "category": "MALFORMED_ARGUMENT", "arguments": None,
+                "normalized": normalized, "error": "arguments are not JSON-safe"}
+    if len(encoded) > MAX_ARGUMENT_CHARS:
+        return {"ok": False, "category": "RESOURCE_CAP", "arguments": None,
+                "normalized": normalized, "error": "argument payload exceeds limit"}
+    schema = tool.input_schema or {}
+    missing = [k for k in schema.get("required", []) if k not in args]
+    if missing:
+        return {"ok": False, "category": "MALFORMED_ARGUMENT", "arguments": None,
+                "normalized": normalized, "error": f"missing required fields: {missing}"}
+    properties = schema.get("properties", {})
+    for key, value in args.items():
+        expected = (properties.get(key) or {}).get("type")
+        valid = ((expected == "string" and isinstance(value, str)) or
+                 (expected == "number" and isinstance(value, (int, float)) and
+                  not isinstance(value, bool)) or expected in (None, "object", "array"))
+        if not valid:
+            return {"ok": False, "category": "MALFORMED_ARGUMENT", "arguments": None,
+                    "normalized": normalized,
+                    "error": f"field {key!r} must be {expected}"}
+    return {"ok": True, "category": None, "arguments": args,
+            "normalized": normalized, "error": None}
+
 # (tool, compiled pattern, reason label) — first match per tool wins
 _RULES: list[tuple[str, re.Pattern, str]] = [
     ("calculator", re.compile(
@@ -152,8 +204,18 @@ def invoke_logged(registry: ToolRegistry, logger: ToolCallLogger,
                   question_id: str, tool_name: str,
                   arguments: dict) -> ToolResult:
     """Invoke a tool with mandatory logging. Returns the ToolResult."""
+    checked = prevalidate_tool_call(registry, tool_name, arguments)
     start = time.perf_counter()
-    result = registry.invoke(tool_name, arguments)
+    if checked["ok"]:
+        result = registry.invoke(tool_name, checked["arguments"])
+        result.meta = {**result.meta, "prevalidation": checked}
+    else:
+        error_code = ("UNKNOWN_TOOL" if checked["category"] == "WRONG_TOOL"
+                      else "INVALID_INPUT")
+        result = ToolResult(tool=tool_name, status="error",
+                            error={"code": error_code,
+                                   "message": checked["error"]},
+                            meta={"prevalidation": checked})
     wall = time.perf_counter() - start
     logger.log_invocation(question_id, tool_name, arguments, result, wall)
     return result
