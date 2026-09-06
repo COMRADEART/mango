@@ -1,0 +1,43 @@
+{
+  "artifact": "ScienceMath-v0.1-T3",
+  "status": "EXACT_RECOVERY",
+  "filename": "adapter_model.safetensors",
+  "sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+  "bytes": 139512976,
+  "tensor_count": 392,
+  "tensor_inventory_sha256": "6a19ab4ca0bc1a46aa260350837b837890449d45acc6ddcb4fdff2c23977020e",
+  "base_model": "Qwen/Qwen3-1.7B",
+  "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "checkpoint": 300,
+  "global_step": 300,
+  "eval_loss": 0.8474348783493042,
+  "seed": 42,
+  "provenance_rule": "RULE_2_INDEPENDENT_BYTE_IDENTICAL_HISTORICAL_COPY",
+  "historical_sources": [
+    {
+      "path": "sciencemath/training/checkpoints/sciencemath-v0.1-t3/checkpoint-300/adapter_model.safetensors",
+      "timestamp": "2026-09-02T23:21:46",
+      "sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "role": "original_training_checkpoint"
+    },
+    {
+      "path": "sciencemath/training/adapters/sciencemath-v0.1-t3/adapter_model.safetensors",
+      "timestamp": "2026-09-03T00:13:22",
+      "sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "role": "final_adapter_output"
+    }
+  ],
+  "adapter_config_sha256": "cd5819ffd67a5fb354bab6b9458aca11543d48e2b7cfb6d4ff47703844e228be",
+  "training_manifest_sha256": "9dd3a471226337276b375ba21074a2fcfb546735903d66fe151b0f6e21cd6640",
+  "dataset_manifest_sha256": "a58b8d085226f00199381b57dc034ed871a8231e22dac767189ce54040b8577f",
+  "dataset_checksums_sha256": "ea14a81c4eab3bd0e3d01fc11dad8c37ffd1606462aa7d89fadaad7ff9e22425",
+  "recovery_date": "2026-09-06T17:23:45.777715+00:00",
+  "git_commit": "1934e9d9e1e6a37dc9ecb03795a0c8d8bd0f5df5",
+  "evidence_levels": {
+    "level_A_cryptographic_digest": "NOT_FOUND",
+    "level_B_independent_byte_identical_copy": "FOUND",
+    "level_C_exact_model_state": "FOUND",
+    "level_D_strong_metadata_corroboration": "FOUND"
+  },
+  "provenance_report": "evaluations/t9/T3_ADAPTER_PROVENANCE_REPORT.md"
+}
