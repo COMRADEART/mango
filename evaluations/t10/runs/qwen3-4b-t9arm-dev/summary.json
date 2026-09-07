@@ -30,7 +30,7 @@
       "blind_agreement": 0
     },
     "partial_fail_repair_rate": 0.0,
-    "collateral_change_rate": 0.043478260869565216,
+    "collateral_change_rate": 0.0,
     "ambiguous_preservation": 1.0,
     "repair_methods": {
       "LLM_REPAIR_1": 13,
@@ -48,23 +48,9 @@
     },
     "counts_v2": {
       "partial_repaired": 0,
-      "partial_collateral": 1,
+      "partial_collateral": 0,
       "ambiguous_preserved": 24,
       "ambiguous_total": 24
-    },
-    "confidence_intervals_95": {
-      "true_correction": [
-        0.334982179531473,
-        0.6996899607103998
-      ],
-      "preservation": [
-        0.8668035060468213,
-        1.0
-      ],
-      "partial_repair": [
-        0.0,
-        0.14312112541726274
-      ]
     }
   }
 }
