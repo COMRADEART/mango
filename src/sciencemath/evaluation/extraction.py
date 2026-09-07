@@ -78,12 +78,21 @@ _CONCISE_VALUE_RE = re.compile(
 def normalize_symbolic(text: str) -> str:
     """Deterministic normalization for exact-answer comparison of short
     symbolic answers. NOT symbolic equivalence (that arrives with the T4
-    SymPy verifier) — documented limitation of T2 scoring."""
+    SymPy verifier) — documented limitation of T2 scoring.
+
+    T10: also folds LaTeX/symbol formatting variants that denote the same
+    value (\\times and unicode × to *, unicode minus to -, '\\ ' spacing,
+    atomic fraction parens from \\dfrac) — pure false-negative fixes; no
+    semantic loosening (units and values must still agree)."""
     a = (text or "").strip()
     a = re.sub(r"^(?:\*\*|__)(.*)(?:\*\*|__)$", r"\1", a)
     a = a.strip("$ ")
     # strip \left \right wrappers
     a = a.replace("\\left", "").replace("\\right", "")
+    # multiplication command and unicode variants → *
+    a = a.replace("\\times", "*").replace("\\cdot", "*")
+    a = a.replace("×", "*").replace("−", "-").replace("–", "-")
+    a = re.sub(r"(?<=\d)\s*x\s*(?=10\^)", "*", a)   # 3 x 10^8
     # \dfrac / \tfrac / \frac{a}{b} -> a/b
     for _ in range(3):
         m = re.fullmatch(r"\\[dt]?frac\{([^{}]*)\}\{([^{}]*)\}", a.strip())
@@ -91,8 +100,11 @@ def normalize_symbolic(text: str) -> str:
             break
         a = f"({m.group(1)})/({m.group(2)})"
     a = re.sub(r"\\text\{([^{}]*)\}", r"\1", a)
+    a = a.replace("\\ ", "")                  # backslash spacing: 98\ N
     a = re.sub(r"\\[a-zA-Z]+", "", a)        # remaining commands dropped
     a = a.replace("^{\\circ}", "°").replace("^{o}", "°")
+    # (13)/(12) -> 13/12 when both sides are atomic (no operator inside)
+    a = re.sub(r"\(([\w.]+)\)/\(([\w.]+)\)", r"\1/\2", a)
     a = a.replace(" ", "").lower()
     a = a.rstrip(".")
     return a
