@@ -1,0 +1,284 @@
+{
+  "milestone": "T10.6",
+  "run": "qwen3-4b-t9arm-dev",
+  "suite": "mango-correction-eval-v2 (dev split, 97 cases)",
+  "taxonomy": [
+    "REPAIR_NOT_ATTEMPTED",
+    "WRONG_REPAIR_SCOPE",
+    "CORRECT_EVIDENCE_NOT_EXPOSED",
+    "MODEL_IGNORED_EVIDENCE",
+    "MODEL_REPEATED_OLD_ANSWER",
+    "EXTRACTION_FAILURE",
+    "REVERIFY_FALSE_NEGATIVE",
+    "TOOL_FORMAT_FAILURE",
+    "RETRIEVAL_SUPPORT_INSUFFICIENT",
+    "MULTI_COMPONENT_FAILURE",
+    "OTHER"
+  ],
+  "method": "deterministic rules over recorded trajectory + raw-repair probe; the raw output of every un-repaired TRUE_FAIL repair was captured by scripts/t10_probe_repair_raw.py",
+  "dev_summary": {
+    "true_correction": 0.52,
+    "false_feedback_preservation": 1.0,
+    "overcorrection": 0.0,
+    "ambiguous_preservation": 1.0,
+    "partial_fail_repair_rate": 0.0,
+    "collateral_change_rate": 0.043478260869565216
+  },
+  "true_fail_total": 25,
+  "true_fail_repaired": 13,
+  "failures_analysed": 12,
+  "label_counts": {
+    "REVERIFY_FALSE_NEGATIVE": 12
+  },
+  "sub_label_counts": {
+    "string_form_mismatch": 4,
+    "unit_or_format_dropped": 8
+  },
+  "partial_fail_findings": {
+    "repaired": 0,
+    "total": 23,
+    "collateral_cases": [
+      "mcor-v2-133"
+    ],
+    "finding": "the T9 firewall replaces the whole answer on ACCEPT; it has no component-scoped repair for multi-part answers, so PARTIAL_FAIL repair rate is 0.0"
+  },
+  "cases": [
+    {
+      "eval_id": "mcor-v2-005",
+      "domain": "arithmetic",
+      "difficulty": "symbolic_error",
+      "failed_component": "numeric_result",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "5/10",
+      "final": "5/10",
+      "expected": "13/12",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "(13)/(12)",
+        "sub": "string_form_mismatch"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-013",
+      "domain": "algebra",
+      "difficulty": "symbolic_error",
+      "failed_component": "symbolic_result",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "11x + 12",
+      "final": "11x + 12",
+      "expected": "11x − 12",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "11x - 12",
+        "sub": "string_form_mismatch"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-021",
+      "domain": "equations",
+      "difficulty": "multi_step_numeric_error",
+      "failed_component": "solution",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "x = 6, y = 4",
+      "final": "x = 6, y = 4",
+      "expected": "x = 7, y = 3",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "(7, 3)",
+        "sub": "unit_or_format_dropped",
+        "prompt_echo": true
+      }
+    },
+    {
+      "eval_id": "mcor-v2-033",
+      "domain": "probability_statistics",
+      "difficulty": "multi_step_numeric_error",
+      "failed_component": "probability_value",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "1/12",
+      "final": "1/12",
+      "expected": "1/6",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "(1)/(6)",
+        "sub": "string_form_mismatch"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-041",
+      "domain": "units",
+      "difficulty": "unit_error",
+      "failed_component": "unit_value",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "350 g",
+      "final": "350 g",
+      "expected": "3500 g",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "3500",
+        "sub": "unit_or_format_dropped"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-045",
+      "domain": "units",
+      "difficulty": "unit_error",
+      "failed_component": "unit_value",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "45 L",
+      "final": "45 L",
+      "expected": "0.45 L",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "0.45",
+        "sub": "unit_or_format_dropped"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-049",
+      "domain": "units",
+      "difficulty": "unit_error",
+      "failed_component": "unit_value",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "72 m/s",
+      "final": "72 m/s",
+      "expected": "20 m/s",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "20",
+        "sub": "unit_or_format_dropped"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-053",
+      "domain": "physics",
+      "difficulty": "multi_step_numeric_error",
+      "failed_component": "numeric_result",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "1.7 N",
+      "final": "1.7 N",
+      "expected": "15 N",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "15",
+        "sub": "unit_or_format_dropped"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-057",
+      "domain": "physics",
+      "difficulty": "unit_error",
+      "failed_component": "quantity_with_unit",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "98 kg",
+      "final": "98 kg",
+      "expected": "98 N",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "98 N",
+        "sub": "string_form_mismatch"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-061",
+      "domain": "chemistry",
+      "difficulty": "multi_step_numeric_error",
+      "failed_component": "numeric_result",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "17.01 g/mol",
+      "final": "17.01 g/mol",
+      "expected": "18.02 g/mol",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "18.02",
+        "sub": "unit_or_format_dropped"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-065",
+      "domain": "chemistry",
+      "difficulty": "multi_step_numeric_error",
+      "failed_component": "numeric_result",
+      "feedback_trust": "VERIFIED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "2 mol",
+      "final": "2 mol",
+      "expected": "4 mol",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "4",
+        "sub": "unit_or_format_dropped"
+      }
+    },
+    {
+      "eval_id": "mcor-v2-081",
+      "domain": "astronomy_earth",
+      "difficulty": "wrong_scientific_claim",
+      "failed_component": "speed of light claim",
+      "feedback_trust": "SUPPORTED",
+      "correction_decision": "REJECT",
+      "repair_attempts": 1,
+      "initial": "3 x 10^5 m/s",
+      "final": "3 x 10^5 m/s",
+      "expected": "3 x 10^8 m/s",
+      "labels": [
+        "REVERIFY_FALSE_NEGATIVE"
+      ],
+      "detail": {
+        "raw_boxed_value": "3 * 10^8  m/s",
+        "sub": "unit_or_format_dropped",
+        "prompt_echo": true
+      }
+    }
+  ],
+  "dominant_conclusion": "All 12 un-repaired TRUE_FAIL cases are REVERIFY_FALSE_NEGATIVE: the model's raw repair output contained a complete, correct boxed value in every single case, and the reverify oracle (answers_match) rejected it every time due to formatting gaps — LaTeX forms (\\dfrac{13}{12}, \\text{ m/s}, 3 \\times 10^8), dropped units (boxed 3500 vs expected 3500 g), ASCII-vs-unicode symbol variants (11x - 12 vs 11x − 12), and format variants ((7, 3) vs x = 7, y = 3). Zero cases of MODEL_IGNORED_EVIDENCE, zero truncation, zero wrong-scope repairs. REPAIR capability is not the bottleneck: answer normalization in the reverify path and the absence of a deterministic patch path are.",
+  "improvement_directions": [
+    "T10.11 deterministic patch: when feedback trust is VERIFIED and the validated evidence carries the expected value, apply the authoritative value directly (DETERMINISTIC_PATCH) instead of betting on an LLM repair + brittle reverify",
+    "normalize LaTeX/symbol variants in matching (\\dfrac{a}{b} -> a/b, \\text{X} -> X, \\times/x -> *, unicode minus/hyphen) — applies identically to all arms",
+    "unit-aware answers_match: compare numeric value when the unit tokens match or are dropped, not just exact string equality",
+    "component-scoped repair for multi-part PARTIAL_FAIL answers (firewall currently replaces the whole answer on ACCEPT)"
+  ]
+}
