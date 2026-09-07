@@ -1,0 +1,63 @@
+{
+  "git_commit": "1934e9d9e1e6a37dc9ecb03795a0c8d8bd0f5df5",
+  "git_status": "dirty",
+  "t3_adapter_sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+  "t3_adapter_source_paths": [
+    "mango/training/adapters/sciencemath-v0.1-t3/adapter_model.safetensors",
+    "sciencemath/training/adapters/sciencemath-v0.1-t3/adapter_model.safetensors"
+  ],
+  "t3_adapter_sha256_verified_local": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+  "correction_suite_sha256": "dc77ccf845f539d4bf6df23964207d504962d75b56f02c981d0e15eb632a445b",
+  "correction_suite_sha256_verified_local": "dc77ccf845f539d4bf6df23964207d504962d75b56f02c981d0e15eb632a445b",
+  "t4_suite_sha256": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+  "t5r_suite_sha256": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+  "capacity_suite_sha256": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+  "generation_config": {
+    "seed": 42,
+    "do_sample": false,
+    "max_new_tokens": 1024,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "repetition_penalty": null
+  },
+  "generation_config_hash": "21f9d0ecceb7c109422aa8e9a3408b2041716d88eb26a9b5648a9d80b16d3b00",
+  "correction_arms_generation_config": {
+    "seed": 42,
+    "do_sample": false,
+    "max_new_tokens": 160,
+    "note": "scripts/run_t9_correction_eval.py default max-new-tokens=160; correction arms (mango-v0.1-correction, qwen3-4b-raw-replication, qwen3-4b-firewall-replication) use this default"
+  },
+  "model_revisions": {
+    "Qwen3-1.7B": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "Qwen3-4B-Instruct-2507": "cdbee75f17c01a7cc42f958dc650907174af0554"
+  },
+  "firewall_config_hash": "64adc9429d6a08ed1c981605209445fc085c39230f91a5d0679c7ffa9661811b",
+  "firewall_module_sha256_current": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+  "firewall_unchanged_vs_head": true,
+  "correction_runner_unchanged_vs_head": true,
+  "entry_gate_status": "T9_FINAL_REGRESSION_PHASE_AUTHORIZED",
+  "test_count_reported": 715,
+  "test_count_actual": 745,
+  "test_count_fresh_at_freeze": {
+    "collected": 745,
+    "passed": 745,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_s": 12.492,
+    "source": "scripts/run_pytest_summary.py fresh run, JUnit-verified, 2026-09-07"
+  },
+  "gpu_arms_executed": {
+    "note": "All GPU arms were executed sequentially on 2026-09-06 15:19-23:42 EDT, after the pre-freeze fields above were recorded and before this manifest was finalized. Run order matches the authorized protocol order.",
+    "arm1_mango_v0.1_correction": "evaluations/t9/runs/mango-v0.1-correction (15:19)",
+    "arm2_raw_4b_replication": "evaluations/t9/runs/qwen3-4b-raw-replication (15:26)",
+    "arm3_stabilized_4b_replication": "evaluations/t9/runs/qwen3-4b-firewall-replication (15:28)",
+    "arm4_t4": "evaluations/t8/runs/qwen3-4b-stabilized-t4 (15:30-20:23, incl. verifier selftest)",
+    "arm5_t5r": "evaluations/t8/runs/qwen3-4b-stabilized-t5r (finished 21:00)",
+    "arm6_generalization": "evaluations/t8/runs/qwen3-4b-stabilized-cap (131 rows)",
+    "arm7_extraction": "evaluations/t9/runs/qwen3-4b-extraction-benchmark (23:42)"
+  },
+  "recorded_at": "2026-09-07T00:00:00-04:00",
+  "manifest_finalized_at": "2026-09-07 (protocol unchanged since first recording; additive completion only)"
+}

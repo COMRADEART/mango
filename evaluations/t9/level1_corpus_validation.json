@@ -1,0 +1,83 @@
+{
+  "contamination_report.json": {
+    "expected": "80c8ec6c9857ba11ce0972e478e453b5f37f725ff481aa764ff1b730b0011bd3",
+    "current": "80c8ec6c9857ba11ce0972e478e453b5f37f725ff481aa764ff1b730b0011bd3",
+    "previous": "80c8ec6c9857ba11ce0972e478e453b5f37f725ff481aa764ff1b730b0011bd3",
+    "git_blob": "d06341be711499ec7cefa3e75e728ad1508cef2a855e608b57cad097bce26942",
+    "git_blob_crlf": "80c8ec6c9857ba11ce0972e478e453b5f37f725ff481aa764ff1b730b0011bd3",
+    "same_json_content": true,
+    "ok": true
+  },
+  "domain_distribution.json": {
+    "expected": "7ee16f4e09c7787f954f381fe311c7a630b535631c50a3c6471224ac0c0a2557",
+    "current": "7ee16f4e09c7787f954f381fe311c7a630b535631c50a3c6471224ac0c0a2557",
+    "previous": "7ee16f4e09c7787f954f381fe311c7a630b535631c50a3c6471224ac0c0a2557",
+    "git_blob": "0e97f308593e0b9d625f7d8dd094181f4ad7f1310e6d7eea3552754ceb35d165",
+    "git_blob_crlf": "7ee16f4e09c7787f954f381fe311c7a630b535631c50a3c6471224ac0c0a2557",
+    "same_json_content": true,
+    "ok": true
+  },
+  "license_manifest.json": {
+    "expected": "a1cf72e57988e9687bd99f0bbd021cc70c30ce99dd766a82bfa602694df65e8a",
+    "current": "a1cf72e57988e9687bd99f0bbd021cc70c30ce99dd766a82bfa602694df65e8a",
+    "previous": "a1cf72e57988e9687bd99f0bbd021cc70c30ce99dd766a82bfa602694df65e8a",
+    "git_blob": "959e9d045d3481e043f383f6e5292d166696936ef73fe2634e0fbb15bd931c73",
+    "git_blob_crlf": "a1cf72e57988e9687bd99f0bbd021cc70c30ce99dd766a82bfa602694df65e8a",
+    "same_json_content": true,
+    "ok": true
+  },
+  "manifest.json": {
+    "expected": "3963607a98c442b268554df6783f69eb5aaaaeb2cf6fae8aedf03363b656cd9f",
+    "current": "3963607a98c442b268554df6783f69eb5aaaaeb2cf6fae8aedf03363b656cd9f",
+    "previous": "3963607a98c442b268554df6783f69eb5aaaaeb2cf6fae8aedf03363b656cd9f",
+    "git_blob": "238cad5795ff1bbdf10c5a5f16872cce3a535e6835b08342b069cde96ce54005",
+    "git_blob_crlf": "3963607a98c442b268554df6783f69eb5aaaaeb2cf6fae8aedf03363b656cd9f",
+    "same_json_content": true,
+    "ok": true
+  },
+  "replay.jsonl": {
+    "expected": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+    "current": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+    "previous": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+    "git_blob": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+    "git_blob_crlf": "6a039fe504ececbb231b7bc85a15e3ccb30ee9ad13a795a025e04cca551be78f",
+    "same_json_content": true,
+    "ok": true
+  },
+  "replay_report.json": {
+    "expected": "33105c15cb9f73023d2074ff24c52b47c2acd34ae55a2f0e979a3c827d3a3dd1",
+    "current": "33105c15cb9f73023d2074ff24c52b47c2acd34ae55a2f0e979a3c827d3a3dd1",
+    "previous": "33105c15cb9f73023d2074ff24c52b47c2acd34ae55a2f0e979a3c827d3a3dd1",
+    "git_blob": "287b5777352aaa95edad1d9b433172a01cd724ab36c65d2aeca9623bc3d94a71",
+    "git_blob_crlf": "33105c15cb9f73023d2074ff24c52b47c2acd34ae55a2f0e979a3c827d3a3dd1",
+    "same_json_content": true,
+    "ok": true
+  },
+  "token_mixture.json": {
+    "expected": "5e5048538a1267812086288e7d138dfe886e0b93aeae7f53ea56060b28aab22b",
+    "current": "5e5048538a1267812086288e7d138dfe886e0b93aeae7f53ea56060b28aab22b",
+    "previous": "5e5048538a1267812086288e7d138dfe886e0b93aeae7f53ea56060b28aab22b",
+    "git_blob": "3b2ec52b21a3651b614ec485dc23a24f1e1c32eabf8bb616a8acd5d0ef1006dd",
+    "git_blob_crlf": "5e5048538a1267812086288e7d138dfe886e0b93aeae7f53ea56060b28aab22b",
+    "same_json_content": true,
+    "ok": true
+  },
+  "train.jsonl": {
+    "expected": "432379f5dc7897f208de76daa723379983f665b9fdf44e6c23f2b59cfd093d22",
+    "current": "432379f5dc7897f208de76daa723379983f665b9fdf44e6c23f2b59cfd093d22",
+    "previous": "432379f5dc7897f208de76daa723379983f665b9fdf44e6c23f2b59cfd093d22",
+    "git_blob": "432379f5dc7897f208de76daa723379983f665b9fdf44e6c23f2b59cfd093d22",
+    "git_blob_crlf": "a83a41594df3f740f1cb80fe5f8931bc4468b182b5f4df4d61e649ec1661e7f0",
+    "same_json_content": true,
+    "ok": true
+  },
+  "validation.jsonl": {
+    "expected": "429b8b4294b217aefffaf025afbe22550f75254b41c53fd072a9843202407b5d",
+    "current": "429b8b4294b217aefffaf025afbe22550f75254b41c53fd072a9843202407b5d",
+    "previous": "429b8b4294b217aefffaf025afbe22550f75254b41c53fd072a9843202407b5d",
+    "git_blob": "429b8b4294b217aefffaf025afbe22550f75254b41c53fd072a9843202407b5d",
+    "git_blob_crlf": "e5f96cc346a9b4b229ae5b2730eeb54cf7c639906dd8aceee4e2785cd064e074",
+    "same_json_content": true,
+    "ok": true
+  }
+}

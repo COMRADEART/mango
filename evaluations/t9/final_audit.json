@@ -1,0 +1,668 @@
+{
+  "milestone": "T9",
+  "audit_version": "final",
+  "checks": {
+    "git_commit": true,
+    "suite_sha_correction_suite": true,
+    "suite_sha_t4_suite": true,
+    "suite_sha_t5r_suite": true,
+    "suite_sha_capacity_suite": true,
+    "suite_sha_t3_adapter": true,
+    "model_revision_1.7B": true,
+    "model_revision_4B": true,
+    "mango-v0.1-correction_identity": true,
+    "mango-v0.1-correction_adapter": true,
+    "mango-v0.1-correction_firewall": true,
+    "mango-v0.1-correction_inventory": true,
+    "mango-v0.1-correction_classes": true,
+    "mango-v0.1-correction_metric_agreement": true,
+    "qwen3-4b-raw-replication_identity": true,
+    "qwen3-4b-raw-replication_adapter": true,
+    "qwen3-4b-raw-replication_firewall": true,
+    "qwen3-4b-raw-replication_inventory": true,
+    "qwen3-4b-raw-replication_classes": true,
+    "qwen3-4b-raw-replication_metric_agreement": true,
+    "qwen3-4b-firewall-replication_identity": true,
+    "qwen3-4b-firewall-replication_adapter": true,
+    "qwen3-4b-firewall-replication_firewall": true,
+    "qwen3-4b-firewall-replication_inventory": true,
+    "qwen3-4b-firewall-replication_classes": true,
+    "qwen3-4b-firewall-replication_metric_agreement": true,
+    "t4_tool_inventory": true,
+    "t4_notool_subset": true,
+    "t4_model_identity": true,
+    "t4_verifier_false_pass_zero": true,
+    "t4_verifier_gold_full": true,
+    "t4_verifier_agreement": true,
+    "t4_paired_tool_accuracy_agreement": true,
+    "t4_prevalidation_consistent": true,
+    "t5r_G_accuracy_agreement": true,
+    "t5r_G_inventory": true,
+    "t5r_NORAG_accuracy_agreement": true,
+    "t5r_NORAG_inventory": true,
+    "t5r_citation_integrity": true,
+    "capacity_inventory": true,
+    "decomposition_present": true,
+    "extraction_inventory": true,
+    "extraction_agreement": true
+  },
+  "git_commit": "1934e9d9e1e6a37dc9ecb03795a0c8d8bd0f5df5",
+  "artifact_sha256": {
+    "correction_suite": "dc77ccf845f539d4bf6df23964207d504962d75b56f02c981d0e15eb632a445b",
+    "t4_suite": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+    "t5r_suite": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+    "capacity_suite": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+    "extraction_suite": "dd48d8e536fe23655403274e33edaa9fbe005afdb1ae0f0047445760ab16cdab",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+  },
+  "model_revisions_resolved": {
+    "Qwen3-1.7B": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "Qwen3-4B-Instruct-2507": "cdbee75f17c01a7cc42f958dc650907174af0554"
+  },
+  "correction_arms": {
+    "mango-v0.1-correction": {
+      "inventory": {
+        "rows": 40,
+        "expected": 40,
+        "unique_ids": 40,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicates": [],
+        "order_matches_suite": true,
+        "ids_ok": true
+      },
+      "model": "Qwen/Qwen3-1.7B",
+      "adapter": "sciencemath/training/adapters/sciencemath-v0.1-t3",
+      "firewall": true,
+      "suite": "mango-correction-eval-v1",
+      "questions": 40,
+      "recomputed_metrics": {
+        "true_correction": 0.8,
+        "false_feedback_preservation": 1.0,
+        "overcorrection": 0.0,
+        "under_correction": 0.2,
+        "blind_agreement": 0.0,
+        "net_correction_benefit": 8,
+        "counts": {
+          "corrected_wrong": 8,
+          "preserved_correct": 10,
+          "destroyed_correct": 0,
+          "still_wrong": 2,
+          "blind_agreement": 0
+        }
+      },
+      "confidence_intervals_95": {
+        "true_correction": [
+          0.49015684672072335,
+          0.9433190520193067
+        ],
+        "preservation": [
+          0.7224598312333834,
+          1.0
+        ]
+      },
+      "stored_metrics": {
+        "true_correction": 0.8,
+        "false_feedback_preservation": 1.0,
+        "overcorrection": 0.0,
+        "under_correction": 0.2,
+        "blind_agreement": 0.0,
+        "net_correction_benefit": 8,
+        "counts": {
+          "corrected_wrong": 8,
+          "preserved_correct": 10,
+          "destroyed_correct": 0,
+          "still_wrong": 2,
+          "blind_agreement": 0
+        }
+      },
+      "metric_agreement": true
+    },
+    "qwen3-4b-raw-replication": {
+      "inventory": {
+        "rows": 40,
+        "expected": 40,
+        "unique_ids": 40,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicates": [],
+        "order_matches_suite": true,
+        "ids_ok": true
+      },
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "adapter": null,
+      "firewall": false,
+      "suite": "mango-correction-eval-v1",
+      "questions": 40,
+      "recomputed_metrics": {
+        "true_correction": 0.4,
+        "false_feedback_preservation": 0.5,
+        "overcorrection": 0.5,
+        "under_correction": 0.6,
+        "blind_agreement": 0.675,
+        "net_correction_benefit": -1,
+        "counts": {
+          "corrected_wrong": 4,
+          "preserved_correct": 5,
+          "destroyed_correct": 5,
+          "still_wrong": 6,
+          "blind_agreement": 27
+        }
+      },
+      "confidence_intervals_95": {
+        "true_correction": [
+          0.16817758120350967,
+          0.6873304525498135
+        ],
+        "preservation": [
+          0.23658959361548731,
+          0.7634104063845126
+        ]
+      },
+      "stored_metrics": {
+        "true_correction": 0.4,
+        "false_feedback_preservation": 0.5,
+        "overcorrection": 0.5,
+        "under_correction": 0.6,
+        "blind_agreement": 0.675,
+        "net_correction_benefit": -1,
+        "counts": {
+          "corrected_wrong": 4,
+          "preserved_correct": 5,
+          "destroyed_correct": 5,
+          "still_wrong": 6,
+          "blind_agreement": 27
+        }
+      },
+      "metric_agreement": true
+    },
+    "qwen3-4b-firewall-replication": {
+      "inventory": {
+        "rows": 40,
+        "expected": 40,
+        "unique_ids": 40,
+        "missing_ids": [],
+        "extra_ids": [],
+        "duplicates": [],
+        "order_matches_suite": true,
+        "ids_ok": true
+      },
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "adapter": null,
+      "firewall": true,
+      "suite": "mango-correction-eval-v1",
+      "questions": 40,
+      "recomputed_metrics": {
+        "true_correction": 0.6,
+        "false_feedback_preservation": 1.0,
+        "overcorrection": 0.0,
+        "under_correction": 0.4,
+        "blind_agreement": 0.0,
+        "net_correction_benefit": 6,
+        "counts": {
+          "corrected_wrong": 6,
+          "preserved_correct": 10,
+          "destroyed_correct": 0,
+          "still_wrong": 4,
+          "blind_agreement": 0
+        }
+      },
+      "confidence_intervals_95": {
+        "true_correction": [
+          0.3126695474501864,
+          0.8318224187964902
+        ],
+        "preservation": [
+          0.7224598312333834,
+          1.0
+        ]
+      },
+      "stored_metrics": {
+        "true_correction": 0.6,
+        "false_feedback_preservation": 1.0,
+        "overcorrection": 0.0,
+        "under_correction": 0.4,
+        "blind_agreement": 0.0,
+        "net_correction_benefit": 6,
+        "counts": {
+          "corrected_wrong": 6,
+          "preserved_correct": 10,
+          "destroyed_correct": 0,
+          "still_wrong": 4,
+          "blind_agreement": 0
+        }
+      },
+      "metric_agreement": true
+    }
+  },
+  "t4": {
+    "inventory_tool": {
+      "rows": 150,
+      "expected": 150,
+      "unique_ids": 150,
+      "missing_ids": [],
+      "extra_ids": [],
+      "duplicates": [],
+      "order_matches_suite": true,
+      "ids_ok": true
+    },
+    "inventory_notool": {
+      "rows": 70,
+      "expected": 150,
+      "unique_ids": 70,
+      "missing_ids": [
+        "ev1-010819b51b76",
+        "ev1-04742503014d",
+        "ev1-0f7536210ea0",
+        "ev1-120dacd7013b",
+        "ev1-12a044b6cae6",
+        "ev1-12a7312580e6",
+        "ev1-188c8dd469a6",
+        "ev1-19be35b5c413",
+        "ev1-2a3e7d52b1e8",
+        "ev1-2a8b7921c5d3",
+        "ev1-2cc533a13637",
+        "ev1-2f115c812a70",
+        "ev1-2f1fd3265f5b",
+        "ev1-315a192527a2",
+        "ev1-327883371080",
+        "ev1-3a713205a9c6",
+        "ev1-3c8905366a14",
+        "ev1-434d62d65de9",
+        "ev1-435dfdc8bddd",
+        "ev1-44e37b1be886",
+        "ev1-abca40451f97",
+        "ev1-abe4a8335f43",
+        "ev1-ae8f7694e7f3",
+        "ev1-b37cc0b86619",
+        "ev1-b5dd8e35c3d9",
+        "ev1-b7649dfeff9c",
+        "ev1-bbdc18356a98",
+        "ev1-bc7b0e671a00",
+        "ev1-c3b8420853ba",
+        "ev1-c3d384afd6a6",
+        "ev1-c6c3ec4cd761",
+        "ev1-c7e0a43c64b1",
+        "ev1-c7fdc75c9303",
+        "ev1-c91b537c61e4",
+        "ev1-cbcfcbfb7078",
+        "ev1-cc659b90805e",
+        "ev1-ccd1e8e0598f",
+        "ev1-cdfed5e3b9a1",
+        "ev1-da1877869490",
+        "ev1-dbe28a9fa6df",
+        "ev1-e1a290a65ded",
+        "ev1-e24fda0d05e5",
+        "ev1-e57a0d1646ed",
+        "ev1-f1a80a32e346",
+        "ev1-f2a838435f97",
+        "ev1-f943b244ef72",
+        "ev1-fb0fe264e033",
+        "ev1-fb5f68bd99f6",
+        "ev1-fb9d44e73359",
+        "ev1-ffe53f95b483",
+        "mev1-0fa6c30c3733",
+        "mev1-11d78d951117",
+        "mev1-13ccb2884d96",
+        "mev1-1af2cc9c611f",
+        "mev1-222ba76f66ec",
+        "mev1-28845b431921",
+        "mev1-2ba237884f94",
+        "mev1-33685d8b5f6b",
+        "mev1-3dcd65d87e81",
+        "mev1-60c20614f83a",
+        "mev1-7ec17855ad55",
+        "mev1-7fbc0b623835",
+        "mev1-80d85b676ade",
+        "mev1-8799f90cb111",
+        "mev1-8a305d593b35",
+        "mev1-8ca08ccffc72",
+        "mev1-9b22f1b97f48",
+        "mev1-9d314c031feb",
+        "mev1-9dd2e442b6e6",
+        "mev1-9f9a83954e84",
+        "mev1-a3a611fdb79c",
+        "mev1-ab382f1b078b",
+        "mev1-ae74c6e05cc6",
+        "mev1-c7e2035251d1",
+        "mev1-cc12dd6e6cd5",
+        "mev1-d12eddb506af",
+        "mev1-e4b1eefd688e",
+        "mev1-ec808bd2f654",
+        "mev1-f913d9afbd33",
+        "mev1-fc2fbaf3447e"
+      ],
+      "extra_ids": [],
+      "duplicates": [],
+      "order_matches_suite": false,
+      "ids_ok": false,
+      "note": "notool arm runs the 70 math-eligible questions; subset expected"
+    },
+    "model_id": [
+      "Qwen/Qwen3-4B-Instruct-2507"
+    ],
+    "recomputed_tool_arm": {
+      "arm": "tool",
+      "n": 150,
+      "correct": 112,
+      "overall_accuracy": 0.7467,
+      "by_category": {
+        "algebra": 0.65,
+        "arithmetic": 0.925,
+        "equations": 0.7,
+        "general_science": 0.65,
+        "probability_statistics": 0.6,
+        "symbolic": 0.8,
+        "trigonometry_precalculus": 0.5,
+        "units": 1.0
+      },
+      "extraction_rate": 0.96,
+      "tool_call_rate": 0.82,
+      "questions_tool_eligible": 130,
+      "questions_invoking_tools": 123,
+      "total_tool_calls": 151,
+      "valid_tool_calls": 121,
+      "valid_tool_call_rate": 0.8013,
+      "successful_tool_calls": 121,
+      "tool_engine_failures": 30,
+      "tool_engine_error_codes": {
+        "INVALID_INPUT": 15,
+        "PARSE_ERROR": 5,
+        "INTERNAL_ERROR": 1,
+        "DISALLOWED_EXPRESSION": 1,
+        "UNKNOWN_TOOL": 7,
+        "UNKNOWN_UNIT": 1
+      },
+      "tool_timeouts": 0,
+      "tool_routing": {
+        "definition": "model-invoked tools vs frozen per-question correct_tools annotations (micro-averaged)",
+        "precision": 0.8561,
+        "recall": 0.2825,
+        "tp": 113,
+        "fp": 19,
+        "fn": 287
+      },
+      "correct_use_of_tool_result": {
+        "definition": "among questions with >=1 non-error tool call, fraction whose final verdict is PASS",
+        "n_questions_with_valid_call": 108,
+        "n_pass_after_valid_call": 93,
+        "rate": 0.8611
+      },
+      "pass_rate_any_tool_call": 0.8537,
+      "median_latency_s": 31.24,
+      "mean_latency_s": 52.008,
+      "mean_input_tokens": 1054.9,
+      "mean_output_tokens": 512.5,
+      "total_output_tokens": 76878
+    },
+    "recomputed_notool_arm": {
+      "arm": "no_tool",
+      "n": 70,
+      "correct": 41,
+      "overall_accuracy": 0.5857,
+      "by_category": {
+        "algebra": 0.72,
+        "arithmetic": 0.4839,
+        "probability_statistics": 0.6667,
+        "trigonometry_precalculus": 0.5
+      },
+      "extraction_rate": 0.9571,
+      "tool_call_rate": 0.0,
+      "questions_tool_eligible": 70,
+      "questions_invoking_tools": 0,
+      "total_tool_calls": 0,
+      "valid_tool_calls": 0,
+      "valid_tool_call_rate": null,
+      "successful_tool_calls": 0,
+      "tool_engine_failures": 0,
+      "tool_engine_error_codes": {},
+      "tool_timeouts": 0,
+      "tool_routing": {
+        "definition": "model-invoked tools vs frozen per-question correct_tools annotations (micro-averaged)",
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 260
+      },
+      "correct_use_of_tool_result": {
+        "definition": "among questions with >=1 non-error tool call, fraction whose final verdict is PASS",
+        "n_questions_with_valid_call": 0,
+        "n_pass_after_valid_call": 0,
+        "rate": null
+      },
+      "pass_rate_any_tool_call": null,
+      "median_latency_s": 30.857,
+      "mean_latency_s": 40.441,
+      "mean_input_tokens": 62.0,
+      "mean_output_tokens": 491.6,
+      "total_output_tokens": 34413
+    },
+    "verifier_selftest_recomputed": {
+      "gold_cases": 150,
+      "gold_pass_rate": 1.0,
+      "gold_unknown_rate": 0.0,
+      "gold_unknown_cases": [],
+      "wrong_cases": 638,
+      "false_pass_rate": 0.0,
+      "wrong_unknown_rate": 0.004702194357366771,
+      "false_pass_cases": [],
+      "critical_gate": "PASS"
+    },
+    "paired_70_tool_accuracy": 0.7857,
+    "tool_arm_150_accuracy": 0.7467,
+    "tool_call_rate": 0.82,
+    "valid_tool_calls": 121,
+    "total_tool_calls": 151,
+    "adoption": {
+      "definition": "among questions with >=1 non-error tool call, fraction whose final verdict is PASS",
+      "n_questions_with_valid_call": 108,
+      "n_pass_after_valid_call": 93,
+      "rate": 0.8611
+    },
+    "routing": {
+      "definition": "model-invoked tools vs frozen per-question correct_tools annotations (micro-averaged)",
+      "precision": 0.8561,
+      "recall": 0.2825,
+      "tp": 113,
+      "fp": 19,
+      "fn": 287
+    },
+    "error_codes": {
+      "INVALID_INPUT": 15,
+      "PARSE_ERROR": 5,
+      "INTERNAL_ERROR": 1,
+      "DISALLOWED_EXPRESSION": 1,
+      "UNKNOWN_TOOL": 7,
+      "UNKNOWN_UNIT": 1
+    },
+    "mean_latency_s": 52.008,
+    "median_latency_s": 31.24,
+    "mean_output_tokens": 512.5,
+    "prevalidation": {
+      "proposed_calls": 151,
+      "passed_prevalidation": 139,
+      "direct_valid": 121,
+      "normalized": 0,
+      "normalization_success": 0,
+      "rejected": 30,
+      "rejected_at_prevalidation": 12,
+      "rejected_at_engine": 18,
+      "prevalidation_stage_categories": {
+        "MALFORMED_ARGUMENT": 5,
+        "WRONG_TOOL": 7
+      },
+      "failure_taxonomy": {
+        "MALFORMED_ARGUMENT": 15,
+        "WRONG_TOOL": 7,
+        "UNSUPPORTED_EXPRESSION": 2,
+        "PARSER_REJECTION": 5,
+        "TOOL_INTERNAL_FAILURE": 1,
+        "RESOURCE_CAP": 0,
+        "OTHER": 0
+      },
+      "timeout": 0,
+      "note": "direct_valid = calls that passed prevalidation and executed without error; rejected total = proposed - executed_ok (prevalidation-stage + engine-stage failures), matching logged error statuses exactly"
+    }
+  },
+  "t5r": {
+    "G": {
+      "inventory": {
+        "rows": 58,
+        "unique_ids": 58,
+        "duplicates": [],
+        "ids_within_frozen_suite": true,
+        "denominator_58": true
+      },
+      "recomputed": {
+        "n": 58,
+        "correct": 34,
+        "accuracy": 0.5862,
+        "questions_with_citations": 12,
+        "fabricated_accepted": 0,
+        "unsupported_accepted": 0,
+        "invalid_accepted": 0
+      },
+      "stored": {
+        "accuracy": 0.5862,
+        "citation_summary": {
+          "n_questions_with_citations": 12,
+          "n_fabricated": 0,
+          "n_unsupported": 0,
+          "n_invalid_refs": 0
+        }
+      }
+    },
+    "NORAG": {
+      "inventory": {
+        "rows": 58,
+        "unique_ids": 58,
+        "duplicates": [],
+        "ids_within_frozen_suite": true,
+        "denominator_58": true
+      },
+      "recomputed": {
+        "n": 58,
+        "correct": 33,
+        "accuracy": 0.569,
+        "questions_with_citations": 0,
+        "fabricated_accepted": 0,
+        "unsupported_accepted": 0,
+        "invalid_accepted": 0
+      },
+      "stored": {
+        "accuracy": 0.569,
+        "citation_summary": {
+          "n_questions_with_citations": 0,
+          "n_fabricated": 0,
+          "n_unsupported": 0,
+          "n_invalid_refs": 0
+        }
+      }
+    }
+  },
+  "generalization": {
+    "inventory": {
+      "rows": 131,
+      "expected": 131,
+      "unique_ids": 131,
+      "missing_ids": [],
+      "extra_ids": [],
+      "duplicates": [],
+      "order_matches_suite": true,
+      "ids_ok": true
+    },
+    "by_dimension": {
+      "compositional": {
+        "correct": 9,
+        "n": 12,
+        "accuracy": 0.75
+      },
+      "counterfactual": {
+        "correct": 8,
+        "n": 12,
+        "accuracy": 0.6667
+      },
+      "cross_domain": {
+        "correct": 10,
+        "n": 12,
+        "accuracy": 0.8333
+      },
+      "distractor": {
+        "correct": 22,
+        "n": 24,
+        "accuracy": 0.9167
+      },
+      "math": {
+        "correct": 23,
+        "n": 29,
+        "accuracy": 0.7931
+      },
+      "science": {
+        "correct": 25,
+        "n": 30,
+        "accuracy": 0.8333
+      },
+      "uncertainty": {
+        "correct": 8,
+        "n": 12,
+        "accuracy": 0.6667
+      }
+    },
+    "uncertainty_f1": {
+      "tp": 8,
+      "fn": 4,
+      "fp": 1,
+      "precision": 0.8889,
+      "recall": 0.6667,
+      "insufficient_info_f1": 0.7619
+    },
+    "overall": {
+      "correct": 105,
+      "n": 131,
+      "accuracy": 0.8015
+    },
+    "decomposition": {
+      "subset": 24,
+      "raw_valid_rate": 0.375,
+      "repaired_valid_rate": 0.375,
+      "semantic_valid_rate": 0.375,
+      "executable_rate": 0.375
+    }
+  },
+  "extraction": {
+    "inventory": {
+      "rows": 20,
+      "expected": 20,
+      "unique_ids": 20,
+      "missing_ids": [],
+      "extra_ids": [],
+      "duplicates": [],
+      "order_matches_suite": true,
+      "ids_ok": true
+    },
+    "recomputed": {
+      "total": 20,
+      "correct": 13,
+      "extracted": 19,
+      "recall": 0.65,
+      "precision": 0.6842,
+      "false_acceptance": 6,
+      "wrong_final_acceptance": 0
+    }
+  },
+  "result_file_sha256": {
+    "cap_predictions": "88922beb0d7d3e25db0bea30ba0496b8cfae1adc9ad5b73ec67772f4a62ca28f",
+    "extraction_predictions": "e5384a76f568c3f5c28f47cdb57e4e49a64799c78f531e28bc5d1eb88a77ce66",
+    "firewall_repl_predictions": "c628b43cdd0a459c22a1829bdd2e4c11ce8c8d3de9ce57d2c006a124a6e523f1",
+    "mango_v01_predictions": "d075cd8731e15cf5206f4b22110acdcfb6b6f1b53dc9a112cae030dcf061db24",
+    "raw_repl_predictions": "60cacf3746ec47ff28e18fc6b73651d3d01299b209576ed13ff38ce94fcec9a9",
+    "t4_notool_predictions": "b38afa6f0e29642b6ec3d26435c591b598f662ecdb0e8a824fc91c71e0544afd",
+    "t4_tool_calls": "ec6011883b450f0ef9472798eebc7d2ad014860f2f946d81262175f8ade5a833",
+    "t4_tool_predictions": "eafda17cfcaf2ce93ea2f9294000b57b296dbbabb7f9b514ad4da57120699ba7",
+    "t5r_G_predictions": "ec0a6b16455a4b2a722dedf9df569b921a8567b044c62532d35c3722f8081745",
+    "t5r_NORAG_predictions": "4b6ad26ee5322574eb5d2a48a65d21442c4d28212e366fc420291792d8407e64"
+  },
+  "audit_pass": true,
+  "failed_checks": []
+}

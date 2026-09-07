@@ -1,0 +1,22 @@
+{
+  "command": [
+    "C:\\Users\\allam\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "-m",
+    "pytest",
+    "--junitxml=evaluations/t9/pytest_final.xml"
+  ],
+  "returncode": 1,
+  "stdout": "........................................F............................... [  9%]\r\n........................................................................ [ 19%]\r\n........................................................................ [ 28%]\r\n........................................................................ [ 38%]\r\n........................................................................ [ 48%]\r\n........................................................................ [ 57%]\r\n........................................................................ [ 67%]\r\n........................................................................ [ 77%]\r\n........................................................................ [ 86%]\r\n........................................................................ [ 96%]\r\n.........................                                                [100%]\r\n================================== FAILURES ===================================\r\n__________________ test_stage_corpus_frozen_and_checksummed ___________________\r\n\r\n    def test_stage_corpus_frozen_and_checksummed():\r\n        d = REPO / \"training\" / \"curriculum\" / \"mango-sft-v2\" / \"level1\"\r\n        assert (d / \"train.jsonl\").exists()\r\n        assert (d / \"checksums.json\").exists()\r\n        cs = json.loads((d / \"checksums.json\").read_text(encoding=\"utf-8\"))\r\n        import hashlib\r\n        for name, digest in cs.items():\r\n            f = d / name\r\n            assert f.exists(), name\r\n>           assert hashlib.sha256(f.read_bytes()).hexdigest() == digest, name\r\nE           AssertionError: train.jsonl\r\nE           assert 'a83a41594df3...649ec1661e7f0' == '432379f5dc78...2b59cfd093d22'\r\nE             \r\nE             - 432379f5dc7897f208de76daa723379983f665b9fdf44e6c23f2b59cfd093d22\r\nE             + a83a41594df3f740f1cb80fe5f8931bc4468b182b5f4df4d61e649ec1661e7f0\r\n\r\ntests\\test_curriculum_core.py:436: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED tests/test_curriculum_core.py::test_stage_corpus_frozen_and_checksummed\r\n1 failed, 744 passed in 14.88s\r\n",
+  "stderr": "",
+  "wall_duration_s": 21.208442599978298,
+  "counts": {
+    "tests": 745,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 744,
+    "collected": 745,
+    "duration_s": 14.872
+  },
+  "summary": "1 failed, 744 passed in 14.88s"
+}

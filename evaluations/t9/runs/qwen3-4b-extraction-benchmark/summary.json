@@ -1,0 +1,28 @@
+{
+  "label": "qwen3-4b-extraction-benchmark",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "suite": "mango-extraction-benchmark-v1",
+  "questions": 20,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2716700672,
+    "peak_vram_bytes": 2716700672,
+    "reserved_vram_bytes": 2732589056,
+    "smoke_latency_s": 0.53
+  },
+  "metrics": {
+    "extraction_recall": 0.65,
+    "extraction_precision": 0.6842105263157895,
+    "false_extraction_acceptance": 0.3,
+    "wrong_final_answer_acceptance": 0.0,
+    "counts": {
+      "total": 20,
+      "correct": 13,
+      "extracted": 19,
+      "false_acceptance": 6,
+      "wrong_final_acceptance": 0
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "mango-extraction-benchmark-v1",
+  "frozen": true,
+  "questions": 20,
+  "case_counts": {
+    "wrong_boxed_answer": 1,
+    "distractor_number": 1,
+    "multiple_candidates": 1,
+    "unit_mismatch": 1,
+    "quoted_from_prompt": 1,
+    "latex_distractor": 1,
+    "markdown_bold_distractor": 1,
+    "mcq_distractor": 1,
+    "stale_value": 1,
+    "no_boxed_fallback": 1,
+    "multiple_boxed": 1,
+    "partial_boxed": 1,
+    "answer_is_pattern": 1,
+    "json_answer": 1,
+    "hash_marker": 1,
+    "unclosed_thinking": 1,
+    "unclosed_thinking_fail": 1,
+    "boxed_with_units": 1,
+    "fraction_in_boxed": 1,
+    "empty_boxed": 1
+  },
+  "sha256": "dd48d8e536fe23655403274e33edaa9fbe005afdb1ae0f0047445760ab16cdab"
+}
