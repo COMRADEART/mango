@@ -90,7 +90,9 @@ def _citation_ok(value: str) -> bool:
 
 
 def _part_value(answer: str, part: str) -> str:
-    m = re.search(rf"\({part}\)\s*(.+?)(?=\s*\([a-z]\)|$)",
+    """Part labels are single letters in parens preceded by whitespace, so a
+    value like 'cos(x)' is not truncated at its own '(x)'."""
+    m = re.search(rf"\({part}\)\s*(.+?)(?=\s+\([a-z]\)\s|\s+\([a-z]\)$|$)",
                   answer or "", re.IGNORECASE | re.DOTALL)
     return m.group(1).strip() if m else ""
 
@@ -103,8 +105,9 @@ def _part_matches(expected: str, actual: str) -> bool:
 
 def splice_part(original: str, part: str, value: str) -> str:
     """Replace only part '(x)' of a multi-part answer, preserving the rest
-    of the original text verbatim."""
-    pattern = re.compile(rf"(\({part}\))\s*(.+?)(?=\s*\([a-z]\)|$)",
+    of the original text verbatim. A part label is a single letter in
+    parens preceded by whitespace, so 'cos(x)' values are not split."""
+    pattern = re.compile(rf"(\({part}\))\s*(.+?)(?=\s+\([a-z]\)\s|\s+\([a-z]\)$|$)",
                          re.IGNORECASE | re.DOTALL)
     if not pattern.search(original):
         return original

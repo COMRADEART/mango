@@ -1,0 +1,65 @@
+{
+  "label": "t10-smoke",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "adapter": null,
+  "arm": "t10",
+  "split": "dev",
+  "suite": "mango-correction-eval-v2",
+  "questions": 12,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2716700672,
+    "peak_vram_bytes": 2716700672,
+    "reserved_vram_bytes": 2732589056,
+    "smoke_latency_s": 0.5
+  },
+  "metrics": {
+    "true_correction": 1.0,
+    "false_feedback_preservation": 1.0,
+    "overcorrection": 0.0,
+    "under_correction": 0.0,
+    "blind_agreement": 0.0,
+    "net_correction_benefit": 6,
+    "counts": {
+      "corrected_wrong": 6,
+      "preserved_correct": 6,
+      "destroyed_correct": 0,
+      "still_wrong": 0,
+      "blind_agreement": 0
+    },
+    "partial_fail_repair_rate": null,
+    "collateral_change_rate": null,
+    "ambiguous_preservation": null,
+    "repair_methods": {
+      "DETERMINISTIC_PATCH": 6,
+      "REJECT": 6
+    },
+    "first_attempt": {
+      "used": 0,
+      "success_rate": null
+    },
+    "second_attempt": {
+      "used": 0,
+      "incremental_gain": null
+    },
+    "counts_v2": {
+      "partial_repaired": 0,
+      "partial_collateral": 0,
+      "ambiguous_preserved": 0,
+      "ambiguous_total": 0
+    },
+    "confidence_intervals_95": {
+      "true_correction": [
+        0.6096569663469354,
+        0.9999999999999999
+      ],
+      "preservation": [
+        0.6096569663469354,
+        0.9999999999999999
+      ],
+      "partial_repair": null
+    }
+  }
+}
