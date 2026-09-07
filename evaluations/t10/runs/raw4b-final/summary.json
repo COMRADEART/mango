@@ -1,0 +1,67 @@
+{
+  "label": "raw4b-final",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "adapter": null,
+  "arm": "raw",
+  "split": "final",
+  "suite": "mango-correction-eval-v2",
+  "questions": 97,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2716700672,
+    "peak_vram_bytes": 2716700672,
+    "reserved_vram_bytes": 2732589056,
+    "smoke_latency_s": 0.51
+  },
+  "metrics": {
+    "true_correction": 0.48,
+    "false_feedback_preservation": 0.48,
+    "overcorrection": 0.52,
+    "under_correction": 0.52,
+    "blind_agreement": 0.8556701030927835,
+    "net_correction_benefit": -1,
+    "counts": {
+      "corrected_wrong": 12,
+      "preserved_correct": 12,
+      "destroyed_correct": 13,
+      "still_wrong": 13,
+      "blind_agreement": 83
+    },
+    "partial_fail_repair_rate": 0.043478260869565216,
+    "collateral_change_rate": 0.9565217391304348,
+    "ambiguous_preservation": 0.08333333333333333,
+    "repair_methods": {
+      "NO_REPAIR": 97
+    },
+    "first_attempt": {
+      "used": 0,
+      "success_rate": null
+    },
+    "second_attempt": {
+      "used": 0,
+      "incremental_gain": null
+    },
+    "counts_v2": {
+      "partial_repaired": 1,
+      "partial_collateral": 22,
+      "ambiguous_preserved": 2,
+      "ambiguous_total": 24
+    },
+    "confidence_intervals_95": {
+      "true_correction": [
+        0.30031003928960015,
+        0.6650178204685269
+      ],
+      "preservation": [
+        0.30031003928960015,
+        0.6650178204685269
+      ],
+      "partial_repair": [
+        0.0077164669621267445,
+        0.20991586494059142
+      ]
+    }
+  }
+}
