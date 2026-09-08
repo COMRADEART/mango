@@ -1,0 +1,17 @@
+{
+  "classification": "INFRASTRUCTURE_INTERRUPTION",
+  "classification_note": "GPU memory exhaustion from process overlap during model load. NOT a model failure, NOT a SciComp failure, NOT an evaluation failure, NOT an incorrect answer, NOT a missing prediction. Zero scored rows — the run never produced a prediction; it is excluded from all metrics.",
+  "run_label": "t12-final-scicomp-A",
+  "arm": "A (T11 control protocol)",
+  "suite": "mango-scicomp-eval-v1 (frozen)",
+  "timestamp_interruption": "2026-09-08T11:09:47-04:00",
+  "available_vram": "6.00 GiB total, 0 bytes free at exception; 17.72 GiB allocated by PyTorch (4-bitpaged accumulation across overlapping loads); 123.73 MiB reserved-unallocated",
+  "concurrent_process": "python -m pytest -q (full test suite, launched by the operator session at ~11:05-11:09 EDT while the arm-A driver was loading the model; pytest initialized a competing CUDA context, consuming the remaining VRAM headroom)",
+  "exception": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.38 GiB. GPU 0 has a total capacity of 6.00 GiB of which 0 bytes is free. Of the allocated memory 17.72 GiB is allocated by PyTorch, and 123.73 MiB is reserved by PyTorch but unallocated.",
+  "scored_rows": 0,
+  "predictions_file_bytes": 0,
+  "evidence": "evaluations/t12/runs/driver.log lines 1-90 (retained, not deleted)",
+  "remediation": "Rerun arm A with the IDENTICAL frozen protocol (same model load path, quantization, max-new-tokens, prompts, generation config) after arm B finishes and the GPU drains to idle. No protocol parameters changed.",
+  "operator_action_corrective": "No GPU-touching process (including pytest) may run while any eval arm is loading or running. All subsequent runs are strictly sequential.",
+  "recorded_at": "2026-09-08T11:20:00-04:00"
+}
