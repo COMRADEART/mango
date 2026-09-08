@@ -1,0 +1,143 @@
+{
+  "benchmark": "scicomp engine CPU performance (T11.39)",
+  "device": "cpu",
+  "runs_per_probe": 5,
+  "determinism_spot_check": true,
+  "operations": {
+    "solve_linear_system": {
+      "status": "PASS",
+      "median_ms": 0.856,
+      "max_ms": 2.538
+    },
+    "matrix_multiply": {
+      "status": "PASS",
+      "median_ms": 0.415,
+      "max_ms": 0.565
+    },
+    "determinant": {
+      "status": "PASS",
+      "median_ms": 0.462,
+      "max_ms": 0.679
+    },
+    "matrix_inverse": {
+      "status": "PASS",
+      "median_ms": 0.514,
+      "max_ms": 0.738
+    },
+    "eigen_decompose": {
+      "status": "PASS",
+      "median_ms": 0.452,
+      "max_ms": 0.725
+    },
+    "vector_or_matrix_norm": {
+      "status": "PASS",
+      "median_ms": 0.314,
+      "max_ms": 0.764
+    },
+    "matrix_rank": {
+      "status": "PASS",
+      "median_ms": 0.426,
+      "max_ms": 0.484
+    },
+    "least_squares": {
+      "status": "PASS",
+      "median_ms": 0.42,
+      "max_ms": 0.622
+    },
+    "definite_integral": {
+      "status": "PASS",
+      "median_ms": 1.424,
+      "max_ms": 22.147
+    },
+    "cumulative_integral": {
+      "status": "PASS",
+      "median_ms": 0.565,
+      "max_ms": 0.824
+    },
+    "numerical_derivative": {
+      "status": "PASS",
+      "median_ms": 0.673,
+      "max_ms": 0.789
+    },
+    "bracketed_root": {
+      "status": "PASS",
+      "median_ms": 0.452,
+      "max_ms": 0.537
+    },
+    "scalar_root": {
+      "status": "NUMERICAL_WARNING",
+      "median_ms": 0.607,
+      "max_ms": 1.354
+    },
+    "system_root": {
+      "status": "PASS",
+      "median_ms": 0.928,
+      "max_ms": 2.625
+    },
+    "solve_ode": {
+      "status": "PASS",
+      "median_ms": 1.696,
+      "max_ms": 2.124
+    },
+    "minimize_scalar": {
+      "status": "PASS",
+      "median_ms": 0.616,
+      "max_ms": 0.694
+    },
+    "minimize": {
+      "status": "PASS",
+      "median_ms": 1.285,
+      "max_ms": 2.393
+    },
+    "describe": {
+      "status": "PASS",
+      "median_ms": 1.593,
+      "max_ms": 1.791
+    },
+    "confidence_interval_mean": {
+      "status": "PASS",
+      "median_ms": 0.5,
+      "max_ms": 0.589
+    },
+    "correlation": {
+      "status": "PASS",
+      "median_ms": 0.843,
+      "max_ms": 1.061
+    },
+    "linear_regression": {
+      "status": "PASS",
+      "median_ms": 1.018,
+      "max_ms": 2.006
+    },
+    "hypothesis_test": {
+      "status": "PASS",
+      "median_ms": 1.05,
+      "max_ms": 1.412
+    },
+    "distribution_value": {
+      "status": "PASS",
+      "median_ms": 1.102,
+      "max_ms": 1.323
+    },
+    "linear_interpolate": {
+      "status": "PASS",
+      "median_ms": 0.415,
+      "max_ms": 0.653
+    },
+    "polynomial_interpolate": {
+      "status": "PASS",
+      "median_ms": 0.455,
+      "max_ms": 0.545
+    },
+    "curve_fit": {
+      "status": "PASS",
+      "median_ms": 0.842,
+      "max_ms": 1.119
+    },
+    "parameter_sweep": {
+      "status": "PASS",
+      "median_ms": 0.52,
+      "max_ms": 0.728
+    }
+  }
+}

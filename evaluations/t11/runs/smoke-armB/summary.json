@@ -1,0 +1,36 @@
+{
+  "questions": 6,
+  "numeric_accuracy": 0.6666666666666666,
+  "conceptual_discipline": 0.0,
+  "adversarial_handled_correctly": 0.0,
+  "adversarial_false_answer_rate": 0.0,
+  "router": {
+    "true_positive": 6,
+    "false_positive": 0,
+    "false_negative": 0,
+    "true_negative": 0,
+    "wrong_tool": 0,
+    "unnecessary_compute": 0,
+    "precision": 1.0,
+    "recall": 1.0
+  },
+  "invocations": 6,
+  "compute_success_rate": 0.0,
+  "valid_call_rate": 1.0,
+  "model_adoption_rate": 0.0,
+  "per_category": {
+    "LINEAR_ALGEBRA": {
+      "total": 6,
+      "correct": 4
+    }
+  },
+  "envelope_status_histogram": {
+    "INVALID_INPUT": 6
+  },
+  "median_llm_ms": 49677.0,
+  "median_compute_ms": 1.28,
+  "arm": "B",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "suite": "mango-scicomp-eval-v1",
+  "suite_sha256": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1"
+}
