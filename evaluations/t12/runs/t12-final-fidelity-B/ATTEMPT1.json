@@ -1,0 +1,12 @@
+{
+  "attempt": 1,
+  "run_label": "t12-final-fidelity-B",
+  "outcome": "CRASHED 19/82 rows",
+  "timestamp": "2026-09-08T14:48:41-04:00",
+  "exception": "ValueError: max() iterable argument is empty",
+  "site": "src/sciencemath/scicomp/fidelity.py:197 _merge_sub_results, via check_fidelity on item mfid-v1-0020",
+  "classification": "SYSTEM_DEFECT (T12 fidelity layer, frozen at 132ec6b) — recorded in evaluations/t12/defects_measured.json as T12-DEF-1",
+  "rows_written": 19,
+  "disposition": "Partial retained as evidence (predictions.attempt1.jsonl). Rerun with the byte-identical frozen protocol after the evaluation-runner hotfix (per-item exception capture in scripts/t12_scicomp_eval.py, an instrument change only — the system under test is untouched).",
+  "evidence": "evaluations/t12/runs/driver.log (leg launch 14:40:28, traceback 330-404, echo 449-450)"
+}

@@ -214,11 +214,21 @@ def run_arm_b(tok, mdl, it: dict, registry_lines: str, max_new: int) -> dict:
                 "computation was performed; answer from the question "
                 "alone without inventing results.")
         else:
-            fid = check_fidelity(request, q)
-            out["fidelity_status"] = fid.status
-            out["fidelity_failures"] = fid.failures
-            out["source_parameter_hash"] = fid.source_parameter_hash
-            if fid.status == FIDELITY_FAIL:
+            try:
+                fid = check_fidelity(request, q)
+            except Exception as exc:  # instrument guard: record, never die
+                fid = None
+                out["pipeline_exception"] = f"{type(exc).__name__}: {exc}"
+            if fid is None:
+                out["fidelity_status"] = "PIPELINE_EXCEPTION"
+                out["fidelity_failures"] = [out["pipeline_exception"]]
+                out["source_parameter_hash"] = None
+                out["mutated"] = False
+                observation = (
+                    "VERIFICATION_LAYER_ERROR: the fidelity layer could "
+                    "not classify the request, so the request was NOT "
+                    "executed. Do not invent a result.")
+            elif fid.status == FIDELITY_FAIL:
                 out["mutated"] = any(
                     f.startswith("disallowed_transformation")
                     for f in fid.failures)
@@ -385,12 +395,23 @@ def main() -> int:
                         and request.get("operation") not in \
                         (None, "NO_COMPUTE"):
                     from sciencemath.scicomp.fidelity import check_fidelity
-                    fid = check_fidelity(request, q)
-                    extra["fidelity_status"] = fid.status
-                    extra["fidelity_failures"] = fid.failures
-                    extra["mutated"] = any(
-                        f.startswith("disallowed_transformation")
-                        for f in fid.failures)
+                    try:
+                        fid = check_fidelity(request, q)
+                    except Exception as exc:  # instrument guard
+                        fid = None
+                        extra["pipeline_exception"] = (
+                            f"{type(exc).__name__}: {exc}")
+                    if fid is None:
+                        extra["fidelity_status"] = "PIPELINE_EXCEPTION"
+                        extra["fidelity_failures"] = [
+                            extra["pipeline_exception"]]
+                        extra["mutated"] = False
+                    else:
+                        extra["fidelity_status"] = fid.status
+                        extra["fidelity_failures"] = fid.failures
+                        extra["mutated"] = any(
+                            f.startswith("disallowed_transformation")
+                            for f in fid.failures)
             else:
                 hard = run_arm_b(tok, mdl, it, registry_lines,
                                  args.max_new_tokens)
@@ -435,6 +456,11 @@ def main() -> int:
                 else:
                     ok = bool(not asserted and not invoked)
 
+            # instrument guard: a crashed pipeline item grades False
+            # (the designed behavior for the item did not occur)
+            if extra.get("pipeline_exception"):
+                ok = False
+
             # adoption taxonomy computed in-run for arm B (T12.14)
             row.update({
                 **extra,
@@ -461,6 +487,8 @@ def main() -> int:
         "arm": args.arm, "suite": args.suite, "model": args.model,
         "questions": len(rows), "suite_sha256": sha,
         "label": args.label})
+    summary.update({"pipeline_exception_count": sum(
+        1 for r in rows if r.get("pipeline_exception"))})
     (out_dir / "summary.json").write_text(
         json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))

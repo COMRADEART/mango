@@ -1,0 +1,17 @@
+{
+  "classification": "INFRASTRUCTURE_INTERRUPTION",
+  "classification_note": "GPU memory exhaustion at model load, 35 seconds after the preceding arm's python process exited. The background driver auto-advanced legs with no inter-run GPU-drain wait; Windows WDDM had not finished releasing the previous arm's ~4.8 GiB when this arm's load began. NOT a model failure, NOT a SciComp failure, NOT an evaluation failure, NOT an incorrect answer, NOT a missing prediction. Zero scored rows - the run never produced a prediction; it is excluded from all metrics.",
+  "run_label": "t12-final-fidelity-A",
+  "arm": "A (T11 control protocol)",
+  "suite": "mango-scicomp-fidelity-v1 (frozen, sha f598825c...)",
+  "timestamp_interruption": "2026-09-08T14:40:28-04:00",
+  "available_vram": "6.00 GiB total, 0 bytes free at exception; 17.66 GiB reported allocated by PyTorch, 124.86 MiB reserved-unallocated (same super-physical accounting signature as the 11:09 scicomp-A event)",
+  "concurrent_process": "none alive at exception: scicomp arm B (t12-final-scicomp-B) exited 14:39:53 EDT, 35 s earlier; its VRAM release was still in flight. Root cause: driver leg sequencing had no drain delay between arms.",
+  "exception": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.35 GiB. GPU 0 has a total capacity of 6.00 GiB of which 0 bytes is free. Of the allocated memory 17.66 GiB is allocated by PyTorch, and 124.86 MiB is reserved by PyTorch but unallocated.",
+  "scored_rows": 0,
+  "predictions_file_bytes": 0,
+  "evidence": "evaluations/t12/runs/driver.log lines 328-404 (retained, not deleted); prior scicomp-A event at lines 4-81",
+  "operational_root_cause": "Driver script advanced legs immediately on process exit with no drain-verification step. Both T12 OOM events trace to this. The driver has been stopped; every remaining leg is launched individually with an explicit drain check (no python model process, VRAM returned to idle) before the next model load.",
+  "remediation": "Rerun fidelity arm A with the IDENTICAL frozen protocol (same model load path, quantization, max-new-tokens, prompts, generation config) after fidelity arm B completes and the GPU verifies drained. No protocol parameters changed. Valid runs remain protocol-comparable.",
+  "recorded_at": "2026-09-08T14:50:00-04:00"
+}
