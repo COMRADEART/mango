@@ -71,11 +71,16 @@ def main() -> int:
     checksum = json.loads((V2 / "checksum.json").read_text(encoding="utf-8"))
     ok = (suite_sha == manifest["sha256"] == checksum["questions.jsonl"] ==
           targets["correction_v2_suite"]["sha256"])
-    final_rows = [json.loads(l) for l in data.decode("utf-8").splitlines() if l]
-    final_ids_sorted = sorted(r["eval_id"] for r in final_rows
-                              if r["split"] == "final")
-    final_split_sha = hashlib.sha256(
-        json.dumps(final_ids_sorted).encode()).hexdigest()
+    final_rows = [json.loads(l) for l in data.decode("utf-8").splitlines()
+                  if l]
+    final_rows = [r for r in final_rows
+                  if r["split"] == "final"]
+    # mirror the builder's digest: full row objects, sort_keys/ensure_ascii,
+    # "\n".join + trailing newline (scripts/t10_build_correction_v2.py:1536)
+    final_payload = ("\n".join(
+        json.dumps(r, sort_keys=True, ensure_ascii=True)
+        for r in final_rows) + "\n").encode()
+    final_split_sha = hashlib.sha256(final_payload).hexdigest()
     check("v2_suite_integrity", ok and
           final_split_sha == targets["correction_v2_suite"]
           ["final_split_sha256"],

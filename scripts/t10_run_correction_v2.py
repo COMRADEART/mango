@@ -60,6 +60,8 @@ def main() -> int:
     ap.add_argument("--adapter")
     ap.add_argument("--split", choices=["dev", "final", "all"], default="all")
     ap.add_argument("--max-new-tokens", type=int, default=320)
+    ap.add_argument("--limit", type=int, default=0,
+                    help="smoke-test only: first N items of the split")
     args = ap.parse_args()
 
     from sciencemath.evaluation.correction_metrics import correction_metrics_v2, wilson_interval
@@ -71,6 +73,8 @@ def main() -> int:
              SUITE.read_text(encoding="utf-8").splitlines() if line]
     if args.split != "all":
         items = [it for it in items if it["split"] == args.split]
+    if args.limit:
+        items = items[:args.limit]
 
     tok, model, load = load_model_safely(args.model)
     if not load["ok"]:
