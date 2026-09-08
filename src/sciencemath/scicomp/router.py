@@ -148,3 +148,68 @@ def route_metrics(decisions: list[tuple[str, str]]) -> dict:
         "precision": precision,
         "recall": recall,
     }
+
+
+# --------------------------------------------------------------------------
+# T12.8 / T12.9 — compute-necessity classifier (deterministic; no second
+# LLM). Three labels:
+#   REQUIRED   explicit computation over given data — SciComp is the
+#              right default;
+#   OPTIONAL   computation language present but the answer is exactly
+#              derivable or the numeric content is decoration — compute
+#              only if it materially improves correctness;
+#   NOT_NEEDED conceptual/definitional/qualitative — SciComp must not
+#              be invoked merely because numbers appear in the prompt.
+# --------------------------------------------------------------------------
+NECESSITY_REQUIRED = "REQUIRED"
+NECESSITY_OPTIONAL = "OPTIONAL"
+NECESSITY_NOT_NEEDED = "NOT_NEEDED"
+
+# Strong computation verbs over explicit data.
+_STRONG_COMPUTE: re.Pattern = re.compile(
+    r"\b(compute|calculate|evaluate|integrate|differentiate|solve|"
+    r"determinant|eigenvalues?|invert|interpolat\w+|extrapolat\w+|"
+    r"minimize|minimise|maximize|maximise|fit|regress\w*|sweep|"
+    r"confidence interval|p.?value|t.?test|z.?score)\b", re.I)
+# Question data carriers: numeric arrays, ranges, matrices, explicit
+# parameter lists — evidence that actual quantities are given.
+_DATA_CARRIER: re.Pattern = re.compile(
+    r"\[[^\]]*\d[^\]]*\]|\bfrom\s+-?\d|\bto\s+-?\d|=\s*-?\d+(\.\d+)?"
+    r"(\s*,\s*-?\d+(\.\d+)?){2,}|\bat\s+[xyt]?\s*=\s*-?\d", re.I)
+# Qualitative/definitional intents, even when compute verbs co-occur.
+_QUALITATIVE: re.Pattern = re.compile(
+    r"\b(why|explain|define|definition|meaning of|concept of|describe|"
+    r"qualitatively|in words|does .*(affect|improve|cause)|difference "
+    r"between|compare|advantage|disadvantage|assumptions?\b(?!.*=\s*-?\d))"
+    r"\b", re.I)
+
+
+def compute_necessity(question: str) -> dict:
+    """Deterministic compute-necessity label for one question (T12.9).
+
+    Pure function over question text; no model, no execution. The
+    planner prompt receives this label; ONLY REQUIRED should default to
+    invoking SciComp.
+    """
+    if not isinstance(question, str) or not question.strip():
+        return {"necessity": NECESSITY_NOT_NEEDED,
+                "features": {"empty": True}}
+    features = {
+        "conceptual_guard": bool(_CONCEPTUAL_GUARD.match(question)),
+        "strong_compute_verb": bool(_STRONG_COMPUTE.search(question)),
+        "data_carrier": bool(_DATA_CARRIER.search(question)),
+        "qualitative_intent": bool(_QUALITATIVE.search(question)),
+    }
+    if features["conceptual_guard"]:
+        label = NECESSITY_NOT_NEEDED
+    elif features["strong_compute_verb"] and features["data_carrier"]:
+        label = NECESSITY_REQUIRED
+    elif features["strong_compute_verb"] and \
+            features["qualitative_intent"] and \
+            not features["data_carrier"]:
+        label = NECESSITY_NOT_NEEDED
+    elif features["strong_compute_verb"]:
+        label = NECESSITY_OPTIONAL
+    else:
+        label = NECESSITY_NOT_NEEDED
+    return {"necessity": label, "features": features}
