@@ -308,6 +308,22 @@ def main() -> int:
     if not load["ok"]:
         raise SystemExit(load["error"])
 
+    # instrument diagnostic (run integrity): record what actually loaded —
+    # the 2026-09-08 arm-A OOMs reported a super-physical 17.72 GiB
+    # "allocated by PyTorch" on a 6141 MiB card, consistent with an
+    # unquantized fp32 load spilling into WDDM shared memory.
+    import torch as _torch
+    _diag = {
+        "model_dtype": str(next(mdl.parameters()).dtype),
+        "quantization": load.get("quantization"),
+        "load_vram_bytes": load.get("load_vram_bytes"),
+        "peak_vram_bytes": load.get("peak_vram_bytes"),
+        "cuda_mem_allocated_gib": (
+            round(_torch.cuda.memory_allocated() / 2**30, 2)
+            if _torch.cuda.is_available() else None),
+    }
+    print("LOAD_DIAG " + json.dumps(_diag), flush=True)
+
     if args.arm == "B":
         from sciencemath.scicomp.registry import build_registry, manifest
         registry_lines = "\n".join(
@@ -353,7 +369,15 @@ def main() -> int:
                 row["expected_necessity"] = it["expected_necessity"]
                 row["gold_route"] = it["gold_route"]
 
-            if args.arm == "A":
+            if args.arm == "A" and args.suite == "scicomp":
+                # T11 arm-A control VERBATIM: ONE call with ARM_A_SYSTEM,
+                # no registry, no planner, no engine (T11 line 325-326).
+                raw, ms = t11.chat(tok, mdl, t11.ARM_A_SYSTEM, q,
+                                   args.max_new_tokens)
+                llm_ms = ms
+                final = t11.extract_final(raw)
+                extra = {"request": None}
+            elif args.arm == "A":
                 raw1, ms1 = t11.chat(tok, mdl, t11.build_b1_system(
                     _registry_lines_static()), q, 300)
                 llm_ms = ms1
