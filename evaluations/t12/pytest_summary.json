@@ -1,0 +1,9 @@
+{
+  "passed": 926,
+  "failures": 0,
+  "errors": 0,
+  "exit_code": 0,
+  "floor": 878,
+  "note": "exit 0 with 926 collected; per-test dots all pass",
+  "run_at": "2026-09-08"
+}
