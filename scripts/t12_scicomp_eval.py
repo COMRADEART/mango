@@ -519,12 +519,12 @@ def main() -> int:
     return 0
 
 
-def _registry_lines_static() -> str:
+def _registry_lines_static() -> list[str]:
     from sciencemath.scicomp.registry import build_registry, manifest
-    return "\n".join(
+    return [
         f"- {m['name']} [{m['category']}]: {m['description']} "
         f"| required inputs: {t11.INPUT_SCHEMA.get(m['name'], 'per schema')}"
-        for m in manifest(build_registry()))
+        for m in manifest(build_registry())]
 
 
 def _rate(num: int, den: int) -> float | None:

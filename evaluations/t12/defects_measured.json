@@ -21,6 +21,15 @@
       "measured": "11 PARAMETER_FIDELITY_FAIL rows on numeric_oracle items in run t12-final-scicomp-B (msc-v1-0009,0010,0011,0012,0013,0018,0075,0078,0080,0094,0102), all with TYPE_CHANGED as the first failure; 7 of them are right->wrong flips vs T11 arm B (the remaining 4 were already wrong or newly right).",
       "consequence": "The gate rejects faithful numeric requests, so the model answers directly and loses oracle points; this is the dominant mechanism in the 24-row numeric regression (T11-B 117/138 = 0.8478 -> T12-B 97/138 = 0.7029; flips: 11 guard, 7 fidelity gate, 5 planner-schema failures, 1 planner decline).",
       "disposition": "MEASURED, not repaired (frozen system under test)."
+    },
+    {
+      "id": "T12-DEF-3",
+      "layer": "T12 evaluation runner (scripts/t12_scicomp_eval.py) — instrument, NOT the system under test",
+      "site": "_registry_lines_static() returned a str; t11.build_b1_system(manifest_lines) does '\\n'.join(manifest_lines), which over a str joins its CHARACTERS",
+      "trigger": "Any arm-A leg using the T11 B1-planner flow (scicomp-A attempts at 11:09 and 15:0x on 2026-09-08; fidelity-A attempts 1/3/4). The 4,258-char registry became a 9,146-char one-character-per-line prompt = 7,300 tokens (vs the correct 4,889 chars / ~1,300 tokens).",
+      "mechanism_proof": "Prefill SDPA scores at L=7300: 32 heads x 7300^2 x 4 bytes (fp32) = 6.351 GiB — exactly the 'Tried to allocate 6.35 GiB' in every OOM (scicomp variant 6.38 GiB = L~7316, differing only by question length). Confirmed by SDPA shape capture q=(1,32,7300,128) in a debug run, and by CHAT system=9146ch TOKENS=7300.",
+      "consequence": "Deterministic CUDA OOM at the first planner prefill on the 6,141 MiB card; 0 rows in every affected attempt. All affected attempts were initially classified INFRASTRUCTURE_INTERRUPTION; with the mechanism proven, they are reattributed to this runner defect (instrument). The system under test (engine, fidelity layer, hardened planner/adopter) is exonerated of all five OOM events.",
+      "disposition": "REPAIRED in the instrument (helper now returns list[str], matching T11's own runner usage); arms using PLANNER_SYSTEM_T12.format(registry=str) were always correct and unaffected. The 2026-09-08 ~15:3x OS kill of fidelity-A attempt 2 (host RAM pressure) remains a genuine INFRASTRUCTURE_INTERRUPTION."
     }
   ],
   "recorded_at": "2026-09-08T15:05:00-04:00"
