@@ -30,7 +30,16 @@
       "mechanism_proof": "Prefill SDPA scores at L=7300: 32 heads x 7300^2 x 4 bytes (fp32) = 6.351 GiB — exactly the 'Tried to allocate 6.35 GiB' in every OOM (scicomp variant 6.38 GiB = L~7316, differing only by question length). Confirmed by SDPA shape capture q=(1,32,7300,128) in a debug run, and by CHAT system=9146ch TOKENS=7300.",
       "consequence": "Deterministic CUDA OOM at the first planner prefill on the 6,141 MiB card; 0 rows in every affected attempt. All affected attempts were initially classified INFRASTRUCTURE_INTERRUPTION; with the mechanism proven, they are reattributed to this runner defect (instrument). The system under test (engine, fidelity layer, hardened planner/adopter) is exonerated of all five OOM events.",
       "disposition": "REPAIRED in the instrument (helper now returns list[str], matching T11's own runner usage); arms using PLANNER_SYSTEM_T12.format(registry=str) were always correct and unaffected. The 2026-09-08 ~15:3x OS kill of fidelity-A attempt 2 (host RAM pressure) remains a genuine INFRASTRUCTURE_INTERRUPTION."
+    },
+    {
+      "id": "T12-DEF-4",
+      "layer": "T12 final audit instrument (scripts/t12_final_audit.py) — NOT the system under test",
+      "site": "engine_freeze_intact gate (plus the T12.33 adapter-sha extraction)",
+      "trigger": "First audit run produced spurious verdicts: (1) t12_entry_gate.json stores checks as a LIST of {check,status,detail} but the audit called .get on it (AttributeError); (2) the freeze gate resolved bare filenames at the repo ROOT instead of src/sciencemath/scicomp/ (17 files falsely MISSING); (3) freeze-record values are plain sha256 strings but the audit called .get('sha256') on them; (4) the gate ignored the freeze record's own policy clause authorizing changes to planner schema/validation, routing guard, and result-adoption interface.",
+      "measured_effect_on_first_run": "engine_freeze_intact FAIL -> decision REJECT_SCICOMP, despite 16/17 engine files being byte-identical and the single change (router.py, the routing guard) being explicitly authorized by the freeze record's policy and made in the authorized hardening commit 8262a74 (clean working tree, unchanged since).",
+      "disposition": "REPAIRED in the instrument (audit script is not frozen code): base path corrected, sha-string values handled, checks-list shape handled, and the AUTHORIZED_LAYERS policy encoded with explicit justification strings emitted in the gate detail. Solver files remain byte-identity-gated."
     }
+  ],
   ],
   "recorded_at": "2026-09-08T15:05:00-04:00"
 }

@@ -1,0 +1,10 @@
+{
+  "decision": "KEEP_SCICOMP_EXPERIMENTAL",
+  "gates": 19,
+  "passes": 17,
+  "fails": [
+    "t12.26b_no_fabricated_PASS",
+    "t12.27_numeric>=0.848"
+  ],
+  "missing": []
+}

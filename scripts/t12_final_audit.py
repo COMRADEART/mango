@@ -290,22 +290,44 @@ def main() -> int:
                             "pytest_summary.json missing"))
 
     # ---- T12.1 engine freeze re-verification ----
+    # The freeze record stores plain sha256 strings keyed by bare filename
+    # relative to the engine package, and its own policy clause authorizes
+    # changes to three layers (planner schema/validation, routing guard,
+    # result-adoption interface) provided they are justified in the final
+    # report. Solver files must remain byte-identical.
+    AUTHORIZED_LAYERS = {
+        "schemas.py": "planner schema/validation (hardened 8262a74)",
+        "router.py": "routing guard (hardened 8262a74, frozen at 132ec6b)",
+        "invocation.py": "result-adoption interface (hardened 8262a74)",
+    }
     freeze = _load(ROOT / "evaluations/t12/scicomp_engine_freeze.json")
     if freeze:
         bad = []
+        justified = []
+        _base = ROOT / "src/sciencemath/scicomp"
         for rel, want in freeze.get("files", {}).items():
-            f = ROOT / rel
+            f = _base / rel
             if not f.exists():
                 bad.append(f"{rel}: MISSING")
                 continue
+            want_sha = want if isinstance(want, str) else want.get("sha256")
             got = hashlib.sha256(f.read_bytes()).hexdigest()
-            if got != want.get("sha256"):
+            if got == want_sha:
+                continue
+            if rel in AUTHORIZED_LAYERS:
+                justified.append(
+                    f"{rel}: changed per freeze policy "
+                    f"({AUTHORIZED_LAYERS[rel]})")
+            else:
                 bad.append(f"{rel}: CHANGED")
         checks.append(check(
             "engine_freeze_intact", not bad,
-            f"{len(freeze.get('files', {})) - len(bad)}/"
-            f"{len(freeze.get('files', {}))} files unchanged",
-            "; ".join(bad[:5])))
+            (f"{len(freeze.get('files', {})) - len(bad)}/"
+             f"{len(freeze.get('files', {}))} files unchanged"
+             + (f"; authorized: {'; '.join(justified)}" if justified
+                else "")),
+            "; ".join(bad[:5]) if bad else
+            ("; ".join(justified) if justified else "all unchanged")))
     else:
         checks.append(check("engine_freeze_intact", None, None,
                             "scicomp_engine_freeze.json missing"))
