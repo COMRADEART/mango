@@ -1,5 +1,8 @@
 # Repository Hygiene Audit — 2026-09-09
 
+**Closure status: PASS** (finalized after archive verification; see the two
+closing sections at the end of this document for the final-state evidence).
+
 Post-T12 provenance reconciliation pass. T12 closure (commit fe5987e + evidence
 21b83e4) is authoritative and untouched; no frozen artifact, engine file, or T12
 evaluation output was modified. No retraining, no GPU evaluation reruns, no T13.
@@ -48,12 +51,30 @@ being preserved elsewhere first.
 ## Known non-issues
 
 `git status` showed ` M` on three `training/curriculum/mango-sft-v2/level1/*.jsonl`
-files with an empty `git diff HEAD` — line-ending/stat-cache phantom state;
-`git checkout --` restored clean status with zero content change (verified empty
-diff before and after).
+files with an empty `git diff HEAD` — line-ending/stat-cache phantom state.
 
-## Test effect
+## Final-state closure (2026-09-09)
 
-Committing pre-existing test files changes nothing about collection: the standing
-926-collected count already included them. Full pytest was rerun after the commit;
-see `evaluations` records and the session report for the exact result.
+1. **Archive verified.** All three trees moved intact and their repositories
+   re-verified after the move: `mango` HEAD `5ce04b3`, `sciencemath` HEAD
+   `2a03f7b`, `temp_clean_clone/mango` HEAD `6f99420`. The four T8S commits that
+   exist nowhere else were resolved by hash inside the archived repo:
+   `1d5db3dfe539073fa85056c3b3f1fb705b3c816b`, `8e8d5e1217ec1b8e9579cbca0fae430931f43705`,
+   `595fbfd3f5a6509474e9641229a5028d31c10147`, `2a03f7b1d9bb86b37c3ea9665fadc8cedf7d9347`.
+   `sciencemath/` was preserved whole — unflattened, un-gc'd, unrewritten —
+   precisely because it is the sole holder of that T8S history.
+2. **Phantom curriculum ` M` flags cleared.** Exact condition: `git diff` empty
+   before and after restore from HEAD; index `i/lf`, worktree `w/lf`, attr
+   `eol=lf` (consistent). The flags were pure index stat-cache staleness, cleared
+   by `git update-index --really-refresh` with **zero content change** — the index
+   blob SHAs and committed hashes are unchanged, and the frozen curriculum corpus
+   was not renormalized.
+3. **Full pytest after the `dc13add` commit:** **926 collected, 926 passed,
+   0 failed, 0 errors, 0 skipped** (exit 0; junit-verified suite time 14.2 s).
+   Same count as the pre-hygiene standing record — no inflation, since the
+   committed test files were already on disk for every prior count.
+4. **T12 integrity re-verified:** `git diff HEAD` over `evaluations/t12`,
+   `scripts/t12_final_audit.py`, `src/sciencemath/scicomp` is empty; zero
+   unstaged changes; zero untracked files. Closure chain intact:
+   `fe5987e → 21b83e4 → dc13add`.
+5. **Final `git status --short`: empty.**
