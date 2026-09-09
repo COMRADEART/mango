@@ -167,6 +167,26 @@ _MATRIX_LINE_RE = re.compile(
     r"^\s*\[(.*)\]\s*$", re.S)
 
 
+def parse_list_literal(text: str) -> list[float] | None:
+    """Strict flat vector literal "[1, 2, 3]" / "[1 2 3]" (no semicolons)
+    → float list, or None if not exactly that shape."""
+    if not isinstance(text, str):
+        return None
+    m = _MATRIX_LINE_RE.match(text)
+    if not m:
+        return None
+    body = m.group(1).strip()
+    if not body or ";" in body:
+        return None
+    values: list[float] = []
+    for cell in [c for c in re.split(r"[\s,]+", body) if c]:
+        v = parse_numeric_literal(cell)
+        if v is None:
+            return None
+        values.append(v)
+    return values or None
+
+
 def parse_matrix_literal(text: str) -> list[list[float]] | None:
     """Strict matrix literal "[a b; c d]" / "[[a,b],[c,d]]" / "[a, b; c, d]"
     → rectangular nested float lists, or None if not exactly that shape.
@@ -269,15 +289,25 @@ def cross_kind_classify(source: object, compute: object,
 
     # matrix / vector literal source → structured list (role numeric)
     if isinstance(source, str) and isinstance(compute, (list, tuple)):
-        lit = parse_matrix_literal(source)
-        if lit is not None and role in (ROLE_NUMBER_MATRIX, ROLE_NUMBER_LIST):
-            return _compare_sequences(lit, list(compute), role)
+        if role == ROLE_NUMBER_LIST:
+            flat = parse_list_literal(source)
+            if flat is not None:
+                return _compare_sequences(flat, list(compute), ROLE_NUMBER)
+        else:
+            lit = parse_matrix_literal(source)
+            if lit is not None and role == ROLE_NUMBER_MATRIX:
+                return _compare_sequences(lit, list(compute), role)
         return _rejected(TYPE_SEMANTICS_CHANGED, reason="TYPE_CHANGED")
 
     if isinstance(source, (list, tuple)) and isinstance(compute, str):
-        lit = parse_matrix_literal(compute)
-        if lit is not None and role in (ROLE_NUMBER_MATRIX, ROLE_NUMBER_LIST):
-            return _compare_sequences(list(source), lit, role)
+        if role == ROLE_NUMBER_LIST:
+            flat = parse_list_literal(compute)
+            if flat is not None:
+                return _compare_sequences(list(source), flat, ROLE_NUMBER)
+        else:
+            lit = parse_matrix_literal(compute)
+            if lit is not None and role == ROLE_NUMBER_MATRIX:
+                return _compare_sequences(list(source), lit, role)
         return _rejected(TYPE_SEMANTICS_CHANGED, reason="TYPE_CHANGED")
 
     # scalar vs container is never equivalent (T13.3) — unless the

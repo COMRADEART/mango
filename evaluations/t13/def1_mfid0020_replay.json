@@ -1,0 +1,19 @@
+{
+ "eval_id": "mfid-v1-0020",
+ "defect": "T12-DEF-1",
+ "schema_ok": false,
+ "schema_failures": [
+  "missing_field:compute_required"
+ ],
+ "fidelity_status": "FIDELITY_OK",
+ "fidelity_failures": [],
+ "no_exception": true,
+ "engine_status": "INVALID_INPUT",
+ "engine_rejects": true,
+ "checks": {
+  "fidelity_no_exception": true,
+  "fidelity_deterministic_pass": true,
+  "engine_still_invalid_input": true
+ },
+ "status": "PASS"
+}

@@ -216,7 +216,21 @@ def _merge_sub_results(subs: list[dict]) -> dict:
     verified = all(s.get("semantic_equivalence_verified") for s in subs)
     strongest = max((s["class"] for s in subs),
                     key=_CLASS_PRIORITY.index)
+    # T13: propagate the finest element-level class (EXACT only when
+    # every element is exact; otherwise the approved representation class)
+    sub_t13 = {s.get("t13_class") for s in subs if s.get("t13_class")}
+    if sub_t13 == {"EXACT"}:
+        t13 = "EXACT"
+    elif sub_t13 - {"EXACT", _REPR_EQ, _UNIT_EQ, _STRUCT_EQ}:
+        t13 = next(iter(sub_t13 - {"EXACT"}))
+    elif sub_t13:
+        t13 = _STRUCT_EQ if _STRUCT_EQ in sub_t13 else \
+            (_UNIT_EQ if _UNIT_EQ in sub_t13 else _REPR_EQ)
+    else:
+        t13 = None
     merged = {"class": strongest, "semantic_equivalence_verified": verified}
+    if t13:
+        merged["t13_class"] = t13
     details = [s["field_detail"] for s in subs if "field_detail" in s]
     if details:
         merged["field_detail"] = details[0]
@@ -275,6 +289,15 @@ def classify_transformation(source: object, compute: object,
                         "reason": "UNIT_CONVERSION_UNVERIFIED"}
             return _semantic_classify(source, compute, role)
         # string → string: whitespace, symbol normalization, or repair?
+        # T13.2 rule 3: on a schema-numeric field a string COMPUTE value
+        # is a schema type violation even when the source is also a
+        # string — identical text never launders the type.
+        if role in (_sem.ROLE_NUMBER, _sem.ROLE_NUMBER_LIST,
+                    _sem.ROLE_NUMBER_MATRIX, _sem.ROLE_NUMBER_MAP):
+            return {"class": DISALLOWED,
+                    "semantic_equivalence_verified": False,
+                    "t13_class": _TYPE_SEM_CHANGED,
+                    "reason": "SCHEMA_TYPE_STRING_FOR_NUMBER"}
         if re.sub(r"\s+", "", source) == re.sub(r"\s+", "", compute):
             return {"class": WHITESPACE_NORMALIZATION,
                     "semantic_equivalence_verified": True,
@@ -302,9 +325,11 @@ def classify_transformation(source: object, compute: object,
                 "t13_class": "INVALID_NORMALIZATION",
                 "reason": "STRING_MODIFIED"}
 
-    if isinstance(source, list):
-        if not isinstance(compute, list):
+    if isinstance(source, (list, tuple)):
+        source = list(source)
+        if not isinstance(compute, (list, tuple)):
             return _semantic_classify(source, compute, role)
+        compute = list(compute)
         if len(source) != len(compute):
             return {"class": DISALLOWED,
                     "semantic_equivalence_verified": False,
@@ -356,9 +381,11 @@ def _canonicalize(value: object) -> object:
         return value
     if isinstance(value, (int, float)):
         f = float(value)
-        if f == int(f) and abs(f) < 1e15:
+        if math.isfinite(f) and f == int(f) and abs(f) < 1e15:
             return int(f)
-        return round(f, 12)
+        if math.isfinite(f):
+            return round(f, 12)
+        return f  # inf/-inf/nan pass through (JSON-infinite; T13.16 fix)
     if isinstance(value, dict):
         return {k: _canonicalize(value[k]) for k in sorted(value)}
     if isinstance(value, (list, tuple)):
