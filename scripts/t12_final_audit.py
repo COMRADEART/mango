@@ -257,9 +257,16 @@ def main() -> int:
         gate = _load(ROOT / "evaluations/t12/t12_entry_gate.json")
         frozen = None
         if gate:
-            frozen = (gate.get("checks", {})
-                      .get("adapter_sha256") or
-                      gate.get("adapter_sha256"))
+            # entry-gate checks may be a list of {check,status,detail}
+            # (t12_entry_gate.json) or a dict {name: value}
+            _checks = gate.get("checks") or {}
+            if isinstance(_checks, dict):
+                frozen = _checks.get("adapter_sha256")
+            else:
+                for _it in _checks:
+                    if isinstance(_it, dict) and \
+                            _it.get("check") == "t3_adapter_sha_exact":
+                        frozen = (_it.get("detail") or {}).get("sha256")
         checks.append(check(
             "t12.33_no_training_adapter_unchanged",
             frozen is None or frozen == sha, sha[:16] + "…",
