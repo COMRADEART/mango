@@ -1,3 +1,6 @@
+# --- Session runtime artifacts (regenerated, never content) ---
+.claude/scheduled_tasks.lock
+
 # --- Data: raw/processed corpora are reproducible from source manifests; do
 #     not commit bulk datasets ---
 data/raw/*
