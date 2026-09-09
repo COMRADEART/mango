@@ -43,6 +43,19 @@ import math
 import re
 from dataclasses import dataclass, field as dc_field
 
+# T13 semantic layer (bounded canonicalizer + transformation classes).
+# Deferred fidelity imports inside semantic.py keep this cycle-free.
+from sciencemath.scicomp import semantic as _sem
+_EXACT = _sem.EXACT
+_REPR_EQ = _sem.REPRESENTATION_EQUIVALENT
+_UNIT_EQ = _sem.UNIT_EQUIVALENT
+_STRUCT_EQ = _sem.STRUCTURE_EQUIVALENT
+_VALUE_CHANGED = _sem.VALUE_CHANGED
+_TYPE_SEM_CHANGED = _sem.TYPE_SEMANTICS_CHANGED
+_INFO_ADDED = _sem.INFORMATION_ADDED
+_INFO_REMOVED = _sem.INFORMATION_REMOVED
+_INVALID_NORM = _sem.INVALID_NORMALIZATION
+
 # --------------------------------------------------------------------------
 # statuses / error labels
 # --------------------------------------------------------------------------
@@ -189,7 +202,14 @@ _CLASS_PRIORITY = [NUMERIC_FORMATTING, WHITESPACE_NORMALIZATION,
 def _merge_sub_results(subs: list[dict]) -> dict:
     """Merge element classifications: fail on any disallowed element,
     otherwise report the most specific approved class seen (so a unit
-    normalization inside a list is logged, not erased)."""
+    normalization inside a list is logged, not erased).
+
+    T13 (T12-DEF-1 repair): empty containers classify deterministically
+    as EXACT — two empty containers carry identical (no) semantics —
+    instead of crashing on max() over an empty list."""
+    if not subs:
+        return {"class": _EXACT, "semantic_equivalence_verified": True,
+                "t13_class": _EXACT}
     if any(s["class"] == DISALLOWED for s in subs):
         bad = next(s for s in subs if s["class"] == DISALLOWED)
         return bad
@@ -203,25 +223,36 @@ def _merge_sub_results(subs: list[dict]) -> dict:
     return merged
 
 
-def classify_transformation(source: object, compute: object) -> dict:
+def classify_transformation(source: object, compute: object,
+                            role: str | None = None) -> dict:
     """Classify one source→compute value transformation.
 
     Returns {"class": ..., "semantic_equivalence_verified": bool} and,
-    for UNIT_NORMALIZATION, the from/to/reason detail (T12.5).
+    for UNIT_NORMALIZATION, the from/to/reason detail (T12.5).  ``role``
+    is the optional T13 schema role of the target field
+    (semantic.schema_role): it gates canonical source-side literal
+    parsing — numeric strings / matrix literals may only be parsed on
+    fields the frozen engine validates as numeric (T13.2/T13.4).
+
+    T13: runtime type equality is NOT semantic equality.  When the
+    runtime types differ, the bounded canonicalizer
+    (semantic.cross_kind_classify) decides; faithful representation
+    changes on schema-numeric fields are approved, everything else
+    fails closed exactly as before.
     """
     # equal numeric value (canonical formatting of numbers)
     if isinstance(source, (int, float)) and not isinstance(source, bool):
         if isinstance(compute, (int, float)) and not isinstance(compute, bool):
             if _num_eq(float(source), float(compute)):
                 return {"class": NUMERIC_FORMATTING,
-                        "semantic_equivalence_verified": True}
+                        "semantic_equivalence_verified": True,
+                        "t13_class": _EXACT if type(source) is type(compute)
+                        else _REPR_EQ}
             return {"class": DISALLOWED,
                     "semantic_equivalence_verified": False,
+                    "t13_class": "VALUE_CHANGED",
                     "reason": "NUMERIC_VALUE_CHANGED"}
-        # "2 km" -> 2000 style: source str, compute number
-        return {"class": DISALLOWED,
-                "semantic_equivalence_verified": False,
-                "reason": "TYPE_CHANGED"}
+        return _semantic_classify(source, compute, role)
 
     if isinstance(source, str):
         if not isinstance(compute, str):
@@ -233,37 +264,53 @@ def classify_transformation(source: object, compute: object) -> dict:
                     return {
                         "class": UNIT_NORMALIZATION,
                         "semantic_equivalence_verified": True,
+                        "t13_class": _UNIT_EQ,
                         "field_detail": {
                             "from": source, "to": compute,
                             "reason": UNIT_NORMALIZATION},
                     }
                 return {"class": DISALLOWED,
                         "semantic_equivalence_verified": False,
+                        "t13_class": _VALUE_CHANGED,
                         "reason": "UNIT_CONVERSION_UNVERIFIED"}
-            return {"class": DISALLOWED,
-                    "semantic_equivalence_verified": False,
-                    "reason": "TYPE_CHANGED"}
+            return _semantic_classify(source, compute, role)
         # string → string: whitespace, symbol normalization, or repair?
         if re.sub(r"\s+", "", source) == re.sub(r"\s+", "", compute):
             return {"class": WHITESPACE_NORMALIZATION,
-                    "semantic_equivalence_verified": True}
+                    "semantic_equivalence_verified": True,
+                    "t13_class": "EXACT"}
         if canonical_expression(source) == canonical_expression(compute):
             return {"class": SYMBOL_NORMALIZATION,
-                    "semantic_equivalence_verified": True}
+                    "semantic_equivalence_verified": True,
+                    "t13_class": _REPR_EQ}
+        # T13.2: numeric literal reformatting ("2" -> "2.0") is a
+        # representation change, allowed only on numeric-declared fields
+        if role == _sem.ROLE_NUMBER:
+            sn = _sem.parse_numeric_literal(source)
+            cn = _sem.parse_numeric_literal(compute)
+            if sn is not None and cn is not None:
+                if _num_eq(sn, cn):
+                    return {"class": REPRESENTATION_EQUIVALENT_,
+                            "semantic_equivalence_verified": True,
+                            "t13_class": _REPR_EQ}
+                return {"class": DISALLOWED,
+                        "semantic_equivalence_verified": False,
+                        "t13_class": "VALUE_CHANGED",
+                        "reason": "NUMERIC_VALUE_CHANGED"}
         return {"class": DISALLOWED,
                 "semantic_equivalence_verified": False,
+                "t13_class": "INVALID_NORMALIZATION",
                 "reason": "STRING_MODIFIED"}
 
     if isinstance(source, list):
         if not isinstance(compute, list):
-            return {"class": DISALLOWED,
-                    "semantic_equivalence_verified": False,
-                    "reason": "TYPE_CHANGED"}
+            return _semantic_classify(source, compute, role)
         if len(source) != len(compute):
             return {"class": DISALLOWED,
                     "semantic_equivalence_verified": False,
+                    "t13_class": "TYPE_SEMANTICS_CHANGED",
                     "reason": "SHAPE_CHANGED"}
-        subs = [classify_transformation(s, c)
+        subs = [classify_transformation(s, c, _sem._element_role(role))
                 for s, c in zip(source, compute)]
         return _merge_sub_results(subs)
 
@@ -271,22 +318,33 @@ def classify_transformation(source: object, compute: object) -> dict:
         if not isinstance(compute, dict):
             return {"class": DISALLOWED,
                     "semantic_equivalence_verified": False,
+                    "t13_class": "TYPE_SEMANTICS_CHANGED",
                     "reason": "TYPE_CHANGED"}
         if set(source) != set(compute):
             return {"class": DISALLOWED,
                     "semantic_equivalence_verified": False,
+                    "t13_class": "INFORMATION_CHANGED",
                     "reason": "KEYS_CHANGED"}
-        subs = [classify_transformation(source[k], compute[k])
+        subs = [classify_transformation(source[k], compute[k],
+                                        _sem._element_role(role))
                 for k in source]
         return _merge_sub_results(subs)
 
     if source is None or compute is None:
         ok = source is None and compute is None
         return {"class": NUMERIC_FORMATTING if ok else DISALLOWED,
-                "semantic_equivalence_verified": ok}
+                "semantic_equivalence_verified": ok,
+                "t13_class": "EXACT" if ok else "VALUE_CHANGED"}
 
     return {"class": DISALLOWED, "semantic_equivalence_verified": False,
+            "t13_class": "INVALID_NORMALIZATION",
             "reason": "UNCLASSIFIED_TRANSFORMATION"}
+
+
+def _semantic_classify(source: object, compute: object,
+                       role: str | None) -> dict:
+    """T13 cross-representation classification (bounded canonicalizer)."""
+    return _sem.cross_kind_classify(source, compute, role)
 
 
 # --------------------------------------------------------------------------
@@ -430,11 +488,53 @@ def check_fidelity(request: dict, question: str) -> FidelityResult:
         return FidelityResult(ok=True, status=FIDELITY_OK,
                               source_parameter_hash=semantic_hash({}))
 
+    # T13: deterministic structured-restatement resolvers (one per
+    # operation family).  A resolver maps question-literal source keys
+    # onto the schema-native parameter fields coherently; it engages
+    # only when the whole mapping verifies, otherwise check_fidelity
+    # falls back to the T12 fail-closed field-by-field behavior.
+    restatement = None
+    resolver = _sem.RESTATEMENT_RESOLVERS.get(op)
+    if resolver is not None and isinstance(srcs, dict) \
+            and isinstance(params, dict):
+        def _cls(src: object, comp: object, role: str | None = None) -> dict:
+            return classify_transformation(src, comp, role)
+        try:
+            restatement = resolver(srcs, params, _cls)
+        except Exception:  # fail-closed: any resolver error ⇒ T12 behavior
+            restatement = None
+    covered: dict = restatement.param_verdicts if restatement else {}
+    consumed: set = set(restatement.src_consumed) if restatement else set()
+
     # every protected compute field must be traceable to a source field
     for k in params:
         root = _root_field(k)
         policy = field_policy(op, root)
         p = prov.get(k, P_MODEL_INVENTED)
+        if k in covered:
+            # T13 resolved restatement: the field's semantics were
+            # verified against its source keys by the resolver.
+            verdict = covered[k]
+            if verdict["semantic_equivalence_verified"]:
+                if p in (P_USER_GIVEN, P_RETRIEVED):
+                    for sk in restatement.src_keys_for_param.get(k, []):
+                        if sk not in srcs:
+                            continue
+                        for v in numbers_in(json.dumps(srcs[sk])):
+                            if not any(_num_eq(v, q) for q in q_numbers):
+                                failures.append(
+                                    f"value_not_in_question:{k}:{v}")
+                norm_log.append({
+                    "field": k, "from": verdict.get("source_values", {}),
+                    "to": params[k],
+                    "reason": verdict.get("t13_class",
+                                          _STRUCT_EQ),
+                    "semantic_equivalence_verified": True})
+                continue
+            failures.append(
+                f"disallowed_transformation:{k}:"
+                f"{verdict.get('reason', 'RESTATEMENT_REJECTED')}")
+            continue
         if k not in srcs:
             # derivable grids may be planner-constructed, declared as such
             if root in _DERIVABLE_FIELDS and p == P_DERIVED:
@@ -454,7 +554,8 @@ def check_fidelity(request: dict, question: str) -> FidelityResult:
                     failures.append(f"value_not_in_question:{k}:{v}")
 
         comp = params[k]
-        cls = classify_transformation(src, comp)
+        cls = classify_transformation(src, comp,
+                                      _sem.schema_role(op, root))
         if cls["class"] == DISALLOWED:
             failures.append(
                 f"disallowed_transformation:{k}:{cls.get('reason')}")
@@ -470,12 +571,22 @@ def check_fidelity(request: dict, question: str) -> FidelityResult:
                 "field": k, "from": src, "to": comp,
                 "reason": cls["class"],
                 "semantic_equivalence_verified": True})
+        elif cls.get("t13_class") in (_REPR_EQ, _STRUCT_EQ):
+            # T13 approved representation/structure equivalence: logged
+            # so the approved transformation is explicit (T12.5 discipline)
+            norm_log.append({
+                "field": k, "from": src, "to": comp,
+                "reason": cls["t13_class"],
+                "semantic_equivalence_verified": True})
         # NUMERIC_FORMATTING needs no log entry (invisible by design:
         # int/float canonical form is identical semantics)
 
     # source fields declared but not executed: for protected fields this
-    # is a silent drop of a given scientific value — reject
+    # is a silent drop of a given scientific value — reject (T13: a key
+    # consumed by a verified restatement is NOT dropped)
     for k in srcs:
+        if k in consumed:
+            continue
         if k not in params \
                 and field_policy(op, _root_field(k)) == PROTECTED \
                 and _root_field(k) not in _DERIVABLE_FIELDS:
