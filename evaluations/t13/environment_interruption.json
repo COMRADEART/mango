@@ -1,0 +1,71 @@
+{
+ "incident_id": "T13-ENV-1",
+ "classification": "ENVIRONMENT_INTERRUPTION",
+ "recorded_at": "2026-09-09",
+ "milestone": "T13",
+ "summary": "transformers and huggingface_hub were removed from the Python 3.12.10 site-packages by a process outside this session, between the completed T13.17 scicomp replay (started 16:15, transformers 5.16.1 importable throughout) and the first phase-2 launch (18:27, ModuleNotFoundError). No pip command was issued by this session prior to the failure. Orphaned '~'-prefixed pip temp remnants (safetensors, tokenizers, numpy, huggingface_hub 1.21.0) indicate an interrupted external package operation. T13 evidence, frozen suites, engine freeze and all repo artifacts were unaffected.",
+ "timeline": {
+  "t13_17_run_healthy": "16:15-17:5x EDT 2026-09-09 (transformers importable, 206/206 rows)",
+  "phase2_first_launch_failed": "18:27 EDT 2026-09-09",
+  "failure_signature": "ModuleNotFoundError: No module named 'huggingface_hub'",
+  "restored": "2026-09-09 (same session, on resume instruction)"
+ },
+ "package_versions": {
+  "before": {
+   "transformers": "5.16.1",
+   "torch": "2.5.1+cu121",
+   "python": "3.12.10",
+   "note": "versions recorded at T13.0 entry gate; huggingface_hub version not separately recorded pre-incident"
+  },
+  "removed_by_incident": [
+   "transformers",
+   "huggingface_hub"
+  ],
+  "after_restore": {
+   "transformers": "5.16.1",
+   "huggingface_hub": "1.30.0",
+   "torch": "2.5.1+cu121",
+   "python": "3.12.10",
+   "note": "transformers pinned to the entry-gate version; huggingface_hub resolved from transformers 5.16.1's requirement >=1.5.0,<2.0 (was absent, version unknown pre-incident); all other packages untouched"
+  }
+ },
+ "frozen_artifact_verification": {
+  "suite_hashes": {
+   "scicomp": {
+    "sha256": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+    "match": true
+   },
+   "fidelity": {
+    "sha256": "f598825c7823f30af1f5162e8d754542f80b10bd99608f4310e0594e93cadd7e",
+    "match": true
+   },
+   "conceptual": {
+    "sha256": "16d7b4d5f3fe5c79141d9bbeed0d1921f176654c12ce2a4c271f9701b17c1fd3",
+    "match": true
+   },
+   "fidelity_transform": {
+    "sha256": "f3bad0f886bea819ba692cc955053805b01bf302edd876bd3c4b3b0da3049d5c",
+    "match": true
+   }
+  },
+  "engine_freeze": {
+   "files": 17,
+   "mismatch": [
+    "router.py"
+   ],
+   "note": "router.py = T12-authorized hardening end-state, unchanged"
+  },
+  "correction_firewall_sha256": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+  "correction_firewall_match": true,
+  "t3_adapter_match": true,
+  "t13_source_files_rehashed": {
+   "src/sciencemath/scicomp/fidelity.py": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+   "src/sciencemath/scicomp/semantic.py": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8"
+  }
+ },
+ "impact_on_t13": {
+  "rerun_needed": "T13.17 scicomp replay NOT rerun (completed before the incident, summary hash-referenced)",
+  "phase2": "relaunched fresh after restore",
+  "gate_validity": "unaffected; environment restored to recorded versions"
+ }
+}
