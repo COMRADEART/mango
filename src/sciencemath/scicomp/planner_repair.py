@@ -326,18 +326,32 @@ def repair_planner_request(request: object, question: str) -> dict:
             if _same_value(src, value):
                 continue
             # value-preserving representation fix: replace an existing
-            # source only when its numbers match the parameter value's
-            # numbers positionally (a mutated value keeps its
-            # mismatched source and the frozen gate still rejects it)
-            s_nums = numbers_in(src.split("=")[-1]) \
-                if isinstance(src, str) and "=" in src \
-                else numbers_in(_j(src))
-            p_nums = numbers_in(_j(value))
-            if _provenance_supported(value, q_numbers, q_lower) \
-                    and s_nums and p_nums \
-                    and len(s_nums) == len(p_nums) \
+            # source only when the rewrite is verifiably
+            # semantics-preserving. For strings, equal numbers are NOT
+            # equal semantics ("2x +" and "2x" both contain just 2): a
+            # string rewrite is allowed only when the two are equal
+            # modulo whitespace, or a definition prefix ("f(x) = ...")
+            # strips to the parameter, or both parse to the same
+            # canonical AST. Otherwise the verbatim source stays in
+            # place and the frozen fidelity gate rejects the mismatch
+            # (T14R replay finding: "2x +" -> "2x" silently repaired a
+            # syntactically broken adversarial expression into an
+            # executable one — the engine PASSed an input the question
+            # never gave; that masking must be impossible).
+            if isinstance(src, str) and isinstance(value, str):
+                rewrite = _string_rewrite_ok(src, value)
+            else:
+                s_nums = numbers_in(src.split("=")[-1]) \
+                    if isinstance(src, str) and "=" in src \
+                    else numbers_in(_j(src))
+                p_nums = numbers_in(_j(value))
+                rewrite = bool(
+                    _provenance_supported(value, q_numbers, q_lower)
+                    and s_nums and p_nums
+                    and len(s_nums) == len(p_nums)
                     and all(_num_eq(a, b)
-                            for a, b in zip(s_nums, p_nums)):
+                            for a, b in zip(s_nums, p_nums)))
+            if rewrite:
                 srcs[field] = value
                 bindings.append({
                     "field": field, "binding": "SOURCE_ALIGNED",
@@ -886,6 +900,45 @@ def _same_value(a: object, b: object) -> bool:
             and isinstance(b, (int, float)) and not isinstance(b, bool):
         return _num_eq(float(a), float(b))
     return _j(a) == _j(b)
+
+
+# "f(x) = BODY" / "y(x) = BODY" definition prefix — stripping it is a
+# semantics-preserving representation fix when BODY matches the param.
+_DEF_PREFIX_RE = re.compile(
+    r"^\s*[A-Za-z_]\w*\s*\(\s*[A-Za-z_]\w*"
+    r"(?:\s*,\s*[A-Za-z_]\w*)*\s*\)\s*=\s*(.+)$", re.S)
+
+
+def _string_rewrite_ok(src: str, value: str) -> bool:
+    """True only when rewriting the verbatim source to the parameter
+    value is a VERIFIABLE semantics-preserving representation fix.
+
+    Allowed rewrites (T14R.14 hardening):
+      * whitespace-only difference;
+      * a definition prefix stripped ("f(x) = (x-3)**2" -> "(x-3)**2");
+      * both strings parse and the canonical ASTs are equal
+        ("2x" -> "2*x"; sound precedence comparison).
+    Anything else — including a source that does not parse ("2x +") —
+    is refused: the verbatim source stays and the frozen fidelity gate
+    rejects the mismatch instead of the repair masking a broken input.
+    """
+    if src.strip() == value.strip():
+        return True
+    m = _DEF_PREFIX_RE.match(src)
+    if m:
+        body = m.group(1).strip()
+        if body == value.strip():
+            return True
+        try:
+            return (ast.dump(ast.parse(body, mode="eval"))
+                    == ast.dump(ast.parse(value, mode="eval")))
+        except (SyntaxError, ValueError, MemoryError, RecursionError):
+            return False
+    try:
+        return (ast.dump(ast.parse(src, mode="eval"))
+                == ast.dump(ast.parse(value, mode="eval")))
+    except (SyntaxError, ValueError, MemoryError, RecursionError):
+        return False
 
 
 def _deepcopy(value: dict) -> dict:

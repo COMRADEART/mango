@@ -281,3 +281,39 @@ def test_repair_keeps_frozen_gates_rejecting_mutations():
     sch = validate_planner_request(rep["request"])
     if sch["ok"]:
         assert check_fidelity(rep["request"], q).status == FIDELITY_FAIL
+
+# T14R.14 replay finding: string-source rewrites must be verifiably
+# semantics-preserving — a broken source ("2x +") must NOT be silently
+# repaired into an executable expression ("2x") by the numbers check.
+def test_string_source_rewrite_never_masks_broken_input():
+    q = "Integrate the expression '2x +' (syntactically broken) from 0 to 1."
+    req = _req("definite_integral",
+               {"expression": "2x", "lower": 0, "upper": 1},
+               {"expression": "2x +", "lower": 0, "upper": 1},
+               {"expression": "USER_GIVEN", "lower": "USER_GIVEN",
+                "upper": "USER_GIVEN"})
+    r = repair_planner_request(req, q)
+    # the verbatim broken source must stay in place...
+    assert r["request"]["source_inputs"]["expression"] == "2x +"
+    # ...no alignment binding may claim the rewrite preserved value...
+    assert not any(b.get("field") == "expression"
+                   for b in r["bindings"]), \
+        "no SOURCE_ALIGNED binding for an unverifiable string rewrite"
+    # ...and the frozen fidelity gate must reject the mismatch (fail
+    # closed), so the engine never executes an input the question did
+    # not give.
+    from sciencemath.scicomp.fidelity import FIDELITY_FAIL, check_fidelity
+    assert check_fidelity(r["request"], q).status == FIDELITY_FAIL
+
+
+def test_string_definition_strip_still_aligned():
+    # legitimate normalization: "f(x) = BODY" -> BODY is a verifiable
+    # semantics-preserving representation fix (replay row msc-v1-0094)
+    q = "integrate f(x) = (x - 3)**2 from 0 to 3"
+    req = _req("definite_integral",
+               {"expression": "(x - 3)**2", "lower": 0, "upper": 3},
+               {"expression": "f(x) = (x - 3)**2", "lower": 0, "upper": 3},
+               {"lower": "USER_GIVEN", "upper": "USER_GIVEN"})
+    r = repair_planner_request(req, q)
+    from sciencemath.scicomp.fidelity import check_fidelity, FIDELITY_OK
+    assert check_fidelity(r["request"], q).status == FIDELITY_OK
