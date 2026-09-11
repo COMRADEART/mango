@@ -122,12 +122,20 @@ def observe(envelope_doc: dict) -> str:
 # --------------------------------------------------------------------------
 def classify_adoption(envelope_doc: dict, final_answer: str | None,
                       atol: float = 0.0, rtol: float = 0.0,
-                      precompute_answer: str | None = None) -> str:
+                      precompute_answer: str | None = None,
+                      authoritative_field: str | None = None) -> str:
     """Classify the reasoner's handling of one compute result.
 
     Only meaningful when a compute result exists. ``final_answer`` is
     the FINAL ANSWER text; ``precompute_answer`` is any numeric
     candidate the reasoner stated before the tool result (T12.15).
+
+    ``authoritative_field`` (T14R instrument fix): when given, the
+    expected numbers are taken from THAT payload field only, not from
+    every number in the (possibly padded) engine payload — padding
+    fields like zeroed eigenvalue imaginary parts previously failed
+    the strict matcher and relabeled correct adoptions as
+    WRONG_ROUNDING.
     """
     if envelope_doc["status"] != STATUS_PASS:
         # non-PASS: correct behavior is to reject; a number asserted as
@@ -136,7 +144,11 @@ def classify_adoption(envelope_doc: dict, final_answer: str | None,
         return NO_ADOPTION_EXPECTED
 
     result = envelope_doc["result"]
-    want = numbers_in(_flatten_to_text(result))
+    target = result
+    if authoritative_field and isinstance(result, dict) \
+            and authoritative_field in result:
+        target = result[authoritative_field]
+    want = numbers_in(_flatten_to_text(target))
     got = numbers_in(final_answer)
 
     if not want:
@@ -145,9 +157,15 @@ def classify_adoption(envelope_doc: dict, final_answer: str | None,
         return RESULT_IGNORED
 
     def within(got_vals: list[float]) -> bool:
-        return len(got_vals) >= len(want) and all(
-            any(abs(g - w) <= atol + rtol * abs(w) for g in got_vals)
-            for w in want)
+        # T14R instrument fix: the ADOPTION direction is got ⊆ want —
+        # every number the reasoner ASSERTS must appear in the verified
+        # value within tolerance. The reverse direction failed on
+        # padded engine payloads (e.g. eigenvalues [[5.0, 0.0],
+        # [2.0, 0.0]] vs the correct answer [5, 2]): the padding zeros
+        # are part of the packed payload, not part of the answer.
+        return bool(got_vals) and all(
+            any(abs(g - w) <= atol + rtol * abs(w) for w in want)
+            for g in got_vals)
 
     if within(got):
         # units retained? (T12.16) — if the envelope declares units, the
