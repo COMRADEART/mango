@@ -80,7 +80,7 @@ Depth violations: 0
 
 T4: PASS (false PASS = 0.0, tool 0.7467 / no-tool 0.5, delta 0.2467)
 T5R: PASS (G 0.5862 / NORAG 0.569; fabricated 0, unsupported 0, invalid 0)
-Capacity: PASS (overall 0.8571, 131/131)
+Capacity: PASS (overall 0.8571 = 102/119 answerable rows correct; 131/131 is suite coverage — all rows graded, not all correct)
 Correction: PASS (true 0.80, preservation 1.0, collateral 0, blind 0)
 Extraction: PASS (wrong-final acceptance 0.0)
 SciComp: PASS (fidelity silent mutation 0, handled 0.890)

@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "passed": 1014,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "output": "evaluations/t14r/pytest_entry.txt",
+  "note": "summary line absent from -q terminal output; verified via 1014 collected, 1014 progress dots, zero F/E markers, exit code 0"
+}
