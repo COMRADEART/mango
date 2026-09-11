@@ -1,0 +1,478 @@
+{
+  "milestone": "T14R.18 — Executive Router MISSED_TOOL analysis",
+  "source": "frozen T14 artifacts (mango-executive-router-eval-v1)",
+  "missed_tool_total": 24,
+  "class_counts": {
+    "AVAILABLE_TOOL_MISSED": 4,
+    "SUITE_DUPLICATE_ARTIFACT": 20
+  },
+  "spec_class_counts": {
+    "AMBIGUOUS_TASK": 0,
+    "AVAILABLE_TOOL_MISSED": 4,
+    "MISSING_MULTI_SKILL": 0,
+    "PREPARED_ONLY_SKILL": 0,
+    "TOOL_HELPFUL_NOT_REQUIRED": 0,
+    "WRONG_PRIMARY_ROUTE": 0,
+    "WRONG_SECONDARY_ROUTE": 0
+  },
+  "rows": [
+    {
+      "eval_id": "mer-v1-0027",
+      "split": "final",
+      "question": "Who proposed the periodic table?",
+      "gold": "SCIENCE_RAG",
+      "kind": "retrieval_needed_science",
+      "gold_necessity": null,
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "AVAILABLE_TOOL_MISSED",
+      "evidence": {
+        "note": "gold route is an ACTIVE, executable skill the router failed to choose; router answered GENERAL",
+        "router_reason": "no tool required",
+        "reading": "TOOL_HELPFUL_NOT_REQUIRED reading applies only if the question is answerable without the tool at gold quality; for a computation-shaped question (kind=retrieval_needed_science) the tool is required"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0123",
+      "split": "final",
+      "question": "Who wrote the Principia?",
+      "gold": "SCIENCE_RAG",
+      "kind": "retrieval_needed_science",
+      "gold_necessity": null,
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "AVAILABLE_TOOL_MISSED",
+      "evidence": {
+        "note": "gold route is an ACTIVE, executable skill the router failed to choose; router answered GENERAL",
+        "router_reason": "no tool required",
+        "reading": "TOOL_HELPFUL_NOT_REQUIRED reading applies only if the question is answerable without the tool at gold quality; for a computation-shaped question (kind=retrieval_needed_science) the tool is required"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0125",
+      "split": "final",
+      "question": "Which scientist first proposed the heliocentric model in the 16th century in Europe?",
+      "gold": "SCIENCE_RAG",
+      "kind": "retrieval_needed_science",
+      "gold_necessity": null,
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "AVAILABLE_TOOL_MISSED",
+      "evidence": {
+        "note": "gold route is an ACTIVE, executable skill the router failed to choose; router answered GENERAL",
+        "router_reason": "no tool required",
+        "reading": "TOOL_HELPFUL_NOT_REQUIRED reading applies only if the question is answerable without the tool at gold quality; for a computation-shaped question (kind=retrieval_needed_science) the tool is required"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0134",
+      "split": "final",
+      "question": "What is a good way to explain conservation of energy to a child?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0133",
+        "duplicate_split": "development",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0136",
+      "split": "final",
+      "question": "How do scientists decide that a result is reproducible?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0135",
+        "duplicate_split": "development",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0138",
+      "split": "final",
+      "question": "Why must sample size be reported alongside a p-value?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0137",
+        "duplicate_split": "development",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0140",
+      "split": "final",
+      "question": "What is overfitting in the context of curve fitting?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0139",
+        "duplicate_split": "development",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0142",
+      "split": "final",
+      "question": "Give one reason a numerical integrator might report a warning on a discontinuous integrand.",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0141",
+        "duplicate_split": "development",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0144",
+      "split": "final",
+      "question": "Should a computed numerical result be treated as formally proven mathematics?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0143",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0146",
+      "split": "final",
+      "question": "What is the difference between a retrieved fact and a computed result?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0145",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0148",
+      "split": "final",
+      "question": "Is a parameter sweep with a huge grid always more informative than a small one?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0147",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0150",
+      "split": "final",
+      "question": "Why must an initial-value problem specify initial conditions?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0149",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0152",
+      "split": "final",
+      "question": "What does it mean for an ODE to be stiff?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0151",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0154",
+      "split": "final",
+      "question": "Does a singular matrix have an inverse?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0153",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0156",
+      "split": "final",
+      "question": "State the Fundamental Theorem of Calculus in one sentence.",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0155",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0158",
+      "split": "final",
+      "question": "What assumptions does a two-sample t-test make?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0157",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0160",
+      "split": "final",
+      "question": "Why is high-degree polynomial interpolation risky between sample points?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0159",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0162",
+      "split": "final",
+      "question": "Hello there, I just want to chat.",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0161",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0164",
+      "split": "final",
+      "question": "Could you encourage me to keep studying physics?",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0163",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0166",
+      "split": "final",
+      "question": "What is the capital of a conversation? Just kidding, say hi.",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0165",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0168",
+      "split": "final",
+      "question": "Please explain, without calculating, what a derivative represents.",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0167",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0170",
+      "split": "final",
+      "question": "Describe qualitative differences between heat and temperature.",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0169",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0172",
+      "split": "final",
+      "question": "Is it raining in this chat? No tools needed.",
+      "gold": "SCICOMP",
+      "kind": "numeric_scicomp",
+      "gold_necessity": "COMPUTE_REQUIRED",
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "SUITE_DUPLICATE_ARTIFACT",
+      "evidence": {
+        "duplicate_of": "mer-v1-0171",
+        "duplicate_split": "final",
+        "duplicate_gold": "GENERAL",
+        "duplicate_kind": "no_tool_tasks",
+        "note": "suite builder records this no-tool question twice; the duplicate row's SCICOMP/COMPUTE_REQUIRED gold contradicts the twin's GENERAL gold and the question text (no computable quantity, no executable SciComp task)"
+      }
+    },
+    {
+      "eval_id": "mer-v1-0014",
+      "split": "development",
+      "question": "What is 25% of 80?",
+      "gold": "MATH_T4",
+      "kind": "math",
+      "gold_necessity": null,
+      "predicted": "GENERAL",
+      "secondary": [],
+      "failure_class": "AVAILABLE_TOOL_MISSED",
+      "evidence": {
+        "note": "gold route is an ACTIVE, executable skill the router failed to choose; router answered GENERAL",
+        "router_reason": "no tool required",
+        "reading": "TOOL_HELPFUL_NOT_REQUIRED reading applies only if the question is answerable without the tool at gold quality; for a computation-shaped question (kind=math) the tool is required"
+      }
+    }
+  ],
+  "top2_audit": {
+    "final_traces": 215,
+    "final_traces_emitting_secondary": 4,
+    "secondary_emission_rate": 0.018604651162790697,
+    "development_traces_emitting_secondary": 2,
+    "finding": "top2_route_accuracy equals primary_route_accuracy (both 0.8930) because the router emits a single ranked candidate in practice — secondary_skills is populated on only 4/215 final traces, so a top-2 rescue is structurally impossible on this router. No hidden correct second candidate exists to audit; the top-2 gap is an emission gap, not a ranking gap."
+  },
+  "corrected_view": {
+    "artifact_rows_removed": [
+      "mer-v1-0134",
+      "mer-v1-0136",
+      "mer-v1-0138",
+      "mer-v1-0140",
+      "mer-v1-0142",
+      "mer-v1-0144",
+      "mer-v1-0146",
+      "mer-v1-0148",
+      "mer-v1-0150",
+      "mer-v1-0152",
+      "mer-v1-0154",
+      "mer-v1-0156",
+      "mer-v1-0158",
+      "mer-v1-0160",
+      "mer-v1-0162",
+      "mer-v1-0164",
+      "mer-v1-0166",
+      "mer-v1-0168",
+      "mer-v1-0170",
+      "mer-v1-0172"
+    ],
+    "note": "corrected view removes only rows whose gold is an accidental duplicate contradicted by the twin row's gold already present in the suite. No router change is credited; the same deterministic route_task output is re-scored on the de-duplicated item list.",
+    "artifact_rows_removed_count": 20
+  },
+  "recall_inflation_guard": "no repair routes a question to a PREPARED_ONLY or non-executable capability; artifact rows are not credited to any router fix; the 3 AVAILABLE_TOOL_MISSED rows are repaired, if at all, only toward the ACTIVE SCIENCE_RAG retrieval skill."
+}

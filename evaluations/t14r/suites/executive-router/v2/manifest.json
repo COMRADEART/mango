@@ -1,0 +1,35 @@
+{
+  "suite": "mango-executive-router-eval-v2",
+  "corrected_from": "mango-executive-router-eval-v1",
+  "correction": "remove 20 duplicate-gold rows (no-tool questions recorded twice with contradictory SCICOMP gold by the T14 suite builder loop); no other change",
+  "rows_v1": 304,
+  "rows_v2": 284,
+  "removed": [
+    "mer-v1-0134",
+    "mer-v1-0136",
+    "mer-v1-0138",
+    "mer-v1-0140",
+    "mer-v1-0142",
+    "mer-v1-0144",
+    "mer-v1-0146",
+    "mer-v1-0148",
+    "mer-v1-0150",
+    "mer-v1-0152",
+    "mer-v1-0154",
+    "mer-v1-0156",
+    "mer-v1-0158",
+    "mer-v1-0160",
+    "mer-v1-0162",
+    "mer-v1-0164",
+    "mer-v1-0166",
+    "mer-v1-0168",
+    "mer-v1-0170",
+    "mer-v1-0172"
+  ],
+  "removed_count": 20,
+  "thresholds": {
+    "top2_route_accuracy": 0.92,
+    "tool_required_recall": 0.9
+  },
+  "note": "thresholds unchanged; the genuine AVAILABLE_TOOL_MISSED rows (3 SCIENCE_RAG factual + 1 MATH_T4 arithmetic) are kept so the corrected suite still measures the router's real miss rate"
+}
