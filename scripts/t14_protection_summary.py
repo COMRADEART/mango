@@ -54,11 +54,13 @@ def main() -> int:
 
     cap = jload(PROT / "cap/summary.json")
     if cap:
+        cv = cap.get("capability_vector", {})
         layers["capacity"] = {
             "status": "PASS",
-            "overall": cap.get("overall") or cap.get("accuracy")
-            or cap.get("overall_accuracy"),
-            "n": cap.get("n") or cap.get("questions"),
+            "overall": cv.get("overall") or cap.get("overall")
+            or cap.get("accuracy") or cap.get("overall_accuracy"),
+            "n": cap.get("n_questions") or cap.get("n")
+            or cap.get("questions"),
         }
     else:
         cap_files = list((PROT / "cap").rglob("*.json")) if (PROT / "cap").exists() else []
@@ -68,7 +70,10 @@ def main() -> int:
 
     ext = jload(ROOT / "evaluations/t9/runs/t14-protect-ext/summary.json")
     if ext:
-        wrong_final = ext.get("wrong_final_rate", ext.get("wrong_final"))
+        m = ext.get("metrics", ext)
+        wrong_final = m.get("wrong_final_answer_acceptance",
+                            ext.get("wrong_final_rate",
+                                    ext.get("wrong_final")))
         layers["extraction"] = {
             "status": "PASS" if wrong_final in (0, 0.0) else "FAIL",
             "wrong_final": wrong_final,

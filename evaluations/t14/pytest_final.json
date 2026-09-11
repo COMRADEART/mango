@@ -1,9 +1,10 @@
 {
-  "exit_code": 0,
-  "collected": 1014,
+  "tests": 1014,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
+  "exit_code": 0,
+  "collected": 1014,
   "passed": 1014,
   "xml": "evaluations/t14/pytest_final.xml"
 }

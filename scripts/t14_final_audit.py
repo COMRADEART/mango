@@ -158,11 +158,11 @@ def main() -> int:
               "pre-registered floor 0.98; fail-closed HELPFUL/INSUFFICIENT "
               "→ NO_COMPUTE is not over-compute")
         check("necessity_unnecessary_compute",
-              (nec_final.get("unnecessary_compute_rate") or 1)
+              (nec_final.get("unnecessary_compute_rate") if nec_final.get("unnecessary_compute_rate") is not None else 1)
               <= t["unnecessary_compute_rate"]["ceiling"],
               nec_final.get("unnecessary_compute_rate"))
         check("necessity_missed_compute",
-              (nec_final.get("missed_compute_rate") or 1) == 0,
+              (nec_final.get("missed_compute_rate") if nec_final.get("missed_compute_rate") is not None else 1) == 0,
               nec_final.get("missed_compute_rate"))
         check("necessity_final_split_isolation",
               nec_final.get("suite_sha256") == NECESSITY_FINAL_PIN,

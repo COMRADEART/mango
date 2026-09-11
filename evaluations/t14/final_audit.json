@@ -1,0 +1,334 @@
+{
+  "milestone": "T14 \u2014 Executive Router & Skill Registry",
+  "checks": [
+    {
+      "check": "entry_gate",
+      "status": "PASS",
+      "measured": "PASS",
+      "detail": "T14.0"
+    },
+    {
+      "check": "suite_checksum_scicomp",
+      "status": "PASS",
+      "measured": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+      "detail": "pinned e6e3f04839c5cd0c\u2026"
+    },
+    {
+      "check": "suite_checksum_fidelity",
+      "status": "PASS",
+      "measured": "f598825c7823f30af1f5162e8d754542f80b10bd99608f4310e0594e93cadd7e",
+      "detail": "pinned f598825c7823f30a\u2026"
+    },
+    {
+      "check": "suite_checksum_conceptual",
+      "status": "PASS",
+      "measured": "16d7b4d5f3fe5c79141d9bbeed0d1921f176654c12ce2a4c271f9701b17c1fd3",
+      "detail": "pinned 16d7b4d5f3fe5c79\u2026"
+    },
+    {
+      "check": "suite_checksum_necessity_final",
+      "status": "PASS",
+      "measured": "b96da421ae5cbc333d9a6a6637a14347b1c1ce3be78eb56a820925b964ee4a62",
+      "detail": "pinned b96da421ae5cbc33\u2026"
+    },
+    {
+      "check": "suite_checksum_executive_final",
+      "status": "PASS",
+      "measured": "ea05e60b49ba6ba2f222e75343fe193792198044d13b191ce96202fdc2020bce",
+      "detail": "pinned ea05e60b49ba6ba2\u2026"
+    },
+    {
+      "check": "necessity_row_count",
+      "status": "PASS",
+      "measured": 275,
+      "detail": ""
+    },
+    {
+      "check": "executive_row_count",
+      "status": "PASS",
+      "measured": 304,
+      "detail": ""
+    },
+    {
+      "check": "necessity_no_duplicate_ids",
+      "status": "PASS",
+      "measured": {
+        "n": 275,
+        "dups": []
+      },
+      "detail": ""
+    },
+    {
+      "check": "executive_no_duplicate_ids",
+      "status": "PASS",
+      "measured": {
+        "n": 304,
+        "dups": []
+      },
+      "detail": ""
+    },
+    {
+      "check": "scicomp_engine_hash",
+      "status": "PASS",
+      "measured": {
+        "mismatch": [
+          "router.py"
+        ]
+      },
+      "detail": "T14 may change router.py only"
+    },
+    {
+      "check": "fidelity_classifier_hash",
+      "status": "PASS",
+      "measured": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+      "detail": ""
+    },
+    {
+      "check": "semantic_classifier_hash",
+      "status": "PASS",
+      "measured": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8",
+      "detail": ""
+    },
+    {
+      "check": "correction_firewall_hash",
+      "status": "PASS",
+      "measured": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+      "detail": ""
+    },
+    {
+      "check": "t3_adapter_hash",
+      "status": "PASS",
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "detail": ""
+    },
+    {
+      "check": "necessity_router_hash_recorded",
+      "status": "PASS",
+      "measured": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14",
+      "detail": ""
+    },
+    {
+      "check": "skill_registry_hash_recorded",
+      "status": "PASS",
+      "measured": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9",
+      "detail": ""
+    },
+    {
+      "check": "model_identity",
+      "status": "PASS",
+      "measured": "Qwen/Qwen3-4B-Instruct-2507",
+      "detail": ""
+    },
+    {
+      "check": "necessity_COMPUTE_REQUIRED_recall",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": ""
+    },
+    {
+      "check": "necessity_COMPUTE_REQUIRED_precision",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": ""
+    },
+    {
+      "check": "necessity_NO_COMPUTE_precision",
+      "status": "FAIL",
+      "measured": 0.7538461538461538,
+      "detail": "pre-registered floor 0.98; fail-closed HELPFUL/INSUFFICIENT \u2192 NO_COMPUTE is not over-compute"
+    },
+    {
+      "check": "necessity_unnecessary_compute",
+      "status": "PASS",
+      "measured": 0.0,
+      "detail": ""
+    },
+    {
+      "check": "necessity_missed_compute",
+      "status": "PASS",
+      "measured": 0.0,
+      "detail": ""
+    },
+    {
+      "check": "necessity_final_split_isolation",
+      "status": "PASS",
+      "measured": "b96da421ae5cbc333d9a6a6637a14347b1c1ce3be78eb56a820925b964ee4a62",
+      "detail": ""
+    },
+    {
+      "check": "scicomp_numeric_floor",
+      "status": "FAIL",
+      "measured": 0.7318840579710145,
+      "detail": "floor 0.848"
+    },
+    {
+      "check": "scicomp_adoption",
+      "status": "PASS",
+      "measured": 0.9863013698630136,
+      "detail": ""
+    },
+    {
+      "check": "scicomp_conceptual",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": ""
+    },
+    {
+      "check": "scicomp_silent_mutation",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "scicomp_exceptions",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "scicomp_decision_recorded",
+      "status": "PASS",
+      "measured": "KEEP_SCICOMP_EXPERIMENTAL",
+      "detail": ""
+    },
+    {
+      "check": "weight_promotion_no",
+      "status": "PASS",
+      "measured": "NO",
+      "detail": ""
+    },
+    {
+      "check": "exec_primary_accuracy",
+      "status": "PASS",
+      "measured": 0.8930232558139535,
+      "detail": ""
+    },
+    {
+      "check": "exec_top2_accuracy",
+      "status": "FAIL",
+      "measured": 0.8930232558139535,
+      "detail": ""
+    },
+    {
+      "check": "exec_tool_recall",
+      "status": "FAIL",
+      "measured": 0.7946428571428571,
+      "detail": ""
+    },
+    {
+      "check": "exec_no_tool_specificity",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": ""
+    },
+    {
+      "check": "exec_unavailable_rejection",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": ""
+    },
+    {
+      "check": "exec_hallucinated_tools",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "exec_paid_compute",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "exec_unavail_executed",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "exec_permission_bypass",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "exec_depth_violations",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "exec_final_split_isolation",
+      "status": "PASS",
+      "measured": "ea05e60b49ba6ba2f222e75343fe193792198044d13b191ce96202fdc2020bce",
+      "detail": ""
+    },
+    {
+      "check": "protection_battery",
+      "status": "PASS",
+      "measured": "ALL_PASS",
+      "detail": ""
+    },
+    {
+      "check": "security",
+      "status": "PASS",
+      "measured": {
+        "milestone": "T14.18 security battery",
+        "violations": 0,
+        "pytest_exit": 0,
+        "detail": "{'tests': 35, 'failures': 0, 'errors': 0, 'skipped': 0} over ['tests\\\\test_t11_security.py']",
+        "counts": {
+          "tests": 35,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      "detail": ""
+    },
+    {
+      "check": "no_training_adapter_unchanged",
+      "status": "PASS",
+      "measured": {
+        "adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+        "dirty": []
+      },
+      "detail": ""
+    },
+    {
+      "check": "paid_compute_not_used",
+      "status": "PASS",
+      "measured": "NOT_USED",
+      "detail": "T14 paid routes emit PAID_COMPUTE_GATE_REQUIRED only"
+    },
+    {
+      "check": "pytest_zero_failed",
+      "status": "PASS",
+      "measured": {
+        "tests": 1014,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "exit_code": 0,
+        "collected": 1014,
+        "passed": 1014,
+        "xml": "evaluations/t14/pytest_final.xml"
+      },
+      "detail": ""
+    }
+  ],
+  "gates_total": 47,
+  "passes": 43,
+  "fails": [
+    "necessity_NO_COMPUTE_precision",
+    "scicomp_numeric_floor",
+    "exec_top2_accuracy",
+    "exec_tool_recall"
+  ],
+  "router_sha256": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14",
+  "skill_registry_sha256": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9",
+  "fidelity_sha256": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+  "firewall_sha256": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+  "adapter_sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+  "manual_override": false
+}
