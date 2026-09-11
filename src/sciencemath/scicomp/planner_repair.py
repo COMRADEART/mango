@@ -657,11 +657,25 @@ def _rename_single_variable(expression: object
 
 def _verifiable_derived_expression(text: str, q_numbers: list[float],
                                    op: str = "") -> bool:
-    """True when `text` is a deterministic expression whose numbers all
-    appear verbatim in the question and whose names are only the
-    operation's engine interface variables and approved
-    functions/constants. Every number must already exist in the
-    question, so no new scientific fact is introduced."""
+    """True when `text` is a deterministic expression the repair layer
+    may honestly label DETERMINISTIC_DERIVATION.
+
+    T14R hardening: a variable-bearing expression is mutation-prone
+    (an exponent or operator change encodes a mutation whose numbers
+    may still appear in the question — e.g. x**2 -> x**3 when the
+    bound 3 is in the question). Only THREE families qualify:
+
+    1. constant expressions (no free variables) whose numbers are all
+       verbatim in the question (e.g. a substituted speed of light);
+    2. linear monomials in a single interface variable with the
+       constant's numbers verbatim (c*x, x, -x, x/c) — the planner
+       composing given constants with the integration variable;
+    3. (handled elsewhere) AST-verified renames of question-verbatim
+       expressions — those never reach this rule.
+
+    Anything else (x**3, x**2 - 4, a*exp(...), arbitrary polynomials)
+    stays fail-closed: no fabricated provenance.
+    """
     if not isinstance(text, str) or not text.strip():
         return False
     t = text.strip()
@@ -674,6 +688,7 @@ def _verifiable_derived_expression(text: str, q_numbers: list[float],
     names_ok = _ALLOWED_CONST_NAMES | {"x"}
     if op == "minimize":
         names_ok |= {f"x{i}" for i in range(10)}
+    vars_in: list[str] = []
     nums: list[float] = []
     for node in ast.walk(tree):
         if isinstance(node, ast.Call):
@@ -681,6 +696,8 @@ def _verifiable_derived_expression(text: str, q_numbers: list[float],
         if isinstance(node, ast.Name):
             if node.id not in names_ok:
                 return False
+            if node.id not in _ALLOWED_CONST_NAMES:
+                vars_in.append(node.id)
         elif isinstance(node, ast.Constant) \
                 and isinstance(node.value, (int, float)) \
                 and not isinstance(node.value, bool):
@@ -688,7 +705,45 @@ def _verifiable_derived_expression(text: str, q_numbers: list[float],
     if not nums or not all(any(_num_eq(v, qn) for qn in q_numbers)
                            for v in nums):
         return False
-    return True
+    if not vars_in:
+        return True   # constant family (case 1)
+    return _is_linear_monomial(tree, names_ok)   # case 2 only
+
+
+def _is_linear_monomial(tree: ast.AST, names_ok: set[str]) -> bool:
+    """c * x, x, -x, x/c — single interface variable, degree 1,
+    constant coefficient. No powers, sums, or nested variables."""
+    def const_side(node: ast.AST) -> bool:
+        if isinstance(node, ast.Call):
+            return False
+        for sub in ast.walk(node):
+            if isinstance(sub, ast.Name) \
+                    and sub.id not in _ALLOWED_CONST_NAMES:
+                return False
+            if isinstance(sub, ast.BinOp):
+                return False
+        return True
+
+    def var_side(node: ast.AST) -> bool:
+        if isinstance(node, ast.Name) and node.id in names_ok \
+                and node.id not in _ALLOWED_CONST_NAMES:
+            return True
+        if isinstance(node, ast.UnaryOp) \
+                and isinstance(node.op, (ast.USub, ast.UAdd)):
+            return var_side(node.operand)
+        return False
+
+    if var_side(tree):
+        return True
+    if isinstance(tree, ast.BinOp) \
+            and isinstance(tree.op, (ast.Mult, ast.Div)):
+        left, right = tree.left, tree.right
+        if var_side(left) and const_side(right):
+            return True
+        if isinstance(tree.op, ast.Mult) and var_side(right) \
+                and const_side(left):
+            return True
+    return False
 
 
 def _is_constant_expression(text: object) -> bool:
@@ -713,7 +768,51 @@ def _provenance_supported(value: object, q_numbers: list[float],
         return True
     if isinstance(value, str):
         s = value.strip().lower()
-        return len(s) >= 2 and s in q_lower
+        if len(s) >= 2 and s in q_lower:
+            return True
+        # T14R: an expression the question states up to parenthesis or
+        # spacing style is still question-given — verified by AST
+        # equality against a parsed question span, never by fuzzy text.
+        if _expression_in_question(s, q_lower or ""):
+            return True
+    return False
+
+
+_MATH_RUN_RE = re.compile(r"[A-Za-z0-9_+\-*/().^,\s]+")
+
+
+def _expression_in_question(expr: str, q_lower: str) -> bool:
+    """True when some balanced math span of the question parses to the
+    SAME AST as `expr` (the question may write redundant parentheses
+    like (x0)**2 where the request normalized to x0**2). Sound: the
+    comparison is AST-dump equality over successfully parsed spans, so
+    precedence is never confused (x**(2*3) != x**2*3)."""
+    e = (expr or "").strip()
+    if not e or len(e) > 200 or not any(c in e for c in "+-*/^"):
+        return False
+    try:
+        want = ast.dump(ast.parse(e, mode="eval"))
+    except (SyntaxError, ValueError, MemoryError, RecursionError):
+        return False
+    tries = 0
+    for run in _MATH_RUN_RE.findall(q_lower or ""):
+        toks = run.split()
+        if not toks or len(toks) > 60:
+            continue
+        for drop_left in range(0, 4):
+            for drop_right in range(0, 6):
+                if tries > 240:
+                    return False
+                tries += 1
+                span = " ".join(toks[drop_left:len(toks) - drop_right])
+                if len(span) < len(e) // 2 or not span:
+                    continue
+                try:
+                    if ast.dump(ast.parse(span, mode="eval")) == want:
+                        return True
+                except (SyntaxError, ValueError, MemoryError,
+                        RecursionError):
+                    continue
     return False
 
 

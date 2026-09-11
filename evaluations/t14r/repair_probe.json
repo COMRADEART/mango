@@ -2,10 +2,10 @@
   "milestone": "T14R.3-11 repair probe (no LLM)",
   "rows_probed": 37,
   "outcome_histogram": {
-    "ENGINE_PASS_VALUE_MISMATCH": 8,
+    "ENGINE_PASS_VALUE_MISMATCH": 7,
     "ENGINE_PASS": 21,
     "ENGINE_NOT_PASS": 3,
-    "STILL_SCHEMA_FAIL": 2,
+    "STILL_SCHEMA_FAIL": 3,
     "ENGINE_PASS_NONNUMERIC": 1,
     "STILL_FIDELITY_FAIL": 2
   },
@@ -1013,28 +1013,13 @@
           "note": "representation canonicalization; value unchanged"
         },
         {
-          "field": "expression",
-          "binding": "PROVENANCE_UNKNOWN",
-          "from": "USER_GIVEN",
-          "note": "no verifiable origin; left fail-closed for the schema gate"
-        },
-        {
-          "field": "expression",
-          "binding": "PROVENANCE_DERIVED",
-          "provenance": "DETERMINISTIC_DERIVATION",
-          "source_reference": "\"x0**2 + (x1 - 2)**2 + 3\"",
-          "note": "pure deterministic expression: only numbers verbatim in the question and engine interface variables/functions"
-        },
-        {
           "field": "bounds",
           "binding": "SOURCE_ALIGNED",
           "source_reference": "[[-5, 5], [-5, 5]]",
           "note": "question-verbatim source restated in the parameter's representation (same numbers, same order); value unchanged"
         }
       ],
-      "unknown_provenance": [
-        "expression"
-      ],
+      "unknown_provenance": [],
       "schema_ok": true,
       "fidelity_status": "FIDELITY_OK",
       "envelope_status": "PASS",
@@ -1961,23 +1946,10 @@
           "note": "no verifiable origin; left fail-closed for the schema gate"
         },
         {
-          "field": "expression",
-          "binding": "PROVENANCE_DERIVED",
-          "provenance": "DETERMINISTIC_DERIVATION",
-          "source_reference": "\"0.5 * 200 * x**2\"",
-          "note": "pure deterministic expression: only numbers verbatim in the question and engine interface variables/functions"
-        },
-        {
           "field": "lower",
           "binding": "PROVENANCE_DERIVED",
           "provenance": "DETERMINISTIC_DERIVATION",
           "note": "integration origin: the stated interval starts at the natural zero of the independent variable"
-        },
-        {
-          "field": "expression",
-          "binding": "SOURCE_ALIGNED",
-          "source_reference": "declared deterministic derivation record",
-          "provenance": "DETERMINISTIC_DERIVATION"
         },
         {
           "field": "lower",
@@ -2001,17 +1973,11 @@
       "unknown_provenance": [
         "expression"
       ],
-      "schema_ok": true,
-      "fidelity_status": "FIDELITY_OK",
-      "envelope_status": "PASS",
-      "authoritative": false,
-      "result": {
-        "integral": 0.0041666666666666675,
-        "lower": 0.0,
-        "upper": 0.05
-      },
-      "expected": 0.25,
-      "outcome": "ENGINE_PASS_VALUE_MISMATCH"
+      "schema_ok": false,
+      "schema_failures": [
+        "provenance_missing_or_invalid:expression"
+      ],
+      "outcome": "STILL_SCHEMA_FAIL"
     }
   ]
 }

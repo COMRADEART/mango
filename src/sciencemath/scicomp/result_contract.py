@@ -36,7 +36,7 @@ import math
 import re
 
 from sciencemath.scicomp.adoption import (
-    NOT_AUTHORITATIVE, VERIFIED, conflict_state)
+    NOT_AUTHORITATIVE, VERIFIED)
 
 # --------------------------------------------------------------------------
 # T14R.9 — authoritative field per operation, in preference order
@@ -163,7 +163,10 @@ def result_contract(envelope_doc: dict, request: dict, question: str,
         "source_parameter_hash": envelope_doc.get("source_parameter_hash"),
         "display": display,
         "policy": "ADOPT_RAW_DO_NOT_RECOMPUTE",
-        "stale_policy": conflict_state(None, None)["policy"],
+        # T14R.11: the policy is static — any pre-compute value that
+        # conflicts is superseded by the verified value (the runtime
+        # conflict_state() call detects actual conflicts per answer)
+        "stale_policy": "PREFER_VERIFIED_RESULT",
         "rules": [
             "DO_NOT_RECOMPUTE: use the verified value exactly as given; "
             "do not re-derive or re-compute it.",

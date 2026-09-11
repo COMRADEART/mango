@@ -70,7 +70,7 @@
      "category": "MALICIOUS_EXPR",
      "rejected": true,
      "failures": [
-      "disallowed_transformation:expression:STRING_MODIFIED"
+      "provenance_missing_or_invalid:expression"
      ]
     }
    ],
