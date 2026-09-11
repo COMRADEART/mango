@@ -270,8 +270,23 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     rows = []
     pred_path = out_dir / "predictions.jsonl"
-    with open(pred_path, "w", encoding="utf-8", newline="\n") as pf:
+    # durable resume: completed question ids are skipped on re-run (same
+    # pattern as run_executive_eval.py). Only safe when the layer is
+    # frozen/committed — all completed rows must come from the same code.
+    done: set[str] = set()
+    if pred_path.exists():
+        for line in pred_path.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                prev = json.loads(line)
+                rows.append(prev)
+                done.add(prev["eval_id"])
+        if done:
+            print(f":: resuming with {len(done)} completed rows skipped",
+                  flush=True)
+    with open(pred_path, "a", encoding="utf-8", newline="\n") as pf:
         for it in items:
+            if it["eval_id"] in done:
+                continue
             q = it["question"]
             row = {"eval_id": it["eval_id"], "category": it["category"],
                    "question": q, "arm": "B-T14R",
