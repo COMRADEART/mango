@@ -43,7 +43,7 @@ from sciencemath.scicomp.adoption import (
 # --------------------------------------------------------------------------
 _AUTHORITATIVE_FIELDS: dict[str, tuple[str, ...]] = {
     "definite_integral": ("integral",),
-    "cumulative_integral": ("final_value", "integral"),
+    "cumulative_integral": ("cumulative",),
     "numerical_derivative": ("derivative",),
     "solve_ode": ("final_state",),
     "minimize": ("optimum_x",),
@@ -58,7 +58,7 @@ _AUTHORITATIVE_FIELDS: dict[str, tuple[str, ...]] = {
     "eigen_decompose": ("eigenvalues",),
     "vector_or_matrix_norm": ("norm",),
     "matrix_rank": ("rank",),
-    "confidence_interval_mean": ("ci_low", "mean"),
+    "confidence_interval_mean": ("ci_low", "ci_high", "mean"),
     "correlation": ("correlation",),
     "hypothesis_test": ("p_value", "t_statistic"),
     "distribution_value": ("value",),
@@ -102,7 +102,7 @@ _FINE_GRAINED_TYPES = {"ROOT", "INTEGRAL", "DERIVATIVE", "OPTIMUM_LOCATION",
 _TYPE_CHECKS: dict[str, str] = {
     "SCALAR": "number", "ROOT": "number", "INTEGRAL": "number",
     "DERIVATIVE": "number", "OPTIMUM_VALUE": "number", "P_VALUE": "number",
-    "VECTOR": "vector", "OPTIMUM_LOCATION": "vector",
+    "VECTOR": "vector", "OPTIMUM_LOCATION": "number_or_vector",
     "ODE_FINAL_STATE": "vector", "MATRIX": "matrix",
     "STATISTIC": "number", "CONFIDENCE_INTERVAL": "pair",
     "PARAMETERS": "any",
@@ -200,6 +200,14 @@ def _pick_authoritative(op: str, result: object,
     if type_pref and type_pref in result:
         candidates = [type_pref] + [c for c in candidates
                                     if c != type_pref]
+    # a confidence interval is the PAIR [low, high] — selecting ci_low
+    # alone would drop half the verified answer (unit/pair loss)
+    if op == "confidence_interval_mean" \
+            and "ci_low" in result and "ci_high" in result \
+            and result["ci_low"] is not None \
+            and result["ci_high"] is not None:
+        return ("ci_low+ci_high",
+                [result["ci_low"], result["ci_high"]])
     for field in candidates:
         if field in result and result[field] is not None:
             value = result[field]
@@ -222,6 +230,11 @@ def _check_type_shape(value: object, expected: str
             return True, ""
         return False, (f"expected_result_type {expected} requires a "
                        f"scalar; authoritative payload is {nums}")
+    if want == "number_or_vector":
+        if nums in ("scalar", "vector", "pair"):
+            return True, ""
+        return False, (f"expected_result_type {expected} requires a "
+                       f"scalar or vector; payload is {nums or 'empty'}")
     if want == "vector":
         if nums in ("vector", "pair"):
             return True, ""   # a 2-vector is a vector

@@ -1,0 +1,1497 @@
+{
+ "suite": "mango-scicomp-adoption-v1",
+ "suite_sha256": "0ff291466e61cd311b92de22608753dcbea082ef98b0f294dc8e4ed89c2e0656",
+ "cases": 131,
+ "metrics": {
+  "verified_result_adoption": {
+   "value": 1.0,
+   "target": ">= 0.98"
+  },
+  "wrong_result_field_selection": {
+   "value": 0,
+   "of": 127,
+   "target": 0
+  },
+  "unit_loss": {
+   "value": 0,
+   "of": 6,
+   "target": 0
+  },
+  "stale_answer_retention": {
+   "value": 0,
+   "of": 127,
+   "target": 0
+  },
+  "rounding_policy_violations": {
+   "value": 0.0,
+   "target": "<= 0.01"
+  },
+  "false_authoritative_adoption": {
+   "value": 0,
+   "target": 0
+  },
+  "failclosed_shape_checks": {
+   "ok": 1
+  },
+  "exceptions": []
+ },
+ "rows": [
+  {
+   "case_id": "replay-msc-v1-0001",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "solution",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0002",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "solution",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0003",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "solution",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0004",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "solution",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0005",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "solution",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0006",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "solution",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0007",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "solution",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0008",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "solution",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0009",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "determinant",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0011",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "determinant",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0012",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "determinant",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0013",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "determinant",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0014",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "matrix",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0015",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "matrix",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0016",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "matrix",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0017",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "matrix",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0018",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "eigenvalues",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0019",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "norm",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0020",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "rank",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0025",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0026",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0027",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0028",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0029",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0030",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0031",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0032",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0033",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0034",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0035",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0036",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0037",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0038",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0040",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0041",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0042",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "derivative",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0043",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "derivative",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0044",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "derivative",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0045",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "derivative",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0047",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "derivative",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0048",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "derivative",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0049",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "derivative",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0055",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "root",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0056",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "root",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0057",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "root",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0058",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "root",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0059",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "root",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0060",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "root",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0061",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "root",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0062",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "root",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0075",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "final_state",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0076",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "final_state",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0077",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "final_state",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0078",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "final_state",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0079",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "final_state",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0080",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "final_state",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0081",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0082",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0083",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0084",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0086",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "final_state",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0088",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0094",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0095",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0096",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0097",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0098",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0099",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0100",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0101",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0102",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0103",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0109",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "mean",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0110",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "mean",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0112",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "mean",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0114",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "mean",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0115",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "mean",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0117",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0118",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0119",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0120",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0121",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0122",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "slope",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0123",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "correlation",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0124",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "correlation",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0125",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "p_value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0130",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0131",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0132",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0133",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0134",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0135",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0136",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "parameters",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0137",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "parameters",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0138",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "parameters",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0144",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "rows",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0148",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "rows",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0149",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "rows",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0157",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0158",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0163",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0169",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "replay-msc-v1-0175",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-001",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: 12.5 m/s": "ADOPTED",
+    "FINAL ANSWER: 12.5 m": "UNIT_LOST",
+    "FINAL ANSWER: 12.5 km/h": "UNIT_LOST"
+   }
+  },
+  {
+   "case_id": "syn-002",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: 340.0 m/s": "ADOPTED",
+    "FINAL ANSWER: 340.0 m": "UNIT_LOST",
+    "FINAL ANSWER: 340.0 km/h": "UNIT_LOST"
+   }
+  },
+  {
+   "case_id": "syn-003",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: 0.85 m/s": "ADOPTED",
+    "FINAL ANSWER: 0.85 m": "UNIT_LOST",
+    "FINAL ANSWER: 0.85 km/h": "UNIT_LOST"
+   }
+  },
+  {
+   "case_id": "syn-004",
+   "split": "dev",
+   "binding": "NOT_AUTHORITATIVE",
+   "field": null,
+   "candidate_results": {
+    "The computation could not be completed.": "NO_ADOPTION_EXPECTED",
+    "FINAL ANSWER: 0.2527": "NO_ADOPTION_EXPECTED"
+   }
+  },
+  {
+   "case_id": "syn-005",
+   "split": "dev",
+   "binding": "NOT_AUTHORITATIVE",
+   "field": null,
+   "candidate_results": {
+    "The computation could not be completed.": "NO_ADOPTION_EXPECTED",
+    "FINAL ANSWER: 0.2527": "NO_ADOPTION_EXPECTED"
+   }
+  },
+  {
+   "case_id": "syn-006",
+   "split": "dev",
+   "binding": "NOT_AUTHORITATIVE",
+   "field": null,
+   "candidate_results": {
+    "The computation could not be completed.": "NO_ADOPTION_EXPECTED",
+    "FINAL ANSWER: 0.2527": "NO_ADOPTION_EXPECTED"
+   }
+  },
+  {
+   "case_id": "syn-007",
+   "split": "final",
+   "binding": "NOT_CONTRACTABLE",
+   "field": null,
+   "candidate_results": {}
+  },
+  {
+   "case_id": "syn-008",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "t_statistic",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-009",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "p_value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-010",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "t_statistic",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-011",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "p_value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-012",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "t_statistic",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-013",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "p_value",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-014",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-015",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-016",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "optimum_x",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-017",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "ci_low+ci_high",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-018",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "ci_low+ci_high",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-019",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "ci_low+ci_high",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD"
+   }
+  },
+  {
+   "case_id": "syn-020",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "eigenvalues",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: [5.0, 2.0]": "ADOPTED"
+   }
+  },
+  {
+   "case_id": "syn-021",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "eigenvalues",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: [-1.0, 3.5]": "ADOPTED"
+   }
+  },
+  {
+   "case_id": "syn-022",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "eigenvalues",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: [0.0, 7.25]": "ADOPTED"
+   }
+  },
+  {
+   "case_id": "syn-023",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: 42.0": "ADOPTED",
+    "FINAL ANSWER: 40": "STALE_PRECOMPUTE_ANSWER"
+   }
+  },
+  {
+   "case_id": "syn-024",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: 0.85": "ADOPTED",
+    "FINAL ANSWER: 0.9": "STALE_PRECOMPUTE_ANSWER"
+   }
+  },
+  {
+   "case_id": "syn-025",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: 1234.5": "ADOPTED",
+    "FINAL ANSWER: 1200": "STALE_PRECOMPUTE_ANSWER"
+   }
+  },
+  {
+   "case_id": "syn-026",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: 3.14": "WRONG_ROUNDING"
+   }
+  },
+  {
+   "case_id": "syn-027",
+   "split": "dev",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: 2.7183": "WRONG_ROUNDING"
+   }
+  },
+  {
+   "case_id": "syn-028",
+   "split": "final",
+   "binding": "VERIFIED_COMPUTE_RESULT",
+   "field": "integral",
+   "candidate_results": {
+    "correct": "ADOPTED",
+    "stale": "STALE_PRECOMPUTE_ANSWER",
+    "misread": "RESULT_MISREAD",
+    "FINAL ANSWER: 123.5": "WRONG_ROUNDING"
+   }
+  }
+ ],
+ "dev_cases": 88,
+ "final_cases": 43
+}

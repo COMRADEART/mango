@@ -1,0 +1,23 @@
+{
+  "suite": "mango-scicomp-adoption-v1",
+  "milestone": "T14R.12",
+  "cases": 131,
+  "dev": 88,
+  "final": 43,
+  "split_rule": "sha256(case_id) % 10 < 6 -> dev, else final",
+  "sources": {
+    "replay": 103,
+    "synthetic": 28
+  },
+  "layer_freeze_commit": "49470c6",
+  "freeze_note": "adoption layer (adoption.py + result_contract.py) committed at 49470c6 BEFORE this suite was written and measured; suite frozen by checksum at write time (T14R.13 order: freeze, measure)",
+  "rebuild_note": "suite rebuilt once after the FIRST measurement exposed builder bugs (stale/misread candidates for near-zero verified values landed within tolerance; rounded policy-conformant candidates miscounted as adoption misses). Layer changes in the same pass were milestone-spec-conformant corrections required by T14R.9 (OPTIMUM_LOCATION may be a scalar) and T14R.11 (supersession is adoption, retention is stale) \u2014 NOT target-driven tuning; final-split numbers are reported from this re-frozen suite.",
+  "pre_registered_targets": {
+    "verified_result_adoption": ">= 0.98",
+    "wrong_result_field_selection": 0,
+    "unit_loss": 0,
+    "stale_answer_retention": 0,
+    "rounding_policy_violations": "<= 0.01",
+    "false_authoritative_adoption": 0
+  }
+}

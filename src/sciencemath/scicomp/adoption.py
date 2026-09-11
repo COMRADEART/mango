@@ -173,11 +173,10 @@ def classify_adoption(envelope_doc: dict, final_answer: str | None,
         if envelope_doc.get("units") and final_answer:
             if _unit_conflict(envelope_doc["units"], final_answer):
                 return UNIT_LOST
-        # stale pre-compute answer that disagrees with the verified one
-        if precompute_answer:
-            pre_nums = numbers_in(precompute_answer)
-            if pre_nums and not within(pre_nums):
-                return STALE_PRECOMPUTE_ANSWER
+        # T14R.11: a final answer containing the verified value IS the
+        # supersession the contract requires — an earlier candidate that
+        # disagreed is invalidated, not retained. Retention is graded
+        # below (verified absent + stale present).
         return ADOPTED
 
     # wrong number: is it the stale precompute answer kept alive?
