@@ -23,7 +23,8 @@ from sciencemath.scicomp.fidelity import (
     WHITESPACE_NORMALIZATION, check_fidelity, classify_transformation,
     semantic_hash, validate_planner_request)
 from sciencemath.scicomp.router import (
-    NECESSITY_NOT_NEEDED, NECESSITY_OPTIONAL, NECESSITY_REQUIRED,
+    COMPUTE_REQUIRED, INSUFFICIENT_INFORMATION, NO_COMPUTE,
+    NECESSITY_NOT_NEEDED, NECESSITY_REQUIRED,
     compute_necessity)
 
 
@@ -297,12 +298,13 @@ def test_necessity_conceptual_not_needed():
 def test_necessity_required_with_data():
     out = compute_necessity(
         "Compute the mean of the values [2.1, 3.4, 5.6].")
-    assert out["necessity"] == NECESSITY_REQUIRED
+    assert out["necessity"] == NECESSITY_REQUIRED == COMPUTE_REQUIRED
 
 
-def test_necessity_optional_verb_only():
+def test_necessity_insufficient_verb_only():
     out = compute_necessity("Calculate the energy of the reaction.")
-    assert out["necessity"] == NECESSITY_OPTIONAL
+    assert out["necessity"] == INSUFFICIENT_INFORMATION
+    assert out["legacy_necessity"] == "NOT_NEEDED"
 
 
 # --------------------------------------------------------------------------

@@ -1,0 +1,55 @@
+{
+  "n": 192,
+  "per_label": {
+    "COMPUTE_REQUIRED": {
+      "tp": 50,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "COMPUTE_HELPFUL": {
+      "tp": 38,
+      "fp": 2,
+      "fn": 9,
+      "precision": 0.95,
+      "recall": 0.8085106382978723
+    },
+    "NO_COMPUTE": {
+      "tp": 49,
+      "fp": 16,
+      "fn": 0,
+      "precision": 0.7538461538461538,
+      "recall": 1.0
+    },
+    "INSUFFICIENT_INFORMATION": {
+      "tp": 37,
+      "fp": 0,
+      "fn": 9,
+      "precision": 1.0,
+      "recall": 0.8043478260869565
+    }
+  },
+  "COMPUTE_REQUIRED_precision": 1.0,
+  "COMPUTE_REQUIRED_recall": 1.0,
+  "NO_COMPUTE_precision": 0.7538461538461538,
+  "NO_COMPUTE_recall": 1.0,
+  "INSUFFICIENT_INFORMATION_precision": 1.0,
+  "INSUFFICIENT_INFORMATION_recall": 0.8043478260869565,
+  "unnecessary_compute_rate": 0.0,
+  "missed_compute_rate": 0.0,
+  "wrong_operation_rate": 0.0,
+  "route_conflict_rate": 0.0,
+  "confusion": {
+    "COMPUTE_REQUIRED->COMPUTE_REQUIRED": 50,
+    "COMPUTE_HELPFUL->COMPUTE_HELPFUL": 38,
+    "COMPUTE_HELPFUL->NO_COMPUTE": 9,
+    "NO_COMPUTE->NO_COMPUTE": 49,
+    "INSUFFICIENT_INFORMATION->INSUFFICIENT_INFORMATION": 37,
+    "INSUFFICIENT_INFORMATION->NO_COMPUTE": 7,
+    "INSUFFICIENT_INFORMATION->COMPUTE_HELPFUL": 2
+  },
+  "split": "final",
+  "suite_path": "evaluations\\t14\\suites\\necessity\\v1\\final.jsonl",
+  "suite_sha256": "b96da421ae5cbc333d9a6a6637a14347b1c1ce3be78eb56a820925b964ee4a62"
+}

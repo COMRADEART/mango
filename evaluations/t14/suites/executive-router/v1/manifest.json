@@ -1,0 +1,39 @@
+{
+  "suite_name": "mango-executive-router-eval-v1",
+  "total": 304,
+  "kinds": {
+    "general_conversation": 28,
+    "math": 48,
+    "retrieval_needed_science": 20,
+    "numeric_scicomp": 77,
+    "coding_requests": 14,
+    "web_research_requests": 11,
+    "document_tasks": 4,
+    "memory_related": 4,
+    "planning_tasks": 4,
+    "multi_skill": 5,
+    "no_tool_tasks": 44,
+    "ambiguous_tasks": 5,
+    "adversarial_routing": 11,
+    "paid_compute": 8,
+    "insufficient": 11,
+    "conceptual_science": 4,
+    "mixed_science_math": 6
+  },
+  "splits": {
+    "development": 89,
+    "final": 215
+  },
+  "primaries": {
+    "GENERAL": 125,
+    "MATH_T4": 57,
+    "SCIENCE_RAG": 20,
+    "SCICOMP": 77,
+    "PLANNING": 6,
+    "NO_TOOL": 19
+  },
+  "sha256_questions": "753196c6235f96b1488b3b04acc78a122309516c220e9024b8428ee388094fdd",
+  "sha256_final": "ea05e60b49ba6ba2f222e75343fe193792198044d13b191ce96202fdc2020bce",
+  "oracle_policy": "Mechanical construction; no LLM ground truth.",
+  "max_workflow_depth": 3
+}

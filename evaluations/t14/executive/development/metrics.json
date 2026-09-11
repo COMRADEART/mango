@@ -1,0 +1,20 @@
+{
+  "n": 89,
+  "primary_route_accuracy": 0.9775280898876404,
+  "top2_route_accuracy": 0.9775280898876404,
+  "tool_required_recall": 0.9791666666666666,
+  "no_tool_specificity": 1.0,
+  "unavailable_capability_rejection": 1.0,
+  "hallucinated_tools": 0,
+  "unauthorized_paid_route": 0,
+  "unavailable_skill_presented_as_executed": 0,
+  "permission_bypass": 0,
+  "route_depth_violations": 0,
+  "multi_skill_accuracy": 1.0,
+  "multi_skill_ordering_correctness": 1.0,
+  "failure_taxonomy": {
+    "MISSED_TOOL": 1
+  },
+  "split": "development",
+  "suite_sha256": "ce7009ee28aea1b605eb153884b19c8d1ceab8ebf6610ae01b18c3c484907f33"
+}

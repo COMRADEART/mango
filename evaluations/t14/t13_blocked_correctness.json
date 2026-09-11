@@ -1,0 +1,506 @@
+{
+  "previously_blocked": 45,
+  "now_COMPUTE_REQUIRED": 34,
+  "now_COMPUTE_HELPFUL": 11,
+  "still_NO_COMPUTE": 0,
+  "INSUFFICIENT_INFORMATION": 0,
+  "unblocked": 45,
+  "still_blocked": 0,
+  "predictions_present": 206,
+  "missing_ids": [],
+  "newly_correct": 11,
+  "still_wrong": 11,
+  "right_to_wrong": 9,
+  "still_correct": 14,
+  "newly_correct_ids": [
+    "msc-v1-0014",
+    "msc-v1-0017",
+    "msc-v1-0055",
+    "msc-v1-0057",
+    "msc-v1-0058",
+    "msc-v1-0060",
+    "msc-v1-0061",
+    "msc-v1-0063",
+    "msc-v1-0065",
+    "msc-v1-0066",
+    "msc-v1-0069"
+  ],
+  "still_wrong_ids": [
+    "msc-v1-0068",
+    "msc-v1-0082",
+    "msc-v1-0083",
+    "msc-v1-0084",
+    "msc-v1-0086",
+    "msc-v1-0088",
+    "msc-v1-0158",
+    "msc-v1-0161",
+    "msc-v1-0163",
+    "msc-v1-0166",
+    "msc-v1-0172"
+  ],
+  "right_to_wrong_ids": [
+    "msc-v1-0037",
+    "msc-v1-0040",
+    "msc-v1-0041",
+    "msc-v1-0081",
+    "msc-v1-0085",
+    "msc-v1-0087",
+    "msc-v1-0157",
+    "msc-v1-0169",
+    "msc-v1-0175"
+  ],
+  "scicomp_silent_mutation_pass_count": 0,
+  "scicomp_pipeline_exceptions_in_rows": 0,
+  "rows": [
+    {
+      "id": "msc-v1-0014",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0015",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0016",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0017",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0019",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0020",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0037",
+      "t13_correct": true,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "INVALID_INPUT",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0038",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0040",
+      "t13_correct": true,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "INVALID_INPUT",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0041",
+      "t13_correct": true,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "INVALID_INPUT",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0055",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0056",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0057",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0058",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0059",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0060",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0061",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0062",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0063",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "NUMERICAL_WARNING",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0064",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "NUMERICAL_WARNING",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0065",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "NUMERICAL_WARNING",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0066",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "NUMERICAL_WARNING",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0067",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "NUMERICAL_WARNING",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0068",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "NUMERICAL_WARNING",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0069",
+      "t13_correct": false,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "NUMERICAL_WARNING",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0081",
+      "t13_correct": true,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "INVALID_INPUT",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0082",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0083",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0084",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "INVALID_INPUT",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0085",
+      "t13_correct": true,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0086",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0087",
+      "t13_correct": true,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0088",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0123",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0124",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_REQUIRED",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "PASS",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0157",
+      "t13_correct": true,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0158",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0161",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0163",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0164",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "INVALID_INPUT",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0166",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "INVALID_INPUT",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0168",
+      "t13_correct": true,
+      "t14_correct": true,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": true,
+      "t14_guard_blocked": false,
+      "envelope_status": "INVALID_INPUT",
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0169",
+      "t13_correct": true,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0172",
+      "t13_correct": false,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    },
+    {
+      "id": "msc-v1-0175",
+      "t13_correct": true,
+      "t14_correct": false,
+      "t14_necessity": "COMPUTE_HELPFUL",
+      "t14_invoked": false,
+      "t14_guard_blocked": false,
+      "envelope_status": null,
+      "fidelity_status": null
+    }
+  ]
+}

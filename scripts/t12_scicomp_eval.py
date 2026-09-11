@@ -94,6 +94,21 @@ NECESSITY_HINT = {
     "NOT_NEEDED": "Compute-necessity classifier: NOT_NEEDED "
                   "(conceptual/qualitative question — computation is "
                   "not appropriate).",
+    "COMPUTE_REQUIRED": "Compute-necessity classifier: COMPUTE_REQUIRED "
+                        "(the answer materially depends on executing a "
+                        "deterministic computation over given inputs).",
+    "COMPUTE_HELPFUL": "Compute-necessity classifier: COMPUTE_HELPFUL "
+                       "(computation may improve reliability; invoke "
+                       "only if it materially improves correctness; do "
+                       "not invent missing inputs).",
+    "NO_COMPUTE": "Compute-necessity classifier: NO_COMPUTE "
+                  "(conceptual/qualitative/retrieval-only — SciComp "
+                  "must not be invoked).",
+    "INSUFFICIENT_INFORMATION": "Compute-necessity classifier: "
+                                "INSUFFICIENT_INFORMATION (required "
+                                "inputs are missing or ambiguous — do "
+                                "not invent values and do not invoke "
+                                "SciComp).",
 }
 
 ADOPTER_SYSTEM_T12 = (
@@ -168,7 +183,7 @@ def run_arm_b(tok, mdl, it: dict, registry_lines: str, max_new: int) -> dict:
         FIDELITY_FAIL, SCHEMA_FAIL, check_fidelity, validate_planner_request)
     from sciencemath.scicomp.invocation import invoke
     from sciencemath.scicomp.router import (
-        NECESSITY_NOT_NEEDED, compute_necessity)
+        blocks_scicomp_invocation, compute_necessity)
 
     out: dict = {"necessity": None, "guard_blocked": False,
                  "schema_status": None, "schema_failures": [],
@@ -180,6 +195,8 @@ def run_arm_b(tok, mdl, it: dict, registry_lines: str, max_new: int) -> dict:
     q = it["question"]
     nec = compute_necessity(q)
     out["necessity"] = nec["necessity"]
+    out["legacy_necessity"] = nec.get("legacy_necessity")
+    out["necessity_reason"] = nec.get("reason")
 
     system = PLANNER_SYSTEM_T12.format(
         registry=registry_lines,
@@ -196,12 +213,13 @@ def run_arm_b(tok, mdl, it: dict, registry_lines: str, max_new: int) -> dict:
                        "performed; answer from the question alone.")
     elif op == "NO_COMPUTE":
         observation = None  # direct answer path
-    elif nec["necessity"] == NECESSITY_NOT_NEEDED:
+    elif blocks_scicomp_invocation(nec["necessity"]):
         out["guard_blocked"] = True
-        observation = ("ROUTING_GUARD: this question is conceptual or "
-                       "qualitative (necessity NOT_NEEDED); the compute "
-                       "request was blocked. Answer from the question "
-                       "alone in words.")
+        observation = (
+            f"ROUTING_GUARD: necessity={nec['necessity']} "
+            f"({nec.get('reason')}); the compute request was blocked. "
+            "Answer from the question alone in words. Do not invent "
+            "missing numerical inputs.")
     else:
         schema = validate_planner_request(request)
         out["schema_status"] = ("PLANNER_SCHEMA_OK" if schema["ok"]
@@ -297,6 +315,9 @@ def main() -> int:
     ap.add_argument("--label", required=True)
     ap.add_argument("--max-new-tokens", type=int, default=700)
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--out-root", default=None,
+                    help="Directory under which --label is created. "
+                         "Default: evaluations/t12/runs")
     args = ap.parse_args()
 
     items, sha = load_suite(args.suite)
@@ -331,7 +352,9 @@ def main() -> int:
             f"| required inputs: {t11.INPUT_SCHEMA.get(m['name'], 'per schema')}"
             for m in manifest(build_registry()))
 
-    out_dir = ROOT / "evaluations/t12/runs" / args.label
+    out_root = Path(args.out_root) if args.out_root else (
+        ROOT / "evaluations/t12/runs")
+    out_dir = out_root / args.label
     out_dir.mkdir(parents=True, exist_ok=True)
     rows = []
     pred_path = out_dir / "predictions.jsonl"
@@ -600,7 +623,8 @@ def grade(rows: list[dict], args) -> dict:
         if args.arm == "B":
             s["necessity_accuracy"] = _rate(
                 sum(1 for r in rows
-                    if r.get("necessity") == r.get("expected_necessity")),
+                    if (r.get("legacy_necessity") or r.get("necessity"))
+                    == r.get("expected_necessity")),
                 len(rows))
         decisions = [(route(r["question"])["route"], r["gold_route"])
                      for r in rows]
