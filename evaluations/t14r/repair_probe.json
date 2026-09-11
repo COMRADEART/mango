@@ -1,0 +1,2017 @@
+{
+  "milestone": "T14R.3-11 repair probe (no LLM)",
+  "rows_probed": 37,
+  "outcome_histogram": {
+    "ENGINE_PASS_VALUE_MISMATCH": 8,
+    "ENGINE_PASS": 21,
+    "ENGINE_NOT_PASS": 3,
+    "STILL_SCHEMA_FAIL": 2,
+    "ENGINE_PASS_NONNUMERIC": 1,
+    "STILL_FIDELITY_FAIL": 2
+  },
+  "note": "ENGINE_PASS = repaired request passes frozen gates, engine returns PASS, and payload matches the suite expectation within atol/rtol. The adopter LLM is not run; T14R.14 replays the full pipeline.",
+  "rows": [
+    {
+      "task_id": "msc-v1-0030",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": false,
+      "bindings": [],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 0.9999993273472818,
+        "lower": 1.0,
+        "upper": 2.71828
+      },
+      "expected": 1.0,
+      "outcome": "ENGINE_PASS_VALUE_MISMATCH"
+    },
+    {
+      "task_id": "msc-v1-0037",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "3*t",
+          "to": "3*x",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 24.0,
+        "lower": 0.0,
+        "upper": 4.0
+      },
+      "expected": 24.0,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0040",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "6*t - 6",
+          "to": "6*x - 6",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 9.0,
+        "lower": 0.0,
+        "upper": 3.0
+      },
+      "expected": 9.0,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0041",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "4*t",
+          "to": "4*x",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 16.0,
+        "lower": 1.0,
+        "upper": 3.0
+      },
+      "expected": 16.0,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0068",
+      "operation": "scalar_root",
+      "t14_failure_class": null,
+      "repair_changed": false,
+      "bindings": [],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "NUMERICAL_WARNING",
+      "outcome": "ENGINE_NOT_PASS",
+      "envelope": {
+        "status": "NUMERICAL_WARNING",
+        "message": null,
+        "result": {
+          "root": 0.25268025514207865
+        }
+      }
+    },
+    {
+      "task_id": "msc-v1-0076",
+      "operation": "solve_ode",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "initial_state",
+          "binding": "numeric_literal_parse",
+          "to": "[5.0]",
+          "note": "representation canonicalization; value unchanged"
+        },
+        {
+          "field": "equations",
+          "binding": "ODE_RHS_CANONICALIZATION",
+          "from": "dy/dt = -1*y",
+          "to": "[\"-1*y0\"]",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "question-verbatim dX/dt = RHS restatement canonicalized to the engine right-hand-side list (AST-verified equivalence); no value changed"
+        },
+        {
+          "field": "initial_state",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_start",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_end",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "parameters",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "y(0)",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "5",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "t = 2",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"t = 2\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "final_state": [
+          0.6766767612804233
+        ],
+        "final_time": 2.0,
+        "t_samples": [
+          0.0,
+          0.02511986898929768,
+          0.2605522167011161,
+          0.49211037735531915,
+          0.7237407859926619,
+          0.9553730255837171,
+          1.1870091812028716,
+          1.418650244284301,
+          1.6502974940197646,
+          1.8819525422400734,
+          2.0
+        ],
+        "y_samples": [
+          [
+            5.0,
+            4.875965048108117,
+            3.853129847237974,
+            3.0566748272801822,
+            2.4246745798639746,
+            1.9233436286827787,
+            1.5256629728372817,
+            1.2102029243137435,
+            0.9599643454798972,
+            0.7614626766877539,
+            0.6766767612804233
+          ]
+        ]
+      },
+      "expected": 0.6766764161830635,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0077",
+      "operation": "solve_ode",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "equations",
+          "binding": "ODE_RHS_CANONICALIZATION",
+          "from": "dy/dt = -0.5*y",
+          "to": "[\"-0.5*y0\"]",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "question-verbatim dX/dt = RHS restatement canonicalized to the engine right-hand-side list (AST-verified equivalence); no value changed"
+        },
+        {
+          "field": "initial_state",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_start",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_end",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "parameters",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "y(0)",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "10",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "t",
+          "binding": "SOURCE_RENAMED",
+          "to": "t_end",
+          "source_reference": "4",
+          "note": "question-phrase key mapped to its parameter field by exact value match"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "final_state": [
+          1.3533534934502849
+        ],
+        "final_time": 4.0,
+        "t_samples": [
+          0.0,
+          0.028854575175024814,
+          0.317400326925273,
+          0.7838206907935068,
+          1.2470088445058414,
+          1.7102580354030927,
+          2.1735096997550354,
+          2.636765823521249,
+          3.100027544665123,
+          3.563296322248899,
+          4.0
+        ],
+        "y_samples": [
+          [
+            10.0,
+            9.856762870275276,
+            8.532521595096783,
+            6.757647431145135,
+            5.360626229931232,
+            4.252284081534133,
+            3.3730942565544506,
+            2.675677183468967,
+            2.122451318927429,
+            1.6836050832963527,
+            1.3533534934502849
+          ]
+        ]
+      },
+      "expected": 1.353352832366127,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0079",
+      "operation": "solve_ode",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "initial_state",
+          "binding": "numeric_literal_parse",
+          "to": "[100.0]",
+          "note": "representation canonicalization; value unchanged"
+        },
+        {
+          "field": "equations",
+          "binding": "ODE_RHS_CANONICALIZATION",
+          "from": "dy/dt = -0.1*y",
+          "to": "[\"-0.1*y0\"]",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "question-verbatim dX/dt = RHS restatement canonicalized to the engine right-hand-side list (AST-verified equivalence); no value changed"
+        },
+        {
+          "field": "parameters",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "USER_GIVEN",
+          "value": "{\"k\": 0.1}"
+        },
+        {
+          "field": "initial_state",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "\"y(0) = 100\"",
+          "note": "question-verbatim source restated in the parameter's representation (same numbers, same order); value unchanged"
+        },
+        {
+          "field": "t_start",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "parameters",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "final_state": [
+          0.673795592423949
+        ],
+        "final_time": 50.0,
+        "t_samples": [
+          0.0,
+          0.039810796676465345,
+          0.4379187634411188,
+          2.7893864264783046,
+          5.10492927898931,
+          7.4211199747825045,
+          9.737300601624963,
+          12.053483421341262,
+          14.369668737439119,
+          16.68585720538404,
+          19.002049646554905,
+          21.318247096510518,
+          23.634450860672743,
+          25.950662584694616,
+          28.26688434310706,
+          30.583118751075116,
+          32.89936910529219,
+          35.21563956150598,
+          37.5319353583912,
+          39.84826309960361,
+          42.16463110933491,
+          44.48104988038488,
+          46.797532638777504,
+          49.11409605524618,
+          50.0
+        ],
+        "y_samples": [
+          [
+            100.0,
+            99.60268343244526,
+            95.71531429572116,
+            75.6586376206954,
+            60.019972980696814,
+            47.610740808531474,
+            37.767176660937125,
+            29.958771821940285,
+            23.764757240923984,
+            18.85135719421926,
+            14.953804209468498,
+            11.86207157537385,
+            9.40955567172481,
+            7.464098231110107,
+            5.920864751014474,
+            4.696695296520156,
+            3.725623276383407,
+            2.9553207136469517,
+            2.3442784576744,
+            1.8595693883036675,
+            1.4750740782524374,
+            1.1700733004082706,
+            0.928131534701307,
+            0.7362113102937713,
+            0.673795592423949
+          ]
+        ]
+      },
+      "expected": 0.6737946999085467,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0080",
+      "operation": "solve_ode",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "equations",
+          "binding": "ODE_RHS_CANONICALIZATION",
+          "from": "dy/dt = -2*y",
+          "to": "[\"-2*y0\"]",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "question-verbatim dX/dt = RHS restatement canonicalized to the engine right-hand-side list (AST-verified equivalence); no value changed"
+        },
+        {
+          "field": "initial_state",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_start",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_end",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "parameters",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "y(0)",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "3",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "t = 1.5",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"t = 1.5\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "final_state": [
+          0.14936132050542786
+        ],
+        "final_time": 1.5,
+        "t_samples": [
+          0.0,
+          0.019037808320604768,
+          0.1366351068737479,
+          0.25241959420962046,
+          0.36823883569437227,
+          0.4840600943550417,
+          0.5998846491284732,
+          0.7157133451627724,
+          0.8315472615031442,
+          0.947387757851861,
+          1.0632365477748633,
+          1.1790957906176551,
+          1.2949682071958368,
+          1.4108572253534604,
+          1.5
+        ],
+        "y_samples": [
+          [
+            3.0,
+            2.8879204395758915,
+            2.2826616309766767,
+            1.81080814053331,
+            1.436392571775404,
+            1.1393892319840515,
+            0.9037914073315294,
+            0.7169035125052223,
+            0.5686547539079645,
+            0.45105647832047835,
+            0.3577716893824699,
+            0.2837735670556374,
+            0.22507458831018107,
+            0.17851165221227952,
+            0.14936132050542786
+          ]
+        ]
+      },
+      "expected": 0.14936120510359183,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0081",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "0.3 * P",
+          "to": "0.3 * x",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 3.75,
+        "lower": 0.0,
+        "upper": 5.0
+      },
+      "expected": 8.963378140676129,
+      "outcome": "ENGINE_PASS_VALUE_MISMATCH"
+    },
+    {
+      "task_id": "msc-v1-0082",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "10 * exp(-0.02 * t)",
+          "to": "10 * exp(-0.02 * x)",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "integration origin: the stated interval starts at the natural zero of the independent variable"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 432.33235838169367,
+        "lower": 0.0,
+        "upper": 100.0
+      },
+      "expected": 1.353352832366127,
+      "outcome": "ENGINE_PASS_VALUE_MISMATCH"
+    },
+    {
+      "task_id": "msc-v1-0083",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "9 * exp(-t/3)",
+          "to": "9 * exp(-x/3)",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        },
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "lower",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "upper",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "dQ/dt",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\" -Q/3\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "Q(0)",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "9",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "t",
+          "binding": "SOURCE_RENAMED",
+          "to": "upper",
+          "source_reference": "6",
+          "note": "question-phrase key mapped to its parameter field by exact value match"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 23.345947352611457,
+        "lower": 0.0,
+        "upper": 6.0
+      },
+      "expected": 1.2180175491295144,
+      "outcome": "ENGINE_PASS_VALUE_MISMATCH"
+    },
+    {
+      "task_id": "msc-v1-0084",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "12 * exp(-t/2)",
+          "to": "12 * exp(-x/2)",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 20.751953202321296,
+        "lower": 0.0,
+        "upper": 4.0
+      },
+      "expected": 1.6240233988393524,
+      "outcome": "ENGINE_PASS_VALUE_MISMATCH"
+    },
+    {
+      "task_id": "msc-v1-0085",
+      "operation": "solve_ode",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "equations",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "parameters",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "initial_state",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_start",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_end",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "x(0)",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "1.0",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "dx/dt(0)",
+          "binding": "SOURCE_RENAMED",
+          "to": "t_start",
+          "source_reference": "0.0",
+          "note": "question-phrase key mapped to its parameter field by exact value match"
+        },
+        {
+          "field": "t",
+          "binding": "SOURCE_RENAMED",
+          "to": "t_end",
+          "source_reference": "\"pi/2\"",
+          "note": "question-phrase key mapped to its parameter field by exact value match"
+        }
+      ],
+      "unknown_provenance": [
+        "equations",
+        "parameters"
+      ],
+      "schema_ok": false,
+      "schema_failures": [
+        "provenance_missing_or_invalid:equations",
+        "provenance_missing_or_invalid:parameters"
+      ],
+      "outcome": "STILL_SCHEMA_FAIL"
+    },
+    {
+      "task_id": "msc-v1-0086",
+      "operation": "solve_ode",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "initial_state",
+          "binding": "numeric_literal_parse",
+          "to": "[90.0]",
+          "note": "representation canonicalization; value unchanged"
+        },
+        {
+          "field": "equations",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "[\"-0.1*(T - 20)\"]",
+          "to": "[\"-0.1*(y0 - 20)\"]",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the dependent variable to the engine convention y0; no value changed"
+        },
+        {
+          "field": "parameters",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": null,
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "parameters",
+          "binding": "REDUNDANT_FIELD_REMOVED",
+          "from": "{\"k\": 0.1}",
+          "note": "decorative parameters dict: none of its values is referenced by the equations (AST-verified); removal cannot change the engine result"
+        },
+        {
+          "field": "initial_state",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_start",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "t_end",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "T(0)",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "90",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "t",
+          "binding": "SOURCE_RENAMED",
+          "to": "t_end",
+          "source_reference": "30",
+          "note": "question-phrase key mapped to its parameter field by exact value match"
+        }
+      ],
+      "unknown_provenance": [
+        "parameters"
+      ],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "final_state": [
+          23.485101204395985
+        ],
+        "final_time": 30.0,
+        "t_samples": [
+          0.0,
+          0.04186295289342182,
+          0.46049248182764,
+          2.933228160671259,
+          5.370914842725792,
+          7.839985705960514,
+          10.345101767996429,
+          12.89397248996963,
+          15.495523115687554,
+          18.160070181543986,
+          20.899427404704582,
+          23.727019483515164,
+          26.658016899976637,
+          29.70951389543001,
+          30.0
+        ],
+        "y_samples": [
+          [
+            90.0,
+            89.70757185210353,
+            86.84964504885093,
+            72.2046995863091,
+            60.91120309980817,
+            51.9603779958187,
+            44.87803897115729,
+            39.28058225554467,
+            34.864020450898515,
+            31.387189608654566,
+            28.658603632993557,
+            26.526001862016017,
+            24.868057688519915,
+            23.587823295530622,
+            23.485101204395985
+          ]
+        ]
+      },
+      "expected": 23.485094785750476,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0087",
+      "operation": "minimize",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "bounds",
+          "binding": "numeric_literal_parse",
+          "to": "[[0.0, 9.8]]",
+          "note": "representation canonicalization; value unchanged"
+        },
+        {
+          "field": "expression",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        }
+      ],
+      "unknown_provenance": [
+        "expression"
+      ],
+      "schema_ok": false,
+      "schema_failures": [
+        "provenance_missing_or_invalid:expression"
+      ],
+      "outcome": "STILL_SCHEMA_FAIL"
+    },
+    {
+      "task_id": "msc-v1-0088",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "0.07 * N",
+          "to": "0.07 * x",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_RELABELED",
+          "from": "RETRIEVED_VERIFIED",
+          "to": "USER_GIVEN",
+          "note": "value verbatim in the question; the RETRIEVED_VERIFIED claim is unverified"
+        },
+        {
+          "field": "upper",
+          "binding": "PROVENANCE_RELABELED",
+          "from": "RETRIEVED_VERIFIED",
+          "to": "USER_GIVEN",
+          "note": "value verbatim in the question; the RETRIEVED_VERIFIED claim is unverified"
+        },
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "lower",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "upper",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "dN",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"dN/dt = r*N with r = 0.07 per year and N(0) = 1000. What is N after 10 years (to the nearest integer)?\"",
+          "note": "question restatement carries no distinct value"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 3.5000000000000004,
+        "lower": 0.0,
+        "upper": 10.0
+      },
+      "expected": 2013.7527074704767,
+      "outcome": "ENGINE_PASS_VALUE_MISMATCH"
+    },
+    {
+      "task_id": "msc-v1-0099",
+      "operation": "minimize_scalar",
+      "t14_failure_class": null,
+      "repair_changed": false,
+      "bindings": [],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "optimum_x": 1.1102230246251565e-16,
+        "optimum_value": -4.0,
+        "optimum_kind": "LOCAL (bounded search); global optimum NOT ESTABLISHED"
+      },
+      "expected": 2.0,
+      "outcome": "ENGINE_PASS_VALUE_MISMATCH"
+    },
+    {
+      "task_id": "msc-v1-0102",
+      "operation": "minimize",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "bounds",
+          "binding": "numeric_literal_parse",
+          "to": "[[-5.0, 5.0], [-5.0, 5.0]]",
+          "note": "representation canonicalization; value unchanged"
+        },
+        {
+          "field": "expression",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "expression",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "source_reference": "\"x0**2 + (x1 - 2)**2 + 3\"",
+          "note": "pure deterministic expression: only numbers verbatim in the question and engine interface variables/functions"
+        },
+        {
+          "field": "bounds",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "[[-5, 5], [-5, 5]]",
+          "note": "question-verbatim source restated in the parameter's representation (same numbers, same order); value unchanged"
+        }
+      ],
+      "unknown_provenance": [
+        "expression"
+      ],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "optimum_x": [
+          0.0,
+          2.0000000047617585
+        ],
+        "optimum_value": 3.0,
+        "optimum_kind": "LOCAL optimum; global optimum NOT ESTABLISHED"
+      },
+      "expected": [
+        0.0,
+        2.0
+      ],
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0117",
+      "operation": "distribution_value",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "parameters",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DEFAULT_DECLARED_BY_TOOL",
+          "value": "{\"mu\": 0, \"sigma\": 1}"
+        },
+        {
+          "field": "quantity",
+          "binding": "PROVENANCE_RELABELED",
+          "from": "USER_GIVEN",
+          "to": "MODEL_INVENTED",
+          "note": "MODEL_SELECTABLE field: planner/tool choice, no question source"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "value": 0.9750021048517795,
+        "distribution": "normal",
+        "quantity": "cdf",
+        "at": 1.96,
+        "parameters": {
+          "mu": 0.0,
+          "sigma": 1.0
+        }
+      },
+      "expected": 0.9750021048517795,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0118",
+      "operation": "distribution_value",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "parameters",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DEFAULT_DECLARED_BY_TOOL",
+          "value": "{\"mu\": 0, \"sigma\": 1}"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "value": 0.3989422804014327,
+        "distribution": "normal",
+        "quantity": "pdf",
+        "at": 0.0,
+        "parameters": {
+          "mu": 0.0,
+          "sigma": 1.0
+        }
+      },
+      "expected": 0.3989422804014327,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0119",
+      "operation": "distribution_value",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "distribution",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "USER_GIVEN",
+          "value": "\"poisson\""
+        },
+        {
+          "field": "parameters",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "USER_GIVEN",
+          "value": "{\"mu\": 3}"
+        },
+        {
+          "field": "quantity",
+          "binding": "PROVENANCE_RELABELED",
+          "from": null,
+          "to": "MODEL_INVENTED",
+          "note": "MODEL_SELECTABLE field: planner/tool choice, no question source"
+        },
+        {
+          "field": "parameters",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "at",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "mean",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "3",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "k",
+          "binding": "SOURCE_RENAMED",
+          "to": "at",
+          "source_reference": "2",
+          "note": "question-phrase key mapped to its parameter field by exact value match"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "value": 0.22404180765538775,
+        "distribution": "poisson",
+        "quantity": "pmf",
+        "at": 2.0,
+        "parameters": {
+          "mu": 3.0
+        }
+      },
+      "expected": 0.22404180765538775,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0120",
+      "operation": "distribution_value",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "parameters",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "USER_GIVEN",
+          "value": "{\"n\": 10, \"p\": 0.3}"
+        },
+        {
+          "field": "parameters",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "n",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "10",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "p",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "0.3",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "value": 0.20012094899999988,
+        "distribution": "binomial",
+        "quantity": "pmf",
+        "at": 4.0,
+        "parameters": {
+          "n": 10.0,
+          "p": 0.3
+        }
+      },
+      "expected": 0.20012094899999988,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0121",
+      "operation": "distribution_value",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "parameters",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "USER_GIVEN",
+          "value": "{\"scale\": 2}"
+        },
+        {
+          "field": "parameters",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "scale",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "2",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "value": 0.3934693402873666,
+        "distribution": "exponential",
+        "quantity": "cdf",
+        "at": 1.0,
+        "parameters": {
+          "scale": 2.0
+        }
+      },
+      "expected": 0.3934693402873666,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0125",
+      "operation": "hypothesis_test",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "test",
+          "binding": "PROVENANCE_RELABELED",
+          "from": "USER_GIVEN",
+          "to": "MODEL_INVENTED",
+          "note": "MODEL_SELECTABLE field: planner/tool choice, no question source"
+        },
+        {
+          "field": "null_value",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "mu",
+          "binding": "SOURCE_RENAMED",
+          "to": "null_value",
+          "source_reference": "5",
+          "note": "question-phrase key mapped to its parameter field by exact value match"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "t_statistic": 0.878310065653683,
+        "p_value": 0.44443808513472927,
+        "test": "ttest_1samp",
+        "null_value": 5.0,
+        "alternative": "two-sided",
+        "interpretation_note": "p < alpha indicates the data are inconsistent with the null hypothesis under these assumptions; it does not prove causation or correctness of assumptions"
+      },
+      "expected": null,
+      "outcome": "ENGINE_PASS_NONNUMERIC"
+    },
+    {
+      "task_id": "msc-v1-0137",
+      "operation": "curve_fit",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "model",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "USER_GIVEN",
+          "value": "\"p0*x\""
+        },
+        {
+          "field": "x",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "USER_GIVEN",
+          "value": "[1, 2, 3]"
+        },
+        {
+          "field": "y",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "USER_GIVEN",
+          "value": "[2, 4, 6]"
+        },
+        {
+          "field": "parameters",
+          "binding": "PROVENANCE_RELABELED",
+          "from": null,
+          "to": "MODEL_INVENTED",
+          "note": "MODEL_SELECTABLE field: planner/tool choice, no question source"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "parameters": {
+          "p0": 2.0
+        },
+        "rmse": 0.0
+      },
+      "expected": 2.0,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0147",
+      "operation": "NO_COMPUTE",
+      "t14_failure_class": null,
+      "repair_changed": false,
+      "bindings": [],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "INVALID_INPUT",
+      "outcome": "ENGINE_NOT_PASS",
+      "envelope": {
+        "status": "INVALID_INPUT",
+        "message": null,
+        "result": null
+      }
+    },
+    {
+      "task_id": "msc-v1-0148",
+      "operation": "parameter_sweep",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "rows": [
+          {
+            "a": 5.0,
+            "b": 1.0,
+            "value": 4.0
+          },
+          {
+            "a": 6.0,
+            "b": 1.0,
+            "value": 5.0
+          },
+          {
+            "a": 7.0,
+            "b": 1.0,
+            "value": 6.0
+          }
+        ],
+        "row_count": 3,
+        "estimated_combinations": 3
+      },
+      "expected": 3.0,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0149",
+      "operation": "parameter_sweep",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "rows": [
+          {
+            "a": 2.0,
+            "b": 3.0,
+            "value": 6.0
+          },
+          {
+            "a": 2.0,
+            "b": 5.0,
+            "value": 10.0
+          },
+          {
+            "a": 4.0,
+            "b": 3.0,
+            "value": 12.0
+          },
+          {
+            "a": 4.0,
+            "b": 5.0,
+            "value": 20.0
+          }
+        ],
+        "row_count": 4,
+        "estimated_combinations": 4
+      },
+      "expected": 4.0,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0157",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "upper",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "value": "1e-06"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "integration origin: the stated interval starts at the natural zero of the independent variable"
+        },
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "lower",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "upper",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "speed_of_light",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"c = 3.0e8 m/s\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "time",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"1 microsecond\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 300.0,
+        "lower": 0.0,
+        "upper": 1e-06
+      },
+      "expected": 300.0,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0158",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "9.81 * t",
+          "to": "9.81 * x",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "integration origin: the stated interval starts at the natural zero of the independent variable"
+        },
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "lower",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "upper",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "g",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"9.81 m/s^2\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "t",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"2 seconds\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 19.62,
+        "lower": 0.0,
+        "upper": 2.0
+      },
+      "expected": 19.62,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0161",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "t",
+          "to": "x",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "RETRIEVED_VERIFIED",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "upper",
+          "binding": "PROVENANCE_RELABELED",
+          "from": "RETRIEVED_VERIFIED",
+          "to": "USER_GIVEN",
+          "note": "value verbatim in the question; the RETRIEVED_VERIFIED claim is unverified"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "integration origin: the stated interval starts at the natural zero of the independent variable"
+        },
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "lower",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "upper",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "Earth-Moon distance",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"384400 km\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+      "fidelity_failures": [
+        "source_input_dropped:c"
+      ],
+      "outcome": "STILL_FIDELITY_FAIL"
+    },
+    {
+      "task_id": "msc-v1-0163",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "RETRIEVED_VERIFIED",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "upper",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "RETRIEVED_VERIFIED",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "expression",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "source_reference": "\"4184 * 0.5 * 20\"",
+          "note": "pure deterministic expression: only numbers verbatim in the question and engine interface variables/functions"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "integration origin: the stated interval starts at the natural zero of the independent variable"
+        },
+        {
+          "field": "upper",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "identity dummy interval [0,1] for a constant integrand (integral = constant)"
+        },
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "lower",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "upper",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "mass",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"0.5 kg\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "temperature_change",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"20 K\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "c",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"4184 J/(kg K)\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [
+        "expression"
+      ],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 41840.00000000001,
+        "lower": 0.0,
+        "upper": 1.0
+      },
+      "expected": 41840.0,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0166",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": false,
+      "bindings": [],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "INVALID_INPUT",
+      "outcome": "ENGINE_NOT_PASS",
+      "envelope": {
+        "status": "INVALID_INPUT",
+        "message": null,
+        "result": null
+      }
+    },
+    {
+      "task_id": "msc-v1-0169",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "upper",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "expression",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "source_reference": "\"6.626e-34 * 5.0e14\"",
+          "note": "pure deterministic expression: only numbers verbatim in the question and engine interface variables/functions"
+        },
+        {
+          "field": "upper",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "identity dummy interval [0,1] for a constant integrand (integral = constant)"
+        },
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "lower",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "upper",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "Planck's constant",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"h = 6.626e-34 J*s\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "frequency",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"5.0e14 Hz\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [
+        "expression"
+      ],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 3.3129999999999997e-19,
+        "lower": 0.0,
+        "upper": 1.0
+      },
+      "expected": 3.3129999999999997e-19,
+      "outcome": "ENGINE_PASS"
+    },
+    {
+      "task_id": "msc-v1-0172",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "VARIABLE_CANONICALIZATION",
+          "from": "8.314 * 273 / V",
+          "to": "8.314 * 273 / x",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "AST-verified alpha-rename of the single free variable to the engine interface variable x; no value changed"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "RETRIEVED_VERIFIED",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "upper",
+          "binding": "PROVENANCE_RELABELED",
+          "from": "RETRIEVED_VERIFIED",
+          "to": "USER_GIVEN",
+          "note": "value verbatim in the question; the RETRIEVED_VERIFIED claim is unverified"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "integration origin: the stated interval starts at the natural zero of the independent variable"
+        },
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "lower",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "upper",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "R",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"8.314 J/(mol K)\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        },
+        {
+          "field": "T",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"273 K\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [],
+      "schema_ok": true,
+      "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+      "fidelity_failures": [
+        "source_input_dropped:n",
+        "source_input_dropped:volume"
+      ],
+      "outcome": "STILL_FIDELITY_FAIL"
+    },
+    {
+      "task_id": "msc-v1-0175",
+      "operation": "definite_integral",
+      "t14_failure_class": null,
+      "repair_changed": true,
+      "bindings": [
+        {
+          "field": "expression",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_UNKNOWN",
+          "from": "USER_GIVEN",
+          "note": "no verifiable origin; left fail-closed for the schema gate"
+        },
+        {
+          "field": "expression",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "source_reference": "\"0.5 * 200 * x**2\"",
+          "note": "pure deterministic expression: only numbers verbatim in the question and engine interface variables/functions"
+        },
+        {
+          "field": "lower",
+          "binding": "PROVENANCE_DERIVED",
+          "provenance": "DETERMINISTIC_DERIVATION",
+          "note": "integration origin: the stated interval starts at the natural zero of the independent variable"
+        },
+        {
+          "field": "expression",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "lower",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "declared deterministic derivation record",
+          "provenance": "DETERMINISTIC_DERIVATION"
+        },
+        {
+          "field": "upper",
+          "binding": "SOURCE_ALIGNED",
+          "source_reference": "question text (value verbatim)",
+          "provenance": "USER_GIVEN"
+        },
+        {
+          "field": "k",
+          "binding": "SOURCE_RECORD_NORMALIZED",
+          "source_reference": "\"200 N/m\"",
+          "note": "question-verbatim restatement; its numbers are carried by the parameter fields"
+        }
+      ],
+      "unknown_provenance": [
+        "expression"
+      ],
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "authoritative": false,
+      "result": {
+        "integral": 0.0041666666666666675,
+        "lower": 0.0,
+        "upper": 0.05
+      },
+      "expected": 0.25,
+      "outcome": "ENGINE_PASS_VALUE_MISMATCH"
+    }
+  ]
+}
