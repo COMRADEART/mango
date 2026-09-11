@@ -1,0 +1,2310 @@
+{
+  "milestone": "T14R.2 — T14 numeric failure forensics",
+  "source_run": "evaluations/t14/runs/t14a-scicomp-B",
+  "numeric_rows": 138,
+  "numeric_correct": 101,
+  "numeric_accuracy": 0.7318840579710145,
+  "incorrect_rows": 37,
+  "taxonomy": [
+    "NO_INVOCATION",
+    "PLANNER_SCHEMA_FAILURE",
+    "PROVENANCE_MISSING",
+    "PROVENANCE_WRONG",
+    "ENGINE_REJECT",
+    "ENGINE_FAILURE",
+    "NUMERICAL_WARNING",
+    "RESULT_MISREAD",
+    "RESULT_IGNORED",
+    "STALE_PRECOMPUTE_RESULT",
+    "WRONG_ROUNDING",
+    "UNIT_LOSS",
+    "EXTRACTION_FAILURE",
+    "OTHER"
+  ],
+  "class_histogram": {
+    "OTHER": 1,
+    "ENGINE_REJECT": 4,
+    "NUMERICAL_WARNING": 1,
+    "PLANNER_SCHEMA_FAILURE": 11,
+    "PROVENANCE_MISSING": 8,
+    "PROVENANCE_WRONG": 10,
+    "RESULT_MISREAD": 1,
+    "NO_INVOCATION": 1
+  },
+  "repair_scope": {
+    "in_T14R_scope": 36,
+    "out_of_scope_ids": [
+      "msc-v1-0030"
+    ],
+    "note": "OTHER = benchmark gold-vs-given-input mismatch (msc-v1-0030); not recoverable within frozen engine/fidelity/no-benchmark-leak constraints"
+  },
+  "instrument_notes": [
+    "T14 arm-B runner never records fidelity_status on the FIDELITY_FAIL branch (only mutated) — fidelity blocks appear as fidelity_status=None with the failure visible in raw_output_tail; verified by re-running the frozen check_fidelity on recorded requests",
+    "T14's 'WRONG_ROUNDING 48' is an instrument artifact, not 48 display-rounding failures: 47 of the 48 WRONG_ROUNDING rows are graded CORRECT. classify_adoption requires every engine-result number to appear in the answer; padded engine payloads (e.g. eigenvalues [[5.0, 0.0], [2.0, 0.0]] vs answer [5.0, 2.0]) fail that strict matcher and fall to the 5e-3 relative branch, relabeling correct adoptions. Only 2 PASS-envelope rows are actually incorrect (msc-v1-0030 gold-vs-input mismatch, msc-v1-0099 result misread)"
+  ],
+  "rows": [
+    {
+      "task_id": "msc-v1-0030",
+      "question": "Compute the definite integral of 1/x with respect to x from 1 to 2.71828.",
+      "route": "NUMERICAL_INTEGRATION",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "1/x",
+          "lower": 1,
+          "upper": 2.71828
+        },
+        "source_inputs": {
+          "expression": "1/x",
+          "lower": 1,
+          "upper": 2.71828
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "1/x",
+        "lower": 1,
+        "upper": 2.71828
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": "PASS",
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": true,
+      "adoption_taxonomy_instrument": "WRONG_ROUNDING",
+      "final_answer": "0.9999993273472818",
+      "expected": 1.0,
+      "expected_tolerance": {
+        "atol": 1e-07,
+        "rtol": 1e-07
+      },
+      "failure_class": "OTHER",
+      "rationale": "instrument recorded WRONG_ROUNDING, but forensics show the model adopted the engine result exactly (0.99999933 = ln(2.71828) over the GIVEN upper bound); gold 1.0 was computed from e=2.718281828 — a gold-vs-given-input mismatch, not a model/adoption failure; not in T14R repair scope",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": true
+      }
+    },
+    {
+      "task_id": "msc-v1-0037",
+      "question": "A car moves with velocity v(t) = 3*t m/s. How far does it travel between t=0 s and t=4 s?",
+      "route": "NUMERICAL_INTEGRATION",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "3*t",
+          "lower": 0,
+          "upper": 4
+        },
+        "source_inputs": {
+          "expression": "3*t",
+          "lower": 0,
+          "upper": 4
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "3*t",
+        "lower": 0,
+        "upper": 4
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": "INVALID_INPUT",
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "The computation could not be completed due to invalid input — the variable 't' is undefined and not declared.**",
+      "expected": 24.0,
+      "expected_tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-06
+      },
+      "failure_class": "ENGINE_REJECT",
+      "rationale": "engine accepts only variable x for definite_integral; planner sent 3*t → INVALID_INPUT undeclared variable (gold 24.0)",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": true
+      }
+    },
+    {
+      "task_id": "msc-v1-0040",
+      "question": "A particle's velocity is v(t) = 6*t - 6 m/s. What is its net displacement from t=0 to t=3 s?",
+      "route": "NUMERICAL_INTEGRATION",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "6*t - 6",
+          "lower": 0,
+          "upper": 3
+        },
+        "source_inputs": {
+          "expression": "6*t - 6",
+          "lower": 0,
+          "upper": 3
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "6*t - 6",
+        "lower": 0,
+        "upper": 3
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": "INVALID_INPUT",
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "NOT_AUTHORITATIVE — invalid input: variable 't' not declared in the given variables**",
+      "expected": 9.0,
+      "expected_tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-06
+      },
+      "failure_class": "ENGINE_REJECT",
+      "rationale": "same undeclared-variable reject: 6*t - 6 (gold 13.5)",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": true
+      }
+    },
+    {
+      "task_id": "msc-v1-0041",
+      "question": "Current through a wire is i(t) = 4*t A. How much charge in coulombs passes between t=1 s and t=3 s?",
+      "route": "NUMERICAL_INTEGRATION",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "4*t",
+          "lower": 1,
+          "upper": 3
+        },
+        "source_inputs": {
+          "expression": "4*t",
+          "lower": 1,
+          "upper": 3
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "4*t",
+        "lower": 1,
+        "upper": 3
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": "INVALID_INPUT",
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "The computation could not be completed due to an invalid input — the variable 't' is undefined and not declared.**",
+      "expected": 16.0,
+      "expected_tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-06
+      },
+      "failure_class": "ENGINE_REJECT",
+      "rationale": "same undeclared-variable reject: 4*t over [1,3] (gold 16.0)",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": true
+      }
+    },
+    {
+      "task_id": "msc-v1-0068",
+      "question": "Find x such that sin(x) - 0.25 = 0 (start near x = 0.5).",
+      "route": "ROOT_FINDING",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "scalar_root",
+      "planner_request": {
+        "parameters": {
+          "expression": "sin(x) - 0.25",
+          "initial_guess": 0.5
+        },
+        "source_inputs": {
+          "expression": "sin(x) - 0.25",
+          "initial_guess": 0.5
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "initial_guess": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "sin(x) - 0.25",
+        "initial_guess": 0.5
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "initial_guess": "USER_GIVEN"
+      },
+      "engine_status": "NUMERICAL_WARNING",
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "0.2527",
+      "expected": 0.25268025514207865,
+      "expected_tolerance": {
+        "atol": 1e-05,
+        "rtol": 1e-06
+      },
+      "failure_class": "NUMERICAL_WARNING",
+      "rationale": "engine returned NUMERICAL_WARNING (NOT_AUTHORITATIVE) yet the model asserted 0.2527 — a 4-dp rounding of the root 0.25268025...; outside atol 1e-5 AND asserted despite fail-closed rule",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": true
+      }
+    },
+    {
+      "task_id": "msc-v1-0076",
+      "question": "Solve the ODE dy/dt = -1*y with y(0) = 5 (decay rate constant k = 1) and report y at t = 2.",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "solve_ode",
+      "planner_request": {
+        "parameters": {
+          "equations": [
+            "-1*y0"
+          ],
+          "initial_state": [
+            "5"
+          ],
+          "t_start": 0,
+          "t_end": 2,
+          "parameters": {
+            "k": 1
+          }
+        },
+        "source_inputs": {
+          "equations": "dy/dt = -1*y",
+          "y(0)": 5,
+          "t = 2": "t = 2"
+        },
+        "parameter_provenance": {
+          "equations": "USER_GIVEN",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN",
+          "parameters": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "equations": "dy/dt = -1*y",
+        "y(0)": 5,
+        "t = 2": "t = 2"
+      },
+      "provenance": {
+        "equations": "USER_GIVEN",
+        "initial_state": "USER_GIVEN",
+        "t_start": "USER_GIVEN",
+        "t_end": "USER_GIVEN",
+        "parameters": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": null,
+      "expected": 0.6766764161830635,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "fidelity gate: source_inputs keyed by question phrases ('t = 2') instead of parameter fields; string-typed initial_state ['5']; solve_ode restatement resolver did not verify the mapping",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": true,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0077",
+      "question": "Solve the ODE dy/dt = -0.5*y with y(0) = 10 (decay rate constant k = 0.5) and report y at t = 4.",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "solve_ode",
+      "planner_request": {
+        "parameters": {
+          "equations": [
+            "-0.5*y0"
+          ],
+          "initial_state": [
+            10
+          ],
+          "t_start": 0,
+          "t_end": 4,
+          "parameters": {
+            "k": 0.5
+          }
+        },
+        "source_inputs": {
+          "equations": "dy/dt = -0.5*y",
+          "y(0)": 10,
+          "t": 4
+        },
+        "parameter_provenance": {
+          "equations": "USER_GIVEN",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN",
+          "parameters": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "equations": "dy/dt = -0.5*y",
+        "y(0)": 10,
+        "t": 4
+      },
+      "provenance": {
+        "equations": "USER_GIVEN",
+        "initial_state": "USER_GIVEN",
+        "t_start": "USER_GIVEN",
+        "t_end": "USER_GIVEN",
+        "parameters": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "**FINAL ANSWER: 1.353**",
+      "expected": 1.353352832366127,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "fidelity gate: same pattern — source key 't' vs parameter t_end; string-typed initial_state",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": true,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0079",
+      "question": "Solve the ODE dy/dt = -0.1*y with y(0) = 100 (decay rate constant k = 0.1) and report y at t = 50.",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "solve_ode",
+      "planner_request": {
+        "parameters": {
+          "equations": [
+            "-0.1*y0"
+          ],
+          "initial_state": [
+            "100"
+          ],
+          "t_start": 0,
+          "t_end": 50,
+          "parameters": {
+            "k": 0.1
+          }
+        },
+        "source_inputs": {
+          "equations": "dy/dt = -0.1*y",
+          "initial_state": "y(0) = 100",
+          "t_end": 50
+        },
+        "parameter_provenance": {
+          "equations": "USER_GIVEN",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN",
+          "parameters.k": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "equations": "dy/dt = -0.1*y",
+        "initial_state": "y(0) = 100",
+        "t_end": 50
+      },
+      "provenance": {
+        "equations": "USER_GIVEN",
+        "initial_state": "USER_GIVEN",
+        "t_start": "USER_GIVEN",
+        "t_end": "USER_GIVEN",
+        "parameters.k": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "NOT_AUTHORITATIVE",
+      "expected": 0.6737946999085467,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "failure_class": "PROVENANCE_MISSING",
+      "rationale": "schema gate: provenance_missing_or_invalid:parameters — parameter_provenance incomplete for the nested parameters field",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "provenance_missing_or_invalid:parameters"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0080",
+      "question": "Solve the ODE dy/dt = -2*y with y(0) = 3 (decay rate constant k = 2) and report y at t = 1.5.",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "solve_ode",
+      "planner_request": {
+        "parameters": {
+          "equations": [
+            "-2*y0"
+          ],
+          "initial_state": [
+            3
+          ],
+          "t_start": 0,
+          "t_end": 1.5,
+          "parameters": {
+            "k": 2
+          }
+        },
+        "source_inputs": {
+          "equations": "dy/dt = -2*y",
+          "y(0)": 3,
+          "t = 1.5": "t = 1.5"
+        },
+        "parameter_provenance": {
+          "equations": "USER_GIVEN",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN",
+          "parameters": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "equations": "dy/dt = -2*y",
+        "y(0)": 3,
+        "t = 1.5": "t = 1.5"
+      },
+      "provenance": {
+        "equations": "USER_GIVEN",
+        "initial_state": "USER_GIVEN",
+        "t_start": "USER_GIVEN",
+        "t_end": "USER_GIVEN",
+        "parameters": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "The computation could not be completed due to missing or unsupported source input for $ t = 1.5 $.**",
+      "expected": 0.14936120510359183,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "fidelity gate: same pattern — 't = 1.5' source key vs t_end",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": true,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0081",
+      "question": "A population grows as dP/dt = 0.3*P with P(0) = 2 (in hundreds). What is P at t = 5 (in hundreds)?",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "0.3 * P",
+          "lower": 0,
+          "upper": 5
+        },
+        "source_inputs": {
+          "expression": "0.3 * P",
+          "lower": 0,
+          "upper": 5
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "0.3 * P",
+        "lower": 0,
+        "upper": 5
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": "INVALID_INPUT",
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "NOT_AUTHORITATIVE**",
+      "expected": 8.963378140676129,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "wrong operation: ODE dP/dt=0.3*P sent as definite_integral '0.3 * P' over [0,5]; engine INVALID_INPUT (P undeclared); solve_ode is the correct operation",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": true
+      }
+    },
+    {
+      "task_id": "msc-v1-0082",
+      "question": "A radioactive sample decays with rate constant 0.02 per year. Starting from 10 grams, how many grams remain after 100 years?",
+      "route": "ODE",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "10 * exp(-0.02 * t)",
+          "lower": 0,
+          "upper": 100
+        },
+        "source_inputs": {
+          "expression": "10 * exp(-0.02 * t)",
+          "lower": 0,
+          "upper": 100
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "10 * exp(-0.02 * t)",
+        "lower": 0,
+        "upper": 100
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "COMputation failed due to PARAMETER_FIDELITY_FAIL — the planner did not preserve the original values (specifically, the rate constant 0.02 per year and the initial mass 10 grams).**",
+      "expected": 1.353352832366127,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "fidelity gate: derived closed form 10*exp(-0.02*t) as integral expression; correct construction is solve_ode (gold 1.35335 = 10*exp(-2))",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0083",
+      "question": "dQ/dt = -Q/3 with Q(0) = 9. What is Q at t = 6?",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "9 * exp(-t/3)",
+          "lower": 0,
+          "upper": 6
+        },
+        "source_inputs": {
+          "dQ/dt": " -Q/3",
+          "Q(0)": 9,
+          "t": 6
+        },
+        "parameter_provenance": {
+          "expression": "MODEL_INVENTED",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "dQ/dt": " -Q/3",
+        "Q(0)": 9,
+        "t": 6
+      },
+      "provenance": {
+        "expression": "MODEL_INVENTED",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "The computation could not be completed due to a planner schema failure. The request is not considered a valid compute request",
+      "expected": 1.2180175491295144,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "schema gate: model_invented_on_protected:expression — ODE restatement 9*exp(-t/3) labeled MODEL_INVENTED; also wrong operation (integral instead of solve_ode)",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "model_invented_on_protected:expression"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0084",
+      "question": "A capacitor discharges: dV/dt = -V/RC with RC = 2 s and V(0) = 12 V. What is V at t = 4 s?",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "12 * exp(-t/2)",
+          "lower": 0,
+          "upper": 4
+        },
+        "source_inputs": {
+          "expression": "12 * exp(-t/2)",
+          "lower": 0,
+          "upper": 4
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "12 * exp(-t/2)",
+        "lower": 0,
+        "upper": 4
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": "INVALID_INPUT",
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "None",
+      "expected": 1.6240233988393524,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "failure_class": "ENGINE_REJECT",
+      "rationale": "planner restated the analytic solution 12*exp(-t/2) as integrand; engine INVALID_INPUT (t undeclared); solve_ode is the correct operation (gold 1.6240)",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": true
+      }
+    },
+    {
+      "task_id": "msc-v1-0085",
+      "question": "For d2x/dt2 = -4*x with x(0)=1 and dx/dt(0)=0, what is x at t = pi/2 (use the exact analytic solution)?",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "solve_ode",
+      "planner_request": {
+        "parameters": {
+          "equations": [
+            "d2x/dt2 + 4*x = 0"
+          ],
+          "initial_state": [
+            1,
+            0
+          ],
+          "t_start": 0,
+          "t_end": "pi/2",
+          "parameters": {
+            "k": 4
+          }
+        },
+        "source_inputs": {
+          "d2x/dt2": "-4*x",
+          "x(0)": "1",
+          "dx/dt(0)": "0",
+          "t": "pi/2"
+        },
+        "parameter_provenance": {
+          "equations": "USER_GIVEN",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN",
+          "parameters": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "d2x/dt2": "-4*x",
+        "x(0)": "1",
+        "dx/dt(0)": "0",
+        "t": "pi/2"
+      },
+      "provenance": {
+        "equations": "USER_GIVEN",
+        "initial_state": "USER_GIVEN",
+        "t_start": "USER_GIVEN",
+        "t_end": "USER_GIVEN",
+        "parameters": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "The computation could not be completed due to parameter fidelity failure — the required inputs (differential equation, initial conditions, and time point) were not provided or preserved in the input",
+      "expected": -1.0,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 0.0001
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "fidelity gate: t_end sent as string 'pi/2' instead of the deterministic numeric value 1.5707963...; gold -1.0",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0086",
+      "question": "Newton cooling: dT/dt = -0.1*(T - 20) with T(0) = 90. What is T at t = 30 s? (T in degrees C)",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "solve_ode",
+      "planner_request": {
+        "parameters": {
+          "equations": [
+            "-0.1*(T - 20)"
+          ],
+          "initial_state": [
+            "90"
+          ],
+          "t_start": 0,
+          "t_end": 30,
+          "parameters": {
+            "k": 0.1
+          }
+        },
+        "source_inputs": {
+          "equations": "dT/dt = -0.1*(T - 20)",
+          "T(0)": 90,
+          "t": 30
+        },
+        "parameter_provenance": {
+          "equations": "USER_GIVEN",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN",
+          "parameters.k": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "equations": "dT/dt = -0.1*(T - 20)",
+        "T(0)": 90,
+        "t": 30
+      },
+      "provenance": {
+        "equations": "USER_GIVEN",
+        "initial_state": "USER_GIVEN",
+        "t_start": "USER_GIVEN",
+        "t_end": "USER_GIVEN",
+        "parameters.k": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "NOT_AUTHORITATIVE",
+      "expected": 23.485094785750476,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 0.0001
+      },
+      "failure_class": "PROVENANCE_MISSING",
+      "rationale": "schema gate: provenance_missing_or_invalid:parameters",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "provenance_missing_or_invalid:parameters"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0087",
+      "question": "A ball dropped from rest accelerates at g = 9.8 m/s^2: dv/dt = 9.8, v(0) = 0. What is its velocity at t = 3 s?",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "minimize",
+      "planner_request": {
+        "parameters": {
+          "expression": "9.8 * t",
+          "bounds": [
+            [
+              "0",
+              "9.8"
+            ]
+          ]
+        },
+        "source_inputs": {
+          "expression": "9.8 * t",
+          "bounds": [
+            [
+              "0",
+              "9.8"
+            ]
+          ]
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "bounds": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "9.8 * t",
+        "bounds": [
+          [
+            "0",
+            "9.8"
+          ]
+        ]
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "bounds": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "The computation could not be completed due to a parameter fidelity failure: a string type was incorrectly applied to a numerical value (disallowed_transformation:bounds:SCHEMA_TYPE_STRING_FOR_NUMBER). The input values are physically valid, but the system failed to execute the computation due to schema inconsistency",
+      "expected": 29.4,
+      "expected_tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-06
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "fidelity gate: string-typed bounds [['0','9.8']]; also wrong operation (minimize for dv/dt=9.8 fall — correct is integration; gold 29.4)",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": true,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0088",
+      "question": "dN/dt = r*N with r = 0.07 per year and N(0) = 1000. What is N after 10 years (to the nearest integer)?",
+      "route": "ODE",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "0.07 * N",
+          "lower": 0,
+          "upper": 10
+        },
+        "source_inputs": {
+          "dN": "dN/dt = r*N with r = 0.07 per year and N(0) = 1000. What is N after 10 years (to the nearest integer)?"
+        },
+        "parameter_provenance": {
+          "expression": "MODEL_INVENTED",
+          "lower": "RETRIEVED_VERIFIED",
+          "upper": "RETRIEVED_VERIFIED"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "dN": "dN/dt = r*N with r = 0.07 per year and N(0) = 1000. What is N after 10 years (to the nearest integer)?"
+      },
+      "provenance": {
+        "expression": "MODEL_INVENTED",
+        "lower": "RETRIEVED_VERIFIED",
+        "upper": "RETRIEVED_VERIFIED"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "The computation could not be completed due to a planner schema failure — the request was not recognized as a valid compute task. No numerical result can be provided under these conditions",
+      "expected": 2013.7527074704767,
+      "expected_tolerance": {
+        "atol": 1.0,
+        "rtol": 0.0
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "schema gate: model_invented_on_protected:expression; integral abuse for dN/dt growth — solve_ode is the correct operation",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "model_invented_on_protected:expression"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0099",
+      "question": "Minimize f(x) = (x**2 - 4)**2 over x in [-3, 3]. Give the minimizing x.",
+      "route": "OPTIMIZATION",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "minimize_scalar",
+      "planner_request": {
+        "parameters": {
+          "expression": "x**2 - 4",
+          "bound_low": -3,
+          "bound_high": 3
+        },
+        "source_inputs": {
+          "expression": "x**2 - 4",
+          "bound_low": -3,
+          "bound_high": 3
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "bound_low": "USER_GIVEN",
+          "bound_high": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "expression": "x**2 - 4",
+        "bound_low": -3,
+        "bound_high": 3
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "bound_low": "USER_GIVEN",
+        "bound_high": "USER_GIVEN"
+      },
+      "engine_status": "PASS",
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": false,
+      "adoption_taxonomy_instrument": "RESULT_MISREAD",
+      "final_answer": "[-2, 2]",
+      "expected": 2.0,
+      "expected_tolerance": {
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "failure_class": "RESULT_MISREAD",
+      "rationale": "planner dropped the outer square ((x**2-4)**2 → x**2-4) — a mutation the frozen fidelity gate missed; engine minimized the mutated function; model distrusted the verified result and answered [-2, 2] while gold is scalar 2.0",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": true
+      }
+    },
+    {
+      "task_id": "msc-v1-0102",
+      "question": "Minimize f(x0, x1) = (x0)**2 + (x1 - 2)**2 + 3 subject to the bounds [[-5, 5], [-5, 5]]. Give the optimal point.",
+      "route": "OPTIMIZATION",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "minimize",
+      "planner_request": {
+        "parameters": {
+          "expression": "x0**2 + (x1 - 2)**2 + 3",
+          "bounds": [
+            [
+              "-5",
+              "5"
+            ],
+            [
+              "-5",
+              "5"
+            ]
+          ]
+        },
+        "source_inputs": {
+          "expression": "x0**2 + (x1 - 2)**2 + 3",
+          "bounds": "[[-5, 5], [-5, 5]]"
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "bounds": "USER_GIVEN"
+        },
+        "expected_result_type": "vector"
+      },
+      "source_inputs": {
+        "expression": "x0**2 + (x1 - 2)**2 + 3",
+        "bounds": "[[-5, 5], [-5, 5]]"
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "bounds": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "The computation could not be completed due to invalid input schema: the bounds are provided as strings or in an unsupported format (SCHEMA_TYPE_STRING_FOR_NUMBER). A corrected numerical bound specification is required",
+      "expected": [
+        0.0,
+        2.0
+      ],
+      "expected_tolerance": {
+        "atol": 0.001,
+        "rtol": 0.001
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "fidelity gate: bounds transmitted as strings [['-5','5'],...]; clean numeric bounds pass fidelity and engine (gold [0,2])",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": true,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0117",
+      "question": "Compute P(Z <= 1.96) for a standard normal Z.",
+      "route": "STATISTICS",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "distribution_value",
+      "planner_request": {
+        "parameters": {
+          "distribution": "normal",
+          "parameters": {
+            "mu": 0,
+            "sigma": 1
+          },
+          "at": 1.96,
+          "quantity": "cdf"
+        },
+        "source_inputs": {
+          "distribution": "normal",
+          "parameters": {
+            "mu": 0,
+            "sigma": 1
+          },
+          "at": 1.96,
+          "quantity": "cdf"
+        },
+        "parameter_provenance": {
+          "distribution": "USER_GIVEN",
+          "parameters.mu": "USER_GIVEN",
+          "parameters.sigma": "USER_GIVEN",
+          "at": "USER_GIVEN",
+          "quantity": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "distribution": "normal",
+        "parameters": {
+          "mu": 0,
+          "sigma": 1
+        },
+        "at": 1.96,
+        "quantity": "cdf"
+      },
+      "provenance": {
+        "distribution": "USER_GIVEN",
+        "parameters.mu": "USER_GIVEN",
+        "parameters.sigma": "USER_GIVEN",
+        "at": "USER_GIVEN",
+        "quantity": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "the computation could not be completed due to invalid or missing parameters",
+      "expected": 0.9750021048517795,
+      "expected_tolerance": {
+        "atol": 1e-08,
+        "rtol": 1e-08
+      },
+      "failure_class": "PROVENANCE_MISSING",
+      "rationale": "schema gate: provenance_missing_or_invalid:parameters (distribution_value request lacked provenance metadata)",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "provenance_missing_or_invalid:parameters"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0118",
+      "question": "Compute the value of the standard normal pdf at x = 0.",
+      "route": "STATISTICS",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "distribution_value",
+      "planner_request": {
+        "parameters": {
+          "distribution": "normal",
+          "parameters": {
+            "mu": 0,
+            "sigma": 1
+          },
+          "at": 0,
+          "quantity": "pdf"
+        },
+        "source_inputs": {
+          "distribution": "normal",
+          "parameters": {
+            "mu": 0,
+            "sigma": 1
+          },
+          "at": 0,
+          "quantity": "pdf"
+        },
+        "parameter_provenance": {
+          "distribution": "USER_GIVEN",
+          "parameters.mu": "USER_GIVEN",
+          "parameters.sigma": "USER_GIVEN",
+          "at": "USER_GIVEN",
+          "quantity": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "distribution": "normal",
+        "parameters": {
+          "mu": 0,
+          "sigma": 1
+        },
+        "at": 0,
+        "quantity": "pdf"
+      },
+      "provenance": {
+        "distribution": "USER_GIVEN",
+        "parameters.mu": "USER_GIVEN",
+        "parameters.sigma": "USER_GIVEN",
+        "at": "USER_GIVEN",
+        "quantity": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "not computable (planner schema failure)",
+      "expected": 0.3989422804014327,
+      "expected_tolerance": {
+        "atol": 1e-08,
+        "rtol": 1e-08
+      },
+      "failure_class": "PROVENANCE_MISSING",
+      "rationale": "schema gate: provenance_missing_or_invalid:parameters",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "provenance_missing_or_invalid:parameters"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0119",
+      "question": "Compute P(X = 2) for a Poisson distribution with mean 3.",
+      "route": "STATISTICS",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "distribution_value",
+      "planner_request": {
+        "parameters": {
+          "distribution": "poisson",
+          "parameters": {
+            "mu": 3
+          },
+          "at": 2,
+          "quantity": "pmf"
+        },
+        "source_inputs": {
+          "distribution": "poisson",
+          "mean": 3,
+          "k": 2
+        },
+        "parameter_provenance": {
+          "mu": "USER_GIVEN",
+          "at": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "distribution": "poisson",
+        "mean": 3,
+        "k": 2
+      },
+      "provenance": {
+        "mu": "USER_GIVEN",
+        "at": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "NOT_AUTHORITATIVE (provenance_missing_or_invalid)",
+      "expected": 0.22404180765538775,
+      "expected_tolerance": {
+        "atol": 1e-08,
+        "rtol": 1e-08
+      },
+      "failure_class": "PROVENANCE_MISSING",
+      "rationale": "schema gate: provenance missing for distribution/parameters/quantity fields",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "provenance_missing_or_invalid:distribution",
+          "provenance_missing_or_invalid:parameters",
+          "provenance_missing_or_invalid:quantity"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0120",
+      "question": "Compute P(X = 4) for a binomial distribution with n = 10 and p = 0.3.",
+      "route": "STATISTICS",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "distribution_value",
+      "planner_request": {
+        "parameters": {
+          "distribution": "binomial",
+          "parameters": {
+            "n": 10,
+            "p": 0.3
+          },
+          "at": 4,
+          "quantity": "pmf"
+        },
+        "source_inputs": {
+          "distribution": "binomial",
+          "n": 10,
+          "p": 0.3,
+          "at": 4
+        },
+        "parameter_provenance": {
+          "distribution": "USER_GIVEN",
+          "n": "USER_GIVEN",
+          "p": "USER_GIVEN",
+          "at": "USER_GIVEN",
+          "quantity": "DEFAULT_DECLARED_BY_TOOL"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "distribution": "binomial",
+        "n": 10,
+        "p": 0.3,
+        "at": 4
+      },
+      "provenance": {
+        "distribution": "USER_GIVEN",
+        "n": "USER_GIVEN",
+        "p": "USER_GIVEN",
+        "at": "USER_GIVEN",
+        "quantity": "DEFAULT_DECLARED_BY_TOOL"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": null,
+      "expected": 0.20012094899999988,
+      "expected_tolerance": {
+        "atol": 1e-08,
+        "rtol": 1e-08
+      },
+      "failure_class": "PROVENANCE_MISSING",
+      "rationale": "schema gate: provenance_missing_or_invalid:parameters",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "provenance_missing_or_invalid:parameters"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0121",
+      "question": "Compute P(X <= 1) for an exponential distribution with scale 2.",
+      "route": "STATISTICS",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "distribution_value",
+      "planner_request": {
+        "parameters": {
+          "distribution": "exponential",
+          "parameters": {
+            "scale": 2
+          },
+          "at": 1,
+          "quantity": "cdf"
+        },
+        "source_inputs": {
+          "distribution": "exponential",
+          "scale": 2,
+          "at": 1
+        },
+        "parameter_provenance": {
+          "distribution": "USER_GIVEN",
+          "scale": "USER_GIVEN",
+          "at": "USER_GIVEN",
+          "quantity": "DEFAULT_DECLARED_BY_TOOL"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "distribution": "exponential",
+        "scale": 2,
+        "at": 1
+      },
+      "provenance": {
+        "distribution": "USER_GIVEN",
+        "scale": "USER_GIVEN",
+        "at": "USER_GIVEN",
+        "quantity": "DEFAULT_DECLARED_BY_TOOL"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "NOT_AUTHORITATIVE",
+      "expected": 0.3934693402873666,
+      "expected_tolerance": {
+        "atol": 1e-08,
+        "rtol": 1e-08
+      },
+      "failure_class": "PROVENANCE_MISSING",
+      "rationale": "schema gate: provenance_missing_or_invalid:parameters",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "provenance_missing_or_invalid:parameters"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0125",
+      "question": "A one-sample t-test of the values (5.1, 4.9, 5.3, 5.0) against mu = 5: is the p-value greater than 0.05? Answer yes or no.",
+      "route": "STATISTICS",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "hypothesis_test",
+      "planner_request": {
+        "parameters": {
+          "test": "ttest_1samp",
+          "values": [
+            5.1,
+            4.9,
+            5.3,
+            5.0
+          ],
+          "null_value": 5.0,
+          "equal_var": true
+        },
+        "source_inputs": {
+          "values": [
+            5.1,
+            4.9,
+            5.3,
+            5.0
+          ],
+          "mu": 5
+        },
+        "parameter_provenance": {
+          "test": "USER_GIVEN",
+          "values": "USER_GIVEN",
+          "null_value": "USER_GIVEN",
+          "equal_var": "DEFAULT_DECLARED_BY_TOOL"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "values": [
+          5.1,
+          4.9,
+          5.3,
+          5.0
+        ],
+        "mu": 5
+      },
+      "provenance": {
+        "test": "USER_GIVEN",
+        "values": "USER_GIVEN",
+        "null_value": "USER_GIVEN",
+        "equal_var": "DEFAULT_DECLARED_BY_TOOL"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "NOT_AUTHORITATIVE",
+      "expected": null,
+      "expected_tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-06
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "fidelity gate: source key 'mu' vs parameter field 'null_value' — no_source_input:null_value + source_input_dropped:mu; field-aligned source_inputs pass the frozen gate",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0137",
+      "question": "Fit the model p0*x to the data x = (1, 2, 3), y = (2, 4, 6) and report the parameter value of p0.",
+      "route": "INTERPOLATION",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "curve_fit",
+      "planner_request": {
+        "parameters": {
+          "model": "p0*x",
+          "x": [
+            1,
+            2,
+            3
+          ],
+          "y": [
+            2,
+            4,
+            6
+          ],
+          "parameters": [
+            "p0"
+          ]
+        },
+        "source_inputs": {
+          "model": "p0*x",
+          "x": [
+            1,
+            2,
+            3
+          ],
+          "y": [
+            2,
+            4,
+            6
+          ]
+        },
+        "parameter_provenance": {
+          "p0": "MODEL_INVENTED"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "model": "p0*x",
+        "x": [
+          1,
+          2,
+          3
+        ],
+        "y": [
+          2,
+          4,
+          6
+        ]
+      },
+      "provenance": {
+        "p0": "MODEL_INVENTED"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "the computation could not be completed due to missing provenance for the input variables and parameters.**",
+      "expected": 2.0,
+      "expected_tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-06
+      },
+      "failure_class": "PROVENANCE_MISSING",
+      "rationale": "schema gate: provenance missing for model/x/y/parameters fields of a well-formed curve_fit request",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "provenance_missing_or_invalid:model",
+          "provenance_missing_or_invalid:x",
+          "provenance_missing_or_invalid:y",
+          "provenance_missing_or_invalid:parameters"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0147",
+      "question": "Sweep a + b over a: (0, 1), b: (0, 1, 2). How many combinations does the sweep evaluate?",
+      "route": "PARAMETER_SWEEP",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "NO_COMPUTE",
+      "planner_request": {
+        "parameters": {},
+        "source_inputs": {},
+        "parameter_provenance": {},
+        "expected_result_type": "object"
+      },
+      "source_inputs": {},
+      "provenance": {},
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": null,
+      "expected": 6.0,
+      "expected_tolerance": {
+        "atol": 0,
+        "rtol": 0
+      },
+      "failure_class": "NO_INVOCATION",
+      "rationale": "planner emitted NO_COMPUTE for a countable parameter-sweep enumeration ('how many combinations'); model answered 'infinite' from its own reading; gold 6.0",
+      "instrument_fields": {
+        "schema_status": null,
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0148",
+      "question": "Sweep a - b over a: (5, 6, 7), b: (1). How many combinations does the sweep evaluate?",
+      "route": "PARAMETER_SWEEP",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "parameter_sweep",
+      "planner_request": {
+        "parameters": {
+          "expression": "a - b",
+          "sweeps": {
+            "a": [
+              5,
+              6,
+              7
+            ],
+            "b": [
+              1
+            ]
+          }
+        },
+        "source_inputs": {
+          "sweeps": {
+            "a": [
+              5,
+              6,
+              7
+            ],
+            "b": [
+              1
+            ]
+          }
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "sweeps": "USER_GIVEN"
+        },
+        "expected_result_type": "vector"
+      },
+      "source_inputs": {
+        "sweeps": {
+          "a": [
+            5,
+            6,
+            7
+          ],
+          "b": [
+            1
+          ]
+        }
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "sweeps": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": null,
+      "expected": 3.0,
+      "expected_tolerance": {
+        "atol": 0,
+        "rtol": 0
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "fidelity gate: expression absent from source_inputs (no_source_input:expression); sweep grids were fine",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0149",
+      "question": "Sweep a * b over a: (2, 4), b: (3, 5). How many combinations does the sweep evaluate?",
+      "route": "PARAMETER_SWEEP",
+      "necessity": "COMPUTE_REQUIRED",
+      "operation": "parameter_sweep",
+      "planner_request": {
+        "parameters": {
+          "expression": "a * b",
+          "sweeps": {
+            "a": [
+              2,
+              4
+            ],
+            "b": [
+              3,
+              5
+            ]
+          }
+        },
+        "source_inputs": {
+          "sweeps": {
+            "a": [
+              2,
+              4
+            ],
+            "b": [
+              3,
+              5
+            ]
+          }
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "sweeps": "USER_GIVEN"
+        },
+        "expected_result_type": "vector"
+      },
+      "source_inputs": {
+        "sweeps": {
+          "a": [
+            2,
+            4
+          ],
+          "b": [
+            3,
+            5
+          ]
+        }
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "sweeps": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "** The computation could not be completed due to a lack of a valid, sourceable expression (no_source_input:expression). The request does not preserve the given values and is not executable",
+      "expected": 4.0,
+      "expected_tolerance": {
+        "atol": 0,
+        "rtol": 0
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "fidelity gate: no_source_input:expression — same pattern",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0157",
+      "question": "The speed of light is c = 3.0e8 m/s. How far does light travel in 1 microsecond, in meters?",
+      "route": "NO_COMPUTE",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "3.0e8",
+          "lower": 0,
+          "upper": 1e-06
+        },
+        "source_inputs": {
+          "speed_of_light": "c = 3.0e8 m/s",
+          "time": "1 microsecond"
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "speed_of_light": "c = 3.0e8 m/s",
+        "time": "1 microsecond"
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "COMputation failed due to parameter fidelity failure — speed of light input was not preserved.**",
+      "expected": 300.0,
+      "expected_tolerance": {
+        "atol": 0.0003,
+        "rtol": 1e-06
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "fidelity gate: constant product 3.0e8 as integrand; source keys named by phrase ('speed_of_light') not parameter fields",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0158",
+      "question": "Using g = 9.81 m/s^2 for free fall from rest, what distance in meters is covered in 2 seconds?",
+      "route": "NO_COMPUTE",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "9.81 * t",
+          "lower": 0,
+          "upper": 2
+        },
+        "source_inputs": {
+          "g": "9.81 m/s^2",
+          "t": "2 seconds"
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "g": "9.81 m/s^2",
+        "t": "2 seconds"
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "** The computation could not be completed due to a parameter fidelity failure — the value of gravitational acceleration $ g = 9.81 \\, \\text{m/s}^2 $ was not preserved in the request",
+      "expected": 19.62,
+      "expected_tolerance": {
+        "atol": 1.962e-05,
+        "rtol": 1e-06
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "fidelity gate: 9.81*t integrand with phrase-keyed sources",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0161",
+      "question": "The Earth-Moon distance is 384400 km. How long in seconds does light take to travel that distance at c = 3.0e5 km/s?",
+      "route": "NO_COMPUTE",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "t",
+          "lower": 0,
+          "upper": 384400
+        },
+        "source_inputs": {
+          "Earth-Moon distance": "384400 km",
+          "c": "3.0e5 km/s"
+        },
+        "parameter_provenance": {
+          "expression": "MODEL_INVENTED",
+          "lower": "RETRIEVED_VERIFIED",
+          "upper": "RETRIEVED_VERIFIED"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "Earth-Moon distance": "384400 km",
+        "c": "3.0e5 km/s"
+      },
+      "provenance": {
+        "expression": "MODEL_INVENTED",
+        "lower": "RETRIEVED_VERIFIED",
+        "upper": "RETRIEVED_VERIFIED"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "1.28133**",
+      "expected": 1.2813333333333334,
+      "expected_tolerance": {
+        "atol": 1.2813333333333333e-06,
+        "rtol": 1e-06
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "schema gate: model_invented_on_protected:expression 't' over [0,384400] — T4-level division (384400/3.0e5); SciComp lane was wrong; model's own arithmetic 1.28133 was near-correct",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "model_invented_on_protected:expression"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0163",
+      "question": "How much energy in joules is needed to heat 0.5 kg of water by 20 K, using c = 4184 J/(kg K)?",
+      "route": "NO_COMPUTE",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "4184 * 0.5 * 20",
+          "lower": 0,
+          "upper": 1
+        },
+        "source_inputs": {
+          "mass": "0.5 kg",
+          "temperature_change": "20 K",
+          "c": "4184 J/(kg K)"
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "RETRIEVED_VERIFIED",
+          "upper": "RETRIEVED_VERIFIED"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "mass": "0.5 kg",
+        "temperature_change": "20 K",
+        "c": "4184 J/(kg K)"
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "RETRIEVED_VERIFIED",
+        "upper": "RETRIEVED_VERIFIED"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "** The computation could not be completed because the mass value was not preserved in the input. A corrected input with the full set of given values (including mass) is required",
+      "expected": 41840.0,
+      "expected_tolerance": {
+        "atol": 0.041839999999999995,
+        "rtol": 1e-06
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "fidelity gate: product 4184*0.5*20 with phrase-keyed sources; field-aligned construction passes the frozen gate",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0166",
+      "question": "A satellite orbits at radius 7000 km around a body with GM = 3.986e14 m^3/s^2. What is its orbital speed in m/s (v = sqrt(GM/r))?",
+      "route": "NO_COMPUTE",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {},
+        "source_inputs": {},
+        "parameter_provenance": {},
+        "expected_result_type": "object"
+      },
+      "source_inputs": {},
+      "provenance": {},
+      "engine_status": "INVALID_INPUT",
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "7546",
+      "expected": 7546.049108166282,
+      "expected_tolerance": {
+        "atol": 0.0075460491081662815,
+        "rtol": 1e-06
+      },
+      "failure_class": "PLANNER_SCHEMA_FAILURE",
+      "rationale": "planner emitted empty parameters with compute_required=false then asserted its own rounded 7546 (gold 7546.049, atol 0.0075) — a rounding loss on an unverified value",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": true
+      }
+    },
+    {
+      "task_id": "msc-v1-0169",
+      "question": "Planck's constant is h = 6.626e-34 J*s. A photon has frequency 5.0e14 Hz. What is its energy in joules?",
+      "route": "NO_COMPUTE",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "6.626e-34 * 5.0e14",
+          "lower": 0,
+          "upper": 1
+        },
+        "source_inputs": {
+          "Planck's constant": "h = 6.626e-34 J*s",
+          "frequency": "5.0e14 Hz"
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "Planck's constant": "h = 6.626e-34 J*s",
+        "frequency": "5.0e14 Hz"
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "NOT_AUTHORITATIVE (parameter fidelity failure: Planck's constant not provided or preserved)",
+      "expected": 3.3129999999999997e-19,
+      "expected_tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-06
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "fidelity gate: h*nu product with phrase-keyed sources",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0172",
+      "question": "Using the ideal gas law with n = 1 mol, R = 8.314 J/(mol K), and T = 273 K, what is the pressure in Pa in a 0.0224 m^3 volume?",
+      "route": "NO_COMPUTE",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "8.314 * 273 / V",
+          "lower": 0,
+          "upper": 0.0224
+        },
+        "source_inputs": {
+          "n": "1 mol",
+          "R": "8.314 J/(mol K)",
+          "T": "273 K",
+          "volume": "0.0224 m^3"
+        },
+        "parameter_provenance": {
+          "expression": "MODEL_INVENTED",
+          "lower": "RETRIEVED_VERIFIED",
+          "upper": "RETRIEVED_VERIFIED"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "n": "1 mol",
+        "R": "8.314 J/(mol K)",
+        "T": "273 K",
+        "volume": "0.0224 m^3"
+      },
+      "provenance": {
+        "expression": "MODEL_INVENTED",
+        "lower": "RETRIEVED_VERIFIED",
+        "upper": "RETRIEVED_VERIFIED"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "Computation could not be completed due to planner schema failure.**",
+      "expected": 101326.87500000001,
+      "expected_tolerance": {
+        "atol": 0.10132687500000001,
+        "rtol": 1e-06
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "schema gate: model_invented_on_protected:expression — ideal-gas arithmetic sent as definite_integral of 8.314*273/V",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_FAIL",
+        "schema_failures": [
+          "model_invented_on_protected:expression"
+        ],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    },
+    {
+      "task_id": "msc-v1-0175",
+      "question": "A spring with k = 200 N/m is stretched 0.05 m. What energy in joules is stored (E = 0.5 k x^2)?",
+      "route": "NO_COMPUTE",
+      "necessity": "COMPUTE_HELPFUL",
+      "operation": "definite_integral",
+      "planner_request": {
+        "parameters": {
+          "expression": "0.5 * 200 * x**2",
+          "lower": 0,
+          "upper": 0.05
+        },
+        "source_inputs": {
+          "k": "200 N/m",
+          "x": "0.05 m"
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar"
+      },
+      "source_inputs": {
+        "k": "200 N/m",
+        "x": "0.05 m"
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "engine_status": null,
+      "raw_engine_result": null,
+      "diagnostics": null,
+      "adopted_value": null,
+      "adoption_taxonomy_instrument": null,
+      "final_answer": "The computation could not be completed due to parameter fidelity failure — the spring constant $ k $ was dropped and not preserved.**",
+      "expected": 0.25,
+      "expected_tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-06
+      },
+      "failure_class": "PROVENANCE_WRONG",
+      "rationale": "fidelity gate: 0.5*200*x**2 integrated — wrong formula for E=0.5kx^2 (integral gives 0.0083, gold 0.25); also phrase-keyed sources",
+      "instrument_fields": {
+        "schema_status": "PLANNER_SCHEMA_OK",
+        "schema_failures": [],
+        "fidelity_status_instrument": null,
+        "mutated": false,
+        "guard_blocked": false,
+        "invoked": false
+      }
+    }
+  ]
+}
