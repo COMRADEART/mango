@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SUM = ROOT / "evaluations/t14r/runs/t14r-scicomp-B/summary.json"
+SUM = ROOT / "evaluations/t14r/runs/t14r-scicomp-B2/summary.json"
 OUT = ROOT / "evaluations/t14r/scicomp_decision.json"
 
 NUMERIC_FLOOR = 0.848
@@ -27,7 +27,8 @@ def main() -> int:
     s = json.loads(SUM.read_text(encoding="utf-8"))
     silent = s.get("silent_mutation_pass_count", 0) or 0
     if not silent:
-        pred = ROOT / "evaluations/t14r/runs/t14r-scicomp-B/predictions.jsonl"
+        pred = ROOT / ("evaluations/t14r/runs/t14r-scicomp-B2/"
+                       "predictions.jsonl")
         if pred.exists():
             silent = sum(
                 1 for line in pred.read_text(encoding="utf-8").splitlines()

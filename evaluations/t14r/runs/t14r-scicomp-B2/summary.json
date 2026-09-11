@@ -1,0 +1,30 @@
+{
+  "questions": 206,
+  "kinds": {
+    "numeric_oracle": 118,
+    "conceptual": 43,
+    "mixed": 20,
+    "adversarial": 25
+  },
+  "numeric_accuracy": 0.8188405797101449,
+  "conceptual_discipline": 1.0,
+  "adversarial_handled_correctly": 0.96,
+  "adversarial_false_answer_rate": 0.0,
+  "invocations": 132,
+  "valid_call_rate": 1.0,
+  "compute_success_rate": 0.7727272727272727,
+  "model_adoption_rate": 0.9313725490196079,
+  "over_compute_rate": 0.03398058252427184,
+  "adoption_taxonomy_histogram": {
+    "ADOPTED": 96,
+    "RESULT_IGNORED": 2,
+    "RESULT_MISREAD": 4
+  },
+  "median_llm_ms": 32253.7,
+  "arm": "B-T14R",
+  "suite": "scicomp",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "suite_sha256": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+  "label": "t14r-scicomp-B2",
+  "pipeline_exception_count": 0
+}

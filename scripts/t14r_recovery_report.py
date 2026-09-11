@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 T14 = ROOT / "evaluations/t14/runs/t14a-scicomp-B/predictions.jsonl"
-T14R = ROOT / "evaluations/t14r/runs/t14r-scicomp-B/predictions.jsonl"
+T14R = ROOT / "evaluations/t14r/runs/t14r-scicomp-B2/predictions.jsonl"
 FORENSICS = ROOT / "evaluations/t14r/t14_numeric_failure_analysis.json"
 OUT = ROOT / "evaluations/t14r/replay_recovery_report.json"
 
