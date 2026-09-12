@@ -110,16 +110,28 @@ def main() -> int:
     else:
         layers["correction"] = {"status": "MISSING"}
 
-    fid = jload(ROOT / "evaluations/t14r/runs/t14r-scicomp-B/summary.json")
+    fid = jload(ROOT / "evaluations/t14r/runs/t14r-scicomp-B2/summary.json")
     mut = jload(ROOT / "evaluations/t14r/mutation_safety_probe.json")
     if fid:
-        silent = fid.get("silent_mutation_pass_count", 1)
+        silent = fid.get("silent_mutation_pass_count")
+        if silent is None:
+            # the B2 runner (scicomp suite) does not write the summary
+            # key — count it from the rows, as the decision script does
+            pred = (ROOT / "evaluations/t14r/runs/t14r-scicomp-B2/"
+                    "predictions.jsonl")
+            silent = sum(
+                1 for line in pred.read_text(encoding="utf-8").splitlines()
+                if line.strip()
+                and json.loads(line).get("silent_mutation_pass"))
+        probe_ok = bool(mut) and all(
+            s.get("mutations_still_rejected") == s.get("n_mutations")
+            and not s.get("exceptions")
+            for s in (mut.get("suites") or []))
         layers["scicomp_fidelity"] = {
-            "status": "PASS" if silent == 0 else "FAIL",
+            "status": "PASS" if silent == 0 and probe_ok else "FAIL",
             "silent_mutation_pass_count": silent,
-            "mutation_safety_probe":
-                (mut or {}).get("status",
-                                (mut or {}).get("summary", "n/a")),
+            "mutation_safety_probe": ("PASS" if probe_ok else
+                                      ("MISSING" if not mut else "FAIL")),
         }
     else:
         layers["scicomp_fidelity"] = {"status": "MISSING"}
