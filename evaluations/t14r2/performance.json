@@ -1,0 +1,26 @@
+{
+  "milestone": "T14R2.20 — performance",
+  "recorded_at": "2026-09-12T14:10:47.971335+00:00",
+  "suite_questions": 206,
+  "offline_layer_latency_us": {
+    "recognize": {
+      "median_us": 5.4,
+      "p95_us": 47.6,
+      "max_us": 297.6
+    },
+    "select": {
+      "median_us": 5.2,
+      "p95_us": 50.4,
+      "max_us": 95.4
+    }
+  },
+  "llm_pipeline_median_ms": {
+    "t14r_B2": 32253.7,
+    "t14r2_B3": 20276.6
+  },
+  "microbench": {
+    "cases": 108,
+    "mode": "fully offline, no GPU"
+  },
+  "note": "layer cost is microseconds against a ~30 s median LLM call; the deterministic layer adds no measurable pipeline latency"
+}

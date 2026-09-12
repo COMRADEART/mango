@@ -1,0 +1,105 @@
+{
+  "label": "t14r2-protect-cap",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": null,
+  "arm": "model",
+  "suite": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t8\\capacity-suite\\v1",
+  "suite_version": "mango-capacity-eval-v1",
+  "recorded_at": "2026-09-12T17:48:39.927494+00:00",
+  "ok": true,
+  "generation": {
+    "profile": "qwen3-card-non-thinking",
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "max_new_tokens": 1024,
+    "seed": 42,
+    "thinking_mode": "off",
+    "chat_template": "tokenizer.apply_chat_template(add_generation_prompt)",
+    "stop": null,
+    "note": "profile selected by model family BEFORE evaluation (upstream card guidance); fixed seed; never tuned after seeing final evaluation scores"
+  },
+  "n_questions": 131,
+  "capability_vector": {
+    "overall": 0.8571428571428571,
+    "math_macro": 0.8620689655172413,
+    "science_macro": 0.8666666666666667,
+    "cross_domain": 0.8333333333333334,
+    "compositional": 0.75,
+    "counterfactual": 0.8333333333333334,
+    "distractor": 0.9166666666666666,
+    "uncertainty": 0.761904761904762,
+    "decomposition": 0.4583333333333333,
+    "self_correction": -0.17647058823529413,
+    "tool_routing": 0.4583333333333333,
+    "retrieval_routing": null,
+    "extraction": 1.0
+  },
+  "metrics": {
+    "overall": 0.8571428571428571,
+    "math_macro": 0.8620689655172413,
+    "science_macro": 0.8666666666666667,
+    "counterfactual": 0.8333333333333334,
+    "compositional": 0.75,
+    "cross_domain": 0.8333333333333334,
+    "uncertainty": {
+      "insufficient_info_precision": 0.8888888888888888,
+      "insufficient_info_recall": 0.6666666666666666,
+      "insufficient_info_f1": 0.761904761904762,
+      "false_uncertainty_count": 1,
+      "false_uncertainty_rate": 0.008403361344537815,
+      "hallucinated_answer_rate": 0.25
+    },
+    "distractor": {
+      "clean_accuracy": 0.9166666666666666,
+      "distractor_accuracy": 0.9166666666666666,
+      "robustness_delta": 0.0,
+      "robustness_ratio": 1.0
+    },
+    "decomposition": {
+      "subset": 24,
+      "raw_valid_rate": 0.4583333333333333,
+      "repaired_valid_rate": 0.4583333333333333,
+      "semantic_valid_rate": 0.4583333333333333,
+      "executable_rate": 0.4583333333333333,
+      "unnecessary_plan_rate": 0.0
+    },
+    "self_correction": {
+      "corrected_wrong": 8,
+      "still_wrong": 9,
+      "preserved_correct": 1,
+      "overcorrections": 11,
+      "n_wrong_probed": 17,
+      "n_correct_probed": 12,
+      "net_benefit": -0.17647058823529413
+    },
+    "spontaneous_plan_rate": 0.0
+  },
+  "hardware": {
+    "load": {
+      "ok": true,
+      "quantization": "4bit-nf4-double",
+      "load_vram_bytes": 2716700672,
+      "peak_vram_bytes": 2716700672,
+      "reserved_vram_bytes": 2732589056,
+      "smoke_latency_s": 0.38
+    },
+    "vram_after_run": {
+      "allocated_mib": 2561.7,
+      "reserved_mib": 4016.0,
+      "peak_allocated_mib": 3492.6,
+      "peak_reserved_mib": 4016.0
+    },
+    "ram": {
+      "ram_total_gb": 31.61,
+      "ram_used_gb": 14.72
+    },
+    "disk_size_gb": 7.51,
+    "total_gen_tokens": 51907,
+    "total_gen_latency_s": 4877.5,
+    "mean_tokens_per_s": 10.64,
+    "quantization": "4bit-nf4-double-quant",
+    "cpu_offload": "none (device_map=auto, all layers on GPU unless OOM)"
+  }
+}

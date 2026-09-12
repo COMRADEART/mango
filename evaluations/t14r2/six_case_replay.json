@@ -1,0 +1,287 @@
+{
+  "milestone": "T14R2.13 — six-case replay",
+  "recorded_at": "2026-09-12T12:46:46.303853+00:00",
+  "runner": "scripts/t14r2_scicomp_eval.py (Arm-B + ODE intent layer)",
+  "cases": [
+    "msc-v1-0081",
+    "msc-v1-0082",
+    "msc-v1-0083",
+    "msc-v1-0084",
+    "msc-v1-0087",
+    "msc-v1-0088",
+    "msc-v1-0085"
+  ],
+  "rows": [
+    {
+      "eval_id": "msc-v1-0081",
+      "question": "A population grows as dP/dt = 0.3*P with P(0) = 2 (in hundreds). What is P at t = 5 (in hundreds)?",
+      "gold_expected": 8.963378140676129,
+      "atol": 0.0001,
+      "rtol": 1e-05,
+      "correct": true,
+      "final_answer": "8.963380137540854",
+      "necessity": "COMPUTE_REQUIRED",
+      "guard_blocked": false,
+      "ode_intent": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "P"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "planner_selected_operation": "solve_ode",
+      "schema_status": "PLANNER_SCHEMA_OK",
+      "schema_failures": [],
+      "fidelity_status": null,
+      "fidelity_failures": [],
+      "invoked": true,
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "contract_authoritative_value": [
+        8.963380137540854
+      ],
+      "adopted": true,
+      "adoption_taxonomy": "ADOPTED",
+      "pipeline_exception": null,
+      "wall_ms": 13559.4
+    },
+    {
+      "eval_id": "msc-v1-0082",
+      "question": "A radioactive sample decays with rate constant 0.02 per year. Starting from 10 grams, how many grams remain after 100 years?",
+      "gold_expected": 1.353352832366127,
+      "atol": 0.0001,
+      "rtol": 1e-05,
+      "correct": true,
+      "final_answer": "[1.3533535180504732]",
+      "necessity": "COMPUTE_HELPFUL",
+      "guard_blocked": false,
+      "ode_intent": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [],
+        "source_kind": "verbal_rate_law"
+      },
+      "planner_selected_operation": "solve_ode",
+      "schema_status": "PLANNER_SCHEMA_OK",
+      "schema_failures": [],
+      "fidelity_status": null,
+      "fidelity_failures": [],
+      "invoked": true,
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "contract_authoritative_value": [
+        1.3533535180504732
+      ],
+      "adopted": true,
+      "adoption_taxonomy": "ADOPTED",
+      "pipeline_exception": null,
+      "wall_ms": 14160.4
+    },
+    {
+      "eval_id": "msc-v1-0083",
+      "question": "dQ/dt = -Q/3 with Q(0) = 9. What is Q at t = 6?",
+      "gold_expected": 1.2180175491295144,
+      "atol": 0.0001,
+      "rtol": 1e-05,
+      "correct": true,
+      "final_answer": "[1.2180181662921679]",
+      "necessity": "COMPUTE_REQUIRED",
+      "guard_blocked": false,
+      "ode_intent": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "Q"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "planner_selected_operation": "solve_ode",
+      "schema_status": "PLANNER_SCHEMA_OK",
+      "schema_failures": [],
+      "fidelity_status": null,
+      "fidelity_failures": [],
+      "invoked": true,
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "contract_authoritative_value": [
+        1.2180181662921679
+      ],
+      "adopted": true,
+      "adoption_taxonomy": "ADOPTED",
+      "pipeline_exception": null,
+      "wall_ms": 13650.1
+    },
+    {
+      "eval_id": "msc-v1-0084",
+      "question": "A capacitor discharges: dV/dt = -V/RC with RC = 2 s and V(0) = 12 V. What is V at t = 4 s?",
+      "gold_expected": 1.6240233988393524,
+      "atol": 0.0001,
+      "rtol": 1e-05,
+      "correct": true,
+      "final_answer": "[1.6240241921327283] V",
+      "necessity": "COMPUTE_REQUIRED",
+      "guard_blocked": false,
+      "ode_intent": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "V"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "planner_selected_operation": "solve_ode",
+      "schema_status": "PLANNER_SCHEMA_OK",
+      "schema_failures": [],
+      "fidelity_status": null,
+      "fidelity_failures": [],
+      "invoked": true,
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "contract_authoritative_value": [
+        1.6240241921327283
+      ],
+      "adopted": true,
+      "adoption_taxonomy": "ADOPTED",
+      "pipeline_exception": null,
+      "wall_ms": 15574.6
+    },
+    {
+      "eval_id": "msc-v1-0087",
+      "question": "A ball dropped from rest accelerates at g = 9.8 m/s^2: dv/dt = 9.8, v(0) = 0. What is its velocity at t = 3 s?",
+      "gold_expected": 29.4,
+      "atol": 1e-06,
+      "rtol": 1e-06,
+      "correct": true,
+      "final_answer": "29.4",
+      "necessity": "COMPUTE_REQUIRED",
+      "guard_blocked": false,
+      "ode_intent": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "minimize",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "v"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "planner_selected_operation": "solve_ode",
+      "schema_status": "PLANNER_SCHEMA_OK",
+      "schema_failures": [],
+      "fidelity_status": null,
+      "fidelity_failures": [],
+      "invoked": true,
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "contract_authoritative_value": [
+        29.4
+      ],
+      "adopted": true,
+      "adoption_taxonomy": "ADOPTED",
+      "pipeline_exception": null,
+      "wall_ms": 21732.7
+    },
+    {
+      "eval_id": "msc-v1-0088",
+      "question": "dN/dt = r*N with r = 0.07 per year and N(0) = 1000. What is N after 10 years (to the nearest integer)?",
+      "gold_expected": 2013.7527074704767,
+      "atol": 1.0,
+      "rtol": 0.0,
+      "correct": true,
+      "final_answer": "[2014]",
+      "necessity": "COMPUTE_REQUIRED",
+      "guard_blocked": false,
+      "ode_intent": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "N"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "planner_selected_operation": "solve_ode",
+      "schema_status": "PLANNER_SCHEMA_OK",
+      "schema_failures": [],
+      "fidelity_status": null,
+      "fidelity_failures": [],
+      "invoked": true,
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "contract_authoritative_value": [
+        2013.7528770713855
+      ],
+      "adopted": false,
+      "adoption_taxonomy": "ADOPTED",
+      "pipeline_exception": null,
+      "wall_ms": 18171.1
+    },
+    {
+      "eval_id": "msc-v1-0085",
+      "question": "For d2x/dt2 = -4*x with x(0)=1 and dx/dt(0)=0, what is x at t = pi/2 (use the exact analytic solution)?",
+      "gold_expected": -1.0,
+      "atol": 0.0001,
+      "rtol": 0.0001,
+      "correct": true,
+      "final_answer": "FINAL ANSWER: -1",
+      "necessity": "COMPUTE_REQUIRED",
+      "guard_blocked": false,
+      "ode_intent": {
+        "fired": true,
+        "reason": "SECOND_ORDER_SYSTEM_CONVERSION",
+        "prior_operation": "solve_ode",
+        "operation": "solve_ode",
+        "order": 2,
+        "state_count": 2,
+        "dep_vars": [
+          "x"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "planner_selected_operation": "solve_ode",
+      "schema_status": "PLANNER_SCHEMA_OK",
+      "schema_failures": [],
+      "fidelity_status": null,
+      "fidelity_failures": [],
+      "invoked": true,
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "contract_authoritative_value": [
+        -0.999999624351906,
+        3.0285867182178183e-07
+      ],
+      "adopted": true,
+      "adoption_taxonomy": "ADOPTED",
+      "pipeline_exception": null,
+      "wall_ms": 70510.9
+    }
+  ],
+  "recovered": 7,
+  "required": 7,
+  "all_fired": true,
+  "gates_clean": true,
+  "status": "PASS",
+  "gates_clean_instrument_note": "frozen runner records fidelity_status only on failure paths; None = happy path (gate passed)"
+}

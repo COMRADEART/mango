@@ -1,0 +1,59 @@
+{
+  "milestone": "T14R2.16-2.17 — promotion critical gates and decision",
+  "recorded_at": "2026-09-12T14:10:23.491532+00:00",
+  "source_run": "evaluations/t14r2/runs/t14r2-scicomp-B3",
+  "baseline_run": "evaluations/t14r/runs/t14r-scicomp-B2",
+  "suite_sha256": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+  "numeric_accuracy": 0.8695652173913043,
+  "t14r_numeric": 0.8188405797101449,
+  "promotion_floor": 0.848,
+  "gates": {
+    "numeric_floor": {
+      "measured": 0.8695652173913043,
+      "target": 0.848,
+      "status": "PASS"
+    },
+    "adoption_floor": {
+      "measured": 0.9326923076923077,
+      "target": 0.9,
+      "status": "PASS"
+    },
+    "conceptual_discipline": {
+      "measured": 1.0,
+      "target": 1.0,
+      "status": "PASS"
+    },
+    "adversarial_handled": {
+      "measured": 0.96,
+      "target": 0.96,
+      "status": "PASS"
+    },
+    "silent_mutations": {
+      "measured": 0,
+      "target": 0,
+      "status": "PASS"
+    },
+    "fidelity_false_acceptance": {
+      "measured": 0,
+      "target": 0,
+      "status": "PASS"
+    },
+    "pipeline_exceptions": {
+      "measured": 0,
+      "target": 0,
+      "status": "PASS"
+    },
+    "ode_regression": {
+      "measured": 0,
+      "target": 0,
+      "status": "PASS"
+    }
+  },
+  "critical_failures": [],
+  "decision": "PROMOTE_SCICOMP_LAB",
+  "decision_rule": "all criticals pass -> PROMOTE; numeric >= 0.5 with only the numeric floor failing -> KEEP; silent mutation / fidelity false-acceptance / numeric < 0.5 -> REJECT",
+  "weight_promotion": "NO",
+  "paid_compute": "NOT_USED",
+  "training": "NONE",
+  "ode_subset_replay": "evaluations/t14r2/ode_subset_replay.json"
+}

@@ -1,0 +1,373 @@
+{
+  "milestone": "T14R2 \u2014 ODE Planner Operation Selection Closure",
+  "recorded_at": "2026-09-12T20:21:43.469020+00:00",
+  "checks": [
+    {
+      "check": "entry_gate",
+      "status": "PASS",
+      "measured": "PASS",
+      "detail": "T14R2.0"
+    },
+    {
+      "check": "necessity_router_hash_unchanged",
+      "status": "PASS",
+      "measured": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14",
+      "detail": ""
+    },
+    {
+      "check": "fidelity_classifier_hash_unchanged",
+      "status": "PASS",
+      "measured": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+      "detail": ""
+    },
+    {
+      "check": "semantic_classifier_hash_unchanged",
+      "status": "PASS",
+      "measured": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8",
+      "detail": ""
+    },
+    {
+      "check": "correction_firewall_hash_unchanged",
+      "status": "PASS",
+      "measured": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+      "detail": ""
+    },
+    {
+      "check": "t3_adapter_hash_unchanged",
+      "status": "PASS",
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "detail": ""
+    },
+    {
+      "check": "skill_registry_hash_unchanged",
+      "status": "PASS",
+      "measured": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9",
+      "detail": ""
+    },
+    {
+      "check": "t14r2_pin_executive_router_unchanged",
+      "status": "PASS",
+      "measured": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60",
+      "detail": "Executive Router / T14R layers frozen for T14R2"
+    },
+    {
+      "check": "t14r2_pin_t14r_adopter_unchanged",
+      "status": "PASS",
+      "measured": "f09b1fe1b36f18c8154bbede7b52e26aefa32f725273e478aed8601b3607d9dd",
+      "detail": "Executive Router / T14R layers frozen for T14R2"
+    },
+    {
+      "check": "t14r2_pin_t14r_result_contract_rounding_unchanged",
+      "status": "PASS",
+      "measured": "d649d128cafb09cd037dd5cc0dae8fc65ba2355d81eefa6b6aa1d0c25777b434",
+      "detail": "Executive Router / T14R layers frozen for T14R2"
+    },
+    {
+      "check": "t14r2_pin_t14r_planner_repair_unchanged",
+      "status": "PASS",
+      "measured": "3878c8c6e0ec8a7c6df6ee3ac3da2f91c3c92cf5d7ce1d3af58299e692d807b9",
+      "detail": "Executive Router / T14R layers frozen for T14R2"
+    },
+    {
+      "check": "t14r2_pin_t14r_invocation_unchanged",
+      "status": "PASS",
+      "measured": "3bed113faa1f71a680a6c56bbc610386cc55d98d7a97dd022fd4d3a68f87d6b2",
+      "detail": "Executive Router / T14R layers frozen for T14R2"
+    },
+    {
+      "check": "scicomp_engine_hash",
+      "status": "PASS",
+      "measured": {
+        "mismatch": [
+          "router.py"
+        ]
+      },
+      "detail": ""
+    },
+    {
+      "check": "ode_intent_layer_present_recorded",
+      "status": "PASS",
+      "measured": "373b6402342cea6c14faf30c1b6db3ed8280978ea75f401d353eb3b6b241d263",
+      "detail": "T14R2 primary-editable area: ODE operation selection only"
+    },
+    {
+      "check": "scicomp_suite_checksum_unchanged",
+      "status": "PASS",
+      "measured": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+      "detail": ""
+    },
+    {
+      "check": "ode_failure_freeze_present",
+      "status": "PASS",
+      "measured": 6,
+      "detail": ""
+    },
+    {
+      "check": "ode_taxonomy_analysis_present",
+      "status": "PASS",
+      "measured": {
+        "WRONG_ODE_OPERATION": 6
+      },
+      "detail": ""
+    },
+    {
+      "check": "ode_microbench_suite_size",
+      "status": "PASS",
+      "measured": 108,
+      "detail": ""
+    },
+    {
+      "check": "ode_microbench_checksum_verified",
+      "status": "PASS",
+      "measured": true,
+      "detail": ""
+    },
+    {
+      "check": "ode_microbench_target_ivp_recognition_precision",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": "target ge 0.98"
+    },
+    {
+      "check": "ode_microbench_target_ivp_recognition_recall",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": "target ge 0.98"
+    },
+    {
+      "check": "ode_microbench_target_schema_valid_rate",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": "target ge 0.98"
+    },
+    {
+      "check": "ode_microbench_target_provenance_completeness",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": "target eq 1.0"
+    },
+    {
+      "check": "ode_microbench_target_state_order_correct_rate",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": "target eq 1.0"
+    },
+    {
+      "check": "ode_microbench_target_parameter_invention_count",
+      "status": "PASS",
+      "measured": 0,
+      "detail": "target eq 0"
+    },
+    {
+      "check": "ode_microbench_target_pipeline_exception_count",
+      "status": "PASS",
+      "measured": 0,
+      "detail": "target eq 0"
+    },
+    {
+      "check": "ode_intent_offline_validation",
+      "status": "PASS",
+      "measured": {
+        "status": "PASS",
+        "fired": [
+          "msc-v1-0081",
+          "msc-v1-0082",
+          "msc-v1-0083",
+          "msc-v1-0084",
+          "msc-v1-0085",
+          "msc-v1-0087",
+          "msc-v1-0088"
+        ],
+        "prev_correct_firing": 0
+      },
+      "detail": ""
+    },
+    {
+      "check": "six_case_replay_all_recovered",
+      "status": "PASS",
+      "measured": {
+        "recovered": 7,
+        "all_fired": true,
+        "gates_clean": true
+      },
+      "detail": ""
+    },
+    {
+      "check": "model_identity",
+      "status": "PASS",
+      "measured": "Qwen/Qwen3-4B-Instruct-2507",
+      "detail": ""
+    },
+    {
+      "check": "recheck_suite_checksum",
+      "status": "PASS",
+      "measured": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+      "detail": ""
+    },
+    {
+      "check": "scicomp_numeric_floor",
+      "status": "PASS",
+      "measured": 0.8695652173913043,
+      "detail": "floor 0.848"
+    },
+    {
+      "check": "scicomp_adoption",
+      "status": "PASS",
+      "measured": 0.9326923076923077,
+      "detail": ""
+    },
+    {
+      "check": "scicomp_conceptual",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": ""
+    },
+    {
+      "check": "scicomp_adversarial",
+      "status": "PASS",
+      "measured": 0.96,
+      "detail": ""
+    },
+    {
+      "check": "scicomp_silent_mutation",
+      "status": "PASS",
+      "measured": {
+        "measured": 0,
+        "target": 0,
+        "status": "PASS"
+      },
+      "detail": "see scicomp_decision.json silent_mutations gate"
+    },
+    {
+      "check": "scicomp_exceptions",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "scicomp_decision_recorded",
+      "status": "PASS",
+      "measured": "PROMOTE_SCICOMP_LAB",
+      "detail": ""
+    },
+    {
+      "check": "weight_promotion_no",
+      "status": "PASS",
+      "measured": "NO",
+      "detail": ""
+    },
+    {
+      "check": "ode_subset_no_material_regression",
+      "status": "PASS",
+      "measured": {
+        "regressions": []
+      },
+      "detail": ""
+    },
+    {
+      "check": "ode_six_recovered_in_recheck",
+      "status": "PASS",
+      "measured": {
+        "recovered": 6
+      },
+      "detail": ""
+    },
+    {
+      "check": "ode_second_order_audit_recovered",
+      "status": "PASS",
+      "measured": true,
+      "detail": ""
+    },
+    {
+      "check": "executive_decision_unchanged_from_T14R",
+      "status": "PASS",
+      "measured": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+      "detail": "T14R2 mandate: do not modify the Executive Router"
+    },
+    {
+      "check": "protection_battery",
+      "status": "PASS",
+      "measured": "ALL_PASS",
+      "detail": ""
+    },
+    {
+      "check": "mutation_safety_probe_layer_inserted",
+      "status": "PASS",
+      "measured": true,
+      "detail": ""
+    },
+    {
+      "check": "security",
+      "status": "PASS",
+      "measured": {
+        "milestone": "T14R2.19 security battery",
+        "violations": 0,
+        "pytest_exit": 0,
+        "detail": "{'tests': 35, 'failures': 0, 'errors': 0, 'skipped': 0} over ['tests\\\\test_t11_security.py']",
+        "counts": {
+          "tests": 35,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      "detail": ""
+    },
+    {
+      "check": "performance_recorded",
+      "status": "PASS",
+      "measured": {
+        "layer_median_us": 5.2
+      },
+      "detail": ""
+    },
+    {
+      "check": "no_training_adapter_unchanged",
+      "status": "PASS",
+      "measured": {
+        "adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+        "dirty": []
+      },
+      "detail": ""
+    },
+    {
+      "check": "no_paid_compute",
+      "status": "PASS",
+      "measured": "NOT_USED",
+      "detail": "T14R2 paid routes emit PAID_COMPUTE_GATE_REQUIRED only"
+    },
+    {
+      "check": "pytest_zero_failed",
+      "status": "PASS",
+      "measured": {
+        "milestone": "T14R2.21 - final pytest",
+        "recorded_at": "2026-09-12",
+        "tests": 1060,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "exit_code": 0,
+        "failed": 0
+      },
+      "detail": ""
+    }
+  ],
+  "gates_total": 49,
+  "passes": 49,
+  "fails": [],
+  "model_identity": "Qwen/Qwen3-4B-Instruct-2507 (Mango-4B-System-v1)",
+  "router_sha256": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14",
+  "skill_registry_sha256": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9",
+  "fidelity_sha256": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+  "semantic_sha256": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8",
+  "firewall_sha256": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+  "adapter_sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+  "ode_intent_sha256": "373b6402342cea6c14faf30c1b6db3ed8280978ea75f401d353eb3b6b241d263",
+  "decision_scicomp": "PROMOTE_SCICOMP_LAB",
+  "executive_router_decision": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "no_training": true,
+  "no_paid_compute": true,
+  "weight_promotion": "NO",
+  "ready_for_T15": "YES",
+  "manual_override": false
+}
