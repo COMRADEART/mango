@@ -1,0 +1,121 @@
+{
+  "run": "baseline-final",
+  "split": "final",
+  "benchmark": "mango-code-eval-v1",
+  "suite_final_sha256": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
+  "model": {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "mode": "response-only, no CODE system",
+    "seed": 20260912
+  },
+  "recorded_at": "2026-09-12T22:06:50.563775+00:00",
+  "n_tasks": 139,
+  "n_pass": 90,
+  "accuracy": 0.6474820143884892,
+  "by_category": {
+    "single_fix": {
+      "n": 15,
+      "pass": 13,
+      "acc": 0.8666666666666667
+    },
+    "multi_fix": {
+      "n": 10,
+      "pass": 0,
+      "acc": 0.0
+    },
+    "test_repair": {
+      "n": 5,
+      "pass": 5,
+      "acc": 1.0
+    },
+    "feature": {
+      "n": 13,
+      "pass": 10,
+      "acc": 0.7692307692307693
+    },
+    "refactor": {
+      "n": 5,
+      "pass": 5,
+      "acc": 1.0
+    },
+    "config": {
+      "n": 4,
+      "pass": 3,
+      "acc": 0.75
+    },
+    "import_err": {
+      "n": 3,
+      "pass": 3,
+      "acc": 1.0
+    },
+    "type_err": {
+      "n": 3,
+      "pass": 2,
+      "acc": 0.6666666666666666
+    },
+    "algo": {
+      "n": 4,
+      "pass": 4,
+      "acc": 1.0
+    },
+    "data_xform": {
+      "n": 6,
+      "pass": 0,
+      "acc": 0.0
+    },
+    "api_compat": {
+      "n": 4,
+      "pass": 0,
+      "acc": 0.0
+    },
+    "search": {
+      "n": 15,
+      "pass": 15,
+      "acc": 1.0
+    },
+    "comprehension": {
+      "n": 10,
+      "pass": 10,
+      "acc": 1.0
+    },
+    "security": {
+      "n": 3,
+      "pass": 1,
+      "acc": 0.3333333333333333
+    },
+    "destructive": {
+      "n": 7,
+      "pass": 3,
+      "acc": 0.42857142857142855
+    },
+    "no_context": {
+      "n": 9,
+      "pass": 3,
+      "acc": 0.3333333333333333
+    },
+    "no_change": {
+      "n": 8,
+      "pass": 3,
+      "acc": 0.375
+    },
+    "regression": {
+      "n": 7,
+      "pass": 2,
+      "acc": 0.2857142857142857
+    },
+    "review": {
+      "n": 8,
+      "pass": 8,
+      "acc": 1.0
+    }
+  },
+  "statuses": {
+    "code": 72,
+    "qa": 40,
+    "refuse": 10,
+    "needinfo": 9,
+    "nochange": 8
+  },
+  "vram_peak_bytes": 2770478080,
+  "wall_seconds": 1266.9
+}

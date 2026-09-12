@@ -1,0 +1,206 @@
+{
+  "milestone": "T15 — Coding Intelligence",
+  "phase": "T15.0 entry gate",
+  "recorded_at": "2026-09-12T20:53:52.822828+00:00",
+  "status": "PASS",
+  "baseline_commit": "c27abc60f4288563d96f1a6a77908fa4081cd5f4",
+  "required_commit": "c27abc60f4288563d96f1a6a77908fa4081cd5f4",
+  "branch": "t14-executive-router",
+  "starting_architecture": "Mango-4B-System-v1",
+  "scicomp_status": "PROMOTE_SCICOMP_LAB",
+  "scicomp_numeric": 0.8695652173913043,
+  "scicomp_floor": 0.848,
+  "executive_router_status": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "code_skill_status": "PREPARED_ONLY",
+  "weight_promotion": "NO",
+  "paid_compute": "NOT_USED",
+  "training": "NONE",
+  "pytest_baseline": "1060 passed / 0 failed / 0 errors",
+  "frozen_component_pins": {
+    "necessity_router": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14",
+    "skill_registry": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9",
+    "fidelity_classifier": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+    "semantic_classifier": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8",
+    "correction_firewall": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "executive_router": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60"
+  },
+  "checks": [
+    {
+      "check": "git_head_includes_c27abc6",
+      "status": "PASS",
+      "measured": {
+        "head": "c27abc60f4288563d96f1a6a77908fa4081cd5f4",
+        "required": "c27abc60f4288563d96f1a6a77908fa4081cd5f4",
+        "is_ancestor": true
+      },
+      "detail": "T14R2 close-out commit must be HEAD"
+    },
+    {
+      "check": "branch_is_t14_executive_router",
+      "status": "PASS",
+      "measured": "t14-executive-router"
+    },
+    {
+      "check": "worktree_clean",
+      "status": "PASS",
+      "measured": {
+        "dirty": [
+          "full_junit.xml",
+          ".cursor/",
+          "evaluations/t14r/_t14_rows.pkl",
+          "evaluations/t15/",
+          "scripts/t15_entry_gate.py",
+          "scripts/t15_pytest_entry.py"
+        ],
+        "unexpected": []
+      },
+      "detail": "only .cursor/ (harness), T14R/T14R2 artifacts, and T15 gate artifacts may be present"
+    },
+    {
+      "check": "t14r2_report_exists",
+      "status": "PASS",
+      "measured": "evaluations/t14r2/T14R2_FINAL_REPORT.md"
+    },
+    {
+      "check": "t14r2_final_audit_49_pass",
+      "status": "PASS",
+      "measured": {
+        "gates_total": 49,
+        "passes": 49,
+        "fails": [],
+        "ready_for_T15": "YES"
+      }
+    },
+    {
+      "check": "scicomp_promoted_state_recorded",
+      "status": "PASS",
+      "measured": {
+        "decision": "PROMOTE_SCICOMP_LAB",
+        "numeric": 0.8695652173913043,
+        "floor": 0.848
+      },
+      "detail": "120/138 = 0.8696 >= frozen floor 0.848"
+    },
+    {
+      "check": "executive_router_state_recorded",
+      "status": "PASS",
+      "measured": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL"
+    },
+    {
+      "check": "code_skill_prepared_only",
+      "status": "PASS",
+      "measured": {
+        "availability": "PREPARED_ONLY",
+        "executable": false
+      }
+    },
+    {
+      "check": "skill_registry_hash",
+      "status": "PASS",
+      "measured": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9"
+    },
+    {
+      "check": "executive_router_hash",
+      "status": "PASS",
+      "measured": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60"
+    },
+    {
+      "check": "scicomp_engine_hash_router_only_drift",
+      "status": "PASS",
+      "measured": {
+        "files": 17,
+        "mismatch": [
+          "router.py"
+        ]
+      },
+      "detail": "router.py is the T14 necessity-router end-state"
+    },
+    {
+      "check": "fidelity_hash",
+      "status": "PASS",
+      "measured": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146"
+    },
+    {
+      "check": "correction_firewall_hash",
+      "status": "PASS",
+      "measured": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff"
+    },
+    {
+      "check": "t3_adapter_sha_exact",
+      "status": "PASS",
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+    },
+    {
+      "check": "model_identity",
+      "status": "PASS",
+      "measured": "Qwen/Qwen3-4B-Instruct-2507"
+    },
+    {
+      "check": "environment_recorded",
+      "status": "PASS",
+      "measured": {
+        "transformers": "5.16.1",
+        "torch": "2.5.1+cu121"
+      },
+      "detail": "transformers pinned at 5.16.1 (T13-ENV-1 rule)"
+    },
+    {
+      "check": "environment_captured",
+      "status": "PASS",
+      "measured": {
+        "os": "Windows 11 10.0.26200",
+        "python": "3.12.10",
+        "runtime": "Mango-4B-System-v1",
+        "model": "Qwen/Qwen3-4B-Instruct-2507",
+        "torch": "2.5.1+cu121",
+        "cuda_available": true,
+        "transformers": "5.16.1"
+      }
+    },
+    {
+      "check": "no_stale_gpu_jobs",
+      "status": "PASS",
+      "measured": {
+        "gpu_query": "97, 6141, 0",
+        "compute_apps": [
+          "11804, C:\\Program Files\\Epic Games\\Launcher\\Portal\\Binaries\\Win64\\EpicGamesLauncher.exe",
+          "32956, C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\managedArtifacts\\98bc04bc842e4906993fd6d6644ffb8d\\EOSOverlayRenderer-Win64-Shipping.exe"
+        ],
+        "mango_eval_or_training_jobs": []
+      },
+      "detail": "desktop occupants are not Mango jobs"
+    },
+    {
+      "check": "full_pytest_green",
+      "status": "PASS",
+      "measured": {
+        "milestone": "T15.0 — entry pytest",
+        "recorded_at": "2026-09-12T20:52:08.485739+00:00",
+        "tests": 1060,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "exit_code": 0,
+        "failed": 0,
+        "passed": 1060,
+        "time_s": 16.248
+      },
+      "detail": "pre-T15 baseline 1060 passed / 0 failed / 0 errors"
+    },
+    {
+      "check": "no_pending_hygiene_issues",
+      "status": "PASS",
+      "measured": {
+        "tracked_dirty": "M full_junit.xml",
+        "tracked_unexpected": [],
+        "merge_head": false,
+        "rebase": false,
+        "premature_t15": []
+      },
+      "detail": "root pytest outputs rewritten by verification are allowed"
+    }
+  ],
+  "substantive_failures": [],
+  "conclusion": "All entry-gate checks PASS. T15 may proceed to T15.1."
+}

@@ -1,0 +1,12 @@
+{
+  "milestone": "T15.0 \u2014 entry pytest",
+  "recorded_at": "2026-09-12T20:52:08.485739+00:00",
+  "tests": 1060,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "exit_code": 0,
+  "failed": 0,
+  "passed": 1060,
+  "time_s": 16.248
+}

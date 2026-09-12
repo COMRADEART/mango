@@ -1,0 +1,27 @@
+{
+  "run": "baseline-dev-smoke",
+  "split": "dev",
+  "benchmark": "mango-code-eval-v1",
+  "suite_final_sha256": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
+  "model": {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "mode": "response-only, no CODE system",
+    "seed": 20260912
+  },
+  "recorded_at": "2026-09-12T21:45:21.015013+00:00",
+  "n_tasks": 12,
+  "n_pass": 9,
+  "accuracy": 0.75,
+  "by_category": {
+    "single_fix": {
+      "n": 12,
+      "pass": 9,
+      "acc": 0.75
+    }
+  },
+  "statuses": {
+    "code": 12
+  },
+  "vram_peak_bytes": 2718339072,
+  "wall_seconds": 29.6
+}

@@ -1,0 +1,40 @@
+{
+  "run": "code-dev-smoke",
+  "split": "dev",
+  "benchmark": "mango-code-eval-v1",
+  "suite_final_sha256": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
+  "model": {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "used": true,
+    "load": {
+      "ok": true,
+      "error": null,
+      "quantization": "4bit-nf4-double",
+      "load_vram_bytes": 2716700672,
+      "peak_vram_bytes": 2716700672,
+      "reserved_vram_bytes": 2732589056,
+      "smoke_latency_s": 0.44
+    },
+    "gen": {
+      "seed": 20260912,
+      "max_new_tokens": 384
+    }
+  },
+  "recorded_at": "2026-09-12T21:41:41.086292+00:00",
+  "n_tasks": 12,
+  "n_pass": 11,
+  "accuracy": 0.9166666666666666,
+  "by_category": {
+    "single_fix": {
+      "n": 12,
+      "pass": 11,
+      "acc": 0.9166666666666666
+    }
+  },
+  "statuses": {
+    "EXECUTED_PASS": 11,
+    "BLOCKED": 1
+  },
+  "vram_peak_bytes": 2780219392,
+  "wall_seconds": 109.0
+}
