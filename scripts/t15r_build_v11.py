@@ -58,7 +58,7 @@ def write_split(name: str) -> tuple[str, list[str]]:
         if ch:
             corrected.append(out["task_id"])
         lines.append(json.dumps(out, ensure_ascii=False))
-    dst.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    dst.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     return sha(dst), corrected
 
 

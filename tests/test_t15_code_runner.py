@@ -122,7 +122,7 @@ def test_debug_loop_repairs_with_evidence(tmp_path):
         edits=[{"file": "src/calc.py", "old": "return a - b",
                 "new": "return a * b"}],
         repair_candidates=[
-            {"id": "r1", "file": "src/calc.py", "old": "return a * b",
+            {"id": "r1", "file": "src/calc.py", "old": "return a - b",
              "new": "return a + b", "fixes": "ASSERTION_MISMATCH"},
             {"id": "r2", "file": "src/calc.py", "old": "zzz",
              "new": "qqq", "fixes": "SYNTAX_ERROR"}],
@@ -222,7 +222,7 @@ def test_no_stale_bytecode_between_repair_and_retest(tmp_path):
         edits=[{"file": "src/calc.py", "old": "return a - b",
                 "new": "return a * b"}],
         repair_candidates=[
-            {"id": "r1", "file": "src/calc.py", "old": "return a * b",
+            {"id": "r1", "file": "src/calc.py", "old": "return a - b",
              "new": "return a + b", "fixes": "ASSERTION_MISMATCH"},
             {"id": "r2", "file": "src/calc.py", "old": "zzz",
              "new": "qqq", "fixes": "SYNTAX_ERROR"}],

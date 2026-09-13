@@ -495,9 +495,10 @@ def main() -> int:
     fin = [c for c in all_cases if c["split"] == "final"]
 
     def dump(name, rows):
+        p = DST / f"{name}.jsonl"
         text = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows)
-        (DST / f"{name}.jsonl").write_text(text, encoding="utf-8")
-        return sha_text(text)
+        p.write_text(text, encoding="utf-8", newline="\n")
+        return hashlib.sha256(p.read_bytes()).hexdigest()
 
     dsha, fsha = dump("dev", dev), dump("final", fin)
     cats: dict[str, int] = {}

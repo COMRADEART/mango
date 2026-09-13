@@ -53,10 +53,9 @@ def test_same_failure_count_prefers_smaller_diff_not_newest():
                      failure_count=1, failure_ids=["t"], diff_size=9)
     newest = _state(state_id="s9", files_changed=["a.py"],
                     failure_count=1, failure_ids=["t"], diff_size=40)
-    # T15R.10: do not revert a safe equal-fail patch merely because a
-    # test remains failing.
-    assert RS.select_best([orig, smaller, newest]).state_id == "s1"
-    # equal-fail patches: smaller diff, not newest
+    # equal remaining failures: original wins (not a verified improvement).
+    # Among non-original equal-fail patches, smaller diff wins — not newest.
+    assert RS.select_best([orig, smaller, newest]).state_id == "s0"
     assert RS.select_best([smaller, newest]).state_id == "s1"
 
 
