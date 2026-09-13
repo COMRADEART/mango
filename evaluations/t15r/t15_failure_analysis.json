@@ -1,0 +1,930 @@
+{
+  "milestone": "T15R.2 — failure taxonomy",
+  "recorded_at": "2026-09-13T13:56:38.543943+00:00",
+  "taxonomy_labels": [
+    "PARTIAL_PROGRESS_REVERTED",
+    "NO_VALID_PATCH",
+    "WRONG_FILE_SELECTED",
+    "WRONG_SYMBOL_SELECTED",
+    "TEST_DIAGNOSIS_FAILURE",
+    "ASSERTION_MISREAD",
+    "MULTI_FILE_DEPENDENCY_MISSED",
+    "PATCH_REGRESSION",
+    "PATCH_CONFLICT",
+    "SCHEMA/API_MISMATCH",
+    "DATA_TRANSFORM_LOGIC_ERROR",
+    "ALGORITHM_ERROR",
+    "TEST_ORACLE_MISMATCH",
+    "HARNESS_ERROR",
+    "OTHER"
+  ],
+  "n_classified": 28,
+  "counts": {
+    "PARTIAL_PROGRESS_REVERTED": 9,
+    "MULTI_FILE_DEPENDENCY_MISSED": 3,
+    "OTHER": 5,
+    "TEST_ORACLE_MISMATCH": 3,
+    "DATA_TRANSFORM_LOGIC_ERROR": 3,
+    "TEST_DIAGNOSIS_FAILURE": 1,
+    "NO_VALID_PATCH": 4
+  },
+  "by_category": {
+    "algo": {
+      "TEST_ORACLE_MISMATCH": 3
+    },
+    "data_xform": {
+      "DATA_TRANSFORM_LOGIC_ERROR": 3,
+      "NO_VALID_PATCH": 3
+    },
+    "feature": {
+      "OTHER": 4,
+      "NO_VALID_PATCH": 1
+    },
+    "multi_fix": {
+      "PARTIAL_PROGRESS_REVERTED": 9,
+      "MULTI_FILE_DEPENDENCY_MISSED": 1
+    },
+    "refactor": {
+      "MULTI_FILE_DEPENDENCY_MISSED": 2
+    },
+    "test_repair": {
+      "TEST_DIAGNOSIS_FAILURE": 1
+    },
+    "type_err": {
+      "OTHER": 1
+    }
+  },
+  "dominant_bottleneck": "PARTIAL_PROGRESS_REVERTED",
+  "notes": [
+    "T15 prediction rows do not persist per-round trails; PARTIAL_PROGRESS_REVERTED is assigned when BLOCKED + empty files_touched + tests actually ran with a non-zero exit.",
+    "multi_fix 0/10 is dual-labeled: primary revert, secondary MULTI_FILE_DEPENDENCY_MISSED.",
+    "Oracle-contract review (T15R.16) is recorded per algo/refactor/feature/test_repair row. Frozen oracles are not weakened."
+  ],
+  "oracle_contract_review": [
+    {
+      "task_id": "mce-v1-0073",
+      "category": "feature",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "OTHER",
+      "evaluation_oracle": [
+        "files_touched_max",
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+    },
+    {
+      "task_id": "mce-v1-0078",
+      "category": "feature",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "OTHER",
+      "evaluation_oracle": [
+        "files_touched_max",
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+    },
+    {
+      "task_id": "mce-v1-0111",
+      "category": "algo",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "TEST_ORACLE_MISMATCH",
+      "evaluation_oracle": [
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "B: possible runner-stricter-than-oracle; inspect remaining failures vs frozen checks. Do not weaken correctness."
+    },
+    {
+      "task_id": "mce-v1-0113",
+      "category": "algo",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "TEST_ORACLE_MISMATCH",
+      "evaluation_oracle": [
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "B: possible runner-stricter-than-oracle; inspect remaining failures vs frozen checks. Do not weaken correctness."
+    },
+    {
+      "task_id": "mce-v1-0115",
+      "category": "algo",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "TEST_ORACLE_MISMATCH",
+      "evaluation_oracle": [
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "B: possible runner-stricter-than-oracle; inspect remaining failures vs frozen checks. Do not weaken correctness."
+    },
+    {
+      "task_id": "mce-v1-0052",
+      "category": "test_repair",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "TEST_DIAGNOSIS_FAILURE",
+      "evaluation_oracle": [
+        "no_weakening",
+        "source_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+    },
+    {
+      "task_id": "mce-v1-0062",
+      "category": "feature",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "OTHER",
+      "evaluation_oracle": [
+        "files_touched_max",
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+    },
+    {
+      "task_id": "mce-v1-0072",
+      "category": "feature",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "NO_VALID_PATCH",
+      "evaluation_oracle": [
+        "files_touched_max",
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+    },
+    {
+      "task_id": "mce-v1-0077",
+      "category": "feature",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "OTHER",
+      "evaluation_oracle": [
+        "files_touched_max",
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+    },
+    {
+      "task_id": "mce-v1-0083",
+      "category": "refactor",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "MULTI_FILE_DEPENDENCY_MISSED",
+      "evaluation_oracle": [
+        "new_present",
+        "old_absent",
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+    },
+    {
+      "task_id": "mce-v1-0088",
+      "category": "refactor",
+      "baseline_pass": true,
+      "code_pass": false,
+      "primary": "MULTI_FILE_DEPENDENCY_MISSED",
+      "evaluation_oracle": [
+        "new_present",
+        "old_absent",
+        "test_files_unchanged",
+        "tests_pass"
+      ],
+      "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+      "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+    }
+  ],
+  "rows": [
+    {
+      "task_id": "mce-v1-0032",
+      "category": "multi_fix",
+      "primary": "PARTIAL_PROGRESS_REVERTED",
+      "secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": true
+    },
+    {
+      "task_id": "mce-v1-0033",
+      "category": "multi_fix",
+      "primary": "PARTIAL_PROGRESS_REVERTED",
+      "secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": true
+    },
+    {
+      "task_id": "mce-v1-0034",
+      "category": "multi_fix",
+      "primary": "PARTIAL_PROGRESS_REVERTED",
+      "secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": true
+    },
+    {
+      "task_id": "mce-v1-0041",
+      "category": "multi_fix",
+      "primary": "PARTIAL_PROGRESS_REVERTED",
+      "secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": true
+    },
+    {
+      "task_id": "mce-v1-0044",
+      "category": "multi_fix",
+      "primary": "PARTIAL_PROGRESS_REVERTED",
+      "secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": true
+    },
+    {
+      "task_id": "mce-v1-0045",
+      "category": "multi_fix",
+      "primary": "PARTIAL_PROGRESS_REVERTED",
+      "secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": true
+    },
+    {
+      "task_id": "mce-v1-0046",
+      "category": "multi_fix",
+      "primary": "PARTIAL_PROGRESS_REVERTED",
+      "secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": true
+    },
+    {
+      "task_id": "mce-v1-0047",
+      "category": "multi_fix",
+      "primary": "MULTI_FILE_DEPENDENCY_MISSED",
+      "secondary": [],
+      "evidence": [
+        "multi_fix category; coordinated two-file golden"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0049",
+      "category": "multi_fix",
+      "primary": "PARTIAL_PROGRESS_REVERTED",
+      "secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": true
+    },
+    {
+      "task_id": "mce-v1-0050",
+      "category": "multi_fix",
+      "primary": "PARTIAL_PROGRESS_REVERTED",
+      "secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": true
+    },
+    {
+      "task_id": "mce-v1-0073",
+      "category": "feature",
+      "primary": "OTHER",
+      "secondary": [],
+      "evidence": [
+        "feature stub not completed"
+      ],
+      "baseline_pass": true,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0078",
+      "category": "feature",
+      "primary": "OTHER",
+      "secondary": [],
+      "evidence": [
+        "feature stub not completed"
+      ],
+      "baseline_pass": true,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0110",
+      "category": "type_err",
+      "primary": "OTHER",
+      "secondary": [],
+      "evidence": [
+        "status=BLOCKED reasons=['runner tests exit=1 (failed=1)']"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0111",
+      "category": "algo",
+      "primary": "TEST_ORACLE_MISMATCH",
+      "secondary": [
+        "ALGORITHM_ERROR"
+      ],
+      "evidence": [
+        "baseline beat CODE on algo oracle"
+      ],
+      "baseline_pass": true,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0113",
+      "category": "algo",
+      "primary": "TEST_ORACLE_MISMATCH",
+      "secondary": [
+        "ALGORITHM_ERROR"
+      ],
+      "evidence": [
+        "baseline beat CODE on algo oracle"
+      ],
+      "baseline_pass": true,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0115",
+      "category": "algo",
+      "primary": "TEST_ORACLE_MISMATCH",
+      "secondary": [
+        "ALGORITHM_ERROR"
+      ],
+      "evidence": [
+        "baseline beat CODE on algo oracle"
+      ],
+      "baseline_pass": true,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0121",
+      "category": "data_xform",
+      "primary": "DATA_TRANSFORM_LOGIC_ERROR",
+      "secondary": [],
+      "evidence": [
+        "data_xform family=rows_to_dict"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0123",
+      "category": "data_xform",
+      "primary": "DATA_TRANSFORM_LOGIC_ERROR",
+      "secondary": [],
+      "evidence": [
+        "data_xform family=rows_to_dict"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0125",
+      "category": "data_xform",
+      "primary": "DATA_TRANSFORM_LOGIC_ERROR",
+      "secondary": [],
+      "evidence": [
+        "data_xform family=rows_to_dict"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0052",
+      "category": "test_repair",
+      "primary": "TEST_DIAGNOSIS_FAILURE",
+      "secondary": [
+        "WRONG_FILE_SELECTED"
+      ],
+      "evidence": [
+        "test_repair failed; source must stay unchanged"
+      ],
+      "baseline_pass": true,
+      "code_status": "EXECUTED_FAIL",
+      "test": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "EXECUTED_FAIL",
+        "detail": "edit failed: test weakening rejected",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)",
+          "source changed: src/tr01.py"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0062",
+      "category": "feature",
+      "primary": "OTHER",
+      "secondary": [],
+      "evidence": [
+        "feature stub not completed"
+      ],
+      "baseline_pass": true,
+      "code_status": "EXECUTED_FAIL",
+      "test": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "EXECUTED_FAIL",
+        "detail": "syntax: closing parenthesis '}' does not match opening parenthesis '[' at line 14",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0072",
+      "category": "feature",
+      "primary": "NO_VALID_PATCH",
+      "secondary": [],
+      "evidence": [
+        "no files_touched and tests did not execute"
+      ],
+      "baseline_pass": true,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "BLOCKED",
+        "detail": "BLOCKED: no explicit edits and no verifiable patch proposal; refusing to invent code.",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0077",
+      "category": "feature",
+      "primary": "OTHER",
+      "secondary": [],
+      "evidence": [
+        "feature stub not completed"
+      ],
+      "baseline_pass": true,
+      "code_status": "EXECUTED_FAIL",
+      "test": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "EXECUTED_FAIL",
+        "detail": "syntax: closing parenthesis '}' does not match opening parenthesis '[' at line 14",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0083",
+      "category": "refactor",
+      "primary": "MULTI_FILE_DEPENDENCY_MISSED",
+      "secondary": [],
+      "evidence": [
+        "rename requires definition + caller updates"
+      ],
+      "baseline_pass": true,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "UNDEFINED_NAME:calc_total",
+        "reasons": [
+          "runner tests exit=1 (failed=1)",
+          "old symbol still present"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0088",
+      "category": "refactor",
+      "primary": "MULTI_FILE_DEPENDENCY_MISSED",
+      "secondary": [],
+      "evidence": [
+        "rename requires definition + caller updates"
+      ],
+      "baseline_pass": true,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "UNDEFINED_NAME:calc_total",
+        "reasons": [
+          "runner tests exit=1 (failed=1)",
+          "old symbol still present"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0122",
+      "category": "data_xform",
+      "primary": "NO_VALID_PATCH",
+      "secondary": [],
+      "evidence": [
+        "no files_touched and tests did not execute"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "BLOCKED",
+        "detail": "BLOCKED: no explicit edits and no verifiable patch proposal; refusing to invent code.",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0124",
+      "category": "data_xform",
+      "primary": "NO_VALID_PATCH",
+      "secondary": [],
+      "evidence": [
+        "no files_touched and tests did not execute"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "BLOCKED",
+        "detail": "BLOCKED: no explicit edits and no verifiable patch proposal; refusing to invent code.",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "reverted": false
+    },
+    {
+      "task_id": "mce-v1-0126",
+      "category": "data_xform",
+      "primary": "NO_VALID_PATCH",
+      "secondary": [],
+      "evidence": [
+        "no files_touched and tests did not execute"
+      ],
+      "baseline_pass": false,
+      "code_status": "BLOCKED",
+      "test": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "BLOCKED",
+        "detail": "BLOCKED: no explicit edits and no verifiable patch proposal; refusing to invent code.",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "reverted": false
+    }
+  ]
+}

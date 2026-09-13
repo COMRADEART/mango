@@ -343,7 +343,9 @@ def test_refactor_proceeds_when_tests_pass(tmp_path):
         edits=None, generate=gen, tests_to_run=["tests/test_m.py"])
     # must NOT short-circuit as NO_CHANGE: it attempted the structural edit
     assert res["evidence"].get("verdict") != "NO_CHANGE_REQUIRED"
-    assert "src/m.py" in res["files_touched"]
+    assert any(s.get("step") == "EDIT" for s in res["trail"])
+    # T15R: a rename that still fails tests is not BEST vs a green original,
+    # so files_touched may be empty after original-state fallback.
 
 
 def test_edit_trap_still_short_circuits(tmp_path):

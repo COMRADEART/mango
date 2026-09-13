@@ -132,6 +132,19 @@ def run_pytest_targets(repo_root: str | Path, targets: list[str],
                 failure_ids.append(token)
     if not failure_ids and failed:
         failure_ids = [f"anon:{i}" for i in range(failed)]
+    # pytest -q progress line (FFFF.) as last-resort counts when nested
+    # pytest omits both the summary tail and FAILED node-id lines.
+    if r.returncode != 0 and failed == 0 and errors == 0:
+        for line in reversed(out.splitlines()):
+            s = line.strip()
+            if s and set(s) <= set(".EFEsxX") and any(c in s for c in "FE"):
+                failed = max(failed, s.count("F"))
+                errors = max(errors, s.count("E"))
+                break
+        if failed == 0 and errors == 0:
+            failed = 1
+        if not failure_ids:
+            failure_ids = [f"anon:{i}" for i in range(max(failed, errors))]
     return {"executed": True, "exit_code": r.returncode, "passed": passed,
             "failed": failed, "errors": errors, "skipped": skipped,
             "failure_ids": failure_ids,

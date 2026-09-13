@@ -39,7 +39,8 @@ MAX_FILES = 5000
 def _git(args: list, root: Path) -> str:
     try:
         r = subprocess.run(["git", *args], cwd=str(root), capture_output=True,
-                           text=True, timeout=15)
+                           text=True, timeout=15, encoding="utf-8",
+                           errors="replace")
         return r.stdout.strip() if r.returncode == 0 else ""
     except Exception:
         return ""

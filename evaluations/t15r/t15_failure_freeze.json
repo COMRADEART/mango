@@ -1,0 +1,2562 @@
+{
+  "milestone": "T15R.1 — T15 failure freeze",
+  "recorded_at": "2026-09-13T13:56:38.543943+00:00",
+  "source_artifacts": {
+    "code_final_predictions": "evaluations\\t15\\runs\\code-final\\predictions.jsonl",
+    "code_final_predictions_sha256": "7c218c63fff274d3830a703083106e0ab8415044af5ec6d9de85379d1dbdc626",
+    "baseline_final_predictions": "evaluations\\t15\\runs\\baseline-final\\predictions.jsonl",
+    "baseline_final_predictions_sha256": "600b9eb0eb2a2ade96381e6649abf3875917f6d8e4055cc2426da9697983834d",
+    "suite_final": "evaluations\\t15\\suites\\mango-code-eval-v1\\final.jsonl",
+    "suite_final_sha256": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
+    "code_final_summary_n_pass": 111,
+    "code_final_summary_n_tasks": 139
+  },
+  "historical_t15_artifacts_altered": false,
+  "n_executable_failures": 28,
+  "by_category": {
+    "algo": 3,
+    "data_xform": 6,
+    "feature": 5,
+    "multi_fix": 10,
+    "refactor": 2,
+    "test_repair": 1,
+    "type_err": 1
+  },
+  "required_groups": {
+    "multi_fix_failures": [
+      "mce-v1-0032",
+      "mce-v1-0033",
+      "mce-v1-0034",
+      "mce-v1-0041",
+      "mce-v1-0044",
+      "mce-v1-0045",
+      "mce-v1-0046",
+      "mce-v1-0047",
+      "mce-v1-0049",
+      "mce-v1-0050"
+    ],
+    "data_xform_failures": [
+      "mce-v1-0121",
+      "mce-v1-0123",
+      "mce-v1-0125",
+      "mce-v1-0122",
+      "mce-v1-0124",
+      "mce-v1-0126"
+    ],
+    "failed_refactor": [
+      "mce-v1-0083",
+      "mce-v1-0088"
+    ],
+    "failed_algo": [
+      "mce-v1-0111",
+      "mce-v1-0113",
+      "mce-v1-0115"
+    ],
+    "failed_feature": [
+      "mce-v1-0073",
+      "mce-v1-0078",
+      "mce-v1-0062",
+      "mce-v1-0072",
+      "mce-v1-0077"
+    ],
+    "failed_test_repair": [
+      "mce-v1-0052"
+    ],
+    "other_executable_failures": [
+      "mce-v1-0110"
+    ]
+  },
+  "group_counts": {
+    "multi_fix": 10,
+    "data_xform": 6,
+    "refactor": 2,
+    "algo": 3,
+    "feature": 5,
+    "test_repair": 1
+  },
+  "failures": [
+    {
+      "task_id": "mce-v1-0032",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg01.py and src/use01.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg01.py",
+          "src/use01.py",
+          "tests/__init__.py",
+          "tests/test_use01.py"
+        ],
+        "context_files": [
+          "src/cfg01.py",
+          "src/use01.py"
+        ],
+        "golden_files": [
+          "src/cfg01.py",
+          "src/use01.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use01.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": true,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "PARTIAL_PROGRESS_REVERTED",
+      "failure_taxonomy_secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "taxonomy_evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 109.86,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use01.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0033",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg02.py and src/use02.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg02.py",
+          "src/use02.py",
+          "tests/__init__.py",
+          "tests/test_use02.py"
+        ],
+        "context_files": [
+          "src/cfg02.py",
+          "src/use02.py"
+        ],
+        "golden_files": [
+          "src/cfg02.py",
+          "src/use02.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use02.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": true,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "PARTIAL_PROGRESS_REVERTED",
+      "failure_taxonomy_secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "taxonomy_evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 64.34,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use02.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0034",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg03.py and src/use03.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg03.py",
+          "src/use03.py",
+          "tests/__init__.py",
+          "tests/test_use03.py"
+        ],
+        "context_files": [
+          "src/cfg03.py",
+          "src/use03.py"
+        ],
+        "golden_files": [
+          "src/cfg03.py",
+          "src/use03.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use03.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": true,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "PARTIAL_PROGRESS_REVERTED",
+      "failure_taxonomy_secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "taxonomy_evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 113.43,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use03.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0041",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg10.py and src/use10.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg10.py",
+          "src/use10.py",
+          "tests/__init__.py",
+          "tests/test_use10.py"
+        ],
+        "context_files": [
+          "src/cfg10.py",
+          "src/use10.py"
+        ],
+        "golden_files": [
+          "src/cfg10.py",
+          "src/use10.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use10.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": true,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "PARTIAL_PROGRESS_REVERTED",
+      "failure_taxonomy_secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "taxonomy_evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 71.44,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use10.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0044",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg13.py and src/use13.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg13.py",
+          "src/use13.py",
+          "tests/__init__.py",
+          "tests/test_use13.py"
+        ],
+        "context_files": [
+          "src/cfg13.py",
+          "src/use13.py"
+        ],
+        "golden_files": [
+          "src/cfg13.py",
+          "src/use13.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use13.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": true,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "PARTIAL_PROGRESS_REVERTED",
+      "failure_taxonomy_secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "taxonomy_evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 119.29,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use13.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0045",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg14.py and src/use14.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg14.py",
+          "src/use14.py",
+          "tests/__init__.py",
+          "tests/test_use14.py"
+        ],
+        "context_files": [
+          "src/cfg14.py",
+          "src/use14.py"
+        ],
+        "golden_files": [
+          "src/cfg14.py",
+          "src/use14.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use14.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": true,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "PARTIAL_PROGRESS_REVERTED",
+      "failure_taxonomy_secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "taxonomy_evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 70.51,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use14.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0046",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg15.py and src/use15.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg15.py",
+          "src/use15.py",
+          "tests/__init__.py",
+          "tests/test_use15.py"
+        ],
+        "context_files": [
+          "src/cfg15.py",
+          "src/use15.py"
+        ],
+        "golden_files": [
+          "src/cfg15.py",
+          "src/use15.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use15.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": true,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "PARTIAL_PROGRESS_REVERTED",
+      "failure_taxonomy_secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "taxonomy_evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 116.49,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use15.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0047",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg16.py and src/use16.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg16.py",
+          "src/use16.py",
+          "tests/__init__.py",
+          "tests/test_use16.py"
+        ],
+        "context_files": [
+          "src/cfg16.py",
+          "src/use16.py"
+        ],
+        "golden_files": [
+          "src/cfg16.py",
+          "src/use16.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use16.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/cfg16.py",
+        "src/use16.py"
+      ],
+      "failure_taxonomy": "MULTI_FILE_DEPENDENCY_MISSED",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "multi_fix category; coordinated two-file golden"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 74.31,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use16.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0049",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg18.py and src/use18.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg18.py",
+          "src/use18.py",
+          "tests/__init__.py",
+          "tests/test_use18.py"
+        ],
+        "context_files": [
+          "src/cfg18.py",
+          "src/use18.py"
+        ],
+        "golden_files": [
+          "src/cfg18.py",
+          "src/use18.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use18.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": true,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "PARTIAL_PROGRESS_REVERTED",
+      "failure_taxonomy_secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "taxonomy_evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 66.38,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use18.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0050",
+      "category": "multi_fix",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the bugs across src/cfg19.py and src/use19.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/cfg19.py",
+          "src/use19.py",
+          "tests/__init__.py",
+          "tests/test_use19.py"
+        ],
+        "context_files": [
+          "src/cfg19.py",
+          "src/use19.py"
+        ],
+        "golden_files": [
+          "src/cfg19.py",
+          "src/use19.py"
+        ],
+        "tests_to_run": [
+          "tests/test_use19.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": true,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "PARTIAL_PROGRESS_REVERTED",
+      "failure_taxonomy_secondary": [
+        "MULTI_FILE_DEPENDENCY_MISSED",
+        "ASSERTION_MISREAD"
+      ],
+      "taxonomy_evidence": [
+        "BLOCKED + files_touched=[] + runner tests exit=1 failed=1 diagnosis=ASSERTION_MISMATCH"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 116.34,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_use19.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 3
+      }
+    },
+    {
+      "task_id": "mce-v1-0073",
+      "category": "feature",
+      "family": "slugify",
+      "op": "CODE_EDIT",
+      "request": "Implement slugify in src/feat12_slugify.py per its stub contract",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/feat12_slugify.py",
+          "tests/__init__.py",
+          "tests/test_feat12_slugify.py"
+        ],
+        "context_files": [
+          "src/feat12_slugify.py"
+        ],
+        "golden_files": [
+          "src/feat12_slugify.py"
+        ],
+        "tests_to_run": [
+          "tests/test_feat12_slugify.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/feat12_slugify.py"
+      ],
+      "failure_taxonomy": "OTHER",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "feature stub not completed"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 88.22,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_feat12_slugify.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 2
+      }
+    },
+    {
+      "task_id": "mce-v1-0078",
+      "category": "feature",
+      "family": "slugify",
+      "op": "CODE_EDIT",
+      "request": "Implement slugify in src/feat17_slugify.py per its stub contract",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/feat17_slugify.py",
+          "tests/__init__.py",
+          "tests/test_feat17_slugify.py"
+        ],
+        "context_files": [
+          "src/feat17_slugify.py"
+        ],
+        "golden_files": [
+          "src/feat17_slugify.py"
+        ],
+        "tests_to_run": [
+          "tests/test_feat17_slugify.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/feat17_slugify.py"
+      ],
+      "failure_taxonomy": "OTHER",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "feature stub not completed"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 71.33,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_feat17_slugify.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 2
+      }
+    },
+    {
+      "task_id": "mce-v1-0110",
+      "category": "type_err",
+      "family": null,
+      "op": "CODE_DEBUG",
+      "request": "Fix the type/schema error in src/ty05.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/ty05.py",
+          "tests/__init__.py",
+          "tests/test_ty05.py"
+        ],
+        "context_files": [
+          "src/ty05.py"
+        ],
+        "golden_files": [
+          "src/ty05.py"
+        ],
+        "tests_to_run": [
+          "tests/test_ty05.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/ty05.py"
+      ],
+      "failure_taxonomy": "OTHER",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "status=BLOCKED reasons=['runner tests exit=1 (failed=1)']"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 75.88,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_ty05.py"
+        ],
+        "test_files_unchanged": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0111",
+      "category": "algo",
+      "family": "fib",
+      "op": "CODE_EDIT",
+      "request": "Implement fib in src/alg00_fib.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/alg00_fib.py",
+          "tests/__init__.py",
+          "tests/test_alg00_fib.py"
+        ],
+        "context_files": [
+          "src/alg00_fib.py"
+        ],
+        "golden_files": [
+          "src/alg00_fib.py"
+        ],
+        "tests_to_run": [
+          "tests/test_alg00_fib.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/alg00_fib.py"
+      ],
+      "failure_taxonomy": "TEST_ORACLE_MISMATCH",
+      "failure_taxonomy_secondary": [
+        "ALGORITHM_ERROR"
+      ],
+      "taxonomy_evidence": [
+        "baseline beat CODE on algo oracle"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "B: possible runner-stricter-than-oracle; inspect remaining failures vs frozen checks. Do not weaken correctness."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 49.38,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_alg00_fib.py"
+        ],
+        "test_files_unchanged": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0113",
+      "category": "algo",
+      "family": "fib",
+      "op": "CODE_EDIT",
+      "request": "Implement fib in src/alg02_fib.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/alg02_fib.py",
+          "tests/__init__.py",
+          "tests/test_alg02_fib.py"
+        ],
+        "context_files": [
+          "src/alg02_fib.py"
+        ],
+        "golden_files": [
+          "src/alg02_fib.py"
+        ],
+        "tests_to_run": [
+          "tests/test_alg02_fib.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/alg02_fib.py"
+      ],
+      "failure_taxonomy": "TEST_ORACLE_MISMATCH",
+      "failure_taxonomy_secondary": [
+        "ALGORITHM_ERROR"
+      ],
+      "taxonomy_evidence": [
+        "baseline beat CODE on algo oracle"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "B: possible runner-stricter-than-oracle; inspect remaining failures vs frozen checks. Do not weaken correctness."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 48.93,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_alg02_fib.py"
+        ],
+        "test_files_unchanged": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0115",
+      "category": "algo",
+      "family": "fib",
+      "op": "CODE_EDIT",
+      "request": "Implement fib in src/alg04_fib.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/alg04_fib.py",
+          "tests/__init__.py",
+          "tests/test_alg04_fib.py"
+        ],
+        "context_files": [
+          "src/alg04_fib.py"
+        ],
+        "golden_files": [
+          "src/alg04_fib.py"
+        ],
+        "tests_to_run": [
+          "tests/test_alg04_fib.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/alg04_fib.py"
+      ],
+      "failure_taxonomy": "TEST_ORACLE_MISMATCH",
+      "failure_taxonomy_secondary": [
+        "ALGORITHM_ERROR"
+      ],
+      "taxonomy_evidence": [
+        "baseline beat CODE on algo oracle"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "B: possible runner-stricter-than-oracle; inspect remaining failures vs frozen checks. Do not weaken correctness."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 49.59,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_alg04_fib.py"
+        ],
+        "test_files_unchanged": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0121",
+      "category": "data_xform",
+      "family": "rows_to_dict",
+      "op": "CODE_EDIT",
+      "request": "Implement rows_to_dict in src/dx02.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/dx02.py",
+          "tests/__init__.py",
+          "tests/test_dx02.py"
+        ],
+        "context_files": [
+          "src/dx02.py"
+        ],
+        "golden_files": [
+          "src/dx02.py"
+        ],
+        "tests_to_run": [
+          "tests/test_dx02.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/dx02.py"
+      ],
+      "failure_taxonomy": "DATA_TRANSFORM_LOGIC_ERROR",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "data_xform family=rows_to_dict"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 51.97,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_dx02.py"
+        ],
+        "test_files_unchanged": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0123",
+      "category": "data_xform",
+      "family": "rows_to_dict",
+      "op": "CODE_EDIT",
+      "request": "Implement rows_to_dict in src/dx04.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/dx04.py",
+          "tests/__init__.py",
+          "tests/test_dx04.py"
+        ],
+        "context_files": [
+          "src/dx04.py"
+        ],
+        "golden_files": [
+          "src/dx04.py"
+        ],
+        "tests_to_run": [
+          "tests/test_dx04.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/dx04.py"
+      ],
+      "failure_taxonomy": "DATA_TRANSFORM_LOGIC_ERROR",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "data_xform family=rows_to_dict"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 53.83,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_dx04.py"
+        ],
+        "test_files_unchanged": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0125",
+      "category": "data_xform",
+      "family": "rows_to_dict",
+      "op": "CODE_EDIT",
+      "request": "Implement rows_to_dict in src/dx06.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/dx06.py",
+          "tests/__init__.py",
+          "tests/test_dx06.py"
+        ],
+        "context_files": [
+          "src/dx06.py"
+        ],
+        "golden_files": [
+          "src/dx06.py"
+        ],
+        "tests_to_run": [
+          "tests/test_dx06.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "ASSERTION_MISMATCH",
+        "reasons": [
+          "runner tests exit=1 (failed=1)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/dx06.py"
+      ],
+      "failure_taxonomy": "DATA_TRANSFORM_LOGIC_ERROR",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "data_xform family=rows_to_dict"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 51.69,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_dx06.py"
+        ],
+        "test_files_unchanged": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0052",
+      "category": "test_repair",
+      "family": "old_name",
+      "op": "CODE_DEBUG",
+      "request": "Repair the broken test tests/test_tr01.py without weakening it",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/tr01.py",
+          "tests/__init__.py",
+          "tests/test_tr01.py"
+        ],
+        "context_files": [
+          "src/tr01.py",
+          "tests/test_tr01.py"
+        ],
+        "golden_files": [
+          "tests/test_tr01.py",
+          "tests/test_tr01.py"
+        ],
+        "tests_to_run": [
+          "tests/test_tr01.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "EXECUTED_FAIL",
+        "detail": "edit failed: test weakening rejected",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)",
+          "source changed: src/tr01.py"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/tr01.py"
+      ],
+      "failure_taxonomy": "TEST_DIAGNOSIS_FAILURE",
+      "failure_taxonomy_secondary": [
+        "WRONG_FILE_SELECTED"
+      ],
+      "taxonomy_evidence": [
+        "test_repair failed; source must stay unchanged"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "no_weakening",
+          "source_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "EXECUTED_FAIL",
+        "latency_s": 14.13,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_tr01.py"
+        ],
+        "source_files_unchanged": [
+          "src/tr01.py"
+        ],
+        "no_weakening": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0062",
+      "category": "feature",
+      "family": "chunk",
+      "op": "CODE_EDIT",
+      "request": "Implement chunk in src/feat01_chunk.py per its stub contract",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/feat01_chunk.py",
+          "tests/__init__.py",
+          "tests/test_feat01_chunk.py"
+        ],
+        "context_files": [
+          "src/feat01_chunk.py"
+        ],
+        "golden_files": [
+          "src/feat01_chunk.py"
+        ],
+        "tests_to_run": [
+          "tests/test_feat01_chunk.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "EXECUTED_FAIL",
+        "detail": "syntax: closing parenthesis '}' does not match opening parenthesis '[' at line 14",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/feat01_chunk.py"
+      ],
+      "failure_taxonomy": "OTHER",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "feature stub not completed"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "EXECUTED_FAIL",
+        "latency_s": 14.45,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_feat01_chunk.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 2
+      }
+    },
+    {
+      "task_id": "mce-v1-0072",
+      "category": "feature",
+      "family": "chunk",
+      "op": "CODE_EDIT",
+      "request": "Implement chunk in src/feat11_chunk.py per its stub contract",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/feat11_chunk.py",
+          "tests/__init__.py",
+          "tests/test_feat11_chunk.py"
+        ],
+        "context_files": [
+          "src/feat11_chunk.py"
+        ],
+        "golden_files": [
+          "src/feat11_chunk.py"
+        ],
+        "tests_to_run": [
+          "tests/test_feat11_chunk.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "BLOCKED",
+        "detail": "BLOCKED: no explicit edits and no verifiable patch proposal; refusing to invent code.",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "NO_VALID_PATCH",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "no files_touched and tests did not execute"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 13.84,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_feat11_chunk.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 2
+      }
+    },
+    {
+      "task_id": "mce-v1-0077",
+      "category": "feature",
+      "family": "chunk",
+      "op": "CODE_EDIT",
+      "request": "Implement chunk in src/feat16_chunk.py per its stub contract",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/feat16_chunk.py",
+          "tests/__init__.py",
+          "tests/test_feat16_chunk.py"
+        ],
+        "context_files": [
+          "src/feat16_chunk.py"
+        ],
+        "golden_files": [
+          "src/feat16_chunk.py"
+        ],
+        "tests_to_run": [
+          "tests/test_feat16_chunk.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "EXECUTED_FAIL",
+        "detail": "syntax: closing parenthesis '}' does not match opening parenthesis '[' at line 14",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/feat16_chunk.py"
+      ],
+      "failure_taxonomy": "OTHER",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "feature stub not completed"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "files_touched_max",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "EXECUTED_FAIL",
+        "latency_s": 14.1,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_feat16_chunk.py"
+        ],
+        "test_files_unchanged": true,
+        "files_touched_max": 2
+      }
+    },
+    {
+      "task_id": "mce-v1-0083",
+      "category": "refactor",
+      "family": null,
+      "op": "CODE_EDIT",
+      "request": "Rename calc_total to compute_total in src/rf02.py and update callers",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/rf02.py",
+          "src/rfu02.py",
+          "tests/__init__.py",
+          "tests/test_rfu02.py"
+        ],
+        "context_files": [
+          "src/rf02.py",
+          "src/rfu02.py"
+        ],
+        "golden_files": [
+          "src/rf02.py",
+          "src/rfu02.py",
+          "src/rfu02.py"
+        ],
+        "tests_to_run": [
+          "tests/test_rfu02.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": true
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "UNDEFINED_NAME:calc_total",
+        "reasons": [
+          "runner tests exit=1 (failed=1)",
+          "old symbol still present"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/rf02.py",
+        "src/rfu02.py"
+      ],
+      "failure_taxonomy": "MULTI_FILE_DEPENDENCY_MISSED",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "rename requires definition + caller updates"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "new_present",
+          "old_absent",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 47.01,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_rfu02.py"
+        ],
+        "test_files_unchanged": true,
+        "old_absent": "calc_total",
+        "new_present": "compute_total"
+      }
+    },
+    {
+      "task_id": "mce-v1-0088",
+      "category": "refactor",
+      "family": null,
+      "op": "CODE_EDIT",
+      "request": "Rename calc_total to compute_total in src/rf07.py and update callers",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/rf07.py",
+          "src/rfu07.py",
+          "tests/__init__.py",
+          "tests/test_rfu07.py"
+        ],
+        "context_files": [
+          "src/rf07.py",
+          "src/rfu07.py"
+        ],
+        "golden_files": [
+          "src/rf07.py",
+          "src/rfu07.py",
+          "src/rfu07.py"
+        ],
+        "tests_to_run": [
+          "tests/test_rfu07.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": true
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "status": "BLOCKED",
+        "detail": "repair budget exhausted; BLOCKED",
+        "diagnosis": "UNDEFINED_NAME:calc_total",
+        "reasons": [
+          "runner tests exit=1 (failed=1)",
+          "old symbol still present"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [
+        "src/rf07.py",
+        "src/rfu07.py"
+      ],
+      "failure_taxonomy": "MULTI_FILE_DEPENDENCY_MISSED",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "rename requires definition + caller updates"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "new_present",
+          "old_absent",
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "A: CODE did not satisfy the frozen acceptance checks."
+      },
+      "baseline_result": {
+        "pass": true,
+        "status": null,
+        "reasons": []
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 51.08,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_rfu07.py"
+        ],
+        "test_files_unchanged": true,
+        "old_absent": "calc_total",
+        "new_present": "compute_total"
+      }
+    },
+    {
+      "task_id": "mce-v1-0122",
+      "category": "data_xform",
+      "family": "normalize",
+      "op": "CODE_EDIT",
+      "request": "Implement normalize in src/dx03.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/dx03.py",
+          "tests/__init__.py",
+          "tests/test_dx03.py"
+        ],
+        "context_files": [
+          "src/dx03.py"
+        ],
+        "golden_files": [
+          "src/dx03.py"
+        ],
+        "tests_to_run": [
+          "tests/test_dx03.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "BLOCKED",
+        "detail": "BLOCKED: no explicit edits and no verifiable patch proposal; refusing to invent code.",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "NO_VALID_PATCH",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "no files_touched and tests did not execute"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 11.89,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_dx03.py"
+        ],
+        "test_files_unchanged": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0124",
+      "category": "data_xform",
+      "family": "normalize",
+      "op": "CODE_EDIT",
+      "request": "Implement normalize in src/dx05.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/dx05.py",
+          "tests/__init__.py",
+          "tests/test_dx05.py"
+        ],
+        "context_files": [
+          "src/dx05.py"
+        ],
+        "golden_files": [
+          "src/dx05.py"
+        ],
+        "tests_to_run": [
+          "tests/test_dx05.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "BLOCKED",
+        "detail": "BLOCKED: no explicit edits and no verifiable patch proposal; refusing to invent code.",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "NO_VALID_PATCH",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "no files_touched and tests did not execute"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 12.7,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_dx05.py"
+        ],
+        "test_files_unchanged": true
+      }
+    },
+    {
+      "task_id": "mce-v1-0126",
+      "category": "data_xform",
+      "family": "normalize",
+      "op": "CODE_EDIT",
+      "request": "Implement normalize in src/dx07.py",
+      "initial_repo_state": {
+        "fixture_files": [
+          "src/__init__.py",
+          "src/dx07.py",
+          "tests/__init__.py",
+          "tests/test_dx07.py"
+        ],
+        "context_files": [
+          "src/dx07.py"
+        ],
+        "golden_files": [
+          "src/dx07.py"
+        ],
+        "tests_to_run": [
+          "tests/test_dx07.py"
+        ],
+        "model_needed": true
+      },
+      "initial_test_state": {
+        "note": "T15 predictions do not record pre-edit pytest; executable fixtures are fail-before-golden except refactor (pass-before and pass-after).",
+        "refactor_passes_before_edit": false
+      },
+      "patch_attempt_count": null,
+      "intermediate_test_results": {
+        "recorded_in_t15_predictions": false,
+        "reason": "T15 prediction schema stored only final test counts; per-round trails were not persisted."
+      },
+      "final_test_result": {
+        "exit_code": null,
+        "passed": null,
+        "failed": null,
+        "errors": null,
+        "status": "BLOCKED",
+        "detail": "BLOCKED: no explicit edits and no verifiable patch proposal; refusing to invent code.",
+        "diagnosis": null,
+        "reasons": [
+          "runner tests exit=None (failed=None)"
+        ]
+      },
+      "whether_patch_was_reverted": false,
+      "files_touched_before_revert": {
+        "recorded": false,
+        "inferred": "unknown — T15 cleared files_touched on revert"
+      },
+      "files_touched_after_revert": [],
+      "failure_taxonomy": "NO_VALID_PATCH",
+      "failure_taxonomy_secondary": [],
+      "taxonomy_evidence": [
+        "no files_touched and tests did not execute"
+      ],
+      "oracle_contract": {
+        "evaluation_oracle": [
+          "test_files_unchanged",
+          "tests_pass"
+        ],
+        "runner_acceptance_rule": "targeted pytest exit_code==0 AND remaining mechanical checks",
+        "disagreement_reason": "both baseline and CODE failed the frozen oracle"
+      },
+      "baseline_result": {
+        "pass": false,
+        "status": null,
+        "reasons": [
+          "tests fail after baseline patch"
+        ]
+      },
+      "t15_code_result": {
+        "pass": false,
+        "status": "BLOCKED",
+        "latency_s": 13.04,
+        "plan_valid": true
+      },
+      "checks": {
+        "tests_pass": [
+          "tests/test_dx07.py"
+        ],
+        "test_files_unchanged": true
+      }
+    }
+  ]
+}

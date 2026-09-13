@@ -1,0 +1,41 @@
+{
+  "benchmark": "mango-code-eval-v1.1",
+  "version": "v1.1",
+  "parent": "mango-code-eval-v1",
+  "parent_final_sha256": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
+  "parent_dev_sha256": "e2d88d9af0948cfdc311ef9dfacf7ab2e90c2f3e78ead34a426c69f5866bc8cb",
+  "seed": 20260912,
+  "total": 274,
+  "dev_n": 135,
+  "final_n": 139,
+  "dev_sha256": "aa1d2813f5a8c95d05ccd0f60201c522e5a8fe0468c62e99128b630bd018f3d2",
+  "final_sha256": "b2ae283eaea41e6af7d07185bfd9a1f855c7a248e6432214786ecc1aa3ebf85a",
+  "correction": {
+    "kind": "golden_file_metadata_only",
+    "categories": [
+      "import_err"
+    ],
+    "final_task_ids": [
+      "mce-v1-0101",
+      "mce-v1-0102",
+      "mce-v1-0103"
+    ],
+    "dev_task_ids": [
+      "mce-v1-0099",
+      "mce-v1-0100",
+      "mce-v1-0104"
+    ],
+    "adds": "golden[].file = repair_file when golden was empty",
+    "does_not_change": [
+      "task behavior",
+      "expected outputs",
+      "tests",
+      "difficulty",
+      "model prompts",
+      "scoring of unrelated categories",
+      "golden old/new patches"
+    ]
+  },
+  "behavioral_changes": "NONE",
+  "recorded_at": "2026-09-13T14:30:56.378039+00:00"
+}

@@ -26,7 +26,6 @@ from sciencemath.code import multifile as MF
 from sciencemath.code import planner as P
 from sciencemath.code import repair_state as RS
 from sciencemath.code import review as R
-from sciencemath.code import safety as S
 from sciencemath.code import search as SE
 from sciencemath.code import task_contracts as TC
 from sciencemath.code import testsel as T
@@ -364,7 +363,8 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                     network_permitted: bool = False,
                     limits: dict | None = None,
                     generate=None,
-                    external_feedback: str | None = None) -> dict:
+                    external_feedback: str | None = None,
+                    checkpoint_dir: str | Path | None = None) -> dict:
     """Execute one bounded coding task. Deterministic unless `generate`
     (a callable prompt->text) is supplied for EXPLAIN/PLAN prose or
     structured patch proposals.
@@ -383,6 +383,8 @@ def run_coding_task(repo_root: str | Path, request: str, *,
     usage = {"max_files_read": 0, "max_files_modified": 0, "max_commands": 0,
              "max_repair_iterations": 0}
     base = Path(repo_root)
+    if checkpoint_dir is None:
+        checkpoint_dir = base / ".mango_repair"
     trail: list[dict] = []
 
     def step(name: str, status: str, detail: str = "", **kw):
@@ -550,6 +552,7 @@ def run_coding_task(repo_root: str | Path, request: str, *,
     session = RS.RepairSession(
         base,
         involved_files=list((dep_map or {}).get("files_involved") or ctx_files),
+        checkpoint_dir=checkpoint_dir,
     )
 
     # REPRODUCE FIRST (T15.10): if the requested behavior already holds
@@ -623,6 +626,13 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                         seen.add(e.get("file"))
                 step("PROPOSE", C.ATTEMPTED,
                      f"atomic coupled edits now {len(pending)} files")
+        still_missing = MF.missing_coupled_files(pending, dep_map)
+        if still_missing and chosen == C.CODE_DEBUG and generate is not None:
+            # T15R.13 — do not test a knowingly half-applied interface change.
+            step("PROPOSE", C.ATTEMPTED,
+                 "coupled files still missing; defer apply and repair "
+                 "from ORIGINAL with the dependency map")
+            pending = []
     if not pending:
         # Bare DEBUG entry: no initial patch, but live failure evidence
         # exists (reproduce-first failed) — the bounded debug loop may
@@ -793,6 +803,10 @@ def run_coding_task(repo_root: str | Path, request: str, *,
         if not ok_c:
             step("REPAIR", C.BLOCKED, "repair budget exhausted")
             break
+        # T15R.5 — every repair attempt begins from BEST_VERIFIED_STATE
+        session.restore_best()
+        res = dict(session.best.test_result or res)
+        diagnosis = _diagnose(res)
         if cand.get("fixes") and cand["fixes"] not in (diagnosis, "ANY"):
             step("REPAIR", C.NOT_RUN,
                  f"round {rnd}: candidate fixes {cand.get('fixes')} "
@@ -825,12 +839,12 @@ def run_coding_task(repo_root: str | Path, request: str, *,
              else C.EXECUTED_FAIL,
              f"round {rnd}: exit={res2.get('exit_code')}")
         res = res2
-        diagnosis = _diagnose(res)
+        if not (res2.get("executed") and res2.get("exit_code") == 0):
+            diagnosis = _diagnose(res)
         _record_attempt(res2)
         if res2.get("executed") and res2.get("exit_code") == 0:
             repaired = True
             break
-        # keep CURRENT for chained repair_candidates; BEST is tracked
 
     while (not repaired and generate is not None and _budget_left()):
         usage["max_repair_iterations"] += 1
@@ -838,6 +852,8 @@ def run_coding_task(repo_root: str | Path, request: str, *,
         try:
             # T15R.5 — model repairs start from BEST_VERIFIED_STATE
             session.restore_best()
+            res = dict(session.best.test_result or res)
+            diagnosis = _diagnose(res)
             usage["max_commands"] += 1
             delta = (session.deltas[-1] if session.deltas else
                      RS.failure_delta(session.best.failure_ids,
@@ -895,7 +911,8 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                  else C.EXECUTED_FAIL,
                  f"round {rnd}: exit={res2.get('exit_code')}")
             res = res2
-            diagnosis = _diagnose(res)
+            if not (res2.get("executed") and res2.get("exit_code") == 0):
+                diagnosis = _diagnose(res)
             _record_attempt(res2)
             if res2.get("executed") and res2.get("exit_code") == 0:
                 repaired = True
@@ -907,8 +924,9 @@ def run_coding_task(repo_root: str | Path, request: str, *,
 
     fin = session.finalize()
     touched = list(fin["files_touched"])
-    res = session.best.test_result or res
-    repaired = bool(session.best.targeted_tests_passed)
+    if session.best.targeted_tests_passed:
+        res = session.best.test_result or res
+        repaired = True
     status = C.EXECUTED_PASS if repaired else (
         C.EXECUTED_FAIL if usage["max_repair_iterations"] >= default_r
         else C.BLOCKED)
