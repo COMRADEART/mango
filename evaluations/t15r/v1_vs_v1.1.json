@@ -2,8 +2,8 @@
   "v1_historical_unchanged": true,
   "v1_final_sha256": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
   "v1.1_created": true,
-  "v1.1_final_sha256": "b2ae283eaea41e6af7d07185bfd9a1f855c7a248e6432214786ecc1aa3ebf85a",
-  "v1.1_dev_sha256": "aa1d2813f5a8c95d05ccd0f60201c522e5a8fe0468c62e99128b630bd018f3d2",
+  "v1.1_final_sha256": "cbb9cb214ee9dd53331da8b3a68e237e0e1910398f89c4cc12dde87b5efde3fd",
+  "v1.1_dev_sha256": "3b24909109ada7a0b8c52e00f6079f8d40631f5492930fe39d01cdb1132027f6",
   "metadata_corrections": [
     {
       "task_id": "mce-v1-0101",
