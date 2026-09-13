@@ -22,10 +22,13 @@ from sciencemath.code import contract as C
 from sciencemath.code import discovery as D
 from sciencemath.code import editor as E
 from sciencemath.code import limits as L
+from sciencemath.code import multifile as MF
 from sciencemath.code import planner as P
+from sciencemath.code import repair_state as RS
 from sciencemath.code import review as R
 from sciencemath.code import safety as S
 from sciencemath.code import search as SE
+from sciencemath.code import task_contracts as TC
 from sciencemath.code import testsel as T
 
 _GIT_SAFE = re.compile(
@@ -40,7 +43,8 @@ def git_readonly(root: str | Path, args: list) -> dict:
                 "reason": "refused: not a read-only git command"}
     try:
         r = subprocess.run(["git", *args], cwd=str(root), capture_output=True,
-                           text=True, timeout=30)
+                           text=True, timeout=30, encoding="utf-8",
+                           errors="replace")
         return {"executed": True, "exit_code": r.returncode,
                 "output": (r.stdout or "")[-4000:]}
     except Exception as e:  # noqa: BLE001
@@ -268,6 +272,87 @@ def auto_repair(base: Path, diagnosis: str, test_output: str, *,
     return None
 
 
+def _wellformed_edit(e) -> bool:
+    return isinstance(e, dict) and (
+        {"file", "old", "new"} <= set(e) or
+        (e.get("create") is True and {"file", "new"} <= set(e)))
+
+
+def parse_patch_proposal(base: Path, raw: str) -> list:
+    """JSON list [{file,old,new}] or --- path --- fallback. Never invents."""
+    cand = None
+    try:
+        cand = json.loads(raw[raw.index("["):raw.rindex("]") + 1])
+    except (ValueError, IndexError, json.JSONDecodeError):
+        cand = None
+    if isinstance(cand, list) and cand and all(_wellformed_edit(e) for e in cand):
+        return cand
+    return fallback_file_edits(base, raw) or []
+
+
+_ROLLBACK = (
+    "revert to ORIGINAL only on safety, protected-component, "
+    "test-weakening, or catastrophic regression; otherwise retain "
+    "BEST_VERIFIED_STATE and repair from it"
+)
+
+
+def _read_blob(base: Path, rel: str, n: int = 4000) -> str:
+    try:
+        return (base / rel).read_text(encoding="utf-8")[:n]
+    except OSError:
+        return ""
+
+
+def _prompt_context(base: Path, request: str, *,
+                    context_files: list | None, tests_to_run: list | None,
+                    dep_map: dict | None, contract: dict | None,
+                    diagnosis: str = "", delta: dict | None = None,
+                    remaining: list | None = None,
+                    test_output: str = "") -> str:
+    files = list(context_files or [])[:8]
+    blobs = []
+    for cf in files:
+        txt = _read_blob(base, cf, 3000)
+        if txt:
+            blobs.append(f"--- {cf} ---\n{txt}")
+    oracle = TC.load_related_tests(base, tests_to_run)
+    parts = [
+        "Propose a minimal coordinated patch as JSON list "
+        "[{file, old, new}] (exact old strings from the files below; "
+        'use {"file": path, "create": true, "new": content} only for '
+        "brand-new files). Do not weaken tests. Do not touch protected "
+        "components. Do not invent execution.",
+        f"Task: {request[:500]}",
+    ]
+    if dep_map:
+        parts.append(MF.format_dep_map(dep_map))
+        parts.append(
+            "Stage ALL logically coupled edits (producer+consumer, "
+            "interface+implementation, schema+parser) in this single "
+            "patch. Do not assume a single-file patch can solve a "
+            "multi-file task.")
+    if contract:
+        parts.append(TC.format_contract(contract))
+    if diagnosis:
+        parts.append(f"Diagnosis of remaining failures: {diagnosis}")
+    if delta:
+        parts.append("Failure delta vs BEST_VERIFIED_STATE: "
+                     + json.dumps({k: delta[k] for k in
+                                   ("resolved", "introduced", "remaining",
+                                    "net_change") if k in delta}))
+        parts.append("Target remaining failures only; do not rediscover "
+                     "the full problem from scratch.")
+    if remaining:
+        parts.append("Remaining failure ids: " + ", ".join(remaining[:12]))
+    if test_output:
+        parts.append("Failing output:\n" + test_output[-1200:])
+    if oracle:
+        parts.append(oracle)
+    parts.extend(blobs)
+    return "\n".join(parts)[:7000]
+
+
 def run_coding_task(repo_root: str | Path, request: str, *,
                     op: str | None = None,
                     edits: list | None = None,
@@ -376,7 +461,7 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                            tests_to_run=list(tests_to_run or []),
                            risk_level="MEDIUM" if edits else "LOW",
                            expected_behavior_change="as requested; no hidden changes",
-                           rollback_condition="revert the patch if any targeted test fails")
+                           rollback_condition=_ROLLBACK)
         ok, problems = P.plan_valid(plan)
         step("PLAN", C.EXECUTED_PASS if ok else C.EXECUTED_FAIL, str(problems))
         return {"op": chosen, "status": C.EXECUTED_PASS if ok else C.EXECUTED_FAIL,
@@ -423,13 +508,49 @@ def run_coding_task(repo_root: str | Path, request: str, *,
         tests_to_run=list(tests_to_run or []),
         risk_level="MEDIUM" if len(files_to_modify) <= 1 else "HIGH",
         expected_behavior_change="requested behavior only; unrelated diff must be 0",
-        rollback_condition="revert the patch if any targeted test fails")
+        rollback_condition=_ROLLBACK)
     ok_plan, problems = P.plan_valid(plan)
     step("PLAN", C.PLANNED if ok_plan else C.EXECUTED_FAIL, str(problems))
     if not ok_plan:
         return {"op": chosen, "status": C.EXECUTED_FAIL, "trail": trail,
                 "evidence": {"plan": plan, "problems": problems},
                 "detail": f"plan invalid: {problems}", "files_touched": []}
+
+    ctx_files = list(context_files or [])
+    if not ctx_files:
+        src_dir = base / "src"
+        if src_dir.is_dir():
+            ctx_files = [p.relative_to(base).as_posix()
+                         for p in sorted(src_dir.glob("*.py"))
+                         if p.name != "__init__.py"][:8]
+    if TC.test_repair_intent(request):
+        tdir = base / "tests"
+        if tdir.is_dir():
+            tfiles = [p.relative_to(base).as_posix()
+                      for p in sorted(tdir.glob("test_*.py"))[:8]]
+            ctx_files = tfiles + [f for f in ctx_files if f not in tfiles]
+    dep_map = None
+    if MF.is_multi_file_task(request, ctx_files):
+        src_involved = [f for f in ctx_files
+                        if "test" not in f.replace("\\", "/").lower()
+                        and f.endswith(".py")]
+        dep_map = MF.map_dependencies(base, src_involved)
+        step("DEP_MAP", C.PLANNED, MF.format_dep_map(dep_map)[:240])
+    src0 = _read_blob(base, ctx_files[0], 2000) if ctx_files else ""
+    tst0 = TC.load_related_tests(base, tests_to_run)
+    contract = None
+    if TC.looks_like_data_xform(request):
+        contract = TC.data_xform_contract(
+            request, src_text=src0, test_text=tst0)
+        step("CONTRACT", C.PLANNED, "data_xform")
+    elif TC.looks_like_algo(request):
+        contract = TC.algo_contract(request, src_text=src0, test_text=tst0)
+        step("CONTRACT", C.PLANNED, "algo")
+
+    session = RS.RepairSession(
+        base,
+        involved_files=list((dep_map or {}).get("files_involved") or ctx_files),
+    )
 
     # REPRODUCE FIRST (T15.10): if the requested behavior already holds
     # (targeted tests pass before any edit), report NO_CHANGE_REQUIRED and
@@ -443,6 +564,7 @@ def run_coding_task(repo_root: str | Path, request: str, *,
             and not structural:
         usage["max_commands"] += 1
         pre = T.run_pytest_targets(base, repro_targets)
+        session.bind_original_tests(pre)
         if pre.get("executed") and pre.get("exit_code") == 0:
             step("REPRODUCE", C.EXECUTED_PASS,
                  f"tests already pass ({pre.get('passed')}); no change")
@@ -454,6 +576,10 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                     "files_touched": []}
         step("REPRODUCE", C.ATTEMPTED,
              f"bug reproduced (exit={pre.get('exit_code')}); proceeding")
+    elif structural and repro_targets:
+        usage["max_commands"] += 1
+        pre_s = T.run_pytest_targets(base, repro_targets)
+        session.bind_original_tests(pre_s)
 
     # Acquire explicit edits: caller-supplied, or model-proposed structured
     # patch. Never invent code when neither exists.
@@ -462,52 +588,41 @@ def run_coding_task(repo_root: str | Path, request: str, *,
             C.CODE_EDIT, C.CODE_DEBUG):
         try:
             usage["max_commands"] += 1
-            ctx_files = list(context_files or [])[:3]
-            if not ctx_files:
-                src_dir = base / "src"
-                if src_dir.is_dir():
-                    ctx_files = [p.relative_to(base).as_posix()
-                                 for p in sorted(src_dir.glob("*.py"))[:3]]
-            blobs = []
-            for cf in ctx_files:
-                try:
-                    txt = (base / cf).read_text(encoding="utf-8")[:2000]
-                    blobs.append(f"--- {cf} ---\n{txt}")
-                    usage["max_files_read"] += 1
-                except OSError:
-                    pass
-            prompt = ("Propose a minimal patch as JSON list "
-                      "[{file, old, new}] (exact old strings from below; "
-                      'use {"file": path, "create": true, "new": content} '
-                      "only for brand-new files). "
-                      f"Task: {request[:400]}\n" + "\n".join(blobs))
-            raw = generate(prompt[:6000])[:4000]
-            cand = None
-            try:
-                cand = json.loads(raw[raw.index("["):raw.rindex("]") + 1])
-            except (ValueError, IndexError):
-                cand = None
-
-            def _wellformed(e):
-                return isinstance(e, dict) and (
-                    {"file", "old", "new"} <= set(e) or
-                    (e.get("create") is True and {"file", "new"} <= set(e)))
-
-            if isinstance(cand, list) and cand and all(
-                    _wellformed(e) for e in cand):
-                pending = cand
+            usage["max_files_read"] += min(3, len(ctx_files) or 1)
+            prompt = _prompt_context(
+                base, request, context_files=ctx_files,
+                tests_to_run=tests_to_run, dep_map=dep_map,
+                contract=contract)
+            raw = generate(prompt)[:4000]
+            pending = parse_patch_proposal(base, raw)
+            if pending:
                 step("PROPOSE", C.ATTEMPTED, f"{len(pending)} model edits")
             else:
-                fb = fallback_file_edits(base, raw)
-                if fb:
-                    pending = fb
-                    step("PROPOSE", C.ATTEMPTED,
-                         f"{len(pending)} full-file fallback edits")
-                else:
-                    step("PROPOSE", C.EXECUTED_FAIL,
-                         "malformed patch proposal")
+                step("PROPOSE", C.EXECUTED_FAIL, "malformed patch proposal")
         except Exception as e:  # noqa: BLE001
             step("PROPOSE", C.EXECUTED_FAIL, f"no parseable patch: {e}")
+    if pending and dep_map:
+        missing = MF.missing_coupled_files(pending, dep_map)
+        if missing and generate is not None:
+            usage["max_commands"] += 1
+            extra_prompt = (
+                _prompt_context(
+                    base, request, context_files=ctx_files,
+                    tests_to_run=tests_to_run, dep_map=dep_map,
+                    contract=contract)
+                + "\nThe previous proposal omitted coupled files: "
+                + ", ".join(missing)
+                + ". Return ONE JSON list covering ALL involved files.")
+            raw2 = generate(extra_prompt)[:4000]
+            extra = parse_patch_proposal(base, raw2)
+            if extra:
+                seen = {e.get("file") for e in pending}
+                for e in extra:
+                    if e.get("file") not in seen:
+                        pending.append(e)
+                        seen.add(e.get("file"))
+                step("PROPOSE", C.ATTEMPTED,
+                     f"atomic coupled edits now {len(pending)} files")
     if not pending:
         # Bare DEBUG entry: no initial patch, but live failure evidence
         # exists (reproduce-first failed) — the bounded debug loop may
@@ -553,11 +668,13 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                                    task_allows=task_allows)
             if not res.get("ok"):
                 step("EDIT", C.EXECUTED_FAIL, res.get("error", "")[:200])
+                session.restore_original()
                 return {"op": chosen, "status": C.EXECUTED_FAIL,
                         "trail": trail,
-                        "evidence": {"plan": plan, "edit_error": res},
+                        "evidence": {"plan": plan, "edit_error": res,
+                                     "repair_session": session.export()},
                         "detail": f"edit failed: {res.get('error')}",
-                        "files_touched": touched}
+                        "files_touched": []}
             touched.append(res["file"])
             diffs.append(res["diff"])
             lines_added += res["lines_added"]
@@ -572,21 +689,38 @@ def run_coding_task(repo_root: str | Path, request: str, *,
             ok_s, err = E.syntax_ok(rel, text)
             if not ok_s:
                 step("VALIDATE", C.EXECUTED_FAIL, err)
+                session.restore_original()
                 return {"op": chosen, "status": C.EXECUTED_FAIL,
                         "trail": trail,
-                        "evidence": {"plan": plan}, "detail": f"syntax: {err}",
-                        "files_touched": touched}
+                        "evidence": {"plan": plan,
+                                     "repair_session": session.export()},
+                        "detail": f"syntax: {err}",
+                        "files_touched": []}
 
         # Diff review: FAIL CLOSED (T15.27)
         full_diff = "\n".join(diffs)
         drev = R.diff_review(full_diff, task_allows=task_allows)
         if not drev["ok"]:
             step("DIFF_REVIEW", C.EXECUTED_FAIL, str(drev["problems"]))
+            weakening = any("weakening" in str(p).lower() or "test" in str(p).lower()
+                            for p in drev["problems"])
+            prot = any("protected" in str(p).lower()
+                       for p in drev["problems"])
+            cand = session.capture_candidate(
+                {"executed": False, "exit_code": None, "failed": 0,
+                 "output": ""},
+                safety_status=RS.UNSAFE, compile_ok=True,
+                protected_component_status=(
+                    RS.VIOLATION if prot else RS.OK),
+                test_weakening=weakening)
+            session.consider(cand)
+            session.restore_original()
             return {"op": chosen, "status": C.EXECUTED_FAIL, "trail": trail,
                     "evidence": {"plan": plan,
-                                 "diff_problems": drev["problems"]},
+                                 "diff_problems": drev["problems"],
+                                 "repair_session": session.export()},
                     "detail": f"diff review failed: {drev['problems']}",
-                    "files_touched": touched}
+                    "files_touched": []}
         step("DIFF_REVIEW", C.ATTEMPTED, f"{len(drev['files'])} files clean")
 
         # Targeted tests first (T15.9)
@@ -596,38 +730,66 @@ def run_coding_task(repo_root: str | Path, request: str, *,
         res = T.run_pytest_targets(base, targets, touch_files=touched)
         if not res["executed"]:
             step("TEST", C.NOT_RUN, "pytest did not execute")
+            session.restore_original()
             return {"op": chosen, "status": C.NOT_RUN, "trail": trail,
-                    "evidence": {"plan": plan, "test": res},
+                    "evidence": {"plan": plan, "test": res,
+                                 "repair_session": session.export()},
                     "detail": "tests NOT_RUN — never labeled PASS",
-                    "files_touched": touched}
+                    "files_touched": []}
+        cand0 = session.capture_candidate(res)
+        decision0 = session.consider(cand0)
+        step("BEST_STATE", C.ATTEMPTED,
+             f"best={decision0['best_state_id']} progressed="
+             f"{decision0['progressed']}")
         if res["exit_code"] == 0:
             rev = R.code_review(full_diff, changed_files=touched)
             step("REVIEW", C.EXECUTED_PASS, f"verdict={rev['verdict']}")
             return {"op": chosen, "status": C.EXECUTED_PASS, "trail": trail,
-                    "evidence": {"plan": plan, "test": res, "review": rev},
+                    "evidence": {"plan": plan, "test": res, "review": rev,
+                                 "repair_session": session.export()},
                     "detail": f"patch verified: exit=0 passed={res['passed']}",
                     "files_touched": touched}
 
-    # ---- bounded debug loop (T15.12): diagnose from REAL output ------------
+    # ---- bounded debug loop (T15R): repair FROM BEST_VERIFIED_STATE --------
     step("DIAGNOSE", C.ATTEMPTED, _diagnose(res))
     ignored_feedback = None
     if external_feedback and "DIAGNOSE" not in str(external_feedback):
-        # Generic "wrong" feedback without failing-test evidence is ignored.
         ignored_feedback = (external_feedback or "")[:200]
         step("FEEDBACK", C.NOT_RUN,
              "generic feedback ignored: no failing-test evidence")
     diagnosis = _diagnose(res)
-    repaired = False
-    queue = list(repair_candidates or [])[:3]
-    # Evidence-triggered micro-repair runs first (one round): it is
-    # derived from live failure output, never from speculation.
+    repaired = bool(res.get("executed") and res.get("exit_code") == 0)
+    hard = int(lim.get("max_repair_iterations_hard_cap",
+                       RS.HARD_CAP_REPAIR_ROUNDS))
+    default_r = int(lim.get("max_repair_iterations",
+                            RS.DEFAULT_REPAIR_ROUNDS))
+    queue = list(repair_candidates or [])[:hard]
     if diagnosis.split(":")[0] in ("MISSING_IMPORT", "UNDEFINED_NAME"):
         queue = [{"auto": True, "fixes": diagnosis}] + queue
-        queue = queue[:3]
+        queue = queue[:hard]
+
+    def _budget_left() -> bool:
+        return RS.continue_repair(
+            usage["max_repair_iterations"],
+            last_progress=session.last_progress,
+            default_rounds=default_r, hard_cap=hard)
+
+    def _record_attempt(test_res: dict, **flags) -> dict:
+        cand = session.capture_candidate(test_res, **flags)
+        dec = session.consider(cand)
+        step("BEST_STATE", C.ATTEMPTED,
+             f"best={dec['best_state_id']} progressed={dec['progressed']} "
+             f"net={dec['delta'].get('net_change')}")
+        return dec
+
     for rnd, cand in enumerate(queue, start=1):
+        if not _budget_left():
+            step("REPAIR", C.BLOCKED, "repair budget exhausted")
+            break
         usage["max_repair_iterations"] += 1
         ok_c, _ = L.check_limits(
-            {"max_repair_iterations": usage["max_repair_iterations"]}, lim)
+            {"max_repair_iterations": usage["max_repair_iterations"]},
+            {**lim, "max_repair_iterations": hard})
         if not ok_c:
             step("REPAIR", C.BLOCKED, "repair budget exhausted")
             break
@@ -651,6 +813,7 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                               cand.get("new", ""), task_allows=task_allows)
             if not r2.get("ok"):
                 step("REPAIR", C.EXECUTED_FAIL, r2.get("error", "")[:200])
+                session.restore_best()
                 continue
         if r2.get("diff"):
             diffs.append(r2["diff"])
@@ -662,52 +825,38 @@ def run_coding_task(repo_root: str | Path, request: str, *,
              else C.EXECUTED_FAIL,
              f"round {rnd}: exit={res2.get('exit_code')}")
         res = res2
+        diagnosis = _diagnose(res)
+        _record_attempt(res2)
         if res2.get("executed") and res2.get("exit_code") == 0:
             repaired = True
             break
-    # Model re-proposal repair: when evidence supports another attempt and
-    # budget remains, re-prompt with the live diagnosis + failing output.
-    while (not repaired and generate is not None
-           and usage["max_repair_iterations"] < lim["max_repair_iterations"]
-           and usage["max_repair_iterations"] < 3):
+        # keep CURRENT for chained repair_candidates; BEST is tracked
+
+    while (not repaired and generate is not None and _budget_left()):
         usage["max_repair_iterations"] += 1
         rnd = usage["max_repair_iterations"]
         try:
+            # T15R.5 — model repairs start from BEST_VERIFIED_STATE
+            session.restore_best()
             usage["max_commands"] += 1
-            cur = {}
-            try:
-                cur = {f: (base / f).read_text(encoding="utf-8")[:2000]
-                       for f in touched[:3]}
-            except OSError:
-                pass
-            blob = "\n".join(f"--- {f} ---\n{t}" for f, t in cur.items())
-            raw = generate(
-                ("The previous patch failed. Diagnosis: "
-                 f"{diagnosis}. Failing output:\n"
-                 f"{res.get('output', '')[-1200:]}\nCurrent files:\n{blob}\n"
-                 "Propose a corrected minimal patch as JSON list "
-                 "[{file, old, new}] (exact old strings). "
-                 f"Original task: {request[:300]}")[:6000])[:4000]
-            cand = None
-            try:
-                cand = json.loads(raw[raw.index("["):raw.rindex("]") + 1])
-            except (ValueError, IndexError):
-                cand = None
-            if not (isinstance(cand, list) and cand and all(
-                    isinstance(e, dict) and (
-                        {"file", "old", "new"} <= set(e) or
-                        (e.get("create") is True and {"file", "new"} <= set(e)))
-                    for e in cand)):
-                cand = fallback_file_edits(base, raw) or None
-                if cand:
-                    step("REPAIR", C.ATTEMPTED,
-                         f"round {rnd}: full-file fallback re-proposal")
+            delta = (session.deltas[-1] if session.deltas else
+                     RS.failure_delta(session.best.failure_ids,
+                                      session.best.failure_ids))
+            prompt = _prompt_context(
+                base, request, context_files=ctx_files or touched,
+                tests_to_run=tests_to_run, dep_map=dep_map,
+                contract=contract, diagnosis=diagnosis, delta=delta,
+                remaining=session.best.failure_ids,
+                test_output=res.get("output", ""))
+            raw = generate(prompt)[:4000]
+            cand = parse_patch_proposal(base, raw)
             if not cand:
                 step("REPAIR", C.EXECUTED_FAIL,
                      f"round {rnd}: malformed model re-proposal")
                 break
             step("REPAIR", C.ATTEMPTED,
-                 f"round {rnd}: model re-proposal ({len(cand)} edits)")
+                 f"round {rnd}: model re-proposal ({len(cand)} edits) "
+                 f"from best={session.best.state_id}")
             applied_all = True
             for e in cand:
                 if e.get("create"):
@@ -722,48 +871,73 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                     step("REPAIR", C.EXECUTED_FAIL,
                          f"round {rnd}: {r3.get('error', '')[:150]}")
                     applied_all = False
+                    weakening = "weakening" in str(r3.get("error", "")).lower()
+                    prot = "protected" in str(r3.get("error", "")).lower()
+                    _record_attempt(
+                        {"executed": False, "exit_code": None, "failed": 0,
+                         "output": ""},
+                        safety_status=RS.UNSAFE if (weakening or prot) else RS.OK,
+                        test_weakening=weakening,
+                        protected_component_status=(
+                            RS.VIOLATION if prot else RS.OK),
+                        compile_ok=False)
+                    session.restore_best()
                     break
                 if r3.get("diff"):
                     diffs.append(r3["diff"])
                 if r3["file"] not in touched:
                     touched.append(r3["file"])
             if not applied_all:
-                break
+                continue
             usage["max_commands"] += 1
             res2 = T.run_pytest_targets(base, targets, touch_files=touched)
             step("RETEST", C.EXECUTED_PASS if res2.get("exit_code") == 0
                  else C.EXECUTED_FAIL,
                  f"round {rnd}: exit={res2.get('exit_code')}")
             res = res2
+            diagnosis = _diagnose(res)
+            _record_attempt(res2)
             if res2.get("executed") and res2.get("exit_code") == 0:
                 repaired = True
                 break
-            diagnosis = _diagnose(res)
         except Exception as e:  # noqa: BLE001
             step("REPAIR", C.EXECUTED_FAIL, f"re-proposal failed: {e}")
+            session.restore_best()
             break
-    status = C.EXECUTED_PASS if (res.get("executed")
-                                 and res.get("exit_code") == 0) else (
-        C.EXECUTED_FAIL if usage["max_repair_iterations"] >= 3
+
+    fin = session.finalize()
+    touched = list(fin["files_touched"])
+    res = session.best.test_result or res
+    repaired = bool(session.best.targeted_tests_passed)
+    status = C.EXECUTED_PASS if repaired else (
+        C.EXECUTED_FAIL if usage["max_repair_iterations"] >= default_r
         else C.BLOCKED)
     if status == C.EXECUTED_PASS and repaired:
-        # Post-repair diff re-review: the repaired patch must also be
-        # clean before it counts as verified (T15.27).
-        drev2 = R.diff_review("\n".join(diffs), task_allows=task_allows)
+        drev2 = R.diff_review("\n".join(diffs) or session.best.patch_text,
+                              task_allows=task_allows)
         if not drev2["ok"]:
             step("DIFF_REVIEW", C.EXECUTED_FAIL, str(drev2["problems"]))
+            session.restore_original()
             return {"op": chosen, "status": C.EXECUTED_FAIL, "trail": trail,
                     "evidence": {"plan": plan, "test": res,
                                  "diagnosis": diagnosis,
                                  "diff_problems": drev2["problems"],
-                                 "ignored_feedback": ignored_feedback},
+                                 "ignored_feedback": ignored_feedback,
+                                 "repair_session": session.export()},
                     "detail": f"repaired tests pass but diff review failed: "
                               f"{drev2['problems']}",
-                    "files_touched": touched}
+                    "files_touched": []}
         step("DIFF_REVIEW", C.EXECUTED_PASS, "repaired diff clean")
-    detail = ("repaired and verified" if repaired
-              else ("repair budget exhausted; BLOCKED" if status == C.BLOCKED
-                    else "tests still failing after bounded repair"))
+    if repaired:
+        detail = "repaired and verified"
+    elif fin["best_retained"]:
+        detail = ("partial progress retained in BEST_VERIFIED_STATE; "
+                  "targeted tests still failing")
+        status = C.BLOCKED
+    elif status == C.BLOCKED:
+        detail = "repair budget exhausted; BLOCKED"
+    else:
+        detail = "tests still failing after bounded repair"
     if ignored_feedback:
         detail += "; generic external feedback was ignored (no evidence)"
     if time.time() - t0 > lim["max_execution_seconds"]:
@@ -772,5 +946,8 @@ def run_coding_task(repo_root: str | Path, request: str, *,
     return {"op": chosen, "status": status, "trail": trail,
             "evidence": {"plan": plan, "test": res,
                          "diagnosis": diagnosis,
-                         "ignored_feedback": ignored_feedback},
+                         "ignored_feedback": ignored_feedback,
+                         "repair_session": session.export(),
+                         "failure_delta": (session.deltas[-1]
+                                           if session.deltas else None)},
             "detail": detail, "files_touched": touched}

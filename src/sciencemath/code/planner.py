@@ -32,7 +32,9 @@ def make_plan(task_summary: str, *, files_to_inspect=(),
         "expected_behavior_change": expected_behavior_change[:1000],
         "protected_components": list(protected_components),
         "rollback_condition": rollback_condition[:1000]
-        or "revert the patch if any targeted test fails",
+        or ("revert to ORIGINAL only on safety, protected-component, "
+            "test-weakening, or catastrophic regression; otherwise retain "
+            "BEST_VERIFIED_STATE and repair from it"),
     }
     return plan
 

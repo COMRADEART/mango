@@ -88,7 +88,8 @@ def run_pytest_targets(repo_root: str | Path, targets: list[str],
         r = subprocess.run(
             ["python", "-m", "pytest", *targets, "-q", "-p",
              "no:cacheprovider"], cwd=str(repo_root), capture_output=True,
-            text=True, timeout=timeout_s, env=env)
+            text=True, timeout=timeout_s, env=env, encoding="utf-8",
+            errors="replace")
     except Exception as e:  # noqa: BLE001 — record, never fabricate
         return {"executed": False, "exit_code": None, "passed": 0,
                 "failed": 0, "errors": 0, "skipped": 0, "output": str(e)[:2000],
@@ -121,8 +122,19 @@ def run_pytest_targets(repo_root: str | Path, targets: list[str],
                         if line.strip().startswith("ERROR "))
     failed = max(failed, n_failed_lines)
     errors = max(errors, n_error_lines)
+    failure_ids = []
+    for line in out.splitlines():
+        s = line.strip()
+        if s.startswith("FAILED ") or s.startswith("ERROR "):
+            token = s.split()[1] if len(s.split()) > 1 else s
+            token = token.split(" ")[0].rstrip(":")
+            if token and token not in failure_ids:
+                failure_ids.append(token)
+    if not failure_ids and failed:
+        failure_ids = [f"anon:{i}" for i in range(failed)]
     return {"executed": True, "exit_code": r.returncode, "passed": passed,
             "failed": failed, "errors": errors, "skipped": skipped,
+            "failure_ids": failure_ids,
             "output": out[-4000:]}
 
 

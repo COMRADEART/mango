@@ -5,7 +5,8 @@ DEFAULT_LIMITS = {
     "max_files_read": 40,
     "max_files_modified": 8,
     "max_commands": 20,
-    "max_repair_iterations": 3,
+    "max_repair_iterations": 3,  # T15R.8 default; 4–5 only with progress
+    "max_repair_iterations_hard_cap": 5,
     "max_execution_seconds": 600,
     "max_output_bytes": 200_000,
     "max_diff_lines": 500,
