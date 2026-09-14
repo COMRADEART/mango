@@ -83,7 +83,9 @@ def validate_handoff(run: dict, handoff: Handoff, task: dict,
 
 
 def handoff_cycle_depth(run: dict, agent_id: str) -> int:
-    """Longest handoff chain ending at agent_id (bounded by MAX_HANDOFF_CYCLE)."""
+    """Longest handoff chain STARTING at agent_id, walked forward through
+    the run's handoff edges (bounded by MAX_HANDOFF_CYCLE). Used by
+    validate_handoff to reject targets reachable past the cycle limit."""
     edges: dict[str, list[str]] = {}
     for h in run.get("handoffs") or []:
         edges.setdefault(h.get("from_agent"), []).append(h.get("to_agent"))

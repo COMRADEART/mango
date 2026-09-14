@@ -1,0 +1,100 @@
+{"case_id": "av-0101", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0102", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0103", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0104", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0105", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0106", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0107", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0108", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0109", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0110", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0111", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0112", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0113", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0114", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0115", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0116", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0117", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0118", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0119", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0120", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0121", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0122", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0123", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0124", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0125", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0126", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0127", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.0}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0128", "category": "verifier_numeric", "mode": "probe", "probe": "verify", "fixture": {"variant": "numeric_boundary", "claim": 2.5}, "gold": {"expect_decision": "FAIL"}}
+{"case_id": "av-0129", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0130", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0131", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0132", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0133", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0134", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0135", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0136", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0137", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0138", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0139", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0140", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0141", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0142", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0143", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0144", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0145", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0146", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0147", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0148", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0149", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0150", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0151", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0152", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0153", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0154", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0155", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0156", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0157", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0158", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0159", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0160", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0161", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0162", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0163", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0164", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0165", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0166", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0167", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": true}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0168", "category": "verifier_injection", "mode": "probe", "probe": "injection", "fixture": {"variant": "directives", "contained": false}, "gold": {"expect_injection_flagged": true, "verification_not_waived": true}}
+{"case_id": "av-0169", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0170", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0171", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0172", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0173", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0174", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0175", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0176", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0177", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0178", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0179", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0180", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0181", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0182", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0183", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0184", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0185", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0186", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0187", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0188", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0189", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0190", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0191", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0192", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0193", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0194", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0195", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0196", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0197", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": true}, "gold": {"expect_escalation": false}}
+{"case_id": "av-0198", "category": "verifier_escalation", "mode": "probe", "probe": "escalate", "fixture": {"agree": false}, "gold": {"expect_escalation": true}}
+{"case_id": "av-0199", "category": "verifier_decision", "mode": "probe", "probe": "verify", "fixture": {"variant": "pass_full"}, "gold": {"expect_decision": "PASS"}}
+{"case_id": "av-0200", "category": "verifier_decision", "mode": "probe", "probe": "verify", "fixture": {"variant": "pass_full"}, "gold": {"expect_decision": "PASS"}}

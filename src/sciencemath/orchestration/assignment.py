@@ -88,7 +88,9 @@ def assignable_batch(plan: dict, agents: dict[str, dict],
 
     Rules:
     - concurrency cap (T20.25)
-    - WRITE/WRITE and READ/WRITE conflicts serialize (T20.26)
+    - WRITE/WRITE and READ/WRITE conflicts serialize (T20.26); batch- and
+      previously-acquired WRITE locks both surface through the lock table,
+      so the deferred reason is always "resource_conflict:<rid>:<holder>"
     - an exclusive task already assigned is not duplicated (T20.30)
     """
     ready = ready_plan_tasks(plan)
@@ -132,6 +134,15 @@ def assignable_batch(plan: dict, agents: dict[str, dict],
         }
         if batch_writes & taken_writes:
             deferred.append({"task": t, "reason": "batch_write_conflict"})
+            continue
+        batch_writes = {
+            r["resource_id"] for r in resources if r["kind"] == "WRITE"
+        }
+        if batch_writes & taken_writes:
+            # same-batch WRITE contention: the lock-table check above sees
+            # locks acquired earlier in THIS batch too, but keep the explicit
+            # guard so the semantics never depend on iteration order
+            deferred.append({"task": t, "reason": "resource_conflict"})
             continue
         batch.append({"task": t, "agent": agent, "resources": resources})
         batch_task_ids.add(t["task_id"])

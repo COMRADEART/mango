@@ -24,6 +24,15 @@ class OrchestratorFacade:
         self.orch = orchestrator or Orchestrator()
         self._runs: dict[str, OrchestrationRun] = {}
 
+    def _resolve(self, request: dict) -> dict:
+        """Attach the cached run object when the request carries only a
+        run_id (RUN_BLOCK / RUN_ABORT)."""
+        if request.get("run") is None:
+            run = self._runs.get(request.get("run_id"))
+            if run is not None:
+                return {**request, "run": run}
+        return request
+
     def handle(self, request: dict) -> RunResult:
         op = request.get("op") or request.get("operation") or "RUN_CREATE"
         if op not in RUN_OPS:
@@ -54,9 +63,9 @@ class OrchestratorFacade:
                 self._runs[res.run.run_id] = res.run
             return res
         if op == "RUN_BLOCK":
-            return self.orch.abort(request)   # bounded refusal path
+            return self.orch.abort(self._resolve(request))   # bounded refusal
         if op == "RUN_ABORT":
-            return self.orch.abort(request)
+            return self.orch.abort(self._resolve(request))
         if op == "RUN_REPLAN":
             res = self.orch.replan(request)
             if res.run is not None:

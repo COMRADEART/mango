@@ -90,6 +90,9 @@ class Orchestrator:
         self.max_concurrent_workers = max_concurrent_workers
         self.max_concurrent_verifiers = max_concurrent_verifiers
         self.log = EventLog()
+        # per-run fixture-worker state (T19 fail-once semantics); eval
+        # harness state only, never serialized into run state
+        self._worker_state: dict[str, dict] = {}
 
     # ------------------------------------------------------------------
     # RUN_CREATE
@@ -301,13 +304,15 @@ class Orchestrator:
 
         run.updated_at = now
         run.run_hash = run_state_hash(run)
+
+        self._update_run_status(run, now)
         if self.checkpointer:
+            # checkpoint after the step's transitions commit (T20.71): the
+            # saved state must include the committed run status and events
             self.checkpointer.save(run, lock_state.snapshot(),
                                    reason="step", now=now)
             self.log.append(run, "ORCHESTRATOR", "CHECKPOINT_SAVED", now=now)
             run.run_hash = run_state_hash(run)
-
-        self._update_run_status(run, now)
         replay_ok = replay_equivalent(run)
         if not replay_ok:
             run.counters["fabricated_tool_result"] += 1
@@ -330,10 +335,12 @@ class Orchestrator:
             return
         done, evidence = completion_decision(self.planner._coerce_plan(
             run.plan))
+        # gate on the latest artifact per task: a superseded earlier attempt
+        # (failed, then re-verified through a bounded revision) must not
+        # block completion (T20.31/T20.48)
         mandatory_pending = [
-            a for a in run.artifacts
-            if a.get("verification_required")
-            and a.get("verification_status") not in ("PASSED", "NOT_REQUIRED")
+            a for a in _latest_artifacts(run)
+            if a.get("verification_status") not in ("PASSED", "NOT_REQUIRED")
         ]
         plan_tasks = {t["task_id"]: t for t in (run.plan.get("tasks") or [])}
         all_done = plan_tasks and all(
@@ -441,7 +448,9 @@ class Orchestrator:
                     "failure_class": "CAPABILITY_MISMATCH",
                     "facts": [], "artifacts": [], "claim": "",
                     "payload_flags": []}
-        return worker_run(task, agent, case, now=now)
+        return worker_run(task, agent, case, now=now,
+                          state=self._worker_state.setdefault(
+                              run.run_id, {}))
 
     # -- result processing ----------------------------------------------
     def _process_result(self, run: OrchestrationRun, task: dict,
@@ -576,6 +585,7 @@ class Orchestrator:
         self.log.append(run, v["agent_id"], "VERIFICATION_FAILED",
                         task_id=tid,
                         payload={"verification_id": vid,
+                                 "artifact_id": ref["artifact_id"],
                                  "decision": decision["decision"],
                                  "reasons": decision["reasons"][:3]},
                         now=now)
@@ -639,7 +649,9 @@ class Orchestrator:
                                  "reasons": list(reasons or [])[:3]}, now=now)
         run.tasks[tid] = "REVISION_REQUESTED"
         # one bounded revision re-run by the same agent, then re-verified
-        retry = worker_run(task, agent, {"worker_behavior": {}}, now=now)
+        # (distinct timestamp so the retry artifact gets a distinct id)
+        retry = worker_run(task, agent, {"worker_behavior": {}},
+                           now=now + "-r")
         if retry.get("result_status") == "SUCCEEDED":
             ref = self._register_artifact(run, task, agent, retry,
                                           now + "-r")
@@ -771,7 +783,10 @@ class Orchestrator:
         pr = self.planner.handle({
             "operation": "PLAN_REPLAN", "plan": run.plan,
             "replan_trigger": req.get("replan_trigger") or "",
-            "observation": req.get("observation") or {}, "now": now,
+            "observation": req.get("observation") or {},
+            "invalidate_task": (req.get("invalidate_task")
+                                or (run.replan_state or {}).get("task_id")),
+            "now": now,
         })
         run.budgets["consumed_replans"] = \
             int(run.budgets.get("consumed_replans", 0)) + 1
@@ -796,6 +811,9 @@ class Orchestrator:
                     run.tasks[tid] = "SUCCEEDED"
                 elif tid in run.tasks and run.tasks[tid] != "SUCCEEDED":
                     run.tasks[tid] = "PENDING"
+            # the blocker that triggered the replan is now resolved
+            run.blockers = []
+            run.replan_state = None
             run.status = "RUNNING"
         else:
             run.status = "BLOCKED"
@@ -847,6 +865,16 @@ class Orchestrator:
         return RunResult("RUN_ABORT", run)
 
 
+def _latest_artifacts(run: OrchestrationRun) -> list[dict]:
+    """Latest artifact per task: bounded revisions supersede earlier
+    attempts (T20.31), so the completion gate considers the final one."""
+    latest: dict[str, dict] = {}
+    for a in run.artifacts:
+        if a.get("verification_required"):
+            latest[a.get("task_id") or a["artifact_id"]] = a
+    return list(latest.values())
+
+
 def completion_ok(run: OrchestrationRun, planner: Planner | None = None
                   ) -> bool:
     """T20.48: COMPLETE only with the T19 plan gate + verification + no
@@ -858,4 +886,4 @@ def completion_ok(run: OrchestrationRun, planner: Planner | None = None
     if done != PLAN_COMPLETE:
         return False
     return all(a.get("verification_status") in ("PASSED", "NOT_REQUIRED")
-               for a in run.artifacts if a.get("verification_required"))
+               for a in _latest_artifacts(run))

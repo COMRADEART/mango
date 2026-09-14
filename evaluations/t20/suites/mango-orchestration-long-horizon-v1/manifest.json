@@ -1,0 +1,13 @@
+{
+  "benchmark": "mango-orchestration-long-horizon-v1",
+  "total": 36,
+  "dev_n": 6,
+  "final_n": 30,
+  "dev_sha256": "cf55bde1f2a51f52e96df634bb802d4f6e541c6c254dd4d5e7ad7506349094e4",
+  "final_sha256": "1f80712937341952dcd432ef219eab3e4e9f7b52d0a28c3778749b98274c047d",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T20:07:55.920297+00:00",
+  "categories": [
+    "strict_long_horizon"
+  ]
+}

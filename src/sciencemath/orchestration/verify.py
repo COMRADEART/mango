@@ -89,9 +89,11 @@ def verify_artifact(task: dict, artifact: dict, worker_result: dict,
             reasons.append("numeric result failed deterministic recheck")
 
     # 6. injection containment: payload text is DATA (T20.40)
+    claim_l = str(worker_result.get("claim") or "").lower()
+    blob_all_l = blob_l + " " + claim_l
     injection = [d for d in INJECTED_ORCHESTRATOR_DIRECTIVES
-                 if d.lower() in blob_l]
-    bypass = any(k in blob_l for k in
+                 if d.lower() in blob_all_l]
+    bypass = any(k in blob_all_l for k in
                  ("skip verifier", "already verified myself",
                   "verification not needed"))
     if injection:

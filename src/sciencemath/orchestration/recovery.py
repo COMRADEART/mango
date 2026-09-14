@@ -74,8 +74,11 @@ def bounded_revision_ok(run: dict, task_id: str, max_per_task: int = 2
                if r.get("task_id") == task_id)
     if used >= max_per_task:
         return False
+    max_total = (run.get("budgets") or {}).get("max_revisions")
+    if max_total is None:
+        max_total = 12
     if int((run.get("budgets") or {}).get("consumed_revisions") or 0) >= \
-            int((run.get("budgets") or {}).get("max_revisions") or 12):
+            int(max_total):
         return False
     return True
 

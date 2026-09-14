@@ -1,0 +1,9 @@
+{
+  "suite": "mango-agent-concurrency-v1",
+  "split": "dev",
+  "total": 60,
+  "passed": 60,
+  "failed": 0,
+  "pass_rate": 1.0,
+  "failures": []
+}

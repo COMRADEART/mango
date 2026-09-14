@@ -1,0 +1,14 @@
+{
+  "benchmark": "mango-agent-handoff-v1",
+  "total": 150,
+  "dev_n": 75,
+  "final_n": 75,
+  "dev_sha256": "f84f7cd33aaf956b06542de13de187d2268d7c7ad9b561b2d7003ae515ed3e77",
+  "final_sha256": "429714f92d4a9467f2a8d58d19daf72bca463f25553cc511b5d9cc3c96378a2f",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T20:07:55.921436+00:00",
+  "categories": [
+    "handoff_e2e",
+    "handoff_rejection"
+  ]
+}

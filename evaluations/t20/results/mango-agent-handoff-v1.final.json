@@ -1,0 +1,9 @@
+{
+  "suite": "mango-agent-handoff-v1",
+  "split": "final",
+  "total": 75,
+  "passed": 75,
+  "failed": 0,
+  "pass_rate": 1.0,
+  "failures": []
+}

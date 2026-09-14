@@ -1,0 +1,9 @@
+{
+  "suite": "mango-orchestration-long-horizon-v1",
+  "split": "final",
+  "total": 30,
+  "passed": 30,
+  "failed": 0,
+  "pass_rate": 1.0,
+  "failures": []
+}

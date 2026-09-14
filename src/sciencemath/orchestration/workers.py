@@ -161,12 +161,29 @@ def _behavior_for(task: dict, case: dict, state: dict | None) -> str:
     Case keys: "worker_behavior" mapping task_id | task_type -> behavior;
     "fail_task"/"fail_type" + "failure_class" (compat with T19 harness);
     "malicious_observation" -> malicious on first step.
+
+    One-off failure behaviors ("failure", "timeout", "crash") fail once per
+    task and recover on retry (T19 TRANSIENT semantics); a "failure" with an
+    explicit non-TRANSIENT failure_class persists across retries.
     """
     wb = case.get("worker_behavior") or {}
+    st = state if state is not None else {}
     for key in (task.get("task_id"), task.get("task_type"),
                 task.get("required_skill")):
         if key and key in wb:
-            return wb[key]
+            behavior = wb[key]
+            if behavior in ("failure", "timeout", "crash"):
+                persists = (behavior == "failure" and
+                            case.get("failure_class") not in
+                            (None, "TRANSIENT"))
+                fails = st.setdefault("fail_counts", {})
+                fk = f"wb:{task.get('task_id')}"
+                n = int(fails.get(fk, 0))
+                fails[fk] = n + 1
+                if not persists and n > 0:
+                    return "success"   # recovered on the bounded retry
+                return behavior
+            return behavior
     st = state if state is not None else {}
     fails = st.setdefault("fail_counts", {})
     if case.get("fail_task") == task.get("task_id") or \
