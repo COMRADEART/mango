@@ -1,0 +1,26 @@
+{
+  "benchmark": "mango-orchestration-core-v1",
+  "total": 260,
+  "dev_n": 130,
+  "final_n": 130,
+  "dev_sha256": "83aaa0d0513643c09a855fbc318ac4eea8f6b7cc4939e6585ef6aaf14a4dd83c",
+  "final_sha256": "6d1fccde3cc1e004df34b65acbc22866c89eda8fd8960ab3d639ebf82479e883",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T20:07:55.921436+00:00",
+  "categories": [
+    "adversarial_containment",
+    "bounded_revision",
+    "dependency_ordering",
+    "evidence_recovery",
+    "handoff_provenance",
+    "mandatory_verification",
+    "multi_skill",
+    "parallel_branch",
+    "replan_requested",
+    "revision_recovery",
+    "simple_decomposition",
+    "single_skill",
+    "single_skill_verified",
+    "transient_recovery"
+  ]
+}

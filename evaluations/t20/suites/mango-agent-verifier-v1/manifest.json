@@ -1,0 +1,16 @@
+{
+  "benchmark": "mango-agent-verifier-v1",
+  "total": 200,
+  "dev_n": 100,
+  "final_n": 100,
+  "dev_sha256": "a492fa2875a434335270480eb2c4162ba6b6665d3770d60de7e8956b0cd265dc",
+  "final_sha256": "73ff7913efba9064d2eef2cec154e9cde05df0d12ccb9fa6e3307bcb7bdd0e45",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T20:07:55.928572+00:00",
+  "categories": [
+    "verifier_decision",
+    "verifier_escalation",
+    "verifier_injection",
+    "verifier_numeric"
+  ]
+}

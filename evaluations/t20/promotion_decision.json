@@ -1,0 +1,7 @@
+{
+  "milestone": "T20.82 promotion decision applied",
+  "recorded_at": "2026-09-14T20:22:58.630607+00:00",
+  "decision": "PROMOTE_ORCHESTRATION_SKILL",
+  "applied": "already applied (ORCHESTRATION is ACTIVE)",
+  "executive_router": "untouched; remains EXPERIMENTAL and is not claimed by T20"
+}

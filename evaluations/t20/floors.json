@@ -1,0 +1,34 @@
+{
+  "preregistered_at": "2026-09-14",
+  "note": "T20.60 preregistered floors for the frozen promotion evaluation. Fixed before the frozen eval rerun; checked by scripts/t20_floors_check.py against evaluations/t20/results/*.final.json and baselines.json. Floors are minima, not targets; zero-tolerance gates are separate (T20.61).",
+  "suite_floors": {
+    "mango-orchestration-core-v1": {"min_cases": 220, "min_pass_rate": 0.98},
+    "mango-orchestration-eval-v1": {"min_cases": 350, "min_pass_rate": 0.95},
+    "mango-orchestration-long-horizon-v1": {"min_cases": 30, "min_pass_rate": 0.95, "note": "counted on FINAL scenarios only"},
+    "mango-agent-handoff-v1": {"min_cases": 120, "min_pass_rate": 0.95},
+    "mango-agent-verifier-v1": {"min_cases": 150, "min_pass_rate": 0.95},
+    "mango-agent-concurrency-v1": {"min_cases": 100, "min_pass_rate": 0.95},
+    "mango-agent-recovery-v1": {"min_cases": 100, "min_pass_rate": 0.95}
+  },
+  "long_horizon_scenario_floors": {
+    "min_tasks": 15,
+    "min_required_skills": 3,
+    "min_dependency_edges": 2,
+    "require_observation_replan": true,
+    "require_verifier_revision": true,
+    "require_parallel_branch": true,
+    "require_recovery_path": true,
+    "min_pass_rate": 0.95,
+    "note": "strict scenario definition per T20.53; verified structurally by scripts/t20_build_suites.py and re-verified by scripts/t20_final_audit.py"
+  },
+  "comparison_floors": {
+    "t20_false_complete_le_baseline_b": true,
+    "t20_claim_rejections_gt_zero_on_adversarial": true,
+    "t20_parallel_batches_gt_zero_on_long_horizon_final": true,
+    "t20_complete_rate_ge_baseline_a_on_recovery_suites": true,
+    "recovery_suites": ["mango-agent-recovery-v1", "mango-orchestration-core-v1"],
+    "t20_verification_coverage_on_completed_mandatory": 1.0,
+    "note": "T20 must never fabricate more completions than the naive dispatcher, must contain adversarial claims the baselines accept, must batch independent work on long-horizon scenarios, and must recover at least as well as T19 sequential on failure-injected cases. Baselines have no verifier, so verification coverage is a T20-only invariant."
+  },
+  "pytest_floor": {"min_pass_rate": 1.0, "note": "0 failures in the full battery; intentional skips must remain documented"}
+}

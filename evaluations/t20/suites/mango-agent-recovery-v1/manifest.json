@@ -1,0 +1,19 @@
+{
+  "benchmark": "mango-agent-recovery-v1",
+  "total": 150,
+  "dev_n": 75,
+  "final_n": 75,
+  "dev_sha256": "bdb0cc312240e5bc5fd33f5d0224901c570c386026ca56423e67389ebe4ef652",
+  "final_sha256": "7cc33b17b99eb87e637b4e4486b1ec44344efc1a2fc65514ddb521ea3b5543a8",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T20:07:55.932309+00:00",
+  "categories": [
+    "crash_recovery",
+    "failure_taxonomy",
+    "revision_bound",
+    "revision_recovery",
+    "timeout_recovery",
+    "transient_retry",
+    "work_preservation"
+  ]
+}

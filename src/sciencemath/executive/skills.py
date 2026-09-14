@@ -24,6 +24,7 @@ COST_CLASSES = (LOCAL_FREE, LOCAL_EXPENSIVE, ONLINE_FREE,
 SKILL_IDS = (
     "GENERAL", "MATH_T4", "SCIENCE_RAG", "SCICOMP", "CODE",
     "WEB_RESEARCH", "DOCUMENT", "MEMORY", "PLANNING", "NO_TOOL",
+    "ORCHESTRATION",
 )
 
 _SCHEMA_EMPTY = {"type": "object", "properties": {}, "required": []}
@@ -165,6 +166,22 @@ def default_registry() -> dict[str, dict]:
             description="Explicit no-tool / needs-information terminal.",
             availability=ACTIVE,
             fallback_behavior="GENERAL",
+        ),
+        "ORCHESTRATION": _skill(
+            skill_id="ORCHESTRATION",
+            description="Bounded multi-agent orchestration: coordinates "
+                        "specialist agents over validated T19 plans with "
+                        "role manifests, handoff contracts, independent "
+                        "verification, budgets, checkpoint/resume, and "
+                        "recovery. COORDINATE_INTERNAL_WORK_ONLY; no "
+                        "external action authority. T20 runtime. "
+                        "Promoted ACTIVE at T20.",
+            availability=ACTIVE,
+            cost_class=LOCAL_EXPENSIVE,
+            deterministic=True,
+            verification_method="orchestration_run_audit",
+            fallback_behavior="PLANNING",
+            latency_class="MEDIUM",
         ),
     }
 

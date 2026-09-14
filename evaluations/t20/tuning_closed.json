@@ -1,0 +1,15 @@
+{
+  "milestone": "T20 FINAL frozen",
+  "recorded_at": "2026-09-14T20:07:55.932309+00:00",
+  "tuning_closed": true,
+  "final_checksums": {
+    "mango-orchestration-long-horizon-v1": "1f80712937341952dcd432ef219eab3e4e9f7b52d0a28c3778749b98274c047d",
+    "mango-orchestration-core-v1": "6d1fccde3cc1e004df34b65acbc22866c89eda8fd8960ab3d639ebf82479e883",
+    "mango-orchestration-eval-v1": "070b51e424a6bc318660ef591740f3e1958d31fed09132083d3850503e14ef9e",
+    "mango-agent-handoff-v1": "429714f92d4a9467f2a8d58d19daf72bca463f25553cc511b5d9cc3c96378a2f",
+    "mango-agent-verifier-v1": "73ff7913efba9064d2eef2cec154e9cde05df0d12ccb9fa6e3307bcb7bdd0e45",
+    "mango-agent-concurrency-v1": "42b1966b18276e9c166c3856cccf901491442810e3c7a111bbd2ceafd0f1fc42",
+    "mango-agent-recovery-v1": "7cc33b17b99eb87e637b4e4486b1ec44344efc1a2fc65514ddb521ea3b5543a8"
+  },
+  "notes": "FINAL frozen at generation; no post-observation edits permitted (T20.58/T20.60)."
+}

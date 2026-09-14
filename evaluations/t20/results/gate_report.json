@@ -1,0 +1,33 @@
+{
+  "gate": "T20.61 zero-tolerance",
+  "scope": "run-mode FINAL cases",
+  "cases_checked": 440,
+  "violations": [],
+  "per_suite": {
+    "mango-agent-concurrency-v1": {
+      "cases": 10,
+      "ok": 10
+    },
+    "mango-agent-handoff-v1": {
+      "cases": 25,
+      "ok": 25
+    },
+    "mango-agent-recovery-v1": {
+      "cases": 35,
+      "ok": 35
+    },
+    "mango-orchestration-core-v1": {
+      "cases": 130,
+      "ok": 130
+    },
+    "mango-orchestration-eval-v1": {
+      "cases": 210,
+      "ok": 210
+    },
+    "mango-orchestration-long-horizon-v1": {
+      "cases": 30,
+      "ok": 30
+    }
+  },
+  "ok": true
+}

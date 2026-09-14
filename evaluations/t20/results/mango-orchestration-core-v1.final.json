@@ -1,0 +1,9 @@
+{
+  "suite": "mango-orchestration-core-v1",
+  "split": "final",
+  "total": 130,
+  "passed": 130,
+  "failed": 0,
+  "pass_rate": 1.0,
+  "failures": []
+}

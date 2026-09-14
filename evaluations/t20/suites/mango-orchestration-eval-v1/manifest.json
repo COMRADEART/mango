@@ -1,0 +1,17 @@
+{
+  "benchmark": "mango-orchestration-eval-v1",
+  "total": 420,
+  "dev_n": 210,
+  "final_n": 210,
+  "dev_sha256": "c90247b3c5489f80a30606d739a1e65edd8022f9a18a53a16535a41b780ea932",
+  "final_sha256": "070b51e424a6bc318660ef591740f3e1958d31fed09132083d3850503e14ef9e",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T20:07:55.921436+00:00",
+  "categories": [
+    "checkpoint_resume",
+    "failure_recovery",
+    "happy_path",
+    "observation_replan",
+    "verified_path"
+  ]
+}

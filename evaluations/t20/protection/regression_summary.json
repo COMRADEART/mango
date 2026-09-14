@@ -1,0 +1,58 @@
+{
+  "milestone": "T20.62 protection battery",
+  "recorded_at": "2026-09-14T20:23:55.963886+00:00",
+  "status": "ALL_PASS",
+  "identity": {
+    "code": true,
+    "scicomp": true,
+    "web_research": true,
+    "document": true,
+    "memory": true,
+    "t4_tools": true,
+    "t5r_rag": true,
+    "fidelity": true,
+    "correction_firewall": true,
+    "executive_router": true
+  },
+  "layers": {
+    "hash_identity": {
+      "status": "PASS",
+      "checks": {
+        "code": true,
+        "scicomp": true,
+        "web_research": true,
+        "document": true,
+        "memory": true,
+        "t4_tools": true,
+        "t5r_rag": true,
+        "fidelity": true,
+        "correction_firewall": true,
+        "executive_router": true
+      }
+    },
+    "mutation": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "security_pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "........................s....................s.......................... [ 45%]\n........................................................................ [ 91%]\n.............                                                            [100%]\n"
+    },
+    "suite_freeze": {
+      "status": "PASS",
+      "checks": {
+        "mango-agent-concurrency-v1": true,
+        "mango-agent-handoff-v1": true,
+        "mango-agent-recovery-v1": true,
+        "mango-agent-verifier-v1": true,
+        "mango-orchestration-core-v1": true,
+        "mango-orchestration-eval-v1": true,
+        "mango-orchestration-long-horizon-v1": true
+      }
+    }
+  },
+  "t19_protection_reused": true,
+  "gpu_layers_rerun": false,
+  "reason": "T20 added the orchestration layer only; all frozen component hashes match the T19.1 freeze (including the Executive Router, not promoted or claimed by T20), so prior ALL_PASS protection results remain valid."
+}

@@ -1,0 +1,16 @@
+{
+  "benchmark": "mango-agent-concurrency-v1",
+  "total": 120,
+  "dev_n": 60,
+  "final_n": 60,
+  "dev_sha256": "8959050fb09a5c7bb22f162ca801960313c1290a1e0798f0d1d1121afdffe67b",
+  "final_sha256": "42b1966b18276e9c166c3856cccf901491442810e3c7a111bbd2ceafd0f1fc42",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T20:07:55.930478+00:00",
+  "categories": [
+    "bounded_batch",
+    "duplicate_prevention",
+    "parallel_dispatch",
+    "write_serialization"
+  ]
+}

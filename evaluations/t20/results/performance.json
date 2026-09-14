@@ -1,0 +1,52 @@
+{
+  "milestone": "T20.80 performance",
+  "per_suite": {
+    "mango-agent-concurrency-v1": {
+      "cases": 10,
+      "mean_steps": 64,
+      "median_steps": 64.0,
+      "max_steps": 64,
+      "parallel_batch_cases": 0
+    },
+    "mango-agent-handoff-v1": {
+      "cases": 25,
+      "mean_steps": 35,
+      "median_steps": 35,
+      "max_steps": 35,
+      "parallel_batch_cases": 0
+    },
+    "mango-agent-recovery-v1": {
+      "cases": 35,
+      "mean_steps": 39.86,
+      "median_steps": 39,
+      "max_steps": 42,
+      "parallel_batch_cases": 0
+    },
+    "mango-orchestration-core-v1": {
+      "cases": 130,
+      "mean_steps": 40.77,
+      "median_steps": 39.0,
+      "max_steps": 69,
+      "parallel_batch_cases": 0
+    },
+    "mango-orchestration-eval-v1": {
+      "cases": 210,
+      "mean_steps": 39.19,
+      "median_steps": 41.0,
+      "max_steps": 60,
+      "parallel_batch_cases": 0
+    },
+    "mango-orchestration-long-horizon-v1": {
+      "cases": 30,
+      "mean_steps": 166.47,
+      "median_steps": 162.0,
+      "max_steps": 208,
+      "parallel_batch_cases": 30
+    }
+  },
+  "long_horizon": {
+    "cases": 30,
+    "parallel_batch_cases": 30,
+    "note": "every long-horizon FINAL scenario executes at least one >=2-task parallel batch; sequential baseline wall-clock is strictly one task in flight."
+  }
+}
