@@ -65,7 +65,10 @@ def test_research_then_code():
 
 def test_does_not_hallucinate_document_or_memory():
     rec = route_task("Remember this conversation forever", registry=_reg())
-    assert rec["primary_skill"] != "MEMORY"
+    if SkillRegistry().executable("MEMORY"):
+        assert rec["primary_skill"] == "MEMORY"
+    else:
+        assert rec["primary_skill"] != "MEMORY"
     rec2 = route_task("Parse this pdf spreadsheet csv file", registry=_reg())
     # DOCUMENT follows the live default registry. After T17 promotion it
     # is executable; before promotion the router must not fake it.

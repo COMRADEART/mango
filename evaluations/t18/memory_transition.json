@@ -1,0 +1,26 @@
+{
+  "milestone": "T18.73 MEMORY availability",
+  "recorded_at": "2026-09-14T16:12:49.987307+00:00",
+  "decision": "PROMOTE_MEMORY_SKILL",
+  "before": "PREPARED_ONLY",
+  "after": "ACTIVE",
+  "applied": true,
+  "gates": {
+    "quality_ok": true,
+    "protection": "ALL_PASS",
+    "security_violations": 0,
+    "pytest_failures": 0,
+    "pytest_errors": 0,
+    "live_smoke": "PASS",
+    "zeros": true
+  },
+  "executive_router": "UNCHANGED KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "planning": "UNCHANGED EXPERIMENTAL",
+  "document": "UNCHANGED ACTIVE",
+  "web_research": "UNCHANGED ACTIVE",
+  "code": "UNCHANGED ACTIVE",
+  "weight_promotion": "NO",
+  "training": "NONE",
+  "paid_compute": "NOT_USED",
+  "inherited_methodology_debt": "T17 baseline was a mechanical NO_DOCUMENT_RUNTIME baseline. Not rewritten."
+}

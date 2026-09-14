@@ -19,7 +19,10 @@ def test_code_skill_active_after_t15r_promotion():
         assert not reg.executable("WEB_RESEARCH")
     else:
         assert reg.executable("WEB_RESEARCH")
-    assert not reg.executable("MEMORY")
+    if reg.availability("MEMORY") == PREPARED_ONLY:
+        assert not reg.executable("MEMORY")
+    else:
+        assert reg.executable("MEMORY")
 
 
 def test_router_fails_closed_for_code_pre_activation():
@@ -53,7 +56,10 @@ def test_router_does_not_fake_web_or_memory():
     else:
         assert rec["primary_skill"] == "WEB_RESEARCH"
     rec2 = route_task("remember this conversation forever", registry=reg)
-    assert rec2["primary_skill"] != "MEMORY"
+    if not reg.executable("MEMORY"):
+        assert rec2["primary_skill"] != "MEMORY"
+    else:
+        assert rec2["primary_skill"] == "MEMORY"
     assert rec2["execution_status"] == "ROUTED_ONLY"
 
 

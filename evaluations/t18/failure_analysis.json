@@ -1,0 +1,32 @@
+{
+  "milestone": "T18.66 failure analysis",
+  "memory_final_accuracy": 1.0,
+  "n_failed_rows": 0,
+  "failed_rows": [],
+  "below_perfect": [],
+  "taxonomy": {
+    "WRITE_GATE_ERROR": 0,
+    "UNAUTHORIZED_WRITE": 0,
+    "RETRIEVAL_MISS": 0,
+    "RANKING_ERROR": 0,
+    "SCOPE_LEAK": 0,
+    "OWNER_LEAK": 0,
+    "DUPLICATE_ERROR": 0,
+    "UPDATE_ERROR": 0,
+    "SUPERSESSION_ERROR": 0,
+    "CONFLICT_MISSED": 0,
+    "EXPIRY_ERROR": 0,
+    "DELETE_ERROR": 0,
+    "FORGET_SCOPE_ERROR": 0,
+    "PROVENANCE_ERROR": 0,
+    "FRESHNESS_ERROR": 0,
+    "FABRICATED_MEMORY": 0,
+    "SECRET_POLICY_ERROR": 0,
+    "PROMPT_INJECTION_FAILURE": 0,
+    "DATABASE_INTEGRITY_ERROR": 0,
+    "CACHE_STALENESS": 0,
+    "PERSISTENCE_FAILURE": 0,
+    "OTHER": 0
+  },
+  "dominant": "none"
+}

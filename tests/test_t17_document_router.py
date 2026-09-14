@@ -46,7 +46,10 @@ def test_math_does_not_route_to_document():
 def test_memory_still_unavailable():
     rec = route_task("Remember this conversation forever",
                      registry=_reg(document=ACTIVE))
-    assert rec["primary_skill"] != "MEMORY"
+    if SkillRegistry().executable("MEMORY"):
+        assert rec["primary_skill"] == "MEMORY"
+    else:
+        assert rec["primary_skill"] != "MEMORY"
 
 
 def test_web_still_active_not_stolen_by_document():

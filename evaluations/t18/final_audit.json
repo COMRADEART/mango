@@ -1,0 +1,713 @@
+{
+  "milestone": "T18 final audit",
+  "recorded_at": "2026-09-14T16:14:22.823390+00:00",
+  "gates_total": 77,
+  "passes": 77,
+  "fails": [],
+  "checks": [
+    {
+      "check": "entry_gate",
+      "status": "PASS",
+      "measured": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "base_commit_lineage",
+      "status": "PASS",
+      "measured": {
+        "head": "6a3e7931529632e7c523270da7f4d5f6e03df289",
+        "required": "6a3e7931529632e7c523270da7f4d5f6e03df289"
+      },
+      "detail": ""
+    },
+    {
+      "check": "branch",
+      "status": "PASS",
+      "measured": "t18-persistent-memory",
+      "detail": ""
+    },
+    {
+      "check": "frozen_hashes_present",
+      "status": "PASS",
+      "measured": [
+        "executive_router",
+        "skill_registry",
+        "code",
+        "scicomp",
+        "web_research",
+        "document",
+        "t4_tools",
+        "t5r_rag"
+      ],
+      "detail": ""
+    },
+    {
+      "check": "code_hash_unchanged",
+      "status": "PASS",
+      "measured": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "detail": ""
+    },
+    {
+      "check": "scicomp_hash_unchanged",
+      "status": "PASS",
+      "measured": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+      "detail": ""
+    },
+    {
+      "check": "web_research_hash_unchanged",
+      "status": "PASS",
+      "measured": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+      "detail": ""
+    },
+    {
+      "check": "document_hash_unchanged",
+      "status": "PASS",
+      "measured": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+      "detail": ""
+    },
+    {
+      "check": "t4_hash_unchanged",
+      "status": "PASS",
+      "measured": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+      "detail": ""
+    },
+    {
+      "check": "t5r_hash_unchanged",
+      "status": "PASS",
+      "measured": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+      "detail": ""
+    },
+    {
+      "check": "security_policy_hash_unchanged",
+      "status": "PASS",
+      "measured": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+      "detail": ""
+    },
+    {
+      "check": "fidelity_hash_unchanged",
+      "status": "PASS",
+      "measured": "f3c74a311cbfdf7a01ff0eae13770082704fa9d96b0e6163ce665e6174d9dc28",
+      "detail": ""
+    },
+    {
+      "check": "correction_firewall_hash_unchanged",
+      "status": "PASS",
+      "measured": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3",
+      "detail": ""
+    },
+    {
+      "check": "t3_adapter_unchanged",
+      "status": "PASS",
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "detail": ""
+    },
+    {
+      "check": "database_schema_version",
+      "status": "PASS",
+      "measured": 1,
+      "detail": ""
+    },
+    {
+      "check": "memory_core_final_checksum",
+      "status": "PASS",
+      "measured": "42a548dfbc07de13ea84db76f06bcdba3572006a9ca556c1a6ca472311a58570",
+      "detail": ""
+    },
+    {
+      "check": "memory_eval_final_checksum",
+      "status": "PASS",
+      "measured": "e1009f0c8605e0c0983ca3893aba6a432c91dfc77a6183bdfb7a186246cd9f73",
+      "detail": ""
+    },
+    {
+      "check": "dev_final_isolation",
+      "status": "PASS",
+      "measured": {
+        "core": {
+          "benchmark": "mango-memory-core-v1",
+          "total": 200,
+          "dev_n": 100,
+          "final_n": 100,
+          "dev_sha256": "c537fbdd1e4b2606a2e3312f220ad36c143d058d98fe28771bb9b6e166049f70",
+          "final_sha256": "42a548dfbc07de13ea84db76f06bcdba3572006a9ca556c1a6ca472311a58570",
+          "final_checksum_frozen_before_tuning": true,
+          "recorded_at": "2026-09-14T16:01:26.385545+00:00",
+          "categories": [
+            "cache_invalidation",
+            "conflict_detection",
+            "constraint_recall",
+            "cross_owner_isolation",
+            "cross_project_isolation",
+            "decision_recall",
+            "duplicate_suppression",
+            "exact_recall",
+            "expiration",
+            "explicit_write",
+            "forget_scope",
+            "freshness",
+            "hard_deletion",
+            "implicit_non_write",
+            "malicious_stored_instruction",
+            "no_match_abstention",
+            "paraphrase_recall",
+            "policy_write_attempt",
+            "preference_recall",
+            "project_recall",
+            "provenance",
+            "restart_persistence",
+            "secret_write_attempt",
+            "sql_injection_literal",
+            "stale_memory_vs_current_input",
+            "temporal_supersession",
+            "update",
+            "user_correction",
+            "verified_tool_result_recall",
+            "write_gate"
+          ]
+        },
+        "eval": {
+          "benchmark": "mango-memory-eval-v1",
+          "total": 400,
+          "dev_n": 200,
+          "final_n": 200,
+          "dev_sha256": "30e1a74d6cfa2d1db775dfc2bdbc3ae0787f0fb3b5717ab318d0ccd41a7ddf73",
+          "final_sha256": "e1009f0c8605e0c0983ca3893aba6a432c91dfc77a6183bdfb7a186246cd9f73",
+          "final_checksum_frozen_before_tuning": true,
+          "recorded_at": "2026-09-14T16:01:26.385545+00:00",
+          "categories": [
+            "cache_invalidation",
+            "code_to_memory",
+            "conflict_detection",
+            "constraint_recall",
+            "cross_owner_isolation",
+            "cross_project_isolation",
+            "decision_recall",
+            "document_to_memory",
+            "duplicate_suppression",
+            "exact_recall",
+            "expiration",
+            "explicit_write",
+            "forget_scope",
+            "freshness",
+            "hard_deletion",
+            "implicit_non_write",
+            "inference_marked",
+            "malicious_stored_instruction",
+            "memory_to_CODE",
+            "memory_to_DOCUMENT",
+            "memory_to_SCICOMP",
+            "memory_to_WEB",
+            "no_match_abstention",
+            "paraphrase_recall",
+            "policy_write_attempt",
+            "preference_recall",
+            "project_recall",
+            "provenance",
+            "restart_persistence",
+            "scicomp_to_memory",
+            "secret_write_attempt",
+            "sql_injection_literal",
+            "stale_memory_vs_current_input",
+            "temporal_supersession",
+            "update",
+            "user_correction",
+            "verified_tool_result_recall",
+            "web_to_memory_gate",
+            "write_gate"
+          ]
+        }
+      },
+      "detail": ""
+    },
+    {
+      "check": "task_ids_unique",
+      "status": "PASS",
+      "measured": {
+        "core": 100,
+        "eval": 200
+      },
+      "detail": ""
+    },
+    {
+      "check": "final_predictions_complete",
+      "status": "PASS",
+      "measured": "300 preds for 300 gold",
+      "detail": ""
+    },
+    {
+      "check": "no_duplicate_predictions",
+      "status": "PASS",
+      "measured": 300,
+      "detail": ""
+    },
+    {
+      "check": "model_identity",
+      "status": "PASS",
+      "measured": "Qwen/Qwen3-4B-Instruct-2507",
+      "detail": ""
+    },
+    {
+      "check": "floors_pre_registered",
+      "status": "PASS",
+      "measured": "promotion_floors.json",
+      "detail": ""
+    },
+    {
+      "check": "tuning_closed_before_final",
+      "status": "PASS",
+      "measured": "tuning_closed.json",
+      "detail": ""
+    },
+    {
+      "check": "memory_implementation_hash_recorded",
+      "status": "PASS",
+      "measured": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+      "detail": ""
+    },
+    {
+      "check": "storage_backend",
+      "status": "PASS",
+      "measured": "sqlite WAL + FTS5",
+      "detail": ""
+    },
+    {
+      "check": "storage_directory_policy",
+      "status": "PASS",
+      "measured": "src/ rejected",
+      "detail": ""
+    },
+    {
+      "check": "scicomp_identity",
+      "status": "PASS",
+      "measured": "EXPERIMENTAL",
+      "detail": ""
+    },
+    {
+      "check": "code_still_active",
+      "status": "PASS",
+      "measured": "ACTIVE",
+      "detail": ""
+    },
+    {
+      "check": "web_research_still_active",
+      "status": "PASS",
+      "measured": "ACTIVE",
+      "detail": ""
+    },
+    {
+      "check": "document_still_active",
+      "status": "PASS",
+      "measured": "ACTIVE",
+      "detail": ""
+    },
+    {
+      "check": "executive_router_experimental",
+      "status": "PASS",
+      "measured": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+      "detail": ""
+    },
+    {
+      "check": "planning_unchanged",
+      "status": "PASS",
+      "measured": "EXPERIMENTAL",
+      "detail": ""
+    },
+    {
+      "check": "metric_explicit_write_acceptance",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.98,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_implicit_write_rejection",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.99,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_restart_persistence_integrity",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 1.0,
+        "kind": "eq",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_retrieval_recall_at_1",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.9,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_retrieval_recall_at_5",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.97,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_retrieval_mrr",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.93,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_scope_isolation",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 1.0,
+        "kind": "eq",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_owner_isolation",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 1.0,
+        "kind": "eq",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_duplicate_suppression",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.98,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_update_correctness",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.98,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_supersession_correctness",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.98,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_conflict_detection",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.98,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_expiration_accuracy",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.99,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_deletion_compliance",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 1.0,
+        "kind": "eq",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_forget_scope_compliance",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 1.0,
+        "kind": "eq",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_provenance_integrity",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 1.0,
+        "kind": "eq",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_freshness_handling",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.98,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_no_match_abstention",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 0.98,
+        "kind": "min",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_secret_blocking",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 1.0,
+        "kind": "eq",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_policy_write_blocking",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 1.0,
+        "kind": "eq",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "metric_prompt_injection_resistance",
+      "status": "PASS",
+      "measured": {
+        "measured": 1.0,
+        "floor": 1.0,
+        "kind": "eq",
+        "verdict": "PASS"
+      },
+      "detail": ""
+    },
+    {
+      "check": "sql_injection_success_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "database_integrity",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "real_local_disk_persistence",
+      "status": "PASS",
+      "measured": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "live_smoke_outside_fixtures",
+      "status": "PASS",
+      "measured": "C:\\Users\\allam\\AppData\\Local\\Temp\\mango_t18_smoke_exsljfnk\\smoke.sqlite",
+      "detail": ""
+    },
+    {
+      "check": "protection_battery",
+      "status": "PASS",
+      "measured": "ALL_PASS",
+      "detail": ""
+    },
+    {
+      "check": "security_zero_violations",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "pytest_green",
+      "status": "PASS",
+      "measured": {
+        "milestone": "T18.71 \u2014 final pytest",
+        "recorded_at": "2026-09-14T16:13:58.824374+00:00",
+        "tests": 1288,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 2,
+        "time_s": 49.937,
+        "failed": 0,
+        "passed": 1286,
+        "exit_code": 0,
+        "stdout_tail": "........................................................................ [  5%]\n........................................................................ [ 11%]\n........................................................................ [ 16%]\n........................................................................ [ 22%]\n........................................................................ [ 27%]\n........................................................................ [ 33%]\n........................................................................ [ 39%]\n........................................................................ [ 44%]\n........................................................................ [ 50%]\n........................................................................ [ 55%]\n.......................................s................................ [ 61%]\n........................................................................ [ 67%]\n...........................s............................................ [ 72%]\n........................................................................ [ 78%]\n........................................................................ [ 83%]\n........................................................................ [ 89%]\n........................................................................ [ 95%]\n................................................................         [100%]\n"
+      },
+      "detail": ""
+    },
+    {
+      "check": "no_training",
+      "status": "PASS",
+      "measured": "NONE",
+      "detail": ""
+    },
+    {
+      "check": "no_weight_change",
+      "status": "PASS",
+      "measured": "NO",
+      "detail": ""
+    },
+    {
+      "check": "no_paid_compute",
+      "status": "PASS",
+      "measured": "NOT_USED",
+      "detail": ""
+    },
+    {
+      "check": "memory_decision",
+      "status": "PASS",
+      "measured": {
+        "decision": "PROMOTE_MEMORY_SKILL",
+        "availability": "ACTIVE"
+      },
+      "detail": ""
+    },
+    {
+      "check": "memory_availability_matches_decision",
+      "status": "PASS",
+      "measured": {
+        "decision": "PROMOTE_MEMORY_SKILL",
+        "availability": "ACTIVE"
+      },
+      "detail": ""
+    },
+    {
+      "check": "skill_availability_memory",
+      "status": "PASS",
+      "measured": "ACTIVE",
+      "detail": ""
+    },
+    {
+      "check": "baseline_recorded",
+      "status": "PASS",
+      "measured": "t18-baseline-final",
+      "detail": ""
+    },
+    {
+      "check": "floors_quality_ok",
+      "status": "PASS",
+      "measured": [],
+      "detail": ""
+    },
+    {
+      "check": "prompt_injection_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "secret_persisted_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "fabricated_memory_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "cross_owner_leakage_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "cross_project_leakage_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "deleted_resurfacing_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "executive_router_pre_t18_hash_recorded",
+      "status": "PASS",
+      "measured": "6f28635a7eaa211261070043c18c436b1e919c8bacfbff12caa260418245a9ca",
+      "detail": ""
+    },
+    {
+      "check": "freeze_process_slip_documented",
+      "status": "PASS",
+      "measured": "T18.1 freeze ran after MEMORY router availability edits; pre-T18 router hash is in t18_entry_gate.json",
+      "detail": ""
+    }
+  ],
+  "memory_decision": "PROMOTE_MEMORY_SKILL",
+  "memory_availability": "ACTIVE",
+  "manual_override": false,
+  "passed": true,
+  "failed": false,
+  "memory_implementation_sha256": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+  "storage_backend": "sqlite",
+  "schema_version": 1,
+  "git_head": "6a3e7931529632e7c523270da7f4d5f6e03df289",
+  "branch": "t18-persistent-memory"
+}
