@@ -1,0 +1,170 @@
+{
+  "milestone": "T20.81 final audit",
+  "recorded_at": "2026-09-14T20:26:42.690129+00:00",
+  "canonical_base": "9a1b4260745c3967191bfccc6658078bc244cc95",
+  "decision": "PROMOTE_ORCHESTRATION_SKILL",
+  "failed_checks": [],
+  "checks": [
+    {
+      "id": "canonical_base_in_history",
+      "ok": true,
+      "detail": "HEAD ancestry contains 9a1b4260745c3967191bfccc6658078bc244cc95"
+    },
+    {
+      "id": "no_training_mutations",
+      "ok": true,
+      "detail": "training/weight files changed vs base: []"
+    },
+    {
+      "id": "no_new_adapter_files",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "no_network_surface_in_orchestration",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "id": "executive_router_hash_unchanged",
+      "ok": true,
+      "detail": "pin=dbc7fbd0d19688d1a220e27d18484f437f1adde3b24b4b5ba4fb6eb8ac246c10 now=dbc7fbd0d19688d1a220e27d18484f437f1adde3b24b4b5ba4fb6eb8ac246c10"
+    },
+    {
+      "id": "orchestration_registry_entry_present",
+      "ok": true,
+      "detail": "ACTIVE"
+    },
+    {
+      "id": "router_skills_intact",
+      "ok": true,
+      "detail": "executive router catalogue unchanged"
+    },
+    {
+      "id": "suite_size:mango-agent-concurrency-v1",
+      "ok": true,
+      "detail": "dev=60 final=60 total=120 >= 100"
+    },
+    {
+      "id": "suite_checksum_matches_freeze:mango-agent-concurrency-v1",
+      "ok": true,
+      "detail": "want=42b1966b18276e9c166c3856cccf901491442810e3c7a111bbd2ceafd0f1fc42 got=42b1966b18276e9c166c3856cccf901491442810e3c7a111bbd2ceafd0f1fc42"
+    },
+    {
+      "id": "suite_size:mango-agent-handoff-v1",
+      "ok": true,
+      "detail": "dev=75 final=75 total=150 >= 120"
+    },
+    {
+      "id": "suite_checksum_matches_freeze:mango-agent-handoff-v1",
+      "ok": true,
+      "detail": "want=429714f92d4a9467f2a8d58d19daf72bca463f25553cc511b5d9cc3c96378a2f got=429714f92d4a9467f2a8d58d19daf72bca463f25553cc511b5d9cc3c96378a2f"
+    },
+    {
+      "id": "suite_size:mango-agent-recovery-v1",
+      "ok": true,
+      "detail": "dev=75 final=75 total=150 >= 100"
+    },
+    {
+      "id": "suite_checksum_matches_freeze:mango-agent-recovery-v1",
+      "ok": true,
+      "detail": "want=7cc33b17b99eb87e637b4e4486b1ec44344efc1a2fc65514ddb521ea3b5543a8 got=7cc33b17b99eb87e637b4e4486b1ec44344efc1a2fc65514ddb521ea3b5543a8"
+    },
+    {
+      "id": "suite_size:mango-agent-verifier-v1",
+      "ok": true,
+      "detail": "dev=100 final=100 total=200 >= 150"
+    },
+    {
+      "id": "suite_checksum_matches_freeze:mango-agent-verifier-v1",
+      "ok": true,
+      "detail": "want=73ff7913efba9064d2eef2cec154e9cde05df0d12ccb9fa6e3307bcb7bdd0e45 got=73ff7913efba9064d2eef2cec154e9cde05df0d12ccb9fa6e3307bcb7bdd0e45"
+    },
+    {
+      "id": "suite_size:mango-orchestration-core-v1",
+      "ok": true,
+      "detail": "dev=130 final=130 total=260 >= 220"
+    },
+    {
+      "id": "suite_checksum_matches_freeze:mango-orchestration-core-v1",
+      "ok": true,
+      "detail": "want=6d1fccde3cc1e004df34b65acbc22866c89eda8fd8960ab3d639ebf82479e883 got=6d1fccde3cc1e004df34b65acbc22866c89eda8fd8960ab3d639ebf82479e883"
+    },
+    {
+      "id": "suite_size:mango-orchestration-eval-v1",
+      "ok": true,
+      "detail": "dev=210 final=210 total=420 >= 350"
+    },
+    {
+      "id": "suite_checksum_matches_freeze:mango-orchestration-eval-v1",
+      "ok": true,
+      "detail": "want=070b51e424a6bc318660ef591740f3e1958d31fed09132083d3850503e14ef9e got=070b51e424a6bc318660ef591740f3e1958d31fed09132083d3850503e14ef9e"
+    },
+    {
+      "id": "suite_size:mango-orchestration-long-horizon-v1",
+      "ok": true,
+      "detail": "dev=6 final=30 total=36 >= 30"
+    },
+    {
+      "id": "suite_checksum_matches_freeze:mango-orchestration-long-horizon-v1",
+      "ok": true,
+      "detail": "want=1f80712937341952dcd432ef219eab3e4e9f7b52d0a28c3778749b98274c047d got=1f80712937341952dcd432ef219eab3e4e9f7b52d0a28c3778749b98274c047d"
+    },
+    {
+      "id": "long_horizon_strict_definition",
+      "ok": true,
+      "detail": "0 structural violations"
+    },
+    {
+      "id": "artifact_green:floors_check",
+      "ok": true,
+      "detail": "results/floors_check.json present=True"
+    },
+    {
+      "id": "artifact_green:zero_tolerance_gate",
+      "ok": true,
+      "detail": "results/gate_report.json present=True"
+    },
+    {
+      "id": "artifact_green:baselines",
+      "ok": true,
+      "detail": "results/baselines.json present=True"
+    },
+    {
+      "id": "artifact_green:protection_battery",
+      "ok": true,
+      "detail": "protection/regression_summary.json present=True"
+    },
+    {
+      "id": "artifact_green:performance",
+      "ok": true,
+      "detail": "results/performance.json present=True"
+    },
+    {
+      "id": "artifact_green:tuning_closed",
+      "ok": true,
+      "detail": "tuning_closed.json present=True"
+    },
+    {
+      "id": "baseline_replays_ok",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "gate_all_zero",
+      "ok": true,
+      "detail": "cases=440"
+    },
+    {
+      "id": "pytest_floor",
+      "ok": true,
+      "detail": "junit=True"
+    }
+  ],
+  "claims": {
+    "allowed": "coordination of bounded specialist agents over validated plans, with independent verification, budgets, and containment",
+    "forbidden": "Mango can autonomously operate external systems",
+    "executive_router": "EXPERIMENTAL; not promoted, not claimed",
+    "authority": "COORDINATE_INTERNAL_WORK_ONLY (external action is T24; autonomous workflow engine is T25)"
+  }
+}

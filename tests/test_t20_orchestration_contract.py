@@ -8,7 +8,8 @@ from __future__ import annotations
 import pytest
 
 from sciencemath.executive.skills import (
-    ACTIVE, EXPERIMENTAL, SKILL_IDS, SkillRegistry, default_registry,
+    ACTIVE, DISABLED, EXPERIMENTAL, SKILL_IDS, SkillRegistry,
+    default_registry,
 )
 from sciencemath.orchestration import contract as C
 from sciencemath.orchestration.manifests import (
@@ -306,7 +307,7 @@ def test_registry_has_orchestration_entry():
     assert "ORCHESTRATION" in reg
     rec = reg["ORCHESTRATION"]
     assert rec["skill_id"] == "ORCHESTRATION"
-    assert rec["availability"] == EXPERIMENTAL
+    assert rec["availability"] == ACTIVE
     assert rec["executable"] is True
     assert rec["cost_class"] == "LOCAL_EXPENSIVE"
     assert rec["offline"] is True
@@ -321,15 +322,15 @@ def test_registry_pre_existing_skills_unchanged_active():
     for skill_id in PRE_EXISTING_SKILLS:
         assert reg[skill_id]["availability"] == ACTIVE, skill_id
     counts = SkillRegistry().counts()
-    assert counts.get(ACTIVE) == 10
-    assert counts.get(EXPERIMENTAL) == 1
+    assert counts.get(ACTIVE) == 11
+    assert counts.get(EXPERIMENTAL, 0) == 0
 
 
 def test_skill_registry_accepts_default_registry():
     registry = SkillRegistry(default_registry())
     assert "ORCHESTRATION" in registry.ids()
     assert registry.known("ORCHESTRATION")
-    assert registry.availability("ORCHESTRATION") == EXPERIMENTAL
+    assert registry.availability("ORCHESTRATION") == ACTIVE
     assert registry.executable("ORCHESTRATION") is True
     assert "ORCHESTRATION" in SKILL_IDS
 
@@ -339,8 +340,8 @@ def test_registry_orchestration_not_paid():
     rec = registry.get("ORCHESTRATION")
     assert rec["cost_class"] != "PAID_COMPUTE"
     # deepcopy isolation: mutating a fetched record does not corrupt registry
-    rec["availability"] = ACTIVE
-    assert registry.availability("ORCHESTRATION") == EXPERIMENTAL
+    rec["availability"] = DISABLED
+    assert registry.availability("ORCHESTRATION") == ACTIVE
 
 
 # ---------------------------------------------------------------------------

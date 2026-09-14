@@ -174,8 +174,9 @@ def default_registry() -> dict[str, dict]:
                         "role manifests, handoff contracts, independent "
                         "verification, budgets, checkpoint/resume, and "
                         "recovery. COORDINATE_INTERNAL_WORK_ONLY; no "
-                        "external action authority. T20 runtime.",
-            availability=EXPERIMENTAL,
+                        "external action authority. T20 runtime. "
+                        "Promoted ACTIVE at T20.",
+            availability=ACTIVE,
             cost_class=LOCAL_EXPENSIVE,
             deterministic=True,
             verification_method="orchestration_run_audit",

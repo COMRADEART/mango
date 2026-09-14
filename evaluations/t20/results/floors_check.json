@@ -1,0 +1,91 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "ok": true,
+      "id": "suite:mango-agent-concurrency-v1",
+      "detail": "total=120>=100 pass_rate=1.000>=0.95"
+    },
+    {
+      "ok": true,
+      "id": "suite:mango-agent-handoff-v1",
+      "detail": "total=150>=120 pass_rate=1.000>=0.95"
+    },
+    {
+      "ok": true,
+      "id": "suite:mango-agent-recovery-v1",
+      "detail": "total=150>=100 pass_rate=1.000>=0.95"
+    },
+    {
+      "ok": true,
+      "id": "suite:mango-agent-verifier-v1",
+      "detail": "total=200>=150 pass_rate=1.000>=0.95"
+    },
+    {
+      "ok": true,
+      "id": "suite:mango-orchestration-core-v1",
+      "detail": "total=260>=220 pass_rate=1.000>=0.98"
+    },
+    {
+      "ok": true,
+      "id": "suite:mango-orchestration-eval-v1",
+      "detail": "total=420>=350 pass_rate=1.000>=0.95"
+    },
+    {
+      "ok": true,
+      "id": "suite:mango-orchestration-long-horizon-v1",
+      "detail": "total=36>=30 pass_rate=1.000>=0.95"
+    },
+    {
+      "ok": true,
+      "id": "false_complete_le_b:mango-agent-concurrency-v1",
+      "detail": "t20=0 baseline_b=0"
+    },
+    {
+      "ok": true,
+      "id": "false_complete_le_b:mango-agent-handoff-v1",
+      "detail": "t20=0 baseline_b=0"
+    },
+    {
+      "ok": true,
+      "id": "false_complete_le_b:mango-agent-recovery-v1",
+      "detail": "t20=0 baseline_b=25"
+    },
+    {
+      "ok": true,
+      "id": "recovery_ge_a:mango-agent-recovery-v1",
+      "detail": "t20=1.000 baseline_a=1.000"
+    },
+    {
+      "ok": true,
+      "id": "false_complete_le_b:mango-orchestration-core-v1",
+      "detail": "t20=0 baseline_b=60"
+    },
+    {
+      "ok": true,
+      "id": "adversarial_contained:mango-orchestration-core-v1",
+      "detail": "20/20 contained"
+    },
+    {
+      "ok": true,
+      "id": "recovery_ge_a:mango-orchestration-core-v1",
+      "detail": "t20=1.000 baseline_a=1.000"
+    },
+    {
+      "ok": true,
+      "id": "false_complete_le_b:mango-orchestration-eval-v1",
+      "detail": "t20=0 baseline_b=20"
+    },
+    {
+      "ok": true,
+      "id": "false_complete_le_b:mango-orchestration-long-horizon-v1",
+      "detail": "t20=0 baseline_b=30"
+    },
+    {
+      "ok": true,
+      "id": "parallel_batches:mango-orchestration-long-horizon-v1",
+      "detail": "batch_cases=30"
+    }
+  ],
+  "failed": []
+}
