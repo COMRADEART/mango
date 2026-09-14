@@ -1,0 +1,13 @@
+--- a/src/cfg16.py
++++ b/src/cfg16.py
+@@ -1 +1 @@
+-TAX = 0.5
++TAX = 0.2
+--- a/src/use16.py
++++ b/src/use16.py
+@@ -1,4 +1,4 @@
+ from src.cfg16 import TAX
+ 
+ def price_with_tax(p):
+-    return p + p * TAX + 1
++    return p + p * TAX

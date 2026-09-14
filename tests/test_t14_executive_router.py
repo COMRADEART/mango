@@ -25,12 +25,17 @@ class TestSkillRegistry:
         # CODE is PREPARED_ONLY until a T15R promotion gate flips it ACTIVE.
         # WEB/MEMORY stay unavailable; the router must not fake them.
         assert reg.availability("CODE") in (PREPARED_ONLY, ACTIVE)
-        assert reg.availability("WEB_RESEARCH") == PREPARED_ONLY
+        # WEB_RESEARCH stays PREPARED_ONLY until a T16 promotion gate
+        # flips it ACTIVE. DOCUMENT/MEMORY stay unavailable.
+        assert reg.availability("WEB_RESEARCH") in (PREPARED_ONLY, ACTIVE)
         if reg.availability("CODE") == PREPARED_ONLY:
             assert not reg.executable("CODE")
         else:
             assert reg.executable("CODE")
-        assert not reg.executable("WEB_RESEARCH")
+        if reg.availability("WEB_RESEARCH") == PREPARED_ONLY:
+            assert not reg.executable("WEB_RESEARCH")
+        else:
+            assert reg.executable("WEB_RESEARCH")
         assert reg.executable("SCICOMP")  # experimental is selectable
         assert reg.executable("MATH_T4")
 
@@ -106,8 +111,15 @@ class TestUnavailableAndPaid:
 
     def test_web_not_faked(self):
         rec = route_task("Search the web for the latest news on Mars.")
-        assert rec["primary_skill"] in ("GENERAL", "NO_TOOL")
-        assert rec.get("unavailable_skill") == "WEB_RESEARCH"
+        # Router never auto-executes WEB. Before T16 promotion it fail-closes;
+        # after promotion it may classify WEB_RESEARCH as ROUTED_ONLY.
+        assert rec["execution_status"] == "ROUTED_ONLY"
+        assert rec.get("hallucinated_tool") in (None, "")
+        if not SkillRegistry().executable("WEB_RESEARCH"):
+            assert rec["primary_skill"] in ("GENERAL", "NO_TOOL")
+            assert rec.get("unavailable_skill") == "WEB_RESEARCH"
+        else:
+            assert rec["primary_skill"] == "WEB_RESEARCH"
 
     def test_paid_compute_blocked(self):
         rec = route_task("Please launch paid GPU compute on an H100 now.")

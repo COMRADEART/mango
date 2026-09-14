@@ -15,8 +15,16 @@ IMMUTABLE = (
 )
 
 
+# Historical T15 freeze hashed a CRLF working copy; git stores LF
+# (*.jsonl eol=lf). Both are the same 139 rows.
+V1_FINAL_SHA_CRLF = (
+    "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc")
+V1_FINAL_SHA_LF = (
+    "6576ce9c97aea6a4ed5056be7eb875d1ed08892bb33c993b122df387382aac29")
+
+
 def _sha(p: Path) -> str:
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    return hashlib.sha256(p.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _rows(p: Path) -> list:
@@ -26,9 +34,9 @@ def _rows(p: Path) -> list:
 
 def test_v1_historical_checksum_unchanged():
     man = json.loads((V1 / "manifest.json").read_text(encoding="utf-8"))
-    assert _sha(V1 / "final.jsonl") == man["final_sha256"]
-    assert man["final_sha256"] == (
-        "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc")
+    got = _sha(V1 / "final.jsonl")
+    assert got == V1_FINAL_SHA_LF
+    assert man["final_sha256"] in {V1_FINAL_SHA_CRLF, V1_FINAL_SHA_LF}
 
 
 def test_v11_only_corrects_import_err_golden():

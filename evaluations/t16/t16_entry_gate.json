@@ -1,0 +1,315 @@
+{
+  "milestone": "T16 — Web Research & Evidence Intelligence",
+  "phase": "T16.0 entry gate",
+  "recorded_at": "2026-09-14T04:25:42.991974+00:00",
+  "status": "PASS",
+  "git_head": "525496921baa1b956b805a86a8de31b51abcf73e",
+  "branch": "main",
+  "required_head": "525496921baa1b956b805a86a8de31b51abcf73e",
+  "starting_architecture": "Mango-4B-System-v1",
+  "scicomp_status": "ACTIVE / PROMOTED",
+  "scicomp_numeric": 0.8695652173913043,
+  "scicomp_floor": 0.848,
+  "code_status": "ACTIVE / PROMOTED",
+  "web_research_status": "PREPARED_ONLY",
+  "executive_router_status": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "weight_promotion": "NO",
+  "paid_compute": "NOT_USED",
+  "training": "NONE",
+  "t15r_historical": {
+    "code_final": "129/139 = 0.9281",
+    "bug_fix": "24/25 = 0.96",
+    "executable": "62/72 = 0.8611",
+    "unrelated_edit": "0/72",
+    "decision": "PROMOTE_CODE_SKILL",
+    "pytest": "1140 passed, 0 failed, 0 errors, 1 skipped",
+    "audit": "33 PASS / 0 FAIL"
+  },
+  "hashes": {
+    "skill_registry": "fea7347fccab6ce80a5443cb6af0a9e6249c5e28551e4d4312d995cfc292b4f3",
+    "skill_registry_file": "2e294bb9bb2b79094b91a412d10583931acefa8385ec818b45a65c76f92c0b46",
+    "code_composite": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "code_files": {
+      "src/sciencemath/code/__init__.py": "4891b6ca4ae5496b55b83a951d7488ff98c00d1421d00294b05f5d44c491aee6",
+      "src/sciencemath/code/context.py": "ad8433fa9295774af1e084af5d0a5d5cac86ef978e41a9255ac2cdec9cc41285",
+      "src/sciencemath/code/contract.py": "48837555d3f750a3282db667bc727a3045daee6aa7e0031b1758dfe13de51523",
+      "src/sciencemath/code/discovery.py": "b6a3bfdc24a2dacf68289c9a2ecf1ffb62e9e7ed6d8ec6419164c579449de310",
+      "src/sciencemath/code/editor.py": "43d822c34016ea1bd39b8c905d6117f70c37065ed8578a1889caae39c7109f7e",
+      "src/sciencemath/code/limits.py": "ad885e5e498449affdae6a635ceb3716bc2b88c0c930a5b275619ebdb55db3c8",
+      "src/sciencemath/code/multifile.py": "187aca516cfb64c29d0492afed1511df13ecc607f9dd0d924a00ac0460bde7f0",
+      "src/sciencemath/code/planner.py": "759add09c2647baec0e3178ecbd73b44363627fd19e1495711fa9bb5c79f143f",
+      "src/sciencemath/code/repair_state.py": "996fe5013d19c867729f3d8a6c020fbb584888ae87416ba527e8945c6fd53d25",
+      "src/sciencemath/code/review.py": "54bcf573b35e03ef93d3222ad8e8b9fa2b600b0e75c31a1e5f1643912d3a38f0",
+      "src/sciencemath/code/runner.py": "2435acae344c04caa7541204949e8a74c6e56790761c3f8b41546ad0ef9b3334",
+      "src/sciencemath/code/safety.py": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d",
+      "src/sciencemath/code/search.py": "3531630cec222c5538301289260842a4d92560187de617e1b4a9ab84f272fc89",
+      "src/sciencemath/code/task_contracts.py": "17932bb43b7bc5d527ab7d4c64f5fbc7c514674a3f0ec60f016bd3408658a1aa",
+      "src/sciencemath/code/testsel.py": "7326ff2f175b402b772672603612d7597802c8a13ba6e358ab894154e4d7300f"
+    },
+    "scicomp_composite": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "scicomp_files": {
+      "src/sciencemath/scicomp/__init__.py": "531a6bf484a4667f6cafcbac851a6fe18a17a4caa38a7d7b2882e35e8c55b4e7",
+      "src/sciencemath/scicomp/adoption.py": "f09b1fe1b36f18c8154bbede7b52e26aefa32f725273e478aed8601b3607d9dd",
+      "src/sciencemath/scicomp/calculus.py": "867d2495d9a96d65ee370b687d341a632fb37eb3d709c508dcb5d7644219792d",
+      "src/sciencemath/scicomp/diagnostics.py": "e858d14d401768acc71c2f7dfcadc7130a268940bbcb1d316ddbcf87461e314e",
+      "src/sciencemath/scicomp/executor.py": "769a7fd3a7fe8fe0bcf773a1b44c7cd57200497bbdb68a63d58e7fc76a9d30e7",
+      "src/sciencemath/scicomp/fidelity.py": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+      "src/sciencemath/scicomp/interpolation.py": "a3029cac41a3012bab4af9023d3ae0759e9625155c9fdfebde562690db2764e2",
+      "src/sciencemath/scicomp/invocation.py": "3bed113faa1f71a680a6c56bbc610386cc55d98d7a97dd022fd4d3a68f87d6b2",
+      "src/sciencemath/scicomp/linear_algebra.py": "7ac70a9fc9b951f7bc1fdb348ab0c390dddd65d2701c0ff319fce28ffb3da609",
+      "src/sciencemath/scicomp/ode.py": "7a543eaf8ba453856d01c2eaaa9dd89e927d9fcb8bf403b928b8489e05d53f9a",
+      "src/sciencemath/scicomp/ode_intent.py": "373b6402342cea6c14faf30c1b6db3ed8280978ea75f401d353eb3b6b241d263",
+      "src/sciencemath/scicomp/optimization.py": "d4d7a55356f3872cefe02c7808bea44eed65a29ab1b5dd0b0abdf5c4613f0318",
+      "src/sciencemath/scicomp/parameter_sweep.py": "39e677b2d37476e210c2a6165becf7da7d355f806e431c6979472a342fab2296",
+      "src/sciencemath/scicomp/planner_repair.py": "ba6fc1ea8c3c3fe0d4d59911a209bc8d328ca90d5ae3796dcfa2a6944c3d7b8f",
+      "src/sciencemath/scicomp/registry.py": "dd180ace9d5c114f4eea222bdc83856eab35038b3f9c0461d2e9b300605178e7",
+      "src/sciencemath/scicomp/result_contract.py": "d649d128cafb09cd037dd5cc0dae8fc65ba2355d81eefa6b6aa1d0c25777b434",
+      "src/sciencemath/scicomp/roots.py": "d667e84dcc1d05819800218c0dcac05506e5eeac55d573b8ec298ccd2729b0e5",
+      "src/sciencemath/scicomp/router.py": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14",
+      "src/sciencemath/scicomp/sandbox.py": "aa14cb9ab0995e259e64c812e811f9f15d6c57aeb9e52995665d32712d1fdf37",
+      "src/sciencemath/scicomp/schemas.py": "b9d9d8d54b55e06cd5d4c6056a798f45a653aeac9a8efe8e269c862e967518a1",
+      "src/sciencemath/scicomp/semantic.py": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8",
+      "src/sciencemath/scicomp/statistics.py": "f32b95d35d35bff0267c249900a2320de9456ca9143be299d7ae9855acc87e0f",
+      "src/sciencemath/scicomp/trust.py": "9f1e0d5bdc4bead90d157393257bc621138aa74809ed04117532ee27e3b21002",
+      "src/sciencemath/scicomp/verifier.py": "87eb1e5c2c82d7322d8326c7e5c33f3624a28b59fffde9263ba6d05e8f5416c5"
+    },
+    "t4_tools": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+    "t5r_rag": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "executive_router": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60",
+    "fidelity": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+    "correction_firewall": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3",
+    "security_policies": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+  },
+  "t15r_pins": {
+    "executive_router": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60",
+    "fidelity_classifier": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+    "correction_firewall": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "scicomp_composite": "60e7987791fc54d195bc4dc07bb58b284b0c96ab5d9fac3f24a576731bb3e563"
+  },
+  "checks": [
+    {
+      "check": "git_head_t15r_merge",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "head": "525496921baa1b956b805a86a8de31b51abcf73e",
+        "required": "525496921baa1b956b805a86a8de31b51abcf73e",
+        "is_ancestor": true,
+        "exact": true
+      }
+    },
+    {
+      "check": "worktree_hygiene",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "dirty_n": 3,
+        "unexpected": [],
+        "dirty": [
+          "tests/test_t15r_v11.py",
+          "evaluations/t16/",
+          "scripts/t16_entry_gate.py"
+        ]
+      },
+      "detail": "T16 artifacts allowed; uncommitted non-T16 benchmark dirt is critical"
+    },
+    {
+      "check": "no_uncommitted_benchmark_artifacts",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "benchmark_dirt": []
+      }
+    },
+    {
+      "check": "t15r_final_report",
+      "status": "PASS",
+      "critical": true,
+      "measured": "evaluations\\t15r\\T15R_FINAL_REPORT.md"
+    },
+    {
+      "check": "t15r_final_audit",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "gates_total": 33,
+        "passes": 33,
+        "fails": [],
+        "decision": "PROMOTE_CODE_SKILL"
+      }
+    },
+    {
+      "check": "code_active",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "availability": "ACTIVE",
+        "executable": true
+      }
+    },
+    {
+      "check": "web_research_prepared_only",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "availability": "PREPARED_ONLY",
+        "executable": false
+      }
+    },
+    {
+      "check": "scicomp_promoted_state",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "registry_availability": "EXPERIMENTAL",
+        "decision": "PROMOTE_SCICOMP_LAB",
+        "numeric": 0.8695652173913043
+      },
+      "detail": "SciComp lab is promoted; registry remains EXPERIMENTAL until an independent availability flip. T16 must not change this."
+    },
+    {
+      "check": "executive_router_experimental",
+      "status": "PASS",
+      "critical": true,
+      "measured": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL"
+    },
+    {
+      "check": "skill_registry_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "fea7347fccab6ce80a5443cb6af0a9e6249c5e28551e4d4312d995cfc292b4f3"
+    },
+    {
+      "check": "code_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+        "files": {
+          "src/sciencemath/code/__init__.py": "4891b6ca4ae5496b55b83a951d7488ff98c00d1421d00294b05f5d44c491aee6",
+          "src/sciencemath/code/context.py": "ad8433fa9295774af1e084af5d0a5d5cac86ef978e41a9255ac2cdec9cc41285",
+          "src/sciencemath/code/contract.py": "48837555d3f750a3282db667bc727a3045daee6aa7e0031b1758dfe13de51523",
+          "src/sciencemath/code/discovery.py": "b6a3bfdc24a2dacf68289c9a2ecf1ffb62e9e7ed6d8ec6419164c579449de310",
+          "src/sciencemath/code/editor.py": "43d822c34016ea1bd39b8c905d6117f70c37065ed8578a1889caae39c7109f7e",
+          "src/sciencemath/code/limits.py": "ad885e5e498449affdae6a635ceb3716bc2b88c0c930a5b275619ebdb55db3c8",
+          "src/sciencemath/code/multifile.py": "187aca516cfb64c29d0492afed1511df13ecc607f9dd0d924a00ac0460bde7f0",
+          "src/sciencemath/code/planner.py": "759add09c2647baec0e3178ecbd73b44363627fd19e1495711fa9bb5c79f143f",
+          "src/sciencemath/code/repair_state.py": "996fe5013d19c867729f3d8a6c020fbb584888ae87416ba527e8945c6fd53d25",
+          "src/sciencemath/code/review.py": "54bcf573b35e03ef93d3222ad8e8b9fa2b600b0e75c31a1e5f1643912d3a38f0",
+          "src/sciencemath/code/runner.py": "2435acae344c04caa7541204949e8a74c6e56790761c3f8b41546ad0ef9b3334",
+          "src/sciencemath/code/safety.py": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d",
+          "src/sciencemath/code/search.py": "3531630cec222c5538301289260842a4d92560187de617e1b4a9ab84f272fc89",
+          "src/sciencemath/code/task_contracts.py": "17932bb43b7bc5d527ab7d4c64f5fbc7c514674a3f0ec60f016bd3408658a1aa",
+          "src/sciencemath/code/testsel.py": "7326ff2f175b402b772672603612d7597802c8a13ba6e358ab894154e4d7300f"
+        }
+      }
+    },
+    {
+      "check": "scicomp_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite_lf": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+        "t15r_working_tree_composite_pin": "60e7987791fc54d195bc4dc07bb58b284b0c96ab5d9fac3f24a576731bb3e563",
+        "mismatch_vs_t15_freeze_newline_alias": []
+      },
+      "detail": "T15R composite mixed CRLF/LF working-tree bytes; T16 verifies per-file identity under LF/CRLF alias against the T15 freeze"
+    },
+    {
+      "check": "correction_firewall_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3"
+    },
+    {
+      "check": "fidelity_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146"
+    },
+    {
+      "check": "security_policy_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+        "files": {
+          "src/sciencemath/code/safety.py": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d",
+          "tests/test_t15_code_security.py": "7d48c2a8468df9952954fdfd0d21dc079db2014ebb8c8a88b7d0737ebfbe9f14",
+          "tests/test_t11_security.py": "cfd9d249c21316e67a7c597f0d0affe0a3f5d35af9ec18972799cbd4838450a8"
+        }
+      }
+    },
+    {
+      "check": "t3_adapter_identity",
+      "status": "PASS",
+      "critical": true,
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+    },
+    {
+      "check": "executive_router_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "lf": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60",
+        "raw": "a518505f27ba7eeb3aafd4f4b8509bc55e9230a0e054e6c2706d955c28f05c22"
+      }
+    },
+    {
+      "check": "no_merge_rebase_in_progress",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "merge_head": false,
+        "rebase": false
+      }
+    },
+    {
+      "check": "environment_recorded",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "os": "Windows 11",
+        "python": "3.12.10",
+        "runtime": "Mango-4B-System-v1",
+        "model": "Qwen/Qwen3-4B-Instruct-2507",
+        "torch": "2.5.1+cu121",
+        "cuda_available": true,
+        "transformers": "5.16.1"
+      },
+      "detail": "transformers pin 5.16.1"
+    },
+    {
+      "check": "no_stale_evaluation_processes",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "gpu_query": "250, 6141, 13",
+        "compute_apps": [
+          "14128, C:\\Users\\allam\\AppData\\Local\\Programs\\cursor\\Cursor.exe"
+        ],
+        "mango_gpu_jobs": [],
+        "stale_eval_pids": []
+      }
+    },
+    {
+      "check": "current_pytest_green",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "tests": 1141,
+        "passed": 1140,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 1,
+        "exit_code": 0,
+        "time_s": 39.782
+      },
+      "detail": "require 0 failed / 0 errors; do not target the count"
+    }
+  ],
+  "substantive_failures": [],
+  "conclusion": "All entry-gate checks PASS. T16 may proceed to T16.1 and branch t16-web-research."
+}

@@ -1,0 +1,10 @@
+{
+  "benchmark": "mango-evidence-core-v1",
+  "total": 154,
+  "dev_n": 77,
+  "final_n": 77,
+  "dev_sha256": "89bc0627f13c756ac5eed127fe627b679ac50b48b0b9d26309ae748be3184085",
+  "final_sha256": "3b5a03f65dfa7bc95db62f50004b41d4ae2ea8f672472c2c9a8343bf6aa6e248",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T04:47:25.354205+00:00"
+}

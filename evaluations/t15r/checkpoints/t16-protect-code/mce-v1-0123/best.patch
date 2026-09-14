@@ -1,0 +1,8 @@
+--- a/src/dx04.py
++++ b/src/dx04.py
+@@ -1,2 +1,4 @@
+ def rows_to_dict(rows):
+-    raise NotImplementedError
++    if not rows:
++        return {}
++    return {row[0]: row[1] for row in rows}

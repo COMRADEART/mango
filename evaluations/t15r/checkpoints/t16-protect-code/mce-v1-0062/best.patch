@@ -1,0 +1,11 @@
+--- a/src/feat01_chunk.py
++++ b/src/feat01_chunk.py
+@@ -1,2 +1,7 @@
+ def chunk(xs, n):
+-    raise NotImplementedError
++    if n <= 0:
++        raise ValueError("n must be positive")
++    result = []
++    for i in range(0, len(xs), n):
++        result.append(xs[i:i + n])
++    return result

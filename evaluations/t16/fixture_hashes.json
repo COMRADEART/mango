@@ -1,0 +1,257 @@
+{
+  "pages": {
+    "fx-404": {
+      "url": "https://fixture.mango.test/missing/page",
+      "content_hash": "UNKNOWN",
+      "trust_class": "UNKNOWN",
+      "fetch_status": "NOT_FOUND",
+      "publication_date": "UNKNOWN"
+    },
+    "fx-acme-earnings-primary": {
+      "url": "https://fixture.mango.test/acme/ir/q2-2026",
+      "content_hash": "3d302aa1e105190490e0af40bbf317a85c952234359f657ac3c385683be2cb5a",
+      "trust_class": "OFFICIAL_PRIMARY",
+      "fetch_status": "OK",
+      "publication_date": "2026-07-21"
+    },
+    "fx-acme-news-2021": {
+      "url": "https://fixture.mango.test/bizwire/acme-ceo-2021",
+      "content_hash": "e7aebb6d0a0ca671179c755a968ae6d663265d7a1070035600c0407d5a677574",
+      "trust_class": "REPUTABLE_SECONDARY",
+      "fetch_status": "OK",
+      "publication_date": "2021-04-12"
+    },
+    "fx-acme-press-ceo": {
+      "url": "https://fixture.mango.test/acme/press/ceo-2026",
+      "content_hash": "aac91c88c9a6f932ac98e35f4a0635d436f0c7deae5d158c87e1d1089888c819",
+      "trust_class": "OFFICIAL_PRIMARY",
+      "fetch_status": "OK",
+      "publication_date": "2026-03-01"
+    },
+    "fx-acme-seo": {
+      "url": "https://fixture.mango.test/seo/acme-ceo-guide",
+      "content_hash": "e7e274242ce9bf4b29d2e49a8db2d398831d5cee560d9784e0784591ee87e3af",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2026-08-01"
+    },
+    "fx-acme-social": {
+      "url": "https://fixture.mango.test/social/acme-thread",
+      "content_hash": "546969fde0fd59a929364f605cf28134b19c934cb6b003f61c9f3156d385101a",
+      "trust_class": "SOCIAL_MEDIA",
+      "fetch_status": "OK",
+      "publication_date": "2026-03-02"
+    },
+    "fx-date-mismatch": {
+      "url": "https://fixture.mango.test/news/old-as-new",
+      "content_hash": "dd48106499279aeac81b5558fa087529bd390a91f40cfe0d9f62d63395d2a291",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2021-04-12"
+    },
+    "fx-earn-ap": {
+      "url": "https://fixture.mango.test/ap/acme-earnings",
+      "content_hash": "ee998d59733a8a35a708f9d364b10cfa78bc27b3be5b6d6f958f3818758e62fb",
+      "trust_class": "REPUTABLE_SECONDARY",
+      "fetch_status": "OK",
+      "publication_date": "2026-07-21"
+    },
+    "fx-earn-copy1": {
+      "url": "https://fixture.mango.test/agg/acme-earnings-1",
+      "content_hash": "ee998d59733a8a35a708f9d364b10cfa78bc27b3be5b6d6f958f3818758e62fb",
+      "trust_class": "AGGREGATOR",
+      "fetch_status": "OK",
+      "publication_date": "2026-07-21"
+    },
+    "fx-earn-copy2": {
+      "url": "https://fixture.mango.test/agg/acme-earnings-2",
+      "content_hash": "ee998d59733a8a35a708f9d364b10cfa78bc27b3be5b6d6f958f3818758e62fb",
+      "trust_class": "AGGREGATOR",
+      "fetch_status": "OK",
+      "publication_date": "2026-07-21"
+    },
+    "fx-fake-cite": {
+      "url": "https://fixture.mango.test/spoof/citations",
+      "content_hash": "69dfdca53b84b111c1737cc92210085802ec3acc3fa3e09cbadc4f45aab9f8bd",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2026-01-01"
+    },
+    "fx-fake-gov": {
+      "url": "https://fixture.mango.test/spoof/gov-planck",
+      "content_hash": "64f44384a467115bd302d6ff843ce2bb6e552ee47463c5b827c463b6e8f48d9b",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2026-01-01"
+    },
+    "fx-fake-journal": {
+      "url": "https://fixture.mango.test/spoof/nature-river",
+      "content_hash": "40787cbe93dd0a580d60c6ef94e7ccb876aea1ec2c949174ab852f83c9056140",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2025-09-01"
+    },
+    "fx-helios-mirror": {
+      "url": "https://fixture.mango.test/mirror/helios/spec/v3.2",
+      "content_hash": "6ad8f7e8b1dc94bf764e139b7ada70302f210f95aabc2904cdc02cc67573a513",
+      "trust_class": "OFFICIAL_PRIMARY",
+      "fetch_status": "OK",
+      "publication_date": "2026-01-15"
+    },
+    "fx-helios-repo": {
+      "url": "https://fixture.mango.test/helios/src/router.py",
+      "content_hash": "87106bca78b0624b4d7c37b29be884235a236ca6836027eedc0c2dfbba2b5c22",
+      "trust_class": "FIRST_PARTY_TECHNICAL",
+      "fetch_status": "OK",
+      "publication_date": "2026-06-01"
+    },
+    "fx-helios-seo": {
+      "url": "https://fixture.mango.test/blogs/helios-quickstart",
+      "content_hash": "070ea873246b8cdd2674823f48fa920b11e34e6fc041e56bdc2c83a62d1e8df2",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2024-02-02"
+    },
+    "fx-helios-spec": {
+      "url": "https://fixture.mango.test/helios/spec/v3.2",
+      "content_hash": "6ad8f7e8b1dc94bf764e139b7ada70302f210f95aabc2904cdc02cc67573a513",
+      "trust_class": "OFFICIAL_PRIMARY",
+      "fetch_status": "OK",
+      "publication_date": "2026-01-15"
+    },
+    "fx-inject-html": {
+      "url": "https://fixture.mango.test/evil/inject",
+      "content_hash": "47c715cc1a84b3ee97362a9e379bcc96b33b7086be29d7cf60057e0e6d97e498",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2026-09-01"
+    },
+    "fx-inject-js": {
+      "url": "https://fixture.mango.test/evil/js",
+      "content_hash": "fc6a839076ac8cf58709892c58ef61d987b796b5f5da854b1782e710036da5f8",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2026-09-01"
+    },
+    "fx-law-blog": {
+      "url": "https://fixture.mango.test/blogs/pra-wrong-year",
+      "content_hash": "e132a2e5020801404ecf63f5840266ff303cc9f47ce2bd455e42be1af6ba1dd5",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2025-11-01"
+    },
+    "fx-law-gov": {
+      "url": "https://fixture.mango.test/gov/statutes/pra-1964",
+      "content_hash": "c51564c203304f2671de851ffb1b271d3c476ceb6bcc9295332f62936eb4bd3e",
+      "trust_class": "GOVERNMENT",
+      "fetch_status": "OK",
+      "publication_date": "1964-07-02"
+    },
+    "fx-local-url-page": {
+      "url": "https://fixture.mango.test/evil/ssrf",
+      "content_hash": "df3e0f4cd90f67f7a83d207d76e24ba67e0ceb608cc8449d5a0ab48f91fe1094",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2026-09-01"
+    },
+    "fx-mango-http-docs": {
+      "url": "https://fixture.mango.test/libs/mango-http/docs",
+      "content_hash": "f98b90446e275f2f13b0f9e08e19e48e2a662645eafca0db9d8bb04f631dd8a6",
+      "trust_class": "FIRST_PARTY_TECHNICAL",
+      "fetch_status": "OK",
+      "publication_date": "2026-05-01"
+    },
+    "fx-mango-http-so": {
+      "url": "https://fixture.mango.test/overflow/mango-http-hack",
+      "content_hash": "8d1f5e32804155a12c186948dad060f683bfad1281068c1f8c0a2cf06ad98638",
+      "trust_class": "USER_GENERATED",
+      "fetch_status": "OK",
+      "publication_date": "2026-07-04"
+    },
+    "fx-nist-planck": {
+      "url": "https://fixture.mango.test/nist/constants/planck",
+      "content_hash": "9c15d64ab10621623b72f4e66cce01cc057caa7e5ee18ad283f76b086961cb80",
+      "trust_class": "STANDARDS_BODY",
+      "fetch_status": "OK",
+      "publication_date": "2018-05-20"
+    },
+    "fx-north-contest": {
+      "url": "https://fixture.mango.test/northwind/blog-mayor",
+      "content_hash": "8ff5305d5c2047905297603dc6053ed8376e903b398eddbe645eb6a9ac4448cd",
+      "trust_class": "REPUTABLE_SECONDARY",
+      "fetch_status": "OK",
+      "publication_date": "2026-02-01"
+    },
+    "fx-north-gov": {
+      "url": "https://fixture.mango.test/northwind/mayor",
+      "content_hash": "e6cfadbaa2993c9fb9bee5d075d00a7bcc06efbd83edc4bd55336d6758be2db1",
+      "trust_class": "GOVERNMENT",
+      "fetch_status": "OK",
+      "publication_date": "2026-01-10"
+    },
+    "fx-north-old": {
+      "url": "https://fixture.mango.test/northwind/mayor-2018",
+      "content_hash": "89e34862a6bb63972e13af28b2fdfafcf93ca74bdbbc4bb4e638ff5b477d8a28",
+      "trust_class": "REPUTABLE_SECONDARY",
+      "fetch_status": "OK",
+      "publication_date": "2018-11-08"
+    },
+    "fx-partial": {
+      "url": "https://fixture.mango.test/notes/acme-partial",
+      "content_hash": "98cf3b1285d3b233762d84e208691300995bf634aa5396e60504dec044187cff",
+      "trust_class": "REPUTABLE_SECONDARY",
+      "fetch_status": "OK",
+      "publication_date": "2026-03-02"
+    },
+    "fx-redirect": {
+      "url": "https://fixture.mango.test/acme/press/ceo-latest",
+      "content_hash": "507daa69bddc8b9fcf72864ac63675d19fdda1344ca05179b8b0e6434cb57790",
+      "trust_class": "OFFICIAL_PRIMARY",
+      "fetch_status": "REDIRECT",
+      "publication_date": "2026-03-01"
+    },
+    "fx-river-paper": {
+      "url": "https://fixture.mango.test/journals/riverbend-2025",
+      "content_hash": "301e966c631a7b386691721d1f26b6df7e6c7d05de74fd7d996d7493b35bc44b",
+      "trust_class": "PEER_REVIEWED",
+      "fetch_status": "OK",
+      "publication_date": "2025-09-01"
+    },
+    "fx-river-press": {
+      "url": "https://fixture.mango.test/news/riverbend-90",
+      "content_hash": "ee1784a657e7121cbd2eec4597cf0d61eb8f2d3723708fe1063e0d03b56e6e48",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2025-09-02"
+    },
+    "fx-scope-eu": {
+      "url": "https://fixture.mango.test/acme/eu/privacy",
+      "content_hash": "af66129e2e3d023ad944a358c96611bbb4f1a26450caed9958c4e3ec42135ced",
+      "trust_class": "OFFICIAL_PRIMARY",
+      "fetch_status": "OK",
+      "publication_date": "2026-04-01"
+    },
+    "fx-title-mismatch": {
+      "url": "https://fixture.mango.test/news/misleading-title",
+      "content_hash": "e0982ae30a895f28c061b59b22b807ef08cd6ed7670750d305cc36fac23dd9f7",
+      "trust_class": "LOW_TRUST",
+      "fetch_status": "OK",
+      "publication_date": "2026-08-20"
+    },
+    "fx-weather": {
+      "url": "https://fixture.mango.test/weather/riverbend-2026-09-14",
+      "content_hash": "4d9824afe81e31a35b2dd21d6fb2a66099a45b2b129120fd6b76b6fac6655b12",
+      "trust_class": "GOVERNMENT",
+      "fetch_status": "OK",
+      "publication_date": "2026-09-14"
+    },
+    "fx-weather-old": {
+      "url": "https://fixture.mango.test/weather/riverbend-2020",
+      "content_hash": "792ab789b10fc27c01fc1d611de0acc8437b8a93a1402a32c506a748cf15c348",
+      "trust_class": "GOVERNMENT",
+      "fetch_status": "OK",
+      "publication_date": "2020-09-14"
+    }
+  },
+  "n": 36
+}

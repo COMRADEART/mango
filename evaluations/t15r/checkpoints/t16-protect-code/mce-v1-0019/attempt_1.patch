@@ -1,0 +1,6 @@
+--- a/src/m18.py
++++ b/src/m18.py
+@@ -1,2 +1,2 @@
+ def add(a, b):
+-    return a - b
++    return a + b

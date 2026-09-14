@@ -1,0 +1,8 @@
+--- a/src/cli06.py
++++ b/src/cli06.py
+@@ -3,4 +3,4 @@
+ from lib06 import connect
+ 
+ def start():
+-    return connect('h', 80)
++    return connect('h', 80, 30)

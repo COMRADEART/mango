@@ -1,0 +1,6 @@
+--- a/src/m15.py
++++ b/src/m15.py
+@@ -1,2 +1,2 @@
+ def identity(x):
+-    return -x
++    return x

@@ -1,0 +1,6 @@
+--- a/src/m22.py
++++ b/src/m22.py
+@@ -1,2 +1,2 @@
+ def double(a):
+-    pass
++    return a * 2

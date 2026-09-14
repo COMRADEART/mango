@@ -1,0 +1,6 @@
+--- a/src/feat10_clamp.py
++++ b/src/feat10_clamp.py
+@@ -1,2 +1,2 @@
+ def clamp(x, lo, hi):
+-    raise NotImplementedError
++    return max(lo, min(x, hi))

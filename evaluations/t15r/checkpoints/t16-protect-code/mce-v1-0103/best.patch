@@ -1,0 +1,6 @@
+--- a/src/im04.py
++++ b/src/im04.py
+@@ -1,2 +1,3 @@
++from src.hlp04 import RATE
+ def scaled(x):
+     return x * RATE

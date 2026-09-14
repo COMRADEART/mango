@@ -1,0 +1,142 @@
+{
+  "run": "t16-protect-code",
+  "split": "final",
+  "benchmark": "mango-code-eval-v1.1",
+  "suite_final_sha256": "cbb9cb214ee9dd53331da8b3a68e237e0e1910398f89c4cc12dde87b5efde3fd",
+  "model": {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "used": true,
+    "load": {
+      "ok": true,
+      "error": null,
+      "quantization": "4bit-nf4-double",
+      "load_vram_bytes": 2716700672,
+      "peak_vram_bytes": 2716700672,
+      "reserved_vram_bytes": 2732589056,
+      "smoke_latency_s": 1.05
+    },
+    "gen": {
+      "seed": 20260912,
+      "max_new_tokens": 384
+    }
+  },
+  "recorded_at": "2026-09-14T12:47:24.990655+00:00",
+  "n_tasks": 139,
+  "n_pass": 129,
+  "accuracy": 0.9280575539568345,
+  "by_category": {
+    "single_fix": {
+      "n": 15,
+      "pass": 15,
+      "acc": 1.0
+    },
+    "multi_fix": {
+      "n": 10,
+      "pass": 9,
+      "acc": 0.9
+    },
+    "test_repair": {
+      "n": 5,
+      "pass": 2,
+      "acc": 0.4
+    },
+    "feature": {
+      "n": 13,
+      "pass": 12,
+      "acc": 0.9230769230769231
+    },
+    "refactor": {
+      "n": 5,
+      "pass": 4,
+      "acc": 0.8
+    },
+    "config": {
+      "n": 4,
+      "pass": 3,
+      "acc": 0.75
+    },
+    "import_err": {
+      "n": 3,
+      "pass": 3,
+      "acc": 1.0
+    },
+    "type_err": {
+      "n": 3,
+      "pass": 3,
+      "acc": 1.0
+    },
+    "algo": {
+      "n": 4,
+      "pass": 4,
+      "acc": 1.0
+    },
+    "data_xform": {
+      "n": 6,
+      "pass": 3,
+      "acc": 0.5
+    },
+    "api_compat": {
+      "n": 4,
+      "pass": 4,
+      "acc": 1.0
+    },
+    "search": {
+      "n": 15,
+      "pass": 15,
+      "acc": 1.0
+    },
+    "comprehension": {
+      "n": 10,
+      "pass": 10,
+      "acc": 1.0
+    },
+    "security": {
+      "n": 3,
+      "pass": 3,
+      "acc": 1.0
+    },
+    "destructive": {
+      "n": 7,
+      "pass": 7,
+      "acc": 1.0
+    },
+    "no_context": {
+      "n": 9,
+      "pass": 9,
+      "acc": 1.0
+    },
+    "no_change": {
+      "n": 8,
+      "pass": 8,
+      "acc": 1.0
+    },
+    "regression": {
+      "n": 7,
+      "pass": 7,
+      "acc": 1.0
+    },
+    "review": {
+      "n": 8,
+      "pass": 8,
+      "acc": 1.0
+    }
+  },
+  "statuses": {
+    "EXECUTED_PASS": 109,
+    "BLOCKED": 12,
+    "EXECUTED_FAIL": 9,
+    "NOT_RUN": 9
+  },
+  "vram_peak_bytes": 2973487616,
+  "wall_seconds": 1359.0,
+  "avg_latency_s": 9.776,
+  "avg_repair_rounds": 0.187,
+  "median_repair_rounds": 0,
+  "best_state_retained_count": 68,
+  "full_revert_count": 71,
+  "unsafe_revert_count": 0,
+  "sum_files_read": 40,
+  "sum_files_modified": 11,
+  "sum_commands": 88,
+  "peak_rss_bytes": 1490272256
+}

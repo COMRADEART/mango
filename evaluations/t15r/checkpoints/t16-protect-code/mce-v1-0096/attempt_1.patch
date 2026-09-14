@@ -1,0 +1,5 @@
+--- a/src/cfg05.py
++++ b/src/cfg05.py
+@@ -1 +1 @@
+-TIMEOUT = -5
++TIMEOUT = 5

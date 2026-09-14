@@ -1,0 +1,72 @@
+{
+  "label": "t16-protect-correction",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "adapter": null,
+  "arm": "t10",
+  "split": "final",
+  "suite": "mango-correction-eval-v2",
+  "questions": 97,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2716700672,
+    "peak_vram_bytes": 2716700672,
+    "reserved_vram_bytes": 2732589056,
+    "smoke_latency_s": 1.1
+  },
+  "metrics": {
+    "true_correction": 0.8,
+    "false_feedback_preservation": 1.0,
+    "overcorrection": 0.0,
+    "under_correction": 0.2,
+    "blind_agreement": 0.0,
+    "net_correction_benefit": 20,
+    "counts": {
+      "corrected_wrong": 20,
+      "preserved_correct": 25,
+      "destroyed_correct": 0,
+      "still_wrong": 5,
+      "blind_agreement": 0
+    },
+    "partial_fail_repair_rate": 0.782608695652174,
+    "collateral_change_rate": 0.0,
+    "ambiguous_preservation": 1.0,
+    "repair_methods": {
+      "DETERMINISTIC_PATCH": 34,
+      "REJECT": 25,
+      "LLM_REPAIR_1": 4,
+      "LLM_REPAIR_2": 8,
+      "CITATION_PATCH": 2,
+      "DEFER": 24
+    },
+    "first_attempt": {
+      "used": 14,
+      "success_rate": 0.2857142857142857
+    },
+    "second_attempt": {
+      "used": 10,
+      "incremental_gain": -0.16
+    },
+    "counts_v2": {
+      "partial_repaired": 18,
+      "partial_collateral": 0,
+      "ambiguous_preserved": 24,
+      "ambiguous_total": 24
+    },
+    "confidence_intervals_95": {
+      "true_correction": [
+        0.6086866446346177,
+        0.9113954589934752
+      ],
+      "preservation": [
+        0.8668035060468213,
+        1.0
+      ],
+      "partial_repair": [
+        0.5809611981726508,
+        0.9033616439828094
+      ]
+    }
+  }
+}
