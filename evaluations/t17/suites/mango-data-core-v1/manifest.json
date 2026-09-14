@@ -1,0 +1,27 @@
+{
+  "benchmark": "mango-data-core-v1",
+  "total": 180,
+  "dev_n": 90,
+  "final_n": 90,
+  "dev_sha256": "8ac247a3e8b9e645e67451ec533bb7e11b9843f21dac39ed780d5b4e632c77aa",
+  "final_sha256": "c5e884f850a3b884612d852fbfdbfd6ef3cda1d3ba31e644d4a80594ef421ce9",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T14:48:14.991384+00:00",
+  "kinds": [
+    "agg",
+    "duplicates",
+    "filter",
+    "formula_data",
+    "join",
+    "join_left",
+    "leading_zero",
+    "lineage",
+    "na_string",
+    "no_mutation",
+    "nulls",
+    "pk",
+    "profile",
+    "schema",
+    "type_inference"
+  ]
+}

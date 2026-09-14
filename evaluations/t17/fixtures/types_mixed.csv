@@ -1,0 +1,4 @@
+sku,qty,price,shipped,when
+A-01,3,1.50,true,2026-03-01
+A-02,0,2.00,false,2026-03-02
+A-03,12,0.25,true,2026-03-03

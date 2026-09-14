@@ -170,9 +170,6 @@ def _select(question: str, nec: dict, prec: dict, t4: dict,
     """Deterministic precedence (T14.4) plus T14B skill mapping."""
     secondary: list[str] = []
 
-    if nec["necessity"] == INSUFFICIENT_INFORMATION:
-        return "NO_TOOL", [], "insufficient information; do not invent inputs"
-
     # Unavailable capability requests fail closed (do not fake execution).
     for cap, skill in (("code", "CODE"), ("web", "WEB_RESEARCH"),
                        ("document", "DOCUMENT"), ("memory", "MEMORY")):
@@ -189,6 +186,18 @@ def _select(question: str, nec: dict, prec: dict, t4: dict,
         elif asked["code"] and reg.executable("CODE"):
             follow = ["CODE"]
         return "WEB_RESEARCH", follow, "web research; evidence then tools"
+
+    # T17 availability integration only: DOCUMENT when executable.
+    if asked["document"] and reg.executable("DOCUMENT"):
+        follow_d: list[str] = []
+        if nec["necessity"] == COMPUTE_REQUIRED and reg.executable("SCICOMP"):
+            follow_d = ["SCICOMP"]
+        elif asked["code"] and reg.executable("CODE"):
+            follow_d = ["CODE"]
+        return "DOCUMENT", follow_d, "document intelligence; evidence then tools"
+
+    if nec["necessity"] == INSUFFICIENT_INFORMATION:
+        return "NO_TOOL", [], "insufficient information; do not invent inputs"
 
     if asked["planning"] and reg.executable("PLANNING"):
         # Planning may precede another executable skill, depth-capped.
@@ -313,9 +322,9 @@ def classify_routing_failure(predicted: dict, gold: dict) -> str | None:
             return None
         return "UNAVAILABLE_SKILL"
     p, g = predicted.get("primary_skill"), gold.get("primary_skill")
-    # DOCUMENT/MEMORY remain non-executable. CODE and WEB_RESEARCH may
-    # be executed when the registry marks them executable (T15R/T16).
-    if g in ("DOCUMENT", "MEMORY") and p == g:
+    # MEMORY remains non-executable. DOCUMENT may be executed when the
+    # registry marks it executable (T17). CODE/WEB already follow that rule.
+    if g == "MEMORY" and p == g:
         return "UNAVAILABLE_SKILL"
     if gold.get("expect_unavailable_rejection") and p in ("GENERAL", "NO_TOOL"):
         return None

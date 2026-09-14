@@ -1,0 +1,6 @@
+item,amount
+alpha,12
+evil,=CMD('calc')
+plus,+SUM(A)
+at,@SUM(A)
+neg,-3

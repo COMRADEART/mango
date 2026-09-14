@@ -1,0 +1,90 @@
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "column": "employee_id", "expect_type": "STRING", "task_id": "mdc-v1-0091", "note": "", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "qty", "expect_type": "INTEGER", "task_id": "mdc-v1-0092", "note": "A", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "price", "expect_type": "FLOAT", "task_id": "mdc-v1-0093", "note": "B", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/boolean.csv"], "column": "on", "expect_type": "BOOLEAN", "task_id": "mdc-v1-0094", "note": "C", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/dates.csv"], "column": "when", "expect_type": "DATE", "task_id": "mdc-v1-0095", "note": "D", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/schema_users.csv"], "column": "created", "expect_type": "DATETIME", "task_id": "mdc-v1-0096", "note": "E", "split": "final"}
+{"kind": "nulls", "files": ["evaluations/t17/fixtures/nulls.csv"], "column": "score", "expect_kinds": ["EMPTY", "ZERO", "NAN", "NULL"], "task_id": "mdc-v1-0097", "note": "F", "split": "final"}
+{"kind": "formula_data", "files": ["evaluations/t17/fixtures/formula.csv"], "expect_formula": true, "task_id": "mdc-v1-0098", "note": "G", "split": "final"}
+{"kind": "schema", "files": ["evaluations/t17/fixtures/finance_q2.csv"], "expect_cols": ["region", "revenue_billion"], "task_id": "mdc-v1-0099", "note": "H", "split": "final"}
+{"kind": "profile", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "expect_rows": 5, "task_id": "mdc-v1-0100", "note": "I", "split": "final"}
+{"kind": "filter", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "region", "op": "eq", "value": "NA"}, "expect_ids": [0, 3], "task_id": "mdc-v1-0101", "note": "", "split": "final"}
+{"kind": "agg", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "metric": "sum", "column": "amount", "group_by": "region", "expect": {"NA": 15.0, "EU": 10.0, "APAC": 9.0}, "task_id": "mdc-v1-0102", "note": "A", "split": "final"}
+{"kind": "join", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "inner", "expect_rows": 3, "expect_dup_keys": ["u1"], "task_id": "mdc-v1-0103", "note": "B", "split": "final"}
+{"kind": "lineage", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "score", "op": "eq", "value": 10}, "expect_ids": [0, 2], "task_id": "mdc-v1-0104", "note": "C", "split": "final"}
+{"kind": "no_mutation", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_rows": 3, "task_id": "mdc-v1-0105", "note": "D", "split": "final"}
+{"kind": "duplicates", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_dup_groups": 1, "task_id": "mdc-v1-0106", "note": "E", "split": "final"}
+{"kind": "join_left", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "left", "expect_unmatched": 1, "task_id": "mdc-v1-0107", "note": "F", "split": "final"}
+{"kind": "pk", "files": ["evaluations/t17/fixtures/schema_users.csv"], "expect_pk": "user_id", "task_id": "mdc-v1-0108", "note": "G", "split": "final"}
+{"kind": "leading_zero", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "expect_raw": "00123", "task_id": "mdc-v1-0109", "note": "H", "split": "final"}
+{"kind": "na_string", "files": ["evaluations/t17/fixtures/nulls.csv"], "expect_type_note": "STRING", "task_id": "mdc-v1-0110", "note": "I", "split": "final"}
+{"kind": "filter", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "region", "op": "eq", "value": "NA"}, "expect_ids": [0, 3], "task_id": "mdc-v1-0111", "note": "final", "split": "final"}
+{"kind": "agg", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "metric": "sum", "column": "amount", "group_by": "region", "expect": {"NA": 15.0, "EU": 10.0, "APAC": 9.0}, "task_id": "mdc-v1-0112", "note": "Afinal", "split": "final"}
+{"kind": "join", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "inner", "expect_rows": 3, "expect_dup_keys": ["u1"], "task_id": "mdc-v1-0113", "note": "Bfinal", "split": "final"}
+{"kind": "lineage", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "score", "op": "eq", "value": 10}, "expect_ids": [0, 2], "task_id": "mdc-v1-0114", "note": "Cfinal", "split": "final"}
+{"kind": "no_mutation", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_rows": 3, "task_id": "mdc-v1-0115", "note": "Dfinal", "split": "final"}
+{"kind": "duplicates", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_dup_groups": 1, "task_id": "mdc-v1-0116", "note": "Efinal", "split": "final"}
+{"kind": "join_left", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "left", "expect_unmatched": 1, "task_id": "mdc-v1-0117", "note": "Ffinal", "split": "final"}
+{"kind": "pk", "files": ["evaluations/t17/fixtures/schema_users.csv"], "expect_pk": "user_id", "task_id": "mdc-v1-0118", "note": "Gfinal", "split": "final"}
+{"kind": "leading_zero", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "expect_raw": "00123", "task_id": "mdc-v1-0119", "note": "Hfinal", "split": "final"}
+{"kind": "na_string", "files": ["evaluations/t17/fixtures/nulls.csv"], "expect_type_note": "STRING", "task_id": "mdc-v1-0120", "note": "Ifinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "column": "employee_id", "expect_type": "STRING", "task_id": "mdc-v1-0121", "note": "final", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "qty", "expect_type": "INTEGER", "task_id": "mdc-v1-0122", "note": "Afinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "price", "expect_type": "FLOAT", "task_id": "mdc-v1-0123", "note": "Bfinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/boolean.csv"], "column": "on", "expect_type": "BOOLEAN", "task_id": "mdc-v1-0124", "note": "Cfinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/dates.csv"], "column": "when", "expect_type": "DATE", "task_id": "mdc-v1-0125", "note": "Dfinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/schema_users.csv"], "column": "created", "expect_type": "DATETIME", "task_id": "mdc-v1-0126", "note": "Efinal", "split": "final"}
+{"kind": "nulls", "files": ["evaluations/t17/fixtures/nulls.csv"], "column": "score", "expect_kinds": ["EMPTY", "ZERO", "NAN", "NULL"], "task_id": "mdc-v1-0127", "note": "Ffinal", "split": "final"}
+{"kind": "formula_data", "files": ["evaluations/t17/fixtures/formula.csv"], "expect_formula": true, "task_id": "mdc-v1-0128", "note": "Gfinal", "split": "final"}
+{"kind": "schema", "files": ["evaluations/t17/fixtures/finance_q2.csv"], "expect_cols": ["region", "revenue_billion"], "task_id": "mdc-v1-0129", "note": "Hfinal", "split": "final"}
+{"kind": "profile", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "expect_rows": 5, "task_id": "mdc-v1-0130", "note": "Ifinal", "split": "final"}
+{"kind": "filter", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "region", "op": "eq", "value": "NA"}, "expect_ids": [0, 3], "task_id": "mdc-v1-0131", "note": "final", "split": "final"}
+{"kind": "agg", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "metric": "sum", "column": "amount", "group_by": "region", "expect": {"NA": 15.0, "EU": 10.0, "APAC": 9.0}, "task_id": "mdc-v1-0132", "note": "Afinal", "split": "final"}
+{"kind": "join", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "inner", "expect_rows": 3, "expect_dup_keys": ["u1"], "task_id": "mdc-v1-0133", "note": "Bfinal", "split": "final"}
+{"kind": "lineage", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "score", "op": "eq", "value": 10}, "expect_ids": [0, 2], "task_id": "mdc-v1-0134", "note": "Cfinal", "split": "final"}
+{"kind": "no_mutation", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_rows": 3, "task_id": "mdc-v1-0135", "note": "Dfinal", "split": "final"}
+{"kind": "duplicates", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_dup_groups": 1, "task_id": "mdc-v1-0136", "note": "Efinal", "split": "final"}
+{"kind": "join_left", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "left", "expect_unmatched": 1, "task_id": "mdc-v1-0137", "note": "Ffinal", "split": "final"}
+{"kind": "pk", "files": ["evaluations/t17/fixtures/schema_users.csv"], "expect_pk": "user_id", "task_id": "mdc-v1-0138", "note": "Gfinal", "split": "final"}
+{"kind": "leading_zero", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "expect_raw": "00123", "task_id": "mdc-v1-0139", "note": "Hfinal", "split": "final"}
+{"kind": "na_string", "files": ["evaluations/t17/fixtures/nulls.csv"], "expect_type_note": "STRING", "task_id": "mdc-v1-0140", "note": "Ifinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "column": "employee_id", "expect_type": "STRING", "task_id": "mdc-v1-0141", "note": "final", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "qty", "expect_type": "INTEGER", "task_id": "mdc-v1-0142", "note": "Afinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "price", "expect_type": "FLOAT", "task_id": "mdc-v1-0143", "note": "Bfinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/boolean.csv"], "column": "on", "expect_type": "BOOLEAN", "task_id": "mdc-v1-0144", "note": "Cfinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/dates.csv"], "column": "when", "expect_type": "DATE", "task_id": "mdc-v1-0145", "note": "Dfinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/schema_users.csv"], "column": "created", "expect_type": "DATETIME", "task_id": "mdc-v1-0146", "note": "Efinal", "split": "final"}
+{"kind": "nulls", "files": ["evaluations/t17/fixtures/nulls.csv"], "column": "score", "expect_kinds": ["EMPTY", "ZERO", "NAN", "NULL"], "task_id": "mdc-v1-0147", "note": "Ffinal", "split": "final"}
+{"kind": "formula_data", "files": ["evaluations/t17/fixtures/formula.csv"], "expect_formula": true, "task_id": "mdc-v1-0148", "note": "Gfinal", "split": "final"}
+{"kind": "schema", "files": ["evaluations/t17/fixtures/finance_q2.csv"], "expect_cols": ["region", "revenue_billion"], "task_id": "mdc-v1-0149", "note": "Hfinal", "split": "final"}
+{"kind": "profile", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "expect_rows": 5, "task_id": "mdc-v1-0150", "note": "Ifinal", "split": "final"}
+{"kind": "filter", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "region", "op": "eq", "value": "NA"}, "expect_ids": [0, 3], "task_id": "mdc-v1-0151", "note": "final", "split": "final"}
+{"kind": "agg", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "metric": "sum", "column": "amount", "group_by": "region", "expect": {"NA": 15.0, "EU": 10.0, "APAC": 9.0}, "task_id": "mdc-v1-0152", "note": "Afinal", "split": "final"}
+{"kind": "join", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "inner", "expect_rows": 3, "expect_dup_keys": ["u1"], "task_id": "mdc-v1-0153", "note": "Bfinal", "split": "final"}
+{"kind": "lineage", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "score", "op": "eq", "value": 10}, "expect_ids": [0, 2], "task_id": "mdc-v1-0154", "note": "Cfinal", "split": "final"}
+{"kind": "no_mutation", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_rows": 3, "task_id": "mdc-v1-0155", "note": "Dfinal", "split": "final"}
+{"kind": "duplicates", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_dup_groups": 1, "task_id": "mdc-v1-0156", "note": "Efinal", "split": "final"}
+{"kind": "join_left", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "left", "expect_unmatched": 1, "task_id": "mdc-v1-0157", "note": "Ffinal", "split": "final"}
+{"kind": "pk", "files": ["evaluations/t17/fixtures/schema_users.csv"], "expect_pk": "user_id", "task_id": "mdc-v1-0158", "note": "Gfinal", "split": "final"}
+{"kind": "leading_zero", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "expect_raw": "00123", "task_id": "mdc-v1-0159", "note": "Hfinal", "split": "final"}
+{"kind": "na_string", "files": ["evaluations/t17/fixtures/nulls.csv"], "expect_type_note": "STRING", "task_id": "mdc-v1-0160", "note": "Ifinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "column": "employee_id", "expect_type": "STRING", "task_id": "mdc-v1-0161", "note": "final", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "qty", "expect_type": "INTEGER", "task_id": "mdc-v1-0162", "note": "Afinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "price", "expect_type": "FLOAT", "task_id": "mdc-v1-0163", "note": "Bfinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/boolean.csv"], "column": "on", "expect_type": "BOOLEAN", "task_id": "mdc-v1-0164", "note": "Cfinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/dates.csv"], "column": "when", "expect_type": "DATE", "task_id": "mdc-v1-0165", "note": "Dfinal", "split": "final"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/schema_users.csv"], "column": "created", "expect_type": "DATETIME", "task_id": "mdc-v1-0166", "note": "Efinal", "split": "final"}
+{"kind": "nulls", "files": ["evaluations/t17/fixtures/nulls.csv"], "column": "score", "expect_kinds": ["EMPTY", "ZERO", "NAN", "NULL"], "task_id": "mdc-v1-0167", "note": "Ffinal", "split": "final"}
+{"kind": "formula_data", "files": ["evaluations/t17/fixtures/formula.csv"], "expect_formula": true, "task_id": "mdc-v1-0168", "note": "Gfinal", "split": "final"}
+{"kind": "schema", "files": ["evaluations/t17/fixtures/finance_q2.csv"], "expect_cols": ["region", "revenue_billion"], "task_id": "mdc-v1-0169", "note": "Hfinal", "split": "final"}
+{"kind": "profile", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "expect_rows": 5, "task_id": "mdc-v1-0170", "note": "Ifinal", "split": "final"}
+{"kind": "filter", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "region", "op": "eq", "value": "NA"}, "expect_ids": [0, 3], "task_id": "mdc-v1-0171", "note": "final", "split": "final"}
+{"kind": "agg", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "metric": "sum", "column": "amount", "group_by": "region", "expect": {"NA": 15.0, "EU": 10.0, "APAC": 9.0}, "task_id": "mdc-v1-0172", "note": "Afinal", "split": "final"}
+{"kind": "join", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "inner", "expect_rows": 3, "expect_dup_keys": ["u1"], "task_id": "mdc-v1-0173", "note": "Bfinal", "split": "final"}
+{"kind": "lineage", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "score", "op": "eq", "value": 10}, "expect_ids": [0, 2], "task_id": "mdc-v1-0174", "note": "Cfinal", "split": "final"}
+{"kind": "no_mutation", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_rows": 3, "task_id": "mdc-v1-0175", "note": "Dfinal", "split": "final"}
+{"kind": "duplicates", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_dup_groups": 1, "task_id": "mdc-v1-0176", "note": "Efinal", "split": "final"}
+{"kind": "join_left", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "left", "expect_unmatched": 1, "task_id": "mdc-v1-0177", "note": "Ffinal", "split": "final"}
+{"kind": "pk", "files": ["evaluations/t17/fixtures/schema_users.csv"], "expect_pk": "user_id", "task_id": "mdc-v1-0178", "note": "Gfinal", "split": "final"}
+{"kind": "leading_zero", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "expect_raw": "00123", "task_id": "mdc-v1-0179", "note": "Hfinal", "split": "final"}
+{"kind": "na_string", "files": ["evaluations/t17/fixtures/nulls.csv"], "expect_type_note": "STRING", "task_id": "mdc-v1-0180", "note": "Ifinal", "split": "final"}

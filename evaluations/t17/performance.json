@@ -1,0 +1,14 @@
+{
+  "milestone": "T17.50 performance",
+  "recorded_at": "2026-09-14T15:18:15.550307+00:00",
+  "document_n": 180,
+  "data_n": 90,
+  "document_wall_s": 1.819,
+  "data_wall_s": 0.176,
+  "document_mean_ms": 10.106,
+  "data_mean_ms": 1.956,
+  "vram": "unused (CPU-only mechanical FINAL)",
+  "network_requests": 0,
+  "paid_compute": "NOT_USED",
+  "note": "Correctness over speed. Mechanical parsers; no GPU FINAL."
+}

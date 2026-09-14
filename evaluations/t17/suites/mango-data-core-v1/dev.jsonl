@@ -1,0 +1,90 @@
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "column": "employee_id", "expect_type": "STRING", "task_id": "mdc-v1-0001", "note": "", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "qty", "expect_type": "INTEGER", "task_id": "mdc-v1-0002", "note": "A", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "price", "expect_type": "FLOAT", "task_id": "mdc-v1-0003", "note": "B", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/boolean.csv"], "column": "on", "expect_type": "BOOLEAN", "task_id": "mdc-v1-0004", "note": "C", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/dates.csv"], "column": "when", "expect_type": "DATE", "task_id": "mdc-v1-0005", "note": "D", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/schema_users.csv"], "column": "created", "expect_type": "DATETIME", "task_id": "mdc-v1-0006", "note": "E", "split": "dev"}
+{"kind": "nulls", "files": ["evaluations/t17/fixtures/nulls.csv"], "column": "score", "expect_kinds": ["EMPTY", "ZERO", "NAN", "NULL"], "task_id": "mdc-v1-0007", "note": "F", "split": "dev"}
+{"kind": "formula_data", "files": ["evaluations/t17/fixtures/formula.csv"], "expect_formula": true, "task_id": "mdc-v1-0008", "note": "G", "split": "dev"}
+{"kind": "schema", "files": ["evaluations/t17/fixtures/finance_q2.csv"], "expect_cols": ["region", "revenue_billion"], "task_id": "mdc-v1-0009", "note": "H", "split": "dev"}
+{"kind": "profile", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "expect_rows": 5, "task_id": "mdc-v1-0010", "note": "I", "split": "dev"}
+{"kind": "filter", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "region", "op": "eq", "value": "NA"}, "expect_ids": [0, 3], "task_id": "mdc-v1-0011", "note": "", "split": "dev"}
+{"kind": "agg", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "metric": "sum", "column": "amount", "group_by": "region", "expect": {"NA": 15.0, "EU": 10.0, "APAC": 9.0}, "task_id": "mdc-v1-0012", "note": "A", "split": "dev"}
+{"kind": "join", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "inner", "expect_rows": 3, "expect_dup_keys": ["u1"], "task_id": "mdc-v1-0013", "note": "B", "split": "dev"}
+{"kind": "lineage", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "score", "op": "eq", "value": 10}, "expect_ids": [0, 2], "task_id": "mdc-v1-0014", "note": "C", "split": "dev"}
+{"kind": "no_mutation", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_rows": 3, "task_id": "mdc-v1-0015", "note": "D", "split": "dev"}
+{"kind": "duplicates", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_dup_groups": 1, "task_id": "mdc-v1-0016", "note": "E", "split": "dev"}
+{"kind": "join_left", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "left", "expect_unmatched": 1, "task_id": "mdc-v1-0017", "note": "F", "split": "dev"}
+{"kind": "pk", "files": ["evaluations/t17/fixtures/schema_users.csv"], "expect_pk": "user_id", "task_id": "mdc-v1-0018", "note": "G", "split": "dev"}
+{"kind": "leading_zero", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "expect_raw": "00123", "task_id": "mdc-v1-0019", "note": "H", "split": "dev"}
+{"kind": "na_string", "files": ["evaluations/t17/fixtures/nulls.csv"], "expect_type_note": "STRING", "task_id": "mdc-v1-0020", "note": "I", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "column": "employee_id", "expect_type": "STRING", "task_id": "mdc-v1-0021", "note": "dev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "qty", "expect_type": "INTEGER", "task_id": "mdc-v1-0022", "note": "Adev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "price", "expect_type": "FLOAT", "task_id": "mdc-v1-0023", "note": "Bdev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/boolean.csv"], "column": "on", "expect_type": "BOOLEAN", "task_id": "mdc-v1-0024", "note": "Cdev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/dates.csv"], "column": "when", "expect_type": "DATE", "task_id": "mdc-v1-0025", "note": "Ddev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/schema_users.csv"], "column": "created", "expect_type": "DATETIME", "task_id": "mdc-v1-0026", "note": "Edev", "split": "dev"}
+{"kind": "nulls", "files": ["evaluations/t17/fixtures/nulls.csv"], "column": "score", "expect_kinds": ["EMPTY", "ZERO", "NAN", "NULL"], "task_id": "mdc-v1-0027", "note": "Fdev", "split": "dev"}
+{"kind": "formula_data", "files": ["evaluations/t17/fixtures/formula.csv"], "expect_formula": true, "task_id": "mdc-v1-0028", "note": "Gdev", "split": "dev"}
+{"kind": "schema", "files": ["evaluations/t17/fixtures/finance_q2.csv"], "expect_cols": ["region", "revenue_billion"], "task_id": "mdc-v1-0029", "note": "Hdev", "split": "dev"}
+{"kind": "profile", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "expect_rows": 5, "task_id": "mdc-v1-0030", "note": "Idev", "split": "dev"}
+{"kind": "filter", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "region", "op": "eq", "value": "NA"}, "expect_ids": [0, 3], "task_id": "mdc-v1-0031", "note": "dev", "split": "dev"}
+{"kind": "agg", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "metric": "sum", "column": "amount", "group_by": "region", "expect": {"NA": 15.0, "EU": 10.0, "APAC": 9.0}, "task_id": "mdc-v1-0032", "note": "Adev", "split": "dev"}
+{"kind": "join", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "inner", "expect_rows": 3, "expect_dup_keys": ["u1"], "task_id": "mdc-v1-0033", "note": "Bdev", "split": "dev"}
+{"kind": "lineage", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "score", "op": "eq", "value": 10}, "expect_ids": [0, 2], "task_id": "mdc-v1-0034", "note": "Cdev", "split": "dev"}
+{"kind": "no_mutation", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_rows": 3, "task_id": "mdc-v1-0035", "note": "Ddev", "split": "dev"}
+{"kind": "duplicates", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_dup_groups": 1, "task_id": "mdc-v1-0036", "note": "Edev", "split": "dev"}
+{"kind": "join_left", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "left", "expect_unmatched": 1, "task_id": "mdc-v1-0037", "note": "Fdev", "split": "dev"}
+{"kind": "pk", "files": ["evaluations/t17/fixtures/schema_users.csv"], "expect_pk": "user_id", "task_id": "mdc-v1-0038", "note": "Gdev", "split": "dev"}
+{"kind": "leading_zero", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "expect_raw": "00123", "task_id": "mdc-v1-0039", "note": "Hdev", "split": "dev"}
+{"kind": "na_string", "files": ["evaluations/t17/fixtures/nulls.csv"], "expect_type_note": "STRING", "task_id": "mdc-v1-0040", "note": "Idev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "column": "employee_id", "expect_type": "STRING", "task_id": "mdc-v1-0041", "note": "dev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "qty", "expect_type": "INTEGER", "task_id": "mdc-v1-0042", "note": "Adev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "price", "expect_type": "FLOAT", "task_id": "mdc-v1-0043", "note": "Bdev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/boolean.csv"], "column": "on", "expect_type": "BOOLEAN", "task_id": "mdc-v1-0044", "note": "Cdev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/dates.csv"], "column": "when", "expect_type": "DATE", "task_id": "mdc-v1-0045", "note": "Ddev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/schema_users.csv"], "column": "created", "expect_type": "DATETIME", "task_id": "mdc-v1-0046", "note": "Edev", "split": "dev"}
+{"kind": "nulls", "files": ["evaluations/t17/fixtures/nulls.csv"], "column": "score", "expect_kinds": ["EMPTY", "ZERO", "NAN", "NULL"], "task_id": "mdc-v1-0047", "note": "Fdev", "split": "dev"}
+{"kind": "formula_data", "files": ["evaluations/t17/fixtures/formula.csv"], "expect_formula": true, "task_id": "mdc-v1-0048", "note": "Gdev", "split": "dev"}
+{"kind": "schema", "files": ["evaluations/t17/fixtures/finance_q2.csv"], "expect_cols": ["region", "revenue_billion"], "task_id": "mdc-v1-0049", "note": "Hdev", "split": "dev"}
+{"kind": "profile", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "expect_rows": 5, "task_id": "mdc-v1-0050", "note": "Idev", "split": "dev"}
+{"kind": "filter", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "region", "op": "eq", "value": "NA"}, "expect_ids": [0, 3], "task_id": "mdc-v1-0051", "note": "dev", "split": "dev"}
+{"kind": "agg", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "metric": "sum", "column": "amount", "group_by": "region", "expect": {"NA": 15.0, "EU": 10.0, "APAC": 9.0}, "task_id": "mdc-v1-0052", "note": "Adev", "split": "dev"}
+{"kind": "join", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "inner", "expect_rows": 3, "expect_dup_keys": ["u1"], "task_id": "mdc-v1-0053", "note": "Bdev", "split": "dev"}
+{"kind": "lineage", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "score", "op": "eq", "value": 10}, "expect_ids": [0, 2], "task_id": "mdc-v1-0054", "note": "Cdev", "split": "dev"}
+{"kind": "no_mutation", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_rows": 3, "task_id": "mdc-v1-0055", "note": "Ddev", "split": "dev"}
+{"kind": "duplicates", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_dup_groups": 1, "task_id": "mdc-v1-0056", "note": "Edev", "split": "dev"}
+{"kind": "join_left", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "left", "expect_unmatched": 1, "task_id": "mdc-v1-0057", "note": "Fdev", "split": "dev"}
+{"kind": "pk", "files": ["evaluations/t17/fixtures/schema_users.csv"], "expect_pk": "user_id", "task_id": "mdc-v1-0058", "note": "Gdev", "split": "dev"}
+{"kind": "leading_zero", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "expect_raw": "00123", "task_id": "mdc-v1-0059", "note": "Hdev", "split": "dev"}
+{"kind": "na_string", "files": ["evaluations/t17/fixtures/nulls.csv"], "expect_type_note": "STRING", "task_id": "mdc-v1-0060", "note": "Idev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "column": "employee_id", "expect_type": "STRING", "task_id": "mdc-v1-0061", "note": "dev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "qty", "expect_type": "INTEGER", "task_id": "mdc-v1-0062", "note": "Adev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "price", "expect_type": "FLOAT", "task_id": "mdc-v1-0063", "note": "Bdev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/boolean.csv"], "column": "on", "expect_type": "BOOLEAN", "task_id": "mdc-v1-0064", "note": "Cdev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/dates.csv"], "column": "when", "expect_type": "DATE", "task_id": "mdc-v1-0065", "note": "Ddev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/schema_users.csv"], "column": "created", "expect_type": "DATETIME", "task_id": "mdc-v1-0066", "note": "Edev", "split": "dev"}
+{"kind": "nulls", "files": ["evaluations/t17/fixtures/nulls.csv"], "column": "score", "expect_kinds": ["EMPTY", "ZERO", "NAN", "NULL"], "task_id": "mdc-v1-0067", "note": "Fdev", "split": "dev"}
+{"kind": "formula_data", "files": ["evaluations/t17/fixtures/formula.csv"], "expect_formula": true, "task_id": "mdc-v1-0068", "note": "Gdev", "split": "dev"}
+{"kind": "schema", "files": ["evaluations/t17/fixtures/finance_q2.csv"], "expect_cols": ["region", "revenue_billion"], "task_id": "mdc-v1-0069", "note": "Hdev", "split": "dev"}
+{"kind": "profile", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "expect_rows": 5, "task_id": "mdc-v1-0070", "note": "Idev", "split": "dev"}
+{"kind": "filter", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "region", "op": "eq", "value": "NA"}, "expect_ids": [0, 3], "task_id": "mdc-v1-0071", "note": "dev", "split": "dev"}
+{"kind": "agg", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "metric": "sum", "column": "amount", "group_by": "region", "expect": {"NA": 15.0, "EU": 10.0, "APAC": 9.0}, "task_id": "mdc-v1-0072", "note": "Adev", "split": "dev"}
+{"kind": "join", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "inner", "expect_rows": 3, "expect_dup_keys": ["u1"], "task_id": "mdc-v1-0073", "note": "Bdev", "split": "dev"}
+{"kind": "lineage", "files": ["evaluations/t17/fixtures/filter_me.csv"], "clause": {"column": "score", "op": "eq", "value": 10}, "expect_ids": [0, 2], "task_id": "mdc-v1-0074", "note": "Cdev", "split": "dev"}
+{"kind": "no_mutation", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_rows": 3, "task_id": "mdc-v1-0075", "note": "Ddev", "split": "dev"}
+{"kind": "duplicates", "files": ["evaluations/t17/fixtures/dup_rows.csv"], "expect_dup_groups": 1, "task_id": "mdc-v1-0076", "note": "Edev", "split": "dev"}
+{"kind": "join_left", "files": ["evaluations/t17/fixtures/join_left.csv", "evaluations/t17/fixtures/join_right.csv"], "left_on": "user_id", "right_on": "user_id", "how": "left", "expect_unmatched": 1, "task_id": "mdc-v1-0077", "note": "Fdev", "split": "dev"}
+{"kind": "pk", "files": ["evaluations/t17/fixtures/schema_users.csv"], "expect_pk": "user_id", "task_id": "mdc-v1-0078", "note": "Gdev", "split": "dev"}
+{"kind": "leading_zero", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "expect_raw": "00123", "task_id": "mdc-v1-0079", "note": "Hdev", "split": "dev"}
+{"kind": "na_string", "files": ["evaluations/t17/fixtures/nulls.csv"], "expect_type_note": "STRING", "task_id": "mdc-v1-0080", "note": "Idev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/ids_leading_zero.tsv"], "column": "employee_id", "expect_type": "STRING", "task_id": "mdc-v1-0081", "note": "dev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "qty", "expect_type": "INTEGER", "task_id": "mdc-v1-0082", "note": "Adev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/types_mixed.csv"], "column": "price", "expect_type": "FLOAT", "task_id": "mdc-v1-0083", "note": "Bdev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/boolean.csv"], "column": "on", "expect_type": "BOOLEAN", "task_id": "mdc-v1-0084", "note": "Cdev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/dates.csv"], "column": "when", "expect_type": "DATE", "task_id": "mdc-v1-0085", "note": "Ddev", "split": "dev"}
+{"kind": "type_inference", "files": ["evaluations/t17/fixtures/schema_users.csv"], "column": "created", "expect_type": "DATETIME", "task_id": "mdc-v1-0086", "note": "Edev", "split": "dev"}
+{"kind": "nulls", "files": ["evaluations/t17/fixtures/nulls.csv"], "column": "score", "expect_kinds": ["EMPTY", "ZERO", "NAN", "NULL"], "task_id": "mdc-v1-0087", "note": "Fdev", "split": "dev"}
+{"kind": "formula_data", "files": ["evaluations/t17/fixtures/formula.csv"], "expect_formula": true, "task_id": "mdc-v1-0088", "note": "Gdev", "split": "dev"}
+{"kind": "schema", "files": ["evaluations/t17/fixtures/finance_q2.csv"], "expect_cols": ["region", "revenue_billion"], "task_id": "mdc-v1-0089", "note": "Hdev", "split": "dev"}
+{"kind": "profile", "files": ["evaluations/t17/fixtures/agg_sales.csv"], "expect_rows": 5, "task_id": "mdc-v1-0090", "note": "Idev", "split": "dev"}

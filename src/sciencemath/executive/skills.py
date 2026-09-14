@@ -136,8 +136,11 @@ def default_registry() -> dict[str, dict]:
         ),
         "DOCUMENT": _skill(
             skill_id="DOCUMENT",
-            description="Document/data intelligence. Interface only in T14.",
-            availability=PREPARED_ONLY,
+            description="Local document and structured-data intelligence: "
+                        "identify, parse, search, QA, summarize, compare, "
+                        "tables, schema, profile, filter, aggregate, join, "
+                        "cite. Fixture-sandbox; no OCR; T17 runtime.",
+            availability=ACTIVE,
             fallback_behavior="GENERAL",
             latency_class="MEDIUM",
         ),
