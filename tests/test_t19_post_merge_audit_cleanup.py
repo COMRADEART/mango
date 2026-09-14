@@ -90,7 +90,12 @@ def test_scicomp_canonical_active_implementation_unchanged():
     assert measured["implementation_hash"] == SCICOMP_HASH
     assert freeze["composites"]["scicomp"] == SCICOMP_HASH
     assert _sha_group("src/sciencemath/scicomp") == SCICOMP_HASH
-    assert reg.availability("SCICOMP") == "EXPERIMENTAL"
+    # Historical T19 cleanup recorded the stale registry string; live
+    # registry is now aligned to canonical ACTIVE.
+    assert cleanup["scicomp_status_cleanup"]["registry_availability_string"] == (
+        "EXPERIMENTAL"
+    )
+    assert reg.availability("SCICOMP") == "ACTIVE"
     assert cleanup["scicomp_status_cleanup"]["canonical_value"] == "ACTIVE"
     assert cleanup["scicomp_status_cleanup"]["implementation_hash_unchanged"] is True
     decision = _json("evaluations/t14r2/scicomp_decision.json")

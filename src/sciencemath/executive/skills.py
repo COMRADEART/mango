@@ -89,9 +89,9 @@ def default_registry() -> dict[str, dict]:
         ),
         "SCICOMP": _skill(
             skill_id="SCICOMP",
-            description="Scientific computing laboratory (numerical/symbolic "
-                        "SciComp). Experimental until a T14A promotion.",
-            availability=EXPERIMENTAL,
+            description="Scientific computing laboratory for bounded numerical "
+                        "and symbolic computation. Promoted ACTIVE at T14R2.",
+            availability=ACTIVE,
             preconditions=["compute_necessity_COMPUTE_REQUIRED",
                            "parameter_fidelity_gate",
                            "correction_firewall"],

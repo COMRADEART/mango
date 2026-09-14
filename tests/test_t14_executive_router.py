@@ -21,7 +21,7 @@ class TestSkillRegistry:
     def test_availability_states(self):
         reg = SkillRegistry()
         assert reg.availability("MATH_T4") == ACTIVE
-        assert reg.availability("SCICOMP") == EXPERIMENTAL
+        assert reg.availability("SCICOMP") == ACTIVE
         # CODE is PREPARED_ONLY until a T15R promotion gate flips it ACTIVE.
         # WEB/MEMORY stay unavailable; the router must not fake them.
         assert reg.availability("CODE") in (PREPARED_ONLY, ACTIVE)
@@ -48,7 +48,7 @@ class TestSkillRegistry:
             assert not reg.executable("MEMORY")
         else:
             assert reg.executable("MEMORY")
-        assert reg.executable("SCICOMP")  # experimental is selectable
+        assert reg.executable("SCICOMP")  # ACTIVE remains selectable
         assert reg.executable("MATH_T4")
 
     def test_unknown_skill_rejected(self):

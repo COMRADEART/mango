@@ -1,0 +1,75 @@
+{
+  "task": "SciComp canonical registry consistency cleanup",
+  "cleanup_type": "PROMOTION_METADATA_CONSISTENCY",
+  "base_main": "c3629951a8bc5cc47251d8d669c927a78acf50a5",
+  "branch": "scicomp-registry-active-consistency",
+  "t19_audit_cleanup_commit": "53da5d03849ce4884985b4974a96a6389fe6cf96",
+
+  "canonical_state_before": "ACTIVE",
+  "registry_state_before": "EXPERIMENTAL",
+  "registry_state_after": "ACTIVE",
+  "description_corrected": true,
+
+  "scicomp_implementation_changed": false,
+  "scicomp_implementation_hash_before": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+  "scicomp_implementation_hash_after": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+
+  "registry_hash_before": "06800bc0dee39ae1865e1b39aee3f612645a79e12eaa53256a6c64f13b6951e9",
+  "registry_hash_after": "9d74777848d2c7cc6a2ede569dae7d868e0e9dd3bcb89688d4de850a6b3bf4be",
+  "skills_py_sha256_before": "edea3874638a5852ed6fe4fa3571796b094c48dec86715dee21acde00678ea1e",
+  "skills_py_sha256_after": "1af3682450d00a84d7e43aeb6b1d816c3cf13742b200988bb143f729125e074a",
+
+  "executable_before": true,
+  "executable_after": true,
+  "execution_authority_delta": 0,
+
+  "permissions_changed": false,
+  "cost_class_changed": false,
+  "preconditions_changed": false,
+  "verification_method_changed": false,
+  "fallback_changed": false,
+
+  "historical_scores_changed": false,
+  "benchmark_definitions_changed": false,
+  "promotion_floors_changed": false,
+  "model_weights_changed": false,
+  "training_used": false,
+  "paid_compute_used": false,
+
+  "executive_router": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "planning": "ACTIVE",
+  "t19_family": "CLOSED",
+  "t20_started": false,
+
+  "protection": {
+    "status": "PASS",
+    "scicomp": "ACTIVE",
+    "numeric_accuracy": 0.8695652173913043,
+    "numeric_floor": 0.848,
+    "silent_mutations": 0,
+    "pipeline_exceptions": 0,
+    "t4_false_pass": 0,
+    "t5r_fabricated": 0,
+    "t5r_unsupported": 0,
+    "t5r_invalid": 0,
+    "code": "ACTIVE hash-preserved",
+    "web_research": "ACTIVE hash-preserved",
+    "document": "ACTIVE hash-preserved",
+    "memory": "ACTIVE isolation-preserved",
+    "planning": "ACTIVE floors-preserved",
+    "executive_router": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+    "note": "GPU layers not re-run. Promoted implementation hashes match the T19 freeze; T14R2/T18/T19 protection floors remain valid."
+  },
+
+  "pytest": {
+    "collected": 1335,
+    "passed": 1333,
+    "failed": 0,
+    "skipped": 2,
+    "errors": 0,
+    "time_s": 45.77,
+    "summary": "1333 passed, 2 skipped in 45.77s"
+  },
+
+  "result": "PASS"
+}
