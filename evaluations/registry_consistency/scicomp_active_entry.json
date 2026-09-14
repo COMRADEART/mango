@@ -1,0 +1,63 @@
+{
+  "task": "SciComp canonical registry consistency cleanup — entry freeze",
+  "recorded_at": "2026-09-14T18:55:00+00:00",
+  "base_main": "c3629951a8bc5cc47251d8d669c927a78acf50a5",
+  "t19_audit_cleanup_commit": "53da5d03849ce4884985b4974a96a6389fe6cf96",
+  "t19_audit_cleanup_on_main": true,
+  "merge_commit": "c3629951a8bc5cc47251d8d669c927a78acf50a5",
+  "branch": "scicomp-registry-active-consistency",
+  "architecture": "Mango-4B-System-v1",
+  "scicomp_canonical_promotion_decision": "PROMOTE_SCICOMP_LAB",
+  "scicomp_current_registry_availability": "EXPERIMENTAL",
+  "scicomp_expected_canonical_availability": "ACTIVE",
+  "scicomp_implementation_hash": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+  "registry_sha256": "06800bc0dee39ae1865e1b39aee3f612645a79e12eaa53256a6c64f13b6951e9",
+  "skills_py_sha256": "edea3874638a5852ed6fe4fa3571796b094c48dec86715dee21acde00678ea1e",
+  "executive_router": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "executive_router_sha256": "06c59027341e4ef9124a4b5c1610a470e77fd67cfe8133446b380fcf9866af8e",
+  "PLANNING": "ACTIVE",
+  "CODE": "ACTIVE",
+  "WEB_RESEARCH": "ACTIVE",
+  "DOCUMENT": "ACTIVE",
+  "MEMORY": "ACTIVE",
+  "executable_scicomp": true,
+  "scicomp_invariants": {
+    "cost_class": "LOCAL_FREE",
+    "required_permissions": [],
+    "preconditions": [
+      "compute_necessity_COMPUTE_REQUIRED",
+      "parameter_fidelity_gate",
+      "correction_firewall"
+    ],
+    "verification_method": "scicomp_envelope",
+    "fallback_behavior": "MATH_T4"
+  },
+  "source_hashes": {
+    "scicomp": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "code": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "web_research": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+    "document": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+    "memory": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+    "planning": "d045885cefcd097ceffc6588b5e6b00a1072cfaa08526ba9e4070bbdc041528c",
+    "t4_tools": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+    "t5r_rag": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742"
+  },
+  "pytest_before": {
+    "collected": 1330,
+    "passed": 1328,
+    "failed": 0,
+    "skipped": 2,
+    "errors": 0,
+    "time_s": 46.67,
+    "summary": "1328 passed, 2 skipped in 46.67s"
+  },
+  "t19_family": "CLOSED",
+  "t20_started": false,
+  "evidence_paths": [
+    "evaluations/t14r2/scicomp_decision.json",
+    "evaluations/t14r2/T14R2_FINAL_REPORT.md",
+    "evaluations/t19/post_merge_audit_cleanup.json",
+    "evaluations/t19/final_audit.json",
+    "src/sciencemath/executive/skills.py"
+  ]
+}
