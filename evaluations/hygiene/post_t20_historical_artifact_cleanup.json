@@ -1,0 +1,51 @@
+{
+ "task": "Post-T20 historical artifact hygiene cleanup",
+ "base_main": "642abe18fadd3df1a103ca6f5a0385d5965cadff",
+ "historical_file": "evaluations/t15r/mutation_safety_probe.json",
+
+ "pre_t20_blob_sha": "fba2437f78633884bd31965d78a4250bd1ca893c",
+ "t20_merged_blob_sha": "494382747b7b068fb2f23de8b4e72f690bde5755",
+ "restored_blob_sha": "fba2437f78633884bd31965d78a4250bd1ca893c",
+
+ "difference_classification": "TIMESTAMP_ONLY",
+
+ "historical_recorded_at_before_t20": "2026-09-13T16:24:50.907825+00:00",
+ "historical_recorded_at_after_t20": "2026-09-14T20:23:51.212839+00:00",
+ "historical_recorded_at_restored": "2026-09-13T16:24:50.907825+00:00",
+
+ "historical_results_changed": false,
+ "t20_results_changed": false,
+ "t20_promotion_changed": false,
+ "registry_changed": false,
+ "model_weights_changed": false,
+ "training_used": false,
+ "paid_compute_used": false,
+
+ "orchestration": "ACTIVE",
+ "executive_router": "EXPERIMENTAL",
+ "t20_family": "CLOSED",
+ "t21_started": false,
+
+ "prevention_fix": {
+   "applied": true,
+   "root_cause": "scripts/t20_protection_summary.py re-ran scripts/t15r_mutation_probe.py, whose hardcoded output path is the historical evaluations/t15r/ artifact, then copied it into evaluations/t20/. The refresh of the historical artifact was a side effect of the copy-based harness.",
+   "change": [
+     "scripts/t15r_mutation_probe.py: optional --out argument added (default unchanged = historical T15R path)",
+     "scripts/t20_protection_summary.py: passes --out evaluations/t20/mutation_safety_probe.json; in-place copy removed"
+   ],
+   "verified": [
+     "probe with --out writes only to the milestone-local path; exit 0; artifact valid (passed=true)",
+     "T15R historical artifact digest unchanged (fba2437...) after rerun",
+     "T20-local artifact generation still works (mechanism proven via temp-path run; frozen T20 artifacts untouched)",
+     "no benchmark semantics change: same suites (fidelity, fidelity_transform), same replay logic, same output schema",
+     "no evaluation metrics change: probe output identical in structure and results"
+   ],
+   "known_follow_up": "T16-T19 protection batteries share the same write-into-history pattern via scripts/t15r_mutation_probe.py; their milestones are closed and their harnesses were left untouched. FOLLOW_UP_HISTORICAL_ARTIFACT_WRITE_GUARD_NEEDED for any generic write guard."
+ },
+
+ "integrity_test": "tests/test_post_t20_historical_artifact_hygiene.py",
+
+ "pytest": "1577 passed, 2 skipped in 46.70s (0 failed, 0 errors)",
+
+ "result": "PASS"
+}
