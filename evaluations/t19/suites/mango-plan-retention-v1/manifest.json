@@ -1,0 +1,18 @@
+{
+  "benchmark": "mango-plan-retention-v1",
+  "total": 100,
+  "dev_n": 50,
+  "final_n": 50,
+  "dev_sha256": "d11bb3bce8a362c17e4730e0e0abc8200fe3190bb34c2e23188d6aa21999ff8a",
+  "final_sha256": "5623544558b28d19f1c6bc8bffe9665cb9694793cfff14fe4e49b7ab7b2d3086",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T17:02:17.079483+00:00",
+  "categories": [
+    "alternate_branch",
+    "constraint_change",
+    "dependency_invalidation",
+    "failure_mid",
+    "partial_success",
+    "resume"
+  ]
+}

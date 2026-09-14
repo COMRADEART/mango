@@ -1,0 +1,31 @@
+{
+  "milestone": "T19.68 failure taxonomy",
+  "taxonomy": [
+    "GOAL_CAPTURE_ERROR",
+    "CONSTRAINT_LOSS",
+    "DECOMPOSITION_ERROR",
+    "DEPENDENCY_ERROR",
+    "CYCLE_ERROR",
+    "SKILL_SELECTION_ERROR",
+    "SUCCESS_CRITERIA_ERROR",
+    "BUDGET_ERROR",
+    "CHECKPOINT_ERROR",
+    "REPLAN_MISSED",
+    "UNNECESSARY_REPLAN",
+    "INVALIDATION_ERROR",
+    "PROGRESS_LOSS",
+    "FAILURE_CLASSIFICATION_ERROR",
+    "RECOVERY_ERROR",
+    "LOOP_ERROR",
+    "NON_PROGRESS_ERROR",
+    "FALSE_COMPLETE",
+    "FALSE_INCOMPLETE",
+    "APPROVAL_ERROR",
+    "POLICY_BYPASS",
+    "FABRICATED_TOOL_RESULT",
+    "OTHER"
+  ],
+  "counts": {},
+  "dominant": "Propose-only planner is deterministic and template-driven; future work is an autonomous workflow/action layer, not T19.",
+  "notes": "Counts derived from FINAL combined metrics; zero-count classes omitted."
+}

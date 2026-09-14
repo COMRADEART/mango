@@ -1,0 +1,11 @@
+{
+  "note": "Deterministic fixture observations are produced by sciencemath.planning.harness; no live network or filesystem mutations.",
+  "skills": [
+    "CODE",
+    "SCICOMP",
+    "WEB_RESEARCH",
+    "DOCUMENT",
+    "MEMORY"
+  ],
+  "n_scenarios": 80
+}

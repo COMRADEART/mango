@@ -1,0 +1,22 @@
+{
+  "milestone": "T19.72 PLANNING availability",
+  "recorded_at": "2026-09-14T17:04:10.680072+00:00",
+  "decision": "PROMOTE_PLANNING_SKILL",
+  "before": "EXPERIMENTAL",
+  "after": "ACTIVE",
+  "applied": true,
+  "gates": {
+    "quality_ok": true,
+    "protection": "ALL_PASS",
+    "security_violations": 0,
+    "pytest_failures": 0,
+    "pytest_errors": 0,
+    "zeros": true
+  },
+  "executive_router": "UNCHANGED KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "claim": "Mango can construct, maintain, validate, revise, resume, and complete-gate long-horizon plans across its registered skills.",
+  "not_claimed": "Mango can autonomously perform long workflows",
+  "weight_promotion": "NO",
+  "training": "NONE",
+  "paid_compute": "NOT_USED"
+}

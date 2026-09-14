@@ -1,0 +1,13 @@
+{
+  "milestone": "T19.69 FINAL frozen",
+  "recorded_at": "2026-09-14T17:02:17.082648+00:00",
+  "tuning_closed": true,
+  "final_checksums": {
+    "mango-planner-core-v1": "271e8f14a4523d32ecd96524088ba5c50176aeca6271fa6df232f2e6c5510fd0",
+    "mango-planning-eval-v1": "c588869e25b250159efe4f3a43fdcbc125eb8856d75df0484fa3265d50b6a2d1",
+    "mango-plan-retention-v1": "5623544558b28d19f1c6bc8bffe9665cb9694793cfff14fe4e49b7ab7b2d3086",
+    "mango-completion-gate-v1": "3b9bec46f35014b8c374aae18da13dcc62ce810c32248b4e2fc4a7a65b7a4877",
+    "mango-planning-loop-v1": "f78330c911af2b792caf1481036c94bc01cd90c750d8ae7a135542a3bb602acd"
+  },
+  "notes": "FINAL frozen at generation. No post-observation edits."
+}

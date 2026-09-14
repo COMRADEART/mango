@@ -1,0 +1,18 @@
+{
+  "benchmark": "mango-planning-loop-v1",
+  "total": 80,
+  "dev_n": 40,
+  "final_n": 40,
+  "dev_sha256": "28d069f5bc03000e03990694f28e9bf0cf88669f9bbbd1a073ab46ad858e0bcd",
+  "final_sha256": "f78330c911af2b792caf1481036c94bc01cd90c750d8ae7a135542a3bb602acd",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T17:02:17.082648+00:00",
+  "categories": [
+    "circular_dependency_proposal",
+    "impossible_prereq",
+    "no_progress_replan",
+    "repeated_search",
+    "retry_loop",
+    "two_state_oscillation"
+  ]
+}

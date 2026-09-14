@@ -152,9 +152,10 @@ def default_registry() -> dict[str, dict]:
         ),
         "PLANNING": _skill(
             skill_id="PLANNING",
-            description="Bounded T7 executive planning (plan schema only; "
-                        "not autonomous orchestration).",
-            availability=EXPERIMENTAL,
+            description="Long-horizon planner: decompose, sequence, monitor, "
+                        "replan, resume, and completion-gate across registered "
+                        "skills. Propose-only; no autonomous execution. T19 runtime.",
+            availability=ACTIVE,
             verification_method="plan_schema",
             fallback_behavior="GENERAL",
             latency_class="MEDIUM",

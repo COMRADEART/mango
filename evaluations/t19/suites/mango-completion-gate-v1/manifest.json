@@ -1,0 +1,18 @@
+{
+  "benchmark": "mango-completion-gate-v1",
+  "total": 120,
+  "dev_n": 60,
+  "final_n": 60,
+  "dev_sha256": "bb36cae9a8f70524507a67e1b360f9211041da79cb7b8a484c94b6c45a9655c7",
+  "final_sha256": "3b9bec46f35014b8c374aae18da13dcc62ce810c32248b4e2fc4a7a65b7a4877",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T17:02:17.080588+00:00",
+  "categories": [
+    "blocked_mandatory",
+    "missing_artifact",
+    "nearly_complete",
+    "optional_unfinished",
+    "stale_criterion",
+    "true_complete"
+  ]
+}
