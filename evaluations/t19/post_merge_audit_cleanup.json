@@ -1,0 +1,672 @@
+{
+  "milestone": "T19 post-merge audit cleanup",
+  "base_main": "b2079cc903b3ede273fb009904fa8551735e5278",
+  "cleanup_type": "AUDIT_METADATA_ONLY",
+  "capability_behavior_changed": false,
+  "benchmarks_changed": false,
+  "thresholds_changed": false,
+  "historical_scores_changed": false,
+  "promotion_decision_changed": false,
+  "scicomp_status_cleanup": {
+    "previous_recorded_value": "EXPERIMENTAL",
+    "canonical_value": "ACTIVE",
+    "registry_availability_string": "EXPERIMENTAL",
+    "implementation_hash": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "implementation_hash_unchanged": true,
+    "status": "CORRECTED",
+    "t14r2_decision": "PROMOTE_SCICOMP_LAB",
+    "evidence_paths": [
+      "src/sciencemath/executive/skills.py",
+      "evaluations/t14r2/scicomp_decision.json",
+      "evaluations/t14r2/T14R2_FINAL_REPORT.md",
+      "evaluations/t18/T18_FINAL_REPORT.md",
+      "evaluations/t19/t19_entry_gate.json",
+      "evaluations/t19/frozen_components.json",
+      "evaluations/t19/protection/regression_summary.json",
+      "evaluations/t19/final_audit.json",
+      "evaluations/t19/T19_FINAL_REPORT.md"
+    ],
+    "note": "T19.71 recorded SkillRegistry.availability(SCICOMP), which remained EXPERIMENTAL after T14R2 PROMOTE_SCICOMP_LAB. Canonical promoted availability is ACTIVE. The registry string is not flipped here; this cleanup corrects audit metadata only."
+  },
+  "long_horizon_coverage": {
+    "total_long_horizon_scenarios": 28,
+    "task_count_ge_15": 28,
+    "task_count_15_to_30": 28,
+    "ge_15_multiple_skills": 0,
+    "ge_15_multiple_dependencies": 28,
+    "ge_15_with_replan": 0,
+    "full_definition_count": 0,
+    "required_count": 25,
+    "requirement_met": false,
+    "coverage_status": "SHORTFALL",
+    "coverage_label": "T19_STRESS_COVERAGE_SHORTFALL",
+    "classification": "B_benchmark_coverage_shortfall",
+    "classification_detail": {
+      "A_documentation_only_gap": false,
+      "B_benchmark_coverage_shortfall": true,
+      "C_harness_counting_ambiguity": true
+    },
+    "scenario_ids": [
+      "pc-0063",
+      "pc-0064",
+      "pc-0065",
+      "pc-0066",
+      "pc-0067",
+      "pc-0068",
+      "pe-0129",
+      "pe-0130",
+      "pe-0131",
+      "pe-0132",
+      "pe-0133",
+      "pe-0134",
+      "pe-0135",
+      "pe-0136",
+      "pe-0137",
+      "pe-0138",
+      "pe-0139",
+      "pe-0140",
+      "pe-0141",
+      "pe-0142",
+      "pe-0143",
+      "pe-0144",
+      "pe-0299",
+      "pe-0300",
+      "pe-0301",
+      "pe-0302",
+      "pe-0303",
+      "pe-0304"
+    ],
+    "full_definition_scenario_ids": [],
+    "ge15_scenario_ids": [
+      "pc-0063",
+      "pc-0064",
+      "pc-0065",
+      "pc-0066",
+      "pc-0067",
+      "pc-0068",
+      "pe-0129",
+      "pe-0130",
+      "pe-0131",
+      "pe-0132",
+      "pe-0133",
+      "pe-0134",
+      "pe-0135",
+      "pe-0136",
+      "pe-0137",
+      "pe-0138",
+      "pe-0139",
+      "pe-0140",
+      "pe-0141",
+      "pe-0142",
+      "pe-0143",
+      "pe-0144",
+      "pe-0299",
+      "pe-0300",
+      "pe-0301",
+      "pe-0302",
+      "pe-0303",
+      "pe-0304"
+    ],
+    "by_suite_split": {
+      "mango-planner-core-v1:dev": 6,
+      "mango-planning-eval-v1:dev": 16,
+      "mango-planning-eval-v1:final": 6
+    },
+    "definition": {
+      "eligible": "Frozen gold rows with horizon==long OR gold.long OR target_tasks>=15. Task/skill/dependency counts prefer joined frozen predictions, then target_tasks / gold.",
+      "full_t19_55": "15 <= task_count <= 30 AND skill_count >= 2 AND dependency_count >= 2 AND at least one observation-driven replan"
+    },
+    "original_report_heuristic": {
+      "source": "scripts/t19_write_report.py::long_horizon_stats",
+      "scenarios": 315,
+      "mean_tasks": 5.012698412698413,
+      "max_tasks": 16,
+      "task_count_ge_15": 6,
+      "task_count_15_to_30": 6,
+      "note": "Original T19 report used this loose heuristic (n>=12 or checkpoint/resume category or max_tasks>=16) over FINAL core/eval/retention predictions only. Mean ~5 because most matched rows are short checkpoint/resume plans."
+    },
+    "t19_family": "CLOSED",
+    "t19r_recommended": false,
+    "promotion_claim_undermined": false,
+    "note": "Frozen long-horizon rows are CODE_BUGFIX pads (unique skill=1). None combine 15-30 tasks with multiple skills, multiple dependencies, and an observation-driven replan. Quality/safety floors remain valid; this is documented benchmark-coverage debt, not a T19 reopen."
+  },
+  "planning_decision": "PROMOTE_PLANNING_SKILL",
+  "planning_availability": "ACTIVE",
+  "executive_router": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "t19_family": "CLOSED",
+  "t20_started": false,
+  "detailed_long_horizon_scenarios": [
+    {
+      "scenario_id": "pc-0063",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planner-core-v1",
+      "category": "checkpointing",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pc-0064",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planner-core-v1",
+      "category": "checkpointing",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pc-0065",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planner-core-v1",
+      "category": "checkpointing",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pc-0066",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planner-core-v1",
+      "category": "checkpointing",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pc-0067",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planner-core-v1",
+      "category": "checkpointing",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pc-0068",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planner-core-v1",
+      "category": "checkpointing",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0129",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": true,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0130",
+      "task_count": 17,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 16,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 17,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 17,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0131",
+      "task_count": 18,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 17,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 18,
+      "gold_replan": false,
+      "observation_source": true,
+      "pred_plan_version": 1,
+      "pred_task_count": 18,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0132",
+      "task_count": 19,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 18,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 19,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 19,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0133",
+      "task_count": 20,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 19,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 20,
+      "gold_replan": false,
+      "observation_source": true,
+      "pred_plan_version": 1,
+      "pred_task_count": 20,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0134",
+      "task_count": 21,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 20,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 21,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 21,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0135",
+      "task_count": 22,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 21,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 22,
+      "gold_replan": false,
+      "observation_source": true,
+      "pred_plan_version": 1,
+      "pred_task_count": 22,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0136",
+      "task_count": 23,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 22,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 23,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 23,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0137",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": true,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0138",
+      "task_count": 17,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 16,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 17,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 17,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0139",
+      "task_count": 18,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 17,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 18,
+      "gold_replan": false,
+      "observation_source": true,
+      "pred_plan_version": 1,
+      "pred_task_count": 18,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0140",
+      "task_count": 19,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 18,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 19,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 19,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0141",
+      "task_count": 20,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 19,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 20,
+      "gold_replan": false,
+      "observation_source": true,
+      "pred_plan_version": 1,
+      "pred_task_count": 20,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0142",
+      "task_count": 21,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 20,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 21,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 21,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0143",
+      "task_count": 22,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 21,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 22,
+      "gold_replan": false,
+      "observation_source": true,
+      "pred_plan_version": 1,
+      "pred_task_count": 22,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0144",
+      "task_count": 23,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 22,
+      "has_observation_driven_replan": false,
+      "split": "dev",
+      "suite": "mango-planning-eval-v1",
+      "category": "checkpointing",
+      "target_tasks": 23,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 23,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0299",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "final",
+      "suite": "mango-planning-eval-v1",
+      "category": "resume_after_checkpoint",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0300",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "final",
+      "suite": "mango-planning-eval-v1",
+      "category": "resume_after_checkpoint",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0301",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "final",
+      "suite": "mango-planning-eval-v1",
+      "category": "resume_after_checkpoint",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0302",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "final",
+      "suite": "mango-planning-eval-v1",
+      "category": "resume_after_checkpoint",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0303",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "final",
+      "suite": "mango-planning-eval-v1",
+      "category": "resume_after_checkpoint",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    },
+    {
+      "scenario_id": "pe-0304",
+      "task_count": 16,
+      "skill_count": 1,
+      "skills": [
+        "CODE"
+      ],
+      "dependency_count": 15,
+      "has_observation_driven_replan": false,
+      "split": "final",
+      "suite": "mango-planning-eval-v1",
+      "category": "resume_after_checkpoint",
+      "target_tasks": 16,
+      "gold_replan": false,
+      "observation_source": false,
+      "pred_plan_version": 1,
+      "pred_task_count": 16,
+      "meets_full_t19_55": false
+    }
+  ]
+}
