@@ -1,0 +1,14 @@
+{
+  "suite": "mango-t21r-crossdomain-holdout-v1",
+  "split": "holdout",
+  "total": 180,
+  "categories": {
+    "art_to_biography": 90,
+    "technology_to_biography": 90
+  },
+  "holdout_sha256": "66cd4931ac33b23d7893a28a4038cb43c6e758376c50fddf72ec3e04f3663781",
+  "notes": "Cross-domain bridges artwork->painter and technology->inventor into biography (2 required domain classes per row).",
+  "built_at": "2026-09-14T23:22:35.157322+00:00",
+  "seed": 2127,
+  "corpus_snapshot_date": "2026-03-31"
+}

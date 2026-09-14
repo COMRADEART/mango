@@ -1,0 +1,55 @@
+{
+  "milestone": "T21R.2 promotion-provenance erratum",
+  "recorded_at": "2026-09-14T22:46:36.837565+00:00",
+  "status": "T21_PROMOTION_PROVENANCE_RECONSTRUCTED",
+  "chain": {
+    "PRE_T21": {
+      "availability": "KNOWLEDGE_RAG not present",
+      "registry_sha256": "02699861db6bdcbae7376cb3fa76b7956e85a38f8a8b49aa3ad0d0770ffffcb3",
+      "verification": "skills.py reconstructed with the KNOWLEDGE_RAG entry removed; registry hash recomputed"
+    },
+    "T21_REGISTRATION": {
+      "availability": "EXPERIMENTAL",
+      "registry_sha256": "817a2c7b1cddd97e56448a5d760649ba28225f7d8c9b881967b96f9b22624e11",
+      "skills_py_sha256": "17a74ddcb760ebf408a6c22d85aed68f3bcafc5906c17df70871c9eb424467fe",
+      "verification": "skills.py reconstructed by reverting the promotion delta (description without the promotion clause, availability=EXPERIMENTAL); both hashes recomputed and equal to the T21.2 registration record"
+    },
+    "T21_PROMOTION": {
+      "availability": "ACTIVE",
+      "registry_sha256": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+      "skills_py_sha256": "74e52f369c5e850d0ed929abbfbae41f714ea9fa84c1c62cbd5011adc151092a",
+      "verification": "canonical skills.py as merged at 962dd58; both hashes recomputed and equal to the T21.60 promotion record values"
+    },
+    "CURRENT_CANONICAL": {
+      "availability": "ACTIVE",
+      "registry_sha256": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058"
+    }
+  },
+  "original_promotion_artifact_defect": {
+    "observed": {
+      "registry_sha256_before_promotion": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+      "registry_sha256_promoted": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+      "skills_py_updated": false
+    },
+    "explanation": "The recorded T21.60 promotion artifact shows identical before/after registry hashes and skills_py_updated=false, consistent with an idempotent rerun of scripts/t21_apply_promotion.py occurring AFTER the actual EXPERIMENTAL->ACTIVE transition had already been applied. The true transition is proven mechanically: the reconstructed EXPERIMENTAL-era skills.py (hash 17a74ddc...) differs from the canonical ACTIVE skills.py (hash 74e52f36...) exactly by the promotion delta, and each state's registry hash matches its recorded value.",
+    "defect_confirmed": true
+  },
+  "mechanical_checks": {
+    "pre_t21_registry_matches_recorded_before": true,
+    "experimental_file_sha_matches_registration_record": true,
+    "experimental_registry_matches_registration_record": true,
+    "active_file_sha_matches_promotion_record": true,
+    "active_registry_matches_promotion_record": true,
+    "live_registry_matches_active": true,
+    "transition_is_mechanical_flip": true
+  },
+  "expected_values_used_as_cross_reference": {
+    "pre_t21_registry": "02699861db6bdcbae7376cb3fa76b7956e85a38f8a8b49aa3ad0d0770ffffcb3",
+    "experimental_registry": "817a2c7b1cddd97e56448a5d760649ba28225f7d8c9b881967b96f9b22624e11",
+    "experimental_skills_py": "17a74ddcb760ebf408a6c22d85aed68f3bcafc5906c17df70871c9eb424467fe",
+    "active_registry": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+    "active_skills_py": "74e52f369c5e850d0ed929abbfbae41f714ea9fa84c1c62cbd5011adc151092a"
+  },
+  "original_artifacts_modified": false,
+  "rule": "The original T21 promotion artifact is PRESERVED unchanged; this erratum is the only correction."
+}

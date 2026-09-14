@@ -1,0 +1,13 @@
+{
+  "suite": "mango-t21r-multihop-holdout-v1",
+  "split": "holdout",
+  "total": 160,
+  "categories": {
+    "two_hop_bridge": 160
+  },
+  "holdout_sha256": "209df46ce1c96bbdaaf7142f8fe6d4d02e4afe83ae1f3722a20be2eca53bddd1",
+  "notes": "Two-hop bridge chains work->author->birthplace (8 phrasings per chain, 2 required sources per row).",
+  "built_at": "2026-09-14T23:22:35.156138+00:00",
+  "seed": 2127,
+  "corpus_snapshot_date": "2026-03-31"
+}

@@ -1,0 +1,18 @@
+{
+  "suite": "mango-t21r-citation-claim-holdout-v1",
+  "split": "holdout",
+  "total": 200,
+  "categories": {
+    "city_country": 35,
+    "city_founding_year": 29,
+    "city_landmark": 34,
+    "city_mayor": 34,
+    "city_region": 34,
+    "city_river": 34
+  },
+  "holdout_sha256": "e09641467d9d16cea61996ef774f223eea38b9ff247715eeff4378ef8d695f19",
+  "notes": "Citation/claim holdout: every emitted citation must resolve and support the answer (>= 180 rows).",
+  "built_at": "2026-09-14T23:22:35.157322+00:00",
+  "seed": 2127,
+  "corpus_snapshot_date": "2026-03-31"
+}

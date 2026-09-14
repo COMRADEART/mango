@@ -1,0 +1,97 @@
+{
+  "milestone": "T21R.11/T21R.12 protection battery",
+  "recorded_at": "2026-09-14T23:32:36.170539+00:00",
+  "status": "ALL_PASS",
+  "registry_sha256_now": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+  "registry_counts": {
+    "ACTIVE": 12
+  },
+  "layers": {
+    "runtime_freeze_identity": {
+      "status": "PASS",
+      "checks": {
+        "code_runtime": true,
+        "correction_firewall": true,
+        "document_runtime": true,
+        "executive_router": true,
+        "executive_skills": true,
+        "historical_write_guard": "preregistered_guard_registration_delta",
+        "knowledge_runtime": true,
+        "memory_runtime": true,
+        "orchestration_runtime": true,
+        "planning_runtime": true,
+        "scicomp_runtime": true,
+        "science_rag_runtime": true,
+        "web_research_runtime": true,
+        "historical_write_guard_preregistered_delta": true
+      }
+    },
+    "registry_boundaries": {
+      "status": "PASS",
+      "checks": {
+        "registry_sha256_active_promotion_record": true,
+        "registry_sha256_active_erratum_canonical": true,
+        "knowledge_rag_active": true,
+        "science_rag_active_unchanged": true,
+        "skills_py_matches_promotion_record": true,
+        "executive_router_untouched": true,
+        "no_extra_experimental_knowledge_entries": true
+      }
+    },
+    "t15r_canonical_blob": {
+      "status": "PASS",
+      "blob_sha256": "fba2437f78633884bd31965d78a4250bd1ca893c"
+    },
+    "mutation": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "fidelity: 8/8 rejected, exceptions 0 -> PASS\nfidelity_transform: 0/0 rejected, exceptions 0 -> PASS\noverall: PASS -> evaluations\\t21r\\mutation_safety_probe.json\n"
+    },
+    "t21r_freeze_identity": {
+      "status": "PASS",
+      "checks": {
+        "runtime_freeze": true,
+        "validation_contract": true,
+        "gold_qa_report": true,
+        "holdout_uniqueness": true,
+        "corpus_builder": true,
+        "fixtures": true,
+        "suite_builder": true,
+        "gold_qa_script": true,
+        "uniqueness_script": true,
+        "evaluator": true,
+        "corpus/sources.jsonl": true,
+        "corpus/chunks.jsonl": true,
+        "corpus/corpus_manifest.json": true,
+        "suite/mango-t21r-retrieval-holdout-v1": true,
+        "suite/mango-t21r-singlehop-holdout-v1": true,
+        "suite/mango-t21r-multihop-holdout-v1": true,
+        "suite/mango-t21r-crossdomain-holdout-v1": true,
+        "suite/mango-t21r-citation-claim-holdout-v1": true,
+        "suite/mango-t21r-conflict-abstention-holdout-v1": true,
+        "suite/mango-t21r-temporal-holdout-v1": true,
+        "suite/mango-t21r-adversarial-holdout-v1": true,
+        "HOLDOUT_FROZEN_present": true,
+        "evaluator_correction_documented": true
+      }
+    },
+    "t21_historical_unchanged": {
+      "status": "PASS",
+      "checks": {
+        "canonical_diff_paths": [
+          "tests/test_historical_artifact_write_guard.py"
+        ],
+        "only_guard_registration_delta": true,
+        "t21_artifacts_untouched": true,
+        "t21_corpus_untouched": true,
+        "src_untouched": true
+      }
+    },
+    "security_pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "...................................s....................s............... [ 42%]\n........................................................................ [ 85%]\n........................                                                 [100%]\n"
+    }
+  },
+  "reason": "T21R changed only evaluation material: the frozen runtime composites match the T21R.0 freeze, the registry matches the ACTIVE promotion record and the erratum's canonical value, the T15R canonical blob is unchanged, the fresh holdout matches its freeze manifest, and the T21 historical artifacts are byte-identical to canonical main except the optional write-guard registration."
+}

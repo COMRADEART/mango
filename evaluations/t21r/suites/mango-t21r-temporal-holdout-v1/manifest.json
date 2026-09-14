@@ -1,0 +1,18 @@
+{
+  "suite": "mango-t21r-temporal-holdout-v1",
+  "split": "holdout",
+  "total": 250,
+  "categories": {
+    "explicit_current": 80,
+    "future_as_of": 20,
+    "historical_as_of": 50,
+    "latest phrasing": 40,
+    "snapshot_answer": 40,
+    "snapshot_too_old": 20
+  },
+  "holdout_sha256": "df25600a5b571e3e6a171729cfada32aadf8d6de1374509d4a075d15f1a9d8bf",
+  "notes": "Temporal boundaries: explicit-current/recent routing, snapshot answers, historical and future as-of handling (>= 50 historical as-of rows).",
+  "built_at": "2026-09-14T23:22:35.163061+00:00",
+  "seed": 2127,
+  "corpus_snapshot_date": "2026-03-31"
+}

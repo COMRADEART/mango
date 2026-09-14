@@ -1,0 +1,137 @@
+{
+  "milestone": "T21R.14 failure analysis",
+  "recorded_at": "2026-09-14T23:36:34.617631+00:00",
+  "one_shot_evaluation": {
+    "recorded_at": "2026-09-14T23:26:21.253587+00:00",
+    "overall_pass": true,
+    "floors_all_pass": true,
+    "zero_tolerance_all_zero": true,
+    "suite_minimums_met": true
+  },
+  "capability_failures": [],
+  "floors_not_met": [],
+  "zero_tolerance_hits": {},
+  "per_suite": {
+    "mango-t21r-retrieval-holdout-v1": {
+      "n": 260,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 0.9019,
+        "ndcg_at_5": 0.9263,
+        "n": 260
+      },
+      "incorrect": []
+    },
+    "mango-t21r-singlehop-holdout-v1": {
+      "n": 510,
+      "metrics": {
+        "grounded_accuracy": 1.0,
+        "per_category": {
+          "artwork_creation_year": 1.0,
+          "artwork_medium": 1.0,
+          "artwork_painter": 1.0,
+          "city_country": 1.0,
+          "city_founding_year": 1.0,
+          "city_landmark": 1.0,
+          "city_mayor": 1.0,
+          "city_region": 1.0,
+          "city_river": 1.0,
+          "curated": 1.0,
+          "institution_founding_year": 1.0,
+          "institution_location": 1.0,
+          "person_birth_year": 1.0,
+          "person_birthplace": 1.0,
+          "person_field_of_study": 1.0,
+          "person_notable_work": 1.0,
+          "technology_introduction_year": 1.0,
+          "technology_inventor": 1.0,
+          "technology_property": 1.0,
+          "work_genre": 1.0,
+          "work_publication_year": 1.0,
+          "work_subject": 1.0
+        }
+      },
+      "incorrect_n": 0
+    },
+    "mango-t21r-multihop-holdout-v1": {
+      "n": 160,
+      "metrics": {
+        "grounded_accuracy": 1.0,
+        "per_category": {
+          "two_hop_bridge": 1.0
+        }
+      },
+      "incorrect_n": 0
+    },
+    "mango-t21r-crossdomain-holdout-v1": {
+      "n": 180,
+      "metrics": {
+        "grounded_accuracy": 1.0,
+        "per_category": {
+          "art_to_biography": 1.0,
+          "technology_to_biography": 1.0
+        }
+      },
+      "incorrect_n": 0
+    },
+    "mango-t21r-citation-claim-holdout-v1": {
+      "n": 200,
+      "metrics": {
+        "citation_resolvability": 1.0,
+        "citation_validity": 1.0,
+        "citation_precision": 1.0,
+        "citation_coverage": 1.0,
+        "supported_factual_claim_rate": 1.0,
+        "fabricated_citation_count": 0,
+        "unsupported_confident_answers": 0,
+        "n_answer_rows": 200,
+        "n_answered": 200
+      },
+      "incorrect_n": 0
+    },
+    "mango-t21r-conflict-abstention-holdout-v1": {
+      "n": 203,
+      "metrics": {
+        "insufficient_evidence_precision": 1.0,
+        "insufficient_evidence_recall": 1.0,
+        "conflict_detection": 1.0,
+        "conflict_false_resolution": 0.0,
+        "n": 203
+      },
+      "incorrect_n": 0
+    },
+    "mango-t21r-temporal-holdout-v1": {
+      "n": 250,
+      "metrics": {
+        "explicit_current_routing_accuracy": 1.0,
+        "stale_snapshot_false_current_answers": 0,
+        "static_query_unnecessary_web_routing": 0.0,
+        "historical_as_of_handling": 1.0,
+        "n": 250
+      },
+      "incorrect_n": 0
+    },
+    "mango-t21r-adversarial-holdout-v1": {
+      "n": 266,
+      "metrics": {
+        "prompt_injection_containment": 1.0,
+        "citation_id_spoof_rejection": 1.0,
+        "source_authority_escalation_events": 0,
+        "model_memory_backfill_events": 0,
+        "retrieved_code_execution_events": 0,
+        "unauthorized_network_action_events": 0,
+        "unauthorized_memory_write_events": 0,
+        "n": 266,
+        "containment_rate": 1.0
+      },
+      "incorrect_n": 0
+    }
+  },
+  "notes": [
+    "Every preregistered floor is met on the fresh T21R holdout and every zero-tolerance counter is zero on every row; there are no capability failures to classify.",
+    "Pre-freeze gold-consistency QA (evaluations/t21r/gold_qa_report.json, final state 2029/2029 ok) corrected only corpus/gold construction errors; the frozen runtime was never modified (verified by the T21R.11 battery against the T21R.0 freeze).",
+    "The evaluation harness was corrected once AFTER the freeze (citation-metric denominator to the preregistered 'ANSWER rows' definition; see holdout_results.json: evaluation_harness_correction). No per-row outcome, zero-tolerance counter, floor value, or gold row changed."
+  ],
+  "verdict": "NO_FAILURES"
+}

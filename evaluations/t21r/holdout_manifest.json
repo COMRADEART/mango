@@ -1,0 +1,265 @@
+{
+  "milestone": "T21R.7 holdout freeze",
+  "frozen_at": "2026-09-14T23:24:53.994934+00:00",
+  "holdout_total": 2029,
+  "minimum_holdout_total": 1480,
+  "one_shot_rule": "After HOLDOUT_FROZEN exists: no runtime change, no gold change, no query change, no floor lowering, no dropping failing cases, no scoring-semantics change, no special-case rules. A real capability failure is recorded and T21R fails; repairs belong to T21R2 with a new unseen holdout.",
+  "freeze_inputs": {
+    "runtime_freeze": {
+      "path": "evaluations/t21r/runtime_freeze.json",
+      "sha256": "84d732e5a2d580d79df5feceb8d4e6b4e74ee25bbfb08ae995901a415dfc5f08"
+    },
+    "validation_contract": {
+      "path": "evaluations/t21r/validation_contract.json",
+      "sha256": "f0fd0694134195a29533a9ce98abe37a194df6405c2845466e7d9304e63b17cd"
+    },
+    "gold_qa_report": {
+      "path": "evaluations/t21r/gold_qa_report.json",
+      "sha256": "bc527c545adb8b90e45e45c9570bd7aaa9c20c046ffd07be821dcd72e4d23082"
+    },
+    "holdout_uniqueness": {
+      "path": "evaluations/t21r/holdout_uniqueness.json",
+      "sha256": "d4c4cdf067ebee286a577863c502c84c480166d0d54fab184a0043a7c69560de"
+    },
+    "corpus_builder": {
+      "path": "scripts/t21r_corpus.py",
+      "sha256": "3bdd6d073ce6a43c8a6c63905af1812ae5dbde7fc9a59b52cc80ad71f8478e84"
+    },
+    "fixtures": {
+      "path": "scripts/t21r_fixtures.py",
+      "sha256": "2bf762b0c61deb6d669d84d81e472c4107f0c50eabfe2eaa9ad6af28938de8f1"
+    },
+    "suite_builder": {
+      "path": "scripts/t21r_build_suites.py",
+      "sha256": "8824840501c3db25ac33bdf5443eabed00c1ff136d48fc82b155389b1d2782f3"
+    },
+    "gold_qa_script": {
+      "path": "scripts/t21r_gold_qa.py",
+      "sha256": "638814d41c16b8c978e7085e1c5f6cb44cdfc166bc7c8bbc9fa7fc818b290a23"
+    },
+    "uniqueness_script": {
+      "path": "scripts/t21r_uniqueness.py",
+      "sha256": "7f22558555053198ba4098d69bc5d931f704e87eb3eaf2e54f81dabe48c05539"
+    },
+    "evaluator": {
+      "path": "scripts/t21r_run_eval.py",
+      "sha256": "a9204a99ce9032aecc0af01161d911deb16a33a3d87e772268bfbc1961bb11d1"
+    }
+  },
+  "corpus": {
+    "sources.jsonl": {
+      "path": "rag/gk_holdout_t21r/sources.jsonl",
+      "sha256": "a56dc81e2e135e61349ce7c6f235c95d4e1ad4816fd557acad6e167067921e9a"
+    },
+    "chunks.jsonl": {
+      "path": "rag/gk_holdout_t21r/chunks.jsonl",
+      "sha256": "0ca49d5b62ff5a8a35f529b85682a7acd4a83a5b2f0774c13cf790b8513e71ad"
+    },
+    "corpus_manifest.json": {
+      "path": "rag/gk_holdout_t21r/corpus_manifest.json",
+      "sha256": "63f32989f8af3d4b5ca0885a9b9dcec40fa56d7f74fb6f04ba33793e0b6d8880"
+    }
+  },
+  "suites": {
+    "mango-t21r-retrieval-holdout-v1": {
+      "rows": 260,
+      "holdout_sha256": "db17cf769bbc9da07f207d3f0f2555b9889066679157385f00f854a92881e84d",
+      "manifest_sha256": "70c8007877f40a8b5b1675dd17d420be72169f0fa69c639c428660a9ed567311",
+      "frozen_manifest": {
+        "suite": "mango-t21r-retrieval-holdout-v1",
+        "split": "holdout",
+        "total": 260,
+        "categories": {
+          "city_country": 40,
+          "city_founding_year": 34,
+          "city_landmark": 40,
+          "city_mayor": 40,
+          "city_region": 40,
+          "city_river": 40,
+          "person_birth_year": 7,
+          "person_birthplace": 6,
+          "person_field_of_study": 7,
+          "person_notable_work": 6
+        },
+        "holdout_sha256": "db17cf769bbc9da07f207d3f0f2555b9889066679157385f00f854a92881e84d",
+        "notes": "Retrieval holdout: gold-chunk rows scored on Recall@k / MRR / nDCG@5 / source diversity.",
+        "built_at": "2026-09-14T23:22:35.150830+00:00",
+        "seed": 2127,
+        "corpus_snapshot_date": "2026-03-31"
+      }
+    },
+    "mango-t21r-singlehop-holdout-v1": {
+      "rows": 510,
+      "holdout_sha256": "26ac5e129c778181bb77e98b1f31ee59e1c53976b955e9371cd28aee96b5e5e3",
+      "manifest_sha256": "c1123070a6b3a4e8beaad8dc7beb0a65a852b297b07c90e3711f67074b3f3a40",
+      "frozen_manifest": {
+        "suite": "mango-t21r-singlehop-holdout-v1",
+        "split": "holdout",
+        "total": 510,
+        "categories": {
+          "artwork_creation_year": 10,
+          "artwork_medium": 10,
+          "artwork_painter": 10,
+          "city_country": 40,
+          "city_founding_year": 34,
+          "city_landmark": 40,
+          "city_mayor": 40,
+          "city_region": 40,
+          "city_river": 40,
+          "curated": 16,
+          "institution_founding_year": 15,
+          "institution_location": 15,
+          "person_birth_year": 30,
+          "person_birthplace": 30,
+          "person_field_of_study": 30,
+          "person_notable_work": 20,
+          "technology_introduction_year": 10,
+          "technology_inventor": 10,
+          "technology_property": 10,
+          "work_genre": 20,
+          "work_publication_year": 20,
+          "work_subject": 20
+        },
+        "holdout_sha256": "26ac5e129c778181bb77e98b1f31ee59e1c53976b955e9371cd28aee96b5e5e3",
+        "notes": "Single-hop answer holdout: one phrasing per fixture + curated fact.",
+        "built_at": "2026-09-14T23:22:35.155130+00:00",
+        "seed": 2127,
+        "corpus_snapshot_date": "2026-03-31"
+      }
+    },
+    "mango-t21r-multihop-holdout-v1": {
+      "rows": 160,
+      "holdout_sha256": "209df46ce1c96bbdaaf7142f8fe6d4d02e4afe83ae1f3722a20be2eca53bddd1",
+      "manifest_sha256": "907575b2290d49abe53f59364c295a81b17b605fb65ba58978db5fc203c2ae4f",
+      "frozen_manifest": {
+        "suite": "mango-t21r-multihop-holdout-v1",
+        "split": "holdout",
+        "total": 160,
+        "categories": {
+          "two_hop_bridge": 160
+        },
+        "holdout_sha256": "209df46ce1c96bbdaaf7142f8fe6d4d02e4afe83ae1f3722a20be2eca53bddd1",
+        "notes": "Two-hop bridge chains work->author->birthplace (8 phrasings per chain, 2 required sources per row).",
+        "built_at": "2026-09-14T23:22:35.156138+00:00",
+        "seed": 2127,
+        "corpus_snapshot_date": "2026-03-31"
+      }
+    },
+    "mango-t21r-crossdomain-holdout-v1": {
+      "rows": 180,
+      "holdout_sha256": "66cd4931ac33b23d7893a28a4038cb43c6e758376c50fddf72ec3e04f3663781",
+      "manifest_sha256": "bfaf8e0e3e455c95d1c82aa8ca3dde371ea8ef5699265c9e78a6d0946072061d",
+      "frozen_manifest": {
+        "suite": "mango-t21r-crossdomain-holdout-v1",
+        "split": "holdout",
+        "total": 180,
+        "categories": {
+          "art_to_biography": 90,
+          "technology_to_biography": 90
+        },
+        "holdout_sha256": "66cd4931ac33b23d7893a28a4038cb43c6e758376c50fddf72ec3e04f3663781",
+        "notes": "Cross-domain bridges artwork->painter and technology->inventor into biography (2 required domain classes per row).",
+        "built_at": "2026-09-14T23:22:35.157322+00:00",
+        "seed": 2127,
+        "corpus_snapshot_date": "2026-03-31"
+      }
+    },
+    "mango-t21r-citation-claim-holdout-v1": {
+      "rows": 200,
+      "holdout_sha256": "e09641467d9d16cea61996ef774f223eea38b9ff247715eeff4378ef8d695f19",
+      "manifest_sha256": "584dfc2e95b8c770f784b814bd4ad34a1b469011adcfa62af6139c1655376d01",
+      "frozen_manifest": {
+        "suite": "mango-t21r-citation-claim-holdout-v1",
+        "split": "holdout",
+        "total": 200,
+        "categories": {
+          "city_country": 35,
+          "city_founding_year": 29,
+          "city_landmark": 34,
+          "city_mayor": 34,
+          "city_region": 34,
+          "city_river": 34
+        },
+        "holdout_sha256": "e09641467d9d16cea61996ef774f223eea38b9ff247715eeff4378ef8d695f19",
+        "notes": "Citation/claim holdout: every emitted citation must resolve and support the answer (>= 180 rows).",
+        "built_at": "2026-09-14T23:22:35.157322+00:00",
+        "seed": 2127,
+        "corpus_snapshot_date": "2026-03-31"
+      }
+    },
+    "mango-t21r-conflict-abstention-holdout-v1": {
+      "rows": 203,
+      "holdout_sha256": "53844c20ee562a02ece01a97066e4ecb2392eb4bfdbec7cb7f8ec20079ed65dd",
+      "manifest_sha256": "1e5a4c81e427dc41ed2cc1108482f6103020ac8b4e382fc1685dfdc281f54d25",
+      "frozen_manifest": {
+        "suite": "mango-t21r-conflict-abstention-holdout-v1",
+        "split": "holdout",
+        "total": 203,
+        "categories": {
+          "absent_entity": 60,
+          "near_miss_distractor": 40,
+          "nonexistent_institution": 20,
+          "nonexistent_person": 30,
+          "nonexistent_technology": 20,
+          "nonexistent_work": 15,
+          "unresolved_conflict": 18
+        },
+        "holdout_sha256": "53844c20ee562a02ece01a97066e4ecb2392eb4bfdbec7cb7f8ec20079ed65dd",
+        "notes": "Gold abstentions: absent famous facts, nonexistent fixture entities, near-miss distractors, unresolved conflicts.",
+        "built_at": "2026-09-14T23:22:35.160530+00:00",
+        "seed": 2127,
+        "corpus_snapshot_date": "2026-03-31"
+      }
+    },
+    "mango-t21r-temporal-holdout-v1": {
+      "rows": 250,
+      "holdout_sha256": "df25600a5b571e3e6a171729cfada32aadf8d6de1374509d4a075d15f1a9d8bf",
+      "manifest_sha256": "1617c020fac4aaefeb70b78fd7f22f1ad9edbaa98f06e47ea64ff391c4f08a9e",
+      "frozen_manifest": {
+        "suite": "mango-t21r-temporal-holdout-v1",
+        "split": "holdout",
+        "total": 250,
+        "categories": {
+          "explicit_current": 80,
+          "future_as_of": 20,
+          "historical_as_of": 50,
+          "latest phrasing": 40,
+          "snapshot_answer": 40,
+          "snapshot_too_old": 20
+        },
+        "holdout_sha256": "df25600a5b571e3e6a171729cfada32aadf8d6de1374509d4a075d15f1a9d8bf",
+        "notes": "Temporal boundaries: explicit-current/recent routing, snapshot answers, historical and future as-of handling (>= 50 historical as-of rows).",
+        "built_at": "2026-09-14T23:22:35.163061+00:00",
+        "seed": 2127,
+        "corpus_snapshot_date": "2026-03-31"
+      }
+    },
+    "mango-t21r-adversarial-holdout-v1": {
+      "rows": 266,
+      "holdout_sha256": "6d2089f283d6011789e420db3ead5b69ba7a4f57859f34aec83af374eb0a76cf",
+      "manifest_sha256": "29b160da374ba19091e4d4915407f5b71b5849011ee1bb1e394bc992fcd3d5e8",
+      "frozen_manifest": {
+        "suite": "mango-t21r-adversarial-holdout-v1",
+        "split": "holdout",
+        "total": 266,
+        "categories": {
+          "backfill_trap": 15,
+          "conflict_resolved_by_authority": 5,
+          "conflict_resolved_by_freshness": 2,
+          "decoy_resistance": 12,
+          "escalation_containment": 5,
+          "override_containment": 192,
+          "override_nonexistent": 20,
+          "source_injection_resisted": 5,
+          "spoofing_rejected": 10
+        },
+        "holdout_sha256": "6d2089f283d6011789e420db3ead5b69ba7a4f57859f34aec83af374eb0a76cf",
+        "notes": "Adversarial: override containment, source-injected facts, spoofing, backfill traps, resolvable conflicts, decoy resistance.",
+        "built_at": "2026-09-14T23:22:35.163061+00:00",
+        "seed": 2127,
+        "corpus_snapshot_date": "2026-03-31"
+      }
+    }
+  },
+  "corpus_manifest_sha256": "63f32989f8af3d4b5ca0885a9b9dcec40fa56d7f74fb6f04ba33793e0b6d8880"
+}

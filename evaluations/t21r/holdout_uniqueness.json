@@ -1,0 +1,294 @@
+{
+  "audit": "t21r_holdout_uniqueness",
+  "suites": {
+    "mango-t21r-retrieval-holdout-v1": 260,
+    "mango-t21r-singlehop-holdout-v1": 510,
+    "mango-t21r-multihop-holdout-v1": 160,
+    "mango-t21r-crossdomain-holdout-v1": 180,
+    "mango-t21r-citation-claim-holdout-v1": 200,
+    "mango-t21r-conflict-abstention-holdout-v1": 203,
+    "mango-t21r-temporal-holdout-v1": 250,
+    "mango-t21r-adversarial-holdout-v1": 266
+  },
+  "suite_holdout_sha256": {
+    "mango-t21r-retrieval-holdout-v1": "db17cf769bbc9da07f207d3f0f2555b9889066679157385f00f854a92881e84d",
+    "mango-t21r-singlehop-holdout-v1": "26ac5e129c778181bb77e98b1f31ee59e1c53976b955e9371cd28aee96b5e5e3",
+    "mango-t21r-multihop-holdout-v1": "209df46ce1c96bbdaaf7142f8fe6d4d02e4afe83ae1f3722a20be2eca53bddd1",
+    "mango-t21r-crossdomain-holdout-v1": "66cd4931ac33b23d7893a28a4038cb43c6e758376c50fddf72ec3e04f3663781",
+    "mango-t21r-citation-claim-holdout-v1": "e09641467d9d16cea61996ef774f223eea38b9ff247715eeff4378ef8d695f19",
+    "mango-t21r-conflict-abstention-holdout-v1": "53844c20ee562a02ece01a97066e4ecb2392eb4bfdbec7cb7f8ec20079ed65dd",
+    "mango-t21r-temporal-holdout-v1": "df25600a5b571e3e6a171729cfada32aadf8d6de1374509d4a075d15f1a9d8bf",
+    "mango-t21r-adversarial-holdout-v1": "6d2089f283d6011789e420db3ead5b69ba7a4f57859f34aec83af374eb0a76cf"
+  },
+  "total_rows": 2029,
+  "checks": {
+    "exact_duplicate_rows": {
+      "count": 0,
+      "detail": {}
+    },
+    "exact_duplicate_queries": {
+      "count": 0,
+      "detail": {}
+    },
+    "case_id_overlap_with_t21": {
+      "count": 0,
+      "detail": []
+    },
+    "entity_identity_overlap": {
+      "entity_name_overlap": {
+        "count": 0,
+        "detail": []
+      },
+      "t21r_entities_in_t21_queries": {
+        "count": 0,
+        "detail": []
+      },
+      "t21_entities_in_t21r_queries": {
+        "count": 0,
+        "detail": []
+      }
+    },
+    "exact_query_overlap_with_t21": {
+      "count": 0,
+      "detail": []
+    },
+    "chunk_id_overlap_with_t21": {
+      "count": 0,
+      "detail": []
+    },
+    "source_id_overlap_with_t21": {
+      "count": 0,
+      "detail": []
+    },
+    "gold_answer_value_overlap_with_t21": {
+      "count": 0,
+      "detail": []
+    },
+    "verbatim_attack_string_overlap_with_t21": {
+      "count": 0,
+      "detail": []
+    },
+    "near_duplicate_flags": {
+      "count": 41,
+      "pairs": [
+        {
+          "query_a": "In which country is Hindmere placed?",
+          "query_b": "Which country is Hindmere placed in?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Amber of Hearth born?",
+          "query_b": "The writer of The Amber of Hearth was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Beacon of Rampart born?",
+          "query_b": "The writer of The Beacon of Rampart was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Causeway of Foundling born?",
+          "query_b": "The writer of The Causeway of Foundling was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Drumlin of Pennon born?",
+          "query_b": "The writer of The Drumlin of Pennon was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Estuary of Drumlin born?",
+          "query_b": "The writer of The Estuary of Drumlin was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Foundling of Narrows born?",
+          "query_b": "The writer of The Foundling of Narrows was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Gale of Beacon born?",
+          "query_b": "The writer of The Gale of Beacon was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Hearth of Kindred born?",
+          "query_b": "The writer of The Hearth of Kindred was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Isle of Windlass born?",
+          "query_b": "The writer of The Isle of Windlass was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Jetty of Isle born?",
+          "query_b": "The writer of The Jetty of Isle was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Kindred of Sound born?",
+          "query_b": "The writer of The Kindred of Sound was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Moorland of Gale born?",
+          "query_b": "The writer of The Moorland of Gale was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Narrows of Quarry born?",
+          "query_b": "The writer of The Narrows of Quarry was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Osprey of Estuary born?",
+          "query_b": "The writer of The Osprey of Estuary was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Pennon of Osprey born?",
+          "query_b": "The writer of The Pennon of Osprey was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Quarry of Causeway born?",
+          "query_b": "The writer of The Quarry of Causeway was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Rampart of Moorland born?",
+          "query_b": "The writer of The Rampart of Moorland was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Sound of Amber born?",
+          "query_b": "The writer of The Sound of Amber was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Tideline of Jetty born?",
+          "query_b": "The writer of The Tideline of Jetty was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the writer of The Windlass of Tideline born?",
+          "query_b": "The writer of The Windlass of Tideline was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Dawn born?",
+          "query_b": "The painter of Study of Dawn was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Fjord born?",
+          "query_b": "The painter of Study of Fjord was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Gable born?",
+          "query_b": "The painter of Study of Gable was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Heron born?",
+          "query_b": "The painter of Study of Heron was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Kelp born?",
+          "query_b": "The painter of Study of Kelp was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Lintel born?",
+          "query_b": "The painter of Study of Lintel was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Osier born?",
+          "query_b": "The painter of Study of Osier was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Pontoon born?",
+          "query_b": "The painter of Study of Pontoon was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Reverie born?",
+          "query_b": "The painter of Study of Reverie was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the painter of Study of Sandbar born?",
+          "query_b": "The painter of Study of Sandbar was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Corvus line born?",
+          "query_b": "The inventor of the Corvus line was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Dunstan gear born?",
+          "query_b": "The inventor of the Dunstan gear was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Eldon loom born?",
+          "query_b": "The inventor of the Eldon loom was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Farsight relay born?",
+          "query_b": "The inventor of the Farsight relay was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Grafton press born?",
+          "query_b": "The inventor of the Grafton press was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Haldane kiln born?",
+          "query_b": "The inventor of the Haldane kiln was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Ironwood turbine born?",
+          "query_b": "The inventor of the Ironwood turbine was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Jessamine mast born?",
+          "query_b": "The inventor of the Jessamine mast was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Kirkwall forge born?",
+          "query_b": "The inventor of the Kirkwall forge was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "query_a": "In which town was the inventor of the Lyceum gauge born?",
+          "query_b": "The inventor of the Lyceum gauge was born in which town?",
+          "jaccard": 1.0
+        }
+      ]
+    }
+  },
+  "gate": {
+    "exact_duplicate_rows": 0,
+    "exact_duplicate_queries": 0,
+    "case_id_overlap": 0,
+    "entity_identity_overlap": 0,
+    "query_overlap": 0,
+    "chunk_id_overlap": 0,
+    "source_id_overlap": 0,
+    "gold_answer_overlap": 0,
+    "attack_string_overlap": 0
+  },
+  "verdict": "UNIQUE"
+}
