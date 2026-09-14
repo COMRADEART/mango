@@ -21,10 +21,11 @@ def run(cmd, env=None, **kw):
 
 def main() -> int:
     PROT.mkdir(parents=True, exist_ok=True)
-    run([sys.executable, "scripts/t15r_mutation_probe.py"])
-    mut_src = REPO / "evaluations/t15r/mutation_safety_probe.json"
-    if mut_src.exists():
-        shutil.copy(mut_src, REPO / "evaluations/t16/mutation_safety_probe.json")
+    # Historical-artifact hygiene: the probe writes its rerun output directly
+    # to the T16 milestone path (--out); the historical T15R artifact is
+    # never touched by a T16 run.
+    run([sys.executable, "scripts/t15r_mutation_probe.py",
+         "--out", "evaluations/t16/mutation_safety_probe.json"])
 
     run([sys.executable, "scripts/t8_t4_arm.py", "--model", MODEL,
          "--label", "t16-protect-t4", "--max-new-tokens", "1024"])

@@ -1,0 +1,52 @@
+{
+  "task": "Historical artifact write guard",
+  "base_main": "199b7e125072e6a249eebf3b2c8b76e259847b23",
+  "branch": "historical-artifact-write-guard",
+
+  "unsafe_callers_found": [
+    "scripts/t16_protection_battery.py (invoked probe without --out, then copied the historical T15R artifact into evaluations/t16/)",
+    "scripts/t17_protection_summary.py (invoked probe without --out, then copied the historical T15R artifact into evaluations/t17/)",
+    "scripts/t18_protection_summary.py (invoked probe without --out, then copied the historical T15R artifact into evaluations/t18/)",
+    "scripts/t19_protection_summary.py (invoked probe without --out, then copied the historical T15R artifact into evaluations/t19/)"
+  ],
+  "unsafe_callers_fixed": [
+    "scripts/t16_protection_battery.py (probe now writes --out evaluations/t16/mutation_safety_probe.json directly; copy-from-history step removed)",
+    "scripts/t17_protection_summary.py (probe now writes --out evaluations/t17/mutation_safety_probe.json directly; copy-from-history step removed)",
+    "scripts/t18_protection_summary.py (probe now writes --out evaluations/t18/mutation_safety_probe.json directly; copy-from-history step removed)",
+    "scripts/t19_protection_summary.py (probe now writes --out evaluations/t19/mutation_safety_probe.json directly; copy-from-history step removed)"
+  ],
+
+  "allowed_historical_default_caller": "scripts/t15r_protection_battery.py (the T15R battery itself, per the probe's docstring; unchanged)",
+  "t20_caller_verified": "scripts/t20_protection_summary.py already passed --out evaluations/t20/mutation_safety_probe.json; unchanged",
+
+  "write_guard_test": "tests/test_historical_artifact_write_guard.py (AST check: every literal probe argument list in T16-T20 harnesses must carry a milestone-local --out; repo-wide scripts sweep; negative control; runtime temp-path probe test)",
+
+  "t15r_canonical_blob_before": "fba2437f78633884bd31965d78a4250bd1ca893c",
+  "t15r_canonical_blob_after": "fba2437f78633884bd31965d78a4250bd1ca893c",
+
+  "t16_safe": true,
+  "t17_safe": true,
+  "t18_safe": true,
+  "t19_safe": true,
+  "t20_safe": true,
+
+  "historical_artifacts_mutated": false,
+  "benchmark_results_changed": false,
+  "promotion_decisions_changed": false,
+  "registry_changed": false,
+  "capability_implementations_changed": false,
+  "executive_router_changed": false,
+  "training_used": false,
+  "paid_compute_used": false,
+
+  "focused_tests": "pytest -q tests/test_historical_artifact_write_guard.py tests/test_post_t20_historical_artifact_hygiene.py: 14 passed",
+  "full_pytest": "python scripts/run_pytest_summary.py: EXITCODE 0, JUNIT tests=1588 failures=0 errors=0 skipped=2",
+  "temp_path_probe": "scripts/t15r_mutation_probe.py --out <TEMP> exit 0, passed=true, historical blob unchanged",
+
+  "orchestration": "ACTIVE",
+  "executive_router": "EXPERIMENTAL",
+  "t20_family": "CLOSED",
+  "t21_started": false,
+
+  "result": "PASS"
+}
