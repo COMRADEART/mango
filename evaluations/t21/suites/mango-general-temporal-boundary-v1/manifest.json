@@ -1,0 +1,18 @@
+{
+  "benchmark": "mango-general-temporal-boundary-v1",
+  "total": 280,
+  "dev_n": 140,
+  "final_n": 140,
+  "dev_sha256": "27731d8d5edd3920228a60a27da9a0f6b1668e9e6098c767754303c36cc9897e",
+  "final_sha256": "03763a19d4d83b94e6622a02e2efd1e3970a9e3c41e3c79874ded639e19cb952",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T22:15:44.211240+00:00",
+  "categories": [
+    "explicit_current",
+    "historical_as_of",
+    "latest phrasing",
+    "snapshot_answer"
+  ],
+  "gold_source": "src/sciencemath/knowledge/fixtures.py + frozen corpus chunk ids (rag/gk_corpus/)",
+  "notes": "Temporal boundary: explicit-current/latest route to WEB_RESEARCH; snapshot and historical as-of questions answer (280 rows)."
+}

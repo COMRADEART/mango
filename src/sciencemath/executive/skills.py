@@ -24,7 +24,7 @@ COST_CLASSES = (LOCAL_FREE, LOCAL_EXPENSIVE, ONLINE_FREE,
 SKILL_IDS = (
     "GENERAL", "MATH_T4", "SCIENCE_RAG", "SCICOMP", "CODE",
     "WEB_RESEARCH", "DOCUMENT", "MEMORY", "PLANNING", "NO_TOOL",
-    "ORCHESTRATION",
+    "ORCHESTRATION", "KNOWLEDGE_RAG",
 )
 
 _SCHEMA_EMPTY = {"type": "object", "properties": {}, "required": []}
@@ -181,6 +181,20 @@ def default_registry() -> dict[str, dict]:
             deterministic=True,
             verification_method="orchestration_run_audit",
             fallback_behavior="PLANNING",
+            latency_class="MEDIUM",
+        ),
+        "KNOWLEDGE_RAG": _skill(
+            skill_id="KNOWLEDGE_RAG",
+            description="Local-first general knowledge retrieval with "
+                        "source provenance, citation-grounded synthesis, "
+                        "conflict handling, freshness boundaries, and "
+                        "evidence-based abstention. Promoted ACTIVE at T21.",
+            availability=ACTIVE,
+            offline=True,
+            online=False,
+            cost_class=LOCAL_FREE,
+            verification_method="knowledge_evidence_gate",
+            fallback_behavior="GENERAL",
             latency_class="MEDIUM",
         ),
     }

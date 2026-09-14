@@ -1,0 +1,24 @@
+{
+  "benchmark": "mango-general-citation-v1",
+  "total": 320,
+  "dev_n": 160,
+  "final_n": 160,
+  "dev_sha256": "edcbcdb0c991b56a4903510c67d8f323930bfa4be589c82f3a061799ca250749",
+  "final_sha256": "ca2081cd933eb5b142ba7a9ed4be3132e0dc9046ad8f49803a606f399afec5e7",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T22:15:44.207216+00:00",
+  "categories": [
+    "city_country",
+    "city_founding_year",
+    "city_landmark",
+    "city_mayor",
+    "city_region",
+    "city_river",
+    "person_birth_year",
+    "person_birthplace",
+    "person_field_of_study",
+    "person_notable_work"
+  ],
+  "gold_source": "src/sciencemath/knowledge/fixtures.py + frozen corpus chunk ids (rag/gk_corpus/)",
+  "notes": "Citation resolvability/validity/precision over answer rows (>=300 rows)."
+}

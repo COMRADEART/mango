@@ -1,0 +1,21 @@
+{
+  "benchmark": "mango-general-abstention-v1",
+  "total": 248,
+  "dev_n": 124,
+  "final_n": 124,
+  "dev_sha256": "9ef3b08d496c3ce21c79c76e07b191d4d59a2a4d6ee4f62d3c442b4970052a3b",
+  "final_sha256": "77bf08b1bd4134eadd98854c610b9fb53d95f1d4fdc73a4065dbc586a1a68ed1",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T22:15:44.209228+00:00",
+  "categories": [
+    "absent_entity",
+    "near_miss_distractor",
+    "nonexistent_institution",
+    "nonexistent_person",
+    "nonexistent_technology",
+    "nonexistent_work",
+    "unresolved_conflict"
+  ],
+  "gold_source": "src/sciencemath/knowledge/fixtures.py + frozen corpus chunk ids (rag/gk_corpus/)",
+  "notes": "Abstention traps: absent entities, nonexistent fixture entities, near-miss distractors, unresolved conflicts (>=240 rows)."
+}

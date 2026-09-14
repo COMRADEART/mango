@@ -1,0 +1,32 @@
+{
+  "corpus_version": "mango-general-knowledge-corpus-v1",
+  "corpus_file_checksums": {
+    "sources.jsonl": "65c2a10ec27f05b65093ee9d148be40a53f7ccb62bf85f00b7213253bb128e5a",
+    "chunks.jsonl": "f8adf753dac76c3a013eb6e2e86890bc5bd1eada4de689d7610788006139bbe5"
+  },
+  "corpus_manifest_checksum": "944d45043afd0d080f0e26d1f8000a25f905b6284840588d966c511264b076a0",
+  "pipeline_constants": {
+    "top_k": 8,
+    "min_top_score": 0.0,
+    "min_coverage": 0.6,
+    "rerank_coverage_weight": 1.0,
+    "rerank_tiebreak_weight": 0.01,
+    "rerank_formula": "coverage-primary: score = COVERAGE_WEIGHT * whole-question coverage + RERANK_TIEBREAK_WEIGHT * normalized BM25 + authority bonus",
+    "rerank_authority_bonus": 0.02,
+    "jaccard_dedup_threshold": 0.85,
+    "max_per_source": 3,
+    "max_subqueries": 4,
+    "claim_support_threshold": 0.45,
+    "claim_partial_threshold": 0.3,
+    "citation_support_threshold": 0.45,
+    "bm25_k1": 1.2,
+    "bm25_b": 0.75
+  },
+  "policy": {
+    "dense_retrieval": "not implemented; lexical BM25 only; RRF reserved for a future dense retriever",
+    "no_model_memory_backfill": true,
+    "no_training_to_repair_defects": true,
+    "no_threshold_lowering_after_freeze": true,
+    "no_gold_edits_after_freeze": true
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "benchmark": "mango-general-knowledge-rag-v1",
+  "total": 640,
+  "dev_n": 320,
+  "final_n": 320,
+  "dev_sha256": "28f5dd1021aaf9f15d013f0e11e46ba3ffab25d438c2f9a8491303987b3750fa",
+  "final_sha256": "b8e71981d05787470cbff974739b946f4c1bedd256b4f7e7089a47438b563786",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T22:15:44.202305+00:00",
+  "categories": [
+    "city_country",
+    "city_founding_year",
+    "city_landmark",
+    "city_mayor",
+    "city_region",
+    "city_river",
+    "curated",
+    "institution_founding_year",
+    "institution_location",
+    "person_birth_year",
+    "person_birthplace",
+    "person_field_of_study",
+    "person_notable_work",
+    "technology_introduction_year",
+    "technology_inventor",
+    "technology_property",
+    "work_genre",
+    "work_publication_year",
+    "work_subject"
+  ],
+  "gold_source": "src/sciencemath/knowledge/fixtures.py + frozen corpus chunk ids (rag/gk_corpus/)",
+  "notes": "Single-hop grounded answers over the frozen fixture corpus (>=600 rows)."
+}

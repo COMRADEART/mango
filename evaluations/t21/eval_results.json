@@ -1,0 +1,492 @@
+{
+  "recorded_at": "2026-09-14T22:20:56.410108+00:00",
+  "corpus_manifest_checksum": "944d45043afd0d080f0e26d1f8000a25f905b6284840588d966c511264b076a0",
+  "splits": [
+    "dev",
+    "final"
+  ],
+  "suites": {
+    "mango-general-abstention-v1": {
+      "dev": {
+        "abstention_recall": 1.0,
+        "abstention_precision": 1.0,
+        "n": 124,
+        "rows_with_zero_tolerance_hits": 0
+      },
+      "final": {
+        "abstention_recall": 1.0,
+        "abstention_precision": 1.0,
+        "n": 124,
+        "rows_with_zero_tolerance_hits": 0
+      }
+    },
+    "mango-general-adversarial-v1": {
+      "dev": {
+        "containment_rate": 1.0,
+        "model_memory_backfill_events": 0,
+        "n": 136,
+        "rows_with_zero_tolerance_hits": 0
+      },
+      "final": {
+        "containment_rate": 1.0,
+        "model_memory_backfill_events": 0,
+        "n": 137,
+        "rows_with_zero_tolerance_hits": 0
+      }
+    },
+    "mango-general-citation-v1": {
+      "dev": {
+        "citation_resolvability": 1.0,
+        "citation_validity": 1.0,
+        "citation_precision": 1.0,
+        "n": 160,
+        "n_answered": 160,
+        "rows_with_zero_tolerance_hits": 0
+      },
+      "final": {
+        "citation_resolvability": 1.0,
+        "citation_validity": 1.0,
+        "citation_precision": 1.0,
+        "n": 160,
+        "n_answered": 160,
+        "rows_with_zero_tolerance_hits": 0
+      }
+    },
+    "mango-general-knowledge-rag-v1": {
+      "dev": {
+        "answer_accuracy_overall": 1.0,
+        "n": 320,
+        "answer_accuracy_macro": 1.0,
+        "per_category": {
+          "city_country": 1.0,
+          "city_founding_year": 1.0,
+          "city_landmark": 1.0,
+          "city_mayor": 1.0,
+          "city_region": 1.0,
+          "city_river": 1.0,
+          "curated": 1.0,
+          "institution_founding_year": 1.0,
+          "institution_location": 1.0,
+          "person_birth_year": 1.0,
+          "person_birthplace": 1.0,
+          "person_field_of_study": 1.0,
+          "person_notable_work": 1.0,
+          "technology_introduction_year": 1.0,
+          "technology_inventor": 1.0,
+          "technology_property": 1.0,
+          "work_genre": 1.0,
+          "work_publication_year": 1.0,
+          "work_subject": 1.0
+        },
+        "rows_with_zero_tolerance_hits": 0
+      },
+      "final": {
+        "answer_accuracy_overall": 1.0,
+        "n": 320,
+        "answer_accuracy_macro": 1.0,
+        "per_category": {
+          "city_country": 1.0,
+          "city_founding_year": 1.0,
+          "city_landmark": 1.0,
+          "city_mayor": 1.0,
+          "city_region": 1.0,
+          "city_river": 1.0,
+          "curated": 1.0,
+          "institution_founding_year": 1.0,
+          "institution_location": 1.0,
+          "person_birth_year": 1.0,
+          "person_birthplace": 1.0,
+          "person_field_of_study": 1.0,
+          "person_notable_work": 1.0,
+          "technology_introduction_year": 1.0,
+          "work_genre": 1.0,
+          "work_publication_year": 1.0,
+          "work_subject": 1.0
+        },
+        "rows_with_zero_tolerance_hits": 0
+      }
+    },
+    "mango-general-multihop-v1": {
+      "dev": {
+        "answer_accuracy_overall": 1.0,
+        "n": 120,
+        "answer_accuracy_macro": 1.0,
+        "per_category": {
+          "two_hop_bridge": 1.0
+        },
+        "rows_with_zero_tolerance_hits": 0
+      },
+      "final": {
+        "answer_accuracy_overall": 1.0,
+        "n": 120,
+        "answer_accuracy_macro": 1.0,
+        "per_category": {
+          "two_hop_bridge": 1.0
+        },
+        "rows_with_zero_tolerance_hits": 0
+      }
+    },
+    "mango-general-retrieval-v1": {
+      "dev": {
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 0.9771,
+        "ndcg_at_5": 0.9831,
+        "rows_with_zero_tolerance_hits": 0
+      },
+      "final": {
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "rows_with_zero_tolerance_hits": 0
+      }
+    },
+    "mango-general-temporal-boundary-v1": {
+      "dev": {
+        "explicit_current_routing_accuracy": 1.0,
+        "stale_current_false_answers": 0,
+        "unnecessary_web_rate": 0.0,
+        "n": 140,
+        "rows_with_zero_tolerance_hits": 0
+      },
+      "final": {
+        "explicit_current_routing_accuracy": 1.0,
+        "stale_current_false_answers": 0,
+        "unnecessary_web_rate": 0.0,
+        "n": 140,
+        "rows_with_zero_tolerance_hits": 0
+      }
+    }
+  },
+  "zero_tolerance_totals": {},
+  "zero_tolerance_all_zero": true,
+  "floors_comparison": [
+    {
+      "suite": "mango-general-knowledge-rag-v1",
+      "split": "dev",
+      "metric": "answer_accuracy_overall",
+      "op": ">=",
+      "floor": 0.9,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-knowledge-rag-v1",
+      "split": "dev",
+      "metric": "answer_accuracy_macro",
+      "op": ">=",
+      "floor": 0.88,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-knowledge-rag-v1",
+      "split": "final",
+      "metric": "answer_accuracy_overall",
+      "op": ">=",
+      "floor": 0.9,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-knowledge-rag-v1",
+      "split": "final",
+      "metric": "answer_accuracy_macro",
+      "op": ">=",
+      "floor": 0.88,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-retrieval-v1",
+      "split": "dev",
+      "metric": "recall_at_5",
+      "op": ">=",
+      "floor": 0.94,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-retrieval-v1",
+      "split": "dev",
+      "metric": "mrr",
+      "op": ">=",
+      "floor": 0.85,
+      "value": 0.9771,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-retrieval-v1",
+      "split": "dev",
+      "metric": "ndcg_at_5",
+      "op": ">=",
+      "floor": 0.88,
+      "value": 0.9831,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-retrieval-v1",
+      "split": "dev",
+      "metric": "recall_at_10",
+      "op": ">=",
+      "floor": 0.97,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-retrieval-v1",
+      "split": "final",
+      "metric": "recall_at_5",
+      "op": ">=",
+      "floor": 0.94,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-retrieval-v1",
+      "split": "final",
+      "metric": "mrr",
+      "op": ">=",
+      "floor": 0.85,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-retrieval-v1",
+      "split": "final",
+      "metric": "ndcg_at_5",
+      "op": ">=",
+      "floor": 0.88,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-retrieval-v1",
+      "split": "final",
+      "metric": "recall_at_10",
+      "op": ">=",
+      "floor": 0.97,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-citation-v1",
+      "split": "dev",
+      "metric": "citation_resolvability",
+      "op": ">=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-citation-v1",
+      "split": "dev",
+      "metric": "citation_validity",
+      "op": ">=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-citation-v1",
+      "split": "dev",
+      "metric": "citation_precision",
+      "op": ">=",
+      "floor": 0.99,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-citation-v1",
+      "split": "final",
+      "metric": "citation_resolvability",
+      "op": ">=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-citation-v1",
+      "split": "final",
+      "metric": "citation_validity",
+      "op": ">=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-citation-v1",
+      "split": "final",
+      "metric": "citation_precision",
+      "op": ">=",
+      "floor": 0.99,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-abstention-v1",
+      "split": "dev",
+      "metric": "abstention_precision",
+      "op": ">=",
+      "floor": 0.98,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-abstention-v1",
+      "split": "dev",
+      "metric": "abstention_recall",
+      "op": ">=",
+      "floor": 0.97,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-abstention-v1",
+      "split": "final",
+      "metric": "abstention_precision",
+      "op": ">=",
+      "floor": 0.98,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-abstention-v1",
+      "split": "final",
+      "metric": "abstention_recall",
+      "op": ">=",
+      "floor": 0.97,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-temporal-boundary-v1",
+      "split": "dev",
+      "metric": "explicit_current_routing_accuracy",
+      "op": ">=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-temporal-boundary-v1",
+      "split": "dev",
+      "metric": "stale_current_false_answers",
+      "op": "<=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-temporal-boundary-v1",
+      "split": "dev",
+      "metric": "unnecessary_web_rate",
+      "op": "<=",
+      "floor": 0.03,
+      "value": 0.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-temporal-boundary-v1",
+      "split": "final",
+      "metric": "explicit_current_routing_accuracy",
+      "op": ">=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-temporal-boundary-v1",
+      "split": "final",
+      "metric": "stale_current_false_answers",
+      "op": "<=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-temporal-boundary-v1",
+      "split": "final",
+      "metric": "unnecessary_web_rate",
+      "op": "<=",
+      "floor": 0.03,
+      "value": 0.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-multihop-v1",
+      "split": "dev",
+      "metric": "answer_accuracy_overall",
+      "op": ">=",
+      "floor": 0.9,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-multihop-v1",
+      "split": "dev",
+      "metric": "answer_accuracy_macro",
+      "op": ">=",
+      "floor": 0.88,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-multihop-v1",
+      "split": "final",
+      "metric": "answer_accuracy_overall",
+      "op": ">=",
+      "floor": 0.9,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-multihop-v1",
+      "split": "final",
+      "metric": "answer_accuracy_macro",
+      "op": ">=",
+      "floor": 0.88,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-adversarial-v1",
+      "split": "dev",
+      "metric": "containment_rate",
+      "op": ">=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-adversarial-v1",
+      "split": "dev",
+      "metric": "model_memory_backfill_events",
+      "op": "<=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-adversarial-v1",
+      "split": "final",
+      "metric": "containment_rate",
+      "op": ">=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "suite": "mango-general-adversarial-v1",
+      "split": "final",
+      "metric": "model_memory_backfill_events",
+      "op": "<=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    }
+  ],
+  "floors_all_pass": true,
+  "overall_pass": true
+}

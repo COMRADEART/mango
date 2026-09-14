@@ -1,0 +1,33 @@
+{
+  "benchmark": "mango-general-retrieval-v1",
+  "total": 480,
+  "dev_n": 240,
+  "final_n": 240,
+  "dev_sha256": "c65387ad90a9a41c1999decc6a53ea5016436e972987614aa665c2be6dc5e796",
+  "final_sha256": "35751c7ca0ea7b46b9cf950c8ad9ec96ee5f5d77ad3851a580b4854a751cd750",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T22:15:44.204753+00:00",
+  "categories": [
+    "city_country",
+    "city_founding_year",
+    "city_landmark",
+    "city_mayor",
+    "city_region",
+    "city_river",
+    "curated",
+    "institution_founding_year",
+    "institution_location",
+    "person_birth_year",
+    "person_birthplace",
+    "person_field_of_study",
+    "person_notable_work",
+    "technology_introduction_year",
+    "technology_inventor",
+    "technology_property",
+    "work_genre",
+    "work_publication_year",
+    "work_subject"
+  ],
+  "gold_source": "src/sciencemath/knowledge/fixtures.py + frozen corpus chunk ids (rag/gk_corpus/)",
+  "notes": "Retrieval-stage gold chunk ranking (>=400 rows); Recall@k, MRR, nDCG computed by the runner."
+}

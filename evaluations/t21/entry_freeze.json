@@ -1,0 +1,434 @@
+{
+  "milestone": "T21 — General Knowledge RAG",
+  "phase": "T21.0 entry gate",
+  "recorded_at": "2026-09-14T21:37:19.559147+00:00",
+  "status": "PASS",
+  "base_commit": "fc667c24cbbe4e6ae638890bb2bf5e1237c7659b",
+  "tree_sha": "b7fcb2890efcef032af60798f9a936ed6762c57b",
+  "branch": "main",
+  "required_head": "fc667c24cbbe4e6ae638890bb2bf5e1237c7659b",
+  "starting_architecture": "Mango-4B-System-v1",
+  "starting_capability_state": {
+    "SCICOMP": "ACTIVE",
+    "CODE": "ACTIVE",
+    "WEB_RESEARCH": "ACTIVE",
+    "DOCUMENT": "ACTIVE",
+    "MEMORY": "ACTIVE",
+    "PLANNING": "ACTIVE",
+    "ORCHESTRATION": "ACTIVE",
+    "SCIENCE_RAG": "ACTIVE",
+    "KNOWLEDGE_RAG": "NOT_IN_REGISTRY (introduced EXPERIMENTAL in T21.2)",
+    "Executive_Router": "EXPERIMENTAL",
+    "T20": "CLOSED"
+  },
+  "model_identity": {
+    "architecture": "Mango-4B-System-v1",
+    "base_model": "Qwen/Qwen3-4B-Instruct-2507",
+    "adapter": "training/adapters/sciencemath-v0.1-t3/adapter_model.safetensors",
+    "training": "NONE",
+    "weight_promotion": "NO"
+  },
+  "policies": {
+    "network_policy": "OFF during frozen evaluation; fixture-first",
+    "training_policy": "NONE",
+    "paid_compute_policy": "NOT_USED"
+  },
+  "historical_artifact_hashes": {
+    "t15r_mutation_safety_probe_blob": "fba2437f78633884bd31965d78a4250bd1ca893c",
+    "t15r_working_tree_blob": "fba2437f78633884bd31965d78a4250bd1ca893c",
+    "hygiene_write_guard_json": "c0253e4d8f62d2edf2adbc6191ec1289e64c96999ba1f33df19eb26fe99fe234",
+    "write_guard_test": "29959b11bc940ed39eb2f194045f77a045acf8d629b95dd7d79b2cd5541eefeb"
+  },
+  "t20_historical": {
+    "decision": "PROMOTE_ORCHESTRATION_SKILL",
+    "pytest": "1574 passed, 0 failed, 0 errors, 2 skipped",
+    "audit": "31 PASS / 0 FAIL",
+    "write_guard_merge": "fc667c2 (T16–T20 milestone-local probes)",
+    "t21_started": false,
+    "ready_for_t21": "YES"
+  },
+  "registry_hash": "02699861db6bdcbae7376cb3fa76b7956e85a38f8a8b49aa3ad0d0770ffffcb3",
+  "hashes": {
+    "skill_registry": "02699861db6bdcbae7376cb3fa76b7956e85a38f8a8b49aa3ad0d0770ffffcb3",
+    "skill_registry_file": "25ec8df1db58a3b9b9f2a22c4ef8bd1c9337f7558059a783d7e1f54dda357821",
+    "scicomp_composite": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "code_composite": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "web_research_composite": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+    "document_composite": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+    "memory_composite": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+    "orchestration_composite": "57b1c4ad8cd71829b78d5baab20c62617333718be39a96710b0084004561ae45",
+    "t4_tools": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+    "t5r_rag": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "executive_router": "06c59027341e4ef9124a4b5c1610a470e77fd67cfe8133446b380fcf9866af8e",
+    "fidelity": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+    "fidelity_composite": "f3c74a311cbfdf7a01ff0eae13770082704fa9d96b0e6163ce665e6174d9dc28",
+    "correction_firewall": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3",
+    "correction_composite": "b1c95d975f67301fbe84d5a081c3e372d85bb0cae8f6d1a3bae1326c71ffff84",
+    "security_policies": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "write_guard_implementation": "6381a1b066813bf4cf2fb82b40882c6455a53765b2745ac5cce1f9b27919e598",
+    "t15r_canonical_blob": "fba2437f78633884bd31965d78a4250bd1ca893c"
+  },
+  "pytest": {
+    "tests": 1588,
+    "passed": 1586,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 2,
+    "time_s": 47.995
+  },
+  "checks": [
+    {
+      "check": "git_head_t20_canonical",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "head": "fc667c24cbbe4e6ae638890bb2bf5e1237c7659b",
+        "required": "fc667c24cbbe4e6ae638890bb2bf5e1237c7659b",
+        "exact": true,
+        "tree": "b7fcb2890efcef032af60798f9a936ed6762c57b"
+      }
+    },
+    {
+      "check": "worktree_clean",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "dirty_n": 2,
+        "unexpected": [],
+        "timestamp_only_unstaged": []
+      },
+      "detail": "Require clean worktree on canonical T20 base before T21 work"
+    },
+    {
+      "check": "t21_not_started",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "preexisting_t21_artifacts": [],
+        "t21_scripts_other_than_entry_gate": []
+      }
+    },
+    {
+      "check": "historical_write_guard_artifact_present",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "present": true,
+        "status": null,
+        "path": "evaluations/hygiene/historical_artifact_write_guard.json"
+      }
+    },
+    {
+      "check": "historical_write_guard_test_present",
+      "status": "PASS",
+      "critical": true,
+      "measured": "tests\\test_historical_artifact_write_guard.py"
+    },
+    {
+      "check": "t15r_canonical_blob_unchanged",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "blob": "fba2437f78633884bd31965d78a4250bd1ca893c",
+        "canonical": "fba2437f78633884bd31965d78a4250bd1ca893c"
+      },
+      "detail": "evaluations/t15r/mutation_safety_probe.json must remain blob fba2437 through all of T21"
+    },
+    {
+      "check": "t16_t20_milestone_local_probes",
+      "status": "PASS",
+      "critical": true,
+      "measured": [
+        {
+          "milestone": "T16",
+          "script": "t16_protection_battery.py",
+          "milestone_local_probe": true
+        },
+        {
+          "milestone": "T17",
+          "script": "t17_protection_summary.py",
+          "milestone_local_probe": true
+        },
+        {
+          "milestone": "T18",
+          "script": "t18_protection_summary.py",
+          "milestone_local_probe": true
+        },
+        {
+          "milestone": "T19",
+          "script": "t19_protection_summary.py",
+          "milestone_local_probe": true
+        },
+        {
+          "milestone": "T20",
+          "script": "t20_protection_summary.py",
+          "milestone_local_probe": true
+        }
+      ],
+      "detail": "Later protection batteries write milestone-local mutation-probe outputs; the canonical T15R blob is never rewritten"
+    },
+    {
+      "check": "t20_final_report",
+      "status": "PASS",
+      "critical": true,
+      "measured": "evaluations\\t20\\T20_FINAL_REPORT.md"
+    },
+    {
+      "check": "t20_final_audit",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "decision": "PROMOTE_ORCHESTRATION_SKILL",
+        "failed_checks": [],
+        "n_checks": 31
+      }
+    },
+    {
+      "check": "t20_promotion_decision",
+      "status": "PASS",
+      "critical": true,
+      "measured": "PROMOTE_ORCHESTRATION_SKILL"
+    },
+    {
+      "check": "t20_tuning_closed_present",
+      "status": "PASS",
+      "critical": true,
+      "measured": "evaluations/t20/tuning_closed.json"
+    },
+    {
+      "check": "promoted_skills_active",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "SCICOMP": "ACTIVE",
+        "CODE": "ACTIVE",
+        "WEB_RESEARCH": "ACTIVE",
+        "DOCUMENT": "ACTIVE",
+        "MEMORY": "ACTIVE",
+        "PLANNING": "ACTIVE",
+        "ORCHESTRATION": "ACTIVE",
+        "SCIENCE_RAG": "ACTIVE"
+      }
+    },
+    {
+      "check": "knowledge_rag_not_in_registry",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "known": false
+      },
+      "detail": "T21 introduces KNOWLEDGE_RAG at T21.2; it must not pre-exist"
+    },
+    {
+      "check": "executive_router_experimental",
+      "status": "PASS",
+      "critical": true,
+      "measured": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL"
+    },
+    {
+      "check": "skill_registry_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "02699861db6bdcbae7376cb3fa76b7956e85a38f8a8b49aa3ad0d0770ffffcb3",
+      "detail": "T20-close registry (ORCHESTRATION ACTIVE)"
+    },
+    {
+      "check": "executive_router_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "lf": "06c59027341e4ef9124a4b5c1610a470e77fd67cfe8133446b380fcf9866af8e",
+        "raw": "c9c57d610ad62f7c1beedc3f8357f60808e402f3490409371fe10e10068ab705"
+      },
+      "detail": "Unchanged since T19.1 freeze; remains EXPERIMENTAL"
+    },
+    {
+      "check": "scicomp_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite_lf": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+        "pin": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8"
+      }
+    },
+    {
+      "check": "code_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+        "pin": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627"
+      }
+    },
+    {
+      "check": "web_research_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+        "pin": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4"
+      }
+    },
+    {
+      "check": "document_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+        "pin": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d"
+      }
+    },
+    {
+      "check": "memory_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+        "pin": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d"
+      }
+    },
+    {
+      "check": "orchestration_hash_recorded",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "57b1c4ad8cd71829b78d5baab20c62617333718be39a96710b0084004561ae45",
+        "files": [
+          "src/sciencemath/orchestration/__init__.py",
+          "src/sciencemath/orchestration/assignment.py",
+          "src/sciencemath/orchestration/checkpoint.py",
+          "src/sciencemath/orchestration/contract.py",
+          "src/sciencemath/orchestration/events.py",
+          "src/sciencemath/orchestration/handoffs.py",
+          "src/sciencemath/orchestration/locks.py",
+          "src/sciencemath/orchestration/manifests.py",
+          "src/sciencemath/orchestration/models.py",
+          "src/sciencemath/orchestration/orchestrator.py",
+          "src/sciencemath/orchestration/pipeline.py",
+          "src/sciencemath/orchestration/recovery.py",
+          "src/sciencemath/orchestration/serialize.py",
+          "src/sciencemath/orchestration/verify.py",
+          "src/sciencemath/orchestration/workers.py"
+        ]
+      },
+      "detail": "T20 ORCHESTRATION runtime identity recorded at T21 entry"
+    },
+    {
+      "check": "t4_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+        "pin": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7"
+      }
+    },
+    {
+      "check": "t5r_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+        "pin": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742"
+      }
+    },
+    {
+      "check": "correction_firewall_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3"
+    },
+    {
+      "check": "fidelity_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146"
+    },
+    {
+      "check": "security_policy_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+        "pin": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419"
+      }
+    },
+    {
+      "check": "t3_adapter_identity",
+      "status": "PASS",
+      "critical": true,
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+    },
+    {
+      "check": "write_guard_implementation_recorded",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "6381a1b066813bf4cf2fb82b40882c6455a53765b2745ac5cce1f9b27919e598",
+        "files": [
+          "tests/test_historical_artifact_write_guard.py",
+          "scripts/t16_protection_battery.py",
+          "scripts/t17_protection_summary.py",
+          "scripts/t18_protection_summary.py",
+          "scripts/t19_protection_summary.py",
+          "scripts/t20_protection_summary.py"
+        ]
+      }
+    },
+    {
+      "check": "no_merge_rebase_in_progress",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "merge_head": false,
+        "rebase": false
+      }
+    },
+    {
+      "check": "environment_recorded",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "os": "Windows 11",
+        "python": "3.12.10",
+        "runtime": "Mango-4B-System-v1",
+        "model": "Qwen/Qwen3-4B-Instruct-2507",
+        "torch": "2.5.1+cu121",
+        "cuda_available": true,
+        "transformers": "5.16.1"
+      },
+      "detail": "transformers pin 5.16.1"
+    },
+    {
+      "check": "current_pytest_green",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "tests": 1588,
+        "passed": 1586,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2,
+        "exit_code": 0,
+        "time_s": 47.995
+      },
+      "detail": "require 0 failed / 0 errors; do not target the historical count"
+    },
+    {
+      "check": "t15r_blob_survives_pytest",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "blob_before": "fba2437f78633884bd31965d78a4250bd1ca893c",
+        "blob_after": "fba2437f78633884bd31965d78a4250bd1ca893c",
+        "canonical": "fba2437f78633884bd31965d78a4250bd1ca893c"
+      },
+      "detail": "historical-artifact write guard must keep the canonical T15R probe untouched through a full pytest battery"
+    }
+  ],
+  "substantive_failures": [],
+  "network_policy": "OFF during frozen evaluation",
+  "training_policy": "NONE",
+  "paid_compute_policy": "NOT_USED",
+  "conclusion": "All entry-gate checks PASS. T21 may proceed to T21.1 and branch t21-general-knowledge-rag."
+}

@@ -1,0 +1,29 @@
+{
+  "milestone": "T21.53 performance measurement",
+  "recorded_at": "2026-09-14T22:19:12.845455+00:00",
+  "corpus": {
+    "manifest_checksum": "944d45043afd0d080f0e26d1f8000a25f905b6284840588d966c511264b076a0",
+    "on_disk_bytes": 302915,
+    "sources": 18,
+    "chunks": 541
+  },
+  "index_build_seconds": 0.007,
+  "retrieval_ms": {
+    "n": 480,
+    "p50": 0.21,
+    "p95": 0.37,
+    "floor_p95_ms": 500.0,
+    "pass": true
+  },
+  "end_to_end_ms": {
+    "n": 80,
+    "p50": 0.55,
+    "p95": 0.99
+  },
+  "rss_bytes": 27009024,
+  "gpu": {
+    "used": false,
+    "reason": "deterministic lexical pipeline; no model inference in the runtime"
+  },
+  "pass": true
+}
