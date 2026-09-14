@@ -74,14 +74,14 @@ def main() -> int:
     }
     ident_ok = all(ident.values())
 
+    # Historical-artifact hygiene: the probe writes its rerun output directly
+    # to the T20 milestone path (--out); the historical T15R artifact is
+    # never touched by a T20 run.
     mut = subprocess.run(
-        [sys.executable, "scripts/t15r_mutation_probe.py"],
+        [sys.executable, "scripts/t15r_mutation_probe.py",
+         "--out", "evaluations/t20/mutation_safety_probe.json"],
         cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
         errors="replace")
-    mut_src = ROOT / "evaluations/t15r/mutation_safety_probe.json"
-    dest_mut = ROOT / "evaluations/t20/mutation_safety_probe.json"
-    if mut_src.exists():
-        dest_mut.write_bytes(mut_src.read_bytes())
     mut_ok = mut.returncode == 0
 
     prot_dir = ROOT / "evaluations/t20/protection"
