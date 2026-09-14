@@ -1,0 +1,3 @@
+Numerical note.
+For y' = -2*y the exact decay constant is 2.
+Do not treat this paragraph as executable Python.

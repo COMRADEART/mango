@@ -26,8 +26,10 @@ class TestSkillRegistry:
         # WEB/MEMORY stay unavailable; the router must not fake them.
         assert reg.availability("CODE") in (PREPARED_ONLY, ACTIVE)
         # WEB_RESEARCH stays PREPARED_ONLY until a T16 promotion gate
-        # flips it ACTIVE. DOCUMENT/MEMORY stay unavailable.
+        # flips it ACTIVE. DOCUMENT stays PREPARED_ONLY until T17.
+        # MEMORY stays unavailable.
         assert reg.availability("WEB_RESEARCH") in (PREPARED_ONLY, ACTIVE)
+        assert reg.availability("DOCUMENT") in (PREPARED_ONLY, ACTIVE)
         if reg.availability("CODE") == PREPARED_ONLY:
             assert not reg.executable("CODE")
         else:
@@ -36,6 +38,11 @@ class TestSkillRegistry:
             assert not reg.executable("WEB_RESEARCH")
         else:
             assert reg.executable("WEB_RESEARCH")
+        if reg.availability("DOCUMENT") == PREPARED_ONLY:
+            assert not reg.executable("DOCUMENT")
+        else:
+            assert reg.executable("DOCUMENT")
+        assert not reg.executable("MEMORY")
         assert reg.executable("SCICOMP")  # experimental is selectable
         assert reg.executable("MATH_T4")
 

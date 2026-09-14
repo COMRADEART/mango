@@ -1,0 +1,381 @@
+{
+  "milestone": "T17 final audit",
+  "recorded_at": "2026-09-14T15:19:38.041647+00:00",
+  "gates_total": 48,
+  "passes": 48,
+  "fails": [],
+  "checks": [
+    {
+      "check": "entry_gate",
+      "status": "PASS",
+      "measured": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "base_commit_lineage",
+      "status": "PASS",
+      "measured": {
+        "head": "945a86204bd6fb7144a4a7e17ee5403b4d5091d7",
+        "required": "945a86204bd6fb7144a4a7e17ee5403b4d5091d7"
+      },
+      "detail": ""
+    },
+    {
+      "check": "branch",
+      "status": "PASS",
+      "measured": "t17-document-data",
+      "detail": ""
+    },
+    {
+      "check": "frozen_hashes_present",
+      "status": "PASS",
+      "measured": [
+        "executive_router",
+        "skill_registry",
+        "code",
+        "scicomp",
+        "web_research",
+        "t4_tools",
+        "t5r_rag",
+        "fidelity"
+      ],
+      "detail": ""
+    },
+    {
+      "check": "code_hash_unchanged",
+      "status": "PASS",
+      "measured": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "detail": ""
+    },
+    {
+      "check": "scicomp_hash_unchanged",
+      "status": "PASS",
+      "measured": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+      "detail": ""
+    },
+    {
+      "check": "web_research_hash_unchanged",
+      "status": "PASS",
+      "measured": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+      "detail": ""
+    },
+    {
+      "check": "t4_hash_unchanged",
+      "status": "PASS",
+      "measured": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+      "detail": ""
+    },
+    {
+      "check": "t5r_hash_unchanged",
+      "status": "PASS",
+      "measured": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+      "detail": ""
+    },
+    {
+      "check": "security_policy_hash_unchanged",
+      "status": "PASS",
+      "measured": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+      "detail": ""
+    },
+    {
+      "check": "fidelity_hash_unchanged",
+      "status": "PASS",
+      "measured": "f3c74a311cbfdf7a01ff0eae13770082704fa9d96b0e6163ce665e6174d9dc28",
+      "detail": ""
+    },
+    {
+      "check": "correction_firewall_hash_unchanged",
+      "status": "PASS",
+      "measured": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3",
+      "detail": ""
+    },
+    {
+      "check": "t3_adapter_unchanged",
+      "status": "PASS",
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "detail": ""
+    },
+    {
+      "check": "document_final_checksum",
+      "status": "PASS",
+      "measured": "1b5468d4cef24f299a89963fdca1a8a041b49d8aeda49ea0dabf84e112041446",
+      "detail": ""
+    },
+    {
+      "check": "data_final_checksum",
+      "status": "PASS",
+      "measured": "c5e884f850a3b884612d852fbfdbfd6ef3cda1d3ba31e644d4a80594ef421ce9",
+      "detail": ""
+    },
+    {
+      "check": "dev_final_isolation",
+      "status": "PASS",
+      "measured": {
+        "benchmark": "mango-document-eval-v1",
+        "total": 360,
+        "dev_n": 180,
+        "final_n": 180,
+        "dev_sha256": "448d514ea7c0990e873928ec352dff498564175686ec0ff02841256b9e41ae90",
+        "final_sha256": "1b5468d4cef24f299a89963fdca1a8a041b49d8aeda49ea0dabf84e112041446",
+        "final_checksum_frozen_before_tuning": true,
+        "recorded_at": "2026-09-14T14:48:14.991384+00:00",
+        "categories": [
+          "aggregation",
+          "citation_mapping",
+          "code_bridge",
+          "csv_json_schema",
+          "file_identification",
+          "filter",
+          "image_only_pdf",
+          "join",
+          "keyword_search",
+          "malformed",
+          "missing_data",
+          "multi_doc_comparison",
+          "no_evidence",
+          "numeric_scicomp",
+          "page_section_lookup",
+          "path_traversal",
+          "profiling",
+          "prompt_injection",
+          "qa",
+          "structured_fields",
+          "summary",
+          "table_extract",
+          "text_extraction",
+          "unsupported",
+          "version_diff",
+          "web_gate"
+        ]
+      },
+      "detail": ""
+    },
+    {
+      "check": "task_ids_unique",
+      "status": "PASS",
+      "measured": {
+        "document": 180,
+        "data": 90
+      },
+      "detail": ""
+    },
+    {
+      "check": "final_predictions_complete",
+      "status": "PASS",
+      "measured": "270 preds for 270 gold",
+      "detail": ""
+    },
+    {
+      "check": "no_duplicate_predictions",
+      "status": "PASS",
+      "measured": 270,
+      "detail": ""
+    },
+    {
+      "check": "model_identity",
+      "status": "PASS",
+      "measured": "Qwen/Qwen3-4B-Instruct-2507",
+      "detail": ""
+    },
+    {
+      "check": "fixture_hashes_recorded",
+      "status": "PASS",
+      "measured": "evaluations/t17/fixture_hashes.json",
+      "detail": ""
+    },
+    {
+      "check": "floors_pre_registered",
+      "status": "PASS",
+      "measured": "promotion_floors.json",
+      "detail": ""
+    },
+    {
+      "check": "web_research_still_active",
+      "status": "PASS",
+      "measured": "ACTIVE",
+      "detail": ""
+    },
+    {
+      "check": "code_still_active",
+      "status": "PASS",
+      "measured": "ACTIVE",
+      "detail": ""
+    },
+    {
+      "check": "executive_router_experimental",
+      "status": "PASS",
+      "measured": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+      "detail": ""
+    },
+    {
+      "check": "memory_prepared_only",
+      "status": "PASS",
+      "measured": "PREPARED_ONLY",
+      "detail": ""
+    },
+    {
+      "check": "planning_unchanged",
+      "status": "PASS",
+      "measured": "EXPERIMENTAL",
+      "detail": ""
+    },
+    {
+      "check": "citation_integrity_zeros",
+      "status": "PASS",
+      "measured": {
+        "fabricated_document": 0,
+        "fabricated_page": 0,
+        "fabricated_row": 0,
+        "fabricated_cell": 0,
+        "fabricated_json_path": 0,
+        "prompt_injection_success": 0
+      },
+      "detail": ""
+    },
+    {
+      "check": "spec_suggested_floors_also_pass",
+      "status": "PASS",
+      "measured": true,
+      "detail": ""
+    },
+    {
+      "check": "path_escape_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "silent_mutation_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "ocr_not_fabricated",
+      "status": "PASS",
+      "measured": "image-only PDFs emit DOC_NEEDS_OCR",
+      "detail": ""
+    },
+    {
+      "check": "real_files_parsed",
+      "status": "PASS",
+      "measured": true,
+      "detail": ""
+    },
+    {
+      "check": "protection_battery",
+      "status": "PASS",
+      "measured": "ALL_PASS",
+      "detail": ""
+    },
+    {
+      "check": "security_zero_violations",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "pytest_green",
+      "status": "PASS",
+      "measured": {
+        "milestone": "T17.63 \u2014 final pytest",
+        "recorded_at": "2026-09-14T15:19:22.249945+00:00",
+        "tests": 1244,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 2,
+        "time_s": 41.369,
+        "failed": 0,
+        "passed": 1242,
+        "exit_code": 0
+      },
+      "detail": ""
+    },
+    {
+      "check": "no_training",
+      "status": "PASS",
+      "measured": "NONE",
+      "detail": ""
+    },
+    {
+      "check": "no_weight_change",
+      "status": "PASS",
+      "measured": "NO",
+      "detail": ""
+    },
+    {
+      "check": "no_paid_compute",
+      "status": "PASS",
+      "measured": "NOT_USED",
+      "detail": ""
+    },
+    {
+      "check": "document_decision",
+      "status": "PASS",
+      "measured": {
+        "decision": "PROMOTE_DOCUMENT_SKILL",
+        "availability": "ACTIVE"
+      },
+      "detail": ""
+    },
+    {
+      "check": "document_availability_matches_decision",
+      "status": "PASS",
+      "measured": {
+        "decision": "PROMOTE_DOCUMENT_SKILL",
+        "availability": "ACTIVE"
+      },
+      "detail": ""
+    },
+    {
+      "check": "baseline_recorded",
+      "status": "PASS",
+      "measured": "t17-baseline-final",
+      "detail": ""
+    },
+    {
+      "check": "floors_quality_ok",
+      "status": "PASS",
+      "measured": [],
+      "detail": ""
+    },
+    {
+      "check": "live_smoke_passed",
+      "status": "PASS",
+      "measured": true,
+      "detail": ""
+    },
+    {
+      "check": "prompt_injection_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "macro_execution_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "paid_ocr_not_used",
+      "status": "PASS",
+      "measured": "OCR not required; DOC_NEEDS_OCR",
+      "detail": ""
+    },
+    {
+      "check": "archives_unsupported",
+      "status": "PASS",
+      "measured": "ZIP/TAR UNSUPPORTED",
+      "detail": ""
+    }
+  ],
+  "document_decision": "PROMOTE_DOCUMENT_SKILL",
+  "document_availability": "ACTIVE",
+  "manual_override": false,
+  "passed": true,
+  "failed": false,
+  "document_implementation_sha256": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+  "git_head": "945a86204bd6fb7144a4a7e17ee5403b4d5091d7",
+  "branch": "t17-document-data"
+}

@@ -1,0 +1,7 @@
+id,score,note,flag
+1,10,ok,true
+2,,empty_score,false
+3,0,zero,true
+4,null,nullword,true
+5,NaN,nanword,false
+6,NA,nalike,true

@@ -67,7 +67,12 @@ def test_does_not_hallucinate_document_or_memory():
     rec = route_task("Remember this conversation forever", registry=_reg())
     assert rec["primary_skill"] != "MEMORY"
     rec2 = route_task("Parse this pdf spreadsheet csv file", registry=_reg())
-    assert rec2["primary_skill"] != "DOCUMENT"
+    # DOCUMENT follows the live default registry. After T17 promotion it
+    # is executable; before promotion the router must not fake it.
+    if SkillRegistry().executable("DOCUMENT"):
+        assert rec2["primary_skill"] == "DOCUMENT"
+    else:
+        assert rec2["primary_skill"] != "DOCUMENT"
 
 
 def test_web_fail_closed_when_prepared_only():

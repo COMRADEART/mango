@@ -1,0 +1,1 @@
+ΔT = 4.22 K — keep the delta sign.

@@ -1,0 +1,7 @@
+{
+  "service": "Helios Protocol",
+  "widgets_endpoint": "GET /v1/widgets",
+  "timeout_ms": 1500,
+  "auth": "bearer",
+  "version": "1.4.0"
+}

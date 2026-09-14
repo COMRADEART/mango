@@ -1,0 +1,413 @@
+{
+  "milestone": "T17.40 fixture corpus",
+  "recorded_at": "2026-09-14T14:44:37.205753+00:00",
+  "n": 58,
+  "files": [
+    {
+      "id": "sci_helium",
+      "path": "evaluations/t17/fixtures/sci_helium.txt",
+      "filename": "sci_helium.txt",
+      "sha256": "4c0db343288725f7f707113bd6030106d498521e9ff86d627e1c69a74b436afc",
+      "size": 141
+    },
+    {
+      "id": "policy_retention",
+      "path": "evaluations/t17/fixtures/policy_retention.md",
+      "filename": "policy_retention.md",
+      "sha256": "eb57b637423e186c62421f62863eecf2c2aa6716347ec560b83132d2c1a353c2",
+      "size": 277
+    },
+    {
+      "id": "api_widgets",
+      "path": "evaluations/t17/fixtures/api_widgets.json",
+      "filename": "api_widgets.json",
+      "sha256": "4cf85858be51c91073d5fcd4e80dd596d6758876b44941fc607f0a79f812d50d",
+      "size": 139
+    },
+    {
+      "id": "research_efficacy",
+      "path": "evaluations/t17/fixtures/research_efficacy.jsonl",
+      "filename": "research_efficacy.jsonl",
+      "sha256": "248ad83141148ee9ce6cfff98c0a0fde5f17bec321592018f03d359ad46afe27",
+      "size": 169
+    },
+    {
+      "id": "finance_q2",
+      "path": "evaluations/t17/fixtures/finance_q2.csv",
+      "filename": "finance_q2.csv",
+      "sha256": "03cb7ab846017777e8c328e41eb719aee0cc5433804b545844df243345c9697f",
+      "size": 98
+    },
+    {
+      "id": "ids_leading_zero",
+      "path": "evaluations/t17/fixtures/ids_leading_zero.tsv",
+      "filename": "ids_leading_zero.tsv",
+      "sha256": "f9d365711239dda8bfb930d3c87a4fb6346b515e1e57bef5f75e211a7a0f3b4c",
+      "size": 96
+    },
+    {
+      "id": "tech_config",
+      "path": "evaluations/t17/fixtures/tech_config.html",
+      "filename": "tech_config.html",
+      "sha256": "1e0489c8c78bcdb3061241f40b900b4e19d787cda9311145686198b067a40528",
+      "size": 305
+    },
+    {
+      "id": "planck",
+      "path": "evaluations/t17/fixtures/planck.pdf",
+      "filename": "planck.pdf",
+      "sha256": "51498167c671b73c0057df612b1bae15569b64d9201a82c9fba06899360b54bf",
+      "size": 709
+    },
+    {
+      "id": "policy_v1",
+      "path": "evaluations/t17/fixtures/policy_v1.txt",
+      "filename": "policy_v1.txt",
+      "sha256": "9a191aad65d271dc95ad6b8024ae268353ecf2cdf6e8faf556fb5cdb0e9272e9",
+      "size": 81
+    },
+    {
+      "id": "policy_v2",
+      "path": "evaluations/t17/fixtures/policy_v2.txt",
+      "filename": "policy_v2.txt",
+      "sha256": "a93022822e1e1f6da72f750948525889aa708005db09f59fa06cd7eba942556a",
+      "size": 81
+    },
+    {
+      "id": "contradict_a",
+      "path": "evaluations/t17/fixtures/contradict_a.md",
+      "filename": "contradict_a.md",
+      "sha256": "e77b340e40cd40233b84ea4da2547ce6a035b4ade926d32b0133832ee9778b08",
+      "size": 69
+    },
+    {
+      "id": "contradict_b",
+      "path": "evaluations/t17/fixtures/contradict_b.md",
+      "filename": "contradict_b.md",
+      "sha256": "922c7919fda585c492e47f70c141d11c6d1d65bcff55892e90c8954c8f5baa18",
+      "size": 79
+    },
+    {
+      "id": "inject_ignore",
+      "path": "evaluations/t17/fixtures/inject_ignore.txt",
+      "filename": "inject_ignore.txt",
+      "sha256": "385513946a21a312a1ab29fe5944ddce44a345d768d758b51352c9b9f181514a",
+      "size": 193
+    },
+    {
+      "id": "missing_info",
+      "path": "evaluations/t17/fixtures/missing_info.txt",
+      "filename": "missing_info.txt",
+      "sha256": "ded7bef57b462249ddd22ac3f2883daf936c49811315a8c11a936c32ea4b3051",
+      "size": 110
+    },
+    {
+      "id": "empty",
+      "path": "evaluations/t17/fixtures/empty.txt",
+      "filename": "empty.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "id": "bad",
+      "path": "evaluations/t17/fixtures/bad.json",
+      "filename": "bad.json",
+      "sha256": "92072df399cb74703f8e86f450d552bc0bb01eeeb98a90985a1b7772c8fd0016",
+      "size": 9
+    },
+    {
+      "id": "ragged",
+      "path": "evaluations/t17/fixtures/ragged.csv",
+      "filename": "ragged.csv",
+      "sha256": "73e723d084fae9a69a1a21002046ed5d3b95b1c3446db9b5e717dbd80c1062dd",
+      "size": 18
+    },
+    {
+      "id": "dup_headers",
+      "path": "evaluations/t17/fixtures/dup_headers.csv",
+      "filename": "dup_headers.csv",
+      "sha256": "6337c170bfb2e765a029ea72dea6c688eb9bc63e133cfba073d7a860fe358942",
+      "size": 24
+    },
+    {
+      "id": "formula",
+      "path": "evaluations/t17/fixtures/formula.csv",
+      "filename": "formula.csv",
+      "sha256": "93836cf19be24ac952ab5faddc87cb22fcd80eaab8329d995ab23d0d0752a092",
+      "size": 70
+    },
+    {
+      "id": "nulls",
+      "path": "evaluations/t17/fixtures/nulls.csv",
+      "filename": "nulls.csv",
+      "sha256": "63db358637c5f8d9dda6e8ab32b6493f10790dfc435d46533be0cd69ada5a887",
+      "size": 125
+    },
+    {
+      "id": "truncated",
+      "path": "evaluations/t17/fixtures/truncated.pdf",
+      "filename": "truncated.pdf",
+      "sha256": "c796ff95749b2615abaeb007adad060aba09f18e52fcee575760db94a7796492",
+      "size": 574
+    },
+    {
+      "id": "image_only",
+      "path": "evaluations/t17/fixtures/image_only.pdf",
+      "filename": "image_only.pdf",
+      "sha256": "aad9bb1a23c3e2141fc5d04ba7f570e423f1a32b5cff78a64310210fcc388b0d",
+      "size": 642
+    },
+    {
+      "id": "bad_utf8",
+      "path": "evaluations/t17/fixtures/bad_utf8.txt",
+      "filename": "bad_utf8.txt",
+      "sha256": "326547b6abb16a017107fa4344a540cb3f63bc928076716d97a755778b9fc5c8",
+      "size": 13
+    },
+    {
+      "id": "nested",
+      "path": "evaluations/t17/fixtures/nested.json",
+      "filename": "nested.json",
+      "sha256": "44e100aca69adee3a2dd52604b633ed60d7b76a66fa51d86d17348899b966468",
+      "size": 111
+    },
+    {
+      "id": "join_left",
+      "path": "evaluations/t17/fixtures/join_left.csv",
+      "filename": "join_left.csv",
+      "sha256": "20a0a3963d8ddb2475c565228d77ba343ad0690750e04f3d449378b57c3ae337",
+      "size": 35
+    },
+    {
+      "id": "join_right",
+      "path": "evaluations/t17/fixtures/join_right.csv",
+      "filename": "join_right.csv",
+      "sha256": "cfdfd23ba96dc7651b29f0347a42bec0150b33aee7ac009679b47ae8f61b115d",
+      "size": 31
+    },
+    {
+      "id": "api_ref",
+      "path": "evaluations/t17/fixtures/api_ref.md",
+      "filename": "api_ref.md",
+      "sha256": "2b68f19eda58d7ce2bd3ef2a45d6ad81e7293e783c41c7981dab6777ac5d8583",
+      "size": 150
+    },
+    {
+      "id": "financial_notes",
+      "path": "evaluations/t17/fixtures/financial_notes.txt",
+      "filename": "financial_notes.txt",
+      "sha256": "4137e6cc9b06bd7fac6b404edb3148cb3850e9e745d9c22d4217457148eac619",
+      "size": 103
+    },
+    {
+      "id": "science_ode",
+      "path": "evaluations/t17/fixtures/science_ode.txt",
+      "filename": "science_ode.txt",
+      "sha256": "f0a8399abb81420dc5d6241727fb90bb6b30264c7a2f4b773df789434e48e2bb",
+      "size": 111
+    },
+    {
+      "id": "config.env",
+      "path": "evaluations/t17/fixtures/config.env.txt",
+      "filename": "config.env.txt",
+      "sha256": "de058bf6d354a8dd86d284f31b8b9e57a3efd55bdf3fcbe5f719e14a1a7e8938",
+      "size": 40
+    },
+    {
+      "id": "version_cfg_a",
+      "path": "evaluations/t17/fixtures/version_cfg_a.json",
+      "filename": "version_cfg_a.json",
+      "sha256": "2fa6ad5794c48f5c2cc92b859003067b83e2660a09f6e6f3ade3cb3250877fd0",
+      "size": 34
+    },
+    {
+      "id": "version_cfg_b",
+      "path": "evaluations/t17/fixtures/version_cfg_b.json",
+      "filename": "version_cfg_b.json",
+      "sha256": "58bfe1cebfdf2be5f6cbd0e54cb20612d0b92557fd91e34a46fafa913bedb053",
+      "size": 34
+    },
+    {
+      "id": "types_mixed",
+      "path": "evaluations/t17/fixtures/types_mixed.csv",
+      "filename": "types_mixed.csv",
+      "sha256": "434e888fc0e864eb9f15304b1b7be440c6446e53bed09948bd481d6848c8a080",
+      "size": 113
+    },
+    {
+      "id": "dup_rows",
+      "path": "evaluations/t17/fixtures/dup_rows.csv",
+      "filename": "dup_rows.csv",
+      "sha256": "fe00ab96097fa3312c41e272d8d982448590b6a13911bac4f24f8ba4bf2e7b24",
+      "size": 19
+    },
+    {
+      "id": "prompt_pdf",
+      "path": "evaluations/t17/fixtures/prompt_pdf.pdf",
+      "filename": "prompt_pdf.pdf",
+      "sha256": "d42b42d554ab2f76cab80c2fdce56b27b47a7198c7f97255e255cc26d49f512a",
+      "size": 772
+    },
+    {
+      "id": "multi_page",
+      "path": "evaluations/t17/fixtures/multi_page.pdf",
+      "filename": "multi_page.pdf",
+      "sha256": "e0cce2f28aa29bbbdc21e374c4a0ecfe69834d5ed7bc6d61d2b289ba13737351",
+      "size": 1198
+    },
+    {
+      "id": "sectioned",
+      "path": "evaluations/t17/fixtures/sectioned.md",
+      "filename": "sectioned.md",
+      "sha256": "54481d0f1a9a6871821ec8414b73a2261816367b19be3b6808c6747e22dbace4",
+      "size": 140
+    },
+    {
+      "id": "html_inject",
+      "path": "evaluations/t17/fixtures/html_inject.html",
+      "filename": "html_inject.html",
+      "sha256": "d7daa8d83be66301915fb73b6c0186ca13913054c864d165655b334979eca0e2",
+      "size": 151
+    },
+    {
+      "id": "jsonl_malformed",
+      "path": "evaluations/t17/fixtures/jsonl_malformed.jsonl",
+      "filename": "jsonl_malformed.jsonl",
+      "sha256": "29108db124ac5490c1a1857ba564fa9a804ec5083c2dd255fb5c26a1118075d6",
+      "size": 48
+    },
+    {
+      "id": "scientific_table",
+      "path": "evaluations/t17/fixtures/scientific_table.csv",
+      "filename": "scientific_table.csv",
+      "sha256": "60d56b3cf015969ea9c962198fccdf1dc6741f397e1f8290bfee96d275f27081",
+      "size": 69
+    },
+    {
+      "id": "code_task",
+      "path": "evaluations/t17/fixtures/code_task.txt",
+      "filename": "code_task.txt",
+      "sha256": "b956c1980163d80d791df4bcc1d5a496c19dcbb76c8c18d97459ac1989e71df9",
+      "size": 137
+    },
+    {
+      "id": "numeric_series",
+      "path": "evaluations/t17/fixtures/numeric_series.csv",
+      "filename": "numeric_series.csv",
+      "sha256": "b3e113033a8127bd21855d224de749f3be917e4c9753fc0f8da497eed0319cbd",
+      "size": 31
+    },
+    {
+      "id": "absent_fields",
+      "path": "evaluations/t17/fixtures/absent_fields.json",
+      "filename": "absent_fields.json",
+      "sha256": "a2955b10bb6e6a20a2a1bd4ad35e9133983036eb5aa2cc748c65296e91247bb1",
+      "size": 40
+    },
+    {
+      "id": "dates",
+      "path": "evaluations/t17/fixtures/dates.csv",
+      "filename": "dates.csv",
+      "sha256": "af3422e2cb912f717d9a9c2e993b022175ca7452321a00627b200d0cb6e40f25",
+      "size": 43
+    },
+    {
+      "id": "boolean",
+      "path": "evaluations/t17/fixtures/boolean.csv",
+      "filename": "boolean.csv",
+      "sha256": "13379879fefa6afa113928de2c023e4077c827bf4fcebda52496172baf82bec8",
+      "size": 30
+    },
+    {
+      "id": "zip_bomb",
+      "path": "evaluations/t17/fixtures/zip_bomb.zip",
+      "filename": "zip_bomb.zip",
+      "sha256": "42d5759760e91a002cdd3a5507d80f8ba1513d270569b1bb3c0012b31d1c1c5d",
+      "size": 138
+    },
+    {
+      "id": "note",
+      "path": "evaluations/t17/fixtures/note.exe",
+      "filename": "note.exe",
+      "sha256": "ba4ed95ee2c768ceab6a2f6be5bd19d554721e19e3dd7fd73369a8dcc865e9e5",
+      "size": 35
+    },
+    {
+      "id": "units",
+      "path": "evaluations/t17/fixtures/units.txt",
+      "filename": "units.txt",
+      "sha256": "c0e3a2d51d8945afb90fa51ef731d625e57383b15e2e7f07549eb0de5d2a434c",
+      "size": 45
+    },
+    {
+      "id": "unicode",
+      "path": "evaluations/t17/fixtures/unicode.txt",
+      "filename": "unicode.txt",
+      "sha256": "8c22b12d09adaa2bccae461360bb189562a98bb8c4613fa3b66b7fc531ce1086",
+      "size": 38
+    },
+    {
+      "id": "list_policy",
+      "path": "evaluations/t17/fixtures/list_policy.md",
+      "filename": "list_policy.md",
+      "sha256": "3bc13403b47973411d3db24eafe153cbe74e486dc6e7a7d25e6fdb16b53f2d29",
+      "size": 49
+    },
+    {
+      "id": "empty_csv",
+      "path": "evaluations/t17/fixtures/empty_csv.csv",
+      "filename": "empty_csv.csv",
+      "sha256": "04bb01a6c11275f8fb2824cbf5d05ad8baaf4655d7d6e1723c439f27c358f31f",
+      "size": 12
+    },
+    {
+      "id": "zero",
+      "path": "evaluations/t17/fixtures/zero.csv",
+      "filename": "zero.csv",
+      "sha256": "c287c0a8bd4da5b6757a677fe60c5a539925ff7979d39d19f09fd7b7b324a580",
+      "size": 12
+    },
+    {
+      "id": "quotes",
+      "path": "evaluations/t17/fixtures/quotes.txt",
+      "filename": "quotes.txt",
+      "sha256": "09e23f45c40f8187a3ba15bc8ab644c84f9bb8563b2f49b7074be636fc1db763",
+      "size": 43
+    },
+    {
+      "id": "web_compare",
+      "path": "evaluations/t17/fixtures/web_compare.txt",
+      "filename": "web_compare.txt",
+      "sha256": "555329ed41922aef98dbb65a40c365f3680214ac8debc871f6dbeceb9c65d572",
+      "size": 94
+    },
+    {
+      "id": "schema_users",
+      "path": "evaluations/t17/fixtures/schema_users.csv",
+      "filename": "schema_users.csv",
+      "sha256": "96f0361709a9de74d75c99890f1d296bd5323987a99e979f878b91818f3f84c8",
+      "size": 74
+    },
+    {
+      "id": "filter_me",
+      "path": "evaluations/t17/fixtures/filter_me.csv",
+      "filename": "filter_me.csv",
+      "sha256": "e37bd00621e51b19daeae0d5eed4fa89c8815704ca6eb9b48bd6484077589058",
+      "size": 58
+    },
+    {
+      "id": "agg_sales",
+      "path": "evaluations/t17/fixtures/agg_sales.csv",
+      "filename": "agg_sales.csv",
+      "sha256": "bf315dd5af78e328e6fa20c3ea14552698846be8dcf22fbc554d36ed25267af4",
+      "size": 42
+    },
+    {
+      "id": "path_note",
+      "path": "evaluations/t17/fixtures/path_note.txt",
+      "filename": "path_note.txt",
+      "sha256": "fda103286c9b3ebc15c8f7bc8015133d89fb629ef5e3e7daf4ab677d67fbe816",
+      "size": 41
+    }
+  ]
+}

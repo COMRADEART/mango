@@ -1,0 +1,9 @@
+{
+  "milestone": "T17.47 tuning closed",
+  "recorded_at": "2026-09-14T15:00:00+00:00",
+  "final_checksums_frozen_before_tuning_close": true,
+  "mango-document-eval-v1_final_sha256": "1b5468d4cef24f299a89963fdca1a8a041b49d8aeda49ea0dabf84e112041446",
+  "mango-data-core-v1_final_sha256": "c5e884f850a3b884612d852fbfdbfd6ef3cda1d3ba31e644d4a80594ef421ce9",
+  "dev_only_tuning": true,
+  "notes": "FINAL checksums frozen. No post-hoc suite edits after this point."
+}

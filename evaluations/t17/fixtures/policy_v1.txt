@@ -1,0 +1,3 @@
+Access Policy v1
+Session timeout is 30 minutes.
+MFA is optional for contractors.
