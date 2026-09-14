@@ -1,0 +1,8 @@
+--- a/src/cli05.py
++++ b/src/cli05.py
+@@ -3,4 +3,4 @@
+ from lib05 import connect
+ 
+ def start():
+-    return connect('h', 80)
++    return connect('h', 80, 30)

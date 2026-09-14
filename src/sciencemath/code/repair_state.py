@@ -393,6 +393,7 @@ class RepairSession:
         self.last_progress = False
         self._seq = 0
         self.deltas: list[dict] = []
+        self.outcome: dict = {}
 
     def bind_original_tests(self, test_result: dict) -> RepairState:
         """Attach reproduce-first evidence to ORIGINAL_STATE."""
@@ -567,7 +568,7 @@ class RepairSession:
         else:
             self.restore_best()
         self._flush_patches()
-        return {
+        self.outcome = {
             "best_state_id": self.best.state_id,
             "reverted_to_original": reverted_to_original,
             "unsafe_revert": unsafe_revert,
@@ -578,6 +579,7 @@ class RepairSession:
             "unsafe_reason_class": (
                 reason if reason in unsafe_reasons else None),
         }
+        return self.outcome
 
     def lineage(self) -> list[dict]:
         return [{"state_id": s.state_id, "parent_state_id": s.parent_state_id,
@@ -607,6 +609,7 @@ class RepairSession:
             "lineage": self.lineage(),
             "deltas": self.deltas,
             "round": self.round,
+            "outcome": dict(self.outcome),
             "patches": {k: (v if len(v) < 8000 else
                             {"sha256": hashlib.sha256(
                                 v.encode("utf-8")).hexdigest(),

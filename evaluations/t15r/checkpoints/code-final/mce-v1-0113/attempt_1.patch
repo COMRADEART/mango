@@ -1,0 +1,8 @@
+--- a/src/alg02_fib.py
++++ b/src/alg02_fib.py
+@@ -1,2 +1,4 @@
+ def fib(n):
+-    raise NotImplementedError
++    if n <= 1:
++        return n
++    return fib(n - 1) + fib(n - 2)

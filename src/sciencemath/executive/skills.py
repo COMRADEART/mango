@@ -101,9 +101,9 @@ def default_registry() -> dict[str, dict]:
         ),
         "CODE": _skill(
             skill_id="CODE",
-            description="Code generation/execution runtime. Interface only "
-                        "in T14 — not implemented.",
-            availability=PREPARED_ONLY,
+            description="Bounded repository-level coding intelligence "
+                        "(CODE skill runtime). Promoted ACTIVE at T15R.",
+            availability=ACTIVE,
             required_permissions=["code_exec"],
             cost_class=LOCAL_EXPENSIVE,
             deterministic=False,

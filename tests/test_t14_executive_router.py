@@ -22,9 +22,15 @@ class TestSkillRegistry:
         reg = SkillRegistry()
         assert reg.availability("MATH_T4") == ACTIVE
         assert reg.availability("SCICOMP") == EXPERIMENTAL
-        assert reg.availability("CODE") == PREPARED_ONLY
+        # CODE is PREPARED_ONLY until a T15R promotion gate flips it ACTIVE.
+        # WEB/MEMORY stay unavailable; the router must not fake them.
+        assert reg.availability("CODE") in (PREPARED_ONLY, ACTIVE)
         assert reg.availability("WEB_RESEARCH") == PREPARED_ONLY
-        assert not reg.executable("CODE")
+        if reg.availability("CODE") == PREPARED_ONLY:
+            assert not reg.executable("CODE")
+        else:
+            assert reg.executable("CODE")
+        assert not reg.executable("WEB_RESEARCH")
         assert reg.executable("SCICOMP")  # experimental is selectable
         assert reg.executable("MATH_T4")
 
@@ -89,9 +95,14 @@ class TestUnavailableAndPaid:
     def test_code_not_faked(self):
         rec = route_task("Write a python function that sorts a list and "
                          "run this code.")
-        assert rec["primary_skill"] in ("GENERAL", "NO_TOOL")
-        assert rec.get("unavailable_skill") == "CODE"
+        # Executive Router stays experimental: it never auto-executes CODE.
+        # Direct CODE runtime is the T15R integration path.
         assert rec["execution_status"] == "ROUTED_ONLY"
+        assert rec["primary_skill"] not in ("WEB_RESEARCH", "MEMORY")
+        assert rec.get("hallucinated_tool") in (None, "")
+        if not SkillRegistry().executable("CODE"):
+            assert rec["primary_skill"] in ("GENERAL", "NO_TOOL")
+            assert rec.get("unavailable_skill") == "CODE"
 
     def test_web_not_faked(self):
         rec = route_task("Search the web for the latest news on Mars.")
@@ -141,9 +152,10 @@ class TestPermissionsAndCost:
         reg = SkillRegistry()
         code = reg.get("CODE")
         assert code["required_permissions"] == ["code_exec"]
-        assert code["availability"] == PREPARED_ONLY
+        assert code["availability"] in (PREPARED_ONLY, ACTIVE)
         rec = route_task("Write a python function that sorts a list and "
                          "run this code.")
+        # Router records CODE as a capability; it does not execute it.
         assert rec["primary_skill"] != "CODE"
         assert rec["execution_status"] == "ROUTED_ONLY"
 

@@ -51,6 +51,8 @@ def main() -> int:
             retained += 1
         if rp.get("full_revert"):
             full_rev += 1
+        if rp.get("unsafe_revert"):
+            unsafe_rev += 1
         if ok:
             recovered += 1
             by[cat]["recovered"] += 1

@@ -1,0 +1,5 @@
+--- a/src/ty05.py
++++ b/src/ty05.py
+@@ -1 +1 @@
+-SCHEMA = {"name": "x"}
++SCHEMA = {"name": "x", "age": "y"}

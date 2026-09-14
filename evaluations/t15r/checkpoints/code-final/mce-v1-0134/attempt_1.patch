@@ -1,0 +1,8 @@
+--- a/src/cli07.py
++++ b/src/cli07.py
+@@ -3,4 +3,4 @@
+ from lib07 import connect
+ 
+ def start():
+-    return connect('h', 80)
++    return connect('h', 80, 30)

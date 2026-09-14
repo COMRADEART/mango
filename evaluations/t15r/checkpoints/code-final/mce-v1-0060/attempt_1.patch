@@ -1,0 +1,8 @@
+--- a/tests/test_tr09.py
++++ b/tests/test_tr09.py
+@@ -1,4 +1,5 @@
+ from src.TR09 import total
+ 
++import src
+ def test_t():
+     assert total([1, 2]) == 3

@@ -129,18 +129,28 @@ def session_metrics(res: dict) -> dict:
     ev = res.get("evidence") or {}
     sess = ev.get("repair_session") or {}
     best = sess.get("best") or {}
+    outcome = sess.get("outcome") or {}
     trail = res.get("trail") or []
     rounds = sum(1 for s in trail if s.get("step") == "RETEST")
+    usage = res.get("usage") or ev.get("usage") or {}
     return {
         "repair_rounds": rounds,
-        "best_retained": bool(sess.get("best") and not best.get("is_original")
-                              and best.get("retention_ok")),
+        "best_retained": bool(outcome.get("best_retained")
+                              if "best_retained" in outcome else
+                              (sess.get("best") and not best.get("is_original")
+                               and best.get("retention_ok"))),
         "best_failure_count": best.get("failure_count"),
         "best_state_id": best.get("state_id"),
         "n_deltas": len(sess.get("deltas") or []),
-        "full_revert": bool(
-            (sess.get("original") or {}).get("state_id")
-            == best.get("state_id")),
+        "full_revert": bool(outcome.get("reverted_to_original")
+                            if "reverted_to_original" in outcome else
+                            ((sess.get("original") or {}).get("state_id")
+                             == best.get("state_id"))),
+        "unsafe_revert": bool(outcome.get("unsafe_revert")),
+        "max_files_read": usage.get("max_files_read"),
+        "max_files_modified": usage.get("max_files_modified"),
+        "max_commands": usage.get("max_commands"),
+        "max_repair_iterations": usage.get("max_repair_iterations"),
     }
 
 
@@ -154,6 +164,8 @@ def main() -> int:
                     choices=("v1", "v1.1"))
     ap.add_argument("--task-ids", default="",
                     help="comma-separated task_id filter (replay)")
+    ap.add_argument("--rerun", action="store_true",
+                    help="re-run matching task-ids even if already in predictions")
     args = ap.parse_args()
 
     if args.suite == "v1":
@@ -182,6 +194,13 @@ def main() -> int:
             if l.strip():
                 r = json.loads(l)
                 done[r["task_id"]] = r
+    if args.rerun:
+        if args.task_ids:
+            for tid in (x.strip() for x in args.task_ids.split(",")
+                        if x.strip()):
+                done.pop(tid, None)
+        else:
+            done = {}
     print(f"resume: {len(done)} already complete; remaining "
           f"{sum(1 for t in tasks if t['task_id'] not in done)}")
 
@@ -327,7 +346,14 @@ def main() -> int:
     for l in pred_p.read_text(encoding="utf-8").splitlines():
         if l.strip():
             rows.append(json.loads(l))
-    rows = [r for r in rows if not r.get("skipped")]
+    # last occurrence wins so --rerun does not duplicate task_ids
+    uniq = {}
+    for r in rows:
+        uniq[r["task_id"]] = r
+    rows = [r for r in uniq.values() if not r.get("skipped")]
+    pred_p.write_text(
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in uniq.values()),
+        encoding="utf-8")
     from collections import Counter, defaultdict
     by_cat: dict[str, list] = defaultdict(list)
     for r in rows:
@@ -335,6 +361,12 @@ def main() -> int:
     cat_acc = {c: sum(1 for r in v if r["pass"]) / len(v)
                for c, v in by_cat.items() if v}
     rounds = [r.get("repair", {}).get("repair_rounds", 0) or 0 for r in rows]
+    rss = None
+    try:
+        import psutil
+        rss = int(psutil.Process().memory_info().rss)
+    except Exception:
+        rss = None
     summary = {
         "run": args.run_name,
         "split": args.split,
@@ -362,6 +394,16 @@ def main() -> int:
             1 for r in rows if r.get("repair", {}).get("best_retained")),
         "full_revert_count": sum(
             1 for r in rows if r.get("repair", {}).get("full_revert")),
+        "unsafe_revert_count": sum(
+            1 for r in rows if r.get("repair", {}).get("unsafe_revert")),
+        "sum_files_read": sum(
+            int(r.get("repair", {}).get("max_files_read") or 0) for r in rows),
+        "sum_files_modified": sum(
+            int(r.get("repair", {}).get("max_files_modified") or 0)
+            for r in rows),
+        "sum_commands": sum(
+            int(r.get("repair", {}).get("max_commands") or 0) for r in rows),
+        "peak_rss_bytes": rss,
     }
     (run_dir / "summary.json").write_text(json.dumps(summary, indent=2) + "\n",
                                           encoding="utf-8")

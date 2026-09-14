@@ -1,0 +1,10 @@
+--- a/src/ty04.py
++++ b/src/ty04.py
+@@ -1,2 +1,6 @@
+ def as_int(s):
+-    return str(int(s))
++    try:
++        v = int(s)
++        return v
++    except (ValueError, TypeError):
++        return s

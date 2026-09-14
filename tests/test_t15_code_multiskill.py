@@ -1,28 +1,52 @@
-"""T15.29–T15.30 — router coexistence + multi-skill interaction (bounded).
+"""T15.29–T15.30 / T15R.32 — router coexistence + multi-skill interaction.
 
-Pre-activation (CODE PREPARED_ONLY): coding requests fail closed to
-GENERAL with unavailable_skill=CODE (never presented as executed).
-Post-activation behavior is verified by the promotion gate, not here.
-GENERAL→CODE classification, CODE→MATH_T4, CODE→SCICOMP, and workflow
-depth caps are all exercised without mutating router policy.
+Routing must respect skill availability. CODE is invoked by the CODE
+runtime; the Executive Router stays experimental and must not fake
+WEB/MEMORY execution. GENERAL→CODE classification, CODE→MATH_T4, and
+CODE→SCICOMP are exercised without mutating router policy.
 """
 from sciencemath.code import contract as C
 from sciencemath.code import runner as RN
-from sciencemath.executive.skills import SkillRegistry
+from sciencemath.executive.skills import ACTIVE, PREPARED_ONLY, SkillRegistry
+
+
+def test_code_skill_active_after_t15r_promotion():
+    reg = SkillRegistry()
+    assert reg.availability("CODE") == ACTIVE
+    assert reg.executable("CODE")
+    assert not reg.executable("WEB_RESEARCH")
+    assert not reg.executable("MEMORY")
 
 
 def test_router_fails_closed_for_code_pre_activation():
     from sciencemath.executive.executive_router import route_task
     reg = SkillRegistry()
-    assert reg.availability("CODE") == "PREPARED_ONLY"
-    assert not reg.executable("CODE")
     rec = route_task("write a python function to parse csv files",
                      registry=reg)
     # must not present CODE as executed
-    assert rec["primary_skill"] in ("GENERAL", "NO_TOOL")
     assert rec["execution_status"] == "ROUTED_ONLY"
-    assert rec.get("unavailable_skill") == "CODE" or \
-        rec["primary_skill"] in ("GENERAL", "NO_TOOL")
+    assert rec["primary_skill"] not in ("WEB_RESEARCH", "MEMORY")
+    if reg.availability("CODE") == PREPARED_ONLY:
+        assert not reg.executable("CODE")
+        assert rec["primary_skill"] in ("GENERAL", "NO_TOOL")
+        assert rec.get("unavailable_skill") == "CODE" or \
+            rec["primary_skill"] in ("GENERAL", "NO_TOOL")
+    else:
+        # Router remains experimental: even if CODE is executable it does
+        # not auto-dispatch CODE. Direct CODE runtime is the integration.
+        assert rec["primary_skill"] != "WEB_RESEARCH"
+        assert rec.get("hallucinated_tool") in (None, "")
+
+
+def test_router_does_not_fake_web_or_memory():
+    from sciencemath.executive.executive_router import route_task
+    reg = SkillRegistry()
+    rec = route_task("search the web for today's mango news", registry=reg)
+    assert rec["execution_status"] == "ROUTED_ONLY"
+    assert rec["primary_skill"] not in ("WEB_RESEARCH", "MEMORY")
+    rec2 = route_task("remember this conversation forever", registry=reg)
+    assert rec2["primary_skill"] != "MEMORY"
+    assert rec2["execution_status"] == "ROUTED_ONLY"
 
 
 def test_router_non_coding_does_not_route_to_code():

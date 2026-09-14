@@ -404,6 +404,21 @@ def test_multi_file_atomic_dependency_map(tmp_path):
     assert "src/use.py" in res["files_touched"]
 
 
+def test_context_pair_is_not_multi_file_unless_request_says_so():
+    assert not MF.is_multi_file_task(
+        "Adapt src/cli04.py to the current connect() signature",
+        ["src/lib04.py", "src/cli04.py"])
+    assert not MF.is_multi_file_task(
+        "Fix the misconfiguration in src/cfg01.py",
+        ["src/cfg01.py", "src/cfgu01.py"])
+    assert MF.is_multi_file_task(
+        "Fix the bugs across src/cfg.py and src/use.py",
+        ["src/cfg.py", "src/use.py"])
+    assert MF.is_multi_file_task(
+        "Fix bugs in src/a.py and src/b.py",
+        ["src/a.py", "src/b.py"])
+
+
 def test_data_xform_and_algo_contracts():
     x = TC.data_xform_contract(
         "Implement rows_to_dict",
@@ -450,3 +465,46 @@ def test_existing_single_fix_still_passes(tmp_path):
         tests_to_run=["tests/test_calc.py"])
     assert res["status"] == C.EXECUTED_PASS, res
     assert res["files_touched"] == ["src/calc.py"]
+
+
+def test_code_edit_retries_from_live_failures_without_initial_patch(tmp_path):
+    (tmp_path / "src").mkdir()
+    (tmp_path / "tests").mkdir()
+    (tmp_path / "src" / "__init__.py").write_text("", encoding="utf-8")
+    (tmp_path / "tests" / "__init__.py").write_text("", encoding="utf-8")
+    (tmp_path / "src" / "alg.py").write_text(
+        "def fib(n):\n    raise NotImplementedError\n", encoding="utf-8")
+    (tmp_path / "tests" / "test_alg.py").write_text(
+        "from src.alg import fib\n"
+        "def test_f():\n    assert fib(6) == 8\n", encoding="utf-8")
+    n = {"calls": 0}
+
+    def gen(prompt):
+        n["calls"] += 1
+        if n["calls"] == 1:
+            return "sorry, I cannot format a patch yet"
+        return json.dumps([{
+            "file": "src/alg.py",
+            "old": "    raise NotImplementedError\n",
+            "new": "    a, b = 0, 1\n"
+                   "    for _ in range(n):\n"
+                   "        a, b = b, a + b\n"
+                   "    return a\n",
+        }])
+
+    res = RN.run_coding_task(
+        tmp_path, "Implement fib in src/alg.py", op=C.CODE_EDIT,
+        edits=None, generate=gen, tests_to_run=["tests/test_alg.py"],
+        context_files=["src/alg.py"])
+    assert res["status"] == C.EXECUTED_PASS, res
+    assert n["calls"] >= 2
+    assert "return a" in (tmp_path / "src" / "alg.py").read_text(
+        encoding="utf-8")
+
+
+def test_parse_patch_proposal_accepts_single_object(tmp_path):
+    (tmp_path / "src").mkdir()
+    (tmp_path / "src" / "a.py").write_text("x = 1\n", encoding="utf-8")
+    raw = '{"file": "src/a.py", "old": "x = 1", "new": "x = 2"}'
+    edits = RN.parse_patch_proposal(tmp_path, raw)
+    assert len(edits) == 1 and edits[0]["file"] == "src/a.py"

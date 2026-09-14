@@ -1,7 +1,8 @@
 """T15.12, T15.13, T15.28, T15.32 — bounded debug loop + task runner.
 
 Loop: INSPECT → PLAN → EDIT → TEST → DIAGNOSE → REPAIR → RETEST → REVIEW.
-Max 3 repair rounds per task (T15.12); afterwards STOP and report BLOCKED.
+Default 3 repair rounds (T15R.8), hard cap 5 when last round made
+verified progress. Repair FROM BEST_VERIFIED_STATE, not ORIGINAL.
 
 Truthfulness (T15.13): statuses are PLANNED / ATTEMPTED / EXECUTED_PASS /
 EXECUTED_FAIL / NOT_RUN / BLOCKED and always reflect what really happened.
@@ -284,6 +285,13 @@ def parse_patch_proposal(base: Path, raw: str) -> list:
         cand = json.loads(raw[raw.index("["):raw.rindex("]") + 1])
     except (ValueError, IndexError, json.JSONDecodeError):
         cand = None
+    if cand is None:
+        try:
+            cand = json.loads(raw[raw.index("{"):raw.rindex("}") + 1])
+        except (ValueError, IndexError, json.JSONDecodeError):
+            cand = None
+    if isinstance(cand, dict) and _wellformed_edit(cand):
+        cand = [cand]
     if isinstance(cand, list) and cand and all(_wellformed_edit(e) for e in cand):
         return cand
     return fallback_file_edits(base, raw) or []
@@ -634,12 +642,16 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                  "from ORIGINAL with the dependency map")
             pending = []
     if not pending:
-        # Bare DEBUG entry: no initial patch, but live failure evidence
-        # exists (reproduce-first failed) — the bounded debug loop may
-        # still recover via evidence-triggered auto-repair. Anything
-        # else stops here rather than inventing code.
-        if (chosen == C.CODE_DEBUG and pre.get("executed")
-                and pre.get("exit_code") != 0):
+        # Live failing tests + a generator: spend the repair budget from
+        # BEST/ORIGINAL rather than inventing a patch with no evidence.
+        # generate is None remains fail-closed (do not invent code).
+        live = bool(pre.get("executed") and pre.get("exit_code") != 0)
+        can_retry = (
+            (chosen == C.CODE_DEBUG and live)
+            or (chosen == C.CODE_EDIT and live and generate is not None
+                and not structural)
+        )
+        if can_retry:
             step("EDIT", C.NOT_RUN,
                  "no initial patch; entering debug loop on live evidence")
             touched, diffs = [], []
@@ -967,5 +979,7 @@ def run_coding_task(repo_root: str | Path, request: str, *,
                          "ignored_feedback": ignored_feedback,
                          "repair_session": session.export(),
                          "failure_delta": (session.deltas[-1]
-                                           if session.deltas else None)},
-            "detail": detail, "files_touched": touched}
+                                           if session.deltas else None),
+                         "usage": dict(usage)},
+            "detail": detail, "files_touched": touched,
+            "usage": dict(usage)}

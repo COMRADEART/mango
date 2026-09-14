@@ -1,0 +1,9 @@
+--- a/src/m07.py
++++ b/src/m07.py
+@@ -1,5 +1,5 @@
+ def total_upto(n):
+     s = 0
+     for i in range(n):
+-        s += i
++        s += i + 1
+     return s

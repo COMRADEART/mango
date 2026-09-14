@@ -1,0 +1,17 @@
+--- a/src/rf02.py
++++ b/src/rf02.py
+@@ -1,2 +1,2 @@
+-def calc_total(xs):
++def compute_total(xs):
+     return sum(xs)
+--- a/src/rfu02.py
++++ b/src/rfu02.py
+@@ -1,6 +1,6 @@
+ import sys, os
+ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+-from rf02 import calc_total
++from rf02 import compute_total
+ 
+ def run(xs):
+-    return calc_total(xs)
++    return compute_total(xs)

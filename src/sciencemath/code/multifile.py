@@ -13,14 +13,25 @@ _ACROSS = re.compile(
 
 def is_multi_file_task(request: str, context_files: list | None = None,
                        involved: list | None = None) -> bool:
-    files = [f for f in (context_files or []) + (involved or [])
-             if f and not str(f).endswith("__init__.py")]
-    src_py = [f for f in files if str(f).replace("\\", "/").endswith(".py")
-              and "/test" not in str(f).replace("\\", "/").lower()
-              and not Path(str(f)).name.startswith("test_")]
-    if len(set(src_py)) >= 2:
+    """True when the *request* requires coordinated edits.
+
+    Extra files in context are READ context (e.g. api_compat shows the
+    new library signature) and must not force edits of those files.
+    """
+    if _ACROSS.search(request or ""):
         return True
-    return bool(_ACROSS.search(request or ""))
+    req = request or ""
+    named = []
+    for f in list(context_files or []) + list(involved or []):
+        rel = str(f).replace("\\", "/")
+        if (not rel or rel.endswith("__init__.py")
+                or not rel.endswith(".py")
+                or "/test" in rel.lower()
+                or Path(rel).name.startswith("test_")):
+            continue
+        if rel in req or Path(rel).name in req:
+            named.append(rel)
+    return len(set(named)) >= 2
 
 
 def _read(base: Path, rel: str) -> str:

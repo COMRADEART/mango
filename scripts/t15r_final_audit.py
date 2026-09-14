@@ -22,9 +22,11 @@ def sha(p: Path) -> str | None:
 
 
 def sha_group(files: list[Path]) -> str:
+    """Content hash keyed by repo-relative posix paths (matches entry gate)."""
     h = hashlib.sha256()
     for p in files:
-        h.update(p.as_posix().encode())
+        rel = p.resolve().relative_to(ROOT).as_posix()
+        h.update(rel.encode("utf-8"))
         h.update(b"\0")
         h.update(p.read_bytes() if p.exists() else b"")
         h.update(b"\0")

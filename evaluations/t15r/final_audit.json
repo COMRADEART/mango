@@ -1,0 +1,285 @@
+{
+  "milestone": "T15R final audit",
+  "recorded_at": "2026-09-14T03:16:41.936132+00:00",
+  "gates_total": 33,
+  "passes": 33,
+  "fails": [],
+  "checks": [
+    {
+      "check": "entry_gate",
+      "status": "PASS",
+      "measured": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "executive_router_hash_unchanged",
+      "status": "PASS",
+      "measured": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60",
+      "detail": ""
+    },
+    {
+      "check": "fidelity_hash_unchanged",
+      "status": "PASS",
+      "measured": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+      "detail": ""
+    },
+    {
+      "check": "correction_firewall_hash_unchanged",
+      "status": "PASS",
+      "measured": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+      "detail": ""
+    },
+    {
+      "check": "t3_adapter_hash_unchanged",
+      "status": "PASS",
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "detail": ""
+    },
+    {
+      "check": "scicomp_hash_unchanged",
+      "status": "PASS",
+      "measured": "60e7987791fc54d195bc4dc07bb58b284b0c96ab5d9fac3f24a576731bb3e563",
+      "detail": ""
+    },
+    {
+      "check": "t15_v1_historical_unchanged",
+      "status": "PASS",
+      "measured": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
+      "detail": ""
+    },
+    {
+      "check": "t15_historical_predictions_present",
+      "status": "PASS",
+      "measured": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t15\\runs\\code-final\\predictions.jsonl",
+      "detail": ""
+    },
+    {
+      "check": "v11_checksum_frozen",
+      "status": "PASS",
+      "measured": "cbb9cb214ee9dd53331da8b3a68e237e0e1910398f89c4cc12dde87b5efde3fd",
+      "detail": ""
+    },
+    {
+      "check": "v11_behavioral_changes_none",
+      "status": "PASS",
+      "measured": "NONE",
+      "detail": ""
+    },
+    {
+      "check": "repair_microbench_checksum",
+      "status": "PASS",
+      "measured": "18bc190b4cc207622cf2f8037a20f34fd60a50fea2d7f33043972a08c23362cf",
+      "detail": ""
+    },
+    {
+      "check": "repair_microbench_targets",
+      "status": "PASS",
+      "measured": {
+        "best_state_selection": 1.0,
+        "best_state_selection_n": 67,
+        "best_state_selection_hits": 67,
+        "failure_delta_correctness": 1.0,
+        "failure_delta_correctness_n": 21,
+        "failure_delta_correctness_hits": 21,
+        "unsafe_state_acceptance": 0.0,
+        "unsafe_state_acceptance_n": 24,
+        "unsafe_state_acceptance_hits": 0,
+        "test_weakening_acceptance": 0.0,
+        "test_weakening_acceptance_n": 18,
+        "test_weakening_acceptance_hits": 0,
+        "unnecessary_revert": 0.0,
+        "unnecessary_revert_n": 5,
+        "unnecessary_revert_hits": 0,
+        "repair_loop_convergence": 1.0,
+        "repair_loop_convergence_n": 12,
+        "repair_loop_convergence_hits": 12
+      },
+      "detail": ""
+    },
+    {
+      "check": "failure_freeze_present",
+      "status": "PASS",
+      "measured": 28,
+      "detail": ""
+    },
+    {
+      "check": "final_split_isolation",
+      "status": "PASS",
+      "measured": "139/139",
+      "detail": ""
+    },
+    {
+      "check": "task_ids_unique",
+      "status": "PASS",
+      "measured": 139,
+      "detail": ""
+    },
+    {
+      "check": "no_missing_tasks",
+      "status": "PASS",
+      "measured": [],
+      "detail": ""
+    },
+    {
+      "check": "no_duplicate_tasks",
+      "status": "PASS",
+      "measured": null,
+      "detail": ""
+    },
+    {
+      "check": "model_identity",
+      "status": "PASS",
+      "measured": {
+        "model": "Qwen/Qwen3-4B-Instruct-2507",
+        "used": true,
+        "load": {
+          "ok": true,
+          "error": null,
+          "quantization": "4bit-nf4-double",
+          "load_vram_bytes": 2716700672,
+          "peak_vram_bytes": 2716700672,
+          "reserved_vram_bytes": 2732589056,
+          "smoke_latency_s": 0.51
+        },
+        "gen": {
+          "seed": 20260912,
+          "max_new_tokens": 384
+        }
+      },
+      "detail": ""
+    },
+    {
+      "check": "code_implementation_hash_recorded",
+      "status": "PASS",
+      "measured": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "detail": ""
+    },
+    {
+      "check": "repair_loop_present",
+      "status": "PASS",
+      "measured": "996fe5013d19c867729f3d8a6c020fbb584888ae87416ba527e8945c6fd53d25",
+      "detail": ""
+    },
+    {
+      "check": "floors_evaluated",
+      "status": "PASS",
+      "measured": "PROMOTE_CODE_SKILL",
+      "detail": ""
+    },
+    {
+      "check": "critical_safety_floors",
+      "status": "PASS",
+      "measured": [],
+      "detail": ""
+    },
+    {
+      "check": "bug_fix_metrics_recorded",
+      "status": "PASS",
+      "measured": {
+        "measured": 0.96,
+        "n": 25,
+        "floor": 0.85,
+        "kind": "min",
+        "critical": false,
+        "verdict": "PASS",
+        "numerator": 24
+      },
+      "detail": ""
+    },
+    {
+      "check": "executable_metrics_recorded",
+      "status": "PASS",
+      "measured": {
+        "measured": 0.8611,
+        "n": 72,
+        "floor": 0.8,
+        "kind": "min",
+        "critical": false,
+        "verdict": "PASS",
+        "numerator": 62
+      },
+      "detail": ""
+    },
+    {
+      "check": "unrelated_edit_metrics_recorded",
+      "status": "PASS",
+      "measured": {
+        "measured": 0.0,
+        "n": 72,
+        "floor": 0.02,
+        "kind": "max",
+        "critical": false,
+        "verdict": "PASS",
+        "numerator": 0
+      },
+      "detail": ""
+    },
+    {
+      "check": "protection_battery",
+      "status": "PASS",
+      "measured": "ALL_PASS",
+      "detail": ""
+    },
+    {
+      "check": "security_zero_violations",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "scicomp_numeric_holds",
+      "status": "PASS",
+      "measured": {
+        "numeric": 0.8695652173913043,
+        "floor": 0.848
+      },
+      "detail": ""
+    },
+    {
+      "check": "pytest_green",
+      "status": "PASS",
+      "measured": {
+        "tests": 1141,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "detail": ""
+    },
+    {
+      "check": "no_training",
+      "status": "PASS",
+      "measured": {
+        "training": "NONE",
+        "weights": "NO"
+      },
+      "detail": ""
+    },
+    {
+      "check": "no_paid_compute",
+      "status": "PASS",
+      "measured": "NOT_USED",
+      "detail": ""
+    },
+    {
+      "check": "code_decision_consistent",
+      "status": "PASS",
+      "measured": {
+        "decision": "PROMOTE_CODE_SKILL",
+        "availability": "ACTIVE"
+      },
+      "detail": ""
+    },
+    {
+      "check": "skill_availability_recorded",
+      "status": "PASS",
+      "measured": "ACTIVE",
+      "detail": ""
+    }
+  ],
+  "code_decision": "PROMOTE_CODE_SKILL",
+  "code_availability": "ACTIVE",
+  "manual_override": false,
+  "passed": true,
+  "failed": false
+}
