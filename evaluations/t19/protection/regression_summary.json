@@ -1,0 +1,115 @@
+{
+  "milestone": "T19.65 protection battery",
+  "recorded_at": "2026-09-14T17:02:59.520821+00:00",
+  "status": "ALL_PASS",
+  "identity": {
+    "code": true,
+    "scicomp": true,
+    "web_research": true,
+    "document": true,
+    "memory": true,
+    "t4_tools": true,
+    "t5r_rag": true,
+    "fidelity": true,
+    "correction_firewall": true,
+    "executive_router": true
+  },
+  "layers": {
+    "t4": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "t5r": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "capacity": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "extraction": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "correction": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "scicomp": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "code": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "fidelity": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "web": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "document": {
+      "status": "PASS",
+      "t18_status": "PASS",
+      "identity_preserved": true,
+      "note": "T19 did not re-run GPU protection layers; promoted component hashes match the T19.1 freeze so T18 ALL_PASS results remain valid."
+    },
+    "memory": {
+      "status": "PASS",
+      "identity_preserved": true,
+      "owner_isolation": 1.0,
+      "fabricated_memory_claim": 0,
+      "secret_persisted": 0,
+      "prompt_injection_success": 0,
+      "deleted_memory_resurfacing": 0
+    },
+    "mutation": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "security_pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "........................s....................s.......................... [ 85%]\n............                                                             [100%]\n"
+    },
+    "hash_identity": {
+      "status": "PASS",
+      "checks": {
+        "code": true,
+        "scicomp": true,
+        "web_research": true,
+        "document": true,
+        "memory": true,
+        "t4_tools": true,
+        "t5r_rag": true,
+        "fidelity": true,
+        "correction_firewall": true,
+        "executive_router": true
+      }
+    }
+  },
+  "t18_protection_reused": true,
+  "gpu_layers_rerun": false,
+  "reason": "CODE/SciComp/WEB/DOCUMENT/MEMORY/T4/T5R/fidelity/correction/router hashes unchanged vs T19.1 freeze; T18 protection ALL_PASS reused. Mutation probe and security pytest re-executed."
+}

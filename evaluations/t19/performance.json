@@ -1,0 +1,15 @@
+{
+  "milestone": "T19.67 performance",
+  "recorded_at": "2026-09-14T17:02:46.940363+00:00",
+  "plan_creation_ms_mean": 0.345,
+  "validation_ms_mean": 0.376,
+  "replan_ms_mean": 0.351,
+  "checkpoint_save_ms_mean": 0.502,
+  "resume_ms_mean": 0.243,
+  "average_tasks": 5,
+  "average_replans": 0,
+  "ram_mb": 66,
+  "vram_mb": 0,
+  "p95_plan_creation_budget_ms": 2000,
+  "model_latency_separated": true
+}
