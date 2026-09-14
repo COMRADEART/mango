@@ -1,0 +1,8 @@
+--- a/src/cli04.py
++++ b/src/cli04.py
+@@ -3,4 +3,4 @@
+ from lib04 import connect
+ 
+ def start():
+-    return connect('h', 80)
++    return connect('h', 80, 30)

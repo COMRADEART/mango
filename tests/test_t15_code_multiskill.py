@@ -14,7 +14,11 @@ def test_code_skill_active_after_t15r_promotion():
     reg = SkillRegistry()
     assert reg.availability("CODE") == ACTIVE
     assert reg.executable("CODE")
-    assert not reg.executable("WEB_RESEARCH")
+    # WEB_RESEARCH stays non-executable until a T16 promotion gate.
+    if reg.availability("WEB_RESEARCH") == PREPARED_ONLY:
+        assert not reg.executable("WEB_RESEARCH")
+    else:
+        assert reg.executable("WEB_RESEARCH")
     assert not reg.executable("MEMORY")
 
 
@@ -43,7 +47,11 @@ def test_router_does_not_fake_web_or_memory():
     reg = SkillRegistry()
     rec = route_task("search the web for today's mango news", registry=reg)
     assert rec["execution_status"] == "ROUTED_ONLY"
-    assert rec["primary_skill"] not in ("WEB_RESEARCH", "MEMORY")
+    assert rec["primary_skill"] != "MEMORY"
+    if not reg.executable("WEB_RESEARCH"):
+        assert rec["primary_skill"] != "WEB_RESEARCH"
+    else:
+        assert rec["primary_skill"] == "WEB_RESEARCH"
     rec2 = route_task("remember this conversation forever", registry=reg)
     assert rec2["primary_skill"] != "MEMORY"
     assert rec2["execution_status"] == "ROUTED_ONLY"

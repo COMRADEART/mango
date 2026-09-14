@@ -113,15 +113,26 @@ def default_registry() -> dict[str, dict]:
         ),
         "WEB_RESEARCH": _skill(
             skill_id="WEB_RESEARCH",
-            description="Live web research. Interface only in T14.",
-            availability=PREPARED_ONLY,
+            description="Bounded web research: search, fetch, evaluate, "
+                        "extract, verify, synthesize, cite. Fixture-first; "
+                        "optional free live providers. T16 runtime.",
+            availability=ACTIVE,
             required_permissions=["network"],
-            cost_class=ONLINE_METERED,
-            offline=False,
+            cost_class=ONLINE_FREE,
+            offline=True,
             online=True,
-            deterministic=False,
+            deterministic=True,
+            verification_method="web_evidence_graph",
             fallback_behavior="SCIENCE_RAG",
             latency_class="HIGH",
+            input_schema={"type": "object",
+                          "properties": {"question": {"type": "string"}},
+                          "required": ["question"]},
+            output_schema={"type": "object",
+                           "properties": {
+                               "answer": {"type": "string"},
+                               "status": {"type": "string"},
+                               "citations": {"type": "array"}}},
         ),
         "DOCUMENT": _skill(
             skill_id="DOCUMENT",

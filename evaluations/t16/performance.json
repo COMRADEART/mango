@@ -1,0 +1,16 @@
+{
+  "milestone": "T16.50/T16.36",
+  "query_planning_ms_mean": 0.039,
+  "search_ms_mean": 0.861,
+  "fetch_ms_mean": 0.439,
+  "evidence_extraction_ms_mean": 0.093,
+  "entailment_ms_mean": 0.343,
+  "synthesis_ms_mean": 1.809,
+  "end_to_end_ms_mean": 4.142,
+  "unique_domains": 26,
+  "duplicate_or_syndicated_span_events": 0,
+  "sources_fetched_total": 1184,
+  "vram": "fixture FINAL unused; protection CODE peak 2973487616 bytes (~2836 MiB allocated-class); capacity peak_allocated_mib 3492.6",
+  "network_requests_fixture": 0,
+  "n": 160
+}

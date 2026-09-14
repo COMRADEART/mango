@@ -1,0 +1,13 @@
+--- a/src/cfg18.py
++++ b/src/cfg18.py
+@@ -1 +1 @@
+-SEP = ';'
++SEP = ','
+--- a/src/use18.py
++++ b/src/use18.py
+@@ -1,4 +1,4 @@
+ from src.cfg18 import SEP
+ 
+ def joined(items):
+-    return SEP.join(items) + SEP
++    return SEP.join(items) + ''

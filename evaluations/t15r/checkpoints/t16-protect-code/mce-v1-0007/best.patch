@@ -1,0 +1,6 @@
+--- a/src/m06.py
++++ b/src/m06.py
+@@ -1,2 +1,2 @@
+ def add(a, b):
+-    return a - b
++    return a + b

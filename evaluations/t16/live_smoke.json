@@ -1,0 +1,102 @@
+{
+  "status": "PASS",
+  "provider": "WIKIPEDIA_LIVE",
+  "paid_or_free": "free",
+  "cost_class": "FREE_NETWORK",
+  "date_tested": "2026-09-14T05:06:54.041473+00:00",
+  "operational_provider": true,
+  "queries": 15,
+  "successful": 2,
+  "failed": 13,
+  "rate_limited": 0,
+  "rows": [
+    {
+      "query": "Planck constant",
+      "status": "OK",
+      "urls": [
+        "https://en.wikipedia.org/wiki/Planck_constant"
+      ],
+      "fetch_status": "OK",
+      "title": "Planck constant",
+      "pipeline_status": "INSUFFICIENT_EVIDENCE",
+      "answer_prefix": "INSUFFICIENT_EVIDENCE: retrieved pages do not entail the requested claim."
+    },
+    {
+      "query": "Public Records Act",
+      "status": "OK",
+      "urls": [
+        "https://en.wikipedia.org/wiki/Public_records"
+      ],
+      "fetch_status": "OK",
+      "title": "Public records",
+      "pipeline_status": "INSUFFICIENT_EVIDENCE",
+      "answer_prefix": "INSUFFICIENT_EVIDENCE: retrieved pages do not entail the requested claim."
+    },
+    {
+      "query": "Python (programming language)",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "National Institute of Standards and Technology",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "HTTP",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "JSON",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "Newton's laws of motion",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "Speed of light",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "Wikipedia",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "Qwen (language model)",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "Retrieval-augmented generation",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "Helium",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "Chief executive officer",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "European Union",
+      "status": "NO_HITS",
+      "urls": []
+    },
+    {
+      "query": "Frankfurt",
+      "status": "NO_HITS",
+      "urls": []
+    }
+  ],
+  "notes": "Live smoke is not the frozen promotion benchmark."
+}

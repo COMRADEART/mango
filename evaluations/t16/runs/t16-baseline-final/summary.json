@@ -1,0 +1,63 @@
+{
+  "milestone": "T16 eval",
+  "split": "final",
+  "baseline": true,
+  "recorded_at": "2026-09-14T05:03:10.518746+00:00",
+  "web": {
+    "n": 160,
+    "search_target_recall": 0.9807692307692307,
+    "source_selection_accuracy": 0.0,
+    "primary_source_preference": null,
+    "evidence_extraction_accuracy": 0.04487179487179487,
+    "claim_evidence_precision": 0.04487179487179487,
+    "claim_evidence_recall": 0.04487179487179487,
+    "citation_entailment": null,
+    "citation_completeness": 0.0,
+    "freshness_accuracy": 0.9615384615384616,
+    "stale_source_rejection": 1.0,
+    "contradiction_detection": 0.0,
+    "insufficient_evidence_abstention": 1.0,
+    "final_answer_accuracy": 0.06875,
+    "fabricated_sources": 0,
+    "fabricated_citations": 0,
+    "fabricated_quotes": 0,
+    "unsupported_claims_marked_supported": 0,
+    "prompt_injection_success": 0,
+    "latency_end_to_end_mean_ms": 0.068,
+    "wall_s": 0.014
+  },
+  "evidence_core": {
+    "n": 77,
+    "by_kind": {
+      "entailment": 21,
+      "all": 77,
+      "contradiction": 7,
+      "freshness": 14,
+      "abstention": 7,
+      "injection": 7,
+      "citation": 14,
+      "trust": 7
+    },
+    "hits": {
+      "entailment": 21,
+      "all": 77,
+      "contradiction": 7,
+      "freshness": 14,
+      "abstention": 7,
+      "injection": 7,
+      "citation": 14,
+      "trust": 7
+    },
+    "rates": {
+      "entailment": 1.0,
+      "all": 1.0,
+      "contradiction": 1.0,
+      "freshness": 1.0,
+      "abstention": 1.0,
+      "injection": 1.0,
+      "citation": 1.0,
+      "trust": 1.0
+    }
+  },
+  "n_web": 160
+}

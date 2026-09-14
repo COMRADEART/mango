@@ -1,0 +1,13 @@
+--- a/src/cfg13.py
++++ b/src/cfg13.py
+@@ -1 +1 @@
+-RATE = 3
++RATE = 1
+--- a/src/use13.py
++++ b/src/use13.py
+@@ -1,4 +1,4 @@
+ from src.cfg13 import RATE
+ 
+ def scaled(x):
+-    return x * RATE + x
++    return x * RATE + 5

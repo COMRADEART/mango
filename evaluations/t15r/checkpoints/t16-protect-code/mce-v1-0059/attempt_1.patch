@@ -1,0 +1,7 @@
+--- a/src/tr08.py
++++ b/src/tr08.py
+@@ -1,2 +1,2 @@
+-def total(xs):
+-    return sum(xs)
++def total(xs, start=0):
++    return sum(xs, start)

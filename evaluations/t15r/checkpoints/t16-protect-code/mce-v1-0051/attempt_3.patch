@@ -1,0 +1,6 @@
+--- a/src/tr00.py
++++ b/src/tr00.py
+@@ -1,2 +1,3 @@
+ def total(xs):
+     return sum(xs)
++    return sum(xs)

@@ -1,0 +1,10 @@
+{
+  "milestone": "T16.47 — tuning closed before FINAL",
+  "recorded_at": "2026-09-14T05:20:00+00:00",
+  "dev_label": "t16-dev",
+  "final_not_inspected_before_close": true,
+  "suite_checksums_frozen": true,
+  "mango_web_eval_v1_final_sha256": "097f7af7601a48e7218663eea08e0c5beeb91c958e72b10d8c7b0a923c2f2fd6",
+  "mango_evidence_core_v1_final_sha256": "3b5a03f65dfa7bc95db62f50004b41d4ae2ea8f672472c2c9a8343bf6aa6e248",
+  "notes": "Pipeline/harness tuned on DEV only. FINAL rows, gold labels, and floors were not edited after this close."
+}

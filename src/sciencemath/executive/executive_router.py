@@ -36,8 +36,13 @@ _CODE_REQUEST = re.compile(
     r"execute (this )?(python|script|shell)|implement a function|"
     r"debug this (code|program)|open a shell)\b", re.I)
 _WEB_REQUEST = re.compile(
-    r"\b(search the web|look up online|browse|latest news|"
-    r"what happened today|google)\b", re.I)
+    r"\b(search the web|look up( online)?|browse|latest news|"
+    r"what happened( to| with)? .*(today|this week)|google|"
+    r"current (ceo|mayor|status|price|version)|"
+    r"official (docs|documentation|specification|site)|"
+    r"fact[- ]check|compare (these |the )?(three |two )?sources|"
+    r"according to (the )?(web|sources|official)|"
+    r"as of today|breaking news)\b", re.I)
 _DOC_REQUEST = re.compile(
     r"\b(this pdf|this document|spreadsheet|csv file|parse the file)\b", re.I)
 _MEM_REQUEST = re.compile(
@@ -176,6 +181,15 @@ def _select(question: str, nec: dict, prec: dict, t4: dict,
                 f"{skill} requested but availability="
                 f"{reg.availability(skill)}; not executed")
 
+    # T16 availability integration only: WEB_RESEARCH when executable.
+    if asked["web"] and reg.executable("WEB_RESEARCH"):
+        follow: list[str] = []
+        if nec["necessity"] == COMPUTE_REQUIRED and reg.executable("SCICOMP"):
+            follow = ["SCICOMP"]
+        elif asked["code"] and reg.executable("CODE"):
+            follow = ["CODE"]
+        return "WEB_RESEARCH", follow, "web research; evidence then tools"
+
     if asked["planning"] and reg.executable("PLANNING"):
         # Planning may precede another executable skill, depth-capped.
         follow = None
@@ -299,8 +313,10 @@ def classify_routing_failure(predicted: dict, gold: dict) -> str | None:
             return None
         return "UNAVAILABLE_SKILL"
     p, g = predicted.get("primary_skill"), gold.get("primary_skill")
-    if g in ("CODE", "WEB_RESEARCH", "DOCUMENT", "MEMORY") and p == g:
-        return "UNAVAILABLE_SKILL"  # executed an unavailable skill
+    # DOCUMENT/MEMORY remain non-executable. CODE and WEB_RESEARCH may
+    # be executed when the registry marks them executable (T15R/T16).
+    if g in ("DOCUMENT", "MEMORY") and p == g:
+        return "UNAVAILABLE_SKILL"
     if gold.get("expect_unavailable_rejection") and p in ("GENERAL", "NO_TOOL"):
         return None
     if predicted.get("workflow_depth", 1) > MAX_WORKFLOW_DEPTH:

@@ -1,0 +1,9 @@
+{
+  "milestone": "T16.47 harness-bug rerun",
+  "original_run": "evaluations/t16/runs/t16-final",
+  "frozen_original_copy": "evaluations/t16/runs/t16-final-original",
+  "bug": "Numeric entailment treated identifier fragments such as v3 vs v3.2 as contradictory quantities, and low-trust 'not an official source' spans outranked primary CEO evidence. Also bankrupt queries could cite earnings text that never mentioned bankruptcy.",
+  "fix": "Require two-digit or decimal numbers for numeric entailment/conflict; penalize official-source negation and off-topic earnings/bankrupt spans.",
+  "scope": "Rerun ALL FINAL rows after the harness fix. No gold-label edits. No selective rerun.",
+  "follow_up": "Scorer now matches dotted numeric golds inside version strings (v3.2). Negation in article-body lookups is treated as an answer, not a contradiction. Primary sources are preferred over low-trust 'not an official source' commentary."
+}

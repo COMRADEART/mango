@@ -1,0 +1,6 @@
+--- a/src/m11.py
++++ b/src/m11.py
+@@ -1,2 +1,2 @@
+ def pair(a, b):
+-    return (b, a)
++    return (a, b)

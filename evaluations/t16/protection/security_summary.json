@@ -1,0 +1,12 @@
+{
+  "milestone": "T16.45 security battery",
+  "violations": 0,
+  "pytest_exit": 0,
+  "detail": "{'tests': 59, 'failures': 0, 'errors': 0, 'skipped': 1} over ['tests/test_t11_security.py', 'tests/test_t15_code_security.py', 'tests/test_t16_web_code.py', 'tests/test_t16_web_security.py', 'tests/test_t16_web_security.py']",
+  "counts": {
+    "tests": 59,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  }
+}

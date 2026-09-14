@@ -1,0 +1,24 @@
+{
+  "milestone": "T16.54 WEB_RESEARCH availability",
+  "recorded_at": "2026-09-14T12:50:05.017482+00:00",
+  "decision": "PROMOTE_WEB_RESEARCH_SKILL",
+  "before": "PREPARED_ONLY",
+  "after": "ACTIVE",
+  "applied": true,
+  "gates": {
+    "quality_ok": true,
+    "operational_provider": true,
+    "protection": "ALL_PASS",
+    "security_violations": 0,
+    "pytest_failures": 0,
+    "pytest_errors": 0,
+    "citation_zeros": true
+  },
+  "executive_router": "UNCHANGED KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "document": "UNCHANGED PREPARED_ONLY",
+  "memory": "UNCHANGED PREPARED_ONLY",
+  "planning": "UNCHANGED EXPERIMENTAL",
+  "weight_promotion": "NO",
+  "training": "NONE",
+  "paid_compute": "NOT_USED"
+}

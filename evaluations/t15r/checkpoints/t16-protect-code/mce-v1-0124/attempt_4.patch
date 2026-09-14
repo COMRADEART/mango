@@ -1,0 +1,12 @@
+--- a/src/dx05.py
++++ b/src/dx05.py
+@@ -1,2 +1,8 @@
+ def normalize(xs):
+-    raise NotImplementedError
++    if not xs:
++        return []
++    min_val = min(xs)
++    max_val = max(xs)
++    if max_val == min_val:
++        return [0.5] * len(xs)
++    return [(x - min_val) / (max_val - min_val) for x in xs]

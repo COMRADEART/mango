@@ -1,0 +1,46 @@
+{
+  "milestone": "T16.44 failure taxonomy",
+  "n_final": 160,
+  "n_flagged": 3,
+  "counts": {
+    "SEARCH_MISS": 0,
+    "SOURCE_SELECTION_ERROR": 0,
+    "FETCH_FAILURE": 0,
+    "STALE_SOURCE_USED": 0,
+    "PRIMARY_SOURCE_MISSED": 0,
+    "EVIDENCE_EXTRACTION_ERROR": 3,
+    "ENTAILMENT_ERROR": 0,
+    "CITATION_MISSING": 0,
+    "CITATION_WRONG": 0,
+    "CLAIM_UNSUPPORTED": 0,
+    "CONTRADICTION_MISSED": 0,
+    "TEMPORAL_ERROR": 0,
+    "INJECTION_FAILURE": 0,
+    "ABSTENTION_FAILURE": 0,
+    "PROVIDER_FAILURE": 0,
+    "OTHER": 0
+  },
+  "examples": [
+    {
+      "task_id": "mwe-v1-0071",
+      "category": "citation_mapping",
+      "taxonomy": "EVIDENCE_EXTRACTION_ERROR",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "answer_prefix": "INSUFFICIENT_EVIDENCE: retrieved pages do not entail the requested claim."
+    },
+    {
+      "task_id": "mwe-v1-0073",
+      "category": "citation_mapping",
+      "taxonomy": "EVIDENCE_EXTRACTION_ERROR",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "answer_prefix": "INSUFFICIENT_EVIDENCE: retrieved pages do not entail the requested claim."
+    },
+    {
+      "task_id": "mwe-v1-0075",
+      "category": "citation_mapping",
+      "taxonomy": "EVIDENCE_EXTRACTION_ERROR",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "answer_prefix": "INSUFFICIENT_EVIDENCE: retrieved pages do not entail the requested claim."
+    }
+  ]
+}

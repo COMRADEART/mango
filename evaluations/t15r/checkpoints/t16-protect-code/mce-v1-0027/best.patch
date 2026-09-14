@@ -1,0 +1,6 @@
+--- a/src/m26.py
++++ b/src/m26.py
+@@ -1,2 +1,2 @@
+ def is_before(a, b):
+-    return a > b
++    return a < b

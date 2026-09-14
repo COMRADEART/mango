@@ -1,0 +1,336 @@
+{
+  "milestone": "T16 final audit",
+  "recorded_at": "2026-09-14T12:51:12.645494+00:00",
+  "gates_total": 41,
+  "passes": 41,
+  "fails": [],
+  "checks": [
+    {
+      "check": "entry_gate",
+      "status": "PASS",
+      "measured": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "base_commit_lineage",
+      "status": "PASS",
+      "measured": {
+        "head": "525496921baa1b956b805a86a8de31b51abcf73e",
+        "required": "525496921baa1b956b805a86a8de31b51abcf73e"
+      },
+      "detail": ""
+    },
+    {
+      "check": "branch",
+      "status": "PASS",
+      "measured": "t16-web-research",
+      "detail": ""
+    },
+    {
+      "check": "frozen_hashes_present",
+      "status": "PASS",
+      "measured": [
+        "executive_router",
+        "skill_registry",
+        "code",
+        "scicomp",
+        "t4_tools",
+        "t5r_rag",
+        "fidelity",
+        "correction_firewall"
+      ],
+      "detail": ""
+    },
+    {
+      "check": "code_hash_unchanged",
+      "status": "PASS",
+      "measured": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "detail": ""
+    },
+    {
+      "check": "scicomp_hash_unchanged",
+      "status": "PASS",
+      "measured": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+      "detail": ""
+    },
+    {
+      "check": "t4_hash_unchanged",
+      "status": "PASS",
+      "measured": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+      "detail": ""
+    },
+    {
+      "check": "t5r_hash_unchanged",
+      "status": "PASS",
+      "measured": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+      "detail": ""
+    },
+    {
+      "check": "fidelity_hash_unchanged",
+      "status": "PASS",
+      "measured": "f3c74a311cbfdf7a01ff0eae13770082704fa9d96b0e6163ce665e6174d9dc28",
+      "detail": ""
+    },
+    {
+      "check": "correction_firewall_hash_unchanged",
+      "status": "PASS",
+      "measured": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3",
+      "detail": ""
+    },
+    {
+      "check": "t3_adapter_unchanged",
+      "status": "PASS",
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "detail": ""
+    },
+    {
+      "check": "security_policy_hash_unchanged",
+      "status": "PASS",
+      "measured": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+      "detail": ""
+    },
+    {
+      "check": "web_final_checksum",
+      "status": "PASS",
+      "measured": "097f7af7601a48e7218663eea08e0c5beeb91c958e72b10d8c7b0a923c2f2fd6",
+      "detail": ""
+    },
+    {
+      "check": "evidence_final_checksum",
+      "status": "PASS",
+      "measured": "3b5a03f65dfa7bc95db62f50004b41d4ae2ea8f672472c2c9a8343bf6aa6e248",
+      "detail": ""
+    },
+    {
+      "check": "dev_final_isolation",
+      "status": "PASS",
+      "measured": {
+        "benchmark": "mango-web-eval-v1",
+        "total": 320,
+        "dev_n": 160,
+        "final_n": 160,
+        "dev_sha256": "07ec8def22bb38ffa71101d45e996f0439e2c346abc38b50dd710f6bc3397710",
+        "final_sha256": "097f7af7601a48e7218663eea08e0c5beeb91c958e72b10d8c7b0a923c2f2fd6",
+        "final_checksum_frozen_before_tuning": true,
+        "query_time": "2026-09-14",
+        "recorded_at": "2026-09-14T04:47:25.354205+00:00",
+        "categories": [
+          "citation_entailment",
+          "citation_mapping",
+          "claim_verification",
+          "contradictory_sources",
+          "date_sensitive_fact",
+          "duplicate_syndicated_sources",
+          "fabricated_citation_trap",
+          "fact_checking",
+          "fake_authority_page",
+          "insufficient_evidence",
+          "low_trust_source",
+          "malicious_webpage_prompt_injection",
+          "misleading_title",
+          "missing_page",
+          "multiple_source_synthesis",
+          "no_search_needed",
+          "partial_evidence",
+          "primary_source_selection",
+          "scientific_evidence",
+          "scope_mismatch",
+          "simple_factual_lookup",
+          "source_date_mismatch",
+          "stale_source_trap",
+          "technical_documentation",
+          "temporal_contradiction"
+        ]
+      },
+      "detail": ""
+    },
+    {
+      "check": "task_ids_unique",
+      "status": "PASS",
+      "measured": 160,
+      "detail": ""
+    },
+    {
+      "check": "final_predictions_complete",
+      "status": "PASS",
+      "measured": "160/160",
+      "detail": ""
+    },
+    {
+      "check": "no_duplicate_predictions",
+      "status": "PASS",
+      "measured": 160,
+      "detail": ""
+    },
+    {
+      "check": "model_identity",
+      "status": "PASS",
+      "measured": "Qwen/Qwen3-4B-Instruct-2507",
+      "detail": ""
+    },
+    {
+      "check": "web_research_implementation_hash",
+      "status": "PASS",
+      "measured": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+      "detail": ""
+    },
+    {
+      "check": "provider_configuration_recorded",
+      "status": "PASS",
+      "measured": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "live_provider_status_honest",
+      "status": "PASS",
+      "measured": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "executive_router_experimental",
+      "status": "PASS",
+      "measured": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+      "detail": ""
+    },
+    {
+      "check": "scicomp_identity_unchanged",
+      "status": "PASS",
+      "measured": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+      "detail": ""
+    },
+    {
+      "check": "code_identity_unchanged",
+      "status": "PASS",
+      "measured": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "detail": ""
+    },
+    {
+      "check": "citation_integrity_zeros",
+      "status": "PASS",
+      "measured": {
+        "fabricated_sources": 0,
+        "fabricated_citations": 0,
+        "fabricated_quotes": 0,
+        "unsupported_claims_marked_supported": 0
+      },
+      "detail": ""
+    },
+    {
+      "check": "freshness_metrics_recorded",
+      "status": "PASS",
+      "measured": 0.9615384615384616,
+      "detail": ""
+    },
+    {
+      "check": "contradiction_metrics_recorded",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": ""
+    },
+    {
+      "check": "abstention_metrics_recorded",
+      "status": "PASS",
+      "measured": 1.0,
+      "detail": ""
+    },
+    {
+      "check": "prompt_injection_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "paid_network_violations_zero",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "protection_battery",
+      "status": "PASS",
+      "measured": "ALL_PASS",
+      "detail": ""
+    },
+    {
+      "check": "security_zero_violations",
+      "status": "PASS",
+      "measured": 0,
+      "detail": ""
+    },
+    {
+      "check": "pytest_green",
+      "status": "PASS",
+      "measured": {
+        "milestone": "T16.52 \u2014 final pytest",
+        "recorded_at": "2026-09-14T12:50:59.588145+00:00",
+        "tests": 1191,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1,
+        "exit_code": 0,
+        "failed": 0,
+        "passed": 1190,
+        "time_s": 46.802
+      },
+      "detail": ""
+    },
+    {
+      "check": "no_training",
+      "status": "PASS",
+      "measured": "NONE",
+      "detail": ""
+    },
+    {
+      "check": "no_weight_change",
+      "status": "PASS",
+      "measured": "NO",
+      "detail": ""
+    },
+    {
+      "check": "web_research_decision",
+      "status": "PASS",
+      "measured": {
+        "decision": "PROMOTE_WEB_RESEARCH_SKILL",
+        "availability": "ACTIVE",
+        "operational_provider": true
+      },
+      "detail": ""
+    },
+    {
+      "check": "web_research_availability_matches_decision",
+      "status": "PASS",
+      "measured": {
+        "decision": "PROMOTE_WEB_RESEARCH_SKILL",
+        "availability": "ACTIVE",
+        "want": "ACTIVE"
+      },
+      "detail": ""
+    },
+    {
+      "check": "skill_availability_recorded",
+      "status": "PASS",
+      "measured": "ACTIVE",
+      "detail": ""
+    },
+    {
+      "check": "fixture_hashes_recorded",
+      "status": "PASS",
+      "measured": "fixture corpus hashed in source_id content_hash fields",
+      "detail": ""
+    },
+    {
+      "check": "source_rankings_present",
+      "status": "PASS",
+      "measured": "ranking.py explicit features",
+      "detail": ""
+    }
+  ],
+  "web_research_decision": "PROMOTE_WEB_RESEARCH_SKILL",
+  "web_research_availability": "ACTIVE",
+  "manual_override": false,
+  "passed": true,
+  "failed": false,
+  "web_implementation_sha256": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+  "git_head": "525496921baa1b956b805a86a8de31b51abcf73e",
+  "branch": "t16-web-research"
+}

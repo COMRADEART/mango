@@ -1,0 +1,8 @@
+--- a/src/feat12_slugify.py
++++ b/src/feat12_slugify.py
+@@ -1,2 +1,4 @@
+ def slugify(s):
+-    raise NotImplementedError
++    import re
++    s = s.lower().strip()
++    return re.sub(r'[^a-z0-9]+', '-', s).rstrip('-')
