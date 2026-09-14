@@ -1,0 +1,22 @@
+{
+  "suite": "mango-t21r-retrieval-holdout-v1",
+  "split": "holdout",
+  "total": 260,
+  "categories": {
+    "city_country": 40,
+    "city_founding_year": 34,
+    "city_landmark": 40,
+    "city_mayor": 40,
+    "city_region": 40,
+    "city_river": 40,
+    "person_birth_year": 7,
+    "person_birthplace": 6,
+    "person_field_of_study": 7,
+    "person_notable_work": 6
+  },
+  "holdout_sha256": "db17cf769bbc9da07f207d3f0f2555b9889066679157385f00f854a92881e84d",
+  "notes": "Retrieval holdout: gold-chunk rows scored on Recall@k / MRR / nDCG@5 / source diversity.",
+  "built_at": "2026-09-14T23:22:35.150830+00:00",
+  "seed": 2127,
+  "corpus_snapshot_date": "2026-03-31"
+}

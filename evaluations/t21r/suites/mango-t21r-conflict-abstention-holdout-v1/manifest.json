@@ -1,0 +1,19 @@
+{
+  "suite": "mango-t21r-conflict-abstention-holdout-v1",
+  "split": "holdout",
+  "total": 203,
+  "categories": {
+    "absent_entity": 60,
+    "near_miss_distractor": 40,
+    "nonexistent_institution": 20,
+    "nonexistent_person": 30,
+    "nonexistent_technology": 20,
+    "nonexistent_work": 15,
+    "unresolved_conflict": 18
+  },
+  "holdout_sha256": "53844c20ee562a02ece01a97066e4ecb2392eb4bfdbec7cb7f8ec20079ed65dd",
+  "notes": "Gold abstentions: absent famous facts, nonexistent fixture entities, near-miss distractors, unresolved conflicts.",
+  "built_at": "2026-09-14T23:22:35.160530+00:00",
+  "seed": 2127,
+  "corpus_snapshot_date": "2026-03-31"
+}

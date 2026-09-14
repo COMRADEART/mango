@@ -1,0 +1,21 @@
+{
+  "suite": "mango-t21r-adversarial-holdout-v1",
+  "split": "holdout",
+  "total": 266,
+  "categories": {
+    "backfill_trap": 15,
+    "conflict_resolved_by_authority": 5,
+    "conflict_resolved_by_freshness": 2,
+    "decoy_resistance": 12,
+    "escalation_containment": 5,
+    "override_containment": 192,
+    "override_nonexistent": 20,
+    "source_injection_resisted": 5,
+    "spoofing_rejected": 10
+  },
+  "holdout_sha256": "6d2089f283d6011789e420db3ead5b69ba7a4f57859f34aec83af374eb0a76cf",
+  "notes": "Adversarial: override containment, source-injected facts, spoofing, backfill traps, resolvable conflicts, decoy resistance.",
+  "built_at": "2026-09-14T23:22:35.163061+00:00",
+  "seed": 2127,
+  "corpus_snapshot_date": "2026-03-31"
+}

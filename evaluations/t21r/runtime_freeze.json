@@ -1,0 +1,98 @@
+{
+  "milestone": "T21R.0 runtime freeze",
+  "recorded_at": "2026-09-14T22:46:12.377056+00:00",
+  "canonical_base": "962dd581cdb1dcd4de486e983c2c1364c11903bb",
+  "git_head": "962dd581cdb1dcd4de486e983c2c1364c11903bb",
+  "git_tree_sha": "e27427ddc53a2e40e5180be34fd0eeebd28ab52f",
+  "t21_branch_head_in_ancestry": "f1a44b32047959fcf9a48c7468f523ad6cd885be",
+  "t15r_canonical_blob": "fba2437f78633884bd31965d78a4250bd1ca893c",
+  "runtime_composites": {
+    "knowledge_runtime": "a0ec3a80ee00900526cab86beee15ddf7aa16a693fefb42af8b67dab7668013d",
+    "executive_skills": "a726343464a213acac09218bd253c51c4a970187fbb46fa687b3619cac63ece5",
+    "executive_router": "dbc7fbd0d19688d1a220e27d18484f437f1adde3b24b4b5ba4fb6eb8ac246c10",
+    "science_rag_runtime": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "web_research_runtime": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+    "document_runtime": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+    "memory_runtime": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+    "planning_runtime": "d045885cefcd097ceffc6588b5e6b00a1072cfaa08526ba9e4070bbdc041528c",
+    "orchestration_runtime": "57b1c4ad8cd71829b78d5baab20c62617333718be39a96710b0084004561ae45",
+    "scicomp_runtime": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "code_runtime": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "correction_firewall": "7a307f6678d6afdc9d469c31b898ba4f4cc9e34d0df4c9e3e7770756e02c36e1",
+    "historical_write_guard": "75fb0777d4828dd3ad8ee60137fd0d931dcd072d3588b760d27898127a3807cf"
+  },
+  "knowledge_rag_registry": {
+    "availability": "ACTIVE",
+    "registry_sha256": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+    "skills_py_sha256_lf": "74e52f369c5e850d0ed929abbfbae41f714ea9fa84c1c62cbd5011adc151092a",
+    "counts": {
+      "ACTIVE": 12
+    }
+  },
+  "t21_corpus_manifest_checksum": "944d45043afd0d080f0e26d1f8000a25f905b6284840588d966c511264b076a0",
+  "t21_corpus_file_checksums": {
+    "sources.jsonl": "65c2a10ec27f05b65093ee9d148be40a53f7ccb62bf85f00b7213253bb128e5a",
+    "chunks.jsonl": "f8adf753dac76c3a013eb6e2e86890bc5bd1eada4de689d7610788006139bbe5"
+  },
+  "t21_artifact_sha256": {
+    "evaluations/t21/T21_FINAL_REPORT.md": "ffda94ce6e85cab701668f040d23fa6186706c20bfcb15a458fdf619d98e24a3",
+    "evaluations/t21/baselines.json": "cc7967f64ffa7e325298cbe11285320e9e21d1ba2e511a6beef37d611bb7b4e0",
+    "evaluations/t21/corpus_manifest.json": "2d397b2f5f54b0de34dee317dfcd44d0fd608bcb2a1c39009b081565751a734b",
+    "evaluations/t21/entry_freeze.json": "b7b08b02c1977a90dbbe3435e88d63d6cf951405958fa6999e38a8bde337df9a",
+    "evaluations/t21/eval_results.json": "d08c1ca3423c12c9e14ff2f4de670ed2acd5625711fe7bfe282d0c7f36992600",
+    "evaluations/t21/failure_analysis.json": "543bc65d150851114c44150cd2149a6b79733a55920d5c598c4111cab3324cbe",
+    "evaluations/t21/final_audit.json": "fac6755241e76a17e471340be2d37481391519b21570894d71708833c19f8c1a",
+    "evaluations/t21/floors.json": "a6b9b629f6d285e2d3e6b1023dd8b53d1d9cf8a015d5247cd87dc218138ac2b8",
+    "evaluations/t21/frozen_components.json": "4a822c1e0bfa7674a5bdbbaf46482bd6b4b9e94e5802e4558cffc1acaf09ad63",
+    "evaluations/t21/mutation_safety_probe.json": "203f0fc4909f976044898e1986f6a98a1b40912c7a79d402b2d5d8c03fdbf9a3",
+    "evaluations/t21/performance.json": "d92812951634e0df9c92c5b4b31c1a77c812ee3cca8e3a8022e70bf2e3cb92b5",
+    "evaluations/t21/promotion_decision.json": "11e8611df07287f7308a85d6a2afb770b691eef8ffd3a3d20c4da0cf7a2eb51e",
+    "evaluations/t21/pytest_entry.json": "cc889bd873b7a063b9f79da723e439ba5a8a990dd1c0bc2b539fb2468f42d0c6",
+    "evaluations/t21/pytest_final.json": "878533ffc3a23c57a3f363f471cec880b871a371d8392f464c18a02e423a2344",
+    "evaluations/t21/pytest_focused.json": "7ace28ba3e6a4734f3f80355e2c52e8c359c353a049aa62a00a30a13b049174e",
+    "evaluations/t21/registry_registration.json": "f5c8ffd3e78fc4324f65ed1903d1955512050fa83c4599eed2d3d241d404f15a",
+    "evaluations/t21/science_rag_regression.json": "2ff10762c55545aa02c0ad21f8d935478a9717fb3a1cc29f9d75a4b92c324c81",
+    "evaluations/t21/smoke.json": "48a4b52d4f6a6093eebd1c111ed9e6da4d078bda773310c0467328e19394f47e",
+    "evaluations/t21/tuning_closed.json": "f4db2ba0104c52a68af68a7bf2dc8634ba10aa86c55c649fffa4059ab235a643",
+    "evaluations/t21/protection/regression_summary.json": "8cecdc10f66a043000aea99c3f5e97c9f88a5e35e83b0a7538b430e5081673d9",
+    "rag/gk_corpus/corpus_manifest.json:manifest_checksum": "944d45043afd0d080f0e26d1f8000a25f905b6284840588d966c511264b076a0"
+  },
+  "t21_suite_manifests": {
+    "mango-general-abstention-v1": {
+      "total": 248,
+      "dev_sha256": "9ef3b08d496c3ce21c79c76e07b191d4d59a2a4d6ee4f62d3c442b4970052a3b",
+      "final_sha256": "77bf08b1bd4134eadd98854c610b9fb53d95f1d4fdc73a4065dbc586a1a68ed1"
+    },
+    "mango-general-adversarial-v1": {
+      "total": 273,
+      "dev_sha256": "7f17ce2d64ebfdad457c99bdc4a1418e62f23421d58f27e9ada651e92a9e0545",
+      "final_sha256": "519c4f4425d1d46b9902325be7246ba5dd307a4122f1e2450eeae80f7026e011"
+    },
+    "mango-general-citation-v1": {
+      "total": 320,
+      "dev_sha256": "edcbcdb0c991b56a4903510c67d8f323930bfa4be589c82f3a061799ca250749",
+      "final_sha256": "ca2081cd933eb5b142ba7a9ed4be3132e0dc9046ad8f49803a606f399afec5e7"
+    },
+    "mango-general-knowledge-rag-v1": {
+      "total": 640,
+      "dev_sha256": "28f5dd1021aaf9f15d013f0e11e46ba3ffab25d438c2f9a8491303987b3750fa",
+      "final_sha256": "b8e71981d05787470cbff974739b946f4c1bedd256b4f7e7089a47438b563786"
+    },
+    "mango-general-multihop-v1": {
+      "total": 240,
+      "dev_sha256": "dd62992188c9d5f16eb40e05aefc4286f05658b8098928d5dc356a8ef0bee004",
+      "final_sha256": "68634f472bf9c78bddd2ea9d8eb15470da1adfb4e896fa0cd9584f6fd980ed02"
+    },
+    "mango-general-retrieval-v1": {
+      "total": 480,
+      "dev_sha256": "c65387ad90a9a41c1999decc6a53ea5016436e972987614aa665c2be6dc5e796",
+      "final_sha256": "35751c7ca0ea7b46b9cf950c8ad9ec96ee5f5d77ad3851a580b4854a751cd750"
+    },
+    "mango-general-temporal-boundary-v1": {
+      "total": 280,
+      "dev_sha256": "27731d8d5edd3920228a60a27da9a0f6b1668e9e6098c767754303c36cc9897e",
+      "final_sha256": "03763a19d4d83b94e6622a02e2efd1e3970a9e3c41e3c79874ded639e19cb952"
+    }
+  },
+  "rule": "From this moment forward NO runtime change is allowed during T21R: no modification of src/sciencemath/knowledge/**, retrieval thresholds, citation rules, freshness rules, conflict logic, answer templates, entity gates, reranking, the T21 corpus, or the old T21 benchmark suites."
+}
