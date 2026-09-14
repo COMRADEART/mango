@@ -497,6 +497,42 @@ Propose-only planner is deterministic and template-driven; future work is an aut
 
 CLOSED
 
+## Post-Merge Audit Cleanup
+
+SciComp availability metadata correction:
+EXPERIMENTAL → ACTIVE
+
+Capability behavior changed:
+NO
+
+Benchmark scores changed:
+NO
+
+Promotion decision changed:
+NO
+
+Stress scenarios satisfying full 15–30 task T19 requirement:
+0
+
+Required:
+25
+
+Result:
+SHORTFALL
+
+Frozen gold contains 28 long-horizon scenarios with 15–30 tasks
+(pc-0063–pc-0068, pe-0129–pe-0144, pe-0299–pe-0304). All are single-skill
+CODE_BUGFIX pads with multiple dependencies and no observation-driven replan.
+The original Long-Horizon Stress table counted 315 scenarios under a loose
+report heuristic (mean tasks 5.01) and did not state the 15–30-task count.
+
+Classification:
+T19_STRESS_COVERAGE_SHORTFALL
+(benchmark-coverage shortfall; also harness counting ambiguity)
+
+T19 Family remains CLOSED. T19R is not recommended: planner quality and
+zero-tolerance gates are unchanged. T20 was not started.
+
 ## Ready for T20
 
 YES
