@@ -1,0 +1,26 @@
+{
+  "questions": 6,
+  "kinds": {
+    "abstain": 6
+  },
+  "abstain_discipline": 1.0,
+  "numeric_accuracy": null,
+  "over_compute_count": 0,
+  "necessity_accuracy": 1.0,
+  "router_rule_metrics": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 0,
+    "true_negative": 6,
+    "wrong_tool": 0,
+    "unnecessary_compute": 0,
+    "precision": null,
+    "recall": null
+  },
+  "median_llm_ms": 36670.3,
+  "arm": "B",
+  "suite": "conceptual",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "suite_sha256": "16d7b4d5f3fe5c79141d9bbeed0d1921f176654c12ce2a4c271f9701b17c1fd3",
+  "label": "t12-smoke-conB"
+}

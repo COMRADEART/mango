@@ -1,0 +1,18 @@
+{
+  "label": "t10-protect-cap",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "arm": "model",
+  "overall": 0.8571428571428571,
+  "math_macro": 0.8620689655172413,
+  "science_macro": 0.8666666666666667,
+  "cross_domain": 0.8333333333333334,
+  "compositional": 0.75,
+  "counterfactual": 0.8333333333333334,
+  "distractor": 0.9166666666666666,
+  "uncertainty": 0.761904761904762,
+  "decomposition": 0.4583333333333333,
+  "self_correction": -0.17647058823529413,
+  "tool_routing": 0.4583333333333333,
+  "retrieval_routing": null,
+  "extraction": 1.0
+}

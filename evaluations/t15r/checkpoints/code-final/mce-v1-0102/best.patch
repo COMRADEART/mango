@@ -1,0 +1,6 @@
+--- a/src/im03.py
++++ b/src/im03.py
+@@ -1,2 +1,3 @@
++from src.hlp03 import shout
+ def greet(s):
+     return shout(s)

@@ -1,0 +1,195 @@
+:: C:\Users\allam\AppData\Local\Programs\Python\Python312\python.exe scripts/run_capacity_eval.py --model Qwen/Qwen3-4B-Instruct-2507 --label t12-protect-cap --out evaluations/t12/protection/cap
+Traceback (most recent call last):
+  File "C:\Users\allam\Documents\new\model\scripts\run_capacity_eval.py", line 560, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Users\allam\Documents\new\model\scripts\run_capacity_eval.py", line 261, in main
+    tok, model, load_info = load_model_safely(
+                            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\Documents\new\model\src\sciencemath\evaluation\model_loader.py", line 56, in load_model_safely
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2531, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2765, in _get_module
+    raise e
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2763, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\models\auto\modeling_auto.py", line 21, in <module>
+    from .auto_factory import (
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\models\auto\auto_factory.py", line 42, in <module>
+    from ...generation import GenerationMixin
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2531, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2765, in _get_module
+    raise e
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2763, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\generation\utils.py", line 54, in <module>
+    from .candidate_generator import (
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\generation\candidate_generator.py", line 31, in <module>
+    from sklearn.metrics import roc_curve
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\__init__.py", line 70, in <module>
+    from sklearn.base import clone  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\base.py", line 20, in <module>
+    from sklearn.utils._metadata_requests import _MetadataRequester, _routing_enabled
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\__init__.py", line 9, in <module>
+    from sklearn.utils._chunking import gen_batches, gen_even_slices
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_chunking.py", line 11, in <module>
+    from sklearn.utils._param_validation import Interval, validate_params
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_param_validation.py", line 17, in <module>
+    from sklearn.utils.validation import _is_arraylike_not_scalar
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\validation.py", line 24, in <module>
+    from sklearn.utils._array_api import (
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_array_api.py", line 16, in <module>
+    import scipy.special as special
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\special\__init__.py", line 785, in <module>
+    from . import _ufuncs
+  File "scipy/special/_ufuncs_extra_code.pxi", line 4, in init scipy.special._ufuncs
+ImportError: DLL load failed while importing _gufuncs: An Application Control policy has blocked this file.
+:: exit 1
+:: C:\Users\allam\AppData\Local\Programs\Python\Python312\python.exe scripts/run_extraction_benchmark.py --model Qwen/Qwen3-4B-Instruct-2507 --label t12-protect-ext
+Traceback (most recent call last):
+  File "C:\Users\allam\Documents\new\model\scripts\run_extraction_benchmark.py", line 80, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Users\allam\Documents\new\model\scripts\run_extraction_benchmark.py", line 25, in main
+    tok, model, load = load_model_safely(args.model)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\Documents\new\model\src\sciencemath\evaluation\model_loader.py", line 56, in load_model_safely
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2531, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2765, in _get_module
+    raise e
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2763, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\models\auto\modeling_auto.py", line 21, in <module>
+    from .auto_factory import (
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\models\auto\auto_factory.py", line 42, in <module>
+    from ...generation import GenerationMixin
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2531, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2765, in _get_module
+    raise e
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2763, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\generation\utils.py", line 54, in <module>
+    from .candidate_generator import (
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\generation\candidate_generator.py", line 31, in <module>
+    from sklearn.metrics import roc_curve
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\__init__.py", line 70, in <module>
+    from sklearn.base import clone  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\base.py", line 20, in <module>
+    from sklearn.utils._metadata_requests import _MetadataRequester, _routing_enabled
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\__init__.py", line 9, in <module>
+    from sklearn.utils._chunking import gen_batches, gen_even_slices
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_chunking.py", line 11, in <module>
+    from sklearn.utils._param_validation import Interval, validate_params
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_param_validation.py", line 17, in <module>
+    from sklearn.utils.validation import _is_arraylike_not_scalar
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\validation.py", line 24, in <module>
+    from sklearn.utils._array_api import (
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_array_api.py", line 23, in <module>
+    from sklearn.utils.fixes import parse_version
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\fixes.py", line 16, in <module>
+    import scipy.stats
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\stats\__init__.py", line 600, in <module>
+    from ._stats_py import *
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\stats\_stats_py.py", line 50, in <module>
+    from . import distributions
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\stats\distributions.py", line 14, in <module>
+    from ._levy_stable import levy_stable
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\stats\_levy_stable\__init__.py", line 17, in <module>
+    from .levyst import Nolan
+ImportError: DLL load failed while importing levyst: An Application Control policy has blocked this file.
+:: exit 1
+:: C:\Users\allam\AppData\Local\Programs\Python\Python312\python.exe scripts/t10_run_correction_v2.py --model Qwen/Qwen3-4B-Instruct-2507 --label t12-protect-correction --arm t10 --split final
+Traceback (most recent call last):
+  File "C:\Users\allam\Documents\new\model\scripts\t10_run_correction_v2.py", line 224, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Users\allam\Documents\new\model\scripts\t10_run_correction_v2.py", line 79, in main
+    tok, model, load = load_model_safely(args.model)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\Documents\new\model\src\sciencemath\evaluation\model_loader.py", line 56, in load_model_safely
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2531, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2765, in _get_module
+    raise e
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2763, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\models\auto\modeling_auto.py", line 21, in <module>
+    from .auto_factory import (
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\models\auto\auto_factory.py", line 42, in <module>
+    from ...generation import GenerationMixin
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2531, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2765, in _get_module
+    raise e
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\utils\import_utils.py", line 2763, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\generation\utils.py", line 54, in <module>
+    from .candidate_generator import (
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\generation\candidate_generator.py", line 31, in <module>
+    from sklearn.metrics import roc_curve
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\__init__.py", line 70, in <module>
+    from sklearn.base import clone  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\base.py", line 20, in <module>
+    from sklearn.utils._metadata_requests import _MetadataRequester, _routing_enabled
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\__init__.py", line 9, in <module>
+    from sklearn.utils._chunking import gen_batches, gen_even_slices
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_chunking.py", line 11, in <module>
+    from sklearn.utils._param_validation import Interval, validate_params
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_param_validation.py", line 17, in <module>
+    from sklearn.utils.validation import _is_arraylike_not_scalar
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\validation.py", line 24, in <module>
+    from sklearn.utils._array_api import (
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_array_api.py", line 23, in <module>
+    from sklearn.utils.fixes import parse_version
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\fixes.py", line 16, in <module>
+    import scipy.stats
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\stats\__init__.py", line 600, in <module>
+    from ._stats_py import *
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\stats\_stats_py.py", line 50, in <module>
+    from . import distributions
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\stats\distributions.py", line 14, in <module>
+    from ._levy_stable import levy_stable
+  File "C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\stats\_levy_stable\__init__.py", line 17, in <module>
+    from .levyst import Nolan
+ImportError: DLL load failed while importing levyst: An Application Control policy has blocked this file.
+:: exit 1
+T12_PROTECTION_BATTERY_RERUN_DONE

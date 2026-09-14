@@ -1,0 +1,12 @@
+{
+  "run_label": "t12-protection-battery",
+  "classification": "INFRASTRUCTURE_INTERRUPTION",
+  "timestamp": "2026-09-09 (overnight, during battery legs 3-5)",
+  "outcome": "The background shell hosting scripts/t12_protection_battery.py was orphaned when the Claude Code session process exited. On Windows the child python processes were terminated with console-teardown exit codes: capacity leg exit 1073807364 (0x40010004 DBG_TERMINATE_PROCESS) after writing all 131/131 graded rows but before its summary.json; extraction leg exit 3221226091 with 0 artifacts; correction leg exit 3221226091 with 0 artifacts.",
+  "rows_written": {"t12-protect-cap": "131/131 rows complete, summary.json missing", "t12-protect-ext": 0, "t12-protect-correction": 0},
+  "evidence": "evaluations/t12/runs/protection-battery.log (exit codes above, T12_PROTECTION_BATTERY_DONE wrapper line); orphaned-task stop record for shell bg8d97kcv; legs 1-2 (t12-protect-t4, t12-protect-t5r) had already exited 0 with complete artifacts and are NOT affected.",
+  "remediation": "None to the protocol or system under test. Legs 3-5 relaunched as a sequential rerun (capacity from scratch: writer opens predictions.jsonl mode 'w', clean overwrite) after verifying no CUDA compute processes remain (the two nvidia-smi compute entries are Epic Games Launcher / EOS overlay, graphics-only, present during the successful legs 1-2 as well).",
+  "metrics_exclusion": "The killed attempts contribute no graded data for legs 4-5; the capacity leg's 131 rows were fully generated and graded but are superseded by the clean rerun.",
+  "second_interruption": "2026-09-09 ~11:24: rerun attempt 2 (all three legs) failed at import - Windows Smart App Control (VerifiedAndReputablePolicyState=1, enforcing since the reboot) blocked scipy's compiled DLLs (CodeIntegrity events 3033/3077/3118), also blocking pytest collection. Environment-level, not a system defect.",
+  "resolution": "2026-09-09: the user disabled Smart App Control (state=0, verified via registry; scipy imports fully restored). Legs 3-5 relaunched as rerun attempt 3 (log: protection-battery-rerun2.log)."
+}

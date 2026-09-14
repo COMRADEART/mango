@@ -1,0 +1,98 @@
+{
+  "milestone": "T10",
+  "status": "PASS",
+  "commit": "5ce04b3ec52646663631e7be0bc2a14520a15b21",
+  "recorded_at": "2026-09-07T11:04:54-04:00",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "gpu_probe": "0 %, 0 MiB"
+  },
+  "pytest": {
+    "tests": 745,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_s": 12.693
+  },
+  "t9_final_audit": {
+    "path": "evaluations/t9/final_audit.json",
+    "checks_total": 43,
+    "checks_pass": 43,
+    "all_pass": true
+  },
+  "t3_adapter": {
+    "path": "training/adapters/sciencemath-v0.1-t3/adapter_model.safetensors",
+    "expected": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "actual": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "match": true
+  },
+  "firewall": {
+    "module": "src/sciencemath/executive/correction.py",
+    "sha256": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+    "matches_t9_freeze": true,
+    "config_hash": "64adc9429d6a08ed1c981605209445fc085c39230f91a5d0679c7ffa9661811b"
+  },
+  "suite_checksums": {
+    "t3_adapter": {
+      "path": "training/adapters/sciencemath-v0.1-t3/adapter_model.safetensors",
+      "expected": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "actual": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "match": true
+    },
+    "t4_suite": {
+      "path": "evaluations/tool-suite/v1/questions.jsonl",
+      "expected": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+      "actual": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+      "match": true
+    },
+    "t5r_suite": {
+      "path": "evaluations/rag-suite/v1/questions.jsonl",
+      "expected": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+      "actual": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+      "match": true
+    },
+    "capacity_suite": {
+      "path": "evaluations/t8/capacity-suite/v1/questions.jsonl",
+      "expected": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+      "actual": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+      "match": true
+    },
+    "extraction_suite": {
+      "path": "evaluations/t9/extraction-benchmark/v1/questions.jsonl",
+      "expected": "dd48d8e536fe23655403274e33edaa9fbe005afdb1ae0f0047445760ab16cdab",
+      "actual": "dd48d8e536fe23655403274e33edaa9fbe005afdb1ae0f0047445760ab16cdab",
+      "match": true
+    },
+    "correction_suite_v1": {
+      "path": "evaluations/t9/correction-suite/v1/questions.jsonl",
+      "expected": "dc77ccf845f539d4bf6df23964207d504962d75b56f02c981d0e15eb632a445b",
+      "actual": "dc77ccf845f539d4bf6df23964207d504962d75b56f02c981d0e15eb632a445b",
+      "match": true
+    }
+  },
+  "candidate_not_production_default": {
+    "production_model_config": "Qwen/Qwen3-1.7B (Mango-v0.1)",
+    "candidate_name": "MANGO_4B_SYSTEM_PROMOTION_CANDIDATE",
+    "weight_promotion_automatic": false,
+    "verified": true
+  },
+  "incident_checksum_crlf": {
+    "found": "training/curriculum/mango-sft-v2/level1/checksums.json carried CRLF-ized digests introduced by commit 5ce04b3 (recomputed in a Windows clone with autocrlf); frozen corpus files themselves were byte-identical to the 1934e9d blobs.",
+    "resolution": "Digests restored to the canonical LF blob digests (identical to the T9-freeze values that passed the T9 745/0/0/0 run); .gitattributes eol=lf guard retained.",
+    "resolved_before_gate": true
+  },
+  "checks": {
+    "pytest_green": true,
+    "t9_final_audit_all_pass": true,
+    "t3_adapter_sha": true,
+    "firewall_module_sha_unchanged": true,
+    "t4_suite_checksum": true,
+    "t5r_suite_checksum": true,
+    "capacity_suite_checksum": true,
+    "extraction_suite_checksum": true,
+    "correction_v1_suite_checksum": true,
+    "gpu_idle": true,
+    "candidate_not_production_default": true
+  }
+}

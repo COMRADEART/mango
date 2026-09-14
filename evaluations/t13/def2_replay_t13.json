@@ -1,0 +1,304 @@
+{
+ "milestone": "T13.14 DEF-2 formal replay",
+ "frozen_rows": 11,
+ "approved_by_t13": 8,
+ "still_rejected": 3,
+ "schema_gate_blocked_ids": [
+  "msc-v1-0009",
+  "msc-v1-0010",
+  "msc-v1-0011",
+  "msc-v1-0012",
+  "msc-v1-0013",
+  "msc-v1-0018",
+  "msc-v1-0075",
+  "msc-v1-0078",
+  "msc-v1-0080",
+  "msc-v1-0094",
+  "msc-v1-0102"
+ ],
+ "policy": "evidence decides; semantic rejection is preserved",
+ "rows": [
+  {
+   "eval_id": "msc-v1-0009",
+   "operation": "determinant",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "FIDELITY_OK",
+   "fidelity_failures": [],
+   "t13_classes": null,
+   "approved": true,
+   "t13_classification": "APPROVED (faithful structured restatement)",
+   "eligibility_note": "recovers"
+  },
+  {
+   "eval_id": "msc-v1-0010",
+   "operation": "determinant",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "FIDELITY_OK",
+   "fidelity_failures": [],
+   "t13_classes": null,
+   "approved": true,
+   "t13_classification": "APPROVED (faithful structured restatement)",
+   "eligibility_note": "recovers"
+  },
+  {
+   "eval_id": "msc-v1-0011",
+   "operation": "determinant",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "FIDELITY_OK",
+   "fidelity_failures": [],
+   "t13_classes": null,
+   "approved": true,
+   "t13_classification": "APPROVED (faithful structured restatement)",
+   "eligibility_note": "recovers"
+  },
+  {
+   "eval_id": "msc-v1-0012",
+   "operation": "determinant",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "FIDELITY_OK",
+   "fidelity_failures": [],
+   "t13_classes": null,
+   "approved": true,
+   "t13_classification": "APPROVED (faithful structured restatement)",
+   "eligibility_note": "recovers"
+  },
+  {
+   "eval_id": "msc-v1-0013",
+   "operation": "determinant",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": true,
+   "numeric_impact": "model recovered; still right",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "FIDELITY_OK",
+   "fidelity_failures": [],
+   "t13_classes": null,
+   "approved": true,
+   "t13_classification": "APPROVED (faithful structured restatement)",
+   "eligibility_note": "recovers"
+  },
+  {
+   "eval_id": "msc-v1-0018",
+   "operation": "eigen_decompose",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": true,
+   "numeric_impact": "model recovered; still right",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "FIDELITY_OK",
+   "fidelity_failures": [],
+   "t13_classes": null,
+   "approved": true,
+   "t13_classification": "APPROVED (faithful structured restatement)",
+   "eligibility_note": "recovers"
+  },
+  {
+   "eval_id": "msc-v1-0075",
+   "operation": "solve_ode",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:t_start",
+    "no_source_input:t_end",
+    "no_source_input:parameters",
+    "source_input_dropped:y(0)",
+    "source_input_dropped:k",
+    "source_input_dropped:t"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "fidelity_failures": [
+    "disallowed_transformation:initial_state:SCHEMA_TYPE_STRING_FOR_NUMBER"
+   ],
+   "t13_classes": null,
+   "approved": false,
+   "t13_classification": "REJECTED",
+   "eligibility_note": "stays rejected: disallowed_transformation:initial_state:SCHEMA_TYPE_STRING_FOR_NUMBER"
+  },
+  {
+   "eval_id": "msc-v1-0078",
+   "operation": "solve_ode",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:t_start",
+    "no_source_input:t_end",
+    "no_source_input:parameters",
+    "source_input_dropped:y(0)",
+    "source_input_dropped:k",
+    "source_input_dropped:t"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "FIDELITY_OK",
+   "fidelity_failures": [],
+   "t13_classes": null,
+   "approved": true,
+   "t13_classification": "APPROVED (faithful structured restatement)",
+   "eligibility_note": "recovers"
+  },
+  {
+   "eval_id": "msc-v1-0080",
+   "operation": "solve_ode",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:t_start",
+    "no_source_input:t_end",
+    "no_source_input:parameters",
+    "source_input_dropped:y(0)",
+    "source_input_dropped:k",
+    "source_input_dropped:t"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "fidelity_failures": [
+    "disallowed_transformation:initial_state:SCHEMA_TYPE_STRING_FOR_NUMBER"
+   ],
+   "t13_classes": null,
+   "approved": false,
+   "t13_classification": "REJECTED",
+   "eligibility_note": "stays rejected: disallowed_transformation:initial_state:SCHEMA_TYPE_STRING_FOR_NUMBER"
+  },
+  {
+   "eval_id": "msc-v1-0094",
+   "operation": "minimize_scalar",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:expression:STRING_MODIFIED",
+    "no_source_input:bound_low",
+    "no_source_input:bound_high"
+   ],
+   "t11_armB_correct": true,
+   "t12_correct": true,
+   "numeric_impact": "model recovered; still right",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "FIDELITY_OK",
+   "fidelity_failures": [],
+   "t13_classes": null,
+   "approved": true,
+   "t13_classification": "APPROVED (faithful structured restatement)",
+   "eligibility_note": "recovers"
+  },
+  {
+   "eval_id": "msc-v1-0102",
+   "operation": "minimize",
+   "prior_t12_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "prior_failures": [
+    "disallowed_transformation:bounds:TYPE_CHANGED"
+   ],
+   "t11_armB_correct": false,
+   "t12_correct": false,
+   "numeric_impact": "already wrong in T11",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "schema_ok": false,
+   "schema_failures": [
+    "missing_field:compute_required"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "fidelity_failures": [
+    "disallowed_transformation:bounds:SCHEMA_TYPE_STRING_FOR_NUMBER"
+   ],
+   "t13_classes": null,
+   "approved": false,
+   "t13_classification": "REJECTED",
+   "eligibility_note": "stays rejected: disallowed_transformation:bounds:SCHEMA_TYPE_STRING_FOR_NUMBER"
+  }
+ ]
+}

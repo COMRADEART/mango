@@ -1,0 +1,42 @@
+{
+  "label": "v1reg-t10improved",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "adapter": null,
+  "firewall": false,
+  "suite": "mango-correction-eval-v1",
+  "questions": 40,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2716700672,
+    "peak_vram_bytes": 2716700672,
+    "reserved_vram_bytes": 2732589056,
+    "smoke_latency_s": 0.57
+  },
+  "metrics": {
+    "true_correction": 0.7,
+    "false_feedback_preservation": 1.0,
+    "overcorrection": 0.0,
+    "under_correction": 0.3,
+    "blind_agreement": 0.0,
+    "net_correction_benefit": 7,
+    "counts": {
+      "corrected_wrong": 7,
+      "preserved_correct": 10,
+      "destroyed_correct": 0,
+      "still_wrong": 3,
+      "blind_agreement": 0
+    },
+    "confidence_intervals_95": {
+      "true_correction": [
+        0.39677321997956516,
+        0.892210712513788
+      ],
+      "preservation": [
+        0.7224598312333834,
+        1.0
+      ]
+    }
+  }
+}

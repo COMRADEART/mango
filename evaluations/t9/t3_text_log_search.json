@@ -1,0 +1,1089 @@
+{
+  "pattern": "sha256|SHA-256|adapter_model|safetensors|checkpoint-300|ScienceMath-v0.1-T3|best checkpoint|0\\.8474348783493042",
+  "files": [
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\README.md",
+      "bytes": 14870,
+      "sha256": "e9201b78dc3c8f9eb7409d1ba5cca5630e6646befe6f7ea4c50891ac350a3f6e",
+      "creation_time_utc": "2026-09-03T04:59:57.214118+00:00",
+      "modification_time_utc": "2026-09-06T01:54:53.143273+00:00",
+      "access_time_utc": "2026-09-06T14:41:24.793260+00:00",
+      "matching_lines": [
+        96,
+        219,
+        323
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\t5r_dev_run.log",
+      "bytes": 16108,
+      "sha256": "535cdb9f17d392e64c24d48245a0ad1bbb1836116a00254713d4f7259aa0c89b",
+      "creation_time_utc": "2026-09-03T19:51:08.958588+00:00",
+      "modification_time_utc": "2026-09-03T20:18:28.427929+00:00",
+      "access_time_utc": "2026-09-06T14:41:24.807919+00:00",
+      "matching_lines": [
+        33
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\t8s_gpu_chain.log",
+      "bytes": 8555,
+      "sha256": "0695cf15bd6ee3a11ebbd7a921bd633ec7977a4dea09102b54ac64295ad254cd",
+      "creation_time_utc": "2026-09-06T01:46:02.560247+00:00",
+      "modification_time_utc": "2026-09-06T13:14:57.531644+00:00",
+      "access_time_utc": "2026-09-06T14:41:24.808924+00:00",
+      "matching_lines": [
+        1,
+        175,
+        176
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\t8s_smoke_run.log",
+      "bytes": 935,
+      "sha256": "cf7263d84fc91e4dc9e7ade4838a7254846a9af7968095f794954d7ef985546f",
+      "creation_time_utc": "2026-09-06T01:32:10.754612+00:00",
+      "modification_time_utc": "2026-09-06T01:39:38.480536+00:00",
+      "access_time_utc": "2026-09-06T14:41:24.808924+00:00",
+      "matching_lines": [
+        1
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\configs\\training.yaml",
+      "bytes": 3030,
+      "sha256": "6dc9e822500416bb9c68df15fda4911935176d9f2f09efae1c526ad9983bf42d",
+      "creation_time_utc": "2026-09-03T02:17:54.162596+00:00",
+      "modification_time_utc": "2026-09-03T02:17:54.162596+00:00",
+      "access_time_utc": "2026-09-06T14:41:24.808924+00:00",
+      "matching_lines": [
+        1,
+        16,
+        17
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\model_manifest.json",
+      "bytes": 5613,
+      "sha256": "82e5f919a5597723013df3cbd7c2398855b37159af7fa567063e8058450a28ac",
+      "creation_time_utc": "2026-08-31T14:59:52.756114+00:00",
+      "modification_time_utc": "2026-08-31T14:59:52.756114+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.344177+00:00",
+      "matching_lines": [
+        14,
+        36
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t5_entry_gate.json",
+      "bytes": 2387,
+      "sha256": "2bf9d9c5b72b43e483cc0a04df41808cb147bf88c996d3c68362a8ebb278e55b",
+      "creation_time_utc": "2026-09-03T15:47:33.949767+00:00",
+      "modification_time_utc": "2026-09-03T15:47:33.949767+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.344177+00:00",
+      "matching_lines": [
+        21
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t6_entry_gate.json",
+      "bytes": 3854,
+      "sha256": "bd33e5563a90d0925b7871854e43575a2897936f176a069d5014216609ead73f",
+      "creation_time_utc": "2026-09-04T00:46:46.240457+00:00",
+      "modification_time_utc": "2026-09-04T00:50:58.108523+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.344177+00:00",
+      "matching_lines": [
+        37,
+        115,
+        120
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\eval-core\\v1\\manifest.json",
+      "bytes": 1591,
+      "sha256": "5c5c46d8cc05a11ab53917758a56e4a8cf325dc205e14b58e3b895ed0cf04cdb",
+      "creation_time_utc": "2026-09-04T01:13:43.092415+00:00",
+      "modification_time_utc": "2026-09-04T01:13:43.094038+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.509215+00:00",
+      "matching_lines": [
+        8
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\executive-suite\\v1\\manifest.json",
+      "bytes": 811,
+      "sha256": "6f61010a2b3b4fb047610c4930368d56d11ebfb6a515520b7e34580a78bd39a9",
+      "creation_time_utc": "2026-09-04T06:13:59.806172+00:00",
+      "modification_time_utc": "2026-09-04T06:13:59.806172+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.527837+00:00",
+      "matching_lines": [
+        27
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\rag-results\\v1\\T5_FINAL_REPORT.md",
+      "bytes": 9934,
+      "sha256": "b4b7b24e3763524f83e176b6be54645f1adfe92d3f5d11933e951b8a42aca878",
+      "creation_time_utc": "2026-09-03T19:31:09.125770+00:00",
+      "modification_time_utc": "2026-09-03T19:31:09.144977+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.663816+00:00",
+      "matching_lines": [
+        4
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\rag-results\\v1\\t5r\\T5R_REFINEMENT_REPORT.md",
+      "bytes": 8351,
+      "sha256": "8a622e61ce555cce6b8e46b40c1db778f528306a5c9daaafc5511ece99659fae",
+      "creation_time_utc": "2026-09-03T23:20:54.658801+00:00",
+      "modification_time_utc": "2026-09-03T23:20:54.658801+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.694396+00:00",
+      "matching_lines": [
+        4
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\suite\\v1\\checksum.json",
+      "bytes": 738,
+      "sha256": "1d9bfa6162925cb19238be1709cbcaf27c98077606cb65a347de19c2d0513a9a",
+      "creation_time_utc": "2026-08-31T17:10:34.244344+00:00",
+      "modification_time_utc": "2026-08-31T17:10:34.244344+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.711773+00:00",
+      "matching_lines": [
+        12
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t6\\CURRICULUM_PROGRESS.md",
+      "bytes": 9614,
+      "sha256": "6cd167d5035c937cfa25a1f61171fb0a9e07bfb58b715189363292e0345e3d97",
+      "creation_time_utc": "2026-09-04T04:20:12.559898+00:00",
+      "modification_time_utc": "2026-09-04T04:20:12.559898+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.711773+00:00",
+      "matching_lines": [
+        102
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t6\\T6_FINAL_REPORT.md",
+      "bytes": 8786,
+      "sha256": "ce7413259b07b305971c8a988b516af6405e1a1d6a54946e84feaaa1e6409c41",
+      "creation_time_utc": "2026-09-04T04:20:38.393889+00:00",
+      "modification_time_utc": "2026-09-04T04:20:38.393889+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.725908+00:00",
+      "matching_lines": [
+        7,
+        69,
+        112,
+        115
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t6\\core_results\\mango-v0.1\\metrics.json",
+      "bytes": 1379,
+      "sha256": "ce81a932fd8269cdd78ce485938b833883b0526828e4f82b416f9fe3e45eeff4",
+      "creation_time_utc": "2026-09-04T02:00:46.551812+00:00",
+      "modification_time_utc": "2026-09-04T02:00:46.551812+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.725908+00:00",
+      "matching_lines": [
+        3
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t6\\counterfactual\\v1\\manifest.json",
+      "bytes": 1116,
+      "sha256": "158ef81ae35b0892bf1d0da8400af71a55301cea094374de13cb71b271fb73ae",
+      "creation_time_utc": "2026-09-04T01:18:05.826426+00:00",
+      "modification_time_utc": "2026-09-04T01:18:05.826426+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.782283+00:00",
+      "matching_lines": [
+        8
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t7\\t7_entry_gate.json",
+      "bytes": 3848,
+      "sha256": "9d0be2ea2b1efd33cabfcc180c825e9f7cf35c6d258c45fbdf8eaf7de36a5442",
+      "creation_time_utc": "2026-09-04T04:33:12.277958+00:00",
+      "modification_time_utc": "2026-09-04T04:33:26.734901+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.810940+00:00",
+      "matching_lines": [
+        14,
+        64
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t7\\T7_FINAL_REPORT.md",
+      "bytes": 16169,
+      "sha256": "1d048b5d4668f13d827609037cfbf9a69d50be8448729fe99e81511182fac707",
+      "creation_time_utc": "2026-09-04T22:13:40.612195+00:00",
+      "modification_time_utc": "2026-09-04T22:13:40.615537+00:00",
+      "access_time_utc": "2026-09-06T14:41:25.814165+00:00",
+      "matching_lines": [
+        160
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8\\final_audit.json",
+      "bytes": 18497,
+      "sha256": "dd37de7ff8e2aa1b2fca0c35d39546f18d95bd5ab1566ff7d3f5ff2bb217dfb8",
+      "creation_time_utc": "2026-09-05T23:28:22.582709+00:00",
+      "modification_time_utc": "2026-09-05T23:31:32.330981+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.045013+00:00",
+      "matching_lines": [
+        277
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8\\FINAL_DECISION.json",
+      "bytes": 731,
+      "sha256": "8663addf138a4f2b5c1e8213e24c2b11baaca4d3d62c5219d05bbdb0f5ea8716",
+      "creation_time_utc": "2026-09-05T23:31:30.826602+00:00",
+      "modification_time_utc": "2026-09-05T23:31:30.826602+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.047160+00:00",
+      "matching_lines": [
+        5
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8\\model_manifest.json",
+      "bytes": 32531,
+      "sha256": "d8473e91d6b45852f0d44e6a6557e98e255eea0bf98ea98815fbf21e5b53234c",
+      "creation_time_utc": "2026-09-04T22:33:40.537705+00:00",
+      "modification_time_utc": "2026-09-04T22:33:40.537705+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.047160+00:00",
+      "matching_lines": [
+        33,
+        61,
+        89,
+        118,
+        146
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8\\t8_entry_gate.json",
+      "bytes": 4644,
+      "sha256": "f4bdec2ef53bd8875956388c9797d317179ac5121eef7d227d9f800e225d4c4c",
+      "creation_time_utc": "2026-09-04T22:22:40.649170+00:00",
+      "modification_time_utc": "2026-09-04T22:22:40.649170+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.047160+00:00",
+      "matching_lines": [
+        16,
+        75
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8\\T8_FINAL_REPORT.md",
+      "bytes": 5993,
+      "sha256": "f72b1ae821b6a76be5427b7b82665a0dec36bfd6ef88da7d053f5863316e6bb0",
+      "creation_time_utc": "2026-09-05T23:31:30.826602+00:00",
+      "modification_time_utc": "2026-09-05T23:31:30.826602+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.047160+00:00",
+      "matching_lines": [
+        23
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8\\_research_raw.json",
+      "bytes": 51903,
+      "sha256": "a5b579b20b1f1a7c6b4981138aba018e002d83d05dad73e4eed4dccc6a7b3e4d",
+      "creation_time_utc": "2026-09-04T22:33:29.936205+00:00",
+      "modification_time_utc": "2026-09-04T22:33:29.938218+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.047160+00:00",
+      "matching_lines": [
+        7,
+        27,
+        47,
+        66,
+        91,
+        122
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8s\\final_audit.json",
+      "bytes": 11077,
+      "sha256": "2ac3c4ac636781a1c525efdefe7e5b73547cf110947af75a7a963b4527350bd3",
+      "creation_time_utc": "2026-09-06T02:35:36.302046+00:00",
+      "modification_time_utc": "2026-09-06T13:27:03.508670+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.376085+00:00",
+      "matching_lines": [
+        43,
+        61,
+        68,
+        77,
+        101,
+        119,
+        132,
+        156,
+        171,
+        178,
+        194,
+        209,
+        220,
+        232,
+        239,
+        241,
+        242,
+        251,
+        258,
+        316,
+        317,
+        318
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8s\\system_profiles.json",
+      "bytes": 1945,
+      "sha256": "f4e8403816bb1eef20877334d4020b978bfa060ce28d2de49e4821cb07fc0025",
+      "creation_time_utc": "2026-09-06T01:31:28.520108+00:00",
+      "modification_time_utc": "2026-09-06T01:58:41.800495+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.377695+00:00",
+      "matching_lines": [
+        9
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8s\\t8s_entry_gate.json",
+      "bytes": 2216,
+      "sha256": "610087ec878ff05e631d0e876131e544296c8072a14b85a2c65cecdcad5f34bd",
+      "creation_time_utc": "2026-09-06T01:30:35.852536+00:00",
+      "modification_time_utc": "2026-09-06T01:30:35.853544+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.377695+00:00",
+      "matching_lines": [
+        18,
+        23,
+        37
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8s\\runs\\mango-v0.1\\repro_metadata.json",
+      "bytes": 559,
+      "sha256": "cb885fea1db92c71b8f4ffc5bd5473b48777286c18d85a407dd13ee9981bd1d5",
+      "creation_time_utc": "2026-09-06T12:01:32.899321+00:00",
+      "modification_time_utc": "2026-09-06T13:27:02.865812+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.377695+00:00",
+      "matching_lines": [
+        3
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8s\\runs\\mango-v0.1\\t4_arm_summary.json",
+      "bytes": 44644,
+      "sha256": "971825237a768e5c0a90d1121bc33df72ec74611daafd284eb585fbc216a79f6",
+      "creation_time_utc": "2026-09-06T03:19:25.173557+00:00",
+      "modification_time_utc": "2026-09-06T03:19:25.173557+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.377695+00:00",
+      "matching_lines": [
+        5
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\t8s\\runs\\mango-v0.1\\model\\repro_metadata.json",
+      "bytes": 559,
+      "sha256": "2ae62ac43d076cb24edf8c5733db8cccd3e83865a443dd54884dfe1eae4e99fb",
+      "creation_time_utc": "2026-09-06T12:01:32.939739+00:00",
+      "modification_time_utc": "2026-09-06T13:27:02.888344+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.377695+00:00",
+      "matching_lines": [
+        3
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\tuned\\T3_COMPARISON.md",
+      "bytes": 1525,
+      "sha256": "231146e4247cfa38f8fe27c969476b6a586b9ba3dfd939fc8519cf0817348b93",
+      "creation_time_utc": "2026-09-03T05:20:22.897102+00:00",
+      "modification_time_utc": "2026-09-03T05:20:22.897102+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.577592+00:00",
+      "matching_lines": [
+        6
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\tuned\\T3_VERDICT.json",
+      "bytes": 3156,
+      "sha256": "93a282b7589b1b1bb69cade9eaa8ecba3c9ffa2b9a5e80df049a2eacde1744fb",
+      "creation_time_utc": "2026-09-03T05:21:34.254807+00:00",
+      "modification_time_utc": "2026-09-03T05:21:34.256235+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.577592+00:00",
+      "matching_lines": [
+        7
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\tuned\\sciencemath-v0.1-t3\\adapter_metadata.json",
+      "bytes": 2386,
+      "sha256": "d1c91b9777f30331ad8395c70b893e9a4ea1dac8eb4d52d0c4005b61ebc8066f",
+      "creation_time_utc": "2026-09-03T04:15:20.088813+00:00",
+      "modification_time_utc": "2026-09-03T04:15:20.088813+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.594190+00:00",
+      "matching_lines": [
+        2
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\tuned\\sciencemath-v0.1-t3\\hardware.json",
+      "bytes": 588,
+      "sha256": "c53653d7a99e8c6c6a39d6f51ce9ce31078204451cabe7eca7e8298f8e17287f",
+      "creation_time_utc": "2026-09-03T04:14:30.633420+00:00",
+      "modification_time_utc": "2026-09-03T04:14:30.633420+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.594190+00:00",
+      "matching_lines": [
+        18
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\evaluations\\tuned\\sciencemath-v0.1-t3\\manifest.json",
+      "bytes": 1308,
+      "sha256": "b7c521694967e122838ffb5ed1295bfb2ada8622867fdd733503d8020676ba81",
+      "creation_time_utc": "2026-09-03T05:19:33.720875+00:00",
+      "modification_time_utc": "2026-09-03T05:19:33.720875+00:00",
+      "access_time_utc": "2026-09-06T14:41:26.594190+00:00",
+      "matching_lines": [
+        23,
+        25
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\research\\t8_model_landscape.md",
+      "bytes": 45262,
+      "sha256": "7279695f44bd545f21eef014efc6ed931fd7251788692224ed714bf6846bb621",
+      "creation_time_utc": "2026-09-04T22:33:51.035666+00:00",
+      "modification_time_utc": "2026-09-04T22:33:58.930823+00:00",
+      "access_time_utc": "2026-09-06T14:41:27.127650+00:00",
+      "matching_lines": [
+        70,
+        96,
+        112,
+        172,
+        173,
+        220,
+        230,
+        249,
+        315
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\tests\\.pytest_tmp\\test_freeze_and_verify_roundtr0\\s\\manifest.json",
+      "bytes": 717,
+      "sha256": "c1c691c8cf754278f7aaf652d272e47db648e9918175517ac590fae3d523b113",
+      "creation_time_utc": "2026-09-06T13:27:34.887655+00:00",
+      "modification_time_utc": "2026-09-06T13:27:34.887655+00:00",
+      "access_time_utc": "2026-09-06T14:41:27.127650+00:00",
+      "matching_lines": [
+        8
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\mango-v0.2-L1\\training_manifest.json",
+      "bytes": 6258,
+      "sha256": "9d1f3bb015ae8a31e20f6559185081e2db9c5d0a0f785e9609ab74bd74cae73e",
+      "creation_time_utc": "2026-09-04T03:17:14.951591+00:00",
+      "modification_time_utc": "2026-09-04T03:17:14.955447+00:00",
+      "access_time_utc": "2026-09-06T14:41:27.725930+00:00",
+      "matching_lines": [
+        3
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\sciencemath-v0.1-t3\\loss_history.json",
+      "bytes": 12022,
+      "sha256": "02c32fb06dd8af649181560add3dec6b5011b96a75c94b27a97f311a83cfce84",
+      "creation_time_utc": "2026-09-03T04:13:22.581871+00:00",
+      "modification_time_utc": "2026-09-03T04:13:22.581871+00:00",
+      "access_time_utc": "2026-09-06T14:41:27.725930+00:00",
+      "matching_lines": [
+        230,
+        440
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\adapters\\sciencemath-v0.1-t3\\training_manifest.json",
+      "bytes": 15333,
+      "sha256": "9dd3a471226337276b375ba21074a2fcfb546735903d66fe151b0f6e21cd6640",
+      "creation_time_utc": "2026-09-03T04:13:22.575004+00:00",
+      "modification_time_utc": "2026-09-03T04:13:22.581871+00:00",
+      "access_time_utc": "2026-09-06T14:41:28.277619+00:00",
+      "matching_lines": [
+        2,
+        42,
+        43,
+        85,
+        318
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\checkpoints\\sciencemath-v0.1-t3\\checkpoint-300\\trainer_state.json",
+      "bytes": 7351,
+      "sha256": "30f22a85719cdd4ca99c7b25e38b368fa78b4d52d7a46f7b39c02101cc32e9de",
+      "creation_time_utc": "2026-09-03T03:21:46.947025+00:00",
+      "modification_time_utc": "2026-09-03T03:21:46.947025+00:00",
+      "access_time_utc": "2026-09-06T14:41:28.293565+00:00",
+      "matching_lines": [
+        3,
+        4,
+        240
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\checkpoints\\sciencemath-v0.1-t3\\checkpoint-500\\trainer_state.json",
+      "bytes": 11628,
+      "sha256": "84df82deb89b01a83364ec639a00646b8e9cb1a1a5a30c143e499f8466698605",
+      "creation_time_utc": "2026-09-03T04:05:44.738378+00:00",
+      "modification_time_utc": "2026-09-03T04:05:44.739383+00:00",
+      "access_time_utc": "2026-09-06T14:41:28.293565+00:00",
+      "matching_lines": [
+        3,
+        4,
+        240
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\checkpoints\\sciencemath-v0.1-t3\\checkpoint-546\\trainer_state.json",
+      "bytes": 12583,
+      "sha256": "553f3fb7cc23da6f67e2918e4ba1777a02bb94b0007ad1566559b907dbe1e9f4",
+      "creation_time_utc": "2026-09-03T04:13:21.867787+00:00",
+      "modification_time_utc": "2026-09-03T04:13:21.867787+00:00",
+      "access_time_utc": "2026-09-06T14:41:28.293565+00:00",
+      "matching_lines": [
+        3,
+        4,
+        240
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\curriculum\\mango-v0.2\\level1\\dry_run_report.json",
+      "bytes": 1016,
+      "sha256": "396297d6f5c17aea626d34f8afb6ed5ae0a55a990113fd275a1a1847f919c423",
+      "creation_time_utc": "2026-09-04T03:01:05.610482+00:00",
+      "modification_time_utc": "2026-09-04T03:01:05.610482+00:00",
+      "access_time_utc": "2026-09-06T14:41:28.360943+00:00",
+      "matching_lines": [
+        14,
+        17
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\curriculum\\mango-v0.2\\level1\\training_summary.json",
+      "bytes": 1215,
+      "sha256": "fe29465b08e6fafc8accd4789a8a3af58828a28df62f1d7e226577918598d3d0",
+      "creation_time_utc": "2026-09-04T03:17:18.879185+00:00",
+      "modification_time_utc": "2026-09-04T03:17:18.889822+00:00",
+      "access_time_utc": "2026-09-06T14:41:28.376869+00:00",
+      "matching_lines": [
+        14,
+        17
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\curriculum\\mango-v0.2\\level1\\smoke\\dry_run_report.json",
+      "bytes": 1016,
+      "sha256": "396297d6f5c17aea626d34f8afb6ed5ae0a55a990113fd275a1a1847f919c423",
+      "creation_time_utc": "2026-09-04T03:01:05.583754+00:00",
+      "modification_time_utc": "2026-09-04T03:01:05.583754+00:00",
+      "access_time_utc": "2026-09-06T14:41:28.377667+00:00",
+      "matching_lines": [
+        14,
+        17
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\curriculum\\mango-v0.2\\level1\\smoke\\adapter\\training_manifest.json",
+      "bytes": 4092,
+      "sha256": "a194b980c0dd62fb91b0b9fc4c96dec017b4c274731f1cbf9a3557c8374c4369",
+      "creation_time_utc": "2026-09-04T03:01:01.616483+00:00",
+      "modification_time_utc": "2026-09-04T03:01:01.616483+00:00",
+      "access_time_utc": "2026-09-06T14:41:28.941632+00:00",
+      "matching_lines": [
+        3
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\sciencemath\\training\\smoke\\t3_dry_run\\adapter\\training_manifest.json",
+      "bytes": 3849,
+      "sha256": "f48a547f00d34a10f94b59202ed8e6b118d3515e2b8e567051e508a0c5ca9e1f",
+      "creation_time_utc": "2026-09-03T02:23:43.265733+00:00",
+      "modification_time_utc": "2026-09-03T02:23:43.265733+00:00",
+      "access_time_utc": "2026-09-06T14:41:29.726821+00:00",
+      "matching_lines": [
+        2,
+        42,
+        43
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\adapters\\mango-v0.2-L1\\training_manifest.json",
+      "bytes": 6258,
+      "sha256": "9d1f3bb015ae8a31e20f6559185081e2db9c5d0a0f785e9609ab74bd74cae73e",
+      "creation_time_utc": "2026-09-06T13:34:39.403670+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.403670+00:00",
+      "access_time_utc": "2026-09-06T14:41:30.297034+00:00",
+      "matching_lines": [
+        3
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\adapters\\sciencemath-v0.1-t3\\loss_history.json",
+      "bytes": 12022,
+      "sha256": "02c32fb06dd8af649181560add3dec6b5011b96a75c94b27a97f311a83cfce84",
+      "creation_time_utc": "2026-09-06T13:34:39.403670+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.403670+00:00",
+      "access_time_utc": "2026-09-06T14:41:30.309072+00:00",
+      "matching_lines": [
+        230,
+        440
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\adapters\\sciencemath-v0.1-t3\\training_manifest.json",
+      "bytes": 15333,
+      "sha256": "9dd3a471226337276b375ba21074a2fcfb546735903d66fe151b0f6e21cd6640",
+      "creation_time_utc": "2026-09-06T13:34:39.454962+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.458780+00:00",
+      "access_time_utc": "2026-09-06T14:41:30.898939+00:00",
+      "matching_lines": [
+        2,
+        42,
+        43,
+        85,
+        318
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\curriculum\\mango-v0.2\\level1\\dry_run_report.json",
+      "bytes": 1016,
+      "sha256": "396297d6f5c17aea626d34f8afb6ed5ae0a55a990113fd275a1a1847f919c423",
+      "creation_time_utc": "2026-09-06T13:34:39.483180+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.483180+00:00",
+      "access_time_utc": "2026-09-06T14:41:30.977838+00:00",
+      "matching_lines": [
+        14,
+        17
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\curriculum\\mango-v0.2\\level1\\training_summary.json",
+      "bytes": 1215,
+      "sha256": "fe29465b08e6fafc8accd4789a8a3af58828a28df62f1d7e226577918598d3d0",
+      "creation_time_utc": "2026-09-06T13:34:39.544969+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.545486+00:00",
+      "access_time_utc": "2026-09-06T14:41:30.977838+00:00",
+      "matching_lines": [
+        14,
+        17
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\curriculum\\mango-v0.2\\level1\\smoke\\dry_run_report.json",
+      "bytes": 1016,
+      "sha256": "396297d6f5c17aea626d34f8afb6ed5ae0a55a990113fd275a1a1847f919c423",
+      "creation_time_utc": "2026-09-06T13:34:39.544453+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.544969+00:00",
+      "access_time_utc": "2026-09-06T14:41:30.977838+00:00",
+      "matching_lines": [
+        14,
+        17
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\curriculum\\mango-v0.2\\level1\\smoke\\adapter\\training_manifest.json",
+      "bytes": 4092,
+      "sha256": "a194b980c0dd62fb91b0b9fc4c96dec017b4c274731f1cbf9a3557c8374c4369",
+      "creation_time_utc": "2026-09-06T13:34:39.537256+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.538951+00:00",
+      "access_time_utc": "2026-09-06T14:41:31.593927+00:00",
+      "matching_lines": [
+        3
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\smoke\\t3_dry_run\\adapter\\training_manifest.json",
+      "bytes": 3849,
+      "sha256": "f48a547f00d34a10f94b59202ed8e6b118d3515e2b8e567051e508a0c5ca9e1f",
+      "creation_time_utc": "2026-09-06T13:34:39.603700+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.603700+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.411127+00:00",
+      "matching_lines": [
+        2,
+        42,
+        43
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\model_manifest.json",
+      "bytes": 5704,
+      "sha256": "8bc93b946a86aae59b87ecc8592fe7edd47cd001ce98deebbf8f21418a258461",
+      "creation_time_utc": "2026-09-06T13:34:38.403886+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.403886+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.415830+00:00",
+      "matching_lines": [
+        14,
+        36
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t5_entry_gate.json",
+      "bytes": 2434,
+      "sha256": "e02f07fd6aec80c9994f08ed865496f22361045997d3daae931cc34ae3164364",
+      "creation_time_utc": "2026-09-06T13:34:38.457088+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.457088+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.415830+00:00",
+      "matching_lines": [
+        21
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t6_entry_gate.json",
+      "bytes": 3854,
+      "sha256": "bd33e5563a90d0925b7871854e43575a2897936f176a069d5014216609ead73f",
+      "creation_time_utc": "2026-09-06T13:34:38.503632+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.503632+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.415830+00:00",
+      "matching_lines": [
+        37,
+        115,
+        120
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\eval-core\\v1\\manifest.json",
+      "bytes": 1591,
+      "sha256": "5c5c46d8cc05a11ab53917758a56e4a8cf325dc205e14b58e3b895ed0cf04cdb",
+      "creation_time_utc": "2026-09-06T13:34:38.391574+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.391574+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.594167+00:00",
+      "matching_lines": [
+        8
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\executive-suite\\v1\\manifest.json",
+      "bytes": 811,
+      "sha256": "6f61010a2b3b4fb047610c4930368d56d11ebfb6a515520b7e34580a78bd39a9",
+      "creation_time_utc": "2026-09-06T13:34:38.403886+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.403886+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.610265+00:00",
+      "matching_lines": [
+        27
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\rag-results\\v1\\T5_FINAL_REPORT.md",
+      "bytes": 10140,
+      "sha256": "a52e59135d1c6fd7a6f497c6a21187206dd8940e9ac53b655d509d521b1664ec",
+      "creation_time_utc": "2026-09-06T13:34:38.439905+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.439905+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.744234+00:00",
+      "matching_lines": [
+        4
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\rag-results\\v1\\t5r\\T5R_REFINEMENT_REPORT.md",
+      "bytes": 8454,
+      "sha256": "d7661bdd8b5be0f43260127e9c23d5308bc4c4dd0ca19585bc64d1fe81919028",
+      "creation_time_utc": "2026-09-06T13:34:38.453638+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.453638+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.777512+00:00",
+      "matching_lines": [
+        4
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\suite\\v1\\checksum.json",
+      "bytes": 738,
+      "sha256": "1d9bfa6162925cb19238be1709cbcaf27c98077606cb65a347de19c2d0513a9a",
+      "creation_time_utc": "2026-09-06T13:34:38.457088+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.457088+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.792885+00:00",
+      "matching_lines": [
+        12
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t6\\CURRICULUM_PROGRESS.md",
+      "bytes": 9755,
+      "sha256": "0683bd8d6a41b6bbfcf552ddc61b0e503ae5d2c8c005fdb45a17650ecbc1ccf0",
+      "creation_time_utc": "2026-09-06T13:34:38.457088+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.469053+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.792885+00:00",
+      "matching_lines": [
+        102
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t6\\T6_FINAL_REPORT.md",
+      "bytes": 8969,
+      "sha256": "109f917f15cb3caf44d77a4ff5329c3eb15e4a8988f1f117ba5cd086f4f4afd9",
+      "creation_time_utc": "2026-09-06T13:34:38.469053+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.469053+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.792885+00:00",
+      "matching_lines": [
+        7,
+        69,
+        112,
+        115
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t6\\core_results\\mango-v0.1\\metrics.json",
+      "bytes": 1379,
+      "sha256": "ce81a932fd8269cdd78ce485938b833883b0526828e4f82b416f9fe3e45eeff4",
+      "creation_time_utc": "2026-09-06T13:34:38.470350+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.470350+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.792885+00:00",
+      "matching_lines": [
+        3
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t6\\counterfactual\\v1\\manifest.json",
+      "bytes": 1116,
+      "sha256": "158ef81ae35b0892bf1d0da8400af71a55301cea094374de13cb71b271fb73ae",
+      "creation_time_utc": "2026-09-06T13:34:38.487175+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.487175+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.844178+00:00",
+      "matching_lines": [
+        8
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t7\\t7_entry_gate.json",
+      "bytes": 3848,
+      "sha256": "9d0be2ea2b1efd33cabfcc180c825e9f7cf35c6d258c45fbdf8eaf7de36a5442",
+      "creation_time_utc": "2026-09-06T13:34:38.703639+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.703639+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.875860+00:00",
+      "matching_lines": [
+        14,
+        64
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t7\\T7_FINAL_REPORT.md",
+      "bytes": 16477,
+      "sha256": "5c22311e16040e4110ca064f2d4051cf2bf09c2b5c38a4ccc64eb8188077b338",
+      "creation_time_utc": "2026-09-06T13:34:38.503632+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.503632+00:00",
+      "access_time_utc": "2026-09-06T14:41:32.875860+00:00",
+      "matching_lines": [
+        160
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t8\\final_audit.json",
+      "bytes": 18497,
+      "sha256": "dd37de7ff8e2aa1b2fca0c35d39546f18d95bd5ab1566ff7d3f5ff2bb217dfb8",
+      "creation_time_utc": "2026-09-06T13:34:38.721388+00:00",
+      "modification_time_utc": "2026-09-06T13:58:29.400460+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.116929+00:00",
+      "matching_lines": [
+        277
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t8\\FINAL_DECISION.json",
+      "bytes": 743,
+      "sha256": "433938ca04c8fa1e9d9ce76c69ed772d8b5be296aa51ce37b64136dd52ae48e0",
+      "creation_time_utc": "2026-09-06T13:34:38.703639+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.703639+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.116929+00:00",
+      "matching_lines": [
+        5
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t8\\model_manifest.json",
+      "bytes": 32531,
+      "sha256": "d8473e91d6b45852f0d44e6a6557e98e255eea0bf98ea98815fbf21e5b53234c",
+      "creation_time_utc": "2026-09-06T13:34:38.721388+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.721388+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.116929+00:00",
+      "matching_lines": [
+        33,
+        61,
+        89,
+        118,
+        146
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t8\\t8_entry_gate.json",
+      "bytes": 4644,
+      "sha256": "f4bdec2ef53bd8875956388c9797d317179ac5121eef7d227d9f800e225d4c4c",
+      "creation_time_utc": "2026-09-06T13:34:38.773678+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.773678+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.116929+00:00",
+      "matching_lines": [
+        16,
+        75
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t8\\T8_FINAL_REPORT.md",
+      "bytes": 6097,
+      "sha256": "4ba307319cb9e31df5a6852d23258403fe63d31ac91f2e4bb7a017b904052470",
+      "creation_time_utc": "2026-09-06T13:34:38.703639+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.703639+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.127642+00:00",
+      "matching_lines": [
+        23
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t8\\_research_raw.json",
+      "bytes": 51903,
+      "sha256": "a5b579b20b1f1a7c6b4981138aba018e002d83d05dad73e4eed4dccc6a7b3e4d",
+      "creation_time_utc": "2026-09-06T13:34:38.703639+00:00",
+      "modification_time_utc": "2026-09-06T13:34:38.703639+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.127642+00:00",
+      "matching_lines": [
+        7,
+        27,
+        47,
+        66,
+        91,
+        122
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\tuned\\T3_COMPARISON.md",
+      "bytes": 1525,
+      "sha256": "231146e4247cfa38f8fe27c969476b6a586b9ba3dfd939fc8519cf0817348b93",
+      "creation_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.517441+00:00",
+      "matching_lines": [
+        6
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\tuned\\T3_VERDICT.json",
+      "bytes": 3198,
+      "sha256": "6c4c7a387131eee3bf254df121276f66eac64ca6de38222d0a36e8a185a323bd",
+      "creation_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.517441+00:00",
+      "matching_lines": [
+        7
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\tuned\\sciencemath-v0.1-t3\\adapter_metadata.json",
+      "bytes": 2386,
+      "sha256": "d1c91b9777f30331ad8395c70b893e9a4ea1dac8eb4d52d0c4005b61ebc8066f",
+      "creation_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.517441+00:00",
+      "matching_lines": [
+        2
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\tuned\\sciencemath-v0.1-t3\\hardware.json",
+      "bytes": 588,
+      "sha256": "c53653d7a99e8c6c6a39d6f51ce9ce31078204451cabe7eca7e8298f8e17287f",
+      "creation_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.525953+00:00",
+      "matching_lines": [
+        18
+      ],
+      "contains_candidate_digest": false
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\tuned\\sciencemath-v0.1-t3\\manifest.json",
+      "bytes": 1308,
+      "sha256": "b7c521694967e122838ffb5ed1295bfb2ada8622867fdd733503d8020676ba81",
+      "creation_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "modification_time_utc": "2026-09-06T13:34:39.239565+00:00",
+      "access_time_utc": "2026-09-06T14:41:33.525953+00:00",
+      "matching_lines": [
+        23,
+        25
+      ],
+      "contains_candidate_digest": false
+    }
+  ],
+  "warning": "New hashes in this report are not historical digests."
+}

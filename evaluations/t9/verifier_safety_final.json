@@ -1,0 +1,11 @@
+{
+  "gold_cases": 150,
+  "gold_pass_rate": 1.0,
+  "gold_unknown_rate": 0.0,
+  "gold_unknown_cases": [],
+  "wrong_cases": 638,
+  "false_pass_rate": 0.0,
+  "wrong_unknown_rate": 0.004702194357366771,
+  "false_pass_cases": [],
+  "critical_gate": "PASS"
+}

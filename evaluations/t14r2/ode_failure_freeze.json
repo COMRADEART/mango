@@ -1,0 +1,455 @@
+{
+  "milestone": "T14R2.1 — frozen ODE planner operation-selection failures",
+  "recorded_at": "2026-09-12T12:28:15.746437+00:00",
+  "source_run": "evaluations/t14r/runs/t14r-scicomp-B2",
+  "source_run_numeric_accuracy": 0.8188405797101449,
+  "source_run_wrong_numeric_rows": 25,
+  "frozen_failure_count": 6,
+  "frozen_before_any_code_change": true,
+  "relabeling_prohibited": "expected outcomes and gold values come from the frozen suite (mango-scicomp-eval-v1, sha256 e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1) and are recorded verbatim; no expected outcome may be relabeled after repair",
+  "suite_row_expected_values": {
+    "msc-v1-0081": 8.963378140676129,
+    "msc-v1-0082": 1.353352832366127,
+    "msc-v1-0083": 1.2180175491295144,
+    "msc-v1-0084": 1.6240233988393524,
+    "msc-v1-0087": 29.4,
+    "msc-v1-0088": 2013.7527074704767
+  },
+  "cases": [
+    {
+      "task_id": "msc-v1-0081",
+      "question": "A population grows as dP/dt = 0.3*P with P(0) = 2 (in hundreds). What is P at t = 5 (in hundreds)?",
+      "source_inputs": {
+        "expression": "0.3 * P",
+        "lower": 0,
+        "upper": 5
+      },
+      "expected_task_type": {
+        "kind": "numeric_oracle",
+        "gold_route": "ODE",
+        "answer_type": "number",
+        "needs_compute": true,
+        "gold_expected": 8.963378140676129,
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "current_route": "ODE",
+      "current_necessity_class": "COMPUTE_REQUIRED",
+      "planner_selected_operation": "definite_integral",
+      "expected_operation": "solve_ode",
+      "planner_request": {
+        "operation": "definite_integral",
+        "compute_required": true,
+        "parameters": {
+          "expression": "0.3 * P",
+          "lower": 0,
+          "upper": 5
+        },
+        "source_inputs": {
+          "expression": "0.3 * P",
+          "lower": 0,
+          "upper": 5
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "The population growth is modeled by a differential equation; solving it requires integrating the rate of change to find P(t).",
+        "preserve_verbatim": [
+          "expression",
+          "lower",
+          "upper"
+        ]
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "scicomp_engine_status": "PASS",
+      "raw_engine_result": {
+        "note": "raw engine payload not retained by the frozen runner; the verified envelope's authoritative value is recorded instead",
+        "verified_authoritative_value": 3.75,
+        "invoked": true,
+        "adoption_taxonomy": "ADOPTED"
+      },
+      "adopted_result": true,
+      "final_answer": "3.75",
+      "failure_taxonomy": "WRONG_ODE_OPERATION",
+      "rationale": "dP/dt = 0.3*P, P(0)=2, evaluate P(5): the planner routed the IVP to definite_integral of the rate 0.3*P over [0,5] (accumulated change 3.75), not the solution P(t)=2*e^{0.3t} (gold 8.9634). The engine PASSed and the adopter adopted the verified-but-wrong-quantity value.",
+      "outcome_history": {
+        "t14_armB_correct": false,
+        "t14_armB_operation": "definite_integral",
+        "t14r_armB_correct": false,
+        "t14r_armB_operation": "definite_integral",
+        "t14r2_b2_correct": false,
+        "t14r2_b2_operation": "definite_integral"
+      }
+    },
+    {
+      "task_id": "msc-v1-0082",
+      "question": "A radioactive sample decays with rate constant 0.02 per year. Starting from 10 grams, how many grams remain after 100 years?",
+      "source_inputs": {
+        "expression": "10 * exp(-0.02 * t)",
+        "lower": 0,
+        "upper": 100
+      },
+      "expected_task_type": {
+        "kind": "numeric_oracle",
+        "gold_route": "ODE",
+        "answer_type": "number",
+        "needs_compute": true,
+        "gold_expected": 1.353352832366127,
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "current_route": "ODE",
+      "current_necessity_class": "COMPUTE_HELPFUL",
+      "planner_selected_operation": "definite_integral",
+      "expected_operation": "solve_ode",
+      "planner_request": {
+        "operation": "definite_integral",
+        "compute_required": true,
+        "parameters": {
+          "expression": "10 * exp(-0.02 * t)",
+          "lower": 0,
+          "upper": 100
+        },
+        "source_inputs": {
+          "expression": "10 * exp(-0.02 * t)",
+          "lower": 0,
+          "upper": 100
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "To compute the remaining mass after 100 years using exponential decay formula",
+        "preserve_verbatim": [
+          "expression",
+          "lower",
+          "upper"
+        ]
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "scicomp_engine_status": "PASS",
+      "raw_engine_result": {
+        "note": "raw engine payload not retained by the frozen runner; the verified envelope's authoritative value is recorded instead",
+        "verified_authoritative_value": 432.33235838169367,
+        "invoked": true,
+        "adoption_taxonomy": "ADOPTED"
+      },
+      "adopted_result": true,
+      "final_answer": "432.33235838169367 grams",
+      "failure_taxonomy": "WRONG_ODE_OPERATION",
+      "rationale": "Verbal exponential-decay IVP (rate constant 0.02, initial mass 10 g, evaluate at 100 y): the planner restated the ANALYTIC SOLUTION 10*exp(-0.02*t) as an integrand over [0,100] (432.33) instead of requesting solve_ode (gold 1.3534 = 10*e^-2).",
+      "outcome_history": {
+        "t14_armB_correct": false,
+        "t14_armB_operation": "definite_integral",
+        "t14r_armB_correct": false,
+        "t14r_armB_operation": "definite_integral",
+        "t14r2_b2_correct": false,
+        "t14r2_b2_operation": "definite_integral"
+      }
+    },
+    {
+      "task_id": "msc-v1-0083",
+      "question": "dQ/dt = -Q/3 with Q(0) = 9. What is Q at t = 6?",
+      "source_inputs": {
+        "dQ/dt": " -Q/3",
+        "Q(0)": 9,
+        "t": 6
+      },
+      "expected_task_type": {
+        "kind": "numeric_oracle",
+        "gold_route": "ODE",
+        "answer_type": "number",
+        "needs_compute": true,
+        "gold_expected": 1.2180175491295144,
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "current_route": "ODE",
+      "current_necessity_class": "COMPUTE_REQUIRED",
+      "planner_selected_operation": "definite_integral",
+      "expected_operation": "solve_ode",
+      "planner_request": {
+        "operation": "definite_integral",
+        "compute_required": true,
+        "parameters": {
+          "expression": "9 * exp(-t/3)",
+          "lower": 0,
+          "upper": 6
+        },
+        "source_inputs": {
+          "dQ/dt": " -Q/3",
+          "Q(0)": 9,
+          "t": 6
+        },
+        "parameter_provenance": {
+          "expression": "MODEL_INVENTED",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Solve the differential equation using integration to find Q(t) and evaluate at t=6",
+        "preserve_verbatim": [
+          "expression",
+          "lower",
+          "upper"
+        ]
+      },
+      "provenance": {
+        "expression": "MODEL_INVENTED",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "scicomp_engine_status": "PASS",
+      "raw_engine_result": {
+        "note": "raw engine payload not retained by the frozen runner; the verified envelope's authoritative value is recorded instead",
+        "verified_authoritative_value": 23.345947352611457,
+        "invoked": true,
+        "adoption_taxonomy": "ADOPTED"
+      },
+      "adopted_result": true,
+      "final_answer": "23.345947352611457",
+      "failure_taxonomy": "WRONG_ODE_OPERATION",
+      "rationale": "dQ/dt = -Q/3, Q(0)=9, evaluate Q(6): planner derived the closed-form solution 9*exp(-t/3) and sent it as a definite_integral integrand (23.346 = accumulated change) instead of solve_ode (gold 1.2180 = 9*e^-2).",
+      "outcome_history": {
+        "t14_armB_correct": false,
+        "t14_armB_operation": "definite_integral",
+        "t14r_armB_correct": false,
+        "t14r_armB_operation": "definite_integral",
+        "t14r2_b2_correct": false,
+        "t14r2_b2_operation": "definite_integral"
+      }
+    },
+    {
+      "task_id": "msc-v1-0084",
+      "question": "A capacitor discharges: dV/dt = -V/RC with RC = 2 s and V(0) = 12 V. What is V at t = 4 s?",
+      "source_inputs": {
+        "expression": "12 * exp(-t/2)",
+        "lower": 0,
+        "upper": 4
+      },
+      "expected_task_type": {
+        "kind": "numeric_oracle",
+        "gold_route": "ODE",
+        "answer_type": "number",
+        "needs_compute": true,
+        "gold_expected": 1.6240233988393524,
+        "atol": 0.0001,
+        "rtol": 1e-05
+      },
+      "current_route": "ODE",
+      "current_necessity_class": "COMPUTE_REQUIRED",
+      "planner_selected_operation": "definite_integral",
+      "expected_operation": "solve_ode",
+      "planner_request": {
+        "operation": "definite_integral",
+        "compute_required": true,
+        "parameters": {
+          "expression": "12 * exp(-t/2)",
+          "lower": 0,
+          "upper": 4
+        },
+        "source_inputs": {
+          "expression": "12 * exp(-t/2)",
+          "lower": 0,
+          "upper": 4
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "lower": "USER_GIVEN",
+          "upper": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Solve the differential equation by integrating the voltage decay function from t=0 to t=4s",
+        "preserve_verbatim": [
+          "expression",
+          "lower",
+          "upper"
+        ]
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "lower": "USER_GIVEN",
+        "upper": "USER_GIVEN"
+      },
+      "scicomp_engine_status": "PASS",
+      "raw_engine_result": {
+        "note": "raw engine payload not retained by the frozen runner; the verified envelope's authoritative value is recorded instead",
+        "verified_authoritative_value": 20.751953202321296,
+        "invoked": true,
+        "adoption_taxonomy": "ADOPTED"
+      },
+      "adopted_result": true,
+      "final_answer": "20.751953202321296 V",
+      "failure_taxonomy": "WRONG_ODE_OPERATION",
+      "rationale": "Capacitor discharge dV/dt = -V/RC, RC=2 s, V(0)=12 V, evaluate V(4): planner restated the closed form 12*exp(-t/2) as an integrand (20.75) instead of solve_ode (gold 1.6240 = 12*e^-2).",
+      "outcome_history": {
+        "t14_armB_correct": false,
+        "t14_armB_operation": "definite_integral",
+        "t14r_armB_correct": false,
+        "t14r_armB_operation": "definite_integral",
+        "t14r2_b2_correct": false,
+        "t14r2_b2_operation": "definite_integral"
+      }
+    },
+    {
+      "task_id": "msc-v1-0087",
+      "question": "A ball dropped from rest accelerates at g = 9.8 m/s^2: dv/dt = 9.8, v(0) = 0. What is its velocity at t = 3 s?",
+      "source_inputs": {
+        "expression": "9.8 * t",
+        "bounds": [
+          [
+            "0",
+            "9.8"
+          ]
+        ]
+      },
+      "expected_task_type": {
+        "kind": "numeric_oracle",
+        "gold_route": "ODE",
+        "answer_type": "number",
+        "needs_compute": true,
+        "gold_expected": 29.4,
+        "atol": 1e-06,
+        "rtol": 1e-06
+      },
+      "current_route": "ODE",
+      "current_necessity_class": "COMPUTE_REQUIRED",
+      "planner_selected_operation": "minimize",
+      "expected_operation": "solve_ode",
+      "planner_request": {
+        "operation": "minimize",
+        "compute_required": true,
+        "parameters": {
+          "expression": "9.8 * t",
+          "bounds": [
+            [
+              "0",
+              "9.8"
+            ]
+          ]
+        },
+        "source_inputs": {
+          "expression": "9.8 * t",
+          "bounds": [
+            [
+              "0",
+              "9.8"
+            ]
+          ]
+        },
+        "parameter_provenance": {
+          "expression": "USER_GIVEN",
+          "bounds": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Velocity is computed as integral of acceleration over time, which is v(t) = 9.8 * t; at t=3s, v=29.4 m/s.",
+        "preserve_verbatim": [
+          "expression",
+          "bounds"
+        ]
+      },
+      "provenance": {
+        "expression": "USER_GIVEN",
+        "bounds": "USER_GIVEN"
+      },
+      "scicomp_engine_status": null,
+      "raw_engine_result": {
+        "note": "raw engine payload not retained by the frozen runner; the verified envelope's authoritative value is recorded instead",
+        "verified_authoritative_value": null,
+        "invoked": false,
+        "adoption_taxonomy": null
+      },
+      "adopted_result": null,
+      "final_answer": "COMPUTE_RESULT_NOT_USABLE",
+      "failure_taxonomy": "WRONG_ODE_OPERATION",
+      "rationale": "dv/dt = 9.8, v(0)=0, evaluate v(3): planner chose minimize on 9.8*t (wrong operation family entirely) and string-typed bounds; the request failed the schema gate. Correct: solve_ode with equations ['9.8'], initial_state [0], t_end 3 (gold 29.4).",
+      "outcome_history": {
+        "t14_armB_correct": false,
+        "t14_armB_operation": "minimize",
+        "t14r_armB_correct": false,
+        "t14r_armB_operation": "minimize",
+        "t14r2_b2_correct": false,
+        "t14r2_b2_operation": "minimize"
+      }
+    },
+    {
+      "task_id": "msc-v1-0088",
+      "question": "dN/dt = r*N with r = 0.07 per year and N(0) = 1000. What is N after 10 years (to the nearest integer)?",
+      "source_inputs": {
+        "dN": "dN/dt = r*N with r = 0.07 per year and N(0) = 1000. What is N after 10 years (to the nearest integer)?"
+      },
+      "expected_task_type": {
+        "kind": "numeric_oracle",
+        "gold_route": "ODE",
+        "answer_type": "number",
+        "needs_compute": true,
+        "gold_expected": 2013.7527074704767,
+        "atol": 1.0,
+        "rtol": 0.0
+      },
+      "current_route": "ODE",
+      "current_necessity_class": "COMPUTE_REQUIRED",
+      "planner_selected_operation": "definite_integral",
+      "expected_operation": "solve_ode",
+      "planner_request": {
+        "operation": "definite_integral",
+        "compute_required": true,
+        "parameters": {
+          "expression": "0.07 * N",
+          "lower": 0,
+          "upper": 10
+        },
+        "source_inputs": {
+          "dN": "dN/dt = r*N with r = 0.07 per year and N(0) = 1000. What is N after 10 years (to the nearest integer)?"
+        },
+        "parameter_provenance": {
+          "expression": "MODEL_INVENTED",
+          "lower": "RETRIEVED_VERIFIED",
+          "upper": "RETRIEVED_VERIFIED"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Solve the differential equation dN/dt = 0.07*N with initial condition N(0)=1000 using integration to find N(10)",
+        "preserve_verbatim": [
+          "expression"
+        ]
+      },
+      "provenance": {
+        "expression": "MODEL_INVENTED",
+        "lower": "RETRIEVED_VERIFIED",
+        "upper": "RETRIEVED_VERIFIED"
+      },
+      "scicomp_engine_status": "PASS",
+      "raw_engine_result": {
+        "note": "raw engine payload not retained by the frozen runner; the verified envelope's authoritative value is recorded instead",
+        "verified_authoritative_value": 3.5000000000000004,
+        "invoked": true,
+        "adoption_taxonomy": "ADOPTED"
+      },
+      "adopted_result": false,
+      "final_answer": "4",
+      "failure_taxonomy": "WRONG_ODE_OPERATION",
+      "rationale": "dN/dt = r*N, r=0.07, N(0)=1000, evaluate N(10): planner sent definite_integral of 0.07*N over [0,10] (3.5, then rounded to 4) instead of solve_ode (gold 2013.75 = 1000*e^0.7).",
+      "outcome_history": {
+        "t14_armB_correct": false,
+        "t14_armB_operation": "definite_integral",
+        "t14r_armB_correct": false,
+        "t14r_armB_operation": "definite_integral",
+        "t14r2_b2_correct": false,
+        "t14r2_b2_operation": "definite_integral"
+      }
+    }
+  ]
+}

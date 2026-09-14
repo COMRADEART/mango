@@ -1,0 +1,11 @@
+{
+  "attempt": 2,
+  "run_label": "t12-final-fidelity-A",
+  "timestamp": "2026-09-08 (post-SciComp-A completion, ~1 min after launch)",
+  "classification": "INFRASTRUCTURE_INTERRUPTION",
+  "outcome": "Process killed by the operating system: 'system is running low on memory' (host RAM pressure, not CUDA). Killed during/right after model load (LOAD_DIAG had printed; 0 items graded).",
+  "rows_written": 0,
+  "evidence": "evaluations/t12/runs/fidelity-A-rerun.log (LOAD_DIAG line, no item rows); background-task kill record 'status: killed, system running low on memory'; nvidia-smi 0 MiB after kill; no orphaned eval python process.",
+  "remediation": "None required to the protocol or system under test. Byte-identical relaunch (attempt 3) after verifying GPU drained (0 MiB) and no compute processes. Metrics exclusion: attempts 1-2 contribute 0 rows.",
+  "prior_attempt_1": "2026-09-08T14:40:28-04:00, CUDA OOM at load 35 s after scicomp-B exit (no-drain leg advance) - see ./INTERRUPTION.json in the archived driver-era record."
+}

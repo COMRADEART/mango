@@ -1,0 +1,11 @@
+--- a/src/feat16_chunk.py
++++ b/src/feat16_chunk.py
+@@ -1,2 +1,7 @@
+ def chunk(xs, n):
+-    raise NotImplementedError
++    """
++    Split list `xs` into chunks of size `n`.
++    """
++    if n <= 0:
++        raise ValueError("Chunk size must be positive")
++    return [xs[i:i + n] for i in range(0, len(xs), n)]

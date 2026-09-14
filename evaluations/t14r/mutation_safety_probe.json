@@ -1,0 +1,463 @@
+{
+ "milestone": "T14R early mutation-safety probe",
+ "suites": [
+  {
+   "suite": "fidelity",
+   "n_mutations": 8,
+   "mutations_still_rejected": 8,
+   "faithful_n": 74,
+   "exceptions": [],
+   "mutation_results": [
+    {
+     "eval_id": "mfid-v1-0001",
+     "category": "INVALID_PARAMS",
+     "rejected": true,
+     "failures": [
+      "provenance_missing_or_invalid:parameters"
+     ]
+    },
+    {
+     "eval_id": "mfid-v1-0002",
+     "category": "INVALID_PARAMS",
+     "rejected": true,
+     "failures": [
+      "provenance_missing_or_invalid:parameters"
+     ]
+    },
+    {
+     "eval_id": "mfid-v1-0003",
+     "category": "INVALID_PARAMS",
+     "rejected": true,
+     "failures": [
+      "provenance_missing_or_invalid:parameters"
+     ]
+    },
+    {
+     "eval_id": "mfid-v1-0005",
+     "category": "INVALID_PARAMS",
+     "rejected": true,
+     "failures": [
+      "provenance_missing_or_invalid:parameters"
+     ]
+    },
+    {
+     "eval_id": "mfid-v1-0010",
+     "category": "INVALID_PARAMS",
+     "rejected": true,
+     "failures": [
+      "provenance_missing_or_invalid:parameters"
+     ]
+    },
+    {
+     "eval_id": "mfid-v1-0011",
+     "category": "SINGULAR_MATRIX",
+     "rejected": true,
+     "failures": [
+      "disallowed_transformation:matrix:NUMERIC_VALUE_CHANGED"
+     ]
+    },
+    {
+     "eval_id": "mfid-v1-0036",
+     "category": "IMPOSSIBLE_BOUNDS",
+     "rejected": true,
+     "failures": [
+      "disallowed_transformation:bound_high:NUMERIC_VALUE_CHANGED",
+      "disallowed_transformation:bound_low:NUMERIC_VALUE_CHANGED"
+     ]
+    },
+    {
+     "eval_id": "mfid-v1-0066",
+     "category": "MALICIOUS_EXPR",
+     "rejected": true,
+     "failures": [
+      "provenance_missing_or_invalid:expression"
+     ]
+    }
+   ],
+   "faithful_results": [
+    {
+     "eval_id": "mfid-v1-0004",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0006",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0007",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0008",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0009",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0012",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0013",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0014",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0015",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0016",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0017",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0018",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0019",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:equations"
+    },
+    {
+     "eval_id": "mfid-v1-0020",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:equations;provenance_missing_or_invalid:initial_state"
+    },
+    {
+     "eval_id": "mfid-v1-0021",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:equations"
+    },
+    {
+     "eval_id": "mfid-v1-0022",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:equations"
+    },
+    {
+     "eval_id": "mfid-v1-0023",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:equations"
+    },
+    {
+     "eval_id": "mfid-v1-0024",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:equations"
+    },
+    {
+     "eval_id": "mfid-v1-0025",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:equations"
+    },
+    {
+     "eval_id": "mfid-v1-0026",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:equations"
+    },
+    {
+     "eval_id": "mfid-v1-0027",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0028",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0029",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0030",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0031",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0032",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0033",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0034",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0035",
+     "kind": "FLAG",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:values"
+    },
+    {
+     "eval_id": "mfid-v1-0037",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0038",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0039",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0040",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0041",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:values"
+    },
+    {
+     "eval_id": "mfid-v1-0042",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:values"
+    },
+    {
+     "eval_id": "mfid-v1-0043",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:values"
+    },
+    {
+     "eval_id": "mfid-v1-0044",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:values"
+    },
+    {
+     "eval_id": "mfid-v1-0045",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0046",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:y"
+    },
+    {
+     "eval_id": "mfid-v1-0047",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:sweeps"
+    },
+    {
+     "eval_id": "mfid-v1-0048",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:expression;provenance_missing_or_invalid:x"
+    },
+    {
+     "eval_id": "mfid-v1-0049",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:expression;provenance_missing_or_invalid:x"
+    },
+    {
+     "eval_id": "mfid-v1-0050",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0051",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0052",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0053",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0054",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0055",
+     "kind": "REJECT",
+     "status": "SCHEMA_FAIL:provenance_missing_or_invalid:null_value"
+    },
+    {
+     "eval_id": "mfid-v1-0056",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0057",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0058",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0059",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0060",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0061",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0062",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0063",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0064",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0065",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0067",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0068",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0069",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0070",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0071",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0072",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0073",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0074",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0075",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0076",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0077",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0078",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0079",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0080",
+     "kind": "FLAG",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0081",
+     "kind": "REJECT",
+     "status": "FIDELITY_OK"
+    },
+    {
+     "eval_id": "mfid-v1-0082",
+     "kind": "CONTROL",
+     "status": "FIDELITY_OK"
+    }
+   ],
+   "passed": true
+  },
+  {
+   "suite": "fidelity_transform",
+   "n_mutations": 0,
+   "mutations_still_rejected": 0,
+   "faithful_n": 0,
+   "exceptions": [],
+   "mutation_results": [],
+   "faithful_results": [],
+   "passed": true
+  }
+ ],
+ "passed": true
+}

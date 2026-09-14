@@ -1,0 +1,154 @@
+{
+ "milestone": "T11",
+ "status": "PASS",
+ "recorded_at": "2026-09-07T22:09:14.645567-04:00",
+ "git": {
+  "head": "891ba416638d6b4fd459b3ec5785eb9d9d36eced",
+  "head_subject": "T10 close: protection battery ALL_PASS, final audit 13/13, promote 4B system architecture",
+  "commit_on_remote_main": false,
+  "remote_head_at_entry": "5ce04b3ec52646663631e7be0bc2a14520a15b21",
+  "remote_url": "https://github.com/COMRADEART/mango.git",
+  "note": "T10 closure commit 891ba41 is local-only; origin/main still at T9-entry 5ce04b3. Recorded per T11.0.",
+  "working_tree": {
+   "modified": [
+    "training/curriculum/mango-sft-v2/level1/replay.jsonl",
+    "training/curriculum/mango-sft-v2/level1/train.jsonl",
+    "training/curriculum/mango-sft-v2/level1/validation.jsonl"
+   ],
+   "untracked": [
+    ".claude/",
+    "check_progress.py",
+    "docs/",
+    "generate_t4_summary.py",
+    "mango/",
+    "sciencemath/",
+    "scripts/build_extraction_benchmark.py",
+    "scripts/run_extraction_benchmark.py",
+    "scripts/t8s_finalize.py",
+    "scripts/t8s_metrics.py",
+    "scripts/t8s_vectors_pareto.py",
+    "scripts/t9_decomp_pass.py",
+    "scripts/t9_final_audit.py",
+    "scripts/t9_repair_validation.py",
+    "scripts/t9_repro_audit.py",
+    "scripts/t9_t3_provenance.py",
+    "scripts/t9_t3_search_sources.py",
+    "src/sciencemath/evaluation/repro.py",
+    "temp_clean_clone/",
+    "tests/test_t8s_finalize.py",
+    "tests/test_t8s_metrics.py",
+    "tests/test_t8s_pareto.py",
+    "tests/test_t8s_repro.py"
+   ],
+   "note": "T10-closed working tree state carried into T11 unmodified; modified curriculum jsonl are the pre-existing T10 state."
+  }
+ },
+ "environment": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10",
+  "gpu": "RTX 4050 6141 MiB (per T10 records)"
+ },
+ "gpu": {
+  "stale_processes": 0,
+  "memory_used_mib": 0,
+  "utilization_pct": 0,
+  "idle": true
+ },
+ "pytest": {
+  "tests": 764,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_s": 16.382
+ },
+ "t10_final_report": {
+  "path": "evaluations/t10/T10_FINAL_REPORT.md",
+  "status": "COMPLETE (all T10 phases T10.0-T10.25)"
+ },
+ "t10_final_audit": {
+  "path": "evaluations/t10/final_audit.json",
+  "all_pass": true
+ },
+ "t10_protection_recorded_gates": {
+  "t4": {
+   "false_pass_rate": 0.0,
+   "gold_pass_rate": 1.0,
+   "critical_gate": "PASS"
+  },
+  "t5r": {
+   "citation_integrity": {
+    "fabricated": 0,
+    "unsupported": 0,
+    "invalid": 0
+   },
+   "accuracy_G": 0.5862
+  },
+  "generalization": {
+   "correct": 110,
+   "n": 131,
+   "accuracy": 0.8396946564885496
+  },
+  "extraction": {
+   "wrong_final_acceptance": 0.0
+  },
+  "note": "Entry gate verifies recorded T10 protection artifacts (frozen suites); gates will be re-RUN post-T11-integration per T11.34-T11.38."
+ },
+ "t3_adapter": {
+  "path": "training/adapters/sciencemath-v0.1-t3/adapter_model.safetensors",
+  "expected": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+  "actual": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+  "match": true
+ },
+ "firewall": {
+  "module": "src/sciencemath/executive/correction.py",
+  "sha256": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+  "matches_t10_freeze": true
+ },
+ "suite_checksums": {
+  "t4_suite": {
+   "path": "evaluations/tool-suite/v1/questions.jsonl",
+   "expected": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+   "actual": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+   "match": true
+  },
+  "t5r_suite": {
+   "path": "evaluations/rag-suite/v1/questions.jsonl",
+   "expected": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+   "actual": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+   "match": true
+  },
+  "capacity_suite": {
+   "path": "evaluations/t8/capacity-suite/v1/questions.jsonl",
+   "expected": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+   "actual": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+   "match": true
+  },
+  "extraction_suite": {
+   "path": "evaluations/t9/extraction-benchmark/v1/questions.jsonl",
+   "expected": "dd48d8e536fe23655403274e33edaa9fbe005afdb1ae0f0047445760ab16cdab",
+   "actual": "dd48d8e536fe23655403274e33edaa9fbe005afdb1ae0f0047445760ab16cdab",
+   "match": true
+  },
+  "correction_suite_v1": {
+   "path": "evaluations/t9/correction-suite/v1/questions.jsonl",
+   "expected": "dc77ccf845f539d4bf6df23964207d504962d75b56f02c981d0e15eb632a445b",
+   "actual": "dc77ccf845f539d4bf6df23964207d504962d75b56f02c981d0e15eb632a445b",
+   "match": true
+  }
+ },
+ "checks": {
+  "pytest_green": true,
+  "t10_final_audit_all_pass": true,
+  "t3_adapter_sha": true,
+  "firewall_module_sha_unchanged": true,
+  "t4_suite_checksum": true,
+  "t5r_suite_checksum": true,
+  "capacity_suite_checksum": true,
+  "extraction_suite_checksum": true,
+  "correction_v1_suite_checksum": true,
+  "gpu_idle": true,
+  "architecture_is_mango_4b_system_v1": true,
+  "weight_promotion_stays_no": true,
+  "all_pass": true
+ }
+}

@@ -1,0 +1,45 @@
+{
+  "milestone": "T12 — Scientific-Compute Planner Fidelity and Promotion Closure",
+  "record": "Defects discovered DURING the final evaluation runs. The hardened implementation is frozen at commit 132ec6b; per the same discipline applied to engine quirks, these are MEASURED as found, not repaired mid-milestone. Per-item exceptions are recorded by the runner (instrument hotfix, this commit); the graded item outcome is conservatively correct=False.",
+  "defects": [
+    {
+      "id": "T12-DEF-1",
+      "layer": "T12 fidelity layer (src/sciencemath/scicomp/fidelity.py, frozen 132ec6b)",
+      "site": "fidelity.py:197 _merge_sub_results -> max() over empty sub-classification list",
+      "trigger": "check_fidelity on a faithful request whose structured parameter is an EMPTY container. First reproduced on frozen fidelity-suite item mfid-v1-0020 (kind REJECT, MALFORMED_ODE, faithful inputs contain initial_state: [] by design: ODE with no initial condition).",
+      "exception": "ValueError: max() iterable argument is empty",
+      "first_observed": "2026-09-08T14:48:41-04:00, run t12-final-fidelity-B, 19/82 rows written (archived: predictions.attempt1.jsonl)",
+      "designed_behavior": "classify_transformation should classify an empty container (e.g. as a legal no-element source or a normalization) and continue; the engine itself handles initial_state=[] (returns the declared non-PASS status, verified at suite build time).",
+      "measured_consequence": "The fidelity layer crashes on the item instead of classifying it; the request is never executed (safety holds: no engine run, no asserted number) but the designed clean gate behavior does not occur. The rerun records mfid-v1-0020 as a pipeline_exception row with correct=False.",
+      "disposition": "NOT REPAIRED (frozen system under test). Measured via per-item exception capture in the evaluation runner (instrument, scripts/t12_scicomp_eval.py hotfix)."
+    },
+    {
+      "id": "T12-DEF-2",
+      "layer": "T12 fidelity layer, transformation classification (T12.5)",
+      "site": "classify_transformation: disallowed_transformation:*:TYPE_CHANGED",
+      "trigger": "Faithful numeric_oracle items where the planner re-expresses equation text as the structured parameter the operation schema requires (e.g. '4x + 1y = 9; 2x + 3y = 13' -> matrix [[4,1],[2,3]], b [9,13]).",
+      "measured": "11 PARAMETER_FIDELITY_FAIL rows on numeric_oracle items in run t12-final-scicomp-B (msc-v1-0009,0010,0011,0012,0013,0018,0075,0078,0080,0094,0102), all with TYPE_CHANGED as the first failure; 7 of them are right->wrong flips vs T11 arm B (the remaining 4 were already wrong or newly right).",
+      "consequence": "The gate rejects faithful numeric requests, so the model answers directly and loses oracle points; this is the dominant mechanism in the 24-row numeric regression (T11-B 117/138 = 0.8478 -> T12-B 97/138 = 0.7029; flips: 11 guard, 7 fidelity gate, 5 planner-schema failures, 1 planner decline).",
+      "disposition": "MEASURED, not repaired (frozen system under test)."
+    },
+    {
+      "id": "T12-DEF-3",
+      "layer": "T12 evaluation runner (scripts/t12_scicomp_eval.py) — instrument, NOT the system under test",
+      "site": "_registry_lines_static() returned a str; t11.build_b1_system(manifest_lines) does '\\n'.join(manifest_lines), which over a str joins its CHARACTERS",
+      "trigger": "Any arm-A leg using the T11 B1-planner flow (scicomp-A attempts at 11:09 and 15:0x on 2026-09-08; fidelity-A attempts 1/3/4). The 4,258-char registry became a 9,146-char one-character-per-line prompt = 7,300 tokens (vs the correct 4,889 chars / ~1,300 tokens).",
+      "mechanism_proof": "Prefill SDPA scores at L=7300: 32 heads x 7300^2 x 4 bytes (fp32) = 6.351 GiB — exactly the 'Tried to allocate 6.35 GiB' in every OOM (scicomp variant 6.38 GiB = L~7316, differing only by question length). Confirmed by SDPA shape capture q=(1,32,7300,128) in a debug run, and by CHAT system=9146ch TOKENS=7300.",
+      "consequence": "Deterministic CUDA OOM at the first planner prefill on the 6,141 MiB card; 0 rows in every affected attempt. All affected attempts were initially classified INFRASTRUCTURE_INTERRUPTION; with the mechanism proven, they are reattributed to this runner defect (instrument). The system under test (engine, fidelity layer, hardened planner/adopter) is exonerated of all five OOM events.",
+      "disposition": "REPAIRED in the instrument (helper now returns list[str], matching T11's own runner usage); arms using PLANNER_SYSTEM_T12.format(registry=str) were always correct and unaffected. The 2026-09-08 ~15:3x OS kill of fidelity-A attempt 2 (host RAM pressure) remains a genuine INFRASTRUCTURE_INTERRUPTION."
+    },
+    {
+      "id": "T12-DEF-4",
+      "layer": "T12 final audit instrument (scripts/t12_final_audit.py) — NOT the system under test",
+      "site": "engine_freeze_intact gate (plus the T12.33 adapter-sha extraction)",
+      "trigger": "First audit run produced spurious verdicts: (1) t12_entry_gate.json stores checks as a LIST of {check,status,detail} but the audit called .get on it (AttributeError); (2) the freeze gate resolved bare filenames at the repo ROOT instead of src/sciencemath/scicomp/ (17 files falsely MISSING); (3) freeze-record values are plain sha256 strings but the audit called .get('sha256') on them; (4) the gate ignored the freeze record's own policy clause authorizing changes to planner schema/validation, routing guard, and result-adoption interface.",
+      "measured_effect_on_first_run": "engine_freeze_intact FAIL -> decision REJECT_SCICOMP, despite 16/17 engine files being byte-identical and the single change (router.py, the routing guard) being explicitly authorized by the freeze record's policy and made in the authorized hardening commit 8262a74 (clean working tree, unchanged since).",
+      "disposition": "REPAIRED in the instrument (audit script is not frozen code): base path corrected, sha-string values handled, checks-list shape handled, and the AUTHORIZED_LAYERS policy encoded with explicit justification strings emitted in the gate detail. Solver files remain byte-identity-gated."
+    }
+  ],
+  ],
+  "recorded_at": "2026-09-08T15:05:00-04:00"
+}

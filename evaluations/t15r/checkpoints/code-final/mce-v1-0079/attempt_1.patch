@@ -1,0 +1,6 @@
+--- a/src/feat18_merge.py
++++ b/src/feat18_merge.py
+@@ -1,2 +1,2 @@
+ def merge(a, b):
+-    raise NotImplementedError
++    return {**a, **b}

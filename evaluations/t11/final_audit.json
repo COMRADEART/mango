@@ -1,0 +1,175 @@
+{
+  "milestone": "T11 \u2014 Scientific Computing Laboratory",
+  "audit_date": "2026-09-07",
+  "all_checks_pass": false,
+  "checks": [
+    {
+      "check": "t11.0_entry_gate_recorded",
+      "status": "PASS",
+      "detail": {
+        "file": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t11\\t11_entry_gate.json",
+        "status": "PASS"
+      }
+    },
+    {
+      "check": "t11.19_suite_checksum_matches",
+      "status": "PASS",
+      "detail": {
+        "sha256": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+        "total": 206
+      }
+    },
+    {
+      "check": "t11.19_declared_counts_before_eval",
+      "status": "PASS",
+      "detail": {
+        "total": 206,
+        "declared": {
+          "LINEAR_ALGEBRA": 28,
+          "NUMERICAL_INTEGRATION": 28,
+          "DERIVATIVE": 9,
+          "ROOT_FINDING": 23,
+          "ODE": 21,
+          "OPTIMIZATION": 16,
+          "STATISTICS": 25,
+          "INTERPOLATION": 16,
+          "PARAMETER_SWEEP": 15,
+          "MIXED_RAG_COMPUTE": 20,
+          "SAFETY_CONCEPT": 5
+        }
+      }
+    },
+    {
+      "check": "firewall_unchanged",
+      "status": "PASS",
+      "detail": {
+        "sha256": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff"
+      }
+    },
+    {
+      "check": "t3_adapter_unchanged",
+      "status": "PASS",
+      "detail": {
+        "sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+      }
+    },
+    {
+      "check": "t11.33_no_code_execution_surface",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "check": "arm_run_present:t11-h2h-arma",
+      "status": "PASS",
+      "detail": {
+        "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t11\\runs\\t11-h2h-arma\\summary.json"
+      }
+    },
+    {
+      "check": "arm_run_present:t11-h2h-armb",
+      "status": "PASS",
+      "detail": {
+        "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t11\\runs\\t11-h2h-armb\\summary.json"
+      }
+    },
+    {
+      "check": "t11.40_router_precision>=0.90",
+      "status": "PASS",
+      "detail": 0.986013986013986
+    },
+    {
+      "check": "t11.40_router_recall>=0.85",
+      "status": "PASS",
+      "detail": 0.986013986013986
+    },
+    {
+      "check": "t11.40_valid_calls>=95%",
+      "status": "PASS",
+      "detail": 1.0
+    },
+    {
+      "check": "t11.40_engine_success>=98%",
+      "status": "PASS",
+      "detail": {
+        "engine_execution_success": 1.0,
+        "invocations": 153,
+        "compute_yield_PASS_per_invocation": 0.6143790849673203,
+        "note": "yield gap is planner schema errors (INVALID_INPUT) and designed fail-closed warnings, not engine failures"
+      }
+    },
+    {
+      "check": "t11.40_adoption>=90%",
+      "status": "FAIL",
+      "detail": 0.8617021276595744
+    },
+    {
+      "check": "t11.23_adversarial_expected_statuses_verified",
+      "status": "PASS",
+      "detail": {
+        "numeric_oracle": 138,
+        "conceptual_no_compute": 43,
+        "adversarial_expected_non_pass": 25
+      }
+    },
+    {
+      "check": "t11.34_t4_rerun_present",
+      "status": "PASS",
+      "detail": {
+        "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t8\\runs\\t11-protect-t4\\t4_arm_summary.json"
+      }
+    },
+    {
+      "check": "t11.34_t4_false_pass_zero",
+      "status": "PASS",
+      "detail": {
+        "false_pass_rate": 0.0,
+        "tool_enabled_accuracy": 0.7466666666666667
+      }
+    },
+    {
+      "check": "t11.35_t5r_rerun_present",
+      "status": "PASS",
+      "detail": {
+        "dir": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t11\\protection\\t5r"
+      }
+    },
+    {
+      "check": "t11.36_capacity_rerun_present",
+      "status": "PASS",
+      "detail": {
+        "dir": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t11\\protection\\cap"
+      }
+    },
+    {
+      "check": "t11.38_extraction_rerun_present",
+      "status": "PASS",
+      "detail": {
+        "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t9\\runs\\t11-protect-ext\\summary.json"
+      }
+    },
+    {
+      "check": "t11.37_correction_rerun_all_pass",
+      "status": "PASS",
+      "detail": {
+        "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t10\\runs\\t11-protect-correction\\summary.json",
+        "true_correction": 0.8,
+        "false_feedback_preservation": 1.0,
+        "overcorrection": 0.0,
+        "collateral_change_rate": 0.0,
+        "blind_agreement": 0.0,
+        "partial_repair_rate": 0.782608695652174,
+        "net_correction_benefit": 20
+      }
+    },
+    {
+      "check": "t11.43_full_pytest_zero_failures",
+      "status": "PASS",
+      "detail": {
+        "tests": 878,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "suite": "frozen",
+  "variants": [
+    "NORAG",
+    "G"
+  ],
+  "finished_at": "2026-09-06 21:00:45",
+  "generating": "Qwen/Qwen3-4B-Instruct-2507",
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "adapter": null,
+  "generation": {
+    "seed": 42,
+    "do_sample": false,
+    "max_new_tokens": 1024
+  }
+}

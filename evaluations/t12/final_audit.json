@@ -1,0 +1,161 @@
+{
+  "milestone": "T12 \u2014 Scientific-Compute Planner Fidelity and Promotion Closure",
+  "decision": "KEEP_SCICOMP_EXPERIMENTAL",
+  "weight_promotion": "NO",
+  "gates_total": 19,
+  "passes": 17,
+  "fails": [
+    "t12.26b_no_fabricated_PASS",
+    "t12.27_numeric>=0.848"
+  ],
+  "missing": [],
+  "pre_registered_thresholds": {
+    "adoption": 0.9,
+    "adoption_preferred": 0.95,
+    "conceptual_tolerance_vs_control": 0.02,
+    "adversarial_tolerance_vs_control": 0.02,
+    "numeric_floor": 0.848,
+    "router_floor_OPERATIONALIZED": 0.95,
+    "silent_mutation": 0
+  },
+  "checks": [
+    {
+      "check": "suite_integrity_scicomp",
+      "status": "PASS",
+      "measured": "e6e3f04839c5\u2026",
+      "detail": ""
+    },
+    {
+      "check": "suite_integrity_fidelity",
+      "status": "PASS",
+      "measured": "f598825c7823\u2026",
+      "detail": ""
+    },
+    {
+      "check": "suite_integrity_conceptual",
+      "status": "PASS",
+      "measured": "16d7b4d5f3fe\u2026",
+      "detail": ""
+    },
+    {
+      "check": "t12.23_adoption>=0.90",
+      "status": "PASS",
+      "measured": 0.9607843137254902,
+      "detail": "raw: 49/51 PASS envelopes adopted (preferred >= 0.95)"
+    },
+    {
+      "check": "t12.23b_adoption_preferred>=0.95",
+      "status": "PASS",
+      "measured": 0.9607843137254902,
+      "detail": "preferred (non-blocking) target"
+    },
+    {
+      "check": "t12.24_silent_mutation==0",
+      "status": "PASS",
+      "measured": 0,
+      "detail": "fidelity-v1 arm B: mutated request executed to PASS (absolute gate); approved logged normalizations excluded by construction"
+    },
+    {
+      "check": "t12.25_conceptual_vs_control",
+      "status": "PASS",
+      "measured": {
+        "t12_armB": 1.0,
+        "t12_control": 1.0
+      },
+      "detail": "tolerance 0.02 (T11 gap was -14.0 pp from control 0.9534883720930233)"
+    },
+    {
+      "check": "t12.25b_unnecessary_compute_lower_than_T11",
+      "status": "PASS",
+      "measured": {
+        "t12_armB": 0.0,
+        "t11_armB": null
+      },
+      "detail": ""
+    },
+    {
+      "check": "t12.26_adversarial_vs_control",
+      "status": "PASS",
+      "measured": {
+        "t12_armB": 0.92,
+        "t12_control": 0.8
+      },
+      "detail": "tolerance 0.02 (T11 gap was -4.0 pp from control 0.76)"
+    },
+    {
+      "check": "t12.26b_no_fabricated_PASS",
+      "status": "FAIL",
+      "measured": 0.04,
+      "detail": "asserted-number-on-failure rate must be 0"
+    },
+    {
+      "check": "t12.27_numeric>=0.848",
+      "status": "FAIL",
+      "measured": 0.7028985507246377,
+      "detail": "T11 treatment was 0.8478260869565217"
+    },
+    {
+      "check": "t12.28_router_not_materially_regressed",
+      "status": "PASS",
+      "measured": {
+        "conceptual_P": 1.0,
+        "conceptual_R": 1.0
+      },
+      "detail": "OPERATIONALIZED floor 0.95"
+    },
+    {
+      "check": "t12.29_engine_protection",
+      "status": "PASS",
+      "measured": {
+        "valid_call_rate": 1.0,
+        "well_formed_envelopes": "64/64"
+      },
+      "detail": "engine execution reliability on arm B invocations (T11: 1.000, 153/153)"
+    },
+    {
+      "check": "t12.30_regression_battery",
+      "status": "PASS",
+      "measured": "ALL_PASS",
+      "detail": "{\"t4\": {\"status\": \"PASS\", \"tool_enabled_accuracy\": 0.7466666666666667, \"false_pass_rate\": 0.0, \"baseline\": \"recall 74.67%, false PASS 0.0 (T10/T11)\"}, \"t5r\": {\"status\": \"PASS\", \"files\": [\"C:\\\\Users\\\\allam\\\\Documents\\\\new\\\\model\\\\evaluations\\\\t12\\\\protection\\\\t5r\\\\comparison.json\", \"C:\\\\Users\\\\allam\\\\Documents\\\\new\\\\model\\\\evaluations\\\\t12\\\\protection\\\\t5r\\\\run_summary.json\", \"C:\\\\Users\\\\allam\\\\Doc"
+    },
+    {
+      "check": "t12.31_security_zero_violations",
+      "status": "PASS",
+      "measured": 0,
+      "detail": "{'tests': 35, 'failures': 0, 'errors': 0, 'skipped': 0} over ['tests\\\\test_t11_security.py']"
+    },
+    {
+      "check": "t12.32_latency_reported",
+      "status": "PASS",
+      "measured": {
+        "scicomp_A": 19354.9,
+        "scicomp_B": 43606.5,
+        "fidelity_A": 19189.7,
+        "fidelity_B": 23606.1,
+        "conceptual_B": 21070.4
+      },
+      "detail": "informational: median per-question LLM ms"
+    },
+    {
+      "check": "t12.33_no_training_adapter_unchanged",
+      "status": "PASS",
+      "measured": "f57b2fd4a653abb9\u2026",
+      "detail": "no LoRA/SFT/preference/weight edits (entry-gate sha f57b2fd4a653abb9)"
+    },
+    {
+      "check": "t12.33c_pytest_zero_failures",
+      "status": "PASS",
+      "measured": {
+        "passed": 926,
+        "failures": 0
+      },
+      "detail": ""
+    },
+    {
+      "check": "engine_freeze_intact",
+      "status": "PASS",
+      "measured": "17/17 files unchanged; authorized: router.py: changed per freeze policy (routing guard (hardened 8262a74, frozen at 132ec6b))",
+      "detail": "router.py: changed per freeze policy (routing guard (hardened 8262a74, frozen at 132ec6b))"
+    }
+  ]
+}

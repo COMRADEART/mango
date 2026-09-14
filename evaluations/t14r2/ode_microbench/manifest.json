@@ -1,0 +1,42 @@
+{
+  "milestone": "T14R2.11 \u2014 ODE planner microbench suite",
+  "bench": "mango-ode-planner-v1",
+  "recorded_at": "2026-09-12T12:39:03.388254+00:00",
+  "suite_file": "evaluations/t14r2/ode_microbench/suite_v1.jsonl",
+  "suite_sha256": "5e0c6e3bd5be148b4442dd413749df2d15563a2bcc3c7a38047bbb79c0c7a17b",
+  "total_cases": 108,
+  "positive_cases": 56,
+  "negative_cases": 52,
+  "split_counts": {
+    "dev": 49,
+    "final": 59
+  },
+  "family_counts": {
+    "growth": 10,
+    "decay": 12,
+    "param_decay": 4,
+    "constant_rhs": 3,
+    "linear_rhs": 1,
+    "system2": 8,
+    "second_order": 6,
+    "verbal_decay": 4,
+    "verbal_growth": 2,
+    "eval_time": 6,
+    "missing_ic": 5,
+    "missing_eval_time": 5,
+    "undeclared_param": 5,
+    "bvp_shape": 4,
+    "mixed_time_ics": 2,
+    "second_order_one_ic": 3,
+    "conceptual": 7,
+    "distractor_integral": 3,
+    "distractor_root": 1,
+    "distractor_optimize": 2,
+    "distractor_equation": 2,
+    "distractor_sweep": 2,
+    "distractor_derivative": 1,
+    "insufficient": 6,
+    "malformed": 4
+  },
+  "checksum_frozen_before_tuning": true
+}

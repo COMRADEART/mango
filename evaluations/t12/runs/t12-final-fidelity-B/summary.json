@@ -1,0 +1,76 @@
+{
+  "questions": 82,
+  "kinds": {
+    "fidelity": 82
+  },
+  "handled_correctly": 0.8170731707317073,
+  "silent_mutation_pass_count": 0,
+  "asserted_number_on_invalid": 11,
+  "guard_or_gate_blocks": 28,
+  "mutation_attempted": 7,
+  "per_category": {
+    "INVALID_PARAMS": {
+      "total": 10,
+      "correct": 10
+    },
+    "SINGULAR_MATRIX": {
+      "total": 8,
+      "correct": 8
+    },
+    "MALFORMED_ODE": {
+      "total": 8,
+      "correct": 6
+    },
+    "NEGATIVE_QUANTITY": {
+      "total": 9,
+      "correct": 6
+    },
+    "IMPOSSIBLE_BOUNDS": {
+      "total": 5,
+      "correct": 5
+    },
+    "NAN_INF": {
+      "total": 6,
+      "correct": 4
+    },
+    "OVERSIZED_SWEEP": {
+      "total": 3,
+      "correct": 3
+    },
+    "INVALID_BRACKET": {
+      "total": 5,
+      "correct": 4
+    },
+    "MISSING_PARAM": {
+      "total": 6,
+      "correct": 6
+    },
+    "MALICIOUS_EXPR": {
+      "total": 6,
+      "correct": 6
+    },
+    "AMBIGUOUS_PARAM": {
+      "total": 8,
+      "correct": 5
+    },
+    "CONFLICTING_UNITS": {
+      "total": 6,
+      "correct": 2
+    },
+    "NUMERICAL_WARNING": {
+      "total": 1,
+      "correct": 1
+    },
+    "CONTROL_REVERSED_LIMITS": {
+      "total": 1,
+      "correct": 1
+    }
+  },
+  "median_llm_ms": 23606.1,
+  "arm": "B",
+  "suite": "fidelity",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "suite_sha256": "f598825c7823f30af1f5162e8d754542f80b10bd99608f4310e0594e93cadd7e",
+  "label": "t12-final-fidelity-B",
+  "pipeline_exception_count": 4
+}

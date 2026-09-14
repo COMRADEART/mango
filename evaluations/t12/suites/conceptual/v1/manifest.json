@@ -1,0 +1,38 @@
+{
+  "suite_name": "mango-scicomp-conceptual-v1",
+  "version": "v1",
+  "frozen_at": "2026-09-08",
+  "sha256": "16d7b4d5f3fe5c79141d9bbeed0d1921f176654c12ce2a4c271f9701b17c1fd3",
+  "total_questions": 100,
+  "split_counts": {
+    "final": 79,
+    "dev": 21
+  },
+  "by_category": {
+    "CONCEPTUAL_SCIENCE": {
+      "final": 18,
+      "dev": 6
+    },
+    "CONCEPTUAL_MATH": {
+      "final": 15,
+      "dev": 5
+    },
+    "FACTUAL_RETRIEVAL": {
+      "final": 12,
+      "dev": 4
+    },
+    "QUALITATIVE_COMPARE": {
+      "final": 9,
+      "dev": 3
+    },
+    "COMPUTE_REQUIRED": {
+      "final": 18,
+      "dev": 0
+    },
+    "COMPUTE_OPTIONAL": {
+      "final": 7,
+      "dev": 3
+    }
+  },
+  "split_policy": "dev items may inform prompt work; FINAL items were frozen before planner/interface tuning; gate metrics are computed on FINAL only (T12.20)."
+}

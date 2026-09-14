@@ -1,0 +1,52 @@
+{
+  "n": 83,
+  "per_label": {
+    "COMPUTE_REQUIRED": {
+      "tp": 22,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "COMPUTE_HELPFUL": {
+      "tp": 20,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "NO_COMPUTE": {
+      "tp": 21,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "INSUFFICIENT_INFORMATION": {
+      "tp": 20,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "COMPUTE_REQUIRED_precision": 1.0,
+  "COMPUTE_REQUIRED_recall": 1.0,
+  "NO_COMPUTE_precision": 1.0,
+  "NO_COMPUTE_recall": 1.0,
+  "INSUFFICIENT_INFORMATION_precision": 1.0,
+  "INSUFFICIENT_INFORMATION_recall": 1.0,
+  "unnecessary_compute_rate": 0.0,
+  "missed_compute_rate": 0.0,
+  "wrong_operation_rate": 0.0,
+  "route_conflict_rate": 0.0,
+  "confusion": {
+    "COMPUTE_REQUIRED->COMPUTE_REQUIRED": 22,
+    "COMPUTE_HELPFUL->COMPUTE_HELPFUL": 20,
+    "NO_COMPUTE->NO_COMPUTE": 21,
+    "INSUFFICIENT_INFORMATION->INSUFFICIENT_INFORMATION": 20
+  },
+  "split": "development",
+  "suite_path": "evaluations\\t14\\suites\\necessity\\v1\\development.jsonl",
+  "suite_sha256": "8debdfc720a8d58535741b6376823603d3384f9362634e620e4a5d751ca69f60"
+}

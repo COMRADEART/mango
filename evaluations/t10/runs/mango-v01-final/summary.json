@@ -1,0 +1,70 @@
+{
+  "label": "mango-v01-final",
+  "model": "Qwen/Qwen3-1.7B",
+  "adapter": "training/adapters/sciencemath-v0.1-t3",
+  "arm": "t9",
+  "split": "final",
+  "suite": "mango-correction-eval-v2",
+  "questions": 97,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2284549632,
+    "peak_vram_bytes": 2284549632,
+    "reserved_vram_bytes": 2325741568,
+    "smoke_latency_s": 0.92
+  },
+  "metrics": {
+    "true_correction": 0.76,
+    "false_feedback_preservation": 1.0,
+    "overcorrection": 0.0,
+    "under_correction": 0.24,
+    "blind_agreement": 0.0,
+    "net_correction_benefit": 19,
+    "counts": {
+      "corrected_wrong": 19,
+      "preserved_correct": 25,
+      "destroyed_correct": 0,
+      "still_wrong": 6,
+      "blind_agreement": 0
+    },
+    "partial_fail_repair_rate": 0.043478260869565216,
+    "collateral_change_rate": 0.0,
+    "ambiguous_preservation": 1.0,
+    "repair_methods": {
+      "LLM_REPAIR_1": 20,
+      "NO_REPAIR": 25,
+      "REJECT": 28,
+      "DEFER": 24
+    },
+    "first_attempt": {
+      "used": 48,
+      "success_rate": 0.4166666666666667
+    },
+    "second_attempt": {
+      "used": 0,
+      "incremental_gain": null
+    },
+    "counts_v2": {
+      "partial_repaired": 1,
+      "partial_collateral": 0,
+      "ambiguous_preserved": 24,
+      "ambiguous_total": 24
+    },
+    "confidence_intervals_95": {
+      "true_correction": [
+        0.5656994004476144,
+        0.8850384226967327
+      ],
+      "preservation": [
+        0.8668035060468213,
+        1.0
+      ],
+      "partial_repair": [
+        0.0077164669621267445,
+        0.20991586494059142
+      ]
+    }
+  }
+}

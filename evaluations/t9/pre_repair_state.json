@@ -1,0 +1,228 @@
+{
+  "recorded_at": "2026-09-06T14:15:42.598041+00:00",
+  "commit": {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "1934e9d9e1e6a37dc9ecb03795a0c8d8bd0f5df5\n",
+    "stderr": ""
+  },
+  "status": {
+    "command": [
+      "git",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "returncode": 0,
+    "stdout": "?? .claude/scheduled_tasks.lock\n?? sciencemath/\n?? scripts/t9_repro_audit.py\n",
+    "stderr": ""
+  },
+  "artifact_sha256": {
+    "evaluations/t9/correction-suite/v1/checksum.json": "2253aa05a467052c564e47def3314dfc87c06e5f8be2d8e373fd210136b14454",
+    "evaluations/t9/correction-suite/v1/manifest.json": "37eaf7955afa9b37f2ea0fd8d5818e00c8acbd30dc238d87243086ab5c1fed29",
+    "evaluations/t9/correction-suite/v1/questions.jsonl": "dc77ccf845f539d4bf6df23964207d504962d75b56f02c981d0e15eb632a445b",
+    "evaluations/t9/promotion_gate.json": "c2ffa6aadbf99f000e29adc901d4ae85c4a3dd216205ea1733128c8f84f5d71b",
+    "evaluations/t9/runs/qwen3-4b-firewall/predictions.jsonl": "cb01ace561910dacc1f4507208e9281025c0909983f5275531df1b80a7a07aa3",
+    "evaluations/t9/runs/qwen3-4b-firewall/summary.json": "d70017ff1d29719be69c55e53c256dbff5fefa2b0badff6558a535cfaa6d1479",
+    "evaluations/t9/runs/qwen3-4b-firewall-v2/predictions.jsonl": "4705be64782ede25c68ad47491f7b7664fc4bff92896212874db24d3237719ae",
+    "evaluations/t9/runs/qwen3-4b-firewall-v2/summary.json": "c19ae605db3b2391a2c0ec4102298580a962ce6a571fd597789db3c3c93c6741",
+    "evaluations/t9/runs/qwen3-4b-raw/predictions.jsonl": "c61a599a17722d592bc5cb206b6b482bce8b4fc4f6623f4dead6b4a437152fbf",
+    "evaluations/t9/runs/qwen3-4b-raw/summary.json": "29ffccb847d5e584f04188cfa8560f04d260b40469cfae9ca887e87b94896f57",
+    "evaluations/t9/runs/qwen3-4b-raw-v2/predictions.jsonl": "89a6a1d00cf4a03859a938de422559eb6dc6122887eada2402088da5be77882e",
+    "evaluations/t9/runs/qwen3-4b-raw-v2/summary.json": "21643c76241f578bd4c6e73917fe0135f40a854f8c5de59b4be2ad3e3cc33aa3",
+    "evaluations/t9/t9_entry_gate.json": "d37947c89f61f903ffdc43e45c91aa145ec03c710df45dc81ca9474e8a967105",
+    "evaluations/t9/T9_FINAL_REPORT.md": "bf2e014482fe3be2f310a7c0ac1d4ff9e57b3655acb2b979acc5977ec1f8f837",
+    "evaluations/t9/tool_failure_audit.json": "37840e7e4f001c94f9f8e035841d10b1ee5bd153a73fc2c02897238122da7977",
+    "scripts/run_t9_correction_eval.py": "15322987c288154b3b728ce5823669f2fc4f7d00040de4b20783ae7140d16eff",
+    "src/sciencemath/evaluation/correction_metrics.py": "84c691fc6ceee130b03991aa1c0e57902698cffeb6c97f0a6c8c4188c76961df",
+    "src/sciencemath/evaluation/extraction.py": "092254a64dca31c3005a01738260ee0c229f5c91264120cbbd98540704da7453",
+    "src/sciencemath/executive/correction.py": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+    "src/sciencemath/tools/router.py": "3055e735a37cdb4e5361696ee8ebad786377c44c1b4bdf0088fdfeb1b68b235f",
+    "tests/test_t9_correction.py": "591d0138f100e31e038707136509721cbf636712a28bcc0c83def0499184c4a1"
+  },
+  "existing_metrics": {
+    "evaluations/t9/runs/qwen3-4b-firewall/summary.json": {
+      "label": "qwen3-4b-firewall",
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "adapter": null,
+      "firewall": true,
+      "suite": "mango-correction-eval-v1",
+      "questions": 40,
+      "load": {
+        "ok": true,
+        "error": null,
+        "quantization": "4bit-nf4-double",
+        "load_vram_bytes": 2716700672,
+        "peak_vram_bytes": 2716700672,
+        "reserved_vram_bytes": 2732589056,
+        "smoke_latency_s": 0.39
+      },
+      "metrics": {
+        "true_correction": 0.0,
+        "false_feedback_preservation": 1.0,
+        "overcorrection": 0.0,
+        "under_correction": 1.0,
+        "blind_agreement": 0.0,
+        "net_correction_benefit": 0,
+        "counts": {
+          "corrected_wrong": 0,
+          "preserved_correct": 10,
+          "destroyed_correct": 0,
+          "still_wrong": 10,
+          "blind_agreement": 0
+        },
+        "confidence_intervals_95": {
+          "true_correction": [
+            0.0,
+            0.2775401687666166
+          ],
+          "preservation": [
+            0.7224598312333834,
+            1.0
+          ]
+        }
+      }
+    },
+    "evaluations/t9/runs/qwen3-4b-firewall-v2/summary.json": {
+      "label": "qwen3-4b-firewall-v2",
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "adapter": null,
+      "firewall": true,
+      "suite": "mango-correction-eval-v1",
+      "questions": 40,
+      "load": {
+        "ok": true,
+        "error": null,
+        "quantization": "4bit-nf4-double",
+        "load_vram_bytes": 2716700672,
+        "peak_vram_bytes": 2716700672,
+        "reserved_vram_bytes": 2732589056,
+        "smoke_latency_s": 0.41
+      },
+      "metrics": {
+        "true_correction": 0.6,
+        "false_feedback_preservation": 1.0,
+        "overcorrection": 0.0,
+        "under_correction": 0.4,
+        "blind_agreement": 0.0,
+        "net_correction_benefit": 6,
+        "counts": {
+          "corrected_wrong": 6,
+          "preserved_correct": 10,
+          "destroyed_correct": 0,
+          "still_wrong": 4,
+          "blind_agreement": 0
+        },
+        "confidence_intervals_95": {
+          "true_correction": [
+            0.3126695474501864,
+            0.8318224187964902
+          ],
+          "preservation": [
+            0.7224598312333834,
+            1.0
+          ]
+        }
+      }
+    },
+    "evaluations/t9/runs/qwen3-4b-raw/summary.json": {
+      "label": "qwen3-4b-raw",
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "adapter": null,
+      "firewall": false,
+      "suite": "mango-correction-eval-v1",
+      "questions": 40,
+      "load": {
+        "ok": true,
+        "error": null,
+        "quantization": "4bit-nf4-double",
+        "load_vram_bytes": 2716700672,
+        "peak_vram_bytes": 2716700672,
+        "reserved_vram_bytes": 2732589056,
+        "smoke_latency_s": 0.56
+      },
+      "metrics": {
+        "true_correction": 0.0,
+        "false_feedback_preservation": 0.0,
+        "overcorrection": 1.0,
+        "under_correction": 1.0,
+        "blind_agreement": 1.0,
+        "net_correction_benefit": -10,
+        "counts": {
+          "corrected_wrong": 0,
+          "preserved_correct": 0,
+          "destroyed_correct": 10,
+          "still_wrong": 10,
+          "blind_agreement": 40
+        },
+        "confidence_intervals_95": {
+          "true_correction": [
+            0.0,
+            0.2775401687666166
+          ],
+          "preservation": [
+            0.0,
+            0.2775401687666166
+          ]
+        }
+      }
+    },
+    "evaluations/t9/runs/qwen3-4b-raw-v2/summary.json": {
+      "label": "qwen3-4b-raw-v2",
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "adapter": null,
+      "firewall": false,
+      "suite": "mango-correction-eval-v1",
+      "questions": 40,
+      "load": {
+        "ok": true,
+        "error": null,
+        "quantization": "4bit-nf4-double",
+        "load_vram_bytes": 2716700672,
+        "peak_vram_bytes": 2716700672,
+        "reserved_vram_bytes": 2732589056,
+        "smoke_latency_s": 0.44
+      },
+      "metrics": {
+        "true_correction": 0.3,
+        "false_feedback_preservation": 0.2,
+        "overcorrection": 0.8,
+        "under_correction": 0.7,
+        "blind_agreement": 0.875,
+        "net_correction_benefit": -5,
+        "counts": {
+          "corrected_wrong": 3,
+          "preserved_correct": 2,
+          "destroyed_correct": 8,
+          "still_wrong": 7,
+          "blind_agreement": 35
+        },
+        "confidence_intervals_95": {
+          "true_correction": [
+            0.10778928748621183,
+            0.6032267800204347
+          ],
+          "preservation": [
+            0.056680947980693314,
+            0.5098431532792765
+          ]
+        }
+      }
+    }
+  },
+  "firewall_tests": {
+    "command": [
+      "C:\\Users\\allam\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-m",
+      "pytest",
+      "tests/test_t9_correction.py"
+    ],
+    "returncode": 0,
+    "stdout": "........                                                                 [100%]\r\n8 passed in 0.41s\r\n",
+    "stderr": ""
+  }
+}

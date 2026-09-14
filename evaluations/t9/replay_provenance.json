@@ -1,0 +1,39 @@
+{
+  "expected_sha256": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+  "current_sha256": "6a039fe504ececbb231b7bc85a15e3ccb30ee9ad13a795a025e04cca551be78f",
+  "previous_workspace_sha256": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+  "git_blob_sha256": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+  "current_lf_sha256": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+  "current_crlf_sha256": "6a039fe504ececbb231b7bc85a15e3ccb30ee9ad13a795a025e04cca551be78f",
+  "row_counts": [
+    135,
+    135
+  ],
+  "json_rows_equal_in_order": true,
+  "equal_after_newline_normalization": true,
+  "final_newline": [
+    true,
+    true
+  ],
+  "unicode_nfc": [
+    true,
+    true
+  ],
+  "decision": "CURRENT_FILE_MUTATED",
+  "mutation": "LF converted to CRLF during Windows checkout (core.autocrlf=true)",
+  "resolution": "Restored exact committed blob; pinned Level-1 JSONL to LF and JSON metadata to its historical CRLF bytes. checksums.json unchanged.",
+  "restored_sha256": "521f41ad4d1e8d1e4288e8ec403fd7dfbeda18476064b3b7d9394a48b44874c2",
+  "git_history": {
+    "command": [
+      "git",
+      "log",
+      "--all",
+      "--format=%H %s",
+      "--",
+      "training/curriculum/mango-sft-v2/level1/replay.jsonl"
+    ],
+    "returncode": 0,
+    "stdout": "03eba07fa4bb2e34cb0d779872f11c03f8726538 Complete T2-T8 model evaluation, tools, retrieval and capacity study\n",
+    "stderr": ""
+  }
+}

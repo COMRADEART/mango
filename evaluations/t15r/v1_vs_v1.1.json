@@ -1,0 +1,40 @@
+{
+  "v1_historical_unchanged": true,
+  "v1_final_sha256": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
+  "v1.1_created": true,
+  "v1.1_final_sha256": "cbb9cb214ee9dd53331da8b3a68e237e0e1910398f89c4cc12dde87b5efde3fd",
+  "v1.1_dev_sha256": "3b24909109ada7a0b8c52e00f6079f8d40631f5492930fe39d01cdb1132027f6",
+  "metadata_corrections": [
+    {
+      "task_id": "mce-v1-0101",
+      "split": "final",
+      "change": "add golden file metadata = repair_file"
+    },
+    {
+      "task_id": "mce-v1-0102",
+      "split": "final",
+      "change": "add golden file metadata = repair_file"
+    },
+    {
+      "task_id": "mce-v1-0103",
+      "split": "final",
+      "change": "add golden file metadata = repair_file"
+    },
+    {
+      "task_id": "mce-v1-0099",
+      "split": "dev",
+      "change": "add golden file metadata = repair_file"
+    },
+    {
+      "task_id": "mce-v1-0100",
+      "split": "dev",
+      "change": "add golden file metadata = repair_file"
+    },
+    {
+      "task_id": "mce-v1-0104",
+      "split": "dev",
+      "change": "add golden file metadata = repair_file"
+    }
+  ],
+  "behavioral_changes_to_benchmark": "NONE"
+}

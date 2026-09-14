@@ -1,0 +1,14 @@
+{
+  "milestone": "T14.6 pre-registered targets",
+  "frozen_before_final_split_viewing": true,
+  "note": "Targets copied from the T14 specification and frozen before scoring mango-routing-necessity-v1 FINAL. They may be adjusted only before viewing final-split results.",
+  "targets": {
+    "COMPUTE_REQUIRED_recall": {"floor": 0.95, "direction": ">="},
+    "COMPUTE_REQUIRED_precision": {"floor": 0.95, "direction": ">="},
+    "NO_COMPUTE_precision": {"floor": 0.98, "direction": ">="},
+    "unnecessary_compute_rate": {"ceiling": 0.02, "direction": "<="},
+    "silent_parameter_mutation": {"ceiling": 0, "direction": "=="},
+    "fidelity_false_acceptance": {"ceiling": 0, "direction": "=="}
+  },
+  "adjustments": []
+}

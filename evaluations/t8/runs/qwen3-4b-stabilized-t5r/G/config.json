@@ -1,0 +1,21 @@
+{
+  "features": {
+    "retrieve_gate": true,
+    "compression": true,
+    "firewall": true,
+    "decompose": false,
+    "mixed_plan": true,
+    "deterministic_citations": true
+  },
+  "max_evidence_tokens": 350,
+  "t5r_extraction": true,
+  "top_n": null,
+  "reranker": "adopted",
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "adapter": null,
+  "generation": {
+    "seed": 42,
+    "do_sample": false,
+    "max_new_tokens": 1024
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "milestone": "T14R — SciComp Planner Reliability and Executive Router Closure",
+  "phase": "T14R.0 entry gate",
+  "recorded_at": "2026-09-11T16:16:43.121531+00:00",
+  "status": "PASS",
+  "baseline_commit": "58d7110ebfd25f349c2421959c56eda6ef1aecc3",
+  "starting_architecture": "Mango-4B-System-v1",
+  "scicomp_status": "KEEP_SCICOMP_EXPERIMENTAL",
+  "executive_router_status": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "weight_promotion": "NO",
+  "paid_compute": "NOT_USED",
+  "t11_numeric": 0.8478,
+  "t12_numeric": 0.7029,
+  "t13_numeric": 0.7464,
+  "t14_numeric": 0.7318840579710145,
+  "t14_adoption": 0.9863013698630136,
+  "pytest_baseline": "1014 passed / 0 failed",
+  "frozen_component_pins": {
+    "necessity_router": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14",
+    "skill_registry": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9",
+    "fidelity_classifier": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+    "semantic_classifier": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8",
+    "correction_firewall": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+  },
+  "capacity_notation_audit": {
+    "t14_report_claim": "overall 0.8571, 131/131",
+    "finding": "131/131 is SUITE COVERAGE (131 rows graded of 131), not correctness; overall 0.8571 = 102/119 over answerable (non-uncertainty) rows",
+    "action": "T14_FINAL_REPORT.md Protection Battery line clarified; evaluation results unchanged"
+  },
+  "checks": [
+    {
+      "check": "git_head_is_t14_close",
+      "status": "PASS",
+      "measured": {
+        "head": "58d7110ebfd25f349c2421959c56eda6ef1aecc3",
+        "branch": "t14-executive-router"
+      },
+      "detail": "T14 close 58d7110 'T14 close-out: protection battery ALL_PASS'"
+    },
+    {
+      "check": "branch_is_t14",
+      "status": "PASS",
+      "measured": "t14-executive-router"
+    },
+    {
+      "check": "worktree_clean",
+      "status": "PASS",
+      "measured": {
+        "dirty": [
+          "evaluations/t14/T14_FINAL_REPORT.md",
+          ".cursor/",
+          "evaluations/t14r/",
+          "scripts/t14r_entry_gate.py"
+        ],
+        "unexpected": []
+      },
+      "detail": "only .cursor/ (harness), T14R gate artifacts, and the authorized T14-report capacity-notation doc correction may be dirty"
+    },
+    {
+      "check": "t14_final_report_present",
+      "status": "PASS",
+      "measured": "evaluations/t14/T14_FINAL_REPORT.md"
+    },
+    {
+      "check": "t14_final_audit_43_of_47",
+      "status": "PASS",
+      "measured": {
+        "total": 47,
+        "fails": [
+          "necessity_NO_COMPUTE_precision",
+          "scicomp_numeric_floor",
+          "exec_top2_accuracy",
+          "exec_tool_recall"
+        ]
+      }
+    },
+    {
+      "check": "suite_checksum_scicomp",
+      "status": "PASS",
+      "measured": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1"
+    },
+    {
+      "check": "suite_checksum_fidelity",
+      "status": "PASS",
+      "measured": "f598825c7823f30af1f5162e8d754542f80b10bd99608f4310e0594e93cadd7e"
+    },
+    {
+      "check": "suite_checksum_conceptual",
+      "status": "PASS",
+      "measured": "16d7b4d5f3fe5c79141d9bbeed0d1921f176654c12ce2a4c271f9701b17c1fd3"
+    },
+    {
+      "check": "suite_checksum_fidelity_transform",
+      "status": "PASS",
+      "measured": "f3bad0f886bea819ba692cc955053805b01bf302edd876bd3c4b3b0da3049d5c"
+    },
+    {
+      "check": "suite_checksum_necessity_final",
+      "status": "PASS",
+      "measured": "b96da421ae5cbc333d9a6a6637a14347b1c1ce3be78eb56a820925b964ee4a62"
+    },
+    {
+      "check": "suite_checksum_executive_final",
+      "status": "PASS",
+      "measured": "ea05e60b49ba6ba2f222e75343fe193792198044d13b191ce96202fdc2020bce"
+    },
+    {
+      "check": "frozen_scicomp_engine_hash",
+      "status": "PASS",
+      "measured": {
+        "files": 17,
+        "mismatch": [
+          "router.py"
+        ]
+      },
+      "detail": "router.py is the T14 necessity-router end-state (pinned below)"
+    },
+    {
+      "check": "necessity_router_hash",
+      "status": "PASS",
+      "measured": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14"
+    },
+    {
+      "check": "t13_fidelity_classifier_hash",
+      "status": "PASS",
+      "measured": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146"
+    },
+    {
+      "check": "t13_semantic_classifier_hash",
+      "status": "PASS",
+      "measured": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8"
+    },
+    {
+      "check": "correction_firewall_hash",
+      "status": "PASS",
+      "measured": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff"
+    },
+    {
+      "check": "t3_adapter_sha_exact",
+      "status": "PASS",
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+    },
+    {
+      "check": "skill_registry_hash",
+      "status": "PASS",
+      "measured": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9"
+    },
+    {
+      "check": "model_identity",
+      "status": "PASS",
+      "measured": "Qwen/Qwen3-4B-Instruct-2507"
+    },
+    {
+      "check": "t14_scicomp_metrics_present",
+      "status": "PASS",
+      "measured": {
+        "numeric": 0.7318840579710145,
+        "adoption": 0.9863013698630136
+      }
+    },
+    {
+      "check": "environment_recorded",
+      "status": "PASS",
+      "measured": {
+        "transformers": "5.16.1",
+        "torch": "2.5.1+cu121"
+      },
+      "detail": "transformers pinned at 5.16.1 (T13-ENV-1 rule)"
+    },
+    {
+      "check": "environment_captured",
+      "status": "PASS",
+      "measured": {
+        "os": "Windows 11 10.0.26200",
+        "python": "3.12.10",
+        "runtime": "Mango-4B-System-v1",
+        "model": "Qwen/Qwen3-4B-Instruct-2507",
+        "torch": "2.5.1+cu121",
+        "cuda_available": true,
+        "transformers": "5.16.1"
+      }
+    },
+    {
+      "check": "no_stale_gpu_jobs",
+      "status": "PASS",
+      "measured": {
+        "gpu_query": "288, 6141, 0",
+        "compute_apps": [
+          "16412, C:\\Program Files\\Epic Games\\Launcher\\Portal\\Binaries\\Win64\\EpicGamesLauncher.exe",
+          "30224, C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\managedArtifacts\\98bc04bc842e4906993fd6d6644ffb8d\\EOSOverlayRenderer-Win64-Shipping.exe",
+          "12132, C:\\Users\\allam\\AppData\\Local\\Programs\\cursor\\Cursor.exe"
+        ],
+        "mango_eval_or_training_jobs": []
+      },
+      "detail": "desktop occupants (launcher/overlay/IDE) are not Mango jobs"
+    },
+    {
+      "check": "t14_capacity_notation_audited",
+      "status": "PASS",
+      "measured": {
+        "overall": 0.8571428571428571,
+        "correct": 102,
+        "answerable": 119,
+        "suite_rows": 131
+      },
+      "detail": "overall = 102/119 answerable-correct; 131/131 = suite coverage (all rows graded). T14_FINAL_REPORT.md line clarified in place; underlying evaluation results untouched"
+    },
+    {
+      "check": "full_pytest",
+      "status": "PASS",
+      "measured": {
+        "passed": 1014,
+        "failed": 0,
+        "errors": 0,
+        "exit_code": 0
+      },
+      "detail": "evaluations/t14r/pytest_entry.txt"
+    }
+  ],
+  "substantive_failures": [],
+  "conclusion": "All entry-gate checks PASS. T14R may proceed to T14R.1."
+}

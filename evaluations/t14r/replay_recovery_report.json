@@ -1,0 +1,110 @@
+{
+  "milestone": "T14R.14 — replay recovery report",
+  "numeric_rows": 138,
+  "numeric_accuracy_T14": 0.7318840579710145,
+  "numeric_accuracy_T14R": 0.8188405797101449,
+  "recovered": [
+    "msc-v1-0037",
+    "msc-v1-0040",
+    "msc-v1-0041",
+    "msc-v1-0076",
+    "msc-v1-0077",
+    "msc-v1-0079",
+    "msc-v1-0080",
+    "msc-v1-0086",
+    "msc-v1-0102",
+    "msc-v1-0117",
+    "msc-v1-0118",
+    "msc-v1-0119",
+    "msc-v1-0120",
+    "msc-v1-0121",
+    "msc-v1-0137",
+    "msc-v1-0148",
+    "msc-v1-0149",
+    "msc-v1-0157",
+    "msc-v1-0158",
+    "msc-v1-0163",
+    "msc-v1-0169",
+    "msc-v1-0175"
+  ],
+  "recovered_count": 22,
+  "unchanged_wrong": [
+    "msc-v1-0030",
+    "msc-v1-0068",
+    "msc-v1-0081",
+    "msc-v1-0082",
+    "msc-v1-0083",
+    "msc-v1-0084",
+    "msc-v1-0085",
+    "msc-v1-0087",
+    "msc-v1-0088",
+    "msc-v1-0099",
+    "msc-v1-0125",
+    "msc-v1-0147",
+    "msc-v1-0161",
+    "msc-v1-0166",
+    "msc-v1-0172"
+  ],
+  "unchanged_wrong_count": 15,
+  "regressed": [
+    "msc-v1-0018",
+    "msc-v1-0063",
+    "msc-v1-0065",
+    "msc-v1-0066",
+    "msc-v1-0067",
+    "msc-v1-0069",
+    "msc-v1-0114",
+    "msc-v1-0115",
+    "msc-v1-0116",
+    "msc-v1-0164"
+  ],
+  "regressed_count": 10,
+  "recovery_by_T14_failure_class": {
+    "ENGINE_REJECT": {
+      "incorrect_in_T14": 4,
+      "recovered": 3,
+      "unchanged_wrong": 1
+    },
+    "NO_INVOCATION": {
+      "incorrect_in_T14": 1,
+      "recovered": 0,
+      "unchanged_wrong": 1
+    },
+    "NUMERICAL_WARNING": {
+      "incorrect_in_T14": 1,
+      "recovered": 0,
+      "unchanged_wrong": 1
+    },
+    "OTHER": {
+      "incorrect_in_T14": 1,
+      "recovered": 0,
+      "unchanged_wrong": 1
+    },
+    "PLANNER_SCHEMA_FAILURE": {
+      "incorrect_in_T14": 11,
+      "recovered": 6,
+      "unchanged_wrong": 5
+    },
+    "PROVENANCE_MISSING": {
+      "incorrect_in_T14": 8,
+      "recovered": 8,
+      "unchanged_wrong": 0
+    },
+    "PROVENANCE_WRONG": {
+      "incorrect_in_T14": 10,
+      "recovered": 5,
+      "unchanged_wrong": 5
+    },
+    "RESULT_MISREAD": {
+      "incorrect_in_T14": 1,
+      "recovered": 0,
+      "unchanged_wrong": 1
+    }
+  },
+  "adoption_taxonomy_T14R": {
+    "ADOPTED": 96,
+    "RESULT_IGNORED": 2,
+    "RESULT_MISREAD": 4
+  },
+  "note": "T14R scope claim: planner provenance + verified-result interpretation + deterministic formatting. NO_INVOCATION and benchmark-artifact rows are out of scope."
+}

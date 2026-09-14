@@ -1,0 +1,36 @@
+{
+ "suite_name": "mango-scicomp-fidelity-transform-v1",
+ "version": "v1",
+ "frozen_at": "2026-09-09",
+ "sha256": "f3bad0f886bea819ba692cc955053805b01bf302edd876bd3c4b3b0da3049d5c",
+ "total_cases": 149,
+ "split_counts": {
+  "final": 138,
+  "dev": 11
+ },
+ "by_expected_class_final": {
+  "EXACT": 16,
+  "REPRESENTATION_EQUIVALENT": 18,
+  "UNIT_EQUIVALENT": 12,
+  "STRUCTURE_EQUIVALENT": 18,
+  "VALUE_CHANGED": 20,
+  "TYPE_SEMANTICS_CHANGED": 19,
+  "INVALID_NORMALIZATION": 11,
+  "INFORMATION_ADDED": 5,
+  "INFORMATION_REMOVED": 6,
+  "FIDELITY_OK": 7,
+  "FIDELITY_FAIL": 6
+ },
+ "split_policy": "dev cases may inform classifier iteration; gate metrics (T13.13) are computed on FINAL only, frozen by this checksum before tuning.",
+ "oracle_policy": "expected classes are hand-declared oracle labels written BEFORE classifier tuning; the classifier under test never sees them.",
+ "refreeze_history": [
+  {
+   "sha256": "cd53da389a04ce9bd4b83b7ee4ce8df9298402b2e5c9b6fdb38db500f51dce41",
+   "note": "initial freeze before classifier-vs-oracle reconciliation"
+  },
+  {
+   "sha256": "f3bad0f886bea819ba692cc955053805b01bf302edd876bd3c4b3b0da3049d5c",
+   "note": "pre-tuning oracle correction (T13.11): request-case question text made real (anti-hallucination gate needs source numbers in the question); t-rp-08/t-rp-11 re-labeled EXACT (value-identical floats); t-ia-06 re-labeled FIDELITY_OK (declared derived grid is not information added); t-un-03 kg canonical; t-st-12 comma list. Classifier logic unchanged by this re-freeze."
+  }
+ ]
+}

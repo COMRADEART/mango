@@ -1,0 +1,128 @@
+{
+  "milestone": "T12 \u2014 SciComp Planner Fidelity and Promotion Closure",
+  "phase": "T12.0 entry gate",
+  "recorded_at": "2026-09-08T10:42:15.284863",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "t11_commit_is_head",
+      "status": "PASS",
+      "detail": {
+        "head": "c05396f432ca8e16e724762228f6238593e7c52c",
+        "short": "c05396f",
+        "subject": "T11 close: Scientific Computing Laboratory \u00e2\u20ac\u201d KEEP_SCICOMP_EXPERIMENTAL, all protection suites MATCH, audit 21/22"
+      }
+    },
+    {
+      "check": "git_state_recorded",
+      "status": "PASS",
+      "detail": {
+        "local_head": "c05396f432ca8e16e724762228f6238593e7c52c",
+        "remote_main": "5ce04b3ec52646663631e7be0bc2a14520a15b21",
+        "local_only_commit": true,
+        "working_tree_paths": [
+          ".claude/",
+          "check_progress.py",
+          "docs/",
+          "evaluations/t10/runs/t11-protect-correction/",
+          "evaluations/t12/",
+          "evaluations/t8/runs/t11-protect-t4/",
+          "evaluations/t9/runs/t11-protect-ext/",
+          "generate_t4_summary.py",
+          "mango/",
+          "sciencemath/",
+          "scripts/build_extraction_benchmark.py",
+          "scripts/run_extraction_benchmark.py",
+          "scripts/t12_entry_gate.py",
+          "scripts/t8s_finalize.py",
+          "scripts/t8s_metrics.py",
+          "scripts/t8s_vectors_pareto.py",
+          "scripts/t9_decomp_pass.py",
+          "scripts/t9_final_audit.py",
+          "scripts/t9_repair_validation.py",
+          "scripts/t9_repro_audit.py",
+          "scripts/t9_t3_provenance.py",
+          "scripts/t9_t3_search_sources.py",
+          "src/sciencemath/evaluation/repro.py",
+          "temp_clean_clone/",
+          "tests/test_t11_security.py",
+          "tests/test_t8s_finalize.py",
+          "tests/test_t8s_metrics.py",
+          "tests/test_t8s_pareto.py",
+          "tests/test_t8s_repro.py",
+          "training/curriculum/mango-sft-v2/level1/replay.jsonl",
+          "training/curriculum/mango-sft-v2/level1/train.jsonl",
+          "training/curriculum/mango-sft-v2/level1/validation.jsonl"
+        ],
+        "note": "pre-existing T10/T11-closed tree state; unchanged by T12.0"
+      }
+    },
+    {
+      "check": "t11_final_report_present",
+      "status": "PASS",
+      "detail": {
+        "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t11\\T11_FINAL_REPORT.md"
+      }
+    },
+    {
+      "check": "t11_final_audit_state_matches_closure",
+      "status": "PASS",
+      "detail": {
+        "path": "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t11\\final_audit.json",
+        "n_checks": 21,
+        "failed": [
+          "t11.40_adoption>=90%"
+        ],
+        "note": "T11 closed 21/22; sole expected FAIL is the adoption gate that T12 re-measures"
+      }
+    },
+    {
+      "check": "t11_suite_checksum",
+      "status": "PASS",
+      "detail": {
+        "sha256": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1"
+      }
+    },
+    {
+      "check": "engine_sources_frozen",
+      "status": "PASS",
+      "detail": {
+        "files": 17,
+        "missing": []
+      }
+    },
+    {
+      "check": "firewall_sha_unchanged",
+      "status": "PASS",
+      "detail": {
+        "sha256": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff"
+      }
+    },
+    {
+      "check": "t3_adapter_sha_exact",
+      "status": "PASS",
+      "detail": {
+        "sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+      }
+    },
+    {
+      "check": "full_pytest_zero_failures",
+      "status": "PASS",
+      "detail": {
+        "tests": 878,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "check": "gpu_idle",
+      "status": "PASS",
+      "detail": {
+        "memory_used": "0 MiB",
+        "utilization_pct": "0 %"
+      }
+    }
+  ],
+  "engine_freeze": "evaluations/t12/scicomp_engine_freeze.json"
+}

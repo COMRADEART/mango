@@ -1,0 +1,6 @@
+--- a/src/im02.py
++++ b/src/im02.py
+@@ -1,2 +1,3 @@
++from src.hlp02 import parse
+ def clean(s):
+     return parse(s)

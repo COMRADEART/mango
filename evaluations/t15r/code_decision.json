@@ -1,0 +1,21 @@
+{
+  "milestone": "T15R.29 CODE decision",
+  "recorded_at": "2026-09-14T00:52:00+00:00",
+  "decision": "PROMOTE_CODE_SKILL",
+  "availability_before": "PREPARED_ONLY",
+  "availability_after": "ACTIVE",
+  "semantic_before": "EXPERIMENTAL",
+  "semantic_after": "ACTIVE",
+  "applied_registry_edit": true,
+  "executive_router": "UNCHANGED",
+  "weight_promotion": "NO",
+  "paid_compute": "NOT_USED",
+  "gates": {
+    "floors_ok": true,
+    "critical_failures": [],
+    "quality_failures": [],
+    "protection": "ALL_PASS",
+    "security_violations": 0,
+    "pytest_ok": true
+  }
+}

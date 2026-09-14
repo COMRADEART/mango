@@ -1,0 +1,65 @@
+{
+  "milestone": "T14R.17 SciComp decision",
+  "decision": "KEEP_SCICOMP_EXPERIMENTAL",
+  "weight_promotion": "NO",
+  "paid_compute": "NOT_USED",
+  "t14_numeric": 0.7318840579710145,
+  "t14r_numeric": 0.8188405797101449,
+  "t14_adoption": 0.9863013698630136,
+  "t14r_adoption": 0.9313725490196079,
+  "gates": [
+    {
+      "gate": "numeric_floor",
+      "critical": true,
+      "measured": 0.8188405797101449,
+      "floor": 0.848,
+      "pass": false
+    },
+    {
+      "gate": "adoption",
+      "critical": true,
+      "measured": 0.9313725490196079,
+      "floor": 0.9,
+      "pass": true
+    },
+    {
+      "gate": "conceptual_discipline",
+      "critical": true,
+      "measured": 1.0,
+      "floor": 1.0,
+      "pass": true
+    },
+    {
+      "gate": "adversarial_handled",
+      "critical": true,
+      "measured": 0.96,
+      "floor": 0.96,
+      "pass": true
+    },
+    {
+      "gate": "silent_mutation",
+      "critical": true,
+      "measured": 0,
+      "floor": 0,
+      "pass": true
+    },
+    {
+      "gate": "fidelity_false_acceptance",
+      "critical": true,
+      "measured": 0,
+      "floor": 0,
+      "pass": true
+    },
+    {
+      "gate": "pipeline_exceptions",
+      "critical": true,
+      "measured": 0,
+      "floor": 0,
+      "pass": true
+    }
+  ],
+  "critical_fails": [
+    "numeric_floor"
+  ],
+  "rule": "One failed critical gate = no promotion. REJECT only when numeric < 0.5; KEEP otherwise."
+}

@@ -1,0 +1,463 @@
+[
+  {
+    "path": "C:\\Users\\allam\\.codex\\sessions\\2026\\09\\06\\rollout-2026-09-06T10-14-39-01a07712-3c91-7ff2-b1c0-4bfe67ca3f3f.jsonl",
+    "bytes": 2261214,
+    "sha256": "263a87f57bb7bf1a2c17fa11d9679184237b9719ad63207978dad13aa3b59dbb",
+    "creation_time_utc": "2026-09-06T14:14:54.648451+00:00",
+    "modification_time_utc": "2026-09-06T14:14:54.652718+00:00",
+    "access_time_utc": "2026-09-06T14:43:05.557044+00:00",
+    "session_cwd": "C:\\Users\\allam\\Documents\\new\\model",
+    "matches": [
+      {
+        "line": 9,
+        "timestamp": "2026-09-06T14:14:55.167Z",
+        "terms": [
+          "SHA-256 after LFS checkout matches local recovered artifact\\n\\nDo not commit a giant raw safetensors",
+          "SHA-256\\n* Git LFS or durable release storage\\n* model base revision\\n* tokenizer revision\\n* adapter"
+        ]
+      },
+      {
+        "line": 10,
+        "timestamp": "2026-09-06T14:14:55.168Z",
+        "terms": [
+          "SHA-256 after LFS checkout matches local recovered artifact\\n\\nDo not commit a giant raw safetensors",
+          "SHA-256\\n* Git LFS or durable release storage\\n* model base revision\\n* tokenizer revision\\n* adapter"
+        ]
+      },
+      {
+        "line": 27,
+        "timestamp": "2026-09-06T14:15:16.802Z",
+        "terms": [
+          "0.8474348783493042"
+        ]
+      },
+      {
+        "line": 28,
+        "timestamp": "2026-09-06T14:15:16.807Z",
+        "terms": [
+          "0.8474348783493042"
+        ]
+      },
+      {
+        "line": 39,
+        "timestamp": "2026-09-06T14:15:56.982Z",
+        "terms": [
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 40,
+        "timestamp": "2026-09-06T14:15:56.987Z",
+        "terms": [
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 53,
+        "timestamp": "2026-09-06T14:16:18.542Z",
+        "terms": [
+          "sha256|adapter"
+        ]
+      },
+      {
+        "line": 55,
+        "timestamp": "2026-09-06T14:16:19.189Z",
+        "terms": [
+          "sha256\\\": {\\r\\nsciencemath/evaluations/t8s\\\\runs\\\\qwen3-4b-system\\\\repro_metadata.json:3:  \\\"adapter",
+          "sha256|adapter"
+        ]
+      },
+      {
+        "line": 56,
+        "timestamp": "2026-09-06T14:16:19.194Z",
+        "terms": [
+          "sha256\\\\\\\": {\\\\r\\\\nsciencemath/evaluations/t8s\\\\\\\\runs\\\\\\\\qwen3-4b-system\\\\\\\\repro_metadata.json:3:  \\\\\\\"adapter"
+        ]
+      },
+      {
+        "line": 63,
+        "timestamp": "2026-09-06T14:17:08.077Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 64,
+        "timestamp": "2026-09-06T14:17:08.090Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 71,
+        "timestamp": "2026-09-06T14:17:20.811Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256\\\": t6.sha256_file(\\nsciencemath\\\\scripts\\\\t6_entry_gate.py:275:            \\\"adapter",
+          "sha256\\\": t6.sha256_file(\\nsciencemath\\\\scripts\\\\t7_entry_gate.py:92:            \\\"adapter"
+        ]
+      },
+      {
+        "line": 72,
+        "timestamp": "2026-09-06T14:17:20.817Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256\\\\\\\": t6.sha256_file(\\\\nsciencemath\\\\\\\\scripts\\\\\\\\t6_entry_gate.py:275:            \\\\\\\"adapter",
+          "sha256\\\\\\\": t6.sha256_file(\\\\nsciencemath\\\\\\\\scripts\\\\\\\\t7_entry_gate.py:92:            \\\\\\\"adapter"
+        ]
+      },
+      {
+        "line": 78,
+        "timestamp": "2026-09-06T14:17:29.374Z",
+        "terms": [
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256\\\": \\\"f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668\\\",\\r\\nevaluations\\\\t9\\\\adapter"
+        ]
+      },
+      {
+        "line": 79,
+        "timestamp": "2026-09-06T14:17:29.379Z",
+        "terms": [
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 153,
+        "timestamp": "2026-09-06T14:20:05.425Z",
+        "terms": [
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 155,
+        "timestamp": "2026-09-06T14:20:06.015Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 156,
+        "timestamp": "2026-09-06T14:20:06.020Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 224,
+        "timestamp": "2026-09-06T14:25:19.205Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 225,
+        "timestamp": "2026-09-06T14:25:19.210Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 236,
+        "timestamp": "2026-09-06T14:26:52.245Z",
+        "terms": [
+          "0.8474348783493042",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 237,
+        "timestamp": "2026-09-06T14:26:52.260Z",
+        "terms": [
+          "0.8474348783493042",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 243,
+        "timestamp": "2026-09-06T14:28:24.474Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 251,
+        "timestamp": "2026-09-06T14:29:39.808Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 255,
+        "timestamp": "2026-09-06T14:29:40.045Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 261,
+        "timestamp": "2026-09-06T14:30:28.666Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 262,
+        "timestamp": "2026-09-06T14:30:28.670Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 265,
+        "timestamp": "2026-09-06T14:30:28.727Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      }
+    ]
+  },
+  {
+    "path": "C:\\Users\\allam\\.codex\\sessions\\2026\\09\\06\\rollout-2026-09-06T10-38-31-01a07728-1702-7660-8f5a-e85b31281a99.jsonl",
+    "bytes": 2003979,
+    "sha256": "98c92b8a4d98ee8e7a196fc9de5d63b77674350e1ee8b0ee495195966a68d28e",
+    "creation_time_utc": "2026-09-06T14:38:35.909680+00:00",
+    "modification_time_utc": "2026-09-06T14:38:35.920317+00:00",
+    "access_time_utc": "2026-09-06T14:43:05.644500+00:00",
+    "session_cwd": "C:\\Users\\allam\\Documents\\new\\model",
+    "matches": [
+      {
+        "line": 9,
+        "timestamp": "2026-09-06T14:38:36.455Z",
+        "terms": [
+          "0.8474348783493042",
+          "CHECKPOINT-300",
+          "SHA-256 of every file\\n* adapter",
+          "SHA-256\\n* bytes\\n* tensor inventory hash\\n* base model\\n* base revision\\n* adapter",
+          "SHA-256\\n2. preserve it in release manifest\\n3. add exact adapter",
+          "SHA-256\\n9. verify adapter loads\\n10. record clean-clone proof\\n\\nCreate:\\n\\n`training/adapter",
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256`\\n* `SHA-256`\\n* `adapter_model`\\n* `safetensors"
+        ]
+      },
+      {
+        "line": 10,
+        "timestamp": "2026-09-06T14:38:36.456Z",
+        "terms": [
+          "0.8474348783493042",
+          "CHECKPOINT-300",
+          "SHA-256 of every file\\n* adapter",
+          "SHA-256\\n* bytes\\n* tensor inventory hash\\n* base model\\n* base revision\\n* adapter",
+          "SHA-256\\n2. preserve it in release manifest\\n3. add exact adapter",
+          "SHA-256\\n9. verify adapter loads\\n10. record clean-clone proof\\n\\nCreate:\\n\\n`training/adapter",
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256`\\n* `SHA-256`\\n* `adapter_model`\\n* `safetensors"
+        ]
+      },
+      {
+        "line": 20,
+        "timestamp": "2026-09-06T14:38:53.213Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 21,
+        "timestamp": "2026-09-06T14:38:53.227Z",
+        "terms": [
+          "0.8474348783493042",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 23,
+        "timestamp": "2026-09-06T14:39:01.630Z",
+        "terms": [
+          "sha256')) for x in d['candidates']]); m=json.load(open('training/adapter"
+        ]
+      },
+      {
+        "line": 25,
+        "timestamp": "2026-09-06T14:39:01.918Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256')) for x in d['candidates']]); m=json.load(open('training/adapter"
+        ]
+      },
+      {
+        "line": 26,
+        "timestamp": "2026-09-06T14:39:01.923Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 28,
+        "timestamp": "2026-09-06T14:39:13.822Z",
+        "terms": [
+          "checkpoint-300",
+          "sha256')) for x in d['candidates']]); m=json.load(open('training/adapter"
+        ]
+      },
+      {
+        "line": 30,
+        "timestamp": "2026-09-06T14:39:14.207Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256')) for x in d['candidates']]); m=json.load(open('training/adapter"
+        ]
+      },
+      {
+        "line": 31,
+        "timestamp": "2026-09-06T14:39:14.212Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+        ]
+      },
+      {
+        "line": 51,
+        "timestamp": "2026-09-06T14:39:53.084Z",
+        "terms": [
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 53,
+        "timestamp": "2026-09-06T14:39:53.400Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 54,
+        "timestamp": "2026-09-06T14:39:53.404Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 58,
+        "timestamp": "2026-09-06T14:40:04.296Z",
+        "terms": [
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 60,
+        "timestamp": "2026-09-06T14:40:04.626Z",
+        "terms": [
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 70,
+        "timestamp": "2026-09-06T14:40:26.406Z",
+        "terms": [
+          "0.8474348783493042"
+        ]
+      },
+      {
+        "line": 71,
+        "timestamp": "2026-09-06T14:40:26.409Z",
+        "terms": [
+          "0.8474348783493042"
+        ]
+      },
+      {
+        "line": 72,
+        "timestamp": "2026-09-06T14:41:20.544Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256(canonical.encode()).hexdigest(),canonicalization='UTF-8, sorted names, name | compact JSON shape | safetensors",
+          "sha256|SHA-256|adapter_model|safetensors"
+        ]
+      },
+      {
+        "line": 73,
+        "timestamp": "2026-09-06T14:41:20.558Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256(canonical.encode()).hexdigest(),canonicalization='UTF-8, sorted names, name | compact JSON shape | safetensors",
+          "sha256|SHA-256|adapter_model|safetensors"
+        ]
+      },
+      {
+        "line": 78,
+        "timestamp": "2026-09-06T14:41:52.944Z",
+        "terms": [
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 80,
+        "timestamp": "2026-09-06T14:41:53.734Z",
+        "terms": [
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 87,
+        "timestamp": "2026-09-06T14:42:06.529Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 88,
+        "timestamp": "2026-09-06T14:42:06.534Z",
+        "terms": [
+          "0.8474348783493042",
+          "checkpoint-300"
+        ]
+      },
+      {
+        "line": 99,
+        "timestamp": "2026-09-06T14:43:04.684Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256|SHA-256).{0,100}(?:adapter|safetensors"
+        ]
+      },
+      {
+        "line": 100,
+        "timestamp": "2026-09-06T14:43:04.692Z",
+        "terms": [
+          "checkpoint-300",
+          "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+          "sha256|SHA-256).{0,100}(?:adapter|safetensors"
+        ]
+      }
+    ]
+  }
+]

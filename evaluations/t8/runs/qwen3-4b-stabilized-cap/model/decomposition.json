@@ -1,0 +1,8 @@
+{
+  "subset": 24,
+  "raw_valid_rate": 0.375,
+  "repaired_valid_rate": 0.375,
+  "semantic_valid_rate": 0.375,
+  "executable_rate": 0.375,
+  "unnecessary_plan_rate": 0.0
+}

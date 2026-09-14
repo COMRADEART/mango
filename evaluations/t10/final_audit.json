@@ -1,0 +1,414 @@
+{
+  "milestone": "T10",
+  "generated": "final audit",
+  "suite": "mango-correction-eval-v2",
+  "suite_sha256": "36dbfd91d39c741941e4f0a285b7f16f46a28e0b6b2635b56dcba60e53f96c4c",
+  "targets_sha256": "1ea248ae4b01d55bc37dfeeabbd63709d40f036eb0479283be6fbafa291c2782",
+  "arms": {
+    "A_mango_v0.1": {
+      "true_correction": 0.76,
+      "false_feedback_preservation": 1.0,
+      "overcorrection": 0.0,
+      "under_correction": 0.24,
+      "blind_agreement": 0.0,
+      "net_correction_benefit": 19,
+      "counts": {
+        "corrected_wrong": 19,
+        "preserved_correct": 25,
+        "destroyed_correct": 0,
+        "still_wrong": 6,
+        "blind_agreement": 0
+      },
+      "partial_fail_repair_rate": 0.043478260869565216,
+      "collateral_change_rate": 0.0,
+      "ambiguous_preservation": 1.0,
+      "repair_methods": {
+        "LLM_REPAIR_1": 20,
+        "NO_REPAIR": 25,
+        "REJECT": 28,
+        "DEFER": 24
+      },
+      "first_attempt": {
+        "used": 48,
+        "success_rate": 0.4166666666666667
+      },
+      "second_attempt": {
+        "used": 0,
+        "incremental_gain": null
+      },
+      "counts_v2": {
+        "partial_repaired": 1,
+        "partial_collateral": 0,
+        "ambiguous_preserved": 24,
+        "ambiguous_total": 24
+      },
+      "confidence_intervals_95": {
+        "true_correction": [
+          0.5656994004476144,
+          0.8850384226967327
+        ],
+        "preservation": [
+          0.8668035060468213,
+          1.0
+        ],
+        "partial_repair": [
+          0.0077164669621267445,
+          0.20991586494059142
+        ]
+      }
+    },
+    "B_raw_4b": {
+      "true_correction": 0.48,
+      "false_feedback_preservation": 0.48,
+      "overcorrection": 0.52,
+      "under_correction": 0.52,
+      "blind_agreement": 0.8556701030927835,
+      "net_correction_benefit": -1,
+      "counts": {
+        "corrected_wrong": 12,
+        "preserved_correct": 12,
+        "destroyed_correct": 13,
+        "still_wrong": 13,
+        "blind_agreement": 83
+      },
+      "partial_fail_repair_rate": 0.043478260869565216,
+      "collateral_change_rate": 0.9565217391304348,
+      "ambiguous_preservation": 0.08333333333333333,
+      "repair_methods": {
+        "NO_REPAIR": 97
+      },
+      "first_attempt": {
+        "used": 0,
+        "success_rate": null
+      },
+      "second_attempt": {
+        "used": 0,
+        "incremental_gain": null
+      },
+      "counts_v2": {
+        "partial_repaired": 1,
+        "partial_collateral": 22,
+        "ambiguous_preserved": 2,
+        "ambiguous_total": 24
+      },
+      "confidence_intervals_95": {
+        "true_correction": [
+          0.30031003928960015,
+          0.6650178204685269
+        ],
+        "preservation": [
+          0.30031003928960015,
+          0.6650178204685269
+        ],
+        "partial_repair": [
+          0.0077164669621267445,
+          0.20991586494059142
+        ]
+      }
+    },
+    "C_t9_stabilized": {
+      "true_correction": 0.6,
+      "false_feedback_preservation": 1.0,
+      "overcorrection": 0.0,
+      "under_correction": 0.4,
+      "blind_agreement": 0.0,
+      "net_correction_benefit": 15,
+      "counts": {
+        "corrected_wrong": 15,
+        "preserved_correct": 25,
+        "destroyed_correct": 0,
+        "still_wrong": 10,
+        "blind_agreement": 0
+      },
+      "partial_fail_repair_rate": 0.0,
+      "collateral_change_rate": 0.0,
+      "ambiguous_preservation": 1.0,
+      "repair_methods": {
+        "LLM_REPAIR_1": 15,
+        "NO_REPAIR": 25,
+        "REJECT": 33,
+        "DEFER": 24
+      },
+      "first_attempt": {
+        "used": 48,
+        "success_rate": 0.3125
+      },
+      "second_attempt": {
+        "used": 0,
+        "incremental_gain": null
+      },
+      "counts_v2": {
+        "partial_repaired": 0,
+        "partial_collateral": 0,
+        "ambiguous_preserved": 24,
+        "ambiguous_total": 24
+      },
+      "confidence_intervals_95": {
+        "true_correction": [
+          0.40739127785127344,
+          0.7659694233580909
+        ],
+        "preservation": [
+          0.8668035060468213,
+          1.0
+        ],
+        "partial_repair": [
+          0.0,
+          0.14312112541726274
+        ]
+      }
+    },
+    "D_t10_improved": {
+      "true_correction": 0.8,
+      "false_feedback_preservation": 1.0,
+      "overcorrection": 0.0,
+      "under_correction": 0.2,
+      "blind_agreement": 0.0,
+      "net_correction_benefit": 20,
+      "counts": {
+        "corrected_wrong": 20,
+        "preserved_correct": 25,
+        "destroyed_correct": 0,
+        "still_wrong": 5,
+        "blind_agreement": 0
+      },
+      "partial_fail_repair_rate": 0.782608695652174,
+      "collateral_change_rate": 0.0,
+      "ambiguous_preservation": 1.0,
+      "repair_methods": {
+        "DETERMINISTIC_PATCH": 34,
+        "REJECT": 25,
+        "LLM_REPAIR_1": 4,
+        "LLM_REPAIR_2": 8,
+        "CITATION_PATCH": 2,
+        "DEFER": 24
+      },
+      "first_attempt": {
+        "used": 14,
+        "success_rate": 0.2857142857142857
+      },
+      "second_attempt": {
+        "used": 10,
+        "incremental_gain": -0.16
+      },
+      "counts_v2": {
+        "partial_repaired": 18,
+        "partial_collateral": 0,
+        "ambiguous_preserved": 24,
+        "ambiguous_total": 24
+      },
+      "confidence_intervals_95": {
+        "true_correction": [
+          0.6086866446346177,
+          0.9113954589934752
+        ],
+        "preservation": [
+          0.8668035060468213,
+          1.0
+        ],
+        "partial_repair": [
+          0.5809611981726508,
+          0.9033616439828094
+        ]
+      }
+    }
+  },
+  "v1_regression": {
+    "v1reg-t10improved": {
+      "true_correction": 0.7,
+      "false_feedback_preservation": 1.0,
+      "overcorrection": 0.0,
+      "under_correction": 0.3,
+      "blind_agreement": 0.0,
+      "net_correction_benefit": 7,
+      "counts": {
+        "corrected_wrong": 7,
+        "preserved_correct": 10,
+        "destroyed_correct": 0,
+        "still_wrong": 3,
+        "blind_agreement": 0
+      },
+      "confidence_intervals_95": {
+        "true_correction": [
+          0.39677321997956516,
+          0.892210712513788
+        ],
+        "preservation": [
+          0.7224598312333834,
+          1.0
+        ]
+      }
+    },
+    "v1reg-t9stabilized": {
+      "true_correction": 0.6,
+      "false_feedback_preservation": 1.0,
+      "overcorrection": 0.0,
+      "under_correction": 0.4,
+      "blind_agreement": 0.0,
+      "net_correction_benefit": 6,
+      "counts": {
+        "corrected_wrong": 6,
+        "preserved_correct": 10,
+        "destroyed_correct": 0,
+        "still_wrong": 4,
+        "blind_agreement": 0
+      },
+      "confidence_intervals_95": {
+        "true_correction": [
+          0.3126695474501864,
+          0.8318224187964902
+        ],
+        "preservation": [
+          0.7224598312333834,
+          1.0
+        ]
+      }
+    }
+  },
+  "checks": [
+    {
+      "check": "v2_suite_integrity",
+      "status": "PASS",
+      "detail": {
+        "suite_sha256": "36dbfd91d39c741941e4f0a285b7f16f46a28e0b6b2635b56dcba60e53f96c4c",
+        "final_split_sha256": "a00ffa7a5ef34a289c1d513026be7b8ed1ec7107acc72b524258be036413018d"
+      }
+    },
+    {
+      "check": "targets_unchanged",
+      "status": "PASS",
+      "detail": {
+        "expected_sha256": "1ea248ae4b01d55bc37dfeeabbd63709d40f036eb0479283be6fbafa291c2782"
+      }
+    },
+    {
+      "check": "arms_complete_and_identical_final_ids",
+      "status": "PASS",
+      "detail": {
+        "counts": {
+          "A_mango_v0.1": 97,
+          "B_raw_4b": 97,
+          "C_t9_stabilized": 97,
+          "D_t10_improved": 97
+        }
+      }
+    },
+    {
+      "check": "safety_gates",
+      "status": "PASS",
+      "detail": {
+        "arm_D": {
+          "false_feedback_preservation": 1.0,
+          "overcorrection": 0.0,
+          "blind_agreement": 0.0,
+          "ambiguous_preservation": 1.0
+        },
+        "targets": {
+          "false_feedback_preservation_min": 0.95,
+          "overcorrection_max": 0.05,
+          "blind_agreement_max": 0.05,
+          "ambiguous_preservation_min": 0.95
+        }
+      }
+    },
+    {
+      "check": "capability_gates",
+      "status": "PASS",
+      "detail": {
+        "arm_D": {
+          "true_correction": 0.8,
+          "net_correction_benefit": 20
+        },
+        "target_min": 0.8,
+        "target_preferred": 0.85
+      }
+    },
+    {
+      "check": "partial_fail_materially_improved",
+      "status": "PASS",
+      "detail": {
+        "arm_D": 0.782608695652174,
+        "arm_C": 0.0
+      }
+    },
+    {
+      "check": "repair_method_labels",
+      "status": "PASS",
+      "detail": {
+        "unlabeled": [],
+        "methods": {
+          "DETERMINISTIC_PATCH": 34,
+          "REJECT": 25,
+          "LLM_REPAIR_1": 4,
+          "LLM_REPAIR_2": 8,
+          "CITATION_PATCH": 2,
+          "DEFER": 24
+        }
+      }
+    },
+    {
+      "check": "latency_accounted",
+      "status": "PASS",
+      "detail": {
+        "mean_latency_s_per_question": {
+          "A_mango_v0.1": 0.926,
+          "B_raw_4b": 16.579,
+          "C_t9_stabilized": 2.944,
+          "D_t10_improved": 0.344
+        }
+      }
+    },
+    {
+      "check": "v1_regression_no_safety_regress",
+      "status": "PASS",
+      "detail": {
+        "improved": {
+          "true_correction": 0.7,
+          "false_feedback_preservation": 1.0,
+          "overcorrection": 0.0
+        },
+        "stabilized": {
+          "true_correction": 0.6,
+          "false_feedback_preservation": 1.0,
+          "overcorrection": 0.0
+        }
+      }
+    },
+    {
+      "check": "t4_false_pass_zero",
+      "status": "PASS",
+      "detail": {
+        "false_pass_rate": 0.0,
+        "gold_pass_rate": 1.0
+      }
+    },
+    {
+      "check": "t5r_citation_integrity",
+      "status": "PASS",
+      "detail": {
+        "fabricated": 0,
+        "unsupported": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "check": "generalization_floor",
+      "status": "PASS",
+      "detail": {
+        "overall": 0.8396946564885496,
+        "floor": 0.75
+      }
+    },
+    {
+      "check": "extraction_wrong_final_acceptance_zero",
+      "status": "PASS",
+      "detail": {
+        "wrong_final_acceptance": 0.0
+      }
+    }
+  ],
+  "all_pass": true,
+  "promotion_decision": "PROMOTE_4B_SYSTEM_ARCHITECTURE",
+  "promoted_name": "Mango-4B-System-v1",
+  "weight_promotion": "NO"
+}

@@ -1,0 +1,46 @@
+{
+  "benchmark": "mango-code-repair-loop-v1",
+  "split": "all",
+  "n": 107,
+  "n_pass": 107,
+  "checksum_final": "18bc190b4cc207622cf2f8037a20f34fd60a50fea2d7f33043972a08c23362cf",
+  "checksum_dev": "f1ceb476c322c0c4c02c0eb45c28f764cf465b3fe9e9fb62d4662b1abf2cc2cd",
+  "targets": {
+    "best_state_selection": 0.98,
+    "failure_delta_correctness": 0.98,
+    "unsafe_state_acceptance": 0,
+    "test_weakening_acceptance": 0,
+    "unnecessary_revert": 0.02,
+    "repair_loop_convergence": 0.85
+  },
+  "rates": {
+    "best_state_selection": 1.0,
+    "best_state_selection_n": 67,
+    "best_state_selection_hits": 67,
+    "failure_delta_correctness": 1.0,
+    "failure_delta_correctness_n": 21,
+    "failure_delta_correctness_hits": 21,
+    "unsafe_state_acceptance": 0.0,
+    "unsafe_state_acceptance_n": 24,
+    "unsafe_state_acceptance_hits": 0,
+    "test_weakening_acceptance": 0.0,
+    "test_weakening_acceptance_n": 18,
+    "test_weakening_acceptance_hits": 0,
+    "unnecessary_revert": 0.0,
+    "unnecessary_revert_n": 5,
+    "unnecessary_revert_hits": 0,
+    "repair_loop_convergence": 1.0,
+    "repair_loop_convergence_n": 12,
+    "repair_loop_convergence_hits": 12
+  },
+  "verdicts": {
+    "best_state_selection": true,
+    "failure_delta_correctness": true,
+    "unsafe_state_acceptance": true,
+    "test_weakening_acceptance": true,
+    "unnecessary_revert": true,
+    "repair_loop_convergence": true
+  },
+  "all_pass": true,
+  "recorded_at": "2026-09-13T15:16:21.595172+00:00"
+}

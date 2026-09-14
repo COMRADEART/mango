@@ -1,0 +1,298 @@
+{
+  "milestone": "T15R — Iterative Patch Retention & CODE Promotion Closure",
+  "phase": "T15R.0 entry gate",
+  "recorded_at": "2026-09-13T13:56:38.840912+00:00",
+  "status": "PASS",
+  "git_head": "0ac583bade7e7e4e75831c0f8ce7d5d811e6e22b",
+  "branch": "t14-executive-router",
+  "starting_architecture": "Mango-4B-System-v1",
+  "scicomp_status": "PROMOTED",
+  "scicomp_numeric": 0.8695652173913043,
+  "scicomp_floor": 0.848,
+  "executive_router_status": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "code_skill_semantic_status": "EXPERIMENTAL",
+  "code_skill_registry_availability": "PREPARED_ONLY",
+  "weight_promotion": "NO",
+  "paid_compute": "NOT_USED",
+  "training": "NONE",
+  "t15_historical": {
+    "overall": "111/139 = 0.7986",
+    "bug_fix": "15/25 = 0.60",
+    "executable": "44/72 = 0.6111",
+    "unrelated_edit": "3/72 = 0.0417",
+    "decision": "KEEP_CODE_SKILL_EXPERIMENTAL"
+  },
+  "hashes": {
+    "code_skill_composite": "98ee6d53133530480405b37e334e9c9be6155ea1dfea999b1c6ada1faa8327a7",
+    "code_files": {
+      "src/sciencemath/code/__init__.py": "4891b6ca4ae5496b55b83a951d7488ff98c00d1421d00294b05f5d44c491aee6",
+      "src/sciencemath/code/context.py": "ad8433fa9295774af1e084af5d0a5d5cac86ef978e41a9255ac2cdec9cc41285",
+      "src/sciencemath/code/contract.py": "48837555d3f750a3282db667bc727a3045daee6aa7e0031b1758dfe13de51523",
+      "src/sciencemath/code/discovery.py": "b6a3bfdc24a2dacf68289c9a2ecf1ffb62e9e7ed6d8ec6419164c579449de310",
+      "src/sciencemath/code/editor.py": "43d822c34016ea1bd39b8c905d6117f70c37065ed8578a1889caae39c7109f7e",
+      "src/sciencemath/code/limits.py": "0c5d71722f173f9c5701cabe067fddd75131847bb356691acf362d1881e4cd5a",
+      "src/sciencemath/code/planner.py": "ad63e56774c147601bb3babf701d54a48c8a3149d26adb7d46bb6695c51af3e6",
+      "src/sciencemath/code/review.py": "54bcf573b35e03ef93d3222ad8e8b9fa2b600b0e75c31a1e5f1643912d3a38f0",
+      "src/sciencemath/code/runner.py": "2ffa2626b2190263f55e2612dea79991417602ce083d1d07d174d2dd703fa844",
+      "src/sciencemath/code/safety.py": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d",
+      "src/sciencemath/code/search.py": "3531630cec222c5538301289260842a4d92560187de617e1b4a9ab84f272fc89",
+      "src/sciencemath/code/testsel.py": "5cca0c0528e75b63e7d51bf7b526fcd6f34209adfe5c6f6859e91928068068fd"
+    },
+    "executive_router": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60",
+    "scicomp_composite": "60e7987791fc54d195bc4dc07bb58b284b0c96ab5d9fac3f24a576731bb3e563",
+    "fidelity": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+    "correction_firewall": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "skill_registry": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9",
+    "security_policies": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+    "mango_code_eval_v1_final": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc"
+  },
+  "frozen_component_pins": {
+    "necessity_router": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14",
+    "skill_registry": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9",
+    "fidelity_classifier": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+    "semantic_classifier": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8",
+    "correction_firewall": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "executive_router": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60"
+  },
+  "checks": [
+    {
+      "check": "git_head_includes_t14r2_close",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "head": "0ac583bade7e7e4e75831c0f8ce7d5d811e6e22b",
+        "required_ancestor": "c27abc60f4288563d96f1a6a77908fa4081cd5f4",
+        "is_ancestor": true
+      }
+    },
+    {
+      "check": "worktree_hygiene",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "dirty_n": 31,
+        "unexpected": []
+      },
+      "detail": "T15/T15R artifacts, CODE runtime, and harness dirt allowed; frozen non-CODE components must not appear as unexpected edits"
+    },
+    {
+      "check": "t15_final_report_exists",
+      "status": "PASS",
+      "critical": true,
+      "measured": "evaluations\\t15\\T15_FINAL_REPORT.md"
+    },
+    {
+      "check": "t15_final_audit_exists",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "gates_total": 27,
+        "passes": 27,
+        "fails": [],
+        "decision": "KEEP_CODE_SKILL_EXPERIMENTAL (floors unmet: bug_fix_success, executable_task_success, unrelated_edit_rate)"
+      }
+    },
+    {
+      "check": "mango_code_eval_v1_checksum",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "final_sha256": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
+        "manifest": "1676bd9e5a539efdb7d2160c1d88604d1f7d2fc8e2a7568f819189861389bddc",
+        "n_final": 139
+      }
+    },
+    {
+      "check": "current_code_skill_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "98ee6d53133530480405b37e334e9c9be6155ea1dfea999b1c6ada1faa8327a7",
+        "files": {
+          "src/sciencemath/code/__init__.py": "4891b6ca4ae5496b55b83a951d7488ff98c00d1421d00294b05f5d44c491aee6",
+          "src/sciencemath/code/context.py": "ad8433fa9295774af1e084af5d0a5d5cac86ef978e41a9255ac2cdec9cc41285",
+          "src/sciencemath/code/contract.py": "48837555d3f750a3282db667bc727a3045daee6aa7e0031b1758dfe13de51523",
+          "src/sciencemath/code/discovery.py": "b6a3bfdc24a2dacf68289c9a2ecf1ffb62e9e7ed6d8ec6419164c579449de310",
+          "src/sciencemath/code/editor.py": "43d822c34016ea1bd39b8c905d6117f70c37065ed8578a1889caae39c7109f7e",
+          "src/sciencemath/code/limits.py": "0c5d71722f173f9c5701cabe067fddd75131847bb356691acf362d1881e4cd5a",
+          "src/sciencemath/code/planner.py": "ad63e56774c147601bb3babf701d54a48c8a3149d26adb7d46bb6695c51af3e6",
+          "src/sciencemath/code/review.py": "54bcf573b35e03ef93d3222ad8e8b9fa2b600b0e75c31a1e5f1643912d3a38f0",
+          "src/sciencemath/code/runner.py": "2ffa2626b2190263f55e2612dea79991417602ce083d1d07d174d2dd703fa844",
+          "src/sciencemath/code/safety.py": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d",
+          "src/sciencemath/code/search.py": "3531630cec222c5538301289260842a4d92560187de617e1b4a9ab84f272fc89",
+          "src/sciencemath/code/testsel.py": "5cca0c0528e75b63e7d51bf7b526fcd6f34209adfe5c6f6859e91928068068fd"
+        },
+        "drift_from_t15_1_freeze": [
+          "src/sciencemath/code/discovery.py",
+          "src/sciencemath/code/runner.py",
+          "src/sciencemath/code/testsel.py"
+        ]
+      },
+      "detail": "T15.1 freeze predates the documented utf-8 subprocess fix; drift in discovery/runner/testsel is expected and recorded"
+    },
+    {
+      "check": "executive_router_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "70b11297dc3782dfba55156e853c3f9d5f860d58e1763e8855c0e52864b8ba60"
+    },
+    {
+      "check": "scicomp_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "60e7987791fc54d195bc4dc07bb58b284b0c96ab5d9fac3f24a576731bb3e563",
+        "mismatch_vs_t15_freeze": []
+      }
+    },
+    {
+      "check": "fidelity_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146"
+    },
+    {
+      "check": "correction_firewall_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573ebeb6cff"
+    },
+    {
+      "check": "t3_adapter_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+    },
+    {
+      "check": "skill_registry_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "ce0a249b5e9c14ebbc8c2b1913322c8725577c1e6ce3ac379a61e8a5faf8d4c9"
+    },
+    {
+      "check": "code_skill_registry_availability",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "registry_availability": "PREPARED_ONLY",
+        "executable": false,
+        "semantic_status": "EXPERIMENTAL"
+      },
+      "detail": "T15 left the registry PREPARED_ONLY; T15R treats CODE as EXPERIMENTAL semantically and only flips the registry on PROMOTE_CODE_SKILL"
+    },
+    {
+      "check": "security_policies_present",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+        "files": {
+          "src/sciencemath/code/safety.py": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d",
+          "tests/test_t15_code_security.py": "7d48c2a8468df9952954fdfd0d21dc079db2014ebb8c8a88b7d0737ebfbe9f14",
+          "tests/test_t11_security.py": "cfd9d249c21316e67a7c597f0d0affe0a3f5d35af9ec18972799cbd4838450a8"
+        }
+      }
+    },
+    {
+      "check": "t15_protection_all_pass",
+      "status": "PASS",
+      "critical": true,
+      "measured": "ALL_PASS"
+    },
+    {
+      "check": "t15_security_zero_violations",
+      "status": "PASS",
+      "critical": true,
+      "measured": 0
+    },
+    {
+      "check": "t15_code_kept_experimental",
+      "status": "PASS",
+      "critical": true,
+      "measured": "KEEP_CODE_SKILL_EXPERIMENTAL (floors unmet: bug_fix_success, executable_task_success, unrelated_edit_rate)"
+    },
+    {
+      "check": "model_identity",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "model": "Qwen/Qwen3-4B-Instruct-2507",
+        "used": true,
+        "load": {
+          "ok": true,
+          "error": null,
+          "quantization": "4bit-nf4-double",
+          "load_vram_bytes": 2716700672,
+          "peak_vram_bytes": 2716700672,
+          "reserved_vram_bytes": 2732589056,
+          "smoke_latency_s": 0.54
+        },
+        "gen": {
+          "seed": 20260912,
+          "max_new_tokens": 384
+        }
+      }
+    },
+    {
+      "check": "environment_recorded",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "os": "Windows 11",
+        "python": "3.12.10",
+        "runtime": "Mango-4B-System-v1",
+        "model": "Qwen/Qwen3-4B-Instruct-2507",
+        "torch": "2.5.1+cu121",
+        "cuda_available": true,
+        "transformers": "5.16.1"
+      },
+      "detail": "transformers pin 5.16.1"
+    },
+    {
+      "check": "no_stale_runner_processes",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "gpu_query": "107, 6141, 46",
+        "compute_apps": [
+          "11804, C:\\Program Files\\Epic Games\\Launcher\\Portal\\Binaries\\Win64\\EpicGamesLauncher.exe",
+          "32956, C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\managedArtifacts\\98bc04bc842e4906993fd6d6644ffb8d\\EOSOverlayRenderer-Win64-Shipping.exe",
+          "30336, C:\\Users\\allam\\AppData\\Local\\Programs\\cursor\\Cursor.exe"
+        ],
+        "mango_gpu_jobs": [],
+        "stale_eval_pids": []
+      }
+    },
+    {
+      "check": "current_pytest_green",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "milestone": "T15R.0 — entry pytest",
+        "recorded_at": "2026-09-13T13:56:38.840912+00:00",
+        "tests": 1112,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1,
+        "exit_code": 0,
+        "failed": 0,
+        "passed": 1111,
+        "time_s": 30.166
+      },
+      "detail": "require 0 failed / 0 errors; do not target the count"
+    },
+    {
+      "check": "no_merge_rebase_in_progress",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "merge_head": false,
+        "rebase": false
+      }
+    }
+  ],
+  "substantive_failures": [],
+  "conclusion": "All entry-gate checks PASS. T15R may proceed to T15R.1."
+}

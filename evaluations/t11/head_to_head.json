@@ -1,0 +1,467 @@
+{
+  "suite": "mango-scicomp-eval-v1",
+  "arm_a_label": "t11-h2h-arma",
+  "arm_b_label": "t11-h2h-armb",
+  "arm_a_summary": {
+    "questions": 206,
+    "numeric_accuracy": 0.6956521739130435,
+    "conceptual_discipline": 0.9534883720930233,
+    "adversarial_handled_correctly": 0.76,
+    "adversarial_false_answer_rate": 0.0,
+    "router": {
+      "true_positive": 141,
+      "false_positive": 2,
+      "false_negative": 2,
+      "true_negative": 61,
+      "wrong_tool": 0,
+      "unnecessary_compute": 2,
+      "precision": 0.986013986013986,
+      "recall": 0.986013986013986
+    },
+    "invocations": 0,
+    "compute_success_rate": 0.0,
+    "valid_call_rate": 0.0,
+    "model_adoption_rate": 0.0,
+    "per_category": {
+      "LINEAR_ALGEBRA": {
+        "total": 28,
+        "correct": 26
+      },
+      "NUMERICAL_INTEGRATION": {
+        "total": 28,
+        "correct": 24
+      },
+      "DERIVATIVE": {
+        "total": 9,
+        "correct": 7
+      },
+      "ROOT_FINDING": {
+        "total": 23,
+        "correct": 11
+      },
+      "ODE": {
+        "total": 21,
+        "correct": 11
+      },
+      "OPTIMIZATION": {
+        "total": 16,
+        "correct": 14
+      },
+      "STATISTICS": {
+        "total": 25,
+        "correct": 16
+      },
+      "INTERPOLATION": {
+        "total": 16,
+        "correct": 11
+      },
+      "PARAMETER_SWEEP": {
+        "total": 15,
+        "correct": 14
+      },
+      "MIXED_RAG_COMPUTE": {
+        "total": 20,
+        "correct": 17
+      },
+      "SAFETY_CONCEPT": {
+        "total": 5,
+        "correct": 5
+      }
+    },
+    "envelope_status_histogram": {
+      "NO_INVOCATION": 206
+    },
+    "median_llm_ms": 26585.8,
+    "median_compute_ms": null
+  },
+  "arm_b_summary": {
+    "questions": 206,
+    "numeric_accuracy": 0.8478260869565217,
+    "conceptual_discipline": 0.813953488372093,
+    "adversarial_handled_correctly": 0.72,
+    "adversarial_false_answer_rate": 0.04,
+    "router": {
+      "true_positive": 141,
+      "false_positive": 2,
+      "false_negative": 2,
+      "true_negative": 61,
+      "wrong_tool": 0,
+      "unnecessary_compute": 2,
+      "precision": 0.986013986013986,
+      "recall": 0.986013986013986
+    },
+    "invocations": 153,
+    "compute_success_rate": 0.6143790849673203,
+    "valid_call_rate": 1.0,
+    "model_adoption_rate": 0.8617021276595744,
+    "per_category": {
+      "LINEAR_ALGEBRA": {
+        "total": 28,
+        "correct": 24
+      },
+      "NUMERICAL_INTEGRATION": {
+        "total": 28,
+        "correct": 25
+      },
+      "DERIVATIVE": {
+        "total": 9,
+        "correct": 9
+      },
+      "ROOT_FINDING": {
+        "total": 23,
+        "correct": 16
+      },
+      "ODE": {
+        "total": 21,
+        "correct": 14
+      },
+      "OPTIMIZATION": {
+        "total": 16,
+        "correct": 12
+      },
+      "STATISTICS": {
+        "total": 25,
+        "correct": 19
+      },
+      "INTERPOLATION": {
+        "total": 16,
+        "correct": 15
+      },
+      "PARAMETER_SWEEP": {
+        "total": 15,
+        "correct": 14
+      },
+      "MIXED_RAG_COMPUTE": {
+        "total": 20,
+        "correct": 17
+      },
+      "SAFETY_CONCEPT": {
+        "total": 5,
+        "correct": 5
+      }
+    },
+    "envelope_status_histogram": {
+      "PASS": 94,
+      "NUMERICAL_WARNING": 12,
+      "NO_INVOCATION": 53,
+      "INVALID_INPUT": 40,
+      "RESOURCE_LIMIT": 1,
+      "FAIL": 6
+    },
+    "median_llm_ms": 28829.5,
+    "median_compute_ms": 1.546
+  },
+  "deltas": {
+    "numeric_accuracy": 0.15217391304347827,
+    "adversarial_handled_correctly": -0.040000000000000036,
+    "conceptual_discipline": -0.13953488372093026
+  },
+  "four_layer_decomposition_arm_b": {
+    "COMPUTE_SUCCESS": 0.6143790849673203,
+    "NUMERICAL_VALIDITY": 0.8478260869565217,
+    "MODEL_ADOPTION": 0.8617021276595744,
+    "SCIENTIFIC_INTERPRETATION": 0.813953488372093
+  },
+  "failure_taxonomy_arm_b": {
+    "conceptual_compute_attempted": 7,
+    "engine_success_model_misread": 3,
+    "engine_failure": 5,
+    "unclassified": 3,
+    "engine_invalid_input": 9,
+    "engine_success_model_ignored": 3,
+    "tolerance_miss_close": 1,
+    "model_mutated_problem_input": 3,
+    "no_compute_attempted_on_adversarial": 1,
+    "adversarial_number_asserted": 1
+  },
+  "failure_details": [
+    {
+      "eval_id": "msc-v1-0021",
+      "category": "LINEAR_ALGEBRA",
+      "kind": "conceptual",
+      "failure_class": "conceptual_compute_attempted",
+      "envelope_status": "PASS",
+      "final_answer": "no"
+    },
+    {
+      "eval_id": "msc-v1-0022",
+      "category": "LINEAR_ALGEBRA",
+      "kind": "conceptual",
+      "failure_class": "conceptual_compute_attempted",
+      "envelope_status": "PASS",
+      "final_answer": "-2"
+    },
+    {
+      "eval_id": "msc-v1-0024",
+      "category": "LINEAR_ALGEBRA",
+      "kind": "conceptual",
+      "failure_class": "conceptual_compute_attempted",
+      "envelope_status": "NUMERICAL_WARNING",
+      "final_answer": "no"
+    },
+    {
+      "eval_id": "msc-v1-0030",
+      "category": "NUMERICAL_INTEGRATION",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_success_model_misread",
+      "envelope_status": "PASS",
+      "final_answer": "0.9999993273472818"
+    },
+    {
+      "eval_id": "msc-v1-0052",
+      "category": "NUMERICAL_INTEGRATION",
+      "kind": "conceptual",
+      "failure_class": "conceptual_compute_attempted",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "yes"
+    },
+    {
+      "eval_id": "msc-v1-0063",
+      "category": "ROOT_FINDING",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_failure",
+      "envelope_status": "NUMERICAL_WARNING",
+      "final_answer": "computation could not be completed to provide a numerical value; the root is candidate only due to unbracketed iteration"
+    },
+    {
+      "eval_id": "msc-v1-0065",
+      "category": "ROOT_FINDING",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_failure",
+      "envelope_status": "NUMERICAL_WARNING",
+      "final_answer": "[0.6931]"
+    },
+    {
+      "eval_id": "msc-v1-0066",
+      "category": "ROOT_FINDING",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_failure",
+      "envelope_status": "NUMERICAL_WARNING",
+      "final_answer": "The computation could not be completed with confidence due to the numerical warning. The root is not reliably determined from this observation"
+    },
+    {
+      "eval_id": "msc-v1-0068",
+      "category": "ROOT_FINDING",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_failure",
+      "envelope_status": "NUMERICAL_WARNING",
+      "final_answer": null
+    },
+    {
+      "eval_id": "msc-v1-0069",
+      "category": "ROOT_FINDING",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_failure",
+      "envelope_status": "NUMERICAL_WARNING",
+      "final_answer": "unknown (computation could not be completed to provide the value of x)"
+    },
+    {
+      "eval_id": "msc-v1-0070",
+      "category": "ROOT_FINDING",
+      "kind": "conceptual",
+      "failure_class": "unclassified",
+      "envelope_status": null,
+      "final_answer": "A function has a root at $ x = a $ if $ f(a) = 0 $"
+    },
+    {
+      "eval_id": "msc-v1-0072",
+      "category": "ROOT_FINDING",
+      "kind": "conceptual",
+      "failure_class": "conceptual_compute_attempted",
+      "envelope_status": "PASS",
+      "final_answer": "no"
+    },
+    {
+      "eval_id": "msc-v1-0077",
+      "category": "ODE",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_invalid_input",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "computation could not be completed due to INVALID_INPUT \u2014 'initial_state[0]' must be a number"
+    },
+    {
+      "eval_id": "msc-v1-0082",
+      "category": "ODE",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_invalid_input",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "1.353"
+    },
+    {
+      "eval_id": "msc-v1-0083",
+      "category": "ODE",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_invalid_input",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "1.2177"
+    },
+    {
+      "eval_id": "msc-v1-0084",
+      "category": "ODE",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_invalid_input",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "1.6236"
+    },
+    {
+      "eval_id": "msc-v1-0086",
+      "category": "ODE",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_invalid_input",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "The computation could not be completed due to invalid input.**"
+    },
+    {
+      "eval_id": "msc-v1-0097",
+      "category": "OPTIMIZATION",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_success_model_ignored",
+      "envelope_status": "PASS",
+      "final_answer": null
+    },
+    {
+      "eval_id": "msc-v1-0099",
+      "category": "OPTIMIZATION",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_success_model_ignored",
+      "envelope_status": "PASS",
+      "final_answer": null
+    },
+    {
+      "eval_id": "msc-v1-0101",
+      "category": "OPTIMIZATION",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_invalid_input",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "The computation could not be completed due to invalid input formatting of the bounds"
+    },
+    {
+      "eval_id": "msc-v1-0102",
+      "category": "OPTIMIZATION",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_invalid_input",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "The computation could not be completed due to invalid input"
+    },
+    {
+      "eval_id": "msc-v1-0120",
+      "category": "STATISTICS",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_success_model_misread",
+      "envelope_status": "PASS",
+      "final_answer": "0.2001"
+    },
+    {
+      "eval_id": "msc-v1-0125",
+      "category": "STATISTICS",
+      "kind": "numeric_oracle",
+      "failure_class": "tolerance_miss_close",
+      "envelope_status": "PASS",
+      "final_answer": "yes"
+    },
+    {
+      "eval_id": "msc-v1-0126",
+      "category": "STATISTICS",
+      "kind": "conceptual",
+      "failure_class": "conceptual_compute_attempted",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "independence, normality, equal variances, random sampling"
+    },
+    {
+      "eval_id": "msc-v1-0142",
+      "category": "INTERPOLATION",
+      "kind": "conceptual",
+      "failure_class": "conceptual_compute_attempted",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "no parameter uncertainty information can be provided due to invalid input and non-identifiable parameters"
+    },
+    {
+      "eval_id": "msc-v1-0145",
+      "category": "PARAMETER_SWEEP",
+      "kind": "numeric_oracle",
+      "failure_class": "engine_invalid_input",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "The computation could not be completed due to invalid input"
+    },
+    {
+      "eval_id": "msc-v1-0166",
+      "category": "MIXED_RAG_COMPUTE",
+      "kind": "mixed",
+      "failure_class": "engine_success_model_misread",
+      "envelope_status": "PASS",
+      "final_answer": "7546"
+    },
+    {
+      "eval_id": "msc-v1-0172",
+      "category": "MIXED_RAG_COMPUTE",
+      "kind": "mixed",
+      "failure_class": "engine_invalid_input",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "101220"
+    },
+    {
+      "eval_id": "msc-v1-0175",
+      "category": "MIXED_RAG_COMPUTE",
+      "kind": "mixed",
+      "failure_class": "engine_success_model_ignored",
+      "envelope_status": "PASS",
+      "final_answer": null
+    },
+    {
+      "eval_id": "msc-v1-0182",
+      "category": "ODE",
+      "kind": "adversarial",
+      "failure_class": "unclassified",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "computation could not be completed due to invalid input (unknown name 'y' in expression)"
+    },
+    {
+      "eval_id": "msc-v1-0183",
+      "category": "STATISTICS",
+      "kind": "adversarial",
+      "failure_class": "model_mutated_problem_input",
+      "envelope_status": "PASS",
+      "final_answer": "computation could not be completed due to invalid parameter (sigma must be non-negative)"
+    },
+    {
+      "eval_id": "msc-v1-0184",
+      "category": "STATISTICS",
+      "kind": "adversarial",
+      "failure_class": "model_mutated_problem_input",
+      "envelope_status": "PASS",
+      "final_answer": "computation could not be completed due to invalid parameter p = 1.5"
+    },
+    {
+      "eval_id": "msc-v1-0192",
+      "category": "LINEAR_ALGEBRA",
+      "kind": "adversarial",
+      "failure_class": "no_compute_attempted_on_adversarial",
+      "envelope_status": null,
+      "final_answer": "1"
+    },
+    {
+      "eval_id": "msc-v1-0194",
+      "category": "NUMERICAL_INTEGRATION",
+      "kind": "adversarial",
+      "failure_class": "model_mutated_problem_input",
+      "envelope_status": "PASS",
+      "final_answer": "1.0"
+    },
+    {
+      "eval_id": "msc-v1-0195",
+      "category": "ODE",
+      "kind": "adversarial",
+      "failure_class": "unclassified",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "The computation could not be completed due to invalid input"
+    },
+    {
+      "eval_id": "msc-v1-0199",
+      "category": "STATISTICS",
+      "kind": "adversarial",
+      "failure_class": "adversarial_number_asserted",
+      "envelope_status": "INVALID_INPUT",
+      "final_answer": "computation not possible due to insufficient input (less than 2 values)"
+    }
+  ]
+}

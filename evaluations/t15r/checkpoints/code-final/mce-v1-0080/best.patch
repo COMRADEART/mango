@@ -1,0 +1,14 @@
+--- a/src/feat19_flatten1.py
++++ b/src/feat19_flatten1.py
+@@ -1,2 +1,10 @@
+ def flatten1(xss):
+-    raise NotImplementedError
++    if not xss:
++        return []
++    result = []
++    for xs in xss:
++        if isinstance(xs, list):
++            result.extend(flatten1(xs))
++        else:
++            result.append(xs)
++    return result

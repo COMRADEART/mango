@@ -1,0 +1,50 @@
+{
+  "suite_name": "mango-routing-necessity-v1",
+  "version": "v1",
+  "total": 275,
+  "labels": {
+    "COMPUTE_REQUIRED": 72,
+    "COMPUTE_HELPFUL": 67,
+    "NO_COMPUTE": 70,
+    "INSUFFICIENT_INFORMATION": 66
+  },
+  "splits": {
+    "development": 83,
+    "final": 192
+  },
+  "domains": {
+    "linear_algebra": 25,
+    "calculus": 22,
+    "root_finding": 13,
+    "ode": 17,
+    "optimization": 13,
+    "statistics": 19,
+    "interpolation": 8,
+    "parameter_sweep": 9,
+    "physics": 39,
+    "chemistry": 15,
+    "biology": 14,
+    "mixed_science_math": 3,
+    "algebra": 3,
+    "arithmetic": 32,
+    "conceptual_science": 16,
+    "conceptual_math": 10,
+    "retrieval_science": 10,
+    "safety": 7
+  },
+  "sha256_questions": "a271d81e30cab61ec50afedede75a560366ee082af0ef7eab0f027b80f9887ec",
+  "sha256_final": "b96da421ae5cbc333d9a6a6637a14347b1c1ce3be78eb56a820925b964ee4a62",
+  "oracle": {
+    "scicomp_complete_operands": "COMPUTE_REQUIRED",
+    "t4_unit_or_trivial_arithmetic": "COMPUTE_HELPFUL",
+    "mixed_formula_all_inputs_given": "COMPUTE_HELPFUL",
+    "conceptual_definitional": "NO_COMPUTE",
+    "qualitative_compare": "NO_COMPUTE",
+    "retrieval_only": "NO_COMPUTE",
+    "safety_no_exec": "NO_COMPUTE",
+    "compute_verb_missing_operands": "INSUFFICIENT_INFORMATION",
+    "ambiguous_or_malformed_inputs": "INSUFFICIENT_INFORMATION"
+  },
+  "oracle_policy": "Labels are a deterministic function of the construction rule. No LLM was used as ground truth.",
+  "final_isolation": "final_checksum.txt is frozen before router scoring of the final split."
+}

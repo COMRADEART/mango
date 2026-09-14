@@ -1,0 +1,23 @@
+{
+  "questions": 3,
+  "kinds": {
+    "fidelity": 3
+  },
+  "handled_correctly": 0.6666666666666666,
+  "silent_mutation_pass_count": 0,
+  "asserted_number_on_invalid": 1,
+  "guard_or_gate_blocks": 3,
+  "mutation_attempted": 0,
+  "per_category": {
+    "INVALID_PARAMS": {
+      "total": 3,
+      "correct": 2
+    }
+  },
+  "median_llm_ms": 41728.2,
+  "arm": "B",
+  "suite": "fidelity",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "suite_sha256": "f598825c7823f30af1f5162e8d754542f80b10bd99608f4310e0594e93cadd7e",
+  "label": "t12-smoke-fidB"
+}

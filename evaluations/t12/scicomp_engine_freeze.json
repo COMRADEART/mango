@@ -1,0 +1,25 @@
+{
+  "milestone": "T12.1 \u2014 scicomp engine freeze",
+  "frozen_at": "2026-09-08T10:41:53.288443",
+  "baseline_commit": "c05396f432ca8e16e724762228f6238593e7c52c",
+  "policy": "T12 may modify planner schema/validation, routing guard, and result-adoption interface. Solver behavior must NOT change unless an independent deterministic engine defect is proven. Any hash below changing during T12 must be explicitly justified in the final report.",
+  "files": {
+    "schemas.py": "b9d9d8d54b55e06cd5d4c6056a798f45a653aeac9a8efe8e269c862e967518a1",
+    "sandbox.py": "aa14cb9ab0995e259e64c812e811f9f15d6c57aeb9e52995665d32712d1fdf37",
+    "registry.py": "dd180ace9d5c114f4eea222bdc83856eab35038b3f9c0461d2e9b300605178e7",
+    "executor.py": "769a7fd3a7fe8fe0bcf773a1b44c7cd57200497bbdb68a63d58e7fc76a9d30e7",
+    "diagnostics.py": "e858d14d401768acc71c2f7dfcadc7130a268940bbcb1d316ddbcf87461e314e",
+    "linear_algebra.py": "7ac70a9fc9b951f7bc1fdb348ab0c390dddd65d2701c0ff319fce28ffb3da609",
+    "calculus.py": "867d2495d9a96d65ee370b687d341a632fb37eb3d709c508dcb5d7644219792d",
+    "roots.py": "d667e84dcc1d05819800218c0dcac05506e5eeac55d573b8ec298ccd2729b0e5",
+    "ode.py": "7a543eaf8ba453856d01c2eaaa9dd89e927d9fcb8bf403b928b8489e05d53f9a",
+    "optimization.py": "d4d7a55356f3872cefe02c7808bea44eed65a29ab1b5dd0b0abdf5c4613f0318",
+    "statistics.py": "f32b95d35d35bff0267c249900a2320de9456ca9143be299d7ae9855acc87e0f",
+    "interpolation.py": "a3029cac41a3012bab4af9023d3ae0759e9625155c9fdfebde562690db2764e2",
+    "parameter_sweep.py": "39e677b2d37476e210c2a6165becf7da7d355f806e431c6979472a342fab2296",
+    "trust.py": "9f1e0d5bdc4bead90d157393257bc621138aa74809ed04117532ee27e3b21002",
+    "verifier.py": "87eb1e5c2c82d7322d8326c7e5c33f3624a28b59fffde9263ba6d05e8f5416c5",
+    "invocation.py": "3bed113faa1f71a680a6c56bbc610386cc55d98d7a97dd022fd4d3a68f87d6b2",
+    "router.py": "235891be5801e775220ea8eb0a46a0bf41d819626fb6a66177609e0530bced66"
+  }
+}

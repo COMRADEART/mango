@@ -1,0 +1,48 @@
+{
+  "milestone": "T14R.21 \u2014 executive router recheck",
+  "router_change": "NONE (deterministic route_task unchanged)",
+  "v1_frozen_recheck": {
+    "suite": "mango-executive-router-eval-v1 FINAL",
+    "suite_sha256": "ea05e60b49ba6ba2f222e75343fe193792198044d13b191ce96202fdc2020bce",
+    "metrics": {
+      "n": 215,
+      "primary_route_accuracy": 0.8930232558139535,
+      "top2_route_accuracy": 0.8930232558139535,
+      "tool_required_recall": 0.7946428571428571,
+      "no_tool_specificity": 1.0,
+      "unavailable_capability_rejection": 1.0,
+      "hallucinated_tools": 0,
+      "unauthorized_paid_route": 0,
+      "unavailable_skill_presented_as_executed": 0,
+      "permission_bypass": 0,
+      "route_depth_violations": 0,
+      "multi_skill_accuracy": 1.0,
+      "multi_skill_ordering_correctness": 1.0,
+      "failure_taxonomy": {
+        "MISSED_TOOL": 23
+      }
+    },
+    "bit_identical_to_T14": true
+  },
+  "v2_corrected_recheck": {
+    "suite": "mango-executive-router-eval-v2 (20 duplicate-gold rows removed; thresholds unchanged)",
+    "metrics": {
+      "n": 284,
+      "primary_route_accuracy": 0.9823943661971831,
+      "top2_route_accuracy": 0.9823943661971831,
+      "tool_required_recall": 0.9714285714285714,
+      "no_tool_specificity": 1.0,
+      "unavailable_capability_rejection": 1.0,
+      "hallucinated_tools": 0,
+      "unauthorized_paid_route": 0,
+      "unavailable_skill_presented_as_executed": 0,
+      "permission_bypass": 0,
+      "route_depth_violations": 0,
+      "multi_skill_accuracy": 1.0,
+      "multi_skill_ordering_correctness": 1.0,
+      "failure_taxonomy": {
+        "MISSED_TOOL": 4
+      }
+    }
+  }
+}

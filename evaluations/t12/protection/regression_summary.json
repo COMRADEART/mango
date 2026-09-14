@@ -1,0 +1,49 @@
+{
+  "milestone": "T12.30 regression battery (t12-protect-* reruns)",
+  "status": "ALL_PASS",
+  "layers": {
+    "t4": {
+      "status": "PASS",
+      "tool_enabled_accuracy": 0.7466666666666667,
+      "false_pass_rate": 0.0,
+      "baseline": "recall 74.67%, false PASS 0.0 (T10/T11)"
+    },
+    "t5r": {
+      "status": "PASS",
+      "files": [
+        "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t12\\protection\\t5r\\comparison.json",
+        "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t12\\protection\\t5r\\run_summary.json",
+        "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t12\\protection\\t5r\\G\\config.json",
+        "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t12\\protection\\t5r\\G\\metrics.json",
+        "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t12\\protection\\t5r\\NORAG\\config.json",
+        "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t12\\protection\\t5r\\NORAG\\metrics.json"
+      ],
+      "parsed": true,
+      "baseline": "0.5862, citations 0/0/0"
+    },
+    "capacity": {
+      "status": "PASS",
+      "files": [
+        "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t12\\protection\\cap\\capability_vector.json",
+        "C:\\Users\\allam\\Documents\\new\\model\\evaluations\\t12\\protection\\cap\\summary.json"
+      ],
+      "baseline": "overall 0.857 (T10/T11)"
+    },
+    "extraction": {
+      "status": "PASS",
+      "wrong_final": null,
+      "baseline": "wrong-final 0.0 (T9/T11)"
+    },
+    "correction": {
+      "status": "PASS",
+      "true_correction": 0.8,
+      "false_feedback_preservation": 1.0,
+      "overcorrection": 0.0,
+      "collateral_change_rate": 0.0,
+      "blind_agreement": 0.0,
+      "partial_fail_repair_rate": 0.782608695652174,
+      "net_correction_benefit": 20,
+      "baseline": "true 0.80 / preservation 1.0 / collateral 0 / blind 0 / partial 0.783 / net +20 (T10/T11)"
+    }
+  }
+}

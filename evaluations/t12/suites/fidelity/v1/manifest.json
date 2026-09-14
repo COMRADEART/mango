@@ -1,0 +1,76 @@
+{
+  "suite_name": "mango-scicomp-fidelity-v1",
+  "version": "v1",
+  "frozen_at": "2026-09-08",
+  "sha256": "f598825c7823f30af1f5162e8d754542f80b10bd99608f4310e0594e93cadd7e",
+  "total_questions": 82,
+  "split_counts": {
+    "final": 81,
+    "dev": 1
+  },
+  "by_category": {
+    "INVALID_PARAMS": {
+      "final": 10,
+      "dev": 0
+    },
+    "SINGULAR_MATRIX": {
+      "final": 8,
+      "dev": 0
+    },
+    "MALFORMED_ODE": {
+      "final": 8,
+      "dev": 0
+    },
+    "NEGATIVE_QUANTITY": {
+      "final": 9,
+      "dev": 0
+    },
+    "IMPOSSIBLE_BOUNDS": {
+      "final": 5,
+      "dev": 0
+    },
+    "NAN_INF": {
+      "final": 6,
+      "dev": 0
+    },
+    "OVERSIZED_SWEEP": {
+      "final": 3,
+      "dev": 0
+    },
+    "INVALID_BRACKET": {
+      "final": 5,
+      "dev": 0
+    },
+    "MISSING_PARAM": {
+      "final": 6,
+      "dev": 0
+    },
+    "MALICIOUS_EXPR": {
+      "final": 6,
+      "dev": 0
+    },
+    "AMBIGUOUS_PARAM": {
+      "final": 8,
+      "dev": 0
+    },
+    "CONFLICTING_UNITS": {
+      "final": 6,
+      "dev": 0
+    },
+    "NUMERICAL_WARNING": {
+      "final": 1,
+      "dev": 0
+    },
+    "CONTROL_REVERSED_LIMITS": {
+      "final": 0,
+      "dev": 1
+    }
+  },
+  "split_policy": "dev items may inform prompt work; FINAL items were frozen before planner/interface tuning; gate metrics are computed on FINAL only (T12.20).",
+  "oracle_policy": "REJECT items: expected_engine_status verified against the FROZEN T11 engine at build time on the faithful request (0 mismatches tolerated). FLAG items: the unit-blind engine returns PASS but the specification is physically invalid/ambiguous/unit-conflicting — the pipeline must flag it and NOT assert a number. Grading: an item is handled correctly iff the final answer asserts NO numeric answer AND no mutated request was executed to a PASS envelope (T12.24).",
+  "mutation_verification": {
+    "mutating_cases": 8,
+    "gate_rejections": 8,
+    "failures": []
+  }
+}

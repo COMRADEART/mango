@@ -1,0 +1,45 @@
+{
+  "milestone": "T14.18 protection battery",
+  "status": "ALL_PASS",
+  "layers": {
+    "t4": {
+      "status": "PASS",
+      "tool_enabled_accuracy": 0.7466666666666667,
+      "false_pass_rate": 0.0,
+      "required": "T4 false PASS = 0"
+    },
+    "t5r": {
+      "status": "PASS",
+      "G_accuracy": 0.5862,
+      "NORAG_accuracy": 0.569,
+      "fabricated": 0,
+      "unsupported": 0,
+      "invalid": 0,
+      "required": "fabricated=0 unsupported=0 invalid=0"
+    },
+    "capacity": {
+      "status": "PASS",
+      "overall": 0.8571428571428571,
+      "n": 131
+    },
+    "extraction": {
+      "status": "PASS",
+      "wrong_final": 0.0,
+      "required": "wrong-final acceptance = 0"
+    },
+    "correction": {
+      "status": "PASS",
+      "true_correction": 0.8,
+      "false_feedback_preservation": 1.0,
+      "overcorrection": 0.0,
+      "collateral_change_rate": 0.0,
+      "blind_agreement": 0.0,
+      "required": "preservation protected, blind agreement protected, collateral mutation protected"
+    },
+    "scicomp_fidelity": {
+      "status": "PASS",
+      "silent_mutation_pass_count": 0,
+      "scicomp_numeric": 0.7318840579710145
+    }
+  }
+}

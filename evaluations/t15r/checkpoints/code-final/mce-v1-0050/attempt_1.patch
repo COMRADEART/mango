@@ -1,0 +1,13 @@
+--- a/src/cfg19.py
++++ b/src/cfg19.py
+@@ -1 +1 @@
+-LIMIT = 1
++LIMIT = 10
+--- a/src/use19.py
++++ b/src/use19.py
+@@ -1,4 +1,4 @@
+ from src.cfg19 import LIMIT
+ 
+ def capped(v):
+-    return v if v < LIMIT else LIMIT + 1
++    return v if v < LIMIT else LIMIT

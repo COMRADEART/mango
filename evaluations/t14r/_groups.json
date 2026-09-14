@@ -1,0 +1,52 @@
+{
+ "none_req": [],
+ "no_compute": [
+  "msc-v1-0147"
+ ],
+ "schema_fail": [
+  "msc-v1-0079",
+  "msc-v1-0083",
+  "msc-v1-0086",
+  "msc-v1-0088",
+  "msc-v1-0117",
+  "msc-v1-0118",
+  "msc-v1-0119",
+  "msc-v1-0120",
+  "msc-v1-0121",
+  "msc-v1-0137",
+  "msc-v1-0161",
+  "msc-v1-0172"
+ ],
+ "fid_fail": [
+  "msc-v1-0076",
+  "msc-v1-0077",
+  "msc-v1-0080",
+  "msc-v1-0082",
+  "msc-v1-0085",
+  "msc-v1-0087",
+  "msc-v1-0102",
+  "msc-v1-0125",
+  "msc-v1-0148",
+  "msc-v1-0149",
+  "msc-v1-0157",
+  "msc-v1-0158",
+  "msc-v1-0163",
+  "msc-v1-0169",
+  "msc-v1-0175"
+ ],
+ "inv_invalid": [
+  "msc-v1-0037",
+  "msc-v1-0040",
+  "msc-v1-0041",
+  "msc-v1-0081",
+  "msc-v1-0084",
+  "msc-v1-0166"
+ ],
+ "inv_pass_wrong": [
+  "msc-v1-0030",
+  "msc-v1-0099"
+ ],
+ "inv_warn": [
+  "msc-v1-0068"
+ ]
+}

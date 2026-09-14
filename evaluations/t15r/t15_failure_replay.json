@@ -1,0 +1,648 @@
+{
+  "n_frozen_failures": 28,
+  "recovered": 23,
+  "still_failing": 5,
+  "newly_regressed": 5,
+  "regressed_ids": [
+    "mce-v1-0051",
+    "mce-v1-0059",
+    "mce-v1-0070",
+    "mce-v1-0081",
+    "mce-v1-0097"
+  ],
+  "by_category": {
+    "multi_fix": {
+      "recovered": 9,
+      "still_failing": 1,
+      "regressed": 0,
+      "before_fail": 10,
+      "after_fail": 1,
+      "n": 10
+    },
+    "data_xform": {
+      "recovered": 3,
+      "still_failing": 3,
+      "regressed": 0,
+      "before_fail": 6,
+      "after_fail": 3,
+      "n": 6
+    },
+    "refactor": {
+      "recovered": 2,
+      "still_failing": 0,
+      "regressed": 1,
+      "before_fail": 2,
+      "after_fail": 0,
+      "n": 2
+    },
+    "algo": {
+      "recovered": 3,
+      "still_failing": 0,
+      "regressed": 0,
+      "before_fail": 3,
+      "after_fail": 0,
+      "n": 3
+    },
+    "feature": {
+      "recovered": 5,
+      "still_failing": 0,
+      "regressed": 1,
+      "before_fail": 5,
+      "after_fail": 0,
+      "n": 5
+    },
+    "test_repair": {
+      "recovered": 0,
+      "still_failing": 1,
+      "regressed": 2,
+      "before_fail": 1,
+      "after_fail": 1,
+      "n": 1
+    },
+    "other": {
+      "recovered": 1,
+      "still_failing": 0,
+      "regressed": 1,
+      "before_fail": 1,
+      "after_fail": 0,
+      "n": 1
+    }
+  },
+  "average_repair_rounds": 0.42857142857142855,
+  "median_repair_rounds": 0,
+  "best_state_retained_count": 28,
+  "full_revert_count": 0,
+  "unsafe_revert_count": 0,
+  "rows": [
+    {
+      "task_id": "mce-v1-0032",
+      "category": "multi_fix",
+      "pass": false,
+      "status": "BLOCKED",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 1,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": 3,
+        "max_files_modified": 2,
+        "max_commands": 4,
+        "max_repair_iterations": 1
+      },
+      "reasons": [
+        "runner tests exit=1 (failed=1)"
+      ]
+    },
+    {
+      "task_id": "mce-v1-0033",
+      "category": "multi_fix",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0034",
+      "category": "multi_fix",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0041",
+      "category": "multi_fix",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0044",
+      "category": "multi_fix",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 1,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s2",
+        "n_deltas": 2,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": 3,
+        "max_files_modified": 2,
+        "max_commands": 5,
+        "max_repair_iterations": 1
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0045",
+      "category": "multi_fix",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0046",
+      "category": "multi_fix",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0047",
+      "category": "multi_fix",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0049",
+      "category": "multi_fix",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0050",
+      "category": "multi_fix",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0073",
+      "category": "feature",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 1,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s2",
+        "n_deltas": 2,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": 2,
+        "max_files_modified": 1,
+        "max_commands": 5,
+        "max_repair_iterations": 1
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0078",
+      "category": "feature",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 1,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s2",
+        "n_deltas": 2,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": 2,
+        "max_files_modified": 1,
+        "max_commands": 5,
+        "max_repair_iterations": 1
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0110",
+      "category": "other",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0111",
+      "category": "algo",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0113",
+      "category": "algo",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0115",
+      "category": "algo",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0121",
+      "category": "data_xform",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0123",
+      "category": "data_xform",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0125",
+      "category": "data_xform",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0052",
+      "category": "test_repair",
+      "pass": false,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": [
+        "source changed: src/tr01.py"
+      ]
+    },
+    {
+      "task_id": "mce-v1-0062",
+      "category": "feature",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0072",
+      "category": "feature",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0077",
+      "category": "feature",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0083",
+      "category": "refactor",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0088",
+      "category": "refactor",
+      "pass": true,
+      "status": "EXECUTED_PASS",
+      "repair": {
+        "repair_rounds": 0,
+        "best_retained": true,
+        "best_failure_count": 0,
+        "best_state_id": "s1",
+        "n_deltas": 1,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": null,
+        "max_files_modified": null,
+        "max_commands": null,
+        "max_repair_iterations": null
+      },
+      "reasons": []
+    },
+    {
+      "task_id": "mce-v1-0122",
+      "category": "data_xform",
+      "pass": false,
+      "status": "BLOCKED",
+      "repair": {
+        "repair_rounds": 3,
+        "best_retained": true,
+        "best_failure_count": 1,
+        "best_state_id": "s1",
+        "n_deltas": 4,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": 2,
+        "max_files_modified": 1,
+        "max_commands": 9,
+        "max_repair_iterations": 3
+      },
+      "reasons": [
+        "runner tests exit=1 (failed=1)"
+      ]
+    },
+    {
+      "task_id": "mce-v1-0124",
+      "category": "data_xform",
+      "pass": false,
+      "status": "BLOCKED",
+      "repair": {
+        "repair_rounds": 3,
+        "best_retained": true,
+        "best_failure_count": 1,
+        "best_state_id": "s1",
+        "n_deltas": 4,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": 2,
+        "max_files_modified": 1,
+        "max_commands": 9,
+        "max_repair_iterations": 3
+      },
+      "reasons": [
+        "runner tests exit=1 (failed=1)"
+      ]
+    },
+    {
+      "task_id": "mce-v1-0126",
+      "category": "data_xform",
+      "pass": false,
+      "status": "BLOCKED",
+      "repair": {
+        "repair_rounds": 3,
+        "best_retained": true,
+        "best_failure_count": 1,
+        "best_state_id": "s1",
+        "n_deltas": 4,
+        "full_revert": false,
+        "unsafe_revert": false,
+        "max_files_read": 2,
+        "max_files_modified": 1,
+        "max_commands": 9,
+        "max_repair_iterations": 3
+      },
+      "reasons": [
+        "runner tests exit=1 (failed=1)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "wrong_final_acceptance": 0.0,
+  "extraction_recall": 0.7,
+  "extraction_precision": 0.7368421052631579,
+  "false_extraction_acceptance": 0.25
+}

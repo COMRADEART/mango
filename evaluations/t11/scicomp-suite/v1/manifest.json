@@ -1,0 +1,39 @@
+{
+  "suite_name": "mango-scicomp-eval-v1",
+  "version": "v1",
+  "frozen_at": "2026-09-07",
+  "seed": 1101,
+  "questions_file": "questions.jsonl",
+  "sha256": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+  "total_questions": 206,
+  "declared_distribution": {
+    "LINEAR_ALGEBRA": 28,
+    "NUMERICAL_INTEGRATION": 28,
+    "DERIVATIVE": 9,
+    "ROOT_FINDING": 23,
+    "ODE": 21,
+    "OPTIMIZATION": 16,
+    "STATISTICS": 25,
+    "INTERPOLATION": 16,
+    "PARAMETER_SWEEP": 15,
+    "MIXED_RAG_COMPUTE": 20,
+    "SAFETY_CONCEPT": 5
+  },
+  "note_on_counts": "T11.19 target was 160-240 with suggested per-category counts. Final counts differ from the suggestion (integration/derivatives split as 28+9; calculus-family total 37; ODE 21; optimization 16) but the total 206 is within the declared 160-240 range. Counts declared here BEFORE any model-facing evaluation was run.",
+  "item_kinds": {
+    "numeric_oracle": 138,
+    "conceptual_no_compute": 43,
+    "adversarial_expected_non_pass": 25
+  },
+  "oracle_policy": {
+    "independence": "No oracle value derives from any Mango-generated answer. Numeric oracles come from exact symbolic integration/differentiation (sympy), closed-form analytic solutions, exact hand arithmetic, or values frozen at build time from scipy.stats, all computed by this builder, independent of the scicomp engine.",
+    "tolerances": "Per-item atol and rtol fields on every numeric item (T11.22). A response is correct iff abs(got-expected) <= atol + rtol*abs(expected) elementwise for vector/matrix answers.",
+    "adversarial": "Each of the 25 adversarial items (answer_type=abstain) declares the exact deterministic engine status observed for its canonical compute_request; all 25 verified against the engine at freeze time (mismatches: 0). System-level grading: the item is handled correctly iff the pipeline returns that status or the model abstains without asserting a number. Exact-status match is also recorded as a secondary metric."
+  },
+  "grading_rules": {
+    "numeric_oracle": "numeric within per-item tolerance",
+    "conceptual_no_compute": "graded by no-compute discipline: correct iff the system does NOT route to scicomp and answers textually (needs_compute=false, expected_route=NO_COMPUTE)",
+    "adversarial": "correct iff final envelope status equals expected_status, or the model abstains with no asserted numeric answer"
+  },
+  "checksum_policy": "Any change to questions.jsonl invalidates the suite. checksum.txt pins SHA-256; runners must verify before evaluating and record the digest in run artifacts."
+}

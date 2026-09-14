@@ -1,0 +1,565 @@
+{
+ "milestone": "T13.1 - freeze current T12-DEF-2 defect",
+ "frozen_at": "2026-09-09",
+ "status": "FROZEN - regression evidence; these cases must not be edited",
+ "defect": "T12-DEF-2",
+ "defect_summary": "Fidelity classifier rejects faithful structured restatements as TYPE_CHANGED by relying on runtime type equality (source literal type vs structured schema type) instead of semantic equivalence.",
+ "classifier_source": {
+  "path": "src/sciencemath/scicomp/fidelity.py",
+  "sha256": "a6175fe432fb14a28fb298e3058209e9a6ba80023bef852b2626484b9c83df54"
+ },
+ "measured_impact": {
+  "type_changed_rejections": 11,
+  "numeric_right_to_wrong_flips": 7,
+  "flip_ids": [
+   "msc-v1-0009",
+   "msc-v1-0010",
+   "msc-v1-0011",
+   "msc-v1-0012",
+   "msc-v1-0075",
+   "msc-v1-0078",
+   "msc-v1-0080"
+  ],
+  "already_wrong_ids": [
+   "msc-v1-0102"
+  ],
+  "recovered_ids": [
+   "msc-v1-0013",
+   "msc-v1-0018",
+   "msc-v1-0094"
+  ],
+  "scicomp_B_numeric": "97/138 = 0.7029",
+  "promotion_floor": 0.848
+ },
+ "source_run": "evaluations/t12/runs/t12-final-scicomp-B/predictions.jsonl",
+ "comparison_run": "evaluations/t11/runs/t11-h2h-armb/predictions.jsonl",
+ "rows": [
+  {
+   "eval_id": "msc-v1-0009",
+   "kind": "numeric_oracle",
+   "operation": "determinant",
+   "question_excerpt": "What is the determinant of the 2x2 matrix [ 2 1; 1 3 ]?",
+   "source_inputs": {
+    "matrix": "[ 2 1; 1 3 ]"
+   },
+   "structured_parameters": {
+    "matrix": [
+     [
+      2,
+      1
+     ],
+     [
+      1,
+      3
+     ]
+    ]
+   },
+   "parameter_provenance": {
+    "matrix": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "matrix"
+   ],
+   "expected_result_type": "scalar",
+   "fidelity_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "t11_answer": "5",
+   "t12_final_answer_excerpt": "The computation could not be completed due to a parameter fidelity failure: the request was rejected because it involved a disallowed transformation (type change) from matrix to scalar determinant com",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "Matrix literal string '[ 2 1; 1 3 ]' faithfully parsed to 2x2 numeric matrix; identical values, row-major order preserved."
+  },
+  {
+   "eval_id": "msc-v1-0010",
+   "kind": "numeric_oracle",
+   "operation": "determinant",
+   "question_excerpt": "What is the determinant of the 2x2 matrix [ 4 2; 2 1 ]?",
+   "source_inputs": {
+    "matrix": "[ 4 2; 2 1 ]"
+   },
+   "structured_parameters": {
+    "matrix": [
+     [
+      4,
+      2
+     ],
+     [
+      2,
+      1
+     ]
+    ]
+   },
+   "parameter_provenance": {
+    "matrix": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "matrix"
+   ],
+   "expected_result_type": "scalar",
+   "fidelity_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "t11_answer": "0",
+   "t12_final_answer_excerpt": "The computation could not be completed due to a parameter fidelity failure: the request involves a disallowed transformation (TYPE_CHANGED) that changes the matrix type, violating the requirement to p",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "Same faithful matrix parse; values identical."
+  },
+  {
+   "eval_id": "msc-v1-0011",
+   "kind": "numeric_oracle",
+   "operation": "determinant",
+   "question_excerpt": "What is the determinant of the 2x2 matrix [ 3 0; 0 -2 ]?",
+   "source_inputs": {
+    "matrix": "[ 3 0; 0 -2 ]"
+   },
+   "structured_parameters": {
+    "matrix": [
+     [
+      3,
+      0
+     ],
+     [
+      0,
+      -2
+     ]
+    ]
+   },
+   "parameter_provenance": {
+    "matrix": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "matrix"
+   ],
+   "expected_result_type": "scalar",
+   "fidelity_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "t11_answer": "-6.0",
+   "t12_final_answer_excerpt": "**The computation could not be completed due to parameter fidelity failure: disallowed transformation of matrix type.**",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "Same faithful matrix parse incl. negative element; values identical."
+  },
+  {
+   "eval_id": "msc-v1-0012",
+   "kind": "numeric_oracle",
+   "operation": "determinant",
+   "question_excerpt": "What is the determinant of the 3x3 matrix [ 1 2 3; 0 1 4; 5 6 0 ]?",
+   "source_inputs": {
+    "matrix": "[ 1 2 3; 0 1 4; 5 6 0 ]"
+   },
+   "structured_parameters": {
+    "matrix": [
+     [
+      1,
+      2,
+      3
+     ],
+     [
+      0,
+      1,
+      4
+     ],
+     [
+      5,
+      6,
+      0
+     ]
+    ]
+   },
+   "parameter_provenance": {
+    "matrix": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "matrix"
+   ],
+   "expected_result_type": "scalar",
+   "fidelity_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "t11_answer": "1",
+   "t12_final_answer_excerpt": "The computation could not be completed due to a parameter fidelity failure from a disallowed matrix type transformation",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "3x3 matrix faithful parse; values identical."
+  },
+  {
+   "eval_id": "msc-v1-0013",
+   "kind": "numeric_oracle",
+   "operation": "determinant",
+   "question_excerpt": "What is the determinant of the 3x3 matrix [ 2 0 0; 0 3 0; 0 0 4 ]?",
+   "source_inputs": {
+    "matrix": "[ 2 0 0; 0 3 0; 0 0 4 ]"
+   },
+   "structured_parameters": {
+    "matrix": [
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      0
+     ],
+     [
+      0,
+      0,
+      4
+     ]
+    ]
+   },
+   "parameter_provenance": {
+    "matrix": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "matrix"
+   ],
+   "expected_result_type": "scalar",
+   "fidelity_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": true,
+   "numeric_impact": "model recovered; still right",
+   "t11_answer": "24",
+   "t12_final_answer_excerpt": "24",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "3x3 diagonal matrix faithful parse; values identical. (Stayed correct: model recovered without engine.)"
+  },
+  {
+   "eval_id": "msc-v1-0018",
+   "kind": "numeric_oracle",
+   "operation": "eigen_decompose",
+   "question_excerpt": "Compute the eigenvalues of the matrix [ 5 0; 0 2 ].",
+   "source_inputs": {
+    "matrix": "[ 5 0; 0 2 ]"
+   },
+   "structured_parameters": {
+    "matrix": [
+     [
+      5,
+      0
+     ],
+     [
+      0,
+      2
+     ]
+    ]
+   },
+   "parameter_provenance": {
+    "matrix": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "matrix"
+   ],
+   "expected_result_type": "vector",
+   "fidelity_failures": [
+    "disallowed_transformation:matrix:TYPE_CHANGED"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": true,
+   "numeric_impact": "model recovered; still right",
+   "t11_answer": "[5.0, 2.0]",
+   "t12_final_answer_excerpt": "5 and 2",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "2x2 diagonal matrix faithful parse; values identical. (Stayed correct.)"
+  },
+  {
+   "eval_id": "msc-v1-0075",
+   "kind": "numeric_oracle",
+   "operation": "solve_ode",
+   "question_excerpt": "Solve the ODE dy/dt = -2*y with y(0) = 1 (decay rate constant k = 2) and report y at t = 1.",
+   "source_inputs": {
+    "equations": "dy/dt = -2*y",
+    "y(0)": 1,
+    "k": 2,
+    "t": 1
+   },
+   "structured_parameters": {
+    "equations": [
+     "-2*y0"
+    ],
+    "initial_state": [
+     "1"
+    ],
+    "t_start": 0,
+    "t_end": 1,
+    "parameters": {
+     "k": 2
+    }
+   },
+   "parameter_provenance": {
+    "equations": "USER_GIVEN",
+    "initial_state": "USER_GIVEN",
+    "t_start": "USER_GIVEN",
+    "t_end": "USER_GIVEN",
+    "parameters": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "equations",
+    "initial_state",
+    "t_start",
+    "t_end",
+    "parameters"
+   ],
+   "expected_result_type": "scalar",
+   "fidelity_failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:t_start",
+    "no_source_input:t_end",
+    "no_source_input:parameters",
+    "source_input_dropped:y(0)",
+    "source_input_dropped:k",
+    "source_input_dropped:t"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "t11_answer": "0.1353353522786542",
+   "t12_final_answer_excerpt": "The computation could not be completed due to parameter fidelity failure — essential inputs (initial condition, time bounds) were not preserved or provided",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "ODE spec restated in schema-native form: 'dy/dt = -2*y' -> ['-2*y0'], y(0)=1 -> initial_state ['1'], t=1 -> t_end=1 with canonical t_start=0, k=2 -> parameters.k. All scientific content preserved."
+  },
+  {
+   "eval_id": "msc-v1-0078",
+   "kind": "numeric_oracle",
+   "operation": "solve_ode",
+   "question_excerpt": "Solve the ODE dy/dt = -3*y with y(0) = 2 (decay rate constant k = 3) and report y at t = 0.5.",
+   "source_inputs": {
+    "equations": "dy/dt = -3*y",
+    "y(0)": 2,
+    "k": 3,
+    "t": 0.5
+   },
+   "structured_parameters": {
+    "equations": [
+     "-3*y0"
+    ],
+    "initial_state": [
+     2
+    ],
+    "t_start": 0,
+    "t_end": 0.5,
+    "parameters": {
+     "k": 3
+    }
+   },
+   "parameter_provenance": {
+    "equations": "USER_GIVEN",
+    "initial_state": "USER_GIVEN",
+    "t_start": "USER_GIVEN",
+    "t_end": "USER_GIVEN",
+    "parameters": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "equations",
+    "initial_state",
+    "t_start",
+    "t_end",
+    "parameters"
+   ],
+   "expected_result_type": "scalar",
+   "fidelity_failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:t_start",
+    "no_source_input:t_end",
+    "no_source_input:parameters",
+    "source_input_dropped:y(0)",
+    "source_input_dropped:k",
+    "source_input_dropped:t"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "t11_answer": "0.4462604911620543",
+   "t12_final_answer_excerpt": "The computation could not be completed due to missing or unverified input parameters (no_source_input:initial_state; no_source_input:t_start; no_source_input:t_end).**",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "Same ODE restatement pattern; values identical (y0=2, -3*y, t_end=0.5, k=3)."
+  },
+  {
+   "eval_id": "msc-v1-0080",
+   "kind": "numeric_oracle",
+   "operation": "solve_ode",
+   "question_excerpt": "Solve the ODE dy/dt = -2*y with y(0) = 3 (decay rate constant k = 2) and report y at t = 1.5.",
+   "source_inputs": {
+    "equations": "dy/dt = -2*y",
+    "y(0)": 3,
+    "k": 2,
+    "t": 1.5
+   },
+   "structured_parameters": {
+    "equations": [
+     "-2*y0"
+    ],
+    "initial_state": [
+     "3"
+    ],
+    "t_start": 0,
+    "t_end": 1.5,
+    "parameters": {
+     "k": 2
+    }
+   },
+   "parameter_provenance": {
+    "equations": "USER_GIVEN",
+    "initial_state": "USER_GIVEN",
+    "t_start": "USER_GIVEN",
+    "t_end": "USER_GIVEN",
+    "parameters": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "equations",
+    "initial_state",
+    "t_start",
+    "t_end",
+    "parameters"
+   ],
+   "expected_result_type": "scalar",
+   "fidelity_failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:t_start",
+    "no_source_input:t_end",
+    "no_source_input:parameters",
+    "source_input_dropped:y(0)",
+    "source_input_dropped:k",
+    "source_input_dropped:t"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": false,
+   "numeric_impact": "right->wrong flip",
+   "t11_answer": "0.1494",
+   "t12_final_answer_excerpt": "The computation could not be completed due to missing or unpreserved input parameters (initial state, t_start, t_end).**",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "Same ODE restatement pattern; values identical (y0=3, -2*y, t_end=1.5, k=2)."
+  },
+  {
+   "eval_id": "msc-v1-0094",
+   "kind": "numeric_oracle",
+   "operation": "minimize_scalar",
+   "question_excerpt": "Minimize f(x) = (x - 3)**2 over x in [-10, 10]. Give the minimizing x.",
+   "source_inputs": {
+    "expression": "f(x) = (x - 3)**2",
+    "x": "in [-10, 10]"
+   },
+   "structured_parameters": {
+    "expression": "(x - 3)**2",
+    "bound_low": -10,
+    "bound_high": 10
+   },
+   "parameter_provenance": {
+    "expression": "USER_GIVEN",
+    "bound_low": "USER_GIVEN",
+    "bound_high": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "expression",
+    "bound_low",
+    "bound_high"
+   ],
+   "expected_result_type": "scalar",
+   "fidelity_failures": [
+    "disallowed_transformation:expression:STRING_MODIFIED",
+    "no_source_input:bound_low",
+    "no_source_input:bound_high"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": true,
+   "t12_correct": true,
+   "numeric_impact": "model recovered; still right",
+   "t11_answer": "3.0",
+   "t12_final_answer_excerpt": "3",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "'f(x) = (x-3)**2' -> expression body (drop of 'f(x) =' prefix is notation, not content); 'in [-10, 10]' -> bound_low/bound_high. Faithful. (Stayed correct; T12 flag was STRING_MODIFIED + mapping artifact.)"
+  },
+  {
+   "eval_id": "msc-v1-0102",
+   "kind": "numeric_oracle",
+   "operation": "minimize",
+   "question_excerpt": "Minimize f(x0, x1) = (x0)**2 + (x1 - 2)**2 + 3 subject to the bounds [[-5, 5], [-5, 5]]. Give the optimal point.",
+   "source_inputs": {
+    "expression": "x0**2 + (x1 - 2)**2 + 3",
+    "bounds": "[[-5, 5], [-5, 5]]"
+   },
+   "structured_parameters": {
+    "expression": "x0**2 + (x1 - 2)**2 + 3",
+    "bounds": [
+     [
+      "-5",
+      "5"
+     ],
+     [
+      "-5",
+      "5"
+     ]
+    ]
+   },
+   "parameter_provenance": {
+    "expression": "USER_GIVEN",
+    "bounds": "USER_GIVEN"
+   },
+   "preserve_verbatim": [
+    "expression",
+    "bounds"
+   ],
+   "expected_result_type": "vector",
+   "fidelity_failures": [
+    "disallowed_transformation:bounds:TYPE_CHANGED"
+   ],
+   "fidelity_status": "PARAMETER_FIDELITY_FAIL",
+   "current_classification": "REJECTED (PARAMETER_FIDELITY_FAIL)",
+   "t11_armB_correct": false,
+   "t12_correct": false,
+   "numeric_impact": "already wrong in T11",
+   "t11_answer": "The computation could not be completed due to invalid input",
+   "t12_final_answer_excerpt": "** The computation could not be completed due to a disallowed transformation of the bounds type. The input violates parameter fidelity by altering the type of the bounds without authorization. A corre",
+   "expected_semantic_relation": "STRUCTURE_EQUIVALENT",
+   "is_faithful_restatement": true,
+   "semantic_justification": "bounds string '[[-5, 5], [-5, 5]]' parsed to nested list of numeric strings; values identical. Numeric strings in structured form accepted only because engine schema parses them; canonicalizer must treat as REPRESENTATION_EQUIVALENT. (Already wrong in T11.)"
+  }
+ ],
+ "caution": "T13 must not assume all 11 are legitimate; each replayed row must be judged on evidence (T13.14)."
+}

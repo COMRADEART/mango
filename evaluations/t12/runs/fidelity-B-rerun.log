@@ -1,0 +1,160 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<01:48,  3.65it/s]Loading weights:   1%|1         | 5/398 [00:00<00:25, 15.43it/s]Loading weights:   6%|6         | 25/398 [00:00<00:05, 69.91it/s]Loading weights:  10%|9         | 38/398 [00:00<00:04, 84.08it/s]Loading weights:  15%|#4        | 58/398 [00:00<00:03, 110.71it/s]Loading weights:  18%|#7        | 71/398 [00:00<00:02, 110.48it/s]Loading weights:  23%|##2       | 91/398 [00:00<00:02, 131.16it/s]Loading weights:  26%|##6       | 105/398 [00:01<00:02, 130.88it/s]Loading weights:  31%|###1      | 124/398 [00:01<00:01, 143.02it/s]Loading weights:  35%|###4      | 139/398 [00:01<00:01, 141.35it/s]Loading weights:  39%|###9      | 157/398 [00:01<00:01, 145.72it/s]Loading weights:  43%|####3     | 172/398 [00:01<00:01, 138.73it/s]Loading weights:  47%|####7     | 188/398 [00:01<00:01, 144.28it/s]Loading weights:  51%|#####1    | 203/398 [00:01<00:01, 135.81it/s]Loading weights:  55%|#####5    | 220/398 [00:01<00:01, 144.43it/s]Loading weights:  59%|#####9    | 235/398 [00:01<00:01, 137.08it/s]Loading weights:  63%|######2   | 249/398 [00:02<00:01, 133.07it/s]Loading weights:  67%|######6   | 265/398 [00:02<00:00, 138.43it/s]Loading weights:  70%|#######   | 279/398 [00:02<00:00, 131.82it/s]Loading weights:  74%|#######3  | 293/398 [00:02<00:00, 129.39it/s]Loading weights:  77%|#######7  | 308/398 [00:02<00:00, 132.48it/s]Loading weights:  81%|########  | 322/398 [00:02<00:00, 133.56it/s]Loading weights:  84%|########4 | 336/398 [00:02<00:00, 129.89it/s]Loading weights:  89%|########8 | 353/398 [00:02<00:00, 138.76it/s]Loading weights:  92%|#########2| 367/398 [00:02<00:00, 131.24it/s]Loading weights:  96%|#########5| 381/398 [00:03<00:00, 132.26it/s]Loading weights:  99%|#########9| 396/398 [00:03<00:00, 134.57it/s]Loading weights: 100%|##########| 398/398 [00:03<00:00, 123.96it/s]
+LOAD_DIAG {"model_dtype": "torch.bfloat16", "quantization": "4bit-nf4-double", "load_vram_bytes": 2716700672, "peak_vram_bytes": 2716700672, "cuda_mem_allocated_gib": 2.5}
+[B/fidelity] mfid-v1-0001 fidelity     OK
+[B/fidelity] mfid-v1-0002 fidelity     OK
+[B/fidelity] mfid-v1-0003 fidelity     OK
+[B/fidelity] mfid-v1-0004 fidelity     OK
+[B/fidelity] mfid-v1-0005 fidelity     OK
+[B/fidelity] mfid-v1-0006 fidelity     OK
+[B/fidelity] mfid-v1-0007 fidelity     OK
+[B/fidelity] mfid-v1-0008 fidelity     OK
+[B/fidelity] mfid-v1-0009 fidelity     OK
+[B/fidelity] mfid-v1-0010 fidelity     OK
+[B/fidelity] mfid-v1-0011 fidelity     OK
+[B/fidelity] mfid-v1-0012 fidelity     OK
+[B/fidelity] mfid-v1-0013 fidelity     OK
+[B/fidelity] mfid-v1-0014 fidelity     OK
+[B/fidelity] mfid-v1-0015 fidelity     OK
+[B/fidelity] mfid-v1-0016 fidelity     OK
+[B/fidelity] mfid-v1-0017 fidelity     OK
+[B/fidelity] mfid-v1-0018 fidelity     OK
+[B/fidelity] mfid-v1-0019 fidelity     OK
+[B/fidelity] mfid-v1-0020 fidelity     MISS
+[B/fidelity] mfid-v1-0021 fidelity     MISS
+[B/fidelity] mfid-v1-0022 fidelity     OK
+[B/fidelity] mfid-v1-0023 fidelity     OK
+[B/fidelity] mfid-v1-0024 fidelity     OK
+[B/fidelity] mfid-v1-0025 fidelity     OK
+[B/fidelity] mfid-v1-0026 fidelity     OK
+[B/fidelity] mfid-v1-0027 fidelity     OK
+[B/fidelity] mfid-v1-0028 fidelity     OK
+[B/fidelity] mfid-v1-0029 fidelity     OK
+[B/fidelity] mfid-v1-0030 fidelity     OK
+[B/fidelity] mfid-v1-0031 fidelity     OK
+[B/fidelity] mfid-v1-0032 fidelity     MISS
+[B/fidelity] mfid-v1-0033 fidelity     MISS
+[B/fidelity] mfid-v1-0034 fidelity     MISS
+[B/fidelity] mfid-v1-0035 fidelity     OK
+[B/fidelity] mfid-v1-0036 fidelity     OK
+[B/fidelity] mfid-v1-0037 fidelity     OK
+[B/fidelity] mfid-v1-0038 fidelity     OK
+[B/fidelity] mfid-v1-0039 fidelity     OK
+[B/fidelity] mfid-v1-0040 fidelity     OK
+[B/fidelity] mfid-v1-0041 fidelity     OK
+[B/fidelity] mfid-v1-0042 fidelity     OK
+[B/fidelity] mfid-v1-0043 fidelity     OK
+[B/fidelity] mfid-v1-0044 fidelity     MISS
+[B/fidelity] mfid-v1-0045 fidelity     OK
+[B/fidelity] mfid-v1-0046 fidelity     MISS
+[B/fidelity] mfid-v1-0047 fidelity     OK
+[B/fidelity] mfid-v1-0048 fidelity     OK
+[B/fidelity] mfid-v1-0049 fidelity     OK
+[B/fidelity] mfid-v1-0050 fidelity     OK
+[B/fidelity] mfid-v1-0051 fidelity     OK
+[B/fidelity] mfid-v1-0052 fidelity     OK
+[B/fidelity] mfid-v1-0053 fidelity     MISS
+[B/fidelity] mfid-v1-0054 fidelity     OK
+[B/fidelity] mfid-v1-0055 fidelity     OK
+[B/fidelity] mfid-v1-0056 fidelity     OK
+[B/fidelity] mfid-v1-0057 fidelity     OK
+[B/fidelity] mfid-v1-0058 fidelity     OK
+[B/fidelity] mfid-v1-0059 fidelity     OK
+[B/fidelity] mfid-v1-0060 fidelity     OK
+[B/fidelity] mfid-v1-0061 fidelity     OK
+[B/fidelity] mfid-v1-0062 fidelity     OK
+[B/fidelity] mfid-v1-0063 fidelity     OK
+[B/fidelity] mfid-v1-0064 fidelity     OK
+[B/fidelity] mfid-v1-0065 fidelity     OK
+[B/fidelity] mfid-v1-0066 fidelity     OK
+[B/fidelity] mfid-v1-0067 fidelity     OK
+[B/fidelity] mfid-v1-0068 fidelity     OK
+[B/fidelity] mfid-v1-0069 fidelity     MISS
+[B/fidelity] mfid-v1-0070 fidelity     OK
+[B/fidelity] mfid-v1-0071 fidelity     OK
+[B/fidelity] mfid-v1-0072 fidelity     MISS
+[B/fidelity] mfid-v1-0073 fidelity     OK
+[B/fidelity] mfid-v1-0074 fidelity     MISS
+[B/fidelity] mfid-v1-0075 fidelity     OK
+[B/fidelity] mfid-v1-0076 fidelity     MISS
+[B/fidelity] mfid-v1-0077 fidelity     MISS
+[B/fidelity] mfid-v1-0078 fidelity     MISS
+[B/fidelity] mfid-v1-0079 fidelity     OK
+[B/fidelity] mfid-v1-0080 fidelity     MISS
+[B/fidelity] mfid-v1-0081 fidelity     OK
+[B/fidelity] mfid-v1-0082 fidelity     OK
+{
+  "questions": 82,
+  "kinds": {
+    "fidelity": 82
+  },
+  "handled_correctly": 0.8170731707317073,
+  "silent_mutation_pass_count": 0,
+  "asserted_number_on_invalid": 11,
+  "guard_or_gate_blocks": 28,
+  "mutation_attempted": 7,
+  "per_category": {
+    "INVALID_PARAMS": {
+      "total": 10,
+      "correct": 10
+    },
+    "SINGULAR_MATRIX": {
+      "total": 8,
+      "correct": 8
+    },
+    "MALFORMED_ODE": {
+      "total": 8,
+      "correct": 6
+    },
+    "NEGATIVE_QUANTITY": {
+      "total": 9,
+      "correct": 6
+    },
+    "IMPOSSIBLE_BOUNDS": {
+      "total": 5,
+      "correct": 5
+    },
+    "NAN_INF": {
+      "total": 6,
+      "correct": 4
+    },
+    "OVERSIZED_SWEEP": {
+      "total": 3,
+      "correct": 3
+    },
+    "INVALID_BRACKET": {
+      "total": 5,
+      "correct": 4
+    },
+    "MISSING_PARAM": {
+      "total": 6,
+      "correct": 6
+    },
+    "MALICIOUS_EXPR": {
+      "total": 6,
+      "correct": 6
+    },
+    "AMBIGUOUS_PARAM": {
+      "total": 8,
+      "correct": 5
+    },
+    "CONFLICTING_UNITS": {
+      "total": 6,
+      "correct": 2
+    },
+    "NUMERICAL_WARNING": {
+      "total": 1,
+      "correct": 1
+    },
+    "CONTROL_REVERSED_LIMITS": {
+      "total": 1,
+      "correct": 1
+    }
+  },
+  "median_llm_ms": 23606.1,
+  "arm": "B",
+  "suite": "fidelity",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "suite_sha256": "f598825c7823f30af1f5162e8d754542f80b10bd99608f4310e0594e93cadd7e",
+  "label": "t12-final-fidelity-B",
+  "pipeline_exception_count": 4
+}

@@ -1,0 +1,1036 @@
+{
+ "n_cases": 138,
+ "exceptions": 0,
+ "equivalent_recall": 1.0,
+ "mutation_rejection_recall": 1.0,
+ "false_accepts": [],
+ "false_rejects": [],
+ "class_mismatches": [],
+ "per_case": [
+  {
+   "case_id": "t-ex-01",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-02",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-03",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-04",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-05",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-06",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-07",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-08",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-09",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-10",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-11",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ex-12",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-01",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-02",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-03",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-04",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-05",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-06",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-07",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-08",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-09",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-10",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-11",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-12",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-13",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-14",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-15",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-16",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-17",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-rp-18",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-01",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-02",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-03",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-04",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-05",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-06",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-07",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-08",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-09",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-10",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-11",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-un-12",
+   "expected": "UNIT_EQUIVALENT",
+   "t13_class": "UNIT_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-01",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-02",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-03",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-04",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-05",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-06",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-07",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-08",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-09",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-10",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-11",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-12",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-13",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-14",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-15",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-16",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-17",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-st-18",
+   "expected": "STRUCTURE_EQUIVALENT",
+   "t13_class": "STRUCTURE_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-vc-01",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-02",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-03",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-04",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-05",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "UNIT_CONVERSION_UNVERIFIED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-06",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-07",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-08",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-09",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-10",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SHAPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-11",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-12",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-13",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-14",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-15",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-16",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-17",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-18",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-19",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": null,
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-20",
+   "expected": "VALUE_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NULL_SEMANTICS_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-21",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": null,
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-22",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SHAPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-23",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SHAPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-vc-24",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-vc-25",
+   "expected": "EXACT",
+   "t13_class": "EXACT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-vc-26",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-ty-01",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SCALAR_CONTAINER_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-02",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SCALAR_CONTAINER_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-03",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SHAPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-04",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SHAPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-05",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SHAPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-06",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-07",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "NUMERIC_VALUE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-08",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SHAPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-09",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SCHEMA_TYPE_STRING_FOR_NUMBER",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-10",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SHAPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-11",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SHAPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-ty-12",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "INVALID_NORMALIZATION",
+   "reason": "UNCLASSIFIED_TRANSFORMATION",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-01",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "INVALID_NORMALIZATION",
+   "reason": "UNCLASSIFIED_TRANSFORMATION",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-02",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "UNIT_CONVERSION_UNVERIFIED",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-03",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "INVALID_NORMALIZATION",
+   "reason": "UNCLASSIFIED_TRANSFORMATION",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-04",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "INVALID_NORMALIZATION",
+   "reason": "UNCLASSIFIED_TRANSFORMATION",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-05",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "TYPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-06",
+   "expected": "REPRESENTATION_EQUIVALENT",
+   "t13_class": "REPRESENTATION_EQUIVALENT",
+   "reason": null,
+   "approved": true
+  },
+  {
+   "case_id": "t-in-07",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "TYPE_CHANGED",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-08",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "INVALID_NORMALIZATION",
+   "reason": "STRING_MODIFIED",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-09",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "INVALID_NORMALIZATION",
+   "reason": "STRING_MODIFIED",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-10",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "INVALID_NORMALIZATION",
+   "reason": "UNCLASSIFIED_TRANSFORMATION",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-11",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "VALUE_CHANGED",
+   "reason": "UNIT_CONVERSION_UNVERIFIED",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-12",
+   "expected": "INVALID_NORMALIZATION",
+   "t13_class": "INVALID_NORMALIZATION",
+   "reason": "UNCLASSIFIED_TRANSFORMATION",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-13",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SCHEMA_TYPE_STRING_FOR_NUMBER",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-14",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SCHEMA_TYPE_STRING_FOR_NUMBER",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-15",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SCHEMA_TYPE_STRING_FOR_NUMBER",
+   "approved": false
+  },
+  {
+   "case_id": "t-in-16",
+   "expected": "TYPE_SEMANTICS_CHANGED",
+   "t13_class": "TYPE_SEMANTICS_CHANGED",
+   "reason": "SCHEMA_TYPE_STRING_FOR_NUMBER",
+   "approved": false
+  },
+  {
+   "case_id": "t-ia-01",
+   "expected": "INFORMATION_ADDED",
+   "failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:t_end",
+    "no_source_input:t_start",
+    "source_input_dropped:t"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ia-02",
+   "expected": "INFORMATION_ADDED",
+   "failures": [
+    "no_source_input:bound_high",
+    "no_source_input:bound_low",
+    "value_not_in_question:expression:-3.0"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ia-03",
+   "expected": "INFORMATION_ADDED",
+   "failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:parameters",
+    "no_source_input:t_end",
+    "no_source_input:t_start",
+    "source_input_dropped:t"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ia-04",
+   "expected": "INFORMATION_ADDED",
+   "failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:t_end",
+    "no_source_input:t_start",
+    "source_input_dropped:t",
+    "source_input_dropped:y(0)"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ia-05",
+   "expected": "INFORMATION_ADDED",
+   "failures": [
+    "value_not_in_question:expression:-3.0",
+    "disallowed_transformation:expression:STRING_MODIFIED",
+    "no_source_input:parameters"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ir-01",
+   "expected": "INFORMATION_REMOVED",
+   "failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:parameters",
+    "no_source_input:t_end",
+    "no_source_input:t_start",
+    "source_input_dropped:k"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ir-02",
+   "expected": "INFORMATION_REMOVED",
+   "failures": [
+    "source_input_dropped:k"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ir-03",
+   "expected": "INFORMATION_REMOVED",
+   "failures": [
+    "value_not_in_question:expression:-3.0",
+    "source_input_dropped:tol"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ir-04",
+   "expected": "INFORMATION_REMOVED",
+   "failures": [
+    "source_input_dropped:t_stop"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ir-05",
+   "expected": "INFORMATION_REMOVED",
+   "failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:t_end",
+    "no_source_input:t_start",
+    "source_input_dropped:t",
+    "source_input_dropped:y(0)"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-ir-06",
+   "expected": "INFORMATION_REMOVED",
+   "failures": [
+    "value_not_in_question:expression:-3.0",
+    "source_input_dropped:constraint"
+   ],
+   "class_hit": true,
+   "approved": false
+  },
+  {
+   "case_id": "t-fa-01",
+   "expected": "FIDELITY_OK",
+   "failures": [],
+   "approved": true
+  },
+  {
+   "case_id": "t-fa-02",
+   "expected": "FIDELITY_OK",
+   "failures": [],
+   "approved": true
+  },
+  {
+   "case_id": "t-fa-03",
+   "expected": "FIDELITY_OK",
+   "failures": [],
+   "approved": true
+  },
+  {
+   "case_id": "t-fa-04",
+   "expected": "FIDELITY_OK",
+   "failures": [],
+   "approved": true
+  },
+  {
+   "case_id": "t-fa-05",
+   "expected": "FIDELITY_OK",
+   "failures": [],
+   "approved": true
+  },
+  {
+   "case_id": "t-fa-06",
+   "expected": "FIDELITY_OK",
+   "failures": [],
+   "approved": true
+  },
+  {
+   "case_id": "t-mu-01",
+   "expected": "FIDELITY_FAIL",
+   "failures": [
+    "disallowed_transformation:matrix:NUMERIC_VALUE_CHANGED"
+   ],
+   "approved": false
+  },
+  {
+   "case_id": "t-mu-02",
+   "expected": "FIDELITY_FAIL",
+   "failures": [
+    "disallowed_transformation:equations:TYPE_CHANGED",
+    "no_source_input:initial_state",
+    "no_source_input:t_end",
+    "no_source_input:t_start",
+    "source_input_dropped:t",
+    "source_input_dropped:y(0)"
+   ],
+   "approved": false
+  },
+  {
+   "case_id": "t-mu-03",
+   "expected": "FIDELITY_FAIL",
+   "failures": [
+    "disallowed_transformation:initial_state:NUMERIC_VALUE_CHANGED"
+   ],
+   "approved": false
+  },
+  {
+   "case_id": "t-mu-04",
+   "expected": "FIDELITY_FAIL",
+   "failures": [
+    "no_source_input:bound_high",
+    "no_source_input:bound_low",
+    "disallowed_transformation:expression:STRING_MODIFIED"
+   ],
+   "approved": false
+  },
+  {
+   "case_id": "t-mu-05",
+   "expected": "FIDELITY_FAIL",
+   "failures": [
+    "disallowed_transformation:matrix:ELEMENT_VALUE_CHANGED"
+   ],
+   "approved": false
+  },
+  {
+   "case_id": "t-pv-01",
+   "expected": "FIDELITY_FAIL",
+   "failures": [
+    "schema:model_invented_on_protected:matrix"
+   ],
+   "approved": false
+  },
+  {
+   "case_id": "t-em-01",
+   "expected": "FIDELITY_OK",
+   "failures": [],
+   "approved": true
+  }
+ ],
+ "suite_sha256": "f3bad0f886bea819ba692cc955053805b01bf302edd876bd3c4b3b0da3049d5c",
+ "checksum_matches_freeze": true
+}

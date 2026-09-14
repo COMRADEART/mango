@@ -33,6 +33,8 @@ def main() -> int:
     ap.add_argument("--label", required=True)
     ap.add_argument("--adapter")
     ap.add_argument("--firewall", action="store_true")
+    ap.add_argument("--arm", choices=["raw", "firewall", "t10"], default=None,
+                    help="overrides --firewall when set (T10 regression arm)")
     ap.add_argument("--max-new-tokens", type=int, default=160)
     args = ap.parse_args()
     from sciencemath.evaluation.correction_metrics import correction_metrics, wilson_interval
@@ -51,11 +53,38 @@ def main() -> int:
             adapter_path = ROOT / adapter_path
         model = PeftModel.from_pretrained(model, str(adapter_path)).eval()
     rows = []
+    if args.arm == "t10":
+        from sciencemath.executive.repair import t10_repair_trajectory
     for item in items:
         initial_correct = answers_match(item["expected_answer"], item["initial_answer"])
         expected = item["expected_answer"]
         latency = 0.0
-        if args.firewall:
+        method = "NO_REPAIR"
+        if args.arm == "t10":
+            feedback_status = ("PASS" if item["case_class"] == "FALSE_FAIL" else
+                               "UNKNOWN" if item["case_class"] == "AMBIGUOUS" else "FAIL")
+
+            def repair(prompt: str) -> str:
+                nonlocal latency
+                raw, dt = generate(model, tok,
+                                   [{"role": "user", "content": prompt}],
+                                   args.max_new_tokens)
+                latency += dt
+                return extract_answer(raw, "short_answer") or raw.strip()
+
+            traj = t10_repair_trajectory(
+                question=item["question"], initial_answer=item["initial_answer"],
+                expected_type="short_answer",
+                feedback_source=item["feedback_source"],
+                failed_component=item["failed_component"],
+                evidence="independent frozen-suite verification",
+                feedback_status=feedback_status,
+                original_correct=initial_correct, repair=repair,
+                expected=expected)
+            final = traj["final_answer"]
+            trust, decision = traj["feedback_trust"], traj["correction_decision"]
+            method = traj["repair_method"]
+        elif args.firewall:
             feedback_status = ("PASS" if item["case_class"] == "FALSE_FAIL" else
                                "UNKNOWN" if item["case_class"] == "AMBIGUOUS" else "FAIL")
             def repair(prompt: str) -> str:
@@ -88,6 +117,7 @@ def main() -> int:
                      "final_answer": final, "final_correct": final_correct,
                      "changed": final.strip() != item["initial_answer"].strip(),
                      "feedback_trust": trust, "correction_decision": decision,
+                     "repair_method": method,
                      "latency_s": round(latency, 3)})
     metrics = correction_metrics(rows)
     n_true = metrics["counts"]["corrected_wrong"] + metrics["counts"]["still_wrong"]

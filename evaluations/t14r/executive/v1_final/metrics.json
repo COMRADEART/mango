@@ -1,0 +1,18 @@
+{
+  "n": 215,
+  "primary_route_accuracy": 0.8930232558139535,
+  "top2_route_accuracy": 0.8930232558139535,
+  "tool_required_recall": 0.7946428571428571,
+  "no_tool_specificity": 1.0,
+  "unavailable_capability_rejection": 1.0,
+  "hallucinated_tools": 0,
+  "unauthorized_paid_route": 0,
+  "unavailable_skill_presented_as_executed": 0,
+  "permission_bypass": 0,
+  "route_depth_violations": 0,
+  "multi_skill_accuracy": 1.0,
+  "multi_skill_ordering_correctness": 1.0,
+  "failure_taxonomy": {
+    "MISSED_TOOL": 23
+  }
+}

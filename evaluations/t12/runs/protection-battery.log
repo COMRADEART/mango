@@ -1,0 +1,221 @@
+:: C:\Users\allam\AppData\Local\Programs\Python\Python312\python.exe scripts/t8_t4_arm.py --model Qwen/Qwen3-4B-Instruct-2507 --label t12-protect-t4 --max-new-tokens 1024
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<01:44,  3.78it/s]Loading weights:   1%|1         | 5/398 [00:00<00:24, 15.91it/s]Loading weights:   6%|6         | 25/398 [00:00<00:05, 73.56it/s]Loading weights:   9%|9         | 37/398 [00:00<00:04, 85.17it/s]Loading weights:  13%|#3        | 52/398 [00:00<00:03, 101.28it/s]Loading weights:  17%|#7        | 69/398 [00:00<00:02, 117.70it/s]Loading weights:  21%|##        | 82/398 [00:00<00:02, 120.17it/s]Loading weights:  25%|##4       | 99/398 [00:01<00:02, 133.20it/s]Loading weights:  29%|##8       | 115/398 [00:01<00:02, 132.29it/s]Loading weights:  34%|###3      | 135/398 [00:01<00:01, 146.06it/s]Loading weights:  38%|###7      | 150/398 [00:01<00:01, 142.43it/s]Loading weights:  42%|####2     | 168/398 [00:01<00:01, 148.20it/s]Loading weights:  46%|####5     | 183/398 [00:01<00:01, 139.58it/s]Loading weights:  50%|####9     | 198/398 [00:01<00:01, 141.51it/s]Loading weights:  54%|#####3    | 213/398 [00:01<00:01, 133.10it/s]Loading weights:  57%|#####7    | 227/398 [00:01<00:01, 133.11it/s]Loading weights:  61%|######    | 242/398 [00:02<00:01, 137.21it/s]Loading weights:  64%|######4   | 256/398 [00:02<00:01, 130.69it/s]Loading weights:  68%|######7   | 270/398 [00:02<00:01, 126.66it/s]Loading weights:  72%|#######1  | 286/398 [00:02<00:00, 135.65it/s]Loading weights:  75%|#######5  | 300/398 [00:02<00:00, 127.41it/s]Loading weights:  79%|#######8  | 313/398 [00:02<00:00, 114.94it/s]Loading weights:  82%|########1 | 325/398 [00:02<00:00, 107.24it/s]Loading weights:  85%|########5 | 339/398 [00:02<00:00, 115.16it/s]Loading weights:  89%|########9 | 355/398 [00:03<00:00, 120.40it/s]Loading weights:  92%|#########2| 368/398 [00:03<00:00, 116.35it/s]Loading weights:  97%|#########6| 386/398 [00:03<00:00, 130.86it/s]Loading weights: 100%|##########| 398/398 [00:03<00:00, 120.04it/s]
+t4_notool COMPLETE 150 questions
+t4_tool COMPLETE 150 questions
+{
+  "no_tool_accuracy": 0.5,
+  "tool_accuracy": 0.7466666666666667,
+  "delta": 0.2466666666666667,
+  "tool_usage": {
+    "questions_with_tool_call": 0.82,
+    "mean_tool_calls_per_question": 1.0066666666666666
+  },
+  "verifier_selftest_ok": null
+}
+:: exit 0
+:: C:\Users\allam\AppData\Local\Programs\Python\Python312\python.exe scripts/run_rag_eval_t5r.py --suite frozen --variants NORAG,G --out-dir evaluations/t12/protection/t5r
+suite integrity OK (82 questions)
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 6536.51it/s]
+C:\Users\allam\Documents\new\model\src\sciencemath\rag\embeddings.py:75: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  self._dim = self._model.get_sentence_embedding_dimension()
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s]Loading weights: 100%|##########| 105/105 [00:00<00:00, 6643.87it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<03:38,  1.81it/s]Loading weights:   1%|1         | 4/398 [00:00<00:53,  7.41it/s]Loading weights:   4%|3         | 14/398 [00:00<00:13, 27.89it/s]Loading weights:   6%|5         | 23/398 [00:00<00:08, 42.56it/s]Loading weights:   8%|7         | 30/398 [00:00<00:07, 46.42it/s]Loading weights:   9%|9         | 37/398 [00:01<00:07, 48.78it/s]Loading weights:  11%|#1        | 45/398 [00:01<00:06, 56.04it/s]Loading weights:  13%|#3        | 52/398 [00:01<00:07, 49.31it/s]Loading weights:  15%|#4        | 58/398 [00:01<00:06, 50.29it/s]Loading weights:  16%|#6        | 64/398 [00:01<00:06, 47.72it/s]Loading weights:  18%|#7        | 70/398 [00:01<00:06, 47.20it/s]Loading weights:  19%|#9        | 77/398 [00:01<00:06, 52.64it/s]Loading weights:  21%|##        | 83/398 [00:02<00:06, 45.80it/s]Loading weights:  23%|##2       | 91/398 [00:02<00:06, 49.71it/s]Loading weights:  24%|##4       | 97/398 [00:02<00:06, 45.48it/s]Loading weights:  26%|##5       | 103/398 [00:02<00:06, 44.54it/s]Loading weights:  27%|##7       | 108/398 [00:02<00:06, 44.68it/s]Loading weights:  28%|##8       | 113/398 [00:02<00:06, 45.44it/s]Loading weights:  30%|##9       | 118/398 [00:02<00:07, 39.03it/s]Loading weights:  31%|###1      | 124/398 [00:03<00:06, 39.70it/s]Loading weights:  33%|###2      | 130/398 [00:03<00:06, 43.25it/s]Loading weights:  34%|###4      | 136/398 [00:03<00:06, 40.93it/s]Loading weights:  36%|###5      | 142/398 [00:03<00:05, 45.05it/s]Loading weights:  37%|###6      | 147/398 [00:03<00:06, 38.27it/s]Loading weights:  38%|###8      | 152/398 [00:03<00:06, 40.32it/s]Loading weights:  40%|###9      | 158/398 [00:03<00:06, 39.71it/s]Loading weights:  41%|####1     | 165/398 [00:03<00:05, 45.59it/s]Loading weights:  43%|####2     | 170/398 [00:04<00:05, 39.58it/s]Loading weights:  45%|####4     | 179/398 [00:04<00:04, 46.91it/s]Loading weights:  46%|####6     | 184/398 [00:04<00:04, 46.49it/s]Loading weights:  48%|####7     | 190/398 [00:04<00:04, 47.26it/s]Loading weights:  49%|####8     | 195/398 [00:04<00:04, 44.28it/s]Loading weights:  51%|#####     | 201/398 [00:04<00:04, 46.88it/s]Loading weights:  52%|#####1    | 206/398 [00:04<00:04, 46.08it/s]Loading weights:  53%|#####3    | 212/398 [00:04<00:03, 48.60it/s]Loading weights:  55%|#####4    | 217/398 [00:05<00:03, 47.16it/s]Loading weights:  56%|#####6    | 223/398 [00:05<00:03, 45.16it/s]Loading weights:  57%|#####7    | 228/398 [00:05<00:03, 43.60it/s]Loading weights:  59%|#####8    | 234/398 [00:05<00:03, 46.09it/s]Loading weights:  60%|######    | 239/398 [00:05<00:03, 46.05it/s]Loading weights:  62%|######1   | 245/398 [00:05<00:03, 47.84it/s]Loading weights:  63%|######2   | 250/398 [00:05<00:03, 46.57it/s]Loading weights:  64%|######4   | 256/398 [00:05<00:02, 48.85it/s]Loading weights:  66%|######5   | 261/398 [00:06<00:02, 46.52it/s]Loading weights:  67%|######7   | 267/398 [00:06<00:02, 46.33it/s]Loading weights:  68%|######8   | 272/398 [00:06<00:02, 44.41it/s]Loading weights:  70%|#######   | 279/398 [00:06<00:02, 49.50it/s]Loading weights:  73%|#######2  | 289/398 [00:06<00:01, 58.00it/s]Loading weights:  75%|#######4  | 297/398 [00:06<00:01, 61.12it/s]Loading weights:  76%|#######6  | 304/398 [00:06<00:01, 59.73it/s]Loading weights:  78%|#######8  | 312/398 [00:06<00:01, 60.75it/s]Loading weights:  81%|########  | 322/398 [00:07<00:01, 67.01it/s]Loading weights:  83%|########2 | 330/398 [00:07<00:00, 68.18it/s]Loading weights:  85%|########4 | 337/398 [00:07<00:00, 63.50it/s]Loading weights:  87%|########6 | 345/398 [00:07<00:00, 65.24it/s]Loading weights:  89%|########9 | 355/398 [00:07<00:00, 69.68it/s]Loading weights:  91%|######### | 362/398 [00:07<00:00, 69.72it/s]Loading weights:  93%|#########2| 369/398 [00:07<00:00, 63.24it/s]Loading weights:  95%|#########4| 378/398 [00:07<00:00, 66.46it/s]Loading weights:  97%|#########7| 388/398 [00:08<00:00, 70.95it/s]Loading weights:  99%|#########9| 396/398 [00:08<00:00, 69.05it/s]Loading weights: 100%|##########| 398/398 [00:08<00:00, 48.87it/s]
+T8 candidate model (no adapter): Qwen/Qwen3-4B-Instruct-2507
+=== variant NORAG
+[NORAG] rre1-02609c7d1ab5 correct=False
+[NORAG] rre1-03988864e0c6 correct=True
+[NORAG] rre1-05f8471c75e9 correct=True
+[NORAG] rre1-08e37ac8a5e4 correct=False
+[NORAG] rre1-11510489f544 correct=True
+[NORAG] rre1-19c905c8786c correct=True
+[NORAG] rre1-1b1e5767ef68 correct=False
+[NORAG] rre1-1c5ca8aa376d correct=True
+[NORAG] rre1-1cadf48b7c99 correct=False
+[NORAG] rre1-24023057ee44 correct=True
+[NORAG] rre1-2549d7d00f27 correct=False
+[NORAG] rre1-35687255d081 correct=True
+[NORAG] rre1-37e568230dd8 correct=False
+[NORAG] rre1-3cc077020b2f correct=True
+[NORAG] rre1-3ef6f1cadbd7 correct=False
+[NORAG] rre1-49eb4d32923e correct=True
+[NORAG] rre1-4b1c948e560d correct=False
+[NORAG] rre1-522234b54556 correct=False
+[NORAG] rre1-59c79fc24e01 correct=True
+[NORAG] rre1-6259185d89c4 correct=True
+[NORAG] rre1-629b318e5942 correct=False
+[NORAG] rre1-633a1cee5296 correct=False
+[NORAG] rre1-6f8134e4c428 correct=False
+[NORAG] rre1-7334696be010 correct=False
+[NORAG] rre1-7a4a3edf552e correct=True
+[NORAG] rre1-7d8af643c6a0 correct=True
+[NORAG] rre1-852b48c3f284 correct=True
+[NORAG] rre1-869ede0d0b7f correct=False
+[NORAG] rre1-88bb31fda477 correct=True
+[NORAG] rre1-8945754b6cb2 correct=True
+[NORAG] rre1-8c7f807ca12b correct=False
+[NORAG] rre1-90360449f3d2 correct=False
+[NORAG] rre1-9357f307dfa8 correct=False
+[NORAG] rre1-950569a2ffcb correct=True
+[NORAG] rre1-9520d93f4e75 correct=True
+[NORAG] rre1-99ff8a57c42c correct=True
+[NORAG] rre1-a5174e1f620b correct=False
+[NORAG] rre1-ab844d61793c correct=True
+[NORAG] rre1-ac984286041a correct=True
+[NORAG] rre1-ad15c33c816f correct=True
+[NORAG] rre1-ade44750ff85 correct=False
+[NORAG] rre1-b3219d606d67 correct=True
+[NORAG] rre1-b80f85129d2b correct=True
+[NORAG] rre1-ba282694348a correct=True
+[NORAG] rre1-c4b8ec99acf7 correct=True
+[NORAG] rre1-c50d013df5b4 correct=True
+[NORAG] rre1-c682774427ff correct=True
+[NORAG] rre1-c87f90ee6dba correct=False
+[NORAG] rre1-c8a7db093ca8 correct=False
+[NORAG] rre1-c96d35e4b21b correct=True
+[NORAG] rre1-d4c272d02901 correct=True
+[NORAG] rre1-d80639f2ebea correct=False
+[NORAG] rre1-dbc20b5a10da correct=False
+[NORAG] rre1-dcc1613ea635 correct=False
+[NORAG] rre1-df933e2fb5d6 correct=True
+[NORAG] rre1-e435f3337bc6 correct=True
+[NORAG] rre1-e6488a991c0c correct=False
+[NORAG] rre1-e82a5b753b56 correct=True
+=== variant G
+[G] rre1-02609c7d1ab5 correct=False
+[G] rre1-03988864e0c6 correct=True
+[G] rre1-05f8471c75e9 correct=True
+[G] rre1-08e37ac8a5e4 correct=True
+[G] rre1-11510489f544 correct=True
+[G] rre1-19c905c8786c correct=True
+[G] rre1-1b1e5767ef68 correct=False
+[G] rre1-1c5ca8aa376d correct=True
+[G] rre1-1cadf48b7c99 correct=False
+[G] rre1-24023057ee44 correct=True
+[G] rre1-2549d7d00f27 correct=False
+[G] rre1-35687255d081 correct=True
+[G] rre1-37e568230dd8 correct=False
+[G] rre1-3cc077020b2f correct=True
+[G] rre1-3ef6f1cadbd7 correct=False
+[G] rre1-49eb4d32923e correct=True
+[G] rre1-4b1c948e560d correct=False
+[G] rre1-522234b54556 correct=False
+[G] rre1-59c79fc24e01 correct=True
+[G] rre1-6259185d89c4 correct=True
+[G] rre1-629b318e5942 correct=False
+[G] rre1-633a1cee5296 correct=False
+[G] rre1-6f8134e4c428 correct=False
+[G] rre1-7334696be010 correct=False
+[G] rre1-7a4a3edf552e correct=True
+[G] rre1-7d8af643c6a0 correct=True
+[G] rre1-852b48c3f284 correct=False
+[G] rre1-869ede0d0b7f correct=True
+[G] rre1-88bb31fda477 correct=True
+[G] rre1-8945754b6cb2 correct=True
+[G] rre1-8c7f807ca12b correct=True
+[G] rre1-90360449f3d2 correct=True
+[G] rre1-9357f307dfa8 correct=False
+[G] rre1-950569a2ffcb correct=False
+[G] rre1-9520d93f4e75 correct=True
+[G] rre1-99ff8a57c42c correct=True
+[G] rre1-a5174e1f620b correct=True
+[G] rre1-ab844d61793c correct=False
+[G] rre1-ac984286041a correct=False
+[G] rre1-ad15c33c816f correct=True
+[G] rre1-ade44750ff85 correct=False
+[G] rre1-b3219d606d67 correct=True
+[G] rre1-b80f85129d2b correct=True
+[G] rre1-ba282694348a correct=True
+[G] rre1-c4b8ec99acf7 correct=True
+[G] rre1-c50d013df5b4 correct=True
+[G] rre1-c682774427ff correct=False
+[G] rre1-c87f90ee6dba correct=False
+[G] rre1-c8a7db093ca8 correct=False
+[G] rre1-c96d35e4b21b correct=True
+[G] rre1-d4c272d02901 correct=True
+[G] rre1-d80639f2ebea correct=True
+[G] rre1-dbc20b5a10da correct=False
+[G] rre1-dcc1613ea635 correct=True
+[G] rre1-df933e2fb5d6 correct=True
+[G] rre1-e435f3337bc6 correct=False
+[G] rre1-e6488a991c0c correct=False
+[G] rre1-e82a5b753b56 correct=True
+{
+  "NORAG": {
+    "variant": "NORAG",
+    "n": 58,
+    "correct": 33,
+    "accuracy": 0.569,
+    "per_category_accuracy": {
+      "conflicting_evidence": 0.0,
+      "distractor_retrieval": 0.0,
+      "factual_science_qa": 0.8333,
+      "insufficient_evidence": 0.25,
+      "mixed_math_science": 1.0,
+      "multi_hop_science_qa": 0.8333,
+      "quantitative_science": 1.0,
+      "source_attribution": 0.0
+    },
+    "uncertainty_accuracy": 0.1667,
+    "retrieval_invocation": {
+      "expected_true": 42,
+      "retrieved_when_expected": 0,
+      "invoked_but_not_expected": 0,
+      "precision": null,
+      "recall": 0.0
+    },
+    "retrieval_used_on_math_route": 0,
+    "citation_summary": {
+      "n_questions_with_citations": 0,
+      "n_fabricated": 0,
+      "n_unsupported": 0,
+      "n_invalid_refs": 0
+    },
+    "compression_mean_ratio": null,
+    "mean_prompt_tokens_in": 267,
+    "avg_latency_s": 12.727
+  },
+  "G": {
+    "variant": "G",
+    "n": 58,
+    "correct": 34,
+    "accuracy": 0.5862,
+    "per_category_accuracy": {
+      "conflicting_evidence": 0.5,
+      "distractor_retrieval": 0.0,
+      "factual_science_qa": 0.5833,
+      "insufficient_evidence": 0.5,
+      "mixed_math_science": 0.8333,
+      "multi_hop_science_qa": 1.0,
+      "quantitative_science": 1.0,
+      "source_attribution": 0.0
+    },
+    "uncertainty_accuracy": 0.5,
+    "retrieval_invocation": {
+      "expected_true": 42,
+      "retrieved_when_expected": 34,
+      "invoked_but_not_expected": 13,
+      "precision": 0.7234,
+      "recall": 0.8095
+    },
+    "retrieval_used_on_math_route": 0,
+    "citation_summary": {
+      "n_questions_with_citations": 12,
+      "n_fabricated": 0,
+      "n_unsupported": 0,
+      "n_invalid_refs": 0
+    },
+    "compression_mean_ratio": 6.008,
+    "mean_prompt_tokens_in": 345,
+    "avg_latency_s": 10.495,
+    "delta_vs_norag_pp": 1.72
+  }
+}
+:: exit 0
+:: C:\Users\allam\AppData\Local\Programs\Python\Python312\python.exe scripts/run_capacity_eval.py --model Qwen/Qwen3-4B-Instruct-2507 --label t12-protect-cap --out evaluations/t12/protection/cap
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<01:52,  3.52it/s]Loading weights:   1%|1         | 5/398 [00:00<00:26, 15.06it/s]Loading weights:   5%|5         | 20/398 [00:00<00:06, 57.41it/s]Loading weights:   8%|8         | 33/398 [00:00<00:04, 79.22it/s]Loading weights:  12%|#1        | 47/398 [00:00<00:03, 92.13it/s]Loading weights:  15%|#4        | 59/398 [00:00<00:03, 95.69it/s]Loading weights:  18%|#7        | 71/398 [00:00<00:03, 96.94it/s]Loading weights:  21%|##        | 82/398 [00:01<00:03, 100.45it/s]Loading weights:  23%|##3       | 93/398 [00:01<00:02, 102.41it/s]Loading weights:  27%|##7       | 108/398 [00:01<00:02, 113.17it/s]Loading weights:  30%|###       | 121/398 [00:01<00:02, 116.50it/s]Loading weights:  33%|###3      | 133/398 [00:01<00:02, 117.31it/s]Loading weights:  37%|###6      | 146/398 [00:01<00:02, 116.62it/s]Loading weights:  40%|###9      | 158/398 [00:01<00:02, 108.24it/s]Loading weights:  43%|####2     | 170/398 [00:01<00:02, 104.87it/s]Loading weights:  46%|####6     | 185/398 [00:01<00:01, 114.93it/s]Loading weights:  50%|####9     | 198/398 [00:02<00:01, 116.50it/s]Loading weights:  53%|#####2    | 210/398 [00:02<00:01, 115.02it/s]Loading weights:  56%|#####6    | 223/398 [00:02<00:01, 113.81it/s]Loading weights:  59%|#####9    | 235/398 [00:02<00:01, 113.19it/s]Loading weights:  62%|######2   | 247/398 [00:02<00:01, 109.03it/s]Loading weights:  66%|######5   | 261/398 [00:02<00:01, 116.68it/s]Loading weights:  69%|######8   | 273/398 [00:02<00:01, 116.26it/s]Loading weights:  72%|#######2  | 287/398 [00:02<00:00, 120.53it/s]Loading weights:  75%|#######5  | 300/398 [00:02<00:00, 118.16it/s]Loading weights:  78%|#######8  | 312/398 [00:03<00:00, 115.26it/s]Loading weights:  81%|########1 | 324/398 [00:03<00:00, 110.32it/s]Loading weights:  84%|########4 | 336/398 [00:03<00:00, 112.30it/s]Loading weights:  88%|########7 | 350/398 [00:03<00:00, 116.64it/s]Loading weights:  91%|#########1| 363/398 [00:03<00:00, 118.86it/s]Loading weights:  94%|#########4| 375/398 [00:03<00:00, 118.23it/s]Loading weights:  97%|#########7| 388/398 [00:03<00:00, 113.85it/s]Loading weights: 100%|##########| 398/398 [00:03<00:00, 105.32it/s]
+:: exit 1073807364
+:: C:\Users\allam\AppData\Local\Programs\Python\Python312\python.exe scripts/run_extraction_benchmark.py --model Qwen/Qwen3-4B-Instruct-2507 --label t12-protect-ext
+:: exit 3221226091
+:: C:\Users\allam\AppData\Local\Programs\Python\Python312\python.exe scripts/t10_run_correction_v2.py --model Qwen/Qwen3-4B-Instruct-2507 --label t12-protect-correction --arm t10 --split final
+:: exit 3221226091
+T12_PROTECTION_BATTERY_DONE

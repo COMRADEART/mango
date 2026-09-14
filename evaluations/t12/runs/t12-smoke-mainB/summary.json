@@ -1,0 +1,24 @@
+{
+  "questions": 6,
+  "kinds": {
+    "numeric_oracle": 6
+  },
+  "numeric_accuracy": 1.0,
+  "conceptual_discipline": null,
+  "adversarial_handled_correctly": null,
+  "adversarial_false_answer_rate": null,
+  "invocations": 6,
+  "valid_call_rate": 1.0,
+  "compute_success_rate": 1.0,
+  "model_adoption_rate": 1.0,
+  "over_compute_rate": 0.0,
+  "adoption_taxonomy_histogram": {
+    "ADOPTED": 6
+  },
+  "median_llm_ms": 34722.0,
+  "arm": "B",
+  "suite": "scicomp",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "suite_sha256": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+  "label": "t12-smoke-mainB"
+}

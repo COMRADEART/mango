@@ -1,0 +1,121 @@
+{
+  "t8": {
+    "tool_suite": {
+      "path": "evaluations/tool-suite/v1/questions.jsonl",
+      "expected": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+      "actual": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+      "match": true,
+      "git_blob_sha256": "f3e52935e4d14605eb0885d4dcc2d7672776c2e80ced2b3f0ab18b6ef5a072d1",
+      "git_blob_match": false
+    },
+    "rag_suite": {
+      "path": "evaluations/rag-suite/v1/questions.jsonl",
+      "expected": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+      "actual": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+      "match": true,
+      "git_blob_sha256": "1613466105d4a5efd96355f3489606c5a59669a9843c4a9e4a4f9ed907e1591e",
+      "git_blob_match": false
+    },
+    "capacity_suite": {
+      "path": "evaluations/t8/capacity-suite/v1/questions.jsonl",
+      "expected": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+      "actual": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+      "match": true,
+      "git_blob_sha256": "087acf2154b01f0ac445050579985384dd9644ce6cd77f03380e56bfcde8c36d",
+      "git_blob_match": false
+    },
+    "recomputed_metrics": {
+      "path": "evaluations/t8/recomputed_metrics.json",
+      "expected": "b0d594c30f2404a75a08bcef5e28fed9b2e72838c1637df9e4c549e7bf624552",
+      "actual": "b0d594c30f2404a75a08bcef5e28fed9b2e72838c1637df9e4c549e7bf624552",
+      "match": true,
+      "git_blob_sha256": "28df1c3a621be928b0dab92aff65e58ef45c5143f142d6811da2af3cd83165e3",
+      "git_blob_match": false
+    },
+    "final_decision": {
+      "path": "evaluations/t8/FINAL_DECISION.json",
+      "expected": "433938ca04c8fa1e9d9ce76c69ed772d8b5be296aa51ce37b64136dd52ae48e0",
+      "actual": "433938ca04c8fa1e9d9ce76c69ed772d8b5be296aa51ce37b64136dd52ae48e0",
+      "match": true,
+      "git_blob_sha256": "8663addf138a4f2b5c1e8213e24c2b11baaca4d3d62c5219d05bbdb0f5ea8716",
+      "git_blob_match": false
+    }
+  },
+  "t8s_local_evidence": {
+    "evaluations/t8s/DECISIONS.json": {
+      "source_sha256": "d2dd91846d80e12c9e7b2e2e5caf35633ee07212a3bb18202b8d226dcad06ee3",
+      "current_main_present": false,
+      "historical_evidence_only": true
+    },
+    "evaluations/t8s/final_audit.json": {
+      "source_sha256": "2ac3c4ac636781a1c525efdefe7e5b73547cf110947af75a7a963b4527350bd3",
+      "current_main_present": false,
+      "historical_evidence_only": true
+    },
+    "evaluations/t8s/pareto_analysis.json": {
+      "source_sha256": "13970bd412984b861c767ce5cd04f6ecd5db2bd70fba89c3932cf171dcc2cc87",
+      "current_main_present": false,
+      "historical_evidence_only": true
+    },
+    "evaluations/t8s/selfcorrection_uncertainty.json": {
+      "source_sha256": "8b2e665779e0fe6b15ee80c51e9f83ae869c5554204d2781fcb08a7e5f0546b4",
+      "current_main_present": false,
+      "historical_evidence_only": true
+    },
+    "evaluations/t8s/system_capability_vectors.json": {
+      "source_sha256": "c8c2e01c06e5fa005a2ad3e49d9371e5568255e9286e119d93b6cc860331b4a2",
+      "current_main_present": false,
+      "historical_evidence_only": true
+    },
+    "evaluations/t8s/system_profiles.json": {
+      "source_sha256": "f4e8403816bb1eef20877334d4020b978bfa060ce28d2de49e4821cb07fc0025",
+      "current_main_present": false,
+      "historical_evidence_only": true
+    },
+    "evaluations/t8s/t4_head_to_head.json": {
+      "source_sha256": "769fbf9d3551b54831a471bd7323ba09c5138e57c56af1c76c036e4f89eeef59",
+      "current_main_present": false,
+      "historical_evidence_only": true
+    },
+    "evaluations/t8s/t5r_head_to_head.json": {
+      "source_sha256": "43cc8e82c734cf4b803f38e5338dcbe17be7084d3d752004aa2b0a336aa1494c",
+      "current_main_present": false,
+      "historical_evidence_only": true
+    },
+    "evaluations/t8s/t8s_entry_gate.json": {
+      "source_sha256": "610087ec878ff05e631d0e876131e544296c8072a14b85a2c65cecdcad5f34bd",
+      "current_main_present": false,
+      "historical_evidence_only": true
+    }
+  },
+  "suites": {
+    "evaluations/tool-suite/v1": {
+      "rows": 150,
+      "duplicates": [],
+      "missing": [],
+      "extra": [],
+      "mismatched": [],
+      "questions_byte_sha256": "807bb7d307c45f5160e4271388f1c2b82b5cb158610882dade3ca058ad336bef",
+      "ok": true
+    },
+    "evaluations/rag-suite/v1": {
+      "rows": 82,
+      "duplicates": [],
+      "missing": [],
+      "extra": [],
+      "mismatched": [],
+      "questions_byte_sha256": "e74c8b1a5716ff61bdc978c9341a4592cfe902d19e5392df5204d2058e117347",
+      "ok": true
+    },
+    "evaluations/t8/capacity-suite/v1": {
+      "rows": 131,
+      "duplicates": [],
+      "missing": [],
+      "extra": [],
+      "mismatched": [],
+      "questions_byte_sha256": "0bb6a3585ec628a54659775b30d57a852f8b7c3a2ed7f4b38c192732a2f573e1",
+      "ok": true
+    }
+  },
+  "note": "T8S historical files remain in their original workspace; fresh results are never inferred from them."
+}

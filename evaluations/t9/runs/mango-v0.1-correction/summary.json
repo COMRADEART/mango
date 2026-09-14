@@ -1,0 +1,42 @@
+{
+  "label": "mango-v0.1-correction",
+  "model": "Qwen/Qwen3-1.7B",
+  "adapter": "sciencemath/training/adapters/sciencemath-v0.1-t3",
+  "firewall": true,
+  "suite": "mango-correction-eval-v1",
+  "questions": 40,
+  "load": {
+    "ok": true,
+    "error": null,
+    "quantization": "4bit-nf4-double",
+    "load_vram_bytes": 2284549632,
+    "peak_vram_bytes": 2284549632,
+    "reserved_vram_bytes": 2325741568,
+    "smoke_latency_s": 0.94
+  },
+  "metrics": {
+    "true_correction": 0.8,
+    "false_feedback_preservation": 1.0,
+    "overcorrection": 0.0,
+    "under_correction": 0.2,
+    "blind_agreement": 0.0,
+    "net_correction_benefit": 8,
+    "counts": {
+      "corrected_wrong": 8,
+      "preserved_correct": 10,
+      "destroyed_correct": 0,
+      "still_wrong": 2,
+      "blind_agreement": 0
+    },
+    "confidence_intervals_95": {
+      "true_correction": [
+        0.49015684672072335,
+        0.9433190520193067
+      ],
+      "preservation": [
+        0.7224598312333834,
+        1.0
+      ]
+    }
+  }
+}

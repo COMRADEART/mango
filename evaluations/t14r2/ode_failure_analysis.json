@@ -1,0 +1,53 @@
+{
+  "milestone": "T14R2.2 — ODE failure taxonomy",
+  "recorded_at": "2026-09-12T12:28:15.748039+00:00",
+  "method": "per-case forensic classification over the B2 recorded planner request, schema/fidelity instrument fields, envelope status, and grading outcome; no code changes made before this analysis",
+  "allowed_categories": [
+    "WRONG_ODE_OPERATION",
+    "IVP_MISCLASSIFIED",
+    "BOUNDARY_VALUE_CONFUSION",
+    "MISSING_INITIAL_STATE",
+    "MISSING_TIME_SPAN",
+    "STATE_ORDER_MISMATCH",
+    "DERIVATIVE_EXPRESSION_MISBOUND",
+    "SCHEMA_CONSTRUCTION_FAILURE",
+    "PROVENANCE_FAILURE",
+    "MODEL_DECLINED_COMPUTE",
+    "OTHER"
+  ],
+  "taxonomy_histogram": {
+    "WRONG_ODE_OPERATION": 6
+  },
+  "single_cause_assumption": false,
+  "finding": "All six share one measurable mechanism — the planner selected a non-solve_ode operation for a fully-specified initial-value problem — but they arrive there by two distinct routes that the repair must handle separately: (a) explicit derivative-notation IVPs (0081, 0083, 0084, 0087, 0088) routed to definite_integral/minimize of the rate function, and (b) a VERBAL decay IVP (0082) where the planner derived the analytic closed form and sent it as an integrand. In all six the extracted numbers are question-verbatim and every downstream frozen layer (repair, schema, fidelity, engine, envelope, adopter) behaves correctly — the failure is purely the operation choice at structured-request construction.",
+  "sub_patterns": {
+    "explicit_derivative_notation_routed_to_integral": [
+      "msc-v1-0081",
+      "msc-v1-0083",
+      "msc-v1-0084",
+      "msc-v1-0088"
+    ],
+    "explicit_derivative_notation_routed_to_optimization": [
+      "msc-v1-0087"
+    ],
+    "verbal_decay_law_restated_as_closed_form_integrand": [
+      "msc-v1-0082"
+    ]
+  },
+  "higher_order_audit_T14R2_10": {
+    "task_id": "msc-v1-0085",
+    "question": "For d2x/dt2 = -4*x with x(0)=1 and dx/dt(0)=0, what is x at t = pi/2 (use the exact analytic solution)?",
+    "planner_selected_operation": "solve_ode",
+    "operation_selection_correct": true,
+    "not_an_operation_selection_failure": true,
+    "observed_failure": "second-order ODE d2x/dt2 = -4*x sent to solve_ode as a non-RHS equation string 'd2x/dt2 + 4*x = 0' with string-typed t_end 'pi/2' and an unused decorative parameters dict; schema gate failed; no invocation",
+    "engine_capability_audit": "The frozen engine (ode.solve_ode) natively integrates systems of FIRST-order RHS expressions in y0..y{n-1}. It has no second-order entry point; a second-order IVP is expressible ONLY via deterministic first-order-system conversion at request construction (y0=x, y1=dx/dt => equations ['y1', '-4*y0'], initial_state [1, 0]) — a planner-side deterministic derivation, not a new engine capability. Disposition recorded in higher_order_disposition below.",
+    "outcome_history": {
+      "t14_armB_correct": false,
+      "t14r_armB_correct": false,
+      "t14r2_b2_correct": false
+    }
+  },
+  "remaining_wrong_rows_context": "The other 19 of 25 wrong numeric rows in B2 are: 1 gold-vs-given-input mismatch (msc-v1-0030, out of scope since T14R), 1 dropped-exponent mutation misread (msc-v1-0099), 5 no-invocation fail-closed rows, 9 engine-not-PASS rows, 2 RESULT_IGNORED/MISREAD statistics rows, 1 no-compute parameter-sweep row, 3 speed-of-light NO_COMPUTE rows, 2 describe-mode statistics rows — none is an ODE operation-selection failure and all are outside T14R2 scope.",
+  "no_implementation_changes_before_this_analysis": true
+}

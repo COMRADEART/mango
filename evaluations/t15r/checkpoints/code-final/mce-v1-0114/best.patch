@@ -1,0 +1,11 @@
+--- a/src/alg03_gcd.py
++++ b/src/alg03_gcd.py
+@@ -1,2 +1,7 @@
+ def gcd(a, b):
+-    raise NotImplementedError
++    """
++    Compute the greatest common divisor of a and b using Euclidean algorithm.
++    """
++    if b == 0:
++        return a
++    return gcd(b, a % b)

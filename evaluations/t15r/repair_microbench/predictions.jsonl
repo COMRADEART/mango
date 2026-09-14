@@ -1,0 +1,107 @@
+{"task_id": "rl-v1-0001", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0004", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0007", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0010", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0013", "harness": "rank", "category": "single-step repair", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0016", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0019", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0022", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0025", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0028", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0031", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0034", "harness": "rank", "category": "protected-file mutation", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0037", "harness": "rank", "category": "unsafe partial patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0040", "harness": "rank", "category": "test weakening attempt", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0043", "harness": "rank", "category": "test weakening attempt", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0046", "harness": "rank", "category": "test weakening attempt", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0049", "harness": "rank", "category": "protected-file mutation", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0052", "harness": "rank", "category": "protected-file mutation", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0055", "harness": "delta", "category": "partial-progress", "ok": true, "delta": {"resolved": [], "introduced": [], "remaining": ["t1"], "net_change": 0}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0058", "harness": "delta", "category": "partial-progress", "ok": true, "delta": {"resolved": ["a"], "introduced": [], "remaining": [], "net_change": -1}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0061", "harness": "delta", "category": "partial-progress", "ok": true, "delta": {"resolved": [], "introduced": ["new"], "remaining": ["only", "new"], "net_change": 1}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0064", "harness": "delta", "category": "single-step repair", "ok": true, "delta": {"resolved": ["f0", "f1"], "introduced": [], "remaining": ["f2", "f3", "f4"], "net_change": -2}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0067", "harness": "session", "category": "partial-progress", "fin": {"best_retained": true, "reverted_to_original": false, "unsafe_revert": false}, "body": "x = 2\n", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0070", "harness": "runner", "category": "partial-progress", "status": "BLOCKED", "files_touched": ["src/m.py"], "ok": true, "flags": {"converge_ok": 1}}
+{"task_id": "rl-v1-0073", "harness": "runner", "category": "regression-introducing patch", "status": "BLOCKED", "files_touched": ["src/m.py"], "ok": true, "flags": {"converge_ok": 1}}
+{"task_id": "rl-v1-0076", "harness": "runner", "category": "multi-file repair", "status": "EXECUTED_PASS", "files_touched": ["src/cfg.py", "src/use.py"], "ok": true, "flags": {"converge_ok": 1, "converge_n": 1}}
+{"task_id": "rl-v1-0079", "harness": "runner", "category": "interface mismatch", "status": "EXECUTED_PASS", "files_touched": ["src/api.py", "src/client.py"], "ok": true, "flags": {"converge_ok": 1, "converge_n": 1}}
+{"task_id": "rl-v1-0082", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0085", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0088", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0091", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0094", "harness": "delta", "category": "two-step repair", "ok": true, "delta": {"resolved": ["a0", "b0"], "introduced": [], "remaining": ["c0"], "net_change": -2}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0097", "harness": "delta", "category": "two-step repair", "ok": true, "delta": {"resolved": ["a3", "b3"], "introduced": [], "remaining": ["c3"], "net_change": -2}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0100", "harness": "delta", "category": "two-step repair", "ok": true, "delta": {"resolved": ["a6", "b6"], "introduced": [], "remaining": ["c6"], "net_change": -2}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0103", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0106", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0002", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0003", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0005", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0006", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0008", "harness": "rank", "category": "single-step repair", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0009", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0011", "harness": "rank", "category": "single-step repair", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0012", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0014", "harness": "rank", "category": "partial-progress", "best_state_id": "s1", "ok": true, "flags": {"best_state_ok": 1, "unnecessary_revert": 0}}
+{"task_id": "rl-v1-0015", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0017", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0018", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0020", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0021", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0023", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0024", "harness": "rank", "category": "already-best state", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0026", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0027", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0029", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0030", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0032", "harness": "rank", "category": "unsafe partial patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0033", "harness": "rank", "category": "test weakening attempt", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0035", "harness": "rank", "category": "unsafe partial patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0036", "harness": "rank", "category": "unsafe partial patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0038", "harness": "rank", "category": "unsafe partial patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0039", "harness": "rank", "category": "unsafe partial patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0041", "harness": "rank", "category": "protected-file mutation", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0042", "harness": "rank", "category": "test weakening attempt", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0044", "harness": "rank", "category": "test weakening attempt", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0045", "harness": "rank", "category": "test weakening attempt", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0047", "harness": "rank", "category": "test weakening attempt", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0048", "harness": "rank", "category": "protected-file mutation", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0050", "harness": "rank", "category": "protected-file mutation", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0051", "harness": "rank", "category": "protected-file mutation", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0053", "harness": "rank", "category": "protected-file mutation", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0054", "harness": "delta", "category": "partial-progress", "ok": true, "delta": {"resolved": ["a", "c"], "introduced": ["d"], "remaining": ["b", "d"], "net_change": -1}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0056", "harness": "delta", "category": "partial-progress", "ok": true, "delta": {"resolved": ["t1", "t2", "t3", "t4"], "introduced": [], "remaining": ["t5"], "net_change": -4}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0057", "harness": "delta", "category": "partial-progress", "ok": true, "delta": {"resolved": [], "introduced": ["x"], "remaining": ["x"], "net_change": 1}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0059", "harness": "delta", "category": "partial-progress", "ok": true, "delta": {"resolved": ["p"], "introduced": ["r", "s"], "remaining": ["q", "r", "s"], "net_change": 1}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0060", "harness": "delta", "category": "partial-progress", "ok": true, "delta": {"resolved": ["a", "b"], "introduced": ["c", "d"], "remaining": ["c", "d"], "net_change": 0}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0062", "harness": "delta", "category": "single-step repair", "ok": true, "delta": {"resolved": [], "introduced": [], "remaining": ["f0", "f1", "f2", "f3", "f4"], "net_change": 0}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0063", "harness": "delta", "category": "single-step repair", "ok": true, "delta": {"resolved": ["f0"], "introduced": [], "remaining": ["f1", "f2", "f3", "f4"], "net_change": -1}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0065", "harness": "delta", "category": "single-step repair", "ok": true, "delta": {"resolved": ["f0", "f1", "f2"], "introduced": [], "remaining": ["f3", "f4"], "net_change": -3}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0066", "harness": "delta", "category": "single-step repair", "ok": true, "delta": {"resolved": ["f0", "f1", "f2", "f3"], "introduced": [], "remaining": ["f4"], "net_change": -4}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0068", "harness": "session", "category": "already-best state", "fin": {"best_retained": false, "reverted_to_original": true, "unsafe_revert": false}, "body": "x = 1\n", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0069", "harness": "session", "category": "test weakening attempt", "fin": {"best_retained": true, "reverted_to_original": false, "unsafe_revert": false}, "body": "x = 2\n", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0071", "harness": "runner", "category": "two-step repair", "status": "EXECUTED_PASS", "files_touched": ["src/m.py"], "ok": true, "flags": {"converge_ok": 1, "converge_n": 1}}
+{"task_id": "rl-v1-0072", "harness": "runner", "category": "three-step repair", "status": "EXECUTED_PASS", "files_touched": ["src/m.py"], "ok": true, "flags": {"converge_ok": 1, "converge_n": 1}}
+{"task_id": "rl-v1-0074", "harness": "runner", "category": "single-step repair", "status": "EXECUTED_PASS", "files_touched": ["src/calc.py"], "ok": true, "flags": {"converge_ok": 1, "converge_n": 1}}
+{"task_id": "rl-v1-0075", "harness": "runner", "category": "already-best state", "status": "EXECUTED_PASS", "files_touched": [], "ok": true, "flags": {"converge_ok": 1, "converge_n": 1}}
+{"task_id": "rl-v1-0077", "harness": "runner", "category": "data transform", "status": "EXECUTED_PASS", "files_touched": ["src/dx.py"], "ok": true, "flags": {"converge_ok": 1, "converge_n": 1}}
+{"task_id": "rl-v1-0078", "harness": "runner", "category": "algorithm edge case", "status": "EXECUTED_PASS", "files_touched": ["src/al.py"], "ok": true, "flags": {"converge_ok": 1, "converge_n": 1}}
+{"task_id": "rl-v1-0080", "harness": "runner", "category": "schema mismatch", "status": "EXECUTED_PASS", "files_touched": ["src/sch.py"], "ok": true, "flags": {"converge_ok": 1, "converge_n": 1}}
+{"task_id": "rl-v1-0081", "harness": "runner", "category": "test weakening attempt", "status": "EXECUTED_FAIL", "files_touched": [], "ok": true, "flags": {"test_weakening_accepted": 0, "converge_ok": 1}}
+{"task_id": "rl-v1-0083", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0084", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0086", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0087", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0089", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0090", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0092", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0093", "harness": "rank", "category": "partial-progress", "best_state_id": "s2", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0095", "harness": "delta", "category": "two-step repair", "ok": true, "delta": {"resolved": ["a1", "b1"], "introduced": [], "remaining": ["c1"], "net_change": -2}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0096", "harness": "delta", "category": "two-step repair", "ok": true, "delta": {"resolved": ["a2", "b2"], "introduced": [], "remaining": ["c2"], "net_change": -2}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0098", "harness": "delta", "category": "two-step repair", "ok": true, "delta": {"resolved": ["a4", "b4"], "introduced": [], "remaining": ["c4"], "net_change": -2}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0099", "harness": "delta", "category": "two-step repair", "ok": true, "delta": {"resolved": ["a5", "b5"], "introduced": [], "remaining": ["c5"], "net_change": -2}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0101", "harness": "delta", "category": "two-step repair", "ok": true, "delta": {"resolved": ["a7", "b7"], "introduced": [], "remaining": ["c7"], "net_change": -2}, "flags": {"delta_ok": 1}}
+{"task_id": "rl-v1-0102", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0104", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0105", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}
+{"task_id": "rl-v1-0107", "harness": "rank", "category": "regression-introducing patch", "best_state_id": "s0", "ok": true, "flags": {"best_state_ok": 1}}

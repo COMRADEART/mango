@@ -1,0 +1,2071 @@
+{
+  "milestone": "T14R2.4-2.10 — ODE intent layer offline validation",
+  "recorded_at": "2026-09-12T12:42:35.580044+00:00",
+  "method": "deterministic replay of the constructed requests through the frozen gate chain (repair -> schema -> fidelity -> invoke -> verified_envelope -> result_contract) over every suite row; no LLM, no GPU",
+  "suite_rows": 206,
+  "fired_rows": [
+    "msc-v1-0081",
+    "msc-v1-0082",
+    "msc-v1-0083",
+    "msc-v1-0084",
+    "msc-v1-0085",
+    "msc-v1-0087",
+    "msc-v1-0088"
+  ],
+  "fired_count": 7,
+  "previously_correct_firing_rows": 0,
+  "six_case_results": {
+    "msc-v1-0081": {
+      "fired": true,
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 8.963378140676129,
+      "authoritative_value": [
+        8.963380137540854
+      ],
+      "matches_gold": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "P"
+        ],
+        "source_kind": "derivative_notation"
+      }
+    },
+    "msc-v1-0082": {
+      "fired": true,
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 1.353352832366127,
+      "authoritative_value": [
+        1.3533535180504732
+      ],
+      "matches_gold": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [],
+        "source_kind": "verbal_rate_law"
+      }
+    },
+    "msc-v1-0083": {
+      "fired": true,
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 1.2180175491295144,
+      "authoritative_value": [
+        1.2180181662921679
+      ],
+      "matches_gold": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "Q"
+        ],
+        "source_kind": "derivative_notation"
+      }
+    },
+    "msc-v1-0084": {
+      "fired": true,
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 1.6240233988393524,
+      "authoritative_value": [
+        1.6240241921327283
+      ],
+      "matches_gold": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "V"
+        ],
+        "source_kind": "derivative_notation"
+      }
+    },
+    "msc-v1-0087": {
+      "fired": true,
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 29.4,
+      "authoritative_value": [
+        29.4
+      ],
+      "matches_gold": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "minimize",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "v"
+        ],
+        "source_kind": "derivative_notation"
+      }
+    },
+    "msc-v1-0088": {
+      "fired": true,
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 2013.7527074704767,
+      "authoritative_value": [
+        2013.7528770713855
+      ],
+      "matches_gold": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "N"
+        ],
+        "source_kind": "derivative_notation"
+      }
+    }
+  },
+  "audit_row_result": {
+    "fired": true,
+    "fire_meta": {
+      "fired": true,
+      "reason": "SECOND_ORDER_SYSTEM_CONVERSION",
+      "prior_operation": "solve_ode",
+      "operation": "solve_ode",
+      "order": 2,
+      "state_count": 2,
+      "dep_vars": [
+        "x"
+      ],
+      "source_kind": "derivative_notation"
+    },
+    "gold": -1.0,
+    "authoritative_value": [
+      -0.999999624351906,
+      3.0285867182178183e-07
+    ],
+    "matches_gold": true
+  },
+  "rows": [
+    {
+      "task_id": "msc-v1-0001",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0002",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0003",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0004",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0005",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0006",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0007",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0008",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0009",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0010",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0011",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0012",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0013",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0014",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0015",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0016",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0017",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0018",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0019",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0020",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0021",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0022",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0023",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0024",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0025",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0026",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0027",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0028",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0029",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0030",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0031",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0032",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0033",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0034",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0035",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0036",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0037",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0038",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0039",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0040",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0041",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0042",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0043",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0044",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0045",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0046",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0047",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0048",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0049",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0050",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0051",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0052",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0053",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0054",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0055",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0056",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0057",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0058",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0059",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0060",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0061",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0062",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0063",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0064",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0065",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0066",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0067",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0068",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0069",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0070",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0071",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0072",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0073",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0074",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0075",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": true,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0076",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": true,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0077",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": true,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0078",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": true,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0079",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": true,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0080",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": true,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0081",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": true,
+      "fired": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "P"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "constructed": {
+        "operation": "solve_ode",
+        "compute_required": true,
+        "parameters": {
+          "equations": [
+            "0.3*y0"
+          ],
+          "initial_state": [
+            2.0
+          ],
+          "t_start": 0.0,
+          "t_end": 5.0
+        },
+        "source_inputs": {
+          "equations": [
+            "0.3*y0"
+          ],
+          "initial_state": [
+            2.0
+          ],
+          "t_start": 0.0,
+          "t_end": 5.0
+        },
+        "parameter_provenance": {
+          "equations": "DETERMINISTIC_DERIVATION",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Initial-value problem: integrate the given derivative rule for P from the stated initial condition(s) to the requested evaluation time; solve_ode is the deterministic operation for an initial-value problem.",
+        "preserve_verbatim": [
+          "initial_state",
+          "t_start",
+          "t_end"
+        ]
+      },
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 8.963378140676129,
+      "authoritative_value": [
+        8.963380137540854
+      ],
+      "matches_gold": true,
+      "previously_correct": false
+    },
+    {
+      "task_id": "msc-v1-0082",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": true,
+      "fired": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [],
+        "source_kind": "verbal_rate_law"
+      },
+      "constructed": {
+        "operation": "solve_ode",
+        "compute_required": true,
+        "parameters": {
+          "equations": [
+            "-0.02*y0"
+          ],
+          "initial_state": [
+            10.0
+          ],
+          "t_start": 0.0,
+          "t_end": 100.0
+        },
+        "source_inputs": {
+          "equations": [
+            "-0.02*y0"
+          ],
+          "initial_state": [
+            10.0
+          ],
+          "t_start": 0.0,
+          "t_end": 100.0
+        },
+        "parameter_provenance": {
+          "equations": "DETERMINISTIC_DERIVATION",
+          "initial_state": "USER_GIVEN",
+          "t_start": "DETERMINISTIC_DERIVATION",
+          "t_end": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Initial-value problem: integrate the given derivative rule for the state from the stated initial condition(s) to the requested evaluation time; solve_ode is the deterministic operation for an initial-value problem.",
+        "preserve_verbatim": [
+          "initial_state",
+          "t_start",
+          "t_end"
+        ]
+      },
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 1.353352832366127,
+      "authoritative_value": [
+        1.3533535180504732
+      ],
+      "matches_gold": true,
+      "previously_correct": false
+    },
+    {
+      "task_id": "msc-v1-0083",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": true,
+      "fired": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "Q"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "constructed": {
+        "operation": "solve_ode",
+        "compute_required": true,
+        "parameters": {
+          "equations": [
+            "-y0/3"
+          ],
+          "initial_state": [
+            9.0
+          ],
+          "t_start": 0.0,
+          "t_end": 6.0
+        },
+        "source_inputs": {
+          "equations": [
+            "-y0/3"
+          ],
+          "initial_state": [
+            9.0
+          ],
+          "t_start": 0.0,
+          "t_end": 6.0
+        },
+        "parameter_provenance": {
+          "equations": "DETERMINISTIC_DERIVATION",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Initial-value problem: integrate the given derivative rule for Q from the stated initial condition(s) to the requested evaluation time; solve_ode is the deterministic operation for an initial-value problem.",
+        "preserve_verbatim": [
+          "initial_state",
+          "t_start",
+          "t_end"
+        ]
+      },
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 1.2180175491295144,
+      "authoritative_value": [
+        1.2180181662921679
+      ],
+      "matches_gold": true,
+      "previously_correct": false
+    },
+    {
+      "task_id": "msc-v1-0084",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": true,
+      "fired": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "V"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "constructed": {
+        "operation": "solve_ode",
+        "compute_required": true,
+        "parameters": {
+          "equations": [
+            "-y0/RC"
+          ],
+          "initial_state": [
+            12.0
+          ],
+          "t_start": 0.0,
+          "t_end": 4.0,
+          "parameters": {
+            "RC": 2.0
+          }
+        },
+        "source_inputs": {
+          "equations": [
+            "-y0/RC"
+          ],
+          "initial_state": [
+            12.0
+          ],
+          "t_start": 0.0,
+          "t_end": 4.0,
+          "parameters": {
+            "RC": 2.0
+          }
+        },
+        "parameter_provenance": {
+          "equations": "DETERMINISTIC_DERIVATION",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN",
+          "parameters": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Initial-value problem: integrate the given derivative rule for V from the stated initial condition(s) to the requested evaluation time; solve_ode is the deterministic operation for an initial-value problem.",
+        "preserve_verbatim": [
+          "initial_state",
+          "t_start",
+          "t_end"
+        ]
+      },
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 1.6240233988393524,
+      "authoritative_value": [
+        1.6240241921327283
+      ],
+      "matches_gold": true,
+      "previously_correct": false
+    },
+    {
+      "task_id": "msc-v1-0085",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": true,
+      "fired": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "SECOND_ORDER_SYSTEM_CONVERSION",
+        "prior_operation": "solve_ode",
+        "operation": "solve_ode",
+        "order": 2,
+        "state_count": 2,
+        "dep_vars": [
+          "x"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "constructed": {
+        "operation": "solve_ode",
+        "compute_required": true,
+        "parameters": {
+          "equations": [
+            "y1",
+            "-4*y0"
+          ],
+          "initial_state": [
+            1.0,
+            0.0
+          ],
+          "t_start": 0.0,
+          "t_end": 1.5707963267948966
+        },
+        "source_inputs": {
+          "equations": [
+            "y1",
+            "-4*y0"
+          ],
+          "initial_state": [
+            1.0,
+            0.0
+          ],
+          "t_start": 0.0,
+          "t_end": 1.5707963267948966
+        },
+        "parameter_provenance": {
+          "equations": "DETERMINISTIC_DERIVATION",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "DETERMINISTIC_DERIVATION"
+        },
+        "expected_result_type": "vector",
+        "reason_for_compute": "Second-order initial-value problem converted deterministically to a first-order system (y0=x, y1=dx/dt) as the frozen engine natively supports; solve_ode is the deterministic operation.",
+        "preserve_verbatim": [
+          "initial_state",
+          "t_start",
+          "t_end"
+        ]
+      },
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": -1.0,
+      "authoritative_value": [
+        -0.999999624351906,
+        3.0285867182178183e-07
+      ],
+      "matches_gold": true,
+      "previously_correct": false
+    },
+    {
+      "task_id": "msc-v1-0086",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": true,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0087",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": true,
+      "fired": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "minimize",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "v"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "constructed": {
+        "operation": "solve_ode",
+        "compute_required": true,
+        "parameters": {
+          "equations": [
+            "9.8"
+          ],
+          "initial_state": [
+            0.0
+          ],
+          "t_start": 0.0,
+          "t_end": 3.0
+        },
+        "source_inputs": {
+          "equations": [
+            "9.8"
+          ],
+          "initial_state": [
+            0.0
+          ],
+          "t_start": 0.0,
+          "t_end": 3.0
+        },
+        "parameter_provenance": {
+          "equations": "DETERMINISTIC_DERIVATION",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Initial-value problem: integrate the given derivative rule for v from the stated initial condition(s) to the requested evaluation time; solve_ode is the deterministic operation for an initial-value problem.",
+        "preserve_verbatim": [
+          "initial_state",
+          "t_start",
+          "t_end"
+        ]
+      },
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 29.4,
+      "authoritative_value": [
+        29.4
+      ],
+      "matches_gold": true,
+      "previously_correct": false
+    },
+    {
+      "task_id": "msc-v1-0088",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": true,
+      "fired": true,
+      "fire_meta": {
+        "fired": true,
+        "reason": "WRONG_OPERATION_REMAPPED",
+        "prior_operation": "definite_integral",
+        "operation": "solve_ode",
+        "order": 1,
+        "state_count": 1,
+        "dep_vars": [
+          "N"
+        ],
+        "source_kind": "derivative_notation"
+      },
+      "constructed": {
+        "operation": "solve_ode",
+        "compute_required": true,
+        "parameters": {
+          "equations": [
+            "r*y0"
+          ],
+          "initial_state": [
+            1000.0
+          ],
+          "t_start": 0.0,
+          "t_end": 10.0,
+          "parameters": {
+            "r": 0.07
+          }
+        },
+        "source_inputs": {
+          "equations": [
+            "r*y0"
+          ],
+          "initial_state": [
+            1000.0
+          ],
+          "t_start": 0.0,
+          "t_end": 10.0,
+          "parameters": {
+            "r": 0.07
+          }
+        },
+        "parameter_provenance": {
+          "equations": "DETERMINISTIC_DERIVATION",
+          "initial_state": "USER_GIVEN",
+          "t_start": "USER_GIVEN",
+          "t_end": "USER_GIVEN",
+          "parameters": "USER_GIVEN"
+        },
+        "expected_result_type": "scalar",
+        "reason_for_compute": "Initial-value problem: integrate the given derivative rule for N from the stated initial condition(s) to the requested evaluation time; solve_ode is the deterministic operation for an initial-value problem.",
+        "preserve_verbatim": [
+          "initial_state",
+          "t_start",
+          "t_end"
+        ]
+      },
+      "pipeline_stage": "done",
+      "schema_ok": true,
+      "fidelity_status": "FIDELITY_OK",
+      "envelope_status": "PASS",
+      "binding": "VERIFIED_COMPUTE_RESULT",
+      "gold": 2013.7527074704767,
+      "authoritative_value": [
+        2013.7528770713855
+      ],
+      "matches_gold": true,
+      "previously_correct": false
+    },
+    {
+      "task_id": "msc-v1-0089",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0090",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0091",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0092",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0093",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0094",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0095",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0096",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0097",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0098",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0099",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0100",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0101",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0102",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0103",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0104",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0105",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0106",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0107",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0108",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0109",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0110",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0111",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0112",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0113",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0114",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0115",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0116",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0117",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0118",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0119",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0120",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0121",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0122",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0123",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0124",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0125",
+      "kind": null,
+      "b2_correct": null,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0126",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0127",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0128",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0129",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0130",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0131",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0132",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0133",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0134",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0135",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0136",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0137",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0138",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0139",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0140",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0141",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0142",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0143",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0144",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0145",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0146",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0147",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0148",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0149",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0150",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0151",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0152",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0153",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0154",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0155",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0156",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0157",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0158",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0159",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0160",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0161",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0162",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0163",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0164",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0165",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0166",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0167",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0168",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0169",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0170",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0171",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0172",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0173",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0174",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0175",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0176",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0177",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0178",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0179",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0180",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0181",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0182",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": true,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0183",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0184",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0185",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0186",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0187",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0188",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0189",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0190",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0191",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0192",
+      "kind": null,
+      "b2_correct": false,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0193",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0194",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0195",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0196",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0197",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0198",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0199",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0200",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0201",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0202",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0203",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0204",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0205",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    },
+    {
+      "task_id": "msc-v1-0206",
+      "kind": null,
+      "b2_correct": true,
+      "recognized": false,
+      "fired": false
+    }
+  ],
+  "hard_failures": [],
+  "status": "PASS"
+}

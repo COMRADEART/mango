@@ -1,0 +1,77 @@
+{
+  "questions": 206,
+  "numeric_accuracy": 0.6956521739130435,
+  "conceptual_discipline": 0.9534883720930233,
+  "adversarial_handled_correctly": 0.76,
+  "adversarial_false_answer_rate": 0.0,
+  "router": {
+    "true_positive": 141,
+    "false_positive": 2,
+    "false_negative": 2,
+    "true_negative": 61,
+    "wrong_tool": 0,
+    "unnecessary_compute": 2,
+    "precision": 0.986013986013986,
+    "recall": 0.986013986013986
+  },
+  "invocations": 0,
+  "compute_success_rate": 0.0,
+  "valid_call_rate": 0.0,
+  "model_adoption_rate": 0.0,
+  "per_category": {
+    "LINEAR_ALGEBRA": {
+      "total": 28,
+      "correct": 26
+    },
+    "NUMERICAL_INTEGRATION": {
+      "total": 28,
+      "correct": 24
+    },
+    "DERIVATIVE": {
+      "total": 9,
+      "correct": 7
+    },
+    "ROOT_FINDING": {
+      "total": 23,
+      "correct": 11
+    },
+    "ODE": {
+      "total": 21,
+      "correct": 11
+    },
+    "OPTIMIZATION": {
+      "total": 16,
+      "correct": 14
+    },
+    "STATISTICS": {
+      "total": 25,
+      "correct": 16
+    },
+    "INTERPOLATION": {
+      "total": 16,
+      "correct": 11
+    },
+    "PARAMETER_SWEEP": {
+      "total": 15,
+      "correct": 14
+    },
+    "MIXED_RAG_COMPUTE": {
+      "total": 20,
+      "correct": 17
+    },
+    "SAFETY_CONCEPT": {
+      "total": 5,
+      "correct": 5
+    }
+  },
+  "envelope_status_histogram": {
+    "NO_INVOCATION": 206
+  },
+  "median_llm_ms": 26585.8,
+  "median_compute_ms": null,
+  "arm": "A",
+  "model": null,
+  "suite": "mango-scicomp-eval-v1",
+  "suite_sha256": "e6e3f04839c5cd0caa3f319e5c32ca511371c00a040eed25756e328a3aabf0f1",
+  "regraded": true
+}
