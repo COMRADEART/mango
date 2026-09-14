@@ -19,6 +19,15 @@ rag/corpus/*.jsonl
 # --- Evaluation predictions can be large; keep metrics/manifests ---
 evaluations/*/predictions.jsonl
 
+# --- T18 persistent memory: local runtime DBs never in git ---
+runtime/memory/*
+!runtime/memory/.gitkeep
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db-wal
+*.db-shm
+
 # --- Secrets: NEVER commit credentials or tokens ---
 .env
 *.env

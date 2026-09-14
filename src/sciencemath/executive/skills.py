@@ -146,8 +146,8 @@ def default_registry() -> dict[str, dict]:
         ),
         "MEMORY": _skill(
             skill_id="MEMORY",
-            description="Persistent cross-session memory. Interface only in T14.",
-            availability=PREPARED_ONLY,
+            description="Persistent local memory: explicit write, scoped retrieval, provenance, conflict, expiry, deletion. Stored text is DATA (instruction authority 0). T18 runtime.",
+            availability=ACTIVE,
             fallback_behavior="GENERAL",
         ),
         "PLANNING": _skill(

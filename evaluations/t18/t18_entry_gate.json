@@ -1,0 +1,453 @@
+{
+  "milestone": "T18 — Persistent Memory",
+  "phase": "T18.0 entry gate",
+  "recorded_at": "2026-09-14T15:41:49.354840+00:00",
+  "status": "PASS",
+  "git_head": "6a3e7931529632e7c523270da7f4d5f6e03df289",
+  "branch": "main",
+  "required_head": "6a3e7931529632e7c523270da7f4d5f6e03df289",
+  "starting_architecture": "Mango-4B-System-v1",
+  "scicomp_status": "ACTIVE / PROMOTED",
+  "scicomp_numeric": 0.8695652173913043,
+  "scicomp_floor": 0.848,
+  "code_status": "ACTIVE / PROMOTED",
+  "web_research_status": "ACTIVE / PROMOTED",
+  "document_status": "ACTIVE / PROMOTED",
+  "memory_status": "PREPARED_ONLY",
+  "planning_status": "EXPERIMENTAL",
+  "executive_router_status": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL",
+  "weight_promotion": "NO",
+  "paid_compute": "NOT_USED",
+  "training": "NONE",
+  "t17_historical": {
+    "decision": "PROMOTE_DOCUMENT_SKILL",
+    "methodology_debt": "T17 baseline was a mechanical NO_DOCUMENT_RUNTIME baseline rather than a true underlying-model-only document baseline. Recorded as inherited methodology debt. T17 history is not rewritten.",
+    "pytest": "1242 passed, 0 failed, 0 errors, 2 skipped",
+    "audit": "48 PASS / 0 FAIL",
+    "ready_for_t18": "YES"
+  },
+  "worktree_note": {
+    "dirty": [
+      "scripts/t18_entry_gate.py"
+    ],
+    "leftover_untracked_eval_dumps": [],
+    "leftover_policy": "Leave untouched; do not commit into t18-persistent-memory; do not mix into MEMORY artifacts.",
+    "blocks_gate": false
+  },
+  "hashes": {
+    "skill_registry": "338e7bc7e8fb2f15e24aa20c8b9d463124f9f4bac0a825639ecb81a14a0033ed",
+    "skill_registry_file": "018adc94b33cb54263e839f549a68d0c1c65354f66860e9dd3f5f2a2cc7ee0d9",
+    "code_composite": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "code_files": {
+      "src/sciencemath/code/__init__.py": "4891b6ca4ae5496b55b83a951d7488ff98c00d1421d00294b05f5d44c491aee6",
+      "src/sciencemath/code/context.py": "ad8433fa9295774af1e084af5d0a5d5cac86ef978e41a9255ac2cdec9cc41285",
+      "src/sciencemath/code/contract.py": "48837555d3f750a3282db667bc727a3045daee6aa7e0031b1758dfe13de51523",
+      "src/sciencemath/code/discovery.py": "b6a3bfdc24a2dacf68289c9a2ecf1ffb62e9e7ed6d8ec6419164c579449de310",
+      "src/sciencemath/code/editor.py": "43d822c34016ea1bd39b8c905d6117f70c37065ed8578a1889caae39c7109f7e",
+      "src/sciencemath/code/limits.py": "ad885e5e498449affdae6a635ceb3716bc2b88c0c930a5b275619ebdb55db3c8",
+      "src/sciencemath/code/multifile.py": "187aca516cfb64c29d0492afed1511df13ecc607f9dd0d924a00ac0460bde7f0",
+      "src/sciencemath/code/planner.py": "759add09c2647baec0e3178ecbd73b44363627fd19e1495711fa9bb5c79f143f",
+      "src/sciencemath/code/repair_state.py": "996fe5013d19c867729f3d8a6c020fbb584888ae87416ba527e8945c6fd53d25",
+      "src/sciencemath/code/review.py": "54bcf573b35e03ef93d3222ad8e8b9fa2b600b0e75c31a1e5f1643912d3a38f0",
+      "src/sciencemath/code/runner.py": "2435acae344c04caa7541204949e8a74c6e56790761c3f8b41546ad0ef9b3334",
+      "src/sciencemath/code/safety.py": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d",
+      "src/sciencemath/code/search.py": "3531630cec222c5538301289260842a4d92560187de617e1b4a9ab84f272fc89",
+      "src/sciencemath/code/task_contracts.py": "17932bb43b7bc5d527ab7d4c64f5fbc7c514674a3f0ec60f016bd3408658a1aa",
+      "src/sciencemath/code/testsel.py": "7326ff2f175b402b772672603612d7597802c8a13ba6e358ab894154e4d7300f"
+    },
+    "scicomp_composite": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "scicomp_files": {
+      "src/sciencemath/scicomp/__init__.py": "531a6bf484a4667f6cafcbac851a6fe18a17a4caa38a7d7b2882e35e8c55b4e7",
+      "src/sciencemath/scicomp/adoption.py": "f09b1fe1b36f18c8154bbede7b52e26aefa32f725273e478aed8601b3607d9dd",
+      "src/sciencemath/scicomp/calculus.py": "867d2495d9a96d65ee370b687d341a632fb37eb3d709c508dcb5d7644219792d",
+      "src/sciencemath/scicomp/diagnostics.py": "e858d14d401768acc71c2f7dfcadc7130a268940bbcb1d316ddbcf87461e314e",
+      "src/sciencemath/scicomp/executor.py": "769a7fd3a7fe8fe0bcf773a1b44c7cd57200497bbdb68a63d58e7fc76a9d30e7",
+      "src/sciencemath/scicomp/fidelity.py": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+      "src/sciencemath/scicomp/interpolation.py": "a3029cac41a3012bab4af9023d3ae0759e9625155c9fdfebde562690db2764e2",
+      "src/sciencemath/scicomp/invocation.py": "3bed113faa1f71a680a6c56bbc610386cc55d98d7a97dd022fd4d3a68f87d6b2",
+      "src/sciencemath/scicomp/linear_algebra.py": "7ac70a9fc9b951f7bc1fdb348ab0c390dddd65d2701c0ff319fce28ffb3da609",
+      "src/sciencemath/scicomp/ode.py": "7a543eaf8ba453856d01c2eaaa9dd89e927d9fcb8bf403b928b8489e05d53f9a",
+      "src/sciencemath/scicomp/ode_intent.py": "373b6402342cea6c14faf30c1b6db3ed8280978ea75f401d353eb3b6b241d263",
+      "src/sciencemath/scicomp/optimization.py": "d4d7a55356f3872cefe02c7808bea44eed65a29ab1b5dd0b0abdf5c4613f0318",
+      "src/sciencemath/scicomp/parameter_sweep.py": "39e677b2d37476e210c2a6165becf7da7d355f806e431c6979472a342fab2296",
+      "src/sciencemath/scicomp/planner_repair.py": "ba6fc1ea8c3c3fe0d4d59911a209bc8d328ca90d5ae3796dcfa2a6944c3d7b8f",
+      "src/sciencemath/scicomp/registry.py": "dd180ace9d5c114f4eea222bdc83856eab35038b3f9c0461d2e9b300605178e7",
+      "src/sciencemath/scicomp/result_contract.py": "d649d128cafb09cd037dd5cc0dae8fc65ba2355d81eefa6b6aa1d0c25777b434",
+      "src/sciencemath/scicomp/roots.py": "d667e84dcc1d05819800218c0dcac05506e5eeac55d573b8ec298ccd2729b0e5",
+      "src/sciencemath/scicomp/router.py": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14",
+      "src/sciencemath/scicomp/sandbox.py": "aa14cb9ab0995e259e64c812e811f9f15d6c57aeb9e52995665d32712d1fdf37",
+      "src/sciencemath/scicomp/schemas.py": "b9d9d8d54b55e06cd5d4c6056a798f45a653aeac9a8efe8e269c862e967518a1",
+      "src/sciencemath/scicomp/semantic.py": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8",
+      "src/sciencemath/scicomp/statistics.py": "f32b95d35d35bff0267c249900a2320de9456ca9143be299d7ae9855acc87e0f",
+      "src/sciencemath/scicomp/trust.py": "9f1e0d5bdc4bead90d157393257bc621138aa74809ed04117532ee27e3b21002",
+      "src/sciencemath/scicomp/verifier.py": "87eb1e5c2c82d7322d8326c7e5c33f3624a28b59fffde9263ba6d05e8f5416c5"
+    },
+    "web_research_composite": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+    "web_research_files": {
+      "src/sciencemath/web/__init__.py": "10c803604e7645c66822ab4a93d9e75e1f0f59f4ab3d2fb5d15b964c39b5fa71",
+      "src/sciencemath/web/cache.py": "0ac07a3c2ea62116f7620ecb5b9b78f296df00d94a9726ab8d3522b1edef3803",
+      "src/sciencemath/web/citations.py": "bcc18704ad02fa93dcf15f711c1c16db46a60736eb67fadca35ca8a8bb1ea92a",
+      "src/sciencemath/web/claims.py": "498793f92e591922234ddd13c661dab60f4b7303fb83d66e7f8282c7e6f6d2da",
+      "src/sciencemath/web/contract.py": "a1043d16f446fa9857f838eb25ba45e627828a961d2345cb5c87fe422981953d",
+      "src/sciencemath/web/contradiction.py": "f9941cc73f56112148b4a05da839be6e4a7c16147292a5bdce84bf8e0b77b176",
+      "src/sciencemath/web/corpus.py": "298899dfa36404822413527deb89d803c4f584514b8f3b69b4eb960603c753eb",
+      "src/sciencemath/web/diversity.py": "4a408b28e3577fe98a800b96adb5ce9e702b2f83b0ed3ef787e389480ea4ba95",
+      "src/sciencemath/web/entailment.py": "e5bcbbee2d7d1e52f7834ca3580a3fff4fa44ad03b8cb10ad821ae365cf54b77",
+      "src/sciencemath/web/extract.py": "8c07a43a183ca33f236db766b9786c4eaa19cc2ca9d1c473e25494dff6c9f0cf",
+      "src/sciencemath/web/fixture_provider.py": "616c0528e9b9faac3eb538969ac45ef9e7a8847b91403d12653ec202d8ad4d31",
+      "src/sciencemath/web/freshness.py": "50f39d97133192735c71e63e01d9bf8a5ebde634d74559f53ebd8ea3caf0c154",
+      "src/sciencemath/web/injection.py": "553bd9310b7e72fda0159cbf4cbac4669ea24349e5065b407e8034d5df60f8f6",
+      "src/sciencemath/web/limits.py": "0d891e0a37ef6b52fbc5c6970564fa8ccc51261881b427e5a610f3269321ebc1",
+      "src/sciencemath/web/live_provider.py": "a83e00288291e7e6bcee38e1d73046217bc0070dd198ccc9c1a91421d460bada",
+      "src/sciencemath/web/pipeline.py": "4be68f35e4f03e6d1d9dc79c7daae5b8b66899a801622530da707ffdff4adbbc",
+      "src/sciencemath/web/planner.py": "7846ca44a04b68a79ba4eb6511f7737e9830fc63a6ac5967e316464a47d7ebef",
+      "src/sciencemath/web/provider.py": "e5e8b99a861fd3c926d6eba65745e3aa605b8c81aa8f950dc12f2703f4371a29",
+      "src/sciencemath/web/ranking.py": "d2f5aed5eb93de0d916a456b5580ee677f5966b74879a1f2cb509e3a4659f748",
+      "src/sciencemath/web/safety.py": "9c6c8eae439fdc9ec06a8ec8dfabb55816d5def50af260ae09e8e96b476b8e72",
+      "src/sciencemath/web/source.py": "44232d0eebbe7b5552b1bb66392e9e3c99b10900dc6fec96552f7c15ca471d8b",
+      "src/sciencemath/web/trace.py": "32718a10ba433a2b35174367f375b5a39763fef4e80ee0cc1a9b22a19d2e3e69",
+      "src/sciencemath/web/trust.py": "7232fe5c78661356733a8ba2f851d59331e78d588059bc90ddbc8c4175929e52"
+    },
+    "document_composite": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+    "document_files": {
+      "src/sciencemath/document/__init__.py": "4ef8ae86fcc04c61307437e4adc710bb203a65b67f9f3081a7fb779094f503db",
+      "src/sciencemath/document/bridges.py": "e8e1f20bf089bb0c1017a21ef4e7a70e300f65e703bd12e443d8618a13a13c03",
+      "src/sciencemath/document/cache.py": "28e9f23e8805b86628132c4ab400f9ae052f2f25447b462251069fbdc92dc264",
+      "src/sciencemath/document/chunking.py": "76100741e82fd4c91a058fcf13f1ffcbd96d1b2423dcfa3deaad7e9cf10ed7d7",
+      "src/sciencemath/document/citations.py": "168038503fdba74891d5907d2d9db4b5ca5a1ded2ff7f4231573d0b97a185972",
+      "src/sciencemath/document/contract.py": "e82285e7eeb8846dca48fd646bd66f89863b3882a81d1ec1f44a0de77af08add",
+      "src/sciencemath/document/corpus.py": "0b2d9568f8d32540441ea7b9ff63a825e11cc71c901e327ba866298df7d92b5f",
+      "src/sciencemath/document/dataops.py": "75264d5b67e1abd54949f91eef77024f9e75936a5e66d9bb92893a43d36f24f3",
+      "src/sciencemath/document/identify.py": "feb2a79e7ab86a523ec5a2caa9a1214b0e2d79ac706e0b0b09b395889a70b081",
+      "src/sciencemath/document/injection.py": "8beaaed25a6df0078afc979171ccf843c6aa2587be9356d7e5c70a2407b87bb7",
+      "src/sciencemath/document/limits.py": "2688427e3aa453baf1a91fe469563abcf08c95fb2983ac1ec4808e84f502ed5e",
+      "src/sciencemath/document/models.py": "ae58dac349f166b607b61e5d7b1a084555edff84651c15f24c3fdb69a823aa19",
+      "src/sciencemath/document/ops.py": "728f4a7b6c7b9272809e28e4dcf413b3ca9dbbc51c650f714351f10cf6af50f1",
+      "src/sciencemath/document/parsers.py": "2167da7b211e04e05839302d19780c6806689b1d2b755f48e2b003571411f8e0",
+      "src/sciencemath/document/pdfparse.py": "78d5d1c614865dcdfe1231e024f6ca673ffad1dcf682574c7aafff459cf6b52d",
+      "src/sciencemath/document/pipeline.py": "e31a364bd12886df95ae00e8f050acfd0c0029f96cf68097e00a924c2e4eb7bd",
+      "src/sciencemath/document/safety.py": "bcd211f7d977bcba7ad0ec0029a4ac7f0712efd043b7711560da5662e09002b7",
+      "src/sciencemath/document/search.py": "618f975b0b7dd69d2acfdad42e9fa63293288d789252aee15a5980f21508ed60",
+      "src/sciencemath/document/typesys.py": "e08645fcf573e436a3c82543d74cbab3e37fddbdfc2272052ae75aaabcbb3476"
+    },
+    "t4_tools": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+    "t5r_rag": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "executive_router": "6f28635a7eaa211261070043c18c436b1e919c8bacfbff12caa260418245a9ca",
+    "fidelity": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+    "fidelity_composite": "f3c74a311cbfdf7a01ff0eae13770082704fa9d96b0e6163ce665e6174d9dc28",
+    "correction_firewall": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3",
+    "correction_composite": "b1c95d975f67301fbe84d5a081c3e372d85bb0cae8f6d1a3bae1326c71ffff84",
+    "security_policies": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+  },
+  "t17_pins": {
+    "code_composite": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "scicomp_composite": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "web_research_composite": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+    "t4_tools": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+    "t5r_rag": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "security_policy": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+    "t3_adapter": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "fidelity_file": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146",
+    "correction_file": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3",
+    "fidelity_composite": "f3c74a311cbfdf7a01ff0eae13770082704fa9d96b0e6163ce665e6174d9dc28",
+    "correction_composite": "b1c95d975f67301fbe84d5a081c3e372d85bb0cae8f6d1a3bae1326c71ffff84",
+    "document_implementation": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d"
+  },
+  "checks": [
+    {
+      "check": "git_head_t17_merge",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "head": "6a3e7931529632e7c523270da7f4d5f6e03df289",
+        "required": "6a3e7931529632e7c523270da7f4d5f6e03df289",
+        "is_ancestor": true,
+        "exact": true
+      }
+    },
+    {
+      "check": "worktree_hygiene",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "dirty_n": 1,
+        "unexpected": [],
+        "dirty": [
+          "scripts/t18_entry_gate.py"
+        ],
+        "leftover_untracked_eval_dumps": [],
+        "leftover_blocks_gate": false
+      },
+      "detail": "T18 artifacts allowed; leftover prior-milestone eval dumps are recorded and left untouched; they do not block if regenerable"
+    },
+    {
+      "check": "no_uncommitted_benchmark_artifacts",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "benchmark_dirt": [],
+        "leftover_untracked_eval_dumps": []
+      }
+    },
+    {
+      "check": "t17_final_report",
+      "status": "PASS",
+      "critical": true,
+      "measured": "evaluations\\t17\\T17_FINAL_REPORT.md",
+      "detail": "T17 CLOSED and Ready for T18 = YES"
+    },
+    {
+      "check": "t17_final_audit",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "gates_total": 48,
+        "passes": 48,
+        "fails": [],
+        "decision": "PROMOTE_DOCUMENT_SKILL"
+      }
+    },
+    {
+      "check": "scicomp_active",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "registry_availability": "EXPERIMENTAL",
+        "semantic_status": "ACTIVE / PROMOTED",
+        "decision": "PROMOTE_SCICOMP_LAB",
+        "numeric": 0.8695652173913043
+      },
+      "detail": "SciComp lab is promoted ACTIVE; registry may remain EXPERIMENTAL until an independent availability flip. T18 must not change this."
+    },
+    {
+      "check": "code_active",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "availability": "ACTIVE",
+        "executable": true
+      }
+    },
+    {
+      "check": "web_research_active",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "availability": "ACTIVE",
+        "executable": true
+      }
+    },
+    {
+      "check": "document_active",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "availability": "ACTIVE",
+        "executable": true
+      }
+    },
+    {
+      "check": "memory_prepared_only",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "availability": "PREPARED_ONLY",
+        "executable": false
+      }
+    },
+    {
+      "check": "executive_router_experimental",
+      "status": "PASS",
+      "critical": true,
+      "measured": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL"
+    },
+    {
+      "check": "planning_unchanged",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "availability": "EXPERIMENTAL"
+      }
+    },
+    {
+      "check": "skill_registry_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "338e7bc7e8fb2f15e24aa20c8b9d463124f9f4bac0a825639ecb81a14a0033ed",
+      "detail": "post-T17 registry (DOCUMENT ACTIVE); not equal to T17.1 freeze"
+    },
+    {
+      "check": "scicomp_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite_lf": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+        "pin": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+        "mismatch_vs_t17_freeze": []
+      }
+    },
+    {
+      "check": "code_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+        "pin": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627"
+      }
+    },
+    {
+      "check": "web_research_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+        "pin": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4"
+      }
+    },
+    {
+      "check": "document_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+        "pin": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+        "files": {
+          "src/sciencemath/document/__init__.py": "4ef8ae86fcc04c61307437e4adc710bb203a65b67f9f3081a7fb779094f503db",
+          "src/sciencemath/document/bridges.py": "e8e1f20bf089bb0c1017a21ef4e7a70e300f65e703bd12e443d8618a13a13c03",
+          "src/sciencemath/document/cache.py": "28e9f23e8805b86628132c4ab400f9ae052f2f25447b462251069fbdc92dc264",
+          "src/sciencemath/document/chunking.py": "76100741e82fd4c91a058fcf13f1ffcbd96d1b2423dcfa3deaad7e9cf10ed7d7",
+          "src/sciencemath/document/citations.py": "168038503fdba74891d5907d2d9db4b5ca5a1ded2ff7f4231573d0b97a185972",
+          "src/sciencemath/document/contract.py": "e82285e7eeb8846dca48fd646bd66f89863b3882a81d1ec1f44a0de77af08add",
+          "src/sciencemath/document/corpus.py": "0b2d9568f8d32540441ea7b9ff63a825e11cc71c901e327ba866298df7d92b5f",
+          "src/sciencemath/document/dataops.py": "75264d5b67e1abd54949f91eef77024f9e75936a5e66d9bb92893a43d36f24f3",
+          "src/sciencemath/document/identify.py": "feb2a79e7ab86a523ec5a2caa9a1214b0e2d79ac706e0b0b09b395889a70b081",
+          "src/sciencemath/document/injection.py": "8beaaed25a6df0078afc979171ccf843c6aa2587be9356d7e5c70a2407b87bb7",
+          "src/sciencemath/document/limits.py": "2688427e3aa453baf1a91fe469563abcf08c95fb2983ac1ec4808e84f502ed5e",
+          "src/sciencemath/document/models.py": "ae58dac349f166b607b61e5d7b1a084555edff84651c15f24c3fdb69a823aa19",
+          "src/sciencemath/document/ops.py": "728f4a7b6c7b9272809e28e4dcf413b3ca9dbbc51c650f714351f10cf6af50f1",
+          "src/sciencemath/document/parsers.py": "2167da7b211e04e05839302d19780c6806689b1d2b755f48e2b003571411f8e0",
+          "src/sciencemath/document/pdfparse.py": "78d5d1c614865dcdfe1231e024f6ca673ffad1dcf682574c7aafff459cf6b52d",
+          "src/sciencemath/document/pipeline.py": "e31a364bd12886df95ae00e8f050acfd0c0029f96cf68097e00a924c2e4eb7bd",
+          "src/sciencemath/document/safety.py": "bcd211f7d977bcba7ad0ec0029a4ac7f0712efd043b7711560da5662e09002b7",
+          "src/sciencemath/document/search.py": "618f975b0b7dd69d2acfdad42e9fa63293288d789252aee15a5980f21508ed60",
+          "src/sciencemath/document/typesys.py": "e08645fcf573e436a3c82543d74cbab3e37fddbdfc2272052ae75aaabcbb3476"
+        }
+      }
+    },
+    {
+      "check": "correction_firewall_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3"
+    },
+    {
+      "check": "fidelity_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146"
+    },
+    {
+      "check": "security_policy_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+        "pin": "7b7417c49a7f1b699e3cc22fec2a74098ec017b0d65d8e85fb73ffe8ad0d3419",
+        "files": {
+          "src/sciencemath/code/safety.py": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d",
+          "tests/test_t15_code_security.py": "7d48c2a8468df9952954fdfd0d21dc079db2014ebb8c8a88b7d0737ebfbe9f14",
+          "tests/test_t11_security.py": "cfd9d249c21316e67a7c597f0d0affe0a3f5d35af9ec18972799cbd4838450a8"
+        }
+      }
+    },
+    {
+      "check": "t3_adapter_identity",
+      "status": "PASS",
+      "critical": true,
+      "measured": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+    },
+    {
+      "check": "executive_router_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "lf": "6f28635a7eaa211261070043c18c436b1e919c8bacfbff12caa260418245a9ca",
+        "raw": "2d7c59e91f5ce60354a2370ea696e4f029c66296e619f99bc5f2055c8a729e36"
+      },
+      "detail": "Post-T17 router (DOCUMENT availability integration). Not promoted."
+    },
+    {
+      "check": "t4_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7",
+        "pin": "3dadd23df1cf9bb10421a9abe316edcfca9e553f714980aca1764e5f53855da7"
+      }
+    },
+    {
+      "check": "t5r_hash",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "composite": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+        "pin": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742"
+      }
+    },
+    {
+      "check": "no_merge_rebase_in_progress",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "merge_head": false,
+        "rebase": false
+      }
+    },
+    {
+      "check": "environment_recorded",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "os": "Windows 11",
+        "python": "3.12.10",
+        "runtime": "Mango-4B-System-v1",
+        "model": "Qwen/Qwen3-4B-Instruct-2507",
+        "torch": "2.5.1+cu121",
+        "cuda_available": true,
+        "transformers": "5.16.1"
+      },
+      "detail": "transformers pin 5.16.1"
+    },
+    {
+      "check": "no_stale_evaluation_processes",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "gpu_query": "247, 6141, 12",
+        "compute_apps": [
+          "14128, C:\\Users\\allam\\AppData\\Local\\Programs\\cursor\\Cursor.exe"
+        ],
+        "mango_gpu_jobs": [],
+        "stale_eval_pids": []
+      }
+    },
+    {
+      "check": "current_pytest_green",
+      "status": "PASS",
+      "critical": true,
+      "measured": {
+        "tests": 1244,
+        "passed": 1242,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2,
+        "exit_code": 0,
+        "time_s": 41.623
+      },
+      "detail": "require 0 failed / 0 errors; do not target the historical count"
+    }
+  ],
+  "substantive_failures": [],
+  "conclusion": "All entry-gate checks PASS. T18 may proceed to T18.1 and branch t18-persistent-memory."
+}

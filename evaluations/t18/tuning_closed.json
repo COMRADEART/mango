@@ -1,0 +1,17 @@
+{
+  "milestone": "T18.67 FINAL evaluation discipline",
+  "tuning_closed_at": "2026-09-14T16:20:00+00:00",
+  "dev_run_id": "t18-dev",
+  "dev_core_acc": 1.0,
+  "dev_eval_acc": 1.0,
+  "final_checksums_frozen_before_tuning": true,
+  "mango_memory_core_v1_final_sha256": "42a548dfbc07de13ea84db76f06bcdba3572006a9ca556c1a6ca472311a58570",
+  "mango_memory_eval_v1_final_sha256": "e1009f0c8605e0c0983ca3893aba6a432c91dfc77a6183bdfb7a186246cd9f73",
+  "floors_frozen": true,
+  "post_final_row_edits": "FORBIDDEN",
+  "notes": [
+    "Development split only was used for harness/runtime tuning.",
+    "Duplicate-suppression payload padding was fixed on development before FINAL.",
+    "FINAL jsonl, gold, TTLs, scopes, and grading are frozen."
+  ]
+}

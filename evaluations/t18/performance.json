@@ -1,0 +1,13 @@
+{
+  "milestone": "T18.64 performance",
+  "recorded_at": "2026-09-14T16:10:01.384207+00:00",
+  "write_ms_mean": 3.615769999305485,
+  "retrieval_ms_mean": 1.635297499888111,
+  "recall_p95_ms": 2.7984999906038865,
+  "update_ms": 7.146199990529567,
+  "delete_ms": 3.1384999892907217,
+  "database_open_ms": 4.957199998898432,
+  "database_size_bytes": 118784,
+  "ram": "not sampled",
+  "vram": "CPU SQLite; VRAM unused"
+}

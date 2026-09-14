@@ -46,8 +46,11 @@ _WEB_REQUEST = re.compile(
 _DOC_REQUEST = re.compile(
     r"\b(this pdf|this document|spreadsheet|csv file|parse the file)\b", re.I)
 _MEM_REQUEST = re.compile(
-    r"\b(remember (that|this)|what did we discuss|from last session|"
-    r"my notes say)\b", re.I)
+    r"\b(remember (that|this)|please remember|save this fact|"
+    r"store this (fact|in memory)|what did we (discuss|choose|decide)|"
+    r"what database did we|from last session|my notes say|"
+    r"what do you remember|forget (this )?(session|project)|"
+    r"my preferred editor)\b", re.I)
 _PLAN_REQUEST = re.compile(
     r"\b(make a plan|plan the steps|break this into steps|"
     r"multi-step plan)\b", re.I)
@@ -196,6 +199,15 @@ def _select(question: str, nec: dict, prec: dict, t4: dict,
             follow_d = ["CODE"]
         return "DOCUMENT", follow_d, "document intelligence; evidence then tools"
 
+    # T18 availability integration only: MEMORY when executable.
+    if asked["memory"] and reg.executable("MEMORY"):
+        follow_m: list[str] = []
+        if nec["necessity"] == COMPUTE_REQUIRED and reg.executable("SCICOMP"):
+            follow_m = ["SCICOMP"]
+        elif asked["code"] and reg.executable("CODE"):
+            follow_m = ["CODE"]
+        return "MEMORY", follow_m, "persistent memory; data not policy"
+
     if nec["necessity"] == INSUFFICIENT_INFORMATION:
         return "NO_TOOL", [], "insufficient information; do not invent inputs"
 
@@ -322,10 +334,8 @@ def classify_routing_failure(predicted: dict, gold: dict) -> str | None:
             return None
         return "UNAVAILABLE_SKILL"
     p, g = predicted.get("primary_skill"), gold.get("primary_skill")
-    # MEMORY remains non-executable. DOCUMENT may be executed when the
-    # registry marks it executable (T17). CODE/WEB already follow that rule.
-    if g == "MEMORY" and p == g:
-        return "UNAVAILABLE_SKILL"
+    # DOCUMENT/MEMORY may be executed when the registry marks them
+    # executable (T17/T18). CODE/WEB already follow that rule.
     if gold.get("expect_unavailable_rejection") and p in ("GENERAL", "NO_TOOL"):
         return None
     if predicted.get("workflow_depth", 1) > MAX_WORKFLOW_DEPTH:

@@ -42,7 +42,12 @@ class TestSkillRegistry:
             assert not reg.executable("DOCUMENT")
         else:
             assert reg.executable("DOCUMENT")
-        assert not reg.executable("MEMORY")
+        assert reg.availability("MEMORY") in (PREPARED_ONLY, ACTIVE,
+                                              EXPERIMENTAL)
+        if reg.availability("MEMORY") == PREPARED_ONLY:
+            assert not reg.executable("MEMORY")
+        else:
+            assert reg.executable("MEMORY")
         assert reg.executable("SCICOMP")  # experimental is selectable
         assert reg.executable("MATH_T4")
 

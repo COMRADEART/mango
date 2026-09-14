@@ -1,0 +1,14 @@
+{
+  "milestone": "T18.65 real local persistence smoke",
+  "recorded_at": "2026-09-14T16:10:01.044723+00:00",
+  "database": "C:\\Users\\allam\\AppData\\Local\\Temp\\mango_t18_smoke_exsljfnk\\smoke.sqlite",
+  "outside_fixtures": true,
+  "steps": {
+    "write": true,
+    "restart_read": true,
+    "update": true,
+    "update_restart": true,
+    "delete_restart": true
+  },
+  "result": "PASS"
+}
