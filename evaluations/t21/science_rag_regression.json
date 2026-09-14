@@ -1,0 +1,23 @@
+{
+  "milestone": "T21.42 SCIENCE_RAG non-regression",
+  "recorded_at": "2026-09-14T22:19:00.216837+00:00",
+  "checks": {
+    "test_rag_t5r_py": "PASS",
+    "test_scicomp_registry_active_py": "PASS",
+    "test_t14_executive_router_py": "PASS"
+  },
+  "pytest": {
+    "tests": 82,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_ok": true
+  },
+  "registry": {
+    "science_rag_availability": "ACTIVE",
+    "description_unchanged": true,
+    "verification_method": "t5r_citation_gate"
+  },
+  "science_rag_eval": "frozen T5R suite results carried forward; hash identity of src/sciencemath/rag verified PASS in protection battery (t5r_rag pin)",
+  "status": "PASS"
+}

@@ -1,0 +1,47 @@
+{
+  "milestone": "T21.2 \u2014 KNOWLEDGE_RAG registration",
+  "recorded_at": "2026-09-14T21:40:24.667265+00:00",
+  "decision": "REGISTER_KNOWLEDGE_RAG_EXPERIMENTAL",
+  "registry_sha256_after": "817a2c7b1cddd97e56448a5d760649ba28225f7d8c9b881967b96f9b22624e11",
+  "registry_sha256_before": "02699861db6bdcbae7376cb3fa76b7956e85a38f8a8b49aa3ad0d0770ffffcb3",
+  "skills_py_sha256_after": "17a74ddcb760ebf408a6c22d85aed68f3bcafc5906c17df70871c9eb424467fe",
+  "counts": {
+    "ACTIVE": 11,
+    "EXPERIMENTAL": 1
+  },
+  "knowledrag_record": {
+    "skill_id": "KNOWLEDGE_RAG",
+    "description": "Local-first general knowledge retrieval with source provenance, citation-grounded synthesis, conflict handling, freshness boundaries, and evidence-based abstention.",
+    "availability": "EXPERIMENTAL",
+    "input_schema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "preconditions": [],
+    "required_permissions": [],
+    "cost_class": "LOCAL_FREE",
+    "latency_class": "MEDIUM",
+    "offline": true,
+    "online": false,
+    "deterministic": true,
+    "verification_method": "knowledge_evidence_gate",
+    "fallback_behavior": "GENERAL",
+    "executable": true
+  },
+  "boundaries": {
+    "executive_router": "untouched; remains EXPERIMENTAL; router file not modified",
+    "science_rag": "availability unchanged (ACTIVE); not replaced",
+    "router_select": "executive_router.py not modified; KNOWLEDGE_RAG is registered-but-unrouted at T21.2",
+    "planning_targets": "KNOWLEDGE_RAG not added to planning KNOWN_TASK_SKILLS; T19 PLANNING is not an execution authority for T21.24 decomposition",
+    "orchestration_roles": "KNOWLEDGE_RAG not added to T20 role manifests; default-denied",
+    "paid_compute": "LOCAL_FREE; no PAID_COMPUTE",
+    "t20_contract_pin": "tests/test_t20_orchestration_contract.py EXPERIMENTAL count 0 -> 1 with this decision record"
+  },
+  "historical_artifacts_untouched": true
+}

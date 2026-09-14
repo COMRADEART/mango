@@ -1,0 +1,204 @@
+{
+  "milestone": "T21.57 failure analysis",
+  "recorded_at": "2026-09-14T22:23:05.281608+00:00",
+  "final_split_failures": 0,
+  "open_defects": [],
+  "per_suite": {
+    "mango-general-abstention-v1": {
+      "dev": {
+        "n": 124,
+        "failures": 0,
+        "metrics": {
+          "abstention_recall": 1.0,
+          "abstention_precision": 1.0,
+          "n": 124,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      },
+      "final": {
+        "n": 124,
+        "failures": 0,
+        "metrics": {
+          "abstention_recall": 1.0,
+          "abstention_precision": 1.0,
+          "n": 124,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      }
+    },
+    "mango-general-adversarial-v1": {
+      "dev": {
+        "n": 136,
+        "failures": 0,
+        "metrics": {
+          "containment_rate": 1.0,
+          "model_memory_backfill_events": 0,
+          "n": 136,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      },
+      "final": {
+        "n": 137,
+        "failures": 0,
+        "metrics": {
+          "containment_rate": 1.0,
+          "model_memory_backfill_events": 0,
+          "n": 137,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      }
+    },
+    "mango-general-citation-v1": {
+      "dev": {
+        "n": 160,
+        "failures": 0,
+        "metrics": {
+          "citation_resolvability": 1.0,
+          "citation_validity": 1.0,
+          "citation_precision": 1.0,
+          "n": 160,
+          "n_answered": 160,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      },
+      "final": {
+        "n": 160,
+        "failures": 0,
+        "metrics": {
+          "citation_resolvability": 1.0,
+          "citation_validity": 1.0,
+          "citation_precision": 1.0,
+          "n": 160,
+          "n_answered": 160,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      }
+    },
+    "mango-general-knowledge-rag-v1": {
+      "dev": {
+        "n": 320,
+        "failures": 0,
+        "metrics": {
+          "answer_accuracy_overall": 1.0,
+          "n": 320,
+          "answer_accuracy_macro": 1.0,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      },
+      "final": {
+        "n": 320,
+        "failures": 0,
+        "metrics": {
+          "answer_accuracy_overall": 1.0,
+          "n": 320,
+          "answer_accuracy_macro": 1.0,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      }
+    },
+    "mango-general-multihop-v1": {
+      "dev": {
+        "n": 120,
+        "failures": 0,
+        "metrics": {
+          "answer_accuracy_overall": 1.0,
+          "n": 120,
+          "answer_accuracy_macro": 1.0,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      },
+      "final": {
+        "n": 120,
+        "failures": 0,
+        "metrics": {
+          "answer_accuracy_overall": 1.0,
+          "n": 120,
+          "answer_accuracy_macro": 1.0,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      }
+    },
+    "mango-general-retrieval-v1": {
+      "dev": {
+        "n": null,
+        "failures": 0,
+        "metrics": {
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 0.9771,
+          "ndcg_at_5": 0.9831,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      },
+      "final": {
+        "n": null,
+        "failures": 0,
+        "metrics": {
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 1.0,
+          "ndcg_at_5": 1.0,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      }
+    },
+    "mango-general-temporal-boundary-v1": {
+      "dev": {
+        "n": 140,
+        "failures": 0,
+        "metrics": {
+          "explicit_current_routing_accuracy": 1.0,
+          "stale_current_false_answers": 0,
+          "unnecessary_web_rate": 0.0,
+          "n": 140,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      },
+      "final": {
+        "n": 140,
+        "failures": 0,
+        "metrics": {
+          "explicit_current_routing_accuracy": 1.0,
+          "stale_current_false_answers": 0,
+          "unnecessary_web_rate": 0.0,
+          "n": 140,
+          "rows_with_zero_tolerance_hits": 0
+        }
+      }
+    }
+  },
+  "smoke_failures": [],
+  "dev_tuning_defects_resolved_before_freeze": [
+    {
+      "defect": "rerank ranked same-entity sibling chunks by BM25 document length instead of question coverage",
+      "root_cause": "BM25 length normalization penalizes directive-appended chunks; attribute chunks share entity tokens",
+      "fix": "coverage-primary rerank (COVERAGE_WEIGHT 1.0, BM25 tie-break 0.01), preregistered before FINAL",
+      "status": "RESOLVED"
+    },
+    {
+      "defect": "multi-hop bridge missed 'writer'/'person who wrote' phrasings",
+      "root_cause": "bridge looked only at the top-ranked item",
+      "fix": "bridge scans rank order for a creator-attribute item gated by birth+creator cues",
+      "status": "RESOLVED"
+    },
+    {
+      "defect": "nonexistent-person queries matched a real person's chunks sharing only the surname",
+      "root_cause": "entity gate skipped the sentence-initial token, so the first given name was never verified",
+      "fix": "entity gate checks all capitalized non-framing tokens",
+      "status": "RESOLVED"
+    },
+    {
+      "defect": "TCP layer question abstained at the coverage gate",
+      "root_cause": "question template used 'operate' while the chunk text carried 'operates'",
+      "fix": "benchmark phrasings use the chunk's attribute verb (pre-FINAL); question templates keep the coverage-safety constraint",
+      "status": "RESOLVED"
+    },
+    {
+      "defect": "historical 'as of <year>' questions abstained at the coverage gate (found by the T21.56 smoke)",
+      "root_cause": "the as-of temporal frame contributes tokens no snapshot chunk can contain; the temporal floor metrics never measured as-of answer correctness so the eval did not surface it",
+      "fix": "for as-of-classified queries the coverage gate measures content only (as-of phrase and question-function words are framing); the full eval was re-recorded on the unchanged frozen suites",
+      "status": "RESOLVED"
+    }
+  ],
+  "zero_tolerance_observations": {}
+}

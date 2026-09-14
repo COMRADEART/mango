@@ -1,0 +1,80 @@
+{
+  "milestone": "T21.58 final audit",
+  "recorded_at": "2026-09-14T22:27:15.431915+00:00",
+  "git_head": "17359be4092ba1dc5687f77a3c37cc1acbe03185",
+  "status": "ALL_PASS",
+  "checks": {
+    "t21_0_entry_gate": {
+      "status": "PASS",
+      "detail": "entry head ?, current 17359be4092b"
+    },
+    "t21_1_frozen_components": {
+      "status": "PASS",
+      "detail": "frozen pre-T21 architecture at entry head"
+    },
+    "t21_2_registration_experimental": {
+      "status": "PASS",
+      "detail": "registry 817a2c7b1cdd..."
+    },
+    "t21_5_corpus_frozen": {
+      "status": "PASS",
+      "detail": "corpus manifest 944d45043afd..."
+    },
+    "t21_33_built_suites": {
+      "status": "PASS",
+      "detail": "{\"mango-general-abstention-v1\": {\"dev\": 124, \"final\": 124, \"total\": 248, \"min\": 240, \"ok\": true}, \"mango-general-adversarial-v1\": {\"dev\": 136, \"final\": 137, \"total\": 273, \"min\": 240, \"ok\": true}, \"mango-general-citation-v1\": {\"dev\": 160, \"final\": 160, \"total\": 320, \"min\": 300, \"ok\": true}, \"mango-general-knowledge-rag-v1\": {\"dev\": 320, \"final\": 320, \"total\": 640, \"min\": 600, \"ok\": true}, \"mango-general-multihop-v1\": {\"dev\": 120, \"final\": 120, \"total\": 240, \"min\": 240, \"ok\": true}, \"mango-general-retrieval-v1\": {\"dev\": 240, \"final\": 240, \"total\": 480, \"min\": 400, \"ok\": true}, \"mango-general-temporal-boundary-v1\": {\"dev\": 140, \"final\": 140, \"total\": 280, \"min\": 200, \"ok\": true}}"
+    },
+    "t21_43_floors_preregistered": {
+      "status": "PASS",
+      "detail": "7 suite floor maps + 20 zero-tolerance gates"
+    },
+    "t21_50_final_recorded": {
+      "status": "PASS",
+      "detail": "all floors pass on dev and final, zero tolerance all zero"
+    },
+    "t21_40_model_only_baseline": {
+      "status": "PASS",
+      "detail": "Qwen3-4B-Instruct-2507, retrieval disabled, recorded subset"
+    },
+    "t21_41_bm25_baseline": {
+      "status": "PASS",
+      "detail": "BM25 recall@5 1.0"
+    },
+    "t21_53_performance_floor": {
+      "status": "PASS",
+      "detail": "retrieval p95 0.37 ms <= 500 ms"
+    },
+    "t21_56_local_smoke": {
+      "status": "PASS",
+      "detail": "8 query types end-to-end"
+    },
+    "t21_51_protection_battery": {
+      "status": "PASS",
+      "detail": "T15R canonical blob fba2437f7863... unchanged"
+    },
+    "t21_42_science_rag_non_regression": {
+      "status": "PASS",
+      "detail": "T5R + router + registry tests, t5r_rag hash pin"
+    },
+    "t21_57_failure_analysis": {
+      "status": "PASS",
+      "detail": "5 dev tuning defects resolved before freeze; no open defects"
+    },
+    "t21_61_focused_tests": {
+      "status": "PASS",
+      "detail": "36 tests"
+    },
+    "t21_61_full_pytest": {
+      "status": "PASS",
+      "detail": "1625 tests, 2 skipped"
+    },
+    "t21_59_promotion_decision": {
+      "status": "PASS",
+      "detail": "PROMOTE_KNOWLEDGE_RAG_SKILL (applied=True)"
+    },
+    "t21_62_final_report": {
+      "status": "PASS",
+      "detail": "T21_FINAL_REPORT.md"
+    }
+  }
+}

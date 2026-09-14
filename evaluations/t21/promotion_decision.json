@@ -1,0 +1,26 @@
+{
+  "milestone": "T21.58-T21.60 final audit and promotion decision",
+  "recorded_at": "2026-09-14T22:27:04.643256+00:00",
+  "decision": "PROMOTE_KNOWLEDGE_RAG_SKILL",
+  "reason": "all preregistered floors pass on dev and final, all 20 zero-tolerance counters are zero on every row, the protection battery is ALL_PASS with the T15R canonical blob unchanged, the real local smoke passes all 8 query types, retrieval p95 is within the 500 ms floor, SCIENCE_RAG does not regress, and both baselines are recorded",
+  "gates": {
+    "floors_all_pass_both_splits": true,
+    "zero_tolerance_all_zero": true,
+    "overall_pass": true,
+    "protection_battery_all_pass": true,
+    "t15r_canonical_blob_unchanged": true,
+    "smoke_all_pass": true,
+    "performance_p95_within_floor": true,
+    "science_rag_non_regression": true,
+    "model_only_baseline_recorded": true,
+    "bm25_baseline_recorded": true,
+    "full_pytest_zero_failures": true
+  },
+  "zero_tolerance_fired": {},
+  "executive_router": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL (untouched; never claimed by T21)",
+  "registry_sha256_before_promotion": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+  "registry_sha256_promoted": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+  "applied": true,
+  "skills_py_sha256_promoted": "74e52f369c5e850d0ed929abbfbae41f714ea9fa84c1c62cbd5011adc151092a",
+  "skills_py_updated": false
+}

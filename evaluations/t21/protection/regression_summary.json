@@ -1,0 +1,102 @@
+{
+  "milestone": "T21.51/T21.52 protection battery",
+  "recorded_at": "2026-09-14T22:27:15.172403+00:00",
+  "status": "ALL_PASS",
+  "identity": {
+    "code": true,
+    "correction_firewall": true,
+    "document": true,
+    "executive_router": true,
+    "fidelity": true,
+    "historical_adapter": true,
+    "memory": true,
+    "promoted_eval_definitions": true,
+    "scicomp": true,
+    "security_policy": true,
+    "t19_planning_runtime": true,
+    "t20_orchestration_runtime": true,
+    "t4_tools": true,
+    "t5r_rag": true,
+    "t7_existing_planning": true,
+    "web_research": true,
+    "skill_registry_preregistered_delta": true,
+    "historical_write_guard_preregistered_delta": true
+  },
+  "registry_sha256_now": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+  "registry_counts": {
+    "ACTIVE": 12
+  },
+  "layers": {
+    "hash_identity": {
+      "status": "PASS",
+      "checks": {
+        "code": true,
+        "correction_firewall": true,
+        "document": true,
+        "executive_router": true,
+        "fidelity": true,
+        "historical_adapter": true,
+        "memory": true,
+        "promoted_eval_definitions": true,
+        "scicomp": true,
+        "security_policy": true,
+        "t19_planning_runtime": true,
+        "t20_orchestration_runtime": true,
+        "t4_tools": true,
+        "t5r_rag": true,
+        "t7_existing_planning": true,
+        "web_research": true,
+        "skill_registry_preregistered_delta": true,
+        "historical_write_guard_preregistered_delta": true
+      }
+    },
+    "registry_boundaries": {
+      "status": "PASS",
+      "checks": {
+        "registry_sha256_matches_preregistered_record": true,
+        "counts_active_11_or_12": true,
+        "counts_experimental_matches_state": true,
+        "science_rag_active_unchanged": true,
+        "knowledge_rag_registered": true,
+        "executive_router_experimental": true
+      }
+    },
+    "t15r_canonical_blob": {
+      "status": "PASS",
+      "blob_sha256": "fba2437f78633884bd31965d78a4250bd1ca893c"
+    },
+    "mutation": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "fidelity: 8/8 rejected, exceptions 0 -> PASS\nfidelity_transform: 0/0 rejected, exceptions 0 -> PASS\noverall: PASS -> evaluations\\t21\\mutation_safety_probe.json\n"
+    },
+    "corpus_freeze": {
+      "status": "PASS",
+      "checks": {
+        "chunks.jsonl": true,
+        "sources.jsonl": true,
+        "manifest_checksum": true,
+        "eval_results_corpus_checksum": true
+      }
+    },
+    "suite_freeze": {
+      "status": "PASS",
+      "checks": {
+        "mango-general-abstention-v1": true,
+        "mango-general-adversarial-v1": true,
+        "mango-general-citation-v1": true,
+        "mango-general-knowledge-rag-v1": true,
+        "mango-general-multihop-v1": true,
+        "mango-general-retrieval-v1": true,
+        "mango-general-temporal-boundary-v1": true
+      }
+    },
+    "security_pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "..................................s....................s................ [ 43%]\n........................................................................ [ 86%]\n.......................                                                  [100%]\n"
+    }
+  },
+  "t15r_protection_reused": true,
+  "reason": "T21 adds the knowledge package and one EXPERIMENTAL registry entry; all frozen component hashes match the T21.1 freeze, the skill_registry delta matches the preregistered T21.2 record, and the T15R canonical blob is unchanged."
+}

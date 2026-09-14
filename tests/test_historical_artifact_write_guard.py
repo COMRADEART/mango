@@ -41,6 +41,7 @@ HARNESS: dict[str, str] = {
     "T18": "scripts/t18_protection_summary.py",
     "T19": "scripts/t19_protection_summary.py",
     "T20": "scripts/t20_protection_summary.py",
+    "T21": "scripts/t21_protection_battery.py",
 }
 
 # Callers that own the historical T15R artifact and may keep the default.
@@ -125,6 +126,14 @@ def test_t20_harness_invokes_probe_with_milestone_local_out() -> None:
     tree = ast.parse((ROOT / HARNESS["T20"]).read_text(encoding="utf-8"))
     invocations = _probe_invocations(tree)
     assert invocations, "T20 harness no longer runs the mutation probe?"
+    for args in invocations:
+        assert _unsafe_reason(args) is None
+
+
+def test_t21_harness_invokes_probe_with_milestone_local_out() -> None:
+    tree = ast.parse((ROOT / HARNESS["T21"]).read_text(encoding="utf-8"))
+    invocations = _probe_invocations(tree)
+    assert invocations, "T21 harness no longer runs the mutation probe?"
     for args in invocations:
         assert _unsafe_reason(args) is None
 

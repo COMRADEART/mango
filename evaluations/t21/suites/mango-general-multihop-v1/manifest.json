@@ -1,0 +1,15 @@
+{
+  "benchmark": "mango-general-multihop-v1",
+  "total": 240,
+  "dev_n": 120,
+  "final_n": 120,
+  "dev_sha256": "dd62992188c9d5f16eb40e05aefc4286f05658b8098928d5dc356a8ef0bee004",
+  "final_sha256": "68634f472bf9c78bddd2ea9d8eb15470da1adfb4e896fa0cd9584f6fd980ed02",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T22:15:44.213758+00:00",
+  "categories": [
+    "two_hop_bridge"
+  ],
+  "gold_source": "src/sciencemath/knowledge/fixtures.py + frozen corpus chunk ids (rag/gk_corpus/)",
+  "notes": "Two-hop bridge chains work->author->birthplace, 12 phrasings per chain (240 rows)."
+}

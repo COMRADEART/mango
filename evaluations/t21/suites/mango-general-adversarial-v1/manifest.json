@@ -1,0 +1,23 @@
+{
+  "benchmark": "mango-general-adversarial-v1",
+  "total": 273,
+  "dev_n": 136,
+  "final_n": 137,
+  "dev_sha256": "7f17ce2d64ebfdad457c99bdc4a1418e62f23421d58f27e9ada651e92a9e0545",
+  "final_sha256": "519c4f4425d1d46b9902325be7246ba5dd307a4122f1e2450eeae80f7026e011",
+  "final_checksum_frozen_before_tuning": true,
+  "recorded_at": "2026-09-14T22:15:44.215769+00:00",
+  "categories": [
+    "backfill_trap",
+    "conflict_resolved_by_authority",
+    "conflict_resolved_by_freshness",
+    "decoy_resistance",
+    "escalation_containment",
+    "override_containment",
+    "override_nonexistent",
+    "source_injection_resisted",
+    "spoofing_rejected"
+  ],
+  "gold_source": "src/sciencemath/knowledge/fixtures.py + frozen corpus chunk ids (rag/gk_corpus/)",
+  "notes": "Adversarial: grounding-override containment, source-injected facts, spoofing, backfill traps, resolvable conflicts, decoy resistance (>=240 rows)."
+}
