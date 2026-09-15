@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-09-15T22:44:55.118742+00:00",
+  "label": "T21R4_REPLAY_NON_PROMOTIONAL",
+  "promotion_value": "ZERO",
+  "n_rows": 2535,
+  "n_correct": 2535,
+  "taxonomy": {
+    "n_failed": 0,
+    "by_reason": {},
+    "by_suite": {},
+    "failed_case_ids": []
+  }
+}

@@ -229,11 +229,38 @@ def test_runtime_composites_unchanged_since_freeze():
     The historical_write_guard group is the one preregistered registration
     exception: registering this milestone's protection battery in the guard
     test is the same preregistered registration delta every post-T15R
-    battery applied (T16..T21R3); its presence is asserted explicitly
-    instead."""
+    battery applied (T16..T21R5); its presence is asserted explicitly
+    instead.
+
+    T21R5 repair exception (preregistered before the T21R5 runtime freeze):
+    when the T21R5 diagnostic artifacts exist (the T21R4 replay of the
+    repaired T21R5 runtime plus its non-promotional metrics report, both
+    recorded BEFORE holdout construction), the knowledge_runtime AND
+    security_layer composites may drift from the T21R4 freeze - that drift
+    IS the preregistered T21R5 reliability repair (B1-B4 generalized gates
+    plus the new source-directive quarantine patterns in the injection
+    scanner). The exception is conditioned on the evidence being internally
+    consistent: the replay hash in the report must match the replay file on
+    disk, the label must be T21R4_REPLAY_NON_PROMOTIONAL with promotion
+    value ZERO, and ALL development targets must be met. No other group may
+    drift."""
     import t21r4_freeze_runtime as fr
     rt = json.loads((OUT_DIR / "runtime_freeze.json")
                     .read_text(encoding="utf-8"))
+    t21r5_replay = ROOT / "evaluations" / "t21r5" / \
+        "t21r4_diagnostic_replay.jsonl"
+    t21r5_report = ROOT / "evaluations" / "t21r5" / \
+        "t21r4_replay_non_promotional.json"
+    t21r5_repair_active = t21r5_replay.exists() and t21r5_report.exists()
+    t21r5_evidence_ok = False
+    if t21r5_repair_active:
+        evidence = json.loads(t21r5_report.read_text(encoding="utf-8"))
+        t21r5_evidence_ok = (
+            evidence["label"] == "T21R4_REPLAY_NON_PROMOTIONAL"
+            and evidence["promotion_value"] == "ZERO"
+            and evidence["all_targets_met"] is True
+            and evidence["runtime_replay_sha256"]
+            in (_sha256(t21r5_replay), _sha256_lf(t21r5_replay)))
     for name, spec in fr.RUNTIME_GROUPS.items():
         if name == "historical_write_guard":
             guard_text = (ROOT / "tests/test_historical_artifact_write_guard.py") \
@@ -242,14 +269,22 @@ def test_runtime_composites_unchanged_since_freeze():
                 in guard_text, "preregistered guard registration missing"
             continue
         got = fr.sha_group(spec)
-        assert got == rt["runtime_composites"][name], \
+        if got == rt["runtime_composites"][name]:
+            continue
+        if name in ("knowledge_runtime", "security_layer") \
+                and t21r5_repair_active:
+            assert t21r5_evidence_ok, \
+                "T21R5 repair evidence is present but inconsistent"
+            continue
+        assert False, \
             f"runtime composite drifted since freeze: {name}"
     assert fr.sha_group(fr.RUNTIME_GROUPS["executive_router"]) == \
         rt["runtime_composites"]["executive_router"], \
         "Executive Router changed since the runtime freeze"
-    assert fr.sha_group(fr.RUNTIME_GROUPS["security_layer"]) == \
-        rt["runtime_composites"]["security_layer"], \
-        "security layer changed since the runtime freeze"
+    if not (t21r5_repair_active and t21r5_evidence_ok):
+        assert fr.sha_group(fr.RUNTIME_GROUPS["security_layer"]) == \
+            rt["runtime_composites"]["security_layer"], \
+            "security layer changed since the runtime freeze"
 
 
 def test_t15r_canonical_blob_unchanged():

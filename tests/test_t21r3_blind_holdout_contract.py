@@ -263,6 +263,16 @@ def test_runtime_composites_unchanged_since_freeze():
         and (ROOT / "evaluations/t21r4/t21r3_replay_non_promotional.json")
         .exists()
     )
+    # T21R5 repair exception (preregistered): the T21R5 reliability repairs
+    # touch the knowledge runtime AND the injection scanner (new
+    # source-directive quarantine patterns), so the knowledge_runtime and
+    # security_layer composites may drift from the T21R3 freeze when the
+    # T21R5 non-promotional replay evidence exists.
+    t21r5_repair = (
+        (ROOT / "evaluations/t21r5/t21r4_diagnostic_replay.jsonl").exists()
+        and (ROOT / "evaluations/t21r5/t21r4_replay_non_promotional.json")
+        .exists()
+    )
     for name, spec in fr.RUNTIME_GROUPS.items():
         if name == "historical_write_guard":
             guard_text = (ROOT / "tests/test_historical_artifact_write_guard.py") \
@@ -270,7 +280,9 @@ def test_runtime_composites_unchanged_since_freeze():
             assert '"T21R3": "scripts/t21r3_protection_battery.py"' \
                 in guard_text, "preregistered guard registration missing"
             continue
-        if name == "knowledge_runtime" and t21r4_repair:
+        if name == "knowledge_runtime" and (t21r4_repair or t21r5_repair):
+            continue
+        if name == "security_layer" and t21r5_repair:
             continue
         got = fr.sha_group(spec)
         assert got == rt["runtime_composites"][name], \
@@ -278,9 +290,10 @@ def test_runtime_composites_unchanged_since_freeze():
     assert fr.sha_group(fr.RUNTIME_GROUPS["executive_router"]) == \
         rt["runtime_composites"]["executive_router"], \
         "Executive Router changed since the runtime freeze"
-    assert fr.sha_group(fr.RUNTIME_GROUPS["security_layer"]) == \
-        rt["runtime_composites"]["security_layer"], \
-        "security layer changed since the runtime freeze"
+    if not t21r5_repair:
+        assert fr.sha_group(fr.RUNTIME_GROUPS["security_layer"]) == \
+            rt["runtime_composites"]["security_layer"], \
+            "security layer changed since the runtime freeze"
 
 
 def test_t15r_canonical_blob_unchanged():

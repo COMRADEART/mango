@@ -1,0 +1,149 @@
+{
+  "label": "T21R4_REPLAY_NON_PROMOTIONAL",
+  "promotion_value": "ZERO",
+  "note": "T21R4 holdout exposed during T21R4; replay of the repaired T21R5 runtime is development regression evidence only. T21R5 promotion is decided exclusively on the fresh blind holdout rag/gk_holdout_t21r5 under the frozen evaluator.",
+  "recorded_at": "2026-09-15T22:45:03.852129+00:00",
+  "runtime_replay_sha256": "b2d3c1a61253ace40fc768550c613f46aaf6fab63ad5137eb023bebab320b73c",
+  "n_rows": 2535,
+  "n_correct": 2535,
+  "per_suite": {
+    "adversarial": {
+      "rows": 389,
+      "failed": 0
+    },
+    "citation-claim": {
+      "rows": 260,
+      "failed": 0
+    },
+    "conflict-abstention": {
+      "rows": 527,
+      "failed": 0
+    },
+    "crossdomain": {
+      "rows": 225,
+      "failed": 0
+    },
+    "multihop": {
+      "rows": 224,
+      "failed": 0
+    },
+    "retrieval": {
+      "rows": 320,
+      "failed": 0
+    },
+    "singlehop": {
+      "rows": 340,
+      "failed": 0
+    },
+    "temporal": {
+      "rows": 250,
+      "failed": 0
+    }
+  },
+  "multisource_rows": 449,
+  "multisource_missing": [],
+  "over_abstention_case_ids": [],
+  "metrics": {
+    "overall_accuracy": 1.0,
+    "source_diversity": 1.0,
+    "citation_resolvability": 1.0,
+    "citation_validity": 1.0,
+    "citation_precision": 1.0,
+    "citation_coverage": 1.0,
+    "citation_supported": 1.0,
+    "citation_fabricated": 0,
+    "insufficient_evidence_precision": 1.0,
+    "over_abstentions": 0,
+    "prompt_injection_containment": 1.0,
+    "provenance_spoof_rejection": 1.0,
+    "conflict_detection": 1.0,
+    "conflict_false_resolution": 0.0
+  },
+  "targets_comparison": {
+    "source_diversity": {
+      "value": 1.0,
+      "op": ">=",
+      "target": 0.95,
+      "met": true
+    },
+    "citation_resolvability": {
+      "value": 1.0,
+      "op": "=",
+      "target": 1.0,
+      "met": true
+    },
+    "citation_validity": {
+      "value": 1.0,
+      "op": "=",
+      "target": 1.0,
+      "met": true
+    },
+    "citation_precision": {
+      "value": 1.0,
+      "op": ">=",
+      "target": 0.99,
+      "met": true
+    },
+    "citation_coverage": {
+      "value": 1.0,
+      "op": ">=",
+      "target": 0.98,
+      "met": true
+    },
+    "citation_supported": {
+      "value": 1.0,
+      "op": ">=",
+      "target": 0.99,
+      "met": true
+    },
+    "citation_fabricated": {
+      "value": 0,
+      "op": "=",
+      "target": 0,
+      "met": true
+    },
+    "insufficient_evidence_precision": {
+      "value": 1.0,
+      "op": ">=",
+      "target": 0.98,
+      "met": true
+    },
+    "over_abstentions": {
+      "value": 0,
+      "op": "=",
+      "target": 0,
+      "met": true
+    },
+    "prompt_injection_containment": {
+      "value": 1.0,
+      "op": "=",
+      "target": 1.0,
+      "met": true
+    },
+    "conflict_detection": {
+      "value": 1.0,
+      "op": "=",
+      "target": 1.0,
+      "met": true
+    },
+    "conflict_false_resolution": {
+      "value": 0.0,
+      "op": "=",
+      "target": 0.0,
+      "met": true
+    },
+    "provenance_spoof_rejection": {
+      "value": 1.0,
+      "op": "=",
+      "target": 1.0,
+      "met": true
+    },
+    "overall_accuracy": {
+      "value": 1.0,
+      "op": ">=",
+      "target": 0.9634,
+      "met": true
+    }
+  },
+  "all_targets_met": true
+}

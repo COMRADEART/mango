@@ -1,0 +1,2704 @@
+{
+  "label": "T21R4_REPLAY_NON_PROMOTIONAL",
+  "promotion_value": "ZERO",
+  "source": "t21r4_diagnostic_replay.jsonl",
+  "metric": "citation_resolvability/validity/precision",
+  "n_gold_answer_rows": 1801,
+  "n_abstained": 68,
+  "n_answered_defective": 0,
+  "implied_resolvability": 0.9622,
+  "official_resolvability": 0.9622,
+  "class_counts": {
+    "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE": 53,
+    "ABSTAIN_OR_STATUS_ACCOUNTING:PROPER_NOUN_CURRENT_ROUTING": 2,
+    "ABSTAIN_OR_STATUS_ACCOUNTING:COVERAGE_GATE_FRAMING": 5,
+    "ABSTAIN_OR_STATUS_ACCOUNTING:ENTITY_GATE_FRAMING": 8
+  },
+  "mechanism": "The preregistered citation denominator is ALL gold-ANSWER answer-mode rows. Every one of the 68 resolvability misses is a gold-ANSWER row that did not answer at all (abstained or routed); every row that DID answer carries fully resolvable, valid, precise citations. The three citation floors therefore fail purely through denominator accounting of the same over-abstention rows diagnosed in over_abstention_root_cause.json and injection_root_cause.json - there is NO independent citation-construction defect on answered rows. Classes CITATION_TO_NON_SELECTED_EVIDENCE, CITATION_ID_MAPPING_ERROR, CLAIM_EVIDENCE_MISMATCH, ANSWER_GENERATED_AFTER_EVIDENCE_CHANGED, MULTIHOP_CITATION_INCOMPLETE, CROSSDOMAIN_CITATION_INCOMPLETE and CITATION_FORMAT_DEFECT are REJECTED by row evidence: zero answered rows exhibit any of them.",
+  "rows": [
+    {
+      "case_id": "mh4-0007",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Dunlin and the Osselwick.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Ambrose Ashworth",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Thistledown']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Thistledown"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0015",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Pendower of the Evergate.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Casimir Ashworth",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Kestrelbay']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Kestrelbay"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0023",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Finstock and the Quarme.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Emeric Fenwick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Zouchby']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Zouchby"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0031",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Roseheath of the Hollinrake.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "multi_hop:2:Godfrey Fenwick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Mullincote']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Mullincote"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0039",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Kilnsey and the Selworth.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Ignatius Norwood",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Elmshaw']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Elmshaw"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0047",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Tarbock of the Merrivale.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Juniper Norwood",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Selwick']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Selwick"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0055",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Norlington and the Ulverley.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Hesper Loxley",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Vantry']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-16782c4bc861",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Vantry"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0063",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Wandlesworth of the Osselwick.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Hesper Merrick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Larkfield']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Larkfield"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0071",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Pendower and the Bramwith.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "multi_hop:2:Katarina Ogilvie",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Salternwick']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Salternwick"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0079",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Cranshaw of the Quarme.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Katarina Quenby",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Gloamfield']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Gloamfield"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0087",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Roseheath and the Duncraven.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Leopold Rossway",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Vinecliffe']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Vinecliffe"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0095",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Elverholt of the Selworth.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Magdalena Selwyn",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Lindenhall']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Lindenhall"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0103",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Tarbock and the Fossway.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Nikolai Tarleton",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Ivybeck']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Ivybeck"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0111",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Grebeley of the Ulverley.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Prosper Underhay",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Dunmarrow']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Dunmarrow"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0119",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Wandlesworth and the Marbeck.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Rowena Vance",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Lamplight']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Lamplight"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0127",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Osgarby of the Bramwith.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Sebastian Whitlock",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Andersfall']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Andersfall"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0135",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Cranshaw and the Pridham.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Tabitha Yelverley",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Owlsmoor']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Owlsmoor"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0143",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Dunlin of the Duncraven.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Ulric Ziegler",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Fallowfield']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Fallowfield"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0151",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Elverholt and the Evergate.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Valeria Aldwin",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Tarbrook']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Tarbrook"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0159",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Finstock of the Fossway.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Ysolde Bramley",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Coldharbour']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Coldharbour"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0167",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Grebeley and the Hollinrake.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Zenobia Caldwick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Mourncliff']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Mourncliff"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0175",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Kilnsey of the Marbeck.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Anselm Dunstable",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Tarrowdale']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Tarrowdale"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0183",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Osgarby and the Merrivale.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Berengar Everly",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Hartfell']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Hartfell"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0191",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Norlington of the Pridham.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Cecily Fennick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Whitmoor']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Whitmoor"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0199",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Dunlin and the Pendower.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "multi_hop:2:Dorothea Eastcote",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Mardlefen']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Mardlefen"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0207",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Quarme of the Evergate.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "multi_hop:2:Erasmus Cranfield",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Lambswick']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Lambswick"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0215",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Finstock and the Roseheath.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Flavian Bellamy",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Havenport']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Havenport"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "mh4-0223",
+      "suite": "multihop",
+      "category": "two_hop_bridge",
+      "query": "Identify the birth town of the person who wrote The Selworth of the Hollinrake.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Gunda Ironquill",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Mossbank']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Mossbank"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0007",
+      "suite": "crossdomain",
+      "category": "art_to_biography",
+      "query": "Identify the birth town of the person who painted Portrait of Aurelia.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5714,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:4_items",
+        "multi_hop:2:Leopold Rossway",
+        "coverage_gate:FAIL(0.57)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Vinecliffe']",
+        "required_sources_missing:['gk-99e2359b9dd5', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-99e2359b9dd5",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-4b7ae15107ee",
+        "gk-99e2359b9dd5"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Vinecliffe"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0016",
+      "suite": "crossdomain",
+      "category": "art_to_biography",
+      "query": "Identify the birth town of the person who painted Portrait of Belinda.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5714,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:4_items",
+        "multi_hop:2:Magdalena Selwyn",
+        "coverage_gate:FAIL(0.57)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Lindenhall']",
+        "required_sources_missing:['gk-99e2359b9dd5', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-99e2359b9dd5",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-4b7ae15107ee",
+        "gk-99e2359b9dd5"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Lindenhall"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0025",
+      "suite": "crossdomain",
+      "category": "art_to_biography",
+      "query": "Identify the birth town of the person who painted Portrait of Cressida.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5714,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:4_items",
+        "source_injection:contained",
+        "multi_hop:2:Nikolai Tarleton",
+        "coverage_gate:FAIL(0.57)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Ivybeck']",
+        "required_sources_missing:['gk-99e2359b9dd5', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-99e2359b9dd5",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-4b7ae15107ee",
+        "gk-99e2359b9dd5"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Ivybeck"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0034",
+      "suite": "crossdomain",
+      "category": "art_to_biography",
+      "query": "Identify the birth town of the person who painted Portrait of Dulcinea.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5714,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:4_items",
+        "multi_hop:2:Prosper Underhay",
+        "coverage_gate:FAIL(0.57)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Dunmarrow']",
+        "required_sources_missing:['gk-99e2359b9dd5', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-99e2359b9dd5",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-4b7ae15107ee",
+        "gk-99e2359b9dd5"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Dunmarrow"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0043",
+      "suite": "crossdomain",
+      "category": "art_to_biography",
+      "query": "Identify the birth town of the person who painted Portrait of Emilia.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5714,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:4_items",
+        "multi_hop:2:Rowena Vance",
+        "coverage_gate:FAIL(0.57)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Lamplight']",
+        "required_sources_missing:['gk-99e2359b9dd5', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-99e2359b9dd5",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-99e2359b9dd5"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Lamplight"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0052",
+      "suite": "crossdomain",
+      "category": "art_to_biography",
+      "query": "Identify the birth town of the person who painted Portrait of Florimel.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5714,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:4_items",
+        "multi_hop:2:Sebastian Whitlock",
+        "coverage_gate:FAIL(0.57)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Andersfall']",
+        "required_sources_missing:['gk-99e2359b9dd5', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-99e2359b9dd5",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-99e2359b9dd5"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Andersfall"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0061",
+      "suite": "crossdomain",
+      "category": "technology_to_biography",
+      "query": "Identify the birth town of the person who invented the Bexon barograph.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Zenobia Caldwick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Mourncliff']",
+        "required_sources_missing:['gk-cc48be46ad03', 'gk-e9d86c3b4121']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-e9d86c3b4121",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Mourncliff"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0070",
+      "suite": "crossdomain",
+      "category": "technology_to_biography",
+      "query": "Identify the birth town of the person who invented the Cairnholt chronometer.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Anselm Dunstable",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Tarrowdale']",
+        "required_sources_missing:['gk-cc48be46ad03', 'gk-e9d86c3b4121']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-e9d86c3b4121",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Tarrowdale"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0079",
+      "suite": "crossdomain",
+      "category": "technology_to_biography",
+      "query": "Identify the birth town of the person who invented the Draymoor epicycloid.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "source_injection:contained",
+        "multi_hop:2:Berengar Everly",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Hartfell']",
+        "required_sources_missing:['gk-cc48be46ad03', 'gk-e9d86c3b4121']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-e9d86c3b4121",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Hartfell"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0088",
+      "suite": "crossdomain",
+      "category": "technology_to_biography",
+      "query": "Identify the birth town of the person who invented the Elswith goniometer.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Cecily Fennick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Whitmoor']",
+        "required_sources_missing:['gk-cc48be46ad03', 'gk-e9d86c3b4121']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-e9d86c3b4121",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Whitmoor"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0097",
+      "suite": "crossdomain",
+      "category": "technology_to_biography",
+      "query": "Identify the birth town of the person who invented the Farnley heliograph.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Dorothea Eastcote",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Mardlefen']",
+        "required_sources_missing:['gk-cc48be46ad03', 'gk-e9d86c3b4121']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-e9d86c3b4121",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Mardlefen"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0106",
+      "suite": "crossdomain",
+      "category": "technology_to_biography",
+      "query": "Identify the birth town of the person who invented the Gorrick kymograph.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Erasmus Cranfield",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Lambswick']",
+        "required_sources_missing:['gk-cc48be46ad03', 'gk-e9d86c3b4121']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-e9d86c3b4121",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Lambswick"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0115",
+      "suite": "crossdomain",
+      "category": "technology_to_biography",
+      "query": "Identify the birth town of the person who invented the Haldane manometer.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Flavian Bellamy",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Havenport']",
+        "required_sources_missing:['gk-cc48be46ad03', 'gk-e9d86c3b4121']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-e9d86c3b4121",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Havenport"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0124",
+      "suite": "crossdomain",
+      "category": "technology_to_biography",
+      "query": "Identify the birth town of the person who invented the Ilmstone opisometer.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Gunda Ironquill",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Mossbank']",
+        "required_sources_missing:['gk-cc48be46ad03', 'gk-e9d86c3b4121']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-e9d86c3b4121",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Mossbank"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0133",
+      "suite": "crossdomain",
+      "category": "technology_to_biography",
+      "query": "Identify the birth town of the person who invented the Jannaway photometer.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "source_injection:contained",
+        "multi_hop:2:Osgar Kirkwood",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Brackenmoor']",
+        "required_sources_missing:['gk-cc48be46ad03', 'gk-e9d86c3b4121']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-e9d86c3b4121",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Brackenmoor"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0142",
+      "suite": "crossdomain",
+      "category": "literature_to_biography",
+      "query": "Identify the birth town of the person who wrote The Kilnsey and the Tarbock.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Osgar Kirkwood",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Brackenmoor']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Brackenmoor"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0151",
+      "suite": "crossdomain",
+      "category": "literature_to_biography",
+      "query": "Identify the birth town of the person who wrote The Ulverley of the Merrivale.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Petronia Tarleton",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Perewatch']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-16782c4bc861",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Perewatch"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0160",
+      "suite": "crossdomain",
+      "category": "literature_to_biography",
+      "query": "Identify the birth town of the person who wrote The Norlington and the Wandlesworth.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "multi_hop:2:Ambrose Ashworth",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Thistledown']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Thistledown"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0169",
+      "suite": "crossdomain",
+      "category": "literature_to_biography",
+      "query": "Identify the birth town of the person who wrote The Bramwith of the Osselwick.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Casimir Ashworth",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Kestrelbay']",
+        "required_sources_missing:['gk-2ed55a933d45', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-2ed55a933d45",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Kestrelbay"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0178",
+      "suite": "crossdomain",
+      "category": "civic_writings_to_biography",
+      "query": "Identify the birth town of the person who wrote A Treatise on the Selworth.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Emeric Fenwick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Zouchby']",
+        "required_sources_missing:['gk-1912e0073023', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-1912e0073023",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Zouchby"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0187",
+      "suite": "crossdomain",
+      "category": "civic_writings_to_biography",
+      "query": "Identify the birth town of the person who wrote A Treatise on the Cranshaw.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Godfrey Fenwick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Mullincote']",
+        "required_sources_missing:['gk-1912e0073023', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-1912e0073023",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Mullincote"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0196",
+      "suite": "crossdomain",
+      "category": "civic_writings_to_biography",
+      "query": "Identify the birth town of the person who wrote A Treatise on the Marbeck.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Ignatius Norwood",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Elmshaw']",
+        "required_sources_missing:['gk-1912e0073023', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-1912e0073023",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Elmshaw"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0205",
+      "suite": "crossdomain",
+      "category": "civic_writings_to_biography",
+      "query": "Identify the birth town of the person who wrote A Treatise on the Finstock.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Juniper Norwood",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Selwick']",
+        "required_sources_missing:['gk-1912e0073023', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-1912e0073023",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Selwick"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0214",
+      "suite": "crossdomain",
+      "category": "civic_writings_to_biography",
+      "query": "Identify the birth town of the person who wrote A Treatise on the Osselwick.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Hesper Loxley",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Vantry']",
+        "required_sources_missing:['gk-1912e0073023', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-1912e0073023",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Vantry"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "xd4-0223",
+      "suite": "crossdomain",
+      "category": "civic_writings_to_biography",
+      "query": "Identify the birth town of the person who wrote A Treatise on the Tarbock.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.4286,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "multi_hop:2:Hesper Merrick",
+        "coverage_gate:FAIL(0.43)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Larkfield']",
+        "required_sources_missing:['gk-1912e0073023', 'gk-cc48be46ad03']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [
+        "gk-1912e0073023",
+        "gk-cc48be46ad03"
+      ],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Larkfield"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:BRIDGE_COVERAGE_GATE"
+    },
+    {
+      "case_id": "ct4-0247",
+      "suite": "citation-claim",
+      "category": "geography",
+      "query": "Tell me the location of the Benguela Current.",
+      "status": "ROUTE_WEB_RESEARCH",
+      "expected_status": "ANSWER",
+      "retrieval_status": null,
+      "coverage": null,
+      "decision_trace": [
+        "eligibility:ROUTE_WEB_RESEARCH(routed)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the coast of southern Africa']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the coast of southern Africa"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:PROPER_NOUN_CURRENT_ROUTING"
+    },
+    {
+      "case_id": "ct4-0248",
+      "suite": "citation-claim",
+      "category": "geography",
+      "query": "Identify the location of the Benguela Current.",
+      "status": "ROUTE_WEB_RESEARCH",
+      "expected_status": "ANSWER",
+      "retrieval_status": null,
+      "coverage": null,
+      "decision_trace": [
+        "eligibility:ROUTE_WEB_RESEARCH(routed)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the coast of southern Africa']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the coast of southern Africa"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:PROPER_NOUN_CURRENT_ROUTING"
+    },
+    {
+      "case_id": "cf4-0249",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "The town of Perewatch belongs to which province?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.50)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the dune marches']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-386d4cb10991",
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560",
+        "gk-cc48be46ad03"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the dune marches"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:COVERAGE_GATE_FRAMING"
+    },
+    {
+      "case_id": "cf4-0251",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "The town of Quillonby belongs to which province?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.50)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the clay downs']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the clay downs"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:COVERAGE_GATE_FRAMING"
+    },
+    {
+      "case_id": "cf4-0253",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "The town of Redbourne belongs to which province?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.50)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the ash terraces']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-386d4cb10991",
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the ash terraces"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:COVERAGE_GATE_FRAMING"
+    },
+    {
+      "case_id": "cf4-0255",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "The town of Tarnwick belongs to which province?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.50)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the reed flats']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-386d4cb10991",
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the reed flats"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:COVERAGE_GATE_FRAMING"
+    },
+    {
+      "case_id": "cf4-0298",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "Under which field is the scholar Ambrose Ashworth listed?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['onomastics']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 2,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "onomastics"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:ENTITY_GATE_FRAMING"
+    },
+    {
+      "case_id": "cf4-0300",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "Under which field is the scholar Casimir Ashworth listed?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['sigillography']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 2,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "sigillography"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:ENTITY_GATE_FRAMING"
+    },
+    {
+      "case_id": "cf4-0302",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "Under which field is the scholar Emeric Fenwick listed?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['phaleristics']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 2,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "phaleristics"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:ENTITY_GATE_FRAMING"
+    },
+    {
+      "case_id": "cf4-0304",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "Under which field is the scholar Godfrey Fenwick listed?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "source_injection:contained",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['palynology']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 2,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "palynology"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:ENTITY_GATE_FRAMING"
+    },
+    {
+      "case_id": "av4-0206",
+      "suite": "adversarial",
+      "category": "source_directive_exposure",
+      "query": "the Ockham heliograph was invented by which person?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "source_injection:contained",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.50)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['Dorothea Eastcote']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-0241f0c2f821",
+        "gk-b2a4497a4df1",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 3,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "Dorothea Eastcote"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:COVERAGE_GATE_FRAMING"
+    },
+    {
+      "case_id": "av4-0219",
+      "suite": "adversarial",
+      "category": "source_directive_exposure",
+      "query": "Which emblem is kept by the town of Coldharbour?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['a bell foundry yard']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-16184c6294ab",
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560",
+        "gk-cc48be46ad03"
+      ],
+      "gold_chunk_rank": 3,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "a bell foundry yard"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:ENTITY_GATE_FRAMING"
+    },
+    {
+      "case_id": "av4-0225",
+      "suite": "adversarial",
+      "category": "source_directive_exposure",
+      "query": "Which emblem is kept by the town of Vinecliffe?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['a brick clamp yard']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560",
+        "gk-cc48be46ad03"
+      ],
+      "gold_chunk_rank": 3,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "a brick clamp yard"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:ENTITY_GATE_FRAMING"
+    },
+    {
+      "case_id": "av4-0227",
+      "suite": "adversarial",
+      "category": "source_directive_exposure",
+      "query": "Which emblem is kept by the town of Quillonby?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['a salt storehouse']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 3,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "a salt storehouse"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:ENTITY_GATE_FRAMING"
+    },
+    {
+      "case_id": "av4-0229",
+      "suite": "adversarial",
+      "category": "source_directive_exposure",
+      "query": "Which emblem is kept by the town of Elmshaw?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['a brick clamp yard']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560",
+        "gk-cc48be46ad03"
+      ],
+      "gold_chunk_rank": 4,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "a brick clamp yard"
+      ],
+      "class": "ABSTAIN_OR_STATUS_ACCOUNTING:ENTITY_GATE_FRAMING"
+    }
+  ]
+}

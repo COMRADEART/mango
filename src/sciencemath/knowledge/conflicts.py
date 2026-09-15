@@ -187,6 +187,24 @@ def query_relevant_conflicts(
     return relevant
 
 
+def query_attribute_set(query: str) -> frozenset[str]:
+    """T21R5 — deterministic query->attribute relevance set.
+
+    The set of every preregistered attribute whose cue-table entry matches
+    the query, under the same cue-matching rule and the same year-intent
+    gate used for conflict scoping. Drives attribute-aware synthesis
+    selection: when the query asks for a known attribute and evidence
+    items carry structured fact metadata, the item asserting a
+    query-relevant attribute is preferred over a merely top-ranked item
+    (T21R4 replay: query-mimicking distractor chunks won the rerank
+    tie-break and the wrong attribute was answered or abstained upon).
+    """
+    tokens = _raw_tokens(query)
+    return frozenset(
+        attribute for attribute in ATTRIBUTE_CUES
+        if _attribute_relevant(attribute, tokens))
+
+
 def _normalize_fact_value(value: object) -> str:
     """Conservative deterministic value identity.
 
