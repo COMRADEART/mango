@@ -1,0 +1,110 @@
+{
+  "milestone": "T21R5.16 blind holdout freeze",
+  "frozen_at": "2026-09-15T23:39:31.089598+00:00",
+  "holdout_total": 3531,
+  "minimum_holdout_total": 2600,
+  "one_shot_rule": "After HOLDOUT_FROZEN exists: no runtime change, no evaluator-semantics change, no gold change, no query change, no corpus change, no floor lowering, no category change, no dropping failing cases, no adding special-case exceptions, no regenerating failing cases, no scoring-semantics change, no per-suite preview or dry run. The first runtime exposure of every holdout row is the official evaluation. A real capability failure is recorded and T21R5 fails; repairs belong to a future milestone with a new unseen holdout.",
+  "blindness_rule": "Before HOLDOUT_FROZEN, no Mango runtime function may be executed against any T21R5 candidate holdout query, gold row, source, chunk set, or corpus: no answer_knowledge, no retrieve, no knowledge pipeline entrypoint, no claim-evidence gate, no citation verifier, no conflict resolver, no freshness router, no entity gate, no reranker, and no wrapper invoking the KNOWLEDGE_RAG runtime. Statically enforced by the T21R5 AST blindness firewall tests.",
+  "freeze_inputs": {
+    "runtime_freeze": {
+      "path": "evaluations/t21r5/runtime_freeze.json",
+      "sha256": "52f9c0de9c2ee123fbd079f379dd669c7c78c093f456d82140e75a0930907618"
+    },
+    "evaluator_freeze": {
+      "path": "evaluations/t21r5/evaluator_freeze.json",
+      "sha256": "d23ed5c927a6d1c12a9c19791f77085fbea4104efb35da5359b1f2a60a6d6410"
+    },
+    "validation_contract": {
+      "path": "evaluations/t21r5/validation_contract.json",
+      "sha256": "b135fa55802cabbcb075ce669bbb49c2752ceb3b2949aae297f6f06bffbb9719"
+    },
+    "static_gold_audit": {
+      "path": "evaluations/t21r5/static_gold_audit.json",
+      "sha256": "a2905fe45550b2e89151686d7487b7a79af63cdf400b37fac460f3b3e4b52fcb"
+    },
+    "holdout_uniqueness": {
+      "path": "evaluations/t21r5/holdout_uniqueness.json",
+      "sha256": "c254f2ce4e231a5c91ff45d00efd38a15808d1eeeeb1026e4c32aec79c0df5cd"
+    },
+    "world_builder": {
+      "path": "scripts/t21r5_world.py",
+      "sha256": "114cfcb9548f6a7ce435b4c1c257411eaa5df2a403ac89010f194e8fba06232a"
+    },
+    "corpus_renderer": {
+      "path": "scripts/t21r5_render_corpus.py",
+      "sha256": "7c1d54682e2dd4a705f83d3511768295aa3846d847f70aac226a460dc94e83a3"
+    },
+    "suite_builder": {
+      "path": "scripts/t21r5_build_suites.py",
+      "sha256": "84936078b1e067fb9e458fc061ed035a87a9bca5e91e54c53ba2d2ccb7768276"
+    },
+    "static_audit_script": {
+      "path": "scripts/t21r5_static_gold_audit.py",
+      "sha256": "fe18cedf365d659f0fe310ac1fee601e9ce4390ebac77420a6bf16fa93857f9f"
+    },
+    "uniqueness_script": {
+      "path": "scripts/t21r5_uniqueness.py",
+      "sha256": "792b7b8588c2001c05a47e93eaf58a112038853008e64364487fef4aaff12833"
+    },
+    "evaluator_freeze_script": {
+      "path": "scripts/t21r5_freeze_evaluator.py",
+      "sha256": "2f571f38a54ed460d80a414c7dfe41ba56c30a8a664a335b92f38222471080f5"
+    },
+    "evaluator": {
+      "path": "scripts/t21r5_run_eval.py",
+      "sha256": "feae0cbc1301c22d72ea2fdb0bf5209c125615fe96b08ec3529803a09f09588b"
+    }
+  },
+  "corpus": {
+    "world.jsonl": {
+      "path": "rag/gk_holdout_t21r5/world.jsonl",
+      "sha256": "d539cfe40f1aed7f62d56f6d001d2a7099fd458919853778442d09d59955386f"
+    },
+    "sources.jsonl": {
+      "path": "rag/gk_holdout_t21r5/sources.jsonl",
+      "sha256": "de0a1ba36ed2ac4ed296059c49f3d7ab661a90822c5972f8b3ee1dea5c436bc7"
+    },
+    "chunks.jsonl": {
+      "path": "rag/gk_holdout_t21r5/chunks.jsonl",
+      "sha256": "483ee5eb12b803bcd142778e4b6f82536597dd70ac51547919227f39fbaebf14"
+    },
+    "corpus_manifest.json": {
+      "path": "rag/gk_holdout_t21r5/corpus_manifest.json",
+      "sha256": "00c23998f201a1579337c734f06e5e6a4f4180753d97874fb8d64978d29d6619"
+    }
+  },
+  "suites": {
+    "mango-t21r5-retrieval-holdout-v1": {
+      "rows": 488,
+      "holdout_sha256": "26850442754dbbac8c87f698c8464c0f01942ea1d91907351e7891967ab1632a"
+    },
+    "mango-t21r5-singlehop-holdout-v1": {
+      "rows": 512,
+      "holdout_sha256": "90e3a1f95a6cb31268b3380f9389182fb93a7504be0785c023be58ba8066ad1e"
+    },
+    "mango-t21r5-multihop-holdout-v1": {
+      "rows": 288,
+      "holdout_sha256": "e33ca5b78628eda6ee139ed9b1624dd48caa43e79c3a854ba04827eec5de48de"
+    },
+    "mango-t21r5-crossdomain-holdout-v1": {
+      "rows": 400,
+      "holdout_sha256": "4d2c196d5dceecc9eb594b859d725a47d9156eec634eb1b19b0fde78cc52467f"
+    },
+    "mango-t21r5-citation-claim-holdout-v1": {
+      "rows": 349,
+      "holdout_sha256": "c7310d8cd432ebd486a61a2c992e00637c133322b7568d86ec16219978854078"
+    },
+    "mango-t21r5-conflict-abstention-holdout-v1": {
+      "rows": 669,
+      "holdout_sha256": "559dc74f77927129839ea321e6b994a640d94aed53fea40d92693cff6d3c3378"
+    },
+    "mango-t21r5-temporal-holdout-v1": {
+      "rows": 250,
+      "holdout_sha256": "c5a0ddb6304d4622a6a113985c12bac0f6cd16629fa4c87348d7f7cffc7dca3b"
+    },
+    "mango-t21r5-adversarial-holdout-v1": {
+      "rows": 575,
+      "holdout_sha256": "463baeeab8adfbe5dacf968d1aa601ea38c5d79b8ba04f564933fed061026dc6"
+    }
+  }
+}

@@ -31,6 +31,38 @@ FRESH_ACTION_ROUTE_WEB = "ROUTE_WEB_RESEARCH"
 _CORPUS_SNAPSHOT = "2026-01-31"
 _CORPUS_SNAPSHOT_YEAR = 2026
 
+# T21R5 — proper-noun currency guard. The word "Current" as the second
+# element of a proper-noun compound ("Benguela Current", "Kuroshio
+# Current") is part of a NAME, not a currency cue: routing such a query to
+# WEB_RESEARCH is a false temporal signal (T21R4 replay: two geography
+# rows routed instead of answering). A capitalized "Current" counts as
+# part of a proper-noun compound only when it is immediately preceded by
+# a capitalized non-function word; lowercase "current" ("current mayor")
+# and sentence-initial "Current" remain currency cues.
+_FUNCTION_WORD_CAPS = frozenset({
+    "the", "a", "an", "of", "in", "on", "at", "to", "and", "or", "is",
+    "was", "its", "his", "her", "their", "this", "that", "as", "for",
+    "with", "by", "from", "not", "but",
+})
+_CAP_PREDECESSOR_RE = re.compile(r"([A-Za-z][\w'-]*)$")
+
+
+def _explicit_current_cues(text: str) -> list[re.Match]:
+    """Real currency-cue matches in text, excluding proper-noun
+    compounds ("Benguela Current")."""
+    cues = []
+    for m in _EXPLICIT_CURRENT.finditer(text):
+        if m.group(0).lower() != "current":
+            cues.append(m)
+            continue
+        prefix = text[:m.start()].rstrip(" \t\"'(")
+        prev = _CAP_PREDECESSOR_RE.search(prefix)
+        if prev and prev.group(1)[:1].isupper() and \
+                prev.group(1).lower() not in _FUNCTION_WORD_CAPS:
+            continue  # proper-noun compound, not a currency cue
+        cues.append(m)
+    return cues
+
 
 def _historical_year(query: str) -> int | None:
     m = _HISTORICAL_AS_OF.search(query)
@@ -52,7 +84,8 @@ def classify_query_freshness(query: str) -> dict:
     """
     signals: list[str] = []
     as_of_year = _historical_year(query)
-    current_hit = _EXPLICIT_CURRENT.search(query)
+    current_hits = _explicit_current_cues(query)
+    current_hit = current_hits[0] if current_hits else None
     latest_hit = _LATEST_RECENT.search(query)
 
     if current_hit:
@@ -122,8 +155,10 @@ def snapshot_is_current_claim_safe(text: str) -> bool:
     ("currently", "as of today") unless the query itself was historical
     'as of' phrasing answered with the frozen frame made explicit.
     """
-    lowered = text.lower()
-    return not _EXPLICIT_CURRENT.search(lowered)
+    # The cue regex is case-insensitive, so the ORIGINAL text is scanned:
+    # lowercasing here would erase the proper-noun capitalization that
+    # distinguishes "Benguela Current" (a name) from "current" (a cue).
+    return not _explicit_current_cues(text)
 
 
 CORPUS_SNAPSHOT_DATE = _CORPUS_SNAPSHOT

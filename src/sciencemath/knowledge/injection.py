@@ -36,14 +36,47 @@ _SOURCE_DIRECTIVE_PATTERNS = (
      re.compile(r"write (?:this|it|that) into (?:memory|your memory|storage)"
                 r"|remember this forever", re.IGNORECASE)),
     ("execute_instructions",
-     re.compile(r"run|execute (?:the following|this) (?:command|code|"
-                r"instruction)", re.IGNORECASE)),
+     # T21R5: the T21R4 pattern matched a bare "run" anywhere, quarantining
+     # safe factual sentences that merely contain the word; the directive
+     # form requires an explicit command/instruction object.
+     re.compile(r"\b(?:run|execute) (?:the following|this) "
+                r"(?:command|code|instruction|script)", re.IGNORECASE)),
     ("authority_claim",
      re.compile(r"(?:i am|this is) (?:the )?(?:system|administrator|"
                 r"developer|official|authoritative)", re.IGNORECASE)),
     ("cite_regardless",
      re.compile(r"cite (?:this|me) (?:source )?(?:even if|regardless|whether"
                 r" or not)", re.IGNORECASE)),
+    # --- T21R5 B4: fresh general directive classes (new attack wording) ---
+    ("fake_system_message",
+     re.compile(r"(?:system|developer|admin(?:istrator)?)\s*"
+                r"(?:message|prompt|notice|override)\s*:|"
+                r"you are now (?:a|an|the)", re.IGNORECASE)),
+    ("trust_this_source",
+     re.compile(r"trust (?:this|the|only this|only the) "
+                r"(?:source|text|record|passage|document)|"
+                r"believe (?:this|the) (?:source|passage)", re.IGNORECASE)),
+    ("evidence_override",
+     re.compile(r"regardless of (?:the )?(?:evidence|facts|sources)|"
+                r"whether or not it (?:is|was|appears|exists)",
+                re.IGNORECASE)),
+    ("omit_citations",
+     re.compile(r"(?:do not|don't|never) (?:include|emit|add|use|show) "
+                r"(?:any )?citations|omit (?:the )?citations|"
+                r"without (?:any )?citations", re.IGNORECASE)),
+    ("answer_forcing",
+     re.compile(r"answer (?:\"[^\"]{1,40}\"|'[^']{1,40}')|"
+                r"(?:always )?(?:state|say|claim) that [^.]{0,60}"
+                r"(?:regardless|even if)", re.IGNORECASE)),
+    ("ignore_user",
+     re.compile(r"(?:ignore|disregard) (?:the |this |any |all )?user\b|"
+                r"(?:ignore|disregard) (?:the |this )?"
+                r"(?:user's|question|request|question asked)",
+                re.IGNORECASE)),
+    ("ignore_citations_directive",
+     re.compile(r"ignore (?:the |all |any )?citations\b|"
+                r"answer (?:without|with no) citations",
+                re.IGNORECASE)),
 )
 
 _QUERY_OVERRIDE_PATTERNS = (
@@ -113,4 +146,39 @@ def scan_query_injection(query: str) -> dict:
         "flagged": bool(patterns),
         "patterns": patterns,
         "grounding_policy_upheld": True,
+    }
+
+
+# T21R5 B4 — sentence-level source-text quarantine.
+_SENT_RE = re.compile(r"(?<=[.!?])\s+")
+
+
+def quarantine_source_text(text: str) -> dict:
+    """Deterministic sentence-level quarantine of retrieved directives.
+
+    Retrieved text is DATA with instruction authority 0 (T21R5 B4). The
+    chunk text is split into sentences; each sentence is classified by the
+    source-directive pattern table. Directive sentences are QUARANTINED:
+    they carry instruction authority 0 and must never be selected as
+    answer content. Safe factual sentences in the same chunk remain fully
+    usable with unchanged provenance. When a directive phrase shares a
+    sentence with a factual claim, the whole sentence is quarantined —
+    span surgery inside a sentence is not deterministic enough to risk.
+
+    Returns {safe_text, quarantined_sentences, n_quarantined}; an
+    unflagged chunk yields the full text as safe_text. No model, no
+    execution: the directive is recorded, never obeyed.
+    """
+    sentences = [s.strip() for s in _SENT_RE.split(text) if s.strip()]
+    safe: list[str] = []
+    quarantined: list[str] = []
+    for sentence in sentences:
+        if scan_source_text(sentence)["flagged"]:
+            quarantined.append(sentence)
+        else:
+            safe.append(sentence)
+    return {
+        "safe_text": " ".join(safe) if safe else "",
+        "quarantined_sentences": quarantined,
+        "n_quarantined": len(quarantined),
     }

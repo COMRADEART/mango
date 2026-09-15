@@ -1,0 +1,327 @@
+{
+  "label": "T21R4_REPLAY_NON_PROMOTIONAL",
+  "promotion_value": "ZERO",
+  "source": "t21r4_diagnostic_replay.jsonl",
+  "metric": "insufficient_evidence_precision",
+  "n_failed": 8,
+  "class_counts": {
+    "COVERAGE_GATE_FRAMING_VOCABULARY": 4,
+    "ENTITY_GATE_FRAMING_VOCABULARY": 4
+  },
+  "hypothesis_test": {
+    "hypothesis": "a conflict was correctly resolved by authority/freshness but the winning evidence was not made authoritative for synthesis, causing synthesis or the coverage gate to use inferior/unrelated evidence and abstain",
+    "verdict": "REJECTED",
+    "evidence": "All 8 rows have conflict resolution NO_CONFLICT (no query-relevant conflict was scoped at all - correctly, since these are near_duplicate_false_conflict rows whose restated duplicates agree). The recorded abstention gates are entity_gate:FAIL (4 rows) and coverage_gate:FAIL (4 rows); no row shows a resolution/winner step, no row shows winner evidence being ignored, and the winning authority evidence IS the top-ranked item in every row. The T21R4 failure-analysis hypothesis is not what happened on any of the 8 rows."
+  },
+  "mechanism": "Two deterministic gate-framing defects, each on 4 rows: (1) the entity gate's capitalized-token check treats the query-leading preposition 'Under' as an entity name; (2) the coverage gate's content terms include framing vocabulary (town/belongs) that no evidence span can contain, so measured coverage lands at 0.50 against a 0.60 floor although the answer evidence is fully present.",
+  "rows": [
+    {
+      "case_id": "cf4-0249",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "The town of Perewatch belongs to which province?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.50)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the dune marches']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-386d4cb10991",
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560",
+        "gk-cc48be46ad03"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the dune marches"
+      ],
+      "class": "COVERAGE_GATE_FRAMING_VOCABULARY",
+      "mechanism": "query framing tokens (town/belongs/which) cannot appear in evidence spans; content coverage over the remaining terms falls below MIN_COVERAGE=0.60 although entity+attribute+value evidence is present"
+    },
+    {
+      "case_id": "cf4-0251",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "The town of Quillonby belongs to which province?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.50)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the clay downs']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560",
+        "gk-accde5cba6e9"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the clay downs"
+      ],
+      "class": "COVERAGE_GATE_FRAMING_VOCABULARY",
+      "mechanism": "query framing tokens (town/belongs/which) cannot appear in evidence spans; content coverage over the remaining terms falls below MIN_COVERAGE=0.60 although entity+attribute+value evidence is present"
+    },
+    {
+      "case_id": "cf4-0253",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "The town of Redbourne belongs to which province?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.50)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the ash terraces']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-386d4cb10991",
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the ash terraces"
+      ],
+      "class": "COVERAGE_GATE_FRAMING_VOCABULARY",
+      "mechanism": "query framing tokens (town/belongs/which) cannot appear in evidence spans; content coverage over the remaining terms falls below MIN_COVERAGE=0.60 although entity+attribute+value evidence is present"
+    },
+    {
+      "case_id": "cf4-0255",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "The town of Tarnwick belongs to which province?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "LOW_COVERAGE",
+      "coverage": 0.5,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:7_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.50)"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['the reed flats']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-386d4cb10991",
+        "gk-3afe71ace97d",
+        "gk-4b7ae15107ee",
+        "gk-65fdea654560"
+      ],
+      "gold_chunk_rank": 1,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "the reed flats"
+      ],
+      "class": "COVERAGE_GATE_FRAMING_VOCABULARY",
+      "mechanism": "query framing tokens (town/belongs/which) cannot appear in evidence spans; content coverage over the remaining terms falls below MIN_COVERAGE=0.60 although entity+attribute+value evidence is present"
+    },
+    {
+      "case_id": "cf4-0298",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "Under which field is the scholar Ambrose Ashworth listed?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['onomastics']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 2,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "onomastics"
+      ],
+      "class": "ENTITY_GATE_FRAMING_VOCABULARY",
+      "mechanism": "query-leading preposition/capitalized framing token ('Under') is not in the entity-gate framing vocabulary, so the gate demanded it appear in evidence text and failed although the entity and attribute evidence is present and correct"
+    },
+    {
+      "case_id": "cf4-0300",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "Under which field is the scholar Casimir Ashworth listed?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['sigillography']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 2,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "sigillography"
+      ],
+      "class": "ENTITY_GATE_FRAMING_VOCABULARY",
+      "mechanism": "query-leading preposition/capitalized framing token ('Under') is not in the entity-gate framing vocabulary, so the gate demanded it appear in evidence text and failed although the entity and attribute evidence is present and correct"
+    },
+    {
+      "case_id": "cf4-0302",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "Under which field is the scholar Emeric Fenwick listed?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['phaleristics']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 2,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "phaleristics"
+      ],
+      "class": "ENTITY_GATE_FRAMING_VOCABULARY",
+      "mechanism": "query-leading preposition/capitalized framing token ('Under') is not in the entity-gate framing vocabulary, so the gate demanded it appear in evidence text and failed although the entity and attribute evidence is present and correct"
+    },
+    {
+      "case_id": "cf4-0304",
+      "suite": "conflict-abstention",
+      "category": "near_duplicate_false_conflict",
+      "query": "Under which field is the scholar Godfrey Fenwick listed?",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "expected_status": "ANSWER",
+      "retrieval_status": "ENTITY_MISMATCH",
+      "coverage": 0.0,
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "source_injection:contained",
+        "synthesis:single_hop_extractive",
+        "entity_gate:FAIL"
+      ],
+      "failure_reasons": [
+        "status_mismatch",
+        "missing_substrings:['palynology']",
+        "citations_defective",
+        "claims_unsupported"
+      ],
+      "required_sources": [],
+      "window_sources": [
+        "gk-1912e0073023",
+        "gk-2ed55a933d45",
+        "gk-4b7ae15107ee",
+        "gk-cc48be46ad03",
+        "gk-e9d86c3b4121"
+      ],
+      "gold_chunk_rank": 2,
+      "conflict_resolution": "NO_CONFLICT",
+      "answer": "",
+      "gold_contains": [
+        "palynology"
+      ],
+      "class": "ENTITY_GATE_FRAMING_VOCABULARY",
+      "mechanism": "query-leading preposition/capitalized framing token ('Under') is not in the entity-gate framing vocabulary, so the gate demanded it appear in evidence text and failed although the entity and attribute evidence is present and correct"
+    }
+  ]
+}

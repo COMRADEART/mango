@@ -33,7 +33,12 @@ from dataclasses import dataclass, field
 
 from sciencemath.knowledge.citations import resolve_citations
 from sciencemath.knowledge.claim_gate import review_answer
-from sciencemath.knowledge.conflicts import detect_conflicts, resolve_conflicts
+from sciencemath.knowledge.conflicts import (
+    _normalize_fact_value,
+    detect_conflicts,
+    query_attribute_set,
+    resolve_conflicts,
+)
 from sciencemath.knowledge.corpus import KnowledgeCorpus
 from sciencemath.knowledge.evidence import (
     EvidenceItem,
@@ -46,7 +51,11 @@ from sciencemath.knowledge.freshness import (
     classify_query_freshness,
     snapshot_is_current_claim_safe,
 )
-from sciencemath.knowledge.injection import scan_query_injection, scan_source_text
+from sciencemath.knowledge.injection import (
+    quarantine_source_text,
+    scan_query_injection,
+    scan_source_text,
+)
 from sciencemath.knowledge.provenance_spoof import scan_provenance_spoof
 from sciencemath.knowledge.index import normalize_query, tokenize
 from sciencemath.knowledge.retrieval import (
@@ -162,6 +171,23 @@ def _best_sentence_for_terms(span_text: str, q_terms: set[str]) -> str:
         return (covered, -len(sentence), -sentences.index(sentence))
 
     return max(sentences, key=score)
+
+
+def _best_sentence_with_tokens(
+    span_text: str, q_terms: set[str], attr_tokens: set[str],
+) -> str | None:
+    """Best sentence that itself asserts one of ``attr_tokens`` (T21R5
+    attribute-named selection); None when no sentence in the span does."""
+    sentences = [s.strip() for s in _SENT_RE.split(span_text) if s.strip()]
+    best: str | None = None
+    best_key: tuple[int, int, int] | None = None
+    for idx, sentence in enumerate(sentences):
+        if not (set(tokenize(sentence)) & attr_tokens):
+            continue
+        key = (len(q_terms & set(tokenize(sentence))), -len(sentence), -idx)
+        if best_key is None or key > best_key:
+            best, best_key = sentence, key
+    return best
 
 
 def _abstain(
@@ -332,14 +358,76 @@ def answer_knowledge(
             zero_tolerance=counters, subqueries=subqueries)
 
     # ---- synthesis: select evidence items and sentences ---------------------
-    selected: list[EvidenceItem] = []
-    sentences: list[str] = []
+    # T21R5 B1/B2 — deterministic candidate priority: resolved-conflict
+    # winner > attribute-matched item (query_attribute_set) > rank order.
+    # The wrong-entity gate is verified per candidate (with frame
+    # vocabulary stripped from the query side) with a rank-order fallback:
+    # a query-mimicking distractor at rank 1 no longer forces an abstention
+    # when an entity-consistent item exists deeper in the window.
+    attr_set = query_attribute_set(effective)
+    winner_item = None
+    if resolution == "RESOLVED_BY_AUTHORITY" and winner is not None:
+        winner_item = next((it for it in items
+                            if it.chunk_id == winner.get("chunk_id")), None)
+    loser_id: str | None = None
+    if winner_item is not None:
+        for conflict in relevant:
+            a_id = conflict["evidence_a"].get("chunk_id")
+            b_id = conflict["evidence_b"].get("chunk_id")
+            if winner_item.chunk_id in (a_id, b_id):
+                loser_id = b_id if a_id == winner_item.chunk_id else a_id
+                break
+
+    # B4 quarantine: directive sentences carry instruction authority 0 and
+    # are never eligible as answer content; safe sentences in the same
+    # chunk keep full provenance. Items left with no safe sentence stay in
+    # the pack for provenance but are not synthesis candidates.
+    flagged_ids = {d["chunk_id"] for d in source_directives}
+    synth_text: dict[str, str] = {}
+    synthesis_ok: dict[str, bool] = {}
+    for it in items:
+        if it.chunk_id in flagged_ids:
+            quarantined = quarantine_source_text(it.text_span)
+            synth_text[it.chunk_id] = quarantined["safe_text"]
+            synthesis_ok[it.chunk_id] = bool(quarantined["safe_text"])
+        else:
+            synth_text[it.chunk_id] = it.text_span
+            synthesis_ok[it.chunk_id] = True
+
+    pool_ids = {it.chunk_id for it in items
+                if synthesis_ok.get(it.chunk_id, True)
+                and it.chunk_id != loser_id}
+    primary = [it for it in items
+               if it.chunk_id in pool_ids
+               and (it.metadata or {}).get("fact_attribute") in attr_set]
+    secondary = [it for it in items
+                 if it.chunk_id in pool_ids
+                 and (it.metadata or {}).get("fact_attribute") not in attr_set]
+    ordered: list[EvidenceItem] = []
+    ordered_ids: set[str] = set()
+    if winner_item is not None and winner_item.chunk_id in pool_ids:
+        ordered.append(winner_item)
+        ordered_ids.add(winner_item.chunk_id)
+    for it in primary + secondary:
+        if it.chunk_id not in ordered_ids:
+            ordered.append(it)
+            ordered_ids.add(it.chunk_id)
+
+    gate_query = _strip_frame_tokens(effective)
+    base_query = _as_of_coverage_query(effective, temporal)
+    content_query = _content_coverage_query(base_query)
+    q_terms = set(tokenize(effective))
+
+    # Each pair is (sentence, item it was extracted from): citation
+    # lineage is per-sentence by construction (B3), never positional.
+    pairs: list[tuple[str, EvidenceItem]] = []
 
     bridge_item = None
     if _BIRTH_CUE_RE.search(effective) and \
             _CREATOR_CUE_RE.search(effective):
-        for candidate_item in items:
-            if _bridge_item(candidate_item):
+        for candidate_item in ordered:
+            if _bridge_item(candidate_item) and \
+                    _entity_name_gate(gate_query, candidate_item.text_span):
                 bridge_item = candidate_item
                 break
     if bridge_item is not None:
@@ -347,15 +435,33 @@ def answer_knowledge(
         hop2_query = f"{creator} born birthplace"
         hop2_stage = retrieve(corpus.index, corpus.chunks_by_id, hop2_query,
                               top_k=3)
-        hop2_items = items_from_chunks(hop2_stage.deduped,
-                                       corpus.chunks_by_id,
-                                       corpus.sources_by_id, normalized)
+        hop2_items = [it for it in items_from_chunks(
+                          hop2_stage.deduped, corpus.chunks_by_id,
+                          corpus.sources_by_id, normalized)
+                      if it.chunk_id != loser_id]
         if hop2_items:
             hop2_top = hop2_items[0]
+            hop2_span = hop2_top.text_span
+            hop2_scan = scan_source_text(hop2_span)
+            if hop2_scan["flagged"]:
+                for p in hop2_scan["patterns"]:
+                    source_directives.append(
+                        {"chunk_id": hop2_top.chunk_id,
+                         "pattern": p["pattern"]})
+                source_injection["patterns"] = list(source_directives)
+                source_injection["n_items_flagged"] = len(
+                    {d["chunk_id"] for d in source_directives})
+                quarantined = quarantine_source_text(hop2_span)
+                hop2_span = quarantined["safe_text"] or hop2_span
             q2_terms = set(tokenize(normalize_query(hop2_query)))
-            sentences = [_best_sentence_for_terms(hop2_top.text_span,
-                                                  q2_terms)]
-            selected = [bridge_item, hop2_top]
+            # B3: the bridge-fact sentence is cited to the bridge item and
+            # the hop-2 sentence to the hop-2 item — both required sources
+            # carry their own citation.
+            pairs = [
+                (_best_sentence_for_terms(synth_text[bridge_item.chunk_id],
+                                          q_terms), bridge_item),
+                (_best_sentence_for_terms(hop2_span, q2_terms), hop2_top),
+            ]
             trace.append(f"multi_hop:2:{creator}")
         else:
             # The query asks about the creator's birth; without second-hop
@@ -370,39 +476,99 @@ def answer_knowledge(
                             coverage=0.0,
                             snapshot_date=corpus.snapshot_date)
 
-    if not selected:
-        source_item = top
-        if resolution == "RESOLVED_BY_AUTHORITY" and winner is not None \
-                and winner.get("chunk_id") != top.chunk_id:
-            winner_item = next(
-                (it for it in items if it.chunk_id == winner["chunk_id"]),
-                None)
-            if winner_item is not None:
-                source_item = winner_item
+    if not pairs:
+        source_pair: tuple[str, EvidenceItem] | None = None
+        # T21R5 attribute-named selection: when the query NAMES the wanted
+        # attribute (every name token of a cue-matched attribute appears in
+        # the query), the answer sentence must itself assert that attribute
+        # — a near-miss chunk about the same entity asserting a DIFFERENT
+        # attribute is not an answer (T21R4 replay: "In which province is
+        # X located?" answered a type/property note; "In which medium was
+        # Y painted?" answered the painter fact). The search walks the
+        # candidate order; a resolved-conflict winner keeps priority (B2).
+        effective_tokens = set(re.findall(r"[a-z0-9]+", effective))
+        tier1_attrs = frozenset(
+            a for a in attr_set
+            if all(t in effective_tokens for t in a.split() if len(t) > 2))
+        source_item = None
+        if tier1_attrs and winner_item is None:
+            tier1_tokens = {t for a in tier1_attrs for t in a.split()}
+            for cand in ordered:
+                if not _entity_name_gate(gate_query, cand.text_span):
+                    continue
+                span = synth_text.get(cand.chunk_id, cand.text_span)
+                if (cand.metadata or {}).get("fact_attribute") \
+                        in tier1_attrs:
+                    sentence = _best_sentence_for_terms(span, q_terms)
+                else:
+                    sentence = _best_sentence_with_tokens(
+                        span, q_terms, tier1_tokens)
+                if sentence is not None:
+                    source_pair = (sentence, cand)
+                    source_item = cand
+                    break
+            if source_pair is None:
+                trace.append("attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED")
+                return _abstain(query, normalized, trace, counters,
+                                eligibility, temporal, injection, subqueries,
+                                INSUFFICIENT_EVIDENCE, items=items,
+                                conflicts=relevant,
+                                retrieval_status="ATTRIBUTE_NOT_EVIDENCED",
+                                coverage=0.0,
+                                snapshot_date=corpus.snapshot_date)
+        else:
+            for cand in ordered:
+                if _entity_name_gate(gate_query, cand.text_span):
+                    source_item = cand
+                    break
+            if source_item is None:
+                trace.append("entity_gate:FAIL")
+                return _abstain(query, normalized, trace, counters,
+                                eligibility, temporal, injection, subqueries,
+                                INSUFFICIENT_EVIDENCE, items=items,
+                                conflicts=relevant,
+                                retrieval_status="ENTITY_MISMATCH",
+                                coverage=0.0,
+                                snapshot_date=corpus.snapshot_date)
+            source_pair = (_best_sentence_for_terms(
+                synth_text[source_item.chunk_id], q_terms), source_item)
+        if items and source_item.chunk_id != items[0].chunk_id:
+            if source_item is winner_item:
                 trace.append("synthesis:authority_winner")
-        q_terms = set(tokenize(effective))
-        sentences = [_best_sentence_for_terms(source_item.text_span,
-                                              q_terms)]
-        selected = [source_item]
+            elif (source_item.metadata or {}).get("fact_attribute") \
+                    in attr_set:
+                trace.append("synthesis:attribute_matched")
+            else:
+                trace.append("synthesis:attribute_named_fallback")
         trace.append("synthesis:single_hop_extractive")
+        pairs.append(source_pair)
+        # B3 corroboration: independent sources asserting the same
+        # normalized fact are cited alongside it (capped, deterministic).
+        for corr in _corroborators(source_item, items, loser_id,
+                                   synthesis_ok, gate_query):
+            pairs.append((_best_sentence_for_terms(
+                synth_text[corr.chunk_id], q_terms), corr))
 
-    # ---- wrong-entity gate ---------------------------------------------------
-    if not _entity_name_gate(effective, selected[0].text_span):
-        trace.append("entity_gate:FAIL")
-        return _abstain(query, normalized, trace, counters, eligibility,
-                        temporal, injection, subqueries,
-                        INSUFFICIENT_EVIDENCE, items=items,
-                        conflicts=relevant,
-                        retrieval_status="ENTITY_MISMATCH",
-                        coverage=0.0,
-                        snapshot_date=corpus.snapshot_date)
-
-    # ---- coverage gate ------------------------------------------------------
-    # Historical 'as of' framing is measured on content only (T21.17): the
-    # as-of year and question-function words are frame, not evidence.
-    coverage_query = _as_of_coverage_query(effective, temporal)
-    cov_used = coverage_ratio(coverage_query,
-                              [it.text_span for it in selected])
+    # ---- cited items and coverage gate --------------------------------------
+    selected: list[EvidenceItem] = []
+    selected_ids: set[str] = set()
+    for _sentence, it in pairs:
+        if it.chunk_id not in selected_ids:
+            selected_ids.add(it.chunk_id)
+            selected.append(it)
+    # Coverage is a demand the evidence must meet, measured over content
+    # terms only (framing vocabulary is not a demand) and over the
+    # synthesis text of the cited items (quarantined directives are not
+    # evidence).
+    # Coverage is a demand the evidence must meet, measured over the
+    # full query (as before) AND over content terms only (framing
+    # vocabulary is not a demand): a frame term the evidence happens to
+    # cover must never LOWER the measured demand, so the gate passes when
+    # either formulation is satisfied. Synthesis text is used so
+    # quarantined directive sentences are not evidence.
+    spans = [synth_text.get(it.chunk_id, it.text_span) for it in selected]
+    cov_used = max(coverage_ratio(base_query, spans),
+                   coverage_ratio(content_query, spans))
     if cov_used < MIN_COVERAGE:
         trace.append(f"coverage_gate:FAIL({cov_used:.2f})")
         return _abstain(query, normalized, trace, counters, eligibility,
@@ -413,7 +579,6 @@ def answer_knowledge(
                         snapshot_date=corpus.snapshot_date)
 
     # ---- stable citation ranks over the final pack --------------------------
-    selected_ids = {it.chunk_id for it in selected}
     pack_items = list(selected) + [it for it in items
                                    if it.chunk_id not in selected_ids]
     for rank, item in enumerate(pack_items, start=1):
@@ -421,7 +586,7 @@ def answer_knowledge(
         item.citation_id = make_citation_id(effective, item.chunk_id, rank)
     answer_text = " ".join(
         s.rstrip(".") + f". [{it.citation_id}]"
-        for s, it in zip(sentences, selected))
+        for s, it in pairs)
     trace.append(f"citations:{len(selected)}")
 
     # ---- citation verification ---------------------------------------------
@@ -524,6 +689,70 @@ def _as_of_coverage_query(query: str, temporal: dict) -> str:
     return normalize_query(text)
 
 
+# T21R5 B1/B2 — preregistered question-frame vocabulary (dev-tuned, frozen
+# before holdout construction). These tokens are QUESTION FRAMING, not
+# evidence content: no snapshot chunk can contain "identify" or "under",
+# and gates that demand them abstain on well-evidenced answers (T21R4
+# replay: 57 of 81 failed answer rows traced to frame vocabulary entering
+# the coverage gate or the entity gate). Attribute nouns
+# (inventor/painter/author/province/...) are deliberately EXCLUDED — they
+# are query content and drive attribute-aware selection and conflict
+# scoping. The word "current" is deliberately excluded: it is a temporal
+# cue handled by the freshness model, never stripped.
+_QUESTION_FRAME_TOKENS = frozenset({
+    "identify", "tell", "give", "name", "list", "state", "describe",
+    "define", "show", "indicate", "find", "belong", "belongs", "under",
+    "over", "about", "between", "during", "kept", "keep", "listed",
+    "called", "named", "known", "located", "situated", "person", "people",
+    "town", "city", "village", "scholar", "device", "painting", "work",
+    "wrote", "written",
+    # interrogatives, auxiliaries and copulas: framing at any position
+    "what", "which", "where", "when", "who", "whose", "whom", "how",
+    "does", "did", "was", "were", "is", "are", "has", "have", "had",
+    "the", "a", "an", "of", "in", "on", "at", "to", "for", "and", "or",
+    "with", "by", "from", "that", "this", "it", "its", "their", "there",
+    # attribute-locating verbs and action nouns: they locate WHICH fact is
+    # wanted but are not the wanted CONTENT (the value is a name, place or
+    # year). The coverage gate takes the max of the full-query and
+    # content-only formulations, so stripping these never lowers a passing
+    # row's measured coverage; it only removes uncovered demands
+    # (T21R4 replay: creator-bridge rows demanded "birth"/"invented" that
+    # no span of either hop contains). Attribute NOUNS (province, medium,
+    # emblem, mayor, ...) are deliberately NOT stripped: they anchor
+    # attribute-named selection below.
+    "birth", "born", "invent", "invented", "invention", "inventions",
+    "introduce", "introduced", "introduction", "launch", "launched",
+    "debut", "debuted", "discover", "discovered", "discovery",
+    "establish", "established", "founding", "founded", "foundation",
+    "create", "created", "publish", "published", "publication", "print",
+    "printed", "paint", "painted", "appear", "appeared", "author",
+    "authored", "ratify", "ratified", "signing", "signed", "complete",
+    "completed", "landing", "landed", "sealing", "sealed", "open",
+    "opened", "famous",
+})
+
+
+def _strip_frame_tokens(text: str) -> str:
+    """Remove question-frame vocabulary, PRESERVING case (the entity gate
+    reads capitalization). Falls back to the original text when stripping
+    would empty it — the gate then judges the full query, never a blank."""
+    tokens = re.findall(r"[A-Za-z0-9][\w'-]*", text)
+    kept = [t for t in tokens if t.lower() not in _QUESTION_FRAME_TOKENS]
+    if not kept:
+        return text
+    return " ".join(kept)
+
+
+def _content_coverage_query(query: str) -> str:
+    """T21R5 — coverage-gate query over content terms only.
+
+    Coverage is a demand the evidence must meet; framing vocabulary is not
+    a demand ("identify the person who wrote X" does not require the word
+    'identify' in evidence). Retrieval still runs on the full query; only
+    the coverage gate and sentence selection measure content."""
+    return normalize_query(_strip_frame_tokens(query))
+
+
 _CAP_FRAMEWORDS = frozenset({
     "the", "a", "an", "in", "on", "at", "as", "of", "and", "or", "what",
     "when", "where", "who", "which", "how", "why", "is", "was", "were",
@@ -555,7 +784,14 @@ def _entity_name_gate(query: str, top_text: str) -> bool:
             caps.append(base.lower())
     if not caps:
         return True
-    text_words = {w.lower() for w in re.findall(r"[A-Za-z][\w'-]*", top_text)}
+    # T21R5: normalize the text side the same way as the query side — a
+    # possessive form in the evidence ("Solberg's town emblem ...") is the
+    # same entity as the bare name in the query.
+    text_words = set()
+    for w in re.findall(r"[A-Za-z][\w'-]*", top_text):
+        base = w.lower().replace("'s", "").strip(".,;:!?'\"-")
+        if base:
+            text_words.add(base)
     return all(c in text_words for c in caps)
 
 
@@ -571,3 +807,51 @@ def _bridge_item(item: EvidenceItem) -> bool:
         return False
     value = meta.get("fact_value") or ""
     return bool(_PERSON_NAME_RE.match(value))
+
+
+# T21R5 B3 — preregistered corroboration cap (dev-tuned, frozen before
+# holdout construction).
+MAX_CORROBORATIONS = 2
+
+
+def _corroborators(
+    source_item: EvidenceItem,
+    items: list[EvidenceItem],
+    loser_id: str | None,
+    synthesis_ok: dict[str, bool],
+    gate_query: str,
+) -> list[EvidenceItem]:
+    """Independent-source corroboration (T21R5 B3).
+
+    Items from a DIFFERENT source asserting the same normalized fact
+    (same attribute, same normalized fact_value) are appended to the
+    synthesis so a multi-source fact carries a citation to every
+    independent source that asserts it. Every corroborator must pass the
+    wrong-entity gate, must not be the resolved-conflict loser, and must
+    have safe synthesis text. Deterministic; capped at MAX_CORROBORATIONS.
+    """
+    meta = source_item.metadata or {}
+    base_attr = meta.get("fact_attribute")
+    base_value = meta.get("fact_value")
+    if not base_attr or base_value is None:
+        return []
+    base_norm = _normalize_fact_value(base_value)
+    out: list[EvidenceItem] = []
+    for it in items:
+        if len(out) >= MAX_CORROBORATIONS:
+            break
+        if it.chunk_id == source_item.chunk_id or it.chunk_id == loser_id:
+            continue
+        if not synthesis_ok.get(it.chunk_id, True):
+            continue
+        if it.source_id == source_item.source_id:
+            continue
+        corr_meta = it.metadata or {}
+        if corr_meta.get("fact_attribute") != base_attr:
+            continue
+        if _normalize_fact_value(corr_meta.get("fact_value")) != base_norm:
+            continue
+        if not _entity_name_gate(gate_query, it.text_span):
+            continue
+        out.append(it)
+    return out

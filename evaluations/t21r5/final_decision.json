@@ -1,0 +1,46 @@
+{
+  "milestone": "T21R5 final decision (mechanically derived)",
+  "recorded_at": "2026-09-15T23:55:00.000000+00:00",
+  "decision": "T21R5_EVALUATOR_INVALID",
+  "decision_basis": "A post-freeze evaluator bug was discovered during the first and only official runtime exposure. The evaluator (scripts/t21r5_run_eval.py, frozen pre-holdout at sha256 feae0cbc...) crashed at line 186 with AttributeError: 'KnowledgeSourceRecord' object has no attribute 'get' on the first gold row carrying required_domains (crossdomain suite): the required-domains check calls s.get(\"domain\") on KnowledgeSourceRecord instances returned by corpus.source(), which is a dataclass, not a mapping. The line exists only in the T21R5 evaluator - the T21R4 evaluator has no required-domains handling; the defect was introduced while adapting the evaluator for T21R5 gold and never exercised pre-freeze because the blindness rule forbids running the runtime on holdout data before HOLDOUT_FROZEN. Per the preregistered post_freeze_evaluator_bug_rule: 'If an evaluator bug is discovered after HOLDOUT_FROZEN or after the first evaluation starts: STOP. Do NOT fix and rerun T21R5. Decision is T21R5_EVALUATOR_INVALID; the exposed holdout becomes non-promotional and a future milestone with another fresh holdout is required.' The evaluation_run_ledger records exit_code 1, official_runtime_exposures 1, and the full traceback. No runtime, evaluator, gold, corpus, query, or threshold change was made after HOLDOUT_FROZEN.",
+  "applied": false,
+  "registry_action": "none - KNOWLEDGE_RAG remains EXPERIMENTAL, exactly as frozen in runtime_freeze.json; src/sciencemath/executive/skills.py is unchanged",
+  "evaluator_valid": false,
+  "evaluator_defect": {
+    "file": "scripts/t21r5_run_eval.py",
+    "line": 186,
+    "error": "AttributeError: 'KnowledgeSourceRecord' object has no attribute 'get'",
+    "trigger": "first gold row with required_domains non-empty (mango-t21r5-crossdomain-holdout-v1)",
+    "root_cause": "required-domains scoring calls dict-style .get on KnowledgeSourceRecord dataclass instances returned by KnowledgeCorpus.source()",
+    "provenance": "introduced in the T21R5 evaluator adaptation; not present in scripts/t21r4_run_eval.py (no required-domains handling existed in T21R4)"
+  },
+  "exposure": {
+    "official_runtime_exposures": 1,
+    "one_shot": true,
+    "completed": false,
+    "rows_processed": 1288,
+    "holdout_total": 3531,
+    "suites_completed": ["mango-t21r5-retrieval-holdout-v1", "mango-t21r5-singlehop-holdout-v1", "mango-t21r5-multihop-holdout-v1"],
+    "suites_not_reached": ["mango-t21r5-crossdomain-holdout-v1", "mango-t21r5-citation-claim-holdout-v1", "mango-t21r5-conflict-abstention-holdout-v1", "mango-t21r5-temporal-holdout-v1", "mango-t21r5-adversarial-holdout-v1"],
+    "exit_code": 1,
+    "raw_results_sha256": "e07d6ca0fb51a3de4516f79bc51891d73bbe31d153c89f032c4d80a98b68e184"
+  },
+  "partial_non_promotional_observations": {
+    "note": "Observations from the 1288 rows the single official exposure completed before the evaluator crashed. NON-PROMOTIONAL: the holdout is exposed, floors were never evaluated, and these numbers must not be used as validation evidence. They are diagnostic input for a future milestone.",
+    "retrieval": {"n": 488, "correct": 488, "recall_at_5": 1.0, "recall_at_10": 1.0, "mrr": 0.9949, "ndcg_at_5": 0.9962},
+    "singlehop": {"n": 512, "correct": 512, "grounded_accuracy": 1.0},
+    "multihop": {"n": 288, "correct": 256, "grounded_accuracy": 0.8889, "floor_if_evaluated": 0.85, "failures": "all 32 failures are INSUFFICIENT_EVIDENCE over-abstentions from exactly one MULTIHOP_Q phrasing ('Within which town was the author of {work} born?') across 32 distinct works; in every failing row the person-birthplace bridge chunk is absent from the final 8-item window (hop2 bridge does not join) and the measured coverage on the selected winner span is 0.0; all other 8 phrasings of the same works pass"}
+  },
+  "floors_evaluated": false,
+  "floors_total": 32,
+  "floors_passed": null,
+  "zero_tolerance_evaluated": false,
+  "suite_minimums_met": "not evaluable - exposure incomplete",
+  "protection_battery": "7 of 8 layers PASS; t21r4_freeze_identity FAIL on a T21R4-INHERITED bookkeeping defect, not a T21R5 change: evaluations/t21r4/holdout_manifest.json records freeze-input hashes for runtime_freeze.json, holdout_uniqueness.json and scripts/t21r4_freeze_evaluator.py that do not match the versions committed in the T21R4 terminal commit fbe034a / canonical base 6174ebd (the freeze-time file contents were never committed; T21R4's own battery ran before that finalization). git diff against 6174ebd proves nothing under those paths changed since the T21R4 merge. T21R5's own freeze-identity layer is PASS: every T21R5 freeze input, corpus file and suite hash matches.",
+  "post_freeze_repair_policy": "FORBIDDEN - the holdout data is partially exposed after the one-shot run; any runtime or evaluator change informed by these results would invalidate the blind validation. A future milestone must build a NEW blind holdout with a NEW evaluator verified end-to-end before freezing.",
+  "future_milestone_requirements": [
+    "new blind holdout (T21R5 holdout is exposed and non-promotional)",
+    "the evaluator's required_domains scoring must be fixed BEFORE the next freeze and exercised end-to-end on synthetic fixture rows (never holdout data) so no post-freeze crash path remains",
+    "investigate the phrasing-dependent hop2 bridge over-abstention observed in the multihop suite (32 rows, non-promotional diagnostic)"
+  ]
+}

@@ -24,6 +24,14 @@ from sciencemath.knowledge.schema import KnowledgeChunk
 
 JACCARD_THRESHOLD = 0.85
 MAX_PER_SOURCE = 3
+# T21R5 B1 — source-aware window reservation. When the naive top-k window
+# is dominated by one source, the best chunk of an ABSENT source is
+# reserved a slot, but only when it is adequately relevant (within this
+# fraction of the best candidate score) and only by displacing a window
+# item whose source retains another representative. Clearly superior
+# evidence is never sacrificed for arbitrary diversity, and the naive
+# window is returned unchanged when no absent source qualifies.
+WINDOW_RESERVE_FRACTION = 0.5
 # Rerank ordering (preregistered, frozen before FINAL): candidates are
 # ordered primarily by whole-question coverage — the share of the query's
 # terms the candidate span addresses — because same-entity attribute
@@ -141,6 +149,71 @@ def rerank(
     return out
 
 
+def select_window(
+    deduped: list[tuple[str, float]],
+    chunks_by_id: dict[str, KnowledgeChunk],
+    top_k: int,
+) -> list[tuple[str, float]]:
+    """T21R5 B1 — source-aware evidence-window selection.
+
+    Deterministic two-phase policy over the FULL deduplicated ranking
+    (before the top-k cut, so a source squeezed out entirely by
+    same-source domination can still be reserved):
+
+      1. take the naive top-k window (unchanged behavior when no source
+         is dominated),
+      2. for every source ABSENT from the naive window whose best
+         candidate scores >= WINDOW_RESERVE_FRACTION * best candidate
+         score, reserve its best chunk a slot,
+      3. each reservation displaces the lowest-scoring window item whose
+         source keeps another representative in the window (never the
+         sole representative of its source),
+      4. the final window is re-sorted deterministically by (-score,
+         chunk_id).
+
+    Irrelevant diverse sources never displace relevant evidence: a
+    source below the reservation fraction is never reserved, and a
+    source already represented is never re-reserved.
+    """
+    if len(deduped) <= top_k:
+        return list(deduped)
+    window = list(deduped[:top_k])
+    max_score = max(s for _, s in deduped) or 0.0
+    window_sources = {chunks_by_id[c].source_id for c, _ in window
+                      if c in chunks_by_id}
+    reserved: list[tuple[str, float]] = []
+    seen_sources: set[str] = set()
+    for chunk_id, score in deduped[top_k:]:
+        chunk = chunks_by_id.get(chunk_id)
+        if chunk is None:
+            continue
+        sid = chunk.source_id
+        if sid in window_sources or sid in seen_sources:
+            continue
+        seen_sources.add(sid)
+        if score >= WINDOW_RESERVE_FRACTION * max_score:
+            reserved.append((chunk_id, score))
+    if not reserved:
+        return window
+    for chunk_id, score in reserved:
+        source_counts: dict[str, int] = {}
+        for cid, _s in window:
+            ch = chunks_by_id.get(cid)
+            if ch is not None:
+                source_counts[ch.source_id] = \
+                    source_counts.get(ch.source_id, 0) + 1
+        droppable = [i for i, (cid, _s) in enumerate(window)
+                     if chunks_by_id.get(cid) is not None
+                     and source_counts.get(chunks_by_id[cid].source_id,
+                                           0) > 1]
+        if not droppable:
+            droppable = list(range(len(window)))
+        drop_i = min(droppable, key=lambda i: (window[i][1], window[i][0]))
+        window[drop_i] = (chunk_id, score)
+    window.sort(key=lambda item: (-item[1], item[0]))
+    return window
+
+
 def retrieve(
     index: BM25Index,
     chunks_by_id: dict[str, KnowledgeChunk],
@@ -152,7 +225,8 @@ def retrieve(
     normalized = normalize_query(query)
     ranked = index.search(normalized, top_k=top_k * 3)
     reranked = rerank(ranked, chunks_by_id, normalized, top_k=top_k)
-    deduped = dedup_chunks(reranked, chunks_by_id)[:top_k]
+    deduped = select_window(dedup_chunks(reranked, chunks_by_id),
+                            chunks_by_id, top_k)
     sources: list[str] = []
     for chunk_id, _ in deduped:
         chunk = chunks_by_id.get(chunk_id)

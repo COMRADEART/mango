@@ -221,7 +221,11 @@ def test_abstains_on_absent_entity(corpus) -> None:
 def test_entity_gate_rejects_near_name(corpus) -> None:
     result = answer_knowledge("Alma Calloway has which birth year?", corpus)
     assert result.status == INSUFFICIENT_EVIDENCE
-    assert "entity_gate" in " ".join(result.decision_trace)
+    # T21R5: the attribute-named synthesis gate subsumes the wrong-entity
+    # gate on its candidate walk (every candidate must still pass the
+    # entity gate), so the abstention may be attributed to either gate.
+    trace = " ".join(result.decision_trace)
+    assert "entity_gate" in trace or "attribute_gate" in trace
 
 
 def test_abstains_when_no_relevant_evidence(corpus) -> None:
