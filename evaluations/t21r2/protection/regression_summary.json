@@ -1,0 +1,100 @@
+{
+  "milestone": "T21R2.21 protection battery",
+  "recorded_at": "2026-09-15T01:50:46.291991+00:00",
+  "status": "ALL_PASS",
+  "registry_sha256_now": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+  "registry_counts": {
+    "ACTIVE": 11,
+    "EXPERIMENTAL": 1
+  },
+  "layers": {
+    "runtime_freeze_identity": {
+      "status": "PASS",
+      "checks": {
+        "knowledge_runtime": true,
+        "executive_router": true,
+        "science_rag_runtime": true,
+        "web_research_runtime": true,
+        "document_runtime": true,
+        "memory_runtime": true,
+        "planning_runtime": true,
+        "orchestration_runtime": true,
+        "scicomp_runtime": true,
+        "code_runtime": true,
+        "correction_firewall": true,
+        "security_layer": true,
+        "historical_write_guard": "preregistered_guard_registration_delta",
+        "historical_write_guard_preregistered_delta": true,
+        "executive_skills": "preregistered_demotion_delta"
+      }
+    },
+    "registry_boundaries": {
+      "status": "PASS",
+      "checks": {
+        "registry_sha256_matches_demotion_record": true,
+        "knowledge_rag_experimental_per_decision": true,
+        "science_rag_active_unchanged": true,
+        "skills_py_matches_demotion_record": true,
+        "executive_router_untouched": true,
+        "knowledge_runtime_untouched": true,
+        "registry_counts": true
+      }
+    },
+    "t15r_canonical_blob": {
+      "status": "PASS",
+      "blob_sha256": "fba2437f78633884bd31965d78a4250bd1ca893c"
+    },
+    "mutation": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "fidelity: 8/8 rejected, exceptions 0 -> PASS\nfidelity_transform: 0/0 rejected, exceptions 0 -> PASS\noverall: PASS -> evaluations\\t21r2\\mutation_safety_probe.json\n"
+    },
+    "t21r2_freeze_identity": {
+      "status": "PASS",
+      "checks": {
+        "runtime_freeze": true,
+        "evaluator_freeze": true,
+        "validation_contract": true,
+        "static_gold_audit": true,
+        "holdout_uniqueness": true,
+        "world_builder": true,
+        "corpus_renderer": true,
+        "suite_builder": true,
+        "static_audit_script": true,
+        "uniqueness_script": true,
+        "evaluator_freeze_script": true,
+        "evaluator": true,
+        "corpus/world.jsonl": true,
+        "corpus/sources.jsonl": true,
+        "corpus/chunks.jsonl": true,
+        "corpus/corpus_manifest.json": true,
+        "suite/mango-t21r2-retrieval-holdout-v1": true,
+        "suite/mango-t21r2-singlehop-holdout-v1": true,
+        "suite/mango-t21r2-multihop-holdout-v1": true,
+        "suite/mango-t21r2-crossdomain-holdout-v1": true,
+        "suite/mango-t21r2-citation-claim-holdout-v1": true,
+        "suite/mango-t21r2-conflict-abstention-holdout-v1": true,
+        "suite/mango-t21r2-temporal-holdout-v1": true,
+        "suite/mango-t21r2-adversarial-holdout-v1": true,
+        "HOLDOUT_FROZEN_present": true
+      }
+    },
+    "historical_unchanged": {
+      "status": "PASS",
+      "checks": {
+        "canonical_diff_paths": [],
+        "t21_artifacts_untouched": true,
+        "t21r_artifacts_untouched": true,
+        "t21_corpus_untouched": true,
+        "t21r_corpus_untouched": true,
+        "knowledge_runtime_untouched": true
+      }
+    },
+    "security_pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "....................................s....................s.............. [ 42%]\n........................................................................ [ 85%]\n.........................                                                [100%]\n"
+    }
+  },
+  "reason": "T21R2 changed only evaluation material and the single recorded decision action: the knowledge runtime and every other frozen composite match the T21R2.0 freeze, src/sciencemath/executive/skills.py differs from the canonical base only by the applied DEMOTE_KNOWLEDGE_RAG_TO_EXPERIMENTAL record inside the KNOWLEDGE_RAG skill entry, the T15R canonical blob is unchanged, the fresh holdout matches its freeze manifest, and the T21/T21R historical artifacts and corpora are byte-identical to the canonical base."
+}

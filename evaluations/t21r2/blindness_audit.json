@@ -1,0 +1,39 @@
+{
+  "milestone": "T21R2.24 blindness audit",
+  "recorded_at": "2026-09-15T01:55:59.632563+00:00",
+  "blindness_rule": "Before HOLDOUT_FROZEN, no Mango runtime function may be executed against any T21R2 candidate holdout query, gold row, source, chunk set, or corpus: no answer_knowledge, no retrieve, no knowledge pipeline entrypoint, no claim-evidence gate, no citation verifier, no conflict resolver, no freshness router, no entity gate, no reranker, and no wrapper invoking the KNOWLEDGE_RAG runtime.",
+  "evidence": {
+    "freeze_ordering": {
+      "runtime_freeze_recorded_at": "2026-09-15T01:01:09.399094+00:00",
+      "freeze_commit": "25e2a1b",
+      "freeze_commit_contains_holdout_data": false,
+      "holdout_data_first_committed_in": "final T21R2 commit (after HOLDOUT_FROZEN and the one-shot evaluation)",
+      "conclusion": "The runtime, evaluator, and validation contract were committed frozen BEFORE any T21R2 holdout query, gold row, source, chunk set, or corpus existed in the repository."
+    },
+    "construction_isolation": {
+      "construction_scripts": [
+        "t21r2_world.py",
+        "t21r2_render_corpus.py",
+        "t21r2_build_suites.py",
+        "t21r2_static_gold_audit.py",
+        "t21r2_uniqueness.py",
+        "t21r2_freeze.py"
+      ],
+      "mechanism": "tests/test_t21r2_blind_holdout_contract.py AST-scans every construction script for runtime imports, dynamic import machinery, and runtime entrypoint names in string literals; the transcription-fidelity tests exercise the audit's reimplemented mechanics on SYNTHETIC inputs only.",
+      "firewall_test_file_sha256": "8daadaeeb163b32e9fe3b66cd472cdddf36fcd2f67c33ea23b2cbf6c18d42955",
+      "firewall_test_file_present": true
+    },
+    "one_shot_rule": {
+      "official_runtime_exposures": 1,
+      "exposure_rule": "The first runtime exposure of every holdout row is the official evaluation; no preliminary smoke, sample run, dry run, or per-suite preview was performed on any T21R2 holdout row.",
+      "evaluation_run_ledger_present": true,
+      "holdout_manifest_sha256": "8e334d8f4f873cc688867719dcc472310bc5dafcb7cd01b838f68c097c4d218b",
+      "post_freeze_repairs": "none (per the one_shot_rule and the post-freeze evaluator bug policy; no gold, scoring, or runtime change followed the evaluation except the recorded decision action)"
+    },
+    "post_evaluation_action": {
+      "runtime_change": "executive/skills.py KNOWLEDGE_RAG availability ACTIVE -> EXPERIMENTAL (the recorded decision action, applied AFTER the evaluation; src/sciencemath/knowledge untouched)",
+      "verification": "tests/test_t21r2_blind_holdout_contract.py::test_runtime_files_unchanged_since_freeze and the protection battery verify the demotion is the only src delta and that the knowledge runtime is byte-identical to the canonical base."
+    }
+  },
+  "verdict": "BLINDNESS_MAINTAINED"
+}

@@ -64,13 +64,17 @@ def _assert_no_counters(result) -> None:
 def test_registry_knowledge_rag_experimental() -> None:
     reg = SkillRegistry()
     d = reg.as_dict()
-    assert d["KNOWLEDGE_RAG"]["availability"] == "ACTIVE"
+    # T21R2 (strict blind holdout, evaluations/t21r2/) failed the
+    # preregistered abstention-precision, spoof-rejection and
+    # injection-containment floors; the recorded decision
+    # DEMOTE_KNOWLEDGE_RAG_TO_EXPERIMENTAL was applied to the registry.
+    assert d["KNOWLEDGE_RAG"]["availability"] == "EXPERIMENTAL"
     assert d["SCIENCE_RAG"]["availability"] == "ACTIVE"
     assert d["SCIENCE_RAG"]["description"] == \
         "T5R scientific retrieval with citation discipline."
     counts = reg.counts()
-    assert counts.get("ACTIVE") == 12
-    assert counts.get("EXPERIMENTAL", 0) == 0
+    assert counts.get("ACTIVE") == 11
+    assert counts.get("EXPERIMENTAL", 0) == 1
 
 
 def test_registry_hash_matches_registration_record() -> None:
@@ -82,6 +86,18 @@ def test_registry_hash_matches_registration_record() -> None:
         decision = json.loads(decision_path.read_text(encoding="utf-8"))
         if decision.get("decision") == "PROMOTE_KNOWLEDGE_RAG_SKILL" \
                 and decision.get("applied"):
+            # T21R2 demoted KNOWLEDGE_RAG to EXPERIMENTAL on the strict
+            # blind holdout; the live registry must match the demotion
+            # record rather than the T21 promotion state.
+            t21r2 = ROOT / "evaluations" / "t21r2" / "promotion_decision.json"
+            if t21r2.exists():
+                demotion = json.loads(t21r2.read_text(encoding="utf-8"))
+                if demotion.get("decision") == \
+                        "DEMOTE_KNOWLEDGE_RAG_TO_EXPERIMENTAL" \
+                        and demotion.get("applied"):
+                    assert registry_sha256() == \
+                        demotion["registry_sha256_after_demotion"]
+                    return
             assert registry_sha256() == decision["registry_sha256_promoted"]
             return
     assert registry_sha256() == record["registry_sha256_after"]

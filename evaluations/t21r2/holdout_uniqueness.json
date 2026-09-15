@@ -1,0 +1,395 @@
+{
+  "audit": "t21r2_holdout_uniqueness",
+  "baseline": "evaluations/t21 + evaluations/t21r",
+  "suites": {
+    "mango-t21r2-retrieval-holdout-v1": 320,
+    "mango-t21r2-singlehop-holdout-v1": 294,
+    "mango-t21r2-multihop-holdout-v1": 208,
+    "mango-t21r2-crossdomain-holdout-v1": 216,
+    "mango-t21r2-citation-claim-holdout-v1": 220,
+    "mango-t21r2-conflict-abstention-holdout-v1": 224,
+    "mango-t21r2-temporal-holdout-v1": 250,
+    "mango-t21r2-adversarial-holdout-v1": 232
+  },
+  "suite_holdout_sha256": {
+    "mango-t21r2-retrieval-holdout-v1": "def613718604cf4846b59f0054adbca0534be530e05859dd1af768787e657d29",
+    "mango-t21r2-singlehop-holdout-v1": "642ed31cf3e263c8c9bce039cb36e13fee12601e63c993600b6579c42d0986f5",
+    "mango-t21r2-multihop-holdout-v1": "cfd6590fb895957c66a7c509cbcee9fbc793f917959f7f0a0e7f9c012850d350",
+    "mango-t21r2-crossdomain-holdout-v1": "68906c3631ce3bd67122e41e299516b30bfb85ca13902234859e3f84cd7b975d",
+    "mango-t21r2-citation-claim-holdout-v1": "a90fc46caff0da7999149b19e3195137b615b0c35868fab446702ccfc3f1fc3d",
+    "mango-t21r2-conflict-abstention-holdout-v1": "5fbfe8ceaf90c842c01e5818e715219b0458738c429d2a13a4373483ac0cea35",
+    "mango-t21r2-temporal-holdout-v1": "591ad51591daa0a7f793ed390595242085bea57ff6d4f38a75a2cbe599dc79ca",
+    "mango-t21r2-adversarial-holdout-v1": "a4939e0e9f6e9bf1c1df7c083fabf464f2c45baa59c5be7113749e407e8fc0bb"
+  },
+  "total_rows": 1964,
+  "checks": {
+    "exact_duplicate_rows": {
+      "count": 0,
+      "detail": {}
+    },
+    "exact_duplicate_queries": {
+      "count": 0,
+      "detail": {}
+    },
+    "case_id_overlap_with_t21_and_t21r": {
+      "count": 0,
+      "detail": []
+    },
+    "entity_identity_overlap": {
+      "entity_name_overlap": {
+        "count": 0,
+        "detail": []
+      },
+      "t21r2_entities_in_prior_queries": {
+        "count": 0,
+        "detail": []
+      },
+      "prior_entities_in_t21r2_queries": {
+        "count": 0,
+        "detail": []
+      }
+    },
+    "exact_query_overlap_with_t21_and_t21r": {
+      "count": 0,
+      "detail": []
+    },
+    "chunk_id_overlap_with_t21_and_t21r": {
+      "count": 0,
+      "detail": []
+    },
+    "source_id_overlap_with_t21_and_t21r": {
+      "count": 0,
+      "detail": []
+    },
+    "gold_answer_value_overlap_with_t21_and_t21r": {
+      "count": 0,
+      "detail": []
+    },
+    "exact_source_text_overlap_with_t21_and_t21r": {
+      "count": 0,
+      "detail": []
+    },
+    "verbatim_attack_string_overlap_with_t21_and_t21r": {
+      "count": 0,
+      "detail": []
+    },
+    "near_duplicate_flags": {
+      "count": 204,
+      "pairs": [
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Boldreth?",
+          "query_b": "The province of the town of Boldreth is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Fennbridge?",
+          "query_b": "The province of the town of Fennbridge is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Ganmere?",
+          "query_b": "The province of the town of Ganmere is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Kilnhurst?",
+          "query_b": "The province of the town of Kilnhurst is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Pentlow?",
+          "query_b": "The province of the town of Pentlow is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Pulford?",
+          "query_b": "The province of the town of Pulford is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Ridware?",
+          "query_b": "The province of the town of Ridware is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Sibford?",
+          "query_b": "The province of the town of Sibford is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Thurlby?",
+          "query_b": "The province of the town of Thurlby is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which province is the town of Ufford?",
+          "query_b": "The province of the town of Ufford is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Anvil Collegium located?",
+          "query_b": "The institution Anvil Collegium is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Dovecote Repository located?",
+          "query_b": "The institution Dovecote Repository is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Hollow Chantry located?",
+          "query_b": "The institution Hollow Chantry is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Kelp Scriptorium located?",
+          "query_b": "The institution Kelp Scriptorium is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Nettle Collegium located?",
+          "query_b": "The institution Nettle Collegium is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Sedge Repository located?",
+          "query_b": "The institution Sedge Repository is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Wharf Chantry located?",
+          "query_b": "The institution Wharf Chantry is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Bramble Scriptorium located?",
+          "query_b": "The institution Bramble Scriptorium is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Fallow Collegium located?",
+          "query_b": "The institution Fallow Collegium is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Ivy Repository located?",
+          "query_b": "The institution Ivy Repository is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Lark Chantry located?",
+          "query_b": "The institution Lark Chantry is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town is the institution Pippin Scriptorium located?",
+          "query_b": "The institution Pippin Scriptorium is located in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which nation is the town of Harnlow?",
+          "query_b": "The nation of the town of Harnlow is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Ansel Fenwick born?",
+          "query_b": "The scholar Ansel Fenwick was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Casper Fenwick born?",
+          "query_b": "The scholar Casper Fenwick was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Delphine Marsden born?",
+          "query_b": "The scholar Delphine Marsden was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Emory Marsden born?",
+          "query_b": "The scholar Emory Marsden was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Frances Ingham born?",
+          "query_b": "The scholar Frances Ingham was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Frances Nye born?",
+          "query_b": "The scholar Frances Nye was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Gideon Lovatt born?",
+          "query_b": "The scholar Gideon Lovatt was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Hester Kirkby born?",
+          "query_b": "The scholar Hester Kirkby was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Ignatz Overton born?",
+          "query_b": "The scholar Ignatz Overton was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Junia Pryor born?",
+          "query_b": "The scholar Junia Pryor was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Kendra Redfern born?",
+          "query_b": "The scholar Kendra Redfern was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Lambert Selby born?",
+          "query_b": "The scholar Lambert Selby was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Meret Thackeray born?",
+          "query_b": "The scholar Meret Thackeray was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Norbert Ulvestad born?",
+          "query_b": "The scholar Norbert Ulvestad was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Ophelia Vye born?",
+          "query_b": "The scholar Ophelia Vye was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Piers Wainwright born?",
+          "query_b": "The scholar Piers Wainwright was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Romola Yarde born?",
+          "query_b": "The scholar Romola Yarde was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Stefan Abbott born?",
+          "query_b": "The scholar Stefan Abbott was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Tabia Bloomer born?",
+          "query_b": "The scholar Tabia Bloomer was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Ulla Fenwick born?",
+          "query_b": "The scholar Ulla Fenwick was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Vesna Garner born?",
+          "query_b": "The scholar Vesna Garner was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Wendell Hathaway born?",
+          "query_b": "The scholar Wendell Hathaway was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Ansel Ingham born?",
+          "query_b": "The scholar Ansel Ingham was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Beatrix Jesson born?",
+          "query_b": "The scholar Beatrix Jesson was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Casper Kirkby born?",
+          "query_b": "The scholar Casper Kirkby was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Delphine Nye born?",
+          "query_b": "The scholar Delphine Nye was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Emory Lovatt born?",
+          "query_b": "The scholar Emory Lovatt was born in which year?",
+          "jaccard": 1.0
+        }
+      ]
+    }
+  },
+  "gate": {
+    "exact_duplicate_rows": 0,
+    "exact_duplicate_queries": 0,
+    "case_id_overlap": 0,
+    "entity_identity_overlap": 0,
+    "query_overlap": 0,
+    "chunk_id_overlap": 0,
+    "source_id_overlap": 0,
+    "gold_answer_overlap": 0,
+    "source_text_overlap": 0,
+    "attack_string_overlap": 0
+  },
+  "verdict": "UNIQUE"
+}

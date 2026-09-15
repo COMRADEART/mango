@@ -188,8 +188,12 @@ def default_registry() -> dict[str, dict]:
             description="Local-first general knowledge retrieval with "
                         "source provenance, citation-grounded synthesis, "
                         "conflict handling, freshness boundaries, and "
-                        "evidence-based abstention. Promoted ACTIVE at T21.",
-            availability=ACTIVE,
+                        "evidence-based abstention. Promoted ACTIVE at "
+                        "T21; demoted EXPERIMENTAL at T21R2 after the "
+                        "strict blind holdout failed the preregistered "
+                        "abstention-precision, spoof-rejection and "
+                        "injection-containment floors.",
+            availability=EXPERIMENTAL,
             offline=True,
             online=False,
             cost_class=LOCAL_FREE,

@@ -1,0 +1,12 @@
+{
+  "milestone": "T21R2.23 - full pytest",
+  "recorded_at": "2026-09-15T01:55:32.145302+00:00",
+  "tests": 1655,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 2,
+  "exit_code": 0,
+  "failed": 0,
+  "passed": 1653,
+  "time_s": 49.628
+}

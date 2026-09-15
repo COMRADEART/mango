@@ -1,0 +1,24 @@
+{
+  "milestone": "T21R2.1 evaluator freeze (before holdout data)",
+  "recorded_at": "2026-09-15T01:02:22.402855+00:00",
+  "runtime_freeze_recorded_at": "2026-09-15T01:01:09.399094+00:00",
+  "ordering": "runtime freeze < evaluator freeze < holdout data generation < HOLDOUT_FROZEN",
+  "frozen_hashes": {
+    "evaluator_source_sha256": "916cf021b14910d87eec4d666d4902ca05b55ee91b95972f42decd00f581ec03",
+    "evaluator_path": "scripts/t21r2_run_eval.py",
+    "validation_contract_sha256": "ff9b1836f2fdfff97410fe6db1f51bacb6f50953365da27cc8218a6020dec7d6",
+    "metric_definitions_sha256": "59eaf25ec333f9c6d41ea550ef50a2d61a3412c68d3793fa92e04a8e985409fb",
+    "zero_tolerance_definitions_sha256": "29eca89d95806612585e62373f7ecf5ba493e18836a1092bcb1ebce98dec4f9b",
+    "floors_sha256": "715dd4af9ea7719e4e424496aa7c93d40f5315524ffd0b63efb0a09bddb03430"
+  },
+  "frozen_semantics": [
+    "citation metric denominator: gold-ANSWER-mode rows",
+    "citation metric numerators: resolvability/validity/precision over answered rows; coverage and supported-claim rate over claim verdict counts",
+    "retrieval rank rules: rank of gold chunk in final reranked+deduplicated order, 1-based, not found = 0",
+    "abstention/conflict scoring over the conflict-abstention suite",
+    "temporal scoring categories and denominators",
+    "source diversity: required-multi-source pass rate over multihop + crossdomain rows",
+    "case inclusion: every row of every frozen suite is scored; no row may be dropped or added after freeze"
+  ],
+  "rule": "After this file exists NO evaluator semantics may change. If an evaluator bug is discovered after HOLDOUT_FROZEN or after the first evaluation starts: STOP; decision is T21R2_EVALUATOR_INVALID; the exposed holdout becomes non-promotional and a future T21R3 with another fresh holdout is required."
+}

@@ -1,0 +1,55 @@
+{
+  "milestone": "T21R2.24 final audit",
+  "recorded_at": "2026-09-15T01:55:59.612342+00:00",
+  "canonical_base": "8d23eabb17b3f66aa7ba3e4815c0ea088e53ae7b",
+  "branch": "t21r2-blind-holdout-validation",
+  "decision": "DEMOTE_KNOWLEDGE_RAG_TO_EXPERIMENTAL",
+  "decision_basis": [
+    "Blind construction proven: world/corpus/suites built with no runtime execution against any holdout datum (firewall tests), uniqueness audit verdict UNIQUE against BOTH T21 and T21R on every frozen identity dimension, static gold audit PASS 0 failures.",
+    "Ordering proven: runtime freeze (T21R2.0) and evaluator freeze (T21R2.1) predate all holdout data; evaluator frozen before holdout; HOLDOUT_FROZEN at T21R2.16 before any runtime exposure.",
+    "official_runtime_exposures = 1 (evaluation_run_ledger.json); no repair, no rerun, no gold or scoring change after the evaluation.",
+    "Floors failed on the fresh holdout - CONFIRM is impossible; the failure classification (failure_analysis.json) attributes every failing floor to frozen-runtime behavior on valid gold, not to an evaluator bug (evaluator validity VERDICT: VALID; post-freeze evaluator bug policy NOT triggered) or an infrastructure failure.",
+    "Per-category accuracy floors, retrieval floors, temporal floors, conflict detection and false-resolution floors, suite minimums, and all 20 zero-tolerance counters PASS - the capability is real but not at the preregistered promotion bar.",
+    "The T21R CONFIRM was based on a holdout that was runtime-exposed pre-freeze; T21R2's independent holdout supersedes it as promotion evidence and does not reproduce the promotion bar.",
+    "Per the mission rule, the runtime was never modified during construction or evaluation; the demotion below is the recorded OUTCOME action, applied after the evaluation, to executive/skills.py only (src/sciencemath/knowledge remains byte-identical to the canonical base)."
+  ],
+  "checks": {
+    "entry_gate_canonical_base": true,
+    "t21r_merge_in_ancestry": true,
+    "knowledge_rag_was_active_at_freeze": true,
+    "runtime_composites_match_freeze": true,
+    "knowledge_runtime_byte_identical_to_base": true,
+    "only_src_delta_is_recorded_demotion": true,
+    "historical_artifacts_byte_identical": true,
+    "top_level_junit_not_drifted": true,
+    "blind_construction_ordering_proven": true,
+    "construction_scripts_runtime_clean": true,
+    "uniqueness_verdict_unique": true,
+    "static_gold_audit_pass": true,
+    "holdout_frozen": true,
+    "one_shot_exposure_exactly_1": true,
+    "suite_minimums_met": true,
+    "zero_tolerance_all_zero": true,
+    "floors_failed_as_recorded": true,
+    "decision_matches_recorded_outcome": true,
+    "registry_matches_demotion_record": true,
+    "failure_analysis_complete": true,
+    "protection_battery_all_pass": true,
+    "full_pytest_zero_failures": true,
+    "no_t22_started": true
+  },
+  "registry_sha256_now": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+  "registry_counts": {
+    "ACTIVE": 11,
+    "EXPERIMENTAL": 1
+  },
+  "holdout_total": 1964,
+  "one_shot_evaluation": {
+    "official_runtime_exposures": 1,
+    "overall_pass": false,
+    "floors_all_pass": false,
+    "zero_tolerance_all_zero": true
+  },
+  "status": "ALL_CHECKS_PASS",
+  "note": "Every check is mechanically recomputed from the artifacts on disk. all_ok requires the recorded decision path to be fully evidenced, INCLUDING the honest failure gates (floors_failed_as_recorded) - a T21R2 validation that failed its floors and demoted the skill is a complete, valid closure, not an incomplete run."
+}
