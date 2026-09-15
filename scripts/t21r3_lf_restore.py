@@ -34,6 +34,10 @@ def main() -> None:
             capture_output=True, check=True, cwd=str(ROOT)).stdout
         disk = p.read_bytes()
         if disk != blob:
+            # Skip dirty content changes (LF-normalized inequality beyond
+            # CRLF); only rewrite pure line-ending drift.
+            if disk.replace(b"\r\n", b"\n") != blob.replace(b"\r\n", b"\n"):
+                continue
             p.write_bytes(blob)
             fixed += 1
     print(f"restored-to-blob: {fixed} of {len(files)} files")

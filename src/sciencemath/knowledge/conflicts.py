@@ -16,6 +16,8 @@ Preregistered resolution rule (frozen before FINAL):
 """
 from __future__ import annotations
 
+import unicodedata
+
 from sciencemath.knowledge.evidence import EvidenceItem
 
 AUTHORITY_RANK = {
@@ -30,6 +32,18 @@ AUTHORITY_RANK = {
 
 _FRESHNESS_RANK = {"STATIC": 3, "SLOW_CHANGING": 2, "TIME_SENSITIVE": 1,
                    "UNKNOWN": 0}
+
+
+def _normalize_fact_value(value: object) -> str:
+    """Conservative deterministic value identity.
+
+    Same entity+attribute+normalized value is one fact, regardless of
+    wording. Only whitespace trim, Unicode NFKC, internal whitespace
+    collapse, and casefold are applied — no semantic fuzzy matching.
+    """
+    text = unicodedata.normalize("NFKC", str(value)).strip()
+    text = " ".join(text.split())
+    return text.casefold()
 
 
 def _attribute_key(text: str, entity_terms: frozenset[str]) -> str:
@@ -47,10 +61,11 @@ def detect_conflicts(
     """Pairwise value-conflict detection across evidence items.
 
     Primary path (deterministic): items whose originating chunk metadata
-    carries fact_entity/fact_attribute/fact_value disagree on the value for
-    the same entity+attribute. Fallback path: text-level attribute key
-    comparison restricted to shared entity context, so unrelated chunks
-    never trip this.
+    carries fact_entity/fact_attribute/fact_value disagree on the
+    *normalized fact_value* for the same entity+attribute. Different
+    wording (text_span) of the same value is not a conflict. Fallback
+    path: text-level attribute key comparison restricted to shared
+    entity context, used only when no metadata facts are present.
     """
     conflicts: list[dict] = []
 
@@ -64,12 +79,11 @@ def detect_conflicts(
         if entity and attribute and value is not None:
             facts.setdefault(f"{entity}|{attribute}", []).append(item)
     for key, group in facts.items():
-        distinct = {it.text_span for it in group}
-        if len(distinct) < 2:
-            continue
         for i, a in enumerate(group):
+            va = _normalize_fact_value((a.metadata or {}).get("fact_value"))
             for b in group[i + 1:]:
-                if a.text_span == b.text_span:
+                vb = _normalize_fact_value((b.metadata or {}).get("fact_value"))
+                if va == vb:
                     continue
                 conflicts.append({
                     "claim_key": key,
