@@ -1,0 +1,221 @@
+{
+  "audit": "t21r5_holdout_uniqueness",
+  "baseline": "evaluations/t21 + evaluations/t21r + evaluations/t21r2 + evaluations/t21r3 + evaluations/t21r4",
+  "suites": {
+    "mango-t21r5-retrieval-holdout-v1": 488,
+    "mango-t21r5-singlehop-holdout-v1": 512,
+    "mango-t21r5-multihop-holdout-v1": 288,
+    "mango-t21r5-crossdomain-holdout-v1": 400,
+    "mango-t21r5-citation-claim-holdout-v1": 349,
+    "mango-t21r5-conflict-abstention-holdout-v1": 669,
+    "mango-t21r5-temporal-holdout-v1": 250,
+    "mango-t21r5-adversarial-holdout-v1": 575
+  },
+  "suite_holdout_sha256": {
+    "mango-t21r5-retrieval-holdout-v1": "26850442754dbbac8c87f698c8464c0f01942ea1d91907351e7891967ab1632a",
+    "mango-t21r5-singlehop-holdout-v1": "90e3a1f95a6cb31268b3380f9389182fb93a7504be0785c023be58ba8066ad1e",
+    "mango-t21r5-multihop-holdout-v1": "e33ca5b78628eda6ee139ed9b1624dd48caa43e79c3a854ba04827eec5de48de",
+    "mango-t21r5-crossdomain-holdout-v1": "4d2c196d5dceecc9eb594b859d725a47d9156eec634eb1b19b0fde78cc52467f",
+    "mango-t21r5-citation-claim-holdout-v1": "c7310d8cd432ebd486a61a2c992e00637c133322b7568d86ec16219978854078",
+    "mango-t21r5-conflict-abstention-holdout-v1": "559dc74f77927129839ea321e6b994a640d94aed53fea40d92693cff6d3c3378",
+    "mango-t21r5-temporal-holdout-v1": "c5a0ddb6304d4622a6a113985c12bac0f6cd16629fa4c87348d7f7cffc7dca3b",
+    "mango-t21r5-adversarial-holdout-v1": "463baeeab8adfbe5dacf968d1aa601ea38c5d79b8ba04f564933fed061026dc6"
+  },
+  "total_rows": 3531,
+  "checks": {
+    "exact_duplicate_rows": {
+      "count": 0,
+      "detail": {}
+    },
+    "exact_duplicate_queries": {
+      "count": 0,
+      "detail": {}
+    },
+    "case_id_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "entity_identity_overlap": {
+      "entity_name_overlap": {
+        "count": 0,
+        "detail": []
+      },
+      "t21r5_entities_in_prior_queries": {
+        "count": 0,
+        "detail": []
+      },
+      "prior_entities_in_t21r5_queries": {
+        "count": 0,
+        "detail": []
+      }
+    },
+    "exact_query_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "chunk_id_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "source_id_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "gold_answer_value_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "exact_source_text_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "verbatim_attack_string_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "near_duplicate_flags": {
+      "count": 21,
+      "pairs": [
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Ulphgarth and the Elslagarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Ulphgarth and the Elslagarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Flitgarth of the Valegarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Flitgarth of the Valegarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Wansgarth and the Garsgarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Wansgarth and the Garsgarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Hawngarth of the Yockgarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Hawngarth of the Yockgarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Bickergarth and the Inglegarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Bickergarth and the Inglegarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Jervauxgarth of the Cravengarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Jervauxgarth of the Cravengarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Dentgarth and the Kirkbygarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Dentgarth and the Kirkbygarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Lothersgarth of the Elslagarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Lothersgarth of the Elslagarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Flitgarth and the Mallersgarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Flitgarth and the Mallersgarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Niddergarth of the Garsgarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Niddergarth of the Garsgarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Hawngarth and the Orrestgarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Hawngarth and the Orrestgarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The birthplace of the author of The Penninggarth of the Inglegarth was which town?",
+          "query_b": "Which town is the birthplace of the author of The Penninggarth of the Inglegarth?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Which year saw the publication of the work The Embergarth and the Lambgarth?",
+          "query_b": "The publication year of the work The Embergarth and the Lambgarth is which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Which year saw the publication of the work The Medlargarth of the Fossgarth?",
+          "query_b": "The publication year of the work The Medlargarth of the Fossgarth is which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Which year saw the publication of the work The Gildgarth and the Nookgarth?",
+          "query_b": "The publication year of the work The Gildgarth and the Nookgarth is which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Which year saw the publication of the work The Ockergarth of the Haregarth?",
+          "query_b": "The publication year of the work The Ockergarth of the Haregarth is which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The town of Elmholt sits on which waterway?",
+          "query_b": "The town of Elmholt sits by which waterway?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The capital town of Caldris is which one?",
+          "query_b": "In which town is the capital of Caldris?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The capital town of Vessany is which one?",
+          "query_b": "In which town is the capital of Vessany?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The capital town of Brechnor is which one?",
+          "query_b": "In which town is the capital of Brechnor?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The capital town of Tavelsund is which one?",
+          "query_b": "In which town is the capital of Tavelsund?",
+          "jaccard": 1.0
+        }
+      ]
+    }
+  },
+  "gate": {
+    "exact_duplicate_rows": 0,
+    "exact_duplicate_queries": 0,
+    "case_id_overlap": 0,
+    "entity_identity_overlap": 0,
+    "query_overlap": 0,
+    "chunk_id_overlap": 0,
+    "source_id_overlap": 0,
+    "gold_answer_overlap": 0,
+    "source_text_overlap": 0,
+    "attack_string_overlap": 0
+  },
+  "verdict": "UNIQUE"
+}

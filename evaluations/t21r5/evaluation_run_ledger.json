@@ -1,0 +1,16 @@
+{
+  "milestone": "T21R5 official evaluation run ledger",
+  "holdout_freeze_timestamp": "2026-09-15T23:39:31.089598+00:00",
+  "holdout_manifest_sha256": "74d2ad4621418bf74ace57a6a402f24c25720b7bdeea1b7a781af6b48143e87f",
+  "evaluator_freeze_hash": "d23ed5c927a6d1c12a9c19791f77085fbea4104efb35da5359b1f2a60a6d6410",
+  "runtime_freeze_hash": "52f9c0de9c2ee123fbd079f379dd669c7c78c093f456d82140e75a0930907618",
+  "raw_results_sha256": "e07d6ca0fb51a3de4516f79bc51891d73bbe31d153c89f032c4d80a98b68e184",
+  "evaluation_start": "2026-09-15T23:39:42.083028+00:00",
+  "evaluation_end": "2026-09-15T23:39:43.718641+00:00",
+  "command": "python scripts/t21r5_run_eval.py",
+  "exit_code": 1,
+  "result_artifact_sha256": null,
+  "official_runtime_exposures": 1,
+  "exposure_rule": "The first runtime exposure of every holdout row is the official evaluation; no preliminary smoke, sample run, dry run, or per-suite preview was performed on any T21R5 holdout row.",
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\allam\\Documents\\new\\model\\scripts\\t21r5_run_eval.py\", line 514, in main\n    result_sha, doc = evaluate()\n                      ^^^^^^^^^^\n  File \"C:\\Users\\allam\\Documents\\new\\model\\scripts\\t21r5_run_eval.py\", line 563, in evaluate\n    raw, _result = run_answer_row(row, corpus)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\allam\\Documents\\new\\model\\scripts\\t21r5_run_eval.py\", line 186, in run_answer_row\n    s.get(\"domain\") for s in (corpus.source(c[\"source_id\"])\n    ^^^^^\nAttributeError: 'KnowledgeSourceRecord' object has no attribute 'get'\n"
+}

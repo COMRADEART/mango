@@ -1,0 +1,15 @@
+{
+  "milestone": "T21R5 final full pytest battery",
+  "recorded_at": "2026-09-15T23:45:34.294060+00:00",
+  "command": "python -m pytest tests/ -q --junitxml=evaluations/t21r5/full_junit.xml",
+  "exit_code": 0,
+  "tests_total": 1830,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 2,
+  "time_seconds": 87.3,
+  "failing_tests": [],
+  "verdict": "PASS",
+  "junit_xml": "evaluations/t21r5/full_junit.xml",
+  "note": "Full repository test battery at the T21R5 terminal state (includes the t21r5 blind holdout contract tests with all post-freeze gates active)."
+}
