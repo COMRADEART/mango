@@ -1,26 +1,27 @@
-"""T21R2 blind-holdout contract tests.
+"""T21R3 blind-holdout contract tests.
 
-Mechanical enforcement of the T21R2 blindness and freeze-order rules:
+Mechanical enforcement of the T21R3 blindness and freeze-order rules:
 
 1. No pre-freeze construction script may import or invoke the Mango
    knowledge runtime (src/sciencemath/knowledge) - AST inspection plus
    dynamic-import and string-literal scanning.
 2. The freeze artifacts must exist in the preregistered order and the
-   frozen hashes must still match the files on disk (tamper detection).
+   frozen hashes/composites must still match the files on disk (tamper
+   detection).
 3. The static audit's local reimplementations of the frozen runtime
    mechanics (tokenizer stop-list, token regex, coverage floor, capital-
    framewords, override patterns, temporal regexes, corpus schema hash
    functions) must be BIT-IDENTICAL to the frozen runtime definitions -
-   verified on synthetic fixture inputs only, never on T21R2 holdout data.
+   verified on synthetic fixture inputs only, never on T21R3 holdout data.
 4. Once HOLDOUT_FROZEN exists, the evaluator refuses to run without it,
    and the holdout manifest checksum recorded in the evaluation report
    must match the manifest on disk.
 
 The runtime modules ARE imported here, but only their constants and hash
-functions are exercised on synthetic inputs (not on any T21R2 holdout
+functions are exercised on synthetic inputs (not on any T21R3 holdout
 query, gold row, source, chunk set, or corpus), which does not violate
 the blindness rule: the rule forbids executing runtime functions against
-T21R2 holdout data, and these tests never do.
+T21R3 holdout data, and these tests never do.
 """
 from __future__ import annotations
 
@@ -28,6 +29,7 @@ import ast
 import hashlib
 import json
 import re
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -36,22 +38,25 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
-OUT_DIR = ROOT / "evaluations" / "t21r2"
-HOLDOUT = ROOT / "rag" / "gk_holdout_t21r2"
+OUT_DIR = ROOT / "evaluations" / "t21r3"
+HOLDOUT = ROOT / "rag" / "gk_holdout_t21r3"
 
 sys.path.insert(0, str(SCRIPTS))
 sys.path.insert(0, str(ROOT / "src"))
 
-# Pre-freeze construction scripts - these build the world, corpus, gold
-# suites, and run the static audit. NONE of them may touch the runtime.
+# Pre-freeze construction / freeze-order scripts - these build the world,
+# corpus, gold suites, run the static audit and record the freezes. NONE
+# of them may execute a runtime function on any T21R3 holdout datum.
 CONSTRUCTION_SCRIPTS = [
-    "t21r2_world.py",
-    "t21r2_render_corpus.py",
-    "t21r2_build_suites.py",
-    "t21r2_static_gold_audit.py",
-    "t21r2_uniqueness.py",
-    "t21r2_freeze.py",
-    "t21r2_protection_battery.py",
+    "t21r3_world.py",
+    "t21r3_render_corpus.py",
+    "t21r3_build_suites.py",
+    "t21r3_static_gold_audit.py",
+    "t21r3_uniqueness.py",
+    "t21r3_freeze.py",
+    "t21r3_write_contract.py",
+    "t21r3_freeze_runtime.py",
+    "t21r3_freeze_evaluator.py",
 ]
 CONSTRUCTION_SCRIPTS = [s for s in CONSTRUCTION_SCRIPTS
                         if (SCRIPTS / s).exists()]
@@ -96,24 +101,28 @@ def _dynamic_import_calls(tree: ast.AST) -> list[str]:
     return calls
 
 
-# t21r2_uniqueness.py (T21R2.15) imports ONE constants-only data module from
-# the runtime package - sciencemath.knowledge.fixtures - to compare prior-
-# world entity names, exactly as the accepted T21R precedent
-# (scripts/t21r_uniqueness.py) does. Fixtures are inert data: no runtime
-# function is ever executed on T21R2 holdout data, so the BLIND RULE holds.
-_FIXTURE_DATA_IMPORTS = ("sciencemath.knowledge", "sciencemath.knowledge.fixtures")
+# t21r3_uniqueness.py imports ONE constants-only data module from the
+# runtime package - sciencemath.knowledge.fixtures - to compare prior-world
+# entity names, exactly as the accepted T21R/T21R2 precedent does. Fixtures
+# are inert data: no runtime function is ever executed on T21R3 holdout
+# data, so the BLIND RULE holds. It also reads the frozen T21R2 corpus
+# world.jsonl as JSONL DATA (no runtime call).
+_FIXTURE_DATA_IMPORTS = ("sciencemath.knowledge",
+                         "sciencemath.knowledge.fixtures")
 
 
-# The protection battery is a POST-freeze verification harness: it must
-# name runtime paths in string literals to hash them and must read the
-# skill registry to verify the recorded demotion (it never executes a
-# runtime function on any holdout datum), so its imports are scanned
-# against a narrowed allowlist and its string literals not at all. Every
-# pre-freeze construction script gets the full import + string-literal
-# scan.
-_POST_FREEZE_VERIFICATION_ALLOW = {
-    "t21r2_protection_battery.py": ("sciencemath.executive",
-                                    "sciencemath.executive.skills"),
+# The freeze scripts must name runtime / evaluator paths in string
+# literals to hash them, and t21r3_freeze_runtime.py reads the skill
+# REGISTRY to record its availability (constants only - no runtime
+# function is executed on any holdout datum), so their imports are
+# scanned against a narrowed allowlist and their string literals not at
+# all. Every other pre-freeze construction script gets the full import +
+# string-literal scan.
+_FREEZE_ORDER_ALLOW = {
+    "t21r3_freeze_runtime.py": ("sciencemath.executive",
+                                "sciencemath.executive.skills"),
+    "t21r3_write_contract.py": (),
+    "t21r3_freeze_evaluator.py": (),
 }
 
 
@@ -121,10 +130,10 @@ _POST_FREEZE_VERIFICATION_ALLOW = {
 def test_construction_scripts_never_import_runtime(script):
     tree = ast.parse((SCRIPTS / script).read_text(encoding="utf-8"),
                      filename=script)
-    if script == "t21r2_uniqueness.py":
+    if script == "t21r3_uniqueness.py":
         allowed = _FIXTURE_DATA_IMPORTS
     else:
-        allowed = _POST_FREEZE_VERIFICATION_ALLOW.get(script, ())
+        allowed = _FREEZE_ORDER_ALLOW.get(script, ())
     for mod in _import_nodes(tree):
         if mod in allowed:
             continue
@@ -132,7 +141,7 @@ def test_construction_scripts_never_import_runtime(script):
             f"{script}: imports runtime module {mod!r}"
     assert not _dynamic_import_calls(tree), \
         f"{script}: uses dynamic import machinery"
-    if script in _POST_FREEZE_VERIFICATION_ALLOW:
+    if script in _FREEZE_ORDER_ALLOW:
         return
     # string-literal scan: no runtime module path or entrypoint name in
     # any string constant (except the module docstring's rule statement)
@@ -154,20 +163,21 @@ def test_construction_scripts_never_import_runtime(script):
 
 @pytest.mark.parametrize("script", CONSTRUCTION_SCRIPTS)
 def test_construction_scripts_only_import_allowed_modules(script):
-    """Construction scripts may import stdlib and the sibling T21R2 data
+    """Construction scripts may import stdlib and the sibling T21R3 data
     modules - nothing else from the project (the constants-only fixture
-    modules needed by the T21R2.15 uniqueness audit are the sole
-    exception, mirroring the accepted T21R precedent)."""
+    modules needed by the uniqueness audit and the registry read needed
+    by the runtime freeze are the sole exceptions, mirroring the accepted
+    T21R/T21R2 precedent)."""
     ALLOWED_PREFIXES = ("__future__", "collections", "datetime", "hashlib",
                         "json", "pathlib", "re", "sys", "itertools",
                         "math", "unicodedata", "tempfile", "os",
                         "subprocess")
     allowed_modules = {
-        "t21r2_uniqueness.py": ("sciencemath.knowledge",
+        "t21r3_uniqueness.py": ("sciencemath.knowledge",
                                 "sciencemath.knowledge.fixtures",
                                 "t21r_fixtures"),
-        "t21r2_protection_battery.py": ("sciencemath.executive",
-                                        "sciencemath.executive.skills"),
+        "t21r3_freeze_runtime.py": ("sciencemath.executive",
+                                    "sciencemath.executive.skills"),
     }
     extra = allowed_modules.get(script, ())
     tree = ast.parse((SCRIPTS / script).read_text(encoding="utf-8"),
@@ -176,15 +186,15 @@ def test_construction_scripts_only_import_allowed_modules(script):
         if mod in extra:
             continue
         top = mod.split(".")[0]
-        assert top in ALLOWED_PREFIXES or mod.startswith("t21r2_"), \
+        assert top in ALLOWED_PREFIXES or mod.startswith("t21r3_"), \
             f"{script}: unexpected import {mod!r}"
 
 
 def test_static_audit_does_not_execute_runtime_functions():
     """The static audit must compute everything from data - grep its AST
-    for any attribute call on a sciencemath-shaped root (paranoia check;
-    the import test above already blocks the imports)."""
-    tree = ast.parse((SCRIPTS / "t21r2_static_gold_audit.py")
+    for any import of a runtime-shaped module (paranoia check; the import
+    test above already blocks the imports)."""
+    tree = ast.parse((SCRIPTS / "t21r3_static_gold_audit.py")
                      .read_text(encoding="utf-8"))
     mods = _import_nodes(tree)
     assert not [m for m in mods if "knowledge" in m or "mango" in m]
@@ -215,66 +225,55 @@ def test_freeze_artifacts_exist_in_order():
     assert rt["recorded_at"] < ev["recorded_at"], \
         "runtime freeze must precede evaluator freeze"
     assert ev["runtime_freeze_recorded_at"] == rt["recorded_at"]
-    assert rt["knowledge_rag_registry"]["availability"] == "ACTIVE", \
-        "runtime freeze recorded a non-ACTIVE KNOWLEDGE_RAG"
+    assert rt["repair_commit"] == \
+        "b0c03a0d8a974aa3248c07bf1dbc2ced4501b28d", \
+        "runtime freeze must sit on the recorded repair commit"
+    assert rt["knowledge_rag_registry"]["availability"] == "EXPERIMENTAL", \
+        "runtime freeze must record KNOWLEDGE_RAG as EXPERIMENTAL " \
+        "(promotion happens only after the final result)"
+    assert rt["executive_router_status"].startswith("EXPERIMENTAL"), \
+        "Executive Router must remain unchanged (EXPERIMENTAL)"
     assert ev["frozen_hashes"]["validation_contract_sha256"] == \
         _sha256_lf(contract), "validation contract hash drifted"
 
 
-def _knowledge_rag_block(text: str) -> str:
-    """The KNOWLEDGE_RAG skill record block of skills.py."""
-    start = text.index('"KNOWLEDGE_RAG": _skill(')
-    end = text.index("\n        ),\n", start) + len("\n        ),\n")
-    return text[start:end]
+def test_runtime_composites_unchanged_since_freeze():
+    """Every recorded runtime composite hash must still match the files on
+    disk - recomputed with the freeze script's own sha_group over the same
+    frozen group definitions (constants only; no holdout data touched).
 
-
-def test_runtime_files_unchanged_since_freeze():
-    """The frozen runtime is defined as byte-identical to the canonical
-    base HEAD recorded in runtime_freeze.json. Verify via git diff.
-
-    src/sciencemath/knowledge must be byte-identical *until a later
-    milestone records an explicit repair*. T21R3 repairs conflict detection
-    and provenance-spoof handling; when those repair markers are present,
-    knowledge may differ from the T21R2 freeze while historical T21R2
-    holdout artifacts remain immutable.
-
-    executive/skills.py may differ from the base ONLY by the recorded
-    T21R2 decision DEMOTE_KNOWLEDGE_RAG_TO_EXPERIMENTAL (applied after the
-    one-shot evaluation, never during construction or evaluation); every
-    other byte must match."""
-    import subprocess
+    The historical_write_guard group is the one preregistered exception:
+    registering this milestone's protection battery in the guard test is
+    the same preregistered registration delta every post-T15R battery
+    applied (T16..T21R2); its presence is asserted explicitly instead."""
+    import t21r3_freeze_runtime as fr
     rt = json.loads((OUT_DIR / "runtime_freeze.json")
                     .read_text(encoding="utf-8"))
-    base = rt["canonical_base"]
-    t21r3_repair = (
-        (ROOT / "src/sciencemath/knowledge/provenance_spoof.py").exists()
-        or (ROOT / "evaluations/t21r3/t21r2_spoof_root_cause.json").exists()
-    )
-    if not t21r3_repair:
-        proc = subprocess.run(
-            ["git", "diff", "--quiet", base, "HEAD", "--",
-             "src/sciencemath/knowledge"],
-            cwd=str(ROOT))
-        assert proc.returncode == 0 or proc.returncode == 1, \
-            f"git diff failed (rc={proc.returncode})"
-        if proc.returncode == 1:
-            pytest.fail("src/sciencemath/knowledge changed since canonical "
-                        f"base {base}")
-    skills_rel = "src/sciencemath/executive/skills.py"
-    show = subprocess.run(
-        ["git", "show", f"{base}:{skills_rel}"],
-        cwd=str(ROOT), capture_output=True, check=True)
-    base_text = show.stdout.decode("utf-8").replace("\r\n", "\n")
-    head_text = (ROOT / skills_rel).read_text(encoding="utf-8") \
-        .replace("\r\n", "\n")
-    base_wo = base_text.replace(_knowledge_rag_block(base_text), "")
-    head_wo = head_text.replace(_knowledge_rag_block(head_text), "")
-    assert base_wo == head_wo, \
-        "executive/skills.py changed outside the KNOWLEDGE_RAG record " \
-        "since the canonical base"
-    assert "availability=EXPERIMENTAL" in _knowledge_rag_block(head_text) \
-        and "availability=ACTIVE" in _knowledge_rag_block(base_text), \
-        "the KNOWLEDGE_RAG record is not the recorded T21R2 demotion"
+    for name, spec in fr.RUNTIME_GROUPS.items():
+        if name == "historical_write_guard":
+            guard_text = (ROOT / "tests/test_historical_artifact_write_guard.py") \
+                .read_text(encoding="utf-8")
+            assert '"T21R3": "scripts/t21r3_protection_battery.py"' \
+                in guard_text, "preregistered guard registration missing"
+            continue
+        got = fr.sha_group(spec)
+        assert got == rt["runtime_composites"][name], \
+            f"runtime composite drifted since freeze: {name}"
+    assert fr.sha_group(fr.RUNTIME_GROUPS["executive_router"]) == \
+        rt["runtime_composites"]["executive_router"], \
+        "Executive Router changed since the runtime freeze"
+
+
+def test_t15r_canonical_blob_unchanged():
+    rt = json.loads((OUT_DIR / "runtime_freeze.json")
+                    .read_text(encoding="utf-8"))
+    probe = ROOT / "evaluations/t15r/mutation_safety_probe.json"
+    blob = subprocess.run(
+        ["git", "hash-object", str(probe)], cwd=str(ROOT),
+        capture_output=True, check=True).stdout.decode().strip()
+    assert blob == rt["t15r_canonical_blob"] == \
+        "fba2437f78633884bd31965d78a4250bd1ca893c", \
+        "T15R canonical blob drifted"
 
 
 @pytest.mark.skipif(not (OUT_DIR / "evaluator_freeze.json").exists(),
@@ -287,7 +286,7 @@ def test_evaluator_freeze_hash_unchanged():
     assert _sha256_lf(path) == \
         ev["frozen_hashes"]["evaluator_source_sha256"], \
         "evaluator source changed after freeze (post-freeze evaluator bug " \
-        "policy: STOP - T21R2_EVALUATOR_INVALID)"
+        "policy: STOP - T21R3_EVALUATOR_INVALID)"
 
 
 def test_validation_contract_floors_are_preregistered():
@@ -296,15 +295,15 @@ def test_validation_contract_floors_are_preregistered():
     assert contract["preregistered"] is True
     assert "Before HOLDOUT_FROZEN" in contract["blindness_rule"]
     assert contract["suite_minimums"][
-        "mango-t21r2-multihop-holdout-v1"] >= 200
-    assert contract["minimum_holdout_total"] >= 1830
+        "mango-t21r3-multihop-holdout-v1"] >= 220
+    assert contract["minimum_holdout_total"] >= 2140
     assert contract["floors"]["retrieval"]["recall_at_5"]["value"] >= 0.94
     assert contract["floors"]["security"][
         "prompt_injection_containment"]["value"] == 1.0
 
 
 def test_evaluator_refuses_to_run_without_holdout_frozen():
-    src = (SCRIPTS / "t21r2_run_eval.py").read_text(encoding="utf-8")
+    src = (SCRIPTS / "t21r3_run_eval.py").read_text(encoding="utf-8")
     assert "HOLDOUT_FROZEN" in src
     assert "raise SystemExit" in src
 
@@ -325,9 +324,9 @@ _AUDIT_DEFS = {
 
 
 def _audit_defs() -> dict:
-    src = (SCRIPTS / "t21r2_static_gold_audit.py").read_text(
+    src = (SCRIPTS / "t21r3_static_gold_audit.py").read_text(
         encoding="utf-8")
-    tree = ast.parse(src, filename="t21r2_static_gold_audit.py")
+    tree = ast.parse(src, filename="t21r3_static_gold_audit.py")
     body: list[ast.stmt] = []
     seen: set[str] = set()
     for node in tree.body:
@@ -387,11 +386,11 @@ def test_audit_temporal_regexes_match_runtime():
 def test_corpus_schema_functions_match_runtime_on_synthetic_inputs():
     """The renderer's local schema functions must be functionally identical
     to the frozen runtime corpus builders. Verified on SYNTHETIC inputs -
-    never on T21R2 holdout data."""
+    never on T21R3 holdout data."""
     from sciencemath.knowledge.schema import KnowledgeSourceRecord, \
         chunk_checksum, make_chunk_id, make_source_id, source_record_hash
     from sciencemath.knowledge.corpus import _sha256_lf as rt_sha256_lf
-    import t21r2_render_corpus as render
+    import t21r3_render_corpus as render
 
     title, publisher, revision = "Example Title", "Example Press", "rev-9"
     assert render.make_source_id(title, publisher, revision) == \
@@ -467,14 +466,10 @@ def test_holdout_frozen_manifest_agrees_with_data():
     for label, info in manifest["freeze_inputs"].items():
         p = ROOT / info["path"]
         assert p.exists(), f"frozen input missing: {label}"
-        # T21R2 freeze_inputs used raw sha256_file, which is CRLF-sensitive
-        # on Windows. Accept raw match OR LF-normalized match against the
-        # committed blob (historical content identity).
         raw = _sha256(p)
         lf = _sha256_lf(p)
         if raw == info["sha256"] or lf == info["sha256"]:
             continue
-        import subprocess
         rel = info["path"].replace("\\", "/")
         blob = subprocess.check_output(
             ["git", "cat-file", "-p", f"HEAD:{rel}"], cwd=str(ROOT))
@@ -502,10 +497,10 @@ def test_holdout_freeze_covers_all_suites_and_corpus():
     for suite in contract["suite_minimums"]:
         assert suite in manifest["suites"], f"suite not frozen: {suite}"
     corpus_paths = {info["path"] for info in manifest["corpus"].values()}
-    for rel in ("rag/gk_holdout_t21r2/sources.jsonl",
-                "rag/gk_holdout_t21r2/chunks.jsonl",
-                "rag/gk_holdout_t21r2/corpus_manifest.json",
-                "rag/gk_holdout_t21r2/world.jsonl"):
+    for rel in ("rag/gk_holdout_t21r3/sources.jsonl",
+                "rag/gk_holdout_t21r3/chunks.jsonl",
+                "rag/gk_holdout_t21r3/corpus_manifest.json",
+                "rag/gk_holdout_t21r3/world.jsonl"):
         assert rel in corpus_paths, f"data not frozen: {rel}"
 
 

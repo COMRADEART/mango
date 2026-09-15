@@ -1,0 +1,26 @@
+{
+  "milestone": "T21R3 final decision (mechanically derived)",
+  "recorded_at": "2026-09-15T17:26:24.899282+00:00",
+  "decision": "KEEP_KNOWLEDGE_RAG_EXPERIMENTAL",
+  "decision_basis": "Zero-tolerance gates all zero and all 8 suite minimums met, but 1 of 32 preregistered capability floors failed: abstention_conflict/conflict_detection = 0.8889 < 0.98 (48/54 gold-conflict rows surfaced CONFLICTING_EVIDENCE; the 6 missed rows abstained rather than answering - conflict_false_resolution = 0.0). The evaluator is valid (source hash matches the pre-holdout evaluator freeze; every frozen input re-verified after the run). Per the contract the knowledge RAG runtime is NOT promoted and stays EXPERIMENTAL; no post-freeze repair is permitted because the holdout is now exposed.",
+  "applied": false,
+  "registry_action": "none - KNOWLEDGE_RAG remains EXPERIMENTAL, exactly as frozen in runtime_freeze.json; src/sciencemath/executive/skills.py is unchanged",
+  "evaluator_valid": true,
+  "failed_floors": [
+    {
+      "group": "abstention_conflict",
+      "metric": "conflict_detection",
+      "value": 0.8889,
+      "floor": 0.98,
+      "op": ">="
+    }
+  ],
+  "floors_total": 32,
+  "floors_passed": 31,
+  "zero_tolerance_all_zero": true,
+  "zero_tolerance_totals": {},
+  "suite_minimums_met": true,
+  "official_runtime_exposures": 1,
+  "one_shot": true,
+  "post_freeze_repair_policy": "FORBIDDEN - the holdout data is exposed after the one-shot run; any runtime or gold change informed by these results would invalidate the blind validation. A future milestone must build a NEW blind holdout."
+}

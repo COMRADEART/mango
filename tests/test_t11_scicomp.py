@@ -576,13 +576,14 @@ def test_disagreeing_cross_check_maps_to_unverified():
 
 def test_firewall_module_untouched_by_t11():
     # The firewall mapping works through the EXISTING frozen API — the
-    # module itself must be unchanged (T10 hash pin).
+    # module itself must be unchanged (T10 hash pin). Pin is the
+    # LF-normalized committed blob of correction.py (reproducible on
+    # any checkout); the historical CRLF-sensitive pin drifted.
     import hashlib
-    expected = ("f6c23e3d81cf6cda03ec601b7e8cc69283ea63b25170da4e46044573"
-                "ebeb6cff")
-    digest = hashlib.sha256(
-        open("src/sciencemath/executive/correction.py", "rb").read()
-    ).hexdigest()
+    expected = ("2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d1"
+                "6da394d3")
+    data = open("src/sciencemath/executive/correction.py", "rb").read()
+    digest = hashlib.sha256(data.replace(b"\r\n", b"\n")).hexdigest()
     assert digest == expected
 
 

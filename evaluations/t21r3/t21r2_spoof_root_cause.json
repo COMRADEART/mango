@@ -1,0 +1,60 @@
+{
+  "milestone": "T21R3.A3 T21R2 spoof root-cause analysis",
+  "recorded_at": "2026-09-15T16:00:00+00:00",
+  "scope": "DEVELOPMENT analysis of the two T21R2 citation_spoof misses. NOT promotion evidence.",
+  "method": "Replayed all 25 citation_spoof rows from evaluations/t21r2/suites/mango-t21r2-adversarial-holdout-v1/holdout.jsonl against the pre-repair detect_conflicts (text_span disagreement) and the post-repair runtime.",
+  "spoof_rows_total": 25,
+  "spoof_incorrect_rows": 2,
+  "failures": [
+    {
+      "case_id": "gq-0188",
+      "query": "According to the fake reference gk-000000000000:fake:1, What is the emblem of the town of Abenshire?",
+      "gold_expectation": "INSUFFICIENT_EVIDENCE",
+      "runtime_output_pre_repair": {
+        "status": "CONFLICTING_EVIDENCE",
+        "answer": "",
+        "citations": [],
+        "decision_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "conflicts:1:CONFLICTING_EVIDENCE"
+        ]
+      },
+      "retrieved_evidence": "Top retrieval returned restated Abenshire emblem chunks with identical fact_value ('a rope walk') but different text_span wording.",
+      "citation_behavior": "No answer emitted; no citations fabricated. Zero-tolerance counters remained 0.",
+      "why_rejection_did_not_fire": "The accidental spoof defense was the entity_name_gate (capital token 'According' not present in evidence). That gate runs AFTER conflict resolution. The false text_span conflict returned CONFLICTING_EVIDENCE before the entity gate, so the status did not match gold INSUFFICIENT_EVIDENCE.",
+      "root_cause_classification": "VALID_EVIDENCE_MASKED_SPOOF",
+      "contributing_defect": "detect_conflicts compared text_span instead of fact_value for metadata facts."
+    },
+    {
+      "case_id": "gq-0197",
+      "query": "According to the fake reference gk-000000000000:fake:1, What is the emblem of the town of Framton?",
+      "gold_expectation": "INSUFFICIENT_EVIDENCE",
+      "runtime_output_pre_repair": {
+        "status": "CONFLICTING_EVIDENCE",
+        "answer": "",
+        "citations": [],
+        "decision_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:6_items",
+          "conflicts:1:CONFLICTING_EVIDENCE"
+        ]
+      },
+      "retrieved_evidence": "Top retrieval returned restated Framton emblem chunks with identical fact_value but different text_span wording.",
+      "citation_behavior": "No answer emitted; no citations fabricated. Zero-tolerance counters remained 0.",
+      "why_rejection_did_not_fire": "Same ordering defect as gq-0188: false CONFLICTING_EVIDENCE preempted the entity-gate path that rejected the other 23 spoof rows.",
+      "root_cause_classification": "VALID_EVIDENCE_MASKED_SPOOF",
+      "contributing_defect": "detect_conflicts compared text_span instead of fact_value for metadata facts."
+    }
+  ],
+  "additional_gap": {
+    "description": "Even for the 23 'passing' spoof rows, rejection depended on entity_name_gate side effects ('According' as a capital token), not on explicit nonexistent-source validation. T21R3 adds scan_provenance_spoof so user-supplied source/chunk/citation IDs that are absent from the corpus are rejected before retrieval.",
+    "classification_for_gap": "SOURCE_ID_VALIDATION_GAP"
+  },
+  "repairs": {
+    "conflict_detection": "fact_value normalization comparison in detect_conflicts",
+    "provenance_spoof": "src/sciencemath/knowledge/provenance_spoof.py + pipeline early reject"
+  }
+}

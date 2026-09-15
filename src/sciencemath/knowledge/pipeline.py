@@ -47,6 +47,7 @@ from sciencemath.knowledge.freshness import (
     snapshot_is_current_claim_safe,
 )
 from sciencemath.knowledge.injection import scan_query_injection, scan_source_text
+from sciencemath.knowledge.provenance_spoof import scan_provenance_spoof
 from sciencemath.knowledge.index import normalize_query, tokenize
 from sciencemath.knowledge.retrieval import (
     coverage_ratio,
@@ -71,7 +72,8 @@ BRIDGE_ATTRIBUTES = ("author", "painter", "inventor")
 _PERSON_NAME_RE = re.compile(r"^[A-Z][a-z]+ [A-Z][a-z]+$")
 _BIRTH_CUE_RE = re.compile(r"\bborn\b|\bbirthplace\b|\bbirth\b", re.IGNORECASE)
 _CREATOR_CUE_RE = re.compile(
-    r"\b(?:author|writer|painter|inventor|wrote|written|created)\b",
+    r"\b(?:author|writer|painter|inventor|wrote|written|created|"
+    r"painted|invented)\b",
     re.IGNORECASE)
 _SENT_RE = re.compile(r"(?<=[.!?])\s+")
 
@@ -249,6 +251,20 @@ def answer_knowledge(
     effective = _strip_injection_phrases(query, injection)
     if injection["flagged"]:
         trace.append(f"effective_query:{effective}")
+
+    # ---- provenance spoof: user-supplied IDs are not evidence (T21R3) ----
+    provenance = scan_provenance_spoof(query, corpus)
+    if provenance["flagged"]:
+        # Reject without answering and without firing zero-tolerance
+        # counters: detecting a user spoof is correct containment, not a
+        # fabricated-reference event.
+        trace.append(f"provenance_spoof:REJECTED:{provenance['reason']}")
+        return _abstain(
+            query, normalized, trace, counters, eligibility, temporal,
+            injection, subqueries=[], status=INSUFFICIENT_EVIDENCE,
+            items=[], conflicts=[],
+            retrieval_status="PROVENANCE_SPOOF_REJECTED", coverage=0.0,
+            snapshot_date=corpus.snapshot_date)
 
     # ---- bounded decomposition ------------------------------------------
     subqueries = decompose_query(effective, max_subqueries=MAX_SUBQUERIES)

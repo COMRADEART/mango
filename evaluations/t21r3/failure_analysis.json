@@ -1,0 +1,53 @@
+{
+  "milestone": "T21R3 failure analysis",
+  "recorded_at": "2026-09-15T17:26:13.686839+00:00",
+  "one_shot_evaluation": {
+    "recorded_at": "2026-09-15T17:19:55.433255+00:00",
+    "official_runtime_exposures": 1,
+    "one_shot": true,
+    "overall_pass": false,
+    "floors_all_pass": false,
+    "zero_tolerance_all_zero": true,
+    "suite_minimums_met": true
+  },
+  "integer_reconciliation": {
+    "conflict_suite_rows": 302,
+    "gold_conflict_rows": 54,
+    "conflicts_detected": 48,
+    "conflicts_missed": 6,
+    "conflict_false_resolutions": 0,
+    "failed_floor_metrics": [
+      {
+        "group": "abstention_conflict",
+        "metric": "conflict_detection",
+        "value": 0.8889,
+        "floor": 0.98,
+        "op": ">="
+      }
+    ],
+    "note": "conflict_detection = 48/54 = 0.8889 exactly; the 6 missed gold-conflict rows did NOT answer (conflict_false_resolution = 0.0), i.e. they abstained - a conservative failure mode, not a fabrication or silent resolution."
+  },
+  "failure_modes": [
+    {
+      "id": "conflict_detection_gap_on_low_overlap_phrasings",
+      "kind": "RUNTIME_CAPABILITY_FAILURE",
+      "rows": {
+        "conflict_suite_gold_conflict": 6
+      },
+      "mechanism": "Static reading of the frozen pipeline (src/sciencemath/knowledge/pipeline.py:201-211, :306-321): conflict scoping requires the TOP-RANKED reranked item to carry fact_entity/fact_attribute metadata for the claimed fact (_relevant_conflicts). For query phrasings whose content tokens overlap the conflict chunk text weakly (e.g. 'recorded'/'listed'/'establishment' absent from 'The established year of X is NNNN, per the Register...'), a chunk without the fact metadata can rank first; the scoped conflict list is then empty (NO_CONFLICT) and the row proceeds to synthesis, where the coverage gate abstains INSUFFICIENT_EVIDENCE instead of surfacing CONFLICTING_EVIDENCE.",
+      "repair_policy": "NONE POST-FREEZE. The holdout is exposed; any repair informed by these rows would compromise the blind validation. The failure is recorded honestly and the decision keeps KNOWLEDGE_RAG EXPERIMENTAL."
+    }
+  ],
+  "evaluator_validity": {
+    "verdict": "VALID",
+    "evidence": {
+      "evaluator_source_sha256_matches_freeze": true,
+      "evaluator_freeze_hash_in_ledger": "501f811a5cee33c5e65f02a8e76960faa4945fad874ee9e4e9e6b9fa7d40694c",
+      "evaluator_frozen_before_holdout": true,
+      "holdout_manifest_sha256": "9f09856148f5aa180add3265637a0c706d05feb77a1204ed4efa6a509710005d",
+      "manifest_freeze_inputs_verified_by_protection_battery": true,
+      "no_post_freeze_edit": "the protection battery's t21r3_freeze_identity layer re-hashed every frozen input, suite and corpus file against holdout_manifest.json AFTER the evaluation"
+    }
+  },
+  "verdict": "FAILURES_PRESENT"
+}

@@ -1,0 +1,9 @@
+{
+  "milestone": "T21R3.A1 T21R2 failure freeze (development reference)",
+  "source": "evaluations/t21r2/failure_analysis.json",
+  "false_conflict_over_abstentions": 64,
+  "spoof_incorrect_rows": 2,
+  "spoof_case_ids": ["gq-0188", "gq-0197"],
+  "defect": "detect_conflicts compared text_span instead of fact_value",
+  "bridge_cue_gap": "CREATOR_CUE lacked painted|invented affecting 12 crossdomain rows"
+}
