@@ -3,5 +3,6 @@
 # Evaluation/training line-oriented artifacts carry recorded checksums:
 # force LF everywhere so byte-level SHA256 verification is reproducible
 # on any platform.
+* text=auto eol=lf
 *.jsonl text eol=lf
 training/curriculum/mango-sft-v2/level1/*.json text eol=crlf
