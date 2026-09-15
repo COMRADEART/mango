@@ -1,0 +1,17 @@
+{
+  "HOLDOUT_FROZEN": true,
+  "frozen_at": "2026-09-15T01:40:36.421552+00:00",
+  "holdout_manifest_sha256": "8e334d8f4f873cc688867719dcc472310bc5dafcb7cd01b838f68c097c4d218b",
+  "holdout_total": 1964,
+  "suites": {
+    "mango-t21r2-retrieval-holdout-v1": "def613718604cf4846b59f0054adbca0534be530e05859dd1af768787e657d29",
+    "mango-t21r2-singlehop-holdout-v1": "642ed31cf3e263c8c9bce039cb36e13fee12601e63c993600b6579c42d0986f5",
+    "mango-t21r2-multihop-holdout-v1": "cfd6590fb895957c66a7c509cbcee9fbc793f917959f7f0a0e7f9c012850d350",
+    "mango-t21r2-crossdomain-holdout-v1": "68906c3631ce3bd67122e41e299516b30bfb85ca13902234859e3f84cd7b975d",
+    "mango-t21r2-citation-claim-holdout-v1": "a90fc46caff0da7999149b19e3195137b615b0c35868fab446702ccfc3f1fc3d",
+    "mango-t21r2-conflict-abstention-holdout-v1": "5fbfe8ceaf90c842c01e5818e715219b0458738c429d2a13a4373483ac0cea35",
+    "mango-t21r2-temporal-holdout-v1": "591ad51591daa0a7f793ed390595242085bea57ff6d4f38a75a2cbe599dc79ca",
+    "mango-t21r2-adversarial-holdout-v1": "a4939e0e9f6e9bf1c1df7c083fabf464f2c45baa59c5be7113749e407e8fc0bb"
+  },
+  "rule": "After HOLDOUT_FROZEN exists: no runtime change, no evaluator-semantics change, no gold change, no query change, no corpus change, no floor lowering, no category change, no dropping failing cases, no adding special-case exceptions, no regenerating failing cases, no scoring-semantics change, no per-suite preview or dry run. The first runtime exposure of every holdout row is the official evaluation. A real capability failure is recorded and T21R2 fails; repairs belong to a future milestone with a new unseen holdout."
+}

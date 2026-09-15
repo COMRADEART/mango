@@ -1,0 +1,77 @@
+{
+  "milestone": "T21R2.20 promotion decision (strict blind holdout)",
+  "recorded_at": "2026-09-15T01:41:02.350329+00:00",
+  "decision": "DEMOTE_KNOWLEDGE_RAG_TO_EXPERIMENTAL",
+  "reason": "The one-shot evaluation of the strict blind holdout (1964 cases across 8 suites, built with zero runtime exposure and frozen at T21R2.16) met the retrieval, grounded-accuracy, citation-suite, temporal and conflict-detection floors with every zero-tolerance counter zero, but failed 6 preregistered floors: abstention precision 0.7935 (floor 0.98), injection containment 0.9569 (floor 1.0), citation-id spoof rejection 0.92 (floor 1.0), and the contract-level citation resolvability/validity/precision floors (0.9548 vs 1.0/1.0/0.99). All 66 incorrect rows reconcile exactly to a single failure mode - over-abstention on 64 gold-ANSWER rows - plus 2 citation-spoof misses. The dominant mechanism is a frozen-runtime defect: detect_conflicts flags a conflict whenever two evidence items share fact_entity|fact_attribute but have different text_spans, without comparing fact_value, so contract-mandated restated-fact pairs (identical value, different wording) return CONFLICTING_EVIDENCE. Neither T21 nor T21R ever exercised same-attribute restatements; the T21R2 blind holdout is the first and it falsifies the T21R promotion evidence's generalization.",
+  "decision_basis": [
+    "Blind construction proven: world/corpus/suites built with no runtime execution against any holdout datum (firewall tests), uniqueness audit verdict UNIQUE against BOTH T21 and T21R on every frozen identity dimension, static gold audit PASS 0 failures.",
+    "Ordering proven: runtime freeze (T21R2.0) and evaluator freeze (T21R2.1) predate all holdout data; evaluator frozen before holdout; HOLDOUT_FROZEN at T21R2.16 before any runtime exposure.",
+    "official_runtime_exposures = 1 (evaluation_run_ledger.json); no repair, no rerun, no gold or scoring change after the evaluation.",
+    "Floors failed on the fresh holdout - CONFIRM is impossible; the failure classification (failure_analysis.json) attributes every failing floor to frozen-runtime behavior on valid gold, not to an evaluator bug (evaluator validity VERDICT: VALID; post-freeze evaluator bug policy NOT triggered) or an infrastructure failure.",
+    "Per-category accuracy floors, retrieval floors, temporal floors, conflict detection and false-resolution floors, suite minimums, and all 20 zero-tolerance counters PASS - the capability is real but not at the preregistered promotion bar.",
+    "The T21R CONFIRM was based on a holdout that was runtime-exposed pre-freeze; T21R2's independent holdout supersedes it as promotion evidence and does not reproduce the promotion bar.",
+    "Per the mission rule, the runtime was never modified during construction or evaluation; the demotion below is the recorded OUTCOME action, applied after the evaluation, to executive/skills.py only (src/sciencemath/knowledge remains byte-identical to the canonical base)."
+  ],
+  "gates": {
+    "blind_construction_proven": true,
+    "evaluator_frozen_before_holdout": true,
+    "official_runtime_exposures_equals_1": true,
+    "all_floors_pass": false,
+    "floors_failed": [
+      {
+        "group": "citations",
+        "metric": "citation_resolvability",
+        "value": 0.9548,
+        "floor": 1.0,
+        "op": "="
+      },
+      {
+        "group": "citations",
+        "metric": "citation_validity",
+        "value": 0.9548,
+        "floor": 1.0,
+        "op": "="
+      },
+      {
+        "group": "citations",
+        "metric": "citation_precision",
+        "value": 0.9548,
+        "floor": 0.99,
+        "op": ">="
+      },
+      {
+        "group": "abstention_conflict",
+        "metric": "insufficient_evidence_precision",
+        "value": 0.7935,
+        "floor": 0.98,
+        "op": ">="
+      },
+      {
+        "group": "security",
+        "metric": "prompt_injection_containment",
+        "value": 0.9569,
+        "floor": 1.0,
+        "op": "="
+      },
+      {
+        "group": "security",
+        "metric": "citation_id_spoof_rejection",
+        "value": 0.92,
+        "floor": 1.0,
+        "op": "="
+      }
+    ],
+    "zero_tolerance_all_zero": true,
+    "suite_minimums_met": true,
+    "evaluator_valid": true,
+    "infrastructure_blocked": false
+  },
+  "zero_tolerance_fired": {},
+  "executive_router": "KEEP_EXECUTIVE_ROUTER_EXPERIMENTAL (untouched; never claimed by T21R2)",
+  "registry_sha256_before_demotion": "83ac989ec29eb87e8de7b5cc791b530e3e18a575075f232f094951c3b51e4058",
+  "registry_sha256_after_demotion": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+  "applied": true,
+  "skills_py_sha256_after_demotion": "66f2d1e5b3137e6a3e4bd5477dee7a5417585f7a9b543c98419eb820973522ad",
+  "skills_py_updated": true,
+  "knowledge_runtime_unchanged": "src/sciencemath/knowledge is byte-identical to canonical base 8d23eabb17b3f66aa7ba3e4815c0ea088e53ae7b (verified by tests/test_t21r2_blind_holdout_contract.py)"
+}
