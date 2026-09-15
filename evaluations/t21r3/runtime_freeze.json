@@ -1,0 +1,37 @@
+{
+  "milestone": "T21R3.B1 runtime freeze (repaired runtime, before holdout)",
+  "recorded_at": "2026-09-15T16:36:48.874684+00:00",
+  "project_base": "ac7492b0f4e37fdc0adcb69d879c0f8c0b881372",
+  "partial_checkpoint": "775b750c6280141c234189ec907123926be11232",
+  "repair_commit": "b0c03a0d8a974aa3248c07bf1dbc2ced4501b28d",
+  "git_head": "b0c03a0d8a974aa3248c07bf1dbc2ced4501b28d",
+  "git_tree_sha": "fbf4f3115f22a03301b4ce00d7259e2d6d1f9d12",
+  "t15r_canonical_blob": "fba2437f78633884bd31965d78a4250bd1ca893c",
+  "runtime_composites": {
+    "knowledge_runtime": "d4a7f373195ca9c1dd3f28bf093698c39be31ef3a323756380d3c5f61d076d0c",
+    "executive_skills": "f758b52b841130b34c85ec25e72037020a9e90237627fb3f8a673353e02a8125",
+    "executive_router": "dbc7fbd0d19688d1a220e27d18484f437f1adde3b24b4b5ba4fb6eb8ac246c10",
+    "science_rag_runtime": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "web_research_runtime": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+    "document_runtime": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+    "memory_runtime": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+    "planning_runtime": "d045885cefcd097ceffc6588b5e6b00a1072cfaa08526ba9e4070bbdc041528c",
+    "orchestration_runtime": "57b1c4ad8cd71829b78d5baab20c62617333718be39a96710b0084004561ae45",
+    "scicomp_runtime": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "code_runtime": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "correction_firewall": "7a307f6678d6afdc9d469c31b898ba4f4cc9e34d0df4c9e3e7770756e02c36e1",
+    "security_layer": "4963c2c53cc921d0ee812804aabe1b0c8f7a7910cd50f0a0d650954bfdfb6a00",
+    "historical_write_guard": "5de7c015ee05956be1a5073cce1ebc8b9accedf725894771482b9638f6c96a9a"
+  },
+  "knowledge_rag_registry": {
+    "availability": "EXPERIMENTAL",
+    "registry_sha256": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+    "skills_py_sha256_lf": "66f2d1e5b3137e6a3e4bd5477dee7a5417585f7a9b543c98419eb820973522ad",
+    "counts": {
+      "ACTIVE": 11,
+      "EXPERIMENTAL": 1
+    }
+  },
+  "executive_router_status": "EXPERIMENTAL (unchanged)",
+  "order_rule": "This freeze exists BEFORE rag/gk_holdout_t21r3 contains any holdout world/corpus and BEFORE the evaluator is frozen. From this moment forward NO runtime change is allowed during T21R3 holdout construction or the one-shot evaluation."
+}

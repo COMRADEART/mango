@@ -1,0 +1,48 @@
+{
+  "milestone": "T21R3 blindness audit",
+  "recorded_at": "2026-09-15T17:28:09.931661+00:00",
+  "blindness_rule": "Before HOLDOUT_FROZEN, no Mango runtime function may be executed against any T21R3 candidate holdout query, gold row, source, chunk set, or corpus: no answer_knowledge, no retrieve, no knowledge pipeline entrypoint, no claim-evidence gate, no citation verifier, no conflict resolver, no freshness router, no entity gate, no reranker, and no wrapper invoking the KNOWLEDGE_RAG runtime.",
+  "evidence": {
+    "freeze_ordering": {
+      "runtime_freeze_recorded_at": "2026-09-15T16:36:48.874684+00:00",
+      "evaluator_freeze_recorded_at": "2026-09-15T16:37:19.574938+00:00",
+      "holdout_frozen_at": "2026-09-15T17:19:32.461819+00:00",
+      "evaluation_start": "2026-09-15T17:19:54.138091+00:00",
+      "ordering_holds": true,
+      "freeze_scripts_refuse_holdout_first": "t21r3_freeze_runtime.py exits before writing the freeze when rag/gk_holdout_t21r3/world.jsonl already exists; the freeze succeeded.",
+      "conclusion": "The repaired runtime, the evaluator, and the validation contract were frozen BEFORE any T21R3 holdout query, gold row, source, chunk set, or corpus existed."
+    },
+    "construction_isolation": {
+      "construction_scripts": [
+        "t21r3_world.py",
+        "t21r3_render_corpus.py",
+        "t21r3_build_suites.py",
+        "t21r3_static_gold_audit.py",
+        "t21r3_uniqueness.py",
+        "t21r3_freeze.py"
+      ],
+      "mechanism": "tests/test_t21r3_blind_holdout_contract.py AST-scans every construction script for runtime imports, dynamic import machinery, and runtime entrypoint names in string literals; the transcription-fidelity tests exercise the audit's reimplemented mechanics on SYNTHETIC inputs only.",
+      "firewall_test_file_sha256": "d000fb3c8ddcbb787b0f724893d538cb05e0bf9498034407bf17ac44e2c9579a",
+      "firewall_test_file_present": true,
+      "pre_freeze_blindness_audit": "T21R3 pre-freeze blindness audit"
+    },
+    "world_disjointness": {
+      "uniqueness_verdict": "UNIQUE",
+      "baseline": "evaluations/t21 + evaluations/t21r + evaluations/t21r2",
+      "near_duplicate_flags_audit_only": null,
+      "zero_overlap_gates": "case ids, entity identities, exact queries, chunk ids, source ids, gold answers, source text and verbatim attack strings all = 0 vs the T21 + T21R + T21R2 union"
+    },
+    "one_shot_rule": {
+      "official_runtime_exposures": 1,
+      "exposure_rule": "The first runtime exposure of every holdout row is the official evaluation; no preliminary smoke, sample run, dry run, or per-suite preview was performed on any T21R3 holdout row.",
+      "evaluation_run_ledger_present": true,
+      "holdout_manifest_sha256": "9f09856148f5aa180add3265637a0c706d05feb77a1204ed4efa6a509710005d",
+      "post_freeze_repairs": "none (per the one_shot_rule and the post-freeze evaluator bug policy; no gold, scoring, or runtime change followed the evaluation; the recorded decision action is a no-op registry-wise)"
+    },
+    "post_evaluation_action": {
+      "runtime_change": "none - KNOWLEDGE_RAG stays EXPERIMENTAL exactly as frozen; src/sciencemath/executive/skills.py is byte-identical to the freeze",
+      "verification": "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze and the protection battery verify every runtime composite still matches the T21R3.B1 freeze after the evaluation."
+    }
+  },
+  "verdict": "BLINDNESS_MAINTAINED"
+}

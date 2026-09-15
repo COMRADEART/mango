@@ -1,0 +1,51 @@
+{
+  "milestone": "T21R3 final audit",
+  "recorded_at": "2026-09-15T17:28:09.918448+00:00",
+  "canonical_base": "ac7492b0f4e37fdc0adcb69d879c0f8c0b881372",
+  "branch": "t21r3-knowledge-rag-repair-blind-validation",
+  "decision": "KEEP_KNOWLEDGE_RAG_EXPERIMENTAL",
+  "decision_basis": "Zero-tolerance gates all zero and all 8 suite minimums met, but 1 of 32 preregistered capability floors failed: abstention_conflict/conflict_detection = 0.8889 < 0.98 (48/54 gold-conflict rows surfaced CONFLICTING_EVIDENCE; the 6 missed rows abstained rather than answering - conflict_false_resolution = 0.0). The evaluator is valid (source hash matches the pre-holdout evaluator freeze; every frozen input re-verified after the run). Per the contract the knowledge RAG runtime is NOT promoted and stays EXPERIMENTAL; no post-freeze repair is permitted because the holdout is now exposed.",
+  "checks": {
+    "entry_gate_canonical_base": true,
+    "partial_checkpoint_in_ancestry": true,
+    "repair_commit_in_ancestry": true,
+    "knowledge_rag_experimental_at_freeze": true,
+    "runtime_composites_match_freeze": true,
+    "src_delta_is_preregistered_repair_only": true,
+    "executive_skills_unchanged": true,
+    "executive_router_unchanged": true,
+    "historical_artifacts_byte_identical": true,
+    "top_level_junit_not_drifted": true,
+    "t15r_canonical_blob": true,
+    "blind_construction_ordering_proven": true,
+    "pre_freeze_blindness_audit_zero_violations": true,
+    "construction_scripts_runtime_clean": true,
+    "uniqueness_verdict_unique": true,
+    "static_gold_audit_pass": true,
+    "holdout_frozen": true,
+    "one_shot_exposure_exactly_1": true,
+    "suite_minimums_met": true,
+    "zero_tolerance_all_zero": true,
+    "floors_failed_as_recorded": true,
+    "decision_matches_recorded_outcome": true,
+    "registry_unchanged_after_decision": true,
+    "failure_analysis_complete": true,
+    "protection_battery_all_pass": true,
+    "full_pytest_zero_failures": true,
+    "no_t22_started": true
+  },
+  "registry_sha256_now": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+  "registry_counts": {
+    "ACTIVE": 11,
+    "EXPERIMENTAL": 1
+  },
+  "holdout_total": 2214,
+  "one_shot_evaluation": {
+    "official_runtime_exposures": 1,
+    "overall_pass": false,
+    "floors_all_pass": false,
+    "zero_tolerance_all_zero": true
+  },
+  "status": "ALL_CHECKS_PASS",
+  "note": "Every check is mechanically recomputed from the artifacts on disk. all_ok requires the recorded decision path to be fully evidenced, INCLUDING the honest failure gates (floors_failed_as_recorded) - a T21R3 validation that failed one capability floor and kept the skill EXPERIMENTAL is a complete, valid closure, not an incomplete run."
+}

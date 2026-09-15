@@ -1,0 +1,34 @@
+{
+  "audit": "T21R3 pre-freeze blindness audit",
+  "audited_at": "2026-09-15",
+  "rule": "Before evaluations/t21r3/HOLDOUT_FROZEN no T21R3 query was sent through any runtime function: answer_knowledge, retrieve, reranker, conflict runtime, citation verifier, claim verifier, freshness router, entity gate, or the pipeline wrapper. No runtime-assisted gold QA, no coverage testing against runtime output, no BM25 tuning against holdout, no wording changes based on system output. Gold comes from fixture truth only.",
+  "violations": 0,
+  "checks": [
+    {
+      "check": "no runtime function executed on any T21R3 holdout query",
+      "method": "All T21R3 construction and QA steps ran only static, non-runtime code: scripts/t21r3_world.py (fixture assembly + assert_disjoint), scripts/t21r3_render_corpus.py (pure text rendering), scripts/t21r3_build_suites.py (pure row assembly with structural assertions), scripts/t21r3_static_gold_audit.py (static audit model mirroring frozen runtime mechanics, no runtime call), scripts/t21r3_uniqueness.py (set arithmetic over fixture constants and JSONL data). No call to answer_knowledge, retrieve, reranker, conflict runtime, citation verifier, claim verifier, freshness router, entity gate, or any pipeline wrapper was made against a T21R3 query.",
+      "violations": 0
+    },
+    {
+      "check": "gold derived from fixture truth only",
+      "method": "Every expect_answer_contains and gold_chunk_id value in the 2214 holdout rows is computed directly from scripts/t21r3_world.py fixture structures (WorldFact / WorldTemporalFact / WorldConflict records) and from t21r3_render_corpus.py chunk ids. No gold value was read from, compared against, or corrected using any runtime output.",
+      "violations": 0
+    },
+    {
+      "check": "no BM25 tuning against holdout",
+      "method": "No BM25 parameter, tokenizer, weight, or index setting was changed at any point during T21R3 construction. The runtime and evaluator were frozen before holdout generation (runtime_freeze.json, evaluator_freeze.json) and their inputs were not touched afterwards.",
+      "violations": 0
+    },
+    {
+      "check": "no wording changes based on system output",
+      "method": "All query phrasings were written up front from the frozen query-template tables. The only wording change during construction (near-duplicate province phrasing) was forced by an internal duplicate-query assertion inside scripts/t21r3_build_suites.py itself (two rows colliding within T21R3), not by any runtime output; the replacement phrasing is template-based and gold-independent.",
+      "violations": 0
+    },
+    {
+      "check": "no runtime-assisted gold QA",
+      "method": "scripts/t21r3_static_gold_audit.py uses a static audit model that re-implements only the mechanical, documented rules (tokenizer, MIN_COVERAGE=0.60, capitalized-token entity gate, guaranteed-abstain proxy) transcribed from the frozen evaluator. It executes no runtime function and its output was used only to confirm construction correctness, never to adjust gold to make answers pass.",
+      "violations": 0
+    }
+  ],
+  "conclusion": "No blindness violation found. The T21R3 holdout remains unseen by the runtime up to the freeze point."
+}

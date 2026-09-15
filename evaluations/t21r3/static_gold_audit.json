@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "suites": {
+    "mango-t21r3-adversarial-holdout-v1": 342,
+    "mango-t21r3-citation-claim-holdout-v1": 245,
+    "mango-t21r3-conflict-abstention-holdout-v1": 302,
+    "mango-t21r3-crossdomain-holdout-v1": 225,
+    "mango-t21r3-multihop-holdout-v1": 224,
+    "mango-t21r3-retrieval-holdout-v1": 320,
+    "mango-t21r3-singlehop-holdout-v1": 306,
+    "mango-t21r3-temporal-holdout-v1": 250
+  },
+  "total_rows": 2214,
+  "failures": [],
+  "warnings": [
+    "max query token-Jaccard vs old holdouts: 0.500 (audit only; exact overlap = 0)"
+  ]
+}
