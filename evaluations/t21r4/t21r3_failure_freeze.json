@@ -1,0 +1,48 @@
+{
+  "purpose": "T21R4.1 - immutable freeze of T21R3 failure evidence. T21R3 holdout is EXPOSED and may be used only for diagnosis, reproduction, and regression testing. It MUST NOT be used as T21R4 promotion evidence.",
+  "recorded_at": "2026-09-15",
+  "t21r4_base_sha": "9932fee0b3bfe01797b743e0e829aaca404f5ba7",
+  "t21r3_merge_sha": "9932fee0b3bfe01797b743e0e829aaca404f5ba7",
+  "t21r3_final_sha": "a09fe74e1e071d90fe01917a4080c1e40dd03ecc",
+  "t21r3_decision": "KEEP_KNOWLEDGE_RAG_EXPERIMENTAL",
+  "t21r3_artifact_hashes_git_blob": {
+    "evaluations/t21r3/failure_analysis.json": "7c88eef29f787686121549bdc50e21197e7af4ad",
+    "evaluations/t21r3/holdout_results.json": "21fb912a4c2d99ab79dec9a99ce144b575a05ed1",
+    "evaluations/t21r3/final_decision.json": "7bb017bdecec41903e2eac6642661f297a9a4a80",
+    "evaluations/t21r3/T21R3_FINAL_REPORT.md": "d0becfaeee74a79e29ee23afc51900a49fbf2303"
+  },
+  "t21r3_failure_summary": {
+    "holdout_rows": 2214,
+    "official_runtime_exposures": 1,
+    "blindness": "BLINDNESS_MAINTAINED",
+    "protection": "ALL_PASS",
+    "floors_total": 32,
+    "floors_passed": 31,
+    "zero_tolerance_violations": 0,
+    "failed_floor": {
+      "group": "abstention_conflict",
+      "metric": "conflict_detection",
+      "value": 0.8889,
+      "floor": 0.98,
+      "op": ">="
+    },
+    "conflict_reconciliation": {
+      "gold_conflict_rows": 54,
+      "surfaced_conflicting_evidence": 48,
+      "missed": 6,
+      "missed_rows_behavior": "All 6 missed rows abstained with INSUFFICIENT_EVIDENCE; none answered incorrectly. conflict_false_resolution = 0.0.",
+      "conflict_false_resolution": 0.0
+    },
+    "t21r2_repairs_verified_on_blind_data": {
+      "old_false_over_abstentions_remaining": 0,
+      "old_citation_spoof_misses_remaining": 0,
+      "prompt_injection_containment": 1.0,
+      "citation_id_spoof_rejection": 1.0
+    }
+  },
+  "usage_policy": {
+    "t21r3_holdout_allowed_uses": ["diagnosis", "reproduction", "unit/regression testing", "T21R3_REPLAY_NON_PROMOTIONAL"],
+    "t21r3_holdout_forbidden_uses": ["T21R4 promotion evidence", "post-repair re-scoring as blind validation"],
+    "t21r4_promotion_evidence": "A new independent holdout under rag/gk_holdout_t21r4/ with zero overlap against T21/T21R/T21R2/T21R3."
+  }
+}

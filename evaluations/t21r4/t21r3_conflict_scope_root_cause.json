@@ -1,0 +1,514 @@
+{
+  "milestone": "T21R4.2 - root cause of all six T21R3 conflict-detection misses",
+  "recorded_at": "2026-09-15",
+  "basis": "T21R3 holdout is EXPOSED after the one-shot run; this inspection is diagnosis/reproduction only and is NOT promotion evidence.",
+  "failure_mode_id": "top_item_metadata_conflict_scoping",
+  "frozen_mechanism": "src/sciencemath/knowledge/pipeline.py (T21R3): conflicts_all = detect_conflicts(items, ...) then _relevant_conflicts(items[0], conflicts_all). _relevant_conflicts derives fact_entity/fact_attribute ONLY from the TOP-RANKED item and filters conflicts by the exact claim_key 'entity|attribute'. When the top-ranked item lacks the relevant fact metadata (different fact_attribute), relevant = [] even though conflicts_all contains a genuine conflict; the pipeline takes resolution = NO_CONFLICT, proceeds to synthesis, and the coverage gate on the top item abstains INSUFFICIENT_EVIDENCE instead of surfacing CONFLICTING_EVIDENCE.",
+  "all_six_share_top_item_scoping_failure": true,
+  "other_mechanisms": [],
+  "cases": [
+    {
+      "case_id": "hl-0009",
+      "query": "What establishment year is listed for the town of Cobblewick?",
+      "expected_status": "CONFLICTING_EVIDENCE",
+      "retrieved_rank_order": [
+        {
+          "rank": 1,
+          "chunk_id": "gk-0e6a1d57aedc:cobblewick-geography:8",
+          "fact_entity": "Cobblewick",
+          "fact_attribute": "nation",
+          "fact_value": "Brontide"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "gk-0e6a1d57aedc:cobblewick-geography:11",
+          "fact_entity": "Cobblewick",
+          "fact_attribute": "province",
+          "fact_value": "the stone littoral"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "gk-0e6a1d57aedc:cobblewick-geography:9",
+          "fact_entity": "Cobblewick",
+          "fact_attribute": "waterway",
+          "fact_value": "the Sarrow"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "gk-9e674fee62fc:nathaniel-yarwell-birthplace:47",
+          "fact_entity": "Nathaniel Yarwell",
+          "fact_attribute": "birthplace",
+          "fact_value": "Cobblewick"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "gk-8fb1745c47a0:cobblewick-established-year-conflict-a:34",
+          "fact_entity": "Cobblewick",
+          "fact_attribute": "established year",
+          "fact_value": "1102"
+        },
+        {
+          "rank": 6,
+          "chunk_id": "gk-91b5d5fd2946:cobblewick-established-year-conflict-b:0",
+          "fact_entity": "Cobblewick",
+          "fact_attribute": "established year",
+          "fact_value": "1245"
+        },
+        {
+          "rank": 7,
+          "chunk_id": "gk-8fb1745c47a0:aldermoor-history:32",
+          "fact_entity": "Aldermoor",
+          "fact_attribute": "established year",
+          "fact_value": "1138"
+        },
+        {
+          "rank": 8,
+          "chunk_id": "gk-8fb1745c47a0:ambervale-history:0",
+          "fact_entity": "Ambervale",
+          "fact_attribute": "established year",
+          "fact_value": "1100"
+        }
+      ],
+      "detected_conflicts_all": [
+        "Cobblewick|established year"
+      ],
+      "top_ranked_metadata": {
+        "fact_entity": "Cobblewick",
+        "fact_attribute": "nation",
+        "fact_value": "Brontide"
+      },
+      "relevant_conflicts_result": [],
+      "conflict_resolution": "NO_CONFLICT",
+      "coverage_over_all_items": 0.6,
+      "final_runtime_status": "INSUFFICIENT_EVIDENCE",
+      "final_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.40)"
+      ]
+    },
+    {
+      "case_id": "hl-0018",
+      "query": "What establishment year is listed for the town of Kingsmoss?",
+      "expected_status": "CONFLICTING_EVIDENCE",
+      "retrieved_rank_order": [
+        {
+          "rank": 1,
+          "chunk_id": "gk-0e6a1d57aedc:kingsmoss-geography:36",
+          "fact_entity": "Kingsmoss",
+          "fact_attribute": "nation",
+          "fact_value": "Quelmar"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "gk-0e6a1d57aedc:kingsmoss-geography:37",
+          "fact_entity": "Kingsmoss",
+          "fact_attribute": "waterway",
+          "fact_value": "the Oskery"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "gk-0e6a1d57aedc:kingsmoss-geography:39",
+          "fact_entity": "Kingsmoss",
+          "fact_attribute": "province",
+          "fact_value": "the birch valleys"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "gk-ba777ccefcf7:quandary-athenaeum-location:11",
+          "fact_entity": "Quandary Athenaeum",
+          "fact_attribute": "location",
+          "fact_value": "Kingsmoss"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "gk-67964a0f7f04:kingsmoss-emblem-restated:1",
+          "fact_entity": "Kingsmoss",
+          "fact_attribute": "emblem",
+          "fact_value": "a drovers' inn"
+        },
+        {
+          "rank": 6,
+          "chunk_id": "gk-8fb1745c47a0:kingsmoss-established-year-conflict-a:35",
+          "fact_entity": "Kingsmoss",
+          "fact_attribute": "established year",
+          "fact_value": "1109"
+        },
+        {
+          "rank": 7,
+          "chunk_id": "gk-91b5d5fd2946:kingsmoss-established-year-conflict-b:1",
+          "fact_entity": "Kingsmoss",
+          "fact_attribute": "established year",
+          "fact_value": "1246"
+        },
+        {
+          "rank": 8,
+          "chunk_id": "gk-8fb1745c47a0:aldermoor-history:32",
+          "fact_entity": "Aldermoor",
+          "fact_attribute": "established year",
+          "fact_value": "1138"
+        }
+      ],
+      "detected_conflicts_all": [
+        "Kingsmoss|established year"
+      ],
+      "top_ranked_metadata": {
+        "fact_entity": "Kingsmoss",
+        "fact_attribute": "nation",
+        "fact_value": "Quelmar"
+      },
+      "relevant_conflicts_result": [],
+      "conflict_resolution": "NO_CONFLICT",
+      "coverage_over_all_items": 0.6,
+      "final_runtime_status": "INSUFFICIENT_EVIDENCE",
+      "final_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.40)"
+      ]
+    },
+    {
+      "case_id": "hl-0027",
+      "query": "What establishment year is listed for the town of Quilmstead?",
+      "expected_status": "CONFLICTING_EVIDENCE",
+      "retrieved_rank_order": [
+        {
+          "rank": 1,
+          "chunk_id": "gk-0e6a1d57aedc:quilmstead-geography:68",
+          "fact_entity": "Quilmstead",
+          "fact_attribute": "nation",
+          "fact_value": "Quelmar"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "gk-0e6a1d57aedc:quilmstead-geography:69",
+          "fact_entity": "Quilmstead",
+          "fact_attribute": "waterway",
+          "fact_value": "the Sarrow"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "gk-0e6a1d57aedc:quilmstead-geography:71",
+          "fact_entity": "Quilmstead",
+          "fact_attribute": "province",
+          "fact_value": "the birch valleys"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "gk-9e674fee62fc:sibella-falworth-birthplace:32",
+          "fact_entity": "Sibella Falworth",
+          "fact_attribute": "birthplace",
+          "fact_value": "Quilmstead"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "gk-8fb1745c47a0:quilmstead-established-year-conflict-a:36",
+          "fact_entity": "Quilmstead",
+          "fact_attribute": "established year",
+          "fact_value": "1117"
+        },
+        {
+          "rank": 6,
+          "chunk_id": "gk-91b5d5fd2946:quilmstead-established-year-conflict-b:2",
+          "fact_entity": "Quilmstead",
+          "fact_attribute": "established year",
+          "fact_value": "1247"
+        },
+        {
+          "rank": 7,
+          "chunk_id": "gk-53d9a17df136:brontide-capital:2",
+          "fact_entity": "Brontide",
+          "fact_attribute": "capital",
+          "fact_value": "Quilmstead"
+        },
+        {
+          "rank": 8,
+          "chunk_id": "gk-8fb1745c47a0:aldermoor-history:32",
+          "fact_entity": "Aldermoor",
+          "fact_attribute": "established year",
+          "fact_value": "1138"
+        }
+      ],
+      "detected_conflicts_all": [
+        "Quilmstead|established year"
+      ],
+      "top_ranked_metadata": {
+        "fact_entity": "Quilmstead",
+        "fact_attribute": "nation",
+        "fact_value": "Quelmar"
+      },
+      "relevant_conflicts_result": [],
+      "conflict_resolution": "NO_CONFLICT",
+      "coverage_over_all_items": 0.6,
+      "final_runtime_status": "INSUFFICIENT_EVIDENCE",
+      "final_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.40)"
+      ]
+    },
+    {
+      "case_id": "hl-0036",
+      "query": "What establishment year is listed for the town of Elderbrook?",
+      "expected_status": "CONFLICTING_EVIDENCE",
+      "retrieved_rank_order": [
+        {
+          "rank": 1,
+          "chunk_id": "gk-0e6a1d57aedc:elderbrook-geography:96",
+          "fact_entity": "Elderbrook",
+          "fact_attribute": "nation",
+          "fact_value": "Melvoria"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "gk-0e6a1d57aedc:elderbrook-geography:97",
+          "fact_entity": "Elderbrook",
+          "fact_attribute": "waterway",
+          "fact_value": "the Oskery"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "gk-0e6a1d57aedc:elderbrook-geography:99",
+          "fact_entity": "Elderbrook",
+          "fact_attribute": "province",
+          "fact_value": "the heath commons"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "gk-9e674fee62fc:hyacinth-vantrell-birthplace:89",
+          "fact_entity": "Hyacinth Vantrell",
+          "fact_attribute": "birthplace",
+          "fact_value": "Elderbrook"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "gk-67964a0f7f04:elderbrook-emblem-restated:2",
+          "fact_entity": "Elderbrook",
+          "fact_attribute": "emblem",
+          "fact_value": "a hop kiln"
+        },
+        {
+          "rank": 6,
+          "chunk_id": "gk-8fb1745c47a0:elderbrook-established-year-conflict-a:37",
+          "fact_entity": "Elderbrook",
+          "fact_attribute": "established year",
+          "fact_value": "1124"
+        },
+        {
+          "rank": 7,
+          "chunk_id": "gk-91b5d5fd2946:elderbrook-established-year-conflict-b:3",
+          "fact_entity": "Elderbrook",
+          "fact_attribute": "established year",
+          "fact_value": "1248"
+        },
+        {
+          "rank": 8,
+          "chunk_id": "gk-8fb1745c47a0:aldermoor-history:32",
+          "fact_entity": "Aldermoor",
+          "fact_attribute": "established year",
+          "fact_value": "1138"
+        }
+      ],
+      "detected_conflicts_all": [
+        "Elderbrook|established year"
+      ],
+      "top_ranked_metadata": {
+        "fact_entity": "Elderbrook",
+        "fact_attribute": "nation",
+        "fact_value": "Melvoria"
+      },
+      "relevant_conflicts_result": [],
+      "conflict_resolution": "NO_CONFLICT",
+      "coverage_over_all_items": 0.6,
+      "final_runtime_status": "INSUFFICIENT_EVIDENCE",
+      "final_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.40)"
+      ]
+    },
+    {
+      "case_id": "hl-0045",
+      "query": "What establishment year is listed for the town of Quarrybeck?",
+      "expected_status": "CONFLICTING_EVIDENCE",
+      "retrieved_rank_order": [
+        {
+          "rank": 1,
+          "chunk_id": "gk-0e6a1d57aedc:quarrybeck-geography:124",
+          "fact_entity": "Quarrybeck",
+          "fact_attribute": "nation",
+          "fact_value": "Halcyra"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "gk-0e6a1d57aedc:quarrybeck-geography:125",
+          "fact_entity": "Quarrybeck",
+          "fact_attribute": "waterway",
+          "fact_value": "the Windlace"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "gk-0e6a1d57aedc:quarrybeck-geography:127",
+          "fact_entity": "Quarrybeck",
+          "fact_attribute": "province",
+          "fact_value": "the moss lowlands"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "gk-9e674fee62fc:garvan-marchbanks-birthplace:26",
+          "fact_entity": "Garvan Marchbanks",
+          "fact_attribute": "birthplace",
+          "fact_value": "Quarrybeck"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "gk-ba777ccefcf7:kittiwake-observatory-location:7",
+          "fact_entity": "Kittiwake Observatory",
+          "fact_attribute": "location",
+          "fact_value": "Quarrybeck"
+        },
+        {
+          "rank": 6,
+          "chunk_id": "gk-8fb1745c47a0:quarrybeck-established-year-conflict-a:38",
+          "fact_entity": "Quarrybeck",
+          "fact_attribute": "established year",
+          "fact_value": "1131"
+        },
+        {
+          "rank": 7,
+          "chunk_id": "gk-91b5d5fd2946:quarrybeck-established-year-conflict-b:4",
+          "fact_entity": "Quarrybeck",
+          "fact_attribute": "established year",
+          "fact_value": "1249"
+        },
+        {
+          "rank": 8,
+          "chunk_id": "gk-ba777ccefcf7:kittiwake-observatory-location-record:27",
+          "fact_entity": "Kittiwake Observatory",
+          "fact_attribute": "location",
+          "fact_value": "Quarrybeck"
+        }
+      ],
+      "detected_conflicts_all": [
+        "Quarrybeck|established year"
+      ],
+      "top_ranked_metadata": {
+        "fact_entity": "Quarrybeck",
+        "fact_attribute": "nation",
+        "fact_value": "Halcyra"
+      },
+      "relevant_conflicts_result": [],
+      "conflict_resolution": "NO_CONFLICT",
+      "coverage_over_all_items": 0.6,
+      "final_runtime_status": "INSUFFICIENT_EVIDENCE",
+      "final_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.40)"
+      ]
+    },
+    {
+      "case_id": "hl-0054",
+      "query": "What establishment year is listed for the town of Yarrowfen?",
+      "expected_status": "CONFLICTING_EVIDENCE",
+      "retrieved_rank_order": [
+        {
+          "rank": 1,
+          "chunk_id": "gk-0e6a1d57aedc:yarrowfen-geography:148",
+          "fact_entity": "Yarrowfen",
+          "fact_attribute": "nation",
+          "fact_value": "Quelmar"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "gk-0e6a1d57aedc:yarrowfen-geography:149",
+          "fact_entity": "Yarrowfen",
+          "fact_attribute": "waterway",
+          "fact_value": "the Vindle"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "gk-0e6a1d57aedc:yarrowfen-geography:151",
+          "fact_entity": "Yarrowfen",
+          "fact_attribute": "province",
+          "fact_value": "the birch valleys"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "gk-91b5d5fd2946:yarrowfen-established-year-conflict-b:5",
+          "fact_entity": "Yarrowfen",
+          "fact_attribute": "established year",
+          "fact_value": "1252"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "gk-8fb1745c47a0:yarrowfen-established-year-conflict-a:39",
+          "fact_entity": "Yarrowfen",
+          "fact_attribute": "established year",
+          "fact_value": "1137"
+        },
+        {
+          "rank": 6,
+          "chunk_id": "gk-8fb1745c47a0:aldermoor-history:32",
+          "fact_entity": "Aldermoor",
+          "fact_attribute": "established year",
+          "fact_value": "1138"
+        },
+        {
+          "rank": 7,
+          "chunk_id": "gk-8fb1745c47a0:ambervale-history:0",
+          "fact_entity": "Ambervale",
+          "fact_attribute": "established year",
+          "fact_value": "1100"
+        },
+        {
+          "rank": 8,
+          "chunk_id": "gk-c84da6b01a27:yarrowfen-government:37",
+          "fact_entity": "Yarrowfen",
+          "fact_attribute": "mayor",
+          "fact_value": "Roderick Ziervogel"
+        }
+      ],
+      "detected_conflicts_all": [
+        "Yarrowfen|established year"
+      ],
+      "top_ranked_metadata": {
+        "fact_entity": "Yarrowfen",
+        "fact_attribute": "nation",
+        "fact_value": "Quelmar"
+      },
+      "relevant_conflicts_result": [],
+      "conflict_resolution": "NO_CONFLICT",
+      "coverage_over_all_items": 0.6,
+      "final_runtime_status": "INSUFFICIENT_EVIDENCE",
+      "final_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "source_injection:contained",
+        "synthesis:single_hop_extractive",
+        "coverage_gate:FAIL(0.40)"
+      ]
+    }
+  ],
+  "commonality": {
+    "query_template": "What establishment year is listed for the town of <ENTITY>?",
+    "top_ranked_attribute": "geography chunks (nation/province/waterway) outrank the 'established year' conflict chunks because the conflict chunk wording ('The established year of <ENTITY> is NNNN, per the Register/Roll...') shares fewer content tokens with the query ('establishment year', 'listed') than the geography chunks ('the town of <ENTITY>', 'listed' appears in geography text).",
+    "conflicts_all_contains_genuine_conflict": true,
+    "relevant_conflicts_result": "[] (empty) in all six cases",
+    "coverage_then_fails": "synthesis selects the top item only; coverage_gate FAIL(0.40) < MIN_COVERAGE; status INSUFFICIENT_EVIDENCE",
+    "conflict_false_resolution": 0.0,
+    "conservative_failure": "All six rows abstained; none fabricated an answer."
+  },
+  "repair_policy": "Replace top-item scoping with deterministic QUERY-RELEVANT conflict scoping: for each detected conflict claim_key, require (a) entity relevance - every entity token appears in the query tokens, and (b) attribute relevance - a preregistered deterministic cue table maps query wording to the attribute family, with a year-intent guard for year-type attributes. No model, no embeddings, no per-query special-casing of the six T21R3 queries."
+}

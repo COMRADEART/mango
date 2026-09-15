@@ -199,16 +199,20 @@ def _pack(
 
 
 def _relevant_conflicts(
-    top_item: EvidenceItem, conflicts: list[dict],
+    query: str, conflicts: list[dict],
 ) -> list[dict]:
-    """Conflicts about the fact the top item asserts (T21.18 scoping)."""
-    meta = top_item.metadata or {}
-    entity = meta.get("fact_entity")
-    attribute = meta.get("fact_attribute")
-    if not entity or not attribute:
-        return []
-    key = f"{entity}|{attribute}"
-    return [c for c in conflicts if c.get("claim_key") == key]
+    """T21R4 scoping: conflicts relevant to the effective query.
+
+    The T21R3 runtime scoped conflicts to the metadata of the TOP-RANKED
+    retrieved item only (_relevant_conflicts(items[0], ...)); when the top
+    item carried different fact metadata the scoped list was empty even
+    though a genuine query-relevant conflict had been detected
+    (conflict_detection 0.8889 on the T21R3 blind holdout). Scoping is now
+    QUERY-RELEVANT via the preregistered deterministic cue table —
+    entity relevance plus attribute relevance — never ALL-CONFLICTS-RELEVANT.
+    """
+    from sciencemath.knowledge.conflicts import query_relevant_conflicts
+    return query_relevant_conflicts(query, conflicts)
 
 
 def answer_knowledge(
@@ -303,10 +307,10 @@ def answer_knowledge(
     if source_directives:
         trace.append("source_injection:contained")
 
-    # ---- conflicts (scoped to the claimed fact, T21.18) ---------------------
+    # ---- conflicts (scoped to the query, T21.18 / T21R4) --------------------
     conflicts_all = detect_conflicts(items, _entity_terms(effective))
-    top = items[0]
-    relevant = _relevant_conflicts(top, conflicts_all)
+    relevant = _relevant_conflicts(effective, conflicts_all)
+    top = items[0]  # synthesis anchor; NOT used for conflict scoping
     if relevant:
         resolution, winner = resolve_conflicts(relevant)
         trace.append(f"conflicts:{len(relevant)}:{resolution}")

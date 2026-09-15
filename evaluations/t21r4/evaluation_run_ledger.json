@@ -1,0 +1,15 @@
+{
+  "milestone": "T21R4.17 official evaluation run ledger",
+  "holdout_freeze_timestamp": "2026-09-15T21:34:14.532844+00:00",
+  "holdout_manifest_sha256": "dcd814712f2eb52dc5f35863e5425e506b62a36763fa070c47e773f62ddfe98c",
+  "evaluator_freeze_hash": "15af95d98b079dd550363b4f3ed18eb1a0b42bb0701fb1bf69d40f411d749964",
+  "runtime_freeze_hash": "271065838b2441943d930f583f49da3e669beeb74dea703d737590540b025388",
+  "evaluation_start": "2026-09-15T21:35:34.601090+00:00",
+  "evaluation_end": "2026-09-15T21:35:36.450333+00:00",
+  "command": "python scripts/t21r4_run_eval.py",
+  "exit_code": 0,
+  "result_artifact_sha256": "8e02f4aefc57bc288d9860b0bd6345a87f670d2f181114604c3fdfc9151588fc",
+  "official_runtime_exposures": 1,
+  "exposure_rule": "The first runtime exposure of every holdout row is the official evaluation; no preliminary smoke, sample run, dry run, or per-suite preview was performed on any T21R4 holdout row.",
+  "error": null
+}

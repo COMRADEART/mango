@@ -1,0 +1,37 @@
+{
+  "milestone": "T21R4.B1 runtime freeze (repaired runtime, before holdout)",
+  "recorded_at": "2026-09-15T21:34:14.298962+00:00",
+  "re_record_post_registration": "historical_write_guard re-recorded after the preregistered protection-battery registration delta; every other group proven byte-identical to the original B1 freeze and the holdout data proven untouched against its HOLDOUT_FROZEN manifest",
+  "t21r3_merge_sha": "9932fee0b3bfe01797b743e0e829aaca404f5ba7",
+  "repair_commit": "c1227ab789bdc50b9c2a8c0a2da0c991fda01f78",
+  "git_head": "c1227ab789bdc50b9c2a8c0a2da0c991fda01f78",
+  "git_tree_sha": "704c009c6e1be4bc54a3b76e98511eaa8ea28e36",
+  "t15r_canonical_blob": "fba2437f78633884bd31965d78a4250bd1ca893c",
+  "runtime_composites": {
+    "knowledge_runtime": "d4e3e4ec71c030b029bb7bde0b11db76f71a4ef9830af1d39be8c970f3738bba",
+    "executive_skills": "f758b52b841130b34c85ec25e72037020a9e90237627fb3f8a673353e02a8125",
+    "executive_router": "dbc7fbd0d19688d1a220e27d18484f437f1adde3b24b4b5ba4fb6eb8ac246c10",
+    "science_rag_runtime": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "web_research_runtime": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+    "document_runtime": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+    "memory_runtime": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+    "planning_runtime": "d045885cefcd097ceffc6588b5e6b00a1072cfaa08526ba9e4070bbdc041528c",
+    "orchestration_runtime": "57b1c4ad8cd71829b78d5baab20c62617333718be39a96710b0084004561ae45",
+    "scicomp_runtime": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "code_runtime": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "correction_firewall": "7a307f6678d6afdc9d469c31b898ba4f4cc9e34d0df4c9e3e7770756e02c36e1",
+    "security_layer": "4963c2c53cc921d0ee812804aabe1b0c8f7a7910cd50f0a0d650954bfdfb6a00",
+    "historical_write_guard": "e25a663ea04e3448a13a26a88664b84ed5b95c59b051a3a78ece224a8e70ae54"
+  },
+  "knowledge_rag_registry": {
+    "availability": "EXPERIMENTAL",
+    "registry_sha256": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+    "skills_py_sha256_lf": "66f2d1e5b3137e6a3e4bd5477dee7a5417585f7a9b543c98419eb820973522ad",
+    "counts": {
+      "ACTIVE": 11,
+      "EXPERIMENTAL": 1
+    }
+  },
+  "executive_router_status": "EXPERIMENTAL (unchanged)",
+  "promotion_policy": "KNOWLEDGE_RAG may move to ACTIVE only after the one-shot T21R4 blind holdout passes every preregistered floor."
+}

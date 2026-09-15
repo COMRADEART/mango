@@ -1,0 +1,96 @@
+{
+  "audit": "t21r4-static-gold-audit-v1",
+  "method": "local reimplementation of frozen retrieval arithmetic (no runtime import, no runtime execution)",
+  "top_k": 8,
+  "candidate_multiplier": 3,
+  "per_suite": {
+    "mango-t21r4-adversarial-holdout-v1": {
+      "rows": 389,
+      "gold_in_window": 230,
+      "gold_rank_max": 4,
+      "gold_ranks_gt5": 0,
+      "conflict_rows": 0,
+      "conflict_pairs_in_window": 0,
+      "not_rank1": 0
+    },
+    "mango-t21r4-citation-claim-holdout-v1": {
+      "rows": 260,
+      "gold_in_window": 260,
+      "gold_rank_max": 1,
+      "gold_ranks_gt5": 0,
+      "conflict_rows": 0,
+      "conflict_pairs_in_window": 0,
+      "not_rank1": 0
+    },
+    "mango-t21r4-conflict-abstention-holdout-v1": {
+      "rows": 527,
+      "gold_in_window": 332,
+      "gold_rank_max": 4,
+      "gold_ranks_gt5": 0,
+      "conflict_rows": 240,
+      "conflict_pairs_in_window": 240,
+      "not_rank1": 80
+    },
+    "mango-t21r4-crossdomain-holdout-v1": {
+      "rows": 225,
+      "gold_in_window": 225,
+      "gold_rank_max": 7,
+      "gold_ranks_gt5": 1,
+      "conflict_rows": 0,
+      "conflict_pairs_in_window": 0,
+      "not_rank1": 0
+    },
+    "mango-t21r4-multihop-holdout-v1": {
+      "rows": 224,
+      "gold_in_window": 224,
+      "gold_rank_max": 1,
+      "gold_ranks_gt5": 0,
+      "conflict_rows": 0,
+      "conflict_pairs_in_window": 0,
+      "not_rank1": 0
+    },
+    "mango-t21r4-retrieval-holdout-v1": {
+      "rows": 320,
+      "gold_in_window": 320,
+      "gold_rank_max": 2,
+      "gold_ranks_gt5": 0,
+      "conflict_rows": 0,
+      "conflict_pairs_in_window": 0,
+      "not_rank1": 0
+    },
+    "mango-t21r4-singlehop-holdout-v1": {
+      "rows": 340,
+      "gold_in_window": 340,
+      "gold_rank_max": 4,
+      "gold_ranks_gt5": 0,
+      "conflict_rows": 0,
+      "conflict_pairs_in_window": 0,
+      "not_rank1": 0
+    },
+    "mango-t21r4-temporal-holdout-v1": {
+      "rows": 250,
+      "gold_in_window": 190,
+      "gold_rank_max": 2,
+      "gold_ranks_gt5": 0,
+      "conflict_rows": 0,
+      "conflict_pairs_in_window": 0,
+      "not_rank1": 0
+    }
+  },
+  "gold_rank_histogram": {
+    "1": 1962,
+    "2": 94,
+    "3": 31,
+    "4": 28,
+    "5": 5,
+    "7": 1
+  },
+  "conflict_rows_checked": 240,
+  "conflict_pairs_in_window": 240,
+  "not_rank1_rows": 80,
+  "not_rank1_minimum": 80,
+  "not_rank1_pass": true,
+  "n_failures": 0,
+  "failures": [],
+  "pass": true
+}

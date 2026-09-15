@@ -1,0 +1,395 @@
+{
+  "audit": "t21r4_holdout_uniqueness",
+  "baseline": "evaluations/t21 + evaluations/t21r + evaluations/t21r2 + evaluations/t21r3",
+  "suites": {
+    "mango-t21r4-retrieval-holdout-v1": 320,
+    "mango-t21r4-singlehop-holdout-v1": 340,
+    "mango-t21r4-multihop-holdout-v1": 224,
+    "mango-t21r4-crossdomain-holdout-v1": 225,
+    "mango-t21r4-citation-claim-holdout-v1": 260,
+    "mango-t21r4-conflict-abstention-holdout-v1": 527,
+    "mango-t21r4-temporal-holdout-v1": 250,
+    "mango-t21r4-adversarial-holdout-v1": 389
+  },
+  "suite_holdout_sha256": {
+    "mango-t21r4-retrieval-holdout-v1": "6354d1550d5c9e0c81f4ac198a8b1b2453c42f36ae9a1691d562003ec4d1daae",
+    "mango-t21r4-singlehop-holdout-v1": "644dcff60d25e807430e7fe346a48d69aeca0f5f872ceb5f8d363b6d54b47e9a",
+    "mango-t21r4-multihop-holdout-v1": "aa9bbb390b8b78262398a987606823b325076a59a2531156cb68ce12c7375630",
+    "mango-t21r4-crossdomain-holdout-v1": "425e4062e826ee4f0d0dca6bf259d2b2c54d32ef92ff72654dc3c8fdd1b3ae8f",
+    "mango-t21r4-citation-claim-holdout-v1": "a3edc79658b2762cacce269d357296ac91fccc55bef34824eec63c744bb0c5ce",
+    "mango-t21r4-conflict-abstention-holdout-v1": "c77165984c5f22bfa0201b8c51b1f8ce5c13f2bc738ce8192b613e303afaaf6b",
+    "mango-t21r4-temporal-holdout-v1": "cceb32f6ac813b385dc0f04c730c9bc6ec715a5eba397a6f5856895425e0ac47",
+    "mango-t21r4-adversarial-holdout-v1": "ec7a706fa900b4050217889c35dbeea787486d9985a351931cae42e8cc2db949"
+  },
+  "total_rows": 2535,
+  "checks": {
+    "exact_duplicate_rows": {
+      "count": 0,
+      "detail": {}
+    },
+    "exact_duplicate_queries": {
+      "count": 0,
+      "detail": {}
+    },
+    "case_id_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "entity_identity_overlap": {
+      "entity_name_overlap": {
+        "count": 0,
+        "detail": []
+      },
+      "t21r4_entities_in_prior_queries": {
+        "count": 0,
+        "detail": []
+      },
+      "prior_entities_in_t21r4_queries": {
+        "count": 0,
+        "detail": []
+      }
+    },
+    "exact_query_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "chunk_id_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "source_id_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "gold_answer_value_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "exact_source_text_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "verbatim_attack_string_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "near_duplicate_flags": {
+      "count": 79,
+      "pairs": [
+        {
+          "scope": "internal",
+          "query_a": "In which nation is the town of Kelpmarsh?",
+          "query_b": "The nation of the town of Kelpmarsh is which one?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Ambrose Ashworth born?",
+          "query_b": "The scholar Ambrose Ashworth was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Casimir Ashworth born?",
+          "query_b": "The scholar Casimir Ashworth was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Emeric Fenwick born?",
+          "query_b": "The scholar Emeric Fenwick was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Godfrey Fenwick born?",
+          "query_b": "The scholar Godfrey Fenwick was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Ignatius Norwood born?",
+          "query_b": "The scholar Ignatius Norwood was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Juniper Norwood born?",
+          "query_b": "The scholar Juniper Norwood was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Hesper Loxley born?",
+          "query_b": "The scholar Hesper Loxley was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Hesper Merrick born?",
+          "query_b": "The scholar Hesper Merrick was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Katarina Ogilvie born?",
+          "query_b": "The scholar Katarina Ogilvie was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Katarina Quenby born?",
+          "query_b": "The scholar Katarina Quenby was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Leopold Rossway born?",
+          "query_b": "The scholar Leopold Rossway was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Magdalena Selwyn born?",
+          "query_b": "The scholar Magdalena Selwyn was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Nikolai Tarleton born?",
+          "query_b": "The scholar Nikolai Tarleton was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Prosper Underhay born?",
+          "query_b": "The scholar Prosper Underhay was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Rowena Vance born?",
+          "query_b": "The scholar Rowena Vance was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Sebastian Whitlock born?",
+          "query_b": "The scholar Sebastian Whitlock was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Tabitha Yelverley born?",
+          "query_b": "The scholar Tabitha Yelverley was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Ulric Ziegler born?",
+          "query_b": "The scholar Ulric Ziegler was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Valeria Aldwin born?",
+          "query_b": "The scholar Valeria Aldwin was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Ysolde Bramley born?",
+          "query_b": "The scholar Ysolde Bramley was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Zenobia Caldwick born?",
+          "query_b": "The scholar Zenobia Caldwick was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Anselm Dunstable born?",
+          "query_b": "The scholar Anselm Dunstable was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Berengar Everly born?",
+          "query_b": "The scholar Berengar Everly was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Cecily Fennick born?",
+          "query_b": "The scholar Cecily Fennick was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Dorothea Eastcote born?",
+          "query_b": "The scholar Dorothea Eastcote was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Erasmus Cranfield born?",
+          "query_b": "The scholar Erasmus Cranfield was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Flavian Bellamy born?",
+          "query_b": "The scholar Flavian Bellamy was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Gunda Ironquill born?",
+          "query_b": "The scholar Gunda Ironquill was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Osgar Kirkwood born?",
+          "query_b": "The scholar Osgar Kirkwood was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the scholar Petronia Tarleton born?",
+          "query_b": "The scholar Petronia Tarleton was born in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Gloamfield established?",
+          "query_b": "The town of Gloamfield was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Hartfell established?",
+          "query_b": "The town of Hartfell was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Inglebourne established?",
+          "query_b": "The town of Inglebourne was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Jessopvale established?",
+          "query_b": "The town of Jessopvale was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Kelpmarsh established?",
+          "query_b": "The town of Kelpmarsh was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Lorrimoor established?",
+          "query_b": "The town of Lorrimoor was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Mullincote established?",
+          "query_b": "The town of Mullincote was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Owlsmoor established?",
+          "query_b": "The town of Owlsmoor was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Perewatch established?",
+          "query_b": "The town of Perewatch was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Quillonby established?",
+          "query_b": "The town of Quillonby was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Redbourne established?",
+          "query_b": "The town of Redbourne was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Tarnwick established?",
+          "query_b": "The town of Tarnwick was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Underdown established?",
+          "query_b": "The town of Underdown was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Vinecliffe established?",
+          "query_b": "The town of Vinecliffe was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Whitmoor established?",
+          "query_b": "The town of Whitmoor was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Yethfield established?",
+          "query_b": "The town of Yethfield was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Avington established?",
+          "query_b": "The town of Avington was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Brockhurst established?",
+          "query_b": "The town of Brockhurst was established in which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which year was the town of Dellingford established?",
+          "query_b": "The town of Dellingford was established in which year?",
+          "jaccard": 1.0
+        }
+      ]
+    }
+  },
+  "gate": {
+    "exact_duplicate_rows": 0,
+    "exact_duplicate_queries": 0,
+    "case_id_overlap": 0,
+    "entity_identity_overlap": 0,
+    "query_overlap": 0,
+    "chunk_id_overlap": 0,
+    "source_id_overlap": 0,
+    "gold_answer_overlap": 0,
+    "source_text_overlap": 0,
+    "attack_string_overlap": 0
+  },
+  "verdict": "UNIQUE"
+}

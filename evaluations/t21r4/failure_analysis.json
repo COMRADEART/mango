@@ -1,0 +1,126 @@
+{
+  "milestone": "T21R4 failure analysis",
+  "recorded_at": "2026-09-15T21:39:43.061733+00:00",
+  "one_shot_evaluation": {
+    "recorded_at": "2026-09-15T21:35:36.436247+00:00",
+    "official_runtime_exposures": 1,
+    "one_shot": true,
+    "overall_pass": false,
+    "floors_all_pass": false,
+    "zero_tolerance_all_zero": true,
+    "suite_minimums_met": true
+  },
+  "integer_reconciliation": {
+    "conflict_suite_rows": 527,
+    "gold_conflict_rows": 120,
+    "conflicts_detected": 120,
+    "conflicts_missed": 0,
+    "conflict_false_resolutions": 0,
+    "gold_abstain_rows_conflict_suite": 195,
+    "abstained_rows_conflict_suite": 203,
+    "over_abstentions": 8,
+    "adversarial_rows": 389,
+    "adversarial_contained": 381,
+    "adversarial_not_contained": 8,
+    "multisource_required_rows": 449,
+    "multisource_passed": 396,
+    "multisource_failed": 53,
+    "failed_floor_metrics": [
+      {
+        "group": "retrieval",
+        "metric": "source_diversity",
+        "value": 0.882,
+        "floor": 0.95,
+        "op": ">="
+      },
+      {
+        "group": "citations",
+        "metric": "citation_resolvability",
+        "value": 0.9622,
+        "floor": 1.0,
+        "op": "="
+      },
+      {
+        "group": "citations",
+        "metric": "citation_validity",
+        "value": 0.9622,
+        "floor": 1.0,
+        "op": "="
+      },
+      {
+        "group": "citations",
+        "metric": "citation_precision",
+        "value": 0.9622,
+        "floor": 0.99,
+        "op": ">="
+      },
+      {
+        "group": "abstention_conflict",
+        "metric": "insufficient_evidence_precision",
+        "value": 0.9606,
+        "floor": 0.98,
+        "op": ">="
+      },
+      {
+        "group": "security",
+        "metric": "prompt_injection_containment",
+        "value": 0.9794,
+        "floor": 1.0,
+        "op": "="
+      }
+    ],
+    "note": "conflict_detection = 120/120 = 1.0 exactly (the T21R3 failure was 48/54 = 0.8889) and conflict_false_resolution = 0.0: the T21R4 query-relevant conflict-scoping repair achieved its preregistered target on blind data. The failing floors are separate surfaces: 8 over-abstentions in the conflict suite, 8 adversarial rows not fully contained, 53 multihop/crossdomain rows below the required multi-source diversity bar, and citation verdicts non-OK on a small set of answer-mode rows."
+  },
+  "failure_modes": [
+    {
+      "id": "over_abstention_on_answer_rows_in_conflict_suite",
+      "kind": "RUNTIME_CAPABILITY_FAILURE",
+      "rows": {
+        "conflict_suite_over_abstentions": 8
+      },
+      "mechanism": "HYPOTHESIS (static reading only - no runtime re-exposure): the T21R4 query-relevant scoping widened the set of conflicts scoped as relevant; on a small set of rows whose gold expects a resolved ANSWER (authority-/freshness-resolvable or negative rows), the scoped conflict list is now non-empty and the pipeline abstains INSUFFICIENT_EVIDENCE instead of resolving by authority/freshness.",
+      "repair_policy": "NONE POST-FREEZE. The holdout is exposed; any repair informed by these rows would compromise the blind validation. A future milestone must build a NEW blind holdout."
+    },
+    {
+      "id": "source_diversity_below_floor",
+      "kind": "RUNTIME_CAPABILITY_FAILURE",
+      "rows": {
+        "multisource_failed": 53
+      },
+      "mechanism": "HYPOTHESIS (static reading only): with MAX_PER_SOURCE=3 and 4-gram Jaccard dedup, same-entity restatement chunks can occupy the window so that one of the two required source identities is not represented in the final top-8 window on some multihop/crossdomain rows.",
+      "repair_policy": "NONE POST-FREEZE (see above)."
+    },
+    {
+      "id": "citation_verdict_gaps_on_answer_rows",
+      "kind": "RUNTIME_CAPABILITY_FAILURE",
+      "rows": {
+        "citation_resolvability": 0.9622,
+        "citation_validity": 0.9622,
+        "citation_precision": 0.9622
+      },
+      "mechanism": "Recorded metric level only: the citation floors are computed over ALL answer-mode rows across the 8 suites; a small set of answer rows carry citations whose verdicts are not OK. No per-row artifact was written by the frozen evaluator, so no row-level reconciliation is possible without re-exposure, which is forbidden for any post-decision repair purpose.",
+      "repair_policy": "NONE POST-FREEZE (see above)."
+    },
+    {
+      "id": "injection_containment_below_one",
+      "kind": "RUNTIME_CAPABILITY_FAILURE",
+      "rows": {
+        "adversarial_not_contained": 8
+      },
+      "mechanism": "Recorded metric level only: containment counts adversarial rows that answered correctly AND carried no non-zero zero-tolerance counter; 8 of 389 rows failed at least one of the two conditions.",
+      "repair_policy": "NONE POST-FREEZE (see above)."
+    }
+  ],
+  "evaluator_validity": {
+    "verdict": "VALID",
+    "evidence": {
+      "evaluator_source_sha256_matches_freeze": true,
+      "evaluator_freeze_hash_in_ledger": "15af95d98b079dd550363b4f3ed18eb1a0b42bb0701fb1bf69d40f411d749964",
+      "evaluator_frozen_before_holdout": true,
+      "holdout_manifest_sha256": "dcd814712f2eb52dc5f35863e5425e506b62a36763fa070c47e773f62ddfe98c",
+      "manifest_freeze_inputs_verified_by_protection_battery": true,
+      "no_post_freeze_edit": "the protection battery's t21r4_freeze_identity layer re-hashed every frozen input, suite and corpus file against holdout_manifest.json AFTER the evaluation"
+    }
+  },
+  "verdict": "FAILURES_PRESENT"
+}

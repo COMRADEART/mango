@@ -1,0 +1,101 @@
+{
+  "milestone": "T21R4 protection battery",
+  "recorded_at": "2026-09-15T21:40:43.750125+00:00",
+  "status": "ALL_PASS",
+  "registry_sha256_now": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+  "registry_counts": {
+    "ACTIVE": 11,
+    "EXPERIMENTAL": 1
+  },
+  "layers": {
+    "runtime_freeze_identity": {
+      "status": "PASS",
+      "checks": {
+        "knowledge_runtime": true,
+        "executive_skills": true,
+        "executive_router": true,
+        "science_rag_runtime": true,
+        "web_research_runtime": true,
+        "document_runtime": true,
+        "memory_runtime": true,
+        "planning_runtime": true,
+        "orchestration_runtime": true,
+        "scicomp_runtime": true,
+        "code_runtime": true,
+        "correction_firewall": true,
+        "security_layer": true,
+        "historical_write_guard": "preregistered_guard_registration_delta",
+        "historical_write_guard_preregistered_delta": true
+      }
+    },
+    "registry_boundaries": {
+      "status": "PASS",
+      "checks": {
+        "registry_sha256_matches_freeze_record": true,
+        "knowledge_rag_experimental_per_freeze_record": true,
+        "skills_py_matches_freeze_record": true,
+        "executive_router_untouched": true,
+        "registry_counts": true
+      }
+    },
+    "t15r_canonical_blob": {
+      "status": "PASS",
+      "blob_sha256": "fba2437f78633884bd31965d78a4250bd1ca893c"
+    },
+    "mutation": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "fidelity: 8/8 rejected, exceptions 0 -> PASS\nfidelity_transform: 0/0 rejected, exceptions 0 -> PASS\noverall: PASS -> evaluations\\t21r4\\mutation_safety_probe.json\n"
+    },
+    "t21r4_freeze_identity": {
+      "status": "PASS",
+      "checks": {
+        "runtime_freeze": true,
+        "evaluator_freeze": true,
+        "validation_contract": true,
+        "static_gold_audit": true,
+        "holdout_uniqueness": true,
+        "world_builder": true,
+        "corpus_renderer": true,
+        "suite_builder": true,
+        "static_audit_script": true,
+        "uniqueness_script": true,
+        "evaluator_freeze_script": true,
+        "evaluator": true,
+        "corpus/world.jsonl": true,
+        "corpus/sources.jsonl": true,
+        "corpus/chunks.jsonl": true,
+        "corpus/corpus_manifest.json": true,
+        "suite/mango-t21r4-retrieval-holdout-v1": true,
+        "suite/mango-t21r4-singlehop-holdout-v1": true,
+        "suite/mango-t21r4-multihop-holdout-v1": true,
+        "suite/mango-t21r4-crossdomain-holdout-v1": true,
+        "suite/mango-t21r4-citation-claim-holdout-v1": true,
+        "suite/mango-t21r4-conflict-abstention-holdout-v1": true,
+        "suite/mango-t21r4-temporal-holdout-v1": true,
+        "suite/mango-t21r4-adversarial-holdout-v1": true,
+        "HOLDOUT_FROZEN_present": true
+      }
+    },
+    "historical_unchanged": {
+      "status": "PASS",
+      "checks": {
+        "canonical_diff_paths": [],
+        "t21_artifacts_untouched": true,
+        "t21r_artifacts_untouched": true,
+        "t21r2_artifacts_untouched": true,
+        "t21r3_artifacts_untouched": true,
+        "t21_corpus_untouched": true,
+        "t21r_corpus_untouched": true,
+        "t21r2_corpus_untouched": true,
+        "t21r3_corpus_untouched": true
+      }
+    },
+    "security_pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "......................................s....................s............ [ 42%]\n........................................................................ [ 84%]\n...........................                                              [100%]\n"
+    }
+  },
+  "reason": "T21R4 changed only the preregistered conflict-scoping repair (frozen post-repair), its evaluation material and this battery's registration delta: every frozen runtime composite - the repaired knowledge runtime included - matches the T21R4.B1 freeze, the skill registry matches the freeze record with KNOWLEDGE_RAG still EXPERIMENTAL, the Executive Router is untouched, the T15R canonical blob is unchanged, the fresh T21R4 holdout matches its freeze manifest, and the T21/T21R/T21R2/T21R3 historical artifacts and corpora are byte-identical to the canonical base."
+}
