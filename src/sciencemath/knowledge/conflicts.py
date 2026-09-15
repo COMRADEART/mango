@@ -16,6 +16,7 @@ Preregistered resolution rule (frozen before FINAL):
 """
 from __future__ import annotations
 
+import re
 import unicodedata
 
 from sciencemath.knowledge.evidence import EvidenceItem
@@ -32,6 +33,158 @@ AUTHORITY_RANK = {
 
 _FRESHNESS_RANK = {"STATIC": 3, "SLOW_CHANGING": 2, "TIME_SENSITIVE": 1,
                    "UNKNOWN": 0}
+
+# ---------------------------------------------------------------------------
+# T21R4 — deterministic query-to-attribute cue table (preregistered).
+#
+# Conflict scoping is QUERY-RELEVANT, not TOP-ITEM-RELEVANT and not
+# ALL-CONFLICTS-RELEVANT: a detected conflict is surfaced only when its
+# fact_entity and fact_attribute are both relevant to the question, judged
+# from structured metadata and preregistered wording cues. No model, no
+# embeddings, no per-query special cases.
+#
+# Cue matching rule: a query token matches a cue when it equals the cue or,
+# for cues of five or more characters, starts with the cue (e.g. cue
+# "establish" matches "established" and "establishment"). Stems shorter
+# than five characters require an exact token, which keeps generic stems
+# such as "sign" or "land" from matching "designed" or "landmark".
+#
+# Year-type attributes additionally require YEAR INTENT ("year" or "when"
+# in the query) so that a place question ("Where was X born?") never
+# surfaces a birth-year conflict, and vice versa.
+# ---------------------------------------------------------------------------
+_CUE_RE = re.compile(r"[a-z0-9]+")
+
+_YEAR_INTENT_TOKENS = frozenset({"year", "when"})
+
+# attribute -> (cues, intent) where intent is "year", "place" or None.
+# "year" intent requires a year/when token; "place" intent is implied by the
+# cue itself (name or birth wording). Unlisted attributes fall back to
+# exact token match of the attribute name itself.
+ATTRIBUTE_CUES: dict[str, tuple[tuple[str, ...], str | None]] = {
+    # year-type attributes
+    "established year": (("establish", "founding", "founded",
+                          "foundation"), "year"),
+    "founding year": (("establish", "founding", "founded",
+                       "foundation"), "year"),
+    "introduction year": (("introduc", "invent", "launch", "debut",
+                           "appear", "appearanc"), "year"),
+    "invention year": (("introduc", "invent", "launch", "debut",
+                        "appear", "appearanc"), "year"),
+    "launch year": (("introduc", "invent", "launch", "debut",
+                     "appear", "appearanc"), "year"),
+    "discovery year": (("discover", "identif"), "year"),
+    "birth year": (("birth", "born"), "year"),
+    "publication year": (("publish", "publication", "printed"), "year"),
+    "creation year": (("creat", "craft"), "year"),
+    "opening year": (("open", "openning"), "year"),
+    "ratification year": (("ratif", "signing", "signed"), "year"),
+    "signing year": (("ratif", "signing", "signed"), "year"),
+    "completion year": (("complet", "finis"), "year"),
+    "landing year": (("landing", "landed"), "year"),
+    "sealing year": (("sealing", "sealed"), "year"),
+    # place-type attributes
+    "birthplace": (("birth", "born", "birthplace"), None),
+    "location": (("location", "located", "situated"), None),
+    "region": (("region",), None),
+    "province": (("province",), None),
+    "nation": (("nation",), None),
+    "country": (("country",), None),
+    "continent": (("continent",), None),
+    "capital": (("capital",), None),
+    "river": (("river",), None),
+    "waterway": (("waterway", "river"), None),
+    "mouth": (("mouth",), None),
+    "sea": (("sea",), None),
+    "landmark": (("landmark",), None),
+    # other attributes
+    "mayor": (("mayor", "officeholder", "leader"), None),
+    "genre": (("genre",), None),
+    "medium": (("medium",), None),
+    "painter": (("painter", "painted"), None),
+    "author": (("author", "authored", "wrote", "written"), None),
+    "subject": (("subject",), None),
+    "field of study": (("field", "studied", "study"), None),
+    "notable work": (("notable", "masterpiece", "masterwork", "famous"),
+                     None),
+    "inventor": (("invent", "inventor"), None),
+    "emblem": (("emblem",), None),
+    "property": (("property",), None),
+    "function": (("function",), None),
+    "purpose": (("purpose",), None),
+    "maker": (("maker",), None),
+    "definition": (("definition", "define", "defined"), None),
+    "seats": (("seat", "seats"), None),
+    "layer": (("layer",), None),
+    "institution type": (("type", "kind"), None),
+}
+
+
+def _raw_tokens(text: str) -> list[str]:
+    """Lowercase word tokens WITHOUT stopword removal (cues and intents
+    live in function words such as 'when'/'where')."""
+    return _CUE_RE.findall(text.lower())
+
+
+def _token_matches_cue(token: str, cue: str) -> bool:
+    if token == cue:
+        return True
+    return len(cue) >= 5 and token.startswith(cue)
+
+
+def _attribute_relevant(attribute: str, query_tokens: list[str]) -> bool:
+    """Deterministic query/attribute relevance via the cue table."""
+    attribute = attribute.casefold().strip()
+    cues, intent = ATTRIBUTE_CUES.get(attribute, (None, None))
+    attr_tokens = _raw_tokens(attribute)
+    if cues is None:
+        # Unlisted attribute: exact token containment of the attribute name.
+        return all(t in query_tokens for t in attr_tokens) \
+            if attr_tokens else False
+    if intent == "year" and not (_YEAR_INTENT_TOKENS & set(query_tokens)):
+        return False
+    for cue in cues:
+        if any(_token_matches_cue(t, cue) for t in query_tokens):
+            return True
+    return False
+
+
+def query_relevant_conflicts(
+    query: str, conflicts: list[dict],
+) -> list[dict]:
+    """T21R4 scoping: conflicts relevant to the effective query.
+
+    A detected conflict is query-relevant when
+      1. ENTITY RELEVANCE: every token of the claim_key's fact_entity
+         appears in the query tokens (deterministic evidence the question
+         is about that entity — a retrieved conflict for another entity is
+         never surfaced), and
+      2. ATTRIBUTE RELEVANCE: the fact_attribute is relevant to the query
+         wording via the preregistered cue table (a different attribute of
+         the same entity is never surfaced).
+
+    For text-fallback claim keys (no structured metadata), the whole key
+    must be token-contained in the query. Deterministic throughout.
+    """
+    query_tokens = _raw_tokens(query)
+    relevant: list[dict] = []
+    for conflict in conflicts:
+        key = conflict.get("claim_key", "")
+        if "|" in key:
+            entity, attribute = key.split("|", 1)
+            entity_tokens = _raw_tokens(entity)
+            if not entity_tokens or \
+                    not all(t in query_tokens for t in entity_tokens):
+                continue
+            if not _attribute_relevant(attribute, query_tokens):
+                continue
+            relevant.append(conflict)
+        else:
+            # text-fallback key: shared entity-context tokens
+            key_tokens = _raw_tokens(key)
+            if key_tokens and all(t in query_tokens for t in key_tokens):
+                relevant.append(conflict)
+    return relevant
 
 
 def _normalize_fact_value(value: object) -> str:
