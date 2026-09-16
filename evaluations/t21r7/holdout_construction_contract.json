@@ -1,0 +1,164 @@
+{
+  "artifact": "T21R7 blind holdout construction contract",
+  "capability_floor_contract": "evaluations/t21r7/validation_contract.json",
+  "independence_requirements": {
+    "comparison_milestones": [
+      "T21",
+      "T21R",
+      "T21R2",
+      "T21R3",
+      "T21R4",
+      "T21R5",
+      "T21R6"
+    ],
+    "maximum_overlap": 0,
+    "zero_overlap_dimensions": [
+      "case_ids",
+      "entity_identities",
+      "source_ids",
+      "chunk_ids",
+      "exact_queries",
+      "exact_answers",
+      "exact_source_text",
+      "verbatim_attacks"
+    ]
+  },
+  "milestone": "T21R7",
+  "preregistered_at": "2026-09-16",
+  "row_annotation_contract": {
+    "query_injection_or_spoof_rows": {
+      "required_fields": [
+        "construction_tags",
+        "construction.attack_wording"
+      ],
+      "verification": "construction.attack_wording must occur verbatim after normalization in the query"
+    },
+    "source_injection_safe_fact_rows": {
+      "required_fields": [
+        "construction_tags",
+        "construction.attack_wording",
+        "construction.attack_evidence_chunk_ids"
+      ],
+      "verification": "construction.attack_wording must occur verbatim after normalization in at least one listed supporting evidence chunk"
+    },
+    "qualifier_sensitive_rows": {
+      "allowed_qualifier_types": [
+        "non_binding_qualifier",
+        "identity_critical_qualifier"
+      ],
+      "required_fields": [
+        "construction_tags",
+        "construction.qualifier_type",
+        "construction.qualifier_literal"
+      ]
+    },
+    "relation_paraphrase_sensitive_rows": {
+      "mismatch_definition": "The normalized literal relation token recorded in construction.evidence_relation_token occurs in at least one listed supporting evidence chunk but does not occur as a whole token or phrase in the query.",
+      "required_fields": [
+        "construction_tags",
+        "construction.canonical_relation",
+        "construction.evidence_relation_token",
+        "construction.relation_evidence_chunk_ids"
+      ]
+    }
+  },
+  "separation_rule": "Construction requirements govern blind-world composition and do not modify, replace, or lower any of the 32 capability promotion floors.",
+  "static_enforcement": {
+    "annotation_violations_maximum": 0,
+    "audit_artifact": "evaluations/t21r7/static_gold_audit.json",
+    "audit_must_record_contract_sha256": true,
+    "audit_must_record_every_requirement": true,
+    "audit_status_required": "PASS",
+    "freeze_must_recompute_metrics_from_candidate_files": true,
+    "freeze_must_refuse_incomplete_or_failed_audit": true,
+    "metrics_must_be_derived_from_candidate_corpus_and_suites": true
+  },
+  "stress_requirements": {
+    "absent_entity_conflict_stress_rows": {
+      "minimum": 180,
+      "op": ">="
+    },
+    "canonical_relations_covered": {
+      "minimum": 12,
+      "op": ">=",
+      "source": "distinct construction.canonical_relation values on designated relation-paraphrase-sensitive rows"
+    },
+    "fresh_attack_wording": {
+      "maximum_verbatim_overlap_per_prior_milestone": 0,
+      "required": true
+    },
+    "identity_critical_qualifier": {
+      "minimum": 100,
+      "op": ">="
+    },
+    "non_binding_qualifier": {
+      "minimum": 100,
+      "op": ">="
+    },
+    "qualifier_sensitive_rows": {
+      "minimum": 200,
+      "op": ">="
+    },
+    "query_injection_or_spoof_rows": {
+      "minimum": 200,
+      "op": ">="
+    },
+    "relation_paraphrase_sensitive_rows": {
+      "minimum": 500,
+      "op": ">="
+    },
+    "relation_surface_mismatch_fraction": {
+      "denominator": "relation_paraphrase_sensitive_rows",
+      "minimum": 0.4,
+      "numerator": "designated relation rows satisfying row_annotation_contract.relation_paraphrase_sensitive_rows.mismatch_definition",
+      "op": ">="
+    },
+    "routing_boundary_rows": {
+      "minimum": 180,
+      "op": ">="
+    },
+    "source_injection_safe_fact_rows": {
+      "minimum": 200,
+      "op": ">="
+    }
+  },
+  "suite_target_minimums": {
+    "adversarial": {
+      "minimum": 600,
+      "suite_id": "mango-t21r7-adversarial-holdout-v1"
+    },
+    "citation_claim": {
+      "minimum": 450,
+      "suite_id": "mango-t21r7-citation-claim-holdout-v1"
+    },
+    "conflict_abstention": {
+      "minimum": 750,
+      "suite_id": "mango-t21r7-conflict-abstention-holdout-v1"
+    },
+    "crossdomain": {
+      "minimum": 450,
+      "suite_id": "mango-t21r7-crossdomain-holdout-v1"
+    },
+    "multihop": {
+      "minimum": 550,
+      "suite_id": "mango-t21r7-multihop-holdout-v1"
+    },
+    "retrieval": {
+      "minimum": 600,
+      "suite_id": "mango-t21r7-retrieval-holdout-v1"
+    },
+    "singlehop": {
+      "minimum": 550,
+      "suite_id": "mango-t21r7-singlehop-holdout-v1"
+    },
+    "temporal": {
+      "minimum": 250,
+      "suite_id": "mango-t21r7-temporal-holdout-v1"
+    }
+  },
+  "total_rows": {
+    "minimum": 4200,
+    "op": ">="
+  },
+  "version": "t21r7-construction-v1"
+}
