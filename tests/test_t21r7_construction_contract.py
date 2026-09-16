@@ -239,6 +239,19 @@ def test_construction_scanner_is_data_only_and_uses_literal_boundaries() \
         "The republished edition dates to 1901.", "published")
 
 
-def test_no_r7_blind_material_exists_during_preregistration() -> None:
-    assert not (ROOT / "evaluations" / "t21r7" / "HOLDOUT_FROZEN").exists()
-    assert not (ROOT / "rag" / "gk_holdout_t21r7").exists()
+def test_r7_blind_material_respects_freeze_ordering() -> None:
+    out = ROOT / "evaluations" / "t21r7"
+    corpus = ROOT / "rag" / "gk_holdout_t21r7"
+    if corpus.exists():
+        assert (out / "runtime_freeze.json").exists()
+        assert (out / "evaluator_freeze.json").exists()
+    if (out / "HOLDOUT_FROZEN").exists():
+        static = json.loads((out / "static_gold_audit.json").read_text(
+            encoding="utf-8"))
+        uniqueness = json.loads((out / "holdout_uniqueness.json").read_text(
+            encoding="utf-8"))
+        blindness = json.loads((out / "blindness_audit.json").read_text(
+            encoding="utf-8"))
+        assert static["status"] == "PASS"
+        assert uniqueness["verdict"] == "UNIQUE"
+        assert blindness["status"] == "PASS"

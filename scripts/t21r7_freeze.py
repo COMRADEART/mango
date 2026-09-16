@@ -39,6 +39,8 @@ REQUIRED_REPORTS = {
     "static_gold_audit": OUT_DIR / "static_gold_audit.json",
     "holdout_uniqueness": OUT_DIR / "holdout_uniqueness.json",
     "blindness_audit": OUT_DIR / "blindness_audit.json",
+    "scoring_semantics": OUT_DIR / "scoring_semantics.json",
+    "official_runner": ROOT / "scripts" / "t21r7_official_eval.py",
 }
 CORPUS_FILES = (
     "world.jsonl", "sources.jsonl", "chunks.jsonl", "corpus_manifest.json",

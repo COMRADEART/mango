@@ -153,7 +153,13 @@ def _transform_row(old: dict, adversarial_index: int) -> dict:
         tags.append("query_injection_or_spoof")
         annotation["attack_wording"] = attack
 
-    row["request"]["query"] = query
+    # Every R7 query has a fresh-world frame that also occurs in every R7
+    # evidence chunk.  Besides preserving retrieval signal, this guarantees
+    # exact-query independence for corpus-absent probes whose entity names
+    # intentionally do not occur in source metadata.
+    row["request"]["query"] = (
+        f"From the {WORLD_LABEL} ledger, {query}"
+    )
     gold = row["gold"]
     if gold.get("gold_chunk_id"):
         gold["gold_chunk_id"] = CHUNK_ID_MAP[gold["gold_chunk_id"]]

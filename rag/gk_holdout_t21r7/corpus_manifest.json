@@ -1,0 +1,29 @@
+{
+  "chunk_count": 1698,
+  "corpus_version": "mango-general-knowledge-corpus-v1",
+  "domains": [
+    "arts",
+    "biography",
+    "computing",
+    "culture",
+    "economics",
+    "education_reference",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "technology_history"
+  ],
+  "file_checksums": {
+    "chunks.jsonl": "febc03f6183c43e8852363048f7045b976eba2d831caddb0e78d6d9b394b618b",
+    "sources.jsonl": "5aca33583b4abd787c79dc6af0ff3b9fb05d0b6fdf6a5b8bdd34314288fbbce0"
+  },
+  "license_summary": {
+    "notes": "Project-owned synthetic evaluation fixtures; retrieval-only, never used for training; no third-party text ingested.",
+    "project_owned_fixtures": 16
+  },
+  "manifest_checksum": "a63af0a62f7d8cecab3a8ebdca0dd7f903dbb1a868d0052aab985ed2d0f0cf8d",
+  "milestone": "T21R7",
+  "snapshot_date": "2026-10-15",
+  "source_count": 16
+}
