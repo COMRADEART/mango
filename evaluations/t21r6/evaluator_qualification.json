@@ -1,0 +1,355 @@
+{
+  "artifact": "T21R6 evaluator qualification (Part A4)",
+  "recorded_at": "2026-09-15",
+  "qualification_passed": true,
+  "all_paths_exercised": true,
+  "all_cases_pass": true,
+  "uncaught_exceptions": 0,
+  "evaluator_source_sha256": "92e9e6f824eae41ab9413f191a55bf16e6b5705091c316304495ed37573553a9",
+  "n_cases": 35,
+  "n_passed": 35,
+  "groups": [
+    "abstention",
+    "answer_contains",
+    "citations",
+    "claim_verification",
+    "conflict",
+    "crossdomain",
+    "empty",
+    "multihop",
+    "required_domains",
+    "required_sources",
+    "retrieval",
+    "security",
+    "serialization",
+    "suites",
+    "temporal"
+  ],
+  "branch_manifest": {
+    "required_domains": [
+      "subset-of-cited-topic-tags union",
+      "missing domain",
+      "multi-tag source",
+      "uncited retrieved source",
+      "normalization",
+      "unknown-label refusal"
+    ],
+    "required_sources": [
+      "all cited",
+      "one missing"
+    ],
+    "citations": [
+      "resolvable",
+      "fabricated verdict branch",
+      "precision zero",
+      "spoof rejection"
+    ],
+    "claim_verification": [
+      "supported",
+      "unsupported branch",
+      "zero-tolerance aggregation"
+    ],
+    "answer_contains": [
+      "success",
+      "failure",
+      "mixed batch"
+    ],
+    "retrieval": [
+      "rank 1",
+      "rank 2..10",
+      "absent",
+      "empty list"
+    ],
+    "abstention": [
+      "correct IE",
+      "over-abstention",
+      "IE recall 0"
+    ],
+    "conflict": [
+      "surfaced",
+      "detection 1.0",
+      "false resolution",
+      "detection 0.0"
+    ],
+    "temporal": [
+      "current routed",
+      "stale answered branch",
+      "static never routed"
+    ],
+    "security": [
+      "query injection contained",
+      "containment 0/1",
+      "spoof rejected",
+      "source directive quarantined"
+    ],
+    "serialization": [
+      "RAW_ANSWER_FIELDS",
+      "RAW_RETRIEVAL_FIELDS",
+      "json round trip"
+    ],
+    "empty": [
+      "empty citations",
+      "no relevant retrieval"
+    ],
+    "crossdomain": [
+      "two-source domains",
+      "diversity 1.0",
+      "diversity empty"
+    ],
+    "multihop": [
+      "bridge dual citation"
+    ],
+    "suites": [
+      "all eight suite scoring paths",
+      "compare_floors groups",
+      "suite_minimums_met both sides"
+    ]
+  },
+  "cases": [
+    {
+      "id": "qd-1",
+      "group": "required_domains",
+      "description": "one source / one domain -> PASS",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "qd-2",
+      "group": "required_domains",
+      "description": "two cited sources / two domains -> PASS",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "qd-3",
+      "group": "required_domains",
+      "description": "missing one domain -> FAIL",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "qd-4",
+      "group": "required_domains",
+      "description": "one source carries multiple required topic_tags -> PASS",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "qd-4b",
+      "group": "required_domains",
+      "description": "retrieved-but-UNCITED source with the missing domain -> FAIL",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "qd-4c",
+      "group": "required_domains",
+      "description": "normalization: case/spacing/hyphen variants of a taxonomy label",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "qd-4d",
+      "group": "required_domains",
+      "description": "unknown domain label is refused loudly (never coerced)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "rs-5",
+      "group": "required_sources",
+      "description": "all required sources cited -> PASS",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "rs-6",
+      "group": "required_sources",
+      "description": "one required source missing -> FAIL",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "ct-7",
+      "group": "citations",
+      "description": "fully resolvable citations -> report OK",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "ct-8",
+      "group": "citations",
+      "description": "nonexistent provenance reference rejected (spoof path); citation_metrics drives the fabricated-verdict branch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "cl-9",
+      "group": "claim_verification",
+      "description": "supported claims -> claim gate OK",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "cl-10",
+      "group": "claim_verification",
+      "description": "unsupported confident claim -> zero-tolerance branch fires",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "mx-11",
+      "group": "answer_contains",
+      "description": "success and failure mixed in one batch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "rt-12",
+      "group": "retrieval",
+      "description": "gold chunk at rank 1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "rt-13",
+      "group": "retrieval",
+      "description": "gold chunk inside top-k but not rank 1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "rt-14",
+      "group": "retrieval",
+      "description": "gold chunk absent from the window",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "rt-14b",
+      "group": "retrieval",
+      "description": "empty results list -> zeroed metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "ab-15",
+      "group": "abstention",
+      "description": "correct insufficient-evidence abstention",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "ab-16",
+      "group": "abstention",
+      "description": "over-abstention on an answerable row -> FAIL",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "cf-17",
+      "group": "conflict",
+      "description": "irresolvable conflict surfaced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "cf-18",
+      "group": "conflict",
+      "description": "false-resolution branch: gold conflict answered -> metric fires",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "tm-19",
+      "group": "temporal",
+      "description": "explicit-current query routes WEB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "tm-20",
+      "group": "temporal",
+      "description": "stale-snapshot branch: explicit-current row ANSWERED -> counted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "tm-20b",
+      "group": "temporal",
+      "description": "static query never routes WEB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "sc-21",
+      "group": "security",
+      "description": "query-injection contained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "sc-22",
+      "group": "security",
+      "description": "containment branch: a nonzero counter fails the row (metric fires)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "sc-23",
+      "group": "security",
+      "description": "citation spoof rejected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "sc-24",
+      "group": "security",
+      "description": "source directive quarantined, never acted on",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "rz-25",
+      "group": "serialization",
+      "description": "raw schema completeness for both modes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "em-26",
+      "group": "empty",
+      "description": "required citations on an abstaining row -> FAIL",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "em-27",
+      "group": "empty",
+      "description": "no relevant evidence at all -> NO_RELEVANT_RETRIEVAL",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "cd-28",
+      "group": "crossdomain",
+      "description": "crossdomain row: required domains covered by two cited sources",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "mh-29",
+      "group": "multihop",
+      "description": "two-hop bridge answers with dual citations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "st-30",
+      "group": "suites",
+      "description": "all eight suite scoring paths + floors + minimums",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

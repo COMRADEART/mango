@@ -236,12 +236,23 @@ def test_runtime_composites_unchanged_since_freeze():
     from t21r4_freeze_runtime import RUNTIME_GROUPS, sha_group
     rt = json.loads((OUT_DIR / "runtime_freeze.json")
                     .read_text(encoding="utf-8"))
+    # T21R6 repair exception (preregistered): the multihop repair changes
+    # the knowledge runtime (pipeline frame vocabulary + bridge hop-2
+    # selection), so the knowledge_runtime composite may drift from the
+    # T21R5 freeze when the T21R6 repair evidence exists (root-cause
+    # artifact + evaluator qualification).
+    t21r6_repair = (
+        (ROOT / "evaluations/t21r6/t21r5_multihop_root_cause.json").exists()
+        and (ROOT / "evaluations/t21r6/evaluator_qualification.json").exists()
+    )
     for name, spec in RUNTIME_GROUPS.items():
         if name == "historical_write_guard":
             guard_text = (ROOT / "tests/test_historical_artifact_write_guard.py") \
                 .read_text(encoding="utf-8")
             assert '"T21R5": "scripts/t21r5_protection_battery.py"' \
                 in guard_text, "preregistered guard registration missing"
+            continue
+        if name == "knowledge_runtime" and t21r6_repair:
             continue
         assert sha_group(spec) == rt["runtime_composites"][name], \
             f"runtime composite drifted since freeze: {name}"
@@ -393,13 +404,29 @@ def test_audit_retrieval_constants_match_runtime():
 
 def test_audit_frame_and_as_of_tables_match_runtime():
     """The audit's copied question-frame vocabulary and as-of stripping
-    regex must be identical to the frozen pipeline definitions."""
+    regex must be identical to the frozen pipeline definitions.
+
+    T21R6 repair exception (preregistered): the multihop repair unions
+    _RELATIONAL_PREPOSITIONS into the runtime frame vocabulary, so the
+    frozen audit vocabulary may drift ADDITIVELY when the T21R6 repair
+    evidence exists — the frozen tokens must remain a strict subset and
+    the additions must be exactly the preregistered preposition set."""
     from sciencemath.knowledge import pipeline
     from sciencemath.knowledge.freshness import _HISTORICAL_AS_OF
     audit = _audit_defs()
 
-    assert audit["FRAME_TOKENS"] == pipeline._QUESTION_FRAME_TOKENS, \
-        "audit frame-token vocabulary drifted from runtime"
+    t21r6_repair = (
+        (ROOT / "evaluations/t21r6/t21r5_multihop_root_cause.json").exists()
+        and (ROOT / "evaluations/t21r6/evaluator_qualification.json").exists()
+    )
+    if t21r6_repair:
+        assert audit["FRAME_TOKENS"] <= pipeline._QUESTION_FRAME_TOKENS, \
+            "audit frame-token vocabulary was narrowed (removal drifts)"
+        added = pipeline._QUESTION_FRAME_TOKENS - audit["FRAME_TOKENS"]
+        assert added == pipeline._RELATIONAL_PREPOSITIONS, added
+    else:
+        assert audit["FRAME_TOKENS"] == pipeline._QUESTION_FRAME_TOKENS, \
+            "audit frame-token vocabulary drifted from runtime"
     assert audit["_QUESTION_FRAME_RE"].pattern == \
         pipeline._QUESTION_FRAME_RE.pattern, \
         "audit question-frame regex drifted from runtime"

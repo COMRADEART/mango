@@ -1,0 +1,41 @@
+{
+  "artifact": "T21R6 inherited historical debt ledger",
+  "classification": "KNOWN_CANONICAL_HISTORICAL_DEBT",
+  "recorded_at": "2026-09-15",
+  "canonical_base_sha": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+  "provenance": {
+    "drift_origin_commit": "fbe034a83f9eb17685661892a75ca28397f9a0ea",
+    "drift_origin_commit_subject": "T21R4: validate conflict repair on strict fresh blind holdout",
+    "explanation": "scripts/t21r4_run_eval.py was edited by the T21R4 blind-validation commit itself (the post-freeze evaluator work recorded in T21R4 closure) and has been byte-identical from fbe034a through da044e4 (T21R5 final branch SHA) to the canonical base f71cdb6e. The T21R4 evaluator_freeze.json still records the pre-edit freeze hash. The mismatch therefore pre-dates T21R6, is inherited from the canonical base, and is NOT new R6 corruption. T21R4 history is NOT rewritten."
+  },
+  "inherited_mismatches": [
+    {
+      "path": "scripts/t21r4_run_eval.py",
+      "artifact": "evaluations/t21r4/evaluator_freeze.json",
+      "ledger_field": "frozen_hashes.evaluator_source_sha256",
+      "historical_expected_sha256": "066ea9ab1e8e593e189feaa32c2e5424fbf42f4b5cd66f0bcb9f2bf7dc0d100e",
+      "canonical_actual_sha256": "138efe1f0eb8b0be02535f6d731d047386c9974eb5aaceb5458bbedc8f343047",
+      "canonical_base_sha_at_mismatch": "f71cdb6e7855ba20d58e38b05d7286457bc300ae"
+    }
+  ],
+  "r6_protection_rule": {
+    "name": "KNOWN_CANONICAL_HISTORICAL_DEBT",
+    "pass_when": [
+      "every inherited mismatch above is EXACTLY unchanged: the file's current sha256 equals canonical_actual_sha256",
+      "no historical artifact changes beyond the pinned mismatch",
+      "no new historical freeze mismatch appears",
+      "the inherited debt ledger does not expand"
+    ],
+    "fail_when": [
+      "any historical artifact changes",
+      "any new mismatch appears",
+      "inherited debt expands",
+      "the pinned file is edited again (its sha256 would no longer equal canonical_actual_sha256)"
+    ],
+    "enforced_by": [
+      "tests/test_t21r4_blind_holdout_contract.py::test_evaluator_freeze_hash_unchanged (accepts exactly the pinned canonical mismatch, fails on any other drift)",
+      "tests/test_t21r6_historical_debt.py (ledger-vs-reality assertion)"
+    ]
+  },
+  "promotion_value_note": "This ledger changes NO historical artifact and NO runtime behavior; it only pins known canonical-base bookkeeping debt transparently."
+}

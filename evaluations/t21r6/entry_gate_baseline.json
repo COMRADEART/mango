@@ -1,0 +1,70 @@
+{
+  "artifact": "T21R6 entry-gate baseline (pre-repair harness diagnosis)",
+  "recorded_at": "2026-09-15",
+  "canonical_base_sha": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+  "branch": "t21r6-knowledge-rag-final-closure",
+  "verdict": "CORPUS_CONTENT_INTACT",
+  "original_full_pytest": {
+    "command": "python -m pytest tests/ -q",
+    "failures": 4,
+    "errors": 0,
+    "failing_tests": [
+      "tests/test_corpus_and_comparison.py::TestFrozenCorpus::test_checksums_match",
+      "tests/test_curriculum_core.py::test_frozen_v1_corpus_untouched",
+      "tests/test_gates_and_attach.py::TestVerifyCorpus::test_verify_real_frozen_corpus",
+      "tests/test_t21r4_blind_holdout_contract.py::test_evaluator_freeze_hash_unchanged"
+    ]
+  },
+  "root_causes": {
+    "corpus_checksum_failures": "LEGACY_CRLF_CHECKSUM_PORTABILITY_DEFECT",
+    "t21r4_evaluator_freeze_failure": "KNOWN_CANONICAL_HISTORICAL_DEBT (see evaluations/t21r6/inherited_historical_debt.json)"
+  },
+  "corpus_checksum_diagnosis": {
+    "frozen_corpus_dir": "training/datasets/sciencemath-sft-v1",
+    "diagnosis": "All 8 frozen files are byte-identical to the committed git content and are stored/checked out as pure LF bytes. The historical checksums.json values were computed from the CRLF byte representation used when the corpus was originally frozen. For every file sha256(LF bytes) != historical expected, while sha256(LF -> CRLF canonical) == historical expected exactly. FROZEN CORPUS TAMPERING = FALSE.",
+    "repair": "sciencemath.utils.legacy_checksums.historical_corpus_sha256: read bytes -> normalize CRLF to LF -> convert LF to CRLF -> sha256. The verifier requires raw sha256 OR historical CRLF-canonical sha256 to equal the frozen expected value; no arbitrary alternate hash is accepted, and any textual or non-EOL byte mutation fails both semantics.",
+    "affected_files": {
+      "contamination_report.json": {
+        "expected": "5b958aa85ce8dfe67cdd8baadd737bc26e3716da04b43f5efbb7ff05d65b9064",
+        "lf_sha256": "324a8d0c030c23813b5f5f0af565d9efd2973e8954bce5ef1680ff9bc277aba1",
+        "crlf_canonical_sha256": "5b958aa85ce8dfe67cdd8baadd737bc26e3716da04b43f5efbb7ff05d65b9064"
+      },
+      "domain_distribution.json": {
+        "expected": "240ced0a8e7ab2ee05b37d0047f53daa64e3a28567a3fd2a3fa81e67d74f3e5e",
+        "lf_sha256": "aa797cc28828c076f6c6161e42e2c6e332fb2b00afa67bb4af1d8ba6ace4a959",
+        "crlf_canonical_sha256": "240ced0a8e7ab2ee05b37d0047f53daa64e3a28567a3fd2a3fa81e67d74f3e5e"
+      },
+      "license_manifest.json": {
+        "expected": "d572d385652255a3fa89f0d8d54bda98da3c5d7ac5cacc96ab33b50d371b3f42",
+        "lf_sha256": "c9e49499b1778ca8cb96937ecd39c4bcf42e2d9e6dd411c1f6c09f6010e22a80",
+        "crlf_canonical_sha256": "d572d385652255a3fa89f0d8d54bda98da3c5d7ac5cacc96ab33b50d371b3f42"
+      },
+      "manifest.json": {
+        "expected": "a58b8d085226f00199381b57dc034ed871a8231e22dac767189ce54040b8577f",
+        "lf_sha256": "82be3b249ce3d845b64b17d988c275e004f61467668ba72a96236c58ed8f3575",
+        "crlf_canonical_sha256": "a58b8d085226f00199381b57dc034ed871a8231e22dac767189ce54040b8577f"
+      },
+      "quality_report.json": {
+        "expected": "598b1fb2eac70824459e4f1032f07090f5d8cb907a3ffb719914542c5f13249b",
+        "lf_sha256": "3d5c5a09c13023f6111c41d54305598bae74b4b2fba384e1e627416dd3faf4f3",
+        "crlf_canonical_sha256": "598b1fb2eac70824459e4f1032f07090f5d8cb907a3ffb719914542c5f13249b"
+      },
+      "source_manifest.json": {
+        "expected": "9fe7fcd91bb84c321f65558c9e888777209337a3d656d3df86112e650933d88c",
+        "lf_sha256": "5fd9a471933ab8f1953b39d9378191e53f2fd154eef26d9c04b65d8be569e712",
+        "crlf_canonical_sha256": "9fe7fcd91bb84c321f65558c9e888777209337a3d656d3df86112e650933d88c"
+      },
+      "train.jsonl": {
+        "expected": "a3ba26fe4980fd21335ee727391a5266037b348c5ead33fe823a1dcede26655a",
+        "lf_sha256": "abb54f558fe4e1f5211e1d3a9d4c21874a42f63873bbeeb422dfd4d7f0338cdc",
+        "crlf_canonical_sha256": "a3ba26fe4980fd21335ee727391a5266037b348c5ead33fe823a1dcede26655a"
+      },
+      "validation.jsonl": {
+        "expected": "d79f4203663e8af483d518b6f0fc027c1765209c9dd402ac9ec6ab81a769837d",
+        "lf_sha256": "9fc9cd26ae6a67ee9b81382f6383cb12e21486d6356bdea9ed67bd465a2f3891",
+        "crlf_canonical_sha256": "d79f4203663e8af483d518b6f0fc027c1765209c9dd402ac9ec6ab81a769837d"
+      }
+    }
+  },
+  "historical_artifacts_modified": "NONE (frozen corpus, checksums.json, and all historical evaluation artifacts untouched)"
+}

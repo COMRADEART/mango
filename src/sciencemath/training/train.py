@@ -63,28 +63,19 @@ def latest_checkpoint(output_dir: Path) -> Path | None:
 
 
 def verify_corpus(corpus_dir: Path) -> dict:
-    """Verify the frozen corpus against its own checksums.json."""
-    from sciencemath.utils.io_utils import load_json
-    checksums = load_json(corpus_dir / "checksums.json")
-    import hashlib
+    """Verify the frozen corpus against its own checksums.json.
 
-    def sha256_file(path: Path) -> str:
-        h = hashlib.sha256()
-        with open(path, "rb") as f:
-            for chunk in iter(lambda: f.read(1 << 20), b""):
-                h.update(chunk)
-        return h.hexdigest()
-
-    mismatches, missing = [], []
-    for name, expected in checksums.items():
-        p = corpus_dir / name
-        if not p.exists():
-            missing.append(name)
-        elif sha256_file(p) != expected:
-            mismatches.append(name)
-    return {"ok": not mismatches and not missing,
-            "files_checked": len(checksums),
-            "missing": missing, "mismatched": mismatches}
+    Delegates to the shared frozen-checksum verifier, which accepts a file
+    under the raw sha256 OR the historical CRLF-canonical sha256
+    (LEGACY_CRLF_CHECKSUM_PORTABILITY_DEFECT: the v1 corpus checksums were
+    generated from CRLF bytes; see sciencemath.utils.legacy_checksums).
+    Any content mutation other than line endings still fails both.
+    """
+    from sciencemath.utils.legacy_checksums import verify_frozen_checksums
+    result = verify_frozen_checksums(corpus_dir)
+    # preserve the historical return shape; drop the diagnostics field
+    result.pop("semantics", None)
+    return result
 
 
 def run_training(config: dict, repo_root: Path, *,
