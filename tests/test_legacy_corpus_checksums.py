@@ -109,10 +109,15 @@ def test_real_frozen_corpus_verifies_with_legacy_semantics_recorded():
     res = verify_frozen_checksums(CORPUS_DIR)
     assert res["ok"], res
     assert res["files_checked"] == 8
-    # every file matched under the historical CRLF-canonical semantics,
-    # never by accident under a third hash
-    assert all(v == "legacy_crlf"
-               for v in res["semantics"].values()), res["semantics"]
+    # A checkout may materialize the committed historical CRLF bytes
+    # directly ("raw") or normalize them to LF and require the pinned
+    # compatibility path ("legacy_crlf").  Both are explicit verifier
+    # semantics; no third hash is accepted.  Requiring only the fallback
+    # made a clean Windows checkout fail even though its raw bytes matched
+    # the frozen digest exactly.
+    assert len(res["semantics"]) == 8
+    assert set(res["semantics"].values()) <= {"raw", "legacy_crlf"}, \
+        res["semantics"]
 
 
 @pytest.mark.skipif(not CORPUS_DIR.exists(), reason="frozen corpus absent")

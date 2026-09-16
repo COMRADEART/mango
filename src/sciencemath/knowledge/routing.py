@@ -36,9 +36,19 @@ ANSWER_STATUSES = (
 
 _SCIENCE_CUES = re.compile(
     r"\bmitochondria\b|photosynthesis|\benzyme\b|\batp\b|\borbital\b|"
-    r"\breaction rate\b|kinetics|thermodynamic|\bmolecule\b|"
+    r"\breaction rate\b|kinetics|thermodynamic|\bmolecule\b|\bmolecular\b|"
     r"\bphysics problem\b|\bentropy\b|\bacid-base\b|\bprotein fold\b|"
     r"\bdna\b|\bgene expression\b", re.IGNORECASE)
+_SCIENCE_REASONING_CUES = re.compile(
+    r"\b(?:explain|mechanism|mechanisms|why|how (?:does|do|is|are|can)|"
+    r"causes?|effects?|pathway|process|derive|prove|evidence for|"
+    r"evidence|experiment|experimental|hypothesis|model the|simulate)\b",
+    re.IGNORECASE)
+_INDEXED_LOOKUP_CUES = re.compile(
+    r"\b(?:define|definition|what is|who (?:discovered|invented)|"
+    r"which (?:year|date|record|source)|when was|according to|"
+    r"indexed records?|catalog(?:ue)?d|first recorded|cite|citation)\b",
+    re.IGNORECASE)
 _COMPUTE_CUES = re.compile(
     r"\bcalculate|compute|solve for|evaluate\b.*\b(?:given|parameters)\b|"
     r"\bnumerically|integral|derivative|matrix|eigenvalue", re.IGNORECASE)
@@ -52,7 +62,9 @@ _MEMORY_CUES = re.compile(
 _WEB_CUES = re.compile(
     r"\b(?:reported|published) (?:today|yesterday|this week)|breaking news|"
     r"\bcurrent (?:price|stock|score|weather|standings|release)\b|"
-    r"\blive (?:score|coverage|update|event|stream|feed|match)\b",
+    r"\bcurrent\b.{0,60}\b(?:release|research|result|report|dataset)\b|"
+    r"\blive (?:score|coverage|update|event|stream|feed|match)\b|"
+    r"\blive\b.{0,60}\b(?:feed|result|update|coverage|stream)\b",
     re.IGNORECASE)
 
 # Stable general-knowledge domain vocabulary (T21 corpus domains).
@@ -75,13 +87,23 @@ def classify_boundary(query: str) -> dict:
         return {"status": ROUTE_SCIENCE_RAG,
                 "reason": "computation on parameters is the scientific/"
                           "math-tool path, not knowledge retrieval"}
-    if _SCIENCE_CUES.search(query):
-        return {"status": ROUTE_SCIENCE_RAG,
-                "reason": "scientific mechanism/evidence question is "
-                          "SCIENCE_RAG scope"}
+    # Live/current evidence owns the query even when scientific vocabulary
+    # is present (for example, a current gene-expression release).
     if _WEB_CUES.search(query):
         return {"status": ROUTE_WEB_RESEARCH,
                 "reason": "live/open-web evidence requirement"}
+    if _SCIENCE_CUES.search(query) and _SCIENCE_REASONING_CUES.search(query):
+        return {"status": ROUTE_SCIENCE_RAG,
+                "reason": "scientific mechanism/evidence question is "
+                          "SCIENCE_RAG scope"}
+    if _SCIENCE_CUES.search(query) and _INDEXED_LOOKUP_CUES.search(query):
+        return {"status": ANSWER_STATUS,
+                "reason": "specific indexed entity/attribute lookup; "
+                          "scientific vocabulary alone does not change "
+                          "the skill boundary"}
+    # A bare scientific noun without an explanation/mechanism need is a
+    # stable reference lookup.  The local corpus may answer it or abstain;
+    # it is not routed merely because of domain vocabulary.
     return {"status": ANSWER_STATUS,
             "reason": "stable general knowledge; local retrieval applies"}
 

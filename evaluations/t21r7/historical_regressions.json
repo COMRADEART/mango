@@ -1,0 +1,18 @@
+{
+  "artifact": "T21R7 historical regression verification",
+  "errors": 0,
+  "failures": 0,
+  "junit": "evaluations/t21r7/historical_regressions.xml",
+  "milestones": [
+    "T21R3",
+    "T21R4",
+    "T21R5",
+    "T21R6"
+  ],
+  "passed": 272,
+  "recorded_at": "2026-09-16T10:45:04-04:00",
+  "skipped": 0,
+  "status": "PASS",
+  "tests": 272,
+  "time_seconds": 2.792
+}
