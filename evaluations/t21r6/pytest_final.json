@@ -1,0 +1,14 @@
+{
+  "milestone": "T21R6 final full pytest battery",
+  "recorded_at": "2026-09-16T04:14:00.605932+00:00",
+  "command": "python -m pytest tests/ -q --junitxml=evaluations/t21r6/full_junit.xml",
+  "exit_code": 0,
+  "tests_total": 1941,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 2,
+  "time_seconds": 48.4,
+  "failing_tests": [],
+  "verdict": "PASS",
+  "junit_xml": "evaluations/t21r6/full_junit.xml"
+}

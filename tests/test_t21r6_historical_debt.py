@@ -72,13 +72,37 @@ def test_debt_ledger_pinned_values_match_artifacts(debt):
             f"pinned expected hash disagrees with {m['artifact']}"
 
 
+# The closed set of inherited mismatches proven to pre-date T21R6: each
+# file is byte-identical to the canonical base and was last changed by its
+# own milestone's validation commit (fbe034a / da044e4).
+CLOSED_DEBT_PATHS = [
+    "scripts/t21r4_run_eval.py",
+    "evaluations/t21r4/runtime_freeze.json",
+    "evaluations/t21r4/holdout_uniqueness.json",
+    "scripts/t21r4_freeze_evaluator.py",
+    "evaluations/t21r5/runtime_freeze.json",
+    "evaluations/t21r5/holdout_uniqueness.json",
+]
+
+
 def test_debt_ledger_does_not_expand(debt):
-    """The inherited debt is bounded: exactly one pinned mismatch, the
-    canonical T21R4 evaluator freeze debt. Any addition would expand the
-    debt and must fail."""
-    paths = [m["path"] for m in debt["inherited_mismatches"]]
-    assert paths == ["scripts/t21r4_run_eval.py"], \
-        f"inherited debt expanded beyond the pinned entry: {paths}"
+    """The inherited debt is bounded by the closed six-entry set proven at
+    the canonical base. Any further entry is new debt and must fail."""
+    paths = sorted(m["path"] for m in debt["inherited_mismatches"])
+    assert paths == sorted(CLOSED_DEBT_PATHS),         f"inherited debt expanded beyond the closed set: {paths}"
+
+
+def test_debt_ledger_entries_are_canonical_base_identical(debt):
+    """Classification proof for every pinned entry: the file must be
+    byte-identical to the canonical-base git blob (otherwise the
+    mismatch is NEW corruption, not inherited debt)."""
+    import subprocess
+    for m in debt["inherited_mismatches"]:
+        blob = subprocess.run(
+            ["git", "cat-file", "blob",
+             f"{CANONICAL_BASE}:{m['path']}"],
+            cwd=REPO_ROOT, capture_output=True, check=True).stdout
+        assert hashlib.sha256(blob).hexdigest() ==             m["canonical_actual_sha256"],             f"pinned entry is NOT identical to the canonical base: "             f"{m['path']}"
 
 
 def test_debt_ledger_records_both_hash_polarities(debt):

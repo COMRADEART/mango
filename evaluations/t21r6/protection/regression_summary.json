@@ -1,0 +1,139 @@
+{
+  "milestone": "T21R6 protection battery",
+  "recorded_at": "2026-09-16T04:08:36.577044+00:00",
+  "status": "ALL_PASS",
+  "registry_sha256_now": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+  "registry_counts": {
+    "ACTIVE": 11,
+    "EXPERIMENTAL": 1
+  },
+  "layers": {
+    "runtime_freeze_identity": {
+      "status": "PASS",
+      "checks": {
+        "knowledge_runtime": true,
+        "executive_skills": true,
+        "executive_router": true,
+        "science_rag_runtime": true,
+        "web_research_runtime": true,
+        "document_runtime": true,
+        "memory_runtime": true,
+        "planning_runtime": true,
+        "orchestration_runtime": true,
+        "scicomp_runtime": true,
+        "code_runtime": true,
+        "correction_firewall": true,
+        "security_layer": true,
+        "historical_write_guard": "preregistered_guard_registration_delta",
+        "historical_write_guard_preregistered_delta": true
+      }
+    },
+    "registry_boundaries": {
+      "status": "PASS",
+      "checks": {
+        "registry_sha256_matches_freeze_record": true,
+        "knowledge_rag_experimental_per_freeze_record": true,
+        "skills_py_matches_freeze_record": true,
+        "executive_router_untouched": true,
+        "registry_counts": true
+      }
+    },
+    "t15r_canonical_blob": {
+      "status": "PASS",
+      "blob_sha256": "fba2437f78633884bd31965d78a4250bd1ca893c"
+    },
+    "mutation": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "fidelity: 8/8 rejected, exceptions 0 -> PASS\nfidelity_transform: 0/0 rejected, exceptions 0 -> PASS\noverall: PASS -> evaluations\\t21r6\\mutation_safety_probe.json\n"
+    },
+    "t21r4_freeze_identity": {
+      "status": "PASS",
+      "verdict": "PASS (pinned KNOWN_CANONICAL_HISTORICAL_DEBT)",
+      "verdict_reason": "the only mismatches are the preregistered inherited debt pinned in evaluations/t21r6/inherited_historical_debt.json: each mismatched file is byte-identical to the canonical base and was last changed by its own milestone's validation commit; the ledger does not expand",
+      "checks": {
+        "present": true,
+        "runtime_freeze": false,
+        "evaluator_freeze": true,
+        "validation_contract": true,
+        "static_gold_audit": true,
+        "holdout_uniqueness": false,
+        "world_builder": true,
+        "corpus_renderer": true,
+        "suite_builder": true,
+        "static_audit_script": true,
+        "uniqueness_script": true,
+        "evaluator_freeze_script": false,
+        "evaluator": false,
+        "corpus/world.jsonl": true,
+        "corpus/sources.jsonl": true,
+        "corpus/chunks.jsonl": true,
+        "corpus/corpus_manifest.json": true,
+        "suite/mango-t21r4-retrieval-holdout-v1": true,
+        "suite/mango-t21r4-singlehop-holdout-v1": true,
+        "suite/mango-t21r4-multihop-holdout-v1": true,
+        "suite/mango-t21r4-crossdomain-holdout-v1": true,
+        "suite/mango-t21r4-citation-claim-holdout-v1": true,
+        "suite/mango-t21r4-conflict-abstention-holdout-v1": true,
+        "suite/mango-t21r4-temporal-holdout-v1": true,
+        "suite/mango-t21r4-adversarial-holdout-v1": true
+      }
+    },
+    "t21r5_freeze_identity": {
+      "status": "PASS",
+      "verdict": "PASS (pinned KNOWN_CANONICAL_HISTORICAL_DEBT)",
+      "verdict_reason": "the only mismatches are the preregistered inherited debt pinned in evaluations/t21r6/inherited_historical_debt.json: each mismatched file is byte-identical to the canonical base and was last changed by its own milestone's validation commit; the ledger does not expand",
+      "checks": {
+        "present": true,
+        "runtime_freeze": false,
+        "evaluator_freeze": true,
+        "validation_contract": true,
+        "static_gold_audit": true,
+        "holdout_uniqueness": false,
+        "world_builder": true,
+        "corpus_renderer": true,
+        "suite_builder": true,
+        "static_audit_script": true,
+        "uniqueness_script": true,
+        "evaluator_freeze_script": true,
+        "evaluator": true,
+        "corpus/world.jsonl": true,
+        "corpus/sources.jsonl": true,
+        "corpus/chunks.jsonl": true,
+        "corpus/corpus_manifest.json": true,
+        "suite/mango-t21r5-retrieval-holdout-v1": true,
+        "suite/mango-t21r5-singlehop-holdout-v1": true,
+        "suite/mango-t21r5-multihop-holdout-v1": true,
+        "suite/mango-t21r5-crossdomain-holdout-v1": true,
+        "suite/mango-t21r5-citation-claim-holdout-v1": true,
+        "suite/mango-t21r5-conflict-abstention-holdout-v1": true,
+        "suite/mango-t21r5-temporal-holdout-v1": true,
+        "suite/mango-t21r5-adversarial-holdout-v1": true
+      }
+    },
+    "historical_unchanged": {
+      "status": "PASS",
+      "checks": {
+        "canonical_diff_paths": [],
+        "t21_artifacts_untouched": true,
+        "t21r_artifacts_untouched": true,
+        "t21r2_artifacts_untouched": true,
+        "t21r3_artifacts_untouched": true,
+        "t21r4_artifacts_untouched": true,
+        "t21r5_artifacts_untouched": true,
+        "t21_corpus_untouched": true,
+        "t21r_corpus_untouched": true,
+        "t21r2_corpus_untouched": true,
+        "t21r3_corpus_untouched": true,
+        "t21r4_corpus_untouched": true,
+        "t21r5_corpus_untouched": true
+      }
+    },
+    "security_pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_tail": "........................................s....................s.......... [ 41%]\n........................................................................ [ 83%]\n.............................                                            [100%]\n"
+    }
+  },
+  "reason": "T21R6 changed only the preregistered knowledge-RAG repairs (the Part A evaluator required_domains repair and its qualification harness, the multihop INTERROGATIVE_NORMALIZATION_GAP repair with its subject gate and freshness explicit-current family, the entry-gate checksum portability repair and the inherited-debt ledger; all frozen post-repair), its evaluation material and this battery's registration delta: every frozen runtime composite - the repaired knowledge runtime included - matches the T21R6 freeze, the skill registry matches the freeze record with KNOWLEDGE_RAG still EXPERIMENTAL, the Executive Router is untouched, the T15R canonical blob is unchanged, the exposed T21R4 holdout matches its freeze manifest under exactly the pinned KNOWN_CANONICAL_HISTORICAL_DEBT, the exposed T21R5 holdout matches its freeze manifest under exactly the same ledger-pinned KNOWN_CANONICAL_HISTORICAL_DEBT, and the T21/T21R/T21R2/T21R3/T21R4/T21R5 historical artifacts and corpora are byte-identical to the canonical base."
+}

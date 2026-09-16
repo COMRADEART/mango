@@ -1,0 +1,36 @@
+{
+  "milestone": "T21R6 runtime freeze (repaired runtime, before holdout)",
+  "recorded_at": "2026-09-16T03:32:49.313181+00:00",
+  "t21r5_merge_sha": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+  "repair_commit": "46d2251d8dfd961ebf68b34f5ff96d760747f967",
+  "git_head": "46d2251d8dfd961ebf68b34f5ff96d760747f967",
+  "git_tree_sha": "f735d748c0c1e6fe737a9f809d157fd28b0727b3",
+  "t15r_canonical_blob": "fba2437f78633884bd31965d78a4250bd1ca893c",
+  "runtime_composites": {
+    "knowledge_runtime": "767244b9aad65a1a0a1dc88b77fb14fe6ee3996ef3d36e67a4db2525b589be59",
+    "executive_skills": "f758b52b841130b34c85ec25e72037020a9e90237627fb3f8a673353e02a8125",
+    "executive_router": "dbc7fbd0d19688d1a220e27d18484f437f1adde3b24b4b5ba4fb6eb8ac246c10",
+    "science_rag_runtime": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "web_research_runtime": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4",
+    "document_runtime": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+    "memory_runtime": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+    "planning_runtime": "d045885cefcd097ceffc6588b5e6b00a1072cfaa08526ba9e4070bbdc041528c",
+    "orchestration_runtime": "57b1c4ad8cd71829b78d5baab20c62617333718be39a96710b0084004561ae45",
+    "scicomp_runtime": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "code_runtime": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "correction_firewall": "7a307f6678d6afdc9d469c31b898ba4f4cc9e34d0df4c9e3e7770756e02c36e1",
+    "security_layer": "17392e9dd0c23434383690cfd106c770628b428d0dcaf74dcf34198d83ebd14f",
+    "historical_write_guard": "03209397fd9ebb0998e318d42563664b88852d1da6c89e799e5e60b2e366fa5f"
+  },
+  "knowledge_rag_registry": {
+    "availability": "EXPERIMENTAL",
+    "registry_sha256": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+    "skills_py_sha256_lf": "66f2d1e5b3137e6a3e4bd5477dee7a5417585f7a9b543c98419eb820973522ad",
+    "counts": {
+      "ACTIVE": 11,
+      "EXPERIMENTAL": 1
+    }
+  },
+  "executive_router_status": "EXPERIMENTAL (unchanged)",
+  "promotion_policy": "KNOWLEDGE_RAG may move to ACTIVE only after the one-shot T21R6 blind holdout passes every preregistered floor."
+}

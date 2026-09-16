@@ -1,0 +1,395 @@
+{
+  "audit": "t21r6_holdout_uniqueness",
+  "baseline": "evaluations/t21 + evaluations/t21r + evaluations/t21r2 + evaluations/t21r3 + evaluations/t21r4 + evaluations/t21r5",
+  "suites": {
+    "mango-t21r6-retrieval-holdout-v1": 566,
+    "mango-t21r6-singlehop-holdout-v1": 512,
+    "mango-t21r6-multihop-holdout-v1": 416,
+    "mango-t21r6-crossdomain-holdout-v1": 400,
+    "mango-t21r6-citation-claim-holdout-v1": 365,
+    "mango-t21r6-conflict-abstention-holdout-v1": 669,
+    "mango-t21r6-temporal-holdout-v1": 250,
+    "mango-t21r6-adversarial-holdout-v1": 575
+  },
+  "suite_holdout_sha256": {
+    "mango-t21r6-retrieval-holdout-v1": "4ed69bdb7d15e28c9ef889d65810f6e04d3acd7fc8e0d29d45aaa14c9512c329",
+    "mango-t21r6-singlehop-holdout-v1": "04d93099c136ee4368820631cf70e87aed931870a611fee47a68e709e0967c94",
+    "mango-t21r6-multihop-holdout-v1": "6f4e0918850d7eec63a79d88236c005c291022dc7e737b5c1e306f4dccdaf4d2",
+    "mango-t21r6-crossdomain-holdout-v1": "71ff7d021a4ba7bed19d9a8636a0bb0d98eb75d0fff3694caf63a3a40b3eab69",
+    "mango-t21r6-citation-claim-holdout-v1": "9fa5bcfdabd7c7efa9e9ae1547e35a516b15820657b75713091a509bf28695c8",
+    "mango-t21r6-conflict-abstention-holdout-v1": "0cf08891ff44ef2e6bf53252bc18f7963b361efc343f71d8b94acde4b75d928e",
+    "mango-t21r6-temporal-holdout-v1": "a72d0a75e2eaa9c0888761ab823926529ed9b169dc14634a0303d342b4237a3a",
+    "mango-t21r6-adversarial-holdout-v1": "848419826d2113a8d190f0ad8d5da9cc3944ab97fdb3311c0b2e3cdc65f1f890"
+  },
+  "total_rows": 3753,
+  "checks": {
+    "exact_duplicate_rows": {
+      "count": 0,
+      "detail": {}
+    },
+    "exact_duplicate_queries": {
+      "count": 0,
+      "detail": {}
+    },
+    "case_id_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "entity_identity_overlap": {
+      "entity_name_overlap": {
+        "count": 0,
+        "detail": []
+      },
+      "t21r6_entities_in_prior_queries": {
+        "count": 0,
+        "detail": []
+      },
+      "prior_entities_in_t21r6_queries": {
+        "count": 0,
+        "detail": []
+      }
+    },
+    "exact_query_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "chunk_id_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "source_id_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "gold_answer_value_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "exact_source_text_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "verbatim_attack_string_overlap_with_prior_worlds": {
+      "count": 0,
+      "detail": []
+    },
+    "near_duplicate_flags": {
+      "count": 111,
+      "pairs": [
+        {
+          "scope": "internal",
+          "query_a": "Name the waterway of Fenwhead.",
+          "query_b": "Name the waterway at Fenwhead.",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Name the waterway of Dinsgate.",
+          "query_b": "Name the waterway at Dinsgate.",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Name the waterway of Lammergate.",
+          "query_b": "Name the waterway at Lammergate.",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Which year saw the founding of the town of Dinsgate?",
+          "query_b": "The founding year of the town of Dinsgate is which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Which year saw the founding of the town of Ettergate?",
+          "query_b": "The founding year of the town of Ettergate is which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Which year saw the founding of the town of Frostergate?",
+          "query_b": "The founding year of the town of Frostergate is which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "Which year saw the founding of the town of Girvangate?",
+          "query_b": "The founding year of the town of Girvangate is which year?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The study Study of Annora was executed in which medium?",
+          "query_b": "In which medium was Study of Annora executed?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The study Study of Annora was executed in which medium?",
+          "query_b": "Study of Annora was executed in which medium?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The study Study of Bertrada was executed in which medium?",
+          "query_b": "In which medium was Study of Bertrada executed?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The study Study of Bertrada was executed in which medium?",
+          "query_b": "Study of Bertrada was executed in which medium?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The study Study of Claricia was executed in which medium?",
+          "query_b": "In which medium was Study of Claricia executed?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The study Study of Claricia was executed in which medium?",
+          "query_b": "Study of Claricia was executed in which medium?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The study Study of Drusilla was executed in which medium?",
+          "query_b": "In which medium was Study of Drusilla executed?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The study Study of Drusilla was executed in which medium?",
+          "query_b": "Study of Drusilla was executed in which medium?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "The study Study of Ermengard was executed in which medium?",
+          "query_b": "Study of Ermengard was executed in which medium?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Annora born?",
+          "query_b": "The painter of Study of Annora was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Bertrada born?",
+          "query_b": "The painter of Study of Bertrada was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Claricia born?",
+          "query_b": "The painter of Study of Claricia was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Drusilla born?",
+          "query_b": "The painter of Study of Drusilla was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Ermengard born?",
+          "query_b": "The painter of Study of Ermengard was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Fenella born?",
+          "query_b": "The painter of Study of Fenella was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Griselda born?",
+          "query_b": "The painter of Study of Griselda was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Hawise born?",
+          "query_b": "The painter of Study of Hawise was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Jocosa born?",
+          "query_b": "The painter of Study of Jocosa was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Kendra born?",
+          "query_b": "The painter of Study of Kendra was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Loveta born?",
+          "query_b": "The painter of Study of Loveta was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Melisende born?",
+          "query_b": "The painter of Study of Melisende was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Nest born?",
+          "query_b": "The painter of Study of Nest was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Oda born?",
+          "query_b": "The painter of Study of Oda was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Perrette born?",
+          "query_b": "The painter of Study of Perrette was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the painter of Study of Quenild born?",
+          "query_b": "The painter of Study of Quenild was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Ambotburn opisometer born?",
+          "query_b": "The inventor of the Ambotburn opisometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Boswburn stereoscope born?",
+          "query_b": "The inventor of the Boswburn stereoscope was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Carpburn tachistoscope born?",
+          "query_b": "The inventor of the Carpburn tachistoscope was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Dinstburn lactometer born?",
+          "query_b": "The inventor of the Dinstburn lactometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Etterburn eudiometer born?",
+          "query_b": "The inventor of the Etterburn eudiometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Frostburn chronoscope born?",
+          "query_b": "The inventor of the Frostburn chronoscope was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Girvaburn dynamometer born?",
+          "query_b": "The inventor of the Girvaburn dynamometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Humbeburn magnetometer born?",
+          "query_b": "The inventor of the Humbeburn magnetometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Islinburn selenometer born?",
+          "query_b": "The inventor of the Islinburn selenometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Jesmoburn graphometer born?",
+          "query_b": "The inventor of the Jesmoburn graphometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Kirkbburn opisometer born?",
+          "query_b": "The inventor of the Kirkbburn opisometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Lammebburn stereoscope born?",
+          "query_b": "The inventor of the Lammebburn stereoscope was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Minstbburn tachistoscope born?",
+          "query_b": "The inventor of the Minstbburn tachistoscope was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Nostbburn lactometer born?",
+          "query_b": "The inventor of the Nostbburn lactometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Ormskburn eudiometer born?",
+          "query_b": "The inventor of the Ormskburn eudiometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Prestoburn chronoscope born?",
+          "query_b": "The inventor of the Prestoburn chronoscope was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Quernsburn dynamometer born?",
+          "query_b": "The inventor of the Quernsburn dynamometer was born in which town?",
+          "jaccard": 1.0
+        },
+        {
+          "scope": "internal",
+          "query_a": "In which town was the inventor of the Ravensbburn magnetometer born?",
+          "query_b": "The inventor of the Ravensbburn magnetometer was born in which town?",
+          "jaccard": 1.0
+        }
+      ]
+    }
+  },
+  "gate": {
+    "exact_duplicate_rows": 0,
+    "exact_duplicate_queries": 0,
+    "case_id_overlap": 0,
+    "entity_identity_overlap": 0,
+    "query_overlap": 0,
+    "chunk_id_overlap": 0,
+    "source_id_overlap": 0,
+    "gold_answer_overlap": 0,
+    "source_text_overlap": 0,
+    "attack_string_overlap": 0
+  },
+  "verdict": "UNIQUE"
+}

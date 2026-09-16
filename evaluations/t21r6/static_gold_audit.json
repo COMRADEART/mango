@@ -1,0 +1,46 @@
+{
+  "checks": {
+    "gold_in_window": {
+      "checked": 3303,
+      "misses": 0
+    },
+    "conflict_windows": {
+      "misses": 0
+    },
+    "near_dup_companion_report_only": {
+      "misses": 28
+    },
+    "winner_not_rank1": {
+      "stress_rows": 145,
+      "winner_not_rank1": 145
+    },
+    "unresolved_pair_in_window": {
+      "misses": 0
+    },
+    "naive_domination": {
+      "multi_source_rows": 816,
+      "dominated": 510
+    },
+    "coverage_gate": {
+      "failures": 0
+    },
+    "hop2_bridge": {
+      "failures": 0
+    },
+    "exposure_safe_fact": {
+      "failures": 0
+    },
+    "spoof_flagged": {
+      "misses": 0
+    },
+    "negative_clean": {
+      "failures": 0
+    },
+    "absent_tokens_absent": {
+      "failures": 0
+    }
+  },
+  "failures": [],
+  "rows": 3753,
+  "status": "PASS"
+}

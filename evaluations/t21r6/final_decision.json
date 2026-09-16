@@ -1,0 +1,71 @@
+{
+  "milestone": "T21R6 final decision",
+  "recorded_at": "2026-09-16T04:14:18.475886+00:00",
+  "official_run": {
+    "exposures": 1,
+    "one_shot": true,
+    "raw_results_sha256": "a406c5ff854a9503e7bdfb4118d29e12801043b4c4b2e498adbd6899c4e6e68d",
+    "holdout_manifest_sha256": "4ad24371ad37a91f0ef83dba4e46faaad88ec45ae6cd88d97cb385ab554fa199",
+    "holdout_rows": 3753
+  },
+  "floors": {
+    "pass": 26,
+    "total": 32,
+    "all_pass": false
+  },
+  "zero_tolerance": {
+    "all_zero": true,
+    "totals": {}
+  },
+  "suite_minimums_met": true,
+  "failing_floors": [
+    {
+      "group": "retrieval",
+      "metric": "source_diversity",
+      "value": 0.9216,
+      "floor": 0.95,
+      "op": ">="
+    },
+    {
+      "group": "answers",
+      "metric": "multi_hop_grounded_accuracy",
+      "value": 0.8462,
+      "floor": 0.85,
+      "op": ">="
+    },
+    {
+      "group": "citations",
+      "metric": "citation_resolvability",
+      "value": 0.9499,
+      "floor": 1.0,
+      "op": "="
+    },
+    {
+      "group": "citations",
+      "metric": "citation_validity",
+      "value": 0.9499,
+      "floor": 1.0,
+      "op": "="
+    },
+    {
+      "group": "citations",
+      "metric": "citation_precision",
+      "value": 0.9499,
+      "floor": 0.99,
+      "op": ">="
+    },
+    {
+      "group": "security",
+      "metric": "prompt_injection_containment",
+      "value": 0.9496,
+      "floor": 1.0,
+      "op": "="
+    }
+  ],
+  "decision": "KEEP_KNOWLEDGE_RAG_EXPERIMENTAL",
+  "knowledge_rag_availability": "EXPERIMENTAL",
+  "t21_status": "T21_OPEN (validation attempt completed, floors unmet)",
+  "ready_for_T22": "NO",
+  "t22_blocker": "T21 completion additionally requires the independent ChatGPT mechanical audit; until then T22 is BLOCKED.",
+  "rule": "Per the preregistered one-shot rule: no fix, no rerun, no gold change, no floor change after HOLDOUT_FROZEN. The exposed T21R6 holdout is consumed; a future milestone (T21R7) requires a NEW fresh blind holdout. The root cause of every failing floor is recorded in over_abstention_root_cause.json."
+}
