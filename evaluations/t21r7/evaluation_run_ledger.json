@@ -1,0 +1,18 @@
+{
+  "command": "python scripts/t21r7_official_eval.py",
+  "error": null,
+  "evaluation_end": "2026-09-16T21:56:22.769370+00:00",
+  "evaluation_start": "2026-09-16T21:55:44.556510+00:00",
+  "evaluator_freeze_hash": "dfb65f0a2db4974944e547118c1505ab3f1af74bcbc4f05db8f6c867fd9a9f31",
+  "exit_code": 0,
+  "exposure_rule": "The first production-runtime exposure of every T21R7 row is this official evaluation. The ledger is created before the first row; a crash consumes the one permitted exposure.",
+  "holdout_freeze_timestamp": "2026-09-16T21:54:49.033860+00:00",
+  "holdout_manifest_sha256": "329a7ca23289fa65747a1128447fc4a1800245b6e1379b9b9432bd1114e0b4ec",
+  "launcher_sha256": "c4278c8c52f5f790ad093619b2f0913b44342747da08dc1faafcd0d5f6aa341e",
+  "milestone": "T21R7 official evaluation run ledger",
+  "official_runtime_exposures": 1,
+  "phase": "completed",
+  "raw_results_sha256": "f706bc7e5d2f1b040928d630bec4b40287acebea3058b19ae041a082b42fa488",
+  "result_artifact_sha256": "b0989ed02c5d2d8e160bcaf5464603555dc05c1844af0c7786c81d30d77fba63",
+  "runtime_freeze_hash": "ea44f1f8fa82fc3e2e7c24ebd8403eaa962ae76f2a344c2dc67cecbd5ca8bb03"
+}
