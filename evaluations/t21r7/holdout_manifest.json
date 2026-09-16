@@ -1,0 +1,98 @@
+{
+  "construction_requirements_evaluated": 79,
+  "construction_requirements_passed": 79,
+  "corpus": {
+    "chunks.jsonl": {
+      "path": "rag/gk_holdout_t21r7/chunks.jsonl",
+      "sha256": "febc03f6183c43e8852363048f7045b976eba2d831caddb0e78d6d9b394b618b"
+    },
+    "corpus_manifest.json": {
+      "path": "rag/gk_holdout_t21r7/corpus_manifest.json",
+      "sha256": "64e05211490f26424b06dad7cf6f5095e062fbf6c28d7d04fb040ba670eb6669"
+    },
+    "sources.jsonl": {
+      "path": "rag/gk_holdout_t21r7/sources.jsonl",
+      "sha256": "5aca33583b4abd787c79dc6af0ff3b9fb05d0b6fdf6a5b8bdd34314288fbbce0"
+    },
+    "world.jsonl": {
+      "path": "rag/gk_holdout_t21r7/world.jsonl",
+      "sha256": "0ec10aa5c5e1e1274d4cf7d4d0e22f57adcd8a2a1e2d186a9a33b8d8eb84fa46"
+    }
+  },
+  "freeze_inputs": {
+    "blindness_audit": {
+      "path": "evaluations/t21r7/blindness_audit.json",
+      "sha256": "f1fa69ca7deccbafb424e8de7203f601bcbf97c2ee6e79024a0fa0dff3334061"
+    },
+    "construction_contract": {
+      "path": "evaluations/t21r7/holdout_construction_contract.json",
+      "sha256": "119ac799d85f32c847e951e36130fb58d0496abfdc1d59163e3803319b7bbc87"
+    },
+    "evaluator_freeze": {
+      "path": "evaluations/t21r7/evaluator_freeze.json",
+      "sha256": "dfb65f0a2db4974944e547118c1505ab3f1af74bcbc4f05db8f6c867fd9a9f31"
+    },
+    "holdout_uniqueness": {
+      "path": "evaluations/t21r7/holdout_uniqueness.json",
+      "sha256": "0769b6087d9392877fd47845fd2ab6a4d121657ac2196ceedaa2fee8aecb5060"
+    },
+    "official_runner": {
+      "path": "scripts/t21r7_official_eval.py",
+      "sha256": "c4278c8c52f5f790ad093619b2f0913b44342747da08dc1faafcd0d5f6aa341e"
+    },
+    "runtime_freeze": {
+      "path": "evaluations/t21r7/runtime_freeze.json",
+      "sha256": "ea44f1f8fa82fc3e2e7c24ebd8403eaa962ae76f2a344c2dc67cecbd5ca8bb03"
+    },
+    "scoring_semantics": {
+      "path": "evaluations/t21r7/scoring_semantics.json",
+      "sha256": "bf626d2c42138b08b83a9cef940a18f3cbbb50a0e933fdf4333ffa43766f5c5c"
+    },
+    "static_gold_audit": {
+      "path": "evaluations/t21r7/static_gold_audit.json",
+      "sha256": "c9c3eccedbcefb6f5bdcd0dbedd52fdae4e2e18868bbc8c1568c91764d14392f"
+    },
+    "validation_contract": {
+      "path": "evaluations/t21r7/validation_contract.json",
+      "sha256": "c9dd6f47f5e893e0efa8f80aa65220ceb64afb5508f827f94c57a2797530c8c9"
+    }
+  },
+  "frozen_at": "2026-09-16T21:54:49.033860+00:00",
+  "holdout_total": 4200,
+  "milestone": "T21R7 blind holdout freeze",
+  "one_shot_rule": "Exactly one official evaluation after HOLDOUT_FROZEN; no preview, smoke test, sample execution, repair, or rerun.",
+  "suites": {
+    "mango-t21r7-adversarial-holdout-v1": {
+      "rows": 600,
+      "sha256": "40c274b218840c49a0a8678755166bc684e604eba614b1356e03a8b077d8aa23"
+    },
+    "mango-t21r7-citation-claim-holdout-v1": {
+      "rows": 450,
+      "sha256": "b6ff339a4a9701193c4da57677ddfdc159ed6c57995ec0c5f49e4a944278eab7"
+    },
+    "mango-t21r7-conflict-abstention-holdout-v1": {
+      "rows": 750,
+      "sha256": "b1cd2065f4fa6eec5fabb2b937032163e4393a5b103d6537cc755ce7d9824bb0"
+    },
+    "mango-t21r7-crossdomain-holdout-v1": {
+      "rows": 450,
+      "sha256": "bcf0e9ce93c0ddbef0df80167dad7464715119f6bb603124b62c644a7e42b0f0"
+    },
+    "mango-t21r7-multihop-holdout-v1": {
+      "rows": 550,
+      "sha256": "80443b652c03e91be6d7e4d6c62c111a8b3c45c555ecb6077219c0c4b51cf7f7"
+    },
+    "mango-t21r7-retrieval-holdout-v1": {
+      "rows": 600,
+      "sha256": "5e3aa1c6d797e3471db588a60f56c101180b44b743175f55d7f88cc2bd667e37"
+    },
+    "mango-t21r7-singlehop-holdout-v1": {
+      "rows": 550,
+      "sha256": "ffb5782a922974fb8ac1d5b9d5a790b8045624adde75ad09094838ca4d9add1a"
+    },
+    "mango-t21r7-temporal-holdout-v1": {
+      "rows": 250,
+      "sha256": "1c4d34f9934e4c1366adcf45d4257c9e9b5210dba7b286f3680cf8c4984870d4"
+    }
+  }
+}

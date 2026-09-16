@@ -1,0 +1,8 @@
+{
+  "HOLDOUT_FROZEN": true,
+  "construction_contract_sha256": "119ac799d85f32c847e951e36130fb58d0496abfdc1d59163e3803319b7bbc87",
+  "frozen_at": "2026-09-16T21:54:49.033860+00:00",
+  "holdout_manifest_sha256": "329a7ca23289fa65747a1128447fc4a1800245b6e1379b9b9432bd1114e0b4ec",
+  "holdout_total": 4200,
+  "rule": "Exactly one official evaluation after HOLDOUT_FROZEN; no preview, smoke test, sample execution, repair, or rerun."
+}
