@@ -17,15 +17,17 @@ CORPUS_MISSING = not CORPUS_DIR.exists()
 @pytest.mark.skipif(CORPUS_MISSING, reason="frozen corpus not built yet")
 class TestFrozenCorpus:
     def test_checksums_match(self):
-        import hashlib
+        # LEGACY_CRLF_CHECKSUM_PORTABILITY_DEFECT: the historical v1
+        # checksums were generated from CRLF bytes; the checkout is LF.
+        # Accept raw OR historical-CRLF-canonical sha256 — no third hash.
+        from sciencemath.utils.legacy_checksums import \
+            verify_frozen_checksums
 
         checksums = load_json(CORPUS_DIR / "checksums.json")
         assert checksums, "checksums.json must be non-empty"
-        for name, expected in checksums.items():
-            p = CORPUS_DIR / name
-            assert p.exists(), f"missing frozen artifact {name}"
-            h = hashlib.sha256(p.read_bytes()).hexdigest()
-            assert h == expected, f"tampered frozen artifact: {name}"
+        res = verify_frozen_checksums(CORPUS_DIR)
+        assert res["ok"], res
+        assert res["files_checked"] == len(checksums)
 
     def test_mix_within_contract(self):
         q = load_json(CORPUS_DIR / "quality_report.json")

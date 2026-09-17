@@ -1,0 +1,17 @@
+{
+  "HOLDOUT_FROZEN": true,
+  "frozen_at": "2026-09-16T03:57:03.710754+00:00",
+  "holdout_manifest_sha256": "4ad24371ad37a91f0ef83dba4e46faaad88ec45ae6cd88d97cb385ab554fa199",
+  "holdout_total": 3753,
+  "suites": {
+    "mango-t21r6-retrieval-holdout-v1": "4ed69bdb7d15e28c9ef889d65810f6e04d3acd7fc8e0d29d45aaa14c9512c329",
+    "mango-t21r6-singlehop-holdout-v1": "04d93099c136ee4368820631cf70e87aed931870a611fee47a68e709e0967c94",
+    "mango-t21r6-multihop-holdout-v1": "6f4e0918850d7eec63a79d88236c005c291022dc7e737b5c1e306f4dccdaf4d2",
+    "mango-t21r6-crossdomain-holdout-v1": "71ff7d021a4ba7bed19d9a8636a0bb0d98eb75d0fff3694caf63a3a40b3eab69",
+    "mango-t21r6-citation-claim-holdout-v1": "9fa5bcfdabd7c7efa9e9ae1547e35a516b15820657b75713091a509bf28695c8",
+    "mango-t21r6-conflict-abstention-holdout-v1": "0cf08891ff44ef2e6bf53252bc18f7963b361efc343f71d8b94acde4b75d928e",
+    "mango-t21r6-temporal-holdout-v1": "a72d0a75e2eaa9c0888761ab823926529ed9b169dc14634a0303d342b4237a3a",
+    "mango-t21r6-adversarial-holdout-v1": "848419826d2113a8d190f0ad8d5da9cc3944ab97fdb3311c0b2e3cdc65f1f890"
+  },
+  "rule": "Exactly ONE official exposure of the frozen T21R6 holdout. A crash during the run still counts; no fix and no rerun. No runtime change, no gold change, no query change, no corpus change, no floor lowering, no dropping failing cases, no scoring-semantics change, no special-case rules after HOLDOUT_FROZEN."
+}

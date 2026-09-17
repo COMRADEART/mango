@@ -1,0 +1,91 @@
+{
+  "artifact": "T21R6 inherited historical debt ledger",
+  "classification": "KNOWN_CANONICAL_HISTORICAL_DEBT",
+  "recorded_at": "2026-09-15",
+  "canonical_base_sha": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+  "provenance": {
+    "drift_origin_commit": "fbe034a83f9eb17685661892a75ca28397f9a0ea",
+    "drift_origin_commit_subject": "T21R4: validate conflict repair on strict fresh blind holdout",
+    "explanation": "The T21R4/T21R5 validation commits (fbe034a, da044e4) re-recorded several of their own post-freeze artifacts after their holdout freeze manifests were written: evaluations/t21r4/runtime_freeze.json, evaluations/t21r4/holdout_uniqueness.json, scripts/t21r4_freeze_evaluator.py, evaluations/t21r5/runtime_freeze.json and evaluations/t21r5/holdout_uniqueness.json, in the same post-freeze re-record pattern as the originally pinned scripts/t21r4_run_eval.py. Every mismatched file is byte-identical to the canonical base f71cdb6e (mechanically re-verified by scripts/t21r6_extend_debt_ledger.py via git cat-file against the base blob), so the mismatches pre-date T21R6, are inherited from the canonical base, and are NOT new R6 corruption. T21R4/T21R5 history is NOT rewritten; the ledger only grows inside evaluations/t21r6/."
+  },
+  "inherited_mismatches": [
+    {
+      "path": "scripts/t21r4_run_eval.py",
+      "artifact": "evaluations/t21r4/evaluator_freeze.json",
+      "ledger_field": "frozen_hashes.evaluator_source_sha256",
+      "historical_expected_sha256": "066ea9ab1e8e593e189feaa32c2e5424fbf42f4b5cd66f0bcb9f2bf7dc0d100e",
+      "canonical_actual_sha256": "138efe1f0eb8b0be02535f6d731d047386c9974eb5aaceb5458bbedc8f343047",
+      "canonical_base_sha_at_mismatch": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+      "drift_origin_commit": "fbe034aa68d9a2af816f3c4edddb2e76bc157442"
+    },
+    {
+      "path": "evaluations/t21r4/runtime_freeze.json",
+      "artifact": "evaluations/t21r4/holdout_manifest.json",
+      "ledger_field": "freeze_inputs.runtime_freeze.sha256",
+      "historical_expected_sha256": "271065838b2441943d930f583f49da3e669beeb74dea703d737590540b025388",
+      "canonical_actual_sha256": "4a46ba199c177c3297a94a71cbcfc11c16deae7b291e4ebec999a0290e5b96d1",
+      "canonical_base_sha_at_mismatch": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+      "drift_origin_commit": "fbe034aa68d9a2af816f3c4edddb2e76bc157442",
+      "drift_origin_commit_subject": "T21R4: validate conflict repair on strict fresh blind holdout"
+    },
+    {
+      "path": "evaluations/t21r4/holdout_uniqueness.json",
+      "artifact": "evaluations/t21r4/holdout_manifest.json",
+      "ledger_field": "freeze_inputs.holdout_uniqueness.sha256",
+      "historical_expected_sha256": "52943362fc98eb91ef4b9dc7affb9aa0f978acd8ae5d87466f6e4b76ef383941",
+      "canonical_actual_sha256": "0e2805822ab3c85b35e8f91a17f160ba1502636c8345fb44f5da55013dc0f631",
+      "canonical_base_sha_at_mismatch": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+      "drift_origin_commit": "fbe034aa68d9a2af816f3c4edddb2e76bc157442",
+      "drift_origin_commit_subject": "T21R4: validate conflict repair on strict fresh blind holdout"
+    },
+    {
+      "path": "scripts/t21r4_freeze_evaluator.py",
+      "artifact": "evaluations/t21r4/holdout_manifest.json",
+      "ledger_field": "freeze_inputs.evaluator_freeze_script.sha256",
+      "historical_expected_sha256": "d57aa3e413ebb2142e88292f446802f71a270e27900420cd29713026c34453fb",
+      "canonical_actual_sha256": "c0445be6c6d84e2d8c185e72d81dbecfdaaa14b21822746f097e8a85e6f27f61",
+      "canonical_base_sha_at_mismatch": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+      "drift_origin_commit": "fbe034aa68d9a2af816f3c4edddb2e76bc157442",
+      "drift_origin_commit_subject": "T21R4: validate conflict repair on strict fresh blind holdout"
+    },
+    {
+      "path": "evaluations/t21r5/runtime_freeze.json",
+      "artifact": "evaluations/t21r5/holdout_manifest.json",
+      "ledger_field": "freeze_inputs.runtime_freeze.sha256",
+      "historical_expected_sha256": "52f9c0de9c2ee123fbd079f379dd669c7c78c093f456d82140e75a0930907618",
+      "canonical_actual_sha256": "3b8a920ba1803fca5f814e79dacbca716d000a3c6435c793b37c2f5647eed820",
+      "canonical_base_sha_at_mismatch": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+      "drift_origin_commit": "da044e483f9eb17685661892a75ca28397f9a0ea",
+      "drift_origin_commit_subject": "T21R5: validate repaired Knowledge RAG on fresh blind holdout"
+    },
+    {
+      "path": "evaluations/t21r5/holdout_uniqueness.json",
+      "artifact": "evaluations/t21r5/holdout_manifest.json",
+      "ledger_field": "freeze_inputs.holdout_uniqueness.sha256",
+      "historical_expected_sha256": "c254f2ce4e231a5c91ff45d00efd38a15808d1eeeeb1026e4c32aec79c0df5cd",
+      "canonical_actual_sha256": "03adb38453d060bf7e7fbbb529727f993c7d439cdd893eddc0667e0f95dd8708",
+      "canonical_base_sha_at_mismatch": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+      "drift_origin_commit": "da044e483f9eb17685661892a75ca28397f9a0ea",
+      "drift_origin_commit_subject": "T21R5: validate repaired Knowledge RAG on fresh blind holdout"
+    }
+  ],
+  "r6_protection_rule": {
+    "name": "KNOWN_CANONICAL_HISTORICAL_DEBT",
+    "pass_when": [
+      "every inherited mismatch above is EXACTLY unchanged: the current file sha256 equals canonical_actual_sha256 AND the file is byte-identical to the canonical-base git blob",
+      "no OTHER freeze-input label of the T21R4 or T21R5 holdout manifests fails its freeze-identity check",
+      "no historical artifact or corpus differs from the canonical base"
+    ],
+    "fail_when": [
+      "any historical artifact changes",
+      "any new mismatch appears",
+      "inherited debt expands",
+      "the pinned file is edited again (its sha256 would no longer equal canonical_actual_sha256)"
+    ],
+    "enforced_by": [
+      "tests/test_t21r4_blind_holdout_contract.py::test_evaluator_freeze_hash_unchanged (accepts exactly the pinned canonical mismatch, fails on any other drift)",
+      "tests/test_t21r6_historical_debt.py (ledger-vs-reality assertion)"
+    ]
+  },
+  "promotion_value_note": "This ledger changes NO historical artifact and NO runtime behavior; it only pins known canonical-base bookkeeping debt transparently."
+}

@@ -13,9 +13,17 @@ from sciencemath.knowledge.schema import FRESHNESS_CLASSES_SET
 
 # Temporal cue patterns. Order matters for the classification precedence
 # (explicit-current > historical-as-of > latest/newest > static default).
+# T21R6 — generalized explicit-current vocabulary: the T21R5 replay proved
+# "present-day" (and its family) exceeded the frozen snapshot but was not
+# recognized as an explicit-current cue, so the runtime answered stale
+# snapshot state as current (4 rows: "Which town is the present-day
+# capital of X?"). The additions are the standard current-time phrasing
+# family, preregistered before holdout construction.
 _EXPLICIT_CURRENT = re.compile(
     r"\b(current|currently|today|now|right now|this (?:week|month|year|"
-    r"quarter)|so far|at present|as we speak|live)\b", re.IGNORECASE)
+    r"quarter)|so far|at present|as we speak|live|present[- ]day|"
+    r"present day|modern[- ]day|modern day|nowadays|these days|"
+    r"as of now|at the moment)\b", re.IGNORECASE)
 _LATEST_RECENT = re.compile(
     r"\b(latest|newest|recent|recently|this year|last (?:week|month|year)|"
     r"up to date|up-to-date)\b", re.IGNORECASE)

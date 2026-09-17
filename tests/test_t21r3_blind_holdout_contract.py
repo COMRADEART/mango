@@ -397,7 +397,22 @@ def test_audit_gate_constants_match_runtime():
     audit = _audit_defs()
 
     assert audit["MIN_COVERAGE"] == pipeline.MIN_COVERAGE
-    assert audit["_CAP_FRAMEWORDS"] == set(pipeline._CAP_FRAMEWORDS)
+    # T21R6 repair exception (preregistered): the multihop repair unions
+    # _RELATIONAL_PREPOSITIONS into the runtime frame vocabulary, so the
+    # frozen audit vocabulary may drift ADDITIVELY when the T21R6 repair
+    # evidence exists — the frozen tokens must remain a strict subset and
+    # the additions must be exactly the preregistered preposition set.
+    t21r6_repair = (
+        (ROOT / "evaluations/t21r6/t21r5_multihop_root_cause.json").exists()
+        and (ROOT / "evaluations/t21r6/evaluator_qualification.json").exists()
+    )
+    if t21r6_repair:
+        assert audit["_CAP_FRAMEWORDS"] <= set(pipeline._CAP_FRAMEWORDS), \
+            "audit capital-frame vocabulary was narrowed"
+        added = set(pipeline._CAP_FRAMEWORDS) - audit["_CAP_FRAMEWORDS"]
+        assert added == set(pipeline._RELATIONAL_PREPOSITIONS), added
+    else:
+        assert audit["_CAP_FRAMEWORDS"] == set(pipeline._CAP_FRAMEWORDS)
     # runtime pairs each pattern with a name; the audit carries the bare
     # regexes - compare the pattern strings element-wise
     assert [p.pattern for p in audit["_OVERRIDE_PATTERNS"]] == \

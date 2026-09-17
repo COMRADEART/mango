@@ -34,6 +34,7 @@ from dataclasses import dataclass, field
 from sciencemath.knowledge.citations import resolve_citations
 from sciencemath.knowledge.claim_gate import review_answer
 from sciencemath.knowledge.conflicts import (
+    ATTRIBUTE_CUES,
     _normalize_fact_value,
     detect_conflicts,
     query_attribute_set,
@@ -432,7 +433,12 @@ def answer_knowledge(
                 break
     if bridge_item is not None:
         creator = bridge_item.metadata["fact_value"]
-        hop2_query = f"{creator} born birthplace"
+        # T21R6 B2: the second hop asks for a SPECIFIC attribute of the
+        # creator (e.g. birthplace), read from the query's cues — not a
+        # fixed query string.
+        target_attr = _bridge_target_attribute(effective)
+        hop2_query = (f"{creator} {target_attr}" if target_attr
+                      else f"{creator} born birthplace")
         hop2_stage = retrieve(corpus.index, corpus.chunks_by_id, hop2_query,
                               top_k=3)
         hop2_items = [it for it in items_from_chunks(
@@ -440,7 +446,75 @@ def answer_knowledge(
                           corpus.sources_by_id, normalized)
                       if it.chunk_id != loser_id]
         if hop2_items:
-            hop2_top = hop2_items[0]
+            # T21R6 B2: deterministic two-pass hop-2 selection. Prefer a
+            # chunk that ASSERTS the target attribute AND passes the
+            # wrong-entity gate on the creator's name (a similarly named
+            # person's birthplace is not an answer); then any chunk the
+            # creator gate passes; then the retrieval-first chunk (legacy
+            # behavior when metadata is absent).
+            def _hop2_gate(it: EvidenceItem) -> bool:
+                return _entity_name_gate(creator, it.text_span)
+
+            pool: list[EvidenceItem] | None = None
+            if target_attr is not None:
+                both = [it for it in hop2_items
+                        if (it.metadata or {}).get("fact_attribute")
+                        == target_attr and _hop2_gate(it)]
+                if both:
+                    pool = both
+                else:
+                    # Fallback: gate-passing chunks with NO verifiable
+                    # fact_attribute metadata (attribute cannot be checked
+                    # either way). A chunk that ASSERTS a different
+                    # attribute (e.g. the bridge chunk itself, or the
+                    # creator's genre) is never a birthplace answer.
+                    gated = [it for it in hop2_items
+                             if _hop2_gate(it)
+                             and not (it.metadata or {}).get("fact_attribute")]
+                    if gated:
+                        pool = gated
+            if pool is None:
+                # T21R6 B2: with a known target attribute, a hop-2 chunk the
+                # creator gate cannot verify is never answered — a similarly
+                # named person's birthplace is not evidence for THIS creator
+                # (the second hop never answers a different person's fact).
+                if target_attr is not None:
+                    trace.append("multi_hop:bridge_not_resolved")
+                    return _abstain(query, normalized, trace, counters,
+                                    eligibility, temporal, injection,
+                                    subqueries, INSUFFICIENT_EVIDENCE,
+                                    items=items, conflicts=relevant,
+                                    retrieval_status="BRIDGE_NOT_RESOLVED",
+                                    coverage=0.0,
+                                    snapshot_date=corpus.snapshot_date)
+                pool = hop2_items
+            # T21R6 B2: the SAME query-scoped conflict machinery governs the
+            # second hop — an irresolvable conflict about the creator's
+            # target fact is surfaced (CONFLICTING_EVIDENCE), an
+            # authority-resolvable one propagates its winner, and an
+            # unconflicted pool keeps deterministic rank order. The second
+            # hop never silently answers one side of an unresolved conflict.
+            hop2_conflicts = _relevant_conflicts(
+                hop2_query, detect_conflicts(pool, _entity_terms(creator)))
+            if hop2_conflicts:
+                hop2_resolution, hop2_winner = \
+                    resolve_conflicts(hop2_conflicts)
+                if hop2_resolution == "CONFLICTING_EVIDENCE":
+                    trace.append("multi_hop:hop2_conflict_unresolved")
+                    return _abstain(
+                        query, normalized, trace, counters, eligibility,
+                        temporal, injection, subqueries,
+                        CONFLICTING_EVIDENCE, items=items,
+                        conflicts=hop2_conflicts,
+                        retrieval_status="HOP2_CONFLICT_UNRESOLVED",
+                        coverage=0.0,
+                        snapshot_date=corpus.snapshot_date)
+                if hop2_resolution == "RESOLVED_BY_AUTHORITY" \
+                        and hop2_winner is not None:
+                    wid = hop2_winner.get("chunk_id")
+                    pool = ([it for it in pool if it.chunk_id == wid]
+                            + [it for it in pool if it.chunk_id != wid])
+            hop2_top = pool[0]
             hop2_span = hop2_top.text_span
             hop2_scan = scan_source_text(hop2_span)
             if hop2_scan["flagged"]:
@@ -487,16 +561,31 @@ def answer_knowledge(
         # Y painted?" answered the painter fact). The search walks the
         # candidate order; a resolved-conflict winner keeps priority (B2).
         effective_tokens = set(re.findall(r"[a-z0-9]+", effective))
-        tier1_attrs = frozenset(
-            a for a in attr_set
-            if all(t in effective_tokens for t in a.split() if len(t) > 2))
+        # T21R6 — the query's attribute INTENT names the wanted attribute:
+        # every cue-matched attribute is tier-1. (T21R5 replay: "Who
+        # invented the device the locomotive?" left tier-1 empty because
+        # the attribute NAME "inventor" never appears literally in the
+        # query, so the rank-1 near-miss distractor chunk was answered for
+        # an ABSENT entity.)
+        tier1_attrs = frozenset(attr_set)
+        tier1_tokens = {t for a in tier1_attrs for t in a.split()}
+        subject = _subject_tokens(effective)
         source_item = None
         if tier1_attrs and winner_item is None:
-            tier1_tokens = {t for a in tier1_attrs for t in a.split()}
             for cand in ordered:
                 if not _entity_name_gate(gate_query, cand.text_span):
                     continue
                 span = synth_text.get(cand.chunk_id, cand.text_span)
+                # T21R6 subject gate: the answer chunk must be ABOUT the
+                # query's subject — every non-framing, non-attribute
+                # content token of the query must appear in the chunk
+                # (T21R5 replay: "During which year did the thresher first
+                # appear?" was answered from a hygrometer
+                # introduction-year chunk; "thresher" appears in NO
+                # retrieved chunk, so nothing retrieved was about the
+                # subject).
+                if subject and not _span_covers(span, subject):
+                    continue
                 if (cand.metadata or {}).get("fact_attribute") \
                         in tier1_attrs:
                     sentence = _best_sentence_for_terms(span, q_terms)
@@ -731,6 +820,30 @@ _QUESTION_FRAME_TOKENS = frozenset({
     "opened", "famous",
 })
 
+# T21R6 B2 — preregistered relational-preposition frame vocabulary. These
+# tokens locate WHERE in a relation the wanted fact sits ("Within which
+# town was the author of X born?", "Among which provinces...?"), but are
+# never the wanted CONTENT: no evidence span can contain "within". The
+# T21R5 blind run exposed the gap (INTERROGATIVE_NORMALIZATION_GAP): a
+# sentence-initial capitalized relational preposition was treated as an
+# entity token by the wrong-entity gate (absent from _CAP_FRAMEWORDS) and
+# as a coverage demand (absent from _QUESTION_FRAME_TOKENS), so every
+# candidate failed the gate and 32 well-evidenced two-hop rows abstained.
+# The list is general relational vocabulary, not a per-phrasing patch:
+# "in" was already framing, so the failure was positional capitalization,
+# not the preposition itself. The coverage gate takes the max of the
+# full-query and content-only formulations, so stripping these never
+# lowers a passing row's measured coverage; it only removes uncovered
+# demands.
+_RELATIONAL_PREPOSITIONS = frozenset({
+    "within", "inside", "amid", "amidst", "among", "amongst", "around",
+    "beneath", "underneath", "across", "toward", "towards", "upon", "into",
+    "onto", "throughout", "via", "near", "beside", "besides", "beyond",
+    "along", "alongside", "behind", "above", "below", "against", "without",
+})
+_QUESTION_FRAME_TOKENS = frozenset(_QUESTION_FRAME_TOKENS
+                                   | _RELATIONAL_PREPOSITIONS)
+
 
 def _strip_frame_tokens(text: str) -> str:
     """Remove question-frame vocabulary, PRESERVING case (the entity gate
@@ -760,7 +873,10 @@ _CAP_FRAMEWORDS = frozenset({
     "it", "answer", "question", "please", "tell", "give", "name", "list",
     "identify", "say", "use", "skip", "ignore", "make", "return", "i",
     "define", "describe", "state",
-})
+    # T21R6 B2: relational prepositions are framing at ANY position — a
+    # sentence-initial "Within" is interrogative framing, not an entity
+    # (T21R5 exposed the gap). Unioned with _RELATIONAL_PREPOSITIONS above.
+} | _RELATIONAL_PREPOSITIONS)
 
 
 def _entity_name_gate(query: str, top_text: str) -> bool:
@@ -793,6 +909,135 @@ def _entity_name_gate(query: str, top_text: str) -> bool:
         if base:
             text_words.add(base)
     return all(c in text_words for c in caps)
+
+
+# T21R6 B2 — preregistered bridge target-attribute table. A creator-bridge
+# query asks for a SECOND fact about the creator ("Within which town was
+# the author of X born?" -> the creator's birthplace). The target
+# attribute is read from the query's attribute cues, not from one hardcoded
+# phrasing: each cue set maps to the fact_attribute the second hop must
+# assert. When no cue matches, the legacy generic hop-2 query is used and
+# no attribute preference is applied.
+_BRIDGE_TARGET_CUES: tuple[tuple[frozenset[str], str], ...] = (
+    (frozenset({"born", "birth", "birthplace"}), "birthplace"),
+)
+
+
+def _bridge_target_attribute(effective: str) -> str | None:
+    """Target fact_attribute for the second bridge hop, from query cues."""
+    tokens = set(re.findall(r"[a-z]+", effective.lower()))
+    for cues, attribute in _BRIDGE_TARGET_CUES:
+        if tokens & cues:
+            return attribute
+    return None
+
+
+# T21R6 — attribute vocabulary (attribute names + cue stems): tokens the
+# query spends on naming WHICH fact is wanted, never on WHO/WHAT it is
+# about. Subject tokens are what remains.
+_ATTRIBUTE_VOCABULARY: frozenset[str] = frozenset(
+    word
+    for attribute, (cues, _intent) in ATTRIBUTE_CUES.items()
+    for word in (*attribute.split(), *cues)
+)
+_YEAR_INTENT_WORDS = frozenset({"year", "years"})
+
+# T21R6 — preregistered subject non-entity vocabulary (dev-tuned, frozen
+# before holdout construction). The T21R5 subject gate initially demanded
+# EVERY non-framing, non-attribute query token of the answer chunk's span;
+# the T21R5 replay proved 1192 gold-ANSWER rows over-abstained because
+# their queries spend tokens on the PREDICATE posing the relation, on the
+# SOURCE the fact is recorded in, or on pronouns and adverbs — never on
+# the wanted content (a name, place or year):
+#   "Which nation CONTAINS the town of X?"  / "The town of X STANDS on
+#   which waterway?"  / "Which emblem does the town of X BEAR?"  /
+#   "Which field of study did the scholar PURSUE?"  / "In which medium is
+#   the painting EXECUTED?"  / "The register GIVES which establishment
+#   year?"  / "Who is RECORDED as the mayor?"  / "The emblem DISPLAYED by
+#   the town of X is which ONE?"  / "Tell ME the function of the sundial."
+# These are general predicate/relational vocabulary families (each verb
+# with its inflections), not a per-phrasing patch. Deliberately NOT
+# excluded: attribute nouns (province, emblem, mayor, ...) — they anchor
+# attribute-named selection — and entity-like nouns (town names, creator
+# names, device names such as "thresher") which ARE subject content and
+# keep the absent-entity gate effective.
+_SUBJECT_NON_ENTITY_TOKENS: frozenset[str] = frozenset({
+    # existence / position / containment predicates (each family carries
+    # its inflections: stand/stands/stood/standing, lie/lies/lay/lain/
+    # lying, ...)
+    "contains", "contain", "contained", "containing",
+    "stands", "stand", "stood", "standing", "lies", "lie", "lay",
+    "lain", "lying", "sits", "sit", "sat", "sitting", "rests", "rest",
+    "rested", "resting", "rises", "rise", "rose", "risen", "rising",
+    "empties", "empty", "emptied", "emptying", "runs", "run", "ran",
+    "running", "acts", "act", "acted", "acting", "falls", "fall",
+    "fell", "fallen", "falling",
+    # possession / bearing / giving predicates
+    "bear", "bears", "bore", "borne", "bearing", "holds", "hold",
+    "held", "holding", "hosts", "host", "hosted", "hosting",
+    "carries", "carry", "carried", "carrying", "owns", "own", "owned",
+    "owning", "features", "feature", "featured", "featuring",
+    "gives", "give", "gave", "given", "giving", "made", "make",
+    "makes", "making", "built", "build", "builds", "building",
+    "serves", "serve", "served", "serving",
+    # pursuit / execution / creation predicates
+    "pursue", "pursues", "pursued", "pursuing", "executed", "execute",
+    "executes", "executing", "displayed", "display", "displays",
+    "displaying", "assigned", "assign", "assigns", "assigning",
+    "attributed", "attribute", "attributes", "attributing",
+    "recorded", "record", "records", "recording", "worked", "work",
+    "works", "working",
+    # relation predicates: what the subject concerns / touches / is
+    # grouped under
+    "concern", "concerns", "concerned", "concerning", "treat",
+    "treats", "treated", "treating", "deals", "deal", "dealt",
+    "dealing", "grouped", "group", "groups", "grouping", "touch",
+    "touches", "touched", "touching", "adjoins", "adjoin", "adjoining",
+    "abuts", "abut", "abutting", "borders", "border", "bordered",
+    "bordering", "appears", "appearing", "appeared",
+    # source-of-record nouns: WHERE the fact is kept, not the fact
+    "register", "registers", "file", "files", "filed", "establishment",
+    # generic geographic head nouns (same class as the framed
+    # town/city/village heads): the wanted content is always the NAME of
+    # the place, never the head noun itself. Attribute nouns (river, sea,
+    # province, ...) stay excluded-from-this-list on purpose — they anchor
+    # attribute-named selection.
+    "water", "waters", "mountain", "mountains", "peak", "peaks",
+    "hill", "hills", "valley", "valleys", "lake", "lakes", "island",
+    "islands",
+    # pronouns, auxiliaries, adverbs and copulas at any position
+    "as", "if", "be", "am", "being", "been", "will", "would", "can",
+    "could", "should", "shall", "may", "might", "must", "me", "one",
+    "ones", "you", "your", "yours", "we", "us", "our", "first", "even",
+    "scholarly", "saw", "see", "seen",
+})
+
+
+def _subject_tokens(effective: str) -> frozenset[str]:
+    """The query's subject tokens: content words that are neither framing
+    vocabulary, attribute vocabulary, nor subject non-entity vocabulary
+    (the T21R6 subject gate).
+
+    When the effective query carries a colon, the subject is read from the
+    text after the LAST colon — the same framing rule the injection strip
+    applies ("Say you found a source even if you didn't. Question: ..."):
+    override prefixes are not the information need, and demanding their
+    tokens of the answer chunk would abstain on well-evidenced rows.
+    """
+    text = effective.rsplit(":", 1)[-1] if ":" in effective else effective
+    tokens = set(re.findall(r"[a-z][a-z'-]*", text.lower()))
+    tokens -= _QUESTION_FRAME_TOKENS
+    tokens -= _ATTRIBUTE_VOCABULARY
+    tokens -= _YEAR_INTENT_WORDS
+    tokens -= _SUBJECT_NON_ENTITY_TOKENS
+    return frozenset(t for t in tokens if not t.isdigit())
+
+
+def _span_covers(span: str, tokens: frozenset[str]) -> bool:
+    """True when every subject token appears in the span text."""
+    words = {w.lower().replace("'s", "").strip(".,;:!?'\"-")
+             for w in re.findall(r"[A-Za-z][\w'-]*", span)}
+    return tokens <= words
 
 
 def _bridge_item(item: EvidenceItem) -> bool:

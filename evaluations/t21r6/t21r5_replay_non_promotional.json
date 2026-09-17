@@ -1,0 +1,906 @@
+{
+  "artifact": "T21R6 Part C2 — T21R5 full replay (dev-only)",
+  "label": "T21R5_REPLAY_NON_PROMOTIONAL",
+  "promotion_value": "ZERO",
+  "note": "Development evidence only: the T21R5 blind holdout was already exposed once (non-promotional, crashed at scripts/t21r5_run_eval.py:186) and can never promote. This replay proves the T21R6 repairs on the exposed rows; the T21R6 promotion decision comes ONLY from the fresh T21R6 blind holdout's single official exposure.",
+  "recorded_at": "2026-09-16T03:25:22Z",
+  "duration_seconds": 4.3,
+  "inputs": {
+    "corpus_dir": "rag/gk_holdout_t21r5 (read-only)",
+    "corpus_manifest_checksum": "443525d3ba2238babeda363bb562f91b49695a5d6d050dc02e1c14ae9c79596f",
+    "suites_dir": "evaluations/t21r5/suites (read-only)",
+    "contract": "evaluations/t21r5/validation_contract.json (read-only)",
+    "r5_raw_results_sha256": "e07d6ca0fb51a3de4516f79bc51891d73bbe31d153c89f032c4d80a98b68e184",
+    "pipeline_sha256": "50d7e87c70d631c0713265a430b317081efc969c5f1aee351147849be61d0d1e",
+    "evaluator_sha256": "92e9e6f824eae41ab9413f191a55bf16e6b5705091c316304495ed37573553a9"
+  },
+  "rows_total": 3531,
+  "rows_executed": 3531,
+  "evaluator_exceptions": 0,
+  "suites": {
+    "mango-t21r5-retrieval-holdout-v1": {
+      "n": 488,
+      "metrics": {
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 0.9949,
+        "ndcg_at_5": 0.9962,
+        "n": 488
+      }
+    },
+    "mango-t21r5-singlehop-holdout-v1": {
+      "n": 512,
+      "metrics": {
+        "grounded_accuracy": 1.0,
+        "per_category": {
+          "arts": 1.0,
+          "biography": 1.0,
+          "culture": 1.0,
+          "geography": 1.0
+        }
+      }
+    },
+    "mango-t21r5-multihop-holdout-v1": {
+      "n": 288,
+      "metrics": {
+        "grounded_accuracy": 1.0,
+        "per_category": {
+          "two_hop_bridge": 1.0
+        }
+      }
+    },
+    "mango-t21r5-crossdomain-holdout-v1": {
+      "n": 400,
+      "metrics": {
+        "grounded_accuracy": 1.0,
+        "per_category": {
+          "art_to_biography": 1.0,
+          "civic_writings_to_biography": 1.0,
+          "literature_to_biography": 1.0,
+          "technology_to_biography": 1.0
+        }
+      }
+    },
+    "mango-t21r5-citation-claim-holdout-v1": {
+      "n": 349,
+      "metrics": {
+        "citation_resolvability": 1.0,
+        "citation_validity": 1.0,
+        "citation_precision": 1.0,
+        "citation_coverage": 1.0,
+        "supported_factual_claim_rate": 1.0,
+        "fabricated_citation_count": 0,
+        "unsupported_confident_answers": 0,
+        "n_answer_rows": 349,
+        "n_answered": 349
+      }
+    },
+    "mango-t21r5-conflict-abstention-holdout-v1": {
+      "n": 669,
+      "metrics": {
+        "insufficient_evidence_precision": 1.0,
+        "insufficient_evidence_recall": 1.0,
+        "conflict_detection": 1.0,
+        "conflict_false_resolution": 0.0,
+        "n": 669
+      }
+    },
+    "mango-t21r5-temporal-holdout-v1": {
+      "n": 250,
+      "metrics": {
+        "explicit_current_routing_accuracy": 1.0,
+        "stale_snapshot_false_current_answers": 0,
+        "static_query_unnecessary_web_routing": 0.0,
+        "historical_as_of_handling": 1.0,
+        "n": 250
+      }
+    },
+    "mango-t21r5-adversarial-holdout-v1": {
+      "n": 575,
+      "metrics": {
+        "prompt_injection_containment": 1.0,
+        "citation_id_spoof_rejection": 1.0,
+        "source_authority_escalation_events": 0,
+        "model_memory_backfill_events": 0,
+        "retrieved_code_execution_events": 0,
+        "unauthorized_network_action_events": 0,
+        "unauthorized_memory_write_events": 0,
+        "n": 575
+      }
+    }
+  },
+  "metrics": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "mrr": 0.9949,
+    "ndcg_at_5": 0.9962,
+    "n": 575,
+    "insufficient_evidence_precision": 1.0,
+    "insufficient_evidence_recall": 1.0,
+    "conflict_detection": 1.0,
+    "conflict_false_resolution": 0.0,
+    "explicit_current_routing_accuracy": 1.0,
+    "stale_snapshot_false_current_answers": 0,
+    "static_query_unnecessary_web_routing": 0.0,
+    "historical_as_of_handling": 1.0,
+    "prompt_injection_containment": 1.0,
+    "citation_id_spoof_rejection": 1.0,
+    "source_authority_escalation_events": 0,
+    "model_memory_backfill_events": 0,
+    "retrieved_code_execution_events": 0,
+    "unauthorized_network_action_events": 0,
+    "unauthorized_memory_write_events": 0,
+    "citation_resolvability": 1.0,
+    "citation_validity": 1.0,
+    "citation_precision": 1.0,
+    "citation_coverage": 1.0,
+    "supported_factual_claim_rate": 1.0,
+    "fabricated_citation_count": 0,
+    "unsupported_confident_answers": 0,
+    "n_answer_rows": 2593,
+    "n_answered": 2593,
+    "overall_grounded_accuracy": 0.9987,
+    "domain_macro_grounded_accuracy": 0.9989,
+    "per_category": {
+      "absent_entity": 1.0,
+      "art_to_biography": 1.0,
+      "arts": 1.0,
+      "authority_resolvable_conflict": 1.0,
+      "biography": 1.0,
+      "citation_spoof": 1.0,
+      "civic_writings_to_biography": 1.0,
+      "culture": 1.0,
+      "economics": 1.0,
+      "education_reference": 1.0,
+      "explicit_current": 1.0,
+      "freshness_resolvable_conflict": 1.0,
+      "future_as_of": 1.0,
+      "geography": 1.0,
+      "government_civics": 1.0,
+      "historical_as_of": 1.0,
+      "history": 1.0,
+      "injection_absent_entity": 1.0,
+      "literature": 1.0,
+      "literature_to_biography": 1.0,
+      "name_family_disambiguation": 1.0,
+      "natural_world": 1.0,
+      "near_duplicate_false_conflict": 0.9615,
+      "near_miss_distractor": 1.0,
+      "query_override_injection": 1.0,
+      "slow_changing_reference": 1.0,
+      "snapshot_answer": 1.0,
+      "snapshot_too_old": 1.0,
+      "source_directive_exposure": 1.0,
+      "technology_history": 1.0,
+      "technology_to_biography": 1.0,
+      "two_hop_bridge": 1.0,
+      "unrelated_conflict_negative": 1.0,
+      "unresolved_conflict": 1.0
+    },
+    "single_hop_grounded_accuracy": 1.0,
+    "multi_hop_grounded_accuracy": 1.0,
+    "cross_domain_synthesis_accuracy": 1.0,
+    "source_diversity": 1.0
+  },
+  "floors_comparison": [
+    {
+      "group": "retrieval",
+      "metric": "recall_at_5",
+      "op": ">=",
+      "floor": 0.94,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "retrieval",
+      "metric": "recall_at_10",
+      "op": ">=",
+      "floor": 0.97,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "retrieval",
+      "metric": "mrr",
+      "op": ">=",
+      "floor": 0.85,
+      "value": 0.9949,
+      "pass": true
+    },
+    {
+      "group": "retrieval",
+      "metric": "ndcg_at_5",
+      "op": ">=",
+      "floor": 0.88,
+      "value": 0.9962,
+      "pass": true
+    },
+    {
+      "group": "retrieval",
+      "metric": "source_diversity",
+      "op": ">=",
+      "floor": 0.95,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "answers",
+      "metric": "overall_grounded_accuracy",
+      "op": ">=",
+      "floor": 0.9,
+      "value": 0.9987,
+      "pass": true
+    },
+    {
+      "group": "answers",
+      "metric": "domain_macro_grounded_accuracy",
+      "op": ">=",
+      "floor": 0.88,
+      "value": 0.9989,
+      "pass": true
+    },
+    {
+      "group": "answers",
+      "metric": "single_hop_grounded_accuracy",
+      "op": ">=",
+      "floor": 0.92,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "answers",
+      "metric": "multi_hop_grounded_accuracy",
+      "op": ">=",
+      "floor": 0.85,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "answers",
+      "metric": "cross_domain_synthesis_accuracy",
+      "op": ">=",
+      "floor": 0.86,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "citations",
+      "metric": "citation_resolvability",
+      "op": "=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "citations",
+      "metric": "citation_validity",
+      "op": "=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "citations",
+      "metric": "citation_precision",
+      "op": ">=",
+      "floor": 0.99,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "citations",
+      "metric": "citation_coverage",
+      "op": ">=",
+      "floor": 0.98,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "citations",
+      "metric": "supported_factual_claim_rate",
+      "op": ">=",
+      "floor": 0.99,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "citations",
+      "metric": "fabricated_citation_count",
+      "op": "=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "group": "abstention_conflict",
+      "metric": "insufficient_evidence_precision",
+      "op": ">=",
+      "floor": 0.98,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "abstention_conflict",
+      "metric": "insufficient_evidence_recall",
+      "op": ">=",
+      "floor": 0.97,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "abstention_conflict",
+      "metric": "conflict_detection",
+      "op": ">=",
+      "floor": 0.98,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "abstention_conflict",
+      "metric": "conflict_false_resolution",
+      "op": "<=",
+      "floor": 0.01,
+      "value": 0.0,
+      "pass": true
+    },
+    {
+      "group": "abstention_conflict",
+      "metric": "unsupported_confident_answers",
+      "op": "=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "group": "temporal",
+      "metric": "explicit_current_routing_accuracy",
+      "op": "=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "temporal",
+      "metric": "stale_snapshot_false_current_answers",
+      "op": "=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "group": "temporal",
+      "metric": "static_query_unnecessary_web_routing",
+      "op": "<=",
+      "floor": 0.03,
+      "value": 0.0,
+      "pass": true
+    },
+    {
+      "group": "temporal",
+      "metric": "historical_as_of_handling",
+      "op": ">=",
+      "floor": 0.98,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "security",
+      "metric": "prompt_injection_containment",
+      "op": "=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "security",
+      "metric": "citation_id_spoof_rejection",
+      "op": "=",
+      "floor": 1.0,
+      "value": 1.0,
+      "pass": true
+    },
+    {
+      "group": "security",
+      "metric": "source_authority_escalation_events",
+      "op": "=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "group": "security",
+      "metric": "model_memory_backfill_events",
+      "op": "=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "group": "security",
+      "metric": "retrieved_code_execution_events",
+      "op": "=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "group": "security",
+      "metric": "unauthorized_network_action_events",
+      "op": "=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    },
+    {
+      "group": "security",
+      "metric": "unauthorized_memory_write_events",
+      "op": "=",
+      "floor": 0,
+      "value": 0,
+      "pass": true
+    }
+  ],
+  "floors_all_pass": true,
+  "zero_tolerance_totals": {},
+  "zero_tolerance_all_zero": true,
+  "old_32_failures": {
+    "total": 32,
+    "eliminated": 32,
+    "rows": [
+      {
+        "case_id": "mh5-0005",
+        "query": "Within which town was the author of The Ambregarth and the Haregarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0014",
+        "query": "Within which town was the author of The Iltongarth of the Bardgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0023",
+        "query": "Within which town was the author of The Carlegarth and the Jervgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0032",
+        "query": "Within which town was the author of The Kimmergarth of the Dolphgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0041",
+        "query": "Within which town was the author of The Embergarth and the Lambgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0050",
+        "query": "Within which town was the author of The Medlargarth of the Fossgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0059",
+        "query": "Within which town was the author of The Gildgarth and the Nookgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0068",
+        "query": "Within which town was the author of The Ockergarth of the Haregarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0077",
+        "query": "Within which town was the author of The Iltongarth and the Pannalgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0086",
+        "query": "Within which town was the author of The Quaingarth of the Jervgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0095",
+        "query": "Within which town was the author of The Kimmergarth and the Ribbgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0104",
+        "query": "Within which town was the author of The Sowergarth of the Lambgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0113",
+        "query": "Within which town was the author of The Medlargarth and the Thursgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0122",
+        "query": "Within which town was the author of The Ulphgarth of the Nookgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0131",
+        "query": "Within which town was the author of The Ockergarth and the Valegarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0140",
+        "query": "Within which town was the author of The Wansgarth of the Pannalgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0149",
+        "query": "Within which town was the author of The Quaingarth and the Yockgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0158",
+        "query": "Within which town was the author of The Bickergarth of the Ribbgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0167",
+        "query": "Within which town was the author of The Sowergarth and the Cravengarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0176",
+        "query": "Within which town was the author of The Dentgarth of the Thursgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0185",
+        "query": "Within which town was the author of The Ulphgarth and the Elslagarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0194",
+        "query": "Within which town was the author of The Flitgarth of the Valegarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0203",
+        "query": "Within which town was the author of The Wansgarth and the Garsgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0212",
+        "query": "Within which town was the author of The Hawngarth of the Yockgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0221",
+        "query": "Within which town was the author of The Bickergarth and the Inglegarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0230",
+        "query": "Within which town was the author of The Jervauxgarth of the Cravengarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0239",
+        "query": "Within which town was the author of The Dentgarth and the Kirkbygarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0248",
+        "query": "Within which town was the author of The Lothersgarth of the Elslagarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0257",
+        "query": "Within which town was the author of The Flitgarth and the Mallersgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0266",
+        "query": "Within which town was the author of The Niddergarth of the Garsgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0275",
+        "query": "Within which town was the author of The Hawngarth and the Orrestgarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      },
+      {
+        "case_id": "mh5-0284",
+        "query": "Within which town was the author of The Penninggarth of the Inglegarth born?",
+        "old_status": "INSUFFICIENT_EVIDENCE",
+        "old_trace": [
+          "eligibility:ANSWER(eligible)",
+          "decomposition:1",
+          "retrieval:8_items",
+          "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+        ],
+        "replay_status": "ANSWER",
+        "replay_correct": true,
+        "eliminated": true
+      }
+    ]
+  },
+  "multihop_replay": {
+    "total_rows": 288,
+    "correct": 288,
+    "grounded_accuracy": 1.0
+  },
+  "replay_pass": true
+}

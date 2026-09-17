@@ -1,0 +1,543 @@
+{
+  "artifact": "T21R6 Part B1 — root-cause diagnosis of the 32 exposed T21R5 multihop failures",
+  "recorded_at": "2026-09-15",
+  "canonical_base_sha": "f71cdb6e7855ba20d58e38b05d7286457bc300ae",
+  "source": {
+    "file": "evaluations/t21r5/raw_results.jsonl",
+    "sha256": "e07d6ca0fb51a3de4516f79bc51891d73bbe31d153c89f032c4d80a98b68e184",
+    "note": "read-only evidence from the ONE official T21R5 exposure (non-promotional); never modified"
+  },
+  "scope": {
+    "suite": "mango-t21r5-multihop-holdout-v1",
+    "total_rows": 288,
+    "failed_rows": 32,
+    "passing_rows": 256
+  },
+  "root_cause": {
+    "classification": "INTERROGATIVE_NORMALIZATION_GAP",
+    "stage": "wrong-entity gate on the bridge-candidate scan (precedes attribute-named selection; no coverage-gate involvement)",
+    "failure_trace_shared_by_all_rows": [
+      "eligibility:ANSWER(eligible)",
+      "decomposition:1",
+      "retrieval:8_items",
+      "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+    ],
+    "mechanism": "Every failed query begins with the sentence-initial capitalized word 'Within'. At the canonical base, src/sciencemath/knowledge/pipeline.py classified interrogative framing vocabulary through two frozen token sets, and 'within' was absent from BOTH: (1) _CAP_FRAMEWORDS — so the wrong-entity gate (_entity_name_gate) treated 'Within' as a required ENTITY token and no candidate evidence span contains the word 'within', so every bridge candidate failed the gate; (2) _QUESTION_FRAME_TOKENS — so 'within' additionally entered the coverage demand. With the bridge item unresolved the pipeline fell through to attribute-named single-hop selection, found no chunk asserting the creator's birthplace attribute in the first-hop retrieval window, and abstained (attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED). The two-hop evidence chain itself (work->author, author-birthplace chunks) existed and was retrievable; only the interrogative normalization misclassified the sentence-initial preposition.",
+    "evidence_phrase_distribution": {
+      "failed_rows_first_word": {
+        "Within": 32
+      },
+      "passing_rows_first_word": {
+        "In": 64,
+        "Give": 32,
+        "Who": 32,
+        "The": 32,
+        "Identify": 32,
+        "Tell": 32,
+        "Name": 32
+      },
+      "note": "'Within' appears as the first word of ALL 32 failed rows and NONE of the 256 passing rows; 'In which...' (identical relation, different framing) passes because 'in' is already in both frozen frame vocabularies — isolating the failure to the missing preposition, not to the relation."
+    },
+    "pre_repair_pipeline_sha256": "e200bf2ee39f67b08d77fbfa4fb32b0cf45a2277a253079834a7ab57b0085703",
+    "post_repair_pipeline_sha256": "50d7e87c70d631c0713265a430b317081efc969c5f1aee351147849be61d0d1e",
+    "repair": "T21R6 Part B2: preregistered _RELATIONAL_PREPOSITIONS frozenset (general relational vocabulary: within, inside, amid, among, around, beneath, across, toward, upon, into, throughout, via, near, beside, beyond, along, behind, above, below, against, without, ...) unioned into BOTH _QUESTION_FRAME_TOKENS and _CAP_FRAMEWORDS — a sentence-initial relational preposition is framing at any position, never an entity. Plus generalized hop-2 target-attribute selection (_BRIDGE_TARGET_CUES: born/birth/birthplace -> birthplace) with deterministic two-pass hop-2 preference (target-attribute match AND creator wrong-entity gate > creator gate > retrieval-first). No per-phrasing regex was added; the repair is relational vocabulary plus attribute-aware second-hop selection.",
+    "repair_verification": "T21R5 replay (evaluations/t21r6/t21r5_replay_non_promotional.json) and the B3 regression matrix (tests/test_t21r6_multihop_repairs.py); the official T21R6 blind holdout uses >=150 phrasings never used in T21R5.",
+    "companion_repairs": {
+      "subject_gate": {
+        "mechanism": "tier-1 attribute walk additionally requires the candidate chunk to be ABOUT the query's subject: subject tokens (the query's non-framing, non-attribute, non-predicate tokens, read from the text after the last colon when one exists) must appear in the candidate span.",
+        "preregistered_vocabulary": "_SUBJECT_NON_ENTITY_TOKENS",
+        "evidence": "T21R5 replay: the gate without the preregistered predicate/head-noun vocabulary over-abstained 1192 gold-ANSWER rows (contains/stands/bear/pursue/executed/serves/register/recorded/establishment/waters/mountain families); with the vocabulary, every family answers and the absent-entity rows still abstain.",
+        "guard_rows": [
+          "During which year did the thresher first appear? -> INSUFFICIENT_EVIDENCE (no retrieved chunk is about the subject)",
+          "Who invented the device the locomotive? -> abstains via cue-matched attribute intent (no inventor-asserting chunk)"
+        ]
+      },
+      "freshness_explicit_current": {
+        "mechanism": "_EXPLICIT_CURRENT extended with the preregistered current-time phrasing family (present-day, modern-day, nowadays, these days, as of now, at the moment): snapshot state is never answered as current for these cues.",
+        "evidence": "T21R5 replay: 4 stale-snapshot false-current answers on 'present-day capital' rows at base; repaired replay explicit_current_routing_accuracy 1.0, stale_snapshot_false_current_answers 0."
+      }
+    }
+  },
+  "per_row": [
+    {
+      "case_id": "mh5-0005",
+      "query": "Within which town was the author of The Ambregarth and the Haregarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0014",
+      "query": "Within which town was the author of The Iltongarth of the Bardgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0023",
+      "query": "Within which town was the author of The Carlegarth and the Jervgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0032",
+      "query": "Within which town was the author of The Kimmergarth of the Dolphgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0041",
+      "query": "Within which town was the author of The Embergarth and the Lambgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0050",
+      "query": "Within which town was the author of The Medlargarth of the Fossgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0059",
+      "query": "Within which town was the author of The Gildgarth and the Nookgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0068",
+      "query": "Within which town was the author of The Ockergarth of the Haregarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0077",
+      "query": "Within which town was the author of The Iltongarth and the Pannalgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0086",
+      "query": "Within which town was the author of The Quaingarth of the Jervgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0095",
+      "query": "Within which town was the author of The Kimmergarth and the Ribbgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0104",
+      "query": "Within which town was the author of The Sowergarth of the Lambgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0113",
+      "query": "Within which town was the author of The Medlargarth and the Thursgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0122",
+      "query": "Within which town was the author of The Ulphgarth of the Nookgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0131",
+      "query": "Within which town was the author of The Ockergarth and the Valegarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0140",
+      "query": "Within which town was the author of The Wansgarth of the Pannalgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0149",
+      "query": "Within which town was the author of The Quaingarth and the Yockgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0158",
+      "query": "Within which town was the author of The Bickergarth of the Ribbgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0167",
+      "query": "Within which town was the author of The Sowergarth and the Cravengarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0176",
+      "query": "Within which town was the author of The Dentgarth of the Thursgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0185",
+      "query": "Within which town was the author of The Ulphgarth and the Elslagarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0194",
+      "query": "Within which town was the author of The Flitgarth of the Valegarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0203",
+      "query": "Within which town was the author of The Wansgarth and the Garsgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0212",
+      "query": "Within which town was the author of The Hawngarth of the Yockgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0221",
+      "query": "Within which town was the author of The Bickergarth and the Inglegarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0230",
+      "query": "Within which town was the author of The Jervauxgarth of the Cravengarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0239",
+      "query": "Within which town was the author of The Dentgarth and the Kirkbygarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0248",
+      "query": "Within which town was the author of The Lothersgarth of the Elslagarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0257",
+      "query": "Within which town was the author of The Flitgarth and the Mallersgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0266",
+      "query": "Within which town was the author of The Niddergarth of the Garsgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0275",
+      "query": "Within which town was the author of The Hawngarth and the Orrestgarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    },
+    {
+      "case_id": "mh5-0284",
+      "query": "Within which town was the author of The Penninggarth of the Inglegarth born?",
+      "expected_status": "ANSWER",
+      "observed_status": "INSUFFICIENT_EVIDENCE",
+      "observed_answer": "",
+      "decision_trace": [
+        "eligibility:ANSWER(eligible)",
+        "decomposition:1",
+        "retrieval:8_items",
+        "attribute_gate:NO_NAMED_ATTRIBUTE_EVIDENCED"
+      ],
+      "failure_stage": "bridge_scan_entity_gate",
+      "diagnosis": "sentence-initial 'Within' misread as entity token; bridge item unresolved; abstained via attribute gate"
+    }
+  ]
+}
