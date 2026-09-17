@@ -150,20 +150,22 @@ def scan_query_injection(query: str) -> dict:
 
 
 # T21R5 B4 — sentence-level source-text quarantine.
-_SENT_RE = re.compile(r"(?<=[.!?])\s+")
+# Sentence punctuation, semicolons, and line boundaries separate propositions.
+# Colons and commas do not: splitting those could detach an instruction's
+# object and incorrectly promote that object into factual evidence.
+_SENT_RE = re.compile(r"(?<=[.!?;])\s+|\r?\n+")
 
 
 def quarantine_source_text(text: str) -> dict:
     """Deterministic sentence-level quarantine of retrieved directives.
 
     Retrieved text is DATA with instruction authority 0 (T21R5 B4). The
-    chunk text is split into sentences; each sentence is classified by the
-    source-directive pattern table. Directive sentences are QUARANTINED:
-    they carry instruction authority 0 and must never be selected as
-    answer content. Safe factual sentences in the same chunk remain fully
-    usable with unchanged provenance. When a directive phrase shares a
-    sentence with a factual claim, the whole sentence is quarantined —
-    span surgery inside a sentence is not deterministic enough to risk.
+    chunk text is split at sentence, semicolon, and line boundaries; each
+    proposition is classified by the source-directive pattern table.
+    Directive propositions are QUARANTINED with instruction authority 0
+    and must never be selected as answer content. Independent factual
+    propositions retain unchanged provenance. Clauses without an explicit
+    boundary remain together and fail closed when a directive is detected.
 
     Returns {safe_text, quarantined_sentences, n_quarantined}; an
     unflagged chunk yields the full text as safe_text. No model, no
