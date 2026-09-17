@@ -199,6 +199,86 @@ def _sha256_lf(path: Path) -> str:
         path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
+# ---------------------------------------------------------------------------
+# T21R8 bounded security-layer repair exception (Audit Fix 1).
+#
+# The authorized T21R8 SAFE_FACT_SPLIT_FAILURE repair changed exactly ONE
+# security_layer file. The exception below is therefore mechanically
+# bounded by per-file digests rather than a composite bypass:
+#   - injection.py must equal the authorized post-repair digest;
+#   - provenance_spoof.py and executive/state.py must equal their frozen
+#     pre-R8 digests;
+#   - the recomputed composite must equal the authorized post-repair
+#     composite;
+#   - the forensic prerequisites must hold (root-cause freeze label,
+#     forensics SHA match, SAFE_FACT_SPLIT_FAILURE == 5).
+# Any other drift - in any pinned file, in the composite, or in the
+# forensic evidence - leaves the frozen composite assertion active, so
+# arbitrary later security_layer drift still fails the test.
+# ---------------------------------------------------------------------------
+_T21R8_SECURITY_PINS = {
+    "src/sciencemath/knowledge/injection.py":
+        "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0",
+    "src/sciencemath/knowledge/provenance_spoof.py":
+        "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212",
+    "src/sciencemath/executive/state.py":
+        "48785eb93a0aa102970ea3b7266ce273549663a4fd3f1ce4e76467d7dd3fcc59",
+}
+_T21R8_SECURITY_LAYER_AUTHORIZED = (
+    "3974b33fcc7bf1d3b9d755cf99963f88e0a4080ba90300315867424bad7c900f")
+_T21R8_FORENSICS_REL = "evaluations/t21r8/t21r7_failure_forensics.json"
+_T21R8_FREEZE_REL = "evaluations/t21r8/t21r7_root_cause_freeze.json"
+_T21R8_REMEDIATION_REL = "evaluations/t21r8/base_remediation_result.json"
+
+
+def _t21r8_security_repair_bounded_ok(
+    read_bytes: dict[str, bytes] | None = None,
+    freeze_doc: dict | None = None,
+) -> bool:
+    """True only when the forensic prerequisites are intact AND every
+    security_layer file matches its pinned authorized digest AND the
+    recomputed composite equals the authorized post-repair value.
+
+    ``read_bytes`` (relative repo path -> bytes) and ``freeze_doc`` are
+    injection points for the negative drift tests only; production callers
+    use the on-disk state.
+    """
+    overrides = read_bytes or {}
+    for rel in _T21R8_SECURITY_PINS:
+        data = overrides.get(rel)
+        if data is None:
+            path = ROOT / rel
+            if not path.exists():
+                return False
+            data = path.read_bytes()
+        if hashlib.sha256(
+                data.replace(b"\r\n", b"\n")).hexdigest() != \
+                _T21R8_SECURITY_PINS[rel]:
+            return False
+    if freeze_doc is None:
+        freeze_path = ROOT / _T21R8_FREEZE_REL
+        if not freeze_path.exists():
+            return False
+        freeze_doc = json.loads(freeze_path.read_text(encoding="utf-8"))
+    if freeze_doc.get("freeze_status") != \
+            "T21R7_ROOT_CAUSES_FROZEN_DATA_ONLY":
+        return False
+    if freeze_doc.get("exact_primary_mechanism_counts", {}).get(
+            "SAFE_FACT_SPLIT_FAILURE") != 5:
+        return False
+    forensics = ROOT / _T21R8_FORENSICS_REL
+    if not forensics.exists():
+        return False
+    if freeze_doc.get("forensics_artifact", {}).get("sha256") not in (
+            _sha256(forensics), _sha256_lf(forensics)):
+        return False
+    if not (ROOT / _T21R8_REMEDIATION_REL).exists():
+        return False
+    from t21r4_freeze_runtime import RUNTIME_GROUPS, sha_group
+    return sha_group(RUNTIME_GROUPS["security_layer"]) == \
+        _T21R8_SECURITY_LAYER_AUTHORIZED
+
+
 def test_freeze_artifacts_exist_in_order():
     runtime_freeze = OUT_DIR / "runtime_freeze.json"
     evaluator_freeze = OUT_DIR / "evaluator_freeze.json"
@@ -247,33 +327,14 @@ def test_runtime_composites_unchanged_since_freeze():
         (ROOT / "evaluations/t21r6/t21r5_multihop_root_cause.json").exists()
         and (ROOT / "evaluations/t21r6/evaluator_qualification.json").exists()
     )
-    # T21R8 repair exception (preregistered): the authorized T21R8 runtime
-    # repair generalizes source-directive proposition segmentation in the
-    # injection firewall (the frozen SAFE_FACT_SPLIT_FAILURE mechanism), so
-    # the security_layer composite may drift from the T21R5 freeze when the
-    # frozen T21R8 forensic evidence exists AND is internally consistent:
-    # the forensics SHA-256 recorded in the root-cause freeze must match
-    # the forensics artifact on disk, the freeze label must be intact, and
-    # the frozen mechanism count must still record
-    # SAFE_FACT_SPLIT_FAILURE = 5. No other group may drift.
-    t21r8_repair = (
-        (ROOT / "evaluations/t21r8/t21r7_root_cause_freeze.json").exists()
-        and (ROOT / "evaluations/t21r8/base_remediation_result.json").exists()
-    )
-    t21r8_evidence_ok = False
-    if t21r8_repair:
-        freeze_doc = json.loads(
-            (ROOT / "evaluations/t21r8/t21r7_root_cause_freeze.json")
-            .read_text(encoding="utf-8"))
-        forensics = ROOT / "evaluations/t21r8/t21r7_failure_forensics.json"
-        t21r8_evidence_ok = (
-            freeze_doc.get("freeze_status")
-            == "T21R7_ROOT_CAUSES_FROZEN_DATA_ONLY"
-            and freeze_doc.get("exact_primary_mechanism_counts", {})
-            .get("SAFE_FACT_SPLIT_FAILURE") == 5
-            and freeze_doc.get("forensics_artifact", {}).get("sha256")
-            in (_sha256(forensics), _sha256_lf(forensics))
-        )
+    # T21R8 repair exception (Audit Fix 1 — mechanically bounded): the
+    # security_layer composite may differ from the T21R5 freeze ONLY when
+    # every pinned security_layer file digest, the authorized post-repair
+    # composite, and the frozen forensic prerequisites all verify
+    # (see _t21r8_security_repair_bounded_ok). Any other drift fails the
+    # frozen composite assertion below.
+    t21r8_repair = _t21r8_security_repair_bounded_ok()
+    t21r8_evidence_ok = t21r8_repair
     for name, spec in RUNTIME_GROUPS.items():
         if name == "historical_write_guard":
             guard_text = (ROOT / "tests/test_historical_artifact_write_guard.py") \
@@ -299,6 +360,51 @@ def test_runtime_composites_unchanged_since_freeze():
         assert sha_group(RUNTIME_GROUPS["security_layer"]) == \
             rt["runtime_composites"]["security_layer"], \
             "security layer changed since the runtime freeze"
+
+
+def test_t21r8_security_exception_rejects_unauthorized_drift():
+    """Audit Fix 1 negative controls: the bounded T21R8 security-layer
+    exception must reject simulated unauthorized drift in any pinned
+    security_layer file, in the forensic prerequisites, and must leave
+    the frozen composite assertion active for arbitrary drift."""
+    # Baseline: the authorized on-disk repair state verifies.
+    assert _t21r8_security_repair_bounded_ok() is True
+
+    # 1. Any mutation of the pinned authorized injection.py is rejected.
+    authorized = (
+        ROOT / "src/sciencemath/knowledge/injection.py").read_bytes()
+    assert _t21r8_security_repair_bounded_ok(
+        read_bytes={"src/sciencemath/knowledge/injection.py":
+                    authorized + b"\n# unauthorized drift\n"},
+    ) is False
+
+    # 2. Any mutation of a frozen pre-R8 security file is rejected.
+    spoof = (ROOT / "src/sciencemath/knowledge/provenance_spoof.py") \
+        .read_bytes()
+    assert _t21r8_security_repair_bounded_ok(
+        read_bytes={"src/sciencemath/knowledge/provenance_spoof.py":
+                    spoof + b"\n"},
+    ) is False
+    state = (ROOT / "src/sciencemath/executive/state.py").read_bytes()
+    assert _t21r8_security_repair_bounded_ok(
+        read_bytes={"src/sciencemath/executive/state.py": state + b"\n"},
+    ) is False
+
+    # 3. A frozen forensic prerequisite violation is rejected.
+    bad_freeze = json.loads(
+        (ROOT / _T21R8_FREEZE_REL).read_text(encoding="utf-8"))
+    bad_freeze["exact_primary_mechanism_counts"][
+        "SAFE_FACT_SPLIT_FAILURE"] = 4
+    assert _t21r8_security_repair_bounded_ok(freeze_doc=bad_freeze) is False
+
+    # 4. The exception is not a no-op: the authorized composite differs
+    #    from the frozen T21R5 value, so the bounded gate is what allows
+    #    the recorded repair and nothing else.
+    rt = json.loads((OUT_DIR / "runtime_freeze.json")
+                    .read_text(encoding="utf-8"))
+    assert _T21R8_SECURITY_LAYER_AUTHORIZED != \
+        rt["runtime_composites"]["security_layer"]
+    assert _t21r8_security_repair_bounded_ok(freeze_doc={}) is False
 
 
 def test_t15r_canonical_blob_unchanged():
