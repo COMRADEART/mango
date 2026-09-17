@@ -77,6 +77,7 @@ ATTRIBUTE_RELATIONS: Mapping[str, RelationId] = {
     "birth town": RelationId.BIRTHPLACE,
     "birth year": RelationId.BIRTH_YEAR,
     "author": RelationId.AUTHOR,
+    "writer": RelationId.AUTHOR,
     "creator": RelationId.CREATOR,
     "painter": RelationId.PAINTER,
     "inventor": RelationId.INVENTOR,
@@ -138,7 +139,7 @@ QUERY_ALIASES: Mapping[RelationId, tuple[str, ...]] = {
         "place of birth", "born", "birth",
     ),
     RelationId.BIRTH_YEAR: ("birth year", "year born", "when born"),
-    RelationId.AUTHOR: ("author", "authored", "wrote", "written by"),
+    RelationId.AUTHOR: ("author", "writer", "authored", "wrote", "written by"),
     RelationId.CREATOR: ("creator", "created by", "made by"),
     RelationId.PAINTER: ("painter", "painted by"),
     RelationId.INVENTOR: ("inventor", "invented by", "invention of"),
@@ -255,3 +256,67 @@ def relation_matches(query: str, metadata: Mapping[str, object] | None,
 
 
 RELATION_ONTOLOGY_VERSION = "t21r7-v1"
+
+
+def relation_phrase(text: str) -> RelationId | None:
+    """Resolve a whole nominal relation alias, never a substring.
+
+    A leading definite article is framing vocabulary, never part of the
+    relation identity ('the location' resolves as 'location').
+    """
+    normalized = normalize_relation_text(text)
+    stripped = re.sub(r"^the ", "", normalized)
+    direct = canonical_relation(normalized) or canonical_relation(stripped)
+    if direct:
+        return direct
+    matches = {r for r, aliases in QUERY_ALIASES.items()
+               if {normalized, stripped} & {normalize_relation_text(a)
+                                           for a in aliases}}
+    return next(iter(matches)) if len(matches) == 1 else None
+
+
+def parse_relation_path(query: str) -> tuple[str, tuple[RelationId, ...]] | None:
+    """Parse bounded nominal composition and historic relative clauses.
+
+    Grammar, not evidence names, defines identity boundaries. Any canonical
+    relation can occupy either hop. More than two hops remain a plan, so the
+    runtime can explicitly abstain rather than answer a prefix. Articles are
+    preserved in entity tails: the split only separates on 'of', so the
+    final identity keeps its surface form ('the hygrometer' stays intact)
+    and exact structured matching governs the bind.
+    """
+    text = query.strip().rstrip("?.!").strip()
+    # Nested nominal: what is the country of the location of X?
+    text = re.sub(r"^(?:what is|who is|which is|identify|name|give|tell me)\s+", "", text, flags=re.I)
+    text = re.sub(r"^the\s+", "", text, flags=re.I)
+
+    def nominal(value):
+        parts = re.split(r"\s+of\s+", value, flags=re.I)
+        # Longest whole alias first ('place of birth', 'field of study').
+        for i in range(len(parts) - 1, 0, -1):
+            rel = relation_phrase(" of ".join(parts[:i]))
+            if rel:
+                tail = " of ".join(parts[i:]).strip()
+                if re.match(r"(?:the\s+)?(?:town|city|village|person)\s+(?:of|who)\b", tail, re.I):
+                    return None
+                child = nominal(tail)
+                if child:
+                    return child[0], child[1] + (rel,)
+                return tail, (rel,)
+        return None
+
+    # Nominal parsing must not swallow a trailing predicate as an identity.
+    found = nominal(text)
+    if found and not re.search(r"\bborn\b", found[0], re.I):
+        return found
+    # Historic relative/nominal framing: 'Within which town was the
+    # author of X born?' / 'The author of X was born in which town?'.
+    if re.search(r"\bborn\b", text, re.I):
+        match = re.search(r"(?:^|\bthe\s+)([\w -]+?)\s+of\s+(?:the\s+)?(.+?)\s+(?:was\s+)?born\b", text, re.I)
+        if match:
+            rel = relation_phrase(match[1].strip())
+            if rel:
+                terminal = RelationId.BIRTH_YEAR if re.search(r"\byear\b|\bwhen\b", query, re.I) else RelationId.BIRTHPLACE
+                return match[2].strip(), (rel, terminal)
+    return None
+

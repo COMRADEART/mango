@@ -68,6 +68,9 @@ from sciencemath.knowledge.relations import (
     evidence_relation,
     query_relations,
 )
+from sciencemath.knowledge.evidence_paths import (
+    EvidencePath, fact_edge, parse_path_request, resolve_path,
+)
 from sciencemath.knowledge.routing import (
     ANSWER_STATUS,
     CONFLICTING_EVIDENCE,
@@ -111,6 +114,9 @@ class KnowledgeAnswer:
     decision_trace: list[str] = field(default_factory=list)
     zero_tolerance: dict = field(default_factory=dict)
     subqueries: list[str] = field(default_factory=list)
+    evidence_paths: list = field(default_factory=list)
+    evidence_path_trace: dict = field(default_factory=dict)
+    corroborating_evidence: list[dict] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -129,6 +135,10 @@ class KnowledgeAnswer:
             "decision_trace": list(self.decision_trace),
             "zero_tolerance": dict(self.zero_tolerance),
             "subqueries": list(self.subqueries),
+            "evidence_paths": [p.to_dict() if hasattr(p, "to_dict") else p
+                               for p in self.evidence_paths],
+            "evidence_path_trace": dict(self.evidence_path_trace),
+            "corroborating_evidence": list(self.corroborating_evidence),
         }
 
 
@@ -320,6 +330,21 @@ def answer_knowledge(
                         coverage=0.0,
                         snapshot_date=corpus.snapshot_date)
     trace.append(f"retrieval:{len(items)}_items")
+    path_resolution = None
+    path_request = parse_path_request(effective)
+    if path_request is not None:
+        path_resolution = resolve_path(path_request, items, corpus, normalized)
+        items = path_resolution.items
+        trace.extend(path_resolution.trace)
+        if path_resolution.status != ANSWER_STATUS:
+            result = _abstain(
+                query, normalized, trace, counters, eligibility, temporal,
+                injection, subqueries, path_resolution.status, items=items,
+                conflicts=path_resolution.conflicts,
+                retrieval_status="INCOMPLETE_OR_CONFLICTING_PATH", coverage=0.0,
+                snapshot_date=corpus.snapshot_date)
+            result.evidence_path_trace = path_resolution.to_trace()
+            return result
 
     # ---- source-text injection firewall (T21.19) ---------------------------
     source_directives: list[dict] = []
@@ -432,9 +457,31 @@ def answer_knowledge(
     # Each pair is (sentence, item it was extracted from): citation
     # lineage is per-sentence by construction (B3), never positional.
     pairs: list[tuple[str, EvidenceItem]] = []
+    if path_resolution is not None:
+        for item in path_resolution.selected:
+            safe = synth_text[item.chunk_id]
+            value = str(item.metadata["fact_value"])
+            sentences = [s for s in _SENT_RE.split(safe) if value.casefold() in s.casefold()]
+            if not sentences:
+                return _abstain(
+                    query, normalized, trace, counters, eligibility, temporal,
+                    injection, subqueries, INSUFFICIENT_EVIDENCE, items=items,
+                    conflicts=[], retrieval_status="PATH_VALUE_NOT_EVIDENCED",
+                    coverage=0.0, snapshot_date=corpus.snapshot_date)
+            pairs.append((sentences[0], item))
+        # Corroboration is optional and never replaces a required edge.
+        required = [fact_edge(it) for it in path_resolution.selected]
+        for candidate in items:
+            edge = fact_edge(candidate)
+            if candidate in path_resolution.selected or edge is None:
+                continue
+            if any((edge.subject_entity, edge.relation, edge.object_value)
+                   == (r.subject_entity, r.relation, r.object_value) for r in required):
+                pairs.append((edge.proposition, candidate))
+        trace.append("synthesis:complete_evidence_path")
 
     bridge_item = None
-    if _BIRTH_CUE_RE.search(effective) and \
+    if not pairs and _BIRTH_CUE_RE.search(effective) and \
             _CREATOR_CUE_RE.search(effective):
         bridge_item = _best_entity_bound_candidate(
             [it for it in ordered if _bridge_item(it)], effective)
@@ -735,6 +782,13 @@ def answer_knowledge(
                  corpus.snapshot_date, pack_items, relevant, temporal,
                  {"coverage": round(cov_all, 4), "n_items": len(items)},
                  round(cov_used, 3), status)
+    paths = []
+    path_items = path_resolution.selected if path_resolution is not None else selected[:1]
+    edges = [fact_edge(it) for it in path_items]
+    if edges and all(edge is not None for edge in edges):
+        path = EvidencePath(tuple(edges),
+                            tuple(path_resolution.trace) if path_resolution else ("path:complete:1",))
+        paths.append(path.to_dict())
     return KnowledgeAnswer(
         query=query, normalized_query=normalized, status=status,
         answer=answer_text,
@@ -750,7 +804,12 @@ def answer_knowledge(
         eligibility=eligibility, freshness=temporal,
         query_injection=injection, source_injection=source_injection,
         decision_trace=trace, zero_tolerance=counters,
-        subqueries=subqueries)
+        subqueries=subqueries, evidence_paths=paths,
+        evidence_path_trace=path_resolution.to_trace() if path_resolution else {"complete": bool(paths), "paths": paths},
+        corroborating_evidence=[{"chunk_id": it.chunk_id,
+                                 "citation_id": it.citation_id,
+                                 "role": "CORROBORATION"}
+                                for it in selected if it not in path_items])
 
 
 def _strip_injection_phrases(query: str, injection: dict) -> str:
