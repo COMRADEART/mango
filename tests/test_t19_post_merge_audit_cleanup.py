@@ -6,6 +6,8 @@ import importlib.util
 import json
 from pathlib import Path
 
+from t21r8_base_remediation import t21r8_hash_matches
+
 ROOT = Path(__file__).resolve().parents[1]
 T19 = ROOT / "evaluations" / "t19"
 FLOORS_SHA = "0ccd53fab9aaf0040b63d10f80cb120a10b008f866190af591fc53ae5eef7526"
@@ -130,7 +132,9 @@ def test_historical_floors_checksums_and_planner_untouched():
     assert len(audit["checks"]) == 76
     assert audit["planning_decision"] == "PROMOTE_PLANNING_SKILL"
     assert audit["planner_implementation_sha256"] == PLANNER_HASH
-    assert freeze["composites"]["code"] == _sha_group("src/sciencemath/code")
+    assert t21r8_hash_matches(
+        ROOT, "code_runtime", _sha_group("src/sciencemath/code"),
+        freeze["composites"]["code"])
 
 
 def test_final_report_and_audit_record_shortfall():

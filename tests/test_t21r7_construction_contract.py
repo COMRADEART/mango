@@ -197,7 +197,11 @@ def test_static_audit_validation_rejects_a_failed_requirement() -> None:
 
 def test_freeze_refuses_when_construction_audit_is_not_complete(
     monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
 ) -> None:
+    monkeypatch.setattr(freeze, "MARKER", tmp_path / "HOLDOUT_FROZEN")
+    monkeypatch.setattr(
+        freeze, "MANIFEST", tmp_path / "holdout_manifest.json")
     monkeypatch.setattr(freeze, "_require_prerequisites", lambda: None)
 
     def reject():
@@ -211,7 +215,11 @@ def test_freeze_refuses_when_construction_audit_is_not_complete(
 
 def test_freeze_recomputes_candidate_metrics_and_rejects_drift(
     monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
 ) -> None:
+    monkeypatch.setattr(freeze, "MARKER", tmp_path / "HOLDOUT_FROZEN")
+    monkeypatch.setattr(
+        freeze, "MANIFEST", tmp_path / "holdout_manifest.json")
     monkeypatch.setattr(freeze, "_require_prerequisites", lambda: None)
     monkeypatch.setattr(
         freeze, "assert_static_audit_passes",

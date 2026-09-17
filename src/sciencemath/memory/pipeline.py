@@ -268,10 +268,8 @@ def handle(question: str, *, store: MemoryStore,
                     MEMORY_UPDATE, MEMORY_SUPERSEDE))
             if correction or (valid_from and any(
                     _temporal_newer(rec, e) for e in existing)):
-                for e in existing:
-                    store.set_status(e.memory_id, "SUPERSEDED",
-                                     owner_id=owner_id, now=now)
-                stored = store.insert_record(rec)
+                stored = store.supersede_records(
+                    existing, rec, owner_id=owner_id, now=now)
                 return _done(
                     MEMORY_SUPERSEDE, _answer_from([stored]),
                     memories=[stored], used_memories=_ground([stored]),

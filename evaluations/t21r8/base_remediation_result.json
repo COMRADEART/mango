@@ -1,0 +1,134 @@
+{
+  "milestone": "T21R8 canonical base remediation",
+  "canonical_base": "bffe86b67107ba2a097aa3030acc17e687d84d25",
+  "abandoned_branch_sha": "510fc4ccf2655b919fea5b8b9dced7a12ac3036f",
+  "abandoned_archive_branch": "archive/t21r8-abandoned-510fc4",
+  "abandoned_archive_remote_push": "NOT_PERFORMED; local branch and named stash preserved",
+  "recovery_preservation_identity": "b972c1fb92b6be64191f5a105e584ce37c42f0b1",
+  "recovery_archive_branch": "archive/t21r8-base-recovery",
+  "original_failing_test_ids": [
+    "tests/test_t15_code_runner.py::test_runner_edit_test_verify",
+    "tests/test_t15_code_runner.py::test_debug_loop_repairs_with_evidence",
+    "tests/test_t15_code_runner.py::test_no_stale_bytecode_between_repair_and_retest",
+    "tests/test_t15_code_runner.py::test_no_change_when_tests_already_pass",
+    "tests/test_t15_code_runner.py::test_edit_trap_still_short_circuits",
+    "tests/test_t15r_repair_loop.py::test_repair_budget_exhaustion_retains_best",
+    "tests/test_t15r_repair_loop.py::test_runner_retains_partial_progress",
+    "tests/test_t15r_repair_loop.py::test_runner_regression_rejects_and_keeps_best",
+    "tests/test_t15r_repair_loop.py::test_runner_repairs_from_best_not_original",
+    "tests/test_t15r_repair_loop.py::test_multi_file_atomic_dependency_map",
+    "tests/test_t15r_repair_loop.py::test_existing_single_fix_still_passes",
+    "tests/test_t15r_repair_loop.py::test_code_edit_retries_from_live_failures_without_initial_patch",
+    "tests/test_t18_memory_persist.py::test_two_readers_one_writer"
+  ],
+  "root_cause_classification": [
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_runner_edit_test_verify",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_debug_loop_repairs_with_evidence",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_no_stale_bytecode_between_repair_and_retest",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_no_change_when_tests_already_pass",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_edit_trap_still_short_circuits",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_repair_budget_exhaustion_retains_best",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_runner_retains_partial_progress",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_runner_regression_rejects_and_keeps_best",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_runner_repairs_from_best_not_original",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_multi_file_atomic_dependency_map",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_existing_single_fix_still_passes",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_code_edit_retries_from_live_failures_without_initial_patch",
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t18_memory_persist.py::test_two_readers_one_writer",
+      "classification": "CURRENT_RUNTIME_DEFECT"
+    }
+  ],
+  "files_changed": [
+    "evaluations/t21r8/base_failure_analysis.json",
+    "evaluations/t21r8/base_remediation_exception.json",
+    "evaluations/t21r8/base_remediation_result.json",
+    "src/sciencemath/code/testsel.py",
+    "src/sciencemath/memory/pipeline.py",
+    "src/sciencemath/memory/store.py",
+    "tests/t21r8_base_remediation.py",
+    "tests/test_scicomp_registry_active.py",
+    "tests/test_t19_post_merge_audit_cleanup.py",
+    "tests/test_t21r3_blind_holdout_contract.py",
+    "tests/test_t21r4_blind_holdout_contract.py",
+    "tests/test_t21r5_blind_holdout_contract.py",
+    "tests/test_t21r7_construction_contract.py"
+  ],
+  "historical_files_changed": [],
+  "targeted_test_result": {
+    "original_failures_passed": 13,
+    "original_failures_failed": 0,
+    "state_isolation_regressions_passed": 2,
+    "historical_integrity_guards_passed": 5,
+    "failures": 0,
+    "errors": 0
+  },
+  "full_pytest_run_1": {
+    "tests": 2163,
+    "passed": 2161,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0,
+    "exit_code": 0,
+    "duration_seconds": 58.435
+  },
+  "full_pytest_run_2": {
+    "tests": 2163,
+    "passed": 2161,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0,
+    "exit_code": 0,
+    "duration_seconds": 57.55
+  },
+  "collection_count": 2163,
+  "t15r_identity": "fba2437f78633884bd31965d78a4250bd1ca893c",
+  "registry_state": {
+    "ACTIVE": 11,
+    "EXPERIMENTAL": 1,
+    "total": 12
+  },
+  "knowledge_rag_state": "EXPERIMENTAL",
+  "executive_router_state": "EXPERIMENTAL (unchanged)",
+  "t21_state": "OPEN",
+  "t22_state": "BLOCKED",
+  "r7_raw_results_read": false,
+  "r8_forensics_started": false,
+  "decision": "T21R8_BASE_REMEDIATION_PASS"
+}

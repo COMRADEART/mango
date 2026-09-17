@@ -259,32 +259,55 @@ class MemoryStore:
                 (self.clock(), memory_id))
         return rec
 
+    def _insert_record_uncommitted(self, rec: MemoryRecord) -> None:
+        self._conn.execute(
+            "INSERT INTO memories(" + ",".join(_COLS) + ") VALUES ("
+            + ",".join("?" for _ in _COLS) + ")",
+            (
+                rec.memory_id, rec.owner_id, rec.scope_type,
+                rec.scope_id, rec.memory_type, rec.content,
+                rec.normalized_content, rec.subject_key, rec.value_key,
+                rec.source_type, rec.source_reference,
+                json.dumps(rec.provenance, ensure_ascii=False,
+                           sort_keys=True),
+                rec.confidence, rec.created_at, rec.updated_at,
+                rec.valid_from, rec.valid_until, rec.last_accessed_at,
+                rec.status, rec.revision, rec.lineage_id,
+                rec.predecessor_id, rec.content_hash, rec.sensitivity,
+                rec.write_reason, 0,
+            ))
+        self._fts_upsert(rec)
+        self._audit("MEMORY_STORE", memory_id=rec.memory_id,
+                    owner_id=rec.owner_id, scope_type=rec.scope_type,
+                    scope_id=rec.scope_id,
+                    details={"write_reason": rec.write_reason,
+                             "content_hash": rec.content_hash,
+                             "revision": rec.revision})
+
     def insert_record(self, rec: MemoryRecord) -> MemoryRecord:
         def _do():
             with self._conn:
-                self._conn.execute(
-                    "INSERT INTO memories(" + ",".join(_COLS) + ") VALUES ("
-                    + ",".join("?" for _ in _COLS) + ")",
-                    (
-                        rec.memory_id, rec.owner_id, rec.scope_type,
-                        rec.scope_id, rec.memory_type, rec.content,
-                        rec.normalized_content, rec.subject_key, rec.value_key,
-                        rec.source_type, rec.source_reference,
-                        json.dumps(rec.provenance, ensure_ascii=False,
-                                   sort_keys=True),
-                        rec.confidence, rec.created_at, rec.updated_at,
-                        rec.valid_from, rec.valid_until, rec.last_accessed_at,
-                        rec.status, rec.revision, rec.lineage_id,
-                        rec.predecessor_id, rec.content_hash, rec.sensitivity,
-                        rec.write_reason, 0,
-                    ))
-                self._fts_upsert(rec)
-                self._audit("MEMORY_STORE", memory_id=rec.memory_id,
-                            owner_id=rec.owner_id, scope_type=rec.scope_type,
-                            scope_id=rec.scope_id,
-                            details={"write_reason": rec.write_reason,
-                                     "content_hash": rec.content_hash,
-                                     "revision": rec.revision})
+                self._insert_record_uncommitted(rec)
+                self._bump()
+            return rec
+
+        return self._retry(_do)
+
+    def supersede_records(self, predecessors: list[MemoryRecord],
+                          rec: MemoryRecord, *, owner_id: str,
+                          now: str | None = None) -> MemoryRecord:
+        """Deactivate predecessors and insert their replacement atomically."""
+        now = now or self.clock()
+
+        def _do():
+            with self._conn:
+                for predecessor in predecessors:
+                    self._conn.execute(
+                        "UPDATE memories SET status = 'SUPERSEDED', "
+                        "updated_at = ? WHERE memory_id = ? AND owner_id = ?",
+                        (now, predecessor.memory_id, owner_id))
+                    self._fts_delete(predecessor.memory_id)
+                self._insert_record_uncommitted(rec)
                 self._bump()
             return rec
 

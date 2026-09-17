@@ -40,6 +40,8 @@ from pathlib import Path
 
 import pytest
 
+from t21r8_base_remediation import t21r8_hash_matches
+
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
 OUT_DIR = ROOT / "evaluations" / "t21r4"
@@ -270,6 +272,10 @@ def test_runtime_composites_unchanged_since_freeze():
             continue
         got = fr.sha_group(spec)
         if got == rt["runtime_composites"][name]:
+            continue
+        if name in ("code_runtime", "memory_runtime") and \
+                t21r8_hash_matches(
+                    ROOT, name, got, rt["runtime_composites"][name]):
             continue
         if name in ("knowledge_runtime", "security_layer") \
                 and t21r5_repair_active:
