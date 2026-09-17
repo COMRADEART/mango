@@ -247,6 +247,33 @@ def test_runtime_composites_unchanged_since_freeze():
         (ROOT / "evaluations/t21r6/t21r5_multihop_root_cause.json").exists()
         and (ROOT / "evaluations/t21r6/evaluator_qualification.json").exists()
     )
+    # T21R8 repair exception (preregistered): the authorized T21R8 runtime
+    # repair generalizes source-directive proposition segmentation in the
+    # injection firewall (the frozen SAFE_FACT_SPLIT_FAILURE mechanism), so
+    # the security_layer composite may drift from the T21R5 freeze when the
+    # frozen T21R8 forensic evidence exists AND is internally consistent:
+    # the forensics SHA-256 recorded in the root-cause freeze must match
+    # the forensics artifact on disk, the freeze label must be intact, and
+    # the frozen mechanism count must still record
+    # SAFE_FACT_SPLIT_FAILURE = 5. No other group may drift.
+    t21r8_repair = (
+        (ROOT / "evaluations/t21r8/t21r7_root_cause_freeze.json").exists()
+        and (ROOT / "evaluations/t21r8/base_remediation_result.json").exists()
+    )
+    t21r8_evidence_ok = False
+    if t21r8_repair:
+        freeze_doc = json.loads(
+            (ROOT / "evaluations/t21r8/t21r7_root_cause_freeze.json")
+            .read_text(encoding="utf-8"))
+        forensics = ROOT / "evaluations/t21r8/t21r7_failure_forensics.json"
+        t21r8_evidence_ok = (
+            freeze_doc.get("freeze_status")
+            == "T21R7_ROOT_CAUSES_FROZEN_DATA_ONLY"
+            and freeze_doc.get("exact_primary_mechanism_counts", {})
+            .get("SAFE_FACT_SPLIT_FAILURE") == 5
+            and freeze_doc.get("forensics_artifact", {}).get("sha256")
+            in (_sha256(forensics), _sha256_lf(forensics))
+        )
     for name, spec in RUNTIME_GROUPS.items():
         if name == "historical_write_guard":
             guard_text = (ROOT / "tests/test_historical_artifact_write_guard.py") \
@@ -255,6 +282,8 @@ def test_runtime_composites_unchanged_since_freeze():
                 in guard_text, "preregistered guard registration missing"
             continue
         if name == "knowledge_runtime" and t21r6_repair:
+            continue
+        if name == "security_layer" and t21r8_repair and t21r8_evidence_ok:
             continue
         got = sha_group(spec)
         if name in ("code_runtime", "memory_runtime") and \
@@ -266,9 +295,10 @@ def test_runtime_composites_unchanged_since_freeze():
     assert sha_group(RUNTIME_GROUPS["executive_router"]) == \
         rt["runtime_composites"]["executive_router"], \
         "Executive Router changed since the runtime freeze"
-    assert sha_group(RUNTIME_GROUPS["security_layer"]) == \
-        rt["runtime_composites"]["security_layer"], \
-        "security layer changed since the runtime freeze"
+    if not (t21r8_repair and t21r8_evidence_ok):
+        assert sha_group(RUNTIME_GROUPS["security_layer"]) == \
+            rt["runtime_composites"]["security_layer"], \
+            "security layer changed since the runtime freeze"
 
 
 def test_t15r_canonical_blob_unchanged():
