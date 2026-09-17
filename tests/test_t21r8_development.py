@@ -10,9 +10,10 @@ from t21r8_development_rows import CHAINS, COUNTS, ROWS
 
 
 def test_development_matrix_exact_counts_and_independent_namespaces():
-    assert COUNTS == {"multihop": 120, "crossdomain": 100, "completeness": 80,
-                      "provenance": 80, "injection": 80, "singlehop": 80}
-    assert len(ROWS) == 540
+    assert COUNTS == {"multihop": 120, "crossdomain": 120, "completeness": 80,
+                      "provenance": 80, "injection": 80, "singlehop": 80,
+                      "surface": 120}
+    assert len(ROWS) == 680
     assert len({r.case_id for r in ROWS}) == len(ROWS)
     assert len({r.start for r in ROWS}) == len(ROWS)
     assert len(set(CHAINS)) == 12
@@ -23,6 +24,51 @@ def test_development_matrix_exact_counts_and_independent_namespaces():
         assert "ANSWER" in statuses
         assert "INSUFFICIENT_EVIDENCE" in statuses
     assert all(r.start.startswith("Ulvexa ") for r in ROWS)
+
+
+def test_crossdomain_multi_source_qualification_mechanical():
+    """Gap-1 qualification: >=100 genuinely two-source cross-domain rows."""
+    rows = [r for r in ROWS if r.category == "crossdomain"]
+    qualifying = [r for r in rows if r.qualifying]
+    assert len(qualifying) >= 100, len(qualifying)
+    preserved = [r for r in rows if not r.qualifying]
+    assert preserved, "same-source rows must be preserved, not deleted"
+    assert all(r.mode == "same_source" for r in preserved)
+    # Reclassified as provenance coverage: the provenance category also
+    # carries its own single-source rows.
+    assert any(r.category == "provenance" and r.mode == "same_source"
+               for r in ROWS)
+    answers = [r for r in qualifying if r.status == "ANSWER"]
+    assert answers
+    # Explicit aggregate: no qualifying cross-domain gold construction has
+    # only one required source or only one required domain.
+    for row in answers:
+        gold_sources = {f.source_group or str(i)
+                        for i, f in enumerate(row.facts) if i in row.edge_indices}
+        gold_domains = {row.facts[i].domain for i in row.edge_indices}
+        assert len(gold_sources) >= 2, (row.case_id, gold_sources)
+        assert len(gold_domains) >= 2, (row.case_id, gold_domains)
+
+
+def test_surface_generalization_mechanical_bounds():
+    """Gap-2 qualification: >=120 surface rows, >=8 relations, >=8
+    two-hop families, mismatch fraction >= 0.50 — all mechanical."""
+    rows = [r for r in ROWS if r.category == "surface"]
+    assert len(rows) >= 120, len(rows)
+    relations = {canonical_relation(rel)
+                 for r in rows for rel in r.relations}
+    assert len(relations) >= 8, relations
+    families = {tuple(canonical_relation(rel) for rel in r.relations)
+                for r in rows if len(r.relations) == 2}
+    assert len(families) >= 8, families
+    assert all(len(r.surface_query) == len(r.surface_evidence) == 2
+               for r in rows)
+    mismatched = [r for r in rows
+                  if any(q != e for q, e in zip(r.surface_query,
+                                                r.surface_evidence))]
+    fraction = len(mismatched) / len(rows)
+    assert fraction >= 0.50, fraction
+    assert len(mismatched) >= 60
 
 
 @pytest.mark.parametrize("row", ROWS, ids=lambda r: r.case_id)
@@ -107,6 +153,14 @@ def test_fresh_development_answer_citations_paths_and_traces(row):
     assert path["citation_ids"] == list(dict.fromkeys(e["citation_id"] for e in edges)), context
     assert set(path["domain_tags"]) == {tag for e in edges for tag in e["topic_tags"]}, context
     assert "uncited-domain" not in path["domain_tags"], context
+    if row.category == "crossdomain" and row.qualifying:
+        assert len(path["required_sources"]) >= 2, context
+        assert len(path["required_domains"]) >= 2, context
+        assert set(path["required_sources"]) <= {
+            c["source_id"] for c in result.citations}, context
+    if row.category == "surface":
+        assert len(row.surface_query) == len(row.relations) == len(
+            row.surface_evidence), context
     if row.mode == "same_source":
         assert len(path["source_ids"]) == 1 and len(path["citation_ids"]) == 2, context
     if row.mode == "corroboration":

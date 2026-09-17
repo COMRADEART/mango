@@ -1,6 +1,9 @@
 ﻿"""Fresh fictional DEVELOPMENT cases; never loads an external fixture corpus.
-Exactly 540 rows: multihop120, crossdomain100, completeness80, provenance80,
-injection80, singlehop80. Regression/development only, not a holdout.
+Exactly 660 rows: multihop120, crossdomain120, completeness80, provenance80,
+injection80, singlehop80, surface120. Regression/development only, not a
+holdout. Crossdomain rows whose gold construction is single-source
+(same_source) are provenance coverage and never count toward the
+multi-source cross-domain qualification (row.qualifying = False).
 """
 from __future__ import annotations
 from collections import Counter
@@ -49,6 +52,9 @@ class Row:
     edge_indices: tuple[int, ...] = (0, 1)
     forbidden: list[str] = field(default_factory=list)
     flagged: bool = False
+    qualifying: bool = True
+    surface_query: tuple[str, ...] = ()
+    surface_evidence: tuple[str, ...] = ()
 
     def corpus(self):
         sources, chunks = [], []
@@ -123,6 +129,14 @@ def altered(row, mode):
     elif mode == "unrelated_conflict":
         row.facts.extend([Fact(row.bridge, "emblem", wrong, "folklore"),
                           Fact(row.bridge, "emblem", "Ulvexa Othercrest", "folklore")])
+    elif mode == "corroborated_hop2":
+        row.facts.append(Fact(row.bridge, b, row.final, "archives",
+                              authority="GENERAL_REFERENCE"))
+    elif mode == "independent_decoy":
+        decoy = f"Ulvexa {token(int(row.case_id.split('-')[1])).capitalize()} Ledger"
+        row.facts.append(Fact(row.start + " Ledger", "emblem", decoy,
+                              "uncited-domain"))
+        row.forbidden.append(decoy)
     elif mode == "corroboration":
         row.facts.append(Fact(row.start, a, row.bridge, "archives"))
     return row
@@ -138,18 +152,22 @@ def make_rows():
             rows.append(altered(base_row("multihop", ci * 10 + mi, chain, mode), mode))
     cross_modes = ("already_retrieved", "second_retrieval", "missing_hop2",
                    "near_bridge_long", "near_bridge_short", "unrelated_conflict",
-                   "authority_hop2", "corroboration", "decoy_domain", "same_source")
+                   "authority_hop2", "corroboration", "decoy_domain", "same_source",
+                   "corroborated_hop2", "independent_decoy")
     for ci in range(10):
         for mi, mode in enumerate(cross_modes):
-            row = altered(base_row("crossdomain", 200 + ci * 10 + mi, CHAINS[ci], mode), mode)
+            row = altered(base_row("crossdomain", 200 + ci * 12 + mi, CHAINS[ci], mode), mode)
             row.facts[0].domain = DOMAINS[ci]
             row.facts[1].domain = DOMAINS[(ci + 3) % 10]
+            if mode == "same_source":
+                # Provenance coverage only: a single-source gold construction
+                # never counts toward multi-source cross-domain qualification.
+                row.qualifying = False
+                row.facts[0].source_group = row.facts[1].source_group = "shared"
             if mode == "decoy_domain":
                 row.facts.append(Fact(row.start + " Annex", row.relations[0],
                                       "Ulvexa Decoykeeper", "uncited-domain"))
                 row.forbidden.append("Ulvexa Decoykeeper")
-            if mode == "same_source":
-                row.facts[0].source_group = row.facts[1].source_group = "shared"
             rows.append(row)
     ie_modes = ("complete_control", "missing_start", "missing_hop1", "missing_hop2",
                 "wrong_relation", "near_start_long", "near_start_short", "corroboration_only")
@@ -265,6 +283,160 @@ def make_rows():
                     row.status = "CONFLICTING_EVIDENCE"
             if mode in ("missing_relation", "missing_entity", "near_start_long", "near_start_short"):
                 row.status = "INSUFFICIENT_EVIDENCE"
+            rows.append(row)
+    # Relation-surface generalization: the query surface and the evidence
+    # proposition surface may disagree while the canonical relation holds.
+    # Every alias below is already justified by the relation ontology
+    # (QUERY_ALIASES / ATTRIBUTE_RELATIONS); none were added for these rows.
+    SURFACE_MODES = ("ev_alias_hop1", "ev_alias_hop2", "ev_alias_both",
+                     "ev_alias_hop1_alt", "query_alias", "unsupported_phrase",
+                     "wrong_relation", "near_name_start", "near_name_bridge",
+                     "corroboration_alias")
+    SURFACE_FAMILIES = (
+        # (hop1_rel, hop2_rel, hop1_query_surfaces, hop1_ev_aliases,
+        #  hop2_query_surfaces, hop2_ev_aliases)
+        ("author", "birthplace", ("author", "writer"),
+         ("written by", "authored"), ("birthplace", "birth town"), ("born in",)),
+        ("painter", "birth year", ("painter",), ("painted by",),
+         ("birth year", "year born"), ("born in the year",)),
+        ("inventor", "birthplace", ("inventor",), ("invented by",),
+         ("birthplace", "birth town"), ("born in",)),
+        ("creator", "country", ("creator",), ("made by", "created by"),
+         ("country",), ()),
+        ("location", "country", ("location",), ("situated", "located"),
+         ("country",), ()),
+        ("waterway", "country", ("waterway", "river"), ("river",),
+         ("country",), ()),
+        ("author", "publication year", ("author", "writer"),
+         ("authored", "written by"), ("publication year", "year of publication"),
+         ("published", "printed")),
+        ("painter", "medium", ("painter",), ("painted by",),
+         ("medium",), ("rendered in", "executed in")),
+        ("inventor", "introduction year", ("inventor",), ("invented by",),
+         ("introduction year", "launch year"), ("introduced",)),
+        ("location", "founding year", ("location",), ("located", "situated"),
+         ("founding year", "establishment year"), ("established", "founded")),
+        ("author", "notable work", ("author", "writer"),
+         ("written by", "authored"), ("notable work", "masterwork"),
+         ("masterpiece",)),
+        ("creator", "opening year", ("creator",), ("created by", "made by"),
+         ("opening year",), ("opened in",)),
+    )
+    ALIAS_PROSE = {
+        "written by": "{s} was written by {v}.",
+        "authored": "{s} was authored by {v}.",
+        "painted by": "{s} was painted by {v}.",
+        "invented by": "{s} was invented by {v}.",
+        "made by": "{s} was made by {v}.",
+        "created by": "{s} was created by {v}.",
+        "situated": "{s} is situated at {v}.",
+        "located": "{s} is located at {v}.",
+        "river": "The river of {s} is {v}.",
+        "published": "{s} was published in {v}.",
+        "printed": "{s} was printed in {v}.",
+        "rendered in": "{s} was rendered in {v}.",
+        "executed in": "{s} was executed in {v}.",
+        "introduced": "{s} was introduced in {v}.",
+        "established": "{s} was established in {v}.",
+        "founded": "{s} was founded in {v}.",
+        "masterpiece": "The masterpiece of {s} is {v}.",
+        "masterwork": "The masterwork of {s} is {v}.",
+        "opened in": "{s} was opened in {v}.",
+        "born in": "{s} was born in {v}.",
+        "born in the year": "{s} was born in the year {v}.",
+    }
+
+    def surface_fact(subject, relation, value, domain, surface):
+        text = None if surface == relation else ALIAS_PROSE[surface].format(
+            s=subject, v=value)
+        return Fact(subject, relation, value, domain, text=text)
+
+    for fi, (a, b, q1_opts, ev1_opts, q2_opts, ev2_opts) in enumerate(SURFACE_FAMILIES):
+        for mi, mode in enumerate(SURFACE_MODES):
+            number = 1200 + fi * 10 + mi
+            label = token(number).capitalize()
+            start = f"Ulvexa {label} Archive Register"
+            if a == "waterway":
+                bridge = f"Brantflow {label} Run"
+            elif a == "location":
+                bridge = f"Ulveniq {label} Reach"
+            else:
+                bridge = f"Velquori {label}keeper"
+            if "year" in b:
+                final = str(1500 + number)
+            elif b == "medium":
+                final = "egg tempera on oak panel"
+            else:
+                final = f"Morvessa {label}haven"
+            row = Row(f"surface-{number:03d}-{mode}", "surface", mode,
+                      f"What is the {q2_opts[0]} of the {q1_opts[0]} of {start}?",
+                      start, bridge, final, (a, b), [])
+            row.surface_query = (q1_opts[0], q2_opts[0])
+            ev1_used, ev2_used = a, b
+            if mode == "ev_alias_hop1":
+                ev1_used = ev1_opts[0]
+            elif mode == "ev_alias_hop2":
+                if ev2_opts:
+                    ev2_used = ev2_opts[0]
+                else:
+                    ev1_used = ev1_opts[0]
+            elif mode == "ev_alias_both":
+                ev1_used = ev1_opts[0]
+                if ev2_opts:
+                    ev2_used = ev2_opts[0]
+            elif mode == "ev_alias_hop1_alt":
+                ev1_used = ev1_opts[1] if len(ev1_opts) > 1 else ev1_opts[0]
+            elif mode == "query_alias":
+                if len(q1_opts) > 1:
+                    row.surface_query = (q1_opts[1], q2_opts[0])
+                    row.query = (f"What is the {q2_opts[0]} of the "
+                                 f"{q1_opts[1]} of {start}?")
+                elif len(q2_opts) > 1:
+                    row.surface_query = (q1_opts[0], q2_opts[1])
+                    row.query = (f"What is the {q2_opts[1]} of the "
+                                 f"{q1_opts[0]} of {start}?")
+                else:
+                    ev1_used = ev1_opts[0]
+            elif mode == "unsupported_phrase":
+                # A phrase outside the relation ontology: must abstain,
+                # never infer a canonical relation from it. The query only
+                # expresses the terminal relation; the gold construction
+                # stays two-hop (surface_query/evidence unchanged).
+                row.query = (f"What is the {q2_opts[0]} of the "
+                             f"{q1_opts[0]}ship of {start}?")
+                row.relations = (b,)
+                row.status = "INSUFFICIENT_EVIDENCE"
+            elif mode in ("wrong_relation", "near_name_start",
+                          "near_name_bridge"):
+                if mode == "near_name_start":
+                    # Near-name start entity WITH a valid relation
+                    # paraphrase: exact identity must still dominate.
+                    ev1_used = ev1_opts[0]
+                elif mode == "near_name_bridge":
+                    if ev2_opts:
+                        ev2_used = ev2_opts[0]
+                    else:
+                        ev1_used = ev1_opts[0]
+                row.status = "INSUFFICIENT_EVIDENCE"
+            elif mode == "corroboration_alias":
+                alt = ev1_opts[1] if len(ev1_opts) > 1 else ev1_opts[0]
+                row.facts.append(Fact(start, a, bridge, "archives",
+                                      authority="GENERAL_REFERENCE",
+                                      text=ALIAS_PROSE[alt].format(s=start,
+                                                                   v=bridge)))
+            wrong = f"Ulvexa {label} Sigil"
+            facts = [surface_fact(start, a, bridge, DOMAINS[fi % 10], ev1_used),
+                     surface_fact(bridge, b, final, DOMAINS[(fi + 3) % 10],
+                                  ev2_used)]
+            if mode == "wrong_relation":
+                facts[1] = Fact(bridge, "emblem", wrong, DOMAINS[(fi + 3) % 10])
+                row.forbidden.append(wrong)
+            if mode == "near_name_start":
+                facts[0].subject = start + " Annex"
+            if mode == "near_name_bridge":
+                facts[1].subject = bridge + " Annex"
+            row.facts = facts + [f for f in row.facts]
+            row.surface_evidence = (ev1_used, ev2_used)
             rows.append(row)
     return tuple(rows)
 
