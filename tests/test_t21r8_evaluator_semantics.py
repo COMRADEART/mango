@@ -98,10 +98,18 @@ def test_qualification_rejects_an_unknown_conjunct() -> None:
         evaluator._check_conjunction(["unknown_conjunct"], raw)
 
 
-def test_qualification_is_not_an_evaluator_freeze() -> None:
-    assert not (OUT_DIR / "evaluator_freeze.json").exists()
-    assert not (OUT_DIR / "runtime_freeze.json").exists()
+def test_freeze_chain_state_matches_the_ordering_chain() -> None:
+    # Updated 2026-09-18 for the completed runtime + evaluator freeze
+    # (commit 385433b): the ordering chain now requires runtime_freeze.json
+    # and evaluator_freeze.json to EXIST, while HOLDOUT_FROZEN and every
+    # exposure artifact must still be absent.
+    assert (OUT_DIR / "runtime_freeze.json").exists()
+    assert (OUT_DIR / "evaluator_freeze.json").exists()
     assert not (OUT_DIR / "HOLDOUT_FROZEN").exists()
+    assert not (OUT_DIR / "holdout_manifest.json").exists()
+    for artifact in ("evaluation_run_ledger.json", "raw_results.jsonl",
+                     "holdout_results.json"):
+        assert not (OUT_DIR / artifact).exists()
 
 
 def test_official_command_is_preregistered_without_execution() -> None:
