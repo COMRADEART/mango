@@ -1,0 +1,136 @@
+{
+  "frozen_hashes": {
+    "builder_audit_scripts_sha256": {
+      "t21r8_blindness_audit.py": "7e2ad234ef8d567747c913db2d7f04c9480fa1dccd61dfb3454f36ad9dc6fd03",
+      "t21r8_build_suites.py": "0eab1b113d799a5c361d8c5f6932cdd54758d8e60b30da2f98c5de4418e4626d",
+      "t21r8_construction_audit.py": "a6d8d89479945e3b71f724abc8ec76da7b3b9a59b13ffc970d2767763da40e43",
+      "t21r8_construction_gate.py": "287f93002221c89414c7f081f5668c5f753108eaeef67778b1aef0bf03c6f6e6",
+      "t21r8_static_gold_audit.py": "2bb7cdcd224ac44cf99cfa777f5f41b0fd837482d8eccdd7d372695c8337e06d",
+      "t21r8_uniqueness.py": "7f39f5846ca0226cab428f634bba0cefe3394858e489d45e23e03e3f91b709ba",
+      "t21r8_world.py": "9ec80373e0d5df78568ea5f84ca48bc9f087d3d152f0ab9b38f9ce52e8fa71fc"
+    },
+    "construction_contract_sha256": "9a07a4b2f23472126c981bd52ff6133a0a77b0ba21e4afa5ad3c377c1bf6fb9e",
+    "evaluator_path": "scripts/t21r8_run_eval.py",
+    "evaluator_source_sha256": "6b900eed69b7eea06ebde1cc6d87612b12b6e20e7391fa51999153dc776f8828",
+    "floors_sha256": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+    "official_command": "python scripts/t21r8_official_eval.py",
+    "official_runner_path": "scripts/t21r8_official_eval.py",
+    "official_runner_sha256": "264f69fbd9126b375944046ef7852c8a4234e4959389f96d6ddaafd6e7b486e9",
+    "qualification_artifact_sha256": "3b2dbbf127df4e7e52b066ce52f66d266754f69f55cc09d4e12311ca8c1dcafe",
+    "raw_results_schema_sha256": "e1f1ee5f15860fc4921bcb63e4cef27936f747c20d022b26d611fb5d959d6b2a",
+    "runtime_freeze_sha256": "ef5e15de897ccff1e18c6ece650fd23ec0671e3b20edb752de1e7c9a19cdea93",
+    "suite_minimums_sha256": "175f32dfa035000f88255ee4392c85151783f0b9bc4a05d77394483c826ae36e",
+    "validation_contract_sha256": "60a69df9e783076df31ab3bcb40ebe9b1caccdb1e2ab705858d9606ac5398ebe",
+    "zero_tolerance_note_sha256": "3e501761aac6ec2554b475ecd6f9544847408ed638b796d6aaf4efaaca92d859"
+  },
+  "milestone": "T21R8 evaluator freeze (before blind-world construction)",
+  "ordering": "runtime freeze < evaluator freeze < blind-world generation < static gold audit < uniqueness audit < blindness audit < holdout manifest < HOLDOUT_FROZEN < official one-shot evaluation",
+  "qualification_cases": {
+    "all_cases_pass": true,
+    "all_metric_paths_exercised": true,
+    "n_cases": 62,
+    "n_passed": 62,
+    "uncaught_exceptions": 0
+  },
+  "qualification_recorded_at": "2026-09-18T02:36:13.338644+00:00",
+  "raw_results_schema": {
+    "raw_answer_fields": [
+      "case_id",
+      "suite",
+      "mode",
+      "category",
+      "query",
+      "status",
+      "expected_status",
+      "status_match",
+      "answer",
+      "expected_answer_contains",
+      "citations",
+      "n_citations",
+      "citation_report_ok",
+      "citation_verdicts",
+      "claim_counts",
+      "claim_verdicts",
+      "claims_supported",
+      "required_sources",
+      "required_sources_ok",
+      "required_domains",
+      "required_domains_ok",
+      "cited_source_domains",
+      "contains_ok",
+      "citations_ok",
+      "counters",
+      "counters_nonzero",
+      "correct",
+      "decision_trace",
+      "query_injection",
+      "source_injection",
+      "coverage",
+      "n_evidence_items",
+      "evidence_chunk_ids",
+      "conflicts_surfaced",
+      "temporal_action",
+      "snapshot_date",
+      "scoring_semantics_sha256"
+    ],
+    "raw_retrieval_fields": [
+      "case_id",
+      "suite",
+      "mode",
+      "category",
+      "query",
+      "gold_chunk_id",
+      "rank",
+      "n_returned",
+      "deduped_chunk_ids",
+      "correct",
+      "counters",
+      "counters_nonzero"
+    ]
+  },
+  "recorded_at": "2026-09-18T10:58:12.482609+00:00",
+  "rule": "After this file exists the evaluator, the official runner, the scoring semantics, the contracts, and every builder/audit script are immutable. If a defect is discovered before HOLDOUT_FROZEN: STOP FOR CHATGPT REVIEW; no silent repair after freeze.",
+  "runtime_freeze_recorded_at": "2026-09-18T10:58:09.967666+00:00",
+  "scoring_semantics": {
+    "answer_row_correctness": {
+      "applies_when": "gold expect_status is ANSWER",
+      "conjunction": [
+        "status_match",
+        "contains_ok",
+        "citations_ok",
+        "required_sources_ok",
+        "required_domains_ok",
+        "claims_supported",
+        "zero_tolerance_all_zero"
+      ],
+      "required_domains_ok": {
+        "applies_when": "gold expect_status is ANSWER and required_domains is nonempty",
+        "evidence_scope": "sources_actually_cited",
+        "normalization": "strip_casefold_whitespace_hyphen_to_underscore",
+        "participates_in_correctness": true,
+        "retrieved_but_uncited_source_policy": "a retrieved-but-uncited source cannot satisfy a required domain",
+        "source_field": "KnowledgeSourceRecord.topic_tags",
+        "unknown_domain_policy": "evaluator_invalid"
+      },
+      "required_sources_ok": {
+        "applies_when": "gold expect_status is ANSWER and required_sources is nonempty",
+        "evidence_scope": "sources_actually_cited",
+        "path_semantics": "PATH_REQUIRED_SOURCE sources prove the gold path edges; OPTIONAL_CORROBORATION sources may be cited in addition but never substitute for a path-required source"
+      }
+    },
+    "citation_denominator": "all gold ANSWER rows",
+    "non_answer_row_correctness": {
+      "answer_only_fields": "contains_ok, citations_ok, required_sources_ok, required_domains_ok, and claims_supported are not applicable",
+      "applies_when": "gold expect_status is not ANSWER",
+      "conjunction": [
+        "status_match",
+        "zero_tolerance_all_zero"
+      ]
+    },
+    "source_diversity_denominator": "multihop and crossdomain rows declaring at least two required sources",
+    "unknown_or_unresolvable_information_policy": "unknown or unresolvable domain/source information is EVALUATOR INVALID, never an automatic PASS",
+    "version": "t21r8-scoring-v1",
+    "zero_tolerance_policy": "any nonzero counter makes the row incorrect"
+  },
+  "scoring_semantics_sha256": "47ff909a2f7db41334833faba195d777d6192c30bfa73b521f3c8b793be8ccbd"
+}

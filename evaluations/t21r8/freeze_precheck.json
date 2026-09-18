@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "command": "python -m pytest",
+  "tested_head": "48766dfcbcd44bdf5fe274ce1e1959984a7cc818",
+  "tested_branch": "t21r8-knowledge-rag-multisource-closure",
+  "collected": 2931,
+  "passed": 2929,
+  "skipped": 2,
+  "failed": 0,
+  "errors": 0,
+  "exit_code": 0,
+  "timestamp": "2026-09-18T10:58:02Z",
+  "states": {
+    "KNOWLEDGE_RAG": "EXPERIMENTAL",
+    "Executive_Router": "EXPERIMENTAL",
+    "T21": "OPEN",
+    "T22": "BLOCKED"
+  },
+  "blind_artifacts_absent": true
+}

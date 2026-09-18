@@ -1,0 +1,49 @@
+{
+  "executive_router_sha256": "dbc7fbd0d19688d1a220e27d18484f437f1adde3b24b4b5ba4fb6eb8ac246c10",
+  "executive_router_status": "EXPERIMENTAL (unchanged)",
+  "freeze_precheck_sha256": "ecfe2b97edc92dcd765506b5a51dadbb267c9d8948f7ad0cc8d90377c300c619",
+  "git_head": "48766dfcbcd44bdf5fe274ce1e1959984a7cc818",
+  "git_tree_sha": "27a407552f9f0d6509ec6e6990418a8e4de5fe40",
+  "holdout_construction_contract_sha256": "9a07a4b2f23472126c981bd52ff6133a0a77b0ba21e4afa5ad3c377c1bf6fb9e",
+  "knowledge_rag_registry": {
+    "availability": "EXPERIMENTAL",
+    "counts": {
+      "ACTIVE": 11,
+      "EXPERIMENTAL": 1
+    },
+    "registry_sha256": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+    "skills_py_sha256_lf": "66f2d1e5b3137e6a3e4bd5477dee7a5417585f7a9b543c98419eb820973522ad"
+  },
+  "lineage": {
+    "base_remediation": "4242e1bd7bb74c9f3f6d52f70fb04788e2e6d481",
+    "canonical_historical_base": "bffe86b67107ba2a097aa3030acc17e687d84d25",
+    "forensic": "2626f4e9ec7a83cd40ad7cd1b80bdc34296748dd",
+    "preregistration": "f804a5706025a173e40879be5629e8a74dc585ec",
+    "preregistration_integrity": "40696a066e091d74f5d443837de4b0c9d4c2de3c",
+    "qualification": "ee2270246fd374143b90d57051976bf63c3e8d86",
+    "repair": "fc633540e84a8c11d287a13ea878333f1eba1ed8"
+  },
+  "milestone": "T21R8 runtime freeze (before blind-world construction)",
+  "official_runner_sha256": "264f69fbd9126b375944046ef7852c8a4234e4959389f96d6ddaafd6e7b486e9",
+  "promotion_policy": "KNOWLEDGE_RAG remains EXPERIMENTAL until the one-shot T21R8 blind holdout passes every preregistered floor.",
+  "recorded_at": "2026-09-18T10:58:09.967666+00:00",
+  "runtime_composites": {
+    "code_runtime": "b7f4468426fe275feb1a0c351660211d510f47da14ae453d1bc2d338d5bc9502",
+    "correction_firewall": "7a307f6678d6afdc9d469c31b898ba4f4cc9e34d0df4c9e3e7770756e02c36e1",
+    "document_runtime": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+    "executive_router": "dbc7fbd0d19688d1a220e27d18484f437f1adde3b24b4b5ba4fb6eb8ac246c10",
+    "executive_skills": "f758b52b841130b34c85ec25e72037020a9e90237627fb3f8a673353e02a8125",
+    "historical_write_guard": "03209397fd9ebb0998e318d42563664b88852d1da6c89e799e5e60b2e366fa5f",
+    "knowledge_runtime": "9421f1ba39a706258cc8e236b927ae944a3640667131cff289cc70b426f42399",
+    "memory_runtime": "2f6eb6da3ebfc612c71d21346e204cb29e713042ed39f926a155481fb52f5043",
+    "orchestration_runtime": "57b1c4ad8cd71829b78d5baab20c62617333718be39a96710b0084004561ae45",
+    "planning_runtime": "d045885cefcd097ceffc6588b5e6b00a1072cfaa08526ba9e4070bbdc041528c",
+    "scicomp_runtime": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "science_rag_runtime": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "security_layer": "3974b33fcc7bf1d3b9d755cf99963f88e0a4080ba90300315867424bad7c900f",
+    "web_research_runtime": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4"
+  },
+  "scoring_semantics_file_sha256": "d96dff6536a69d47696efa8b0c87b50c5bd969492085e8458e6bb809bd290751",
+  "t15r_canonical_blob": "fba2437f78633884bd31965d78a4250bd1ca893c",
+  "validation_contract_sha256": "60a69df9e783076df31ab3bcb40ebe9b1caccdb1e2ab705858d9606ac5398ebe"
+}
