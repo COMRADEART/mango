@@ -48,7 +48,7 @@ EXPECTED_RUNTIME_FREEZE_SHA256 = (
     "ef5e15de897ccff1e18c6ece650fd23ec0671e3b20edb752de1e7c9a19cdea93"
 )
 EXPECTED_EVALUATOR_FREEZE_SHA256 = (
-    "9467c322b873fe01ecd5d619fc45291245800aa9eb6fee692592d346f7b60c3c"
+    "44b0642a5cac58fb79038663c0a7a4cdd0c85009ca79ddea578f72b643da5ffd"
 )
 EXPECTED_RUNTIME_HASH_HELPER_SHA256 = (
     "58eeccc72104b2ec79b5ffa7594c075ca1e5c101375b875c176202c8d58a4e24"
@@ -366,6 +366,7 @@ def build_freeze_inputs(root: Path) -> dict:
     paths = {
         "runtime_freeze": "evaluations/t21r8/runtime_freeze.json",
         "evaluator_freeze": "evaluations/t21r8/evaluator_freeze.json",
+        "runtime_hash_helper": "scripts/t21r4_freeze_runtime.py",
         "validation_contract": "evaluations/t21r8/validation_contract.json",
         "construction_contract":
             "evaluations/t21r8/holdout_construction_contract.json",
@@ -408,6 +409,18 @@ def main(root: Path = ROOT) -> int:
             "T21R8_HOLDOUT_SEAL_ENTRY_BLOCKED: contract suite minimums "
             "differ from the preregistered exact holdout shape")
     total = require_physical_holdout(root, suite_records)
+    manifest_suites = {
+        record["suite_id"]: {"short_name": short_name, **record}
+        for short_name, record in suite_records.items()
+    }
+    expected_manifest_suite_ids = {
+        rule["suite_id"]
+        for rule in contract["suite_target_minimums"].values()
+    }
+    if set(manifest_suites) != expected_manifest_suite_ids:
+        raise SystemExit(
+            "T21R8_HOLDOUT_SEAL_ENTRY_BLOCKED: manifest suite keys differ "
+            "from the full suite IDs in the construction contract")
 
     document = {
         "milestone": "T21R8 blind holdout manifest (sealed before exposure)",
@@ -419,7 +432,7 @@ def main(root: Path = ROOT) -> int:
         },
         "freeze_inputs": build_freeze_inputs(root),
         "corpus": corpus_hashes,
-        "suites": suite_records,
+        "suites": manifest_suites,
         "one_shot_rule": ONE_SHOT_RULE,
         "official_command": OFFICIAL_COMMAND,
         "runtime_execution_count_before_freeze": 0,

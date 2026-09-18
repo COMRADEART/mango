@@ -28,6 +28,8 @@ import t21r8_run_eval as evaluator  # noqa: E402
 
 
 EVALUATOR_SHA = hashlib.sha256(oe.EVALUATOR_PATH.read_bytes()).hexdigest()
+REAL_EVALUATOR_FREEZE_PATH = (
+    ROOT / "evaluations" / "t21r8" / "evaluator_freeze.json")
 
 
 class _StubSource:
@@ -114,6 +116,9 @@ def _build_fixture(tmp_path: Path, monkeypatch) -> oe.Paths:
     })
     _write_json(paths.evaluator_freeze_path, {
         "evaluator_source_sha256": EVALUATOR_SHA,
+        "frozen_hashes": {
+            "evaluator_source_sha256": EVALUATOR_SHA,
+        },
         "scoring_semantics": evaluator.SCORING_SEMANTICS,
         "scoring_semantics_sha256": evaluator.scoring_semantics_sha256(),
     })
@@ -133,14 +138,26 @@ def _assert_no_exposure_artifacts(paths: oe.Paths) -> None:
         assert not getattr(paths, name).exists(), name
 
 
-def test_preflight_passes_and_writes_no_exposure_artifact(
+def test_real_schema_preflight_passes_and_writes_no_exposure_artifact(
     tmp_path: Path, monkeypatch,
 ) -> None:
     paths = _build_fixture(tmp_path, monkeypatch)
+    evaluator_freeze = json.loads(
+        paths.evaluator_freeze_path.read_text(encoding="utf-8"))
+    assert evaluator_freeze["evaluator_source_sha256"] == (
+        evaluator_freeze["frozen_hashes"]["evaluator_source_sha256"])
     manifest, corpus = oe._preflight(paths)
     assert set(manifest["suites"]) == set(evaluator.SUITES)
     assert isinstance(corpus, _StubCorpus)
     _assert_no_exposure_artifacts(paths)
+
+
+def test_committed_evaluator_freeze_compatibility_alias_matches() -> None:
+    evaluator_freeze = json.loads(
+        REAL_EVALUATOR_FREEZE_PATH.read_text(encoding="utf-8"))
+    assert evaluator_freeze["evaluator_source_sha256"] == (
+        evaluator_freeze["frozen_hashes"]["evaluator_source_sha256"])
+    assert evaluator_freeze["evaluator_source_sha256"] == EVALUATOR_SHA
 
 
 def test_missing_frozen_holdout_refuses_before_any_artifact(

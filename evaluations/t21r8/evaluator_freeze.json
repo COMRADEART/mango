@@ -1,4 +1,15 @@
 {
+  "compatibility_amendment": {
+    "blind_data_existed_at_amendment": false,
+    "evaluator_source_changed": false,
+    "official_runner_changed": false,
+    "official_runtime_exposures": 0,
+    "previous_evaluator_freeze_sha256": "9467c322b873fe01ecd5d619fc45291245800aa9eb6fee692592d346f7b60c3c",
+    "qualification_changed": false,
+    "reason": "pre-holdout official-runner schema compatibility alias",
+    "scoring_semantics_changed": false
+  },
+  "evaluator_source_sha256": "6b900eed69b7eea06ebde1cc6d87612b12b6e20e7391fa51999153dc776f8828",
   "frozen_hashes": {
     "builder_audit_scripts_sha256": {
       "t21r8_blindness_audit.py": "7e2ad234ef8d567747c913db2d7f04c9480fa1dccd61dfb3454f36ad9dc6fd03",

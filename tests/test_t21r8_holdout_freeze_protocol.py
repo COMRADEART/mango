@@ -290,6 +290,17 @@ def test_root_anchor_exact_frozen_artifacts_and_helper_pass() -> None:
     assert "frozen_hashes" in evaluator_freeze
 
 
+def test_root_anchor_evaluator_source_alias_matches_frozen_hash() -> None:
+    # Compatibility control: the frozen runner's top-level lookup and the
+    # canonical nested evaluator identity must authorize the same bytes.
+    path = ROOT / "evaluations" / "t21r8" / "evaluator_freeze.json"
+    evaluator_freeze = json.loads(path.read_text(encoding="utf-8"))
+    assert evaluator_freeze["evaluator_source_sha256"] == (
+        evaluator_freeze["frozen_hashes"]["evaluator_source_sha256"])
+    assert evaluator_freeze["evaluator_source_sha256"] == _sha(
+        ROOT / "scripts" / "t21r8_run_eval.py")
+
+
 def test_root_anchor_refuses_modified_evaluator_freeze_bytes(
     tmp_path, monkeypatch,
 ) -> None:
@@ -706,7 +717,8 @@ def test_seal_writes_manifest_and_marker_last(tmp_path, monkeypatch) -> None:
         "runtime_freeze"]["sha256"]
 
     freeze_inputs = manifest["freeze_inputs"]
-    for name in ("runtime_freeze", "evaluator_freeze", "validation_contract",
+    for name in ("runtime_freeze", "evaluator_freeze",
+                 "runtime_hash_helper", "validation_contract",
                  "construction_contract", "scoring_semantics",
                  "evaluator_qualification", "official_runner", "evaluator",
                  "static_gold_audit", "holdout_uniqueness",
@@ -714,15 +726,20 @@ def test_seal_writes_manifest_and_marker_last(tmp_path, monkeypatch) -> None:
                  *(f"builder_{script}" for script in seal.BUILDER_SCRIPTS)):
         entry = freeze_inputs[name]
         assert entry["sha256"] == _sha(root / entry["path"]), name
-    assert len(freeze_inputs) == 12 + len(seal.BUILDER_SCRIPTS)
+    helper = freeze_inputs["runtime_hash_helper"]
+    assert helper["path"] == "scripts/t21r4_freeze_runtime.py"
+    assert helper["sha256"] == seal.EXPECTED_RUNTIME_HASH_HELPER_SHA256
+    assert len(freeze_inputs) == 13 + len(seal.BUILDER_SCRIPTS)
 
     assert set(manifest["corpus"]) == set(seal.CORPUS_FILES)
     for name, entry in manifest["corpus"].items():
         assert entry["sha256"] == _sha(root / entry["path"])
 
-    assert len(manifest["suites"]) == 8
+    expected_suite_ids = {suite_id for _short, suite_id, _count in SUITES}
+    assert set(manifest["suites"]) == expected_suite_ids
     for short, suite_id, count in SUITES:
-        record = manifest["suites"][short]
+        record = manifest["suites"][suite_id]
+        assert record["short_name"] == short
         assert record["suite_id"] == suite_id
         assert record["exact_rows"] == count
         assert record["rows"] == count
