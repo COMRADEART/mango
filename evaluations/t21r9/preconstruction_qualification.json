@@ -4,45 +4,45 @@
     "binding_note": "Git identity is the audited base; the complete uncommitted qualification overlay is bound by the following byte hashes.",
     "contract_sha256": {
       "construction": "4ab3a6fa63faee29ac22376375ffb6f3483a52dbd7d27e6b016a8d4590fdbd61",
-      "preconstruction": "8a80c01186387b3115bedc755ade87504e623588f5a43419e57347c39d598028",
+      "preconstruction": "749f78b9912a26d562662e6b3a819f390ed1682a839761e4341689b688e6d627",
       "scoring_semantics": "7eae2fba0b5585ab83a2d9911a7aec276e4bc975fb806cfcc795429c994e8df3",
       "validation": "3d8776ab6f9e43860a11e87241f3f4d87e0ce5a1f285c0c31e6a5d565501b679"
     },
-    "preconstruction_script_sha256": "c74d24e54dcef46783e976b60f3b46e0ec2ca441ac30549527bb7c79605e2146",
+    "preconstruction_script_sha256": "3cc6111b2d3c47f6fed7b9b1867009503d6e014eee4c15f4ea12db4c782536df",
     "prior_exclusion_fingerprint_sha256": "57bb1d04f688929fc3b7a5b70c41e7406c3483fc1608f0dcebde7121e9b450ac",
-    "qualified_overlay_root_sha256": "88e83013882458c763670f30c7c37842c0d619945f88febc7a936fbc384051b5",
+    "qualified_overlay_root_sha256": "0781fce56bd2d5a8639eb83d1690e3e8ea599c9318305842847d04198a502900",
     "test_results": {
       "focused": {
-        "collected": 30,
+        "collected": 38,
         "errors": 0,
         "exit": 0,
         "failed": 0,
-        "passed": 30,
+        "passed": 38,
         "skipped": 0
       },
       "full": {
-        "collected": 3024,
+        "collected": 3032,
         "errors": 0,
         "exit": 0,
         "failed": 0,
-        "passed": 3022,
+        "passed": 3030,
         "skipped": 2
       }
     },
     "test_sha256": {
-      "full_preregistration": "076c1aca1e9267154ce6a183cd9972c95df90f921150a9d2370155446b22bb3b",
-      "semantic_preconstruction": "f6148f54188f8a8e642d85a9f62d8335a7d03cb799ebee576b841581282aa350"
+      "full_preregistration": "afb21668d12204cbae403cd52dfb4547db20ed4c7b172a68d657b31a42f85cc3",
+      "semantic_preconstruction": "ff343e6b4ae2f0ed7342f3ff78911fd7d921d07bd08698b884aa8465695c03ea"
     },
-    "tested_git_head": "a485fe6217749d48887e31b733a9cbc4f6f9c8b9",
-    "tested_git_tree_sha": "10ef4eee5bdb85a64298d1470f4a070b340e2bd1",
+    "tested_git_head": "e0fe761284078af84ea89e441d7ce29be4bb1fff",
+    "tested_git_tree_sha": "8a17f6f0446c3094ba2777977143fa00c114b054",
     "tooling_sha256": {
       "blindness": "285983caf5e3abc871f62f637566cf00d4b9373b05a608fa13005a4762c9e854",
       "construction_audit": "51b800cd5ab93fbb62bd0241cbfd26aebae153506a20c9efc5aa95eaa18ffba8",
       "construction_gate": "7ff217a483ead2c9006c18d303c4c36d0b3f49e26379ab890211c4018c1d3306",
       "evaluator": "76d57d6ee50d6ee179ac7598222c0ad6d7e1f91e92305f71244720fce9c58ee9",
-      "official_runner": "0c8f83818997aa72c7e348aa7e62cad69ade81d4affe2d771d1e5ca4b8ee85bc",
+      "official_runner": "f7c01c95678c12f593699ad5e160522c6e09b48e964a1900d11a71531d81bdbb",
       "retrieval_mirror": "4be5b81d183cb5877e857d802a7f2d77e38415431994de92cc6124c7cde00fcb",
-      "seal": "21dfa22ce1deb21c2c4c34919d9fa8aad8bcbf054d967b8daae1fe19f5d1c39f",
+      "seal": "b6cbbe6de8b07585f268a3414c3876a1dda21758ed631792962ff2a15adf87de",
       "static_gold_audit": "1a70a7a5545bc9d52f7c94f857a4366e5a2bb53a6260c8dbc962ffd5ed1395d9",
       "static_semantics": "557ee34c54c0cd65c11d76a8485fb0bd69d0ed8125b70cd4e1d207bc7d2fdcf5",
       "suite_builder": "041888d4f604b5dba5e0c47c1b901f993e855a807e1d64db6b64dab022aab18b",
@@ -395,11 +395,29 @@
           "expected": "FAIL",
           "name": "suite_count_mismatch",
           "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "runtime_component_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "evaluator_component_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "freeze_file_component_map_tamper",
+          "passed": true
         }
       ],
-      "passed": 9,
+      "passed": 12,
       "status": "PASS",
-      "total": 9
+      "total": 12
     },
     "spoof": {
       "controls": [

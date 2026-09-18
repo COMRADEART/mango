@@ -89,8 +89,15 @@
     "manifest_hash_mismatch",
     "builder_hash_drift",
     "audit_hash_drift",
-    "freeze_root_drift"
+    "freeze_root_drift",
+    "runtime_component_hash_drift",
+    "evaluator_component_hash_drift",
+    "freeze_file_component_map_tamper"
   ],
+  "root_of_trust": {
+    "frozen_component_verification": "Both runtime_freeze.json and evaluator_freeze.json must be mechanically re-hashed against every component_sha256 entry at seal (build_manifest) and at official preflight; any drift, missing file, non-FROZEN status, prior runtime execution, or empty component map refuses with no fallback and no rewrite.",
+    "atomic_one_shot_ledger": "The official runner's started ledger is created with exclusive semantics (O_CREAT|O_EXCL); a second invocation that passes preflight must lose ledger creation and refuse to execute any holdout row; complete/failed updates may overwrite only after ownership is established, and a failed run never deletes the ledger."
+  },
   "states": {
     "KNOWLEDGE_RAG": "EXPERIMENTAL",
     "Executive Router": "EXPERIMENTAL",

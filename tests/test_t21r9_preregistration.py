@@ -228,11 +228,45 @@ def test_real_preflight_negative_controls_cover_new_audit_gaps(tmp_path) \
                                                       rows)
     seal.seal(root)
     controls = qualification.real_protocol_seal_controls(root)
-    assert len(controls) == 9
+    assert len(controls) == 12
     assert all(control["passed"] for control in controls)
     assert {control["name"] for control in controls} >= {
         "official_runner_schema_mismatch", "suite_id_mismatch",
-        "evaluator_hash_mismatch"}
+        "evaluator_hash_mismatch", "runtime_component_hash_drift",
+        "evaluator_component_hash_drift", "freeze_file_component_map_tamper"}
+
+
+def test_frozen_component_verifier_refuses_drift_and_missing_components(
+        tmp_path) -> None:
+    freeze_path = OUT / "runtime_freeze.json"
+    freeze = _json(freeze_path)
+    assert seal.verify_component_freeze(
+        ROOT, freeze_path, "T21R9_RUNTIME_FREEZE")["status"] == "VERIFIED"
+
+    with pytest.raises(ValueError, match="frozen component hash mismatch"):
+        drifted = copy.deepcopy(freeze)
+        drifted["component_sha256"][next(iter(drifted[
+            "component_sha256"]))] = "0" * 64
+        drifted_path = tmp_path / "drifted-runtime_freeze.json"
+        drifted_path.write_text(json.dumps(drifted), encoding="utf-8")
+        seal.verify_component_freeze(ROOT, drifted_path,
+                                     "T21R9_RUNTIME_FREEZE")
+
+    for mutation, message in (
+            ({"artifact": "WRONG"}, "identity mismatch"),
+            ({"status": "UNFROZEN"}, "not FROZEN"),
+            ({"runtime_execution_count": 1}, "runtime execution"),
+            ({"component_sha256": {}}, "no component_sha256 map"),
+            ({"component_sha256": {"src/missing.py": "0" * 64}},
+             "frozen component missing")):
+        bad = copy.deepcopy(freeze)
+        bad.update(mutation)
+        bad_path = tmp_path / f"bad-{mutation['artifact'] if 'artifact' in mutation else message.replace(' ', '-')}.json"
+        bad_path.write_text(json.dumps(bad), encoding="utf-8")
+        with pytest.raises(ValueError, match=message.replace(
+                " ", chr(92) + " ")):
+            seal.verify_component_freeze(ROOT, bad_path,
+                                         "T21R9_RUNTIME_FREEZE")
 
 
 def test_runtime_and_evaluator_freezes_bind_current_components() -> None:
@@ -245,6 +279,73 @@ def test_runtime_and_evaluator_freezes_bind_current_components() -> None:
         assert freeze["runtime_execution_count"] == 0
         for relative, expected in freeze["component_sha256"].items():
             assert _sha(ROOT / relative) == expected
+
+
+def _sealed_official_paths(tmp_path):
+    sources, chunks, rows = _material()
+    root = tmp_path / "synthetic-repository"
+    qualification.materialize_real_protocol_candidate(root, sources, chunks,
+                                                      rows)
+    assert seal.seal(root)["status"] == "PASS"
+    return root, official.build_paths(root)
+
+
+def test_started_ledger_creation_is_exclusive_and_second_attempt_refused(
+        tmp_path) -> None:
+    _root, paths = _sealed_official_paths(tmp_path)
+    assert not paths.ledger.exists()
+    official._write_ledger(paths, "started")
+    first = paths.ledger.read_text(encoding="utf-8")
+    assert json.loads(first)["phase"] == "started"
+    with pytest.raises(FileExistsError):
+        official._write_ledger(paths, "started")
+    assert paths.ledger.read_text(encoding="utf-8") == first
+    assert json.loads(paths.ledger.read_text(
+        encoding="utf-8"))["phase"] == "started"
+
+
+@pytest.mark.parametrize("phase,error", [
+    ("started", None), ("failed", "synthetic failure"), ("complete", None)])
+def test_existing_ledger_refuses_official_preflight(
+        tmp_path, phase, error) -> None:
+    _root, paths = _sealed_official_paths(tmp_path)
+    official._write_ledger(paths, phase, error)
+    report = official._preflight(paths)
+    assert report["status"] == "FAIL"
+    assert any("evaluation_run_ledger.json" in defect
+               for defect in report["defects"])
+    assert report["runtime_execution_count"] == 0
+
+
+@pytest.mark.parametrize("name", ["raw_results.jsonl", "holdout_results.json"])
+def test_existing_results_artifact_refuses_official_preflight(
+        tmp_path, name) -> None:
+    _root, paths = _sealed_official_paths(tmp_path)
+    (paths.out / name).write_text("", encoding="utf-8")
+    report = official._preflight(paths)
+    assert report["status"] == "FAIL"
+    assert any(name in defect for defect in report["defects"])
+
+
+def test_failed_evaluation_keeps_ledger_and_blocks_rerun(
+        tmp_path, monkeypatch) -> None:
+    _root, paths = _sealed_official_paths(tmp_path)
+
+    def forced_failure(*_args, **_kwargs):
+        raise RuntimeError("synthetic forced failure")
+
+    monkeypatch.setattr(official.evaluator, "evaluate", forced_failure)
+    monkeypatch.setattr("sciencemath.knowledge.corpus.load_corpus",
+                        lambda *_args, **_kwargs: None)
+    with pytest.raises(RuntimeError, match="synthetic forced failure"):
+        official.execute(paths)
+    assert paths.ledger.exists()
+    ledger = json.loads(paths.ledger.read_text(encoding="utf-8"))
+    assert ledger["phase"] == "failed"
+    assert "synthetic forced failure" in ledger["error"]
+    assert official._preflight(paths)["status"] == "FAIL"
+    with pytest.raises(SystemExit):
+        official.execute(paths)
 
 
 def test_qualification_binds_all_real_tooling_contracts_and_fingerprints() \

@@ -34,6 +34,10 @@ EVALUATION_INPUTS = (
     "preconstruction_qualification.json", "prior_exclusion_fingerprints.json",
     "runtime_freeze.json", "evaluator_freeze.json",
 )
+FROZEN_ARTIFACTS = (
+    ("runtime_freeze.json", "T21R9_RUNTIME_FREEZE"),
+    ("evaluator_freeze.json", "T21R9_EVALUATOR_FREEZE"),
+)
 
 
 def _sha(path: Path) -> str:
@@ -56,8 +60,52 @@ def _paths(root: Path) -> tuple[Path, Path, Path]:
     return out, corpus, suites
 
 
+def verify_component_freeze(root: Path, freeze_path: Path, artifact: str) -> \
+        dict:
+    """Re-hash every frozen component listed in a freeze artifact.
+
+    Refuses (raises ValueError) on any drift, missing component, wrong
+    artifact identity, non-frozen status, prior runtime execution, or an
+    empty component map. There is no fallback and no rewriting.
+    """
+    freeze = _json(freeze_path)
+    if freeze.get("artifact") != artifact:
+        raise ValueError(f"frozen artifact identity mismatch: {freeze_path.name}")
+    if freeze.get("status") != "FROZEN":
+        raise ValueError(f"frozen artifact is not FROZEN: {freeze_path.name}")
+    if freeze.get("runtime_execution_count") != 0:
+        raise ValueError(f"frozen artifact records runtime execution: "
+                         f"{freeze_path.name}")
+    components = freeze.get("component_sha256")
+    if not isinstance(components, dict) or not components:
+        raise ValueError(f"frozen artifact has no component_sha256 map: "
+                         f"{freeze_path.name}")
+    for relative, expected in components.items():
+        if not isinstance(expected, str) or len(expected) != 64:
+            raise ValueError(f"frozen component entry malformed: {relative}")
+        path = root / relative
+        if not path.is_file():
+            raise ValueError(f"frozen component missing: {relative}")
+        if _sha(path) != expected:
+            raise ValueError(f"frozen component hash mismatch: {relative}")
+    return {"artifact": artifact, "freeze": freeze_path.name,
+            "verified_components": len(components), "status": "VERIFIED"}
+
+
+def verify_all_component_freezes(root: Path, out: Path | None = None) -> dict:
+    """Verify every frozen component of both runtime and evaluator freezes."""
+    out = out if out is not None else _paths(root)[0]
+    results = [verify_component_freeze(root, out / name, artifact)
+               for name, artifact in FROZEN_ARTIFACTS]
+    return {"status": "VERIFIED",
+            "verified_components": sum(result["verified_components"]
+                                       for result in results),
+            "freezes": results, "runtime_execution_count": 0}
+
+
 def build_manifest(root: Path) -> dict:
     out, corpus, suites = _paths(root)
+    verify_all_component_freezes(root, out)
     for name in EXPOSURE_FILES:
         if (out / name).exists():
             raise ValueError(f"one-shot exposure artifact already exists: {name}")

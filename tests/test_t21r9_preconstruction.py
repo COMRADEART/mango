@@ -180,8 +180,8 @@ def test_end_to_end_nonblind_miniature_and_seal_controls_pass() -> None:
         "sources": 5, "chunks": 14, "world_rows": 19, "suite_rows": 8}
     assert all(status == "PASS" for status in report["stages"].values())
     assert report["runtime_rows_executed"] == 0
-    assert report["controls"]["seal_preflight"]["passed"] == 9
-    assert report["controls"]["seal_preflight"]["total"] == 9
+    assert report["controls"]["seal_preflight"]["passed"] == 12
+    assert report["controls"]["seal_preflight"]["total"] == 12
 
 
 def test_every_real_r9_holdout_and_exposure_path_remains_absent() -> None:

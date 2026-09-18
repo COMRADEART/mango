@@ -683,6 +683,24 @@ def synthetic_rows_by_real_suite(rows: list[dict]) -> dict[str, list[dict]]:
             for suite_id, index in zip(real_official.evaluator.SUITES, order)}
 
 
+def _frozen_component_copies(freeze_path: Path, root: Path) -> dict[str, str]:
+    """Materialize each frozen component in the candidate and hash it.
+
+    Components already present in the candidate (for example the
+    miniature-adjusted construction contract) keep their candidate bytes;
+    only missing components are copied from the repository.
+    """
+    freeze = _json(freeze_path)
+    components: dict[str, str] = {}
+    for relative in freeze["component_sha256"]:
+        target = root / relative
+        if not target.is_file():
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT / relative, target)
+        components[relative] = _sha(target)
+    return components
+
+
 def materialize_real_protocol_candidate(root: Path, sources: list[dict],
                                         chunks: list[dict], rows: list[dict]) \
         -> dict:
@@ -730,11 +748,22 @@ def materialize_real_protocol_candidate(root: Path, sources: list[dict],
     construction_contract["total_rows_exact"] = len(rows)
     _write_json(out / "holdout_construction_contract.json",
                 construction_contract)
-    _write_json(out / "runtime_freeze.json", {
-        "artifact": "T21R9_RUNTIME_FREEZE", "status": "FROZEN",
-        "synthetic_qualification_only": True})
+    # Freeze artifacts are written last so every frozen component copy —
+    # including the miniature-adjusted construction contract above — is
+    # already final when its SHA-256 is recorded.
     _write_json(out / "evaluator_freeze.json", {
         "artifact": "T21R9_EVALUATOR_FREEZE", "status": "FROZEN",
+        "preregistered_before_blind_data": True,
+        "runtime_execution_count": 0,
+        "component_sha256": _frozen_component_copies(
+            ROOT / "evaluations" / "t21r9" / "evaluator_freeze.json", root),
+        "synthetic_qualification_only": True})
+    _write_json(out / "runtime_freeze.json", {
+        "artifact": "T21R9_RUNTIME_FREEZE", "status": "FROZEN",
+        "preregistered_before_blind_data": True,
+        "runtime_execution_count": 0,
+        "component_sha256": _frozen_component_copies(
+            ROOT / "evaluations" / "t21r9" / "runtime_freeze.json", root),
         "synthetic_qualification_only": True})
 
     construction_report = real_construction.audit_material(
@@ -995,6 +1024,27 @@ def real_protocol_seal_controls(root: Path) -> list[dict]:
             real_official.evaluator.SUITES[0] / "holdout.jsonl"
         path.write_text("", encoding="utf-8")
 
+    def runtime_component_drift(candidate: Path) -> None:
+        path = candidate / "src" / "sciencemath" / "knowledge" / "pipeline.py"
+        path.write_text(path.read_text(encoding="utf-8") + "# drift\n",
+                        encoding="utf-8")
+
+    def evaluator_component_drift(candidate: Path) -> None:
+        path = candidate / "evaluations" / "t21r9" / \
+            "validation_contract.json"
+        document = _json(path)
+        document["drift"] = True
+        _write_json(path, document)
+
+    def freeze_component_map_tamper(candidate: Path) -> None:
+        path = candidate / "evaluations" / "t21r9" / "runtime_freeze.json"
+        document = _json(path)
+        tampered = dict(document["component_sha256"])
+        first = next(iter(tampered))
+        tampered[first] = "0" * 64
+        document["component_sha256"] = tampered
+        _write_json(path, document)
+
     mutated("official_runner_schema_mismatch", schema_mismatch)
     mutated("suite_id_mismatch", suite_id_mismatch)
     mutated("evaluator_hash_mismatch", evaluator_hash_mismatch)
@@ -1003,6 +1053,9 @@ def real_protocol_seal_controls(root: Path) -> list[dict]:
     mutated("audit_hash_drift", audit_hash_drift)
     mutated("freeze_root_drift", freeze_root_drift)
     mutated("suite_count_mismatch", suite_count_mismatch)
+    mutated("runtime_component_hash_drift", runtime_component_drift)
+    mutated("evaluator_component_hash_drift", evaluator_component_drift)
+    mutated("freeze_file_component_map_tamper", freeze_component_map_tamper)
     return controls
 
 

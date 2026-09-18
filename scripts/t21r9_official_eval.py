@@ -93,12 +93,15 @@ def _preflight(paths: Paths) -> dict:
         if not path.is_file() or _sha(path) != identity.get("sha256"):
             defects.append(f"freeze-input hash mismatch: {relative}")
 
-    for name, artifact in (("runtime_freeze.json", "T21R9_RUNTIME_FREEZE"),
-                           ("evaluator_freeze.json",
-                            "T21R9_EVALUATOR_FREEZE")):
+    for name, artifact in seal_protocol.FROZEN_ARTIFACTS:
         path = paths.out / name
         if not path.is_file() or _json(path).get("artifact") != artifact:
             defects.append(f"{name} identity mismatch")
+            continue
+        try:
+            seal_protocol.verify_component_freeze(paths.root, path, artifact)
+        except (ValueError, OSError) as exc:
+            defects.append(str(exc))
     qualification_path = paths.out / "preconstruction_qualification.json"
     if qualification_path.is_file():
         qualification = _json(qualification_path)
@@ -165,6 +168,15 @@ def _write_ledger(paths: Paths, phase: str, error: str | None = None) -> None:
         "recorded_at": datetime.now(timezone.utc).isoformat(),
         "error": error,
     }
+    if phase == "started":
+        # One-shot ownership: the started ledger must be created exclusively.
+        # A concurrent invocation that reaches this point after preflight
+        # loses here, before a single holdout row is executed.
+        with open(paths.ledger, "x", encoding="utf-8", newline="\n") as handle:
+            handle.write(json.dumps(document, indent=2, sort_keys=True) + "\n")
+        return
+    # Complete/failed updates happen only after exclusive ownership was
+    # established by the started transition; a failed run never deletes it.
     paths.ledger.write_text(json.dumps(
         document, indent=2, sort_keys=True) + "\n",
         encoding="utf-8", newline="\n")
@@ -175,7 +187,13 @@ def execute(paths: Paths) -> int:
     if report["status"] != "PASS":
         raise SystemExit("T21R9 preflight failed: " + "; ".join(
             report["defects"]))
-    _write_ledger(paths, "started")
+    try:
+        _write_ledger(paths, "started")
+    except FileExistsError:
+        raise SystemExit(
+            "T21R9 one-shot ledger already exists after preflight: another "
+            "invocation holds the exposure; refusing to execute any holdout "
+            "row") from None
     try:
         from sciencemath.knowledge.corpus import load_corpus
         corpus = load_corpus(paths.corpus)
