@@ -1,0 +1,42 @@
+{
+  "artifact": "T21R9_CLOSURE",
+  "status": "NON_PROMOTIONAL_INFRASTRUCTURE_FAILURE",
+  "sealed_commit": "4613854abe1e24e86ee818eedc582f79bc1b6559",
+  "holdout_manifest_sha256": "650fffc6cdc1bc4a327b0f4838e8e0a619539a1528b35cb210f39b69cf9f813e",
+  "HOLDOUT_FROZEN_sha256": "fb9f096adc37961c6e039a09db4350d8b92969aa1d81d7d7acbda9c2420fbd10",
+  "freeze_root_sha256": "e4f882de189e47734924af6216a8953ee511fabc7b9ec8394570564eeefc4266",
+  "construction_gate": "41/41 PASS",
+  "static_gold": "PASS",
+  "uniqueness": "UNIQUE",
+  "official_evaluation_executed": false,
+  "official_runtime_exposures": 0,
+  "runtime_rows_executed": 0,
+  "failure_stage": "pre_official_runtime_compatibility_audit",
+  "failure_class": "FROZEN_CORPUS_RUNTIME_INTERFACE_INCOMPATIBILITY",
+  "failure_detail": "T21R9 corpus_manifest.json lacks runtime-required source_count, chunk_count, and file_checksums keys.",
+  "expected_runtime_behavior_if_executed": "CorruptCorpusError before first holdout row",
+  "candidate_reuse_for_promotion": "forbidden",
+  "capability_classification": {
+    "T21R9_is_a_model_capability_failure": false,
+    "note": "T21R9 MUST NOT BE SCORED AS A MODEL CAPABILITY FAILURE. No R9 row was exposed to runtime; the sealed holdout passed every construction gate. The failure is a pre-exposure frozen corpus/runtime interface incompatibility only.",
+    "KNOWLEDGE_RAG": "EXPERIMENTAL",
+    "Executive Router": "EXPERIMENTAL",
+    "T21": "OPEN",
+    "T22": "BLOCKED"
+  },
+  "post_seal_repairs": "forbidden",
+  "post_seal_scoring": "forbidden",
+  "official_execution_commands": {
+    "python scripts/t21r9_official_eval.py --execute-official ...": "MUST NOT BE RUN",
+    "T21R9_ONE_SHOT_OFFICIAL_EVALUATION": "MUST NOT BE USED"
+  },
+  "frozen_material_untouched": [
+    "R9 corpus (rag/gk_holdout_t21r9)",
+    "R9 suites (evaluations/t21r9/suites)",
+    "R9 audits",
+    "R9 seal",
+    "R9 manifest",
+    "R9 frozen tooling"
+  ],
+  "version": 1
+}
