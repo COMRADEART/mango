@@ -11,8 +11,15 @@ The wrapper:
   * refuses if ``HOLDOUT_FROZEN`` / ``holdout_manifest.json`` are absent;
   * refuses if the runtime or evaluator hashes differ from their freezes;
   * refuses if the official exposure ledger already records >= 1 exposure;
-  * creates/writes the ledger BEFORE the first runtime row;
-  * increments the official exposure exactly once;
+  * runs a NON-RUNTIME preflight BEFORE the exposure ledger is created: the
+    frozen-holdout, manifest-hash, qualification, evaluator-freeze, scoring-
+    semantics, runtime-composite, corpus-domain, and suite-parse checks all
+    pass (and no answer_knowledge/runtime row executes) before any exposure
+    artifact exists, so a preflight failure can never consume the one-shot
+    holdout;
+  * only after preflight PASS writes the ledger with
+    ``official_runtime_exposures = 1`` immediately before the first runtime
+    row;
   * writes ``raw_results.jsonl`` incrementally (flush + fsync per row);
   * never silently restarts: any existing ledger/raw/result artifact refuses
     the launch, and a crash after the first row begins consumes the one
@@ -27,6 +34,7 @@ import json
 import os
 import sys
 import traceback
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -40,21 +48,78 @@ from sciencemath.knowledge.corpus import load_corpus  # noqa: E402
 from t21r4_freeze_runtime import RUNTIME_GROUPS, sha_group  # noqa: E402
 
 
-OUT_DIR = ROOT / "evaluations" / "t21r8"
-SUITES_DIR = OUT_DIR / "suites"
-CORPUS_DIR = ROOT / "rag" / "gk_holdout_t21r8"
-MANIFEST_PATH = OUT_DIR / "holdout_manifest.json"
-MARKER_PATH = OUT_DIR / "HOLDOUT_FROZEN"
-OUT_PATH = OUT_DIR / "holdout_results.json"
-RAW_PATH = OUT_DIR / "raw_results.jsonl"
-LEDGER_PATH = OUT_DIR / "evaluation_run_ledger.json"
-CONTRACT_PATH = OUT_DIR / "validation_contract.json"
-SEMANTICS_PATH = OUT_DIR / "scoring_semantics.json"
-RUNTIME_FREEZE_PATH = OUT_DIR / "runtime_freeze.json"
-EVALUATOR_FREEZE_PATH = OUT_DIR / "evaluator_freeze.json"
-QUALIFICATION_PATH = OUT_DIR / "evaluator_qualification.json"
-EVALUATOR_PATH = ROOT / "scripts" / "t21r8_run_eval.py"
 COMMAND = "python scripts/t21r8_official_eval.py"
+# The evaluator source identity is a repo-level constant: qualification and
+# the evaluator freeze always hash the committed evaluator file, never a
+# fixture-local copy.
+EVALUATOR_PATH = ROOT / "scripts" / "t21r8_run_eval.py"
+
+
+@dataclass(frozen=True)
+class Paths:
+    """Filesystem layout for one candidate tree (repo root by default)."""
+
+    root: Path
+
+    @property
+    def out_dir(self) -> Path:
+        return self.root / "evaluations" / "t21r8"
+
+    @property
+    def suites_dir(self) -> Path:
+        return self.out_dir / "suites"
+
+    @property
+    def corpus_dir(self) -> Path:
+        return self.root / "rag" / "gk_holdout_t21r8"
+
+    @property
+    def manifest_path(self) -> Path:
+        return self.out_dir / "holdout_manifest.json"
+
+    @property
+    def marker_path(self) -> Path:
+        return self.out_dir / "HOLDOUT_FROZEN"
+
+    @property
+    def out_path(self) -> Path:
+        return self.out_dir / "holdout_results.json"
+
+    @property
+    def raw_path(self) -> Path:
+        return self.out_dir / "raw_results.jsonl"
+
+    @property
+    def ledger_path(self) -> Path:
+        return self.out_dir / "evaluation_run_ledger.json"
+
+    @property
+    def contract_path(self) -> Path:
+        return self.out_dir / "validation_contract.json"
+
+    @property
+    def semantics_path(self) -> Path:
+        return self.out_dir / "scoring_semantics.json"
+
+    @property
+    def runtime_freeze_path(self) -> Path:
+        return self.out_dir / "runtime_freeze.json"
+
+    @property
+    def evaluator_freeze_path(self) -> Path:
+        return self.out_dir / "evaluator_freeze.json"
+
+    @property
+    def qualification_path(self) -> Path:
+        return self.out_dir / "evaluator_qualification.json"
+
+
+def build_paths(root: Path) -> Paths:
+    return Paths(root=root)
+
+
+PATHS = build_paths(ROOT)
+EXPOSURE_ARTIFACTS = ("ledger_path", "raw_path", "out_path")
 
 
 def _sha256(path: Path) -> str:
@@ -65,14 +130,14 @@ def _load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def _load_rows(suite: str) -> list[dict]:
-    path = SUITES_DIR / suite / "holdout.jsonl"
+def _load_rows(paths: Paths, suite: str) -> list[dict]:
+    path = paths.suites_dir / suite / "holdout.jsonl"
     return [json.loads(line) for line in path.read_text(encoding="utf-8")
             .splitlines() if line.strip()]
 
 
-def _check_qualification() -> dict:
-    qualification = _load_json(QUALIFICATION_PATH)
+def _check_qualification(paths: Paths) -> dict:
+    qualification = _load_json(paths.qualification_path)
     if not qualification.get("qualification_passed") or \
             not qualification.get("all_metric_paths_exercised") or \
             not qualification.get("all_cases_pass") or \
@@ -85,38 +150,38 @@ def _check_qualification() -> dict:
     return qualification
 
 
-def _check_freeze() -> dict:
-    if not MARKER_PATH.exists() or not MANIFEST_PATH.exists():
+def _check_freeze(paths: Paths) -> dict:
+    if not paths.marker_path.exists() or not paths.manifest_path.exists():
         raise SystemExit(
             "HOLDOUT_FROZEN or holdout manifest is missing; the official "
             "one-shot exposure may not start without the frozen holdout")
-    _check_qualification()
-    manifest = _load_json(MANIFEST_PATH)
+    _check_qualification(paths)
+    manifest = _load_json(paths.manifest_path)
     for info in manifest["freeze_inputs"].values():
-        path = ROOT / info["path"]
+        path = paths.root / info["path"]
         if not path.exists() or _sha256(path) != info["sha256"]:
             raise SystemExit(
                 f"T21R8_FREEZE_VIOLATION: {info['path']} changed")
     for info in manifest["corpus"].values():
-        path = ROOT / info["path"]
+        path = paths.root / info["path"]
         if not path.exists() or _sha256(path) != info["sha256"]:
             raise SystemExit(
                 f"T21R8_FREEZE_VIOLATION: {info['path']} changed")
     for suite, info in manifest["suites"].items():
-        path = SUITES_DIR / suite / "holdout.jsonl"
+        path = paths.suites_dir / suite / "holdout.jsonl"
         if not path.exists() or _sha256(path) != info["sha256"]:
             raise SystemExit(f"T21R8_FREEZE_VIOLATION: suite {suite} changed")
 
-    evaluator_freeze = _load_json(EVALUATOR_FREEZE_PATH)
+    evaluator_freeze = _load_json(paths.evaluator_freeze_path)
     if evaluator_freeze["evaluator_source_sha256"] != _sha256(
             EVALUATOR_PATH):
         raise SystemExit(
             "T21R8_FREEZE_VIOLATION: evaluator source hash differs from the "
             "evaluator freeze")
-    contract = _load_json(CONTRACT_PATH)
+    contract = _load_json(paths.contract_path)
     evaluator.validate_semantics_artifacts(contract, evaluator_freeze)
 
-    runtime_freeze = _load_json(RUNTIME_FREEZE_PATH)
+    runtime_freeze = _load_json(paths.runtime_freeze_path)
     for name, spec in RUNTIME_GROUPS.items():
         if sha_group(spec) != runtime_freeze["runtime_composites"][name]:
             raise SystemExit(
@@ -132,6 +197,44 @@ def _validate_corpus_domains(corpus) -> None:
     if unknown:
         raise SystemExit(
             f"T21R8_EVALUATOR_INVALID: unknown corpus domains {unknown}")
+
+
+def _preflight(paths: Paths) -> tuple[dict, object]:
+    """Non-runtime preflight gate: everything is verified BEFORE the official
+    exposure ledger exists.  No answer_knowledge/runtime row executes here;
+    any failure refuses the launch and leaves the frozen holdout unconsumed
+    (``official_runtime_exposures`` stays 0)."""
+    for name in EXPOSURE_ARTIFACTS:
+        if getattr(paths, name).exists():
+            raise SystemExit(
+                "T21R8_ONE_SHOT_CONSUMED: ledger or result artifact already "
+                "exists; the official holdout exposure is never repeated")
+    manifest = _check_freeze(paths)
+
+    corpus = load_corpus(paths.corpus_dir)
+    _validate_corpus_domains(corpus)
+
+    expected_suites = set(evaluator.SUITES)
+    if set(manifest["suites"]) != expected_suites:
+        raise SystemExit(
+            "T21R8_FREEZE_VIOLATION: holdout manifest suite set differs from "
+            f"the expected suite set {sorted(expected_suites)}")
+    for suite in evaluator.SUITES:
+        try:
+            rows = _load_rows(paths, suite)
+        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+            raise SystemExit(
+                f"T21R8_FREEZE_VIOLATION: suite {suite} does not parse: "
+                f"{exc}") from exc
+        if not rows:
+            raise SystemExit(
+                f"T21R8_FREEZE_VIOLATION: suite {suite} has no rows")
+        for row in rows:
+            if row.get("mode") not in ("retrieval", "answer"):
+                raise SystemExit(
+                    f"T21R8_FREEZE_VIOLATION: suite {suite} carries a row "
+                    f"with unknown mode {row.get('mode')!r}")
+    return manifest, corpus
 
 
 def _validate_raw_schema(raw: dict, mode: str) -> None:
@@ -151,21 +254,22 @@ def _write_raw(handle, raw: dict) -> None:
     os.fsync(handle.fileno())
 
 
-def _write_ledger(start: str, end: str, exit_code: int | None,
+def _write_ledger(paths: Paths, start: str, end: str, exit_code: int | None,
                   result_sha: str | None, error: str | None,
                   phase: str) -> None:
-    marker = _load_json(MARKER_PATH) if MARKER_PATH.exists() else {}
+    marker = _load_json(paths.marker_path) if paths.marker_path.exists() \
+        else {}
     document = {
         "milestone": "T21R8 official evaluation run ledger",
         "phase": phase,
         "holdout_freeze_timestamp": marker.get("frozen_at"),
-        "holdout_manifest_sha256": _sha256(MANIFEST_PATH)
-        if MANIFEST_PATH.exists() else None,
-        "evaluator_freeze_hash": _sha256(EVALUATOR_FREEZE_PATH),
-        "runtime_freeze_hash": _sha256(RUNTIME_FREEZE_PATH),
+        "holdout_manifest_sha256": _sha256(paths.manifest_path)
+        if paths.manifest_path.exists() else None,
+        "evaluator_freeze_hash": _sha256(paths.evaluator_freeze_path),
+        "runtime_freeze_hash": _sha256(paths.runtime_freeze_path),
         "launcher_sha256": _sha256(Path(__file__)),
-        "raw_results_sha256": _sha256(RAW_PATH)
-        if RAW_PATH.exists() else None,
+        "raw_results_sha256": _sha256(paths.raw_path)
+        if paths.raw_path.exists() else None,
         "evaluation_start": start,
         "evaluation_end": end,
         "command": COMMAND,
@@ -174,30 +278,22 @@ def _write_ledger(start: str, end: str, exit_code: int | None,
         "official_runtime_exposures": 1,
         "exposure_rule": (
             "The first production-runtime exposure of every T21R8 row is "
-            "this official evaluation. The ledger is created before the "
-            "first row; a crash after the first row begins consumes the one "
-            "permitted exposure and forces T21R8_EVALUATOR_INVALID; the "
-            "same holdout may NOT be rerun."
+            "this official evaluation. A NON-RUNTIME preflight runs first "
+            "and refuses without writing any artifact on failure; only "
+            "after preflight PASS is the ledger created, immediately before "
+            "the first runtime row. A crash after the first row begins "
+            "consumes the one permitted exposure and forces "
+            "T21R8_EVALUATOR_INVALID; the same holdout may NOT be rerun."
         ),
         "error": error,
     }
-    LEDGER_PATH.write_text(
+    paths.ledger_path.write_text(
         json.dumps(document, indent=2, sort_keys=True) + "\n",
         encoding="utf-8", newline="\n")
 
 
-def _ledger_records_exposure() -> bool:
-    if not LEDGER_PATH.exists():
-        return False
-    ledger = _load_json(LEDGER_PATH)
-    return int(ledger.get("official_runtime_exposures") or 0) >= 1
-
-
-def evaluate() -> tuple[str, dict]:
-    _check_freeze()
-    corpus = load_corpus(CORPUS_DIR)
-    _validate_corpus_domains(corpus)
-    contract = _load_json(CONTRACT_PATH)
+def evaluate(paths: Paths, corpus) -> tuple[str, dict]:
+    contract = _load_json(paths.contract_path)
     evaluator._r6.SUITES = list(evaluator.SUITES)
 
     zero_totals: dict[str, int] = {}
@@ -206,9 +302,10 @@ def evaluate() -> tuple[str, dict]:
     all_answer_rows: list[dict] = []
     all_rows_all: list[tuple[str, list[dict], list[dict]]] = []
 
-    with RAW_PATH.open("x", encoding="utf-8", newline="\n") as raw_handle:
+    with paths.raw_path.open("x", encoding="utf-8", newline="\n") \
+            as raw_handle:
         for suite in evaluator.SUITES:
-            rows = _load_rows(suite)
+            rows = _load_rows(paths, suite)
             results: list[dict] = []
             for row in rows:
                 if row["mode"] == "retrieval":
@@ -266,8 +363,8 @@ def evaluate() -> tuple[str, dict]:
         "recorded_at": datetime.now(timezone.utc).isoformat(),
         "one_shot": True,
         "official_runtime_exposures": 1,
-        "holdout_manifest_sha256": _sha256(MANIFEST_PATH),
-        "raw_results_sha256": _sha256(RAW_PATH),
+        "holdout_manifest_sha256": _sha256(paths.manifest_path),
+        "raw_results_sha256": _sha256(paths.raw_path),
         "raw_results_rows": sum(len(rows) for _, rows, _ in all_rows_all),
         "corpus_manifest_checksum": corpus.manifest.get("manifest_checksum"),
         "scoring_semantics": evaluator.SCORING_SEMANTICS,
@@ -282,29 +379,34 @@ def evaluate() -> tuple[str, dict]:
         "suite_minimums_met": suites_ok,
         "overall_pass": floors_all_pass and zero_ok and suites_ok,
     }
-    OUT_PATH.write_text(
+    paths.out_path.write_text(
         json.dumps(document, indent=2, sort_keys=True) + "\n",
         encoding="utf-8", newline="\n")
-    return _sha256(OUT_PATH), document
+    return _sha256(paths.out_path), document
 
 
-def main() -> int:
-    if any(path.exists() for path in (LEDGER_PATH, RAW_PATH, OUT_PATH)):
-        raise SystemExit(
-            "T21R8_ONE_SHOT_CONSUMED: ledger or result artifact already "
-            "exists; the official holdout exposure is never repeated")
-    if _ledger_records_exposure():
-        raise SystemExit(
-            "T21R8_ONE_SHOT_CONSUMED: the official exposure ledger already "
-            "records an exposure")
+def main(paths: Paths = PATHS) -> int:
+    # Cheap early refusal; preflight enforces the same invariant again right
+    # before the exposure begins.  The ledger's exposure count is >= 1 only
+    # while the ledger file itself exists, so artifact absence subsumes it.
+    for name in EXPOSURE_ARTIFACTS:
+        if getattr(paths, name).exists():
+            raise SystemExit(
+                "T21R8_ONE_SHOT_CONSUMED: ledger or result artifact already "
+                "exists; the official holdout exposure is never repeated")
     start = datetime.now(timezone.utc).isoformat()
     result_sha: str | None = None
     exit_code: int | None = None
     error: str | None = None
-    # The ledger is written BEFORE the first runtime row is exposed.
-    _write_ledger(start, start, None, None, None, "preregistered")
+    # NON-RUNTIME preflight: any failure here exits BEFORE the ledger exists,
+    # so official_runtime_exposures remains 0 and the frozen holdout is not
+    # consumed.
+    _manifest, corpus = _preflight(paths)
+    # Preflight PASSED.  The one official exposure begins NOW: the ledger is
+    # written immediately before the first runtime row.
+    _write_ledger(paths, start, start, None, None, None, "preregistered")
     try:
-        result_sha, result = evaluate()
+        result_sha, result = evaluate(paths, corpus)
         exit_code = 0
     except SystemExit as exc:
         exit_code = 2
@@ -316,9 +418,10 @@ def main() -> int:
         raise
     finally:
         end = datetime.now(timezone.utc).isoformat()
-        if OUT_PATH.exists() and result_sha is None:
-            result_sha = _sha256(OUT_PATH)
-        _write_ledger(start, end, exit_code, result_sha, error, "completed")
+        if paths.out_path.exists() and result_sha is None:
+            result_sha = _sha256(paths.out_path)
+        _write_ledger(paths, start, end, exit_code, result_sha, error,
+                      "completed")
 
     print(json.dumps({
         "official_runtime_exposures": 1,

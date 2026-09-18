@@ -402,6 +402,7 @@ def test_scanner_accepts_a_contract_clean_fixture(
         rule = _json(CONTRACT_PATH)["suite_target_minimums"][name]
         _write_suite(tmp_path / "evaluations" / "t21r8", rule["suite_id"],
                      suite_rows)
+    _write_all_suites(tmp_path, rows)
     measured = _measure_fixture(tmp_path, monkeypatch, rows)
     assert measured["metrics"]["annotation_violations"] == 0
     assert measured["annotation_violation_details"] == []
@@ -418,6 +419,7 @@ def test_scanner_rejects_corroborator_substitution(
         rule = _json(CONTRACT_PATH)["suite_target_minimums"][name]
         _write_suite(tmp_path / "evaluations" / "t21r8", rule["suite_id"],
                      suite_rows)
+    _write_all_suites(tmp_path, rows)
     measured = _measure_fixture(tmp_path, monkeypatch, rows)
     reasons = [detail["reason"]
                for detail in measured["annotation_violation_details"]]
@@ -438,6 +440,7 @@ def test_scanner_rejects_an_ie_row_with_a_complete_gold_path(
         rule = _json(CONTRACT_PATH)["suite_target_minimums"][name]
         _write_suite(tmp_path / "evaluations" / "t21r8", rule["suite_id"],
                      suite_rows)
+    _write_all_suites(tmp_path, rows)
     measured = _measure_fixture(tmp_path, monkeypatch, rows)
     reasons = [detail["reason"]
                for detail in measured["annotation_violation_details"]]
@@ -456,6 +459,7 @@ def test_scanner_rejects_non_builder_independent_surface_templates(
         rule = _json(CONTRACT_PATH)["suite_target_minimums"][name]
         _write_suite(tmp_path / "evaluations" / "t21r8", rule["suite_id"],
                      suite_rows)
+    _write_all_suites(tmp_path, rows)
     measured = _measure_fixture(tmp_path, monkeypatch, rows)
     reasons = [detail["reason"]
                for detail in measured["annotation_violation_details"]]
@@ -474,10 +478,169 @@ def test_scanner_rejects_an_unresolved_attack_wording(
         rule = _json(CONTRACT_PATH)["suite_target_minimums"][name]
         _write_suite(tmp_path / "evaluations" / "t21r8", rule["suite_id"],
                      suite_rows)
+    _write_all_suites(tmp_path, rows)
     measured = _measure_fixture(tmp_path, monkeypatch, rows)
     reasons = [detail["reason"]
                for detail in measured["annotation_violation_details"]]
     assert any("wording is not in" in reason for reason in reasons)
+
+
+# ---------------------------------------------------------------------------
+# Multisource quota denominator: mechanical negative/positive controls.
+# The measured ``stresses.multisource_path_rows`` must count ONLY rows in
+# the multihop or crossdomain suite that carry the tag, require >= 2
+# distinct gold sources, require >= 2 distinct path sources inside the gold
+# set, and record both linked reasoning edges.  Optional corroboration
+# never contributes to either >= 2 count.
+# ---------------------------------------------------------------------------
+
+
+def _qualifying_multisource_row(name: str, index: int) -> dict:
+    """One genuine two-edge multisource row (counts toward the quota)."""
+    return {
+        "case_id": f"fx-{name}-{index:04d}", "mode": "answer",
+        "category": "synthetic",
+        "request": {"query": f"multisource query {name} {index}"},
+        "gold": {"expect_status": "ANSWER",
+                 "expect_answer_contains": ["value"],
+                 "require_citations": True, "zero_tolerance_zero": True,
+                 "gold_chunk_id": "chunk-m",
+                 "required_sources": ["src-a", "src-b"],
+                 "required_domains": ["geography"]},
+        "construction_tags": ["multisource_path"],
+        "construction": {
+            "gold_path": {
+                "hop1_edge": {"subject_entity": "Entity A",
+                              "relation": "REL_A", "object_value": "Entity B",
+                              "chunk_id": "chunk-m", "source_id": "src-a"},
+                "bridge_entity": "Entity B",
+                "hop2_edge": {"subject_entity": "Entity B",
+                              "relation": "REL_B", "object_value": "value",
+                              "chunk_id": "chunk-m", "source_id": "src-b"},
+                "terminal_value": "value",
+            },
+            "path_required_sources": ["src-a", "src-b"],
+            "corroboration_sources": ["src-c"],
+        },
+    }
+
+
+def _write_all_suites(tmp_path: Path, rows: dict[str, list[dict]]) -> None:
+    for name, suite_rows in rows.items():
+        rule = _json(CONTRACT_PATH)["suite_target_minimums"][name]
+        _write_suite(tmp_path / "evaluations" / "t21r8", rule["suite_id"],
+                     suite_rows)
+
+
+def _quota_check(measured: dict) -> dict:
+    contract = _json(CONTRACT_PATH)
+    checks = gate.evaluate_metrics(contract, measured["metrics"])
+    by_id = {check["id"]: check for check in checks}
+    return by_id["stress.multisource_path_required_rows"]
+
+
+def test_quota_ignores_multisource_tags_outside_multihop_and_crossdomain(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    _fixture_contract(tmp_path)
+    rows = _clean_rows()
+    _annotate_clean(rows)
+    # 2400 fully annotated, otherwise-qualifying multisource rows placed in
+    # UNRELATED suites must never satisfy the 1200-row quota.
+    for index in range(1200):
+        rows["retrieval"].append(
+            _qualifying_multisource_row("retrieval", index))
+        rows["singlehop"].append(
+            _qualifying_multisource_row("singlehop", index))
+    _write_all_suites(tmp_path, rows)
+    measured = _measure_fixture(tmp_path, monkeypatch, rows)
+    assert measured["metrics"]["annotation_violations"] == 0
+    stresses = measured["metrics"]["stresses"]
+    assert stresses["multisource_path_rows"] == 1  # the multihop row only
+    assert stresses["multisource_path_tagged_rows"] == 2401
+    assert _quota_check(measured)["passed"] is False
+
+
+def test_quota_ignores_multihop_row_with_single_gold_source(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    _fixture_contract(tmp_path)
+    rows = _clean_rows()
+    _annotate_clean(rows)
+    multihop = rows["multihop"][0]
+    multihop["gold"]["required_sources"] = ["src-a"]
+    multihop["construction"]["path_required_sources"] = ["src-a"]
+    _write_all_suites(tmp_path, rows)
+    measured = _measure_fixture(tmp_path, monkeypatch, rows)
+    assert measured["metrics"]["annotation_violations"] == 0
+    stresses = measured["metrics"]["stresses"]
+    assert stresses["multisource_path_rows"] == 0
+    assert stresses["multisource_path_tagged_rows"] == 1
+
+
+def test_quota_ignores_crossdomain_row_whose_second_source_is_only_a_corroborator(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    _fixture_contract(tmp_path)
+    rows = _clean_rows()
+    _annotate_clean(rows)
+    crossdomain = rows["crossdomain"][0]
+    crossdomain["construction_tags"] = ["multisource_path"]
+    crossdomain["construction"] = {
+        "gold_path": {
+            "hop1_edge": {"subject_entity": "Entity A", "relation": "REL_A",
+                          "object_value": "Entity B", "chunk_id": "chunk-m",
+                          "source_id": "src-a"},
+            "bridge_entity": "Entity B",
+            "hop2_edge": {"subject_entity": "Entity B", "relation": "REL_B",
+                          "object_value": "value", "chunk_id": "chunk-m",
+                          "source_id": "src-a"},
+            "terminal_value": "value",
+        },
+        "path_required_sources": ["src-a"],
+        # A second, OPTIONAL corroborating source is associated with the
+        # row but is required neither by gold nor by the path: it must
+        # never contribute toward the >= 2 source count.
+        "corroboration_sources": ["src-c"],
+    }
+    crossdomain["gold"]["required_sources"] = ["src-a"]
+    _write_all_suites(tmp_path, rows)
+    measured = _measure_fixture(tmp_path, monkeypatch, rows)
+    assert measured["metrics"]["annotation_violations"] == 0
+    stresses = measured["metrics"]["stresses"]
+    assert stresses["multisource_path_rows"] == 1  # the genuine multihop row
+    assert stresses["multisource_path_tagged_rows"] == 2
+
+
+def test_quota_counts_genuine_two_edge_rows_in_both_suites(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    _fixture_contract(tmp_path)
+    rows = _clean_rows()
+    _annotate_clean(rows)
+    rows["crossdomain"][0] = _qualifying_multisource_row("crossdomain", 1)
+    _write_all_suites(tmp_path, rows)
+    measured = _measure_fixture(tmp_path, monkeypatch, rows)
+    assert measured["metrics"]["annotation_violations"] == 0
+    assert measured["metrics"]["stresses"]["multisource_path_rows"] == 2
+
+
+@pytest.mark.parametrize("qualifying_rows,passes", [(1199, False),
+                                                    (1200, True)])
+def test_quota_boundary_1199_fails_and_1200_passes(
+    tmp_path: Path, monkeypatch, qualifying_rows: int, passes: bool,
+) -> None:
+    _fixture_contract(tmp_path)
+    rows = _clean_rows()
+    rows["multihop"] = [_qualifying_multisource_row("multihop", index)
+                        for index in range(qualifying_rows)]
+    _write_all_suites(tmp_path, rows)
+    measured = _measure_fixture(tmp_path, monkeypatch, rows)
+    assert measured["metrics"]["annotation_violations"] == 0
+    stresses = measured["metrics"]["stresses"]
+    assert stresses["multisource_path_rows"] == qualifying_rows
+    assert stresses["multisource_path_tagged_rows"] == qualifying_rows
+    assert _quota_check(measured)["passed"] is passes
 
 
 # ---------------------------------------------------------------------------

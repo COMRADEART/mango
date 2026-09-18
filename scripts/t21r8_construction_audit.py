@@ -46,6 +46,51 @@ IE_ENUM = {
 }
 SCOPE_ENUM = {"hop1_only", "hop2_only", "both_hops", "exact"}
 
+# The multisource_path quota is measured ONLY over rows in these suites; the
+# construction tag alone (in any suite) never satisfies the quota.
+MULTISOURCE_SUITES = ("multihop", "crossdomain")
+
+
+def multisource_path_qualifies(row: dict, suite_name: str) -> bool:
+    """True iff one candidate row counts toward the 1200-row
+    ``multisource_path`` quota.  ALL of the following must hold:
+
+    1. the row belongs to the multihop or crossdomain suite;
+    2. the row carries the ``multisource_path`` construction tag;
+    3. ``gold.required_sources`` holds >= 2 DISTINCT source IDs;
+    4. ``construction.path_required_sources`` exists;
+    5. ``path_required_sources`` holds >= 2 DISTINCT source IDs;
+    6. every path-required source is in ``gold.required_sources``;
+    7. the recorded gold path has both required reasoning edges (a hop1
+       edge whose object equals the hop2 edge's subject).
+
+    Optional corroboration sources contribute to NEITHER >= 2 count.
+    """
+    if suite_name not in MULTISOURCE_SUITES:
+        return False
+    if "multisource_path" not in (row.get("construction_tags") or []):
+        return False
+    gold = row.get("gold") or {}
+    gold_sources = {str(source)
+                    for source in (gold.get("required_sources") or [])}
+    if len(gold_sources) < 2:
+        return False
+    annotation = row.get("construction") or {}
+    path_sources = annotation.get("path_required_sources")
+    if not isinstance(path_sources, list) or not path_sources:
+        return False
+    path_source_ids = {str(source) for source in path_sources}
+    if len(path_source_ids) < 2:
+        return False
+    if not path_source_ids <= gold_sources:
+        return False
+    gold_path = annotation.get("gold_path") or {}
+    hop1 = gold_path.get("hop1_edge") or {}
+    hop2 = gold_path.get("hop2_edge") or {}
+    if not hop1 or not hop2:
+        return False
+    return hop1.get("object_value") == hop2.get("subject_entity")
+
 
 def _load_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8")
@@ -308,6 +353,13 @@ def measure_candidate(root: Path = ROOT) -> dict:
     crossdomain_rows = len(crossdomain)
     largest_family = max(families.values(), default=0)
     largest_pair = max(pair_counts.values(), default=0)
+    # The measured quota denominator: only rows satisfying every
+    # multisource_path_qualifies condition.  The raw tag count is recorded
+    # separately so tagged-but-not-qualifying rows stay visible.
+    multisource_path_rows = sum(
+        1 for name, suite_rows in rows_by_suite.items()
+        for row in suite_rows
+        if multisource_path_qualifies(row, name))
 
     current = {
         "case_ids": {row["case_id"] for row in rows},
@@ -351,7 +403,8 @@ def measure_candidate(root: Path = ROOT) -> dict:
             "largest_domain_pair_count": largest_pair,
             "largest_domain_pair_share": (
                 largest_pair / crossdomain_rows if crossdomain_rows else 0.0),
-            "multisource_path_rows": tag_counts["multisource_path"],
+            "multisource_path_rows": multisource_path_rows,
+            "multisource_path_tagged_rows": tag_counts["multisource_path"],
             "partial_path_ie_rows": tag_counts["partial_path_ie_stress"],
             "ie_configurations": ie_configs,
             "relation_surface_sensitive_rows": surface_rows,
