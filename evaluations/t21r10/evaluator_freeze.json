@@ -1,0 +1,14 @@
+{
+  "artifact": "T21R10_EVALUATOR_FREEZE",
+  "component_sha256": {
+    "evaluations/t21r10/holdout_construction_contract.json": "f9580cebdb32bdf038556f15ed89b9ae5ccd46e266541985781c1e85939527c2",
+    "evaluations/t21r10/scoring_semantics.json": "555b009b29ee13b6c8164617275a287a702f9f6ed22b1ee26131a90ce4372bab",
+    "evaluations/t21r10/validation_contract.json": "e4fbdab35ac9476e7dce902442a3f4e630330ce24ba822850db49b8b2e9af91f",
+    "scripts/t21r10_official_eval.py": "6450fd9bbdd43f88860556b03c91c6ca875f3dc5a27ae920c92a9d0cb1bc71a1",
+    "scripts/t21r10_retrieval_mirror.py": "4be5b81d183cb5877e857d802a7f2d77e38415431994de92cc6124c7cde00fcb",
+    "scripts/t21r10_run_eval.py": "914e999a87954681347eb30b2ea421324e2eb406e5e2e741e1fc73ef1020c6ae"
+  },
+  "preregistered_before_blind_data": true,
+  "runtime_execution_count": 0,
+  "status": "FROZEN"
+}

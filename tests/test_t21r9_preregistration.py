@@ -5,6 +5,7 @@ import ast
 import copy
 import hashlib
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -13,6 +14,11 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+
+# Canonical T21R10 parent commit: the source of the pre-R10 corpus.py bytes
+# (before the single documented post-R9 fail-closed manifest hardening).
+R10_PARENT_COMMIT = "273f1984a8d096db546bf543662eaad79f6eff13"
+R10_FREEZE_PATH = ROOT / "evaluations" / "t21r10" / "runtime_freeze.json"
 
 import t21r9_blindness_audit as blindness  # noqa: E402
 import t21r9_build_suites as suite_builder  # noqa: E402
@@ -236,12 +242,43 @@ def test_real_preflight_negative_controls_cover_new_audit_gaps(tmp_path) \
         "evaluator_component_hash_drift", "freeze_file_component_map_tamper"}
 
 
+def _pre_r10_sha(relative: str) -> str:
+    blob = subprocess.check_output(
+        ["git", "show", f"{R10_PARENT_COMMIT}:{relative}"], cwd=ROOT)
+    return hashlib.sha256(blob).hexdigest()
+
+
 def test_frozen_component_verifier_refuses_drift_and_missing_components(
         tmp_path) -> None:
     freeze_path = OUT / "runtime_freeze.json"
     freeze = _json(freeze_path)
+    corpus_relative = "src/sciencemath/knowledge/corpus.py"
+    # Single documented post-R9 drift: corpus.py gained the T21R10
+    # fail-closed manifest hardening, so the R9 freeze intentionally no
+    # longer binds the working tree.  The verifier controls therefore run
+    # against an R9-era root whose corpus.py is byte-identical to the
+    # canonical R10 parent commit.
+    r9_root = tmp_path / "r9-era-root"
+    for relative in freeze["component_sha256"]:
+        target = r9_root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if relative == corpus_relative:
+            target.write_bytes(subprocess.check_output(
+                ["git", "show", f"{R10_PARENT_COMMIT}:{relative}"],
+                cwd=ROOT))
+        else:
+            target.write_bytes((ROOT / relative).read_bytes())
     assert seal.verify_component_freeze(
-        ROOT, freeze_path, "T21R9_RUNTIME_FREEZE")["status"] == "VERIFIED"
+        r9_root, freeze_path, "T21R9_RUNTIME_FREEZE")["status"] == "VERIFIED"
+    # On the real root the only refusal must be exactly the corpus.py
+    # drift, whose hardened bytes bind in the T21R10 runtime freeze.
+    with pytest.raises(ValueError, match="frozen component hash mismatch: "
+                       "src/sciencemath/knowledge/corpus"):
+        seal.verify_component_freeze(ROOT, freeze_path,
+                                     "T21R9_RUNTIME_FREEZE")
+    r10_freeze = _json(R10_FREEZE_PATH)
+    assert r10_freeze["component_sha256"][corpus_relative] == _sha(
+        ROOT / corpus_relative)
 
     with pytest.raises(ValueError, match="frozen component hash mismatch"):
         drifted = copy.deepcopy(freeze)
@@ -249,7 +286,7 @@ def test_frozen_component_verifier_refuses_drift_and_missing_components(
             "component_sha256"]))] = "0" * 64
         drifted_path = tmp_path / "drifted-runtime_freeze.json"
         drifted_path.write_text(json.dumps(drifted), encoding="utf-8")
-        seal.verify_component_freeze(ROOT, drifted_path,
+        seal.verify_component_freeze(r9_root, drifted_path,
                                      "T21R9_RUNTIME_FREEZE")
 
     for mutation, message in (
@@ -265,11 +302,13 @@ def test_frozen_component_verifier_refuses_drift_and_missing_components(
         bad_path.write_text(json.dumps(bad), encoding="utf-8")
         with pytest.raises(ValueError, match=message.replace(
                 " ", chr(92) + " ")):
-            seal.verify_component_freeze(ROOT, bad_path,
+            seal.verify_component_freeze(r9_root, bad_path,
                                          "T21R9_RUNTIME_FREEZE")
 
 
 def test_runtime_and_evaluator_freezes_bind_current_components() -> None:
+    corpus_relative = "src/sciencemath/knowledge/corpus.py"
+    r10_freeze = _json(R10_FREEZE_PATH)
     for name, artifact in (("runtime_freeze.json", "T21R9_RUNTIME_FREEZE"),
                            ("evaluator_freeze.json",
                             "T21R9_EVALUATOR_FREEZE")):
@@ -278,7 +317,17 @@ def test_runtime_and_evaluator_freezes_bind_current_components() -> None:
         assert freeze["status"] == "FROZEN"
         assert freeze["runtime_execution_count"] == 0
         for relative, expected in freeze["component_sha256"].items():
-            assert _sha(ROOT / relative) == expected
+            actual = _sha(ROOT / relative)
+            if actual == expected:
+                continue
+            # Exactly one documented post-R9 drift is tolerated on the
+            # T21R10 branch: the fail-closed corpus.py hardening.  The
+            # frozen bytes must equal the canonical R10 parent commit and
+            # the hardened bytes must bind in the T21R10 runtime freeze;
+            # every other component mismatch still fails.
+            assert relative == corpus_relative
+            assert expected == _pre_r10_sha(relative)
+            assert r10_freeze["component_sha256"][relative] == actual
 
 
 def _sealed_official_paths(tmp_path):

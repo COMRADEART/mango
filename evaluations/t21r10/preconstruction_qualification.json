@@ -1,0 +1,624 @@
+{
+  "artifact": "T21R10_FULL_PREREGISTRATION_QUALIFICATION",
+  "bindings": {
+    "binding_note": "Git identity is the audited base; the complete uncommitted qualification overlay is bound by the following byte hashes.",
+    "contract_sha256": {
+      "construction": "f9580cebdb32bdf038556f15ed89b9ae5ccd46e266541985781c1e85939527c2",
+      "preconstruction": "c0da8125ba95fc7875e2ac2bb6747ec5d2873dd020b6dfc50a91357bc27d2199",
+      "scoring_semantics": "555b009b29ee13b6c8164617275a287a702f9f6ed22b1ee26131a90ce4372bab",
+      "validation": "e4fbdab35ac9476e7dce902442a3f4e630330ce24ba822850db49b8b2e9af91f"
+    },
+    "preconstruction_script_sha256": "1aedabe448c0fab53b6c8eb721456d816fb860cdd0c5e0a77755623a1f690ba8",
+    "prior_exclusion_fingerprint_sha256": "e20954d0c98e941e0d402396424fc2ecb0751cd7bf944e4f0a66533718ce89ad",
+    "qualified_overlay_root_sha256": "9a5a72e3944d0df4736cdb81eb07919e13eab7c247b9c89f1a7ea840ec2f5a43",
+    "test_results": {
+      "status": "PENDING_FINAL_GATE"
+    },
+    "test_sha256": {
+      "semantic_preconstruction": "9d5739a7ac341d9785973cc0d22ac76f48959928e49e3b973f614fb2a1a3075f"
+    },
+    "tested_git_head": "273f1984a8d096db546bf543662eaad79f6eff13",
+    "tested_git_tree_sha": "d195c329421fcdce16fec61f33121aa4249b5ec0",
+    "tooling_sha256": {
+      "blindness": "4dd21ad8bdd5ebdf5023319540e11aa12e731e12e9853637ed0ac641ae99abef",
+      "construction_audit": "32b8d9cabbd9061d8717fdcce605f4d0310ff4909b63e6bbd57a4a8acc198d7c",
+      "construction_gate": "26bc3aff48ed18432ce246eeff64e4f0476b8a07e7bb0e92565ece7370f7f820",
+      "evaluator": "914e999a87954681347eb30b2ea421324e2eb406e5e2e741e1fc73ef1020c6ae",
+      "official_runner": "6450fd9bbdd43f88860556b03c91c6ca875f3dc5a27ae920c92a9d0cb1bc71a1",
+      "retrieval_mirror": "4be5b81d183cb5877e857d802a7f2d77e38415431994de92cc6124c7cde00fcb",
+      "seal": "6f2933fb263647806a715d3387b79dde36527459c0cf12b26fd43def67ebf04d",
+      "static_gold_audit": "713e2de2fbd8e5ead848b5f1721bf81be5b38687ae40db4deec88bf84e907347",
+      "static_semantics": "182d17c24fa779dbb78e76c375e0bfff39df011028da017ada18970dbc744b7e",
+      "suite_builder": "e99d7f8e26feba8ade68aaee3a0cd5ca286802d8c0e544d9276de63f2f308512",
+      "uniqueness": "b7a80380ea7a737ed9f55fa8957c5b5d9c11657316aaae7a25e6a9abc647ecea",
+      "world_builder": "7a782389b075ba2eb02c3e2cd5b7f3cf6af5f29af71ae5bbf9f6404e0756e35e"
+    }
+  },
+  "blind_data_created": false,
+  "blindness_status": "PASS",
+  "controls": {
+    "annotations": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "consistent_annotations",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "stale_attack_metadata",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "missing_required_source",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "corroboration_path_source_overlap",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "corroboration_not_list",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "query_attack_absent",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "source_attack_absent",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "partial_path_has_complete_gold",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "partial_path_wrong_status",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "path_sources_differ_from_edges",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "near_name_start_entity_valid",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "near_name_start_entity_malformed",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "near_name_bridge_entity_valid",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "near_name_bridge_entity_malformed",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "same_entity_wrong_attribute_valid",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "same_entity_wrong_attribute_malformed",
+          "passed": true
+        }
+      ],
+      "passed": 16,
+      "status": "PASS",
+      "total": 16
+    },
+    "independence": {
+      "controls": [
+        {
+          "actual": "UNIQUE",
+          "expected": "UNIQUE",
+          "name": "zero_overlap_all_dimensions",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_case_ids",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_entity_identities",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_source_ids",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_chunk_ids",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_exact_queries",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_exact_answers",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_exact_source_text",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_verbatim_attack_wording",
+          "passed": true
+        }
+      ],
+      "passed": 9,
+      "status": "PASS",
+      "total": 9
+    },
+    "negative_load": {
+      "controls": [
+        {
+          "defect": "load_corpus refused the synthetic corpus: source_count mismatch",
+          "layer": "runtime_load",
+          "name": "missing_source_count",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: source_count mismatch",
+          "layer": "runtime_load",
+          "name": "wrong_source_count",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: chunk_count mismatch",
+          "layer": "runtime_load",
+          "name": "missing_chunk_count",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: chunk_count mismatch",
+          "layer": "runtime_load",
+          "name": "wrong_chunk_count",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: manifest lacks file_checksums entries for sources.jsonl and chunks.jsonl",
+          "layer": "runtime_load",
+          "name": "missing_file_checksums",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: sources.jsonl checksum mismatch: manifest=0000000000000000000000000000000000000000000000000000000000000000 actual=d3807033967e8ca9f88a96912831c5903ed6adca171648c7b314c1eec99fda58",
+          "layer": "runtime_load",
+          "name": "wrong_sources_checksum",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: chunks.jsonl checksum mismatch: manifest=0000000000000000000000000000000000000000000000000000000000000000 actual=999df3db1c974e39e3e1fb820b38c72787626320734924dc63370a1403063863",
+          "layer": "runtime_load",
+          "name": "wrong_chunks_checksum",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r10-negload-n0jtkpzo\\corpus\\sources.jsonl",
+          "layer": "runtime_load",
+          "name": "missing_sources_and_chunks_file",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r10-negload-q90vnfeo\\corpus\\sources.jsonl",
+          "layer": "runtime_load",
+          "name": "missing_sources_file",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r10-negload-vz0yoy76\\corpus\\chunks.jsonl",
+          "layer": "runtime_load",
+          "name": "missing_chunks_file",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: 'source_title'",
+          "layer": "runtime_load",
+          "name": "malformed_source_record",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: 'source_id'",
+          "layer": "runtime_load",
+          "name": "malformed_chunk_record",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "load_corpus refused the synthetic corpus: checksum mismatch pre10q-chunk-hop1-nominated",
+          "layer": "runtime_load",
+          "name": "chunk_content_hash_corruption",
+          "passed": true,
+          "refused": true
+        },
+        {
+          "defect": "world builder refuses dangling chunk source_id",
+          "layer": "builder_gate",
+          "name": "chunk_source_referential_integrity",
+          "passed": true,
+          "refused": true
+        }
+      ],
+      "passed": 14,
+      "status": "PASS",
+      "total": 14
+    },
+    "path_achievability": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "nominated_absent_equivalent_edge",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "actual_window_excludes_all_valid_first_edges",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "wrong_relation",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "hand_authored_window_cannot_override_retrieval",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "wrong_bridge",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "equal_rank_contradictory_edges",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "unsafe_nonprojectable_edge",
+          "passed": true
+        }
+      ],
+      "passed": 7,
+      "status": "PASS",
+      "total": 7
+    },
+    "prior_exclusion": {
+      "controls": [
+        {
+          "actual": "UNIQUE",
+          "expected": "UNIQUE",
+          "name": "real_t21_through_t21r8_zero_overlap",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "t21r8_fingerprint_reuse",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "prior_exclusion_fingerprint_tamper",
+          "passed": true
+        }
+      ],
+      "passed": 3,
+      "status": "PASS",
+      "total": 3
+    },
+    "r9_manifest_schema_regression": {
+      "controls": [
+        {
+          "compatibility_defects": [
+            "corpus compatibility: load_corpus refused the sealed corpus: manifest lacks file_checksums entries for sources.jsonl and chunks.jsonl"
+          ],
+          "ledger_written": false,
+          "name": "r9_manifest_schema_regression",
+          "passed": true,
+          "preflight_rejected_before_ledger": true,
+          "preflight_status": "FAIL",
+          "raw_written": false,
+          "results_written": false,
+          "runtime_evaluation_rows": 0
+        }
+      ],
+      "passed": 1,
+      "status": "PASS",
+      "total": 1
+    },
+    "retrieval_mirror_parity": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "ranking_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "reranking_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "same_source_dedup_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "top8_truncation_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "source_reservation_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "entity_relation_first_edge_selection",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "retrieval_mirror_parity_drift",
+          "passed": true
+        }
+      ],
+      "passed": 7,
+      "status": "PASS",
+      "total": 7
+    },
+    "seal_preflight": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "real_official_preflight",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "official_runner_schema_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "suite_id_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "evaluator_hash_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "manifest_hash_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "builder_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "audit_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "freeze_root_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "suite_count_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "runtime_component_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "evaluator_component_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "freeze_file_component_map_tamper",
+          "passed": true
+        }
+      ],
+      "passed": 12,
+      "status": "PASS",
+      "total": 12
+    },
+    "spoof": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "fresh_nonresolving_locator",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "missing_attack_wording",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "wording_absent_from_query",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "malformed_provenance",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "multiple_fake_locators",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "spoof_resolves_real_source",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "spoof_resolves_real_chunk",
+          "passed": true
+        }
+      ],
+      "passed": 7,
+      "status": "PASS",
+      "total": 7
+    }
+  },
+  "corpus_compatibility": {
+    "chunks_loaded": 14,
+    "defects": [],
+    "manifest_chunk_count": 14,
+    "manifest_source_count": 5,
+    "runtime_rows_executed": 0,
+    "sources_loaded": 5,
+    "status": "PASS"
+  },
+  "counts": {
+    "chunks": 14,
+    "sources": 5,
+    "suite_rows": 8,
+    "world_rows": 19
+  },
+  "future_blind_reuse_forbidden": true,
+  "prohibited_real_r10_paths_present": [],
+  "runtime_rows_executed": 0,
+  "stages": {
+    "HOLDOUT_FROZEN": "PASS",
+    "blindness_audit": "PASS",
+    "construction_gate": "PASS",
+    "construction_scanner": "PASS",
+    "corpus_compatibility_load": "PASS",
+    "holdout_manifest": "PASS",
+    "official_runner_preflight_only": "PASS",
+    "static_gold_audit": "PASS",
+    "suite_construction": "PASS",
+    "uniqueness_audit": "PASS",
+    "world_construction": "PASS"
+  },
+  "states": {
+    "Executive Router": "EXPERIMENTAL",
+    "KNOWLEDGE_RAG": "EXPERIMENTAL",
+    "T21": "OPEN",
+    "T22": "BLOCKED"
+  },
+  "static_audit_status": "PASS",
+  "status": "PASS",
+  "stop": "STOP FOR CHATGPT FULL PREREGISTRATION AUDIT",
+  "synthetic_namespace": "pre10q-",
+  "synthetic_seal_status": "PASS",
+  "uniqueness_status": "UNIQUE"
+}
