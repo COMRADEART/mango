@@ -41,6 +41,20 @@ import t21r8_construction_gate as gate  # noqa: E402
 from t21r4_freeze_runtime import RUNTIME_GROUPS  # noqa: E402
 
 
+# Audited root-of-trust anchors.  These values are preregistered here rather
+# than learned from either freeze document: neither document, nor the helper
+# used to interpret the runtime freeze, is trusted until its exact bytes match.
+EXPECTED_RUNTIME_FREEZE_SHA256 = (
+    "ef5e15de897ccff1e18c6ece650fd23ec0671e3b20edb752de1e7c9a19cdea93"
+)
+EXPECTED_EVALUATOR_FREEZE_SHA256 = (
+    "9467c322b873fe01ecd5d619fc45291245800aa9eb6fee692592d346f7b60c3c"
+)
+EXPECTED_RUNTIME_HASH_HELPER_SHA256 = (
+    "58eeccc72104b2ec79b5ffa7594c075ca1e5c101375b875c176202c8d58a4e24"
+)
+
+
 # Artifacts whose existence means the one-shot exposure already began.
 EXPOSURE_ARTIFACTS = (
     "evaluation_run_ledger.json",
@@ -122,17 +136,31 @@ def verify_frozen_identity(root: Path) -> tuple[dict, dict]:
     out_dir = root / "evaluations" / "t21r8"
     runtime_path = out_dir / "runtime_freeze.json"
     evaluator_path = out_dir / "evaluator_freeze.json"
-    if not runtime_path.exists():
-        raise SystemExit(
-            "T21R8_FROZEN_IDENTITY_VIOLATION: runtime_freeze.json missing")
-    if not evaluator_path.exists():
-        raise SystemExit(
-            "T21R8_FROZEN_IDENTITY_VIOLATION: evaluator_freeze.json missing")
-    runtime_freeze = json.loads(runtime_path.read_text(encoding="utf-8"))
-    evaluator_freeze = json.loads(evaluator_path.read_text(encoding="utf-8"))
+    runtime_hash_helper_path = root / "scripts" / "t21r4_freeze_runtime.py"
 
     def _violation(detail: str) -> None:
         raise SystemExit(f"T21R8_FROZEN_IDENTITY_VIOLATION: {detail}")
+
+    # Existence first, then all three exact byte identities.  Nothing from
+    # either freeze is parsed, and the runtime hash helper is not used, until
+    # these independent roots of trust pass.
+    if not runtime_path.exists():
+        _violation("runtime_freeze.json missing")
+    if not evaluator_path.exists():
+        _violation("evaluator_freeze.json missing")
+    if _sha256(runtime_path) != EXPECTED_RUNTIME_FREEZE_SHA256:
+        _violation("runtime_freeze.json SHA-256 differs from the "
+                   "preregistered root")
+    if _sha256(evaluator_path) != EXPECTED_EVALUATOR_FREEZE_SHA256:
+        _violation("evaluator_freeze.json SHA-256 differs from the "
+                   "preregistered root")
+    if (_sha256(runtime_hash_helper_path) !=
+            EXPECTED_RUNTIME_HASH_HELPER_SHA256):
+        _violation("scripts/t21r4_freeze_runtime.py SHA-256 differs from "
+                   "the preregistered root")
+
+    runtime_freeze = json.loads(runtime_path.read_text(encoding="utf-8"))
+    evaluator_freeze = json.loads(evaluator_path.read_text(encoding="utf-8"))
 
     # All 14 runtime composites must still equal the freeze.
     composites = _composites(root)

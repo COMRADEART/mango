@@ -133,6 +133,10 @@ def _build_root(tmp_path: Path) -> Path:
     out.mkdir(parents=True)
     scripts = root / "scripts"
     scripts.mkdir()
+    shutil.copy(
+        ROOT / "scripts" / "t21r4_freeze_runtime.py",
+        scripts / "t21r4_freeze_runtime.py",
+    )
     for rel in _SRC_STUBS:
         path = root / rel
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -205,6 +209,20 @@ def _write_freezes(root: Path) -> None:
     })
 
 
+def _anchor_fixture_roots(root: Path, monkeypatch) -> None:
+    """Make the synthetic freeze/helper bytes the preregistered test roots."""
+    out = root / "evaluations" / "t21r8"
+    monkeypatch.setattr(
+        seal, "EXPECTED_RUNTIME_FREEZE_SHA256",
+        _sha(out / "runtime_freeze.json"))
+    monkeypatch.setattr(
+        seal, "EXPECTED_EVALUATOR_FREEZE_SHA256",
+        _sha(out / "evaluator_freeze.json"))
+    monkeypatch.setattr(
+        seal, "EXPECTED_RUNTIME_HASH_HELPER_SHA256",
+        _sha(root / "scripts" / "t21r4_freeze_runtime.py"))
+
+
 def _write_audits(root: Path, metrics: dict, static_status: str = "PASS",
                   static_executions: int = 0, uniqueness_verdict: str =
                   "UNIQUE", uniqueness_executions: int = 0,
@@ -238,6 +256,7 @@ def _prepare(tmp_path: Path, monkeypatch, metrics: dict | None = None,
     monkeypatched construction remeasurement (no runtime code executes)."""
     root = _build_root(tmp_path)
     _write_freezes(root)
+    _anchor_fixture_roots(root, monkeypatch)
     if metrics is None:
         metrics = _passing_metrics(
             json.loads((root / "evaluations" / "t21r8"
@@ -249,6 +268,120 @@ def _prepare(tmp_path: Path, monkeypatch, metrics: dict | None = None,
         lambda root: {"metrics": metrics,
                       "annotation_violation_details": violations or []})
     return root
+
+
+# ---------------------------------------------------------------------------
+# Root-of-trust anchors (controls A-G).
+# ---------------------------------------------------------------------------
+
+
+def test_root_anchor_exact_frozen_artifacts_and_helper_pass() -> None:
+    # Control A: the three audited repository roots and all deeper frozen
+    # identities pass together.
+    out = ROOT / "evaluations" / "t21r8"
+    assert _sha(out / "runtime_freeze.json") == (
+        seal.EXPECTED_RUNTIME_FREEZE_SHA256)
+    assert _sha(out / "evaluator_freeze.json") == (
+        seal.EXPECTED_EVALUATOR_FREEZE_SHA256)
+    assert _sha(ROOT / "scripts" / "t21r4_freeze_runtime.py") == (
+        seal.EXPECTED_RUNTIME_HASH_HELPER_SHA256)
+    runtime_freeze, evaluator_freeze = seal.verify_frozen_identity(ROOT)
+    assert len(runtime_freeze["runtime_composites"]) == 14
+    assert "frozen_hashes" in evaluator_freeze
+
+
+def test_root_anchor_refuses_modified_evaluator_freeze_bytes(
+    tmp_path, monkeypatch,
+) -> None:
+    # Control B: even semantically inert byte drift is refused.
+    root = _prepare(tmp_path, monkeypatch)
+    path = root / "evaluations" / "t21r8" / "evaluator_freeze.json"
+    path.write_bytes(path.read_bytes() + b"\n")
+    with pytest.raises(SystemExit, match="evaluator_freeze.json SHA-256"):
+        seal.verify_frozen_identity(root)
+
+
+def test_root_anchor_refuses_self_consistent_evaluator_rewrite(
+    tmp_path, monkeypatch,
+) -> None:
+    # Control C: changing the evaluator and its hash inside the evaluator
+    # freeze cannot establish a new root.
+    root = _prepare(tmp_path, monkeypatch)
+    evaluator = root / "scripts" / "t21r8_run_eval.py"
+    evaluator.write_text("correspondingly modified evaluator\n",
+                         encoding="utf-8")
+    path = root / "evaluations" / "t21r8" / "evaluator_freeze.json"
+    document = json.loads(path.read_text(encoding="utf-8"))
+    document["frozen_hashes"]["evaluator_source_sha256"] = _sha(evaluator)
+    _write_json(path, document)
+    with pytest.raises(SystemExit, match="evaluator_freeze.json SHA-256"):
+        seal.verify_frozen_identity(root)
+
+
+def test_root_anchor_refuses_modified_runtime_freeze_bytes(
+    tmp_path, monkeypatch,
+) -> None:
+    # Control D.
+    root = _prepare(tmp_path, monkeypatch)
+    path = root / "evaluations" / "t21r8" / "runtime_freeze.json"
+    path.write_bytes(path.read_bytes() + b"\n")
+    with pytest.raises(SystemExit, match="runtime_freeze.json SHA-256"):
+        seal.verify_frozen_identity(root)
+
+
+def test_root_anchor_refuses_coordinated_freeze_rewrite(
+    tmp_path, monkeypatch,
+) -> None:
+    # Control E: updating the runtime freeze and its evaluator-freeze pointer
+    # changes both pinned roots and is still refused.
+    root = _prepare(tmp_path, monkeypatch)
+    out = root / "evaluations" / "t21r8"
+    runtime_path = out / "runtime_freeze.json"
+    runtime = json.loads(runtime_path.read_text(encoding="utf-8"))
+    runtime["tampered"] = True
+    _write_json(runtime_path, runtime)
+    evaluator_path = out / "evaluator_freeze.json"
+    evaluator = json.loads(evaluator_path.read_text(encoding="utf-8"))
+    evaluator["frozen_hashes"]["runtime_freeze_sha256"] = _sha(runtime_path)
+    _write_json(evaluator_path, evaluator)
+    assert _sha(runtime_path) != seal.EXPECTED_RUNTIME_FREEZE_SHA256
+    assert _sha(evaluator_path) != seal.EXPECTED_EVALUATOR_FREEZE_SHA256
+    with pytest.raises(SystemExit, match="runtime_freeze.json SHA-256"):
+        seal.verify_frozen_identity(root)
+
+
+def test_root_anchor_refuses_modified_runtime_hash_helper(
+    tmp_path, monkeypatch,
+) -> None:
+    # Control F.
+    root = _prepare(tmp_path, monkeypatch)
+    helper = root / "scripts" / "t21r4_freeze_runtime.py"
+    helper.write_bytes(helper.read_bytes() + b"\n# modified\n")
+    with pytest.raises(SystemExit, match="t21r4_freeze_runtime.py SHA-256"):
+        seal.verify_frozen_identity(root)
+
+
+def test_root_anchor_rejects_helper_before_weakened_composites_are_used(
+    tmp_path, monkeypatch,
+) -> None:
+    # Control G: a modified helper cannot omit a group and exploit the
+    # composite loop's dependence on the helper-defined group set.
+    root = _prepare(tmp_path, monkeypatch)
+    helper = root / "scripts" / "t21r4_freeze_runtime.py"
+    helper.write_text(
+        "RUNTIME_GROUPS = {}  # maliciously omitted all runtime groups\n",
+        encoding="utf-8")
+    composites_used = False
+
+    def _weakened_composites(_root: Path) -> dict:
+        nonlocal composites_used
+        composites_used = True
+        return {}
+
+    monkeypatch.setattr(seal, "_composites", _weakened_composites)
+    with pytest.raises(SystemExit, match="t21r4_freeze_runtime.py SHA-256"):
+        seal.verify_frozen_identity(root)
+    assert composites_used is False
 
 
 # ---------------------------------------------------------------------------
@@ -315,6 +448,12 @@ def test_refuses_runtime_composite_drift(tmp_path, monkeypatch) -> None:
         encoding="utf-8"))
     freeze["runtime_composites"]["security_layer"] = "0" * 64
     _write_json(out / "runtime_freeze.json", freeze)
+    evaluator_path = out / "evaluator_freeze.json"
+    evaluator = json.loads(evaluator_path.read_text(encoding="utf-8"))
+    evaluator["frozen_hashes"]["runtime_freeze_sha256"] = _sha(
+        out / "runtime_freeze.json")
+    _write_json(evaluator_path, evaluator)
+    _anchor_fixture_roots(root, monkeypatch)
     with pytest.raises(SystemExit, match="security_layer drifted"):
         seal.main(root)
 
@@ -403,6 +542,7 @@ def test_refuses_non_passing_data_only_audits(
     # Control 12: PASS / UNIQUE / PASS at zero recorded runtime activity.
     root = _build_root(tmp_path)
     _write_freezes(root)
+    _anchor_fixture_roots(root, monkeypatch)
     metrics = _passing_metrics(
         json.loads((root / "evaluations" / "t21r8"
                     / "holdout_construction_contract.json")
@@ -465,6 +605,7 @@ def test_refuses_recomputed_metrics_mismatch(tmp_path, monkeypatch) -> None:
     embedded["stresses"]["multihop_chain_families"] = 13  # differs, passes
     root = _build_root(tmp_path)
     _write_freezes(root)
+    _anchor_fixture_roots(root, monkeypatch)
     _write_audits(root, embedded)
     monkeypatch.setattr(
         construction_audit, "measure_candidate",
@@ -491,6 +632,7 @@ def test_refuses_contract_minimums_differing_from_exact_shape(
     contract["suite_target_minimums"]["singlehop"]["minimum"] = 500
     _write_json(out / "holdout_construction_contract.json", contract)
     _write_freezes(root)
+    _anchor_fixture_roots(root, monkeypatch)
     metrics = _passing_metrics(contract)
     _write_audits(root, metrics)
     monkeypatch.setattr(
