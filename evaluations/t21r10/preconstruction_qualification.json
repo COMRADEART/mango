@@ -8,17 +8,17 @@
       "scoring_semantics": "555b009b29ee13b6c8164617275a287a702f9f6ed22b1ee26131a90ce4372bab",
       "validation": "e4fbdab35ac9476e7dce902442a3f4e630330ce24ba822850db49b8b2e9af91f"
     },
-    "preconstruction_script_sha256": "1aedabe448c0fab53b6c8eb721456d816fb860cdd0c5e0a77755623a1f690ba8",
+    "preconstruction_script_sha256": "2b53ae075098ebec18dcd8ed0cf9ca8c9fafcd8c599c8adfc5982f444fa4fd01",
     "prior_exclusion_fingerprint_sha256": "e20954d0c98e941e0d402396424fc2ecb0751cd7bf944e4f0a66533718ce89ad",
-    "qualified_overlay_root_sha256": "9a5a72e3944d0df4736cdb81eb07919e13eab7c247b9c89f1a7ea840ec2f5a43",
+    "qualified_overlay_root_sha256": "3c3df1a0ea6b33f2017d0555e382bf94e2bf0f38bb7ab35b32d592b413d6dbec",
     "test_results": {
       "status": "PENDING_FINAL_GATE"
     },
     "test_sha256": {
-      "semantic_preconstruction": "9d5739a7ac341d9785973cc0d22ac76f48959928e49e3b973f614fb2a1a3075f"
+      "semantic_preconstruction": "f4a049a283d11a0541ed6077a40b3c81879a420aad4d01d2f4e84b5940de9d08"
     },
-    "tested_git_head": "273f1984a8d096db546bf543662eaad79f6eff13",
-    "tested_git_tree_sha": "d195c329421fcdce16fec61f33121aa4249b5ec0",
+    "tested_git_head": "94ce45954950968e27cdbe22df185a6d839c5862",
+    "tested_git_tree_sha": "6bd17526cb34a1420a956f0a83c7e4e0db09251a",
     "tooling_sha256": {
       "blindness": "4dd21ad8bdd5ebdf5023319540e11aa12e731e12e9853637ed0ac641ae99abef",
       "construction_audit": "32b8d9cabbd9061d8717fdcce605f4d0310ff4909b63e6bbd57a4a8acc198d7c",
@@ -36,6 +36,7 @@
   },
   "blind_data_created": false,
   "blindness_status": "PASS",
+  "construction_authorized": true,
   "controls": {
     "annotations": {
       "controls": [
@@ -253,21 +254,21 @@
           "refused": true
         },
         {
-          "defect": "load_corpus refused the synthetic corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r10-negload-n0jtkpzo\\corpus\\sources.jsonl",
+          "defect": "load_corpus refused the synthetic corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r10-negload-3c89t00l\\corpus\\sources.jsonl",
           "layer": "runtime_load",
           "name": "missing_sources_and_chunks_file",
           "passed": true,
           "refused": true
         },
         {
-          "defect": "load_corpus refused the synthetic corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r10-negload-q90vnfeo\\corpus\\sources.jsonl",
+          "defect": "load_corpus refused the synthetic corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r10-negload-0n_ac6li\\corpus\\sources.jsonl",
           "layer": "runtime_load",
           "name": "missing_sources_file",
           "passed": true,
           "refused": true
         },
         {
-          "defect": "load_corpus refused the synthetic corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r10-negload-vz0yoy76\\corpus\\chunks.jsonl",
+          "defect": "load_corpus refused the synthetic corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r10-negload-2_myol8w\\corpus\\chunks.jsonl",
           "layer": "runtime_load",
           "name": "missing_chunks_file",
           "passed": true,

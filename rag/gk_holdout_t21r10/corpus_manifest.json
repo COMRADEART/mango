@@ -1,0 +1,29 @@
+{
+  "artifact": "T21R10_BLIND_CORPUS_MANIFEST",
+  "chunk_count": 6668,
+  "corpus_version": "mango-general-knowledge-corpus-v1",
+  "domains": [
+    "arts",
+    "biography",
+    "culture",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "technology_history"
+  ],
+  "file_checksums": {
+    "chunks.jsonl": "3bdf4a7034367dd1478610ae22a37bf8dc62ede125d38a28c3fe7dfb75d9f0b4",
+    "sources.jsonl": "5d896d30aa97389695e575763d929df2c2640984d5c26f8788286795016cab48"
+  },
+  "license_summary": {
+    "licenses": {
+      "CC0-1.0-PROJECT-FIXTURE": 14
+    },
+    "notes": "Blind holdout material must remain retrieval-only project-owned evaluation fixture content; no third-party text ingested."
+  },
+  "manifest_checksum": "a28879fb5df78d4f6818a3128f3180158f86fc41e754d86fa3c6ea7a228067e8",
+  "runtime_rows_executed": 0,
+  "snapshot_date": "T21R10-BLIND",
+  "source_count": 14
+}

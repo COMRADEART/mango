@@ -41,6 +41,12 @@ STATIC_AUDIT_PATH = ROOT / "scripts" / "t21r10_static_semantics.py"
 PRIOR_FINGERPRINT_PATH = ROOT / "evaluations" / "t21r10" / \
     "prior_exclusion_fingerprints.json"
 
+# Paths that must remain absent in EVERY phase: the one-shot exposure
+# artifacts. The four blind-data paths in the contract list are absent only
+# before the authorized construction materializes them.
+EXPOSURE_REAL_PATHS = tuple(
+    f"evaluations/t21r10/{name}" for name in real_seal.EXPOSURE_FILES)
+
 
 def _json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -339,7 +345,8 @@ def run_static_audit(rows: list[dict], sources: list[dict],
             "references": references, "runtime_execution_count": 0}
 
 
-def run_blindness_audit(repo_root: Path = ROOT) -> dict:
+def run_blindness_audit(repo_root: Path = ROOT,
+                        construction_authorized: bool = False) -> dict:
     """Ensure qualification code cannot invoke runtime and real paths absent."""
     forbidden_calls = {"answer_knowledge", "resolve_path", "run_evaluation",
                        "official_evaluation", "evaluate_holdout"}
@@ -357,13 +364,16 @@ def run_blindness_audit(repo_root: Path = ROOT) -> dict:
                 if name in forbidden_calls:
                     findings.append(f"forbidden runtime call {name} in {script.name}")
     contract = _json(CONTRACT_PATH)
-    present = [path for path in contract["prohibited_real_r10_paths"]
-               if (repo_root / path).exists()]
+    checked = list(contract["prohibited_real_r10_paths"])
+    if construction_authorized:
+        checked = [path for path in checked if path in EXPOSURE_REAL_PATHS]
+    present = [path for path in checked if (repo_root / path).exists()]
     findings.extend(f"real R10 path exists: {path}" for path in present)
     return {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "prohibited_paths_checked": len(contract["prohibited_real_r10_paths"]),
+        "prohibited_paths_checked": len(checked),
+        "construction_authorized": construction_authorized,
         "runtime_execution_count": 0,
     }
 
@@ -1343,9 +1353,15 @@ def negative_load_controls(sources: list[dict], chunks: list[dict]) -> dict:
             "passed": passed, "total": len(controls), "controls": controls}
 
 
-def prohibited_real_paths() -> list[str]:
-    return [path for path in _json(CONTRACT_PATH)["prohibited_real_r10_paths"]
-            if (ROOT / path).exists()]
+def prohibited_real_paths(construction_authorized: bool = False) -> list[str]:
+    contract_paths = list(
+        _json(CONTRACT_PATH)["prohibited_real_r10_paths"])
+    if construction_authorized:
+        # The authorized construction materializes the blind-data paths;
+        # only the one-shot exposure artifacts must remain absent.
+        contract_paths = [path for path in contract_paths
+                          if path in EXPOSURE_REAL_PATHS]
+    return [path for path in contract_paths if (ROOT / path).exists()]
 
 
 def _git_value(*arguments: str) -> str:
@@ -1426,7 +1442,8 @@ def _qualification_bindings(test_results: dict | None) -> dict:
 
 
 def run_qualification(write_report: bool = True,
-                      test_results: dict | None = None) -> dict:
+                      test_results: dict | None = None,
+                      construction_authorized: bool = False) -> dict:
     contract = _json(CONTRACT_PATH)
     sources, chunks = build_synthetic_world()
     rows = build_synthetic_suites()
@@ -1486,7 +1503,7 @@ def run_qualification(write_report: bool = True,
         "status": "PASS" if r9_regression["passed"] else "FAIL",
         "passed": 1 if r9_regression["passed"] else 0,
         "total": 1, "controls": [r9_regression]}
-    present = prohibited_real_paths()
+    present = prohibited_real_paths(construction_authorized)
     all_control_reports = (path_report, spoof_report, annotation_report,
                            independence_report, prior_report, retrieval_report,
                            seal_report, negative_loads, r9_regression_report)
@@ -1497,6 +1514,7 @@ def run_qualification(write_report: bool = True,
         "artifact": "T21R10_FULL_PREREGISTRATION_QUALIFICATION",
         "status": status,
         "blind_data_created": False,
+        "construction_authorized": construction_authorized,
         "synthetic_namespace": expected["namespace_prefix"],
         "future_blind_reuse_forbidden": True,
         "counts": counts,
@@ -1532,6 +1550,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--focused-junit", type=Path)
     parser.add_argument("--full-junit", type=Path)
+    parser.add_argument("--construction-authorized", action="store_true")
     arguments = parser.parse_args()
     test_results = None
     if arguments.focused_junit or arguments.full_junit:
@@ -1541,7 +1560,8 @@ def main() -> int:
             "focused": _junit_result(arguments.focused_junit),
             "full": _junit_result(arguments.full_junit),
         }
-    report = run_qualification(write_report=True, test_results=test_results)
+    report = run_qualification(write_report=True, test_results=test_results,
+                               construction_authorized=arguments.construction_authorized)
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0 if report["status"] == "PASS" else 1
 

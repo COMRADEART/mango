@@ -202,7 +202,8 @@ def test_static_scanner_uniqueness_and_blindness_all_pass() -> None:
     assert semantics.audit_independence(
         sources, chunks, rows,
         qualification.synthetic_prior_material())["status"] == "UNIQUE"
-    assert qualification.run_blindness_audit()["status"] == "PASS"
+    assert qualification.run_blindness_audit(
+        construction_authorized=True)["status"] == "PASS"
 
 
 def test_qualification_sources_have_no_runtime_evaluator_call() -> None:
@@ -553,7 +554,8 @@ def test_frozen_runtime_and_evaluator_drift_refuse_seal_and_preflight() \
 # -- end-to-end qualification -------------------------------------------
 
 def test_end_to_end_nonblind_miniature_and_all_controls_pass() -> None:
-    report = qualification.run_qualification(write_report=False)
+    report = qualification.run_qualification(
+        write_report=False, construction_authorized=True)
     assert report["status"] == "PASS", json.dumps(report, indent=1)[:2000]
     assert report["counts"] == {
         "sources": 5, "chunks": 14, "world_rows": 19, "suite_rows": 8}
@@ -572,7 +574,9 @@ def test_end_to_end_nonblind_miniature_and_all_controls_pass() -> None:
 
 def test_every_real_r10_holdout_and_exposure_path_remains_absent() -> None:
     contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
-    assert qualification.prohibited_real_paths() == []
     assert len(contract["prohibited_real_r10_paths"]) == 7
-    for relative in contract["prohibited_real_r10_paths"]:
+    # One-shot exposure artifacts remain absent in every phase.
+    for relative in qualification.EXPOSURE_REAL_PATHS:
         assert not (ROOT / relative).exists()
+    assert qualification.prohibited_real_paths(
+        construction_authorized=True) == []

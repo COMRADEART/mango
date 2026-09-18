@@ -1,0 +1,16 @@
+{
+  "artifact": "T21R10_BLINDNESS_AUDIT",
+  "runtime_execution_count": 0,
+  "scripts": {
+    "t21r10_build_suites.py": "e99d7f8e26feba8ade68aaee3a0cd5ca286802d8c0e544d9276de63f2f308512",
+    "t21r10_construction_audit.py": "32b8d9cabbd9061d8717fdcce605f4d0310ff4909b63e6bbd57a4a8acc198d7c",
+    "t21r10_construction_gate.py": "26bc3aff48ed18432ce246eeff64e4f0476b8a07e7bb0e92565ece7370f7f820",
+    "t21r10_retrieval_mirror.py": "4be5b81d183cb5877e857d802a7f2d77e38415431994de92cc6124c7cde00fcb",
+    "t21r10_static_gold_audit.py": "713e2de2fbd8e5ead848b5f1721bf81be5b38687ae40db4deec88bf84e907347",
+    "t21r10_static_semantics.py": "182d17c24fa779dbb78e76c375e0bfff39df011028da017ada18970dbc744b7e",
+    "t21r10_uniqueness.py": "b7a80380ea7a737ed9f55fa8957c5b5d9c11657316aaae7a25e6a9abc647ecea",
+    "t21r10_world.py": "7a782389b075ba2eb02c3e2cd5b7f3cf6af5f29af71ae5bbf9f6404e0756e35e"
+  },
+  "status": "PASS",
+  "violations": []
+}
