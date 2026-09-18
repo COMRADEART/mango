@@ -1,0 +1,98 @@
+{
+  "artifact": "T21R9_HOLDOUT_CONSTRUCTION_CONTRACT",
+  "version": "t21r9-construction-v1",
+  "blind_data_authorized": false,
+  "runtime_execution_maximum": 0,
+  "candidate_repair_policy": "Any failed real construction/static gate closes that candidate non-promotional; no post-construction repair.",
+  "retrieval_mirror": {
+    "implementation": "scripts/t21r9_retrieval_mirror.py",
+    "top_k": 8,
+    "candidate_multiplier": 3,
+    "stages": ["normalization", "BM25", "reranking", "same_source_dedup", "source_reservation", "top_8"],
+    "initial_window_source": "derived_by_static_audit",
+    "builder_declared_initial_window_forbidden": true,
+    "parity_with_frozen_production_required": true
+  },
+  "path_achievability": {
+    "first_edge": "safe FactEdge from derived top-8 matching normalized start identity and canonical first relation",
+    "leader_ranking": ["authority_rank", "freshness_rank"],
+    "equal_rank_contradiction": "FAIL",
+    "selected_value_must_equal_bridge": true,
+    "nominated_hop1_chunk_must_be_in_top_8": false,
+    "hop2_and_terminal_validated_separately": true
+  },
+  "partial_path_configurations": [
+    "missing_start_entity",
+    "missing_hop1",
+    "missing_hop2",
+    "wrong_bridge_identity",
+    "near_name_start_entity",
+    "near_name_bridge_entity",
+    "wrong_relation",
+    "same_entity_wrong_attribute",
+    "partial_path_only",
+    "unrelated_conflict",
+    "relevant_unresolved_conflict"
+  ],
+  "independence": {
+    "fingerprint_artifact": "evaluations/t21r9/prior_exclusion_fingerprints.json",
+    "milestones": ["T21", "T21R", "T21R2", "T21R3", "T21R4", "T21R5", "T21R6", "T21R7", "T21R8_DIAGNOSTIC"],
+    "dimensions": ["case_ids", "entity_identities", "source_ids", "chunk_ids", "exact_queries", "exact_answers", "exact_source_text", "verbatim_attack_wording"],
+    "maximum_overlap": 0,
+    "algorithm": "sha256",
+    "raw_r8_material_committed": false
+  },
+  "builder_firewall": {
+    "scripts": ["scripts/t21r9_world.py", "scripts/t21r9_build_suites.py"],
+    "forbidden_modules": ["pipeline", "router", "retrieval", "evidence_paths", "relations", "conflicts", "citations", "injection", "t21r9_run_eval"],
+    "forbidden_calls": ["answer_knowledge", "resolve_path", "retrieve", "run_answer_row", "evaluate"]
+  },
+  "suite_target_exact": {
+    "mango-t21r9-retrieval-holdout-v1": 600,
+    "mango-t21r9-singlehop-holdout-v1": 550,
+    "mango-t21r9-multihop-holdout-v1": 800,
+    "mango-t21r9-crossdomain-holdout-v1": 700,
+    "mango-t21r9-citation-claim-holdout-v1": 450,
+    "mango-t21r9-conflict-abstention-holdout-v1": 800,
+    "mango-t21r9-temporal-holdout-v1": 250,
+    "mango-t21r9-adversarial-holdout-v1": 650
+  },
+  "total_rows_exact": 4800,
+  "stress_requirements": {
+    "multihop_rows_minimum": 800,
+    "multihop_chain_families_minimum": 12,
+    "multihop_largest_family_share_maximum": 0.20,
+    "multihop_relation_surface_mismatch_fraction_minimum": 0.50,
+    "crossdomain_rows_minimum": 700,
+    "crossdomain_two_source_two_domain_minimum": 700,
+    "domain_pair_families_minimum": 4,
+    "largest_domain_pair_share_maximum": 0.35,
+    "multisource_path_rows_minimum": 1200,
+    "partial_path_rows_minimum": 300,
+    "partial_path_configuration_minimum": 5,
+    "relation_surface_rows_minimum": 700,
+    "canonical_relations_minimum": 16,
+    "relation_surface_mismatch_fraction_minimum": 0.50,
+    "source_injection_rows_minimum": 300,
+    "query_injection_or_spoof_rows_minimum": 250,
+    "safe_fact_with_directive_rows_minimum": 150,
+    "fresh_attack_overlap_maximum": 0
+  },
+  "annotation_rules": {
+    "path_required_sources_equal_gold_edge_sources": true,
+    "corroboration_sources_list_and_disjoint": true,
+    "query_attack_wording_occurs_in_query": true,
+    "source_attack_wording_occurs_in_declared_evidence": true,
+    "partial_path_has_no_complete_gold_path": true,
+    "absent_entity_has_no_stale_construction_metadata": true
+  },
+  "prohibited_real_paths_before_authorization": [
+    "rag/gk_holdout_t21r9",
+    "evaluations/t21r9/suites",
+    "evaluations/t21r9/HOLDOUT_FROZEN",
+    "evaluations/t21r9/holdout_manifest.json",
+    "evaluations/t21r9/evaluation_run_ledger.json",
+    "evaluations/t21r9/raw_results.jsonl",
+    "evaluations/t21r9/holdout_results.json"
+  ]
+}

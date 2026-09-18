@@ -8,9 +8,9 @@
     "namespace_prefix": "pre9q-",
     "future_blind_reuse_forbidden": true,
     "source_count": 5,
-    "chunk_count": 7,
-    "world_rows": 12,
-    "suite_rows": 6
+    "chunk_count": 14,
+    "world_rows": 19,
+    "suite_rows": 8
   },
   "prohibited_real_r9_paths": [
     "rag/gk_holdout_t21r9",

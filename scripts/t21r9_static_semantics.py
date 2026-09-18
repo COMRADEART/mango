@@ -7,28 +7,191 @@ the answer pipeline, path resolver, evaluator, or an official runner.
 from __future__ import annotations
 
 import hashlib
+import json
 import re
-import sys
+import unicodedata
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+from t21r9_retrieval_mirror import derive_initial_window
 
-from sciencemath.knowledge.conflicts import (  # noqa: E402
-    AUTHORITY_RANK,
-    _FRESHNESS_RANK,
-)
-from sciencemath.knowledge.evidence import (  # noqa: E402
-    EvidenceItem,
-    make_citation_id,
-)
-from sciencemath.knowledge.evidence_paths import (  # noqa: E402
-    normalize_identity,
-    project_fact_edge,
-)
-from sciencemath.knowledge.relations import canonical_relation  # noqa: E402
+
+AUTHORITY_RANK = {
+    "PRIMARY_REFERENCE": 6, "ENCYCLOPEDIC": 5,
+    "ACADEMIC_REFERENCE": 4, "GOVERNMENT_PUBLICATION": 4,
+    "INSTITUTIONAL": 3, "GENERAL_REFERENCE": 2, "UNKNOWN": 0,
+}
+_FRESHNESS_RANK = {
+    "STATIC": 3, "SLOW_CHANGING": 2, "TIME_SENSITIVE": 1, "UNKNOWN": 0,
+}
+
+_ATTRIBUTE_ALIASES = {
+    "birthplace": "BIRTHPLACE", "birth place": "BIRTHPLACE",
+    "birth town": "BIRTHPLACE", "birth year": "BIRTH_YEAR",
+    "author": "AUTHOR", "writer": "AUTHOR", "creator": "CREATOR",
+    "painter": "PAINTER", "inventor": "INVENTOR",
+    "location": "LOCATION", "country": "COUNTRY", "nation": "NATION",
+    "region": "REGION", "province": "PROVINCE",
+    "continent": "CONTINENT", "capital": "CAPITAL",
+    "river": "WATERWAY", "waterway": "WATERWAY",
+    "founding year": "FOUNDING_YEAR", "foundation year": "FOUNDING_YEAR",
+    "established year": "FOUNDING_YEAR",
+    "establishment year": "FOUNDING_YEAR",
+    "publication year": "PUBLICATION_YEAR",
+    "introduction year": "INTRODUCTION_YEAR",
+    "invention year": "INTRODUCTION_YEAR", "launch year": "INTRODUCTION_YEAR",
+    "creation year": "CREATION_YEAR", "opening year": "OPENING_YEAR",
+    "discovery year": "DISCOVERY_YEAR",
+    "ratification year": "RATIFICATION_YEAR",
+    "signing year": "SIGNING_YEAR", "completion year": "COMPLETION_YEAR",
+    "landing year": "LANDING_YEAR", "sealing year": "SEALING_YEAR",
+    "medium": "MEDIUM", "emblem": "EMBLEM",
+    "field of study": "FIELD_OF_STUDY", "research field": "FIELD_OF_STUDY",
+    "discipline": "FIELD_OF_STUDY", "role": "ROLE", "office": "OFFICE",
+    "officeholder": "OFFICE", "mayor": "MAYOR", "date": "DATE",
+    "type": "TYPE", "institution type": "TYPE", "definition": "DEFINITION",
+    "function": "FUNCTION", "purpose": "PURPOSE", "genre": "GENRE",
+    "subject": "SUBJECT", "notable work": "NOTABLE_WORK",
+    "property": "PROPERTY", "seats": "SEATS", "layer": "LAYER",
+    "landmark": "LANDMARK",
+}
+_RELATION_CUES = {
+    "BIRTHPLACE": ("birthplace", "birth place", "born"),
+    "BIRTH_YEAR": ("birth year", "year born", "when born"),
+    "AUTHOR": ("author", "writer", "authored", "wrote", "written by"),
+    "CREATOR": ("creator", "created by", "made by"),
+    "PAINTER": ("painter", "painted by"),
+    "INVENTOR": ("inventor", "invented by"),
+    "LOCATION": ("location", "located", "situated"),
+    "COUNTRY": ("country",), "NATION": ("nation",),
+    "REGION": ("region",), "PROVINCE": ("province",),
+    "CONTINENT": ("continent",), "CAPITAL": ("capital",),
+    "WATERWAY": ("waterway", "river"),
+    "FOUNDING_YEAR": ("founding", "foundation", "founded", "established"),
+    "PUBLICATION_YEAR": ("publication", "published", "printed"),
+    "INTRODUCTION_YEAR": ("introduction", "introduced", "launch"),
+    "CREATION_YEAR": ("creation year", "created in", "crafted in"),
+    "OPENING_YEAR": ("opening year", "opened in"),
+    "DISCOVERY_YEAR": ("discovery year", "discovered in"),
+    "RATIFICATION_YEAR": ("ratification year", "ratified in"),
+    "SIGNING_YEAR": ("signing year", "signed in"),
+    "COMPLETION_YEAR": ("completion year", "completed in"),
+    "LANDING_YEAR": ("landing year", "landed in"),
+    "SEALING_YEAR": ("sealing year", "sealed in"),
+    "MEDIUM": ("medium", "executed in", "rendered in", "created using"),
+    "EMBLEM": ("emblem", "symbol"),
+    "FIELD_OF_STUDY": ("field of study", "research field", "discipline"),
+    "ROLE": ("role", "served as"), "OFFICE": ("office", "officeholder"),
+    "MAYOR": ("mayor",), "DATE": ("date",), "TYPE": ("type", "kind of"),
+    "DEFINITION": ("definition", "define"),
+    "FUNCTION": ("function", "what does"), "PURPOSE": ("purpose", "used for"),
+    "GENRE": ("genre",), "SUBJECT": ("subject",),
+    "NOTABLE_WORK": ("notable work", "masterpiece", "masterwork"),
+    "PROPERTY": ("property",), "SEATS": ("seats", "seat count"),
+    "LAYER": ("layer",), "LANDMARK": ("landmark",),
+}
+_DIRECTIVE_PATTERNS = tuple(re.compile(pattern, re.I) for pattern in (
+    r"ignore (?:all |any |the )?(?:previous|prior|above|earlier) "
+    r"(?:instructions|prompts|rules)",
+    r"do not (?:cite|reference|mention) (?:this|the|any) "
+    r"(?:source|passage|chunk|text)",
+    r"(?:system|developer|admin(?:istrator)?)\s*(?:message|prompt|notice|override)\s*:",
+    r"trust (?:this|the|only this|only the) (?:source|text|record|passage|document)",
+    r"regardless of (?:the )?(?:evidence|facts|sources)",
+    r"(?:do not|don't|never) (?:include|emit|add|use|show) (?:any )?citations",
+    r"(?:ignore|disregard) (?:the |this |any |all )?user\b",
+    r"reveal (?:the |your )?(?:system )?(?:prompt|instructions)",
+    r"use (?:the )?(?:live|open|real) (?:internet|web|network)",
+))
+_SENTENCE_SPLIT = re.compile(r"(?<=[.!?;])\s+|\r?\n+")
+
+
+def normalize_identity(value: object) -> str:
+    return " ".join(unicodedata.normalize(
+        "NFKC", str(value or "")).casefold().split())
+
+
+def _normalize_relation(value: object) -> str:
+    text = unicodedata.normalize("NFKC", str(value or "")).casefold()
+    text = re.sub(r"[^a-z0-9]+", " ", text.replace("_", " "))
+    return " ".join(text.split())
+
+
+def canonical_relation(value: object) -> str | None:
+    normalized = _normalize_relation(value)
+    if normalized.upper() in set(_ATTRIBUTE_ALIASES.values()):
+        return normalized.upper()
+    return _ATTRIBUTE_ALIASES.get(normalized)
+
+
+def _safe_sentences(text: str) -> list[str]:
+    return [sentence.strip() for sentence in _SENTENCE_SPLIT.split(text)
+            if sentence.strip() and not any(
+                pattern.search(sentence) for pattern in _DIRECTIVE_PATTERNS)]
+
+
+@dataclass(frozen=True)
+class EvidenceItem:
+    source_id: str
+    chunk_id: str
+    title: str
+    section: str
+    text_span: str
+    score: float
+    rank: int
+    authority_class: str
+    content_hash: str
+    citation_id: str
+    source_license: str
+    freshness_class: str
+    topic_tags: list[str]
+    metadata: dict
+
+
+@dataclass(frozen=True)
+class FactEdge:
+    subject_entity: str
+    canonical_relation: str
+    object_value: str
+    authority_class: str
+    freshness_class: str
+    proposition: str
+
+
+def make_citation_id(query: str, chunk_id: str, rank: int) -> str:
+    key = json.dumps({"q": query, "c": chunk_id, "r": rank},
+                     sort_keys=True, ensure_ascii=False)
+    return f"C{rank}-{hashlib.sha1(key.encode('utf-8')).hexdigest()[:12]}"
+
+
+def project_fact_edge(item: EvidenceItem) -> FactEdge | None:
+    metadata = item.metadata or {}
+    entity = metadata.get("fact_entity")
+    value = metadata.get("fact_value")
+    relation = canonical_relation(metadata.get("fact_attribute"))
+    if not entity or value is None or not str(value).strip() or relation is None:
+        return None
+    for sentence in _safe_sentences(item.text_span):
+        normalized = normalize_identity(sentence)
+
+        def present(part: object) -> bool:
+            return bool(re.search(r"(?<!\w)" + re.escape(
+                normalize_identity(part)) + r"(?!\w)", normalized))
+
+        cues = _RELATION_CUES.get(relation, ())
+        cue_present = any(re.search(r"(?<![a-z0-9])" + re.escape(
+            normalize_identity(cue)) + r"(?![a-z0-9])", normalized)
+                          for cue in cues)
+        denied = re.search(r"\b(?:not|never|false|incorrect|denied|denies)\b",
+                           normalized)
+        if present(entity) and present(value) and cue_present and not denied:
+            return FactEdge(str(entity), relation, str(value),
+                            item.authority_class, item.freshness_class,
+                            sentence.strip())
+    return None
 
 
 FAKE_LOCATOR_GRAMMAR = r"r9qz-[0-9a-f]{16}"
@@ -41,7 +204,10 @@ PARTIAL_PATH_COMPONENTS = frozenset({
     "missing_hop1",
     "missing_hop2",
     "wrong_bridge_identity",
+    "near_name_start_entity",
+    "near_name_bridge_entity",
     "wrong_relation",
+    "same_entity_wrong_attribute",
     "partial_path_only",
     "unrelated_conflict",
     "relevant_unresolved_conflict",
@@ -178,10 +344,9 @@ def audit_path_row(row: dict, sources: list[dict], chunks: list[dict]) -> dict:
             "selected_initial_chunk_id": None,
         }
 
-    initial_ids = annotation.get("initial_window_chunk_ids")
-    if not isinstance(initial_ids, list) or not initial_ids:
-        defects.append("initial window is missing or empty")
-        initial_ids = []
+    retrieval = derive_initial_window(query, chunks)
+    initial_ids = retrieval.chunk_ids
+    supplied_ids = annotation.get("initial_window_chunk_ids")
     eligible: list[tuple[EvidenceItem, object]] = []
     for rank, chunk_id in enumerate(initial_ids, start=1):
         chunk = chunks_by_id.get(str(chunk_id))
@@ -249,6 +414,9 @@ def audit_path_row(row: dict, sources: list[dict], chunks: list[dict]) -> dict:
         "defects": list(dict.fromkeys(defects)),
         "selected_initial_chunk_id": selected.chunk_id if selected else None,
         "eligible_initial_chunk_ids": [item.chunk_id for item, _edge in eligible],
+        "derived_initial_window_chunk_ids": initial_ids,
+        "annotation_initial_window_ignored": supplied_ids is not None,
+        "retrieval_trace": retrieval.to_dict(),
         "runtime_execution_count": 0,
     }
 

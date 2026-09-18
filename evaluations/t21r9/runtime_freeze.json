@@ -1,0 +1,18 @@
+{
+  "artifact": "T21R9_RUNTIME_FREEZE",
+  "status": "FROZEN",
+  "preregistered_before_blind_data": true,
+  "top_k": 8,
+  "runtime_execution_count": 0,
+  "component_sha256": {
+    "src/sciencemath/knowledge/index.py": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1",
+    "src/sciencemath/knowledge/retrieval.py": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9",
+    "src/sciencemath/knowledge/evidence_paths.py": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375",
+    "src/sciencemath/knowledge/relations.py": "ee9c43e32258537ccc01004718a23e6ffe5aca8c4ebfcf90c6a6391de379318f",
+    "src/sciencemath/knowledge/conflicts.py": "1eb1746dfd6551e2a76377721edeee2381d769347a6332457ee79ea79dbf75df",
+    "src/sciencemath/knowledge/injection.py": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0",
+    "src/sciencemath/knowledge/pipeline.py": "011962de2c703c2bf6fb3fa6242372222ac79872ff556f6774b931971adcb9a4",
+    "src/sciencemath/knowledge/corpus.py": "0afd5f02f6b936aaddd853c9a7d629d56b052fc41682b5fc9cfa9802b16491c5",
+    "src/sciencemath/knowledge/evidence.py": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d"
+  }
+}

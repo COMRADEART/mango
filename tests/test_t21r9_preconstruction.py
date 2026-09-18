@@ -34,9 +34,9 @@ def test_contract_forbids_blind_data_and_runtime_execution() -> None:
         "namespace_prefix": "pre9q-",
         "future_blind_reuse_forbidden": True,
         "source_count": 5,
-        "chunk_count": 7,
-        "world_rows": 12,
-        "suite_rows": 6,
+        "chunk_count": 14,
+        "world_rows": 19,
+        "suite_rows": 8,
     }
 
 
@@ -49,7 +49,7 @@ def test_contract_preregisters_all_eight_independence_dimensions() -> None:
 
 def test_synthetic_material_uses_only_disposable_namespace() -> None:
     sources, chunks, rows = _fixture()
-    assert (len(sources), len(chunks), len(rows)) == (5, 7, 6)
+    assert (len(sources), len(chunks), len(rows)) == (5, 14, 8)
     assert all(source["source_id"].startswith("pre9q-") for source in sources)
     assert all(chunk["chunk_id"].startswith("pre9q-") for chunk in chunks)
     assert all(row["case_id"].startswith("pre9q-") for row in rows)
@@ -69,26 +69,27 @@ def test_equivalent_first_edge_passes_without_nominated_chunk_in_window() \
         -> None:
     sources, chunks, rows = _fixture()
     row = rows[0]
-    initial = row["construction"]["initial_window_chunk_ids"]
     nominated = row["construction"]["gold_path"]["hop1_edge"]["chunk_id"]
-    assert nominated not in initial
+    assert "initial_window_chunk_ids" not in row["construction"]
     result = semantics.audit_path_row(row, sources, chunks)
     assert result["status"] == "PASS"
+    assert nominated not in result["derived_initial_window_chunk_ids"]
     assert result["selected_initial_chunk_id"] == \
         "pre9q-chunk-hop1-equivalent"
     assert result["runtime_execution_count"] == 0
 
 
-def test_all_six_path_controls_have_expected_outcome() -> None:
+def test_all_seven_path_controls_have_expected_outcome() -> None:
     sources, chunks, rows = _fixture()
     controls = qualification.path_achievability_controls(
         sources, chunks, rows[0])
-    assert len(controls) == 6
+    assert len(controls) == 7
     assert all(control["passed"] for control in controls)
     assert {control["name"] for control in controls} == {
         "nominated_absent_equivalent_edge",
-        "missing_first_hop_evidence",
+        "actual_window_excludes_all_valid_first_edges",
         "wrong_relation",
+        "hand_authored_window_cannot_override_retrieval",
         "wrong_bridge",
         "equal_rank_contradictory_edges",
         "unsafe_nonprojectable_edge",
@@ -125,10 +126,10 @@ def test_all_seven_spoof_controls_have_expected_outcome() -> None:
     }
 
 
-def test_all_ten_annotation_controls_have_expected_outcome() -> None:
+def test_all_sixteen_annotation_controls_have_expected_outcome() -> None:
     _sources, chunks, rows = _fixture()
     controls = qualification.annotation_controls(rows, chunks)
-    assert len(controls) == 10
+    assert len(controls) == 16
     assert all(control["passed"] for control in controls)
     assert {control["name"] for control in controls} >= {
         "stale_attack_metadata",
@@ -176,11 +177,11 @@ def test_end_to_end_nonblind_miniature_and_seal_controls_pass() -> None:
     report = qualification.run_qualification(write_report=False)
     assert report["status"] == "PASS"
     assert report["counts"] == {
-        "sources": 5, "chunks": 7, "world_rows": 12, "suite_rows": 6}
+        "sources": 5, "chunks": 14, "world_rows": 19, "suite_rows": 8}
     assert all(status == "PASS" for status in report["stages"].values())
     assert report["runtime_rows_executed"] == 0
-    assert report["controls"]["seal_preflight"]["passed"] == 6
-    assert report["controls"]["seal_preflight"]["total"] == 6
+    assert report["controls"]["seal_preflight"]["passed"] == 9
+    assert report["controls"]["seal_preflight"]["total"] == 9
 
 
 def test_every_real_r9_holdout_and_exposure_path_remains_absent() -> None:
