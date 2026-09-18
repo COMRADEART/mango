@@ -1,0 +1,106 @@
+{
+  "milestone": "T21R7 protection battery (read-only re-validation of the frozen final state)",
+  "recorded_at": "2026-09-16T22:49:50.911548+00:00",
+  "status": "ALL_PASS",
+  "verification_mode": "READ_ONLY no holdout row executed; no runtime/evaluator/holdout/corpus/floor/contract file modified",
+  "canonical_base": "57f4188c736b7ffd59227deb808ecd29b02fcc33",
+  "repair_sha": "ba3b1ce4f80886fd0f7d5cde4946a82109472f9c",
+  "construction_preregistration_sha": "554f000ad511dedc5b7752887558ab24b1fa0d27",
+  "runtime_freeze_head": "74823b88c140d770a42a76b577fd82e9ee398ca8",
+  "final_validation_sha": "d9e2ddd444582fa2102d98ec3688641a7f7e1939",
+  "layers": {
+    "runtime_freeze_identity": "PASS",
+    "evaluator_freeze_identity": "PASS",
+    "registry_boundaries": "PASS",
+    "executive_router_unchanged": "PASS",
+    "t15r_canonical_blob": "PASS",
+    "historical_artifacts_unchanged": "PASS",
+    "historical_corpora_unchanged": "PASS",
+    "no_historical_debt_expansion": "PASS",
+    "t21r7_frozen_holdout_zero_mutation": "PASS",
+    "zero_tolerance_all_zero": "PASS"
+  },
+  "checks": {
+    "runtime_freeze_identity": {
+      "knowledge_runtime": true,
+      "executive_skills": true,
+      "executive_router": true,
+      "science_rag_runtime": true,
+      "web_research_runtime": true,
+      "document_runtime": true,
+      "memory_runtime": true,
+      "planning_runtime": true,
+      "orchestration_runtime": true,
+      "scicomp_runtime": true,
+      "code_runtime": true,
+      "correction_firewall": true,
+      "security_layer": true,
+      "historical_write_guard": true
+    },
+    "runtime_freeze_identity_ok": true,
+    "evaluator_source_sha256_matches_freeze": true,
+    "registry": {
+      "counts": {
+        "ACTIVE": 11,
+        "EXPERIMENTAL": 1
+      },
+      "counts_match_freeze": true,
+      "registry_sha256_matches_freeze": true,
+      "knowledge_rag_availability": "EXPERIMENTAL",
+      "knowledge_rag_experimental": true,
+      "skills_py_matches_freeze": true
+    },
+    "executive_router_unchanged": true,
+    "t15r_canonical_blob": "fba2437f78633884bd31965d78a4250bd1ca893c",
+    "t15r_blob_exact": true,
+    "historical_changed_paths_vs_final_validation_commit": [],
+    "historical_unchanged": true,
+    "inherited_debt_entries": 6,
+    "inherited_debt_paths": [
+      "evaluations/t21r4/holdout_uniqueness.json",
+      "evaluations/t21r4/runtime_freeze.json",
+      "evaluations/t21r5/holdout_uniqueness.json",
+      "evaluations/t21r5/runtime_freeze.json",
+      "scripts/t21r4_freeze_evaluator.py",
+      "scripts/t21r4_run_eval.py"
+    ],
+    "t21r7_holdout_freeze_checks": 21,
+    "t21r7_holdout_mismatches": [],
+    "t21r7_holdout_untouched": true,
+    "raw_rows": 4200,
+    "zero_tolerance_nonzero_totals": {},
+    "zero_tolerance_all_zero": true
+  },
+  "security_pytest": {
+    "subset": [
+      "tests/test_historical_artifact_write_guard.py",
+      "tests/test_t19_planning_security.py",
+      "tests/test_t18_memory_security.py",
+      "tests/test_t17_document_security.py",
+      "tests/test_t16_web_security.py",
+      "tests/test_t15_code_security.py",
+      "tests/test_t11_security.py",
+      "tests/test_t20_orchestration_verify.py",
+      "tests/test_t20_orchestration_adversarial.py",
+      "tests/test_t21r6_historical_debt.py"
+    ],
+    "tests": 179,
+    "passed": 177,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0,
+    "exit_code": 0,
+    "junit_written_outside_repo": "C:/Users/allam/AppData/Local/Temp/opencode/t21r7_protection_security_junit.xml"
+  },
+  "collection_integrity": {
+    "tests_collected": 2163,
+    "matches_freeze_record_pytest_tests": true
+  },
+  "zero_mutation_post_run": {
+    "git_status_clean": true,
+    "diff_vs_final_validation_commit_empty": true,
+    "note": "git diff --name-only d9e2ddd over src tests scripts evaluations rag returned empty; working tree clean after all verification."
+  },
+  "holdout_rows_executed_this_audit": 0,
+  "reason": "Every frozen runtime composite matches the T21R7 runtime freeze; the evaluator source matches the evaluator freeze; the registry is 11 ACTIVE / 1 EXPERIMENTAL with KNOWLEDGE_RAG EXPERIMENTAL; the Executive Router is untouched; the T15R canonical blob is exact; T21..T21R6 artifacts and corpora are byte-identical to the final validation commit d9e2ddd; the inherited debt ledger remains the closed six-entry set; the T21R7 frozen holdout (manifest freeze inputs, corpus, all 8 suites, 4200 rows) is untouched; zero-tolerance counters across all 4200 raw result rows are all zero; and the security/historical-debt pytest subset passed with only the two environment-typical skips, writing nothing inside the repository."
+}

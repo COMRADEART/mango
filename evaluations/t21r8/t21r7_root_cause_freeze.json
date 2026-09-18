@@ -1,0 +1,96 @@
+{
+  "artifact": "T21R8 T21R7 root-cause freeze",
+  "recorded_at": "2026-09-17",
+  "base_branch": "t21r8-knowledge-rag-multisource-closure",
+  "base_head": "4242e1bd7bb74c9f3f6d52f70fb04788e2e6d481",
+  "forensics_artifact": {
+    "path": "evaluations/t21r8/t21r7_failure_forensics.json",
+    "sha256": "1db4d9a93a321e9ac4c0ecddc94eab0ea4ba26c9776b32b27f56e437e726ca06"
+  },
+  "analysis_report": {
+    "path": "evaluations/t21r8/T21R7_FAILURE_ANALYSIS.md",
+    "sha256": "bd14d57d17702b3bd2c924208cfeae22dcf430141dc610266a59a07656fe507a"
+  },
+  "classification_completeness": {
+    "total_incorrect_rows": 1020,
+    "classified_rows": 1020,
+    "unclassified_rows": 0,
+    "other_rows": 0,
+    "other_justifications": [],
+    "not_observable_primary_mechanism_rows": 0,
+    "not_observable_measurements": {
+      "crossdomain_both_domain_evidence_present": 450,
+      "injection_source_text": 5
+    }
+  },
+  "exact_primary_mechanism_counts": {
+    "CROSSDOMAIN_FINAL_VALUE_FAILURE": 3,
+    "CROSSDOMAIN_PATH_NOT_BUILT": 447,
+    "FINAL_VALUE_NOT_SYNTHESIZED": 19,
+    "HOP2_NOT_RETRIEVED": 531,
+    "NEAR_NAME_FALSE_BIND": 15,
+    "SAFE_FACT_SPLIT_FAILURE": 5
+  },
+  "frozen_primary_roots": {
+    "multihop": {
+      "mechanism": "HOP2_NOT_RETRIEVED",
+      "count": 531,
+      "exception_mechanism": "FINAL_VALUE_NOT_SYNTHESIZED",
+      "exception_count": 19
+    },
+    "crossdomain": {
+      "mechanism": "CROSSDOMAIN_PATH_NOT_BUILT",
+      "count": 447,
+      "exception_mechanism": "CROSSDOMAIN_FINAL_VALUE_FAILURE",
+      "exception_count": 3,
+      "relationship_to_multihop": "SAME_PRIMARY_MECHANISM_AS_MULTIHOP"
+    },
+    "source_diversity": {
+      "mechanism": "SECOND_HOP_REQUIRED_SOURCE_NEVER_CITED",
+      "count": 1000,
+      "all_required_retrieved_only_one_cited": 348,
+      "second_required_not_retrieved": 652
+    },
+    "insufficient_evidence": {
+      "distribution": {
+        "NEAR_NAME_FALSE_BIND": 15
+      }
+    },
+    "prompt_injection": {
+      "primary_distribution": {
+        "SAFE_FACT_SPLIT_FAILURE": 5
+      },
+      "directive_structure_overlay_distribution": {
+        "AUTHORITY_IMPERSONATION_VARIANT": 2,
+        "CITATION_OVERRIDE": 1,
+        "IMPERATIVE_DIRECTIVE_VARIANT": 1,
+        "TOOL_ACTION_DIRECTIVE": 1
+      }
+    }
+  },
+  "observed_vs_inferred": {
+    "observed": "All field values, statuses, booleans, citations, cited domains, expected strings, evidence chunk IDs, counters, and traces are copied from immutable R7 rows.",
+    "derived": "Bridge identity, source membership, exact bridge-specific birthplace presence, and mechanism labels are deterministic derivations documented in the forensics observability contract.",
+    "not_observable": "Evidence body text, non-cited evidence domain tags, and unrecorded internal runtime state are not asserted."
+  },
+  "generalization_findings": {
+    "template specialization": "SUPPORTED",
+    "relation-family specialization": "NOT PROVEN",
+    "author/birthplace specialization": "CONTRADICTED",
+    "creator-only bridge specialization": "CONTRADICTED",
+    "citation logic tied to terminal fact only": "NOT PROVEN",
+    "second-hop provenance loss": "PROVEN",
+    "same-fact corroboration being confused with reasoning-path provenance": "PROVEN",
+    "partial-path answering": "PROVEN",
+    "fresh injection wording gap": "CONTRADICTED"
+  },
+  "scope_freeze": {
+    "runtime_code_modified": false,
+    "evaluator_modified": false,
+    "t21r7_artifacts_modified": false,
+    "t21r8_holdout_created": false,
+    "runtime_repair_authorized": false,
+    "next_step": "STOP_FOR_CHATGPT_AUDIT_OF_FORENSIC_COMMIT"
+  },
+  "freeze_status": "T21R7_ROOT_CAUSES_FROZEN_DATA_ONLY"
+}

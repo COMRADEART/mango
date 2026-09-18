@@ -1,0 +1,171 @@
+{
+  "milestone": "T21R8 canonical base failure analysis",
+  "canonical_base": "bffe86b67107ba2a097aa3030acc17e687d84d25",
+  "scope": "13 baseline failures only; no T21R7 holdout analysis",
+  "r7_raw_results_read": false,
+  "r8_forensics_started": false,
+  "summary": {
+    "failure_count": 13,
+    "PATH/INTERPRETER": 12,
+    "CURRENT_RUNTIME_DEFECT": 1,
+    "unclassified": 0
+  },
+  "failures": [
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_runner_edit_test_verify",
+      "error_type": "AssertionError: BLOCKED != EXECUTED_PASS",
+      "source_files": ["src/sciencemath/code/testsel.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_debug_loop_repairs_with_evidence",
+      "error_type": "AssertionError: BLOCKED != EXECUTED_PASS",
+      "source_files": ["src/sciencemath/code/testsel.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_no_stale_bytecode_between_repair_and_retest",
+      "error_type": "AssertionError: BLOCKED != EXECUTED_PASS",
+      "source_files": ["src/sciencemath/code/testsel.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_no_change_when_tests_already_pass",
+      "error_type": "AssertionError: BLOCKED != EXECUTED_PASS",
+      "source_files": ["src/sciencemath/code/testsel.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15_code_runner.py::test_edit_trap_still_short_circuits",
+      "error_type": "AssertionError: BLOCKED != EXECUTED_PASS",
+      "source_files": ["src/sciencemath/code/testsel.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_repair_budget_exhaustion_retains_best",
+      "error_type": "AssertionError: verified partial edit was restored to original",
+      "source_files": ["src/sciencemath/code/testsel.py", "src/sciencemath/code/repair_state.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_runner_retains_partial_progress",
+      "error_type": "AssertionError: verified partial edit was restored to original",
+      "source_files": ["src/sciencemath/code/testsel.py", "src/sciencemath/code/repair_state.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_runner_regression_rejects_and_keeps_best",
+      "error_type": "AssertionError: best partial edit was restored to original",
+      "source_files": ["src/sciencemath/code/testsel.py", "src/sciencemath/code/repair_state.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_runner_repairs_from_best_not_original",
+      "error_type": "AssertionError: EXECUTED_FAIL != EXECUTED_PASS",
+      "source_files": ["src/sciencemath/code/testsel.py", "src/sciencemath/code/repair_state.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_multi_file_atomic_dependency_map",
+      "error_type": "AssertionError: BLOCKED != EXECUTED_PASS",
+      "source_files": ["src/sciencemath/code/testsel.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_existing_single_fix_still_passes",
+      "error_type": "AssertionError: BLOCKED != EXECUTED_PASS",
+      "source_files": ["src/sciencemath/code/testsel.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t15r_repair_loop.py::test_code_edit_retries_from_live_failures_without_initial_patch",
+      "error_type": "AssertionError: BLOCKED != EXECUTED_PASS",
+      "source_files": ["src/sciencemath/code/testsel.py"],
+      "determinism": "DETERMINISTIC_ON_AFFECTED_WINDOWS_HOST",
+      "environment_dependent": true,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "replace literal python with sys.executable",
+      "fix_changes_runtime_semantics": false,
+      "classification": "PATH/INTERPRETER"
+    },
+    {
+      "test_id": "tests/test_t18_memory_persist.py::test_two_readers_one_writer",
+      "error_type": "AssertionError: ['miss', 'miss'] != []",
+      "source_files": ["src/sciencemath/memory/pipeline.py", "src/sciencemath/memory/store.py"],
+      "determinism": "INTERMITTENT_OBSERVATION_OF_DETERMINISTIC_TRANSACTION_GAP",
+      "environment_dependent": false,
+      "code_dependent": true,
+      "existed_at_canonical_base": true,
+      "recovery_candidate_fix": "supersede predecessors and insert replacement in one SQLite transaction",
+      "fix_changes_runtime_semantics": true,
+      "classification": "CURRENT_RUNTIME_DEFECT"
+    }
+  ]
+}

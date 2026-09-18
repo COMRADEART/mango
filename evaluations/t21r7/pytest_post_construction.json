@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "phase": "post_construction_pre_holdout_freeze",
+  "tests": 2163,
+  "passed": 2161,
+  "skipped": 2,
+  "failures": 0,
+  "errors": 0,
+  "duration_seconds": 99.051,
+  "command": ".venv\\Scripts\\python.exe -m pytest -p no:cacheprovider -p scripts.t21r7_test_environment --basetemp artifacts/.pytest_t21r7_fullgreen_acl --junitxml=evaluations/t21r7/pytest_post_construction.xml -q",
+  "environment_note": "A temporary test-only pytest plugin redirected the frozen T15 nested command python -m pytest to the active virtual-environment interpreter because the managed host sanitizes child-process PATH. No production, runtime, evaluator, floor, or contract source was changed by the shim.",
+  "junit_source": "evaluations/t21r7/pytest_post_construction.xml"
+}

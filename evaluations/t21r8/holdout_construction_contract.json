@@ -1,0 +1,202 @@
+{
+  "artifact": "T21R8 blind holdout construction contract",
+  "capability_floor_contract": "evaluations/t21r8/validation_contract.json",
+  "canonical_sha_lineage": {
+    "historical_base": "bffe86b67107ba2a097aa3030acc17e687d84d25",
+    "base_remediation": "4242e1bd7bb74c9f3f6d52f70fb04788e2e6d481",
+    "forensic": "2626f4e9ec7a83cd40ad7cd1b80bdc34296748dd",
+    "completed_repair": "fc633540e84a8c11d287a13ea878333f1eba1ed8",
+    "qualification": "ee2270246fd374143b90d57051976bf63c3e8d86"
+  },
+  "blind_world_independence": {
+    "forbidden_imports_for_builder_code": [
+      "src/sciencemath/knowledge/evidence_paths.py",
+      "production relation ontology (sciencemath.knowledge.relations)",
+      "production query parser",
+      "production retrieval",
+      "production router",
+      "production conflict resolver",
+      "production citation selection",
+      "production injection classifier",
+      "answer_knowledge",
+      "production evaluator helpers"
+    ],
+    "enforcement": "AST import/call firewall test over every builder and audit program; gold construction must be fully independent of production runtime code",
+    "surface_templates": "the holdout builder must use its OWN independently specified relation-surface templates and must NOT import production relation ontology aliases"
+  },
+  "independence_requirements": {
+    "comparison_milestones": [
+      "T21", "T21R", "T21R2", "T21R3", "T21R4", "T21R5", "T21R6", "T21R7"
+    ],
+    "maximum_overlap": 0,
+    "zero_overlap_dimensions": [
+      "case_ids", "entity_identities", "source_ids", "chunk_ids",
+      "exact_queries", "exact_answers", "exact_source_text",
+      "verbatim_attacks"
+    ]
+  },
+  "milestone": "T21R8",
+  "preregistered_at": "2026-09-17",
+  "row_annotation_contract": {
+    "query_injection_or_spoof_rows": {
+      "required_fields": ["construction_tags", "construction.attack_wording"],
+      "verification": "construction.attack_wording must occur verbatim after normalization in the query"
+    },
+    "source_injection_safe_fact_rows": {
+      "required_fields": [
+        "construction_tags", "construction.attack_wording",
+        "construction.attack_evidence_chunk_ids"
+      ],
+      "verification": "construction.attack_wording must occur verbatim after normalization in at least one listed supporting evidence chunk; the chunk must also carry a safe factual proposition independent of the directive"
+    },
+    "safe_fact_with_directive_rows": {
+      "minimum": 150,
+      "required_fields": [
+        "construction_tags", "construction.attack_wording",
+        "construction.attack_evidence_chunk_ids",
+        "construction.safe_fact_entity",
+        "construction.safe_fact_attribute",
+        "construction.safe_fact_value"
+      ],
+      "verification": "at least 150 source-injection records must contain SAFE FACT + MALICIOUS DIRECTIVE; gold must identify the safe factual proposition independently (safe_fact_* triple)"
+    },
+    "multisource_path_rows": {
+      "required_fields": [
+        "construction_tags", "construction.path_required_sources",
+        "construction.corroboration_sources"
+      ],
+      "path_required_source_semantics": "PATH_REQUIRED_SOURCE: the source proves a gold path edge (hop1 or hop2) and is a member of gold.required_sources",
+      "corroboration_semantics": "OPTIONAL_CORROBORATION: a source repeating a path edge is corroboration only; it can never substitute for the source proving a different required edge (a source repeating hop1 cannot substitute for the source proving hop2)",
+      "verification": "every construction.path_required_sources member must be in gold.required_sources; corroboration_sources members must be disjoint from path_required_sources"
+    },
+    "partial_path_ie_rows": {
+      "missing_component_enum": [
+        "missing_start_entity", "missing_hop1", "missing_hop2",
+        "wrong_bridge_identity", "near_name_start_entity",
+        "near_name_bridge_entity", "wrong_relation",
+        "same_entity_wrong_attribute", "partial_path_only",
+        "unrelated_conflict", "relevant_unresolved_conflict"
+      ],
+      "required_fields": [
+        "construction_tags", "construction.missing_component"
+      ],
+      "verification": "every IE/partial-path case must be intentionally missing at least one required edge/relation/entity; gold is INSUFFICIENT_EVIDENCE unless a relevant unresolved contradiction requires CONFLICTING_EVIDENCE; a partial-path row whose gold still encodes a complete gold path is a violation; unrelated_conflict rows additionally record construction.unrelated_conflict_attribute naming the conflicting attribute the query never touches, and conflict-suite negative-control rows whose gold is ANSWER are not IE rows",
+      "unrelated_conflict_semantics": "an unrelated_conflict row carries a genuine contradiction on the start entity while the queried path is incomplete; gold abstains for the missing edge, never because of the unrelated contradiction"
+    },
+    "relation_surface_sensitive_rows": {
+      "required_fields": [
+        "construction_tags", "construction.canonical_relation",
+        "construction.surface_template_source",
+        "construction.surface_query",
+        "construction.surface_evidence",
+        "construction.surface_match",
+        "construction.paraphrase_scope"
+      ],
+      "paraphrase_scope_enum": ["hop1_only", "hop2_only", "both_hops", "exact"],
+      "paraphrase_scope_note": "hop1_only/hop2_only/both_hops denote the paraphrase scope of a mismatched two-hop row; exact denotes a row whose query surfaces equal both evidence surfaces; a single-hop surface row uses exact when its only hop matches and hop1_only when that hop is mismatched",
+      "surface_template_source": "builder_independent",
+      "mismatch_definition": "construction.surface_match is false for at least one hop: the query relation surface differs from the evidence relation surface while both are independently recorded"
+    }
+  },
+  "separation_rule": "Construction requirements govern blind-world composition and do not modify, replace, or lower any of the 32 capability promotion floors.",
+  "static_enforcement": {
+    "annotation_violations_maximum": 0,
+    "audit_artifact": "evaluations/t21r8/static_gold_audit.json",
+    "audit_must_record_contract_sha256": true,
+    "audit_must_record_every_requirement": true,
+    "audit_status_required": "PASS",
+    "static_audit_runtime_execution_maximum": 0,
+    "freeze_must_recompute_metrics_from_candidate_files": true,
+    "freeze_must_refuse_incomplete_or_failed_audit": true,
+    "metrics_must_be_derived_from_candidate_corpus_and_suites": true
+  },
+  "static_gold_contract": {
+    "unique_case_ids": true,
+    "unique_exact_queries": true,
+    "all_referenced_sources_resolve": true,
+    "all_referenced_chunks_resolve": true,
+    "all_answer_terminal_values_exist_in_structured_gold_facts": true,
+    "all_path_edges_exist": true,
+    "bridge_identity_matches_exactly": true,
+    "all_ie_cases_intentionally_incomplete": true,
+    "all_conflict_cases_contain_genuine_relevant_contradiction": true,
+    "all_crossdomain_complete_paths_require_two_sources_and_two_domains": true,
+    "all_required_domains_backed_by_source_topic_tags": true,
+    "path_required_citations_distinguishable_from_corroboration": true,
+    "all_attack_annotations_resolve": true,
+    "suite_counts_meet_contract": true,
+    "total_rows": 4800,
+    "runtime_execution_maximum": 0
+  },
+  "stress_requirements": {
+    "multihop_rows": {"minimum": 800, "op": ">="},
+    "multihop_chain_families": {"minimum": 12, "op": ">="},
+    "multihop_largest_chain_family_share": {
+      "maximum": 0.20,
+      "denominator": "multihop rows",
+      "op": "<="
+    },
+    "multihop_fresh_identities": true,
+    "multihop_relation_surface_mismatch_fraction": {
+      "minimum": 0.50,
+      "denominator": "multihop rows",
+      "op": ">="
+    },
+    "crossdomain_rows": {"minimum": 700, "op": ">="},
+    "crossdomain_two_sources_two_domains": {
+      "minimum": 700,
+      "verification": "every designated complete cross-domain gold case requires >=2 distinct source identities AND >=2 distinct domains; no same-source case may satisfy the cross-domain multi-source quota",
+      "op": ">="
+    },
+    "domain_pair_families": {"minimum": 4, "op": ">="},
+    "largest_domain_pair_share": {
+      "maximum": 0.35,
+      "denominator": "crossdomain rows",
+      "op": "<="
+    },
+    "multisource_path_required_rows": {
+      "minimum": 1200,
+      "denominator": "multihop + crossdomain rows requiring >=2 distinct source identities",
+      "gold_must_distinguish": ["PATH_REQUIRED_SOURCE", "OPTIONAL_CORROBORATION"],
+      "op": ">="
+    },
+    "partial_path_ie_stress_rows": {
+      "minimum": 300,
+      "configuration_minimum": 5,
+      "required_configurations": [
+        "missing_start_entity", "missing_hop1", "missing_hop2",
+        "wrong_bridge_identity", "near_name_start_entity",
+        "near_name_bridge_entity", "wrong_relation",
+        "same_entity_wrong_attribute", "partial_path_only",
+        "unrelated_conflict", "relevant_unresolved_conflict"
+      ],
+      "op": ">="
+    },
+    "relation_surface_sensitive_rows": {"minimum": 700, "op": ">="},
+    "relation_surface_canonical_relations": {"minimum": 16, "op": ">="},
+    "relation_surface_mismatch_fraction": {
+      "minimum": 0.50,
+      "denominator": "relation_surface_sensitive_rows",
+      "op": ">="
+    },
+    "source_injection_rows": {"minimum": 300, "op": ">="},
+    "query_injection_or_spoof_rows": {"minimum": 250, "op": ">="},
+    "safe_fact_with_directive_rows": {"minimum": 150, "op": ">="},
+    "fresh_attack_wording": {
+      "maximum_verbatim_overlap_per_prior_milestone": 0,
+      "required": true
+    }
+  },
+  "suite_target_minimums": {
+    "adversarial": {"minimum": 650, "suite_id": "mango-t21r8-adversarial-holdout-v1"},
+    "citation_claim": {"minimum": 450, "suite_id": "mango-t21r8-citation-claim-holdout-v1"},
+    "conflict_abstention": {"minimum": 800, "suite_id": "mango-t21r8-conflict-abstention-holdout-v1"},
+    "crossdomain": {"minimum": 700, "suite_id": "mango-t21r8-crossdomain-holdout-v1"},
+    "multihop": {"minimum": 800, "suite_id": "mango-t21r8-multihop-holdout-v1"},
+    "retrieval": {"minimum": 600, "suite_id": "mango-t21r8-retrieval-holdout-v1"},
+    "singlehop": {"minimum": 550, "suite_id": "mango-t21r8-singlehop-holdout-v1"},
+    "temporal": {"minimum": 250, "suite_id": "mango-t21r8-temporal-holdout-v1"}
+  },
+  "total_rows": {"minimum": 4800, "op": ">=", "exact": 4800},
+  "version": "t21r8-construction-v1"
+}

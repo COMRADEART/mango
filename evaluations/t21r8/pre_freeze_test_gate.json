@@ -1,0 +1,17 @@
+{
+  "collected": 2904,
+  "command": "python -m pytest",
+  "errors": 0,
+  "exit_code": 0,
+  "failed": 0,
+  "gate": "T21R8 pre-freeze full test gate",
+  "passed": 2902,
+  "recorded_at": "2026-09-18T04:26:21.077681+00:00",
+  "requirement": "0 failed and 0 errors",
+  "skipped": 2,
+  "summary_line": "2902 passed, 2 skipped in 54.84s",
+  "tested_base_identity": "f804a5706025a173e40879be5629e8a74dc585ec (audited preregistration HEAD)",
+  "tested_branch": "t21r8-knowledge-rag-multisource-closure",
+  "tested_head": "f804a5706025a173e40879be5629e8a74dc585ec",
+  "tested_head_parent": "ee2270246fd374143b90d57051976bf63c3e8d86"
+}

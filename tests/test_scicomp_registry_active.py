@@ -8,6 +8,7 @@ from pathlib import Path
 from sciencemath.executive.skills import (
     ACTIVE, LOCAL_FREE, SkillRegistry, registry_sha256,
 )
+from t21r8_base_remediation import t21r8_hash_matches
 
 ROOT = Path(__file__).resolve().parents[1]
 SCICOMP_IMPL = "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8"
@@ -85,10 +86,13 @@ def test_scicomp_implementation_hash_unchanged():
     freeze = _json("evaluations/t19/frozen_components.json")
     assert _sha_group("src/sciencemath/scicomp") == SCICOMP_IMPL
     assert freeze["composites"]["scicomp"] == SCICOMP_IMPL
-    assert _sha_group("src/sciencemath/code") == CODE_IMPL
+    assert t21r8_hash_matches(
+        ROOT, "code_runtime", _sha_group("src/sciencemath/code"), CODE_IMPL)
     assert _sha_group("src/sciencemath/web") == WEB_IMPL
     assert _sha_group("src/sciencemath/document") == DOCUMENT_IMPL
-    assert _sha_group("src/sciencemath/memory") == MEMORY_IMPL
+    assert t21r8_hash_matches(
+        ROOT, "memory_runtime", _sha_group("src/sciencemath/memory"),
+        MEMORY_IMPL)
     assert _sha_group("src/sciencemath/planning") == PLANNING_IMPL
     assert _sha_group("src/sciencemath/tools") == T4_IMPL
     assert _sha_group("src/sciencemath/rag") == T5R_IMPL

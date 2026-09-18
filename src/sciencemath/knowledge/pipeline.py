@@ -64,6 +64,13 @@ from sciencemath.knowledge.retrieval import (
     decompose_query,
     retrieve,
 )
+from sciencemath.knowledge.relations import (
+    evidence_relation,
+    query_relations,
+)
+from sciencemath.knowledge.evidence_paths import (
+    EvidencePath, fact_edge, parse_path_request, resolve_path,
+)
 from sciencemath.knowledge.routing import (
     ANSWER_STATUS,
     CONFLICTING_EVIDENCE,
@@ -107,6 +114,9 @@ class KnowledgeAnswer:
     decision_trace: list[str] = field(default_factory=list)
     zero_tolerance: dict = field(default_factory=dict)
     subqueries: list[str] = field(default_factory=list)
+    evidence_paths: list = field(default_factory=list)
+    evidence_path_trace: dict = field(default_factory=dict)
+    corroborating_evidence: list[dict] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -125,6 +135,10 @@ class KnowledgeAnswer:
             "decision_trace": list(self.decision_trace),
             "zero_tolerance": dict(self.zero_tolerance),
             "subqueries": list(self.subqueries),
+            "evidence_paths": [p.to_dict() if hasattr(p, "to_dict") else p
+                               for p in self.evidence_paths],
+            "evidence_path_trace": dict(self.evidence_path_trace),
+            "corroborating_evidence": list(self.corroborating_evidence),
         }
 
 
@@ -316,6 +330,21 @@ def answer_knowledge(
                         coverage=0.0,
                         snapshot_date=corpus.snapshot_date)
     trace.append(f"retrieval:{len(items)}_items")
+    path_resolution = None
+    path_request = parse_path_request(effective)
+    if path_request is not None:
+        path_resolution = resolve_path(path_request, items, corpus, normalized)
+        items = path_resolution.items
+        trace.extend(path_resolution.trace)
+        if path_resolution.status != ANSWER_STATUS:
+            result = _abstain(
+                query, normalized, trace, counters, eligibility, temporal,
+                injection, subqueries, path_resolution.status, items=items,
+                conflicts=path_resolution.conflicts,
+                retrieval_status="INCOMPLETE_OR_CONFLICTING_PATH", coverage=0.0,
+                snapshot_date=corpus.snapshot_date)
+            result.evidence_path_trace = path_resolution.to_trace()
+            return result
 
     # ---- source-text injection firewall (T21.19) ---------------------------
     source_directives: list[dict] = []
@@ -336,7 +365,11 @@ def answer_knowledge(
 
     # ---- conflicts (scoped to the query, T21.18 / T21R4) --------------------
     conflicts_all = detect_conflicts(items, _entity_terms(effective))
-    relevant = _relevant_conflicts(effective, conflicts_all)
+    scoped_conflicts = _relevant_conflicts(effective, conflicts_all)
+    relevant = [c for c in scoped_conflicts
+                if _conflict_entity_grounded(effective, c)]
+    if scoped_conflicts and not relevant:
+        trace.append("conflicts:unrelated_entity_discarded")
     top = items[0]  # synthesis anchor; NOT used for conflict scoping
     if relevant:
         resolution, winner = resolve_conflicts(relevant)
@@ -366,6 +399,7 @@ def answer_knowledge(
     # a query-mimicking distractor at rank 1 no longer forces an abstention
     # when an entity-consistent item exists deeper in the window.
     attr_set = query_attribute_set(effective)
+    requested_relations = query_relations(effective)
     winner_item = None
     if resolution == "RESOLVED_BY_AUTHORITY" and winner is not None:
         winner_item = next((it for it in items
@@ -400,10 +434,11 @@ def answer_knowledge(
                 and it.chunk_id != loser_id}
     primary = [it for it in items
                if it.chunk_id in pool_ids
-               and (it.metadata or {}).get("fact_attribute") in attr_set]
+               and (_item_relation_matches(it, requested_relations)
+                    or (it.metadata or {}).get("fact_attribute") in attr_set)]
     secondary = [it for it in items
                  if it.chunk_id in pool_ids
-                 and (it.metadata or {}).get("fact_attribute") not in attr_set]
+                 and it not in primary]
     ordered: list[EvidenceItem] = []
     ordered_ids: set[str] = set()
     if winner_item is not None and winner_item.chunk_id in pool_ids:
@@ -422,15 +457,34 @@ def answer_knowledge(
     # Each pair is (sentence, item it was extracted from): citation
     # lineage is per-sentence by construction (B3), never positional.
     pairs: list[tuple[str, EvidenceItem]] = []
+    if path_resolution is not None:
+        for item in path_resolution.selected:
+            safe = synth_text[item.chunk_id]
+            value = str(item.metadata["fact_value"])
+            sentences = [s for s in _SENT_RE.split(safe) if value.casefold() in s.casefold()]
+            if not sentences:
+                return _abstain(
+                    query, normalized, trace, counters, eligibility, temporal,
+                    injection, subqueries, INSUFFICIENT_EVIDENCE, items=items,
+                    conflicts=[], retrieval_status="PATH_VALUE_NOT_EVIDENCED",
+                    coverage=0.0, snapshot_date=corpus.snapshot_date)
+            pairs.append((sentences[0], item))
+        # Corroboration is optional and never replaces a required edge.
+        required = [fact_edge(it) for it in path_resolution.selected]
+        for candidate in items:
+            edge = fact_edge(candidate)
+            if candidate in path_resolution.selected or edge is None:
+                continue
+            if any((edge.subject_entity, edge.relation, edge.object_value)
+                   == (r.subject_entity, r.relation, r.object_value) for r in required):
+                pairs.append((edge.proposition, candidate))
+        trace.append("synthesis:complete_evidence_path")
 
     bridge_item = None
-    if _BIRTH_CUE_RE.search(effective) and \
+    if not pairs and _BIRTH_CUE_RE.search(effective) and \
             _CREATOR_CUE_RE.search(effective):
-        for candidate_item in ordered:
-            if _bridge_item(candidate_item) and \
-                    _entity_name_gate(gate_query, candidate_item.text_span):
-                bridge_item = candidate_item
-                break
+        bridge_item = _best_entity_bound_candidate(
+            [it for it in ordered if _bridge_item(it)], effective)
     if bridge_item is not None:
         creator = bridge_item.metadata["fact_value"]
         # T21R6 B2: the second hop asks for a SPECIFIC attribute of the
@@ -453,7 +507,7 @@ def answer_knowledge(
             # creator gate passes; then the retrieval-first chunk (legacy
             # behavior when metadata is absent).
             def _hop2_gate(it: EvidenceItem) -> bool:
-                return _entity_name_gate(creator, it.text_span)
+                return _evidence_entity_gate(creator, it)
 
             pool: list[EvidenceItem] | None = None
             if target_attr is not None:
@@ -560,7 +614,6 @@ def answer_knowledge(
         # X located?" answered a type/property note; "In which medium was
         # Y painted?" answered the painter fact). The search walks the
         # candidate order; a resolved-conflict winner keeps priority (B2).
-        effective_tokens = set(re.findall(r"[a-z0-9]+", effective))
         # T21R6 — the query's attribute INTENT names the wanted attribute:
         # every cue-matched attribute is tier-1. (T21R5 replay: "Who
         # invented the device the locomotive?" left tier-1 empty because
@@ -569,24 +622,21 @@ def answer_knowledge(
         # an ABSENT entity.)
         tier1_attrs = frozenset(attr_set)
         tier1_tokens = {t for a in tier1_attrs for t in a.split()}
-        subject = _subject_tokens(effective)
         source_item = None
-        if tier1_attrs and winner_item is None:
-            for cand in ordered:
-                if not _entity_name_gate(gate_query, cand.text_span):
+        if (tier1_attrs or requested_relations) and winner_item is None:
+            candidates = sorted(
+                enumerate(ordered),
+                key=lambda pair: (
+                    -_entity_binding_score(effective, pair[1]), pair[0]),
+            )
+            for _idx, cand in candidates:
+                if not _evidence_entity_gate(effective, cand):
                     continue
                 span = synth_text.get(cand.chunk_id, cand.text_span)
-                # T21R6 subject gate: the answer chunk must be ABOUT the
-                # query's subject — every non-framing, non-attribute
-                # content token of the query must appear in the chunk
-                # (T21R5 replay: "During which year did the thresher first
-                # appear?" was answered from a hygrometer
-                # introduction-year chunk; "thresher" appears in NO
-                # retrieved chunk, so nothing retrieved was about the
-                # subject).
-                if subject and not _span_covers(span, subject):
-                    continue
-                if (cand.metadata or {}).get("fact_attribute") \
+                metadata_relation = evidence_relation(
+                    cand.metadata, cand.text_span)
+                if metadata_relation in requested_relations or \
+                        (cand.metadata or {}).get("fact_attribute") \
                         in tier1_attrs:
                     sentence = _best_sentence_for_terms(span, q_terms)
                 else:
@@ -606,10 +656,7 @@ def answer_knowledge(
                                 coverage=0.0,
                                 snapshot_date=corpus.snapshot_date)
         else:
-            for cand in ordered:
-                if _entity_name_gate(gate_query, cand.text_span):
-                    source_item = cand
-                    break
+            source_item = _best_entity_bound_candidate(ordered, effective)
             if source_item is None:
                 trace.append("entity_gate:FAIL")
                 return _abstain(query, normalized, trace, counters,
@@ -624,7 +671,8 @@ def answer_knowledge(
         if items and source_item.chunk_id != items[0].chunk_id:
             if source_item is winner_item:
                 trace.append("synthesis:authority_winner")
-            elif (source_item.metadata or {}).get("fact_attribute") \
+            elif _item_relation_matches(source_item, requested_relations) or \
+                    (source_item.metadata or {}).get("fact_attribute") \
                     in attr_set:
                 trace.append("synthesis:attribute_matched")
             else:
@@ -658,6 +706,19 @@ def answer_knowledge(
     spans = [synth_text.get(it.chunk_id, it.text_span) for it in selected]
     cov_used = max(coverage_ratio(base_query, spans),
                    coverage_ratio(content_query, spans))
+    # T21R7: structured entity+relation binding is stronger evidence than
+    # surface-form overlap.  Once a selected fact is about the requested
+    # entity and its canonical relation matches the query, a nominalization
+    # or safe paraphrase cannot by itself veto the answer at the lexical
+    # coverage gate.  Retrieval, entity binding, value extraction, citation
+    # lineage, and claim verification still all run normally.
+    if requested_relations and any(
+            _evidence_entity_gate(effective, it)
+            and _item_relation_matches(it, requested_relations)
+            for it in selected):
+        if cov_used < MIN_COVERAGE:
+            trace.append("coverage:canonical_relation_grounded")
+        cov_used = max(cov_used, MIN_COVERAGE)
     if cov_used < MIN_COVERAGE:
         trace.append(f"coverage_gate:FAIL({cov_used:.2f})")
         return _abstain(query, normalized, trace, counters, eligibility,
@@ -721,6 +782,13 @@ def answer_knowledge(
                  corpus.snapshot_date, pack_items, relevant, temporal,
                  {"coverage": round(cov_all, 4), "n_items": len(items)},
                  round(cov_used, 3), status)
+    paths = []
+    path_items = path_resolution.selected if path_resolution is not None else selected[:1]
+    edges = [fact_edge(it) for it in path_items]
+    if edges and all(edge is not None for edge in edges):
+        path = EvidencePath(tuple(edges),
+                            tuple(path_resolution.trace) if path_resolution else ("path:complete:1",))
+        paths.append(path.to_dict())
     return KnowledgeAnswer(
         query=query, normalized_query=normalized, status=status,
         answer=answer_text,
@@ -736,7 +804,12 @@ def answer_knowledge(
         eligibility=eligibility, freshness=temporal,
         query_injection=injection, source_injection=source_injection,
         decision_trace=trace, zero_tolerance=counters,
-        subqueries=subqueries)
+        subqueries=subqueries, evidence_paths=paths,
+        evidence_path_trace=path_resolution.to_trace() if path_resolution else {"complete": bool(paths), "paths": paths},
+        corroborating_evidence=[{"chunk_id": it.chunk_id,
+                                 "citation_id": it.citation_id,
+                                 "role": "CORROBORATION"}
+                                for it in selected if it not in path_items])
 
 
 def _strip_injection_phrases(query: str, injection: dict) -> str:
@@ -911,6 +984,90 @@ def _entity_name_gate(query: str, top_text: str) -> bool:
     return all(c in text_words for c in caps)
 
 
+_ENTITY_ARTICLES = frozenset({"a", "an", "the"})
+
+
+def _fact_entity_tokens(value: object) -> frozenset[str]:
+    """Normalized identity tokens from structured ``fact_entity`` data."""
+    return frozenset(
+        token for token in tokenize(str(value or ""))
+        if token not in _ENTITY_ARTICLES
+    )
+
+
+def _entity_binding_score(query: str, item: EvidenceItem) -> int:
+    """Strength of deterministic query-to-fact-entity binding.
+
+    Structured metadata is authoritative.  Every fact-entity token must be
+    present in the query; extra query qualifiers are not treated as entity
+    tokens unless they are part of the candidate identity itself.  This lets
+    a contextual world/era adjective coexist with a fully resolved subject,
+    while a more specific identity (``Paris Texas``) outranks a generic one
+    (``Paris``).  Metadata-free legacy chunks retain the conservative
+    capitalization gate.
+    """
+    metadata = item.metadata or {}
+    entity = metadata.get("fact_entity")
+    if entity:
+        entity_tokens = _fact_entity_tokens(entity)
+        query_tokens = frozenset(tokenize(query))
+        if entity_tokens and entity_tokens <= query_tokens:
+            return len(entity_tokens)
+        return -1
+    return 0 if _entity_name_gate(_strip_frame_tokens(query),
+                                  item.text_span) else -1
+
+
+def _evidence_entity_gate(query: str, item: EvidenceItem) -> bool:
+    return _entity_binding_score(query, item) >= 0
+
+
+def _best_entity_bound_candidate(
+    candidates: list[EvidenceItem], query: str,
+) -> EvidenceItem | None:
+    """Most specific entity-bound item, preserving rank order on ties."""
+    scored = [(_entity_binding_score(query, item), -idx, item)
+              for idx, item in enumerate(candidates)]
+    valid = [entry for entry in scored if entry[0] >= 0]
+    return max(valid, key=lambda entry: (entry[0], entry[1]))[2] \
+        if valid else None
+
+
+def _item_relation_matches(
+    item: EvidenceItem, requested: frozenset,
+) -> bool:
+    if not requested:
+        return True
+    return evidence_relation(item.metadata, item.text_span) in requested
+
+
+def _conflict_entity_grounded(query: str, conflict: dict) -> bool:
+    """Reject text-fallback conflicts unrelated to the requested entity.
+
+    Metadata conflicts already encode ``entity|attribute`` and were scoped
+    by :func:`query_relevant_conflicts`.  A fallback key such as ``record``
+    can be present in an absent-entity query and in unrelated retrieved
+    chunks; both conflict sides must therefore ground the remaining subject
+    terms before they may determine terminal status.
+    """
+    key = str(conflict.get("claim_key", ""))
+    if "|" in key:
+        return True
+    subject = _subject_tokens(query)
+    if not subject:
+        return True
+
+    def side_grounded(side: dict) -> bool:
+        metadata = side.get("metadata") or {}
+        entity_tokens = _fact_entity_tokens(metadata.get("fact_entity"))
+        if entity_tokens:
+            return entity_tokens <= frozenset(tokenize(query))
+        return _span_covers(str(side.get("text_span", "")), subject)
+
+    return side_grounded(conflict.get("evidence_a") or {}) and \
+        side_grounded(conflict.get("evidence_b") or {})
+
+
 # T21R6 B2 — preregistered bridge target-attribute table. A creator-bridge
 # query asks for a SECOND fact about the creator ("Within which town was
 # the author of X born?" -> the creator's birthplace). The target
@@ -997,6 +1154,9 @@ _SUBJECT_NON_ENTITY_TOKENS: frozenset[str] = frozenset({
     "bordering", "appears", "appearing", "appeared",
     # source-of-record nouns: WHERE the fact is kept, not the fact
     "register", "registers", "file", "files", "filed", "establishment",
+    "mention", "mentions", "mentioned", "mentioning", "record",
+    "records", "recorded", "recording", "associated", "associate",
+    "associates", "associating", "active", "used", "uses", "using",
     # generic geographic head nouns (same class as the framed
     # town/city/village heads): the wanted content is always the NAME of
     # the place, never the head noun itself. Attribute nouns (river, sea,
@@ -1096,7 +1256,7 @@ def _corroborators(
             continue
         if _normalize_fact_value(corr_meta.get("fact_value")) != base_norm:
             continue
-        if not _entity_name_gate(gate_query, it.text_span):
+        if not _evidence_entity_gate(gate_query, it):
             continue
         out.append(it)
     return out

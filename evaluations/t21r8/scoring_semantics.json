@@ -1,0 +1,46 @@
+{
+  "definition": {
+    "answer_row_correctness": {
+      "applies_when": "gold expect_status is ANSWER",
+      "conjunction": [
+        "status_match",
+        "contains_ok",
+        "citations_ok",
+        "required_sources_ok",
+        "required_domains_ok",
+        "claims_supported",
+        "zero_tolerance_all_zero"
+      ],
+      "required_domains_ok": {
+        "applies_when": "gold expect_status is ANSWER and required_domains is nonempty",
+        "evidence_scope": "sources_actually_cited",
+        "normalization": "strip_casefold_whitespace_hyphen_to_underscore",
+        "participates_in_correctness": true,
+        "retrieved_but_uncited_source_policy": "a retrieved-but-uncited source cannot satisfy a required domain",
+        "source_field": "KnowledgeSourceRecord.topic_tags",
+        "unknown_domain_policy": "evaluator_invalid"
+      },
+      "required_sources_ok": {
+        "applies_when": "gold expect_status is ANSWER and required_sources is nonempty",
+        "evidence_scope": "sources_actually_cited",
+        "path_semantics": "PATH_REQUIRED_SOURCE sources prove the gold path edges; OPTIONAL_CORROBORATION sources may be cited in addition but never substitute for a path-required source"
+      }
+    },
+    "citation_denominator": "all gold ANSWER rows",
+    "non_answer_row_correctness": {
+      "answer_only_fields": "contains_ok, citations_ok, required_sources_ok, required_domains_ok, and claims_supported are not applicable",
+      "applies_when": "gold expect_status is not ANSWER",
+      "conjunction": [
+        "status_match",
+        "zero_tolerance_all_zero"
+      ]
+    },
+    "source_diversity_denominator": "multihop and crossdomain rows declaring at least two required sources",
+    "unknown_or_unresolvable_information_policy": "unknown or unresolvable domain/source information is EVALUATOR INVALID, never an automatic PASS",
+    "version": "t21r8-scoring-v1",
+    "zero_tolerance_policy": "any nonzero counter makes the row incorrect"
+  },
+  "milestone": "T21R8",
+  "scoring_semantics_sha256": "47ff909a2f7db41334833faba195d777d6192c30bfa73b521f3c8b793be8ccbd",
+  "single_source_note": "This file is the single machine-readable scoring-semantics contract for T21R8. The evaluator, evaluator qualification, validation contract, and every later freeze artifact must hash exactly this file's definition."
+}

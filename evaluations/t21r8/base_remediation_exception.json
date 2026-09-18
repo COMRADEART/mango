@@ -1,0 +1,73 @@
+{
+  "milestone": "T21R8 base-remediation exception",
+  "canonical_base": "bffe86b67107ba2a097aa3030acc17e687d84d25",
+  "abandoned_branch_sha": "510fc4ccf2655b919fea5b8b9dced7a12ac3036f",
+  "abandoned_archive_branch": "archive/t21r8-abandoned-510fc4",
+  "abandoned_untracked_stash_sha": "7ce0219a80466892d4c66be01411a4675614ef5c",
+  "recovery_original_head": "bffe86b67107ba2a097aa3030acc17e687d84d25",
+  "recovery_preservation_method": "archival WIP commit",
+  "recovery_archive_branch": "archive/t21r8-base-recovery",
+  "recovery_preservation_identity": "b972c1fb92b6be64191f5a105e584ce37c42f0b1",
+  "recovery_dirty_file_list": [
+    "evaluations/t21r8/base_review.json",
+    "src/sciencemath/code/testsel.py",
+    "src/sciencemath/memory/pipeline.py",
+    "src/sciencemath/memory/store.py",
+    "tests/test_t21r7_construction_contract.py"
+  ],
+  "reason": "canonical T21R8 entry baseline produced 13 failures",
+  "expected_collection": 2163,
+  "expected_passed": 2161,
+  "expected_skipped": 2,
+  "expected_failures": 0,
+  "expected_errors": 0,
+  "r7_raw_results_read": false,
+  "r8_forensics_started": false,
+  "exception_scope": "restore canonical base test reproducibility only",
+  "authorization_status": "AUTHORIZED_BASE_REMEDIATION",
+  "compatibility_policy": "historical hash or exact remediation hash only",
+  "authorized_source_files": [
+    "src/sciencemath/code/testsel.py",
+    "src/sciencemath/memory/pipeline.py",
+    "src/sciencemath/memory/store.py"
+  ],
+  "implementation_hash_compatibility": {
+    "code_runtime": {
+      "historical_sha256": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "remediated_sha256": "b7f4468426fe275feb1a0c351660211d510f47da14ae453d1bc2d338d5bc9502",
+      "changed_files": ["src/sciencemath/code/testsel.py"]
+    },
+    "memory_runtime": {
+      "historical_sha256": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+      "remediated_sha256": "2f6eb6da3ebfc612c71d21346e204cb29e713042ed39f926a155481fb52f5043",
+      "changed_files": [
+        "src/sciencemath/memory/pipeline.py",
+        "src/sciencemath/memory/store.py"
+      ]
+    }
+  },
+  "historical_artifacts_modified": false,
+  "original_failing_test_ids": [
+    "tests/test_t15_code_runner.py::test_runner_edit_test_verify",
+    "tests/test_t15_code_runner.py::test_debug_loop_repairs_with_evidence",
+    "tests/test_t15_code_runner.py::test_no_stale_bytecode_between_repair_and_retest",
+    "tests/test_t15_code_runner.py::test_no_change_when_tests_already_pass",
+    "tests/test_t15_code_runner.py::test_edit_trap_still_short_circuits",
+    "tests/test_t15r_repair_loop.py::test_repair_budget_exhaustion_retains_best",
+    "tests/test_t15r_repair_loop.py::test_runner_retains_partial_progress",
+    "tests/test_t15r_repair_loop.py::test_runner_regression_rejects_and_keeps_best",
+    "tests/test_t15r_repair_loop.py::test_runner_repairs_from_best_not_original",
+    "tests/test_t15r_repair_loop.py::test_multi_file_atomic_dependency_map",
+    "tests/test_t15r_repair_loop.py::test_existing_single_fix_still_passes",
+    "tests/test_t15r_repair_loop.py::test_code_edit_retries_from_live_failures_without_initial_patch",
+    "tests/test_t18_memory_persist.py::test_two_readers_one_writer"
+  ],
+  "preexisting_isolation_defect": {
+    "record": "T21R7_FREEZE_TEST_STATE_LEAK",
+    "affected_tests": [
+      "tests/test_t21r7_construction_contract.py::test_freeze_refuses_when_construction_audit_is_not_complete",
+      "tests/test_t21r7_construction_contract.py::test_freeze_recomputes_candidate_metrics_and_rejects_drift"
+    ],
+    "scope": "test isolation only; archived repository freeze files remain immutable"
+  }
+}

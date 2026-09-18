@@ -1,0 +1,149 @@
+{
+  "correctness_rule": {
+    "answer_row_correctness": {
+      "applies_when": "gold expect_status is ANSWER",
+      "conjunction": [
+        "status_match",
+        "contains_ok",
+        "citations_ok",
+        "required_sources_ok",
+        "required_domains_ok",
+        "claims_supported",
+        "zero_tolerance_all_zero"
+      ],
+      "required_domains_ok": {
+        "applies_when": "gold expect_status is ANSWER and required_domains is nonempty",
+        "evidence_scope": "sources_actually_cited",
+        "normalization": "strip_casefold_whitespace_hyphen_to_underscore",
+        "participates_in_correctness": true,
+        "source_field": "KnowledgeSourceRecord.topic_tags",
+        "unknown_domain_policy": "evaluator_invalid"
+      }
+    },
+    "citation_denominator": "all gold ANSWER rows",
+    "non_answer_row_correctness": {
+      "answer_only_fields": "contains_ok, citations_ok, required_sources_ok, required_domains_ok, and claims_supported are not applicable",
+      "applies_when": "gold expect_status is not ANSWER",
+      "conjunction": [
+        "status_match",
+        "zero_tolerance_all_zero"
+      ]
+    },
+    "source_diversity_denominator": "multihop and crossdomain rows declaring at least two required sources",
+    "version": "t21r7-scoring-v1",
+    "zero_tolerance_policy": "any nonzero counter makes the row incorrect"
+  },
+  "evaluator_source_sha256": "d94c2bc6732c742352d0316e929631b8a9cebaf5e5cae4c50bffbe6b02a8ed7b",
+  "frozen_hashes": {
+    "construction_contract_sha256": "119ac799d85f32c847e951e36130fb58d0496abfdc1d59163e3803319b7bbc87",
+    "evaluator_path": "scripts/t21r7_run_eval.py",
+    "evaluator_source_sha256": "d94c2bc6732c742352d0316e929631b8a9cebaf5e5cae4c50bffbe6b02a8ed7b",
+    "floors_sha256": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+    "raw_results_schema_sha256": "e1f1ee5f15860fc4921bcb63e4cef27936f747c20d022b26d611fb5d959d6b2a",
+    "suite_minimums_sha256": "d5ae436a5fc1d99315bcd0e110736d49215746bf726eedb97d073e9735520352",
+    "validation_contract_sha256": "c9dd6f47f5e893e0efa8f80aa65220ceb64afb5508f827f94c57a2797530c8c9",
+    "zero_tolerance_note_sha256": "3e501761aac6ec2554b475ecd6f9544847408ed638b796d6aaf4efaaca92d859"
+  },
+  "milestone": "T21R7 evaluator freeze (before blind holdout)",
+  "ordering": "runtime freeze < evaluator freeze < blind holdout generation < static/uniqueness/blindness audits < HOLDOUT_FROZEN",
+  "qualification_cases": {
+    "all_paths_exercised": true,
+    "n_cases": 47,
+    "n_passed": 47,
+    "uncaught_exceptions": 0
+  },
+  "qualification_recorded_at": "2026-09-16T14:48:28.110651+00:00",
+  "raw_results_schema": {
+    "raw_answer_fields": [
+      "case_id",
+      "suite",
+      "mode",
+      "category",
+      "query",
+      "status",
+      "expected_status",
+      "status_match",
+      "answer",
+      "expected_answer_contains",
+      "citations",
+      "n_citations",
+      "citation_report_ok",
+      "citation_verdicts",
+      "claim_counts",
+      "claim_verdicts",
+      "claims_supported",
+      "required_sources",
+      "required_sources_ok",
+      "required_domains",
+      "required_domains_ok",
+      "cited_source_domains",
+      "contains_ok",
+      "citations_ok",
+      "counters",
+      "counters_nonzero",
+      "correct",
+      "decision_trace",
+      "query_injection",
+      "source_injection",
+      "coverage",
+      "n_evidence_items",
+      "evidence_chunk_ids",
+      "conflicts_surfaced",
+      "temporal_action",
+      "snapshot_date",
+      "scoring_semantics_sha256"
+    ],
+    "raw_retrieval_fields": [
+      "case_id",
+      "suite",
+      "mode",
+      "category",
+      "query",
+      "gold_chunk_id",
+      "rank",
+      "n_returned",
+      "deduped_chunk_ids",
+      "correct",
+      "counters",
+      "counters_nonzero"
+    ]
+  },
+  "recorded_at": "2026-09-16T15:17:09.138331+00:00",
+  "rule": "After this file exists no evaluator semantics or raw schema may change. Any defect discovered after HOLDOUT_FROZEN or official evaluation start invalidates T21R7; no repair or rerun.",
+  "runtime_freeze_recorded_at": "2026-09-16T15:16:36.366488+00:00",
+  "scoring_semantics": {
+    "answer_row_correctness": {
+      "applies_when": "gold expect_status is ANSWER",
+      "conjunction": [
+        "status_match",
+        "contains_ok",
+        "citations_ok",
+        "required_sources_ok",
+        "required_domains_ok",
+        "claims_supported",
+        "zero_tolerance_all_zero"
+      ],
+      "required_domains_ok": {
+        "applies_when": "gold expect_status is ANSWER and required_domains is nonempty",
+        "evidence_scope": "sources_actually_cited",
+        "normalization": "strip_casefold_whitespace_hyphen_to_underscore",
+        "participates_in_correctness": true,
+        "source_field": "KnowledgeSourceRecord.topic_tags",
+        "unknown_domain_policy": "evaluator_invalid"
+      }
+    },
+    "citation_denominator": "all gold ANSWER rows",
+    "non_answer_row_correctness": {
+      "answer_only_fields": "contains_ok, citations_ok, required_sources_ok, required_domains_ok, and claims_supported are not applicable",
+      "applies_when": "gold expect_status is not ANSWER",
+      "conjunction": [
+        "status_match",
+        "zero_tolerance_all_zero"
+      ]
+    },
+    "source_diversity_denominator": "multihop and crossdomain rows declaring at least two required sources",
+    "version": "t21r7-scoring-v1",
+    "zero_tolerance_policy": "any nonzero counter makes the row incorrect"
+  },
+  "scoring_semantics_sha256": "e72fb5449b6bbafd1afb71c03656f5d20116b251bd2bdfaa35e4c44f26d200b2"
+}

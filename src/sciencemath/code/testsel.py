@@ -8,6 +8,7 @@ meaningful behavior and must never weaken existing tests.
 from __future__ import annotations
 
 import subprocess
+import sys
 from pathlib import Path
 
 TARGETED_TEST = "TARGETED_TEST"
@@ -86,7 +87,7 @@ def run_pytest_targets(repo_root: str | Path, targets: list[str],
         env = dict(_os.environ)
         env["PYTHONDONTWRITEBYTECODE"] = "1"
         r = subprocess.run(
-            ["python", "-m", "pytest", *targets, "-q", "-p",
+            [sys.executable, "-m", "pytest", *targets, "-q", "-p",
              "no:cacheprovider"], cwd=str(repo_root), capture_output=True,
             text=True, timeout=timeout_s, env=env, encoding="utf-8",
             errors="replace")

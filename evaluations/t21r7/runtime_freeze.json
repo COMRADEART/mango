@@ -1,0 +1,47 @@
+{
+  "canonical_base": "57f4188c736b7ffd59227deb808ecd29b02fcc33",
+  "construction_preregistration_commit": "554f000ad511dedc5b7752887558ab24b1fa0d27",
+  "development_gates": {
+    "all_32_floors_pass": true,
+    "evaluator_qualification_cases": 47,
+    "pytest_errors": 0,
+    "pytest_failures": 0,
+    "pytest_tests": 2163,
+    "t21r6_old_failures_remaining": 0,
+    "t21r6_replay_rows": 3753
+  },
+  "executive_router_status": "EXPERIMENTAL (unchanged)",
+  "git_head": "74823b88c140d770a42a76b577fd82e9ee398ca8",
+  "git_tree_sha": "78144733f5073fd7d821f3707104848806b9e61e",
+  "holdout_construction_contract_sha256": "119ac799d85f32c847e951e36130fb58d0496abfdc1d59163e3803319b7bbc87",
+  "knowledge_rag_registry": {
+    "availability": "EXPERIMENTAL",
+    "counts": {
+      "ACTIVE": 11,
+      "EXPERIMENTAL": 1
+    },
+    "registry_sha256": "1d04bd00dec97cf8448b33d8ee9b4d6a560229fcfce1d4cdab9ecb2c4b21825e",
+    "skills_py_sha256_lf": "66f2d1e5b3137e6a3e4bd5477dee7a5417585f7a9b543c98419eb820973522ad"
+  },
+  "milestone": "T21R7 runtime freeze (before blind holdout)",
+  "promotion_policy": "KNOWLEDGE_RAG remains EXPERIMENTAL until the one-shot T21R7 blind holdout passes all unchanged promotion floors.",
+  "recorded_at": "2026-09-16T15:16:36.366488+00:00",
+  "repair_commit": "ba3b1ce4f80886fd0f7d5cde4946a82109472f9c",
+  "runtime_composites": {
+    "code_runtime": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+    "correction_firewall": "7a307f6678d6afdc9d469c31b898ba4f4cc9e34d0df4c9e3e7770756e02c36e1",
+    "document_runtime": "d14232aeaa62d9ddead8fb84e5c95a4df93554da7159e2c610191f30cec4059d",
+    "executive_router": "dbc7fbd0d19688d1a220e27d18484f437f1adde3b24b4b5ba4fb6eb8ac246c10",
+    "executive_skills": "f758b52b841130b34c85ec25e72037020a9e90237627fb3f8a673353e02a8125",
+    "historical_write_guard": "03209397fd9ebb0998e318d42563664b88852d1da6c89e799e5e60b2e366fa5f",
+    "knowledge_runtime": "5014e43893e311140f0981812d42a4a135c4c80dd2812b5df1488c3497c33fe5",
+    "memory_runtime": "ac77f2d448345b4fb489911d6f9cd3c98dec06f4528ddf0e47e54852ccc4002d",
+    "orchestration_runtime": "57b1c4ad8cd71829b78d5baab20c62617333718be39a96710b0084004561ae45",
+    "planning_runtime": "d045885cefcd097ceffc6588b5e6b00a1072cfaa08526ba9e4070bbdc041528c",
+    "scicomp_runtime": "5be66a3afb5f17f6b07ec995938ee783cb9adee8f85c268c52562a258f8e22c8",
+    "science_rag_runtime": "350f023bcfccf370761963704b96fe6aa60819f6dff8067064aa24348b697742",
+    "security_layer": "17392e9dd0c23434383690cfd106c770628b428d0dcaf74dcf34198d83ebd14f",
+    "web_research_runtime": "5ec760efb9d0420de3f1ca6c49e8481c151efeef027611683bfb1f1909140aa4"
+  },
+  "t15r_canonical_blob": "fba2437f78633884bd31965d78a4250bd1ca893c"
+}

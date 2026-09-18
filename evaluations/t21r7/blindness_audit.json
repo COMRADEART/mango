@@ -1,0 +1,48 @@
+{
+  "audit": "T21R7 pre-freeze blindness audit",
+  "checks": {
+    "data_only_source_firewall": true,
+    "evaluator_freeze_identity": true,
+    "no_holdout_freeze_or_official_run_artifacts": true,
+    "runtime_freeze_identity": true,
+    "static_gold_audit_pass": true,
+    "static_runtime_execution_count_zero": true,
+    "uniqueness_runtime_execution_count_zero": true,
+    "uniqueness_verdict_unique": true
+  },
+  "data_only_source_firewall": {
+    "t21r7_blindness_audit.py": [],
+    "t21r7_build_suites.py": [],
+    "t21r7_construction_audit.py": [],
+    "t21r7_construction_gate.py": [],
+    "t21r7_static_gold_audit.py": [],
+    "t21r7_uniqueness.py": [],
+    "t21r7_world.py": []
+  },
+  "evaluator_source": {
+    "actual_sha256": "d94c2bc6732c742352d0316e929631b8a9cebaf5e5cae4c50bffbe6b02a8ed7b",
+    "expected_sha256": "d94c2bc6732c742352d0316e929631b8a9cebaf5e5cae4c50bffbe6b02a8ed7b",
+    "path": "scripts/t21r7_run_eval.py"
+  },
+  "forbidden_artifacts_present": [],
+  "official_runtime_exposures_before_freeze": 0,
+  "recorded_at": "2026-09-16T21:50:22.164791+00:00",
+  "runtime_group_identity": {
+    "code_runtime": true,
+    "correction_firewall": true,
+    "document_runtime": true,
+    "executive_router": true,
+    "executive_skills": true,
+    "historical_write_guard": true,
+    "knowledge_runtime": true,
+    "memory_runtime": true,
+    "orchestration_runtime": true,
+    "planning_runtime": true,
+    "scicomp_runtime": true,
+    "science_rag_runtime": true,
+    "security_layer": true,
+    "web_research_runtime": true
+  },
+  "statement": "No T21R7 suite row was passed to the production runtime, evaluator, or retrieval API before HOLDOUT_FROZEN.",
+  "status": "PASS"
+}

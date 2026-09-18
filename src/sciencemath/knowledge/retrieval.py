@@ -41,6 +41,24 @@ WINDOW_RESERVE_FRACTION = 0.5
 COVERAGE_WEIGHT = 1.0
 RERANK_TIEBREAK_WEIGHT = 0.01
 
+STRUCTURED_CANDIDATE_LIMIT = 64
+
+
+def retrieve_structured(chunks_by_id, entity, relation, *, limit=STRUCTURED_CANDIDATE_LIMIT):
+    """Exact-key bounded retrieval; overflow forces abstention, not truncation."""
+    from sciencemath.knowledge.evidence_paths import normalize_identity
+    from sciencemath.knowledge.relations import canonical_relation
+    ids = sorted(cid for cid, chunk in chunks_by_id.items()
+                 if normalize_identity((chunk.metadata or {}).get('fact_entity')) == normalize_identity(entity)
+                 and canonical_relation((chunk.metadata or {}).get('fact_attribute')) == relation)
+    return [(cid, 1.0) for cid in ids[:limit]], {
+        'mode': 'structured_exact', 'entity': entity, 'relation': str(relation),
+        'candidate_ids': ids[:limit], 'candidate_count': len(ids),
+        'limit': limit, 'overflow': len(ids) > limit,
+    }
+
+
+
 
 def _shingles(text: str, n: int = 4) -> frozenset[str]:
     toks = tokenize(text)

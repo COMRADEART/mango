@@ -1,0 +1,13 @@
+{
+  "artifact": "T21R7 pre-freeze full pytest result",
+  "command": "python -m pytest -q --junitxml=evaluations/t21r7/pytest_pre_freeze.xml",
+  "errors": 0,
+  "failures": 0,
+  "passed": 2161,
+  "recorded_at": "2026-09-16T11:12:42-04:00",
+  "skipped": 2,
+  "status": "PASS",
+  "tests": 2163,
+  "time_seconds": 70.184,
+  "verification_note": "One intermediate run observed a transient failure in the unrelated T18 SQLite concurrency test; it passed immediately in isolation and in this final full-suite run without a code change."
+}
