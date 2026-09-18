@@ -570,6 +570,7 @@ def test_quota_ignores_multihop_row_with_single_gold_source(
     multihop = rows["multihop"][0]
     multihop["gold"]["required_sources"] = ["src-a"]
     multihop["construction"]["path_required_sources"] = ["src-a"]
+    multihop["construction"]["gold_path"]["hop2_edge"]["source_id"] = "src-a"
     _write_all_suites(tmp_path, rows)
     measured = _measure_fixture(tmp_path, monkeypatch, rows)
     assert measured["metrics"]["annotation_violations"] == 0
@@ -623,6 +624,95 @@ def test_quota_counts_genuine_two_edge_rows_in_both_suites(
     measured = _measure_fixture(tmp_path, monkeypatch, rows)
     assert measured["metrics"]["annotation_violations"] == 0
     assert measured["metrics"]["stresses"]["multisource_path_rows"] == 2
+
+
+# ---------------------------------------------------------------------------
+# Path-source identity: a declared source ID satisfies the quota ONLY if it
+# proves one of the actual gold path edge sources (hop1_edge.source_id /
+# hop2_edge.source_id).  Declared path sources that differ from the edge
+# sources are also emitted as annotation violations so malformed metadata
+# stays visible in the static gold audit.
+# ---------------------------------------------------------------------------
+
+
+def _violations_for(measured: dict) -> list[str]:
+    return [detail["reason"]
+            for detail in measured["annotation_violation_details"]]
+
+
+def test_quota_rejects_two_edges_scored_from_one_source(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    # Both edges point at src-a while the declaration claims src-a AND
+    # src-b: src-b proves no edge, so the row must NOT count, and the
+    # declared/edge mismatch must surface as an annotation violation.
+    _fixture_contract(tmp_path)
+    rows = _clean_rows()
+    _annotate_clean(rows)
+    multihop = rows["multihop"][0]
+    multihop["construction"]["gold_path"]["hop2_edge"]["source_id"] = "src-a"
+    _write_all_suites(tmp_path, rows)
+    measured = _measure_fixture(tmp_path, monkeypatch, rows)
+    stresses = measured["metrics"]["stresses"]
+    assert stresses["multisource_path_rows"] == 0
+    assert stresses["multisource_path_tagged_rows"] == 1
+    assert any("differ from gold path edge sources" in reason
+               for reason in _violations_for(measured))
+
+
+def test_quota_rejects_declaration_that_skips_the_actual_edge_source(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    # gold requires {A, B, C}; the path edges prove A and C, but the
+    # declaration claims A and B.  Declared B satisfies the declared-set
+    # checks alone, yet B proves no edge: the row must NOT count.
+    _fixture_contract(tmp_path)
+    rows = _clean_rows()
+    _annotate_clean(rows)
+    multihop = rows["multihop"][0]
+    multihop["gold"]["required_sources"] = ["src-a", "src-b", "src-c"]
+    multihop["construction"]["gold_path"]["hop2_edge"]["source_id"] = "src-c"
+    _write_all_suites(tmp_path, rows)
+    measured = _measure_fixture(tmp_path, monkeypatch, rows)
+    stresses = measured["metrics"]["stresses"]
+    assert stresses["multisource_path_rows"] == 0
+    assert stresses["multisource_path_tagged_rows"] == 1
+    assert any("differ from gold path edge sources" in reason
+               for reason in _violations_for(measured))
+
+
+def test_quota_rejects_corroborator_claim_of_an_unproven_source(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    # Both edges prove only src-a; a corroboration entry for src-b (and a
+    # declared path set naming src-b) must NOT make src-b count as a proven
+    # path source.
+    _fixture_contract(tmp_path)
+    rows = _clean_rows()
+    _annotate_clean(rows)
+    multihop = rows["multihop"][0]
+    multihop["construction"]["gold_path"]["hop2_edge"]["source_id"] = "src-a"
+    _write_all_suites(tmp_path, rows)
+    measured = _measure_fixture(tmp_path, monkeypatch, rows)
+    stresses = measured["metrics"]["stresses"]
+    assert stresses["multisource_path_rows"] == 0
+    assert stresses["multisource_path_tagged_rows"] == 1
+    assert any("differ from gold path edge sources" in reason
+               for reason in _violations_for(measured))
+
+
+def test_quota_counts_row_whose_edge_sources_back_the_declaration(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    # hop1 proves src-a, hop2 proves src-b, the declaration names exactly
+    # {src-a, src-b}, and gold requires both: the row COUNTS.
+    _fixture_contract(tmp_path)
+    rows = _clean_rows()
+    rows["multihop"] = [_qualifying_multisource_row("multihop", 1)]
+    _write_all_suites(tmp_path, rows)
+    measured = _measure_fixture(tmp_path, monkeypatch, rows)
+    assert measured["metrics"]["annotation_violations"] == 0
+    assert measured["metrics"]["stresses"]["multisource_path_rows"] == 1
 
 
 @pytest.mark.parametrize("qualifying_rows,passes", [(1199, False),

@@ -76,7 +76,6 @@ def _build_fixture(tmp_path: Path, monkeypatch) -> oe.Paths:
     """Build a synthetic candidate tree whose preflight PASSES."""
     paths = oe.build_paths(tmp_path)
     paths.out_dir.mkdir(parents=True)
-    _write_json(paths.marker_path, {"frozen_at": "2026-01-01T00:00:00+00:00"})
 
     suites = {}
     for suite in evaluator.SUITES:
@@ -99,6 +98,12 @@ def _build_fixture(tmp_path: Path, monkeypatch) -> oe.Paths:
             for name in ("sources.jsonl", "chunks.jsonl")
         },
         "suites": suites,
+    })
+    # The marker cryptographically anchors the EXACT manifest bytes: the
+    # manifest is only a trusted root of truth through this identity.
+    _write_json(paths.marker_path, {
+        "frozen_at": "2026-01-01T00:00:00+00:00",
+        "holdout_manifest_sha256": _sha(paths.manifest_path),
     })
     _write_json(paths.qualification_path, {
         "qualification_passed": True,
@@ -154,6 +159,99 @@ def test_manifest_hash_mismatch_refuses_before_any_artifact(
     paths = _build_fixture(tmp_path, monkeypatch)
     (paths.root / "probe.txt").write_text("tampered\n", encoding="utf-8")
     with pytest.raises(SystemExit, match="T21R8_FREEZE_VIOLATION"):
+        oe.main(paths)
+    _assert_no_exposure_artifacts(paths)
+
+
+# ---------------------------------------------------------------------------
+# Manifest-marker binding: HOLDOUT_FROZEN must anchor the exact manifest
+# bytes, or a modified suite/corpus file plus an updated hash inside the
+# manifest could become a new accepted root of truth.
+# ---------------------------------------------------------------------------
+
+
+def test_marker_anchors_the_exact_manifest_bytes_on_a_valid_tree(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    # A: valid marker SHA + valid manifest -> preflight succeeds and no
+    # exposure artifact exists.
+    paths = _build_fixture(tmp_path, monkeypatch)
+    marker = json.loads(
+        paths.marker_path.read_text(encoding="utf-8"))
+    assert marker["holdout_manifest_sha256"] == _sha(paths.manifest_path)
+    manifest, corpus = oe._preflight(paths)
+    assert set(manifest["suites"]) == set(evaluator.SUITES)
+    assert isinstance(corpus, _StubCorpus)
+    _assert_no_exposure_artifacts(paths)
+
+
+def test_manifest_bytes_changed_after_marker_refuses(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    # B: change holdout_manifest.json bytes after marker creation -> refuse,
+    # no exposure artifacts.
+    paths = _build_fixture(tmp_path, monkeypatch)
+    manifest = json.loads(
+        paths.manifest_path.read_text(encoding="utf-8"))
+    manifest["tampered"] = "post-marker edit"
+    _write_json(paths.manifest_path, manifest)
+    with pytest.raises(SystemExit, match="T21R8_FREEZE_VIOLATION"):
+        oe.main(paths)
+    _assert_no_exposure_artifacts(paths)
+
+
+def test_marker_sha_change_alone_refuses(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    # C: change the marker's holdout_manifest_sha256 only -> refuse, no
+    # exposure artifacts (the manifest itself is untouched).
+    paths = _build_fixture(tmp_path, monkeypatch)
+    _write_json(paths.marker_path, {
+        "frozen_at": "2026-01-01T00:00:00+00:00",
+        "holdout_manifest_sha256": "a" * 64,
+    })
+    with pytest.raises(SystemExit, match="T21R8_FREEZE_VIOLATION"):
+        oe.main(paths)
+    _assert_no_exposure_artifacts(paths)
+
+
+def test_suite_change_with_manifest_hash_update_still_refuses(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    # D (mandatory): change a suite AND update that suite's hash inside the
+    # manifest WITHOUT updating HOLDOUT_FROZEN -> preflight still refuses,
+    # because the manifest identity changed.  Updating a hash inside the
+    # manifest can never mint a new accepted root of truth.
+    paths = _build_fixture(tmp_path, monkeypatch)
+    suite = evaluator.SUITES[0]
+    _write_suite(paths, suite, [_synthetic_row(suite), _synthetic_row(suite, 2)])
+    manifest = json.loads(
+        paths.manifest_path.read_text(encoding="utf-8"))
+    manifest["suites"][suite]["sha256"] = _sha(
+        paths.suites_dir / suite / "holdout.jsonl")
+    _write_json(paths.manifest_path, manifest)
+    marker = json.loads(
+        paths.marker_path.read_text(encoding="utf-8"))
+    assert marker["holdout_manifest_sha256"] != _sha(paths.manifest_path)
+    with pytest.raises(SystemExit, match="T21R8_FREEZE_VIOLATION"):
+        oe.main(paths)
+    _assert_no_exposure_artifacts(paths)
+
+
+def test_unparseable_marker_refuses(tmp_path: Path, monkeypatch) -> None:
+    paths = _build_fixture(tmp_path, monkeypatch)
+    paths.marker_path.write_text("{not json", encoding="utf-8")
+    with pytest.raises(SystemExit, match="does not parse"):
+        oe.main(paths)
+    _assert_no_exposure_artifacts(paths)
+
+
+def test_marker_without_manifest_sha_refuses(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    paths = _build_fixture(tmp_path, monkeypatch)
+    _write_json(paths.marker_path, {"frozen_at": "2026-01-01T00:00:00+00:00"})
+    with pytest.raises(SystemExit, match="lacks"):
         oe.main(paths)
     _assert_no_exposure_artifacts(paths)
 

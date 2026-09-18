@@ -62,7 +62,15 @@ def multisource_path_qualifies(row: dict, suite_name: str) -> bool:
     5. ``path_required_sources`` holds >= 2 DISTINCT source IDs;
     6. every path-required source is in ``gold.required_sources``;
     7. the recorded gold path has both required reasoning edges (a hop1
-       edge whose object equals the hop2 edge's subject).
+       edge whose object equals the hop2 edge's subject);
+    8. BOTH path edges carry a nonempty ``source_id``;
+    9. the two edge source IDs are DISTINCT (so the path truly spans two
+       sources, not one source scored twice);
+    10. the edge source set EQUALS ``path_required_sources`` (a declared
+       source ID counts only if it proves one of the actual path edges);
+    11. every edge source is in ``gold.required_sources``;
+    12. the optional ``corroboration_sources`` set, when present, is
+       disjoint from the edge source set.
 
     Optional corroboration sources contribute to NEITHER >= 2 count.
     """
@@ -89,7 +97,24 @@ def multisource_path_qualifies(row: dict, suite_name: str) -> bool:
     hop2 = gold_path.get("hop2_edge") or {}
     if not hop1 or not hop2:
         return False
-    return hop1.get("object_value") == hop2.get("subject_entity")
+    if hop1.get("object_value") != hop2.get("subject_entity"):
+        return False
+    hop1_source = str(hop1.get("source_id") or "")
+    hop2_source = str(hop2.get("source_id") or "")
+    if not hop1_source or not hop2_source:
+        return False
+    edge_sources = {hop1_source, hop2_source}
+    if len(edge_sources) < 2:
+        return False
+    if edge_sources != path_source_ids:
+        return False
+    if not edge_sources <= gold_sources:
+        return False
+    corroboration = annotation.get("corroboration_sources")
+    if isinstance(corroboration, list) and \
+            {str(source) for source in corroboration} & edge_sources:
+        return False
+    return True
 
 
 def _load_jsonl(path: Path) -> list[dict]:
@@ -310,6 +335,14 @@ def measure_candidate(root: Path = ROOT) -> dict:
             elif terminal not in (row.get("gold", {})
                                   .get("expect_answer_contains") or []):
                 violation(row, "terminal value missing from gold answer")
+            elif {str(source) for source in path_sources} != {
+                    str(edge.get("source_id")) for edge in (hop1, hop2)
+                    if edge.get("source_id")}:
+                # A declared path source that does not prove an actual gold
+                # path edge is malformed metadata: it must stay visible in
+                # the static gold audit, not just be dropped from the quota.
+                violation(row, "declared path_required_sources differ from "
+                               "gold path edge sources")
         if tagged(row, "partial_path_ie_stress"):
             component = annotation.get("missing_component")
             if component not in IE_ENUM:

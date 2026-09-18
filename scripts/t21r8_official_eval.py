@@ -9,6 +9,11 @@ evaluator in ``scripts/t21r8_run_eval.py``.  Preregistered official command:
 
 The wrapper:
   * refuses if ``HOLDOUT_FROZEN`` / ``holdout_manifest.json`` are absent;
+  * refuses unless ``HOLDOUT_FROZEN`` parses as JSON, carries
+    ``holdout_manifest_sha256``, and that sha256 equals the sha256 of the
+    exact ``holdout_manifest.json`` bytes — the manifest is trusted as the
+    root of truth for freeze inputs, corpus hashes, and suite hashes only
+    after this marker/manifest identity succeeds;
   * refuses if the runtime or evaluator hashes differ from their freezes;
   * refuses if the official exposure ledger already records >= 1 exposure;
   * runs a NON-RUNTIME preflight BEFORE the exposure ledger is created: the
@@ -155,6 +160,29 @@ def _check_freeze(paths: Paths) -> dict:
         raise SystemExit(
             "HOLDOUT_FROZEN or holdout manifest is missing; the official "
             "one-shot exposure may not start without the frozen holdout")
+    # The manifest itself must be cryptographically anchored: HOLDOUT_FROZEN
+    # records the sha256 of the exact manifest bytes, and only after that
+    # identity succeeds is the manifest trusted as the root of truth for
+    # freeze_inputs, corpus hashes, and suite hashes.  A modified suite or
+    # corpus file plus an updated hash inside the manifest otherwise becomes
+    # a new accepted root of truth.
+    try:
+        marker = _load_json(paths.marker_path)
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise SystemExit(
+            "T21R8_FREEZE_VIOLATION: HOLDOUT_FROZEN does not parse as JSON: "
+            f"{exc}") from exc
+    marker_sha = marker.get("holdout_manifest_sha256")
+    if not isinstance(marker_sha, str) or not marker_sha:
+        raise SystemExit(
+            "T21R8_FREEZE_VIOLATION: HOLDOUT_FROZEN lacks "
+            "holdout_manifest_sha256")
+    manifest_sha = _sha256(paths.manifest_path)
+    if marker_sha != manifest_sha:
+        raise SystemExit(
+            "T21R8_FREEZE_VIOLATION: HOLDOUT_FROZEN manifest identity "
+            "mismatch; holdout_manifest.json is not the frozen bytes "
+            f"recorded in the marker ({marker_sha} != {manifest_sha})")
     _check_qualification(paths)
     manifest = _load_json(paths.manifest_path)
     for info in manifest["freeze_inputs"].values():
