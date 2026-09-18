@@ -1,0 +1,296 @@
+{
+  "checks": [
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "runtime_execution_count",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "annotation_violations",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "builder_declared_windows",
+      "passed": true
+    },
+    {
+      "actual": [
+        "missing_hop1",
+        "missing_hop2",
+        "missing_start_entity",
+        "near_name_bridge_entity",
+        "near_name_start_entity",
+        "partial_path_only",
+        "relevant_unresolved_conflict",
+        "same_entity_wrong_attribute",
+        "unrelated_conflict",
+        "wrong_bridge_identity",
+        "wrong_relation"
+      ],
+      "expected": [
+        "missing_hop1",
+        "missing_hop2",
+        "missing_start_entity",
+        "near_name_bridge_entity",
+        "near_name_start_entity",
+        "partial_path_only",
+        "relevant_unresolved_conflict",
+        "same_entity_wrong_attribute",
+        "unrelated_conflict",
+        "wrong_bridge_identity",
+        "wrong_relation"
+      ],
+      "id": "partial_path_enum_complete",
+      "passed": true
+    },
+    {
+      "actual": [
+        "mango-t21r9-adversarial-holdout-v1",
+        "mango-t21r9-citation-claim-holdout-v1",
+        "mango-t21r9-conflict-abstention-holdout-v1",
+        "mango-t21r9-crossdomain-holdout-v1",
+        "mango-t21r9-multihop-holdout-v1",
+        "mango-t21r9-retrieval-holdout-v1",
+        "mango-t21r9-singlehop-holdout-v1",
+        "mango-t21r9-temporal-holdout-v1"
+      ],
+      "expected": [
+        "mango-t21r9-adversarial-holdout-v1",
+        "mango-t21r9-citation-claim-holdout-v1",
+        "mango-t21r9-conflict-abstention-holdout-v1",
+        "mango-t21r9-crossdomain-holdout-v1",
+        "mango-t21r9-multihop-holdout-v1",
+        "mango-t21r9-retrieval-holdout-v1",
+        "mango-t21r9-singlehop-holdout-v1",
+        "mango-t21r9-temporal-holdout-v1"
+      ],
+      "id": "suite_ids",
+      "passed": true
+    },
+    {
+      "actual": 600,
+      "expected": 600,
+      "id": "suite_count.mango-t21r9-retrieval-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 550,
+      "expected": 550,
+      "id": "suite_count.mango-t21r9-singlehop-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 800,
+      "expected": 800,
+      "id": "suite_count.mango-t21r9-multihop-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 700,
+      "expected": 700,
+      "id": "suite_count.mango-t21r9-crossdomain-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 450,
+      "expected": 450,
+      "id": "suite_count.mango-t21r9-citation-claim-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 800,
+      "expected": 800,
+      "id": "suite_count.mango-t21r9-conflict-abstention-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 250,
+      "expected": 250,
+      "id": "suite_count.mango-t21r9-temporal-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 650,
+      "expected": 650,
+      "id": "suite_count.mango-t21r9-adversarial-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 4800,
+      "expected": 4800,
+      "id": "total_rows",
+      "passed": true
+    },
+    {
+      "actual": 800,
+      "expected": ">= 800",
+      "id": "stress.multihop_rows",
+      "passed": true
+    },
+    {
+      "actual": 16,
+      "expected": ">= 12",
+      "id": "stress.multihop_chain_families",
+      "passed": true
+    },
+    {
+      "actual": 0.0625,
+      "expected": "<= 0.2",
+      "id": "stress.multihop_largest_family_share",
+      "passed": true
+    },
+    {
+      "actual": 0.6,
+      "expected": ">= 0.5",
+      "id": "stress.multihop_relation_surface_mismatch_fraction",
+      "passed": true
+    },
+    {
+      "actual": 700,
+      "expected": ">= 700",
+      "id": "stress.crossdomain_rows",
+      "passed": true
+    },
+    {
+      "actual": 700,
+      "expected": ">= 700",
+      "id": "stress.crossdomain_two_source_two_domain",
+      "passed": true
+    },
+    {
+      "actual": 4,
+      "expected": ">= 4",
+      "id": "stress.domain_pair_families",
+      "passed": true
+    },
+    {
+      "actual": 0.25,
+      "expected": "<= 0.35",
+      "id": "stress.largest_domain_pair_share",
+      "passed": true
+    },
+    {
+      "actual": 1500,
+      "expected": ">= 1200",
+      "id": "stress.multisource_path_rows",
+      "passed": true
+    },
+    {
+      "actual": 330,
+      "expected": ">= 300",
+      "id": "stress.partial_path_rows",
+      "passed": true
+    },
+    {
+      "actual": 1500,
+      "expected": ">= 700",
+      "id": "stress.relation_surface_rows",
+      "passed": true
+    },
+    {
+      "actual": 16,
+      "expected": "count 16",
+      "id": "stress.canonical_relations",
+      "passed": true
+    },
+    {
+      "actual": 0.5866666666666667,
+      "expected": ">= 0.5",
+      "id": "stress.relation_surface_mismatch_fraction",
+      "passed": true
+    },
+    {
+      "actual": 310,
+      "expected": ">= 300",
+      "id": "stress.source_injection_rows",
+      "passed": true
+    },
+    {
+      "actual": 250,
+      "expected": ">= 250",
+      "id": "stress.query_injection_or_spoof_rows",
+      "passed": true
+    },
+    {
+      "actual": 210,
+      "expected": ">= 150",
+      "id": "stress.safe_fact_with_directive_rows",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.missing_start_entity",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.missing_hop1",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.missing_hop2",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.wrong_bridge_identity",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.near_name_start_entity",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.near_name_bridge_entity",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.wrong_relation",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.same_entity_wrong_attribute",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.partial_path_only",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.unrelated_conflict",
+      "passed": true
+    },
+    {
+      "actual": 30,
+      "expected": ">= 5",
+      "id": "stress.partial_path.relevant_unresolved_conflict",
+      "passed": true
+    }
+  ],
+  "passed": 41,
+  "runtime_execution_count": 0,
+  "status": "PASS",
+  "total": 41
+}

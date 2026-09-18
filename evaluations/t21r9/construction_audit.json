@@ -1,0 +1,89 @@
+{
+  "artifact": "T21R9_CONSTRUCTION_AUDIT",
+  "internal": {
+    "duplicate_case_ids": 0,
+    "duplicate_chunk_ids": 0,
+    "duplicate_exact_queries": 0,
+    "duplicate_source_ids": 0
+  },
+  "metrics": {
+    "annotation_violations": 0,
+    "declared_initial_windows": 0,
+    "partial_path_configurations": [
+      "missing_hop1",
+      "missing_hop2",
+      "missing_start_entity",
+      "near_name_bridge_entity",
+      "near_name_start_entity",
+      "partial_path_only",
+      "relevant_unresolved_conflict",
+      "same_entity_wrong_attribute",
+      "unrelated_conflict",
+      "wrong_bridge_identity",
+      "wrong_relation"
+    ],
+    "runtime_execution_count": 0,
+    "stress": {
+      "canonical_relations": [
+        "AUTHOR",
+        "BIRTHPLACE",
+        "BIRTH_YEAR",
+        "CAPITAL",
+        "COUNTRY",
+        "CREATOR",
+        "FIELD_OF_STUDY",
+        "FOUNDING_YEAR",
+        "GENRE",
+        "INVENTOR",
+        "MAYOR",
+        "NATION",
+        "NOTABLE_WORK",
+        "PAINTER",
+        "PROVINCE",
+        "REGION"
+      ],
+      "crossdomain_rows": 700,
+      "crossdomain_two_source_two_domain": 700,
+      "domain_pair_families": 4,
+      "largest_domain_pair_share": 0.25,
+      "multihop_chain_families": 16,
+      "multihop_largest_family_share": 0.0625,
+      "multihop_relation_surface_mismatch_fraction": 0.6,
+      "multihop_rows": 800,
+      "multisource_path_rows": 1500,
+      "partial_path_configuration_counts": {
+        "missing_hop1": 30,
+        "missing_hop2": 30,
+        "missing_start_entity": 30,
+        "near_name_bridge_entity": 30,
+        "near_name_start_entity": 30,
+        "partial_path_only": 30,
+        "relevant_unresolved_conflict": 30,
+        "same_entity_wrong_attribute": 30,
+        "unrelated_conflict": 30,
+        "wrong_bridge_identity": 30,
+        "wrong_relation": 30
+      },
+      "partial_path_rows": 330,
+      "query_injection_or_spoof_rows": 250,
+      "relation_surface_mismatch_fraction": 0.5866666666666667,
+      "relation_surface_rows": 1500,
+      "safe_fact_with_directive_rows": 210,
+      "source_injection_rows": 310
+    },
+    "suite_rows": {
+      "mango-t21r9-adversarial-holdout-v1": 650,
+      "mango-t21r9-citation-claim-holdout-v1": 450,
+      "mango-t21r9-conflict-abstention-holdout-v1": 800,
+      "mango-t21r9-crossdomain-holdout-v1": 700,
+      "mango-t21r9-multihop-holdout-v1": 800,
+      "mango-t21r9-retrieval-holdout-v1": 600,
+      "mango-t21r9-singlehop-holdout-v1": 550,
+      "mango-t21r9-temporal-holdout-v1": 250
+    },
+    "total_rows": 4800
+  },
+  "runtime_execution_count": 0,
+  "status": "PASS",
+  "violations": []
+}

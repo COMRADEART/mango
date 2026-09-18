@@ -1,0 +1,14 @@
+{
+  "artifact": "T21R9_BLIND_CORPUS_MANIFEST",
+  "counts": {
+    "chunks": 6460,
+    "sources": 48,
+    "world": 0
+  },
+  "files_sha256": {
+    "chunks.jsonl": "9667dc1b30418f0a6e2913049e811a326d09be0d5e440be66266086777e40ab2",
+    "sources.jsonl": "6634a511467e16d3f2b9e918b07f0d7afd93f4efe562937ebd883e795ba514bc",
+    "world.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime_rows_executed": 0
+}
