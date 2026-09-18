@@ -1,0 +1,8 @@
+{
+  "artifact": "T21R10_OFFICIAL_EXPOSURE_LEDGER",
+  "error": null,
+  "manifest_sha256": "509c7ee6ff34c302f070715a5e1a77f08eb84a74e6ae7256b48994bd8fd8a8b6",
+  "official_runtime_exposures": 1,
+  "phase": "complete",
+  "recorded_at": "2026-09-18T22:59:26.543922+00:00"
+}
