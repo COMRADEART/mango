@@ -949,6 +949,49 @@ def _tag_partial(rows: list[dict]) -> None:
             annotation["missing_component"] = "missing_start_entity"
 
 
+def compose_conflict_suite(
+    existing_rows: list[dict], generated_ie: list[dict], target: int,
+) -> list[dict]:
+    """Compose the exact conflict-suite target without dropping mandatory
+    partial-path stress rows.
+
+    Selection depends only on the preregistered ``partial_path_ie_stress``
+    tag and original row order.  Generated rows are always retained and
+    appended after the selected existing rows.
+    """
+    mandatory_partial = [
+        row for row in existing_rows
+        if "partial_path_ie_stress" in row.get("construction_tags", [])
+    ]
+    available_nonpartial = [
+        row for row in existing_rows
+        if "partial_path_ie_stress" not in row.get("construction_tags", [])
+    ]
+    remaining_existing_slots = target - len(generated_ie)
+    if remaining_existing_slots < len(mandatory_partial):
+        raise AssertionError(
+            "generated IE + mandatory partial rows exceed target")
+    nonpartial_slots = remaining_existing_slots - len(mandatory_partial)
+    if len(available_nonpartial) < nonpartial_slots:
+        raise AssertionError("insufficient conflict material")
+
+    kept_existing: list[dict] = []
+    nonpartial_kept = 0
+    for row in existing_rows:
+        if "partial_path_ie_stress" in row.get("construction_tags", []):
+            kept_existing.append(row)
+        elif nonpartial_kept < nonpartial_slots:
+            kept_existing.append(row)
+            nonpartial_kept += 1
+
+    composed = kept_existing + list(generated_ie)
+    if len(composed) != target:
+        raise AssertionError(
+            f"conflict suite composition produced {len(composed)} rows; "
+            f"expected {target}")
+    return composed
+
+
 def _build_adversarial(rows: list[dict], used: set[str]) -> list[dict]:
     """Recompose the adversarial suite to exactly 650 rows with >= 300
     source-injection rows, >= 150 safe-fact+directive rows, and >= 250
@@ -1024,31 +1067,9 @@ def main() -> int:
         + singlehop_surface)
     generated_ie = _build_generated_ie(negatives, used)
     _tag_partial(rows_by_suite["conflict_abstention"])
-    conflict_budget = (SUITES["conflict_abstention"][2]
-                       - len(generated_ie))
-    kept_conflict: list[dict] = []
-    for row in rows_by_suite["conflict_abstention"]:
-        if "partial_path_ie_stress" in row.get("construction_tags", []):
-            kept_conflict.append(row)
-        elif conflict_budget > 0:
-            kept_conflict.append(row)
-            conflict_budget -= 1
-    excess = (len(kept_conflict) + len(generated_ie)
-              - SUITES["conflict_abstention"][2])
-    if excess > 0:
-        trimmed: list[dict] = []
-        dropped = 0
-        for row in kept_conflict:
-            if dropped < excess and "partial_path_ie_stress" not in row.get(
-                    "construction_tags", []):
-                dropped += 1
-                continue
-            trimmed.append(row)
-        kept_conflict = trimmed
-    if conflict_budget > 0:
-        raise AssertionError(
-            "conflict suite short of target even with every IE row kept")
-    rows_by_suite["conflict_abstention"] = kept_conflict + generated_ie
+    rows_by_suite["conflict_abstention"] = compose_conflict_suite(
+        rows_by_suite["conflict_abstention"], generated_ie,
+        SUITES["conflict_abstention"][2])
     rows_by_suite["adversarial"] = _build_adversarial(
         rows_by_suite["adversarial"], used)
 

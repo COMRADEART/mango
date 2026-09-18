@@ -223,6 +223,21 @@ def _anchor_fixture_roots(root: Path, monkeypatch) -> None:
         _sha(root / "scripts" / "t21r4_freeze_runtime.py"))
 
 
+def _record_fixture_world_identity(root: Path, monkeypatch) -> dict:
+    """Add and root-anchor preserved-world metadata for the fixture."""
+    path = root / "evaluations" / "t21r8" / "evaluator_freeze.json"
+    document = json.loads(path.read_text(encoding="utf-8"))
+    corpus = root / "rag" / "gk_holdout_t21r8"
+    document["construction_infrastructure_amendment"] = {
+        "preserved_world_sha256": {
+            name: _sha(corpus / name) for name in seal.CORPUS_FILES
+        },
+    }
+    _write_json(path, document)
+    _anchor_fixture_roots(root, monkeypatch)
+    return document
+
+
 def _write_audits(root: Path, metrics: dict, static_status: str = "PASS",
                   static_executions: int = 0, uniqueness_verdict: str =
                   "UNIQUE", uniqueness_executions: int = 0,
@@ -393,6 +408,31 @@ def test_root_anchor_rejects_helper_before_weakened_composites_are_used(
     with pytest.raises(SystemExit, match="t21r4_freeze_runtime.py SHA-256"):
         seal.verify_frozen_identity(root)
     assert composites_used is False
+
+
+# ---------------------------------------------------------------------------
+# Adjudicated preserved-world enforcement.
+# ---------------------------------------------------------------------------
+
+
+def test_matching_preserved_world_hashes_are_allowed(
+    tmp_path, monkeypatch,
+) -> None:
+    root = _prepare(tmp_path, monkeypatch)
+    evaluator_freeze = _record_fixture_world_identity(root, monkeypatch)
+    seal.verify_preserved_world_identity(root, evaluator_freeze)
+
+
+@pytest.mark.parametrize("name", seal.CORPUS_FILES)
+def test_changed_preserved_world_file_refuses_seal(
+    tmp_path, monkeypatch, name: str,
+) -> None:
+    root = _prepare(tmp_path, monkeypatch)
+    evaluator_freeze = _record_fixture_world_identity(root, monkeypatch)
+    path = root / "rag" / "gk_holdout_t21r8" / name
+    path.write_bytes(path.read_bytes() + b"\nchanged\n")
+    with pytest.raises(SystemExit, match="FROZEN_IDENTITY_VIOLATION"):
+        seal.verify_preserved_world_identity(root, evaluator_freeze)
 
 
 # ---------------------------------------------------------------------------

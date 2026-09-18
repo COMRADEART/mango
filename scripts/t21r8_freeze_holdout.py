@@ -48,7 +48,7 @@ EXPECTED_RUNTIME_FREEZE_SHA256 = (
     "ef5e15de897ccff1e18c6ece650fd23ec0671e3b20edb752de1e7c9a19cdea93"
 )
 EXPECTED_EVALUATOR_FREEZE_SHA256 = (
-    "44b0642a5cac58fb79038663c0a7a4cdd0c85009ca79ddea578f72b643da5ffd"
+    "db8c7fe2398f2c14e33b808bf226412fe7ace1830bd1252749a57a12e1444674"
 )
 EXPECTED_RUNTIME_HASH_HELPER_SHA256 = (
     "58eeccc72104b2ec79b5ffa7594c075ca1e5c101375b875c176202c8d58a4e24"
@@ -259,6 +259,28 @@ def require_data_only_audits(root: Path) -> dict:
             "blindness": blindness}
 
 
+def verify_preserved_world_identity(
+    root: Path, evaluator_freeze: dict,
+) -> None:
+    """Enforce an adjudicated preserved-world identity before sealing."""
+    amendment = evaluator_freeze.get("construction_infrastructure_amendment")
+    if amendment is None:
+        return
+    expected = amendment.get("preserved_world_sha256")
+    if not isinstance(expected, dict) or set(expected) != set(CORPUS_FILES):
+        raise SystemExit(
+            "T21R8_FROZEN_IDENTITY_VIOLATION: preserved-world identity "
+            "must contain exactly the four corpus files")
+    corpus_dir = root / "rag" / "gk_holdout_t21r8"
+    for name in CORPUS_FILES:
+        path = corpus_dir / name
+        if not path.exists() or _sha256(path) != expected[name]:
+            raise SystemExit(
+                "T21R8_FROZEN_IDENTITY_VIOLATION: preserved world file "
+                f"rag/gk_holdout_t21r8/{name} differs from the adjudicated "
+                "candidate identity")
+
+
 def require_corpus(root: Path) -> dict:
     """Require exactly the four corpus files, parsed but unmodified."""
     corpus_dir = root / "rag" / "gk_holdout_t21r8"
@@ -389,7 +411,8 @@ def build_freeze_inputs(root: Path) -> dict:
 def main(root: Path = ROOT) -> int:
     out_dir = root / "evaluations" / "t21r8"
     refuse_existing_seal(root)
-    runtime_freeze, _evaluator_freeze = verify_frozen_identity(root)
+    runtime_freeze, evaluator_freeze = verify_frozen_identity(root)
+    verify_preserved_world_identity(root, evaluator_freeze)
     _audits = require_data_only_audits(root)
     corpus_hashes = require_corpus(root)
     construction = recompute_construction(root)

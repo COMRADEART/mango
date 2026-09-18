@@ -9,11 +9,38 @@
     "reason": "pre-holdout official-runner schema compatibility alias",
     "scoring_semantics_changed": false
   },
+  "construction_infrastructure_amendment": {
+    "blind_world_regenerated": false,
+    "contracts_changed": false,
+    "detected_after_world_build": true,
+    "detected_before_any_suite_write": true,
+    "evaluator_source_changed": false,
+    "official_runner_changed": false,
+    "official_runtime_exposures": 0,
+    "preserved_world_counts": {
+      "chunks": 1698,
+      "safe_fact_with_directive_chunks": 82,
+      "source_injection_chunks": 82,
+      "sources": 16,
+      "world_rows": 2162
+    },
+    "preserved_world_sha256": {
+      "chunks.jsonl": "2b30fe6d516b8b7b57b5d1544fb3411d93cc745abefd14599fb32f140651e294",
+      "corpus_manifest.json": "091eb22999733832cde1a395d598be0af0d3fafaa2223f272264d7cedd17f95c",
+      "sources.jsonl": "113554988abc5581a0e9b97d42a3cb4e0375ab867297cf7a884bd09cf56bcbfa",
+      "world.jsonl": "9d0b7ed3e06309de48135c4310f4320075dd39b4bee4af5d665fb4934c7356d8"
+    },
+    "previous_builder_sha256": "0eab1b113d799a5c361d8c5f6932cdd54758d8e60b30da2f98c5de4418e4626d",
+    "reason": "deterministic conflict-suite budget accounting defect",
+    "runtime_changed": false,
+    "runtime_rows_executed": 0,
+    "scoring_semantics_changed": false
+  },
   "evaluator_source_sha256": "6b900eed69b7eea06ebde1cc6d87612b12b6e20e7391fa51999153dc776f8828",
   "frozen_hashes": {
     "builder_audit_scripts_sha256": {
       "t21r8_blindness_audit.py": "7e2ad234ef8d567747c913db2d7f04c9480fa1dccd61dfb3454f36ad9dc6fd03",
-      "t21r8_build_suites.py": "0eab1b113d799a5c361d8c5f6932cdd54758d8e60b30da2f98c5de4418e4626d",
+      "t21r8_build_suites.py": "3815fff23b9490dd3469820ef68660e7652af0e8fb687ce6fcf146bb35be37f9",
       "t21r8_construction_audit.py": "a6d8d89479945e3b71f724abc8ec76da7b3b9a59b13ffc970d2767763da40e43",
       "t21r8_construction_gate.py": "287f93002221c89414c7f081f5668c5f753108eaeef67778b1aef0bf03c6f6e6",
       "t21r8_static_gold_audit.py": "2bb7cdcd224ac44cf99cfa777f5f41b0fd837482d8eccdd7d372695c8337e06d",
