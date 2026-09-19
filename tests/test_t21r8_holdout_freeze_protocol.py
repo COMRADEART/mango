@@ -15,6 +15,7 @@ import copy
 import hashlib
 import json
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -50,6 +51,40 @@ DIMENSIONS = [
     "case_ids", "entity_identities", "source_ids", "chunk_ids",
     "exact_queries", "exact_answers", "exact_source_text", "verbatim_attacks",
 ]
+
+# Canonical T21R10 parent commit: the source of the pre-R10 corpus.py bytes
+# (before the single documented post-R8 fail-closed manifest hardening).
+R10_PARENT_COMMIT = "273f1984a8d096db546bf543662eaad79f6eff13"
+CORPUS_PATH = "src/sciencemath/knowledge/corpus.py"
+
+
+def _pre_r10_root(tmp_path: Path) -> Path:
+    """Verification root carrying the pre-R10 corpus.py; every other file
+    verify_frozen_identity inspects is copied verbatim from this tree."""
+    root = tmp_path / "pre-r10-root"
+    shutil.copytree(ROOT / "evaluations" / "t21r8",
+                    root / "evaluations" / "t21r8")
+    evaluator_freeze = json.loads(
+        (REPO_OUT / "evaluator_freeze.json").read_text(encoding="utf-8"))
+    scripts_needed = {
+        "t21r4_freeze_runtime.py", "t21r8_run_eval.py",
+        "t21r8_official_eval.py", "t15r_mutation_probe.py",
+    } | set(evaluator_freeze["frozen_hashes"][
+        "builder_audit_scripts_sha256"])
+    for name in scripts_needed:
+        target = root / "scripts" / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / "scripts" / name, target)
+    guard_target = root / "tests" / "test_historical_artifact_write_guard.py"
+    guard_target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(
+        ROOT / "tests" / "test_historical_artifact_write_guard.py",
+        guard_target)
+    shutil.copytree(ROOT / "src", root / "src")
+    blob = subprocess.check_output(
+        ["git", "show", f"{R10_PARENT_COMMIT}:{CORPUS_PATH}"], cwd=ROOT)
+    (root / CORPUS_PATH).write_bytes(blob)
+    return root
 
 
 def _sha(path: Path) -> str:
@@ -290,9 +325,14 @@ def _prepare(tmp_path: Path, monkeypatch, metrics: dict | None = None,
 # ---------------------------------------------------------------------------
 
 
-def test_root_anchor_exact_frozen_artifacts_and_helper_pass() -> None:
+def test_root_anchor_exact_frozen_artifacts_and_helper_pass(tmp_path) -> None:
     # Control A: the three audited repository roots and all deeper frozen
-    # identities pass together.
+    # identities pass together.  On the T21R10 branch the single documented
+    # post-R8 drift is the T21R10 fail-closed corpus.py hardening, so the
+    # exact frozen identity is verified against a root carrying the pre-R10
+    # corpus.py bytes (from the canonical R10 parent commit), while the real
+    # tree must drift in exactly the knowledge_runtime group and the
+    # hardened corpus.py must bind in the T21R10 runtime freeze.
     out = ROOT / "evaluations" / "t21r8"
     assert _sha(out / "runtime_freeze.json") == (
         seal.EXPECTED_RUNTIME_FREEZE_SHA256)
@@ -300,9 +340,20 @@ def test_root_anchor_exact_frozen_artifacts_and_helper_pass() -> None:
         seal.EXPECTED_EVALUATOR_FREEZE_SHA256)
     assert _sha(ROOT / "scripts" / "t21r4_freeze_runtime.py") == (
         seal.EXPECTED_RUNTIME_HASH_HELPER_SHA256)
-    runtime_freeze, evaluator_freeze = seal.verify_frozen_identity(ROOT)
+    runtime_freeze, evaluator_freeze = seal.verify_frozen_identity(
+        _pre_r10_root(tmp_path))
     assert len(runtime_freeze["runtime_composites"]) == 14
     assert "frozen_hashes" in evaluator_freeze
+    composites = seal._composites(ROOT)
+    drifted = {name for name, expected in
+               runtime_freeze["runtime_composites"].items()
+               if composites.get(name) != expected}
+    assert drifted == {"knowledge_runtime"}
+    r10_freeze = json.loads(
+        (ROOT / "evaluations" / "t21r10" / "runtime_freeze.json").read_text(
+            encoding="utf-8"))
+    assert r10_freeze["component_sha256"][CORPUS_PATH] == _sha(
+        ROOT / CORPUS_PATH)
 
 
 def test_root_anchor_evaluator_source_alias_matches_frozen_hash() -> None:

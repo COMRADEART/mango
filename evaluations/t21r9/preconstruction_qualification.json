@@ -1,0 +1,505 @@
+{
+  "artifact": "T21R9_FULL_PREREGISTRATION_QUALIFICATION",
+  "bindings": {
+    "binding_note": "Git identity is the audited base; the complete uncommitted qualification overlay is bound by the following byte hashes.",
+    "contract_sha256": {
+      "construction": "4ab3a6fa63faee29ac22376375ffb6f3483a52dbd7d27e6b016a8d4590fdbd61",
+      "preconstruction": "749f78b9912a26d562662e6b3a819f390ed1682a839761e4341689b688e6d627",
+      "scoring_semantics": "7eae2fba0b5585ab83a2d9911a7aec276e4bc975fb806cfcc795429c994e8df3",
+      "validation": "3d8776ab6f9e43860a11e87241f3f4d87e0ce5a1f285c0c31e6a5d565501b679"
+    },
+    "preconstruction_script_sha256": "3cc6111b2d3c47f6fed7b9b1867009503d6e014eee4c15f4ea12db4c782536df",
+    "prior_exclusion_fingerprint_sha256": "57bb1d04f688929fc3b7a5b70c41e7406c3483fc1608f0dcebde7121e9b450ac",
+    "qualified_overlay_root_sha256": "0781fce56bd2d5a8639eb83d1690e3e8ea599c9318305842847d04198a502900",
+    "test_results": {
+      "focused": {
+        "collected": 38,
+        "errors": 0,
+        "exit": 0,
+        "failed": 0,
+        "passed": 38,
+        "skipped": 0
+      },
+      "full": {
+        "collected": 3032,
+        "errors": 0,
+        "exit": 0,
+        "failed": 0,
+        "passed": 3030,
+        "skipped": 2
+      }
+    },
+    "test_sha256": {
+      "full_preregistration": "afb21668d12204cbae403cd52dfb4547db20ed4c7b172a68d657b31a42f85cc3",
+      "semantic_preconstruction": "ff343e6b4ae2f0ed7342f3ff78911fd7d921d07bd08698b884aa8465695c03ea"
+    },
+    "tested_git_head": "e0fe761284078af84ea89e441d7ce29be4bb1fff",
+    "tested_git_tree_sha": "8a17f6f0446c3094ba2777977143fa00c114b054",
+    "tooling_sha256": {
+      "blindness": "285983caf5e3abc871f62f637566cf00d4b9373b05a608fa13005a4762c9e854",
+      "construction_audit": "51b800cd5ab93fbb62bd0241cbfd26aebae153506a20c9efc5aa95eaa18ffba8",
+      "construction_gate": "7ff217a483ead2c9006c18d303c4c36d0b3f49e26379ab890211c4018c1d3306",
+      "evaluator": "76d57d6ee50d6ee179ac7598222c0ad6d7e1f91e92305f71244720fce9c58ee9",
+      "official_runner": "f7c01c95678c12f593699ad5e160522c6e09b48e964a1900d11a71531d81bdbb",
+      "retrieval_mirror": "4be5b81d183cb5877e857d802a7f2d77e38415431994de92cc6124c7cde00fcb",
+      "seal": "b6cbbe6de8b07585f268a3414c3876a1dda21758ed631792962ff2a15adf87de",
+      "static_gold_audit": "1a70a7a5545bc9d52f7c94f857a4366e5a2bb53a6260c8dbc962ffd5ed1395d9",
+      "static_semantics": "557ee34c54c0cd65c11d76a8485fb0bd69d0ed8125b70cd4e1d207bc7d2fdcf5",
+      "suite_builder": "041888d4f604b5dba5e0c47c1b901f993e855a807e1d64db6b64dab022aab18b",
+      "uniqueness": "fe2b9cee68eabcb169c30a059c435cbf87861cfa33b3e822f40a50299cb19c78",
+      "world_builder": "3a9b941c6b4b9f31f21b7bd08ebe04813462b2cfcb551686c28bb3160e3234b2"
+    }
+  },
+  "blind_data_created": false,
+  "blindness_status": "PASS",
+  "controls": {
+    "annotations": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "consistent_annotations",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "stale_attack_metadata",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "missing_required_source",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "corroboration_path_source_overlap",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "corroboration_not_list",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "query_attack_absent",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "source_attack_absent",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "partial_path_has_complete_gold",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "partial_path_wrong_status",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "path_sources_differ_from_edges",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "near_name_start_entity_valid",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "near_name_start_entity_malformed",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "near_name_bridge_entity_valid",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "near_name_bridge_entity_malformed",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "same_entity_wrong_attribute_valid",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "same_entity_wrong_attribute_malformed",
+          "passed": true
+        }
+      ],
+      "passed": 16,
+      "status": "PASS",
+      "total": 16
+    },
+    "independence": {
+      "controls": [
+        {
+          "actual": "UNIQUE",
+          "expected": "UNIQUE",
+          "name": "zero_overlap_all_dimensions",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_case_ids",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_entity_identities",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_source_ids",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_chunk_ids",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_exact_queries",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_exact_answers",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_exact_source_text",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "reused_verbatim_attack_wording",
+          "passed": true
+        }
+      ],
+      "passed": 9,
+      "status": "PASS",
+      "total": 9
+    },
+    "path_achievability": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "nominated_absent_equivalent_edge",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "actual_window_excludes_all_valid_first_edges",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "wrong_relation",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "hand_authored_window_cannot_override_retrieval",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "wrong_bridge",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "equal_rank_contradictory_edges",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "unsafe_nonprojectable_edge",
+          "passed": true
+        }
+      ],
+      "passed": 7,
+      "status": "PASS",
+      "total": 7
+    },
+    "prior_exclusion": {
+      "controls": [
+        {
+          "actual": "UNIQUE",
+          "expected": "UNIQUE",
+          "name": "real_t21_through_t21r8_zero_overlap",
+          "passed": true
+        },
+        {
+          "actual": "OVERLAP",
+          "expected": "OVERLAP",
+          "name": "t21r8_fingerprint_reuse",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "prior_exclusion_fingerprint_tamper",
+          "passed": true
+        }
+      ],
+      "passed": 3,
+      "status": "PASS",
+      "total": 3
+    },
+    "retrieval_mirror_parity": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "ranking_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "reranking_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "same_source_dedup_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "top8_truncation_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "source_reservation_parity",
+          "passed": true
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "entity_relation_first_edge_selection",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "retrieval_mirror_parity_drift",
+          "passed": true
+        }
+      ],
+      "passed": 7,
+      "status": "PASS",
+      "total": 7
+    },
+    "seal_preflight": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "real_official_preflight",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "official_runner_schema_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "suite_id_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "evaluator_hash_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "manifest_hash_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "builder_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "audit_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "freeze_root_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "suite_count_mismatch",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "runtime_component_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "evaluator_component_hash_drift",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "freeze_file_component_map_tamper",
+          "passed": true
+        }
+      ],
+      "passed": 12,
+      "status": "PASS",
+      "total": 12
+    },
+    "spoof": {
+      "controls": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "fresh_nonresolving_locator",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "missing_attack_wording",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "wording_absent_from_query",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "malformed_provenance",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "multiple_fake_locators",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "spoof_resolves_real_source",
+          "passed": true
+        },
+        {
+          "actual": "FAIL",
+          "expected": "FAIL",
+          "name": "spoof_resolves_real_chunk",
+          "passed": true
+        }
+      ],
+      "passed": 7,
+      "status": "PASS",
+      "total": 7
+    }
+  },
+  "counts": {
+    "chunks": 14,
+    "sources": 5,
+    "suite_rows": 8,
+    "world_rows": 19
+  },
+  "future_blind_reuse_forbidden": true,
+  "prohibited_real_r9_paths_present": [],
+  "runtime_rows_executed": 0,
+  "stages": {
+    "HOLDOUT_FROZEN": "PASS",
+    "blindness_audit": "PASS",
+    "construction_gate": "PASS",
+    "construction_scanner": "PASS",
+    "holdout_manifest": "PASS",
+    "official_runner_preflight_only": "PASS",
+    "static_gold_audit": "PASS",
+    "suite_construction": "PASS",
+    "uniqueness_audit": "PASS",
+    "world_construction": "PASS"
+  },
+  "states": {
+    "Executive Router": "EXPERIMENTAL",
+    "KNOWLEDGE_RAG": "EXPERIMENTAL",
+    "T21": "OPEN",
+    "T22": "BLOCKED"
+  },
+  "static_audit_status": "PASS",
+  "status": "PASS",
+  "stop": "STOP FOR CHATGPT FULL PREREGISTRATION AUDIT",
+  "synthetic_namespace": "pre9q-",
+  "synthetic_seal_status": "PASS",
+  "uniqueness_status": "UNIQUE"
+}

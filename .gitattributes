@@ -6,3 +6,6 @@
 * text=auto eol=lf
 *.jsonl text eol=lf
 training/curriculum/mango-sft-v2/level1/*.json text eol=crlf
+# T21R10 holdout seal binds this artifact's exact on-disk bytes (freeze_input
+# sha256); store and check out byte-exact so the bound hash is reproducible.
+evaluations/t21r10/preconstruction_qualification.json -text

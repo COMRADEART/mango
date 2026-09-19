@@ -110,6 +110,12 @@ def load_corpus(corpus_dir: Path | None = None) -> KnowledgeCorpus:
             raise CorruptCorpusError(f"missing corpus file: {p}")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     expected = manifest.get("file_checksums") or {}
+    if not expected or not all(
+            name in expected for name in ("sources.jsonl", "chunks.jsonl")):
+        # Fail closed (T21R10): a manifest without per-file checksums cannot
+        # prove provenance, so it must never be served.
+        raise CorruptCorpusError("manifest lacks file_checksums entries for "
+                                 "sources.jsonl and chunks.jsonl")
     for name, want in expected.items():
         got = _sha256_lf(base / name)
         if got != want:
