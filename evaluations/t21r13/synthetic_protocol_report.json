@@ -9,24 +9,603 @@
     "unhandled": 0,
     "unknown": []
   },
-  "gate_passed": 62,
-  "gate_total": 62,
+  "gate_passed": null,
+  "gate_total": null,
   "manifest": "PASS",
+  "negative_control_passed_count": 37,
+  "negative_control_registered_count": 37,
+  "negative_controls": [
+    {
+      "name": "missing_corpus_manifest",
+      "rejection": [
+        "load_corpus refused the sealed corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r13-preconstruction-synthetic-3gyfi8oi\\negative\\missing_corpus_manifest\\rag\\gk_holdout_t21r13\\corpus_manifest.json"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "missing_sources",
+      "rejection": [
+        "load_corpus refused the sealed corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r13-preconstruction-synthetic-3gyfi8oi\\negative\\missing_sources\\rag\\gk_holdout_t21r13\\sources.jsonl"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "missing_chunks",
+      "rejection": [
+        "load_corpus refused the sealed corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r13-preconstruction-synthetic-3gyfi8oi\\negative\\missing_chunks\\rag\\gk_holdout_t21r13\\chunks.jsonl"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_source_count",
+      "rejection": [
+        "load_corpus refused the sealed corpus: source_count mismatch"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_chunk_count",
+      "rejection": [
+        "load_corpus refused the sealed corpus: chunk_count mismatch"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_source_checksum",
+      "rejection": [
+        "load_corpus refused the sealed corpus: sources.jsonl checksum mismatch: manifest=0000000000000000000000000000000000000000000000000000000000000000 actual=23a3587f3107c1542f266d2a095a22c5794e527e987d3bae3ea1d17a40eb9474"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_chunk_checksum",
+      "rejection": [
+        "load_corpus refused the sealed corpus: chunks.jsonl checksum mismatch: manifest=0000000000000000000000000000000000000000000000000000000000000000 actual=7b38ab063aafa87b2957f38e54b2934ac64bb132acdccaee5904557b4c2c7290"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_manifest_checksum",
+      "rejection": [
+        "corpus manifest checksum mismatch"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "malformed_source_record",
+      "rejection": [
+        "load_corpus refused the sealed corpus: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "malformed_chunk_record",
+      "rejection": [
+        "load_corpus refused the sealed corpus: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "broken_chunk_source_reference",
+      "rejection": "ValueError: chunk source does not resolve: pre13q-chunk-quartz",
+      "status": "PASS"
+    },
+    {
+      "name": "corrupt_content_hash",
+      "rejection": "ValueError: chunk content_hash does not match text: pre13q-chunk-quartz",
+      "status": "PASS"
+    },
+    {
+      "name": "missing_freeze_entry",
+      "rejection": "ValueError: frozen component missing: missing-component.py",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_component_hash",
+      "rejection": "ValueError: frozen component hash mismatch: negative/existing-component.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "prior_exclusion_collision",
+      "rejection": "OVERLAP",
+      "status": "PASS"
+    },
+    {
+      "name": "open_remediation_collision",
+      "rejection": "OVERLAP",
+      "status": "PASS"
+    },
+    {
+      "name": "duplicate_case_id",
+      "rejection": "ValueError: case IDs and exact queries must be unique",
+      "status": "PASS"
+    },
+    {
+      "name": "fake_locator_structural_defect",
+      "rejection": [
+        "attack wording must contain exactly one R13 fake locator"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "stale_attack_metadata",
+      "rejection": "FAIL",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_evaluation_ledger",
+      "rejection": [
+        "one-shot exposure artifact exists: evaluation_run_ledger.json"
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_raw_value_payload",
+      "rejection": "ValueError: T21.case_ids: raw/non-fingerprint value present",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_raw_query_string",
+      "rejection": "ValueError: T21.case_ids: raw/non-fingerprint value present",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_nonhex_value",
+      "rejection": "ValueError: T21.case_ids: raw/non-fingerprint value present",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_digest_63",
+      "rejection": "ValueError: T21.case_ids: raw/non-fingerprint value present",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_digest_65",
+      "rejection": "ValueError: T21.case_ids: raw/non-fingerprint value present",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_uppercase_digest",
+      "rejection": "ValueError: T21.case_ids: raw/non-fingerprint value present",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_duplicate_fingerprint",
+      "rejection": "ValueError: T21.case_ids: duplicate/unsorted fingerprints",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_wrong_count",
+      "rejection": "ValueError: T21.case_ids: count mismatch",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_wrong_set_sha256",
+      "rejection": "ValueError: T21.case_ids: set_sha256 mismatch",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_missing_canonical_dimension",
+      "rejection": "ValueError: T21: dimension set must equal the canonical 8",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_unknown_dimension_alias",
+      "rejection": "ValueError: T21: dimension set must equal the canonical 8",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_null_dimension_payload",
+      "rejection": "ValueError: T21.case_ids: null/malformed payload",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_missing_milestone",
+      "rejection": "ValueError: milestone set mismatch",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_duplicate_milestone",
+      "rejection": "ValueError: milestone set mismatch",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_milestone_count_mismatch",
+      "rejection": "ValueError: historical_milestone_count mismatch",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_milestone_order_mismatch",
+      "rejection": "ValueError: milestone_order mismatch (must equal canonical 13)",
+      "status": "PASS"
+    },
+    {
+      "name": "exclusion_r12_noncanonical_dimension",
+      "rejection": "ValueError: T21R12_FAILED_PARTIAL_BLIND: dimension set must equal the canonical 8",
+      "status": "PASS"
+    }
+  ],
   "official_evaluator_invocations": 0,
   "official_preflight": "PASS",
-  "official_preflight_note": "exact suite counts differ: {'mango-t21r13-adversarial-holdout-v1': 0, 'mango-t21r13-citation-claim-holdout-v1': 0, 'mango-t21r13-conflict-abstention-holdout-v1': 0, 'mango-t21r13-crossdomain-holdout-v1': 0, 'mango-t21r13-multihop-holdout-v1': 0, 'mango-t21r13-retrieval-holdout-v1': 0, 'mango-t21r13-singlehop-holdout-v1': 0, 'mango-t21r13-temporal-holdout-v1': 0} != {'mango-t21r13-adversarial-holdout-v1': 650, 'mango-t21r13-citation-claim-holdout-v1': 450, 'mango-t21r13-conflict-abstention-holdout-v1': 800, 'mango-t21r13-crossdomain-holdout-v1': 700, 'mango-t21r13-multihop-holdout-v1': 800, 'mango-t21r13-retrieval-holdout-v1': 600, 'mango-t21r13-singlehop-holdout-v1': 550, 'mango-t21r13-temporal-holdout-v1': 250}",
+  "official_preflight_runtime_rows": 0,
   "real_R13_rows": 0,
   "seal": "PASS",
+  "stages": {
+    "blindness": {
+      "artifact": "T21R13_BLINDNESS_AUDIT",
+      "candidate_leakage": [],
+      "forbidden_calls": [
+        "answer_knowledge",
+        "evaluate",
+        "official_evaluation",
+        "resolve_path",
+        "retrieve_structured",
+        "run_answer_row"
+      ],
+      "forbidden_modules": [
+        "sciencemath",
+        "pipeline",
+        "router",
+        "retrieval",
+        "evidence_paths",
+        "relations",
+        "conflicts",
+        "citation",
+        "injection",
+        "run_eval"
+      ],
+      "historical_blind_leakage": [],
+      "remediation_validation_leakage": [],
+      "runtime_execution_count": 0,
+      "scripts": {
+        "t21r13_build_suites.py": "f9f6bb12ba8f01a404487cc69854b2a8514b57221f5e50d9cbfdb1d7aa0102bb",
+        "t21r13_construction_audit.py": "625f260fb808abdf787b49a2b5fc0912a9b9c3cf013e51fc4a57c119853446e0",
+        "t21r13_construction_gate.py": "fdc34b4394bade6493078dc9f31bc5292d610fb3010cd4b541be6e6c579ef9f1",
+        "t21r13_retrieval_mirror.py": "e8a96202336da805bb0178ad78b0389a7975919b079c3417787a6c43df242fa5",
+        "t21r13_static_gold_audit.py": "e8dddfb3de7a5fc332f4510780f3b8b4819ae2acfd0ffc9a67f8e7e9aa3cb203",
+        "t21r13_static_semantics.py": "b33a5abf82b7edc6f7ed4ac38c61460727f49853c891f2bb644b5491b5677b06",
+        "t21r13_uniqueness.py": "1fbdccfc33556aeb8aaeeec95bb7e931123bd95ac3de69f3d4b78ac314c8c9c8",
+        "t21r13_world.py": "b95ca92202b66273add5ae489cd7adab37263eb0b2223b6e892e6e6f185e5585"
+      },
+      "status": "PASS",
+      "violations": []
+    },
+    "citation_semantics": {
+      "registered_scenarios": [
+        "missing_citation",
+        "multi_source_claim",
+        "partial_citation",
+        "right_source_wrong_chunk",
+        "spoofed_locator",
+        "wrong_chunk",
+        "wrong_locator",
+        "wrong_source"
+      ],
+      "status": "PASS"
+    },
+    "component_freeze": {
+      "freezes": [
+        {
+          "artifact": "T21R13_RUNTIME_FREEZE",
+          "freeze": "runtime_freeze.json",
+          "status": "VERIFIED",
+          "verified_components": 15
+        },
+        {
+          "artifact": "T21R13_EVALUATOR_FREEZE",
+          "freeze": "evaluator_freeze.json",
+          "status": "VERIFIED",
+          "verified_components": 17
+        }
+      ],
+      "runtime_execution_count": 0,
+      "status": "PASS",
+      "verified_components": 32
+    },
+    "conflict_semantics": {
+      "registered_scenarios": [
+        "authority_ranked_contradiction",
+        "fresh_stale_disagreement",
+        "identity_disagreement",
+        "numeric_disagreement",
+        "relation_disagreement",
+        "resolvable_conflicts",
+        "same_rank_contradiction",
+        "unresolvable_conflicts"
+      ],
+      "status": "PASS"
+    },
+    "construction_gate_cli_api_equivalence": {
+      "divergences": [],
+      "status": "PASS"
+    },
+    "construction_gate_programmatic_api": {
+      "exact_design_passed": 38,
+      "gate_status": "PASS",
+      "levels": [
+        "L2_corpus",
+        "L4_exact_design",
+        "L5_exclusion",
+        "L6_blindness",
+        "L7_exposure"
+      ],
+      "status": "PASS"
+    },
+    "corpus_load": {
+      "chunks": 1,
+      "content_hash_defects": [],
+      "sources": 1,
+      "status": "PASS"
+    },
+    "cross_module_interfaces": {
+      "checked": 31,
+      "missing_call_targets": 0,
+      "signature_mismatches": 0,
+      "status": "PASS"
+    },
+    "exact_design_audit": {
+      "failed": 0,
+      "passed": 38,
+      "status": "PASS",
+      "total_leaves": 38,
+      "unverifiable": 0
+    },
+    "exclusion_collision_controls": {
+      "passed": 8,
+      "status": "PASS",
+      "total": 8
+    },
+    "gate_auditor_crosscheck": {
+      "disagreements": 0,
+      "status": "PASS"
+    },
+    "manifest_generation": {
+      "freeze_root_sha256": "577073a53e47f7d4dad811dfc87bcf353ad1dccb487ea2aa9d815544c94a080c",
+      "runtime_execution_count": 0,
+      "status": "PASS"
+    },
+    "official_preflight": {
+      "artifact": "T21R13_OFFICIAL_PREFLIGHT",
+      "corpus_compatibility": {
+        "chunk_count": 1,
+        "defects": [],
+        "manifest_chunk_count": 1,
+        "manifest_source_count": 1,
+        "runtime_evaluation_rows": 0,
+        "source_count": 1,
+        "status": "PASS"
+      },
+      "defects": [],
+      "holdout_manifest_sha256": "83027d88c0dbd0e72fb29b75b422a32f385cc7026119f1a84a901d737fd3fde3",
+      "ledger_written": false,
+      "runtime_execution_count": 0,
+      "status": "PASS"
+    },
+    "open_remediation_exclusion": {
+      "dimensions_checked": 9,
+      "status": "PASS"
+    },
+    "prior_exclusion": {
+      "dimensions_checked": 8,
+      "milestones_checked": 13,
+      "status": "PASS"
+    },
+    "retrieval_semantics": {
+      "builder_declared_window": false,
+      "derived_initial_window": [
+        "pre13q-chunk-quartz"
+      ],
+      "status": "PASS"
+    },
+    "seal_generation": {
+      "status": "PASS"
+    },
+    "spoof_handling": {
+      "defects": [],
+      "locator": "r11qz-0123456789abcdef",
+      "runtime_execution_count": 0,
+      "status": "PASS"
+    },
+    "static_gold_audit": {
+      "failures": 0,
+      "gate_status": "PASS",
+      "rows": 8,
+      "status": "PASS"
+    },
+    "suite_construction": {
+      "counts": {
+        "mango-t21r13-adversarial-holdout-v1": 1,
+        "mango-t21r13-citation-claim-holdout-v1": 1,
+        "mango-t21r13-conflict-abstention-holdout-v1": 1,
+        "mango-t21r13-crossdomain-holdout-v1": 1,
+        "mango-t21r13-multihop-holdout-v1": 1,
+        "mango-t21r13-retrieval-holdout-v1": 1,
+        "mango-t21r13-singlehop-holdout-v1": 1,
+        "mango-t21r13-temporal-holdout-v1": 1
+      },
+      "status": "PASS"
+    },
+    "uniqueness": {
+      "artifact": "T21R13_UNIQUENESS_AUDIT",
+      "audit_status": "UNIQUE",
+      "dimensions_checked": [
+        "case_ids",
+        "entity_identities",
+        "source_ids",
+        "chunk_ids",
+        "exact_queries",
+        "exact_answers",
+        "exact_source_text",
+        "verbatim_attack_wording"
+      ],
+      "fingerprint_artifact_sha256": "7c65b86e00143a3529c7bd334ca3d6fa085822ccf84833693eb42498749d33f0",
+      "milestones_checked": [
+        "T21",
+        "T21R",
+        "T21R2",
+        "T21R3",
+        "T21R4",
+        "T21R5",
+        "T21R6",
+        "T21R7",
+        "T21R8_DIAGNOSTIC",
+        "T21R9_SEALED",
+        "T21R10_SEALED",
+        "T21R11_INVALID_SEALED",
+        "T21R12_FAILED_PARTIAL_BLIND"
+      ],
+      "overlap_counts": {
+        "T21": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R10_SEALED": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R11_INVALID_SEALED": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R12_FAILED_PARTIAL_BLIND": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R2": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R3": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R4": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R5": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R6": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R7": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R8_DIAGNOSTIC": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        },
+        "T21R9_SEALED": {
+          "case_ids": 0,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 0,
+          "exact_queries": 0,
+          "exact_source_text": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 0
+        }
+      },
+      "overlap_total": 0,
+      "runtime_execution_count": 0,
+      "status": "PASS"
+    },
+    "world_construction": {
+      "chunks": 1,
+      "sources": 1,
+      "status": "PASS"
+    }
+  },
   "status": "PASS",
   "suite_counts": {
-    "mango-t21r13-adversarial-holdout-v1": 650,
-    "mango-t21r13-citation-claim-holdout-v1": 450,
-    "mango-t21r13-conflict-abstention-holdout-v1": 800,
-    "mango-t21r13-crossdomain-holdout-v1": 700,
-    "mango-t21r13-multihop-holdout-v1": 800,
-    "mango-t21r13-retrieval-holdout-v1": 600,
-    "mango-t21r13-singlehop-holdout-v1": 550,
-    "mango-t21r13-temporal-holdout-v1": 250
+    "mango-t21r13-adversarial-holdout-v1": 1,
+    "mango-t21r13-citation-claim-holdout-v1": 1,
+    "mango-t21r13-conflict-abstention-holdout-v1": 1,
+    "mango-t21r13-crossdomain-holdout-v1": 1,
+    "mango-t21r13-multihop-holdout-v1": 1,
+    "mango-t21r13-retrieval-holdout-v1": 1,
+    "mango-t21r13-singlehop-holdout-v1": 1,
+    "mango-t21r13-temporal-holdout-v1": 1
   },
   "suite_materialization": "PASS",
   "suite_materializer_completed": true,
@@ -41,5 +620,8 @@
     "mango-t21r13-singlehop-holdout-v1": "PASS",
     "mango-t21r13-temporal-holdout-v1": "PASS"
   },
+  "synthetic_material_disposable": true,
+  "synthetic_workspace_deleted": true,
+  "version": 2,
   "world_materialization": "PASS"
 }

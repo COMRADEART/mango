@@ -1,4 +1,4 @@
-﻿"""Independent data-only T21R13 exact-design auditor.
+"""Independent data-only T21R13 exact-design auditor.
 
 Mechanically re-expresses the frozen control-fixture recipe (the one-shot
 operator script ``t21r13_fixtures.py``) in importable form so the
