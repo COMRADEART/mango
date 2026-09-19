@@ -1,0 +1,34 @@
+    def _build_crossdomain(self) -> None:
+        pair_tags = {
+            "literature": "literature_to_biography",
+            "arts": "arts_to_biography",
+            "technology_history": "technology_history_to_biography",
+            "history": "history_to_biography",
+            "culture": "culture_to_biography",
+            "natural_philosophy": "natural_philosophy_to_biography",
+            "civic_architecture": "civic_architecture_to_biography",
+        }
+        per_domain: dict[str, int] = {domain: 0 for domain in WORK_DOMAINS}
+        for work_index in range(800):
+            domain = self.world.chain_domains[work_index]
+            if per_domain[domain] >= 100:
+                continue
+            per_domain[domain] += 1
+            title = self.world.chain_titles[work_index]
+            relation2 = HOP2_RELATIONS[work_index % 4]
+            query = HOP2_CROSSDOMAIN[relation2].format(
+                noun=self._hop1_noun(work_index), work=title)
+            annotation, gold = self._path_annotation(work_index)
+            gold["required_domains"] = [domain, "biography"]
+            pair_tag = pair_tags[domain]
+            self._add("mango-t21r12-crossdomain-holdout-v1", {
+                "case_id": self._case_id("r12b-xd"),
+                "mode": "answer",
+                "category": pair_tag,
+                "request": {"query": query},
+                "gold": gold,
+                "construction_tags": [pair_tag],
+                "construction": annotation,
+            })
+        if per_domain != {domain: 100 for domain in WORK_DOMAINS}:
+            raise AssertionError(f"crossdomain distribution {per_domain}")

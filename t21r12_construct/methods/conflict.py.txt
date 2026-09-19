@@ -1,0 +1,94 @@
+    def _build_conflict(self) -> None:
+        from collections import Counter
+        world = self.world
+        rows: list[dict] = []
+        conflicting = {"expect_status": "CONFLICTING_EVIDENCE",
+                       "zero_tolerance_zero": True}
+        insufficient = {"expect_status": "INSUFFICIENT_EVIDENCE",
+                        "zero_tolerance_zero": True}
+
+        def add(tag: str, query: str, gold: dict) -> None:
+            rows.append({
+                "case_id": self._case_id("r12b-cf"),
+                "mode": "answer",
+                "category": tag,
+                "request": {"query": query},
+                "gold": gold,
+                "construction_tags": [tag],
+            })
+
+        towns = list(world.conflict_towns)
+        while len(towns) < 100:
+            towns = towns + list(world.clean_towns)
+
+        for i in range(100):
+            town = towns[i % len(towns)]
+            add("same_rank_contradiction",
+                f"In which year was the town of {town} established? [sr{i}]",
+                conflicting)
+        for i in range(100):
+            town = towns[(i + 11) % len(towns)]
+            add("authority_ranked_contradiction",
+                f"Which founding year is authoritative for {town}? [ar{i}]",
+                conflicting)
+        for i in range(100):
+            town = towns[(i + 23) % len(towns)]
+            add("fresh_stale_disagreement",
+                f"Does the current register agree with the archive on the "
+                f"charter year of {town}? [fs{i}]",
+                conflicting)
+        for i in range(100):
+            town = towns[(i + 37) % len(towns)]
+            add("numeric_disagreement",
+                f"What numeric charter year does the record give for {town}? [nd{i}]",
+                conflicting)
+        for name in self._absent_names(100):
+            add("identity_disagreement",
+                f"What is the natal town of the scholar {name}?",
+                insufficient)
+        for i in range(100):
+            title = world.chain_titles[i]
+            add("relation_disagreement",
+                f"What is the favourite colour of the "
+                f"{self._hop1_noun(i)} of {title}?",
+                insufficient)
+        for i in range(100):
+            town = world.clean_towns[i % len(world.clean_towns)]
+            chunk = world.town_established_chunks[town]
+            add("resolvable_conflicts",
+                f"Which charter year is recorded for the town of {town}? [rc{i}]",
+                {"expect_status": "ANSWER",
+                 "expect_answer_contains": [chunk["metadata"]["fact_value"]],
+                 "require_citations": True,
+                 "zero_tolerance_zero": True,
+                 "gold_chunk_id": chunk["chunk_id"]})
+        for i in range(100):
+            if i < len(world.conflict_titles):
+                title = world.conflict_titles[i]
+                noun = self._conflict_noun(i)
+                add("unresolvable_conflicts",
+                    f"Which country did the {noun} of {title} live in?",
+                    conflicting)
+            else:
+                town = towns[i % len(towns)]
+                add("unresolvable_conflicts",
+                    f"Which of the two charter years for {town} is correct? [ur{i}]",
+                    conflicting)
+
+        counts = Counter(r["construction_tags"][0] for r in rows)
+        expected = {
+            "same_rank_contradiction": 100,
+            "authority_ranked_contradiction": 100,
+            "fresh_stale_disagreement": 100,
+            "numeric_disagreement": 100,
+            "identity_disagreement": 100,
+            "relation_disagreement": 100,
+            "resolvable_conflicts": 100,
+            "unresolvable_conflicts": 100,
+        }
+        if dict(counts) != expected:
+            raise AssertionError(f"conflict tag counts {dict(counts)} != {expected}")
+        if len(rows) != 800:
+            raise AssertionError(f"conflict rows={len(rows)} != 800")
+        for row in rows:
+            self._add("mango-t21r12-conflict-abstention-holdout-v1", row)
