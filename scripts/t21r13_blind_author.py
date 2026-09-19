@@ -28,6 +28,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "src"))
 
+import t21r13_blindness_audit as real_blindness  # noqa: E402
 import t21r13_build_suites as real_build  # noqa: E402
 import t21r13_construction_audit as real_construction  # noqa: E402
 import t21r13_construction_gate as real_gate  # noqa: E402
@@ -1740,8 +1741,26 @@ def prevalidate(world_spec: dict, suites_spec: dict, stage: str) -> dict:
             report["checks"]["construction_audit"] = metrics
             report["status"] = "FAIL"
             return report
+
+        rows_flat = [row for rows in grouped.values() for row in rows]
+        artifact = json.loads(PRIOR_FINGERPRINT_PATH.read_text(
+            encoding="utf-8"))
+        real_uniqueness.validate_artifact(artifact)
+        uniqueness = real_uniqueness.audit_candidate(
+            sources, chunks, rows_flat, artifact)
+        remediation_artifact = json.loads(REMEDIATION_EXCLUSION_PATH.read_text(
+            encoding="utf-8"))
+        real_uniqueness.validate_remediation_artifact(remediation_artifact)
+        remediation = real_uniqueness.audit_open_remediation(
+            sources, chunks, rows_flat, remediation_artifact)
+        blind_audit = real_blindness.audit_scripts(ROOT)
+        # T21R13_PRELEDGER_REFUSAL repair: the programmatic gate API receives
+        # the audited rows and a context derived from the live uniqueness and
+        # blindness audits executed above (no fabricated values).
         gate_report = real_gate.build_gate_report(
-            contract, metrics["metrics"], miniature=False)
+            contract, metrics["metrics"], rows_flat,
+            context=real_gate.context_from_audits(
+                uniqueness, remediation, blind_audit, artifact))
         report["checks"]["construction_gate"] = {
             "status": gate_report["status"],
             "passed": gate_report["passed"],
@@ -1789,12 +1808,6 @@ def prevalidate(world_spec: dict, suites_spec: dict, stage: str) -> dict:
             report["status"] = "FAIL"
             return report
 
-        artifact = json.loads(PRIOR_FINGERPRINT_PATH.read_text(
-            encoding="utf-8"))
-        real_uniqueness.validate_artifact(artifact)
-        rows_flat = [row for rows in grouped.values() for row in rows]
-        uniqueness = real_uniqueness.audit_candidate(
-            sources, chunks, rows_flat, artifact)
         report["checks"]["uniqueness"] = {
             "status": uniqueness.get("status"),
             "detail": {name: value.get("status") for name, value in
@@ -1802,15 +1815,13 @@ def prevalidate(world_spec: dict, suites_spec: dict, stage: str) -> dict:
             if isinstance(uniqueness.get("dimensions"), dict) else None,
             "summary": uniqueness.get("summary"),
         }
-
-        remediation_artifact = json.loads(REMEDIATION_EXCLUSION_PATH.read_text(
-            encoding="utf-8"))
-        real_uniqueness.validate_remediation_artifact(remediation_artifact)
-        remediation = real_uniqueness.audit_open_remediation(
-            sources, chunks, rows_flat, remediation_artifact)
         report["checks"]["open_remediation"] = {
             "status": remediation.get("status"),
             "summary": remediation.get("summary"),
+        }
+        report["checks"]["blindness"] = {
+            "status": blind_audit.get("status"),
+            "violations": len(blind_audit.get("violations") or []),
         }
 
         try:

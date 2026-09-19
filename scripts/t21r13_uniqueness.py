@@ -27,6 +27,13 @@ MILESTONES = (
     "T21", "T21R", "T21R2", "T21R3", "T21R4", "T21R5", "T21R6",
     "T21R7", "T21R8_DIAGNOSTIC", "T21R9_SEALED", "T21R10_SEALED",
 )
+# Authorized amendment (T21R13 pre-ledger interface repair): the committed
+# authoritative prior-exclusion artifact carries two additional carried
+# milestones appended from sealed R11/R12 closure evidence.  The 11-milestone
+# MILESTONES tuple above remains the R10-fingerprint build base; every
+# validator/audit path must accept the full 13-milestone artifact.
+CARRIED_MILESTONES = ("T21R11_INVALID_SEALED", "T21R12_FAILED_PARTIAL_BLIND")
+PRIOR_MILESTONES = (*MILESTONES, *CARRIED_MILESTONES)
 SEALED_R10_COMMIT = "9f63d94ecd68299f0397e98048bb29bef937220d"
 OFFICIAL_R10_COMMIT = "247f13656a8392472b0c669d6e1c113071979a62"
 R10_FINGERPRINT_PATH = ROOT / "evaluations" / "t21r10" / \
@@ -141,7 +148,32 @@ def _encode(fingerprints: set[str]) -> dict:
     }
 
 
+def _decode_carried(payload: str) -> set[str]:
+    """Decode a carried milestone payload (sealed R11/R12 closure format).
+
+    T21R13_PRELEDGER_REFUSAL repair: carried milestones store a bare
+    gzip+base64 newline-delimited sorted SHA-256 fingerprint blob.  Decoding
+    is hash-only and enforces the same canonical-value policy as the native
+    format (sorted, unique, 64-char lowercase hex).
+    """
+    try:
+        text = gzip.decompress(base64.b64decode(payload, validate=True))  .decode("ascii")
+    except (ValueError, OSError, UnicodeError) as exc:
+        raise ValueError(f"invalid carried fingerprint payload: {exc}")  from exc
+    values = [line for line in text.splitlines() if line]
+    if values != sorted(set(values)) or any(
+            len(value) != 64 or any(char not in "0123456789abcdef"
+                                    for char in value) for value in values):
+        raise ValueError("carried fingerprints are not canonical sorted "
+                         "SHA-256 values")
+    return set(values)
+
+
 def _decode(document: dict) -> set[str]:
+    # T21R13_PRELEDGER_REFUSAL repair: accept the carried closure format
+    # (bare base64 payload) in addition to the native documented format.
+    if isinstance(document, str):
+        return _decode_carried(document)
     try:
         compressed = base64.b64decode(
             document["fingerprints_gzip_base64"], validate=True)
@@ -338,10 +370,10 @@ def build_remediation_artifact() -> dict:
 def validate_artifact(artifact: dict) -> dict[str, dict[str, set[str]]]:
     if artifact.get("raw_values_included") is not False:
         raise ValueError("fingerprint artifact raw-value policy is invalid")
-    if set(artifact.get("milestones") or {}) != set(MILESTONES):
+    if set(artifact.get("milestones") or {}) != set(PRIOR_MILESTONES):
         raise ValueError("fingerprint artifact milestone set mismatch")
     decoded: dict[str, dict[str, set[str]]] = {}
-    for milestone in MILESTONES:
+    for milestone in PRIOR_MILESTONES:
         dimensions = artifact["milestones"][milestone].get("dimensions") or {}
         if set(dimensions) != set(DIMENSIONS):
             raise ValueError(f"dimension set mismatch for {milestone}")
@@ -394,7 +426,7 @@ def audit_fingerprint_sets(current: dict[str, set[str]],
         raise ValueError("candidate fingerprint dimension set mismatch")
     overlap = {milestone: {
         dimension: sorted(current[dimension] & prior[milestone][dimension])
-        for dimension in DIMENSIONS} for milestone in MILESTONES}
+        for dimension in DIMENSIONS} for milestone in PRIOR_MILESTONES}
     overlap_counts = {milestone: {dimension: len(values)
                                   for dimension, values in dimensions.items()}
                       for milestone, dimensions in overlap.items()}
@@ -405,7 +437,7 @@ def audit_fingerprint_sets(current: dict[str, set[str]],
         "status": "UNIQUE" if total == 0 else "OVERLAP",
         "overlap_counts": overlap_counts,
         "overlap_total": total,
-        "milestones_checked": list(MILESTONES),
+        "milestones_checked": list(PRIOR_MILESTONES),
         "dimensions_checked": list(DIMENSIONS),
         "fingerprint_artifact_sha256": _sha(FINGERPRINT_PATH)
         if FINGERPRINT_PATH.exists() else None,

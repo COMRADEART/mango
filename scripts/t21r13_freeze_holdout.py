@@ -20,6 +20,32 @@ AUDIT_FILES = (
 EXPOSURE_FILES = (
     "evaluation_run_ledger.json", "raw_results.jsonl", "holdout_results.json",
 )
+# T21R13_PRELEDGER_REFUSAL repair: the sealed R11 closure evidence lives in
+# the R11 evaluation directory; the entry is now a root-relative path so the
+# frozen binding resolves instead of pointing at a missing t21r13 copy.
+EVALUATION_INPUTS = (
+    "validation_contract.json", "holdout_construction_contract.json",
+    "scoring_semantics.json", "preregistration.json",
+    "preconstruction_qualification.json", "prior_exclusion.json",
+    "remediation_exclusion.json", "remediation_provenance.json",
+    "blindness_policy.json", "synthetic_protocol_report.json",
+    "runtime_freeze.json", "evaluator_freeze.json",
+    "../t21r11/T21R11_CLOSURE.json",
+    "real_blind_construction_readiness.json",
+    "current_test_applicability.json",
+    "test_failure_adjudication.json",
+    "contract_gate_coverage.json",
+    "exact_design_tag_vocabulary.json",
+    "exact_design_schema.json",
+)
+# T21R13_PRELEDGER_REFUSAL repair: restore the (name, artifact) pair structure
+# required by verify_all_component_freezes(); the amendment-era edit had
+# spliced extra evaluation-input names into the artifact tuple, which no
+# longer unpacked.  Artifact identities are unchanged.
+FROZEN_ARTIFACTS = (
+    ("runtime_freeze.json", "T21R13_RUNTIME_FREEZE"),
+    ("evaluator_freeze.json", "T21R13_EVALUATOR_FREEZE"),
+)
 SCRIPT_INPUTS = (
     "t21r13_world.py", "t21r13_build_suites.py",
     "t21r13_retrieval_mirror.py", "t21r13_construction_audit.py",
@@ -29,33 +55,6 @@ SCRIPT_INPUTS = (
     "t21r13_official_eval.py", "t21r13_freeze_holdout.py",
     "t21r13_preconstruction.py", "t21r13_spec_author.py", "t21r13_blind_author.py", "t21r13_exact_design_lib.py", "t21r13_fixtures.py",
 )
-EVALUATION_INPUTS = (
-    "validation_contract.json", "holdout_construction_contract.json",
-    "scoring_semantics.json", "preregistration.json",
-    "preconstruction_qualification.json", "prior_exclusion.json",
-    "remediation_exclusion.json", "remediation_provenance.json",
-    "blindness_policy.json", "synthetic_protocol_report.json",
-    "runtime_freeze.json", "evaluator_freeze.json",
-    "T21R11_CLOSURE.json",
-    "real_blind_construction_readiness.json",
-    "current_test_applicability.json",
-    "test_failure_adjudication.json",
-    "contract_gate_coverage.json",
-    "exact_design_tag_vocabulary.json",
-    "exact_design_schema.json",
-)
-FROZEN_ARTIFACTS = (
-    ("runtime_freeze.json", "T21R13_RUNTIME_FREEZE"),
-    ("evaluator_freeze.json",
-    "T21R11_CLOSURE.json",
-    "real_blind_construction_readiness.json",
-    "current_test_applicability.json",
-    "test_failure_adjudication.json",
-    "contract_gate_coverage.json",
-    "exact_design_tag_vocabulary.json",
-    "exact_design_schema.json", "T21R13_EVALUATOR_FREEZE"),
-)
-
 
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()

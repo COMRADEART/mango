@@ -107,6 +107,82 @@ def evaluate_levels(contract: dict, metrics: dict, rows: list[dict],
     }
 
 
+def build_gate_report(contract: dict, metrics: dict,
+                      rows: list[dict] | None = None, *,
+                      context: dict | None = None,
+                      miniature: bool = False) -> dict:
+    """Programmatic construction-gate interface over the canonical evaluator.
+
+    T21R13_PRELEDGER_REFUSAL repair: restores the cross-module API consumed by
+    ``t21r13_static_gold_audit.py`` and ``t21r13_blind_author.py``.  This
+    wrapper introduces no gate semantics of its own — every check is produced
+    by the unchanged canonical :func:`evaluate_levels` implementation, which is
+    the same semantics behind the CLI path (exactly one canonical gate
+    implementation).  ``miniature`` is accepted for historical call-site
+    compatibility and does not alter evaluation.
+
+    ``rows`` feed the L4 exact-design level; ``context`` feeds the L5/L6
+    exclusion/blindness levels and the L1 freeze levels when present.  Callers
+    that execute before the exclusion/blindness audits exist must pass an
+    explicit context derived from live audit results (see
+    :func:`context_from_audits`); an omitted context fails those levels closed.
+    """
+    del miniature  # accepted for caller compatibility; semantics unchanged
+    return evaluate_levels(contract, metrics, list(rows or []),
+                           context if context is not None else {})
+
+
+def context_from_audits(prior_report: dict, remediation_report: dict,
+                        blind_report: dict,
+                        prior_artifact: dict | None = None) -> dict:
+    """Derive the L5/L6 gate context from live audit results (data only).
+
+    ``prior_report``/``remediation_report`` are uniqueness-audit results with
+    ``status``/``overlap_total``; ``blind_report`` is a blindness-audit result
+    with its leakage lists.  ``prior_artifact`` supplies the registered
+    historical milestone count.  No value is fabricated: zeros are only
+    produced when the corresponding live audit observed zero.
+    """
+    milestones = len((prior_artifact or {}).get("milestones") or {})
+    prior_overlap = int(prior_report.get("overlap_total", 1)
+                        if prior_report.get("status") != "UNIQUE" else 0)
+    remediation_overlap = int(remediation_report.get("overlap_total", 1)
+                              if remediation_report.get("status") != "UNIQUE"
+                              else 0)
+    return {
+        "historical_milestones": milestones,
+        "historical_overlap": prior_overlap,
+        "remediation_overlap": remediation_overlap,
+        "prior_exact_query_overlap": prior_overlap,
+        "prior_pair_template_overlap": prior_overlap,
+        "candidate_leakage": len(blind_report.get("candidate_leakage") or []),
+        "historical_leakage": len(
+            blind_report.get("historical_blind_leakage") or []),
+        "remediation_leakage": len(
+            blind_report.get("remediation_validation_leakage") or []),
+    }
+
+
+def derive_gate_context(out_dir: Path | None = None) -> dict:
+    """Load frozen uniqueness/blindness/prior artifacts and derive context.
+
+    Data-only convenience for programmatic gate callers that run after the
+    uniqueness and blindness audits have been written to disk.  Raises if the
+    artifacts are absent so callers never gate against fabricated values.
+    """
+    directory = out_dir if out_dir is not None else OUT
+    uniqueness = json.loads((directory / "holdout_uniqueness.json").read_text(
+        encoding="utf-8"))
+    blind = json.loads((directory / "holdout_blindness.json").read_text(
+        encoding="utf-8"))
+    prior_artifact = json.loads((directory / "prior_exclusion.json").read_text(
+        encoding="utf-8"))
+    return context_from_audits(
+        uniqueness.get("prior") or {},
+        uniqueness.get("open_remediation") or {},
+        blind, prior_artifact)
+
+
 def main() -> int:
     contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
     report = {

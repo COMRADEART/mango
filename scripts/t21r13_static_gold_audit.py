@@ -24,7 +24,10 @@ def _sha(path: Path) -> str:
 
 def audit_material(sources: list[dict], chunks: list[dict],
                    rows_by_suite: dict[str, list[dict]],
-                   *, miniature: bool = False) -> dict:
+                   *, miniature: bool = False,
+                   gate_contract: dict | None = None,
+                   gate_rows: list[dict] | None = None,
+                   gate_context: dict | None = None) -> dict:
     rows = [row for suite_rows in rows_by_suite.values() for row in suite_rows]
     source_ids = {str(source.get("source_id")) for source in sources}
     chunk_ids = {str(chunk.get("chunk_id")) for chunk in chunks}
@@ -58,10 +61,20 @@ def audit_material(sources: list[dict], chunks: list[dict],
 
     construction_report = construction.audit_material(
         sources, chunks, rows_by_suite)
-    contract = json.loads(construction.CONTRACT_PATH.read_text(
-        encoding="utf-8"))
+    contract = gate_contract if gate_contract is not None else json.loads(
+        construction.CONTRACT_PATH.read_text(encoding="utf-8"))
+    # T21R13_PRELEDGER_REFUSAL repair: the programmatic gate API requires the
+    # audited rows and the derived exclusion/blindness context.  Real pipeline
+    # invocations default to the audited rows and the on-disk audit artifacts
+    # (written before this audit in the frozen pipeline order); rehearsal
+    # invocations may override all three without changing gate semantics.
+    resolved_context = gate_context
+    if resolved_context is None:
+        resolved_context = gate.derive_gate_context(OUT_DIR)
     gate_report = gate.build_gate_report(
-        contract, construction_report["metrics"], miniature=miniature)
+        contract, construction_report["metrics"],
+        gate_rows if gate_rows is not None else rows,
+        context=resolved_context, miniature=miniature)
     if construction_report["status"] != "PASS":
         failures.append("construction audit failed")
     if gate_report["status"] != "PASS":

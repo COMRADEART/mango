@@ -26,10 +26,13 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 import t21r13_blindness_audit as blindness  # noqa: E402
 import t21r13_build_suites as suite_builder  # noqa: E402
+import t21r13_construction_gate as gate  # noqa: E402
+import t21r13_exact_design_auditor as auditor  # noqa: E402
 import t21r13_freeze_holdout as seal_protocol  # noqa: E402
 import t21r13_official_eval as official  # noqa: E402
 import t21r13_retrieval_mirror as retrieval  # noqa: E402
 import t21r13_spec_author as spec_author  # noqa: E402
+import t21r13_static_gold_audit as static_gold  # noqa: E402
 import t21r13_static_semantics as semantics  # noqa: E402
 import t21r13_uniqueness as uniqueness  # noqa: E402
 import t21r13_world as world_builder  # noqa: E402
@@ -358,15 +361,22 @@ def synthetic_suite_spec() -> dict:
 
 
 def miniature_contract() -> dict:
+    """Disposable rehearsal contract in the canonical frozen schema.
+
+    T21R13_PRELEDGER_REFUSAL repair: the previous version spliced the legacy
+    R12 nested blind_namespace object into the contract, which the frozen
+    suite materializer rejects (schema: blind_namespace is a string).  The
+    miniature now keeps the canonical string namespace and only overrides the
+    disposable suite targets, the disposable case-id prefix, and the
+    disposable allowance.
+    """
     contract = copy.deepcopy(_json(
         OUT_DIR / "holdout_construction_contract.json"))
     contract["suite_target_exact"] = {
         name: 1 for name in spec_author.SUITE_TARGETS}
     contract["total_rows_exact"] = len(spec_author.SUITE_TARGETS)
-    contract["blind_namespace"] = {
-        "name": "disposable-pre13q-v1", "case_id_prefix": "pre13q-",
-        "must_be_new": True, "disposable_allowed": True,
-    }
+    contract["case_id_prefix"] = "pre13q-"
+    contract["disposable_allowed"] = True
     return contract
 
 
@@ -439,11 +449,14 @@ def _prepare_synthetic_seal(root: Path, contract: dict) -> None:
         shutil.copy2(ROOT / relative, target)
     for name in seal_protocol.EVALUATION_INPUTS:
         source = OUT_DIR / name
+        target = out / name
         if source.is_file():
-            shutil.copy2(source, out / name)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
         else:
-            _write_json(out / name, {"artifact": f"SYNTHETIC_{name}",
-                                     "status": "PASS"})
+            target.parent.mkdir(parents=True, exist_ok=True)
+            _write_json(target, {"artifact": f"SYNTHETIC_{name}",
+                                 "status": "PASS"})
     _write_json(out / "holdout_construction_contract.json", contract)
     _write_json(out / "preconstruction_qualification.json", {
         "artifact": "T21R13_PRECONSTRUCTION_QUALIFICATION",
@@ -685,6 +698,153 @@ def _synthetic_semantic_stages(sources: list[dict], chunks: list[dict]) -> dict:
     }
 
 
+GATE_API_CONTRACT_PATH = OUT_DIR / "construction_gate_api_contract.json"
+
+# (caller script, target module, required attribute, declared parameter names)
+INTERFACE_REQUIREMENTS = (
+    ("scripts/t21r13_static_gold_audit.py", "t21r13_construction_gate",
+     "build_gate_report",
+     ("contract", "metrics", "rows", "context", "miniature")),
+    ("scripts/t21r13_static_gold_audit.py", "t21r13_construction_gate",
+     "derive_gate_context", ("out_dir",)),
+    ("scripts/t21r13_static_gold_audit.py", "t21r13_construction_audit",
+     "load_candidate", ()),
+    ("scripts/t21r13_static_gold_audit.py", "t21r13_construction_audit",
+     "audit_material", ("sources", "chunks", "rows_by_suite")),
+    ("scripts/t21r13_static_gold_audit.py", "t21r13_static_semantics",
+     "audit_path_row", ("row", "sources", "chunks")),
+    ("scripts/t21r13_static_gold_audit.py", "t21r13_static_semantics",
+     "audit_spoof_row", ("row", "sources", "chunks")),
+    ("scripts/t21r13_blind_author.py", "t21r13_world",
+     "validate_world_spec", ("specification",)),
+    ("scripts/t21r13_blind_author.py", "t21r13_world",
+     "materialize_world", ("specification", "output")),
+    ("scripts/t21r13_blind_author.py", "t21r13_build_suites",
+     "validate_suite_spec", ("specification", "contract")),
+    ("scripts/t21r13_blind_author.py", "t21r13_build_suites",
+     "materialize_suites", ("specification", "output", "contract")),
+    ("scripts/t21r13_blind_author.py", "t21r13_construction_audit",
+     "audit_material", ("sources", "chunks", "rows_by_suite")),
+    ("scripts/t21r13_blind_author.py", "t21r13_construction_gate",
+     "build_gate_report", ("contract", "metrics", "rows", "context")),
+    ("scripts/t21r13_blind_author.py", "t21r13_construction_gate",
+     "context_from_audits",
+     ("prior_report", "remediation_report", "blind_report",
+      "prior_artifact")),
+    ("scripts/t21r13_blind_author.py", "t21r13_static_semantics",
+     "audit_spoof_row", ("row", "sources", "chunks")),
+    ("scripts/t21r13_blind_author.py", "t21r13_static_semantics",
+     "audit_path_row", ("row", "sources", "chunks")),
+    ("scripts/t21r13_blind_author.py", "t21r13_uniqueness",
+     "validate_artifact", ("artifact",)),
+    ("scripts/t21r13_blind_author.py", "t21r13_uniqueness",
+     "validate_remediation_artifact", ("artifact",)),
+    ("scripts/t21r13_blind_author.py", "t21r13_uniqueness",
+     "audit_candidate", ("sources", "chunks", "rows", "artifact")),
+    ("scripts/t21r13_blind_author.py", "t21r13_uniqueness",
+     "audit_open_remediation", ("sources", "chunks", "rows", "artifact")),
+    ("scripts/t21r13_blind_author.py", "t21r13_blindness_audit",
+     "audit_scripts", ("root",)),
+    ("scripts/t21r13_construction_gate.py", "t21r13_exact_design_lib",
+     "evaluate_exact_design", ("contract", "rows", "context")),
+    ("scripts/t21r13_exact_design_auditor.py", "t21r13_construction_gate",
+     "build_gate_report", ("contract", "metrics", "rows", "context")),
+    ("scripts/t21r13_exact_design_auditor.py", "t21r13_exact_design_lib",
+     "enumerate_leaves", ("contract",)),
+    ("scripts/t21r13_exact_design_auditor.py", "t21r13_exact_design_lib",
+     "evaluate_leaf",
+     ("obj", "leaf", "required", "leaf_type", "rows", "context")),
+    ("scripts/t21r13_exact_design_auditor.py", "t21r13_exact_design_lib",
+     "check_novel_pair_families", ("required", "rows", "leaf")),
+    ("scripts/t21r13_preconstruction.py", "t21r13_construction_gate",
+     "build_gate_report", ("contract", "metrics", "rows", "context")),
+    ("scripts/t21r13_preconstruction.py", "t21r13_construction_gate",
+     "evaluate_levels", ("contract", "metrics", "rows", "context")),
+    ("scripts/t21r13_preconstruction.py", "t21r13_static_gold_audit",
+     "audit_material",
+     ("sources", "chunks", "rows_by_suite", "gate_contract", "gate_rows",
+      "gate_context")),
+    ("scripts/t21r13_preconstruction.py", "t21r13_freeze_holdout",
+     "verify_all_component_freezes", ("root", "out")),
+    ("scripts/t21r13_preconstruction.py", "t21r13_freeze_holdout",
+     "build_manifest", ("root",)),
+    ("scripts/t21r13_preconstruction.py", "t21r13_freeze_holdout",
+     "seal", ("root",)),
+)
+
+
+def audit_cross_module_interfaces() -> dict:
+    """Mechanical static call-graph audit (T21R13 pre-ledger repair).
+
+    For every frozen R13 cross-module call: the import target must exist, the
+    attribute must exist, the attribute must be callable, and the declared
+    parameter names must be compatible with the target signature (verified by
+    keyword binding).  The restored construction-gate API contract artifact is
+    additionally checked against the live callable.
+    """
+    import importlib
+    import inspect
+
+    findings: list[dict] = []
+    checked = 0
+    for caller, module_name, attribute, parameters in INTERFACE_REQUIREMENTS:
+        checked += 1
+        entry = {"caller": caller, "target_module": module_name,
+                 "attribute": attribute}
+        try:
+            module = importlib.import_module(module_name)
+        except Exception as exc:  # noqa: BLE001 - report, never raise
+            findings.append({**entry, "defect":
+                             f"import target missing: "
+                             f"{type(exc).__name__}: {exc}"})
+            continue
+        target = getattr(module, attribute, None)
+        if target is None:
+            findings.append({**entry, "defect":
+                             "missing call target (attribute does not "
+                             "exist on module)"})
+            continue
+        if not callable(target):
+            findings.append({**entry, "defect": "attribute is not callable"})
+            continue
+        try:
+            signature = inspect.signature(target)
+            signature.bind(**{name: None for name in parameters})
+        except (TypeError, ValueError) as exc:
+            findings.append({**entry, "defect": f"signature mismatch: {exc}"})
+    # API contract artifact must describe the live callable exactly.
+    try:
+        api_contract = _json(GATE_API_CONTRACT_PATH)
+        live_parameters = [
+            {"name": name, "kind": parameter.kind.name,
+             "default_provided": parameter.default is not
+             inspect.Parameter.empty}
+            for name, parameter in inspect.signature(
+                gate.build_gate_report).parameters.items()]
+        if api_contract.get("callable") != "build_gate_report":
+            findings.append({"caller": "construction_gate_api_contract.json",
+                             "defect": "callable identity mismatch"})
+        if api_contract.get("input_contract", {}).get("parameters") != \
+                live_parameters:
+            findings.append({"caller": "construction_gate_api_contract.json",
+                             "defect": "input contract parameter mismatch "
+                             "with live signature"})
+    except FileNotFoundError:
+        findings.append({"caller": "construction_gate_api_contract.json",
+                         "defect": "API contract artifact missing"})
+    missing = len(findings)
+    return {
+        "artifact": "T21R13_CROSS_MODULE_INTERFACE_AUDIT",
+        "version": "t21r13-v1",
+        "status": "PASS" if missing == 0 else "FAIL",
+        "checked": checked,
+        "findings": findings,
+        "missing_call_targets": missing,
+        "signature_mismatches": missing,
+        "runtime_execution_count": 0,
+    }
+
+
 def run_synthetic_protocol() -> dict:
     prior_artifact = _json(OUT_DIR / "prior_exclusion.json")
     remediation_artifact = _json(OUT_DIR / "remediation_exclusion.json")
@@ -714,11 +874,43 @@ def run_synthetic_protocol() -> dict:
         semantic_stages = _synthetic_semantic_stages(sources, chunks)
         blind = blindness.audit_scripts(ROOT)
 
+        # T21R13_PRELEDGER_REFUSAL repair: live cross-module rehearsal of the
+        # restored construction-gate programmatic API, the static gold audit,
+        # and the independent exact-design auditor.  Disposable control
+        # fixtures only; no real R13 row and no runtime execution.
+        gate_contract = _json(OUT_DIR / "holdout_construction_contract.json")
+        control_rows = auditor.make_valid_fixture(gate_contract)
+        rehearsal_context = {
+            "prior_exact_query_overlap": 0, "prior_pair_template_overlap": 0,
+            "historical_milestones": 13, "historical_overlap": 0,
+            "remediation_overlap": 0, "candidate_leakage": 0,
+            "historical_leakage": 0, "remediation_leakage": 0,
+        }
+        gate_report = gate.build_gate_report(
+            gate_contract, {}, control_rows, context=rehearsal_context)
+        gate_direct = gate.evaluate_levels(
+            gate_contract, {}, control_rows, rehearsal_context)
+        gate_equivalence_divergences = [] if gate_report == gate_direct else [
+            "build_gate_report output != canonical evaluate_levels output"]
+        exact_design_controls = auditor.audit_controls(gate_contract)
+        exact_design_rows = auditor.audit_rows(
+            control_rows, gate_contract, rehearsal_context)
+        gate_auditor_crosscheck = auditor.cross_check_with_gate(
+            gate_report, exact_design_rows)
+        grouped_synthetic: dict[str, list[dict]] = {}
+        for row in rows:
+            grouped_synthetic.setdefault(str(row["suite_id"]), []).append(row)
+        static_report = static_gold.audit_material(
+            sources, chunks, grouped_synthetic, gate_contract=mini_contract,
+            gate_rows=control_rows, gate_context=rehearsal_context)
+
         _prepare_synthetic_seal(synthetic_root, mini_contract)
         component_freeze = seal_protocol.verify_all_component_freezes(
             synthetic_root)
+        synthetic_manifest = seal_protocol.build_manifest(synthetic_root)
         seal = seal_protocol.seal(synthetic_root)
         preflight = official.preflight(synthetic_root)
+        interfaces = audit_cross_module_interfaces()
         controls = run_negative_controls(
             synthetic_root, suite_spec, mini_contract)
 
@@ -748,8 +940,56 @@ def run_synthetic_protocol() -> dict:
                 else "FAIL", "dimensions_checked":
                 len(remediation["dimensions_checked"])},
             **semantic_stages,
+            "construction_gate_programmatic_api": {
+                "status": "PASS" if gate_report["status"] == "PASS" and
+                gate_report.get("exact_design", {}).get("passed") == 38
+                else "FAIL",
+                "gate_status": gate_report["status"],
+                "exact_design_passed":
+                    gate_report.get("exact_design", {}).get("passed"),
+                "levels": sorted({check["level"]
+                                  for check in gate_report["checks"]}),
+            },
+            "construction_gate_cli_api_equivalence": {
+                "status": "PASS" if not gate_equivalence_divergences
+                else "FAIL",
+                "divergences": gate_equivalence_divergences,
+            },
+            "static_gold_audit": {
+                "status": static_report["status"],
+                "rows": static_report["rows"],
+                "gate_status": (static_report.get("gate") or {}).get(
+                    "status"),
+                "failures": len(static_report.get("failures") or []),
+            },
+            "exact_design_audit": {
+                "status": exact_design_controls["status"],
+                "total_leaves": exact_design_controls["total_leaves"],
+                "passed": exact_design_controls["passed"],
+                "failed": exact_design_controls["failed"],
+                "unverifiable": exact_design_controls["unverifiable"],
+            },
+            "gate_auditor_crosscheck": {
+                "status": gate_auditor_crosscheck["status"],
+                "disagreements": gate_auditor_crosscheck[
+                    "disagreement_count"],
+            },
+            "cross_module_interfaces": {
+                "status": interfaces["status"],
+                "checked": interfaces["checked"],
+                "missing_call_targets": interfaces["missing_call_targets"],
+                "signature_mismatches": interfaces["signature_mismatches"],
+            },
             "blindness": blind,
             "component_freeze": component_freeze,
+            "manifest_generation": {
+                "status": "PASS" if synthetic_manifest.get("artifact") ==
+                "T21R13_HOLDOUT_MANIFEST" and synthetic_manifest.get(
+                    "freeze_root_sha256") else "FAIL",
+                "freeze_root_sha256": synthetic_manifest.get(
+                    "freeze_root_sha256"),
+                "runtime_execution_count": 0,
+            },
             "seal_generation": {"status": seal["status"]},
             "official_preflight": preflight,
         }
@@ -819,6 +1059,9 @@ def build_qualification(synthetic: dict, test_results: dict) -> dict:
         ROOT, OUT_DIR / "evaluator_freeze.json", "T21R13_EVALUATOR_FREEZE")
     blind = blindness.audit_scripts(ROOT)
     paths = real_path_audit()
+    documents = spec_author.verify_documents()
+    interfaces_stage = (synthetic.get("stages") or {}).get(
+        "cross_module_interfaces") or {}
     validation = _json(OUT_DIR / "validation_contract.json")
     r10_validation = _json(ROOT / "evaluations" / "t21r10" /
                            "validation_contract.json")
@@ -837,6 +1080,8 @@ def build_qualification(synthetic: dict, test_results: dict) -> dict:
         "real_paths_absent": paths["status"] == "PASS",
         "floors_32_and_identical": floors_same,
         "all_test_gates": tests_pass,
+        "contract_documents_byte_stable": documents["status"] == "PASS",
+        "cross_module_interfaces": interfaces_stage.get("status") == "PASS",
         "zero_real_rows": synthetic["real_R13_rows"] == 0,
         "zero_candidate_rows": synthetic[
             "candidate_R13_rows_executed"] == 0,
@@ -853,6 +1098,8 @@ def build_qualification(synthetic: dict, test_results: dict) -> dict:
         "hash_mismatches": 0,
         "blindness": blind,
         "real_r11_paths": paths,
+        "contract_documents_byte_stability": documents,
+        "cross_module_interfaces": interfaces_stage,
         "tests": test_results,
         "runtime_rows_executed": 0,
         "real_R13_rows": 0,
@@ -865,6 +1112,41 @@ def build_qualification(synthetic: dict, test_results: dict) -> dict:
     }
 
 
+def ensure_freezes_current() -> dict:
+    """Guard the committed amendment-schema freeze artifacts (data only).
+
+    T21R13_PRELEDGER_REFUSAL repair: the committed freeze artifacts are
+    authoritative and are never silently rewritten by this harness.  If a
+    freeze is present and its component hashes match disk it is preserved
+    (VERIFIED); any drift or absence is reported as requiring an authorized
+    operator rebind through the amendment path.
+    """
+    report: dict[str, dict] = {}
+    for name, artifact in (
+            ("runtime_freeze.json", "T21R13_RUNTIME_FREEZE"),
+            ("evaluator_freeze.json", "T21R13_EVALUATOR_FREEZE")):
+        path = OUT_DIR / name
+        if not path.is_file():
+            report[name] = {"status": "MISSING",
+                            "action": "authorized operator rebind required"}
+            continue
+        try:
+            verified = seal_protocol.verify_component_freeze(
+                ROOT, path, artifact)
+            report[name] = {"status": verified["status"], "action":
+                            "preserved", "verified_components":
+                            verified["verified_components"]}
+        except ValueError as exc:
+            report[name] = {"status": "DRIFT",
+                            "action": "authorized operator rebind required",
+                            "detail": str(exc)}
+    return {"artifact": "T21R13_FREEZE_PRESERVATION_GUARD",
+            "version": "t21r13-v1",
+            "status": "PASS" if all(value["status"] == "VERIFIED"
+                                    for value in report.values()) else "FAIL",
+            "freezes": report, "runtime_execution_count": 0}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--focused-junit", type=Path)
@@ -875,10 +1157,19 @@ def main() -> int:
     parser.add_argument("--full-exit-code", type=int)
     arguments = parser.parse_args()
 
-    # Re-author deterministically and refuse if any real R13 path exists.
-    spec_author.write_documents()
+    # T21R13_PRELEDGER_REFUSAL repair: the committed contract-bearing
+    # documents are authoritative.  Re-authoring is verified for byte
+    # stability and REFUSED on drift; it never silently overwrites the frozen
+    # artifacts.  The committed amendment-schema freezes are likewise
+    # preserved, never regenerated in place.
+    documents = spec_author.verify_documents()
+    if documents["status"] != "PASS":
+        print(json.dumps({"status": "FAIL", "verdict":
+                          "T21R13_CONTRACT_DOCUMENTS_DRIFT",
+                          "documents": documents["documents"]}, indent=2))
+        return 1
     write_remediation_provenance()
-    write_freezes()
+    freezes = ensure_freezes_current()
     synthetic = run_synthetic_protocol()
     _write_json(OUT_DIR / "synthetic_protocol_report.json", synthetic)
     results = {
@@ -890,17 +1181,21 @@ def main() -> int:
             arguments.full_junit, arguments.full_exit_code),
     }
     qualification = build_qualification(synthetic, results)
+    qualification["freeze_preservation_guard"] = freezes
     _write_json(OUT_DIR / "preconstruction_qualification.json", qualification)
     print(json.dumps({
         "status": qualification["status"],
         "verdict": qualification["verdict"],
         "negative_controls": synthetic["negative_control_passed_count"],
+        "contract_documents": documents["status"],
+        "freezes": freezes["status"],
         "real_R13_rows": 0,
         "candidate_R13_rows_executed": 0,
         "tests": results,
     }, indent=2, sort_keys=True))
-    return 0 if qualification["status"] == "PASS" else 1
+    return 0 if qualification["status"] == "PASS" and freezes["status"] == "PASS" else 1
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

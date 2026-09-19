@@ -110,7 +110,15 @@ def _write(name: str, value: object) -> None:
         encoding="utf-8", newline="\n")
 
 
-def build_documents() -> dict[str, dict]:
+def _draft_documents() -> dict[str, dict]:
+    """Obsolete pre-amendment draft templates (retained for provenance).
+
+    T21R13_PRELEDGER_REFUSAL repair: these draft templates were never
+    reconciled with the amendment-era canonical documents and would silently
+    regress the contract to the legacy nested blind_namespace shape (the
+    exact R12 failure class).  They are retained for provenance only and are
+    no longer written anywhere.
+    """
     r10_validation = _json(R10_DIR / "validation_contract.json")
     r10_semantics = _json(R10_DIR / "scoring_semantics.json")
     floors = r10_validation["floors"]
@@ -317,6 +325,73 @@ def build_documents() -> dict[str, dict]:
     }
 
 
+CANONICAL_DOCUMENTS = (
+    "preregistration.json",
+    "validation_contract.json",
+    "scoring_semantics.json",
+    "holdout_construction_contract.json",
+    "blindness_policy.json",
+)
+
+
+def build_documents() -> dict[str, dict]:
+    """Load the canonical committed amendment-era documents.
+
+    T21R13_PRELEDGER_REFUSAL repair: the R13 amendment commits are the source
+    of truth for these five documents (canonical string blind_namespace,
+    split case_id_prefix, 13-milestone independence binding, R13 firewall
+    paths).  The re-author step therefore loads the committed canonical
+    documents and verifies their semantic identity under the canonical
+    writer, refusing to regress to the obsolete draft templates.
+    """
+    documents: dict[str, dict] = {}
+    for name in CANONICAL_DOCUMENTS:
+        documents[name] = _json(OUT_DIR / name)
+    return documents
+
+
+def verify_documents() -> dict:
+    """Byte-stability guard over the committed contract-bearing documents.
+
+    T21R13_PRELEDGER_REFUSAL repair: the committed amendment-era artifacts are
+    authoritative.  Re-authoring must reproduce the committed bytes exactly;
+    any drift is reported and refused instead of silently overwriting the
+    frozen contract, preregistration, scoring semantics, validation contract,
+    or blindness policy.
+    """
+    documents = build_documents()
+    present = [path for path in PROHIBITED_REAL_PATHS
+               if (ROOT / path).exists()]
+    if present:
+        raise RuntimeError(f"real R13 paths already exist: {present}")
+    report: dict[str, dict] = {}
+    stable = True
+    for name, value in documents.items():
+        canonical = (json.dumps(value, indent=2, sort_keys=True) + "\n")
+        path = OUT_DIR / name
+        if not path.is_file():
+            report[name] = {"status": "MISSING"}
+            stable = False
+            continue
+        actual = path.read_text(encoding="utf-8")
+        try:
+            semantic_match = json.loads(actual) == json.loads(canonical)
+        except json.JSONDecodeError:
+            semantic_match = False
+        report[name] = {
+            "status": "STABLE" if semantic_match else "DRIFT",
+            "byte_stable": actual == canonical,
+            "committed_sha256": hashlib.sha256(
+                actual.encode("utf-8")).hexdigest(),
+        }
+        if not semantic_match:
+            stable = False
+    return {"artifact": "T21R13_CONTRACT_DOCUMENTS_BYTE_STABILITY",
+            "version": "t21r13-v1",
+            "status": "PASS" if stable else "FAIL", "documents": report,
+            "runtime_execution_count": 0}
+
+
 def write_documents() -> dict:
     documents = build_documents()
     present = [path for path in PROHIBITED_REAL_PATHS
@@ -330,10 +405,11 @@ def write_documents() -> dict:
 
 
 def main() -> int:
-    hashes = write_documents()
-    print(json.dumps({"status": "PASS", "artifacts": hashes},
-                     indent=2, sort_keys=True))
-    return 0
+    # Verify-only: the committed canonical documents are authoritative and
+    # are never rewritten (T21R13_PRELEDGER_REFUSAL repair).
+    report = verify_documents()
+    print(json.dumps(report, indent=2, sort_keys=True))
+    return 0 if report["status"] == "PASS" else 1
 
 
 if __name__ == "__main__":
