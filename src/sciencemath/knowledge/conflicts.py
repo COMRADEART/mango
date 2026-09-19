@@ -81,7 +81,7 @@ ATTRIBUTE_CUES: dict[str, tuple[tuple[str, ...], str | None]] = {
     "ratification year": (("ratif", "signing", "signed"), "year"),
     "signing year": (("ratif", "signing", "signed"), "year"),
     "completion year": (("complet", "finis"), "year"),
-    "landing year": (("landing", "landed"), "year"),
+    "landing year": (("landing", "landed", "land"), "year"),
     "sealing year": (("sealing", "sealed"), "year"),
     # place-type attributes
     "birthplace": (("birth", "born", "birthplace"), None),
@@ -99,6 +99,7 @@ ATTRIBUTE_CUES: dict[str, tuple[tuple[str, ...], str | None]] = {
     "landmark": (("landmark",), None),
     # other attributes
     "mayor": (("mayor", "officeholder", "leader"), None),
+    "led by": (("led", "leader", "commander"), None),
     "genre": (("genre",), None),
     "medium": (("medium",), None),
     "painter": (("painter", "painted"), None),
@@ -205,6 +206,93 @@ def query_attribute_set(query: str) -> frozenset[str]:
         if _attribute_relevant(attribute, tokens))
 
 
+def detect_text_value_conflicts(
+    items: list,
+    attr_set: frozenset[str],
+    query: str = "",
+) -> list[dict]:
+    """C3 — text-level value-conflict detection for query-cued year facts.
+
+    The legacy text fallback keys chunks by shared entity tokens only and
+    is suppressed whenever ANY metadata fact is present in the window, so
+    two prose sources asserting different years for the queried entity go
+    undetected. This detector is independent of metadata presence: a pair
+    conflicts when a query-cued YEAR-TYPE attribute exists whose cue both
+    spans express, both spans share an exact proper-name entity run, and
+    the four-digit year sets asserted by the two spans are non-empty and
+    disjoint. Keyed as a structured ``entity|attribute`` claim so the
+    downstream query scoping applies unchanged. Deterministic; no fuzzy
+    matching.
+    """
+    year_attrs = sorted(a for a in attr_set
+                        if ATTRIBUTE_CUES.get(a, (None, None))[1] == "year")
+    if not year_attrs:
+        return []
+    year_re = re.compile(r"\b(?:1[0-9]{3}|20[0-9]{2})\b")
+    name_re = re.compile(r"(?<!\w)[A-Z][\w'-]*(?:\s+[A-Z][\w'-]*)*")
+    query_tokens = set(_raw_tokens(query))
+
+    def _entity_runs(span: str) -> set[str]:
+        return {" ".join(unicodedata.normalize("NFKC", run).casefold().split())
+                for run in name_re.findall(span or "")}
+
+    def _years(span: str) -> set[str]:
+        return set(year_re.findall(span or ""))
+
+    def _attr_spans(a: str, b: str, attr: str) -> bool:
+        cues = ATTRIBUTE_CUES[attr][0]
+        for span in (a, b):
+            tokens = set(_raw_tokens(span))
+            if not any(_token_matches_cue(t, c) for t in tokens for c in cues):
+                return False
+        return True
+
+    def _side_entity(item: object) -> str:
+        from sciencemath.knowledge.evidence_paths import normalize_identity
+        meta = getattr(item, "metadata", None) or {}
+        return normalize_identity(meta.get("fact_entity") or "")
+
+    conflicts: list[dict] = []
+    for i, a in enumerate(items):
+        runs_a = _entity_runs(a.text_span)
+        years_a = _years(a.text_span)
+        if not runs_a or not years_a:
+            continue
+        for b in items[i + 1:]:
+            if a.source_id == b.source_id and a.chunk_id == b.chunk_id:
+                continue
+            years_b = _years(b.text_span)
+            if not years_b or (years_a & years_b):
+                continue
+            shared = runs_a & _entity_runs(b.text_span)
+            if not shared:
+                continue
+            # A metadata-carrying side speaks for its OWN fact_entity: a
+            # passage whose fact_entity is a sub-entity ('the old
+            # quarter') must not be read as a conflicting assertion about
+            # the parent entity that merely shares a name run.
+            ent_a, ent_b = _side_entity(a), _side_entity(b)
+            if ent_a:
+                shared = {r for r in shared if r == ent_a}
+            if ent_b:
+                shared = {r for r in shared if r == ent_b}
+            if not shared:
+                continue
+            attr = next((attr for attr in year_attrs
+                         if _attr_spans(a.text_span, b.text_span, attr)), None)
+            if attr is None:
+                continue
+            grounded = sorted(r for r in shared
+                              if all(t in query_tokens for t in r.split()))
+            entity = (grounded or sorted(shared))[0]
+            conflicts.append({
+                "claim_key": f"{entity}|{attr}",
+                "evidence_a": a.to_dict(),
+                "evidence_b": b.to_dict(),
+            })
+    return conflicts
+
+
 def _normalize_fact_value(value: object) -> str:
     """Conservative deterministic value identity.
 
@@ -282,6 +370,30 @@ def detect_conflicts(
     return conflicts
 
 
+_YEAR_VALUE_RE = re.compile(r"\b(?:1[0-9]{3}|20[0-9]{2})\b")
+
+
+def _side_value(side: dict) -> str:
+    """Deterministic value identity of one conflict-evidence side.
+
+    Structured metadata fact_value when present; otherwise the span's
+    four-digit year set (text-level conflicts). Sides with no value
+    signal at all share the empty key and fall back to pairwise
+    comparison below.
+    """
+    meta = side.get("metadata") or {}
+    value = meta.get("fact_value")
+    if value is not None:
+        return _normalize_fact_value(value)
+    return ",".join(sorted(set(_YEAR_VALUE_RE.findall(
+        str(side.get("text_span") or "")))))
+
+
+def _side_strength(side: dict) -> tuple[int, int]:
+    return (AUTHORITY_RANK.get(side.get("authority_class", "UNKNOWN"), 0),
+            _FRESHNESS_RANK.get(side.get("freshness_class", "UNKNOWN"), 0))
+
+
 def resolve_conflicts(
     conflicts: list[dict],
 ) -> tuple[str, dict | None]:
@@ -290,18 +402,51 @@ def resolve_conflicts(
     Returns (resolution, winner) where resolution is
       RESOLVED_BY_AUTHORITY — a single winner item dict
       CONFLICTING_EVIDENCE  — no silent choice
+
+    C3 — value-side aggregation: a disputed claim is decided between the
+    VALUE SIDES, not between fragmented pairs. Each side's strength is the
+    best (authority rank, freshness rank) over every evidence item
+    asserting that normalized value for the claim, so a low-rank
+    corroborating copy of one value cannot out-rank the other value's best
+    source (reproduced on open diagnostics: a GENERAL_REFERENCE duplicate
+    of the majority value resolved a same-rank disagreement that the
+    frozen gold records as CONFLICTING_EVIDENCE). Claims whose sides carry
+    no value signal keep the frozen pairwise comparison. Cross-claim
+    iteration order and the first-resolvable-claim-decides combination are
+    unchanged.
     """
+    if not conflicts:
+        return "NO_CONFLICT", None
+    groups: dict[str, list[dict]] = {}
     for conflict in conflicts:
-        a = conflict["evidence_a"]
-        b = conflict["evidence_b"]
-        rank_a = AUTHORITY_RANK.get(a.get("authority_class", "UNKNOWN"), 0)
-        rank_b = AUTHORITY_RANK.get(b.get("authority_class", "UNKNOWN"), 0)
-        fresh_a = _FRESHNESS_RANK.get(a.get("freshness_class", "UNKNOWN"), 0)
-        fresh_b = _FRESHNESS_RANK.get(b.get("freshness_class", "UNKNOWN"), 0)
-        if rank_a != rank_b:
-            return "RESOLVED_BY_AUTHORITY", (a if rank_a > rank_b else b)
-        if fresh_a != fresh_b:
-            return "RESOLVED_BY_AUTHORITY", (a if fresh_a > fresh_b else b)
-    if conflicts:
-        return "CONFLICTING_EVIDENCE", None
-    return "NO_CONFLICT", None
+        groups.setdefault(str(conflict.get("claim_key", "")),
+                          []).append(conflict)
+    for group in groups.values():
+        sides: dict[str, tuple[tuple[int, int], dict]] = {}
+        valueless = False
+        for conflict in group:
+            for side in (conflict["evidence_a"], conflict["evidence_b"]):
+                value = _side_value(side)
+                if not value:
+                    valueless = True
+                    continue
+                strength = _side_strength(side)
+                if value not in sides or strength > sides[value][0]:
+                    sides[value] = (strength, side)
+        if not valueless and len(sides) > 1:
+            ranked = sorted(sides.items(), key=lambda kv: kv[1][0],
+                            reverse=True)
+            if ranked[0][1][0] != ranked[1][1][0]:
+                return "RESOLVED_BY_AUTHORITY", ranked[0][1][1]
+            continue
+        # frozen pairwise comparison (no value signal on some side)
+        for conflict in group:
+            a = conflict["evidence_a"]
+            b = conflict["evidence_b"]
+            rank_a, rank_b = _side_strength(a)[0], _side_strength(b)[0]
+            if rank_a != rank_b:
+                return "RESOLVED_BY_AUTHORITY", (a if rank_a > rank_b else b)
+            fresh_a, fresh_b = _side_strength(a)[1], _side_strength(b)[1]
+            if fresh_a != fresh_b:
+                return "RESOLVED_BY_AUTHORITY", (a if fresh_a > fresh_b else b)
+    return "CONFLICTING_EVIDENCE", None

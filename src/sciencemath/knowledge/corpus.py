@@ -19,6 +19,7 @@ from sciencemath.knowledge.schema import (
     KnowledgeSourceRecord,
     chunk_checksum,
     chunk_source_text,
+    source_record_hash,
     validate_chunk_invariants,
 )
 
