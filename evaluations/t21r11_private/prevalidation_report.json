@@ -1,0 +1,50 @@
+{
+  "checks": {
+    "construction_gate": {
+      "failed": [],
+      "passed": 13,
+      "status": "PASS",
+      "total": 13
+    },
+    "load_corpus": {
+      "chunks": 6668,
+      "sources": 16,
+      "status": "PASS"
+    },
+    "open_remediation": {
+      "status": "OVERLAP",
+      "summary": null
+    },
+    "spoof_audit": {
+      "failures": [],
+      "rows": 250,
+      "status": "PASS"
+    },
+    "uniqueness": {
+      "detail": null,
+      "status": "OVERLAP",
+      "summary": null
+    },
+    "validate_suite_spec": {
+      "status": "PASS",
+      "suites": {
+        "mango-t21r11-adversarial-holdout-v1": 650,
+        "mango-t21r11-citation-claim-holdout-v1": 450,
+        "mango-t21r11-conflict-abstention-holdout-v1": 800,
+        "mango-t21r11-crossdomain-holdout-v1": 700,
+        "mango-t21r11-multihop-holdout-v1": 800,
+        "mango-t21r11-retrieval-holdout-v1": 600,
+        "mango-t21r11-singlehop-holdout-v1": 550,
+        "mango-t21r11-temporal-holdout-v1": 250
+      }
+    },
+    "validate_world_spec": {
+      "chunks": 6668,
+      "sources": 16,
+      "status": "PASS",
+      "world": 3108
+    }
+  },
+  "stage": "prevalidate",
+  "status": "FAIL"
+}

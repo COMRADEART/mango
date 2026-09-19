@@ -1,0 +1,104 @@
+{
+  "checks": [
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "runtime_execution_count",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "annotation_violations",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "builder_declared_windows",
+      "passed": true
+    },
+    {
+      "actual": [
+        "mango-t21r11-adversarial-holdout-v1",
+        "mango-t21r11-citation-claim-holdout-v1",
+        "mango-t21r11-conflict-abstention-holdout-v1",
+        "mango-t21r11-crossdomain-holdout-v1",
+        "mango-t21r11-multihop-holdout-v1",
+        "mango-t21r11-retrieval-holdout-v1",
+        "mango-t21r11-singlehop-holdout-v1",
+        "mango-t21r11-temporal-holdout-v1"
+      ],
+      "expected": [
+        "mango-t21r11-adversarial-holdout-v1",
+        "mango-t21r11-citation-claim-holdout-v1",
+        "mango-t21r11-conflict-abstention-holdout-v1",
+        "mango-t21r11-crossdomain-holdout-v1",
+        "mango-t21r11-multihop-holdout-v1",
+        "mango-t21r11-retrieval-holdout-v1",
+        "mango-t21r11-singlehop-holdout-v1",
+        "mango-t21r11-temporal-holdout-v1"
+      ],
+      "id": "suite_ids",
+      "passed": true
+    },
+    {
+      "actual": 650,
+      "expected": 650,
+      "id": "suite_count.mango-t21r11-adversarial-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 450,
+      "expected": 450,
+      "id": "suite_count.mango-t21r11-citation-claim-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 800,
+      "expected": 800,
+      "id": "suite_count.mango-t21r11-conflict-abstention-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 700,
+      "expected": 700,
+      "id": "suite_count.mango-t21r11-crossdomain-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 800,
+      "expected": 800,
+      "id": "suite_count.mango-t21r11-multihop-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 600,
+      "expected": 600,
+      "id": "suite_count.mango-t21r11-retrieval-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 550,
+      "expected": 550,
+      "id": "suite_count.mango-t21r11-singlehop-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 250,
+      "expected": 250,
+      "id": "suite_count.mango-t21r11-temporal-holdout-v1",
+      "passed": true
+    },
+    {
+      "actual": 4800,
+      "expected": 4800,
+      "id": "total_rows",
+      "passed": true
+    }
+  ],
+  "passed": 13,
+  "runtime_execution_count": 0,
+  "status": "PASS",
+  "total": 13
+}

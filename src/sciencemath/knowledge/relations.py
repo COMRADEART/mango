@@ -46,6 +46,7 @@ class RelationId(StrEnum):
     ROLE = "ROLE"
     OFFICE = "OFFICE"
     MAYOR = "MAYOR"
+    LED_BY = "LED_BY"
     DATE = "DATE"
     TYPE = "TYPE"
     DEFINITION = "DEFINITION"
@@ -115,6 +116,7 @@ ATTRIBUTE_RELATIONS: Mapping[str, RelationId] = {
     "office": RelationId.OFFICE,
     "officeholder": RelationId.OFFICE,
     "mayor": RelationId.MAYOR,
+    "led by": RelationId.LED_BY,
     "date": RelationId.DATE,
     "type": RelationId.TYPE,
     "institution type": RelationId.TYPE,
@@ -183,6 +185,8 @@ QUERY_ALIASES: Mapping[RelationId, tuple[str, ...]] = {
     RelationId.ROLE: ("role", "served as"),
     RelationId.OFFICE: ("office", "officeholder"),
     RelationId.MAYOR: ("mayor",),
+    RelationId.LED_BY: ("led by", "led", "leader", "commander",
+                        "commanded by"),
     RelationId.DATE: ("date", "when"),
     RelationId.TYPE: ("type", "kind of"),
     RelationId.DEFINITION: ("definition", "define", "what is"),
@@ -289,6 +293,16 @@ def parse_relation_path(query: str) -> tuple[str, tuple[RelationId, ...]] | None
     # Nested nominal: what is the country of the location of X?
     text = re.sub(r"^(?:what is|who is|which is|identify|name|give|tell me)\s+", "", text, flags=re.I)
     text = re.sub(r"^the\s+", "", text, flags=re.I)
+    # Trailing question frames are grammar, never identity: 'is in which
+    # town' at the end of a nominal question is the interrogative frame,
+    # not part of the final entity (the identity tail would otherwise
+    # never match a fact_entity and every such question would abstain).
+    # The born-pattern branch below keeps handling 'was born in which
+    # town' questions (the verb is not followed directly by 'which').
+    text = re.sub(
+        r"\s+(?:is|was|are|were)\s+(?:in\s+)?which\s+"
+        r"(?:town|city|village|place|year)\s*$",
+        "", text, flags=re.I)
 
     def nominal(value):
         parts = re.split(r"\s+of\s+", value, flags=re.I)
@@ -311,12 +325,28 @@ def parse_relation_path(query: str) -> tuple[str, tuple[RelationId, ...]] | None
         return found
     # Historic relative/nominal framing: 'Within which town was the
     # author of X born?' / 'The author of X was born in which town?'.
+    # The entity article stays inside the identity capture: exact
+    # structured matching binds 'The Orrery of Harrow', not 'Orrery of
+    # Harrow' — dropping the article makes every born-framed chain
+    # abstain at hop 1.
     if re.search(r"\bborn\b", text, re.I):
-        match = re.search(r"(?:^|\bthe\s+)([\w -]+?)\s+of\s+(?:the\s+)?(.+?)\s+(?:was\s+)?born\b", text, re.I)
-        if match:
+        pattern = re.compile(
+            r"(?:^|\bthe\s+)([\w -]+?)\s+of\s+"
+            r"((?:the\s+)?.+?)\s+(?:was\s+)?born\b", re.I)
+        pos = 0
+        while True:
+            match = pattern.search(text, pos)
+            if not match:
+                break
             rel = relation_phrase(match[1].strip())
             if rel:
-                terminal = RelationId.BIRTH_YEAR if re.search(r"\byear\b|\bwhen\b", query, re.I) else RelationId.BIRTHPLACE
+                terminal = RelationId.BIRTH_YEAR if re.search(
+                    r"\byear\b|\bwhen\b", query, re.I) else RelationId.BIRTHPLACE
                 return match[2].strip(), (rel, terminal)
+            # The first match may swallow leading grammar ('Where was the
+            # leader of X born') into the relation capture so no relation
+            # resolves; retry from the next definite-article anchor so the
+            # bare relation phrase ('the leader') is tried.
+            pos = match.start() + 1
     return None
 

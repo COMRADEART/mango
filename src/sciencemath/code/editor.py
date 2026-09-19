@@ -74,24 +74,63 @@ def is_test_file(path: str) -> bool:
             or name.endswith("_test.py"))
 
 
+def _mutation_target(root: str | Path, rel_path: str) -> tuple:
+    """Resolve a mutation path under root with fail-closed containment.
+
+    Enforces:
+    1. Lexical policy — reject ``..`` segments and absolute forms.
+    2. Symlink / reparse policy — refuse if any path component from the
+       authorized root to the presented path is a symlink (or other
+       redirecting link). Mutations must address the lexically named
+       object; a redirect to a different filesystem object is refused
+       even when that object still lies under the workspace root.
+    3. Canonical containment — the resolved destination must remain
+       inside the resolved authorized root via ``Path.relative_to``
+       (not string-prefix comparison).
+
+    Returns ``(target_path, None)`` on success or ``(None, error_dict)``.
+    """
+    base = Path(root).resolve()
+    raw = (rel_path or "").replace("\\", "/")
+    if not raw or raw.startswith("/") or (len(raw) >= 2 and raw[1] == ":"):
+        return None, {"ok": False, "error": "path escapes repository root",
+                      "files_touched": []}
+    if ".." in raw.split("/"):
+        return None, {"ok": False, "error": "path escapes repository root",
+                      "files_touched": []}
+    rel = raw.lstrip("./")
+    cur = base
+    for part in Path(rel).parts:
+        if part in ("", "."):
+            continue
+        nxt = cur / part
+        try:
+            if nxt.is_symlink():
+                return None, {"ok": False, "error": "symlink path refused",
+                              "files_touched": []}
+        except OSError as e:
+            return None, {"ok": False, "error": f"path unreadable: {e}",
+                          "files_touched": []}
+        cur = nxt
+    try:
+        resolved = cur.resolve(strict=False)
+        resolved.relative_to(base)
+    except (ValueError, OSError):
+        return None, {"ok": False, "error": "path escapes repository root",
+                      "files_touched": []}
+    return cur, None
+
+
 def apply_edit(root: str | Path, rel_path: str, old: str, new: str, *,
                task_allows: tuple = ()) -> dict:
     """Apply one exact-match replacement. Fails closed on ambiguity.
 
     Returns a result record with diff stats. Never touches protected paths.
     """
-    base = Path(root)
-    raw = rel_path.replace("\\", "/")
-    if ".." in raw.split("/"):
-        return {"ok": False, "error": "path escapes repository root",
-                "files_touched": []}
-    rel = raw.lstrip("./")
-    target = (base / rel).resolve()
-    try:
-        target.relative_to(base.resolve())
-    except ValueError:
-        return {"ok": False, "error": "path escapes repository root",
-                "files_touched": []}
+    target, err = _mutation_target(root, rel_path)
+    if err is not None:
+        return err
+    rel = (rel_path or "").replace("\\", "/").lstrip("./")
     if protected_edit(rel, task_allows=task_allows):
         return {"ok": False, "error": f"protected component: {rel}",
                 "files_touched": []}
@@ -130,18 +169,10 @@ def create_file(root: str | Path, rel_path: str, content: str, *,
                 task_allows: tuple = ()) -> dict:
     """Create one NEW file. Refuses overwrites, escapes, protected paths,
     and missing parent directories (no recursive tree creation)."""
-    base = Path(root)
-    raw = rel_path.replace("\\", "/")
-    if ".." in raw.split("/"):
-        return {"ok": False, "error": "path escapes repository root",
-                "files_touched": []}
-    rel = raw.lstrip("./")
-    target = (base / rel).resolve()
-    try:
-        target.relative_to(base.resolve())
-    except ValueError:
-        return {"ok": False, "error": "path escapes repository root",
-                "files_touched": []}
+    target, err = _mutation_target(root, rel_path)
+    if err is not None:
+        return err
+    rel = (rel_path or "").replace("\\", "/").lstrip("./")
     if protected_edit(rel, task_allows=task_allows):
         return {"ok": False, "error": f"protected component: {rel}",
                 "files_touched": []}

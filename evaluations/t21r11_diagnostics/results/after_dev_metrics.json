@@ -1,0 +1,279 @@
+{
+  "abstention": {
+    "abstention_precision": 1.0,
+    "abstention_recall": 1.0,
+    "false_abstention": 0,
+    "false_answer": 0,
+    "true_abstain": 17,
+    "true_answer": 76
+  },
+  "artifact": "T21R11_DIAGNOSTIC_METRICS",
+  "citations": {
+    "citation_coverage": 1.0,
+    "citation_precision": 1.0,
+    "citation_resolvability": 1.0,
+    "extractive_lineage_ok": 1.0,
+    "fabricated_citations": 0,
+    "n_gold_answer": 76,
+    "required_domains_ok": 1.0,
+    "required_sources_ok": 1.0
+  },
+  "injection_payload_leaks": 0,
+  "label": "after",
+  "lineage_failures": 0,
+  "n_rows": 105,
+  "overall_grounded": {
+    "accuracy": 1.0,
+    "n": 76
+  },
+  "split": "dev",
+  "suites_sha256": "1dac086318065e711bfc51500a317342c0c79f4bbd246477fa6e7e2a7233ddd3",
+  "tracks": {
+    "A": {
+      "families": {
+        "a_direct": {
+          "mrr": 0.8286,
+          "n": 5,
+          "ndcg_at_5": 0.8,
+          "recall_at_10": 1.0,
+          "recall_at_5": 0.8,
+          "source_diversity": 0.875
+        },
+        "a_modifier_tokens": {
+          "mrr": 1.0,
+          "n": 2,
+          "ndcg_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "recall_at_5": 1.0,
+          "source_diversity": 0.5
+        },
+        "a_multisource_dup": {
+          "mrr": 1.0,
+          "n": 2,
+          "ndcg_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "recall_at_5": 1.0,
+          "source_diversity": 0.9375
+        },
+        "a_near_miss_attr": {
+          "mrr": 1.0,
+          "n": 3,
+          "ndcg_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "recall_at_5": 1.0,
+          "source_diversity": 0.8333
+        }
+      },
+      "mrr": 0.9286,
+      "n": 12,
+      "ndcg_at_5": 0.9167,
+      "recall_at_10": 1.0,
+      "recall_at_5": 0.9167,
+      "source_diversity": 0.8125
+    },
+    "B": {
+      "accuracy": 1.0,
+      "families": {
+        "b_chain_inst_location_country": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "b_chain_pheno_location_country": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "b_chain_scholar_birthplace_country": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "b_chain_tech_inventor_field": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "b_chain_work_author_birthplace": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "b_frame_variant": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "b_missing_bridge": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "b_missing_terminal": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "b_out_of_ontology_leader": {
+          "accuracy": 1.0,
+          "n": 2
+        }
+      },
+      "n": 21
+    },
+    "C": {
+      "accuracy": 1.0,
+      "families": {
+        "c_civics_emblem": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "c_civics_signing": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_econ_definition": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "c_history_location": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_history_signed": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_author": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_author_wrote": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_genre": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_notable": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_pubyear": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_natural_discovery": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_out_of_ontology_led": {
+          "accuracy": 1.0,
+          "n": 5
+        },
+        "c_tech_property": {
+          "accuracy": 1.0,
+          "n": 2
+        }
+      },
+      "n": 29
+    },
+    "D": {
+      "accuracy": 1.0,
+      "conflict_detection": 1.0,
+      "false_resolution": 0.0,
+      "families": {
+        "d_attribute_disagreement": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "d_identity_nearname": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "d_mayor_resolved": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "d_mayor_unresolved": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "d_partial_agreement": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "d_resolved_alt_wins": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "d_resolved_authority": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "d_text_fallback_stress": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "d_unresolved_founding": {
+          "accuracy": 1.0,
+          "n": 2
+        }
+      },
+      "n": 17,
+      "n_gold_answer": 11,
+      "n_gold_conflicting": 6,
+      "resolution_accuracy": 1.0
+    },
+    "E": {
+      "accuracy": 1.0,
+      "families": {
+        "e_conflict_gold": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "e_directive_companion": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "e_fully_supported": {
+          "accuracy": 1.0,
+          "n": 4
+        },
+        "e_malicious_mixed": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "e_partially_supported": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "e_stale_only_current": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "e_wrong_entity": {
+          "accuracy": 1.0,
+          "n": 2
+        }
+      },
+      "n": 16
+    },
+    "F": {
+      "accuracy": 1.0,
+      "families": {
+        "f_baseline": {
+          "accuracy": 1.0,
+          "n": 4
+        },
+        "f_corroboration": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "f_nearname_citation": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "f_path_two_source": {
+          "accuracy": 1.0,
+          "n": 2
+        }
+      },
+      "n": 10
+    }
+  },
+  "zero_tolerance_rows_nonzero": 0
+}

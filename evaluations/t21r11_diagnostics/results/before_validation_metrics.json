@@ -1,0 +1,271 @@
+{
+  "abstention": {
+    "abstention_precision": 0.6471,
+    "abstention_recall": 0.55,
+    "false_abstention": 9,
+    "false_answer": 6,
+    "true_abstain": 11,
+    "true_answer": 62
+  },
+  "artifact": "T21R11_DIAGNOSTIC_METRICS",
+  "citations": {
+    "citation_coverage": 0.8732,
+    "citation_precision": 0.8732,
+    "citation_resolvability": 0.8732,
+    "extractive_lineage_ok": 0.8732,
+    "fabricated_citations": 0,
+    "n_gold_answer": 71,
+    "required_domains_ok": 1.0,
+    "required_sources_ok": 0.9859
+  },
+  "injection_payload_leaks": 0,
+  "label": "before",
+  "lineage_failures": 0,
+  "n_rows": 101,
+  "overall_grounded": {
+    "accuracy": 0.8592,
+    "n": 71
+  },
+  "split": "validation",
+  "suites_sha256": "38e522ff9f3a612d6dfd64868b7bae915ffce49e82f0f3734fdd83d46b2be4f9",
+  "tracks": {
+    "A": {
+      "families": {
+        "a_direct": {
+          "mrr": 0.8286,
+          "n": 5,
+          "ndcg_at_5": 0.8,
+          "recall_at_10": 1.0,
+          "recall_at_5": 0.8,
+          "source_diversity": 0.825
+        },
+        "a_modifier_tokens": {
+          "mrr": 1.0,
+          "n": 2,
+          "ndcg_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "recall_at_5": 1.0,
+          "source_diversity": 0.5
+        },
+        "a_multisource_dup": {
+          "mrr": 1.0,
+          "n": 3,
+          "ndcg_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "recall_at_5": 1.0,
+          "source_diversity": 0.7917
+        },
+        "a_near_miss_attr": {
+          "mrr": 1.0,
+          "n": 3,
+          "ndcg_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "recall_at_5": 1.0,
+          "source_diversity": 0.75
+        }
+      },
+      "mrr": 0.9341,
+      "n": 13,
+      "ndcg_at_5": 0.9231,
+      "recall_at_10": 1.0,
+      "recall_at_5": 0.9231,
+      "source_diversity": 0.75
+    },
+    "B": {
+      "accuracy": 0.7778,
+      "families": {
+        "b_chain_inst_location_country": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "b_chain_scholar_birthplace_country": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "b_chain_tech_inventor_field": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "b_chain_work_author_birthplace": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "b_frame_variant": {
+          "accuracy": 0.0,
+          "n": 2
+        },
+        "b_missing_bridge": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "b_missing_terminal": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "b_out_of_ontology_leader": {
+          "accuracy": 0.0,
+          "n": 2
+        }
+      },
+      "n": 18
+    },
+    "C": {
+      "accuracy": 0.8148,
+      "families": {
+        "c_civics_emblem": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "c_civics_signing": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_econ_definition": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "c_history_location": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_history_signed": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_author": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_author_wrote": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_genre": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_notable": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_lit_pubyear": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "c_out_of_ontology_led": {
+          "accuracy": 0.0,
+          "n": 5
+        },
+        "c_tech_property": {
+          "accuracy": 1.0,
+          "n": 2
+        }
+      },
+      "n": 27
+    },
+    "D": {
+      "accuracy": 0.7059,
+      "conflict_detection": 0.1667,
+      "false_resolution": 0.8333,
+      "families": {
+        "d_attribute_disagreement": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "d_identity_nearname": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "d_mayor_resolved": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "d_mayor_unresolved": {
+          "accuracy": 0.0,
+          "n": 2
+        },
+        "d_partial_agreement": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "d_resolved_alt_wins": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "d_resolved_authority": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "d_text_fallback_stress": {
+          "accuracy": 0.0,
+          "n": 2
+        },
+        "d_unresolved_founding": {
+          "accuracy": 0.5,
+          "n": 2
+        }
+      },
+      "n": 17,
+      "n_gold_answer": 11,
+      "n_gold_conflicting": 6,
+      "resolution_accuracy": 1.0
+    },
+    "E": {
+      "accuracy": 0.9375,
+      "families": {
+        "e_conflict_gold": {
+          "accuracy": 0.0,
+          "n": 1
+        },
+        "e_directive_companion": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "e_fully_supported": {
+          "accuracy": 1.0,
+          "n": 4
+        },
+        "e_malicious_mixed": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "e_partially_supported": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "e_stale_only_current": {
+          "accuracy": 1.0,
+          "n": 3
+        },
+        "e_wrong_entity": {
+          "accuracy": 1.0,
+          "n": 2
+        }
+      },
+      "n": 16
+    },
+    "F": {
+      "accuracy": 0.9,
+      "families": {
+        "f_baseline": {
+          "accuracy": 1.0,
+          "n": 4
+        },
+        "f_corroboration": {
+          "accuracy": 0.5,
+          "n": 2
+        },
+        "f_nearname_citation": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "f_path_two_source": {
+          "accuracy": 1.0,
+          "n": 2
+        }
+      },
+      "n": 10
+    }
+  },
+  "zero_tolerance_rows_nonzero": 0
+}

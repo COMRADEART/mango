@@ -1,0 +1,134 @@
+{
+  "artifact": "T21R11_PRECONSTRUCTION_QUALIFICATION",
+  "blindness": {
+    "artifact": "T21R11_BLINDNESS_AUDIT",
+    "candidate_leakage": [],
+    "forbidden_calls": [
+      "answer_knowledge",
+      "evaluate",
+      "official_evaluation",
+      "resolve_path",
+      "retrieve_structured",
+      "run_answer_row"
+    ],
+    "forbidden_modules": [
+      "sciencemath",
+      "pipeline",
+      "router",
+      "retrieval",
+      "evidence_paths",
+      "relations",
+      "conflicts",
+      "citation",
+      "injection",
+      "run_eval"
+    ],
+    "historical_blind_leakage": [],
+    "remediation_validation_leakage": [],
+    "runtime_execution_count": 0,
+    "scripts": {
+      "t21r11_build_suites.py": "94739bf7780df99c9c2b42906eab9a80ba873e6d08aa793b089ed24778aa2ad8",
+      "t21r11_construction_audit.py": "6b3c5651a032df0f9705bb63ee806fad74e9762b079208fd134ac1de56f88dc0",
+      "t21r11_construction_gate.py": "754a5f6d2ba9b9fc3b0011cb366554d8f90d488358190787690418c65e5a2b7d",
+      "t21r11_retrieval_mirror.py": "e8a96202336da805bb0178ad78b0389a7975919b079c3417787a6c43df242fa5",
+      "t21r11_static_gold_audit.py": "8d23344f8db6f0990f26fb3572532727e0d247503e7fdd5169024937bbf6dc80",
+      "t21r11_static_semantics.py": "a5a8269a7c9a3dc232a84433b30564353ef3b61c239fce219560c42d07979742",
+      "t21r11_uniqueness.py": "c59c5f4fc10399870ed660fca879757bd33313f52ccf80e97f53249992763087",
+      "t21r11_world.py": "70f1fb3c850c63ee6768037ec618515b04b97984ea4a6e7800eb5bec5106b7a7"
+    },
+    "status": "PASS",
+    "violations": []
+  },
+  "candidate_R11_rows_executed": 0,
+  "checks": {
+    "all_test_gates": false,
+    "blindness": true,
+    "evaluator_freeze": true,
+    "floors_32_and_identical": true,
+    "negative_controls": true,
+    "real_paths_absent": true,
+    "runtime_freeze": true,
+    "synthetic_protocol": true,
+    "zero_candidate_rows": true,
+    "zero_real_rows": true
+  },
+  "evaluator_freeze_verification": {
+    "artifact": "T21R11_EVALUATOR_FREEZE",
+    "freeze": "evaluator_freeze.json",
+    "status": "VERIFIED",
+    "verified_components": 23
+  },
+  "hash_mismatches": 0,
+  "next_authorization_required": "T21R11_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+  "promotion_authorized": false,
+  "real_R11_rows": 0,
+  "real_blind_construction_authorized": false,
+  "real_r11_paths": {
+    "absent_count": 7,
+    "checked": [
+      "rag/gk_holdout_t21r11",
+      "evaluations/t21r11/suites",
+      "evaluations/t21r11/HOLDOUT_FROZEN",
+      "evaluations/t21r11/holdout_manifest.json",
+      "evaluations/t21r11/evaluation_run_ledger.json",
+      "evaluations/t21r11/raw_results.jsonl",
+      "evaluations/t21r11/holdout_results.json"
+    ],
+    "present": [],
+    "status": "PASS"
+  },
+  "runtime_freeze_verification": {
+    "artifact": "T21R11_RUNTIME_FREEZE",
+    "freeze": "runtime_freeze.json",
+    "status": "VERIFIED",
+    "verified_components": 15
+  },
+  "runtime_rows_executed": 0,
+  "states": {
+    "Executive Router": "EXPERIMENTAL",
+    "KNOWLEDGE_RAG": "EXPERIMENTAL",
+    "T21": "OPEN",
+    "T21R10": "CLOSED / VALID_CAPABILITY_FAILURE",
+    "T21R11": "PREREGISTRATION / PRECONSTRUCTION",
+    "T21R9": "CLOSED / NON_PROMOTIONAL_INFRASTRUCTURE_FAILURE",
+    "T22": "BLOCKED"
+  },
+  "status": "FAIL",
+  "tests": {
+    "applicable_repository": {
+      "collected": 3083,
+      "errors": 0,
+      "exit_code": 1,
+      "failed": 16,
+      "junit_sha256": "e7a00248323cbc8e24ddf68173365de208970fbb6d7ee50fa7bcd18026493e59",
+      "passed": 3061,
+      "path": "/tmp/t21r11_junit/applicable.xml",
+      "skipped": 6,
+      "status": "FAIL"
+    },
+    "focused_preconstruction": {
+      "collected": 24,
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "junit_sha256": "6f46a1d683cfe19743495fb538874e11bcc30891b1242b63fbe0eb91999514c3",
+      "passed": 24,
+      "path": "/tmp/t21r11_junit/focused_preconstruction.xml",
+      "skipped": 0,
+      "status": "PASS"
+    },
+    "focused_remediation": {
+      "collected": 65,
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "junit_sha256": "055ade579821a944f942f38d29247295cc409c4caea37aef768e26c3c5b4563e",
+      "passed": 65,
+      "path": "/tmp/t21r11_junit/focused_remediation.xml",
+      "skipped": 0,
+      "status": "PASS"
+    }
+  },
+  "verdict": "T21R11_PRECONSTRUCTION_AUDIT_FAIL",
+  "version": 1
+}

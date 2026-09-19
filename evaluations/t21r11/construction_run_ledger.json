@@ -1,0 +1,9 @@
+{
+  "artifact": "T21R11_CONSTRUCTION_RUN_LEDGER",
+  "authorization": "T21R11_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+  "candidate_R11_rows_executed": 0,
+  "head": "c9284398bef75dd1d1379369b9ecbeafe69ecdd6",
+  "phase": "complete",
+  "runtime_execution_count": 0,
+  "sealed": true
+}

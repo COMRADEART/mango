@@ -1,0 +1,110 @@
+{
+  "artifact": "T21R11_CODE_RUNTIME_FREEZE",
+  "auto_refresh": false,
+  "changed_production_files": [
+    "src/sciencemath/code/editor.py"
+  ],
+  "component": "code_runtime",
+  "component_sha256": {
+    "src/sciencemath/code/__init__.py": "4891b6ca4ae5496b55b83a951d7488ff98c00d1421d00294b05f5d44c491aee6",
+    "src/sciencemath/code/context.py": "ad8433fa9295774af1e084af5d0a5d5cac86ef978e41a9255ac2cdec9cc41285",
+    "src/sciencemath/code/contract.py": "48837555d3f750a3282db667bc727a3045daee6aa7e0031b1758dfe13de51523",
+    "src/sciencemath/code/discovery.py": "b6a3bfdc24a2dacf68289c9a2ecf1ffb62e9e7ed6d8ec6419164c579449de310",
+    "src/sciencemath/code/editor.py": "58b477a2230f87382a6368b5b8af18881092dfcffb735dad4396e6001570e3f5",
+    "src/sciencemath/code/limits.py": "ad885e5e498449affdae6a635ceb3716bc2b88c0c930a5b275619ebdb55db3c8",
+    "src/sciencemath/code/multifile.py": "187aca516cfb64c29d0492afed1511df13ecc607f9dd0d924a00ac0460bde7f0",
+    "src/sciencemath/code/planner.py": "759add09c2647baec0e3178ecbd73b44363627fd19e1495711fa9bb5c79f143f",
+    "src/sciencemath/code/repair_state.py": "996fe5013d19c867729f3d8a6c020fbb584888ae87416ba527e8945c6fd53d25",
+    "src/sciencemath/code/review.py": "54bcf573b35e03ef93d3222ad8e8b9fa2b600b0e75c31a1e5f1643912d3a38f0",
+    "src/sciencemath/code/runner.py": "2435acae344c04caa7541204949e8a74c6e56790761c3f8b41546ad0ef9b3334",
+    "src/sciencemath/code/safety.py": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d",
+    "src/sciencemath/code/search.py": "3531630cec222c5538301289260842a4d92560187de617e1b4a9ab84f272fc89",
+    "src/sciencemath/code/task_contracts.py": "17932bb43b7bc5d527ab7d4c64f5fbc7c514674a3f0ec60f016bd3408658a1aa",
+    "src/sciencemath/code/testsel.py": "7f441103d00fceb1f41d240cf96fc10ed0beca4a0c3b6453a3e9e53e5f96aec0"
+  },
+  "components": [
+    {
+      "path": "src/sciencemath/code/__init__.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "4891b6ca4ae5496b55b83a951d7488ff98c00d1421d00294b05f5d44c491aee6"
+    },
+    {
+      "path": "src/sciencemath/code/context.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "ad8433fa9295774af1e084af5d0a5d5cac86ef978e41a9255ac2cdec9cc41285"
+    },
+    {
+      "path": "src/sciencemath/code/contract.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "48837555d3f750a3282db667bc727a3045daee6aa7e0031b1758dfe13de51523"
+    },
+    {
+      "path": "src/sciencemath/code/discovery.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "b6a3bfdc24a2dacf68289c9a2ecf1ffb62e9e7ed6d8ec6419164c579449de310"
+    },
+    {
+      "path": "src/sciencemath/code/editor.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "58b477a2230f87382a6368b5b8af18881092dfcffb735dad4396e6001570e3f5"
+    },
+    {
+      "path": "src/sciencemath/code/limits.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "ad885e5e498449affdae6a635ceb3716bc2b88c0c930a5b275619ebdb55db3c8"
+    },
+    {
+      "path": "src/sciencemath/code/multifile.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "187aca516cfb64c29d0492afed1511df13ecc607f9dd0d924a00ac0460bde7f0"
+    },
+    {
+      "path": "src/sciencemath/code/planner.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "759add09c2647baec0e3178ecbd73b44363627fd19e1495711fa9bb5c79f143f"
+    },
+    {
+      "path": "src/sciencemath/code/repair_state.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "996fe5013d19c867729f3d8a6c020fbb584888ae87416ba527e8945c6fd53d25"
+    },
+    {
+      "path": "src/sciencemath/code/review.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "54bcf573b35e03ef93d3222ad8e8b9fa2b600b0e75c31a1e5f1643912d3a38f0"
+    },
+    {
+      "path": "src/sciencemath/code/runner.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "2435acae344c04caa7541204949e8a74c6e56790761c3f8b41546ad0ef9b3334"
+    },
+    {
+      "path": "src/sciencemath/code/safety.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d"
+    },
+    {
+      "path": "src/sciencemath/code/search.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "3531630cec222c5538301289260842a4d92560187de617e1b4a9ab84f272fc89"
+    },
+    {
+      "path": "src/sciencemath/code/task_contracts.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "17932bb43b7bc5d527ab7d4c64f5fbc7c514674a3f0ec60f016bd3408658a1aa"
+    },
+    {
+      "path": "src/sciencemath/code/testsel.py",
+      "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+      "sha256": "7f441103d00fceb1f41d240cf96fc10ed0beca4a0c3b6453a3e9e53e5f96aec0"
+    }
+  ],
+  "composite_sha256": "5cb8cd1c77e5ae6cfbd756ba20e8cca1d0367dc7bec422fc1ebb51eed39fb3aa",
+  "editor_py_sha256_lf": "58b477a2230f87382a6368b5b8af18881092dfcffb735dad4396e6001570e3f5",
+  "editor_py_sha256_windows_working_tree_crlf": "87a0cda508315ee111b913df518ac56dad54e740bf060fc377f3fc4f5c295b8f",
+  "hash_algorithm": "sha256 over utf-8 path + NUL + LF-normalized file bytes + NUL for each *.py sorted by filename (matches tests._sha_group)",
+  "historical_superseded_sha256": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+  "note": "Separate from evaluations/t21r11/runtime_freeze.json (knowledge-only RUNTIME_COMPONENTS). Created under T21R11 historical code_runtime anchor supersession authorization.",
+  "scope": "src/sciencemath/code/*.py",
+  "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155"
+}

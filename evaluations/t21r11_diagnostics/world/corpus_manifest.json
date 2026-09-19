@@ -1,0 +1,27 @@
+{
+  "corpus_version": "mango-general-knowledge-corpus-v1",
+  "snapshot_date": "2026-01-31",
+  "source_count": 24,
+  "chunk_count": 654,
+  "domains": [
+    "arts",
+    "biography",
+    "culture",
+    "economics",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "natural_world",
+    "technology_history"
+  ],
+  "license_summary": {
+    "project_owned_fixtures": 24,
+    "notes": "Corpus is project-owned evaluation fixture material (CC0-equivalent); retrieval-only, never used for training; no third-party text ingested."
+  },
+  "file_checksums": {
+    "sources.jsonl": "303aec5ce5c23c459623dd1a1f56d1e4ab560084d1dde57375426bf7707a4782",
+    "chunks.jsonl": "954ece8711ca4cffd6fe815c57f34f042fbac74f5bda9715c9eda3b889bc9316"
+  },
+  "manifest_checksum": "2fd593a3c0f76fd334e89cae725ddb4c03b8bd660fa0b19eda6d0f84be0bff4a"
+}

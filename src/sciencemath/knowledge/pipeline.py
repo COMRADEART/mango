@@ -37,6 +37,7 @@ from sciencemath.knowledge.conflicts import (
     ATTRIBUTE_CUES,
     _normalize_fact_value,
     detect_conflicts,
+    detect_text_value_conflicts,
     query_attribute_set,
     resolve_conflicts,
 )
@@ -65,11 +66,13 @@ from sciencemath.knowledge.retrieval import (
     retrieve,
 )
 from sciencemath.knowledge.relations import (
+    canonical_relation,
     evidence_relation,
     query_relations,
 )
 from sciencemath.knowledge.evidence_paths import (
-    EvidencePath, fact_edge, parse_path_request, resolve_path,
+    EvidencePath, fact_edge, normalize_identity, parse_path_request,
+    resolve_path,
 )
 from sciencemath.knowledge.routing import (
     ANSWER_STATUS,
@@ -256,6 +259,55 @@ def _relevant_conflicts(
     return query_relevant_conflicts(query, conflicts)
 
 
+# C3 — corpus-wide conflict-candidate bound: metadata-exact chunks of
+# window-anchored entities under query-cued attributes, per query.
+CONFLICT_CANDIDATES = 16
+
+
+def _conflict_candidate_items(
+    corpus: KnowledgeCorpus,
+    effective: str,
+    items: list[EvidenceItem],
+    attr_set: frozenset[str],
+    normalized_query: str,
+) -> list[EvidenceItem]:
+    """Corpus-wide conflict candidates for query-entity anchors (C3).
+
+    The independent source that makes a query-relevant conflict detectable
+    or resolvable may rank outside the top-k window; the window-only
+    conflict scan then never fires or resolves with one side missing.
+    Candidates are chunks whose structured metadata matches a WINDOW-
+    ANCHORED entity (the fact_entity of a window item) under a query-cued
+    attribute (attr_set), in chunk-id order, bounded by
+    CONFLICT_CANDIDATES, and exclude the window itself. Projection is
+    provenance-carrying so a resolved winner can be cited (C3 winner
+    append). Query scoping stays downstream and unchanged.
+    """
+    anchors = {normalize_identity((it.metadata or {}).get("fact_entity"))
+               for it in items}
+    anchors.discard("")
+    if not anchors or not attr_set:
+        return []
+    matched: list[str] = []
+    window_ids = {it.chunk_id for it in items}
+    for chunk_id in sorted(corpus.chunks_by_id):
+        if len(matched) >= CONFLICT_CANDIDATES:
+            break
+        if chunk_id in window_ids:
+            continue
+        meta = corpus.chunks_by_id[chunk_id].metadata or {}
+        if normalize_identity(meta.get("fact_entity")) not in anchors:
+            continue
+        if meta.get("fact_attribute") not in attr_set:
+            continue
+        matched.append(chunk_id)
+    if not matched:
+        return []
+    return items_from_chunks([(chunk_id, 0.0) for chunk_id in matched],
+                             corpus.chunks_by_id, corpus.sources_by_id,
+                             normalized_query)
+
+
 def answer_knowledge(
     query: str,
     corpus: KnowledgeCorpus | None = None,
@@ -337,6 +389,14 @@ def answer_knowledge(
         items = path_resolution.items
         trace.extend(path_resolution.trace)
         if path_resolution.status != ANSWER_STATUS:
+            # Preserve the established public decision-trace vocabulary while
+            # routing these questions through the typed path resolver.  The
+            # resolver's ``path:*`` markers are the finer-grained mechanism
+            # probes; callers from T21R6 also rely on these semantic aliases.
+            if path_resolution.conflicts and path_resolution.selected:
+                trace.append("multi_hop:hop2_conflict_unresolved")
+            elif "path:hop2_missing" in path_resolution.trace:
+                trace.append("multi_hop:bridge_not_resolved")
             result = _abstain(
                 query, normalized, trace, counters, eligibility, temporal,
                 injection, subqueries, path_resolution.status, items=items,
@@ -348,23 +408,54 @@ def answer_knowledge(
 
     # ---- source-text injection firewall (T21.19) ---------------------------
     source_directives: list[dict] = []
-    for item in items:
+    source_injection = {
+        "n_items_flagged": 0,
+        "patterns": source_directives,
+        "instruction_authority": 0,
+        "acted_on": False,
+    }
+
+    def register_source_directives(item: EvidenceItem) -> bool:
+        """Record injection signals for every item that may be cited.
+
+        T21R11 can add authority winners and corroborators from outside the
+        initial retrieval window.  Those items must pass the same firewall
+        and appear in the same audit record as initially retrieved items.
+        """
         scan = scan_source_text(item.text_span)
         if scan["flagged"]:
             for p in scan["patterns"]:
                 source_directives.append({"chunk_id": item.chunk_id,
                                           "pattern": p["pattern"]})
-    source_injection = {
-        "n_items_flagged": len({d["chunk_id"] for d in source_directives}),
-        "patterns": source_directives,
-        "instruction_authority": 0,
-        "acted_on": False,
-    }
-    if source_directives:
-        trace.append("source_injection:contained")
+            source_injection["n_items_flagged"] = len(
+                {d["chunk_id"] for d in source_directives})
+            if "source_injection:contained" not in trace:
+                trace.append("source_injection:contained")
+        return bool(scan["flagged"])
 
-    # ---- conflicts (scoped to the query, T21.18 / T21R4) --------------------
-    conflicts_all = detect_conflicts(items, _entity_terms(effective))
+    for item in items:
+        register_source_directives(item)
+
+    # ---- conflicts (scoped to the query, T21.18 / T21R4 / C3) ---------------
+    attr_set = query_attribute_set(effective)
+    # C3 — corpus-wide conflict candidates: the independent source that
+    # makes a query-relevant conflict detectable may rank outside the top-k
+    # window, so the window-only scan never fires. Candidates are
+    # metadata-exact chunks of a window-anchored entity whose
+    # fact_attribute is query-cued; query scoping (entity + attribute
+    # relevance) still happens downstream, unchanged.
+    conflict_candidates = _conflict_candidate_items(
+        corpus, effective, items, attr_set, normalized)
+    if conflict_candidates:
+        trace.append(
+            f"conflict_candidates:{len(conflict_candidates)}_corpus")
+    conflicts_all = detect_conflicts(items + conflict_candidates,
+                                     _entity_terms(effective))
+    # C3 — text-level year-value conflicts among window items, independent
+    # of metadata presence (the legacy fallback is suppressed by any
+    # unrelated metadata fact). Merged after the metadata scan.
+    conflicts_all = conflicts_all + detect_text_value_conflicts(
+        items, attr_set, effective)
     scoped_conflicts = _relevant_conflicts(effective, conflicts_all)
     relevant = [c for c in scoped_conflicts
                 if _conflict_entity_grounded(effective, c)]
@@ -391,6 +482,22 @@ def answer_knowledge(
             source_injection=source_injection, decision_trace=trace,
             zero_tolerance=counters, subqueries=subqueries)
 
+    # C3 — corpus-wide conflict resolution: a RESOLVED_BY_AUTHORITY winner
+    # may be a corpus candidate outside the retrieval window. Without it in
+    # the item pool the answer would cite the losing window value; the
+    # winner is appended so the answer cites the authority-backed value and
+    # the loser-exclusion logic below applies unchanged.
+    if resolution == "RESOLVED_BY_AUTHORITY" and winner is not None:
+        winner_id = winner.get("chunk_id")
+        if winner_id and winner_id not in {it.chunk_id for it in items} \
+                and winner_id in corpus.chunks_by_id:
+            added_winner = items_from_chunks(
+                [(winner_id, 0.0)], corpus.chunks_by_id,
+                corpus.sources_by_id, normalized)[0]
+            register_source_directives(added_winner)
+            items = items + [added_winner]
+            trace.append("conflict_winner:corpus_candidate_appended")
+
     # ---- synthesis: select evidence items and sentences ---------------------
     # T21R5 B1/B2 — deterministic candidate priority: resolved-conflict
     # winner > attribute-matched item (query_attribute_set) > rank order.
@@ -398,7 +505,6 @@ def answer_knowledge(
     # vocabulary stripped from the query side) with a rank-order fallback:
     # a query-mimicking distractor at rank 1 no longer forces an abstention
     # when an entity-consistent item exists deeper in the window.
-    attr_set = query_attribute_set(effective)
     requested_relations = query_relations(effective)
     winner_item = None
     if resolution == "RESOLVED_BY_AUTHORITY" and winner is not None:
@@ -478,6 +584,42 @@ def answer_knowledge(
             if any((edge.subject_entity, edge.relation, edge.object_value)
                    == (r.subject_entity, r.relation, r.object_value) for r in required):
                 pairs.append((edge.proposition, candidate))
+        # C2 corpus-wide edge corroboration: hop-1 edges are bound over the
+        # retrieval window only, so an independent source asserting the same
+        # required edge outside the window was never cited. Candidates are
+        # metadata-exact, source-distinct, and must re-project the same safe
+        # proposition through fact_edge (entity + value + relation cue in
+        # one quarantine-safe sentence); capped and deterministic.
+        _selected_ids = {it.chunk_id for it in path_resolution.selected}
+        _window_ids = {it.chunk_id for it in items}
+        _added = 0
+        for edge in required:
+            if edge is None or _added >= CORPUS_CORROBORATIONS:
+                continue
+            for chunk in _corpus_fact_chunks(
+                    corpus, edge.subject_entity, edge.object_value,
+                    relation=edge.relation,
+                    exclude_source_id=edge.source_id):
+                if _added >= CORPUS_CORROBORATIONS:
+                    break
+                if chunk.chunk_id in _selected_ids \
+                        or chunk.chunk_id in _window_ids:
+                    continue
+                corr = items_from_chunks([(chunk.chunk_id, 0.0)],
+                                         corpus.chunks_by_id,
+                                         corpus.sources_by_id, normalized)[0]
+                register_source_directives(corr)
+                corr_edge = fact_edge(corr)
+                if corr_edge is None:
+                    continue
+                if corr_edge.relation != edge.relation \
+                        or normalize_identity(corr_edge.subject_entity) \
+                        != normalize_identity(edge.subject_entity) \
+                        or _normalize_fact_value(corr_edge.object_value) \
+                        != _normalize_fact_value(edge.object_value):
+                    continue
+                pairs.append((corr_edge.proposition, corr))
+                _added += 1
         trace.append("synthesis:complete_evidence_path")
 
     bridge_item = None
@@ -685,6 +827,43 @@ def answer_knowledge(
                                    synthesis_ok, gate_query):
             pairs.append((_best_sentence_for_terms(
                 synth_text[corr.chunk_id], q_terms), corr))
+        # C2 corpus-wide corroboration: window items only reach the scan
+        # above, so an independent same-fact source outside the top-k
+        # window was never cited. Candidates are metadata-exact
+        # (entity/attribute/value), source-distinct, entity-gated, and
+        # quarantined like window items (B4); capped and deterministic.
+        _src_meta = source_item.metadata or {}
+        _excluded = {it.chunk_id for it in items} | {source_item.chunk_id}
+        _added = 0
+        for chunk in _corpus_fact_chunks(
+                corpus, _src_meta.get("fact_entity") or "",
+                _src_meta.get("fact_value"),
+                attribute=_src_meta.get("fact_attribute"),
+                exclude_source_id=source_item.source_id):
+            if _added >= CORPUS_CORROBORATIONS:
+                break
+            if chunk.chunk_id in _excluded:
+                continue
+            corr = items_from_chunks([(chunk.chunk_id, 0.0)],
+                                     corpus.chunks_by_id,
+                                     corpus.sources_by_id, normalized)[0]
+            if not _evidence_entity_gate(gate_query, corr):
+                continue
+            register_source_directives(corr)
+            # Always synthesize from the quarantined projection.  This is
+            # deliberately independent of ``flagged_ids``, which was built
+            # for the initial window before this corpus-wide item existed.
+            quarantined = quarantine_source_text(corr.text_span)
+            if not quarantined["safe_text"]:
+                continue
+            synth_text[corr.chunk_id] = quarantined["safe_text"]
+            synthesis_ok[corr.chunk_id] = True
+            sentence = _best_sentence_for_terms(synth_text[corr.chunk_id],
+                                                q_terms)
+            if sentence is None:
+                continue
+            pairs.append((sentence, corr))
+            _added += 1
 
     # ---- cited items and coverage gate --------------------------------------
     selected: list[EvidenceItem] = []
@@ -1259,4 +1438,56 @@ def _corroborators(
         if not _evidence_entity_gate(gate_query, it):
             continue
         out.append(it)
+    return out
+
+
+# C2 — corpus-wide same-fact corroboration cap, independent of the window
+# cap above: the independent source asserting the same normalized fact may
+# rank outside the retrieval window, in which case the window-only scan
+# cites a multi-source fact from one source only (official T21R10
+# source-diversity failure mechanism, reproduced on open diagnostics).
+CORPUS_CORROBORATIONS = 2
+
+
+def _corpus_fact_chunks(
+    corpus: KnowledgeCorpus,
+    entity: str,
+    value: object,
+    attribute: str | None = None,
+    relation=None,
+    exclude_source_id: str | None = None,
+) -> list:
+    """Deterministic corpus-wide metadata-exact fact lookup (C2).
+
+    Chunks whose structured metadata asserts the same normalized
+    (fact_entity, fact_attribute, fact_value) triple — the attribute is
+    matched directly or through its canonical relation — from a source
+    other than exclude_source_id, in chunk-id order. Identity and value
+    normalization match the conflict machinery: exact-token entity
+    identity, NFKC/whitespace/casefold value identity. No fuzzy match.
+    """
+    entity_norm = normalize_identity(entity)
+    value_norm = _normalize_fact_value(value)
+    if not entity_norm or value is None:
+        return []
+    out = []
+    for chunk_id in sorted(corpus.chunks_by_id):
+        chunk = corpus.chunks_by_id[chunk_id]
+        meta = chunk.metadata or {}
+        if normalize_identity(meta.get("fact_entity")) != entity_norm:
+            continue
+        if exclude_source_id is not None \
+                and chunk.source_id == exclude_source_id:
+            continue
+        if attribute is not None:
+            if meta.get("fact_attribute") != attribute:
+                continue
+        elif relation is not None:
+            if canonical_relation(meta.get("fact_attribute")) != relation:
+                continue
+        else:
+            continue
+        if _normalize_fact_value(meta.get("fact_value")) != value_norm:
+            continue
+        out.append(chunk)
     return out

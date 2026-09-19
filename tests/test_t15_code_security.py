@@ -164,3 +164,90 @@ def test_benchmark_tampering_refused(tmp_path):
 
 def test_security_battery_zero_violations():
     assert VIOLATIONS == [], VIOLATIONS
+
+
+def test_symlink_true_outside_root_refused(tmp_path):
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    (repo / "src").mkdir()
+    (repo / "src" / "app.py").write_text("x = 1\n", encoding="utf-8")
+    outside = tmp_path / "outside.txt"
+    outside.write_text("secret\n", encoding="utf-8")
+    link = repo / "src" / "link.py"
+    try:
+        os.symlink(str(outside), str(link))
+    except (OSError, NotImplementedError):
+        pytest.skip("symlinks unavailable on this machine")
+    r = E.apply_edit(repo, "src/link.py", "secret", "x")
+    assert not r["ok"]
+    assert outside.read_text(encoding="utf-8") == "secret\n"
+    _record("symlink_true_outside", r["ok"], str(r))
+
+
+def test_directory_symlink_escape_refused(tmp_path):
+    root = _repo(tmp_path)
+    outside_dir = tmp_path / "outside_dir"
+    outside_dir.mkdir()
+    (outside_dir / "secret.py").write_text("secret = 1\n", encoding="utf-8")
+    link_dir = tmp_path / "src" / "linked"
+    try:
+        os.symlink(str(outside_dir), str(link_dir), target_is_directory=True)
+    except (OSError, NotImplementedError, TypeError):
+        try:
+            os.symlink(str(outside_dir), str(link_dir))
+        except (OSError, NotImplementedError):
+            pytest.skip("directory symlinks unavailable on this machine")
+    r = E.apply_edit(root, "src/linked/secret.py", "secret", "x")
+    assert not r["ok"]
+    assert (outside_dir / "secret.py").read_text(encoding="utf-8") == "secret = 1\n"
+    _record("dir_symlink_escape", r["ok"], str(r))
+
+
+def test_nested_symlink_escape_refused(tmp_path):
+    root = _repo(tmp_path)
+    outside = tmp_path / "outside.txt"
+    outside.write_text("secret\n", encoding="utf-8")
+    mid = tmp_path / "src" / "mid.py"
+    link = tmp_path / "src" / "outer.py"
+    try:
+        os.symlink(str(outside), str(mid))
+        os.symlink(str(mid), str(link))
+    except (OSError, NotImplementedError):
+        pytest.skip("symlinks unavailable on this machine")
+    r = E.apply_edit(root, "src/outer.py", "secret", "x")
+    assert not r["ok"]
+    assert outside.read_text(encoding="utf-8") == "secret\n"
+    _record("nested_symlink_escape", r["ok"], str(r))
+
+
+def test_legitimate_in_root_edit_still_works(tmp_path):
+    root = _repo(tmp_path)
+    r = E.apply_edit(root, "src/app.py", "return 'ok'", "return 'ok2'")
+    assert r["ok"]
+    assert "ok2" in (tmp_path / "src" / "app.py").read_text(encoding="utf-8")
+    _record("legitimate_edit", not r["ok"])
+
+
+def test_windows_absolute_path_refused(tmp_path):
+    root = _repo(tmp_path)
+    r = E.apply_edit(root, r"C:\Windows\win.ini", "a", "b")
+    assert not r["ok"]
+    _record("windows_absolute", r["ok"], str(r))
+
+
+def test_create_file_via_symlink_dir_refused(tmp_path):
+    root = _repo(tmp_path)
+    outside_dir = tmp_path / "outside_dir"
+    outside_dir.mkdir()
+    link_dir = tmp_path / "src" / "linked"
+    try:
+        os.symlink(str(outside_dir), str(link_dir), target_is_directory=True)
+    except (OSError, NotImplementedError, TypeError):
+        try:
+            os.symlink(str(outside_dir), str(link_dir))
+        except (OSError, NotImplementedError):
+            pytest.skip("directory symlinks unavailable on this machine")
+    r = E.create_file(root, "src/linked/new.py", "x = 1\n")
+    assert not r["ok"]
+    assert not (outside_dir / "new.py").exists()
+    _record("create_via_symlink_dir", r["ok"], str(r))
