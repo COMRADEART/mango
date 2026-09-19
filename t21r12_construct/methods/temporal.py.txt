@@ -1,0 +1,56 @@
+    def _build_temporal(self) -> None:
+        from collections import Counter
+        world = self.world
+        rows: list[dict] = []
+
+        def add(tag: str, query: str, gold: dict) -> None:
+            rows.append({
+                "case_id": self._case_id("r12b-tp"),
+                "mode": "answer",
+                "category": tag,
+                "request": {"query": query},
+                "gold": gold,
+                "construction_tags": [tag],
+            })
+
+        # mayor_chunks only exist for conflict_towns
+        mayor_towns = list(world.conflict_towns)
+        if len(mayor_towns) < 70:
+            raise AssertionError(
+                f"need >=70 conflict_towns for temporal, got {len(mayor_towns)}")
+        for town in mayor_towns[:70]:
+            add("explicit_current",
+                f"Which person is the current civic head of {town}?",
+                {"expect_status": "ROUTE_WEB_RESEARCH",
+                 "zero_tolerance_zero": True})
+        for town in mayor_towns[:70]:
+            add("stale_snapshot",
+                f"Who is listed as the mayor of {town}?",
+                self._answer_gold(world.mayor_chunks[town]))
+        static_n = 0
+        for country in list(COUNTRIES):
+            if static_n >= 60:
+                break
+            add("static_unnecessary_web",
+                f"The seat town of {country} is which one?",
+                self._answer_gold(world.capital_chunks[country]))
+            static_n += 1
+        i = 0
+        while static_n < 60:
+            town = world.clean_towns[i % len(world.clean_towns)]
+            add("static_unnecessary_web",
+                f"Which charter year does the R12 register list for {town}?",
+                self._answer_gold(world.town_established_chunks[town]))
+            static_n += 1
+            i += 1
+        for town in mayor_towns[:50]:
+            add("historical_as_of",
+                f"As of September 2026, who was the mayor of {town}?",
+                self._answer_gold(world.mayor_chunks[town]))
+        counts = Counter(r["construction_tags"][0] for r in rows)
+        expected = {"explicit_current": 70, "stale_snapshot": 70,
+                    "static_unnecessary_web": 60, "historical_as_of": 50}
+        if dict(counts) != expected or len(rows) != 250:
+            raise AssertionError(f"temporal {dict(counts)} n={len(rows)}")
+        for row in rows:
+            self._add("mango-t21r12-temporal-holdout-v1", row)

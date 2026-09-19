@@ -1,0 +1,64 @@
+    def _build_citation(self) -> None:
+        world = self.world
+        plans: list[tuple[str, dict]] = []
+        for index in range(200, 340):
+            chunk = world.work_pub_chunks[index]
+            plans.append((f"Which year marks the issue of the work "
+                          f"{world.chain_titles[index]}?", chunk))
+        for index in range(420, 520):
+            chunk = world.person_fact_chunks[(index, "BIRTH_YEAR")]
+            plans.append((f"The birth year of the scholar "
+                          f"{world.chain_persons[index]} is which year?",
+                          chunk))
+        for index in range(420, 509):
+            chunk = world.person_fact_chunks[(index, "FIELD_OF_STUDY")]
+            plans.append((f"The research field of the scholar "
+                          f"{world.chain_persons[index]} is which field?",
+                          chunk))
+        for index in range(520, 595):
+            chunk = world.person_fact_chunks[(index, "BIRTHPLACE")]
+            plans.append((f"The registry records which natal town for the "
+                          f"scholar {world.chain_persons[index]}?", chunk))
+        for country in COUNTRIES[:10]:
+            chunk = world.capital_chunks[country]
+            plans.append((f"The registry lists which town as the seat town of "
+                          f"{country}?", chunk))
+        for town in world.clean_towns[80:90]:
+            chunk = world.town_established_chunks[town]
+            plans.append((f"Which charter year is recorded for the town of "
+                          f"{town}?", chunk))
+        for town in world.conflict_towns[:26]:
+            chunk = world.mayor_chunks[town]
+            plans.append((f"Which officeholder is recorded as the mayor of "
+                          f"{town}?", chunk))
+        if len(plans) != 450:
+            raise AssertionError(f"citation plans={len(plans)} != 450")
+        tag_cycle = (
+            ["wrong_locator"] * 60 +
+            ["wrong_source"] * 60 +
+            ["wrong_chunk"] * 60 +
+            ["right_source_wrong_chunk"] * 60 +
+            ["missing_citation"] * 50 +
+            ["partial_citation"] * 50 +
+            ["multi_source_claim"] * 60 +
+            ["spoofed_locator"] * 50
+        )
+        for (query, chunk), tag in zip(plans, tag_cycle):
+            gold = self._answer_gold(chunk)
+            if tag == "missing_citation":
+                gold = {
+                    "expect_status": "ANSWER",
+                    "expect_answer_contains":
+                        [chunk["metadata"]["fact_value"]],
+                    "require_citations": False,
+                    "zero_tolerance_zero": True,
+                    "gold_chunk_id": chunk["chunk_id"],
+                }
+            self._add("mango-t21r12-citation-claim-holdout-v1", {
+                "case_id": self._case_id("r12b-ct"),
+                "mode": "answer",
+                "category": tag,
+                "request": {"query": query},
+                "gold": gold,
+                "construction_tags": [tag],
+            })

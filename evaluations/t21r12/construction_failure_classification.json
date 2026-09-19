@@ -1,0 +1,20 @@
+{
+  "artifact": "T21R12_CONSTRUCTION_FAILURE_CLASSIFICATION",
+  "authorized_actions_not_taken": [
+    "patch build_suites",
+    "change contract",
+    "regenerate corpus",
+    "regenerate suites",
+    "restart construction",
+    "seal"
+  ],
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "corpus_path": "rag/gk_holdout_t21r12",
+  "corpus_present": true,
+  "ledger_status": "failed",
+  "preconstruction_commit": "85312e530891a9f6fe9915894b0e6eb3a9b63bea",
+  "root_cause": "t21r12_build_suites.validate_suite_spec assumed holdout_construction_contract.blind_namespace is an object with case_id_prefix; frozen contract stores blind_namespace as a string. Failure after exclusive ledger creation and after real corpus materialization.",
+  "sealed": false,
+  "suites_present": false,
+  "verdict": "T21R12_REAL_BLIND_HOLDOUT_CONSTRUCTION_FAILED"
+}

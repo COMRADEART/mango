@@ -1,0 +1,28 @@
+{
+  "artifact": "T21R12_CONSTRUCTION_RUN_LEDGER",
+  "automatic_retry_path": false,
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_rows_executed": 0,
+  "construction_attempts": 1,
+  "corpus_materializations": 1,
+  "evaluator_root": "054be7b0ab70a2cd8edd702af21aaacc34bc7fe086ce27355755d55a1491bdd1",
+  "failed_at": "2026-09-19T14:49:58.353282+00:00",
+  "failure_classification": {
+    "corpus_materialized": true,
+    "exception": "TypeError: contract blind_namespace is a string; build_suites expected mapping with case_id_prefix",
+    "regeneration_attempted": false,
+    "repair_attempted": false,
+    "stage": "suite_materialization",
+    "suites_materialized": false
+  },
+  "failure_reason": "suite_materializer_blind_namespace_shape",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "official_evaluator_invocations": 0,
+  "preconstruction_commit": "85312e530891a9f6fe9915894b0e6eb3a9b63bea",
+  "preconstruction_tree": "dc649879cba386bb15470422adb0c20ed27c3265",
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "runtime_rows_executed": 0,
+  "started_at": "2026-09-19T14:49:33.123932+00:00",
+  "status": "failed",
+  "suite_materializations": 0
+}

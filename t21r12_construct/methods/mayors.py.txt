@@ -1,0 +1,11 @@
+    def _build_mayors(self) -> None:
+        for _ in range(120):
+            self.mayor_names.append(self._alloc_person())
+        for index in range(120):
+            town = self.conflict_towns[index]
+            mayor = self.mayor_names[index]
+            text = (f"The September 2026 officeholder roll records "
+                    f"{mayor} as the mayor of {town}.")
+            self.mayor_chunks[town] = self._chunk(
+                self.source_by_role["gov"], f"{_slug(town)}-mayor", text,
+                town, "MAYOR", mayor, snapshot_framed=True)
