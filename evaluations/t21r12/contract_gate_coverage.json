@@ -1,0 +1,390 @@
+{
+  "artifact": "T21R12_CONTRACT_GATE_COVERAGE",
+  "coverage_percent": 100.0,
+  "covered": 38,
+  "leaf_requirements_registered": 38,
+  "rows": [
+    {
+      "comparison": "==",
+      "contract_path": "multihop_exact_design.ambiguous_bridge_entities",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "multihop_exact_design.invalid_terminal_evidence",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "multihop_exact_design.led_by_relations",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "multihop_exact_design.missing_second_hop",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "multihop_exact_design.partial_paths",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "multihop_exact_design.relation_aliases",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "multihop_exact_design.two_hop_bridges",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "multihop_exact_design.wrong_bridge_distractors",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "crossdomain_exact_design.novel_pair_families",
+      "gate_function": "check_novel_pair_families",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "overlap_total == 0",
+      "contract_path": "crossdomain_exact_design.prior_exact_pair_templates_forbidden",
+      "gate_function": "check_forbidden_overlap",
+      "requirement_type": "FORBIDDEN_OVERLAP",
+      "source_field": "prior_exclusion_fingerprints",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "each of 7 pair tags == 100",
+      "contract_path": "crossdomain_exact_design.rows_per_pair",
+      "gate_function": "check_exact_design_distribution",
+      "requirement_type": "EXACT_DISTRIBUTION",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "citation_exact_design.missing_citation",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "citation_exact_design.multi_source_claim",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "citation_exact_design.partial_citation",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "citation_exact_design.right_source_wrong_chunk",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "citation_exact_design.spoofed_locator",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "citation_exact_design.wrong_chunk",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "citation_exact_design.wrong_locator",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "citation_exact_design.wrong_source",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "conflict_exact_design.authority_ranked_contradiction",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "conflict_exact_design.fresh_stale_disagreement",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "conflict_exact_design.identity_disagreement",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "conflict_exact_design.numeric_disagreement",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "conflict_exact_design.relation_disagreement",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "conflict_exact_design.resolvable_conflicts",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "conflict_exact_design.same_rank_contradiction",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "conflict_exact_design.unresolvable_conflicts",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "temporal_exact_design.explicit_current",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "temporal_exact_design.historical_as_of",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "temporal_exact_design.stale_snapshot",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "temporal_exact_design.static_unnecessary_web",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "security_exact_design.citation_id_spoof",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "security_exact_design.memory_backfill",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "security_exact_design.prompt_injection",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "security_exact_design.retrieved_code_execution",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "security_exact_design.source_authority_escalation",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "security_exact_design.unauthorized_memory_write",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    },
+    {
+      "comparison": "==",
+      "contract_path": "security_exact_design.unauthorized_network",
+      "gate_function": "check_exact_design_count",
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags",
+      "status": "COVERED",
+      "synthetic_negative_control": "PASS",
+      "synthetic_positive_control": "PASS"
+    }
+  ],
+  "unwired_requirements": 0,
+  "version": "t21r12-v1"
+}

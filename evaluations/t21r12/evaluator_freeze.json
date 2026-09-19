@@ -1,0 +1,192 @@
+{
+  "artifact": "T21R12_EVALUATOR_FREEZE",
+  "auto_refresh": false,
+  "component_root_sha256": "f8651bcea1b56e6437fc369c35a3771de4ebd70a92983119c4e88996df39a08d",
+  "component_sha256": {
+    "evaluations/t21r11/T21R11_CLOSURE.json": "ec9342f6078bb27142bb62d46edf3c2f992a6ce3ae46fc764af73b52e46a896f",
+    "evaluations/t21r11/runtime_freeze.json": "92b63d9676514f9a87952b58ac449efd8103e4d6ac21531aeecdee23fd025126",
+    "evaluations/t21r12/blindness_policy.json": "d1d343894c70425edc33273fd24fbf2bba3ab320ad97cfcfea29a4c1f9b33f7d",
+    "evaluations/t21r12/contract_gate_coverage.json": "106b45cc81bfef926ad1320b85a5e7b92f0e3d3d5ea2396a8fc860e8c6243b60",
+    "evaluations/t21r12/exact_design_schema.json": "1f9099d61d33db7969f94fb19d24f8e4949e1c18c2836f6e3c363cde033482dc",
+    "evaluations/t21r12/exact_design_tag_vocabulary.json": "243d3aa2fce407c2f78d831e4c7a1988b38bd177821cb812503440729b0f6f61",
+    "evaluations/t21r12/holdout_construction_contract.json": "e3078c42be9b1395e4153d485d2ebd842403907677ea437c630f29b1b778dcd5",
+    "evaluations/t21r12/negative_controls.json": "8195066760eaf93a2457473896bca4ee4de472b647eccb4c497ece4f361774de",
+    "evaluations/t21r12/one_shot_policy.json": "381224e6fcc73d7eda818148ca10fa15f89ff56616c9b731338b883dc0c2c33c",
+    "evaluations/t21r12/preregistration.json": "ce053ce3c1b6af673be1221d588b7df48347be4d6b1eed1d4fbf5bf83cfe65e8",
+    "evaluations/t21r12/prior_exclusion.json": "3fdd234ba8dda5da8d712f25cd79d3667f78200852f3d765c0356c7029d22685",
+    "evaluations/t21r12/remediation_exclusion.json": "3a44c56a8cc3165e24a54d5649276e61cc69478324fb77086af77d4bcba43270",
+    "evaluations/t21r12/runtime_freeze.json": "ca270b218cd62c229cb293a02f9446c4b857d191d21edb7abfe0cc2054aefea8",
+    "evaluations/t21r12/scoring_semantics.json": "fc2b8ea339f29ec303e4853adadd5867803a688188467cdb59f1530da5188ed3",
+    "evaluations/t21r12/synthetic_protocol_report.json": "be413d4e1d19ec6dfb36dd11e4f8854bf7a4727bfca197f7d4248866de69da25",
+    "evaluations/t21r12/validation_contract.json": "a17c2d6721e8093e17e72381eefbcbf94074b0b4c65d90fa9513b21e666235d1",
+    "scripts/t21r11_blindness_audit.py": "8f075548695c515330df31275a32abfba11b20a2af0ec7678ae0204ad6c1d900",
+    "scripts/t21r11_freeze_holdout.py": "7231f282839669dffcdb98c215b4fdc3cc461e49868da20d6ac7bacd38804f1c",
+    "scripts/t21r11_official_eval.py": "5bc5c54907e99f4ed23826064142c4e8e0ae1999f26add3c919077a87332c914",
+    "scripts/t21r11_run_eval.py": "982158585f8c0c8101180486bb06605e627cee1c609cefede8a653e29ea3133a",
+    "scripts/t21r11_uniqueness.py": "c59c5f4fc10399870ed660fca879757bd33313f52ccf80e97f53249992763087",
+    "scripts/t21r12_construction_gate.py": "285c7fa4ec1916be6b18e368a31924452a46e90c34adb4a25d0293a7c50efd15",
+    "scripts/t21r12_exact_design_lib.py": "ec785593c1d14c55058511e8119d9ce700a0345276804eb9bac50a0606872f76",
+    "scripts/t21r12_fixtures.py": "508c95f0bdba993c36ef7b02846d6a992099977bfed3cbb58563ea5c76299b61"
+  },
+  "components": [
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "scripts/t21r12_exact_design_lib.py",
+      "sha256": "ec785593c1d14c55058511e8119d9ce700a0345276804eb9bac50a0606872f76"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "scripts/t21r12_construction_gate.py",
+      "sha256": "285c7fa4ec1916be6b18e368a31924452a46e90c34adb4a25d0293a7c50efd15"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "scripts/t21r12_fixtures.py",
+      "sha256": "508c95f0bdba993c36ef7b02846d6a992099977bfed3cbb58563ea5c76299b61"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "scripts/t21r11_official_eval.py",
+      "sha256": "5bc5c54907e99f4ed23826064142c4e8e0ae1999f26add3c919077a87332c914"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "scripts/t21r11_run_eval.py",
+      "sha256": "982158585f8c0c8101180486bb06605e627cee1c609cefede8a653e29ea3133a"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "scripts/t21r11_freeze_holdout.py",
+      "sha256": "7231f282839669dffcdb98c215b4fdc3cc461e49868da20d6ac7bacd38804f1c"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "scripts/t21r11_uniqueness.py",
+      "sha256": "c59c5f4fc10399870ed660fca879757bd33313f52ccf80e97f53249992763087"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "scripts/t21r11_blindness_audit.py",
+      "sha256": "8f075548695c515330df31275a32abfba11b20a2af0ec7678ae0204ad6c1d900"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/holdout_construction_contract.json",
+      "sha256": "e3078c42be9b1395e4153d485d2ebd842403907677ea437c630f29b1b778dcd5"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/validation_contract.json",
+      "sha256": "a17c2d6721e8093e17e72381eefbcbf94074b0b4c65d90fa9513b21e666235d1"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/scoring_semantics.json",
+      "sha256": "fc2b8ea339f29ec303e4853adadd5867803a688188467cdb59f1530da5188ed3"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/preregistration.json",
+      "sha256": "ce053ce3c1b6af673be1221d588b7df48347be4d6b1eed1d4fbf5bf83cfe65e8"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/exact_design_schema.json",
+      "sha256": "1f9099d61d33db7969f94fb19d24f8e4949e1c18c2836f6e3c363cde033482dc"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/exact_design_tag_vocabulary.json",
+      "sha256": "243d3aa2fce407c2f78d831e4c7a1988b38bd177821cb812503440729b0f6f61"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/contract_gate_coverage.json",
+      "sha256": "106b45cc81bfef926ad1320b85a5e7b92f0e3d3d5ea2396a8fc860e8c6243b60"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/prior_exclusion.json",
+      "sha256": "3fdd234ba8dda5da8d712f25cd79d3667f78200852f3d765c0356c7029d22685"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/remediation_exclusion.json",
+      "sha256": "3a44c56a8cc3165e24a54d5649276e61cc69478324fb77086af77d4bcba43270"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/blindness_policy.json",
+      "sha256": "d1d343894c70425edc33273fd24fbf2bba3ab320ad97cfcfea29a4c1f9b33f7d"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/one_shot_policy.json",
+      "sha256": "381224e6fcc73d7eda818148ca10fa15f89ff56616c9b731338b883dc0c2c33c"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/negative_controls.json",
+      "sha256": "8195066760eaf93a2457473896bca4ee4de472b647eccb4c497ece4f361774de"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/synthetic_protocol_report.json",
+      "sha256": "be413d4e1d19ec6dfb36dd11e4f8854bf7a4727bfca197f7d4248866de69da25"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r12/runtime_freeze.json",
+      "sha256": "ca270b218cd62c229cb293a02f9446c4b857d191d21edb7abfe0cc2054aefea8"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r11/T21R11_CLOSURE.json",
+      "sha256": "ec9342f6078bb27142bb62d46edf3c2f992a6ce3ae46fc764af73b52e46a896f"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "evaluations/t21r11/runtime_freeze.json",
+      "sha256": "92b63d9676514f9a87952b58ac449efd8103e4d6ac21531aeecdee23fd025126"
+    }
+  ],
+  "identity": {
+    "HEAD": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+    "branch": "t21r11-clean-seal",
+    "candidate_base": "247f13656a8392472b0c669d6e1c113071979a62",
+    "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+    "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+    "parent": "247f13656a8392472b0c669d6e1c113071979a62",
+    "remote_HEAD": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+    "tree_sha": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+    "working_tree": "CLEAN",
+    "working_tree_status": []
+  },
+  "runtime_execution_count": 0,
+  "status": "FROZEN",
+  "version": "t21r12-v1"
+}
