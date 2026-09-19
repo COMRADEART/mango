@@ -1,0 +1,8 @@
+{
+  "artifact": "T21R13_CONTRACT_GATE_COVERAGE",
+  "contract_leaves": 38,
+  "coverage_percent": 100,
+  "handled": 38,
+  "registered_handlers": 38,
+  "unhandled": 0
+}

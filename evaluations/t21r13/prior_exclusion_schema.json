@@ -1,0 +1,69 @@
+{
+  "artifact": "T21R13_PRIOR_EXCLUSION_SCHEMA",
+  "dimensions": {
+    "aliases_forbidden": true,
+    "count": 8,
+    "required_set": [
+      "case_ids",
+      "entity_identities",
+      "source_ids",
+      "chunk_ids",
+      "exact_queries",
+      "exact_answers",
+      "exact_source_text",
+      "verbatim_attack_wording"
+    ]
+  },
+  "milestone_dimension_entry": {
+    "count_rule": "count == len(fingerprints)",
+    "empty_allowed": true,
+    "empty_form": {
+      "count": 0,
+      "fingerprints": [],
+      "set_sha256": "canonical empty-set SHA-256"
+    },
+    "fingerprints": {
+      "item_regex": "^[0-9a-f]{64}$",
+      "sorted": true,
+      "type": "array",
+      "unique": true
+    },
+    "required_keys": [
+      "count",
+      "set_sha256",
+      "fingerprints"
+    ],
+    "set_sha256_rule": "set_sha256 == SHA256(canonical LF-joined sorted-unique fingerprints)"
+  },
+  "milestones": {
+    "count": 13,
+    "order_required": true,
+    "required_set": [
+      "T21",
+      "T21R",
+      "T21R2",
+      "T21R3",
+      "T21R4",
+      "T21R5",
+      "T21R6",
+      "T21R7",
+      "T21R8_DIAGNOSTIC",
+      "T21R9_SEALED",
+      "T21R10_SEALED",
+      "T21R11_INVALID_SEALED",
+      "T21R12_FAILED_PARTIAL_BLIND"
+    ]
+  },
+  "prohibited_payloads": [
+    "raw values",
+    "null/None payloads",
+    "non-hex",
+    "63/65-char digests",
+    "uppercase digests",
+    "duplicate fingerprints",
+    "dimension aliases",
+    "missing milestone/dimension"
+  ],
+  "raw_values_included_required": false,
+  "version": "t21r13-v1"
+}

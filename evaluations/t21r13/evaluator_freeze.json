@@ -1,0 +1,128 @@
+{
+  "amendment": {
+    "changed_components": [
+      {
+        "new_sha256": "7c65b86e00143a3529c7bd334ca3d6fa085822ccf84833693eb42498749d33f0",
+        "old_sha256": "6444fabbaa69522200b98aa995a392a4add31803a6240a9ea6b644d7e18dc051",
+        "path": "evaluations/t21r13/prior_exclusion.json"
+      },
+      {
+        "new_sha256": "3a83680d78075ce047034aa00a7e868700ef6afe72ddd9dd26ecaabd52dcb05d",
+        "old_sha256": "96a96775fb183abc3d4460538f94e456f2bab8ad02c28c162bbfae831f054f64",
+        "path": "evaluations/t21r13/synthetic_protocol_report.json"
+      },
+      {
+        "new_sha256": "6965d40a4500c5b813ef5b7b256f4a0d0eae308f34e0f94228e6be8b61a2462e",
+        "old_sha256": "b52744b40c90c63d341c35611e469e9220bae0992a6d7c7fada629144069c8f4",
+        "path": "scripts/t21r13_blind_author.py"
+      },
+      {
+        "new_sha256": "fdc34b4394bade6493078dc9f31bc5292d610fb3010cd4b541be6e6c579ef9f1",
+        "old_sha256": "a1410eeee3738ce9d07aa51a48cd481dc42e1602b76f979b6dac18a673862eb0",
+        "path": "scripts/t21r13_construction_gate.py"
+      },
+      {
+        "new_sha256": "02c3d41f0453ffde1a5257a9e86e0da49646d5eb51d7e508c96046dbe9b2ccce",
+        "old_sha256": "61e32228770f4dfaa614d9d652477c044537381267e23e009f35f3774fcb716b",
+        "path": "scripts/t21r13_freeze_holdout.py"
+      },
+      {
+        "new_sha256": "810a2b273dca9054a881d1bec000d6a9ad8abcd6a73d42b20db30ed88eca78bf",
+        "old_sha256": null,
+        "path": "scripts/t21r13_preconstruction.py"
+      },
+      {
+        "new_sha256": "e8dddfb3de7a5fc332f4510780f3b8b4819ae2acfd0ffc9a67f8e7e9aa3cb203",
+        "old_sha256": null,
+        "path": "scripts/t21r13_static_gold_audit.py"
+      },
+      {
+        "new_sha256": "1fbdccfc33556aeb8aaeeec95bb7e931123bd95ac3de69f3d4b78ac314c8c9c8",
+        "old_sha256": null,
+        "path": "scripts/t21r13_uniqueness.py"
+      },
+      {
+        "new_sha256": "a94ade16928b2a4b4b4f270ebd2bac93962bc8c347355d8317fe813f8533d3d6",
+        "old_sha256": null,
+        "path": "scripts/t21r13_spec_author.py"
+      },
+      {
+        "new_sha256": "06cb9f22bc5dbd31ae1aca9374b7c532388ccdeaaaa5311824836b03ae8257e5",
+        "old_sha256": null,
+        "path": "scripts/t21r13_exact_design_auditor.py"
+      },
+      {
+        "new_sha256": "e2cade857bf5cfe86e2e87570acb891cb2f7e6c4925a922fb05447c1af550818",
+        "old_sha256": null,
+        "path": "tests/test_t21r13_gate_interface.py"
+      },
+      {
+        "new_sha256": "9e941a4ef6daf7857f7ba1a2b8c3eafdeb3db75a37e21ea23db87c931ccdee7c",
+        "old_sha256": null,
+        "path": "evaluations/t21r13/construction_gate_api_contract.json"
+      },
+      {
+        "new_sha256": "716539b8108d9aa53929fd8166e4167c96581c92d65de7bfb806825301e99bb1",
+        "old_sha256": null,
+        "path": "evaluations/t21r13/prior_exclusion_schema.json"
+      },
+      {
+        "new_sha256": "646a9d71cfccf922eeb4fc159a5931c55d9455468ac11e307c587bfbca96ae1d",
+        "old_sha256": null,
+        "path": "evaluations/t21r13/T21R13_INTERFACE_REPAIR_RESULT.json"
+      }
+    ],
+    "new_root_sha256": "9ccdbcb9cea6602f6ca56738dcfea9d7f0f248cf1bc3e226095f44195c25af28",
+    "old_root_sha256": "9d25ecbdc21dadea7fab2f26d1e11f10390579529624b7b36de899b85183f1bc",
+    "parent_commit": "0f93a05c229e2a85b5f96f5560fd3306dc311ebc",
+    "reason": "T21R13 pre-ledger gate-interface repair rebind + prior-exclusion evidence rebuild (hash-only 13x8)"
+  },
+  "artifact": "T21R13_EVALUATOR_FREEZE",
+  "component_count": 40,
+  "component_sha256": {
+    "evaluations/t21r12/T21R12_CLOSURE.json": "e1d568d296fd945b4c980334c45526bc7e45b6e29075a34a60c94e7432ffed37",
+    "evaluations/t21r13/T21R13_INTERFACE_REPAIR_RESULT.json": "646a9d71cfccf922eeb4fc159a5931c55d9455468ac11e307c587bfbca96ae1d",
+    "evaluations/t21r13/blindness_policy.json": "8d746b8816983052514792b8813f7629eb56d211b6087a5ed9162037652fa52e",
+    "evaluations/t21r13/construction_gate_api_contract.json": "9e941a4ef6daf7857f7ba1a2b8c3eafdeb3db75a37e21ea23db87c931ccdee7c",
+    "evaluations/t21r13/contract_access_audit.json": "af86be64a37ebc73049e4bf76227b377f54e73dde396882437bfd4a16ce3d131",
+    "evaluations/t21r13/contract_consumer_matrix.json": "25ae517778091d1061478e96ea8f3b1b5166a02299ec8799ec3fa88481ff2cf7",
+    "evaluations/t21r13/contract_gate_coverage.json": "0b341d1c4a7282ae7720cd1524dd5ea15a4424ad61b4c1f7e97a46c4b7ac25d0",
+    "evaluations/t21r13/contract_schema.json": "f50a52eaf43f078a538a9a2c8b07b961e063dcc75667077f926f2659da4e56cb",
+    "evaluations/t21r13/current_test_applicability.json": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836",
+    "evaluations/t21r13/exact_design_schema.json": "9310784ee58a624556ff76ae483122aad795e9c89abf27765ab2b8d5a3a515ea",
+    "evaluations/t21r13/exact_design_tag_vocabulary.json": "99f88f81c85c33a35baa45578dcc5f1f5409e138fc839553382018fa21f60214",
+    "evaluations/t21r13/holdout_construction_contract.json": "0cf9525d6941bfe1c07c165ece4bbf67bca65a472cea87649d68a59047b17b07",
+    "evaluations/t21r13/negative_controls.json": "e5c6deda65fc1db87decd411d7ffdcfa0bb29d82eb60decbe1832e9ad5c9f6de",
+    "evaluations/t21r13/one_shot_policy.json": "21a2270d6e92742ededb9202966773e46144d1d4ebd6efc047fd31fc01f89d8a",
+    "evaluations/t21r13/pre_ledger_contract_parse_preflight.json": "b4d36df1a4e6285ee62dcedfd12ceacd4abe3d1f575222beb0717a52307d47ac",
+    "evaluations/t21r13/preconstruction_qualification.json": "11ed2668ea6d01d44e4a26e3cce34b145a2ce2aa856c0092de04216cb9a0be37",
+    "evaluations/t21r13/preregistration.json": "8a28201144d123bebd0dbc8eb96c435e0d9fbe31eae4ab13e6d5c30b004885b6",
+    "evaluations/t21r13/prior_exclusion.json": "7c65b86e00143a3529c7bd334ca3d6fa085822ccf84833693eb42498749d33f0",
+    "evaluations/t21r13/prior_exclusion_schema.json": "716539b8108d9aa53929fd8166e4167c96581c92d65de7bfb806825301e99bb1",
+    "evaluations/t21r13/remediation_exclusion.json": "2d8faac226efba49e7b1dfb4f17433ebccbec5f0d5f25d8acda6f913712ff2a7",
+    "evaluations/t21r13/runtime_freeze.json": "1800729e3d4048edeb65c15d04c3fce4252f206c365e3ec47d8f043b20cc709d",
+    "evaluations/t21r13/schema_negative_controls.json": "87e7d95989be4382c6ff0056c7aedfdbd182423c1c11e38cb2e39de130286b05",
+    "evaluations/t21r13/scoring_semantics.json": "3b7813783300635d701b606223ec67e4de735344a6c9b1e85a66ca5feed26879",
+    "evaluations/t21r13/synthetic_protocol_report.json": "3a83680d78075ce047034aa00a7e868700ef6afe72ddd9dd26ecaabd52dcb05d",
+    "evaluations/t21r13/validation_contract.json": "9d23d274d5f79c3d1aa19904b23842a907b0e5a574ea847bc540b483af8809a5",
+    "scripts/t21r12_official_eval.py": "0c7dba3d71c195cf375e3cbf1b1fe0480f25e678e4afbe77a078bea55bfbed76",
+    "scripts/t21r13_blind_author.py": "6965d40a4500c5b813ef5b7b256f4a0d0eae308f34e0f94228e6be8b61a2462e",
+    "scripts/t21r13_build_suites.py": "f9f6bb12ba8f01a404487cc69854b2a8514b57221f5e50d9cbfdb1d7aa0102bb",
+    "scripts/t21r13_construction_gate.py": "fdc34b4394bade6493078dc9f31bc5292d610fb3010cd4b541be6e6c579ef9f1",
+    "scripts/t21r13_exact_design_auditor.py": "06cb9f22bc5dbd31ae1aca9374b7c532388ccdeaaaa5311824836b03ae8257e5",
+    "scripts/t21r13_exact_design_lib.py": "240cdd263538084fa66fcaedebbf25a493b10d2340e37978ebd160d9b6b3d381",
+    "scripts/t21r13_fixtures.py": "bbe8f20dd0558060b37543219ebd9bf1fac548bb42534df42d6118c444ed1104",
+    "scripts/t21r13_freeze_holdout.py": "02c3d41f0453ffde1a5257a9e86e0da49646d5eb51d7e508c96046dbe9b2ccce",
+    "scripts/t21r13_preconstruction.py": "810a2b273dca9054a881d1bec000d6a9ad8abcd6a73d42b20db30ed88eca78bf",
+    "scripts/t21r13_spec_author.py": "a94ade16928b2a4b4b4f270ebd2bac93962bc8c347355d8317fe813f8533d3d6",
+    "scripts/t21r13_static_gold_audit.py": "e8dddfb3de7a5fc332f4510780f3b8b4819ae2acfd0ffc9a67f8e7e9aa3cb203",
+    "scripts/t21r13_uniqueness.py": "1fbdccfc33556aeb8aaeeec95bb7e931123bd95ac3de69f3d4b78ac314c8c9c8",
+    "scripts/t21r13_world.py": "b95ca92202b66273add5ae489cd7adab37263eb0b2223b6e892e6e6f185e5585",
+    "tests/test_t21r13_gate_interface.py": "e2cade857bf5cfe86e2e87570acb891cb2f7e6c4925a922fb05447c1af550818",
+    "tests/test_t21r13_preconstruction.py": "4c42c7f24c8970508ab464f82c162eb536c082a58ad797ad4cf665f4f6499391"
+  },
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "root_sha256": "9ccdbcb9cea6602f6ca56738dcfea9d7f0f248cf1bc3e226095f44195c25af28",
+  "runtime_execution_count": 0,
+  "status": "FROZEN"
+}

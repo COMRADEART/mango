@@ -1,0 +1,260 @@
+{
+  "amendment_parent": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
+  "artifact": "T21R13_TEST_FAILURE_ADJUDICATION",
+  "classification_summary": {
+    "ENVIRONMENT_ONLY_FAILURE": 0,
+    "LIVE_R13_REGRESSION": 0,
+    "OBSOLETE_HISTORICAL_ASSERTION": 5,
+    "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE": 9,
+    "UNKNOWN": 0
+  },
+  "entries": 14,
+  "failure_set_stable_across_reruns": true,
+  "failures": [
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "historical_milestone": "T19",
+      "original_invariant": "code_runtime composite sha256 must equal historical T19 frozen composites.code (cf9dc3c6\u2026)",
+      "reason": "evaluations/t21r11/historical_anchor_supersession.json superseded_nodes[0]",
+      "replacement_invariant": "current R11/R12 code_runtime equals evaluations/t21r11/code_runtime_freeze.json after authorized symlink remediation",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged",
+      "why_old_no_longer_governs": "Live security behavior covered by symlink escape tests + current code_runtime freeze; historical exact-hash anchor preserved at freeze commit and recorded in historical_anchor_supersession.json"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "historical_milestone": "T19",
+      "original_invariant": "same as #1 \u2014 historical code_runtime exact hash via t21r8_hash_matches",
+      "reason": "evaluations/t21r11/historical_anchor_supersession.json superseded_nodes[1]",
+      "replacement_invariant": "current code_runtime freeze binding",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched",
+      "why_old_no_longer_governs": "Same supersession as #1; floors themselves unchanged (4656be72\u2026)"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "historical_milestone": "T21R10",
+      "original_invariant": "R10 preconstruction synthetic/static scanner + blindness must PASS while real R10 paths remain absent",
+      "reason": "Listed in historical_anchor_supersession.historical_exclusions_unchanged; R10 already sealed+evaluated",
+      "replacement_invariant": "R12 preconstruction blindness/synthetic/negative controls; R10 sealed uniqueness preserved at R10 commit",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r12_preconstruction.py + evaluations/t21r12/holdout_blindness.json pattern / synthetic_protocol_report.json",
+      "test_id": "tests/test_t21r10_preconstruction.py::test_static_scanner_uniqueness_and_blindness_all_pass",
+      "why_old_no_longer_governs": null
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "historical_milestone": "T21R10",
+      "original_invariant": "R10 preconstruction end-to-end miniature qualification PASS",
+      "reason": "historical_exclusions_unchanged; R10 phase complete",
+      "replacement_invariant": "R12 synthetic rehearsal + exact-design leaf controls",
+      "replacement_result": "PASS",
+      "replacement_test": "evaluations/t21r12/synthetic_protocol_report.json + tests/test_t21r12_preconstruction.py",
+      "test_id": "tests/test_t21r10_preconstruction.py::test_end_to_end_nonblind_miniature_and_all_controls_pass",
+      "why_old_no_longer_governs": null
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "historical_milestone": "T21R10",
+      "original_invariant": "During R10 preconstruction / one-shot hygiene, evaluation_run_ledger and other real R10 exposure paths must be absent",
+      "reason": "R10 official evaluation already executed; ledger is permanent one-shot evidence, not a live R12 defect",
+      "replacement_invariant": "R12 real blind/exposure paths absent until construction authorization",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent",
+      "test_id": "tests/test_t21r10_preconstruction.py::test_every_real_r10_holdout_and_exposure_path_remains_absent",
+      "why_old_no_longer_governs": null
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "historical_milestone": "T21R11",
+      "original_invariant": "Disk hashes must match evaluations/t21r11/evaluator_freeze.json component list from R11 preconstruction/seal era",
+      "reason": "evaluations/t21r11/T21R11_CLOSURE.json; scripts/t21r11_official_eval.py _refuse_if_invalid_holdout_closed",
+      "replacement_invariant": "R12 evaluator freeze binds current official_eval; R11 closure permanently refuses evaluation",
+      "replacement_result": "PASS",
+      "replacement_test": "evaluations/t21r12/evaluator_freeze.json verification + tests/test_t21r12_preconstruction.py::test_r11_closure_tombstone_present + official_eval preflight refusal smoke",
+      "test_id": "tests/test_t21r11_preconstruction.py::test_evaluator_freeze_rehashes_every_component",
+      "why_old_no_longer_governs": "Stronger: invalid holdout can never be evaluated; R12 freeze tracks the refusal wiring"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "historical_milestone": "T21R11",
+      "original_invariant": "real R11 paths must remain absent during R11 preconstruction (not forever)",
+      "reason": "R11 intentionally sealed at 283442e; closure CLOSED_INVALID_UNEVALUATED_HOLDOUT preserves holdout as audit evidence",
+      "replacement_invariant": "R12 corpus/suites/manifest/HOLDOUT_FROZEN/ledgers absent",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent",
+      "test_id": "tests/test_t21r11_preconstruction.py::test_every_real_r11_blind_and_exposure_path_is_absent",
+      "why_old_no_longer_governs": null
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "historical_milestone": "T21R12_FAILED_PARTIAL_BLIND",
+      "original_invariant": "During R12 preconstruction, real R12 holdout paths must be absent",
+      "reason": "R12 construction failed after exclusive ledger + corpus; forensic corpus retained under T21R12_CLOSURE",
+      "replacement_invariant": "Only real R13 paths must remain absent; R12 forensic corpus preserved",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r13_preconstruction.py::test_real_r13_paths_absent",
+      "test_id": "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "historical_milestone": "T21R3",
+      "original_invariant": "code_runtime composite unchanged vs evaluations/t21r3/runtime_freeze.json",
+      "reason": "historical_anchor_supersession superseded_nodes T21R3",
+      "replacement_invariant": "current code_runtime freeze",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+      "why_old_no_longer_governs": "Authorized symlink remediation; historical freeze artifact unchanged at its commit"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "historical_milestone": "T21R4",
+      "original_invariant": "code_runtime unchanged vs T21R4 runtime freeze",
+      "reason": "historical_anchor_supersession superseded_nodes T21R4",
+      "replacement_invariant": "current code_runtime freeze",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+      "why_old_no_longer_governs": "Same authorized supersession as #8"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "historical_milestone": "T21R5",
+      "original_invariant": "code_runtime unchanged vs T21R5 runtime freeze",
+      "reason": "historical_anchor_supersession superseded_nodes T21R5",
+      "replacement_invariant": "current code_runtime freeze",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+      "why_old_no_longer_governs": "Same authorized supersession as #8"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "historical_milestone": "T21R8",
+      "original_invariant": "T21R8 runtime freeze group knowledge_runtime exact hash on current tree",
+      "reason": "historical_anchor_supersession.historical_exclusions_unchanged; candidate freeze d4b1902",
+      "replacement_invariant": "R12 runtime freeze binds current candidate knowledge modules; remediation suites PASS",
+      "replacement_result": "PASS",
+      "replacement_test": "evaluations/t21r12/runtime_freeze.json (15 knowledge components) + remediation regression tests",
+      "test_id": "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass",
+      "why_old_no_longer_governs": "R8 freeze remains at historical commit; current tree governed by R11/R12 runtime freeze; listed in historical_exclusions_unchanged"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "historical_milestone": "T21R9",
+      "original_invariant": "Current disk must match T21R9 frozen component hashes (incl. relations.py)",
+      "reason": "historical_exclusions_unchanged",
+      "replacement_invariant": "R12 runtime freeze binds current relations.py; remediation coverage PASS",
+      "replacement_result": "PASS",
+      "replacement_test": "evaluations/t21r12/runtime_freeze.json component verify + tests/test_t21r11_remediation.py",
+      "test_id": "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components",
+      "why_old_no_longer_governs": "Intentional candidate remediation after R9; historical freeze preserved; current freeze+remediation tests cover live property"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "historical_milestone": "T21R9",
+      "original_invariant": "Only documented post-R9 corpus.py drift tolerated; other mismatches fail",
+      "reason": "historical_exclusions_unchanged; runtime disk mismatches=0",
+      "replacement_invariant": "All 15 current runtime components match freeze",
+      "replacement_result": "PASS",
+      "replacement_test": "evaluations/t21r12/runtime_freeze.json disk rehash (0 mismatches)",
+      "test_id": "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components",
+      "why_old_no_longer_governs": "R12 freeze is authoritative for current tree; R9 phase-specific tolerance list is obsolete"
+    }
+  ],
+  "identity": {
+    "head": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
+    "remote": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
+    "tree": "d8626d0a20e417bbaffc10d6cf7cc063790bb4d2"
+  },
+  "nondeterministic": false,
+  "replacement_coverage": [
+    {
+      "old_invariant": "code_runtime composite sha256 must equal historical T19 frozen composites.code (cf9dc3c6\u2026)",
+      "old_milestone": "T19",
+      "old_test": "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged",
+      "replacement_invariant": "current R11/R12 code_runtime equals evaluations/t21r11/code_runtime_freeze.json after authorized symlink remediation",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "why_old_assertion_no_longer_governs_R13": "Live security behavior covered by symlink escape tests + current code_runtime freeze; historical exact-hash anchor preserved at freeze commit and recorded in historical_anchor_supersession.json"
+    },
+    {
+      "old_invariant": "same as #1 \u2014 historical code_runtime exact hash via t21r8_hash_matches",
+      "old_milestone": "T19",
+      "old_test": "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched",
+      "replacement_invariant": "current code_runtime freeze binding",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "why_old_assertion_no_longer_governs_R13": "Same supersession as #1; floors themselves unchanged (4656be72\u2026)"
+    },
+    {
+      "old_invariant": "Disk hashes must match evaluations/t21r11/evaluator_freeze.json component list from R11 preconstruction/seal era",
+      "old_milestone": "T21R11",
+      "old_test": "tests/test_t21r11_preconstruction.py::test_evaluator_freeze_rehashes_every_component",
+      "replacement_invariant": "R12 evaluator freeze binds current official_eval; R11 closure permanently refuses evaluation",
+      "replacement_result": "PASS",
+      "replacement_test": "evaluations/t21r12/evaluator_freeze.json verification + tests/test_t21r12_preconstruction.py::test_r11_closure_tombstone_present + official_eval preflight refusal smoke",
+      "why_old_assertion_no_longer_governs_R13": "Stronger: invalid holdout can never be evaluated; R12 freeze tracks the refusal wiring"
+    },
+    {
+      "old_invariant": "code_runtime composite unchanged vs evaluations/t21r3/runtime_freeze.json",
+      "old_milestone": "T21R3",
+      "old_test": "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+      "replacement_invariant": "current code_runtime freeze",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "why_old_assertion_no_longer_governs_R13": "Authorized symlink remediation; historical freeze artifact unchanged at its commit"
+    },
+    {
+      "old_invariant": "code_runtime unchanged vs T21R4 runtime freeze",
+      "old_milestone": "T21R4",
+      "old_test": "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+      "replacement_invariant": "current code_runtime freeze",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "why_old_assertion_no_longer_governs_R13": "Same authorized supersession as #8"
+    },
+    {
+      "old_invariant": "code_runtime unchanged vs T21R5 runtime freeze",
+      "old_milestone": "T21R5",
+      "old_test": "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+      "replacement_invariant": "current code_runtime freeze",
+      "replacement_result": "PASS",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "why_old_assertion_no_longer_governs_R13": "Same authorized supersession as #8"
+    },
+    {
+      "old_invariant": "T21R8 runtime freeze group knowledge_runtime exact hash on current tree",
+      "old_milestone": "T21R8",
+      "old_test": "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass",
+      "replacement_invariant": "R12 runtime freeze binds current candidate knowledge modules; remediation suites PASS",
+      "replacement_result": "PASS",
+      "replacement_test": "evaluations/t21r12/runtime_freeze.json (15 knowledge components) + remediation regression tests",
+      "why_old_assertion_no_longer_governs_R13": "R8 freeze remains at historical commit; current tree governed by R11/R12 runtime freeze; listed in historical_exclusions_unchanged"
+    },
+    {
+      "old_invariant": "Current disk must match T21R9 frozen component hashes (incl. relations.py)",
+      "old_milestone": "T21R9",
+      "old_test": "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components",
+      "replacement_invariant": "R12 runtime freeze binds current relations.py; remediation coverage PASS",
+      "replacement_result": "PASS",
+      "replacement_test": "evaluations/t21r12/runtime_freeze.json component verify + tests/test_t21r11_remediation.py",
+      "why_old_assertion_no_longer_governs_R13": "Intentional candidate remediation after R9; historical freeze preserved; current freeze+remediation tests cover live property"
+    },
+    {
+      "old_invariant": "Only documented post-R9 corpus.py drift tolerated; other mismatches fail",
+      "old_milestone": "T21R9",
+      "old_test": "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components",
+      "replacement_invariant": "All 15 current runtime components match freeze",
+      "replacement_result": "PASS",
+      "replacement_test": "evaluations/t21r12/runtime_freeze.json disk rehash (0 mismatches)",
+      "why_old_assertion_no_longer_governs_R13": "R12 freeze is authoritative for current tree; R9 phase-specific tolerance list is obsolete"
+    }
+  ],
+  "timestamp": "2026-09-19T20:05:48.770133+00:00",
+  "unclassified": 0,
+  "version": "t21r13-v1"
+}

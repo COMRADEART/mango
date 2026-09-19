@@ -1,0 +1,77 @@
+{
+  "artifact": "T21R13_REQUALIFICATION_RESULT",
+  "bindings": {
+    "evaluator_freeze_sha256": "ff91c0af26603ce49ee2ea8cc0d36fb4b517ef4727d9c9ca2e193cf187cdf114",
+    "holdout_construction_contract_sha256": "0cf9525d6941bfe1c07c165ece4bbf67bca65a472cea87649d68a59047b17b07",
+    "preconstruction_qualification_sha256": "11ed2668ea6d01d44e4a26e3cce34b145a2ce2aa856c0092de04216cb9a0be37",
+    "synthetic_protocol_report_sha256": "3a83680d78075ce047034aa00a7e868700ef6afe72ddd9dd26ecaabd52dcb05d"
+  },
+  "blocker": {
+    "classification": "BLIND_SPEC_AUTHOR_IDENTIFIER_COLLISION_WITH_SEALED_HISTORICAL_MATERIAL",
+    "consequence": "historical exclusion overlap = 0 cannot be satisfied; construction contract requires zero historical overlap",
+    "discovered_by": "corrected hash-only exclusion registry (the previous raw-value registry made every comparison vacuous)",
+    "evidence": {
+      "colliding_chunk_ids": 2176,
+      "colliding_entity_identities": 3132,
+      "colliding_exact_answers": 116,
+      "colliding_exact_queries": 82,
+      "colliding_source_ids": "12/16 identical to sealed R11 source ids (gk-r11arc-*, gk-r11geo-a/b, gk-r11gov, gk-r11adv-a/b)",
+      "colliding_verbatim_attack_wording": 1,
+      "live_prevalidate": "exit 1; construction gate 58/60; failed = [historical_overlap, crossdomain_exact_design.prior_exact_pair_templates_forbidden]"
+    },
+    "required_next": "Authorized preconstruction amendment to re-author the private-spec identifier/name space so every generated identifier and name is provably disjoint from R10/R11/R12 history, then re-run requalification",
+    "scope": "OUTSIDE this authorization (requires re-authoring the R13 private-spec identity space; the authorization did not permit blind-author modification and forbids modifying real R13 blind material)"
+  },
+  "delivered": {
+    "applicable_test_gate": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 3125
+    },
+    "construction_gate_api_contract": {
+      "sha256": "9e941a4ef6daf7857f7ba1a2b8c3eafdeb3db75a37e21ea23db87c931ccdee7c"
+    },
+    "evaluator_freeze_rebound": true,
+    "gate_interface_live_verification": {
+      "checks_passed": 50,
+      "cli_api_divergences": 0,
+      "exact_design_passed": 38,
+      "gate_checks": 50
+    },
+    "prior_exclusion_rebuilt": {
+      "deterministic": true,
+      "dimensions": 8,
+      "milestone_dimension_sets": "104/104 VALID",
+      "milestones": 13,
+      "raw_values_included": false,
+      "sha256": "7c65b86e00143a3529c7bd334ca3d6fa085822ccf84833693eb42498749d33f0",
+      "status": "VALID"
+    },
+    "prior_exclusion_schema": {
+      "sha256": "716539b8108d9aa53929fd8166e4167c96581c92d65de7bfb806825301e99bb1"
+    },
+    "synthetic_end_to_end": {
+      "candidate_R13_rows": 0,
+      "collision_controls": "8/8 PASS-by-rejection",
+      "negative_controls": "37/37",
+      "official_evaluator_invocations": 0,
+      "raw_value_rejection": "ENFORCED",
+      "real_R13_rows": 0,
+      "stages_passed": 24,
+      "status": "PASS"
+    }
+  },
+  "not_authorized_or_done": [
+    "construction ledger (absent)",
+    "real R13 corpus (absent)",
+    "real R13 suites (absent)",
+    "holdout manifest (absent)",
+    "HOLDOUT_FROZEN (absent)",
+    "official evaluation (0 invocations)"
+  ],
+  "one_shot_budget_consumed": false,
+  "round": "PRIOR_EXCLUSION_EVIDENCE_REBUILD + FULL_PRECONSTRUCTION_REQUALIFICATION",
+  "runtime_execution_count": 0,
+  "verdict": "T21R13_REAL_BLIND_CONSTRUCTION_READINESS_FAIL"
+}
