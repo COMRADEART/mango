@@ -18,21 +18,21 @@
     {
       "name": "missing_corpus_manifest",
       "rejection": [
-        "load_corpus refused the sealed corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r13-preconstruction-synthetic-3gyfi8oi\\negative\\missing_corpus_manifest\\rag\\gk_holdout_t21r13\\corpus_manifest.json"
+        "load_corpus refused the sealed corpus: missing corpus file: <t21r13-disposable-synthetic-workspace>\\negative\\missing_corpus_manifest\\rag\\gk_holdout_t21r13\\corpus_manifest.json"
       ],
       "status": "PASS"
     },
     {
       "name": "missing_sources",
       "rejection": [
-        "load_corpus refused the sealed corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r13-preconstruction-synthetic-3gyfi8oi\\negative\\missing_sources\\rag\\gk_holdout_t21r13\\sources.jsonl"
+        "load_corpus refused the sealed corpus: missing corpus file: <t21r13-disposable-synthetic-workspace>\\negative\\missing_sources\\rag\\gk_holdout_t21r13\\sources.jsonl"
       ],
       "status": "PASS"
     },
     {
       "name": "missing_chunks",
       "rejection": [
-        "load_corpus refused the sealed corpus: missing corpus file: C:\\Users\\allam\\AppData\\Local\\Temp\\t21r13-preconstruction-synthetic-3gyfi8oi\\negative\\missing_chunks\\rag\\gk_holdout_t21r13\\chunks.jsonl"
+        "load_corpus refused the sealed corpus: missing corpus file: <t21r13-disposable-synthetic-workspace>\\negative\\missing_chunks\\rag\\gk_holdout_t21r13\\chunks.jsonl"
       ],
       "status": "PASS"
     },
@@ -360,7 +360,7 @@
       "status": "PASS"
     },
     "manifest_generation": {
-      "freeze_root_sha256": "577073a53e47f7d4dad811dfc87bcf353ad1dccb487ea2aa9d815544c94a080c",
+      "freeze_root_sha256": "5094b8c56bdebbe471e50a0f4890c6c8d38ed326e55cb4b68cffcc6f032ad07a",
       "runtime_execution_count": 0,
       "status": "PASS"
     },
@@ -376,7 +376,7 @@
         "status": "PASS"
       },
       "defects": [],
-      "holdout_manifest_sha256": "83027d88c0dbd0e72fb29b75b422a32f385cc7026119f1a84a901d737fd3fde3",
+      "holdout_manifest_sha256": "2bf558e1a9b03447f571e787128094e2085ba852432b6ad3a1fd1bff8d870889",
       "ledger_written": false,
       "runtime_execution_count": 0,
       "status": "PASS"
@@ -621,6 +621,7 @@
     "mango-t21r13-temporal-holdout-v1": "PASS"
   },
   "synthetic_material_disposable": true,
+  "synthetic_path_scrubbing": "APPLIED",
   "synthetic_workspace_deleted": true,
   "version": 2,
   "world_materialization": "PASS"
