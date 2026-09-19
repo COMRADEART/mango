@@ -1,16 +1,62 @@
 {
+  "R12_failure_regression": {
+    "canonical_blind_namespace_shape": "PASS",
+    "legacy_incompatible_namespace_shape": "REJECTED",
+    "suite_materializer_exact_contract_parse": "PASS"
+  },
   "amendment_parent": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
-  "artifact": "T21R13_TEST_FAILURE_ADJUDICATION",
-  "classification_summary": {
+  "artifact": "T21R13_REAL_BLIND_CONSTRUCTION_READINESS",
+  "construction_ledger_created": false,
+  "consumer_matrix": {
+    "fields_mapped": 26,
+    "type_disagreements": 0,
+    "unknown_consumers": 0
+  },
+  "contract_schema": {
+    "blind_namespace_type": "string",
+    "case_id_prefix_type": "string",
+    "field_count": 26,
+    "typed": 26,
+    "untyped": 0,
+    "violations": 0
+  },
+  "current_applicable_suite": {
+    "collected": 3113,
+    "deselected": 14,
+    "errors": 0,
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 3113,
+    "skipped": 0
+  },
+  "exact_design": {
+    "coverage_percent": 100,
+    "handlers": 38,
+    "leaves": 38,
+    "negative_controls": "45/45 PASS",
+    "positive_controls": "38/38 PASS",
+    "unhandled": 0
+  },
+  "exclusions": {
+    "OPEN_REMEDIATION_MATERIAL": true,
+    "T21R12_FAILED_PARTIAL_BLIND": true,
+    "historical_dimensions": 8,
+    "historical_milestones": 13
+  },
+  "exposure": {
+    "candidate_R13_rows_executed": 0,
+    "official_evaluator_invocations": 0,
+    "real_R13_rows": 0,
+    "runtime_R13_rows_executed": 0
+  },
+  "failure_classification": {
     "ENVIRONMENT_ONLY_FAILURE": 0,
     "LIVE_R13_REGRESSION": 0,
     "OBSOLETE_HISTORICAL_ASSERTION": 5,
     "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE": 9,
     "UNKNOWN": 0
   },
-  "entries": 14,
-  "failure_set_stable_across_reruns": true,
-  "failures": [
+  "failure_details": [
     {
       "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
       "historical_milestone": "T19",
@@ -165,12 +211,97 @@
       "why_old_no_longer_governs": "R12 freeze is authoritative for current tree; R9 phase-specific tolerance list is obsolete"
     }
   ],
+  "floors": {
+    "count": 32,
+    "difference_vs_prior": 0,
+    "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa"
+  },
+  "focused_r13_tests": {
+    "collected": 9,
+    "errors": 0,
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 9,
+    "skipped": 0
+  },
+  "freeze_diff": {
+    "applicability": {
+      "committed_old_at_parent": "cd4932d39bc857c32eb8a3db8bcf35d812d9c6315052762d636ccaa527e40598",
+      "new_sha256": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836",
+      "old_sha256": "32c6e48fcf984097cebdbeed5d96d098fc59cf4a9be9e233e359a98e9a8ba3e8",
+      "working_tree_before_enrich_sha256": "32c6e48fcf984097cebdbeed5d96d098fc59cf4a9be9e233e359a98e9a8ba3e8"
+    },
+    "artifact": "T21R13_PRECONSTRUCTION_AMENDMENT_FREEZE_DIFF",
+    "candidate_diff": "none",
+    "changed_evaluator_components": [
+      {
+        "new_sha256": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836",
+        "old_sha256": "cd4932d39bc857c32eb8a3db8bcf35d812d9c6315052762d636ccaa527e40598",
+        "path": "evaluations/t21r13/current_test_applicability.json",
+        "reason": "commit expanded 14-node current-applicable deselect/adjudication manifest"
+      }
+    ],
+    "evaluator_root": {
+      "new": "9d25ecbdc21dadea7fab2f26d1e11f10390579529624b7b36de899b85183f1bc",
+      "old": "3e8243d2aa8e075ab117f26e9e2e9c01b43bd21849a1b5e1b12ddb567f3e5c18"
+    },
+    "final_applicability_sha256": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836",
+    "final_evaluator_root": "9d25ecbdc21dadea7fab2f26d1e11f10390579529624b7b36de899b85183f1bc",
+    "floor_diff": "none",
+    "parent_commit": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
+    "runtime_diff": "none",
+    "semantic_change_class": "test applicability metadata / qualification binding only",
+    "timestamp": "2026-09-19T20:16:33.177909+00:00",
+    "unauthorized_changes": 0
+  },
+  "full_repository_suite": {
+    "collected": 3127,
+    "errors": 0,
+    "exit_code": 1,
+    "failed": 14,
+    "passed": 3113,
+    "skipped": 0
+  },
   "identity": {
-    "head": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
-    "remote": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
-    "tree": "d8626d0a20e417bbaffc10d6cf7cc063790bb4d2"
+    "branch": "t21r13-preconstruction",
+    "candidate_changed": false,
+    "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+    "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+    "evaluator_root": "9d25ecbdc21dadea7fab2f26d1e11f10390579529624b7b36de899b85183f1bc",
+    "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+    "parent": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
+    "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+    "runtime_root_changed": false,
+    "working_tree_note": "will be clean after amendment commit"
   },
   "nondeterministic": false,
+  "pre_ledger_dry_run": {
+    "construction_gate": "PASS",
+    "exact_design_auditor": "PASS",
+    "manifest_builder": "PASS",
+    "official_preflight": "PASS",
+    "seal_builder": "PASS",
+    "suite_materializer": "PASS",
+    "world_builder": "PASS"
+  },
+  "real_R13_paths": {
+    "evaluations/t21r13/HOLDOUT_FROZEN": false,
+    "evaluations/t21r13/construction_run_ledger.json": false,
+    "evaluations/t21r13/evaluation_run_ledger.json": false,
+    "evaluations/t21r13/holdout_manifest.json": false,
+    "evaluations/t21r13/holdout_results.json": false,
+    "evaluations/t21r13/raw_results.jsonl": false,
+    "evaluations/t21r13/suites": false,
+    "rag/gk_holdout_t21r13": false
+  },
+  "remediation_regression_tests": {
+    "collected": 72,
+    "errors": 0,
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 72,
+    "skipped": 0
+  },
   "replacement_coverage": [
     {
       "old_invariant": "code_runtime composite sha256 must equal historical T19 frozen composites.code (cf9dc3c6\u2026)",
@@ -254,7 +385,46 @@
       "why_old_assertion_no_longer_governs_R13": "R12 freeze is authoritative for current tree; R9 phase-specific tolerance list is obsolete"
     }
   ],
-  "timestamp": "2026-09-19T20:05:48.770133+00:00",
-  "unclassified": 0,
-  "version": "t21r13-v1"
+  "root_of_trust": {
+    "evaluator_components": 31,
+    "evaluator_hash_mismatches": 0,
+    "evaluator_root": "9d25ecbdc21dadea7fab2f26d1e11f10390579529624b7b36de899b85183f1bc",
+    "runtime_components": 15,
+    "runtime_hash_mismatches": 0
+  },
+  "static_access": {
+    "detected_reads": 29,
+    "status": "PASS",
+    "violations": 0
+  },
+  "synthetic_rehearsal": {
+    "adversarial": "PASS",
+    "candidate_R13_rows_executed": 0,
+    "citation-claim": "PASS",
+    "conflict-abstention": "PASS",
+    "construction_gate": "PASS",
+    "consumer_matrix": "PASS",
+    "contract_schema": "PASS",
+    "crossdomain": "PASS",
+    "exact_design_audit": "PASS",
+    "exact_design_passed": 38,
+    "manifest": "PASS",
+    "multihop": "PASS",
+    "official_evaluator_invocations": 0,
+    "official_preflight": "PASS",
+    "real_R13_rows": 0,
+    "retrieval": "PASS",
+    "seal": "PASS",
+    "singlehop": "PASS",
+    "static_access_audit": "PASS",
+    "status": "PASS",
+    "suite_materialization": "PASS",
+    "suite_materializer_completed": true,
+    "suite_materializer_invoked": true,
+    "temporal": "PASS",
+    "world_materialization": "PASS"
+  },
+  "timestamp": "2026-09-19T20:21:30.892166+00:00",
+  "verdict": "T21R13_REAL_BLIND_CONSTRUCTION_READINESS_PASS",
+  "version": "t21r13-v1-amendment"
 }

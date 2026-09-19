@@ -1,4 +1,18 @@
 {
+  "amendment": {
+    "changed_components": [
+      {
+        "new_sha256": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836",
+        "old_sha256": "cd4932d39bc857c32eb8a3db8bcf35d812d9c6315052762d636ccaa527e40598",
+        "path": "evaluations/t21r13/current_test_applicability.json",
+        "reason": "commit expanded 14-node current-applicable deselect/adjudication manifest"
+      }
+    ],
+    "new_root_sha256": "9d25ecbdc21dadea7fab2f26d1e11f10390579529624b7b36de899b85183f1bc",
+    "old_root_sha256": "3e8243d2aa8e075ab117f26e9e2e9c01b43bd21849a1b5e1b12ddb567f3e5c18",
+    "parent_commit": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
+    "reason": "test applicability metadata / qualification binding only"
+  },
   "artifact": "T21R13_EVALUATOR_FREEZE",
   "component_count": 31,
   "component_sha256": {
@@ -8,7 +22,7 @@
     "evaluations/t21r13/contract_consumer_matrix.json": "25ae517778091d1061478e96ea8f3b1b5166a02299ec8799ec3fa88481ff2cf7",
     "evaluations/t21r13/contract_gate_coverage.json": "0b341d1c4a7282ae7720cd1524dd5ea15a4424ad61b4c1f7e97a46c4b7ac25d0",
     "evaluations/t21r13/contract_schema.json": "f50a52eaf43f078a538a9a2c8b07b961e063dcc75667077f926f2659da4e56cb",
-    "evaluations/t21r13/current_test_applicability.json": "cd4932d39bc857c32eb8a3db8bcf35d812d9c6315052762d636ccaa527e40598",
+    "evaluations/t21r13/current_test_applicability.json": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836",
     "evaluations/t21r13/exact_design_schema.json": "9310784ee58a624556ff76ae483122aad795e9c89abf27765ab2b8d5a3a515ea",
     "evaluations/t21r13/exact_design_tag_vocabulary.json": "99f88f81c85c33a35baa45578dcc5f1f5409e138fc839553382018fa21f60214",
     "evaluations/t21r13/holdout_construction_contract.json": "0cf9525d6941bfe1c07c165ece4bbf67bca65a472cea87649d68a59047b17b07",
@@ -35,7 +49,7 @@
     "tests/test_t21r13_preconstruction.py": "4c42c7f24c8970508ab464f82c162eb536c082a58ad797ad4cf665f4f6499391"
   },
   "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
-  "root_sha256": "3e8243d2aa8e075ab117f26e9e2e9c01b43bd21849a1b5e1b12ddb567f3e5c18",
+  "root_sha256": "9d25ecbdc21dadea7fab2f26d1e11f10390579529624b7b36de899b85183f1bc",
   "runtime_execution_count": 0,
   "status": "FROZEN"
 }
