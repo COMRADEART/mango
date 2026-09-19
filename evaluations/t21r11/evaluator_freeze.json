@@ -1,7 +1,7 @@
 {
   "artifact": "T21R11_EVALUATOR_FREEZE",
   "auto_refresh": false,
-  "component_root_sha256": "d99f7b8bd844b7fc921e312c1bdff101aa318c3efa4e459bd931b84fb1146946",
+  "component_root_sha256": "ed684338e87dceb7faa08fe06423ca82ee3bd590d124b4d4992ebe9fc078b7f9",
   "component_sha256": {
     "evaluations/t21r11/blindness_policy.json": "d70de0f1cfd200a36f4829c0c36e3ea396b509e3eecef678b5a12af0359feb99",
     "evaluations/t21r11/holdout_construction_contract.json": "5b7ab1d2f657e8452a4866daadb6ffde3ab560e9d683cbbf5cb0d8face4bd727",
@@ -15,7 +15,7 @@
     "scripts/t21r11_blindness_audit.py": "8f075548695c515330df31275a32abfba11b20a2af0ec7678ae0204ad6c1d900",
     "scripts/t21r11_build_suites.py": "94739bf7780df99c9c2b42906eab9a80ba873e6d08aa793b089ed24778aa2ad8",
     "scripts/t21r11_construction_audit.py": "6b3c5651a032df0f9705bb63ee806fad74e9762b079208fd134ac1de56f88dc0",
-    "scripts/t21r11_construction_gate.py": "754a5f6d2ba9b9fc3b0011cb366554d8f90d488358190787690418c65e5a2b7d",
+    "scripts/t21r11_construction_gate.py": "beb0605647ea03563d31b43569d4980d46d39b5ce03ae7d0f903de0abb0dfbe4",
     "scripts/t21r11_freeze_holdout.py": "7231f282839669dffcdb98c215b4fdc3cc461e49868da20d6ac7bacd38804f1c",
     "scripts/t21r11_official_eval.py": "ae79f45c0c11227556c190d4dc5a5ac75a4ffb858bed2bd35173b4d591bc4245",
     "scripts/t21r11_preconstruction.py": "f4db09c0e61f08e017f2ed24aced40090687a74d34d6829ced3134269d79492e",
@@ -56,7 +56,7 @@
       "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
       "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
       "path": "scripts/t21r11_construction_gate.py",
-      "sha256": "754a5f6d2ba9b9fc3b0011cb366554d8f90d488358190787690418c65e5a2b7d"
+      "sha256": "beb0605647ea03563d31b43569d4980d46d39b5ce03ae7d0f903de0abb0dfbe4"
     },
     {
       "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
