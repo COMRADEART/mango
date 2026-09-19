@@ -41,7 +41,7 @@
   },
   "candidate_R11_rows_executed": 0,
   "checks": {
-    "all_test_gates": true,
+    "all_test_gates": false,
     "blindness": true,
     "evaluator_freeze": true,
     "floors_32_and_identical": true,
@@ -93,27 +93,27 @@
     "T21R9": "CLOSED / NON_PROMOTIONAL_INFRASTRUCTURE_FAILURE",
     "T22": "BLOCKED"
   },
-  "status": "PASS",
+  "status": "FAIL",
   "tests": {
     "applicable_repository": {
-      "collected": 3087,
+      "collected": 3083,
       "errors": 0,
-      "exit_code": 0,
-      "failed": 0,
-      "junit_sha256": "db4680d6e1301d8e5424897e26db6af7b65e81b529044b8f86f6224013a74fbe",
-      "passed": 3085,
-      "path": "evaluations\\t21r11\\qualification_applicable_junit.xml",
-      "skipped": 2,
-      "status": "PASS"
+      "exit_code": 1,
+      "failed": 16,
+      "junit_sha256": "e7a00248323cbc8e24ddf68173365de208970fbb6d7ee50fa7bcd18026493e59",
+      "passed": 3061,
+      "path": "/tmp/t21r11_junit/applicable.xml",
+      "skipped": 6,
+      "status": "FAIL"
     },
     "focused_preconstruction": {
       "collected": 24,
       "errors": 0,
       "exit_code": 0,
       "failed": 0,
-      "junit_sha256": "6a2a57bd291ad7a898d9d9c916c8a046348e0e2512dd7c65371b114d93984091",
+      "junit_sha256": "6f46a1d683cfe19743495fb538874e11bcc30891b1242b63fbe0eb91999514c3",
       "passed": 24,
-      "path": "evaluations\\t21r11\\qualification_focused_junit.xml",
+      "path": "/tmp/t21r11_junit/focused_preconstruction.xml",
       "skipped": 0,
       "status": "PASS"
     },
@@ -122,13 +122,13 @@
       "errors": 0,
       "exit_code": 0,
       "failed": 0,
-      "junit_sha256": "4ec90e0b903e0ed80cb3f0663d8c0779306e46e3c2264a98d83d4e2823565f03",
+      "junit_sha256": "055ade579821a944f942f38d29247295cc409c4caea37aef768e26c3c5b4563e",
       "passed": 65,
-      "path": "evaluations\\t21r11\\qualification_remediation_junit.xml",
+      "path": "/tmp/t21r11_junit/focused_remediation.xml",
       "skipped": 0,
       "status": "PASS"
     }
   },
-  "verdict": "T21R11_PRECONSTRUCTION_AUDIT_PASS",
+  "verdict": "T21R11_PRECONSTRUCTION_AUDIT_FAIL",
   "version": 1
 }
