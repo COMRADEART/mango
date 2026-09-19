@@ -1,0 +1,335 @@
+{
+  "artifact": "T21R13_CONTRACT_ACCESS_AUDIT",
+  "detected_reads": 29,
+  "findings": [
+    {
+      "base": "contract",
+      "file": "t21r13_build_suites.py",
+      "keys": [
+        "suite_target_exact"
+      ],
+      "lineno": 23,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_build_suites.py",
+      "keys": [
+        "case_id_prefix"
+      ],
+      "lineno": 24,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_build_suites.py",
+      "keys": [
+        "blind_namespace"
+      ],
+      "lineno": 25,
+      "pattern": "get",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_build_suites.py",
+      "keys": [
+        "blind_namespace"
+      ],
+      "lineno": 27,
+      "pattern": "get",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_build_suites.py",
+      "keys": [
+        "disposable_allowed"
+      ],
+      "lineno": 45,
+      "pattern": "get",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_construction_gate.py",
+      "keys": [
+        "suite_target_exact"
+      ],
+      "lineno": 42,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_construction_gate.py",
+      "keys": [
+        "total_rows_exact"
+      ],
+      "lineno": 50,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_construction_gate.py",
+      "keys": [
+        "total_rows_exact"
+      ],
+      "lineno": 51,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_exact_design_lib.py",
+      "keys": [
+        "<dyn>"
+      ],
+      "lineno": 166,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>",
+        "<dyn>"
+      ],
+      "lineno": 87,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>"
+      ],
+      "lineno": 87,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "crossdomain_exact_design",
+        "rows_per_pair"
+      ],
+      "lineno": 88,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "crossdomain_exact_design"
+      ],
+      "lineno": 88,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>",
+        "<dyn>"
+      ],
+      "lineno": 125,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>"
+      ],
+      "lineno": 125,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>",
+        "<dyn>"
+      ],
+      "lineno": 128,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>"
+      ],
+      "lineno": 128,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>",
+        "<dyn>"
+      ],
+      "lineno": 136,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>"
+      ],
+      "lineno": 136,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>",
+        "<dyn>"
+      ],
+      "lineno": 139,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>"
+      ],
+      "lineno": 139,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_fixtures.py",
+      "keys": [
+        "<dyn>"
+      ],
+      "lineno": 213,
+      "pattern": "subscript",
+      "reason": "dynamic key",
+      "status": "REVIEW"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_freeze_holdout.py",
+      "keys": [
+        "suite_target_exact"
+      ],
+      "lineno": 130,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_official_eval.py",
+      "keys": [
+        "suite_target_exact"
+      ],
+      "lineno": 154,
+      "pattern": "get",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_preconstruction.py",
+      "keys": [
+        "suite_target_exact"
+      ],
+      "lineno": 363,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_preconstruction.py",
+      "keys": [
+        "total_rows_exact"
+      ],
+      "lineno": 365,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_preconstruction.py",
+      "keys": [
+        "blind_namespace"
+      ],
+      "lineno": 366,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_preconstruction.py",
+      "keys": [
+        "conflict_exact_design"
+      ],
+      "lineno": 661,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    },
+    {
+      "base": "contract",
+      "file": "t21r13_preconstruction.py",
+      "keys": [
+        "citation_exact_design"
+      ],
+      "lineno": 667,
+      "pattern": "subscript",
+      "reason": null,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "version": "t21r13-v1",
+  "violation_details": [],
+  "violations": 0
+}

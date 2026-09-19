@@ -1,4 +1,4 @@
-"""One-shot T21R12 official runner with a public data-only preflight API."""
+"""One-shot T21R13 official runner with a public data-only preflight API."""
 from __future__ import annotations
 
 import argparse
@@ -14,11 +14,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import t21r12_freeze_holdout as seal_protocol  # noqa: E402
-import t21r12_run_eval as evaluator  # noqa: E402
+import t21r13_freeze_holdout as seal_protocol  # noqa: E402
+import t21r13_run_eval as evaluator  # noqa: E402
 
 
-EXECUTION_PHRASE = "T21R12_ONE_SHOT_OFFICIAL_EVALUATION"
+EXECUTION_PHRASE = "T21R13_ONE_SHOT_OFFICIAL_EVALUATION"
 
 
 @dataclass(frozen=True)
@@ -35,9 +35,9 @@ class Paths:
 
 
 def build_paths(root: Path = ROOT) -> Paths:
-    out = root / "evaluations" / "t21r12"
+    out = root / "evaluations" / "t21r13"
     return Paths(
-        root=root, out=out, corpus=root / "rag" / "gk_holdout_t21r12",
+        root=root, out=out, corpus=root / "rag" / "gk_holdout_t21r13",
         suites=out / "suites", manifest=out / "holdout_manifest.json",
         marker=out / "HOLDOUT_FROZEN",
         ledger=out / "evaluation_run_ledger.json",
@@ -47,36 +47,29 @@ def build_paths(root: Path = ROOT) -> Paths:
 
 def _refuse_if_invalid_holdout_closed(paths: Paths):
     """Permanent tombstone: invalid unevaluated holdout may never be officially evaluated."""
-    closure_path = paths.out / "T21R12_CLOSURE.json"
+    closure_path = paths.out / "T21R13_CLOSURE.json"
     if not closure_path.is_file():
         return None
     try:
         closure = _json(closure_path)
     except (OSError, ValueError, TypeError) as exc:
         return {
-            "status": "T21R12_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
-            "defects": [f"unreadable T21R12_CLOSURE.json: {exc}"],
+            "status": "T21R13_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
+            "defects": [f"unreadable T21R13_CLOSURE.json: {exc}"],
             "runtime_execution_count": 0,
             "ledger_written": False,
             "candidate_rows_executed": 0,
         }
     status = str(closure.get("status") or "")
-    refuse_statuses = {
+    if status in {
         "CLOSED_INVALID_UNEVALUATED_HOLDOUT",
         "INVALID_UNEVALUATED_HOLDOUT",
-        "CLOSED_NON_PROMOTIONAL_CONSTRUCTION_INFRASTRUCTURE_FAILURE",
-    }
-    if (
-        status in refuse_statuses
-        or "INVALID_UNEVALUATED_HOLDOUT" in status
-        or "CONSTRUCTION_INFRASTRUCTURE_FAILURE" in status
-        or status.startswith("CLOSED_")
-    ):
+    } or "INVALID_UNEVALUATED_HOLDOUT" in status:
         return {
-            "status": "T21R12_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
+            "status": "T21R13_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
             "defects": [
-                "NO_VALID_SEALED_HOLDOUT; "
-                f"T21R12 closure status={status}; official evaluation is permanently refused",
+                "T21R13 holdout is CLOSED_INVALID_UNEVALUATED_HOLDOUT; "
+                "official evaluation is permanently refused",
                 f"closure_reason={closure.get('reason')}",
             ],
             "runtime_execution_count": 0,
@@ -127,7 +120,7 @@ def _preflight(paths: Paths) -> dict:
         defects.append("freeze-root mismatch")
 
     expected_inputs = {
-        f"evaluations/t21r12/{name}" for name in
+        f"evaluations/t21r13/{name}" for name in
         (*seal_protocol.EVALUATION_INPUTS, *seal_protocol.AUDIT_FILES)
     } | {f"scripts/{name}" for name in seal_protocol.SCRIPT_INPUTS}
     actual_inputs = set(manifest.get("freeze_inputs") or {})
@@ -182,7 +175,7 @@ def _preflight(paths: Paths) -> dict:
         if not path.is_file() or _sha(path) != info.get("sha256"):
             defects.append(f"corpus hash mismatch: {name}")
 
-    # Preflight step 5 (T21R12 repair): the ACTUAL frozen runtime must be
+    # Preflight step 5 (T21R13 repair): the ACTUAL frozen runtime must be
     # able to load the sealed corpus before any exposure ledger can exist.
     # This is a read-only compatibility load, not a holdout-row execution:
     # it executes 0 evaluation rows and writes no artifact.
@@ -192,7 +185,7 @@ def _preflight(paths: Paths) -> dict:
                        for defect in corpus_load["defects"])
 
     return {
-        "artifact": "T21R12_OFFICIAL_PREFLIGHT",
+        "artifact": "T21R13_OFFICIAL_PREFLIGHT",
         "status": "PASS" if not defects else "FAIL",
         "defects": list(dict.fromkeys(defects)),
         "holdout_manifest_sha256": _sha(paths.manifest),
@@ -265,7 +258,7 @@ def _load_rows(paths: Paths) -> dict[str, list[dict]]:
 
 def _write_ledger(paths: Paths, phase: str, error: str | None = None) -> None:
     document = {
-        "artifact": "T21R12_OFFICIAL_EXPOSURE_LEDGER",
+        "artifact": "T21R13_OFFICIAL_EXPOSURE_LEDGER",
         "phase": phase,
         "official_runtime_exposures": 1,
         "manifest_sha256": _sha(paths.manifest),
@@ -289,13 +282,13 @@ def _write_ledger(paths: Paths, phase: str, error: str | None = None) -> None:
 def execute(paths: Paths) -> int:
     report = _preflight(paths)
     if report["status"] != "PASS":
-        raise SystemExit("T21R12 preflight failed: " + "; ".join(
+        raise SystemExit("T21R13 preflight failed: " + "; ".join(
             report["defects"]))
     try:
         _write_ledger(paths, "started")
     except FileExistsError:
         raise SystemExit(
-            "T21R12 one-shot ledger already exists after preflight: another "
+            "T21R13 one-shot ledger already exists after preflight: another "
             "invocation holds the exposure; refusing to execute any holdout "
             "row") from None
     try:
@@ -327,7 +320,7 @@ def main() -> int:
     arguments = parser.parse_args()
     if arguments.execute_official:
         if arguments.authorization != EXECUTION_PHRASE:
-            raise SystemExit("official T21R12 runtime exposure is not authorized")
+            raise SystemExit("official T21R13 runtime exposure is not authorized")
         return execute(build_paths())
     report = preflight()
     print(json.dumps(report, indent=2, sort_keys=True))

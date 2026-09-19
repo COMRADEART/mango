@@ -1,0 +1,16 @@
+{
+  "artifact": "T21R13_CURRENT_TEST_APPLICABILITY",
+  "authority_for": "T21R13_PRECONSTRUCTION",
+  "current_mandatory_tests": [
+    "tests/test_t21r13_preconstruction.py"
+  ],
+  "deselect_nodeids": [
+    "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent"
+  ],
+  "historical_only_tests": [],
+  "note": "R12 path-absence test is historically superseded after R12 failed partial corpus retention; R13 forbids only real R13 paths.",
+  "superseded_tests": [
+    "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent"
+  ],
+  "version": "t21r13-v1"
+}

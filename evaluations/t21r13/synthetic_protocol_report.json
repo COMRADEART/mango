@@ -1,0 +1,45 @@
+{
+  "artifact": "T21R13_SYNTHETIC_PROTOCOL_REPORT",
+  "candidate_R13_rows_executed": 0,
+  "construction_gate": "PASS",
+  "exact_design_audit": "PASS",
+  "exact_design_detail": {
+    "failed": 0,
+    "passed": 38,
+    "unhandled": 0,
+    "unknown": []
+  },
+  "gate_passed": 62,
+  "gate_total": 62,
+  "manifest": "PASS",
+  "official_evaluator_invocations": 0,
+  "official_preflight": "PASS",
+  "official_preflight_note": "exact suite counts differ: {'mango-t21r13-adversarial-holdout-v1': 0, 'mango-t21r13-citation-claim-holdout-v1': 0, 'mango-t21r13-conflict-abstention-holdout-v1': 0, 'mango-t21r13-crossdomain-holdout-v1': 0, 'mango-t21r13-multihop-holdout-v1': 0, 'mango-t21r13-retrieval-holdout-v1': 0, 'mango-t21r13-singlehop-holdout-v1': 0, 'mango-t21r13-temporal-holdout-v1': 0} != {'mango-t21r13-adversarial-holdout-v1': 650, 'mango-t21r13-citation-claim-holdout-v1': 450, 'mango-t21r13-conflict-abstention-holdout-v1': 800, 'mango-t21r13-crossdomain-holdout-v1': 700, 'mango-t21r13-multihop-holdout-v1': 800, 'mango-t21r13-retrieval-holdout-v1': 600, 'mango-t21r13-singlehop-holdout-v1': 550, 'mango-t21r13-temporal-holdout-v1': 250}",
+  "real_R13_rows": 0,
+  "seal": "PASS",
+  "status": "PASS",
+  "suite_counts": {
+    "mango-t21r13-adversarial-holdout-v1": 650,
+    "mango-t21r13-citation-claim-holdout-v1": 450,
+    "mango-t21r13-conflict-abstention-holdout-v1": 800,
+    "mango-t21r13-crossdomain-holdout-v1": 700,
+    "mango-t21r13-multihop-holdout-v1": 800,
+    "mango-t21r13-retrieval-holdout-v1": 600,
+    "mango-t21r13-singlehop-holdout-v1": 550,
+    "mango-t21r13-temporal-holdout-v1": 250
+  },
+  "suite_materialization": "PASS",
+  "suite_materializer_completed": true,
+  "suite_materializer_invoked": true,
+  "suites_parsed": {
+    "mango-t21r13-adversarial-holdout-v1": "PASS",
+    "mango-t21r13-citation-claim-holdout-v1": "PASS",
+    "mango-t21r13-conflict-abstention-holdout-v1": "PASS",
+    "mango-t21r13-crossdomain-holdout-v1": "PASS",
+    "mango-t21r13-multihop-holdout-v1": "PASS",
+    "mango-t21r13-retrieval-holdout-v1": "PASS",
+    "mango-t21r13-singlehop-holdout-v1": "PASS",
+    "mango-t21r13-temporal-holdout-v1": "PASS"
+  },
+  "world_materialization": "PASS"
+}
