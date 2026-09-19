@@ -1,0 +1,7 @@
+{
+  "artifact": "T21R11_DIAGNOSTIC_VALIDATION_FREEZE",
+  "note": "Frozen at creation; candidate may inspect DEV only during development. Validation gold must not be edited after freeze.",
+  "validation_path": "evaluations/t21r11_diagnostics/validation_suites.jsonl",
+  "validation_rows": 101,
+  "validation_sha256": "38e522ff9f3a612d6dfd64868b7bae915ffce49e82f0f3734fdd83d46b2be4f9"
+}

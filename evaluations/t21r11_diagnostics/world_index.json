@@ -1,0 +1,4959 @@
+{
+  "absent_entities": {
+    "dev": [
+      "Emberly Cross",
+      "Dunmore Reach"
+    ],
+    "validation": [
+      "Westlow Mere",
+      "Harwick Thorn"
+    ]
+  },
+  "artifact": "T21R11_DIAGNOSTIC_WORLD_INDEX",
+  "conflict_institutions": [
+    {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-6a8b02502b1b:facts:0",
+            "source_key": "hist_annals",
+            "value": "1775"
+          },
+          {
+            "chunk_id": "gk-6a8b02502b1b:facts:0",
+            "source_key": "hist_annals",
+            "value": "1775"
+          }
+        ]
+      },
+      "entity": "Aldwyn Conservatory",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:0",
+          "source_key": "culture_directory",
+          "value": "1758"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:0",
+          "source_key": "culture_review",
+          "value": "Grimsdale Reach"
+        }
+      },
+      "kind": "institution",
+      "pool": "dev"
+    },
+    {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-6a8b02502b1b:facts:1",
+            "source_key": "hist_annals",
+            "value": "1739"
+          },
+          {
+            "chunk_id": "gk-6a8b02502b1b:facts:1",
+            "source_key": "hist_annals",
+            "value": "1739"
+          }
+        ]
+      },
+      "entity": "Inglewood Archives",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:7",
+          "source_key": "culture_directory",
+          "value": "1722"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:7",
+          "source_key": "culture_review",
+          "value": "Ashgate Thorn"
+        }
+      },
+      "kind": "institution",
+      "pool": "validation"
+    }
+  ],
+  "conflict_techs": [
+    {
+      "alts": {
+        "introduction year": [
+          {
+            "chunk_id": "gk-27708caf2a6b:facts:1",
+            "source_key": "tech_chronicle",
+            "value": "1934"
+          },
+          {
+            "chunk_id": "gk-27708caf2a6b:facts:1",
+            "source_key": "tech_chronicle",
+            "value": "1934"
+          }
+        ]
+      },
+      "entity": "the Vesper tabulator",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:9",
+          "source_key": "tech_patents",
+          "value": "1928"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:11",
+          "source_key": "tech_chronicle",
+          "value": "Fioralba Ostler"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:21",
+          "source_key": "tech_chronicle",
+          "value": "modular gearing"
+        }
+      },
+      "kind": "technology",
+      "pool": "dev"
+    },
+    {
+      "alts": {
+        "introduction year": [
+          {
+            "chunk_id": "gk-27708caf2a6b:facts:0",
+            "source_key": "tech_chronicle",
+            "value": "1909"
+          },
+          {
+            "chunk_id": "gk-27708caf2a6b:facts:0",
+            "source_key": "tech_chronicle",
+            "value": "1909"
+          }
+        ]
+      },
+      "entity": "the Norval gauge",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:4",
+          "source_key": "tech_patents",
+          "value": "1903"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:6",
+          "source_key": "tech_chronicle",
+          "value": "Anselm Kittredge"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:16",
+          "source_key": "tech_chronicle",
+          "value": "parallel feed"
+        }
+      },
+      "kind": "technology",
+      "pool": "validation"
+    }
+  ],
+  "conflict_towns": [
+    {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-c5e2965027fc:facts:3",
+            "source_key": "geo_panorama",
+            "value": "1655"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-f2926e3591d8:facts:8",
+            "source_key": "geo_municipal",
+            "value": "Jocasta Lockridge"
+          }
+        ]
+      },
+      "conflict_family": "unresolved_two_source",
+      "entity": "Verlow Wick",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:79",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:125",
+          "source_key": "geo_compendium",
+          "value": "1644"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:41",
+          "source_key": "geo_register",
+          "value": "a tide bell"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:41",
+          "source_key": "geo_gazette",
+          "value": "Anselm Mannering"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:121",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:41",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-c5e2965027fc:facts:0",
+            "source_key": "geo_panorama",
+            "value": "1664"
+          },
+          {
+            "chunk_id": "gk-6210937b6710:facts:0",
+            "source_key": "geo_atlas",
+            "value": "1676"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-f2926e3591d8:facts:9",
+            "source_key": "geo_municipal",
+            "value": "Kellsie Ellerslie"
+          }
+        ]
+      },
+      "conflict_family": "unresolved_three_source",
+      "entity": "Ashgate Hollow",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:39",
+          "source_key": "geo_compendium",
+          "value": "Mirenfeld"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:1",
+          "source_key": "geo_compendium",
+          "value": "1653"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:1",
+          "source_key": "geo_register",
+          "value": "a rope ferry"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:1",
+          "source_key": "geo_gazette",
+          "value": "Brielle Ostler"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:81",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:1",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-8899de7cfb64:facts:7",
+            "source_key": "geo_encyclopedia",
+            "value": "1673"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-8899de7cfb64:facts:5",
+            "source_key": "geo_encyclopedia",
+            "value": "Lorimer Fairweather"
+          }
+        ]
+      },
+      "conflict_family": "resolved_authority",
+      "entity": "Quennel Thorn",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:74",
+          "source_key": "geo_compendium",
+          "value": "Calderon"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:36",
+          "source_key": "geo_compendium",
+          "value": "1662"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:36",
+          "source_key": "geo_register",
+          "value": "a grain loft"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:36",
+          "source_key": "geo_gazette",
+          "value": "Casimir Brackney"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:116",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:36",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-c5e2965027fc:facts:1",
+            "source_key": "geo_panorama",
+            "value": "1682"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-f2926e3591d8:facts:6",
+            "source_key": "geo_municipal",
+            "value": "Anselm Fairweather"
+          }
+        ]
+      },
+      "conflict_family": "unresolved_two_source",
+      "entity": "Bryndle Cross",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:42",
+          "source_key": "geo_compendium",
+          "value": "Tarvish"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:4",
+          "source_key": "geo_compendium",
+          "value": "1671"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:4",
+          "source_key": "geo_register",
+          "value": "a pilot house"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:4",
+          "source_key": "geo_gazette",
+          "value": "Delphine Dunsterville"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:84",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:4",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-c5e2965027fc:facts:2",
+            "source_key": "geo_panorama",
+            "value": "1691"
+          },
+          {
+            "chunk_id": "gk-6210937b6710:facts:1",
+            "source_key": "geo_atlas",
+            "value": "1703"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-f2926e3591d8:facts:7",
+            "source_key": "geo_municipal",
+            "value": "Brielle Norbury"
+          }
+        ]
+      },
+      "conflict_family": "unresolved_three_source",
+      "entity": "Corrick Ridge",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:47",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:9",
+          "source_key": "geo_compendium",
+          "value": "1680"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:9",
+          "source_key": "geo_register",
+          "value": "a beacon post"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:9",
+          "source_key": "geo_gazette",
+          "value": "Ermintrude Fairweather"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:89",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:9",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-8899de7cfb64:facts:6",
+            "source_key": "geo_encyclopedia",
+            "value": "1700"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-8899de7cfb64:facts:4",
+            "source_key": "geo_encyclopedia",
+            "value": "Casimir Ingleby"
+          }
+        ]
+      },
+      "conflict_family": "resolved_authority",
+      "entity": "Dellwick Yard",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:53",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:15",
+          "source_key": "geo_compendium",
+          "value": "1689"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:15",
+          "source_key": "geo_register",
+          "value": "a coach arch"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:15",
+          "source_key": "geo_gazette",
+          "value": "Fioralba Hartsmere"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:95",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:15",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    }
+  ],
+  "corpus_dir": "evaluations\\t21r11_diagnostics\\world",
+  "counts": {
+    "canonical_facts": 610,
+    "chunks": 654,
+    "entities": 140,
+    "injections": 7,
+    "mimics": 17,
+    "sources": 24,
+    "text_conflicts": 4
+  },
+  "duplicates": [
+    {
+      "attribute": "country",
+      "chunk_id": "gk-8899de7cfb64:facts:0",
+      "entity": "Quennel Yard",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "founding year",
+      "chunk_id": "gk-8899de7cfb64:facts:11",
+      "entity": "Quennel Yard",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "country",
+      "chunk_id": "gk-8899de7cfb64:facts:1",
+      "entity": "Embervane Shore",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "founding year",
+      "chunk_id": "gk-8899de7cfb64:facts:8",
+      "entity": "Embervane Shore",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "country",
+      "chunk_id": "gk-8899de7cfb64:facts:13",
+      "entity": "Grimsdale Zella",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "founding year",
+      "chunk_id": "gk-8899de7cfb64:facts:9",
+      "entity": "Grimsdale Zella",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "country",
+      "chunk_id": "gk-8899de7cfb64:facts:3",
+      "entity": "Verlow Hollow",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "founding year",
+      "chunk_id": "gk-8899de7cfb64:facts:12",
+      "entity": "Verlow Hollow",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "country",
+      "chunk_id": "gk-8899de7cfb64:facts:2",
+      "entity": "Ironmere Reach",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "founding year",
+      "chunk_id": "gk-8899de7cfb64:facts:10",
+      "entity": "Ironmere Reach",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "birthplace",
+      "chunk_id": "gk-030f5b94055b:facts:0",
+      "entity": "Kellsie Dunsterville",
+      "source_key": "bio_digest"
+    },
+    {
+      "attribute": "notable work",
+      "chunk_id": "gk-030f5b94055b:facts:5",
+      "entity": "Kellsie Dunsterville",
+      "source_key": "bio_digest"
+    },
+    {
+      "attribute": "birthplace",
+      "chunk_id": "gk-030f5b94055b:facts:1",
+      "entity": "Casimir Lockridge",
+      "source_key": "bio_digest"
+    },
+    {
+      "attribute": "notable work",
+      "chunk_id": "gk-030f5b94055b:facts:4",
+      "entity": "Casimir Lockridge",
+      "source_key": "bio_digest"
+    },
+    {
+      "attribute": "birthplace",
+      "chunk_id": "gk-030f5b94055b:facts:2",
+      "entity": "Ermintrude Jarvelin",
+      "source_key": "bio_digest"
+    },
+    {
+      "attribute": "notable work",
+      "chunk_id": "gk-030f5b94055b:facts:6",
+      "entity": "Ermintrude Jarvelin",
+      "source_key": "bio_digest"
+    },
+    {
+      "attribute": "birthplace",
+      "chunk_id": "gk-030f5b94055b:facts:3",
+      "entity": "Ignatz Creedy",
+      "source_key": "bio_digest"
+    },
+    {
+      "attribute": "notable work",
+      "chunk_id": "gk-030f5b94055b:facts:7",
+      "entity": "Ignatz Creedy",
+      "source_key": "bio_digest"
+    },
+    {
+      "attribute": "river",
+      "chunk_id": "gk-8899de7cfb64:facts:19",
+      "entity": "Verlow Wick",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "river",
+      "chunk_id": "gk-8899de7cfb64:facts:14",
+      "entity": "Ashgate Hollow",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "river",
+      "chunk_id": "gk-8899de7cfb64:facts:18",
+      "entity": "Quennel Thorn",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "river",
+      "chunk_id": "gk-8899de7cfb64:facts:15",
+      "entity": "Bryndle Cross",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "river",
+      "chunk_id": "gk-8899de7cfb64:facts:16",
+      "entity": "Corrick Ridge",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "river",
+      "chunk_id": "gk-8899de7cfb64:facts:17",
+      "entity": "Dellwick Yard",
+      "source_key": "geo_encyclopedia"
+    },
+    {
+      "attribute": "mayor",
+      "chunk_id": "gk-f2926e3591d8:facts:0",
+      "entity": "Verlow Wick",
+      "source_key": "geo_municipal"
+    },
+    {
+      "attribute": "mayor",
+      "chunk_id": "gk-f2926e3591d8:facts:1",
+      "entity": "Ashgate Hollow",
+      "source_key": "geo_municipal"
+    },
+    {
+      "attribute": "mayor",
+      "chunk_id": "gk-f2926e3591d8:facts:2",
+      "entity": "Quennel Thorn",
+      "source_key": "geo_municipal"
+    },
+    {
+      "attribute": "mayor",
+      "chunk_id": "gk-f2926e3591d8:facts:3",
+      "entity": "Bryndle Cross",
+      "source_key": "geo_municipal"
+    },
+    {
+      "attribute": "mayor",
+      "chunk_id": "gk-f2926e3591d8:facts:4",
+      "entity": "Corrick Ridge",
+      "source_key": "geo_municipal"
+    },
+    {
+      "attribute": "mayor",
+      "chunk_id": "gk-f2926e3591d8:facts:5",
+      "entity": "Dellwick Yard",
+      "source_key": "geo_municipal"
+    }
+  ],
+  "entities": {
+    "Aldwyn Conservatory": {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-6a8b02502b1b:facts:0",
+            "source_key": "hist_annals",
+            "value": "1775"
+          },
+          {
+            "chunk_id": "gk-6a8b02502b1b:facts:0",
+            "source_key": "hist_annals",
+            "value": "1775"
+          }
+        ]
+      },
+      "entity": "Aldwyn Conservatory",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:0",
+          "source_key": "culture_directory",
+          "value": "1758"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:0",
+          "source_key": "culture_review",
+          "value": "Grimsdale Reach"
+        }
+      },
+      "kind": "institution",
+      "pool": "dev"
+    },
+    "Anselm Brackney": {
+      "alts": {},
+      "entity": "Anselm Brackney",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:20",
+          "source_key": "bio_annual",
+          "value": "1845"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:8",
+          "source_key": "bio_digest",
+          "value": "Bryndle Yard"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:0",
+          "source_key": "bio_register",
+          "value": "halieutics"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:50",
+          "source_key": "bio_annual",
+          "value": "The Turnstone of Kelpie"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Anselm Hartsmere": {
+      "alts": {},
+      "entity": "Anselm Hartsmere",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:21",
+          "source_key": "bio_annual",
+          "value": "1839"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:9",
+          "source_key": "bio_digest",
+          "value": "Bryndle Mere"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:1",
+          "source_key": "bio_register",
+          "value": "dipterology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:51",
+          "source_key": "bio_annual",
+          "value": "The Ropewalk of Sandglass"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Anselm Kittredge": {
+      "alts": {},
+      "entity": "Anselm Kittredge",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:22",
+          "source_key": "bio_annual",
+          "value": "1851"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:10",
+          "source_key": "bio_digest",
+          "value": "Bryndle Ridge"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:2",
+          "source_key": "bio_register",
+          "value": "dipterology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:52",
+          "source_key": "bio_annual",
+          "value": "The Corolla of Tanager"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Ashgate Cross": {
+      "alts": {},
+      "entity": "Ashgate Cross",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:38",
+          "source_key": "geo_compendium",
+          "value": "Calderon"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:0",
+          "source_key": "geo_compendium",
+          "value": "1697"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:0",
+          "source_key": "geo_register",
+          "value": "a rope ferry"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:0",
+          "source_key": "geo_gazette",
+          "value": "Brielle Lockridge"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:80",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:0",
+          "source_key": "geo_waterways",
+          "value": "the Quillot"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Ashgate Hollow": {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-c5e2965027fc:facts:0",
+            "source_key": "geo_panorama",
+            "value": "1664"
+          },
+          {
+            "chunk_id": "gk-6210937b6710:facts:0",
+            "source_key": "geo_atlas",
+            "value": "1676"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-f2926e3591d8:facts:9",
+            "source_key": "geo_municipal",
+            "value": "Kellsie Ellerslie"
+          }
+        ]
+      },
+      "conflict_family": "unresolved_three_source",
+      "entity": "Ashgate Hollow",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:39",
+          "source_key": "geo_compendium",
+          "value": "Mirenfeld"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:1",
+          "source_key": "geo_compendium",
+          "value": "1653"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:1",
+          "source_key": "geo_register",
+          "value": "a rope ferry"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:1",
+          "source_key": "geo_gazette",
+          "value": "Brielle Ostler"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:81",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:1",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Ashgate Ridge": {
+      "alts": {},
+      "entity": "Ashgate Ridge",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:40",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:2",
+          "source_key": "geo_compendium",
+          "value": "1589"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:2",
+          "source_key": "geo_register",
+          "value": "a rope ferry"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:2",
+          "source_key": "geo_gazette",
+          "value": "Brielle Creedy"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:82",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:2",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Ashgate Thorn": {
+      "alts": {},
+      "entity": "Ashgate Thorn",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:41",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:3",
+          "source_key": "geo_compendium",
+          "value": "1805"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:3",
+          "source_key": "geo_register",
+          "value": "a rope ferry"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:3",
+          "source_key": "geo_gazette",
+          "value": "Brielle Fairweather"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:83",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:3",
+          "source_key": "geo_waterways",
+          "value": "the Tarrow"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Brielle Averill": {
+      "alts": {},
+      "entity": "Brielle Averill",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:23",
+          "source_key": "bio_annual",
+          "value": "1936"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:11",
+          "source_key": "bio_digest",
+          "value": "Ironmere Wick"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:3",
+          "source_key": "bio_register",
+          "value": "glaciology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:53",
+          "source_key": "bio_annual",
+          "value": "The Wayfarer of Camber"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Brielle Grimaldi": {
+      "alts": {},
+      "entity": "Brielle Grimaldi",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:24",
+          "source_key": "bio_annual",
+          "value": "1930"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:12",
+          "source_key": "bio_digest",
+          "value": "Ironmere Hollow"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:4",
+          "source_key": "bio_register",
+          "value": "chorology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:54",
+          "source_key": "bio_annual",
+          "value": "The Scrimshaw of Crossbill"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Bryndle Cross": {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-c5e2965027fc:facts:1",
+            "source_key": "geo_panorama",
+            "value": "1682"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-f2926e3591d8:facts:6",
+            "source_key": "geo_municipal",
+            "value": "Anselm Fairweather"
+          }
+        ]
+      },
+      "conflict_family": "unresolved_two_source",
+      "entity": "Bryndle Cross",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:42",
+          "source_key": "geo_compendium",
+          "value": "Tarvish"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:4",
+          "source_key": "geo_compendium",
+          "value": "1671"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:4",
+          "source_key": "geo_register",
+          "value": "a pilot house"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:4",
+          "source_key": "geo_gazette",
+          "value": "Delphine Dunsterville"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:84",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:4",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Bryndle Mere": {
+      "alts": {},
+      "entity": "Bryndle Mere",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:43",
+          "source_key": "geo_compendium",
+          "value": "Calderon"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:5",
+          "source_key": "geo_compendium",
+          "value": "1607"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:5",
+          "source_key": "geo_register",
+          "value": "a pilot house"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:5",
+          "source_key": "geo_gazette",
+          "value": "Delphine Grimaldi"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:85",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:5",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Bryndle Ridge": {
+      "alts": {},
+      "entity": "Bryndle Ridge",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:44",
+          "source_key": "geo_compendium",
+          "value": "Mirenfeld"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:6",
+          "source_key": "geo_compendium",
+          "value": "1823"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:6",
+          "source_key": "geo_register",
+          "value": "a pilot house"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:6",
+          "source_key": "geo_gazette",
+          "value": "Delphine Jarvelin"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:86",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:6",
+          "source_key": "geo_waterways",
+          "value": "the Tarrow"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Bryndle Yard": {
+      "alts": {},
+      "entity": "Bryndle Yard",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:45",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:7",
+          "source_key": "geo_compendium",
+          "value": "1715"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:7",
+          "source_key": "geo_register",
+          "value": "a pilot house"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:7",
+          "source_key": "geo_gazette",
+          "value": "Delphine Averill"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:87",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:7",
+          "source_key": "geo_waterways",
+          "value": "the Quillot"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Casimir Fairweather": {
+      "alts": {},
+      "entity": "Casimir Fairweather",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:25",
+          "source_key": "bio_annual",
+          "value": "1871"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:13",
+          "source_key": "bio_digest",
+          "value": "Dellwick Vale"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:5",
+          "source_key": "bio_register",
+          "value": "bryology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:55",
+          "source_key": "bio_annual",
+          "value": "The Crossbill of Vellum"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Casimir Lockridge": {
+      "alts": {},
+      "entity": "Casimir Lockridge",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:26",
+          "source_key": "bio_annual",
+          "value": "1865"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:14",
+          "source_key": "bio_digest",
+          "value": "Dellwick Fen"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:6",
+          "source_key": "bio_register",
+          "value": "fenology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:56",
+          "source_key": "bio_annual",
+          "value": "The Fulmar of Wayfarer"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Casimir Ostler": {
+      "alts": {},
+      "entity": "Casimir Ostler",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:27",
+          "source_key": "bio_annual",
+          "value": "1877"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:15",
+          "source_key": "bio_digest",
+          "value": "Dellwick Mere"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:7",
+          "source_key": "bio_register",
+          "value": "fenology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:57",
+          "source_key": "bio_annual",
+          "value": "The Camber of Petrel"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Corrick Mere": {
+      "alts": {},
+      "entity": "Corrick Mere",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:46",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:8",
+          "source_key": "geo_compendium",
+          "value": "1724"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:8",
+          "source_key": "geo_register",
+          "value": "a beacon post"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:8",
+          "source_key": "geo_gazette",
+          "value": "Ermintrude Creedy"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:88",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:8",
+          "source_key": "geo_waterways",
+          "value": "the Quillot"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Corrick Ridge": {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-c5e2965027fc:facts:2",
+            "source_key": "geo_panorama",
+            "value": "1691"
+          },
+          {
+            "chunk_id": "gk-6210937b6710:facts:1",
+            "source_key": "geo_atlas",
+            "value": "1703"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-f2926e3591d8:facts:7",
+            "source_key": "geo_municipal",
+            "value": "Brielle Norbury"
+          }
+        ]
+      },
+      "conflict_family": "unresolved_three_source",
+      "entity": "Corrick Ridge",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:47",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:9",
+          "source_key": "geo_compendium",
+          "value": "1680"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:9",
+          "source_key": "geo_register",
+          "value": "a beacon post"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:9",
+          "source_key": "geo_gazette",
+          "value": "Ermintrude Fairweather"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:89",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:9",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Corrick Vale": {
+      "alts": {},
+      "entity": "Corrick Vale",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:48",
+          "source_key": "geo_compendium",
+          "value": "Tarvish"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:10",
+          "source_key": "geo_compendium",
+          "value": "1616"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:10",
+          "source_key": "geo_register",
+          "value": "a beacon post"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:10",
+          "source_key": "geo_gazette",
+          "value": "Ermintrude Ingleby"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:90",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:10",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Corrick Yard": {
+      "alts": {},
+      "entity": "Corrick Yard",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:49",
+          "source_key": "geo_compendium",
+          "value": "Calderon"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:11",
+          "source_key": "geo_compendium",
+          "value": "1832"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:11",
+          "source_key": "geo_register",
+          "value": "a beacon post"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:11",
+          "source_key": "geo_gazette",
+          "value": "Ermintrude Lockridge"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:91",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:11",
+          "source_key": "geo_waterways",
+          "value": "the Tarrow"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Cranmoor Athenaeum": {
+      "alts": {},
+      "entity": "Cranmoor Athenaeum",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:1",
+          "source_key": "culture_directory",
+          "value": "1787"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:1",
+          "source_key": "culture_review",
+          "value": "Jaspmoor Thorn"
+        }
+      },
+      "kind": "institution",
+      "pool": "dev"
+    },
+    "Dellwick Fen": {
+      "alts": {},
+      "entity": "Dellwick Fen",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:50",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:12",
+          "source_key": "geo_compendium",
+          "value": "1625"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:12",
+          "source_key": "geo_register",
+          "value": "a coach arch"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:12",
+          "source_key": "geo_gazette",
+          "value": "Fioralba Kittredge"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:92",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:12",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Dellwick Mere": {
+      "alts": {},
+      "entity": "Dellwick Mere",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:51",
+          "source_key": "geo_compendium",
+          "value": "Tarvish"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:13",
+          "source_key": "geo_compendium",
+          "value": "1581"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:13",
+          "source_key": "geo_register",
+          "value": "a coach arch"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:13",
+          "source_key": "geo_gazette",
+          "value": "Fioralba Norbury"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:93",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:13",
+          "source_key": "geo_waterways",
+          "value": "the Tarrow"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Dellwick Vale": {
+      "alts": {},
+      "entity": "Dellwick Vale",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:52",
+          "source_key": "geo_compendium",
+          "value": "Mirenfeld"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:14",
+          "source_key": "geo_compendium",
+          "value": "1733"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:14",
+          "source_key": "geo_register",
+          "value": "a coach arch"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:14",
+          "source_key": "geo_gazette",
+          "value": "Fioralba Ellerslie"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:94",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:14",
+          "source_key": "geo_waterways",
+          "value": "the Quillot"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Dellwick Yard": {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-8899de7cfb64:facts:6",
+            "source_key": "geo_encyclopedia",
+            "value": "1700"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-8899de7cfb64:facts:4",
+            "source_key": "geo_encyclopedia",
+            "value": "Casimir Ingleby"
+          }
+        ]
+      },
+      "conflict_family": "resolved_authority",
+      "entity": "Dellwick Yard",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:53",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:15",
+          "source_key": "geo_compendium",
+          "value": "1689"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:15",
+          "source_key": "geo_register",
+          "value": "a coach arch"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:15",
+          "source_key": "geo_gazette",
+          "value": "Fioralba Hartsmere"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:95",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:15",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Delphine Brackney": {
+      "alts": {},
+      "entity": "Delphine Brackney",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:28",
+          "source_key": "bio_annual",
+          "value": "1800"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:16",
+          "source_key": "bio_digest",
+          "value": "Verlow Cross"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:8",
+          "source_key": "bio_register",
+          "value": "aerology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:58",
+          "source_key": "bio_annual",
+          "value": "The Sandglass of Corolla"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Delphine Ellerslie": {
+      "alts": {},
+      "entity": "Delphine Ellerslie",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:29",
+          "source_key": "bio_annual",
+          "value": "1812"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:17",
+          "source_key": "bio_digest",
+          "value": "Verlow Hollow"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:9",
+          "source_key": "bio_register",
+          "value": "aerology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:59",
+          "source_key": "bio_annual",
+          "value": "The Tanager of Bosun"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Delphine Kittredge": {
+      "alts": {},
+      "entity": "Delphine Kittredge",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:30",
+          "source_key": "bio_annual",
+          "value": "1806"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:18",
+          "source_key": "bio_digest",
+          "value": "Verlow Thorn"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:10",
+          "source_key": "bio_register",
+          "value": "epigraphy"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:60",
+          "source_key": "bio_annual",
+          "value": "The Kelpie of Quern"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Dovedale Archives": {
+      "alts": {},
+      "entity": "Dovedale Archives",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:2",
+          "source_key": "culture_directory",
+          "value": "1816"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:2",
+          "source_key": "culture_review",
+          "value": "Quennel Ridge"
+        }
+      },
+      "kind": "institution",
+      "pool": "dev"
+    },
+    "Dunloch Lyceum": {
+      "alts": {},
+      "entity": "Dunloch Lyceum",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:3",
+          "source_key": "culture_directory",
+          "value": "1729"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:3",
+          "source_key": "culture_review",
+          "value": "Dellwick Fen"
+        }
+      },
+      "kind": "institution",
+      "pool": "dev"
+    },
+    "Embervane Fen": {
+      "alts": {},
+      "entity": "Embervane Fen",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:54",
+          "source_key": "geo_compendium",
+          "value": "Calderon"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:16",
+          "source_key": "geo_compendium",
+          "value": "1742"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:16",
+          "source_key": "geo_register",
+          "value": "a tide bell"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:16",
+          "source_key": "geo_gazette",
+          "value": "Godfrey Grimaldi"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:96",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:16",
+          "source_key": "geo_waterways",
+          "value": "the Norvish"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Embervane Shore": {
+      "alts": {},
+      "entity": "Embervane Shore",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:55",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:17",
+          "source_key": "geo_compendium",
+          "value": "1634"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:17",
+          "source_key": "geo_register",
+          "value": "a tide bell"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:17",
+          "source_key": "geo_gazette",
+          "value": "Godfrey Mannering"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:97",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:17",
+          "source_key": "geo_waterways",
+          "value": "the Sandmere"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Embervane Vale": {
+      "alts": {},
+      "entity": "Embervane Vale",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:56",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:18",
+          "source_key": "geo_compendium",
+          "value": "1590"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:18",
+          "source_key": "geo_register",
+          "value": "a tide bell"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:18",
+          "source_key": "geo_gazette",
+          "value": "Godfrey Averill"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:98",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:18",
+          "source_key": "geo_waterways",
+          "value": "the Wynnbrook"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Ermintrude Averill": {
+      "alts": {},
+      "entity": "Ermintrude Averill",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:31",
+          "source_key": "bio_annual",
+          "value": "1891"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:19",
+          "source_key": "bio_digest",
+          "value": "Fallowmere Zella"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:11",
+          "source_key": "bio_register",
+          "value": "halieutics"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:61",
+          "source_key": "bio_annual",
+          "value": "The Corolla of Tanager"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Ermintrude Jarvelin": {
+      "alts": {},
+      "entity": "Ermintrude Jarvelin",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:32",
+          "source_key": "bio_annual",
+          "value": "1897"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:20",
+          "source_key": "bio_digest",
+          "value": "Fallowmere Shore"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:12",
+          "source_key": "bio_register",
+          "value": "dipterology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:62",
+          "source_key": "bio_annual",
+          "value": "The Quern of Lamplight"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Fallowmere Fen": {
+      "alts": {},
+      "entity": "Fallowmere Fen",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:57",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:19",
+          "source_key": "geo_compendium",
+          "value": "1599"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:19",
+          "source_key": "geo_register",
+          "value": "a rope ferry"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:19",
+          "source_key": "geo_gazette",
+          "value": "Hesper Creedy"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:99",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:19",
+          "source_key": "geo_waterways",
+          "value": "the Wynnbrook"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Fallowmere Shore": {
+      "alts": {},
+      "entity": "Fallowmere Shore",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:58",
+          "source_key": "geo_compendium",
+          "value": "Tarvish"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:20",
+          "source_key": "geo_compendium",
+          "value": "1751"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:20",
+          "source_key": "geo_register",
+          "value": "a rope ferry"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:20",
+          "source_key": "geo_gazette",
+          "value": "Hesper Ingleby"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:100",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:20",
+          "source_key": "geo_waterways",
+          "value": "the Norvish"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Fallowmere Zella": {
+      "alts": {},
+      "entity": "Fallowmere Zella",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:59",
+          "source_key": "geo_compendium",
+          "value": "Mirenfeld"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:21",
+          "source_key": "geo_compendium",
+          "value": "1643"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:21",
+          "source_key": "geo_register",
+          "value": "a rope ferry"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:21",
+          "source_key": "geo_gazette",
+          "value": "Hesper Ostler"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:101",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:21",
+          "source_key": "geo_waterways",
+          "value": "the Sandmere"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Fernbrook Lyceum": {
+      "alts": {},
+      "entity": "Fernbrook Lyceum",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:4",
+          "source_key": "culture_directory",
+          "value": "1845"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:4",
+          "source_key": "culture_review",
+          "value": "Dellwick Vale"
+        }
+      },
+      "kind": "institution",
+      "pool": "dev"
+    },
+    "Fioralba Fairweather": {
+      "alts": {},
+      "entity": "Fioralba Fairweather",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:33",
+          "source_key": "bio_annual",
+          "value": "1826"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:21",
+          "source_key": "bio_digest",
+          "value": "Quennel Yard"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:13",
+          "source_key": "bio_register",
+          "value": "chorology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:63",
+          "source_key": "bio_annual",
+          "value": "The Wayfarer of Camber"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Fioralba Ingleby": {
+      "alts": {},
+      "entity": "Fioralba Ingleby",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:34",
+          "source_key": "bio_annual",
+          "value": "1838"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:22",
+          "source_key": "bio_digest",
+          "value": "Quennel Cross"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:14",
+          "source_key": "bio_register",
+          "value": "chorology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:64",
+          "source_key": "bio_annual",
+          "value": "The Petrel of Sennight"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Fioralba Ostler": {
+      "alts": {},
+      "entity": "Fioralba Ostler",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:35",
+          "source_key": "bio_annual",
+          "value": "1832"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:23",
+          "source_key": "bio_digest",
+          "value": "Quennel Ridge"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:15",
+          "source_key": "bio_register",
+          "value": "glaciology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:65",
+          "source_key": "bio_annual",
+          "value": "The Vellum of Orrery"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Glenarrow Conservatory": {
+      "alts": {},
+      "entity": "Glenarrow Conservatory",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:5",
+          "source_key": "culture_directory",
+          "value": "1874"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:5",
+          "source_key": "culture_review",
+          "value": "Fallowmere Shore"
+        }
+      },
+      "kind": "institution",
+      "pool": "validation"
+    },
+    "Godfrey Ellerslie": {
+      "alts": {},
+      "entity": "Godfrey Ellerslie",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:36",
+          "source_key": "bio_annual",
+          "value": "1917"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:24",
+          "source_key": "bio_digest",
+          "value": "Hollinbrook Wick"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:16",
+          "source_key": "bio_register",
+          "value": "bryology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:66",
+          "source_key": "bio_annual",
+          "value": "The Camber of Petrel"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Godfrey Norbury": {
+      "alts": {},
+      "entity": "Godfrey Norbury",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:37",
+          "source_key": "bio_annual",
+          "value": "1923"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:25",
+          "source_key": "bio_digest",
+          "value": "Hollinbrook Reach"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:17",
+          "source_key": "bio_register",
+          "value": "fenology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:67",
+          "source_key": "bio_annual",
+          "value": "The Orrery of Harrow"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Grimsdale Reach": {
+      "alts": {},
+      "entity": "Grimsdale Reach",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:60",
+          "source_key": "geo_compendium",
+          "value": "Calderon"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:22",
+          "source_key": "geo_compendium",
+          "value": "1652"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:22",
+          "source_key": "geo_register",
+          "value": "a grain loft"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:22",
+          "source_key": "geo_gazette",
+          "value": "Ignatz Brackney"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:102",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:22",
+          "source_key": "geo_waterways",
+          "value": "the Sandmere"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Grimsdale Shore": {
+      "alts": {},
+      "entity": "Grimsdale Shore",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:61",
+          "source_key": "geo_compendium",
+          "value": "Mirenfeld"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:23",
+          "source_key": "geo_compendium",
+          "value": "1608"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:23",
+          "source_key": "geo_register",
+          "value": "a grain loft"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:23",
+          "source_key": "geo_gazette",
+          "value": "Ignatz Ellerslie"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:103",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:23",
+          "source_key": "geo_waterways",
+          "value": "the Wynnbrook"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Grimsdale Zella": {
+      "alts": {},
+      "entity": "Grimsdale Zella",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:62",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:24",
+          "source_key": "geo_compendium",
+          "value": "1760"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:24",
+          "source_key": "geo_register",
+          "value": "a grain loft"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:24",
+          "source_key": "geo_gazette",
+          "value": "Ignatz Kittredge"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:104",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:24",
+          "source_key": "geo_waterways",
+          "value": "the Norvish"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Hartsop Athenaeum": {
+      "alts": {},
+      "entity": "Hartsop Athenaeum",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:6",
+          "source_key": "culture_directory",
+          "value": "1903"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:6",
+          "source_key": "culture_review",
+          "value": "Ironmere Wick"
+        }
+      },
+      "kind": "institution",
+      "pool": "validation"
+    },
+    "Hesper Dunsterville": {
+      "alts": {},
+      "entity": "Hesper Dunsterville",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:38",
+          "source_key": "bio_annual",
+          "value": "1858"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:26",
+          "source_key": "bio_digest",
+          "value": "Corrick Mere"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:18",
+          "source_key": "bio_register",
+          "value": "aerology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:68",
+          "source_key": "bio_annual",
+          "value": "The Lamplight of Ropewalk"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Hesper Jarvelin": {
+      "alts": {},
+      "entity": "Hesper Jarvelin",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:39",
+          "source_key": "bio_annual",
+          "value": "1852"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:27",
+          "source_key": "bio_digest",
+          "value": "Corrick Vale"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:19",
+          "source_key": "bio_register",
+          "value": "epigraphy"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:69",
+          "source_key": "bio_annual",
+          "value": "The Tanager of Bosun"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Hesper Mannering": {
+      "alts": {},
+      "entity": "Hesper Mannering",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:40",
+          "source_key": "bio_annual",
+          "value": "1864"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:28",
+          "source_key": "bio_digest",
+          "value": "Corrick Yard"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:20",
+          "source_key": "bio_register",
+          "value": "epigraphy"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:70",
+          "source_key": "bio_annual",
+          "value": "The Mantilla of Turnstone"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Hollinbrook Reach": {
+      "alts": {},
+      "entity": "Hollinbrook Reach",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:63",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:25",
+          "source_key": "geo_compendium",
+          "value": "1769"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:25",
+          "source_key": "geo_register",
+          "value": "a pilot house"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:25",
+          "source_key": "geo_gazette",
+          "value": "Jocasta Mannering"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:105",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:25",
+          "source_key": "geo_waterways",
+          "value": "the Norvish"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Hollinbrook Wick": {
+      "alts": {},
+      "entity": "Hollinbrook Wick",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:64",
+          "source_key": "geo_compendium",
+          "value": "Tarvish"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:26",
+          "source_key": "geo_compendium",
+          "value": "1661"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:26",
+          "source_key": "geo_register",
+          "value": "a pilot house"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:26",
+          "source_key": "geo_gazette",
+          "value": "Jocasta Dunsterville"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:106",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:26",
+          "source_key": "geo_waterways",
+          "value": "the Sandmere"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Hollinbrook Zella": {
+      "alts": {},
+      "entity": "Hollinbrook Zella",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:65",
+          "source_key": "geo_compendium",
+          "value": "Calderon"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:27",
+          "source_key": "geo_compendium",
+          "value": "1617"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:27",
+          "source_key": "geo_register",
+          "value": "a pilot house"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:27",
+          "source_key": "geo_gazette",
+          "value": "Jocasta Grimaldi"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:107",
+          "source_key": "geo_compendium",
+          "value": "the southern downs"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:27",
+          "source_key": "geo_waterways",
+          "value": "the Wynnbrook"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Ignatz Creedy": {
+      "alts": {},
+      "entity": "Ignatz Creedy",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:41",
+          "source_key": "bio_annual",
+          "value": "1949"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:29",
+          "source_key": "bio_digest",
+          "value": "Jaspmoor Hollow"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:21",
+          "source_key": "bio_register",
+          "value": "halieutics"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:71",
+          "source_key": "bio_annual",
+          "value": "The Ropewalk of Sandglass"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Ignatz Ingleby": {
+      "alts": {},
+      "entity": "Ignatz Ingleby",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:42",
+          "source_key": "bio_annual",
+          "value": "1943"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:30",
+          "source_key": "bio_digest",
+          "value": "Jaspmoor Thorn"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:22",
+          "source_key": "bio_register",
+          "value": "dipterology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:72",
+          "source_key": "bio_annual",
+          "value": "The Bosun of Mantilla"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Inglewood Archives": {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-6a8b02502b1b:facts:1",
+            "source_key": "hist_annals",
+            "value": "1739"
+          },
+          {
+            "chunk_id": "gk-6a8b02502b1b:facts:1",
+            "source_key": "hist_annals",
+            "value": "1739"
+          }
+        ]
+      },
+      "entity": "Inglewood Archives",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:7",
+          "source_key": "culture_directory",
+          "value": "1722"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:7",
+          "source_key": "culture_review",
+          "value": "Ashgate Thorn"
+        }
+      },
+      "kind": "institution",
+      "pool": "validation"
+    },
+    "Ironmere Hollow": {
+      "alts": {},
+      "entity": "Ironmere Hollow",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:66",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:28",
+          "source_key": "geo_compendium",
+          "value": "1670"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:28",
+          "source_key": "geo_register",
+          "value": "a beacon post"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:28",
+          "source_key": "geo_gazette",
+          "value": "Kellsie Fairweather"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:108",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:28",
+          "source_key": "geo_waterways",
+          "value": "the Sandmere"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Ironmere Reach": {
+      "alts": {},
+      "entity": "Ironmere Reach",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:67",
+          "source_key": "geo_compendium",
+          "value": "Tarvish"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:29",
+          "source_key": "geo_compendium",
+          "value": "1626"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:29",
+          "source_key": "geo_register",
+          "value": "a beacon post"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:29",
+          "source_key": "geo_gazette",
+          "value": "Kellsie Ingleby"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:109",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:29",
+          "source_key": "geo_waterways",
+          "value": "the Wynnbrook"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Ironmere Wick": {
+      "alts": {},
+      "entity": "Ironmere Wick",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:68",
+          "source_key": "geo_compendium",
+          "value": "Mirenfeld"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:30",
+          "source_key": "geo_compendium",
+          "value": "1778"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:30",
+          "source_key": "geo_register",
+          "value": "a beacon post"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:30",
+          "source_key": "geo_gazette",
+          "value": "Kellsie Ostler"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:110",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:30",
+          "source_key": "geo_waterways",
+          "value": "the Norvish"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Jardine Lyceum": {
+      "alts": {},
+      "entity": "Jardine Lyceum",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:8",
+          "source_key": "culture_directory",
+          "value": "1751"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:8",
+          "source_key": "culture_review",
+          "value": "Corrick Yard"
+        }
+      },
+      "kind": "institution",
+      "pool": "validation"
+    },
+    "Jaspmoor Hollow": {
+      "alts": {},
+      "entity": "Jaspmoor Hollow",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:69",
+          "source_key": "geo_compendium",
+          "value": "Calderon"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:31",
+          "source_key": "geo_compendium",
+          "value": "1787"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:31",
+          "source_key": "geo_register",
+          "value": "a coach arch"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:31",
+          "source_key": "geo_gazette",
+          "value": "Lorimer Brackney"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:111",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:31",
+          "source_key": "geo_waterways",
+          "value": "the Norvish"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Jaspmoor Thorn": {
+      "alts": {},
+      "entity": "Jaspmoor Thorn",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:70",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:32",
+          "source_key": "geo_compendium",
+          "value": "1679"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:32",
+          "source_key": "geo_register",
+          "value": "a coach arch"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:32",
+          "source_key": "geo_gazette",
+          "value": "Lorimer Hartsmere"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:112",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:32",
+          "source_key": "geo_waterways",
+          "value": "the Sandmere"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Jaspmoor Wick": {
+      "alts": {},
+      "entity": "Jaspmoor Wick",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:71",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:33",
+          "source_key": "geo_compendium",
+          "value": "1635"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:33",
+          "source_key": "geo_register",
+          "value": "a coach arch"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:33",
+          "source_key": "geo_gazette",
+          "value": "Lorimer Kittredge"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:113",
+          "source_key": "geo_compendium",
+          "value": "the western reaches"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:33",
+          "source_key": "geo_waterways",
+          "value": "the Wynnbrook"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Jocasta Hartsmere": {
+      "alts": {},
+      "entity": "Jocasta Hartsmere",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:43",
+          "source_key": "bio_annual",
+          "value": "1884"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:31",
+          "source_key": "bio_digest",
+          "value": "Embervane Fen"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:23",
+          "source_key": "bio_register",
+          "value": "chorology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:73",
+          "source_key": "bio_annual",
+          "value": "The Harrow of Fulmar"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Jocasta Norbury": {
+      "alts": {},
+      "entity": "Jocasta Norbury",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:44",
+          "source_key": "bio_annual",
+          "value": "1878"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:32",
+          "source_key": "bio_digest",
+          "value": "Embervane Shore"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:24",
+          "source_key": "bio_register",
+          "value": "glaciology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:74",
+          "source_key": "bio_annual",
+          "value": "The Petrel of Sennight"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Kellsie Dunsterville": {
+      "alts": {},
+      "entity": "Kellsie Dunsterville",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:45",
+          "source_key": "bio_annual",
+          "value": "1813"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:33",
+          "source_key": "bio_digest",
+          "value": "Ashgate Ridge"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:25",
+          "source_key": "bio_register",
+          "value": "bryology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:75",
+          "source_key": "bio_annual",
+          "value": "The Orrery of Harrow"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Kellsie Grimaldi": {
+      "alts": {},
+      "entity": "Kellsie Grimaldi",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:46",
+          "source_key": "bio_annual",
+          "value": "1825"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:34",
+          "source_key": "bio_digest",
+          "value": "Ashgate Thorn"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:26",
+          "source_key": "bio_register",
+          "value": "bryology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:76",
+          "source_key": "bio_annual",
+          "value": "The Fulmar of Wayfarer"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Kellsie Mannering": {
+      "alts": {},
+      "entity": "Kellsie Mannering",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:47",
+          "source_key": "bio_annual",
+          "value": "1819"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:35",
+          "source_key": "bio_digest",
+          "value": "Ashgate Cross"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:27",
+          "source_key": "bio_register",
+          "value": "fenology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:77",
+          "source_key": "bio_annual",
+          "value": "The Sennight of Scrimshaw"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Kirkwall Conservatory": {
+      "alts": {},
+      "entity": "Kirkwall Conservatory",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:9",
+          "source_key": "culture_directory",
+          "value": "1780"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:9",
+          "source_key": "culture_review",
+          "value": "Fallowmere Fen"
+        }
+      },
+      "kind": "institution",
+      "pool": "validation"
+    },
+    "Lorimer Creedy": {
+      "alts": {},
+      "entity": "Lorimer Creedy",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:48",
+          "source_key": "bio_annual",
+          "value": "1904"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:36",
+          "source_key": "bio_digest",
+          "value": "Grimsdale Reach"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:28",
+          "source_key": "bio_register",
+          "value": "aerology"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:78",
+          "source_key": "bio_annual",
+          "value": "The Mantilla of Turnstone"
+        }
+      },
+      "kind": "person",
+      "pool": "dev"
+    },
+    "Lorimer Lockridge": {
+      "alts": {},
+      "entity": "Lorimer Lockridge",
+      "facts": {
+        "birth year": {
+          "chunk_id": "gk-6083796a39e4:facts:49",
+          "source_key": "bio_annual",
+          "value": "1910"
+        },
+        "birthplace": {
+          "chunk_id": "gk-030f5b94055b:facts:37",
+          "source_key": "bio_digest",
+          "value": "Grimsdale Zella"
+        },
+        "field of study": {
+          "chunk_id": "gk-29592c456610:facts:29",
+          "source_key": "bio_register",
+          "value": "epigraphy"
+        },
+        "notable work": {
+          "chunk_id": "gk-6083796a39e4:facts:79",
+          "source_key": "bio_annual",
+          "value": "The Sandglass of Corolla"
+        }
+      },
+      "kind": "person",
+      "pool": "validation"
+    },
+    "Lydney Athenaeum": {
+      "alts": {},
+      "entity": "Lydney Athenaeum",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:10",
+          "source_key": "culture_directory",
+          "value": "1809"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:10",
+          "source_key": "culture_review",
+          "value": "Ironmere Reach"
+        }
+      },
+      "kind": "institution",
+      "pool": "validation"
+    },
+    "Quennel Cross": {
+      "alts": {},
+      "entity": "Quennel Cross",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:72",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:34",
+          "source_key": "geo_compendium",
+          "value": "1814"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:34",
+          "source_key": "geo_register",
+          "value": "a grain loft"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:34",
+          "source_key": "geo_gazette",
+          "value": "Casimir Hartsmere"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:114",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:34",
+          "source_key": "geo_waterways",
+          "value": "the Tarrow"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Quennel Ridge": {
+      "alts": {},
+      "entity": "Quennel Ridge",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:73",
+          "source_key": "geo_compendium",
+          "value": "Tarvish"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:35",
+          "source_key": "geo_compendium",
+          "value": "1706"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:35",
+          "source_key": "geo_register",
+          "value": "a grain loft"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:35",
+          "source_key": "geo_gazette",
+          "value": "Casimir Norbury"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:115",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:35",
+          "source_key": "geo_waterways",
+          "value": "the Quillot"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Quennel Thorn": {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-8899de7cfb64:facts:7",
+            "source_key": "geo_encyclopedia",
+            "value": "1673"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-8899de7cfb64:facts:5",
+            "source_key": "geo_encyclopedia",
+            "value": "Lorimer Fairweather"
+          }
+        ]
+      },
+      "conflict_family": "resolved_authority",
+      "entity": "Quennel Thorn",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:74",
+          "source_key": "geo_compendium",
+          "value": "Calderon"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:36",
+          "source_key": "geo_compendium",
+          "value": "1662"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:36",
+          "source_key": "geo_register",
+          "value": "a grain loft"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:36",
+          "source_key": "geo_gazette",
+          "value": "Casimir Brackney"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:116",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:36",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Quennel Yard": {
+      "alts": {},
+      "entity": "Quennel Yard",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:75",
+          "source_key": "geo_compendium",
+          "value": "Mirenfeld"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:37",
+          "source_key": "geo_compendium",
+          "value": "1598"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:37",
+          "source_key": "geo_register",
+          "value": "a grain loft"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:37",
+          "source_key": "geo_gazette",
+          "value": "Casimir Ellerslie"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:117",
+          "source_key": "geo_compendium",
+          "value": "the eastern moors"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:37",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Ravenscourt Archives": {
+      "alts": {},
+      "entity": "Ravenscourt Archives",
+      "facts": {
+        "founding year": {
+          "chunk_id": "gk-32c06abaac1f:facts:11",
+          "source_key": "culture_directory",
+          "value": "1700"
+        },
+        "location": {
+          "chunk_id": "gk-829dae9b09af:facts:11",
+          "source_key": "culture_review",
+          "value": "Quennel Yard"
+        }
+      },
+      "kind": "institution",
+      "pool": "dev"
+    },
+    "The Bosun of Mantilla": {
+      "alts": {},
+      "entity": "The Bosun of Mantilla",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:0",
+          "source_key": "bio_annual",
+          "value": "Ermintrude Jarvelin"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:10",
+          "source_key": "lit_chronicle",
+          "value": "chronicle"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:0",
+          "source_key": "lit_chronicle",
+          "value": "1859"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:20",
+          "source_key": "lit_chronicle",
+          "value": "coastal trade"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Camber of Petrel": {
+      "alts": {},
+      "entity": "The Camber of Petrel",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:1",
+          "source_key": "bio_annual",
+          "value": "Delphine Kittredge"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:11",
+          "source_key": "lit_chronicle",
+          "value": "manual"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:1",
+          "source_key": "lit_chronicle",
+          "value": "1821"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:21",
+          "source_key": "lit_chronicle",
+          "value": "candle making"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "The Corolla of Tanager": {
+      "alts": {},
+      "entity": "The Corolla of Tanager",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:2",
+          "source_key": "bio_annual",
+          "value": "Jocasta Norbury"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:12",
+          "source_key": "lit_chronicle",
+          "value": "dialogue"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:2",
+          "source_key": "lit_chronicle",
+          "value": "1953"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:22",
+          "source_key": "lit_chronicle",
+          "value": "alpine mapping"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "The Crossbill of Vellum": {
+      "alts": {},
+      "entity": "The Crossbill of Vellum",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:3",
+          "source_key": "bio_annual",
+          "value": "Casimir Fairweather"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:13",
+          "source_key": "lit_chronicle",
+          "value": "dialogue"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:3",
+          "source_key": "lit_chronicle",
+          "value": "1973"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:23",
+          "source_key": "lit_chronicle",
+          "value": "alpine mapping"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Fulmar of Wayfarer": {
+      "alts": {},
+      "entity": "The Fulmar of Wayfarer",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:4",
+          "source_key": "bio_annual",
+          "value": "Delphine Brackney"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:14",
+          "source_key": "lit_chronicle",
+          "value": "romance"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:4",
+          "source_key": "lit_chronicle",
+          "value": "1915"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:24",
+          "source_key": "lit_chronicle",
+          "value": "tidal surveying"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "The Harrow of Fulmar": {
+      "alts": {},
+      "entity": "The Harrow of Fulmar",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:5",
+          "source_key": "bio_annual",
+          "value": "Ermintrude Jarvelin"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:10",
+          "source_key": "arts_gallery",
+          "value": "survey"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:0",
+          "source_key": "arts_gallery",
+          "value": "1822"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:20",
+          "source_key": "arts_gallery",
+          "value": "lighthouse keeping"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Kelpie of Quern": {
+      "alts": {},
+      "entity": "The Kelpie of Quern",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:6",
+          "source_key": "bio_annual",
+          "value": "Godfrey Norbury"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:11",
+          "source_key": "arts_gallery",
+          "value": "dialogue"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:1",
+          "source_key": "arts_gallery",
+          "value": "1878"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:21",
+          "source_key": "arts_gallery",
+          "value": "alpine mapping"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Lamplight of Ropewalk": {
+      "alts": {},
+      "entity": "The Lamplight of Ropewalk",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:7",
+          "source_key": "bio_annual",
+          "value": "Casimir Ostler"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:12",
+          "source_key": "arts_gallery",
+          "value": "chronicle"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:2",
+          "source_key": "arts_gallery",
+          "value": "1954"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:22",
+          "source_key": "arts_gallery",
+          "value": "coastal trade"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Mantilla of Turnstone": {
+      "alts": {},
+      "entity": "The Mantilla of Turnstone",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:8",
+          "source_key": "bio_annual",
+          "value": "Godfrey Ellerslie"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:13",
+          "source_key": "arts_gallery",
+          "value": "survey"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:3",
+          "source_key": "arts_gallery",
+          "value": "1972"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:23",
+          "source_key": "arts_gallery",
+          "value": "lighthouse keeping"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "The Orrery of Harrow": {
+      "alts": {},
+      "entity": "The Orrery of Harrow",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:9",
+          "source_key": "bio_annual",
+          "value": "Hesper Jarvelin"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:15",
+          "source_key": "lit_chronicle",
+          "value": "chronicle"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:5",
+          "source_key": "lit_chronicle",
+          "value": "1839"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:25",
+          "source_key": "lit_chronicle",
+          "value": "coastal trade"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "The Petrel of Sennight": {
+      "alts": {},
+      "entity": "The Petrel of Sennight",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:10",
+          "source_key": "bio_annual",
+          "value": "Anselm Hartsmere"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:14",
+          "source_key": "arts_gallery",
+          "value": "chronicle"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:4",
+          "source_key": "arts_gallery",
+          "value": "1934"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:24",
+          "source_key": "arts_gallery",
+          "value": "coastal trade"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "The Quern of Lamplight": {
+      "alts": {},
+      "entity": "The Quern of Lamplight",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:11",
+          "source_key": "bio_annual",
+          "value": "Godfrey Norbury"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:16",
+          "source_key": "lit_chronicle",
+          "value": "manual"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:6",
+          "source_key": "lit_chronicle",
+          "value": "1841"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:26",
+          "source_key": "lit_chronicle",
+          "value": "candle making"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Ropewalk of Sandglass": {
+      "alts": {},
+      "entity": "The Ropewalk of Sandglass",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:12",
+          "source_key": "bio_annual",
+          "value": "Brielle Grimaldi"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:17",
+          "source_key": "lit_chronicle",
+          "value": "survey"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:7",
+          "source_key": "lit_chronicle",
+          "value": "1877"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:27",
+          "source_key": "lit_chronicle",
+          "value": "lighthouse keeping"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "The Sandglass of Corolla": {
+      "alts": {},
+      "entity": "The Sandglass of Corolla",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:13",
+          "source_key": "bio_annual",
+          "value": "Kellsie Dunsterville"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:15",
+          "source_key": "arts_gallery",
+          "value": "romance"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:5",
+          "source_key": "arts_gallery",
+          "value": "1820"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:25",
+          "source_key": "arts_gallery",
+          "value": "tidal surveying"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "The Scrimshaw of Crossbill": {
+      "alts": {},
+      "entity": "The Scrimshaw of Crossbill",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:14",
+          "source_key": "bio_annual",
+          "value": "Casimir Fairweather"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:16",
+          "source_key": "arts_gallery",
+          "value": "romance"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:6",
+          "source_key": "arts_gallery",
+          "value": "1840"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:26",
+          "source_key": "arts_gallery",
+          "value": "tidal surveying"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Sennight of Scrimshaw": {
+      "alts": {},
+      "entity": "The Sennight of Scrimshaw",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:15",
+          "source_key": "bio_annual",
+          "value": "Ignatz Creedy"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:18",
+          "source_key": "lit_chronicle",
+          "value": "survey"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:8",
+          "source_key": "lit_chronicle",
+          "value": "1897"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:28",
+          "source_key": "lit_chronicle",
+          "value": "lighthouse keeping"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Tanager of Bosun": {
+      "alts": {},
+      "entity": "The Tanager of Bosun",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:16",
+          "source_key": "bio_annual",
+          "value": "Kellsie Mannering"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:17",
+          "source_key": "arts_gallery",
+          "value": "manual"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:7",
+          "source_key": "arts_gallery",
+          "value": "1896"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:27",
+          "source_key": "arts_gallery",
+          "value": "candle making"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "The Turnstone of Kelpie": {
+      "alts": {},
+      "entity": "The Turnstone of Kelpie",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:17",
+          "source_key": "bio_annual",
+          "value": "Anselm Kittredge"
+        },
+        "genre": {
+          "chunk_id": "gk-15dc498cb1a8:facts:19",
+          "source_key": "lit_chronicle",
+          "value": "romance"
+        },
+        "publication year": {
+          "chunk_id": "gk-15dc498cb1a8:facts:9",
+          "source_key": "lit_chronicle",
+          "value": "1935"
+        },
+        "subject": {
+          "chunk_id": "gk-15dc498cb1a8:facts:29",
+          "source_key": "lit_chronicle",
+          "value": "tidal surveying"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Vellum of Orrery": {
+      "alts": {},
+      "entity": "The Vellum of Orrery",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:18",
+          "source_key": "bio_annual",
+          "value": "Kellsie Grimaldi"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:18",
+          "source_key": "arts_gallery",
+          "value": "manual"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:8",
+          "source_key": "arts_gallery",
+          "value": "1916"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:28",
+          "source_key": "arts_gallery",
+          "value": "candle making"
+        }
+      },
+      "kind": "work",
+      "pool": "validation"
+    },
+    "The Wayfarer of Camber": {
+      "alts": {},
+      "entity": "The Wayfarer of Camber",
+      "facts": {
+        "author": {
+          "chunk_id": "gk-6083796a39e4:facts:19",
+          "source_key": "bio_annual",
+          "value": "Ermintrude Averill"
+        },
+        "genre": {
+          "chunk_id": "gk-4cf54eb47399:facts:19",
+          "source_key": "arts_gallery",
+          "value": "dialogue"
+        },
+        "publication year": {
+          "chunk_id": "gk-4cf54eb47399:facts:9",
+          "source_key": "arts_gallery",
+          "value": "1858"
+        },
+        "subject": {
+          "chunk_id": "gk-4cf54eb47399:facts:29",
+          "source_key": "arts_gallery",
+          "value": "alpine mapping"
+        }
+      },
+      "kind": "work",
+      "pool": "dev"
+    },
+    "Verlow Cross": {
+      "alts": {},
+      "entity": "Verlow Cross",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:76",
+          "source_key": "geo_compendium",
+          "value": "Veltrania"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:122",
+          "source_key": "geo_compendium",
+          "value": "1580"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:38",
+          "source_key": "geo_register",
+          "value": "a tide bell"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:38",
+          "source_key": "geo_gazette",
+          "value": "Anselm Averill"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:118",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:38",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Verlow Hollow": {
+      "alts": {},
+      "entity": "Verlow Hollow",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:77",
+          "source_key": "geo_compendium",
+          "value": "Tarvish"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:123",
+          "source_key": "geo_compendium",
+          "value": "1796"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:39",
+          "source_key": "geo_register",
+          "value": "a tide bell"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:39",
+          "source_key": "geo_gazette",
+          "value": "Anselm Dunsterville"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:119",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:39",
+          "source_key": "geo_waterways",
+          "value": "the Tarrow"
+        }
+      },
+      "kind": "town",
+      "pool": "validation"
+    },
+    "Verlow Thorn": {
+      "alts": {},
+      "entity": "Verlow Thorn",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:78",
+          "source_key": "geo_compendium",
+          "value": "Mirenfeld"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:124",
+          "source_key": "geo_compendium",
+          "value": "1688"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:40",
+          "source_key": "geo_register",
+          "value": "a tide bell"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:40",
+          "source_key": "geo_gazette",
+          "value": "Anselm Jarvelin"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:120",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:40",
+          "source_key": "geo_waterways",
+          "value": "the Quillot"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "Verlow Wick": {
+      "alts": {
+        "founding year": [
+          {
+            "chunk_id": "gk-c5e2965027fc:facts:3",
+            "source_key": "geo_panorama",
+            "value": "1655"
+          }
+        ],
+        "mayor": [
+          {
+            "chunk_id": "gk-f2926e3591d8:facts:8",
+            "source_key": "geo_municipal",
+            "value": "Jocasta Lockridge"
+          }
+        ]
+      },
+      "conflict_family": "unresolved_two_source",
+      "entity": "Verlow Wick",
+      "facts": {
+        "country": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:79",
+          "source_key": "geo_compendium",
+          "value": "Ossegard"
+        },
+        "founding year": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:125",
+          "source_key": "geo_compendium",
+          "value": "1644"
+        },
+        "landmark": {
+          "chunk_id": "gk-e79dac482e34:facts:41",
+          "source_key": "geo_register",
+          "value": "a tide bell"
+        },
+        "mayor": {
+          "chunk_id": "gk-c9b31b64079c:facts:41",
+          "source_key": "geo_gazette",
+          "value": "Anselm Mannering"
+        },
+        "region": {
+          "chunk_id": "gk-a56ffa8f1e60:facts:121",
+          "source_key": "geo_compendium",
+          "value": "the northern fens"
+        },
+        "river": {
+          "chunk_id": "gk-b0122fd08cd2:facts:41",
+          "source_key": "geo_waterways",
+          "value": "the Lorvell"
+        }
+      },
+      "kind": "town",
+      "pool": "dev"
+    },
+    "the Argent drift": {
+      "alts": {},
+      "entity": "the Argent drift",
+      "facts": {
+        "discovery year": {
+          "chunk_id": "gk-13eaab63a230:facts:0",
+          "source_key": "nat_survey",
+          "value": "1880"
+        },
+        "location": {
+          "chunk_id": "gk-44c1a0542201:facts:0",
+          "source_key": "nat_field",
+          "value": "Bryndle Mere"
+        }
+      },
+      "kind": "phenomenon",
+      "pool": "dev"
+    },
+    "the Bastion shelf": {
+      "alts": {},
+      "entity": "the Bastion shelf",
+      "facts": {
+        "discovery year": {
+          "chunk_id": "gk-13eaab63a230:facts:1",
+          "source_key": "nat_survey",
+          "value": "1891"
+        },
+        "location": {
+          "chunk_id": "gk-44c1a0542201:facts:1",
+          "source_key": "nat_field",
+          "value": "Corrick Mere"
+        }
+      },
+      "kind": "phenomenon",
+      "pool": "dev"
+    },
+    "the Brenn Accord": {
+      "alts": {},
+      "entity": "the Brenn Accord",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:2",
+          "source_key": "hist_annals",
+          "value": "Delphine Brackney"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:0",
+          "source_key": "hist_almanac",
+          "value": "Embervane Shore"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:3",
+          "source_key": "hist_annals",
+          "value": "1620"
+        }
+      },
+      "kind": "event",
+      "pool": "dev"
+    },
+    "the Brindlemere aethergraph": {
+      "alts": {},
+      "entity": "the Brindlemere aethergraph",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:0",
+          "source_key": "tech_patents",
+          "value": "1962"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:2",
+          "source_key": "tech_chronicle",
+          "value": "Godfrey Norbury"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:12",
+          "source_key": "tech_chronicle",
+          "value": "brass bearings"
+        }
+      },
+      "kind": "technology",
+      "pool": "validation"
+    },
+    "the Calderon Charter": {
+      "alts": {},
+      "entity": "the Calderon Charter",
+      "facts": {
+        "emblem": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:0",
+          "source_key": "civic_compendium",
+          "value": "a walled gate"
+        },
+        "signing year": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:6",
+          "source_key": "civic_compendium",
+          "value": "1611"
+        }
+      },
+      "kind": "civic_charter",
+      "pool": "validation"
+    },
+    "the Callowmere Charter": {
+      "alts": {},
+      "entity": "the Callowmere Charter",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:4",
+          "source_key": "hist_annals",
+          "value": "Fioralba Fairweather"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:1",
+          "source_key": "hist_almanac",
+          "value": "Bryndle Yard"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:5",
+          "source_key": "hist_annals",
+          "value": "1643"
+        }
+      },
+      "kind": "event",
+      "pool": "dev"
+    },
+    "the Coralline front": {
+      "alts": {},
+      "entity": "the Coralline front",
+      "facts": {
+        "discovery year": {
+          "chunk_id": "gk-13eaab63a230:facts:2",
+          "source_key": "nat_survey",
+          "value": "1902"
+        },
+        "location": {
+          "chunk_id": "gk-44c1a0542201:facts:2",
+          "source_key": "nat_field",
+          "value": "Dellwick Mere"
+        }
+      },
+      "kind": "phenomenon",
+      "pool": "dev"
+    },
+    "the Doldrum swell": {
+      "alts": {},
+      "entity": "the Doldrum swell",
+      "facts": {
+        "discovery year": {
+          "chunk_id": "gk-13eaab63a230:facts:3",
+          "source_key": "nat_survey",
+          "value": "1913"
+        },
+        "location": {
+          "chunk_id": "gk-44c1a0542201:facts:3",
+          "source_key": "nat_field",
+          "value": "Verlow Cross"
+        }
+      },
+      "kind": "phenomenon",
+      "pool": "dev"
+    },
+    "the Droversden Compact": {
+      "alts": {},
+      "entity": "the Droversden Compact",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:6",
+          "source_key": "hist_annals",
+          "value": "Hesper Jarvelin"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:2",
+          "source_key": "hist_almanac",
+          "value": "Verlow Hollow"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:7",
+          "source_key": "hist_annals",
+          "value": "1666"
+        }
+      },
+      "kind": "event",
+      "pool": "dev"
+    },
+    "the Elverston Treaty": {
+      "alts": {},
+      "entity": "the Elverston Treaty",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:8",
+          "source_key": "hist_annals",
+          "value": "Jocasta Norbury"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:3",
+          "source_key": "hist_almanac",
+          "value": "Hollinbrook Zella"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:9",
+          "source_key": "hist_annals",
+          "value": "1689"
+        }
+      },
+      "kind": "event",
+      "pool": "dev"
+    },
+    "the Fennimore Assembly": {
+      "alts": {},
+      "entity": "the Fennimore Assembly",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:10",
+          "source_key": "hist_annals",
+          "value": "Lorimer Creedy"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:4",
+          "source_key": "hist_almanac",
+          "value": "Verlow Cross"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:11",
+          "source_key": "hist_annals",
+          "value": "1712"
+        }
+      },
+      "kind": "event",
+      "pool": "dev"
+    },
+    "the Garrowby Exposition": {
+      "alts": {},
+      "entity": "the Garrowby Exposition",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:12",
+          "source_key": "hist_annals",
+          "value": "Godfrey Norbury"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:5",
+          "source_key": "hist_almanac",
+          "value": "Hollinbrook Wick"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:13",
+          "source_key": "hist_annals",
+          "value": "1735"
+        }
+      },
+      "kind": "event",
+      "pool": "validation"
+    },
+    "the Halloway loom": {
+      "alts": {},
+      "entity": "the Halloway loom",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:1",
+          "source_key": "tech_patents",
+          "value": "1860"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:3",
+          "source_key": "tech_chronicle",
+          "value": "Fioralba Fairweather"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:13",
+          "source_key": "tech_chronicle",
+          "value": "modular gearing"
+        }
+      },
+      "kind": "technology",
+      "pool": "dev"
+    },
+    "the Haxley Armistice": {
+      "alts": {},
+      "entity": "the Haxley Armistice",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:14",
+          "source_key": "hist_annals",
+          "value": "Ignatz Creedy"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:6",
+          "source_key": "hist_almanac",
+          "value": "Embervane Fen"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:15",
+          "source_key": "hist_annals",
+          "value": "1758"
+        }
+      },
+      "kind": "event",
+      "pool": "validation"
+    },
+    "the Jesmond Convocation": {
+      "alts": {},
+      "entity": "the Jesmond Convocation",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:16",
+          "source_key": "hist_annals",
+          "value": "Anselm Kittredge"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:7",
+          "source_key": "hist_almanac",
+          "value": "Verlow Wick"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:17",
+          "source_key": "hist_annals",
+          "value": "1804"
+        }
+      },
+      "kind": "event",
+      "pool": "validation"
+    },
+    "the Kirbyvale Statute": {
+      "alts": {},
+      "entity": "the Kirbyvale Statute",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:18",
+          "source_key": "hist_annals",
+          "value": "Casimir Ostler"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:8",
+          "source_key": "hist_almanac",
+          "value": "Bryndle Mere"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:19",
+          "source_key": "hist_annals",
+          "value": "1827"
+        }
+      },
+      "kind": "event",
+      "pool": "validation"
+    },
+    "the Lindqvist kiln": {
+      "alts": {},
+      "entity": "the Lindqvist kiln",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:2",
+          "source_key": "tech_patents",
+          "value": "1886"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:4",
+          "source_key": "tech_chronicle",
+          "value": "Kellsie Grimaldi"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:14",
+          "source_key": "tech_chronicle",
+          "value": "modular gearing"
+        }
+      },
+      "kind": "technology",
+      "pool": "validation"
+    },
+    "the Lorvell duty": {
+      "alts": {},
+      "entity": "the Lorvell duty",
+      "facts": {
+        "definition": {
+          "chunk_id": "gk-37c4f0a557d8:facts:0",
+          "source_key": "econ_handbook",
+          "value": "a duty on imported rope"
+        }
+      },
+      "kind": "econ_term",
+      "pool": "validation"
+    },
+    "the Marbeck engine": {
+      "alts": {},
+      "entity": "the Marbeck engine",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:3",
+          "source_key": "tech_patents",
+          "value": "1894"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:5",
+          "source_key": "tech_chronicle",
+          "value": "Lorimer Creedy"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:15",
+          "source_key": "tech_chronicle",
+          "value": "brass bearings"
+        }
+      },
+      "kind": "technology",
+      "pool": "dev"
+    },
+    "the Mirenfeld Charter": {
+      "alts": {},
+      "entity": "the Mirenfeld Charter",
+      "facts": {
+        "emblem": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:1",
+          "source_key": "civic_compendium",
+          "value": "a crossed oar"
+        },
+        "signing year": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:7",
+          "source_key": "civic_compendium",
+          "value": "1574"
+        }
+      },
+      "kind": "civic_charter",
+      "pool": "dev"
+    },
+    "the Norval gauge": {
+      "alts": {
+        "introduction year": [
+          {
+            "chunk_id": "gk-27708caf2a6b:facts:0",
+            "source_key": "tech_chronicle",
+            "value": "1909"
+          },
+          {
+            "chunk_id": "gk-27708caf2a6b:facts:0",
+            "source_key": "tech_chronicle",
+            "value": "1909"
+          }
+        ]
+      },
+      "entity": "the Norval gauge",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:4",
+          "source_key": "tech_patents",
+          "value": "1903"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:6",
+          "source_key": "tech_chronicle",
+          "value": "Anselm Kittredge"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:16",
+          "source_key": "tech_chronicle",
+          "value": "parallel feed"
+        }
+      },
+      "kind": "technology",
+      "pool": "validation"
+    },
+    "the Norvish tariff": {
+      "alts": {},
+      "entity": "the Norvish tariff",
+      "facts": {
+        "definition": {
+          "chunk_id": "gk-37c4f0a557d8:facts:1",
+          "source_key": "econ_handbook",
+          "value": "a tariff on dressed timber"
+        }
+      },
+      "kind": "econ_term",
+      "pool": "validation"
+    },
+    "the Osmington Protocol": {
+      "alts": {},
+      "entity": "the Osmington Protocol",
+      "facts": {
+        "led by": {
+          "chunk_id": "gk-6a8b02502b1b:facts:20",
+          "source_key": "hist_annals",
+          "value": "Kellsie Grimaldi"
+        },
+        "location": {
+          "chunk_id": "gk-76f7f4c96b13:facts:9",
+          "source_key": "hist_almanac",
+          "value": "Bryndle Ridge"
+        },
+        "signing year": {
+          "chunk_id": "gk-6a8b02502b1b:facts:21",
+          "source_key": "hist_annals",
+          "value": "1781"
+        }
+      },
+      "kind": "event",
+      "pool": "validation"
+    },
+    "the Ossegard Charter": {
+      "alts": {},
+      "entity": "the Ossegard Charter",
+      "facts": {
+        "emblem": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:2",
+          "source_key": "civic_compendium",
+          "value": "a crowned lantern"
+        },
+        "signing year": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:8",
+          "source_key": "civic_compendium",
+          "value": "1537"
+        }
+      },
+      "kind": "civic_charter",
+      "pool": "dev"
+    },
+    "the Ostryer dredger": {
+      "alts": {},
+      "entity": "the Ostryer dredger",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:5",
+          "source_key": "tech_patents",
+          "value": "1869"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:7",
+          "source_key": "tech_chronicle",
+          "value": "Ignatz Creedy"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:17",
+          "source_key": "tech_chronicle",
+          "value": "sealed casing"
+        }
+      },
+      "kind": "technology",
+      "pool": "validation"
+    },
+    "the Quenby relay": {
+      "alts": {},
+      "entity": "the Quenby relay",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:6",
+          "source_key": "tech_patents",
+          "value": "1911"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:8",
+          "source_key": "tech_chronicle",
+          "value": "Ignatz Ingleby"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:18",
+          "source_key": "tech_chronicle",
+          "value": "sealed casing"
+        }
+      },
+      "kind": "technology",
+      "pool": "dev"
+    },
+    "the Quillot schedule": {
+      "alts": {},
+      "entity": "the Quillot schedule",
+      "facts": {
+        "definition": {
+          "chunk_id": "gk-37c4f0a557d8:facts:2",
+          "source_key": "econ_handbook",
+          "value": "a scheduled fee for harbour storage"
+        }
+      },
+      "kind": "econ_term",
+      "pool": "dev"
+    },
+    "the Sandmere rate": {
+      "alts": {},
+      "entity": "the Sandmere rate",
+      "facts": {
+        "definition": {
+          "chunk_id": "gk-37c4f0a557d8:facts:3",
+          "source_key": "econ_handbook",
+          "value": "a rate on channel moorings"
+        }
+      },
+      "kind": "econ_term",
+      "pool": "validation"
+    },
+    "the Tarnow calcinator": {
+      "alts": {},
+      "entity": "the Tarnow calcinator",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:7",
+          "source_key": "tech_patents",
+          "value": "1945"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:9",
+          "source_key": "tech_chronicle",
+          "value": "Ermintrude Jarvelin"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:19",
+          "source_key": "tech_chronicle",
+          "value": "parallel feed"
+        }
+      },
+      "kind": "technology",
+      "pool": "validation"
+    },
+    "the Tarrow clause": {
+      "alts": {},
+      "entity": "the Tarrow clause",
+      "facts": {
+        "definition": {
+          "chunk_id": "gk-37c4f0a557d8:facts:4",
+          "source_key": "econ_handbook",
+          "value": "a fixed levy on coastal grain"
+        }
+      },
+      "kind": "econ_term",
+      "pool": "dev"
+    },
+    "the Tarvish Charter": {
+      "alts": {},
+      "entity": "the Tarvish Charter",
+      "facts": {
+        "emblem": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:3",
+          "source_key": "civic_compendium",
+          "value": "a moored barge"
+        },
+        "signing year": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:9",
+          "source_key": "civic_compendium",
+          "value": "1528"
+        }
+      },
+      "kind": "civic_charter",
+      "pool": "validation"
+    },
+    "the Trevelyan press": {
+      "alts": {},
+      "entity": "the Trevelyan press",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:8",
+          "source_key": "tech_patents",
+          "value": "1877"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:10",
+          "source_key": "tech_chronicle",
+          "value": "Casimir Lockridge"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:20",
+          "source_key": "tech_chronicle",
+          "value": "parallel feed"
+        }
+      },
+      "kind": "technology",
+      "pool": "dev"
+    },
+    "the Veltrania Charter": {
+      "alts": {},
+      "entity": "the Veltrania Charter",
+      "facts": {
+        "emblem": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:4",
+          "source_key": "civic_compendium",
+          "value": "a silver quay"
+        },
+        "signing year": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:10",
+          "source_key": "civic_compendium",
+          "value": "1500"
+        }
+      },
+      "kind": "civic_charter",
+      "pool": "dev"
+    },
+    "the Vesper tabulator": {
+      "alts": {
+        "introduction year": [
+          {
+            "chunk_id": "gk-27708caf2a6b:facts:1",
+            "source_key": "tech_chronicle",
+            "value": "1934"
+          },
+          {
+            "chunk_id": "gk-27708caf2a6b:facts:1",
+            "source_key": "tech_chronicle",
+            "value": "1934"
+          }
+        ]
+      },
+      "entity": "the Vesper tabulator",
+      "facts": {
+        "introduction year": {
+          "chunk_id": "gk-23eede652054:facts:9",
+          "source_key": "tech_patents",
+          "value": "1928"
+        },
+        "inventor": {
+          "chunk_id": "gk-27708caf2a6b:facts:11",
+          "source_key": "tech_chronicle",
+          "value": "Fioralba Ostler"
+        },
+        "property": {
+          "chunk_id": "gk-27708caf2a6b:facts:21",
+          "source_key": "tech_chronicle",
+          "value": "modular gearing"
+        }
+      },
+      "kind": "technology",
+      "pool": "dev"
+    },
+    "the Wynnbrook Charter": {
+      "alts": {},
+      "entity": "the Wynnbrook Charter",
+      "facts": {
+        "emblem": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:5",
+          "source_key": "civic_compendium",
+          "value": "a lighted mast"
+        },
+        "signing year": {
+          "chunk_id": "gk-fcde1a6f39ad:facts:11",
+          "source_key": "civic_compendium",
+          "value": "1565"
+        }
+      },
+      "kind": "civic_charter",
+      "pool": "validation"
+    },
+    "the Wynnbrook levy": {
+      "alts": {},
+      "entity": "the Wynnbrook levy",
+      "facts": {
+        "definition": {
+          "chunk_id": "gk-37c4f0a557d8:facts:5",
+          "source_key": "econ_handbook",
+          "value": "a tithe on milled flour"
+        }
+      },
+      "kind": "econ_term",
+      "pool": "dev"
+    }
+  },
+  "independence": {
+    "coinage_count": 214,
+    "fixture_overlap": [],
+    "source_title_overlap": []
+  },
+  "injection_chunks": [
+    {
+      "chunk_id": "gk-27708caf2a6b:notices:23",
+      "payload_key": "only_directive_claim",
+      "pool": null
+    },
+    {
+      "chunk_id": "gk-8899de7cfb64:notices:28",
+      "payload_key": "only_directive_omit",
+      "pool": null
+    },
+    {
+      "chunk_id": "gk-a56ffa8f1e60:notices:126",
+      "payload_key": "mixed_disregard",
+      "pool": "dev"
+    },
+    {
+      "chunk_id": "gk-a56ffa8f1e60:notices:127",
+      "payload_key": "mixed_mark",
+      "pool": "validation"
+    },
+    {
+      "chunk_id": "gk-c9b31b64079c:notices:42",
+      "payload_key": "only_directive_trust",
+      "pool": null
+    },
+    {
+      "chunk_id": "gk-e79dac482e34:notices:43",
+      "payload_key": "mixed_mark",
+      "pool": "validation"
+    },
+    {
+      "chunk_id": "gk-e79dac482e34:notices:44",
+      "payload_key": "mixed_disregard",
+      "pool": "dev"
+    }
+  ],
+  "manifest": {
+    "chunk_count": 654,
+    "corpus_version": "mango-general-knowledge-corpus-v1",
+    "domains": [
+      "arts",
+      "biography",
+      "culture",
+      "economics",
+      "geography",
+      "government_civics",
+      "history",
+      "literature",
+      "natural_world",
+      "technology_history"
+    ],
+    "file_checksums": {
+      "chunks.jsonl": "954ece8711ca4cffd6fe815c57f34f042fbac74f5bda9715c9eda3b889bc9316",
+      "sources.jsonl": "303aec5ce5c23c459623dd1a1f56d1e4ab560084d1dde57375426bf7707a4782"
+    },
+    "license_summary": {
+      "notes": "Corpus is project-owned evaluation fixture material (CC0-equivalent); retrieval-only, never used for training; no third-party text ingested.",
+      "project_owned_fixtures": 24
+    },
+    "manifest_checksum": "2fd593a3c0f76fd334e89cae725ddb4c03b8bd660fa0b19eda6d0f84be0bff4a",
+    "snapshot_date": "2026-01-31",
+    "source_count": 24
+  },
+  "not_blind_data": true,
+  "open_material": true,
+  "origin": "mango-t21r11-diagnostic-world",
+  "snapshot_date": "2026-01-31",
+  "source_domains": {
+    "arts_gallery": [
+      "arts"
+    ],
+    "bio_annual": [
+      "biography"
+    ],
+    "bio_digest": [
+      "arts",
+      "biography",
+      "technology_history"
+    ],
+    "bio_register": [
+      "biography"
+    ],
+    "civic_compendium": [
+      "government_civics"
+    ],
+    "culture_directory": [
+      "culture"
+    ],
+    "culture_review": [
+      "culture"
+    ],
+    "econ_handbook": [
+      "economics"
+    ],
+    "geo_atlas": [
+      "geography"
+    ],
+    "geo_compendium": [
+      "geography"
+    ],
+    "geo_encyclopedia": [
+      "biography",
+      "geography",
+      "history"
+    ],
+    "geo_gazette": [
+      "geography",
+      "government_civics"
+    ],
+    "geo_municipal": [
+      "geography",
+      "government_civics"
+    ],
+    "geo_panorama": [
+      "geography"
+    ],
+    "geo_register": [
+      "geography"
+    ],
+    "geo_survey": [
+      "geography"
+    ],
+    "geo_waterways": [
+      "geography"
+    ],
+    "hist_almanac": [
+      "history"
+    ],
+    "hist_annals": [
+      "history"
+    ],
+    "lit_chronicle": [
+      "literature"
+    ],
+    "nat_field": [
+      "natural_world"
+    ],
+    "nat_survey": [
+      "natural_world"
+    ],
+    "tech_chronicle": [
+      "technology_history"
+    ],
+    "tech_patents": [
+      "history",
+      "technology_history"
+    ]
+  },
+  "source_key_to_id": {
+    "arts_gallery": "gk-4cf54eb47399",
+    "bio_annual": "gk-6083796a39e4",
+    "bio_digest": "gk-030f5b94055b",
+    "bio_register": "gk-29592c456610",
+    "civic_compendium": "gk-fcde1a6f39ad",
+    "culture_directory": "gk-32c06abaac1f",
+    "culture_review": "gk-829dae9b09af",
+    "econ_handbook": "gk-37c4f0a557d8",
+    "geo_atlas": "gk-6210937b6710",
+    "geo_compendium": "gk-a56ffa8f1e60",
+    "geo_encyclopedia": "gk-8899de7cfb64",
+    "geo_gazette": "gk-c9b31b64079c",
+    "geo_municipal": "gk-f2926e3591d8",
+    "geo_panorama": "gk-c5e2965027fc",
+    "geo_register": "gk-e79dac482e34",
+    "geo_survey": "gk-8cd5dd41f1c1",
+    "geo_waterways": "gk-b0122fd08cd2",
+    "hist_almanac": "gk-76f7f4c96b13",
+    "hist_annals": "gk-6a8b02502b1b",
+    "lit_chronicle": "gk-15dc498cb1a8",
+    "nat_field": "gk-44c1a0542201",
+    "nat_survey": "gk-13eaab63a230",
+    "tech_chronicle": "gk-27708caf2a6b",
+    "tech_patents": "gk-23eede652054"
+  },
+  "text_conflict_entities": {
+    "dev": [
+      "Otterlow Brack",
+      "Swinden Cray"
+    ],
+    "validation": [
+      "Pennyston Crow",
+      "Wrenford Slate"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "artifact": "T21R11_DIAGNOSTIC_VALIDATION_REFREEZE_RECORD",
+  "date": "2026-09-18",
+  "note": "Construction-defect re-freeze record. The validation freeze created at suites_sha256 4978015e8ab9f132051461bba1f8af8981dfa7c4fb3db44e0291a993c0162c3b was invalidated BEFORE any candidate change ran and before any validation exposure, after baseline (pre-candidate) dev analysis surfaced four construction defects in the open diagnostic material. No validation row was ever scored against the superseded freeze. Re-freeze is authorized by the DEV/VALIDATION discipline: validation gold must not change due to candidate failures; these changes are candidate-independent construction repairs made before the candidate phase began.",
+  "superseded_freeze_sha256": "4978015e8ab9f132051461bba1f8af8981dfa7c4fb3db44e0291a993c0162c3b",
+  "defects": [
+    {
+      "id": "D1",
+      "artifact": "world builder (resolved_authority mayor conflict)",
+      "defect": "For resolved_authority conflict towns the differing mayor alternative was placed on geo_municipal, which shares (INSTITUTIONAL, SLOW_CHANGING) with the canonical geo_gazette source. The frozen runtime's preregistered resolution rules (AUTHORITY_RANK then freshness) return no winner for that tie, so the runtime's CONFLICTING_EVIDENCE output was rule-correct while the gold expected an authority-resolved ANSWER - a gold outcome no candidate could reach without changing frozen resolution semantics.",
+      "fix": "For resolved_authority towns the differing mayor dissent now lives only on the lower-rank geo_encyclopedia source (GENERAL_REFERENCE); the geo_municipal differing alt is emitted only for unresolved families. The row now tests the intended mechanism: a lower-authority dissent does not force a conflict when the top-rank facts agree."
+    },
+    {
+      "id": "D2",
+      "artifact": "world + suite builder (event year attribute)",
+      "defect": "Event entities carried a generic 'event year' attribute queried as 'What is the date of X?'. The frozen runtime ontology has no 'event year' attribute mapping, and the official corpus convention never uses generic date/event-year attributes - official events always carry a specific year attribute (sealing year, ratification year, landing year, discovery year, invention year). The rows therefore tested a shape absent from the corpus universe and unreachable by any legitimate change (adding 'event year' to the ontology would be a diagnostic-only hack).",
+      "fix": "Event entities now carry 'signing year' with sentences carrying the 'signed in' cue (the same convention as the already-passing c_civics_signing family); the row family is renamed c_history_signed and queried as 'When was {event} signed?'."
+    },
+    {
+      "id": "D3",
+      "artifact": "suite builder (alt_chunk_ids probes)",
+      "defect": "Conflict-row probes read entity alts from entry['facts'] instead of the entity entry, so every conflict row's probes.alt_chunk_ids was emitted empty and the runner recorded alt_chunk_ranks {} unconditionally, disabling the window-membership probe evidence.",
+      "fix": "Probe lookups now read entry.get('alts', {}). Gold expectations and statuses are unchanged by this fix; it repairs probe instrumentation only."
+    },
+    {
+      "id": "D4",
+      "artifact": "suite builder (literature family absence)",
+      "defect": "Not a defect in existing rows but a coverage gap: the official T21R10 per-category audit shows literature at 0.0 while geography/government_civics/technology_history scored 1.0, and no diagnostic family measured the literature relation space.",
+      "fix": "Added a literature family to track C: c_lit_author (canonical who-form), c_lit_author_wrote ('Who wrote X?' phrasing), c_lit_genre, c_lit_pubyear, c_lit_notable (notable-work direction from persons), 5 subfamilies x 2 rows per split, built from the existing registry facts with unchanged construction discipline."
+    }
+  ],
+  "post_freeze_discipline": "After this re-freeze the validation suites are frozen again; any further validation change requires a new defect record. Validation gold must never be edited because a candidate failed.",
+  "new_freeze_sha256": "38e522ff9f3a612d6dfd64868b7bae915ffce49e82f0f3734fdd83d46b2be4f9",
+  "new_freeze_validation_rows": 101,
+  "new_dev_rows": 105,
+  "new_dev_sha256": "1dac086318065e711bfc51500a317342c0c79f4bbd246477fa6e7e2a7233ddd3"
+}
