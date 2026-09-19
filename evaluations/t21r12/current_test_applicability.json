@@ -1,0 +1,150 @@
+{
+  "artifact": "T21R12_CURRENT_TEST_APPLICABILITY",
+  "authority_for": "final_preconstruction_readiness_applicable_suite",
+  "current_mandatory_tests": [
+    {
+      "path": "tests/test_t21r12_preconstruction.py",
+      "reason": "R12 current-state gate / remediation / current code_runtime freeze"
+    },
+    {
+      "path": "tests/test_t21r11_remediation.py",
+      "reason": "R12 current-state gate / remediation / current code_runtime freeze"
+    },
+    {
+      "path": "tests/test_t21r6_multihop_repairs.py",
+      "reason": "R12 current-state gate / remediation / current code_runtime freeze"
+    },
+    {
+      "path": "tests/test_t21r11_code_runtime_freeze.py",
+      "reason": "R12 current-state gate / remediation / current code_runtime freeze"
+    }
+  ],
+  "deselect_nodeids": [
+    "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged",
+    "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched",
+    "tests/test_t21r10_preconstruction.py::test_static_scanner_uniqueness_and_blindness_all_pass",
+    "tests/test_t21r10_preconstruction.py::test_end_to_end_nonblind_miniature_and_all_controls_pass",
+    "tests/test_t21r10_preconstruction.py::test_every_real_r10_holdout_and_exposure_path_remains_absent",
+    "tests/test_t21r11_preconstruction.py::test_evaluator_freeze_rehashes_every_component",
+    "tests/test_t21r11_preconstruction.py::test_every_real_r11_blind_and_exposure_path_is_absent",
+    "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+    "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+    "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+    "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass",
+    "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components",
+    "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components"
+  ],
+  "historical_only_tests": [
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "exclude_from_current_applicable": true,
+      "reason": "code_runtime composite sha256 must equal historical T19 frozen composites.code (cf9dc3c6\u2026)",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "exclude_from_current_applicable": true,
+      "reason": "same as #1 \u2014 historical code_runtime exact hash via t21r8_hash_matches",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "exclude_from_current_applicable": true,
+      "reason": "R10 preconstruction synthetic/static scanner + blindness must PASS while real R10 paths remain absent",
+      "replacement_test": "tests/test_t21r12_preconstruction.py + evaluations/t21r12/holdout_blindness.json pattern / synthetic_protocol_report.json",
+      "test_id": "tests/test_t21r10_preconstruction.py::test_static_scanner_uniqueness_and_blindness_all_pass"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "exclude_from_current_applicable": true,
+      "reason": "R10 preconstruction end-to-end miniature qualification PASS",
+      "replacement_test": "evaluations/t21r12/synthetic_protocol_report.json + tests/test_t21r12_preconstruction.py",
+      "test_id": "tests/test_t21r10_preconstruction.py::test_end_to_end_nonblind_miniature_and_all_controls_pass"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "exclude_from_current_applicable": true,
+      "reason": "During R10 preconstruction / one-shot hygiene, evaluation_run_ledger and other real R10 exposure paths must be absent",
+      "replacement_test": "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent",
+      "test_id": "tests/test_t21r10_preconstruction.py::test_every_real_r10_holdout_and_exposure_path_remains_absent"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "exclude_from_current_applicable": true,
+      "reason": "Disk hashes must match evaluations/t21r11/evaluator_freeze.json component list from R11 preconstruction/seal era",
+      "replacement_test": "evaluations/t21r12/evaluator_freeze.json verification + tests/test_t21r12_preconstruction.py::test_r11_closure_tombstone_present + official_eval preflight refusal smoke",
+      "test_id": "tests/test_t21r11_preconstruction.py::test_evaluator_freeze_rehashes_every_component"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "exclude_from_current_applicable": true,
+      "reason": "real R11 paths must remain absent during R11 preconstruction (not forever)",
+      "replacement_test": "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent",
+      "test_id": "tests/test_t21r11_preconstruction.py::test_every_real_r11_blind_and_exposure_path_is_absent"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "exclude_from_current_applicable": true,
+      "reason": "code_runtime composite unchanged vs evaluations/t21r3/runtime_freeze.json",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "exclude_from_current_applicable": true,
+      "reason": "code_runtime unchanged vs T21R4 runtime freeze",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "exclude_from_current_applicable": true,
+      "reason": "code_runtime unchanged vs T21R5 runtime freeze",
+      "replacement_test": "tests/test_t21r11_code_runtime_freeze.py",
+      "test_id": "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "exclude_from_current_applicable": true,
+      "reason": "T21R8 runtime freeze group knowledge_runtime exact hash on current tree",
+      "replacement_test": "evaluations/t21r12/runtime_freeze.json (15 knowledge components) + remediation regression tests",
+      "test_id": "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "exclude_from_current_applicable": true,
+      "reason": "Current disk must match T21R9 frozen component hashes (incl. relations.py)",
+      "replacement_test": "evaluations/t21r12/runtime_freeze.json component verify + tests/test_t21r11_remediation.py",
+      "test_id": "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "exclude_from_current_applicable": true,
+      "reason": "Only documented post-R9 corpus.py drift tolerated; other mismatches fail",
+      "replacement_test": "evaluations/t21r12/runtime_freeze.json disk rehash (0 mismatches)",
+      "test_id": "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components"
+    }
+  ],
+  "note": "Historical tests retained in repository; excluded from current-applicable gating only via explicit enumerated deselect list (no broad -k filters).",
+  "obsolete_tests": [
+    "tests/test_t21r10_preconstruction.py::test_static_scanner_uniqueness_and_blindness_all_pass",
+    "tests/test_t21r10_preconstruction.py::test_end_to_end_nonblind_miniature_and_all_controls_pass",
+    "tests/test_t21r10_preconstruction.py::test_every_real_r10_holdout_and_exposure_path_remains_absent",
+    "tests/test_t21r11_preconstruction.py::test_every_real_r11_blind_and_exposure_path_is_absent"
+  ],
+  "platform_conditional_tests": [],
+  "superseded_tests": [
+    "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged",
+    "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched",
+    "tests/test_t21r11_preconstruction.py::test_evaluator_freeze_rehashes_every_component",
+    "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+    "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+    "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+    "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass",
+    "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components",
+    "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components"
+  ],
+  "version": "t21r12-v1"
+}

@@ -44,6 +44,41 @@ def build_paths(root: Path = ROOT) -> Paths:
         raw=out / "raw_results.jsonl", results=out / "holdout_results.json")
 
 
+
+def _refuse_if_invalid_holdout_closed(paths: Paths):
+    """Permanent tombstone: invalid unevaluated holdout may never be officially evaluated."""
+    closure_path = paths.out / "T21R11_CLOSURE.json"
+    if not closure_path.is_file():
+        return None
+    try:
+        closure = _json(closure_path)
+    except (OSError, ValueError, TypeError) as exc:
+        return {
+            "status": "T21R11_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
+            "defects": [f"unreadable T21R11_CLOSURE.json: {exc}"],
+            "runtime_execution_count": 0,
+            "ledger_written": False,
+            "candidate_rows_executed": 0,
+        }
+    status = str(closure.get("status") or "")
+    if status in {
+        "CLOSED_INVALID_UNEVALUATED_HOLDOUT",
+        "INVALID_UNEVALUATED_HOLDOUT",
+    } or "INVALID_UNEVALUATED_HOLDOUT" in status:
+        return {
+            "status": "T21R11_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
+            "defects": [
+                "T21R11 holdout is CLOSED_INVALID_UNEVALUATED_HOLDOUT; "
+                "official evaluation is permanently refused",
+                f"closure_reason={closure.get('reason')}",
+            ],
+            "runtime_execution_count": 0,
+            "ledger_written": False,
+            "candidate_rows_executed": 0,
+            "closure_status": status,
+        }
+    return None
+
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -58,6 +93,9 @@ def _row_count(path: Path) -> int:
 
 
 def _preflight(paths: Paths) -> dict:
+    refused = _refuse_if_invalid_holdout_closed(paths)
+    if refused is not None:
+        return refused
     defects: list[str] = []
     for path in (paths.ledger, paths.raw, paths.results):
         if path.exists():
