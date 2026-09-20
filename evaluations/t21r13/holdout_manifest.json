@@ -1,0 +1,210 @@
+{
+  "artifact": "T21R13_HOLDOUT_MANIFEST",
+  "corpus": {
+    "chunks.jsonl": {
+      "rows": 6728,
+      "sha256": "cbecc98765fc4b4ae4894c8cfbe3f5a27e2621a744f9cfb1db8bb58e9d18ea09"
+    },
+    "corpus_manifest.json": {
+      "sha256": "ef19ea3609e2bf0767fb5a66c6d2eaf9f95f2ff53bfbed7dcdc04dae064f9077"
+    },
+    "sources.jsonl": {
+      "rows": 16,
+      "sha256": "778c0139499ce9290c9b7114d47c213a777d5fa51795b78a579ae8fded8158f3"
+    },
+    "world.jsonl": {
+      "rows": 3168,
+      "sha256": "adc68e5ce692f574d1ee53c9f5f6c16be2af06d904699344d3c7dd732c3add35"
+    }
+  },
+  "expected_exact_counts": {
+    "mango-t21r13-adversarial-holdout-v1": 650,
+    "mango-t21r13-citation-claim-holdout-v1": 450,
+    "mango-t21r13-conflict-abstention-holdout-v1": 800,
+    "mango-t21r13-crossdomain-holdout-v1": 700,
+    "mango-t21r13-multihop-holdout-v1": 800,
+    "mango-t21r13-retrieval-holdout-v1": 600,
+    "mango-t21r13-singlehop-holdout-v1": 550,
+    "mango-t21r13-temporal-holdout-v1": 250
+  },
+  "expected_suite_ids": [
+    "mango-t21r13-adversarial-holdout-v1",
+    "mango-t21r13-citation-claim-holdout-v1",
+    "mango-t21r13-conflict-abstention-holdout-v1",
+    "mango-t21r13-crossdomain-holdout-v1",
+    "mango-t21r13-multihop-holdout-v1",
+    "mango-t21r13-retrieval-holdout-v1",
+    "mango-t21r13-singlehop-holdout-v1",
+    "mango-t21r13-temporal-holdout-v1"
+  ],
+  "freeze_inputs": {
+    "evaluations/t21r13/../t21r11/T21R11_CLOSURE.json": {
+      "sha256": "ec9342f6078bb27142bb62d46edf3c2f992a6ce3ae46fc764af73b52e46a896f"
+    },
+    "evaluations/t21r13/blindness_policy.json": {
+      "sha256": "8d746b8816983052514792b8813f7629eb56d211b6087a5ed9162037652fa52e"
+    },
+    "evaluations/t21r13/construction_audit.json": {
+      "sha256": "704c75c2d4eff8ff1a4c7349c215c48bbfd38589703ae5d6edc7fd567afaef23"
+    },
+    "evaluations/t21r13/construction_gate.json": {
+      "sha256": "846693e8c7219a606c1593839952bdc2fdecb5c689bb152b70fbc93fc996a092"
+    },
+    "evaluations/t21r13/contract_gate_coverage.json": {
+      "sha256": "0b341d1c4a7282ae7720cd1524dd5ea15a4424ad61b4c1f7e97a46c4b7ac25d0"
+    },
+    "evaluations/t21r13/current_test_applicability.json": {
+      "sha256": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836"
+    },
+    "evaluations/t21r13/evaluator_freeze.json": {
+      "sha256": "1eeab18eac8802fd5b120b33cbfc24e5ebab271aa3214d1ac18cefa3a430ffdc"
+    },
+    "evaluations/t21r13/exact_design_schema.json": {
+      "sha256": "9310784ee58a624556ff76ae483122aad795e9c89abf27765ab2b8d5a3a515ea"
+    },
+    "evaluations/t21r13/exact_design_tag_vocabulary.json": {
+      "sha256": "99f88f81c85c33a35baa45578dcc5f1f5409e138fc839553382018fa21f60214"
+    },
+    "evaluations/t21r13/holdout_blindness.json": {
+      "sha256": "1c2113faa0e24a50b54844e46bde4158ee4434498202524d637595623affa607"
+    },
+    "evaluations/t21r13/holdout_construction_contract.json": {
+      "sha256": "0cf9525d6941bfe1c07c165ece4bbf67bca65a472cea87649d68a59047b17b07"
+    },
+    "evaluations/t21r13/holdout_uniqueness.json": {
+      "sha256": "96fd9554c178572ce4141458c423907d1204235882bee683b6c0a80ecee10532"
+    },
+    "evaluations/t21r13/preconstruction_qualification.json": {
+      "sha256": "3016b9cf40955c6d302057b23326a86ab8bd256747fb3b741712a8fb1397ae02"
+    },
+    "evaluations/t21r13/preregistration.json": {
+      "sha256": "8a28201144d123bebd0dbc8eb96c435e0d9fbe31eae4ab13e6d5c30b004885b6"
+    },
+    "evaluations/t21r13/prior_exclusion.json": {
+      "sha256": "7c65b86e00143a3529c7bd334ca3d6fa085822ccf84833693eb42498749d33f0"
+    },
+    "evaluations/t21r13/real_blind_construction_readiness.json": {
+      "sha256": "71e3ccc9e6edd97320abfd3080974f78a6ee3328503c493527f0c15d23cfcf3f"
+    },
+    "evaluations/t21r13/remediation_exclusion.json": {
+      "sha256": "2d8faac226efba49e7b1dfb4f17433ebccbec5f0d5f25d8acda6f913712ff2a7"
+    },
+    "evaluations/t21r13/remediation_provenance.json": {
+      "sha256": "1e3d3e77a6cbe7956f1b34e88ab314b986a66efeb3da5157efa1fe659a10b883"
+    },
+    "evaluations/t21r13/runtime_freeze.json": {
+      "sha256": "1800729e3d4048edeb65c15d04c3fce4252f206c365e3ec47d8f043b20cc709d"
+    },
+    "evaluations/t21r13/scoring_semantics.json": {
+      "sha256": "3b7813783300635d701b606223ec67e4de735344a6c9b1e85a66ca5feed26879"
+    },
+    "evaluations/t21r13/static_gold_audit.json": {
+      "sha256": "820b50c71456ee7fe16792259c011e32de2047c07d179012781cbcf2a2c321fc"
+    },
+    "evaluations/t21r13/synthetic_protocol_report.json": {
+      "sha256": "121731aebc3ce93c67998a7271a1f514bb0ff5d3eac2fbddbea8a2045f427e4a"
+    },
+    "evaluations/t21r13/test_failure_adjudication.json": {
+      "sha256": "9efac433c64a8a4d7ee61428906b222a5871d2d838c1597ebb1d44800a76535b"
+    },
+    "evaluations/t21r13/validation_contract.json": {
+      "sha256": "9d23d274d5f79c3d1aa19904b23842a907b0e5a574ea847bc540b483af8809a5"
+    },
+    "scripts/t21r13_blind_author.py": {
+      "sha256": "0800b16a4a35f2deaf5e781553097c20e619a1709da20f54492ff002c47a0d76"
+    },
+    "scripts/t21r13_blindness_audit.py": {
+      "sha256": "4b3ae75e31d5ee8b8d30ca7d6cd72974a430ff7bae02ce7492a390e29fd8c35e"
+    },
+    "scripts/t21r13_build_suites.py": {
+      "sha256": "f9f6bb12ba8f01a404487cc69854b2a8514b57221f5e50d9cbfdb1d7aa0102bb"
+    },
+    "scripts/t21r13_construction_audit.py": {
+      "sha256": "625f260fb808abdf787b49a2b5fc0912a9b9c3cf013e51fc4a57c119853446e0"
+    },
+    "scripts/t21r13_construction_gate.py": {
+      "sha256": "fdc34b4394bade6493078dc9f31bc5292d610fb3010cd4b541be6e6c579ef9f1"
+    },
+    "scripts/t21r13_exact_design_lib.py": {
+      "sha256": "240cdd263538084fa66fcaedebbf25a493b10d2340e37978ebd160d9b6b3d381"
+    },
+    "scripts/t21r13_fixtures.py": {
+      "sha256": "bbe8f20dd0558060b37543219ebd9bf1fac548bb42534df42d6118c444ed1104"
+    },
+    "scripts/t21r13_freeze_holdout.py": {
+      "sha256": "02c3d41f0453ffde1a5257a9e86e0da49646d5eb51d7e508c96046dbe9b2ccce"
+    },
+    "scripts/t21r13_official_eval.py": {
+      "sha256": "25fae2d1ceebdabfe084b390ac06b53b673b53d0cdfe31cb24354ceda61b576e"
+    },
+    "scripts/t21r13_preconstruction.py": {
+      "sha256": "fc1e5f70035eb7e56fc1ec7b6e30bd7e016f77414ba96ddd46c3616b41f742b5"
+    },
+    "scripts/t21r13_retrieval_mirror.py": {
+      "sha256": "e8a96202336da805bb0178ad78b0389a7975919b079c3417787a6c43df242fa5"
+    },
+    "scripts/t21r13_run_eval.py": {
+      "sha256": "d1a49a33b910c9c400f50e8e9c4de7314fd7b781e4d48fddb09229e4806b076f"
+    },
+    "scripts/t21r13_spec_author.py": {
+      "sha256": "a94ade16928b2a4b4b4f270ebd2bac93962bc8c347355d8317fe813f8533d3d6"
+    },
+    "scripts/t21r13_static_gold_audit.py": {
+      "sha256": "e8dddfb3de7a5fc332f4510780f3b8b4819ae2acfd0ffc9a67f8e7e9aa3cb203"
+    },
+    "scripts/t21r13_static_semantics.py": {
+      "sha256": "b33a5abf82b7edc6f7ed4ac38c61460727f49853c891f2bb644b5491b5677b06"
+    },
+    "scripts/t21r13_uniqueness.py": {
+      "sha256": "1fbdccfc33556aeb8aaeeec95bb7e931123bd95ac3de69f3d4b78ac314c8c9c8"
+    },
+    "scripts/t21r13_world.py": {
+      "sha256": "b95ca92202b66273add5ae489cd7adab37263eb0b2223b6e892e6e6f185e5585"
+    }
+  },
+  "freeze_root_sha256": "c4c9c946f6dbfbc79f674ae8a43659063c6881d3ac376e034b4765ebd84f68b8",
+  "runtime_execution_count": 0,
+  "schema_version": "t21r13-seal-v1",
+  "suites": {
+    "mango-t21r13-adversarial-holdout-v1": {
+      "path": "evaluations/t21r13/suites/mango-t21r13-adversarial-holdout-v1/holdout.jsonl",
+      "rows": 650,
+      "sha256": "416779ebd4104a0f6f13d035fbf7c86e5616a4b91261e44a59d1ee7f1925dd78"
+    },
+    "mango-t21r13-citation-claim-holdout-v1": {
+      "path": "evaluations/t21r13/suites/mango-t21r13-citation-claim-holdout-v1/holdout.jsonl",
+      "rows": 450,
+      "sha256": "05faae76c7c0710f9ac16c3f25b0ab9994bd07cef25f55748d8d58fed2210fa7"
+    },
+    "mango-t21r13-conflict-abstention-holdout-v1": {
+      "path": "evaluations/t21r13/suites/mango-t21r13-conflict-abstention-holdout-v1/holdout.jsonl",
+      "rows": 800,
+      "sha256": "0c83e8973691b76abf8a03afebe6b38728a741f200ce87f18a32b11df8acf0a1"
+    },
+    "mango-t21r13-crossdomain-holdout-v1": {
+      "path": "evaluations/t21r13/suites/mango-t21r13-crossdomain-holdout-v1/holdout.jsonl",
+      "rows": 700,
+      "sha256": "5efeb7faaad497f64f371c56c21009c7f3e999d36544e97a003bafd8806afe6f"
+    },
+    "mango-t21r13-multihop-holdout-v1": {
+      "path": "evaluations/t21r13/suites/mango-t21r13-multihop-holdout-v1/holdout.jsonl",
+      "rows": 800,
+      "sha256": "279c1659d0ecb898eb8e35814e54037663448baa44905670cfdaf730724ed798"
+    },
+    "mango-t21r13-retrieval-holdout-v1": {
+      "path": "evaluations/t21r13/suites/mango-t21r13-retrieval-holdout-v1/holdout.jsonl",
+      "rows": 600,
+      "sha256": "5a809cb6517b962fbf8261672a70304458fb8b3d2a9327dc3ab0505ea719903b"
+    },
+    "mango-t21r13-singlehop-holdout-v1": {
+      "path": "evaluations/t21r13/suites/mango-t21r13-singlehop-holdout-v1/holdout.jsonl",
+      "rows": 550,
+      "sha256": "edab5218eeacccec4ac1efc696760e002649f241b646b496d49af5a71eb183a6"
+    },
+    "mango-t21r13-temporal-holdout-v1": {
+      "path": "evaluations/t21r13/suites/mango-t21r13-temporal-holdout-v1/holdout.jsonl",
+      "rows": 250,
+      "sha256": "acf6c8323e4da0f172d231fba1e54fd14d32a7872442ee08d12254e5f756c7bd"
+    }
+  }
+}
