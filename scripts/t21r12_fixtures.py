@@ -5,7 +5,7 @@ from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
 
-ROOT = Path.cwd()
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import t21r12_exact_design_lib as ed
 import t21r11_uniqueness as uniq
@@ -16,9 +16,14 @@ EXT = Path(r"C:\Users\allam\Documents\new\t21r11_junit_symlink")
 
 def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def wj(p, o):
-    p = Path(p); p.parent.mkdir(parents=True, exist_ok=True)
+    p = Path(p)
     t = json.dumps(o, indent=2, sort_keys=True) + "\n"
-    p.write_text(t, encoding="utf-8", newline="\n")
+    # Historical regression tests import this helper for fixture functions.
+    # Importing must never regenerate committed R12 evidence.  Explicit script
+    # execution remains the only write-capable mode.
+    if __name__ == "__main__":
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(t, encoding="utf-8", newline="\n")
     return hashlib.sha256(t.encode()).hexdigest()
 def lj(p): return json.loads(Path(p).read_text(encoding="utf-8"))
 

@@ -1,0 +1,64 @@
+"""Deterministic author qualification lock."""
+from __future__ import annotations
+
+import subprocess
+from pathlib import Path
+from typing import Any
+
+from .author import shadow_author
+from .errors import ValidationError
+from .util import read_json, sha256_file, sha256_json
+
+
+def build_qualification_lock(root: Path, contract: Any) -> dict[str, Any]:
+    run_1 = shadow_author(contract, root)["fingerprint_root"]
+    run_2 = shadow_author(contract, root)["fingerprint_root"]
+    if run_1 != run_2:
+        raise ValidationError("shadow author is not deterministic")
+    experiment_path = root / contract.get("artifacts.experiment_config")
+    taxonomy_path = root / contract.get("artifacts.domain_taxonomy")
+    exclusion_path = root / contract.get("artifacts.historical_exclusion")
+    try:
+        commit = subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "HEAD"], check=True, capture_output=True, text=True
+        ).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        commit = "0" * 40
+    roots = contract.get("roots")
+    return {
+        "schema_version": "t21-qualification-lock-v1",
+        "artifact": "T21_QUALIFICATION_LOCK",
+        "experiment": contract.experiment,
+        "preconstruction_commit": commit,
+        "author_hash": sha256_file(root / "t21_protocol" / "author.py"),
+        "authoring_profile_hash": sha256_file(experiment_path),
+        "contract_hash": contract.hash,
+        "shadow_fingerprint_root": run_1,
+        "expected_suite_counts": {name: spec["count"] for name, spec in contract.get("suites").items()},
+        "expected_taxonomy_root": sha256_json(read_json(taxonomy_path)),
+        "expected_exclusion_root": sha256_file(exclusion_path),
+        "runtime_root": roots["runtime_root"],
+        "evaluator_root": roots["evaluator_root"],
+        "floor_hash": roots["floor_hash"],
+        "immutable_after": "T21R15_PRECONSTRUCTION_AUDIT_PASS",
+    }
+
+
+def validate_qualification_lock(root: Path, contract: Any, lock: dict[str, Any]) -> dict[str, Any]:
+    expected = build_qualification_lock(root, contract)
+    # The source commit can legitimately differ after the lock is committed;
+    # all semantic/code bytes are bound independently below.
+    comparable = set(expected) - {"preconstruction_commit"}
+    mismatches = sorted(key for key in comparable if lock.get(key) != expected[key])
+    commit = lock.get("preconstruction_commit")
+    if not isinstance(commit, str) or len(commit) != 40:
+        mismatches.append("preconstruction_commit")
+    if mismatches:
+        raise ValidationError(f"qualification lock mismatch: {sorted(set(mismatches))}")
+    return {
+        "status": "PASS",
+        "author_root_run_1": expected["shadow_fingerprint_root"],
+        "author_root_run_2": shadow_author(contract, root)["fingerprint_root"],
+        "committed_qualification_root": lock["shadow_fingerprint_root"],
+        "all_equal": True,
+    }

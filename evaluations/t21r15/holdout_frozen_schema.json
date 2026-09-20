@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "artifact": "T21_HOLDOUT_FROZEN_SCHEMA",
+  "properties": {
+    "candidate_commit": {"pattern": "^[0-9a-f]{40}$", "type": "string"},
+    "candidate_rows_executed": {"minimum": 0, "type": "integer"},
+    "candidate_tree": {"pattern": "^[0-9a-f]{40}$", "type": "string"},
+    "construction_attempts": {"const": 1, "type": "integer"},
+    "construction_status": {"const": "COMPLETE", "type": "string"},
+    "corpus_materializations": {"const": 1, "type": "integer"},
+    "evaluator_root": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "experiment": {"const": "t21r15", "type": "string"},
+    "floor_hash": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "freeze_root_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "holdout_manifest_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "official_evaluator_invocations": {"minimum": 0, "type": "integer"},
+    "runtime_root": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "runtime_rows_executed": {"minimum": 0, "type": "integer"},
+    "schema_version": {"const": "t21-holdout-frozen-v1", "type": "string"},
+    "suite_materializations": {"const": 1, "type": "integer"}
+  },
+  "required": [
+    "schema_version",
+    "experiment",
+    "construction_status",
+    "holdout_manifest_sha256",
+    "freeze_root_sha256",
+    "candidate_commit",
+    "candidate_tree",
+    "runtime_root",
+    "evaluator_root",
+    "floor_hash",
+    "construction_attempts",
+    "corpus_materializations",
+    "suite_materializations",
+    "candidate_rows_executed",
+    "runtime_rows_executed",
+    "official_evaluator_invocations"
+  ],
+  "schema_version": "t21-holdout-frozen-schema-v1",
+  "type": "object"
+}
