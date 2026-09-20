@@ -1,0 +1,48 @@
+{
+  "artifact": "T21R14_DOMAIN_TAXONOMY_COVERAGE",
+  "author_coverage_percent": 100.0,
+  "author_covered_domains": 10,
+  "author_labels": [
+    "arts",
+    "biography",
+    "civic_architecture",
+    "culture",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "natural_philosophy",
+    "technology_history"
+  ],
+  "author_subset_of_evaluator": true,
+  "author_unused_labels": [
+    "computing",
+    "economics",
+    "education_reference",
+    "natural_world"
+  ],
+  "canonical_domains": 14,
+  "canonical_labels": [
+    "arts",
+    "biography",
+    "civic_architecture",
+    "computing",
+    "culture",
+    "economics",
+    "education_reference",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "natural_philosophy",
+    "natural_world",
+    "technology_history"
+  ],
+  "coverage_percent": 100.0,
+  "evaluator_covered_domains": 14,
+  "scorer_covered_domains": 14,
+  "scorer_equals_evaluator": true,
+  "synthetic_rehearsal_exercises_every_registered_domain": true,
+  "synthetic_tested_domains": 14,
+  "version": "t21r14-v1"
+}

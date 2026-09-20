@@ -1,0 +1,20 @@
+{
+  "artifact": "T21R14_INTERFACE_REPAIR_RESULT",
+  "version": "t21r14-v1",
+  "round": "DOMAIN_TAXONOMY_EVALUATOR_REMEDIATION",
+  "root_cause": "FROZEN_EVALUATOR_HOLDOUT_DOMAIN_TAXONOMY_INCOMPATIBILITY (T21R13 official evaluation infrastructure failure)",
+  "remediation": {
+    "canonical_contract": "evaluations/t21r14/domain_taxonomy_contract.json",
+    "canonical_labels": 14,
+    "registered_r13_labels": ["natural_philosophy", "civic_architecture"],
+    "frozen_r6_labels_preserved": 12,
+    "evaluator_rebind": "t21r14_run_eval rebinds t21r6_run_eval.DOMAIN_TAXONOMY and t21r8_run_eval.DOMAIN_TAXONOMY from the canonical contract at import; loud T21R6_EVALUATOR_INVALID failure preserved for unknown labels",
+    "official_preflight": "scan_gold_taxonomy validates every gold.required_domains label and corpus source topic_tags against the canonical contract BEFORE ledger creation",
+    "rehearsal": "90-row synthetic stub-output pass through the real evaluator/scorer/32-floor path PASS; every canonical domain reached the scorer",
+    "r13_regression": "R13_DOMAIN_TAXONOMY_ABORT_REGRESSION PASS (natural_philosophy/civic_architecture accepted end-to-end; __unknown_domain__ rejected pre-ledger)",
+    "runtime_freeze_root_unchanged": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+    "floor_hash_unchanged": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+    "scoring_semantics_unchanged": true
+  },
+  "status": "PASS"
+}

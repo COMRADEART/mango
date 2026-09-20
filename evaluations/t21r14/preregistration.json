@@ -1,0 +1,127 @@
+{
+  "artifact": "T21R14_PREREGISTRATION",
+  "blind_namespace": "mango-r14b-v1",
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+  "case_id_prefix": "r14b-",
+  "domain_taxonomy_contract": "evaluations/t21r14/domain_taxonomy_contract.json",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "hypotheses": {
+    "H1_RETRIEVAL": {
+      "claim": "Improve top-window retrieval while retaining top-10 reachability.",
+      "measures": [
+        "recall_at_5",
+        "recall_at_10",
+        "mrr",
+        "ndcg_at_5",
+        "source_diversity"
+      ]
+    },
+    "H2_MULTIHOP": {
+      "claim": "Improve structured path resolution through parsing, relation interpretation, and bridge validation.",
+      "measures": [
+        "multi_hop_grounded_accuracy",
+        "bridge_correctness",
+        "terminal_evidence_correctness",
+        "partial_path_behavior"
+      ]
+    },
+    "H3_CROSS_DOMAIN": {
+      "claim": "Combine independently supported cross-domain evidence without unsupported synthesis.",
+      "measures": [
+        "cross_domain_synthesis_accuracy"
+      ]
+    },
+    "H4_CONFLICT": {
+      "claim": "Detect contradiction and avoid false resolution.",
+      "measures": [
+        "conflict_detection",
+        "conflict_false_resolution"
+      ]
+    },
+    "H5_ABSTENTION": {
+      "claim": "Recognize insufficient evidence with high precision.",
+      "measures": [
+        "insufficient_evidence_precision",
+        "insufficient_evidence_recall",
+        "unsupported_confident_answers"
+      ]
+    },
+    "H6_CITATIONS": {
+      "claim": "Bind every factual claim to the exact evidence used.",
+      "measures": [
+        "citation_resolvability",
+        "citation_validity",
+        "citation_precision",
+        "citation_coverage",
+        "supported_factual_claim_rate",
+        "fabricated_citation_count"
+      ]
+    },
+    "H7_REGRESSION_PROTECTION": {
+      "claim": "Retain all temporal and security strengths demonstrated by T21R10.",
+      "measures": [
+        "explicit_current_routing_accuracy",
+        "stale_snapshot_false_current_answers",
+        "static_query_unnecessary_web_routing",
+        "historical_as_of_handling",
+        "prompt_injection_containment",
+        "citation_id_spoof_rejection",
+        "source_authority_escalation_events",
+        "model_memory_backfill_events",
+        "retrieved_code_execution_events",
+        "unauthorized_network_action_events",
+        "unauthorized_memory_write_events"
+      ]
+    }
+  },
+  "official_blind_status": "NOT_BUILT",
+  "one_shot": {
+    "automatic_regeneration": "FORBIDDEN",
+    "automatic_retry": "FORBIDDEN",
+    "construction": "one-shot",
+    "construction_existing_ledger": "REFUSE",
+    "construction_failed": "PERMANENT",
+    "evaluation_existing_ledger": "REFUSE",
+    "evaluation_failed": "PERMANENT",
+    "official_evaluation": "one-shot"
+  },
+  "phase": "PRECONSTRUCTION",
+  "promotion_authorized": false,
+  "promotion_floor_count": 32,
+  "promotion_floors_byte_equivalent_to_t21r10": true,
+  "promotion_floors_byte_equivalent_to_t21r11": true,
+  "real_blind_construction_authorized": false,
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "states": {
+    "Executive Router": "EXPERIMENTAL",
+    "KNOWLEDGE_RAG": "EXPERIMENTAL",
+    "T21": "OPEN",
+    "T21R10": "CLOSED / VALID_CAPABILITY_FAILURE",
+    "T21R11": "CLOSED / INVALID_UNEVALUATED_HOLDOUT",
+    "T21R13": "PRECONSTRUCTION",
+    "T21R9": "CLOSED / NON_PROMOTIONAL_INFRASTRUCTURE_FAILURE",
+    "T22": "BLOCKED"
+  },
+  "stop_rule": {
+    "preconstruction_pass_does_not_authorize_real_blind": true,
+    "requires": "T21R14_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION"
+  },
+  "suite_target_exact": {
+    "mango-t21r14-adversarial-holdout-v1": 650,
+    "mango-t21r14-citation-claim-holdout-v1": 450,
+    "mango-t21r14-conflict-abstention-holdout-v1": 800,
+    "mango-t21r14-crossdomain-holdout-v1": 700,
+    "mango-t21r14-multihop-holdout-v1": 800,
+    "mango-t21r14-retrieval-holdout-v1": 600,
+    "mango-t21r14-singlehop-holdout-v1": 550,
+    "mango-t21r14-temporal-holdout-v1": 250
+  },
+  "t21r11_preservation": {
+    "candidate_reuse": "permitted subject to freeze",
+    "holdout_reuse": "forbidden",
+    "invalid_holdout_immutable": true
+  },
+  "total_rows_exact": 4800,
+  "version": "t21r14-v1"
+}
