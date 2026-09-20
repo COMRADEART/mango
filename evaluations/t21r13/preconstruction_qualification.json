@@ -1,198 +1,193 @@
 {
-  "R12_failure_regression": {
-    "canonical_blind_namespace_shape": "PASS",
-    "legacy_incompatible_namespace_shape": "rejected",
-    "suite_materializer_exact_contract_parse": "PASS"
-  },
   "artifact": "T21R13_PRECONSTRUCTION_QUALIFICATION",
-  "candidate": {
-    "changed": false,
-    "commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
-    "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
-    "tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b"
-  },
-  "contract_access_audit": {
-    "status": "PASS",
-    "violations": 0
-  },
-  "contract_consumer_matrix": {
-    "consumers_mapped": 6,
-    "fields_mapped": 26,
-    "type_disagreements": 0,
-    "unknown_consumers": 0
-  },
-  "contract_schema": {
-    "field_count": 26,
-    "untyped_fields": 0,
-    "violations": 0
-  },
-  "exact_design": {
-    "handlers": 38,
-    "leaves": 38,
-    "negative_controls": "38/38",
-    "positive_controls": "38/38",
-    "unhandled": 0
-  },
-  "exclusions": {
-    "OPEN_REMEDIATION_MATERIAL": true,
-    "T21R12_FAILED_PARTIAL_BLIND": true,
-    "historical_dimensions": 8,
-    "historical_milestones": 13
-  },
-  "exposure": {
-    "candidate_R13_rows": 0,
-    "official_evaluator_invocations": 0,
-    "real_R13_rows": 0
-  },
-  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
-  "pre_ledger_preflight": {
-    "artifact": "T21R13_PRE_LEDGER_CONTRACT_PARSE_PREFLIGHT",
-    "results": {
-      "audit": "PASS",
-      "construction_gate": "PASS",
-      "manifest_builder": "PASS",
-      "seal_builder": "PASS",
-      "suite_materializer": "PASS",
-      "world_builder": "PASS"
+  "blindness": {
+    "artifact": "T21R13_BLINDNESS_AUDIT",
+    "candidate_leakage": [],
+    "forbidden_calls": [
+      "answer_knowledge",
+      "evaluate",
+      "official_evaluation",
+      "resolve_path",
+      "retrieve_structured",
+      "run_answer_row"
+    ],
+    "forbidden_modules": [
+      "sciencemath",
+      "pipeline",
+      "router",
+      "retrieval",
+      "evidence_paths",
+      "relations",
+      "conflicts",
+      "citation",
+      "injection",
+      "run_eval"
+    ],
+    "historical_blind_leakage": [],
+    "remediation_validation_leakage": [],
+    "runtime_execution_count": 0,
+    "scripts": {
+      "t21r13_build_suites.py": "f9f6bb12ba8f01a404487cc69854b2a8514b57221f5e50d9cbfdb1d7aa0102bb",
+      "t21r13_construction_audit.py": "625f260fb808abdf787b49a2b5fc0912a9b9c3cf013e51fc4a57c119853446e0",
+      "t21r13_construction_gate.py": "fdc34b4394bade6493078dc9f31bc5292d610fb3010cd4b541be6e6c579ef9f1",
+      "t21r13_retrieval_mirror.py": "e8a96202336da805bb0178ad78b0389a7975919b079c3417787a6c43df242fa5",
+      "t21r13_static_gold_audit.py": "e8dddfb3de7a5fc332f4510780f3b8b4819ae2acfd0ffc9a67f8e7e9aa3cb203",
+      "t21r13_static_semantics.py": "b33a5abf82b7edc6f7ed4ac38c61460727f49853c891f2bb644b5491b5677b06",
+      "t21r13_uniqueness.py": "1fbdccfc33556aeb8aaeeec95bb7e931123bd95ac3de69f3d4b78ac314c8c9c8",
+      "t21r13_world.py": "b95ca92202b66273add5ae489cd7adab37263eb0b2223b6e892e6e6f185e5585"
     },
+    "status": "PASS",
+    "violations": []
+  },
+  "candidate_R13_rows_executed": 0,
+  "checks": {
+    "all_test_gates": true,
+    "blindness": true,
+    "contract_documents_byte_stable": true,
+    "cross_module_interfaces": true,
+    "evaluator_freeze": true,
+    "floors_32_and_identical": true,
+    "negative_controls": true,
+    "real_paths_absent": true,
+    "runtime_freeze": true,
+    "synthetic_protocol": true,
+    "zero_candidate_rows": true,
+    "zero_real_rows": true
+  },
+  "contract_documents_byte_stability": {
+    "artifact": "T21R13_CONTRACT_DOCUMENTS_BYTE_STABILITY",
+    "documents": {
+      "blindness_policy.json": {
+        "byte_stable": true,
+        "committed_sha256": "8d746b8816983052514792b8813f7629eb56d211b6087a5ed9162037652fa52e",
+        "status": "STABLE"
+      },
+      "holdout_construction_contract.json": {
+        "byte_stable": true,
+        "committed_sha256": "0cf9525d6941bfe1c07c165ece4bbf67bca65a472cea87649d68a59047b17b07",
+        "status": "STABLE"
+      },
+      "preregistration.json": {
+        "byte_stable": true,
+        "committed_sha256": "8a28201144d123bebd0dbc8eb96c435e0d9fbe31eae4ab13e6d5c30b004885b6",
+        "status": "STABLE"
+      },
+      "scoring_semantics.json": {
+        "byte_stable": true,
+        "committed_sha256": "3b7813783300635d701b606223ec67e4de735344a6c9b1e85a66ca5feed26879",
+        "status": "STABLE"
+      },
+      "validation_contract.json": {
+        "byte_stable": true,
+        "committed_sha256": "9d23d274d5f79c3d1aa19904b23842a907b0e5a574ea847bc540b483af8809a5",
+        "status": "STABLE"
+      }
+    },
+    "runtime_execution_count": 0,
+    "status": "PASS",
+    "version": "t21r13-v1"
+  },
+  "cross_module_interfaces": {
+    "checked": 31,
+    "missing_call_targets": 0,
+    "signature_mismatches": 0,
     "status": "PASS"
   },
-  "project_states": {
+  "evaluator_freeze_verification": {
+    "artifact": "T21R13_EVALUATOR_FREEZE",
+    "freeze": "evaluator_freeze.json",
+    "status": "VERIFIED",
+    "verified_components": 42
+  },
+  "freeze_preservation_guard": {
+    "artifact": "T21R13_FREEZE_PRESERVATION_GUARD",
+    "freezes": {
+      "evaluator_freeze.json": {
+        "action": "preserved",
+        "status": "VERIFIED",
+        "verified_components": 42
+      },
+      "runtime_freeze.json": {
+        "action": "preserved",
+        "status": "VERIFIED",
+        "verified_components": 15
+      }
+    },
+    "runtime_execution_count": 0,
+    "status": "PASS",
+    "version": "t21r13-v1"
+  },
+  "hash_mismatches": 0,
+  "next_authorization_required": "T21R13_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+  "promotion_authorized": false,
+  "real_R13_rows": 0,
+  "real_blind_construction_authorized": false,
+  "real_r11_paths": {
+    "absent_count": 7,
+    "checked": [
+      "rag/gk_holdout_t21r13",
+      "evaluations/t21r13/suites",
+      "evaluations/t21r13/HOLDOUT_FROZEN",
+      "evaluations/t21r13/holdout_manifest.json",
+      "evaluations/t21r13/evaluation_run_ledger.json",
+      "evaluations/t21r13/raw_results.jsonl",
+      "evaluations/t21r13/holdout_results.json"
+    ],
+    "present": [],
+    "status": "PASS"
+  },
+  "runtime_freeze_verification": {
+    "artifact": "T21R13_RUNTIME_FREEZE",
+    "freeze": "runtime_freeze.json",
+    "status": "VERIFIED",
+    "verified_components": 15
+  },
+  "runtime_rows_executed": 0,
+  "states": {
     "Executive Router": "EXPERIMENTAL",
     "KNOWLEDGE_RAG": "EXPERIMENTAL",
     "T21": "OPEN",
     "T21R10": "CLOSED / VALID_CAPABILITY_FAILURE",
-    "T21R11": "CLOSED / INVALID_UNEVALUATED_HOLDOUT",
-    "T21R12": "CLOSED / NON_PROMOTIONAL_CONSTRUCTION_INFRASTRUCTURE_FAILURE",
-    "T21R13": "PRECONSTRUCTION",
+    "T21R13": "PREREGISTRATION / PRECONSTRUCTION",
     "T21R9": "CLOSED / NON_PROMOTIONAL_INFRASTRUCTURE_FAILURE",
     "T22": "BLOCKED"
   },
-  "real_R13_paths": {
-    "evaluations/t21r13/HOLDOUT_FROZEN": false,
-    "evaluations/t21r13/construction_run_ledger.json": false,
-    "evaluations/t21r13/suites": false,
-    "rag/gk_holdout_t21r13": false
-  },
-  "root_of_trust": {
-    "evaluator_components": 28,
-    "evaluator_hash_mismatches": 0,
-    "runtime_components": 15,
-    "runtime_hash_mismatches": 0
-  },
-  "schema_negative_controls": {
-    "R12_NAMESPACE_SHAPE_REGRESSION": {
-      "canonical_blind_namespace_shape": "PASS",
-      "legacy_incompatible_namespace_shape": "rejected",
-      "suite_materializer_exact_contract_parse": "PASS"
-    },
-    "artifact": "T21R13_SCHEMA_NEGATIVE_CONTROLS",
-    "passed": 9,
-    "registered": 9,
-    "results": [
-      {
-        "error": "reached_validation: ValueError: exact suite counts differ: {'mango-t21r13-adversarial-holdout-v1': 0, 'mango-t21r13-citation-claim-holdout-v1': 0, 'mango-t21r13-conflict-abstention-holdout-v1': 0, 'mango-t21r13-crossdomain-holdout-v1': 0, 'mango-t21r13-multihop-holdout-v1': 0, 'mango-t21r13-retrieval-holdout-v1': 0, 'mango-t21r13-singlehop-holdout-v1': 0, 'mango-t21r13-temporal-holdout-v1': 0} != {'mango-t21r13-adversarial-holdout-v1': 650, 'mango-t21r13-citation-claim-holdout-v1': 450, 'mango-t21r13-conflict-abstention-holdout-v1': 800, 'mango-t21r13-crossdomain-holdout-v1': 700, 'mango-t21r13-multihop-holdout-v1': 800, 'mango-t21r13-retrieval-holdout-v1': 600, 'mango-t21r13-singlehop-holdout-v1': 550, 'mango-t21r13-temporal-holdout-v1': 250}",
-        "expect_fail": false,
-        "id": "canonical_blind_namespace_string",
-        "passed": true
-      },
-      {
-        "error": "ValueError: blind_namespace must be a string per contract_schema",
-        "expect_fail": true,
-        "id": "R12_NAMESPACE_SHAPE_REGRESSION_legacy_object",
-        "passed": true
-      },
-      {
-        "error": "ValueError: blind_namespace must be a string per contract_schema",
-        "expect_fail": true,
-        "id": "blind_namespace_missing",
-        "passed": true
-      },
-      {
-        "error": "ValueError: blind_namespace must be a string per contract_schema",
-        "expect_fail": true,
-        "id": "blind_namespace_wrong_type",
-        "passed": true
-      },
-      {
-        "error": "KeyError: 'case_id_prefix'",
-        "expect_fail": true,
-        "id": "case_id_prefix_missing",
-        "passed": true
-      },
-      {
-        "error": "ValueError: exact suite counts differ: {'mango-t21r13-adversarial-holdout-v1': 0, 'mango-t21r13-citation-claim-holdout-v1': 0, 'mango-t21r13-conflict-abstention-holdout-v1': 0, 'mango-t21r13-crossdomain-holdout-v1': 0, 'mango-t21r13-multihop-holdout-v1': 0, 'mango-t21r13-retrieval-holdout-v1': 0, 'mango-t21r13-singlehop-holdout-v1': 0, 'mango-t21r13-temporal-holdout-v1': 0} != {'mango-t21r13-adversarial-holdout-v1': 650, 'mango-t21r13-citation-claim-holdout-v1': 450, 'mango-t21r13-conflict-abstention-holdout-v1': 800, 'mango-t21r13-crossdomain-holdout-v1': 700, 'mango-t21r13-multihop-holdout-v1': 800, 'mango-t21r13-retrieval-holdout-v1': 600, 'mango-t21r13-singlehop-holdout-v1': 550, 'mango-t21r13-temporal-holdout-v1': 250}",
-        "expect_fail": true,
-        "id": "case_id_prefix_wrong_type",
-        "passed": true
-      },
-      {
-        "error": "ValueError: exact suite counts differ: {'b': 0, 'a': 0, 'd': 0} != bad",
-        "expect_fail": true,
-        "id": "suite_target_exact_wrong_type",
-        "passed": true
-      },
-      {
-        "error": "ValueError: exact suite counts differ: {'mango-t21r13-adversarial-holdout-v1': 0, 'mango-t21r13-citation-claim-holdout-v1': 0, 'mango-t21r13-conflict-abstention-holdout-v1': 0, 'mango-t21r13-crossdomain-holdout-v1': 0, 'mango-t21r13-multihop-holdout-v1': 0, 'mango-t21r13-retrieval-holdout-v1': 0, 'mango-t21r13-singlehop-holdout-v1': 0, 'mango-t21r13-temporal-holdout-v1': 0} != {'mango-t21r13-adversarial-holdout-v1': 650, 'mango-t21r13-citation-claim-holdout-v1': 450, 'mango-t21r13-conflict-abstention-holdout-v1': 800, 'mango-t21r13-crossdomain-holdout-v1': 700, 'mango-t21r13-multihop-holdout-v1': 800, 'mango-t21r13-retrieval-holdout-v1': 600, 'mango-t21r13-singlehop-holdout-v1': 550, 'mango-t21r13-temporal-holdout-v1': 250}",
-        "expect_fail": true,
-        "id": "exact_design_object_wrong_type",
-        "passed": true
-      },
-      {
-        "error": "ValueError: exact suite counts differ: {'mango-t21r13-adversarial-holdout-v1': 0, 'mango-t21r13-citation-claim-holdout-v1': 0, 'mango-t21r13-conflict-abstention-holdout-v1': 0, 'mango-t21r13-crossdomain-holdout-v1': 0, 'mango-t21r13-multihop-holdout-v1': 0, 'mango-t21r13-retrieval-holdout-v1': 0, 'mango-t21r13-singlehop-holdout-v1': 0, 'mango-t21r13-temporal-holdout-v1': 0} != {'mango-t21r13-adversarial-holdout-v1': 650, 'mango-t21r13-citation-claim-holdout-v1': 450, 'mango-t21r13-conflict-abstention-holdout-v1': 800, 'mango-t21r13-crossdomain-holdout-v1': 700, 'mango-t21r13-multihop-holdout-v1': 800, 'mango-t21r13-retrieval-holdout-v1': 600, 'mango-t21r13-singlehop-holdout-v1': 550, 'mango-t21r13-temporal-holdout-v1': 250}",
-        "expect_fail": true,
-        "id": "unknown_required_contract_field_removed_total_rows",
-        "passed": true
-      }
-    ],
-    "status": "PASS"
-  },
-  "synthetic": {
-    "artifact": "T21R13_SYNTHETIC_PROTOCOL_REPORT",
-    "candidate_R13_rows_executed": 0,
-    "construction_gate": "PASS",
-    "exact_design_audit": "PASS",
-    "exact_design_detail": {
+  "status": "PASS",
+  "tests": {
+    "applicable_repository": {
+      "collected": 3134,
+      "errors": 0,
+      "exit_code": 0,
       "failed": 0,
-      "passed": 38,
-      "unhandled": 0,
-      "unknown": []
+      "junit_sha256": "988c6e77b3e10d1a0ce887b0e303eb51a8b230dd46c80e52778fddd1c6fdc51a",
+      "passed": 3134,
+      "path": "artifacts\\t21r13_applicable_junit.xml",
+      "skipped": 0,
+      "status": "PASS"
     },
-    "gate_passed": 62,
-    "gate_total": 62,
-    "manifest": "PASS",
-    "official_evaluator_invocations": 0,
-    "official_preflight": "PASS",
-    "official_preflight_note": "exact suite counts differ: {'mango-t21r13-adversarial-holdout-v1': 0, 'mango-t21r13-citation-claim-holdout-v1': 0, 'mango-t21r13-conflict-abstention-holdout-v1': 0, 'mango-t21r13-crossdomain-holdout-v1': 0, 'mango-t21r13-multihop-holdout-v1': 0, 'mango-t21r13-retrieval-holdout-v1': 0, 'mango-t21r13-singlehop-holdout-v1': 0, 'mango-t21r13-temporal-holdout-v1': 0} != {'mango-t21r13-adversarial-holdout-v1': 650, 'mango-t21r13-citation-claim-holdout-v1': 450, 'mango-t21r13-conflict-abstention-holdout-v1': 800, 'mango-t21r13-crossdomain-holdout-v1': 700, 'mango-t21r13-multihop-holdout-v1': 800, 'mango-t21r13-retrieval-holdout-v1': 600, 'mango-t21r13-singlehop-holdout-v1': 550, 'mango-t21r13-temporal-holdout-v1': 250}",
-    "real_R13_rows": 0,
-    "seal": "PASS",
-    "status": "PASS",
-    "suite_counts": {
-      "mango-t21r13-adversarial-holdout-v1": 650,
-      "mango-t21r13-citation-claim-holdout-v1": 450,
-      "mango-t21r13-conflict-abstention-holdout-v1": 800,
-      "mango-t21r13-crossdomain-holdout-v1": 700,
-      "mango-t21r13-multihop-holdout-v1": 800,
-      "mango-t21r13-retrieval-holdout-v1": 600,
-      "mango-t21r13-singlehop-holdout-v1": 550,
-      "mango-t21r13-temporal-holdout-v1": 250
+    "focused_preconstruction": {
+      "collected": 30,
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "junit_sha256": "afe2a2a8046bf532b9e7da827ecefa145ec7a757265d52e43077c0b0a8c07ee4",
+      "passed": 30,
+      "path": "artifacts\\t21r13_focused_reauth_junit.xml",
+      "skipped": 0,
+      "status": "PASS"
     },
-    "suite_materialization": "PASS",
-    "suite_materializer_completed": true,
-    "suite_materializer_invoked": true,
-    "suites_parsed": {
-      "mango-t21r13-adversarial-holdout-v1": "PASS",
-      "mango-t21r13-citation-claim-holdout-v1": "PASS",
-      "mango-t21r13-conflict-abstention-holdout-v1": "PASS",
-      "mango-t21r13-crossdomain-holdout-v1": "PASS",
-      "mango-t21r13-multihop-holdout-v1": "PASS",
-      "mango-t21r13-retrieval-holdout-v1": "PASS",
-      "mango-t21r13-singlehop-holdout-v1": "PASS",
-      "mango-t21r13-temporal-holdout-v1": "PASS"
-    },
-    "world_materialization": "PASS"
+    "focused_remediation": {
+      "collected": 25,
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "junit_sha256": "8c532a24a6fdbd9466085f54d633c4da847d66841c6820fabe9abc8281c2cbad",
+      "passed": 25,
+      "path": "artifacts\\t21r13_remediation_junit.xml",
+      "skipped": 0,
+      "status": "PASS"
+    }
   },
-  "timestamp": "2026-09-19T15:00:21.138799+00:00",
   "verdict": "T21R13_PRECONSTRUCTION_AUDIT_PASS",
-  "version": "t21r13-v1"
+  "version": 1
 }

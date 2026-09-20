@@ -75,6 +75,10 @@ EVALUATOR_COMPONENTS = tuple(dict.fromkeys((
     "evaluations/t21r13/remediation_provenance.json",
     "evaluations/t21r13/blindness_policy.json",
     "evaluations/t21r13/runtime_freeze.json",
+    # T21R13 reauthoring amendment: frozen authoring profile and
+    # historical-disjointness qualification tests.
+    "evaluations/t21r13/private_spec_authoring_profile.json",
+    "tests/test_t21r13_authoring_disjointness.py",
 )))
 
 NEGATIVE_CONTROL_NAMES = (
@@ -1195,7 +1199,7 @@ def run_synthetic_protocol() -> dict:
         "seal": stages["seal_generation"]["status"],
         "official_preflight": stages["official_preflight"]["status"],
     }
-    return {
+    scrubbed = _scrub_synthetic_paths({
         "artifact": "T21R13_SYNTHETIC_PROTOCOL_REPORT",
         "version": 2, "status": status,
         **legacy,
@@ -1210,7 +1214,25 @@ def run_synthetic_protocol() -> dict:
         "candidate_R13_rows_executed": 0,
         "official_evaluator_invocations": 0,
         "official_preflight_runtime_rows": 0,
-    }
+    }, synthetic_root)
+    # Byte-stability repair: the disposable synthetic workspace path must
+    # never appear in the committed report (it changes on every run and
+    # would make the frozen qualification protocol un-rerunnable).
+    scrubbed["synthetic_path_scrubbing"] = "APPLIED"
+    return scrubbed
+
+
+def _scrub_synthetic_paths(value: object, root: Path) -> object:
+    """Replace the disposable synthetic workspace path with a stable marker."""
+    marker = "<t21r13-disposable-synthetic-workspace>"
+    if isinstance(value, str):
+        return value.replace(str(root), marker)
+    if isinstance(value, list):
+        return [_scrub_synthetic_paths(item, root) for item in value]
+    if isinstance(value, dict):
+        return {key: _scrub_synthetic_paths(item, root)
+                for key, item in value.items()}
+    return value
 
 
 def parse_junit(path: Path | None, exit_code: int | None) -> dict:
@@ -1228,11 +1250,23 @@ def parse_junit(path: Path | None, exit_code: int | None) -> dict:
     passed = collected - failed - skipped - errors
     status = "PASS" if exit_code == 0 and failed == 0 and errors == 0 \
         else "FAIL"
+    # Byte-stability repair: junit XML embeds wall-clock timestamps, so the
+    # recorded digest is computed over the timestamp-stripped canonical
+    # content; identical test outcomes must yield identical digests or the
+    # frozen qualification protocol could never be re-run from clean bytes.
     return {"status": status, "collected": collected, "passed": passed,
             "failed": failed, "skipped": skipped, "errors": errors,
-            "exit_code": exit_code, "junit_sha256": _sha(path),
+            "exit_code": exit_code,
+            "junit_sha256": _sha_text(_canonical_junit_text(root)),
             "path": path.relative_to(ROOT).as_posix()
             if path.is_relative_to(ROOT) else str(path)}
+
+
+def _canonical_junit_text(root: ET.Element) -> str:
+    clone = ET.fromstring(ET.tostring(root))
+    for element in clone.iter():
+        element.attrib.pop("timestamp", None)
+    return ET.tostring(clone, encoding="unicode")
 
 
 def real_path_audit() -> dict:

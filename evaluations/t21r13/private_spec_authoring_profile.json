@@ -1,0 +1,74 @@
+{
+  "artifact": "T21R13_PRIVATE_SPEC_AUTHORING_PROFILE",
+  "version": "t21r13-authoring-profile-v2",
+  "status": "FROZEN",
+  "authorization": "T21R13_PRIVATE_SPEC_REAUTHORING + HISTORICAL_DISJOINTNESS_QUALIFICATION",
+  "authoring_schema_version": "t21r13-private-spec-v2",
+  "namespace": {
+    "family": "gk-r13b",
+    "case_id_prefix": "r13b-",
+    "case_id_grammar": "r13b-{suite_code}-{index:04d}",
+    "source_id_grammar": "gk-r13b-src-{role}[-{suffix}]",
+    "chunk_id_grammar": "{source_id}:{slug}",
+    "entity_id_grammar": "ent13b-{kind}{index:04d}",
+    "spoof_locator_grammar": "r13b-loc-{sha256[:16]}"
+  },
+  "entity_family": {
+    "version": "r13b-entity-v2",
+    "person_name_family": "{FIRST} {LAST} R13",
+    "work_title_family": "The {ADJECTIVE} {NOUN} R13Codex",
+    "town_name_family": "R13{TOWN_ROOT}{TOWN_SUFFIX}",
+    "realm_name_family": "r13b-realm-v2 (24 invented names, verified absent from all historical entity fingerprints)",
+    "discipline_family": "r13b-field-v2 (24 invented disciplines, verified absent from all historical answer fingerprints)"
+  },
+  "value_family": {
+    "answer_year_band": "1400-1463",
+    "emblem_value": "brass kingfisher",
+    "record_class_value": "enrolled borough",
+    "work_form_value": "harrow stanza form",
+    "craft_medium_value": "gouache on hemp"
+  },
+  "query_template_family": {
+    "version": "r13b-query-v2",
+    "crossdomain_hop2_templates_version": "r13b-crossdomain-v2",
+    "natural_language_required": true,
+    "visible_markers_forbidden": true
+  },
+  "source_template_family": {
+    "version": "r13b-source-v2",
+    "source_title_family": "T21R13 {domain} register titles",
+    "domains": 7
+  },
+  "attack_grammar": {
+    "version": "r13b-attack-v2",
+    "source_attack_wording_version": "r13b-vault-notice-v1",
+    "query_override_prefix_version": "r13b-override-v2",
+    "spoof_wording_version": "r13b-spoof-v1"
+  },
+  "determinism": {
+    "identifier": "t21r13-authoring-deterministic-v2",
+    "randomness_sources": "none (odometer/index arithmetic only)",
+    "ordering": "stable insertion order; fingerprint sets sorted before hashing"
+  },
+  "suite_composition": {
+    "retrieval": 600,
+    "singlehop": 550,
+    "multihop": 800,
+    "crossdomain": 700,
+    "citation-claim": 450,
+    "conflict-abstention": 800,
+    "temporal": 250,
+    "adversarial": 650,
+    "total": 4800
+  },
+  "historical_access_policy": {
+    "hash_only": true,
+    "authoritative_registry": "evaluations/t21r13/prior_exclusion.json",
+    "registry_sha256_at_freeze": "7c65b86e00143a3529c7bd334ca3d6fa085822ccf84833693eb42498749d33f0",
+    "raw_prior_corpora_opened": false,
+    "raw_prior_private_specs_opened": false,
+    "collision_decision": "canonicalize -> SHA-256 -> fingerprint set membership"
+  },
+  "no_resampling_rule": "after freeze, any historical collision fails qualification without resampling",
+  "runtime_execution_count": 0
+}

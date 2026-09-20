@@ -1,0 +1,461 @@
+{
+  "artifact": "T21R13_CONSTRUCTION_GATE_REPORT",
+  "checks": [
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "runtime_execution_count",
+      "level": "L7_exposure",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "candidate_R13_rows_executed",
+      "level": "L7_exposure",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "official_evaluator_invocations",
+      "level": "L7_exposure",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "annotation_violations",
+      "level": "L2_corpus",
+      "passed": true
+    },
+    {
+      "actual": [
+        "mango-t21r13-adversarial-holdout-v1",
+        "mango-t21r13-citation-claim-holdout-v1",
+        "mango-t21r13-conflict-abstention-holdout-v1",
+        "mango-t21r13-crossdomain-holdout-v1",
+        "mango-t21r13-multihop-holdout-v1",
+        "mango-t21r13-retrieval-holdout-v1",
+        "mango-t21r13-singlehop-holdout-v1",
+        "mango-t21r13-temporal-holdout-v1"
+      ],
+      "expected": [
+        "mango-t21r13-adversarial-holdout-v1",
+        "mango-t21r13-citation-claim-holdout-v1",
+        "mango-t21r13-conflict-abstention-holdout-v1",
+        "mango-t21r13-crossdomain-holdout-v1",
+        "mango-t21r13-multihop-holdout-v1",
+        "mango-t21r13-retrieval-holdout-v1",
+        "mango-t21r13-singlehop-holdout-v1",
+        "mango-t21r13-temporal-holdout-v1"
+      ],
+      "id": "suite_ids",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 650,
+      "expected": 650,
+      "id": "suite_count.mango-t21r13-adversarial-holdout-v1",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 450,
+      "expected": 450,
+      "id": "suite_count.mango-t21r13-citation-claim-holdout-v1",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 800,
+      "expected": 800,
+      "id": "suite_count.mango-t21r13-conflict-abstention-holdout-v1",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 700,
+      "expected": 700,
+      "id": "suite_count.mango-t21r13-crossdomain-holdout-v1",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 800,
+      "expected": 800,
+      "id": "suite_count.mango-t21r13-multihop-holdout-v1",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 600,
+      "expected": 600,
+      "id": "suite_count.mango-t21r13-retrieval-holdout-v1",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 550,
+      "expected": 550,
+      "id": "suite_count.mango-t21r13-singlehop-holdout-v1",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 250,
+      "expected": 250,
+      "id": "suite_count.mango-t21r13-temporal-holdout-v1",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 4800,
+      "expected": 4800,
+      "id": "total_rows",
+      "level": "L3_suites",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "multihop_exact_design.ambiguous_bridge_entities",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "multihop_exact_design.invalid_terminal_evidence",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 50,
+      "expected": 50,
+      "id": "multihop_exact_design.led_by_relations",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "multihop_exact_design.missing_second_hop",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "multihop_exact_design.partial_paths",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 50,
+      "expected": 50,
+      "id": "multihop_exact_design.relation_aliases",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 200,
+      "expected": 200,
+      "id": "multihop_exact_design.two_hop_bridges",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "multihop_exact_design.wrong_bridge_distractors",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 7,
+      "expected": 7,
+      "id": "crossdomain_exact_design.novel_pair_families",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": true,
+      "id": "crossdomain_exact_design.prior_exact_pair_templates_forbidden",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": {
+        "arts_to_biography": 100,
+        "civic_architecture_to_biography": 100,
+        "culture_to_biography": 100,
+        "history_to_biography": 100,
+        "literature_to_biography": 100,
+        "natural_philosophy_to_biography": 100,
+        "technology_history_to_biography": 100
+      },
+      "expected": 100,
+      "id": "crossdomain_exact_design.rows_per_pair",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 50,
+      "expected": 50,
+      "id": "citation_exact_design.missing_citation",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 60,
+      "expected": 60,
+      "id": "citation_exact_design.multi_source_claim",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 50,
+      "expected": 50,
+      "id": "citation_exact_design.partial_citation",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 60,
+      "expected": 60,
+      "id": "citation_exact_design.right_source_wrong_chunk",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 50,
+      "expected": 50,
+      "id": "citation_exact_design.spoofed_locator",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 60,
+      "expected": 60,
+      "id": "citation_exact_design.wrong_chunk",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 60,
+      "expected": 60,
+      "id": "citation_exact_design.wrong_locator",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 60,
+      "expected": 60,
+      "id": "citation_exact_design.wrong_source",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "conflict_exact_design.authority_ranked_contradiction",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "conflict_exact_design.fresh_stale_disagreement",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "conflict_exact_design.identity_disagreement",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "conflict_exact_design.numeric_disagreement",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "conflict_exact_design.relation_disagreement",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "conflict_exact_design.resolvable_conflicts",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "conflict_exact_design.same_rank_contradiction",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "conflict_exact_design.unresolvable_conflicts",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 70,
+      "expected": 70,
+      "id": "temporal_exact_design.explicit_current",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 50,
+      "expected": 50,
+      "id": "temporal_exact_design.historical_as_of",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 70,
+      "expected": 70,
+      "id": "temporal_exact_design.stale_snapshot",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 60,
+      "expected": 60,
+      "id": "temporal_exact_design.static_unnecessary_web",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "security_exact_design.citation_id_spoof",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "security_exact_design.memory_backfill",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 150,
+      "expected": 150,
+      "id": "security_exact_design.prompt_injection",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 75,
+      "expected": 75,
+      "id": "security_exact_design.retrieved_code_execution",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 100,
+      "expected": 100,
+      "id": "security_exact_design.source_authority_escalation",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 50,
+      "expected": 50,
+      "id": "security_exact_design.unauthorized_memory_write",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 75,
+      "expected": 75,
+      "id": "security_exact_design.unauthorized_network",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "unhandled_leaves",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": [],
+      "expected": [],
+      "id": "unknown_construction_tags",
+      "level": "L4_exact_design",
+      "passed": true
+    },
+    {
+      "actual": 13,
+      "expected": 13,
+      "id": "historical_milestones",
+      "level": "L5_exclusion",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "historical_overlap",
+      "level": "L5_exclusion",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "remediation_overlap",
+      "level": "L5_exclusion",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "candidate_leakage",
+      "level": "L6_blindness",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "historical_leakage",
+      "level": "L6_blindness",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "id": "remediation_leakage",
+      "level": "L6_blindness",
+      "passed": true
+    }
+  ],
+  "exact_design": {
+    "failed": 0,
+    "leaf_requirements_total": 38,
+    "passed": 38,
+    "unhandled": 0
+  },
+  "passed": 60,
+  "runtime_execution_count": 0,
+  "status": "PASS",
+  "total": 60
+}
