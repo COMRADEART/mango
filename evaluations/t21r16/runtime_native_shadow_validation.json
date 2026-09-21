@@ -1,0 +1,31 @@
+{
+  "adapter_used": false,
+  "artifact": "T21R16_RUNTIME_NATIVE_SHADOW_VALIDATION",
+  "audit_mode": "EXECUTED",
+  "author_fingerprint_root": "1f7f031fa5274ae8127e3b9210ac8c471f5c8dfe5cbe1d84844f72522edeaa23",
+  "candidate_execution_rows": 0,
+  "checks": {
+    "checksum_failures": 0,
+    "loader_errors": 0,
+    "missing_fields": 0,
+    "referential_failures": 0,
+    "schema_errors": 0
+  },
+  "chunks": 4800,
+  "corpus_format": "mango-general-knowledge-corpus-v1",
+  "experiment": "t21r16",
+  "frozen_loader_loads_complete_corpus": true,
+  "manifest": {
+    "chunk_count": 4800,
+    "corpus_version": "mango-general-knowledge-corpus-v1",
+    "snapshot_date": "2026-01-31",
+    "source_count": 4800
+  },
+  "materializer": "t21_protocol.providers:runtime-native-materializer",
+  "row_count_matches_design": true,
+  "rows": 4800,
+  "schema_version": "t21-runtime-native-shadow-validation-v1",
+  "sources": 4800,
+  "status": "PASS",
+  "world": 4800
+}

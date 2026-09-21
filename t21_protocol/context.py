@@ -8,6 +8,14 @@ from .errors import AuthorizationError, ProvenanceError
 
 CONSTRUCTION_TOKEN = "T21R15_REAL_BLIND_CONSTRUCTION_AUTHORIZED"
 EVALUATION_TOKEN = "T21R15_ONE_SHOT_OFFICIAL_EVALUATION"
+CONSTRUCTION_TOKENS = {
+    "t21r15": CONSTRUCTION_TOKEN,
+    "t21r16": "T21R16_REAL_BLIND_CONSTRUCTION_AUTHORIZED",
+}
+EVALUATION_TOKENS = {
+    "t21r15": EVALUATION_TOKEN,
+    "t21r16": "T21R16_ONE_SHOT_OFFICIAL_EVALUATION",
+}
 
 
 class WorkspaceMode(str, Enum):
@@ -25,8 +33,8 @@ class MaterialMode(str, Enum):
 class ConstructionAuthorization:
     token: str
 
-    def validate(self) -> None:
-        if self.token != CONSTRUCTION_TOKEN:
+    def validate(self, expected: str = CONSTRUCTION_TOKEN) -> None:
+        if self.token != expected:
             raise AuthorizationError("construction authorization rejected")
 
 
@@ -34,8 +42,8 @@ class ConstructionAuthorization:
 class EvaluationAuthorization:
     token: str
 
-    def validate(self) -> None:
-        if self.token != EVALUATION_TOKEN:
+    def validate(self, expected: str = EVALUATION_TOKEN) -> None:
+        if self.token != expected:
             raise AuthorizationError("evaluation authorization rejected")
 
 
@@ -49,17 +57,27 @@ class ExecutionContext:
             raise ProvenanceError("real-mode rehearsal requires REAL_EXPERIMENT workspace mode")
 
 
-def require_construction_authorization(value: ConstructionAuthorization | str) -> ConstructionAuthorization:
+def require_construction_authorization(
+    value: ConstructionAuthorization | str, *, experiment: str = "t21r15"
+) -> ConstructionAuthorization:
     if isinstance(value, EvaluationAuthorization):
         raise AuthorizationError("evaluation authorization cannot authorize construction")
+    expected = CONSTRUCTION_TOKENS.get(experiment)
+    if expected is None:
+        raise AuthorizationError(f"no construction token registered for experiment: {experiment}")
     authorization = value if isinstance(value, ConstructionAuthorization) else ConstructionAuthorization(str(value))
-    authorization.validate()
+    authorization.validate(expected)
     return authorization
 
 
-def require_evaluation_authorization(value: EvaluationAuthorization | str) -> EvaluationAuthorization:
+def require_evaluation_authorization(
+    value: EvaluationAuthorization | str, *, experiment: str = "t21r15"
+) -> EvaluationAuthorization:
     if isinstance(value, ConstructionAuthorization):
         raise AuthorizationError("construction authorization cannot authorize evaluation")
+    expected = EVALUATION_TOKENS.get(experiment)
+    if expected is None:
+        raise AuthorizationError(f"no evaluation token registered for experiment: {experiment}")
     authorization = value if isinstance(value, EvaluationAuthorization) else EvaluationAuthorization(str(value))
-    authorization.validate()
+    authorization.validate(expected)
     return authorization

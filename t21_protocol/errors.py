@@ -39,3 +39,11 @@ class AuthorizationError(ProtocolError):
 
 class ProvenanceError(ProtocolError):
     """Workspace, provider, or material provenance is not phase-compatible."""
+
+
+class T21R15OfficialEvaluationPermanentlyRefused(ProtocolError):
+    """R15's sealed holdout is not loadable by the frozen candidate runtime.
+
+    The seal is preserved and never repaired or rewritten, so no official
+    evaluation of R15 can ever run: every attempt fails closed here.
+    """

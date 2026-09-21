@@ -1,0 +1,55 @@
+{
+  "applicable_suite": {
+    "collected": 3254,
+    "exit_code": 0,
+    "failed": 0,
+    "junit_path": "artifacts/t21r16_applicable_junit.xml",
+    "junit_sha256": "d49042b25b551f6e30dc1ec527fb2524de460de1b9074bb2ff1278fceef8ca8c",
+    "passed": 0,
+    "skipped": 0,
+    "tracked_drift": 0,
+    "tracked_tree_after": "0b37437c0ab4c3ab4934a6ac1256bdb7ea4f1612071b327ad7ed5af91e683cc9",
+    "tracked_tree_before": "0b37437c0ab4c3ab4934a6ac1256bdb7ea4f1612071b327ad7ed5af91e683cc9"
+  },
+  "focused_protocol_kernel": {
+    "collected": 16,
+    "exit_code": 0,
+    "failed": 0,
+    "junit_path": "artifacts/t21r16_focused_junit.xml",
+    "junit_sha256": "a897fe50d849f42fbdc96d3f55e020add8eefb37d456f9512dadcc20150fc6b2",
+    "passed": 0,
+    "skipped": 0,
+    "tracked_drift": 0,
+    "tracked_tree_after": "0b37437c0ab4c3ab4934a6ac1256bdb7ea4f1612071b327ad7ed5af91e683cc9",
+    "tracked_tree_before": "0b37437c0ab4c3ab4934a6ac1256bdb7ea4f1612071b327ad7ed5af91e683cc9"
+  },
+  "historical_regressions": {
+    "applicable_failed": 0,
+    "applicable_passed": 0,
+    "obsolete_historical_assertions": 14,
+    "registered_historical_failures": 20,
+    "status": "PASS",
+    "superseded_by_current_frozen_coverage": 6
+  },
+  "raw_full_suite": {
+    "adjudication_exact_match": true,
+    "collected": 3274,
+    "exit_code": 1,
+    "failed": 20,
+    "junit_path": "artifacts/t21r16_raw_junit.xml",
+    "junit_sha256": "7dad937bd43a565d450a6423f3490ac03d6d50411247435f24a26e69a5d89255",
+    "missing_registered_failures": 0,
+    "passed": 0,
+    "registered_failures": 20,
+    "skipped": 0,
+    "tracked_drift": 0,
+    "tracked_tree_after": "0b37437c0ab4c3ab4934a6ac1256bdb7ea4f1612071b327ad7ed5af91e683cc9",
+    "tracked_tree_before": "0b37437c0ab4c3ab4934a6ac1256bdb7ea4f1612071b327ad7ed5af91e683cc9",
+    "unexpected_failure_list": [],
+    "unexpected_failures": 0
+  },
+  "schema_version": "t21-test-cleanliness-v1",
+  "status": "PASS",
+  "test_time_unexpected_repository_writes": 0,
+  "write_safety_note": "test runs use fresh disposable basetemp directories; committed historical artifacts are never mutated; tracked-tree drift must be 0"
+}
