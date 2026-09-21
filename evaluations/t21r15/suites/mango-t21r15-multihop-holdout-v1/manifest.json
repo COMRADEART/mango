@@ -1,0 +1,6 @@
+{
+  "rows": 800,
+  "rows_root": "29f6c7c7951bf15661b9222292a00694f3b747b2b4286646bdf5a116b8fa85fc",
+  "schema_version": "t21-suite-v1",
+  "suite": "mango-t21r15-multihop-holdout-v1"
+}

@@ -1,0 +1,9 @@
+{
+  "artifact": "T21R15_GATE_AUDITOR_CROSSCHECK",
+  "audit_mode": "EXECUTED",
+  "auditor_design_root": "decfb7b0773b2a0511519069f73fa15fd7662b6a46cc3768d0226b33a9813750",
+  "disagreements": 0,
+  "gate_design_root": "decfb7b0773b2a0511519069f73fa15fd7662b6a46cc3768d0226b33a9813750",
+  "schema_version": "t21-gate-auditor-crosscheck-v1",
+  "status": "PASS"
+}

@@ -1,0 +1,6 @@
+{
+  "rows": 800,
+  "rows_root": "6218248394aecab233ae1878d348d2c17818403cb870de6c333d30c2e090282f",
+  "schema_version": "t21-suite-v1",
+  "suite": "mango-t21r15-conflict-abstention-holdout-v1"
+}
