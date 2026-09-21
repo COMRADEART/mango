@@ -1,0 +1,25 @@
+{
+  "artifact": "T21R15_NEGATIVE_CONTROLS",
+  "controls": [
+    {"failure_class": "missing seal input", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_missing_seal_input_fails_closed"},
+    {"failure_class": "unbound required seal artifact", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_unbound_required_seal_artifact_fails_closed"},
+    {"failure_class": "incomplete HOLDOUT_FROZEN", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_incomplete_holdout_frozen_rejected"},
+    {"failure_class": "missing construction-ledger implementation", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_ledger_services_are_callable"},
+    {"failure_class": "second ledger creation", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_second_ledger_creation_refused"},
+    {"failure_class": "author fingerprint-root mismatch", "latest_legal_phase": "CONSTRUCTION_STARTED", "test": "test_qualification_lock_rejects_author_root_mismatch"},
+    {"failure_class": "test writing historical committed file", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_write_guard_rejects_unexpected_write"},
+    {"failure_class": "import-time repository write", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_protocol_imports_are_side_effect_free"},
+    {"failure_class": "official validator requiring seal too early", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_gold_validator_is_seal_independent"},
+    {"failure_class": "unknown evaluator taxonomy label", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_unknown_taxonomy_label_rejected"},
+    {"failure_class": "contract/gate mismatch", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_contract_exact_design_mismatch_rejected"},
+    {"failure_class": "contract/consumer schema mismatch", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_contract_type_disagreement_rejected"},
+    {"failure_class": "missing cross-module callable", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_public_protocol_interfaces_exist"},
+    {"failure_class": "raw exclusion value", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_raw_remediation_exclusion_rejected"},
+    {"failure_class": "missing historical exclusion dimension", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_missing_remediation_dimension_rejected"},
+    {"failure_class": "historical author collision", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_historical_collision_fails"},
+    {"failure_class": "missing exact-design context", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_missing_exact_design_context_rejected"}
+  ],
+  "experiment": "t21r15",
+  "infrastructure_errors_must_fail_before_construction": true,
+  "schema_version": "t21-negative-controls-v1"
+}

@@ -1,0 +1,62 @@
+{
+  "HEAD": "d7f833410633099b404717a4cc689f4baa2e5b97",
+  "artifact": "T21R15_FINAL_PRECONSTRUCTION_FREEZE",
+  "artifact_graph_sha256": "42c56ee77a0b7ac1b6818459c0daac3b24a097bfac2496da7673526d804b8f2a",
+  "branch": "t21r15-preconstruction",
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_rows": 0,
+  "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+  "construction_attempts": 0,
+  "doctor_verdict": "T21_PROTOCOL_DOCTOR_PASS",
+  "evaluator_root": "fd8a1364c308ab94ce142bfeedb43d88b2f69159c19f4313f0e102cf274a49ee",
+  "exposure": {
+    "candidate_R15_rows": 0,
+    "construction_attempts": 0,
+    "official_real_evaluator_rows": 0,
+    "real_R15_rows": 0
+  },
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "historical_exclusion_root": "d62acaaf3352fb89e58fa9b07a6957dcf12bca23d938da8574fb2316f7c25fca",
+  "identity_model": {
+    "attestation_commit_rule": "the commit containing this artifact has HEAD as its sole parent",
+    "reason": "a tracked file cannot contain the hash of the commit that contains itself",
+    "subject": "qualified preconstruction baseline"
+  },
+  "master_contract_sha256": "53ec9e140eacaba7e0cf263f305c407b935997d77760cb50c26c1ea7042ccda8",
+  "official_evaluator_rows": 0,
+  "parent": "7d6685dc3df42788a33717171d45cf5c6b1955d9",
+  "protocol_doctor_report_sha256": "3aa78bc1305c2f823736d7e5ceda27bbbb7c9e2d33496a8e1e24dcdbf7166d62",
+  "qualification_lock_sha256": "643ddd6263eea50667b3e0451f28edf82703b2ffcf1621014a36797bb25a1893",
+  "qualification_root": "06f83b41ccf424f84bc18192039135652612b2cc7bb2a1403760bd3d7594bad8",
+  "real_path_absence": true,
+  "real_paths_checked": 11,
+  "remediation_exclusion_root": "79996cc168530530a2a1e78d105281d7b721d968cc768de3826ab8d682bc4aa8",
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "schema_version": "t21r15-final-preconstruction-freeze-v1",
+  "status": "FROZEN",
+  "synthetic_production_e2e": {
+    "floor_calculations": 32,
+    "run_1": "PASS",
+    "run_2": "PASS"
+  },
+  "taxonomy_root": "4055c4fd5dd7a59ed4531a6af93f446391d129a3eb704d023670d87887779aba",
+  "tests": {
+    "applicable_failed": 0,
+    "applicable_passed": 3231,
+    "full_collected": 3246,
+    "full_failure_set_matches_adjudication": true,
+    "full_registered_failures": 15,
+    "full_unexpected_failures": 0,
+    "live": 0,
+    "tracked_tree_after": "c5101159e4ddb2986b493990b1a2abed2d29ae07fdac0613b9b569842bb5abf2",
+    "tracked_tree_before": "c5101159e4ddb2986b493990b1a2abed2d29ae07fdac0613b9b569842bb5abf2",
+    "tracked_tree_drift": 0,
+    "unknown": 0
+  },
+  "tree_sha": "98a6e34645eea2c0e3ee74f53c57d0b5ae8251f1",
+  "write_safety": {
+    "import_time_repository_writers": 0,
+    "test_time_unexpected_repository_writes": 0,
+    "tracked_tree_drift": 0
+  }
+}

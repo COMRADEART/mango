@@ -1,0 +1,13 @@
+{
+  "artifact": "T21R14_R13_PARTIAL_RESULTS_QUARANTINE",
+  "enforcement": "R14 blindness audit forbids raw_results.jsonl / quarantine / provenance references in R14 construction tooling",
+  "future_blind_author_access": "FORBIDDEN",
+  "official_scoring": false,
+  "quarantined_artifact": "evaluations/t21r13/raw_results.jsonl",
+  "r14_construction_tooling_reads": "FORBIDDEN",
+  "raw_results_sha256": "aed95c61f198db57d5c8dacada9675f4a457f5a410b831a155a3577de06a16c3",
+  "remediation_access": "FORBIDDEN",
+  "rows": 1955,
+  "training_access": "FORBIDDEN",
+  "version": "t21r14-v1"
+}

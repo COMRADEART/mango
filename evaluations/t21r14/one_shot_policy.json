@@ -1,0 +1,16 @@
+{
+  "artifact": "T21R14_ONE_SHOT_POLICY",
+  "construction": {
+    "automatic_regeneration": "FORBIDDEN",
+    "existing_construction_ledger": "REFUSE",
+    "failed_construction": "PERMANENT",
+    "mode": "one-shot"
+  },
+  "official_evaluation": {
+    "automatic_retry": "FORBIDDEN",
+    "existing_evaluation_ledger": "REFUSE",
+    "failed_evaluation": "PERMANENT",
+    "mode": "one-shot"
+  },
+  "version": "t21r14-v1"
+}

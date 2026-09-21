@@ -1,0 +1,130 @@
+{
+  "aliases_preferred": "none",
+  "artifact": "T21R14_DOMAIN_TAXONOMY_CONTRACT",
+  "canonical_label_count": 14,
+  "created_at": "2026-09-20T14:38:15.995022+00:00",
+  "domains": [
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "arts",
+      "description": "visual and performative arts traditions of the R14B realms",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "biography",
+      "description": "lives, households, and careers of R14B persons",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "civic_architecture",
+      "description": "civic structures, public works, and municipal building traditions",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "computing",
+      "description": "calculation, tabulation, and mechanical computation",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "culture",
+      "description": "customs, observances, and cultural institutions",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "economics",
+      "description": "trade, coinage, and material provisioning",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "education_reference",
+      "description": "schools, registers, and reference institutions",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "geography",
+      "description": "places, bounds, and terrain of the R14B world",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "government_civics",
+      "description": "offices, succession, and civic governance",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "history",
+      "description": "dated events and chronicles of the R14B world",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "literature",
+      "description": "written and printed works of the R14B world",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "natural_philosophy",
+      "description": "natural inquiry, experiment, and natural-philosophical instruction",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "natural_world",
+      "description": "flora, fauna, weather, and natural phenomena",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    },
+    {
+      "aliases": [],
+      "allowed_in_domain_macro_aggregation": true,
+      "allowed_in_gold_required_domains": true,
+      "canonical_label": "technology_history",
+      "description": "devices, mechanisms, and their development",
+      "normalization": "normalize_domain (t21r6_run_eval)"
+    }
+  ],
+  "frozen_r6_lineage_labels_preserved": 12,
+  "normalization_rule": "strip surrounding whitespace, casefold, map hyphen/whitespace runs to a single underscore; identical to t21r6_run_eval.normalize_domain; no aliasing, no fuzzy inference, no silent coercion",
+  "purpose": "single canonical source of truth for official domain labels; consumed by the R14 blind author, suite materializer, official runner preflight, official evaluator, official scorer, and domain-macro aggregation",
+  "r13_out_of_taxonomy_labels_registered": [
+    "natural_philosophy",
+    "civic_architecture"
+  ],
+  "root_cause_addressed": "FROZEN_EVALUATOR_HOLDOUT_DOMAIN_TAXONOMY_INCOMPATIBILITY (T21R13)",
+  "unknown_label_behavior": "loud failure (T21R6_EVALUATOR_INVALID / preflight abort) before candidate execution",
+  "version": "t21r14-v1"
+}

@@ -1,0 +1,258 @@
+{
+  "artifact": "T21R14_EVALUATOR_FREEZE",
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+  "changed_components_explanation": {
+    "evaluations/t21r14/domain_taxonomy_contract.json": "NEW single-source-of-truth domain label contract (14 canonical labels)",
+    "floor_hash": "unchanged (4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa)",
+    "scoring_semantics": "unchanged (R13 scoring semantics ported verbatim; suite IDs/namespace only)",
+    "scripts/t21r14_official_eval.py": "gold-schema/taxonomy preflight (scan_gold_taxonomy) added; aborts before ledger creation",
+    "scripts/t21r14_run_eval.py": "canonical taxonomy contract rebind of the frozen R6-lineage DOMAIN_TAXONOMY (loud failure preserved)",
+    "scripts/t21r6_run_eval.py + scripts/t21r8_run_eval.py": "unchanged bytes; historical literal set is overridden at import by the canonical contract (no competing authority)"
+  },
+  "component_count": 46,
+  "component_sha256": {
+    "evaluations/t21r12/T21R12_CLOSURE.json": "e1d568d296fd945b4c980334c45526bc7e45b6e29075a34a60c94e7432ffed37",
+    "evaluations/t21r14/T21R14_INTERFACE_REPAIR_RESULT.json": "2d116a06bc0c749bd19658af3ac4ac524d3133e6c932b5dfa3f3218e7c4d1ce2",
+    "evaluations/t21r14/author_domain_vocabulary.json": "1805527cbd9e83be29867d3baff30bdff16e8fb726fbf90b2cf96ced8850c2fd",
+    "evaluations/t21r14/blindness_policy.json": "781fb6a655f8366697ed80aefab55515c021c0b47842bf6aa8732cc722dea308",
+    "evaluations/t21r14/construction_gate_api_contract.json": "9ba82540f696b193097cbdf3f3bf3373da47f5749b0c32eed0a46f655b822b14",
+    "evaluations/t21r14/contract_access_audit.json": "e66d16a78175517f9e2ae4511b1295f065a4fee3d59391e62563d113239527b2",
+    "evaluations/t21r14/contract_consumer_matrix.json": "31937e06b6efcc23d8c23dc2bb0483d57df2f800d00345339fc72ec137fa2d95",
+    "evaluations/t21r14/contract_gate_coverage.json": "f6ed9a09010385e0d19c16fee14a2b8f566630a37e4d9ec646399eb37e76adc5",
+    "evaluations/t21r14/contract_schema.json": "622794bfca9a2e98fc2e3f70860b03bd2934d410e73ffc5cd4b244dcecd86c97",
+    "evaluations/t21r14/crossdomain_pair_registry.json": "79b7d88dc67c99907f8be2b1a7c4e525f0a14987be43efa0649e129eebf91870",
+    "evaluations/t21r14/domain_taxonomy_consumer_matrix.json": "a927af4c02206f59f2e29d1450888dd3d93111301da373461cac158c60e81941",
+    "evaluations/t21r14/domain_taxonomy_contract.json": "1caee00aaf79f8341c00f4e1b5aa2d74b679e375dcaed1b36f35d6ca35345bb4",
+    "evaluations/t21r14/domain_taxonomy_coverage.json": "387b2d67e1b47dd33b8275ad009586880f4395b4480900ac1a37c8741a5449fa",
+    "evaluations/t21r14/exact_design_schema.json": "2db0148ad744531ac162c3c0be491d6002c7ca94b35efed04566beda2560fe5e",
+    "evaluations/t21r14/exact_design_tag_vocabulary.json": "bd1a5926e589b6759d3e180ae5ef36defc349d9499ec1965a14ea22eaa81550a",
+    "evaluations/t21r14/holdout_construction_contract.json": "05c4e4b89df89aa5a41b1dade733e57a6dee17e271ed108a0a851658ddf30d4d",
+    "evaluations/t21r14/negative_controls.json": "b1499040e2b648fda43b04b287abcaeb781cd480b74f940236db7fed0c0ae233",
+    "evaluations/t21r14/one_shot_policy.json": "bafef865dd2cd9b471689095e7ff56949c4b3b8421b9d784dabfda5231db521d",
+    "evaluations/t21r14/preregistration.json": "7f8af0b930180484682648467ad975621461a52910d7370587d9f2c1f415ebc5",
+    "evaluations/t21r14/prior_exclusion.json": "71f320dd52161b256255b5d3a697ae9374ee12246ea023954a342b2b699d702d",
+    "evaluations/t21r14/prior_exclusion_schema.json": "297d0f8ae85d09bb73ce9368e0e94a966b9d8d1a88aab1342865c10c9808a03f",
+    "evaluations/t21r14/private_spec_authoring_profile.json": "6c2818439ba41906470c78bc46b73a670d846431d3cf84cb9ac43a6431854d6c",
+    "evaluations/t21r14/r13_partial_results_quarantine.json": "586f215a153a5ac1382e7fcd31c0ba1fca9f77b96e32f4947ba1d9d3f56863f2",
+    "evaluations/t21r14/remediation_exclusion.json": "f050227671e6fe3e4043c39c9796fcace588a769aaa500484a730eabdb0235d1",
+    "evaluations/t21r14/runtime_freeze.json": "676da6bd711edd4ef49ce7186d61b83da120c589ce83025a155d64cb92a8cfd3",
+    "evaluations/t21r14/schema_negative_controls.json": "91d07ab53abc0c0c8e808e90dd16a61da787c1faf49919c5ede3b33bbe24d818",
+    "evaluations/t21r14/scoring_semantics.json": "da8366b7a4b5504bad4a959550074894cf98434b038535e09e9867cb7c478cbb",
+    "evaluations/t21r14/synthetic_protocol_report.json": "4f69ce165f485bbcee5c509a8cb5d261168326a1b9a1fd358468062012d1316d",
+    "evaluations/t21r14/validation_contract.json": "07ae1e7c6e46042b55a45c4f5da23a6040443a26618285d66f5801cb7996c2b8",
+    "scripts/t21r12_official_eval.py": "0c7dba3d71c195cf375e3cbf1b1fe0480f25e678e4afbe77a078bea55bfbed76",
+    "scripts/t21r14_blind_author.py": "477eecf2c15ede6a56ffb97b6eae4cd85550659d3bbb30b3fd9bd69b14502753",
+    "scripts/t21r14_build_suites.py": "935a4bf5e5dc0b862e621e5188298188659e8569f8d4b89a7312a93facc4e98c",
+    "scripts/t21r14_construction_gate.py": "fe9d5a1f620b159ca93c1e922f31aa98b21baa4dfd943c184191625cea4e2d0b",
+    "scripts/t21r14_exact_design_auditor.py": "72131b6cb8c6e1605e8163b6159f1bae76b659e97849234354a2208d3838084a",
+    "scripts/t21r14_exact_design_lib.py": "84862d8cb89bf9197ff9d0ef8c5fb4fb1da98fe4e62acfcb486c66d849b7f503",
+    "scripts/t21r14_fixtures.py": "edbda3ab409245c998a527119708e257fce05a89fdb5cc775fd728704a0c768c",
+    "scripts/t21r14_freeze_holdout.py": "0858a0eab171511c7c21d6c2688c80a7b2f3eaa39f67a2b19d19d82e69efdd65",
+    "scripts/t21r14_preconstruction.py": "43d22ab17e684e10798fa6509935e4982bc6d23ff22b387d851b161b91cf8bfc",
+    "scripts/t21r14_spec_author.py": "668ebc0d6299a242c7f7d960b04972a6afe9d33f1352a9e947bbc7d00ca79e00",
+    "scripts/t21r14_static_gold_audit.py": "5998057b79aa4396523092ab860ac4da5ec5f541e7d5542dcc5a1988117086e7",
+    "scripts/t21r14_synthetic_rehearsal.py": "8678775c7c0a2237b175fb4351f4650a82aa4bb7809fa608bd3cb28c463631ec",
+    "scripts/t21r14_uniqueness.py": "425cab98101787af8a2285d67efcce7884568014afc26863739dc2293ceefb9a",
+    "scripts/t21r14_world.py": "699e9708162a7c414f2472ba9f1dd8e766a9b5d288ef8f662051056c0c840064",
+    "tests/test_t21r14_authoring_disjointness.py": "973ddefda3a50fc1e7befe7ff5cb75bbc9a8c9d7b93cfd0b54753550feff0549",
+    "tests/test_t21r14_gate_interface.py": "189ccbdf1557dc4f2263842091e55d5029d3107ddd7b66834c1ad653768d8357",
+    "tests/test_t21r14_preconstruction.py": "66a6e64608b2964fe2536e7a3ef5d15e16980b3736f430769585da807d9bbfc3"
+  },
+  "components": [
+    {
+      "path": "evaluations/t21r12/T21R12_CLOSURE.json",
+      "sha256": "e1d568d296fd945b4c980334c45526bc7e45b6e29075a34a60c94e7432ffed37"
+    },
+    {
+      "path": "evaluations/t21r14/T21R14_INTERFACE_REPAIR_RESULT.json",
+      "sha256": "2d116a06bc0c749bd19658af3ac4ac524d3133e6c932b5dfa3f3218e7c4d1ce2"
+    },
+    {
+      "path": "evaluations/t21r14/author_domain_vocabulary.json",
+      "sha256": "1805527cbd9e83be29867d3baff30bdff16e8fb726fbf90b2cf96ced8850c2fd"
+    },
+    {
+      "path": "evaluations/t21r14/blindness_policy.json",
+      "sha256": "781fb6a655f8366697ed80aefab55515c021c0b47842bf6aa8732cc722dea308"
+    },
+    {
+      "path": "evaluations/t21r14/construction_gate_api_contract.json",
+      "sha256": "9ba82540f696b193097cbdf3f3bf3373da47f5749b0c32eed0a46f655b822b14"
+    },
+    {
+      "path": "evaluations/t21r14/contract_access_audit.json",
+      "sha256": "e66d16a78175517f9e2ae4511b1295f065a4fee3d59391e62563d113239527b2"
+    },
+    {
+      "path": "evaluations/t21r14/contract_consumer_matrix.json",
+      "sha256": "31937e06b6efcc23d8c23dc2bb0483d57df2f800d00345339fc72ec137fa2d95"
+    },
+    {
+      "path": "evaluations/t21r14/contract_gate_coverage.json",
+      "sha256": "f6ed9a09010385e0d19c16fee14a2b8f566630a37e4d9ec646399eb37e76adc5"
+    },
+    {
+      "path": "evaluations/t21r14/contract_schema.json",
+      "sha256": "622794bfca9a2e98fc2e3f70860b03bd2934d410e73ffc5cd4b244dcecd86c97"
+    },
+    {
+      "path": "evaluations/t21r14/crossdomain_pair_registry.json",
+      "sha256": "79b7d88dc67c99907f8be2b1a7c4e525f0a14987be43efa0649e129eebf91870"
+    },
+    {
+      "path": "evaluations/t21r14/domain_taxonomy_consumer_matrix.json",
+      "sha256": "a927af4c02206f59f2e29d1450888dd3d93111301da373461cac158c60e81941"
+    },
+    {
+      "path": "evaluations/t21r14/domain_taxonomy_contract.json",
+      "sha256": "1caee00aaf79f8341c00f4e1b5aa2d74b679e375dcaed1b36f35d6ca35345bb4"
+    },
+    {
+      "path": "evaluations/t21r14/domain_taxonomy_coverage.json",
+      "sha256": "387b2d67e1b47dd33b8275ad009586880f4395b4480900ac1a37c8741a5449fa"
+    },
+    {
+      "path": "evaluations/t21r14/exact_design_schema.json",
+      "sha256": "2db0148ad744531ac162c3c0be491d6002c7ca94b35efed04566beda2560fe5e"
+    },
+    {
+      "path": "evaluations/t21r14/exact_design_tag_vocabulary.json",
+      "sha256": "bd1a5926e589b6759d3e180ae5ef36defc349d9499ec1965a14ea22eaa81550a"
+    },
+    {
+      "path": "evaluations/t21r14/holdout_construction_contract.json",
+      "sha256": "05c4e4b89df89aa5a41b1dade733e57a6dee17e271ed108a0a851658ddf30d4d"
+    },
+    {
+      "path": "evaluations/t21r14/negative_controls.json",
+      "sha256": "b1499040e2b648fda43b04b287abcaeb781cd480b74f940236db7fed0c0ae233"
+    },
+    {
+      "path": "evaluations/t21r14/one_shot_policy.json",
+      "sha256": "bafef865dd2cd9b471689095e7ff56949c4b3b8421b9d784dabfda5231db521d"
+    },
+    {
+      "path": "evaluations/t21r14/preregistration.json",
+      "sha256": "7f8af0b930180484682648467ad975621461a52910d7370587d9f2c1f415ebc5"
+    },
+    {
+      "path": "evaluations/t21r14/prior_exclusion.json",
+      "sha256": "71f320dd52161b256255b5d3a697ae9374ee12246ea023954a342b2b699d702d"
+    },
+    {
+      "path": "evaluations/t21r14/prior_exclusion_schema.json",
+      "sha256": "297d0f8ae85d09bb73ce9368e0e94a966b9d8d1a88aab1342865c10c9808a03f"
+    },
+    {
+      "path": "evaluations/t21r14/private_spec_authoring_profile.json",
+      "sha256": "6c2818439ba41906470c78bc46b73a670d846431d3cf84cb9ac43a6431854d6c"
+    },
+    {
+      "path": "evaluations/t21r14/r13_partial_results_quarantine.json",
+      "sha256": "586f215a153a5ac1382e7fcd31c0ba1fca9f77b96e32f4947ba1d9d3f56863f2"
+    },
+    {
+      "path": "evaluations/t21r14/remediation_exclusion.json",
+      "sha256": "f050227671e6fe3e4043c39c9796fcace588a769aaa500484a730eabdb0235d1"
+    },
+    {
+      "path": "evaluations/t21r14/runtime_freeze.json",
+      "sha256": "676da6bd711edd4ef49ce7186d61b83da120c589ce83025a155d64cb92a8cfd3"
+    },
+    {
+      "path": "evaluations/t21r14/schema_negative_controls.json",
+      "sha256": "91d07ab53abc0c0c8e808e90dd16a61da787c1faf49919c5ede3b33bbe24d818"
+    },
+    {
+      "path": "evaluations/t21r14/scoring_semantics.json",
+      "sha256": "da8366b7a4b5504bad4a959550074894cf98434b038535e09e9867cb7c478cbb"
+    },
+    {
+      "path": "evaluations/t21r14/synthetic_protocol_report.json",
+      "sha256": "4f69ce165f485bbcee5c509a8cb5d261168326a1b9a1fd358468062012d1316d"
+    },
+    {
+      "path": "evaluations/t21r14/validation_contract.json",
+      "sha256": "07ae1e7c6e46042b55a45c4f5da23a6040443a26618285d66f5801cb7996c2b8"
+    },
+    {
+      "path": "scripts/t21r12_official_eval.py",
+      "sha256": "0c7dba3d71c195cf375e3cbf1b1fe0480f25e678e4afbe77a078bea55bfbed76"
+    },
+    {
+      "path": "scripts/t21r14_blind_author.py",
+      "sha256": "477eecf2c15ede6a56ffb97b6eae4cd85550659d3bbb30b3fd9bd69b14502753"
+    },
+    {
+      "path": "scripts/t21r14_build_suites.py",
+      "sha256": "935a4bf5e5dc0b862e621e5188298188659e8569f8d4b89a7312a93facc4e98c"
+    },
+    {
+      "path": "scripts/t21r14_construction_gate.py",
+      "sha256": "fe9d5a1f620b159ca93c1e922f31aa98b21baa4dfd943c184191625cea4e2d0b"
+    },
+    {
+      "path": "scripts/t21r14_exact_design_auditor.py",
+      "sha256": "72131b6cb8c6e1605e8163b6159f1bae76b659e97849234354a2208d3838084a"
+    },
+    {
+      "path": "scripts/t21r14_exact_design_lib.py",
+      "sha256": "84862d8cb89bf9197ff9d0ef8c5fb4fb1da98fe4e62acfcb486c66d849b7f503"
+    },
+    {
+      "path": "scripts/t21r14_fixtures.py",
+      "sha256": "edbda3ab409245c998a527119708e257fce05a89fdb5cc775fd728704a0c768c"
+    },
+    {
+      "path": "scripts/t21r14_freeze_holdout.py",
+      "sha256": "0858a0eab171511c7c21d6c2688c80a7b2f3eaa39f67a2b19d19d82e69efdd65"
+    },
+    {
+      "path": "scripts/t21r14_preconstruction.py",
+      "sha256": "43d22ab17e684e10798fa6509935e4982bc6d23ff22b387d851b161b91cf8bfc"
+    },
+    {
+      "path": "scripts/t21r14_spec_author.py",
+      "sha256": "668ebc0d6299a242c7f7d960b04972a6afe9d33f1352a9e947bbc7d00ca79e00"
+    },
+    {
+      "path": "scripts/t21r14_static_gold_audit.py",
+      "sha256": "5998057b79aa4396523092ab860ac4da5ec5f541e7d5542dcc5a1988117086e7"
+    },
+    {
+      "path": "scripts/t21r14_synthetic_rehearsal.py",
+      "sha256": "8678775c7c0a2237b175fb4351f4650a82aa4bb7809fa608bd3cb28c463631ec"
+    },
+    {
+      "path": "scripts/t21r14_uniqueness.py",
+      "sha256": "425cab98101787af8a2285d67efcce7884568014afc26863739dc2293ceefb9a"
+    },
+    {
+      "path": "scripts/t21r14_world.py",
+      "sha256": "699e9708162a7c414f2472ba9f1dd8e766a9b5d288ef8f662051056c0c840064"
+    },
+    {
+      "path": "tests/test_t21r14_authoring_disjointness.py",
+      "sha256": "973ddefda3a50fc1e7befe7ff5cb75bbc9a8c9d7b93cfd0b54753550feff0549"
+    },
+    {
+      "path": "tests/test_t21r14_gate_interface.py",
+      "sha256": "189ccbdf1557dc4f2263842091e55d5029d3107ddd7b66834c1ad653768d8357"
+    },
+    {
+      "path": "tests/test_t21r14_preconstruction.py",
+      "sha256": "66a6e64608b2964fe2536e7a3ef5d15e16980b3736f430769585da807d9bbfc3"
+    }
+  ],
+  "created_at": "2026-09-20T19:04:31.984016+00:00",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "freeze_policy": "qualification/applicability/adjudication/readiness result artifacts are audit outputs, not frozen evaluator components; they bind the freeze root",
+  "prior_evaluator_artifact": "evaluations/t21r13/evaluator_freeze.json (R13 root 0a310a1e...)",
+  "prior_evaluator_root": "0a310a1e748fb36a38e4b1250da068fce8b9da508df1a08ff194af8ede97a9e4",
+  "remediation": "FROZEN_EVALUATOR_HOLDOUT_DOMAIN_TAXONOMY_INCOMPATIBILITY",
+  "root_sha256": "93b643f7a271081b8ccb54c5641c72981ec5d606bcf9d4cd3b6035636e1848eb",
+  "runtime_execution_count": 0,
+  "status": "FROZEN",
+  "version": "t21r14-v1"
+}

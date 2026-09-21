@@ -1,0 +1,26 @@
+{
+  "artifact": "T21_QUALIFICATION_LOCK",
+  "author_hash": "1eb1c6fee9936470257afa1bd6c334891fce93285388512879615b33d0f066fb",
+  "authoring_profile_hash": "1ee272f30d515e29cf16b9f731a1b9affccdc2c8795b7c6d367c0cc13ad3b7c1",
+  "contract_hash": "2a5c84cfded78aa2beb3b9b9e2665b0641ef22b3debd5dddc1d22c9654d711e7",
+  "evaluator_root": "fd8a1364c308ab94ce142bfeedb43d88b2f69159c19f4313f0e102cf274a49ee",
+  "expected_exclusion_root": "d62acaaf3352fb89e58fa9b07a6957dcf12bca23d938da8574fb2316f7c25fca",
+  "expected_suite_counts": {
+    "mango-t21r15-adversarial-holdout-v1": 650,
+    "mango-t21r15-citation-claim-holdout-v1": 450,
+    "mango-t21r15-conflict-abstention-holdout-v1": 800,
+    "mango-t21r15-crossdomain-holdout-v1": 700,
+    "mango-t21r15-multihop-holdout-v1": 800,
+    "mango-t21r15-retrieval-holdout-v1": 600,
+    "mango-t21r15-singlehop-holdout-v1": 550,
+    "mango-t21r15-temporal-holdout-v1": 250
+  },
+  "expected_taxonomy_root": "4055c4fd5dd7a59ed4531a6af93f446391d129a3eb704d023670d87887779aba",
+  "experiment": "t21r15",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "immutable_after": "T21R15_PRECONSTRUCTION_AUDIT_PASS",
+  "preconstruction_commit": "7d6685dc3df42788a33717171d45cf5c6b1955d9",
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "schema_version": "t21-qualification-lock-v1",
+  "shadow_fingerprint_root": "06f83b41ccf424f84bc18192039135652612b2cc7bb2a1403760bd3d7594bad8"
+}

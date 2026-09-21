@@ -1,0 +1,47 @@
+{
+  "applicable_suite": {
+    "collected": 3231,
+    "exit_code": 0,
+    "failed": 0,
+    "junit_path": "artifacts/t21r15_applicable_junit.xml",
+    "junit_sha256": "dd10c2400e9973b9e99ec8320f6c76884e92ef00db7f2ac4e5a79d9525fd3ecc",
+    "passed": 3231,
+    "skipped": 0,
+    "tracked_drift": 0,
+    "tracked_tree_after": "5f7f65edc74d1d1726cab2b738b998f579dc611856b2b09c725fdc733e4b32e8",
+    "tracked_tree_before": "5f7f65edc74d1d1726cab2b738b998f579dc611856b2b09c725fdc733e4b32e8"
+  },
+  "artifact": "T21R15_TEST_CLEANLINESS",
+  "focused_protocol_kernel": {
+    "collected": 42,
+    "failed": 0,
+    "passed": 42,
+    "status": "PASS"
+  },
+  "historical_regressions": {
+    "applicable_failed": 0,
+    "applicable_passed": 3189,
+    "collected": 3204,
+    "registered_historical_failures": 15,
+    "status": "PASS"
+  },
+  "raw_full_suite": {
+    "adjudication_exact_match": true,
+    "collected": 3246,
+    "exit_code": 1,
+    "failed": 15,
+    "junit_path": "artifacts/t21r15_full_junit.xml",
+    "junit_sha256": "3b20fd4bd230278f2e28950b47d71cdc77ee2e6ae6288c09bcdf5694803f669f",
+    "missing_registered_failures": 0,
+    "passed": 3231,
+    "registered_failures": 15,
+    "skipped": 0,
+    "tracked_drift": 0,
+    "tracked_tree_after": "5f7f65edc74d1d1726cab2b738b998f579dc611856b2b09c725fdc733e4b32e8",
+    "tracked_tree_before": "5f7f65edc74d1d1726cab2b738b998f579dc611856b2b09c725fdc733e4b32e8",
+    "unexpected_failures": 0
+  },
+  "schema_version": "t21-test-cleanliness-v1",
+  "status": "PASS",
+  "test_time_unexpected_repository_writes": 0
+}

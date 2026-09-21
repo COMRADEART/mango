@@ -1,0 +1,116 @@
+{
+  "artifact": "T21R14_PRECONSTRUCTION_QUALIFICATION",
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+  "checks": {
+    "cross_module_interfaces": true,
+    "evaluator_freeze": true,
+    "exclusion_registry": true,
+    "quarantine": true,
+    "real_paths_absent": true,
+    "runtime_freeze": true,
+    "synthetic_protocol": true,
+    "taxonomy_contract": true,
+    "zero_candidate_rows": true,
+    "zero_real_rows": true
+  },
+  "created_at": "2026-09-20T19:04:32.673350+00:00",
+  "exposure": {
+    "candidate_R14_rows_executed": 0,
+    "official_evaluator_invocations": 0,
+    "real_R14_rows": 0,
+    "runtime_rows_executed": 0
+  },
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "freezes": {
+    "evaluator": {
+      "artifact": "T21R14_EVALUATOR_FREEZE",
+      "freeze": "evaluator_freeze.json",
+      "status": "VERIFIED",
+      "verified_components": 46
+    },
+    "runtime": {
+      "artifact": "T21R14_RUNTIME_FREEZE",
+      "freeze": "runtime_freeze.json",
+      "status": "VERIFIED",
+      "verified_components": 15
+    },
+    "status": "VERIFIED"
+  },
+  "interfaces": {
+    "artifact": "T21R14_CROSS_MODULE_INTERFACE_AUDIT",
+    "checked": 22,
+    "findings": [],
+    "missing_call_targets": 0,
+    "signature_mismatches": 0,
+    "status": "PASS"
+  },
+  "quarantine": {
+    "r13_partial_result_reads": 0,
+    "reads": [],
+    "status": "PASS"
+  },
+  "r13_evaluator_root": "0a310a1e748fb36a38e4b1250da068fce8b9da508df1a08ff194af8ede97a9e4",
+  "r14_evaluator_root": "93b643f7a271081b8ccb54c5641c72981ec5d606bcf9d4cd3b6035636e1848eb",
+  "real_paths": {
+    "checked": 8,
+    "present": [],
+    "status": "PASS"
+  },
+  "registry": {
+    "dimensions": 8,
+    "milestones": 14,
+    "raw_values_included": true,
+    "remediation_dimensions": 9,
+    "sets": 112,
+    "status": "PASS",
+    "t21r13_included": true
+  },
+  "runtime_execution_count": 0,
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "states": {
+    "Executive Router": "EXPERIMENTAL",
+    "KNOWLEDGE_RAG": "EXPERIMENTAL",
+    "T21": "OPEN",
+    "T21R13": "CLOSED / OFFICIAL_EVALUATION_INFRASTRUCTURE_FAILURE",
+    "T21R14": "PRECONSTRUCTION",
+    "T22": "BLOCKED"
+  },
+  "status": "PASS",
+  "taxonomy": {
+    "checks": {
+      "author_subset_of_evaluator": true,
+      "canonical_label_count": true,
+      "consumer_matrix_clean": true,
+      "coverage_100": true,
+      "pair_registry_complete": true,
+      "scorer_equals_evaluator": true
+    },
+    "status": "PASS"
+  },
+  "tests": {
+    "focused_preconstruction": {
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 40
+    },
+    "focused_remediation": {
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 9
+    },
+    "full_repository": {
+      "errors": 0,
+      "exit_code": 1,
+      "failures": 15,
+      "skipped": 0,
+      "tests": 3204
+    }
+  },
+  "verdict": "T21R14_PRECONSTRUCTION_AUDIT_PASS",
+  "version": "t21r14-v1"
+}
