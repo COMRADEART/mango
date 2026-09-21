@@ -1,6 +1,7 @@
 {
   "artifact": "T21R17_PRECONSTRUCTION_FREEZE",
   "branch": "t21r17-preconstruction",
+  "construction_authorized": false,
   "doctor_verdict": "T21_PROTOCOL_DOCTOR_PASS",
   "experiment": "t21r17",
   "exposure": {
@@ -10,7 +11,7 @@
     "real_r17_rows": 0,
     "rows_scored": 0
   },
-  "head": "8d9d1be6ffeff4f249a93de876b40ed95a4e4083",
+  "head": "0758a340b98f4a4a3ecc70d25baf074a79b7f9a0",
   "identity_model": {
     "candidate_provider": "t21_protocol.providers_r17:RealCandidateProviderEvidence",
     "candidate_stub_in_known_producers": true,
@@ -37,7 +38,7 @@
     "sha256": "2aa759a570db548435acee0155b531e5befc8cc7477fe2c3dd82a7b222b35d4e",
     "unknown_metric_behavior": "SCORER_CONFIGURATION_ERROR"
   },
-  "parent": "6d5b0693571b19f4ea9695f038a0e25ea7fffba1",
+  "parent": "8d9d1be6ffeff4f249a93de876b40ed95a4e4083",
   "phase_apis": {
     "construct": "PRECONSTRUCTION -> SEALED only; construction requires separate authorization (T21R17_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION)",
     "evaluate": "SEALED -> EVALUATION_COMPLETE/FAILED only"
@@ -102,10 +103,10 @@
       "exit_code": 1,
       "failed": 21,
       "passed": 0,
-      "skipped": 4
+      "skipped": 0
     }
   },
-  "tree_sha": "f4570de710a9dbaaf05e9f841259d90bcd251693",
+  "tree_sha": "d8c60918ccb21d2946bceecd5c719af9739e6779",
   "write_safety": {
     "status": "PASS",
     "tracked_drift": 0

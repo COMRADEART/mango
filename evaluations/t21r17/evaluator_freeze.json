@@ -1,6 +1,6 @@
 {
   "artifact": "T21R17_EVALUATOR_FREEZE",
-  "component_root_sha256": "c71553981d53d575a42cc6ad03680b9c41fd5df1af8206d8c6f8d4f1ef242094",
+  "component_root_sha256": "0f4a7cf8bf8df31321736dd6297025be3bb2ebf77f931ac4ab7be5dd1bd2a185",
   "component_sha256": {
     "evaluations/t21r17/artifact_graph.json": "9bab9a6df5f29842aac07ba0c3a86d821fe39471bd74437c8619db7f6a92d201",
     "evaluations/t21r17/candidate_runtime_data_contract.json": "9aceb7895b46e2e97776cc334ed494cefd682f1386f5ac714a953e793b1c301b",
@@ -32,7 +32,7 @@
     "scripts/t21r16_preconstruction.py": "5ba6b0a3915a34e912825d644b5085dbfc641fea65bbcfc551cda81f3e0c2542",
     "scripts/t21r17_fixtures.py": "f47b8c647e884d9e660caf3227342f8dd096e943a7211a6fd89f32793318ce6a",
     "scripts/t21r17_metric_semantics.py": "83fb5947141caf8310003a0acc13ee0dd26b90021bb5dfb153b7d146bc0754a8",
-    "scripts/t21r17_preconstruction.py": "dccfa811cc22275c83bc3b1ff3f7c84c42b191cae69609f29353c76da04fc4ee",
+    "scripts/t21r17_preconstruction.py": "b4ebc5ed3ecae8800322d9fac9f622fea1cd675f62a93165ed918a829394a3d4",
     "scripts/t21r_fixtures.py": "2bf762b0c61deb6d669d84d81e472c4107f0c50eabfe2eaa9ad6af28938de8f1",
     "t21_protocol/__init__.py": "24da408a59d4b78e0b189145d6d13324759f0301d5688fba23aacce4de1087f2",
     "t21_protocol/adjudication.py": "632698edcb17bed289f8ef953967a55528c5cc5cd7e1d2aeec1e6bced7dda2ec",
@@ -71,7 +71,7 @@
     "t21_protocol/write_guard.py": "3557977a95098dac624488fb7ce0e7de13d56abc0a5cef4a835fb0110acf7f65",
     "tests/test_t21_protocol_kernel.py": "6de30297d0fc96cfb42879dca325fb8fce192b46c603d96615372321e775f1d0",
     "tests/test_t21r16_preconstruction.py": "3bb55976a4815734efcac333aca0b131791ca71af6445f4c7aaec5f066be7dfc",
-    "tests/test_t21r17_preconstruction.py": "03237c0c390477c8dbee0fc9406e6c370273a7b9783472ca0f063e4b1c1d246b"
+    "tests/test_t21r17_preconstruction.py": "d3854c1191f511c53eb7de2a7d9b5caf4332ec0b71bfca0455ef264faf9d9e93"
   },
   "experiment": "t21r17",
   "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",

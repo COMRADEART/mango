@@ -1592,6 +1592,7 @@ def stage_prefreeze() -> dict[str, Any]:
         "parent": parent,
         "branch": branch,
         "tree_sha": tree,
+        "construction_authorized": (ROOT / "evaluations" / "t21r17" / "construction_run_ledger.json").exists(),
         "doctor_verdict": doctor["verdict"],
         "phase_apis": {
             "construct": "PRECONSTRUCTION -> SEALED only; construction requires separate authorization (T21R17_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION)",

@@ -3,9 +3,9 @@
   "artifact_graph_hash": "9bab9a6df5f29842aac07ba0c3a86d821fe39471bd74437c8619db7f6a92d201",
   "author_hash": "1eb1c6fee9936470257afa1bd6c334891fce93285388512879615b33d0f066fb",
   "authoring_profile_hash": "ab05c61e16181e848f51cd7dcd758f28fdaa96f649a6daca37060b30bc41a2dd",
-  "contract_hash": "18e209376049bb1609ba404c7b276742db1d153bb84d1ed550e306c82486110d",
+  "contract_hash": "0a9126b223fdd6d220649fd2b69e1175ecec0dcb15016d0000f88817dc4cced6",
   "doctor_hash": "920a1f3890949e771da743b64bd41d3ecdb895664f7cb9bf72020479b0f7a8c0",
-  "evaluator_root": "c71553981d53d575a42cc6ad03680b9c41fd5df1af8206d8c6f8d4f1ef242094",
+  "evaluator_root": "0f4a7cf8bf8df31321736dd6297025be3bb2ebf77f931ac4ab7be5dd1bd2a185",
   "expected_exclusion_root": "5f4b37d06a073dd5b34b17552348904e0fdeaea6a8f5d98b2d3a8efc682c2170",
   "expected_suite_counts": {
     "mango-t21r17-adversarial-holdout-v1": 650,
@@ -21,8 +21,8 @@
   "experiment": "t21r17",
   "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
   "immutable_after": "T21R17_PRODUCTION_PHASE_REQUALIFICATION_PASS",
-  "master_contract_hash": "60db30779f2f323f7db2491512f0aa89e4143e7e7145c73b08ff37f3be6c21d1",
-  "preconstruction_commit": "8d9d1be6ffeff4f249a93de876b40ed95a4e4083",
+  "master_contract_hash": "31a8c7ccd0f0a45e06b234f2abeda50ace4a279b747b11435ab25c62644d82cc",
+  "preconstruction_commit": "0758a340b98f4a4a3ecc70d25baf074a79b7f9a0",
   "production_construction_runner_hash": "b4b90c19f419222d002be752eac7e2c57b63e330893e15924c33903f960eedae",
   "production_evaluation_runner_hash": "fb4a153d904460f7c305e8b81b16e6978c26beef11923ba2d9b860bcf93704ba",
   "runtime_native": {

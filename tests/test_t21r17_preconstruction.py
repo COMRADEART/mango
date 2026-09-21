@@ -395,7 +395,11 @@ def test_lifecycle_rehearsal_twice_deterministic() -> None:
     assert lifecycle["candidate_rows_executed"] > 0
     assert lifecycle["official_evaluator_rows"] == lifecycle["candidate_rows_executed"]
     for name, differences in lifecycle["differences"].items():
-        assert differences == {}, name
+        # T21R17_REQUALIFICATION: the typed producer contract (t21_protocol/pipeline_r17.py)
+        # emits integer difference counts; 0 means zero drift. A mapping value ({}) is a
+        # schema drift regression against this typed contract and must fail closed.
+        assert isinstance(differences, int) and not isinstance(differences, bool), name
+        assert differences == 0, name
 
 
 # ------------------------------------------------------- late-stage pins ----
