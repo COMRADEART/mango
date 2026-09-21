@@ -1,0 +1,19 @@
+{
+  "accuracy_denominator": 4800,
+  "accuracy_numerator": 4800,
+  "artifact": "T21R16_METRIC_EVIDENCE",
+  "evidence_source": "evaluator_results.json:results",
+  "per_row_fields": [
+    "case_id",
+    "suite_family",
+    "required_domains",
+    "status_match",
+    "answer_match",
+    "counters",
+    "correct"
+  ],
+  "rows": 4800,
+  "schema_version": "t21-metric-evidence-v1",
+  "scorer": "t21_protocol.scorer:score",
+  "status": "PASS"
+}
