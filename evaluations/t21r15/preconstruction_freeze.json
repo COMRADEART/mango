@@ -1,14 +1,15 @@
 {
-  "HEAD": "d7f833410633099b404717a4cc689f4baa2e5b97",
-  "artifact": "T21R15_FINAL_PRECONSTRUCTION_FREEZE",
-  "artifact_graph_sha256": "42c56ee77a0b7ac1b6818459c0daac3b24a097bfac2496da7673526d804b8f2a",
+  "HEAD": "12df8f28fc4d0d90ae2dcf30d1306a5d4b0b1c8a",
+  "artifact": "T21R15_PRODUCTION_PHASE_REQUALIFIED_PRECONSTRUCTION_FREEZE",
+  "artifact_graph_sha256": "17d2f27559596eebddfaddb9ab05bf12291a9488e7a2af80e29ad3260f1df7bb",
   "branch": "t21r15-preconstruction",
   "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
   "candidate_rows": 0,
   "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
   "construction_attempts": 0,
   "doctor_verdict": "T21_PROTOCOL_DOCTOR_PASS",
-  "evaluator_root": "fd8a1364c308ab94ce142bfeedb43d88b2f69159c19f4313f0e102cf274a49ee",
+  "evaluator_freeze_sha256": "59f271f0686773e6199675dd731202334dcd8304cbb44a44dde2a877af152aa6",
+  "evaluator_root": "3f629a3766a3fd1d851bb2e3ce442b6e666aa74d5ddc82732463520af30bfc3a",
   "exposure": {
     "candidate_R15_rows": 0,
     "construction_attempts": 0,
@@ -16,45 +17,72 @@
     "real_R15_rows": 0
   },
   "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
-  "historical_exclusion_root": "d62acaaf3352fb89e58fa9b07a6957dcf12bca23d938da8574fb2316f7c25fca",
   "identity_model": {
     "attestation_commit_rule": "the commit containing this artifact has HEAD as its sole parent",
     "reason": "a tracked file cannot contain the hash of the commit that contains itself",
-    "subject": "qualified preconstruction baseline"
+    "subject": "production-phase-requalified preconstruction baseline"
   },
-  "master_contract_sha256": "53ec9e140eacaba7e0cf263f305c407b935997d77760cb50c26c1ea7042ccda8",
-  "official_evaluator_rows": 0,
-  "parent": "7d6685dc3df42788a33717171d45cf5c6b1955d9",
-  "protocol_doctor_report_sha256": "3aa78bc1305c2f823736d7e5ceda27bbbb7c9e2d33496a8e1e24dcdbf7166d62",
-  "qualification_lock_sha256": "643ddd6263eea50667b3e0451f28edf82703b2ffcf1621014a36797bb25a1893",
+  "master_contract_sha256": "648a2101d8c04c29facddacf60e26b66d66ff7c3916d8223ec1a3f06d156a3ac",
+  "one_shot_consumed": false,
+  "parent": "000fe9e055e81d67d3b9bf5e35ee4e7896ad585f",
+  "phase_apis": {
+    "construct": {
+      "allowed_artifact_phases": ["CONSTRUCTION", "SEAL"],
+      "callable": "t21_protocol.construction.run_construction",
+      "cli": "python -m t21_protocol.construct",
+      "required_state": "QUALIFIED",
+      "terminal_state": "SEALED"
+    },
+    "evaluate": {
+      "allowed_artifact_phases": ["EVALUATION"],
+      "callable": "t21_protocol.evaluate.run_evaluation",
+      "cli": "python -m t21_protocol.evaluate",
+      "required_state": "SEALED",
+      "terminal_states": ["EVALUATION_COMPLETE", "FAILED"]
+    }
+  },
+  "phase_separation": {
+    "construct_writable_evaluation_artifacts": 0,
+    "construction_to_evaluation_call_edges": 0,
+    "evaluate_writable_sealed_construction_artifacts": 0,
+    "unknown_phase_owners": 0
+  },
+  "production_construction_runner_sha256": "2c5653a6c50e9b5657f9915b4982d328ac654b2e8e55977c09bb9bdbc16c82c7",
+  "production_evaluation_runner_sha256": "966db05c5acfa85b0fba1aa855ddb2c146724baa202dc9f2734b227af7de3c8d",
+  "protocol_doctor_report_sha256": "193a7f16d68e0b783829be1c3d0e19b9f67b166f9d59645019ffc3682cb33bd6",
+  "protocol_doctor_sha256": "f48520dd4fa63bfdca345e605fc3790fee0b7da7e61dc6e353888ac41d6cf300",
+  "qualification_lock_sha256": "71416d3157be072db8c1599ad90592de222d502e1828a1d577afd39b432e0f08",
   "qualification_root": "06f83b41ccf424f84bc18192039135652612b2cc7bb2a1403760bd3d7594bad8",
   "real_path_absence": true,
-  "real_paths_checked": 11,
-  "remediation_exclusion_root": "79996cc168530530a2a1e78d105281d7b721d968cc768de3826ab8d682bc4aa8",
-  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
-  "schema_version": "t21r15-final-preconstruction-freeze-v1",
-  "status": "FROZEN",
-  "synthetic_production_e2e": {
-    "floor_calculations": 32,
-    "run_1": "PASS",
-    "run_2": "PASS"
+  "real_paths_checked": 24,
+  "rehearsals": {
+    "construction_only_run_1": "PASS",
+    "construction_only_run_2": "PASS",
+    "full_phase_separated_run_1": "PASS",
+    "full_phase_separated_run_2": "PASS",
+    "real_mode_dry_rehearsal": "PASS"
   },
-  "taxonomy_root": "4055c4fd5dd7a59ed4531a6af93f446391d129a3eb704d023670d87887779aba",
+  "runtime_freeze_sha256": "3b1ce72b24efdbc2c45c2213bdb58fcd463e4117b9b7aa0f03b6b7011c0c5b38",
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "schema_version": "t21r15-production-phase-requalified-preconstruction-freeze-v2",
+  "status": "FROZEN",
   "tests": {
     "applicable_failed": 0,
-    "applicable_passed": 3231,
-    "full_collected": 3246,
+    "applicable_passed": 3243,
+    "focused_protocol_failed": 0,
+    "focused_protocol_passed": 54,
+    "full_collected": 3258,
     "full_failure_set_matches_adjudication": true,
     "full_registered_failures": 15,
     "full_unexpected_failures": 0,
     "live": 0,
-    "tracked_tree_after": "c5101159e4ddb2986b493990b1a2abed2d29ae07fdac0613b9b569842bb5abf2",
-    "tracked_tree_before": "c5101159e4ddb2986b493990b1a2abed2d29ae07fdac0613b9b569842bb5abf2",
     "tracked_tree_drift": 0,
     "unknown": 0
   },
-  "tree_sha": "98a6e34645eea2c0e3ee74f53c57d0b5ae8251f1",
+  "tree_sha": "ed48a628922c8964ffc4113cb6cdda2fa74b5283",
   "write_safety": {
+    "construction_paths": 16,
+    "evaluation_paths": 6,
     "import_time_repository_writers": 0,
     "test_time_unexpected_repository_writes": 0,
     "tracked_tree_drift": 0
