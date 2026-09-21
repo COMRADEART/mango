@@ -12,8 +12,8 @@ from .artifact_graph import load_artifact_graph, phase_ownership_report, validat
 from .audits import validate_executed_audit
 from .construction import run_construction
 from .context import (
-    CONSTRUCTION_TOKEN,
-    EVALUATION_TOKEN,
+    CONSTRUCTION_TOKENS,
+    EVALUATION_TOKENS,
     ConstructionAuthorization,
     EvaluationAuthorization,
     WorkspaceMode,
@@ -21,17 +21,31 @@ from .context import (
     require_evaluation_authorization,
 )
 from .contract import load_contract, validate_master_contract
+from .errors import ValidationError
 from .exclusion import validate_historical_policy, validate_remediation_policy
 from .freeze import verify_freeze
 from .import_audit import dynamic_import_write_audit, static_import_write_audit
 from .ledger import ConstructionLedger, EvaluationLedger
 from .pipeline import run_real_mode_dry_rehearsal, run_synthetic_construction_twice, run_synthetic_twice
-from .providers import SyntheticCandidateProvider, SyntheticMaterialProvider, validate_candidate_provider, validate_material_provider
+from .providers import (
+    RUNTIME_NATIVE_CORPUS_FORMAT,
+    RealCandidateProvider,
+    SyntheticCandidateProvider,
+    SyntheticMaterialProvider,
+    contract_runtime_native,
+    runtime_modules,
+    validate_candidate_provider,
+    validate_material_provider,
+)
 from .qualification import validate_qualification_lock
-from .seal import HOLDOUT_FROZEN_FIELDS, validate_holdout_frozen, validate_holdout_frozen_schema
+from .seal import (
+    HOLDOUT_FROZEN_FIELDS_BY_SCHEMA_VERSION,
+    validate_holdout_frozen,
+    validate_holdout_frozen_schema,
+)
 from .state_machine import ProtocolStateMachine
 from .taxonomy import canonical_labels, coverage_report, load_taxonomy
-from .util import read_json, sha256_json, write_json
+from .util import read_json, sha256_file, sha256_json, write_json
 from .write_guard import diff_snapshots, tracked_tree
 
 VERDICT_PASS = "T21_PROTOCOL_DOCTOR_PASS"
@@ -64,6 +78,21 @@ NEGATIVE_CONTROLS = {
     "placeholder audit in real workspace": "PRECONSTRUCTION",
     "synthetic material sealed in real workspace": "CONSTRUCTION_STARTED",
 }
+# Runtime-contract controls (T21R16): mandatory for runtime-native experiments,
+# absent from historical experiments so their committed registries stay valid.
+RUNTIME_CONTRACT_CONTROLS = {
+    "runtime schema missing required source field": "PRECONSTRUCTION",
+    "runtime source id grammar violation": "PRECONSTRUCTION",
+    "runtime manifest missing file checksums": "PRECONSTRUCTION",
+    "runtime source missing authority or freshness metadata": "PRECONSTRUCTION",
+    "runtime chunk missing section or span metadata": "PRECONSTRUCTION",
+    "runtime default-filling of missing required field": "PRECONSTRUCTION",
+    "runtime contract not derived from frozen schema": "PRECONSTRUCTION",
+}
+EXPERIMENT_HELPERS = {
+    "t21r15": ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures"),
+    "t21r16": ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures", "t21r16_fixtures"),
+}
 
 
 def _ledger_integration() -> dict[str, Any]:
@@ -94,8 +123,25 @@ def _ledger_integration() -> dict[str, Any]:
 
 
 def _marker_schema_check(path: Path) -> dict[str, Any]:
+    schema_document = read_json(path)
+    # The schema document carries its own namespace ("t21-holdout-frozen-schema-vN");
+    # the marker version is derived mechanically from the schema's field set.
+    properties = schema_document.get("properties")
+    if not isinstance(properties, dict):
+        raise ValidationError("HOLDOUT_FROZEN schema document has no properties")
+    schema_version = (
+        "t21-holdout-frozen-v2" if "candidate_provider_sha256" in properties else "t21-holdout-frozen-v1"
+    )
+    declared = schema_document.get("schema_version")
+    if declared != schema_version.replace("holdout-frozen", "holdout-frozen-schema"):
+        raise ValidationError(
+            f"HOLDOUT_FROZEN schema document version {declared!r} does not describe marker version {schema_version!r}"
+        )
+    fields = HOLDOUT_FROZEN_FIELDS_BY_SCHEMA_VERSION.get(schema_version)
+    if fields is None:
+        raise ValidationError(f"unsupported HOLDOUT_FROZEN schema_version: {schema_version!r}")
     sample = {
-        "schema_version": "t21-holdout-frozen-v1",
+        "schema_version": schema_version,
         "experiment": "t21r15",
         "construction_status": "COMPLETE",
         "holdout_manifest_sha256": "a" * 64,
@@ -114,17 +160,31 @@ def _marker_schema_check(path: Path) -> dict[str, Any]:
         "workspace_mode": "REAL_EXPERIMENT",
         "material_mode": "REAL_BLIND",
     }
+    if schema_version == "t21-holdout-frozen-v2":
+        sample.update(
+            {
+                "runtime_data_contract_root": "1" * 64,
+                "runtime_corpus_contract_sha256": "2" * 64,
+                "runtime_field_provenance_sha256": "3" * 64,
+                "runtime_loader_validation_sha256": "4" * 64,
+                "candidate_provider_id": "t21_protocol.providers:RealCandidateProvider",
+                "candidate_provider_sha256": "5" * 64,
+            }
+        )
     result = validate_holdout_frozen(sample)
-    schema = validate_holdout_frozen_schema(read_json(path))
-    return {**result, "schema_status": schema["status"], "fields": len(HOLDOUT_FROZEN_FIELDS)}
+    schema = validate_holdout_frozen_schema(schema_document, schema_version=schema_version)
+    return {**result, "schema_status": schema["status"], "schema_version": schema_version, "fields": len(fields)}
 
 
-def _negative_control_registry(path: Path) -> dict[str, Any]:
+def _negative_control_registry(path: Path, *, runtime_native: bool = False) -> dict[str, Any]:
     document = read_json(path)
     entries = document.get("controls", [])
+    expected = dict(NEGATIVE_CONTROLS)
+    if runtime_native:
+        expected.update(RUNTIME_CONTRACT_CONTROLS)
     observed = {entry.get("failure_class"): entry.get("latest_legal_phase") for entry in entries}
-    missing = sorted(set(NEGATIVE_CONTROLS) - set(observed))
-    mismatched = sorted(name for name, phase in NEGATIVE_CONTROLS.items() if observed.get(name) != phase)
+    missing = sorted(set(expected) - set(observed))
+    mismatched = sorted(name for name, phase in expected.items() if observed.get(name) != phase)
     return {
         "status": "PASS" if not missing and not mismatched else "FAIL",
         "controls": len(entries),
@@ -134,7 +194,13 @@ def _negative_control_registry(path: Path) -> dict[str, Any]:
 
 
 def _real_paths(root: Path, contract: Any) -> dict[str, Any]:
-    paths = [root / relative for relative in contract.get("real_r15_paths")]
+    experiment = contract.experiment
+    try:
+        real_paths = contract.get(f"real_{experiment}_paths")
+    except KeyError:
+        # t21rN contracts name the field real_rN_paths (real_r15_paths, real_r16_paths).
+        real_paths = contract.get(f"real_{experiment.replace('t21', '', 1)}_paths")
+    paths = [root / relative for relative in real_paths]
     present = [path.relative_to(root).as_posix() for path in paths if path.exists()]
     return {"status": "PASS" if not present else "FAIL", "present": present, "checked": len(paths)}
 
@@ -168,7 +234,7 @@ def _phase_separation(root: Path, graph: dict[str, Any], construction_rehearsal:
     }
 
 
-def _provider_separation() -> dict[str, Any]:
+def _provider_separation(experiment: str) -> dict[str, Any]:
     results: dict[str, bool] = {}
     synthetic_material = SyntheticMaterialProvider()
     synthetic_candidate = SyntheticCandidateProvider()
@@ -188,20 +254,335 @@ def _provider_separation() -> dict[str, Any]:
     except Exception:
         results["placeholder_audit_rejected_in_real"] = True
     try:
-        require_construction_authorization(EvaluationAuthorization(EVALUATION_TOKEN))
+        require_construction_authorization(
+            EvaluationAuthorization(EVALUATION_TOKENS[experiment]), experiment=experiment
+        )
     except Exception:
         results["evaluation_token_rejected_by_construction"] = True
     try:
-        require_evaluation_authorization(ConstructionAuthorization(CONSTRUCTION_TOKEN))
+        require_evaluation_authorization(
+            ConstructionAuthorization(CONSTRUCTION_TOKENS[experiment]), experiment=experiment
+        )
     except Exception:
         results["construction_token_rejected_by_evaluation"] = True
-    return {"status": "PASS" if len(results) == 5 and all(results.values()) else "FAIL", **results}
+    other = "t21r15" if experiment != "t21r15" else "t21r16"
+    try:
+        require_construction_authorization(CONSTRUCTION_TOKENS[other], experiment=experiment)
+    except Exception:
+        results[f"foreign_{other}_construction_token_rejected"] = True
+    try:
+        require_evaluation_authorization(EVALUATION_TOKENS[other], experiment=experiment)
+    except Exception:
+        results[f"foreign_{other}_evaluation_token_rejected"] = True
+    return {"status": "PASS" if len(results) == 7 and all(results.values()) else "FAIL", **results}
+
+
+_DOCTOR_PROBE_STATEMENT = "Doctor probe record dp-0001 states the registered value Doctor registered value 00001."
+_DOCTOR_PROBE_QUERY = "Within doctor probe record dp-0001, what registered value is stated?"
+
+
+def _doctor_probe_source(schema: Any, corpus_module: Any) -> Any:
+    return schema.KnowledgeSourceRecord(
+        source_id=schema.make_source_id("Doctor runtime probe", "Mango doctor probe register", "probe-v1"),
+        source_title="Doctor runtime probe",
+        source_type="fixture_register",
+        source_uri_or_origin="blind://doctor/dp-0001",
+        publisher_or_collection="Mango doctor probe register",
+        license="project_owned_fixtures",
+        revision_or_version="probe-v1",
+        retrieved_at_or_snapshot_date=corpus_module.CORPUS_SNAPSHOT_DATE,
+        language="en",
+        authority_class="PRIMARY_REFERENCE",
+        freshness_class="STATIC",
+        topic_tags=["doctor_probe"],
+        content_text=_DOCTOR_PROBE_STATEMENT,
+    )
+
+
+def _runtime_probe_execution(workspace: Path, repo_root: Path) -> dict[str, Any]:
+    """End-to-end doctor probe: frozen producers -> frozen manifest builder ->
+    frozen loader -> frozen candidate runtime -> canonical candidate row."""
+    from .providers import canonical_candidate_row
+
+    schema, corpus_module, pipeline_module = runtime_modules(repo_root)
+    statement = _DOCTOR_PROBE_STATEMENT
+    source = _doctor_probe_source(schema, corpus_module)
+    chunk = schema.chunk_source_text(source, [("record", statement)])[0]
+    chunk.metadata = {
+        **chunk.metadata,
+        "fact_entity": "dp-0001",
+        "fact_attribute": "REGISTERED_VALUE",
+        "fact_value": "Doctor registered value 00001",
+    }
+    corpus_dir = workspace / "rag" / "doctor_runtime_probe"
+    manifest = corpus_module.build_corpus_files(corpus_dir, [source], [chunk])
+    corpus = corpus_module.load_corpus(corpus_dir)
+    provider = RealCandidateProvider(workspace, corpus_dir)
+    init_rows = provider.rows_executed
+    probe_row = {
+        "case_id": "dp-0001",
+        "query": _DOCTOR_PROBE_QUERY,
+        "gold": {"expect_status": "ANSWER", "expected_answer": statement},
+    }
+    executed = provider.generate([probe_row])
+    rows_executed = provider.rows_executed
+    del provider
+    row = canonical_candidate_row(
+        probe_row["case_id"], pipeline_module.answer_knowledge(_DOCTOR_PROBE_QUERY, corpus, top_k=8)
+    )
+    direct = executed[0]
+    parity_identical = row == direct
+    return {
+        "manifest": manifest,
+        "source_id": source.source_id,
+        "chunk_id": chunk.chunk_id,
+        "corpus_loaded": corpus is not None,
+        "provider_init_rows": init_rows,
+        "provider_rows_after_execution": rows_executed,
+        "status": direct["status"],
+        "answer": direct["answer"],
+        "answer_matches_statement": direct["answer"] == statement,
+        "counters": direct["counters"],
+        "direct_vs_provider_identical": parity_identical,
+    }
+
+
+def _write_fixture_corpus(
+    directory: Path,
+    corpus_module: Any,
+    *,
+    source_row: dict[str, Any],
+    chunk_row: dict[str, Any],
+    omit_file_checksums: bool = False,
+) -> None:
+    directory.mkdir(parents=True, exist_ok=True)
+    sources_path = directory / "sources.jsonl"
+    chunks_path = directory / "chunks.jsonl"
+
+    def _write(path: Path, rows: list[dict[str, Any]]) -> None:
+        path.write_text(
+            "".join(json.dumps(row, sort_keys=True, ensure_ascii=False) + "\n" for row in rows),
+            encoding="utf-8",
+            newline="\n",
+        )
+
+    _write(sources_path, [source_row])
+    _write(chunks_path, [chunk_row])
+    manifest: dict[str, Any] = {
+        "corpus_version": RUNTIME_NATIVE_CORPUS_FORMAT,
+        "snapshot_date": corpus_module.CORPUS_SNAPSHOT_DATE,
+        "source_count": 1,
+        "chunk_count": 1,
+        "domains": sorted({tag for tag in source_row.get("topic_tags", [])}),
+        "license_summary": {"project_owned_fixtures": 1, "notes": "doctor fixture"},
+    }
+    if not omit_file_checksums:
+        manifest["file_checksums"] = {
+            "sources.jsonl": corpus_module._sha256_lf(sources_path),
+            "chunks.jsonl": corpus_module._sha256_lf(chunks_path),
+        }
+    manifest["manifest_checksum"] = sha256_json({key: value for key, value in manifest.items()})
+    (directory / "corpus_manifest.json").write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
+    )
+
+
+def _valid_fixture_source(schema: Any, corpus_module: Any) -> dict[str, Any]:
+    source = _doctor_probe_source(schema, corpus_module)
+    row = dict(source.to_dict())
+    row["content_text"] = source.content_text
+    return row
+
+
+def _valid_fixture_chunk(schema: Any, corpus_module: Any) -> dict[str, Any]:
+    source = _doctor_probe_source(schema, corpus_module)
+    chunk = schema.chunk_source_text(source, [("record", _DOCTOR_PROBE_STATEMENT)])[0]
+    return chunk.to_dict()
+
+
+def _runtime_regression_fixtures(
+    workspace: Path, contract: Any, corpus_contract_binding: dict[str, Any], *, repo_root: Path
+) -> dict[str, Any]:
+    """Reproduce the exact R15 runtime-contract failure modes; each must fail
+    closed in preconstruction (never load, never fill defaults)."""
+    schema, corpus_module, _ = runtime_modules(repo_root)
+    fixtures: dict[str, Any] = {}
+
+    def _fixture(name: str, build) -> None:
+        directory = workspace / name.replace(" ", "_")
+        failure = None
+        try:
+            build(directory)
+        except Exception as exc:
+            failure = f"{type(exc).__name__}: {exc}"
+        fixtures[name] = {
+            "status": "PASS" if failure else "FAIL",
+            "failed_closed": bool(failure),
+            "failure": failure,
+        }
+
+    def _load(directory: Path) -> None:
+        corpus_module.load_corpus(directory)
+
+    def _missing_source_field(directory: Path) -> None:
+        row = _valid_fixture_source(schema, corpus_module)
+        row.pop("source_title")
+        chunk_row = _valid_fixture_chunk(schema, corpus_module)
+        _write_fixture_corpus(directory, corpus_module, source_row=row, chunk_row=chunk_row)
+        _load(directory)
+
+    def _source_id_grammar_violation(directory: Path) -> None:
+        row = _valid_fixture_source(schema, corpus_module)
+        row["source_id"] = "r15-src-00001"
+        chunk_row = _valid_fixture_chunk(schema, corpus_module)
+        _write_fixture_corpus(directory, corpus_module, source_row=row, chunk_row=chunk_row)
+        _load(directory)
+
+    def _manifest_missing_file_checksums(directory: Path) -> None:
+        source_row = _valid_fixture_source(schema, corpus_module)
+        chunk_row = _valid_fixture_chunk(schema, corpus_module)
+        _write_fixture_corpus(
+            directory, corpus_module, source_row=source_row, chunk_row=chunk_row, omit_file_checksums=True
+        )
+        _load(directory)
+
+    def _missing_authority_or_freshness(directory: Path) -> None:
+        row = _valid_fixture_source(schema, corpus_module)
+        row.pop("authority_class")
+        chunk_row = _valid_fixture_chunk(schema, corpus_module)
+        _write_fixture_corpus(directory, corpus_module, source_row=row, chunk_row=chunk_row)
+        _load(directory)
+
+    def _missing_section_or_span(directory: Path) -> None:
+        source_row = _valid_fixture_source(schema, corpus_module)
+        chunk_row = _valid_fixture_chunk(schema, corpus_module)
+        chunk_row.pop("span")
+        _write_fixture_corpus(directory, corpus_module, source_row=source_row, chunk_row=chunk_row)
+        _load(directory)
+
+    def _default_filling_missing_field(directory: Path) -> None:
+        row = _valid_fixture_source(schema, corpus_module)
+        row.pop("revision_or_version")
+        chunk_row = _valid_fixture_chunk(schema, corpus_module)
+        _write_fixture_corpus(directory, corpus_module, source_row=row, chunk_row=chunk_row)
+        _load(directory)
+
+    _fixture("runtime schema missing required source field", _missing_source_field)
+    _fixture("runtime source id grammar violation", _source_id_grammar_violation)
+    _fixture("runtime manifest missing file checksums", _manifest_missing_file_checksums)
+    _fixture("runtime source missing authority or freshness metadata", _missing_authority_or_freshness)
+    _fixture("runtime chunk missing section or span metadata", _missing_section_or_span)
+    _fixture("runtime default-filling of missing required field", _default_filling_missing_field)
+    fixtures["runtime contract not derived from frozen schema"] = {
+        "status": "PASS" if corpus_contract_binding["module_hashes_match"] else "FAIL",
+        "failed_closed": not corpus_contract_binding["module_hashes_match"],
+        "failure": None if corpus_contract_binding["module_hashes_match"] else corpus_contract_binding["mismatch"],
+    }
+    return fixtures
+
+
+def _runtime_corpus_contract_binding(root: Path, contract: Any) -> dict[str, Any]:
+    """Re-derive the frozen-module binding from the committed runtime contract."""
+    out = root / "evaluations" / contract.experiment
+    corpus_contract = read_json(root / contract.get("artifacts.runtime_corpus_contract"))
+    bound = corpus_contract.get("bound_modules") or {}
+    mismatches = []
+    for relative, expected in sorted(bound.items()):
+        path = root / relative
+        if not path.is_file() or sha256_file(path) != expected:
+            mismatches.append(relative)
+    if not bound:
+        mismatches.append("bound_modules empty")
+    return {
+        "module_hashes_match": not mismatches,
+        "mismatch": f"frozen module binding mismatch: {sorted(mismatches)}" if mismatches else None,
+        "bound_modules": sorted(bound),
+    }
+
+
+def _runtime_contract_compatibility(root: Path, contract: Any) -> dict[str, Any]:
+    """Mandatory doctor section: the frozen candidate runtime and the authored
+    material share one corpus contract (T21R16)."""
+    out = root / "evaluations" / contract.experiment
+    runtime_native = contract.get("runtime_native")
+    binding = _runtime_corpus_contract_binding(root, contract)
+    with tempfile.TemporaryDirectory(prefix=f"{contract.experiment}-runtime-contract-") as directory:
+        workspace = Path(directory)
+        probe = _runtime_probe_execution(workspace, root)
+        fixtures = _runtime_regression_fixtures(workspace, contract, binding, repo_root=root)
+    shadow_path = out / "runtime_native_shadow_validation.json"
+    parity_path = out / "provider_parity_report.json"
+    shadow = read_json(shadow_path) if shadow_path.is_file() else {"status": "MISSING"}
+    parity = read_json(parity_path) if parity_path.is_file() else {"status": "MISSING"}
+    fixture_failures = sorted(name for name, fixture in fixtures.items() if fixture["status"] != "PASS")
+    probe_pass = (
+        probe["corpus_loaded"]
+        and probe["provider_init_rows"] == 0
+        and probe["provider_rows_after_execution"] == 1
+        and probe["status"] == "ANSWER"
+        and probe["answer_matches_statement"]
+        and probe["direct_vs_provider_identical"]
+        and all(value == 0 for value in probe["counters"].values())
+    )
+    documents_pass = shadow.get("status") == "PASS" and parity.get("status") == "PASS"
+    loader_entry_ok = runtime_native.get("loader_entry") == "src/sciencemath/knowledge/corpus.py:load_corpus"
+    corpus_format_ok = runtime_native.get("corpus_format") == RUNTIME_NATIVE_CORPUS_FORMAT
+    passed = fixture_failures == [] and probe_pass and documents_pass and loader_entry_ok and corpus_format_ok
+    return {
+        "schema_version": "t21-runtime-contract-compatibility-v1",
+        "artifact": f"{contract.experiment.upper()}_RUNTIME_CONTRACT_COMPATIBILITY",
+        "status": "PASS" if passed else "FAIL",
+        "audit_mode": "EXECUTED",
+        "corpus_format": runtime_native.get("corpus_format"),
+        "loader_entry": runtime_native.get("loader_entry"),
+        "frozen_module_binding": binding,
+        "probe": {
+            "source_id": probe["source_id"],
+            "chunk_id": probe["chunk_id"],
+            "provider_init_rows": probe["provider_init_rows"],
+            "provider_rows_after_execution": probe["provider_rows_after_execution"],
+            "status": probe["status"],
+            "answer_matches_statement": probe["answer_matches_statement"],
+            "direct_vs_provider_identical": probe["direct_vs_provider_identical"],
+            "counters": probe["counters"],
+        },
+        "regression_fixtures": fixtures,
+        "fixture_failures": fixture_failures,
+        "committed_shadow_validation": shadow.get("status"),
+        "committed_provider_parity": parity.get("status"),
+    }
+
+
+def _r15_disposition_check(root: Path) -> dict[str, Any]:
+    closure = read_json(root / "evaluations" / "t21r15" / "T21R15_CLOSURE.json")
+    status_ok = closure.get("status") == "CLOSED / SEALED_HOLDOUT_RUNTIME_CONTRACT_INCOMPATIBILITY"
+    reason_ok = closure.get("reason") == "SEALED_CORPUS_NOT_LOADABLE_BY_FROZEN_CANDIDATE_RUNTIME"
+    capability_ok = closure.get("capability_failure") is False
+    # The durable refusal record lives in the closure's evaluation_refusal
+    # block and its marker artifact (evaluations/t21r15/evaluation_refusal.json),
+    # which t21_protocol.evaluate._refuse_if_permanent enforces fail-closed.
+    refusal = closure.get("evaluation_refusal") or {}
+    refusal_ok = (
+        refusal.get("designated") is True
+        and refusal.get("designation") == "T21R15_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED"
+    )
+    refusal_marker = root / "evaluations" / "t21r15" / "evaluation_refusal.json"
+    marker_ok = refusal_marker.is_file() and read_json(refusal_marker).get("permanent") is True
+    return {
+        "status": "PASS" if status_ok and reason_ok and capability_ok and refusal_ok and marker_ok else "FAIL",
+        "closed_status": closure.get("status"),
+        "capability_failure": closure.get("capability_failure"),
+        "evaluation_refusal": refusal.get("designation"),
+        "evaluation_refusal_marker_permanent": marker_ok,
+    }
 
 
 def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
     before = tracked_tree(root)
     out = root / "evaluations" / experiment
     contract = load_contract(out / "t21_master_contract.json")
+    runtime_native = contract_runtime_native(contract) is not None
+    experiment_tag = experiment.upper()
     graph = load_artifact_graph(out / "artifact_graph.json")
     taxonomy = load_taxonomy(out / "domain_taxonomy_contract.json")
     canonical = canonical_labels(taxonomy)
@@ -229,21 +610,24 @@ def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
         "taxonomy": taxonomy_report,
         "historical_exclusion": validate_historical_policy(read_json(out / "historical_exclusion.json"), root),
         "remediation_exclusion": validate_remediation_policy(read_json(out / "remediation_exclusion.json")),
-        "runtime_freeze": verify_freeze(root, out / "runtime_freeze.json", artifact="T21R15_RUNTIME_FREEZE"),
-        "evaluator_freeze": verify_freeze(root, out / "evaluator_freeze.json", artifact="T21R15_EVALUATOR_FREEZE"),
+        "runtime_freeze": verify_freeze(root, out / "runtime_freeze.json", artifact=f"{experiment_tag}_RUNTIME_FREEZE"),
+        "evaluator_freeze": verify_freeze(root, out / "evaluator_freeze.json", artifact=f"{experiment_tag}_EVALUATOR_FREEZE"),
         "qualification_lock": validate_qualification_lock(root, contract, read_json(out / "qualification_lock.json")),
         "adjudication": validate_adjudication(adjudication),
         "applicability": {
             "status": "PASS" if committed_applicability.get("deselect_nodeids") == applicability["deselect_nodeids"] else "FAIL",
             "registered_failures": applicability["registered_failures"],
         },
-        "negative_controls": _negative_control_registry(out / "negative_controls.json"),
+        "negative_controls": _negative_control_registry(out / "negative_controls.json", runtime_native=runtime_native),
         "real_paths": _real_paths(root, contract),
         "production_phase_apis": _phase_api_check(),
-        "provider_separation": _provider_separation(),
+        "provider_separation": _provider_separation(experiment),
+        "r15_disposition": _r15_disposition_check(root),
     }
+    if runtime_native:
+        checks["runtime_contract_compatibility"] = _runtime_contract_compatibility(root, contract)
     module_paths = sorted((root / "t21_protocol").glob("*.py"))
-    helper_names = ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures")
+    helper_names = EXPERIMENT_HELPERS.get(experiment, EXPERIMENT_HELPERS["t21r15"])
     helper_paths = [root / "scripts" / f"{name}.py" for name in helper_names]
     test_paths = sorted((root / "tests").glob("test_t21*.py"))
     checks["static_import_audit"] = static_import_write_audit([*module_paths, *helper_paths, *test_paths])

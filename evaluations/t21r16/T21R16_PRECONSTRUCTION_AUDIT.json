@@ -1,0 +1,114 @@
+{
+  "artifact": "T21R16_PRECONSTRUCTION_AUDIT",
+  "audit_mode": "EXECUTED",
+  "construction_authorized": false,
+  "evaluation_permanently_refused_for_r15": true,
+  "experiment": "t21r16",
+  "exposure_zeros": {
+    "candidate_rows_executed": 0,
+    "capability_verdict": "NONE",
+    "official_evaluator_rows": 0,
+    "real_r16_rows": 0,
+    "rows_scored": 0
+  },
+  "lifecycle_rehearsal": {
+    "candidate_rows_executed": 4800,
+    "deterministic": true,
+    "official_evaluator_rows": 4800,
+    "real_candidate_runtime_exercised": true,
+    "real_r16_cases_exercised": false,
+    "runs": 2,
+    "status": "PASS"
+  },
+  "master_contract": {
+    "field_descriptors": 21,
+    "status": "PASS"
+  },
+  "protocol_doctor": {
+    "checks": {
+      "adjudication": "PASS",
+      "applicability": "PASS",
+      "artifact_graph": "PASS",
+      "doctor_cleanliness": "PASS",
+      "dynamic_import_audit": "PASS",
+      "evaluator_freeze": "VERIFIED",
+      "historical_exclusion": "PASS",
+      "holdout_frozen_schema": "PASS",
+      "ledgers": "PASS",
+      "master_contract": "PASS",
+      "negative_controls": "PASS",
+      "phase_separation": "PASS",
+      "production_phase_apis": "PASS",
+      "provider_separation": "PASS",
+      "qualification_lock": "PASS",
+      "r14_disposition": "PASS",
+      "r15_disposition": "PASS",
+      "real_mode_dry_rehearsal": "PASS",
+      "real_paths": "PASS",
+      "remediation_exclusion": "PASS",
+      "runtime_contract_compatibility": "PASS",
+      "runtime_freeze": "VERIFIED",
+      "state_machine": "PASS",
+      "static_import_audit": "PASS",
+      "synthetic_construction_only": "PASS",
+      "synthetic_full_protocol": "PASS",
+      "taxonomy": "PASS",
+      "test_cleanliness": "PASS"
+    },
+    "verdict": "T21_PROTOCOL_DOCTOR_PASS"
+  },
+  "provider_parity": {
+    "pairs_compared": 4800,
+    "semantic_differences": [],
+    "status": "PASS"
+  },
+  "r15_preservation": {
+    "construction_head": "86099f03461dde34b90424c990d1e0d756202b40",
+    "raw_access": {
+      "r15_raw_historical_access": 0,
+      "r16_artifacts_containing_raw_r15_values": 0,
+      "r16_row_authoring_used_r15_material": false,
+      "registry_construction_derivation": "hash-only in-memory fingerprinting with t21_protocol.audits._fingerprint; raw values never persisted"
+    },
+    "seal_not_deleted": true,
+    "sealed_holdout_unmodified": true,
+    "verified": {
+      "holdout_frozen_sha256": true,
+      "seal_manifest_sha256": true,
+      "seal_root": true
+    }
+  },
+  "real_r16_paths_absent": true,
+  "real_r16_paths_present": [],
+  "schema_version": "t21-preconstruction-audit-v1",
+  "shadow_validation": {
+    "adapter_used": false,
+    "checks": {
+      "checksum_failures": 0,
+      "loader_errors": 0,
+      "missing_fields": 0,
+      "referential_failures": 0,
+      "schema_errors": 0
+    },
+    "rows": 4800,
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "test_cleanliness": {
+    "raw_full_suite": {
+      "collected": 3274,
+      "exit_code": 1,
+      "failed": 20,
+      "passed": 0,
+      "skipped": 0
+    },
+    "registered_failures": 20,
+    "status": "PASS"
+  },
+  "write_safety": {
+    "status": "PASS",
+    "tracked_drift": 0,
+    "tracked_tree_after": "0b37437c0ab4c3ab4934a6ac1256bdb7ea4f1612071b327ad7ed5af91e683cc9",
+    "tracked_tree_before": "0b37437c0ab4c3ab4934a6ac1256bdb7ea4f1612071b327ad7ed5af91e683cc9"
+  }
+}

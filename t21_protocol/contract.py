@@ -39,6 +39,14 @@ KNOWN_COMPONENTS = frozenset(
         "qualification",
         "protocol_doctor",
         "operator",
+        "runtime_contract",
+        "field_provenance",
+        "metric_registry",
+        "evidence_contract",
+        "real_candidate_provider",
+        "official_evaluator",
+        "r15_closure",
+        "shadow_runtime_validator",
     }
 )
 PHASES = frozenset(
@@ -195,7 +203,7 @@ def validate_master_contract(document: dict[str, Any], *, raise_on_error: bool =
         elif not _validation_matches(value, descriptor["validation"]):
             errors.append(f"{path}: validation failed")
 
-    errors.extend(_validate_semantics(document["values"]))
+    errors.extend(_validate_semantics(document["values"], document["experiment"]))
 
     report = _report(
         errors,
@@ -219,28 +227,105 @@ def _closed(value: Any, keys: set[str] | frozenset[str], context: str, errors: l
     return True
 
 
-def _validate_semantics(values: dict[str, Any]) -> list[str]:
-    errors: list[str] = []
-    expected_fields = {
-        "identity", "roots", "artifacts", "suites", "suite_total", "domain_taxonomy",
-        "crossdomain_pairs", "exact_design", "historical_exclusions", "remediation_exclusions",
-        "promotion_floors", "one_shot", "state_machine", "author", "r14_disposition",
-        "real_r15_paths", "quarantine", "phase_apis", "workspace_modes", "material_modes",
+R15_ROOT_KEYS = frozenset({"candidate_commit", "candidate_tree", "runtime_root", "evaluator_root", "floor_hash"})
+R16_ROOT_DIGEST_KEYS = frozenset(
+    {
+        "candidate_commit",
+        "candidate_tree",
+        "runtime_root",
+        "evaluator_root",
+        "floor_hash",
+        "runtime_data_contract_root",
+        "runtime_corpus_contract_sha256",
+        "runtime_field_provenance_sha256",
+        "candidate_provider_sha256",
     }
-    if set(values) != expected_fields:
-        errors.append(f"values fields differ: expected={sorted(expected_fields)}, actual={sorted(values)}")
-        return errors
+)
+R15_CONSTRUCT_POLICY = {
+    "required_state": "QUALIFIED",
+    "terminal_states": ["SEALED"],
+    "authorization_token": "T21R15_REAL_BLIND_CONSTRUCTION_AUTHORIZED",
+    "allowed_artifact_phases": ["CONSTRUCTION", "SEAL"],
+}
+R15_EVALUATE_POLICY = {
+    "required_state": "SEALED",
+    "terminal_states": ["EVALUATION_COMPLETE", "FAILED"],
+    "authorization_token": "T21R15_ONE_SHOT_OFFICIAL_EVALUATION",
+    "allowed_artifact_phases": ["EVALUATION"],
+}
+R16_CONSTRUCT_POLICY = {
+    "required_state": "QUALIFIED",
+    "terminal_states": ["SEALED"],
+    "authorization_token": "T21R16_REAL_BLIND_CONSTRUCTION_AUTHORIZED",
+    "allowed_artifact_phases": ["CONSTRUCTION", "SEAL"],
+}
+R16_EVALUATE_POLICY = {
+    "required_state": "SEALED",
+    "terminal_states": ["EVALUATION_COMPLETE", "FAILED"],
+    "authorization_token": "T21R16_ONE_SHOT_OFFICIAL_EVALUATION",
+    "allowed_artifact_phases": ["EVALUATION"],
+}
+RUNTIME_NATIVE_KEYS = frozenset(
+    {
+        "corpus_format",
+        "loader_entry",
+        "runtime_materializer",
+        "candidate_provider",
+        "source_id_grammar",
+        "manifest_format",
+        "shadow_holdout_rows",
+        "holdout_frozen_schema_version",
+    }
+)
+
+
+def _validate_semantics(values: dict[str, Any], experiment: str = "t21r15") -> list[str]:
+    errors: list[str] = []
+    if experiment == "t21r15":
+        expected_fields = {
+            "identity", "roots", "artifacts", "suites", "suite_total", "domain_taxonomy",
+            "crossdomain_pairs", "exact_design", "historical_exclusions", "remediation_exclusions",
+            "promotion_floors", "one_shot", "state_machine", "author", "r14_disposition",
+            "real_r15_paths", "quarantine", "phase_apis", "workspace_modes", "material_modes",
+        }
+        if set(values) != expected_fields:
+            errors.append(f"values fields differ: expected={sorted(expected_fields)}, actual={sorted(values)}")
+            return errors
+    elif experiment == "t21r16":
+        expected_fields = {
+            "identity", "roots", "artifacts", "suites", "suite_total", "domain_taxonomy",
+            "crossdomain_pairs", "exact_design", "historical_exclusions", "remediation_exclusions",
+            "promotion_floors", "one_shot", "state_machine", "author", "r15_disposition",
+            "real_r16_paths", "quarantine", "phase_apis", "workspace_modes", "material_modes",
+            "runtime_native",
+        }
+        if set(values) != expected_fields:
+            errors.append(f"values fields differ: expected={sorted(expected_fields)}, actual={sorted(values)}")
+            return errors
+    else:
+        return [f"unsupported experiment: {experiment}"]
+    _validate_shared_design(values, errors)
+    _validate_artifact_paths(values, experiment, errors)
+    if experiment == "t21r15":
+        _validate_roots_r15(values, errors)
+        _validate_phase_apis_r15(values, errors)
+        _validate_r14_disposition(values, errors)
+        if not isinstance(values["real_r15_paths"], list) or not values["real_r15_paths"]:
+            errors.append("real_r15_paths must be a non-empty array")
+    else:
+        _validate_roots_r16(values, errors)
+        _validate_phase_apis_r16(values, errors)
+        _validate_r15_disposition(values, errors)
+        _validate_runtime_native(values, errors)
+        if not isinstance(values["real_r16_paths"], list) or not values["real_r16_paths"]:
+            errors.append("real_r16_paths must be a non-empty array")
+    return errors
+
+
+def _validate_shared_design(values: dict[str, Any], errors: list[str]) -> None:
     if _closed(values["identity"], {"namespace", "case_id_prefix"}, "identity", errors):
         if not values["identity"]["namespace"] or not values["identity"]["case_id_prefix"]:
             errors.append("identity values must be non-empty")
-    if _closed(values["roots"], {"candidate_commit", "candidate_tree", "runtime_root", "evaluator_root", "floor_hash"}, "roots", errors):
-        for name, digest in values["roots"].items():
-            length = 40 if name in {"candidate_commit", "candidate_tree"} else 64
-            if not isinstance(digest, str) or len(digest) != length or any(c not in "0123456789abcdef" for c in digest):
-                errors.append(f"roots.{name} is not a {length}-character hex digest")
-    if _closed(values["artifacts"], {"experiment_config", "artifact_graph", "domain_taxonomy", "historical_exclusion", "remediation_exclusion", "runtime_freeze", "evaluator_freeze", "qualification_lock", "negative_controls", "adjudication", "applicability", "holdout_frozen_schema"}, "artifacts", errors):
-        if any(not isinstance(path, str) or not path.startswith("evaluations/t21r15/") for path in values["artifacts"].values()):
-            errors.append("artifact paths must be R15 repository-relative paths")
     suites = values["suites"]
     if not isinstance(suites, dict) or len(suites) != 8:
         errors.append("suites must define exactly eight suites")
@@ -306,27 +391,6 @@ def _validate_semantics(values: dict[str, Any]) -> list[str]:
     if _closed(values["one_shot"], {"construction", "evaluation", "retry", "existing_ledger"}, "one_shot", errors):
         if set(values["one_shot"].values()) != {"ONE_SHOT", "FORBIDDEN", "REFUSE"}:
             errors.append("one_shot policy values invalid")
-    phase_apis = values["phase_apis"]
-    if _closed(phase_apis, {"construct", "evaluate"}, "phase_apis", errors):
-        construct = phase_apis["construct"]
-        evaluate = phase_apis["evaluate"]
-        api_keys = {"required_state", "terminal_states", "authorization_token", "allowed_artifact_phases"}
-        if _closed(construct, api_keys, "phase_apis.construct", errors):
-            if construct != {
-                "required_state": "QUALIFIED",
-                "terminal_states": ["SEALED"],
-                "authorization_token": "T21R15_REAL_BLIND_CONSTRUCTION_AUTHORIZED",
-                "allowed_artifact_phases": ["CONSTRUCTION", "SEAL"],
-            }:
-                errors.append("phase_apis.construct policy invalid")
-        if _closed(evaluate, api_keys, "phase_apis.evaluate", errors):
-            if evaluate != {
-                "required_state": "SEALED",
-                "terminal_states": ["EVALUATION_COMPLETE", "FAILED"],
-                "authorization_token": "T21R15_ONE_SHOT_OFFICIAL_EVALUATION",
-                "allowed_artifact_phases": ["EVALUATION"],
-            }:
-                errors.append("phase_apis.evaluate policy invalid")
     if values["workspace_modes"] != ["SYNTHETIC_DISPOSABLE", "REAL_EXPERIMENT"]:
         errors.append("workspace_modes policy invalid")
     if values["material_modes"] != ["SYNTHETIC", "REAL_BLIND", "REAL_DRY_RUN"]:
@@ -349,15 +413,126 @@ def _validate_semantics(values: dict[str, Any]) -> list[str]:
     if _closed(values["author"], {"seed", "vocabulary"}, "author", errors):
         if not isinstance(values["author"]["seed"], int) or not isinstance(values["author"]["vocabulary"], list):
             errors.append("author configuration invalid")
-    if _closed(values["r14_disposition"], {"status", "reason", "construction_attempts", "corpus_materialized", "suites_materialized", "candidate_rows", "official_evaluator_rows", "one_shot_consumed"}, "r14_disposition", errors):
-        if values["r14_disposition"]["status"] != "CLOSED / PRECONSTRUCTION_PROTOCOL_INTEGRATION_FAILURE" or values["r14_disposition"]["one_shot_consumed"] is not False:
-            errors.append("R14 disposition invalid")
     for name in ("historical_exclusions", "remediation_exclusions", "quarantine"):
         if not isinstance(values[name], dict) or not values[name]:
             errors.append(f"{name} must be a non-empty object")
-    if not isinstance(values["real_r15_paths"], list) or not values["real_r15_paths"]:
-        errors.append("real_r15_paths must be a non-empty array")
-    return errors
+
+
+def _validate_artifact_paths(values: dict[str, Any], experiment: str, errors: list[str]) -> None:
+    prefix = f"evaluations/{experiment}/"
+    artifact_keys = {
+        "experiment_config", "artifact_graph", "domain_taxonomy", "historical_exclusion",
+        "remediation_exclusion", "runtime_freeze", "evaluator_freeze", "qualification_lock",
+        "negative_controls", "adjudication", "applicability", "holdout_frozen_schema",
+    }
+    if experiment == "t21r16":
+        # Runtime-native preconstruction inputs materialized before construction.
+        artifact_keys |= {"runtime_corpus_contract", "runtime_field_provenance", "candidate_runtime_data_contract"}
+    if _closed(values["artifacts"], artifact_keys, "artifacts", errors):
+        if any(not isinstance(path, str) or not path.startswith(prefix) for path in values["artifacts"].values()):
+            errors.append(f"artifact paths must be {experiment} repository-relative paths")
+
+
+def _validate_roots_r15(values: dict[str, Any], errors: list[str]) -> None:
+    if _closed(values["roots"], R15_ROOT_KEYS, "roots", errors):
+        for name, digest in values["roots"].items():
+            length = 40 if name in {"candidate_commit", "candidate_tree"} else 64
+            if not isinstance(digest, str) or len(digest) != length or any(c not in "0123456789abcdef" for c in digest):
+                errors.append(f"roots.{name} is not a {length}-character hex digest")
+
+
+def _validate_roots_r16(values: dict[str, Any], errors: list[str]) -> None:
+    expected = R16_ROOT_DIGEST_KEYS | {"candidate_provider_id"}
+    if not isinstance(values["roots"], dict) or set(values["roots"]) != expected:
+        errors.append(f"roots fields differ: expected={sorted(expected)}, actual={sorted(values['roots']) if isinstance(values['roots'], dict) else values['roots']}")
+        return
+    for name, digest in values["roots"].items():
+        if name == "candidate_provider_id":
+            if not isinstance(digest, str) or not digest:
+                errors.append("roots.candidate_provider_id must be a non-empty string")
+            continue
+        length = 40 if name in {"candidate_commit", "candidate_tree"} else 64
+        if not isinstance(digest, str) or len(digest) != length or any(c not in "0123456789abcdef" for c in digest):
+            errors.append(f"roots.{name} is not a {length}-character hex digest")
+
+
+def _validate_phase_apis_r15(values: dict[str, Any], errors: list[str]) -> None:
+    phase_apis = values["phase_apis"]
+    if _closed(phase_apis, {"construct", "evaluate"}, "phase_apis", errors):
+        construct = phase_apis["construct"]
+        evaluate = phase_apis["evaluate"]
+        api_keys = {"required_state", "terminal_states", "authorization_token", "allowed_artifact_phases"}
+        if _closed(construct, api_keys, "phase_apis.construct", errors):
+            if construct != R15_CONSTRUCT_POLICY:
+                errors.append("phase_apis.construct policy invalid")
+        if _closed(evaluate, api_keys, "phase_apis.evaluate", errors):
+            if evaluate != R15_EVALUATE_POLICY:
+                errors.append("phase_apis.evaluate policy invalid")
+
+
+def _validate_phase_apis_r16(values: dict[str, Any], errors: list[str]) -> None:
+    phase_apis = values["phase_apis"]
+    if _closed(phase_apis, {"construct", "evaluate"}, "phase_apis", errors):
+        construct = phase_apis["construct"]
+        evaluate = phase_apis["evaluate"]
+        api_keys = {"required_state", "terminal_states", "authorization_token", "allowed_artifact_phases"}
+        if _closed(construct, api_keys, "phase_apis.construct", errors):
+            if construct != R16_CONSTRUCT_POLICY:
+                errors.append("phase_apis.construct policy invalid")
+        if _closed(evaluate, api_keys, "phase_apis.evaluate", errors):
+            if evaluate != R16_EVALUATE_POLICY:
+                errors.append("phase_apis.evaluate policy invalid")
+
+
+def _validate_r14_disposition(values: dict[str, Any], errors: list[str]) -> None:
+    if _closed(values["r14_disposition"], {"status", "reason", "construction_attempts", "corpus_materialized", "suites_materialized", "candidate_rows", "official_evaluator_rows", "one_shot_consumed"}, "r14_disposition", errors):
+        if values["r14_disposition"]["status"] != "CLOSED / PRECONSTRUCTION_PROTOCOL_INTEGRATION_FAILURE" or values["r14_disposition"]["one_shot_consumed"] is not False:
+            errors.append("R14 disposition invalid")
+
+
+def _validate_r15_disposition(values: dict[str, Any], errors: list[str]) -> None:
+    required = {
+        "status", "reason", "construction_attempts", "corpus_materialized", "suites_materialized",
+        "candidate_rows", "official_evaluator_rows", "one_shot_consumed", "evaluation_permanently_refused",
+    }
+    if _closed(values["r15_disposition"], required, "r15_disposition", errors):
+        disposition = values["r15_disposition"]
+        if disposition["status"] != "CLOSED / SEALED_HOLDOUT_RUNTIME_CONTRACT_INCOMPATIBILITY":
+            errors.append("R15 disposition status invalid")
+        if disposition["reason"] != "SEALED_CORPUS_NOT_LOADABLE_BY_FROZEN_CANDIDATE_RUNTIME":
+            errors.append("R15 disposition reason invalid")
+        if disposition["construction_attempts"] != 1:
+            errors.append("R15 disposition construction_attempts must be 1")
+        if disposition["corpus_materialized"] is not True or disposition["suites_materialized"] is not True:
+            errors.append("R15 disposition materialization record invalid")
+        if disposition["candidate_rows"] != 0 or disposition["official_evaluator_rows"] != 0:
+            errors.append("R15 disposition must record zero candidate/evaluator rows")
+        if disposition["one_shot_consumed"] is not False:
+            errors.append("R15 disposition one_shot_consumed must be false")
+        if disposition["evaluation_permanently_refused"] is not True:
+            errors.append("R15 disposition must record the permanent evaluation refusal")
+
+
+def _validate_runtime_native(values: dict[str, Any], errors: list[str]) -> None:
+    if not _closed(values["runtime_native"], RUNTIME_NATIVE_KEYS, "runtime_native", errors):
+        return
+    runtime_native = values["runtime_native"]
+    if runtime_native["corpus_format"] != "mango-general-knowledge-corpus-v1":
+        errors.append("runtime_native.corpus_format invalid")
+    if runtime_native["loader_entry"] != "src/sciencemath/knowledge/corpus.py:load_corpus":
+        errors.append("runtime_native.loader_entry invalid")
+    if runtime_native["runtime_materializer"] != "t21_protocol.providers:runtime-native-materializer":
+        errors.append("runtime_native.runtime_materializer invalid")
+    if runtime_native["candidate_provider"] != "t21_protocol.providers:RealCandidateProvider":
+        errors.append("runtime_native.candidate_provider invalid")
+    if runtime_native["source_id_grammar"] != "gk-<sha1(title|publisher|revision)[:12]>":
+        errors.append("runtime_native.source_id_grammar invalid")
+    if runtime_native["manifest_format"] != "runtime_build_corpus_files":
+        errors.append("runtime_native.manifest_format invalid")
+    if runtime_native["shadow_holdout_rows"] != values["suite_total"]:
+        errors.append("runtime_native.shadow_holdout_rows must equal the suite total")
+    if runtime_native["holdout_frozen_schema_version"] != "t21-holdout-frozen-v2":
+        errors.append("runtime_native.holdout_frozen_schema_version invalid")
 
 
 def _report(errors: list[str], untyped: int, consumers: int, disagreements: int, unknown: int) -> dict[str, Any]:

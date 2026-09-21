@@ -16,8 +16,8 @@ from .errors import ValidationError
 from .exact_design import require_exact_design
 from .freeze import verify_freeze
 from .preflight import validate_gold_bundle
-from .providers import MaterialBundle, MaterialProvider
-from .util import read_json, sha256_bytes, sha256_json, write_json
+from .providers import MaterialBundle, MaterialProvider, contract_runtime_native
+from .util import read_json, sha256_bytes, sha256_file, sha256_json, write_json
 
 DIMENSIONS = (
     "case_ids",
@@ -169,7 +169,10 @@ def historical_uniqueness(
     policy = read_json(source_root / contract.get("artifacts.historical_exclusion"))
     forbidden = _historical_forbidden(source_root, policy)
     return _audit_collision_sets(
-        material_fingerprints(bundle), forbidden, artifact="T21R15_HISTORICAL_UNIQUENESS", material_mode=material_mode
+        material_fingerprints(bundle),
+        forbidden,
+        artifact=f"{contract.experiment.upper()}_HISTORICAL_UNIQUENESS",
+        material_mode=material_mode,
     )
 
 
@@ -179,7 +182,10 @@ def remediation_uniqueness(
     policy = read_json(source_root / contract.get("artifacts.remediation_exclusion"))
     forbidden = {dimension: set(values) for dimension, values in policy["dimensions"].items()}
     return _audit_collision_sets(
-        material_fingerprints(bundle), forbidden, artifact="T21R15_REMEDIATION_UNIQUENESS", material_mode=material_mode
+        material_fingerprints(bundle),
+        forbidden,
+        artifact=f"{contract.experiment.upper()}_REMEDIATION_UNIQUENESS",
+        material_mode=material_mode,
     )
 
 
@@ -227,7 +233,7 @@ def static_gold_audit(root: Path, contract: Any, bundle: MaterialBundle) -> dict
     passed = not missing_sources and not missing_chunks and not missing_answers
     return {
         "schema_version": "t21-static-gold-audit-v1",
-        "artifact": "T21R15_STATIC_GOLD_AUDIT",
+        "artifact": f"{contract.experiment.upper()}_STATIC_GOLD_AUDIT",
         "status": "PASS" if passed and report["status"] == "PASS" else "FAIL",
         "audit_mode": "EXECUTED",
         "rows": len(rows),
@@ -254,15 +260,18 @@ def blindness_audit(
     workspace_mode: WorkspaceMode,
     material_mode: MaterialMode,
     *,
+    experiment: str = "t21r15",
     author_invocations: int,
 ) -> dict[str, Any]:
-    out = root / "evaluations" / "t21r15"
+    out = root / "evaluations" / experiment
     evaluation_paths = (
         out / "evaluation_run_ledger.json",
         out / "candidate_outputs.jsonl",
         out / "evaluator_results.json",
         out / "score_results.json",
         out / "raw_results.jsonl",
+        out / "metric_evidence.json",
+        out / "floor_evidence.json",
         out / "holdout_results.json",
     )
     present = [path.name for path in evaluation_paths if path.exists()]
@@ -270,7 +279,7 @@ def blindness_audit(
     passed = author_invocations == 1 and not present and not forbidden_hits and not provider.placeholder_audits
     return {
         "schema_version": "t21-blindness-audit-v1",
-        "artifact": "T21R15_HOLDOUT_BLINDNESS_AUDIT",
+        "artifact": f"{experiment.upper()}_HOLDOUT_BLINDNESS_AUDIT",
         "status": "PASS" if passed else "FAIL",
         "audit_mode": "EXECUTED",
         "workspace_mode": workspace_mode.value,
@@ -285,6 +294,7 @@ def blindness_audit(
 
 def root_of_trust_audit(source_root: Path, contract: Any) -> dict[str, Any]:
     roots = contract.get("roots")
+    experiment_tag = contract.experiment.upper()
     try:
         candidate_commit = subprocess.run(
             ["git", "-C", str(source_root), "rev-parse", roots["candidate_commit"]],
@@ -303,12 +313,12 @@ def root_of_trust_audit(source_root: Path, contract: Any) -> dict[str, Any]:
     runtime = verify_freeze(
         source_root,
         source_root / contract.get("artifacts.runtime_freeze"),
-        artifact="T21R15_RUNTIME_FREEZE",
+        artifact=f"{experiment_tag}_RUNTIME_FREEZE",
     )
     evaluator = verify_freeze(
         source_root,
         source_root / contract.get("artifacts.evaluator_freeze"),
-        artifact="T21R15_EVALUATOR_FREEZE",
+        artifact=f"{experiment_tag}_EVALUATOR_FREEZE",
     )
     floor_root = sha256_json(contract.get("promotion_floors"))
     mismatches = []
@@ -322,9 +332,25 @@ def root_of_trust_audit(source_root: Path, contract: Any) -> dict[str, Any]:
         mismatches.append("evaluator_root")
     if floor_root != roots["floor_hash"]:
         mismatches.append("floor_hash")
+    runtime_contract_checks: dict[str, Any] = {}
+    if contract_runtime_native(contract) is not None:
+        expected = {
+            "runtime_data_contract_root": sha256_json(read_json(source_root / contract.get("artifacts.candidate_runtime_data_contract"))),
+            "runtime_corpus_contract_sha256": sha256_file(source_root / contract.get("artifacts.runtime_corpus_contract")),
+            "runtime_field_provenance_sha256": sha256_file(source_root / contract.get("artifacts.runtime_field_provenance")),
+            "candidate_provider_sha256": sha256_file(source_root / "t21_protocol" / "providers.py"),
+        }
+        for name, expected_digest in expected.items():
+            actual = roots.get(name)
+            if actual != expected_digest:
+                mismatches.append(name)
+        runtime_contract_checks = {
+            "verified_roots": sorted(expected),
+            "provider_module": "t21_protocol/providers.py",
+        }
     return {
         "schema_version": "t21-root-of-trust-audit-v1",
-        "artifact": "T21R15_ROOT_OF_TRUST_AUDIT",
+        "artifact": f"{experiment_tag}_ROOT_OF_TRUST_AUDIT",
         "status": "PASS" if not mismatches else "FAIL",
         "audit_mode": "EXECUTED",
         "candidate_commit": candidate_commit,
@@ -333,6 +359,7 @@ def root_of_trust_audit(source_root: Path, contract: Any) -> dict[str, Any]:
         "evaluator_root": evaluator["root"],
         "floor_hash": floor_root,
         "mismatches": mismatches,
+        **({"runtime_contract_checks": runtime_contract_checks} if runtime_contract_checks else {}),
     }
 
 
@@ -357,13 +384,15 @@ def run_construction_audits(
     author_invocations: int,
 ) -> dict[str, Any]:
     out = root / "evaluations" / contract.experiment
+    experiment_tag = contract.experiment.upper()
+    runtime_native = contract_runtime_native(contract) is not None
     rows = [row for suite_rows in bundle.rows_by_suite.values() for row in suite_rows]
     historical = historical_uniqueness(source_root, contract, bundle, material_mode)
     remediation = remediation_uniqueness(source_root, contract, bundle, material_mode)
     exact = require_exact_design(rows, contract)
     exact = {
         "schema_version": "t21-exact-design-audit-v1",
-        "artifact": "T21R15_EXACT_DESIGN_AUDIT",
+        "artifact": f"{experiment_tag}_EXACT_DESIGN_AUDIT",
         "audit_mode": "EXECUTED",
         **exact,
         "design_root": sha256_json(exact["observed_design"]),
@@ -372,10 +401,10 @@ def run_construction_audits(
     gate_pass = historical["status"] == remediation["status"] == independent["status"] == "PASS"
     gate = {
         "schema_version": "t21-construction-gate-v1",
-        "artifact": "T21R15_CONSTRUCTION_GATE",
+        "artifact": f"{experiment_tag}_CONSTRUCTION_GATE",
         "status": "PASS" if gate_pass else "FAIL",
         "audit_mode": "EXECUTED",
-        "checks": 60,
+        "checks": 62 if runtime_native else 60,
         "suite_total": len(rows),
         "design_root": independent["design_root"],
         "independent_design": independent,
@@ -384,7 +413,7 @@ def run_construction_audits(
     }
     crosscheck = {
         "schema_version": "t21-gate-auditor-crosscheck-v1",
-        "artifact": "T21R15_GATE_AUDITOR_CROSSCHECK",
+        "artifact": f"{experiment_tag}_GATE_AUDITOR_CROSSCHECK",
         "status": "PASS" if gate["design_root"] == exact["design_root"] else "FAIL",
         "audit_mode": "EXECUTED",
         "gate_design_root": gate["design_root"],
@@ -398,12 +427,13 @@ def run_construction_audits(
         provider,
         workspace_mode,
         material_mode,
+        experiment=contract.experiment,
         author_invocations=author_invocations,
     )
     gold = validate_gold_bundle(root, contract)
     compatibility = {
         "schema_version": "t21-gold-compatibility-v1",
-        "artifact": "T21R15_GOLD_COMPATIBILITY",
+        "artifact": f"{experiment_tag}_GOLD_COMPATIBILITY",
         "status": gold["status"],
         "audit_mode": "EXECUTED",
         "rows": gold["rows"],
@@ -425,6 +455,13 @@ def run_construction_audits(
     }
     for report in reports.values():
         validate_executed_audit(report, workspace_mode)
+    if runtime_native:
+        # Runtime-native construction additionally proves, on the executed
+        # artifacts, that the frozen loader loaded the real corpus with zero
+        # candidate executions and that the frozen production candidate
+        # initializes against it without executing holdout rows.
+        for name in ("runtime_loader_validation.json", "candidate_provider_compatibility.json"):
+            validate_executed_audit(read_json(out / name), workspace_mode)
     for name, report in reports.items():
         write_json(out / name, report, exclusive=True)
     return {"status": "PASS", "reports": len(reports), "design_root": exact["design_root"]}

@@ -25,6 +25,7 @@ def fingerprint(value: str) -> str:
 
 
 def validate_historical_policy(policy: dict[str, Any], root: Path) -> dict[str, Any]:
+    history_keys = {"r14_protocol_history", "r15_protocol_history"}
     required = {
         "schema_version",
         "artifact",
@@ -34,10 +35,14 @@ def validate_historical_policy(policy: dict[str, Any], root: Path) -> dict[str, 
         "milestones",
         "upstream_registry",
         "upstream_registry_sha256",
-        "r14_protocol_history",
     }
-    if set(policy) != required:
+    accepted = required | {"r14_protocol_history"}, required | {"r15_protocol_history"}
+    if set(policy) not in accepted:
         raise ValidationError("historical exclusion policy violates closed schema")
+    present_history = sorted(history_keys & set(policy))
+    if len(present_history) != 1:
+        raise ValidationError("historical exclusion policy must name exactly one prior protocol history")
+    history_key = present_history[0]
     if policy["raw_values_included"] is not False:
         raise ValidationError("historical exclusion policy contains raw values")
     if policy["historical_milestone_count"] != len(policy["milestones"]):
@@ -46,9 +51,9 @@ def validate_historical_policy(policy: dict[str, Any], root: Path) -> dict[str, 
         raise ValidationError("fewer than 14 historical milestones")
     if "T21R14" in policy["milestones"]:
         raise ValidationError("R14 must not be represented as fake blind material")
-    r14 = policy["r14_protocol_history"]
-    if r14.get("blind_fingerprints_invented") is not False:
-        raise ValidationError("R14 protocol history invents blind fingerprints")
+    prior = policy[history_key]
+    if prior.get("blind_fingerprints_invented") is not False:
+        raise ValidationError(f"{history_key} invents blind fingerprints")
     upstream = root / policy["upstream_registry"]
     if not upstream.is_file() or sha256_file(upstream) != policy["upstream_registry_sha256"]:
         raise ValidationError("historical upstream registry hash mismatch")
@@ -59,7 +64,7 @@ def validate_historical_policy(policy: dict[str, Any], root: Path) -> dict[str, 
         "status": "PASS",
         "historical_milestones": policy["historical_milestone_count"],
         "dimensions": len(DIMENSIONS),
-        "r14_protocol_history_only": True,
+        f"{history_key.removesuffix('_protocol_history')}_protocol_history_only": True,
     }
 
 

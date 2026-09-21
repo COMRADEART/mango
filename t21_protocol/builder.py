@@ -48,6 +48,17 @@ def _build_rows(
                 answer = f"R15 registered value {serial - 1:05d}"
                 source_ids = [f"r15-src-{serial - 1:05d}"]
                 chunk_ids = [f"{source_ids[0]}:record-0"]
+            elif material_mode == "REAL_BLIND_RUNTIME_NATIVE":
+                # Semantic-fact authoring only: the registered value and its
+                # canonical statement are authored blind material; runtime
+                # identity fields (source/chunk IDs) are produced later by the
+                # runtime-native materializer from the frozen schema, never
+                # authored inline and never remapped at evaluation time.
+                query = f"Within blind record {case_id}, what registered value is stated?"
+                answer = f"R16 registered value {serial - 1:05d}"
+                statement = f"Blind record {case_id} states the registered value {answer}."
+                source_ids: list[str] = []
+                chunk_ids: list[str] = []
             else:
                 raise ValueError(f"unsupported material mode: {material_mode}")
             row: dict[str, Any] = {
@@ -58,7 +69,7 @@ def _build_rows(
                 "gold": {
                     "required_domains": required_domains,
                     "expect_status": "ANSWER",
-                    "expected_answer": answer,
+                    "expected_answer": statement if material_mode == "REAL_BLIND_RUNTIME_NATIVE" else answer,
                     "source_ids": source_ids,
                     "chunk_ids": chunk_ids,
                 },
@@ -82,6 +93,13 @@ def build_rows(contract: Any, author_spec: dict[str, Any]) -> dict[str, list[dic
 def build_real_rows(contract: Any, author_spec: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
     """Build newly-authored blind rows without synthetic fixture identity."""
     return _build_rows(contract, author_spec, material_mode="REAL_BLIND")
+
+
+def build_real_rows_runtime_native(
+    contract: Any, author_spec: dict[str, Any]
+) -> dict[str, list[dict[str, Any]]]:
+    """Build runtime-native blind rows: semantic facts with empty runtime IDs."""
+    return _build_rows(contract, author_spec, material_mode="REAL_BLIND_RUNTIME_NATIVE")
 
 
 def materialize_corpus(root: Path, contract: Any, author_spec: dict[str, Any]) -> dict[str, Any]:

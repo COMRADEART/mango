@@ -1,0 +1,77 @@
+{
+  "schema_version": "t21r15-closure-v1",
+  "artifact": "T21R15_CLOSURE",
+  "experiment": "t21r15",
+  "closed_at": "2026-09-21",
+  "status": "CLOSED / SEALED_HOLDOUT_RUNTIME_CONTRACT_INCOMPATIBILITY",
+  "reason": "SEALED_CORPUS_NOT_LOADABLE_BY_FROZEN_CANDIDATE_RUNTIME",
+  "capability_failure": false,
+  "capability_verdict": "NONE",
+  "not_a_valid_capability_failure": {
+    "EvaluationLedger_present": false,
+    "candidate_R15_rows": 0,
+    "official_evaluator_rows": 0,
+    "rows_scored": 0,
+    "one_shot_consumed": false,
+    "basis": "the sealed corpus was never loadable by the frozen candidate runtime, so no candidate could execute any row and the one-shot evaluation exposure was never consumed"
+  },
+  "preserved_hashes": {
+    "construction_head": "86099f03461dde34b90424c990d1e0d756202b40",
+    "holdout_manifest_sha256": "4514bedb096d095db5f35f415e4148a8a472628df2413d00ef838c87bd205a4d",
+    "holdout_frozen_sha256": "9c2aadd365a1f553db694390c6d2b03fe9b4ae21b4c9806b7e60e6e6f8f8ccfc",
+    "freeze_root_sha256": "34782693ef413aced065b09840b1372f7e4d218ecdf25938b8d03894f6c65aff",
+    "verified": true
+  },
+  "mechanical_evidence": {
+    "loader_refusal_reproduced": true,
+    "loader_entry": "src/sciencemath/knowledge/corpus.py:load_corpus",
+    "loader_error_class": "CorruptCorpusError",
+    "loader_error_message": "manifest lacks file_checksums entries for sources.jsonl and chunks.jsonl",
+    "sealed_manifest_keys": ["chunks", "schema_version", "sources", "world"],
+    "sealed_manifest_missing_runtime_fields": [
+      "file_checksums",
+      "source_count",
+      "chunk_count",
+      "snapshot_date",
+      "manifest_checksum"
+    ],
+    "sealed_source_keys": ["source_id", "title", "topic_tags"],
+    "sealed_source_missing_runtime_fields": [
+      "source_title",
+      "publisher",
+      "revision",
+      "authority_class",
+      "freshness_class",
+      "content_hash",
+      "document_hash"
+    ],
+    "sealed_chunk_keys": ["chunk_id", "metadata", "source_id", "text"],
+    "sealed_chunk_missing_runtime_fields": ["section", "ordinal", "span", "content_hash"],
+    "source_id_grammar_incompatible": {
+      "sealed_grammar": "r15-src-*",
+      "frozen_runtime_grammar": "gk-*",
+      "frozen_rule": "KnowledgeSourceRecord.__post_init__ rejects any source_id not starting with 'gk-' (SchemaError)"
+    }
+  },
+  "dispositions": [
+    "Do not repair or rewrite the sealed R15 holdout.",
+    "Do not delete the seal to reset R15.",
+    "R15 can never be officially evaluated: every future evaluation attempt must fail closed with T21R15_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED.",
+    "The sealed R15 holdout becomes historical exclusion material (milestone T21R15_SEALED_UNEVALUABLE), registered hash-only; no candidate outputs exist and none may be invented.",
+    "Do not tune Mango based on R15."
+  ],
+  "evaluation_refusal": {
+    "designated": true,
+    "designation": "T21R15_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
+    "marker_artifact": "evaluations/t21r15/evaluation_refusal.json",
+    "enforced_by": "t21_protocol.evaluate.run_evaluation"
+  },
+  "historical_exclusion_milestone": "T21R15_SEALED_UNEVALUABLE",
+  "state_at_closure": {
+    "construction_status": "COMPLETE",
+    "holdout_state": "SEALED",
+    "official_evaluator_invocations": 0,
+    "candidate_rows_executed": 0,
+    "runtime_rows_executed": 0
+  }
+}

@@ -25,7 +25,11 @@ def build_qualification_lock(root: Path, contract: Any) -> dict[str, Any]:
     except (OSError, subprocess.CalledProcessError):
         commit = "0" * 40
     roots = contract.get("roots")
-    return {
+    try:
+        runtime_native = contract.get("runtime_native")
+    except KeyError:
+        runtime_native = None
+    lock = {
         "schema_version": "t21-qualification-lock-v2",
         "artifact": "T21_QUALIFICATION_LOCK",
         "experiment": contract.experiment,
@@ -45,8 +49,20 @@ def build_qualification_lock(root: Path, contract: Any) -> dict[str, Any]:
         "runtime_root": roots["runtime_root"],
         "evaluator_root": roots["evaluator_root"],
         "floor_hash": roots["floor_hash"],
-        "immutable_after": "T21R15_PRODUCTION_PHASE_REQUALIFICATION_PASS",
+        "immutable_after": f"{contract.experiment.upper()}_PRODUCTION_PHASE_REQUALIFICATION_PASS",
     }
+    if runtime_native is not None:
+        # Runtime-native experiments additionally bind the frozen candidate
+        # runtime modules and the runtime-contract digests they are derived from.
+        lock["runtime_native"] = {
+            "schema_module_sha256": sha256_file(root / "src" / "sciencemath" / "knowledge" / "schema.py"),
+            "corpus_module_sha256": sha256_file(root / "src" / "sciencemath" / "knowledge" / "corpus.py"),
+            "runtime_data_contract_root": roots["runtime_data_contract_root"],
+            "runtime_corpus_contract_sha256": roots["runtime_corpus_contract_sha256"],
+            "runtime_field_provenance_sha256": roots["runtime_field_provenance_sha256"],
+            "candidate_provider_sha256": roots["candidate_provider_sha256"],
+        }
+    return lock
 
 
 def validate_qualification_lock(root: Path, contract: Any, lock: dict[str, Any]) -> dict[str, Any]:

@@ -1,0 +1,186 @@
+{
+  "answer": {
+    "entity_gate": "_entity_binding_score requires every fact_entity token to appear in the query",
+    "entry": "answer_knowledge(query: 'str', corpus: 'KnowledgeCorpus | None' = None, *, top_k: 'int' = 8, now: 'str' = '') -> 'KnowledgeAnswer'",
+    "returns": "KnowledgeAnswer(status, answer, citations, zero_tolerance)"
+  },
+  "artifact": "T21R16_RUNTIME_CORPUS_CONTRACT",
+  "bound_modules": {
+    "src/sciencemath/knowledge/citations.py": "d48a5bb8ac4e28178cdaf332e9b7867a611d6d851f853858582a752b9039bb48",
+    "src/sciencemath/knowledge/claim_gate.py": "3cf7593f131c081a7a1fcf777d7f27ca995f9dae993efbd68c566e565803f883",
+    "src/sciencemath/knowledge/conflicts.py": "f9c984d1fd10ec4053e78ca373e0c13e9d705c3db7c2a4afa3e09cb2a0c272d2",
+    "src/sciencemath/knowledge/corpus.py": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d",
+    "src/sciencemath/knowledge/evidence.py": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d",
+    "src/sciencemath/knowledge/evidence_paths.py": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375",
+    "src/sciencemath/knowledge/freshness.py": "9793fa94f137b550451de2186b9f558040019eca14485bbd39595b16974abf99",
+    "src/sciencemath/knowledge/index.py": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1",
+    "src/sciencemath/knowledge/injection.py": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0",
+    "src/sciencemath/knowledge/pipeline.py": "0959ac026ad08566e723011d653a0924ece3d285d3ad2895ae26f466c7ed0889",
+    "src/sciencemath/knowledge/provenance_spoof.py": "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212",
+    "src/sciencemath/knowledge/relations.py": "e0ed89e99c42b0d8d92952951b78696a50a3b377a537ef4c2a03ce344a35376f",
+    "src/sciencemath/knowledge/retrieval.py": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9",
+    "src/sciencemath/knowledge/routing.py": "0f8441cdfaaadbcbda3067f080b357ab5491eae078b6170c2175a97ca8fd7260",
+    "src/sciencemath/knowledge/schema.py": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135"
+  },
+  "chunk_record": {
+    "chunk_id_grammar": {
+      "derived_from": "def make_chunk_id(source_id: str, section: str, ordinal: int) -> str:\n    \"\"\"Deterministic chunk ID: <source_id>:<section-slug>:<ordinal>.\"\"\"\n    return f\"{source_id}:{_slug(section)}:{ordinal}\"",
+      "format": "<source_id>:<slug(section)>:<ordinal>",
+      "producer": "make_chunk_id(source_id, section, ordinal)"
+    },
+    "dataclass": "KnowledgeChunk",
+    "enforcement": "from_dict raises KeyError on missing required keys (span and content_hash included); validate_chunk_invariants rejects duplicate chunk_ids, checksum disagreements, and out-of-order ordinals (CorruptCorpusError at load)",
+    "from_dict_required_keys": [
+      "chunk_id",
+      "content_hash",
+      "ordinal",
+      "section",
+      "source_id",
+      "span",
+      "text"
+    ],
+    "loader_required_keys": [
+      "chunk_id",
+      "content_hash",
+      "ordinal",
+      "section",
+      "source_id",
+      "span",
+      "text"
+    ],
+    "module": "src/sciencemath/knowledge/schema.py",
+    "optional_fields": [
+      "metadata",
+      "content_hash"
+    ],
+    "required_fields": [
+      "chunk_id",
+      "source_id",
+      "section",
+      "text",
+      "ordinal",
+      "span"
+    ]
+  },
+  "corpus_format": "mango-general-knowledge-corpus-v1",
+  "derivation": {
+    "method": "frozen module introspection + AST extraction (no hand-copied schema)",
+    "modules": [
+      "src/sciencemath/knowledge/schema.py",
+      "src/sciencemath/knowledge/corpus.py",
+      "src/sciencemath/knowledge/pipeline.py"
+    ],
+    "rule": "every runtime-affecting field, vocabulary, ID grammar, checksum semantic, and required file below is derived from the frozen candidate bytes; the contract is invalid if any bound module hash changes"
+  },
+  "experiment": "t21r16",
+  "loader": {
+    "derived_from": "def load_corpus(corpus_dir: Path | None = None) -> KnowledgeCorpus:\n    \"\"\"Load the frozen corpus; verify every checksum against the manifest.\"\"\"\n    base = corpus_dir or CORPUS_DIR\n    sources_path = base / \"sources.jsonl\"\n    chunks_path = base / \"chunks.jsonl\"\n    manifest_path = base / \"corpus_manifest.json\"\n    for p in (sources_path, chunks_path, manifest_path):\n        if not p.exists():\n            raise CorruptCorpusError(f\"missing corpus file: {p}\")\n    manifest = json.loads(manifest_path.read_text(encoding=\"utf-8\"))\n    expected = manifest.get(\"file_checksums\") or {}\n    if not expected or not all(\n            name in expected for name in (\"sources.jsonl\", \"chunks.jsonl\")):\n        # Fail closed (T21R10): a manifest without per-file checksums cannot\n        # prove provenance, so it must never be served.\n        raise CorruptCorpusError(\"manifest lacks file_checksums entries for \"\n                                 \"sources.jsonl and chunks.jsonl\")\n    for name, want in expected.items():\n        got = _sha256_lf(base / name)\n        if got != want:\n            raise CorruptCorpusError(\n                f\"{name} checksum mismatch: manifest={want} actual={got}\")\n    sources = _load_sources(sources_path)\n    chunks = _load_chunks(chunks_path)\n    if manifest.get(\"source_count\") != len(sources):\n        raise CorruptCorpusError(\"source_count mismatch\")\n    if manifest.get(\"chunk_count\") != len(chunks):\n        raise CorruptCorpusError(\"chunk_count mismatch\")\n    return KnowledgeCorpus(sources=sources, chunks=chunks,\n                           manifest=manifest)",
+    "entry": "load_corpus(corpus_dir) -> KnowledgeCorpus",
+    "fail_closed": [
+      "missing corpus file raises CorruptCorpusError",
+      "manifest lacking file_checksums entries for sources.jsonl and chunks.jsonl raises CorruptCorpusError",
+      "per-file checksum mismatch raises CorruptCorpusError",
+      "manifest source_count/chunk_count mismatch raises CorruptCorpusError",
+      "KnowledgeCorpus post-init chunk-invariant violations raise CorruptCorpusError"
+    ],
+    "required_files": [
+      "chunks.jsonl",
+      "corpus_manifest.json",
+      "sources.jsonl"
+    ]
+  },
+  "loader_entry": "src/sciencemath/knowledge/corpus.py:load_corpus",
+  "manifest": {
+    "derived_from": "def build_corpus_files(\n    base: Path,\n    sources: list[KnowledgeSourceRecord],\n    chunks: list[KnowledgeChunk],\n    *, snapshot_date: str = CORPUS_SNAPSHOT_DATE,\n) -> dict:\n    \"\"\"Write sources.jsonl / chunks.jsonl / corpus_manifest.json and return\n    the manifest. Deterministic: sorted writes, content-derived checksums.\"\"\"\n    base.mkdir(parents=True, exist_ok=True)\n    sources_path = base / \"sources.jsonl\"\n    chunks_path = base / \"chunks.jsonl\"\n\n    def write_jsonl(path: Path, rows: list[dict]) -> None:\n        text = \"\".join(json.dumps(r, sort_keys=True, ensure_ascii=False)\n                       + \"\\n\" for r in rows)\n        path.write_text(text, encoding=\"utf-8\", newline=\"\\n\")\n\n    write_jsonl(sources_path, [s.to_dict() for s in sources])\n    write_jsonl(chunks_path, [c.to_dict() for c in chunks])\n    domains = sorted({tag for s in sources for tag in s.topic_tags})\n    manifest = {\n        \"corpus_version\": \"mango-general-knowledge-corpus-v1\",\n        \"snapshot_date\": snapshot_date,\n        \"source_count\": len(sources),\n        \"chunk_count\": len(chunks),\n        \"domains\": domains,\n        \"license_summary\": {\n            \"project_owned_fixtures\": len(sources),\n            \"notes\": \"Corpus is project-owned evaluation fixture material \"\n                     \"(CC0-equivalent); retrieval-only, never used for \"\n                     \"training; no third-party text ingested.\",\n        },\n        \"file_checksums\": {\n            \"sources.jsonl\": _sha256_lf(sources_path),\n            \"chunks.jsonl\": _sha256_lf(chunks_path),\n        },\n    }\n    blob = json.dumps(manifest, sort_keys=True, ensure_ascii=False)\n    manifest[\"manifest_checksum\"] = hashlib.sha256(\n        blob.encode(\"utf-8\")).hexdigest()\n    (base / \"corpus_manifest.json\").write_text(\n        json.dumps(manifest, indent=2, ensure_ascii=False) + \"\\n\",\n        encoding=\"utf-8\", newline=\"\\n\")\n    return manifest",
+    "file_checksum_semantics": "_sha256_lf over sources.jsonl and chunks.jsonl (CRLF-normalized)",
+    "manifest_checksum_semantics": "sha256 over the sorted-JSON blob of the manifest excluding manifest_checksum",
+    "producer": "build_corpus_files(corpus_dir, sources, chunks)",
+    "required_fields": [
+      "chunk_count",
+      "corpus_version",
+      "domains",
+      "file_checksums",
+      "license_summary",
+      "manifest_checksum",
+      "snapshot_date",
+      "source_count"
+    ]
+  },
+  "schema_version": "t21-runtime-corpus-contract-v1",
+  "source_record": {
+    "closed_vocabularies": {
+      "authority_class": [
+        "PRIMARY_REFERENCE",
+        "ENCYCLOPEDIC",
+        "ACADEMIC_REFERENCE",
+        "GOVERNMENT_PUBLICATION",
+        "INSTITUTIONAL",
+        "GENERAL_REFERENCE",
+        "UNKNOWN"
+      ],
+      "freshness_class": [
+        "STATIC",
+        "SLOW_CHANGING",
+        "TIME_SENSITIVE",
+        "UNKNOWN"
+      ]
+    },
+    "dataclass": "KnowledgeSourceRecord",
+    "enforcement": "__post_init__ rejects authority/freshness values outside the closed vocabularies and source IDs without the gk- prefix (SchemaError); from_dict and the frozen loader raise KeyError on missing required keys",
+    "from_dict_required_keys": [
+      "authority_class",
+      "content_hash",
+      "document_hash",
+      "freshness_class",
+      "language",
+      "license",
+      "publisher_or_collection",
+      "retrieved_at_or_snapshot_date",
+      "revision_or_version",
+      "source_id",
+      "source_title",
+      "source_type",
+      "source_uri_or_origin"
+    ],
+    "loader_required_keys": [
+      "authority_class",
+      "content_hash",
+      "document_hash",
+      "freshness_class",
+      "language",
+      "license",
+      "publisher_or_collection",
+      "retrieved_at_or_snapshot_date",
+      "revision_or_version",
+      "source_id",
+      "source_title",
+      "source_type",
+      "source_uri_or_origin"
+    ],
+    "module": "src/sciencemath/knowledge/schema.py",
+    "optional_fields": [
+      "topic_tags",
+      "content_text",
+      "content_hash",
+      "document_hash"
+    ],
+    "required_fields": [
+      "source_id",
+      "source_title",
+      "source_type",
+      "source_uri_or_origin",
+      "publisher_or_collection",
+      "license",
+      "revision_or_version",
+      "retrieved_at_or_snapshot_date",
+      "language",
+      "authority_class",
+      "freshness_class"
+    ],
+    "source_id_grammar": {
+      "derived_from": "def make_source_id(title: str, publisher: str, revision: str) -> str:\n    \"\"\"Deterministic source ID: gk-<sha1(identity)[:12]>.\"\"\"\n    key = f\"{title}|{publisher}|{revision}\"\n    return \"gk-\" + hashlib.sha1(key.encode(\"utf-8\")).hexdigest()[:12]",
+      "format": "gk-<sha1(title|publisher|revision)[:12]>",
+      "producer": "make_source_id(title, publisher, revision)"
+    }
+  }
+}
