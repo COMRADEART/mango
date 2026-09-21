@@ -1,0 +1,205 @@
+{
+  "artifact": "T21_HOLDOUT_MANIFEST",
+  "binding_count": 39,
+  "bindings": {
+    "adjudication": {
+      "kind": "file",
+      "path": "evaluations/t21r16/test_failure_adjudication.json",
+      "sha256": "3d64b627d27839aca29544f628b00753e6e6802ef7ee83174a762172dae3b8a8"
+    },
+    "applicability": {
+      "kind": "file",
+      "path": "evaluations/t21r16/current_test_applicability.json",
+      "sha256": "7e4f2192f2b666395bf3b0a2201b783b8b19d8766676671d5ce2628627f45c0c"
+    },
+    "artifact_graph": {
+      "kind": "file",
+      "path": "evaluations/t21r16/artifact_graph.json",
+      "sha256": "9a03c38595c5890866049867db2cfc5f6ba151ec0f28a1dc0a218e35766e3585"
+    },
+    "author_spec": {
+      "kind": "file",
+      "path": "evaluations/t21r16/author_spec.json",
+      "sha256": "93f2270cca6e22dd311e8ac9476c828947df1da4e038dd0cfe7fbbb2927f6e5a"
+    },
+    "blindness_audit": {
+      "kind": "file",
+      "path": "evaluations/t21r16/holdout_blindness.json",
+      "sha256": "491ea58a544a1abbd915dfbbd827540121eed35910dbda370a7a0b6a2427b51c"
+    },
+    "candidate_provider_compatibility": {
+      "kind": "file",
+      "path": "evaluations/t21r16/candidate_provider_compatibility.json",
+      "sha256": "7d86a6abf2ea86bb26ea05c34e18e79f0bf912fe205490d92905cc79e07ed9cd"
+    },
+    "candidate_runtime_data_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r16/candidate_runtime_data_contract.json",
+      "sha256": "26b2617b66411af11b9ff6f2d828bdf0e3dbeca79295f69ed4d3668e8cb57c9f"
+    },
+    "construction_gate": {
+      "kind": "file",
+      "path": "evaluations/t21r16/construction_gate.json",
+      "sha256": "c55b67ddb2e1dac62e8750d67667ee53ea0a41fbc129f5ce13132e78fd02d7fc"
+    },
+    "construction_ledger": {
+      "kind": "file",
+      "path": "evaluations/t21r16/construction_run_ledger.json",
+      "sha256": "81e12451cf312100f4f509762c1dfa5138b547e57d7b78d068622dcd309e6552"
+    },
+    "corpus": {
+      "kind": "directory",
+      "path": "rag/gk_holdout_t21r16",
+      "sha256": "b4c1e4897b9ede1cce0009a0f434afe7dcf81f2ba26f20116ddf8e856097e359"
+    },
+    "domain_taxonomy": {
+      "kind": "file",
+      "path": "evaluations/t21r16/domain_taxonomy_contract.json",
+      "sha256": "c06b9a2e7b5c9e933acbc7b27e3c6494d646afc7762deed9a6fcaf6342f9f8b5"
+    },
+    "evaluation_artifact_graph": {
+      "kind": "file",
+      "path": "evaluations/t21r16/evaluation_artifact_graph.json",
+      "sha256": "ed0a155e0a66e17203eb54b648a2eb4279e24b3c4c6bd3724b8f14df350420bb"
+    },
+    "evaluation_reporting_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r16/evaluation_reporting_contract.json",
+      "sha256": "f7769844632749fd9822670cb323ae1c7b9620ca547913eacfb0085d31ebd040"
+    },
+    "evaluator_freeze": {
+      "kind": "file",
+      "path": "evaluations/t21r16/evaluator_freeze.json",
+      "sha256": "d19d6a3c42e28606d63f6e90886804d6dddbf156cd38e4bc39310a9d721e2c2c"
+    },
+    "exact_design_audit": {
+      "kind": "file",
+      "path": "evaluations/t21r16/exact_design_audit.json",
+      "sha256": "d511cc3fda04f0a0ee8193ebeb568cf44befb93589d192ca30c01bb55883beca"
+    },
+    "experiment_config": {
+      "kind": "file",
+      "path": "evaluations/t21r16/experiment.json",
+      "sha256": "a39b507952f00b8813eaa0a42ce9572f008498d7f90cc1efae5a9327c3720df6"
+    },
+    "floor_evidence_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r16/floor_evidence_contract.json",
+      "sha256": "2db5799dd2d25010ee7b24667f6dad67be427ee9573487abd0bd811c911e8005"
+    },
+    "gate_auditor_crosscheck": {
+      "kind": "file",
+      "path": "evaluations/t21r16/gate_auditor_crosscheck.json",
+      "sha256": "a82f71dd6ea625a5f90210a9519b75509df84d0dc25d83700d919ec38ba69149"
+    },
+    "gold_compatibility": {
+      "kind": "file",
+      "path": "evaluations/t21r16/gold_compatibility.json",
+      "sha256": "91d928048d365275ad6b72e7fc210362b67e426392bec87809ceea36ec27528d"
+    },
+    "historical_exclusion": {
+      "kind": "file",
+      "path": "evaluations/t21r16/historical_exclusion.json",
+      "sha256": "53cf4c68680c04788df229281e716385cbf8a49b84a16b58d47927fff9910bf6"
+    },
+    "historical_uniqueness": {
+      "kind": "file",
+      "path": "evaluations/t21r16/historical_uniqueness.json",
+      "sha256": "9ec4f7e86fcbaced774e9cb41c7ab34718c69d0348338fc20eb3a9ffc3d4929a"
+    },
+    "holdout_frozen_schema": {
+      "kind": "file",
+      "path": "evaluations/t21r16/holdout_frozen_schema.json",
+      "sha256": "67faedbe525633d900fec182a50ee648cd84f8f990f523a4520b4d2df4f8c19d"
+    },
+    "master_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r16/t21_master_contract.json",
+      "sha256": "d59f2a8ff27eff8e97937c85d794cd22e2c62bc52fbb013011a95cc124e96249"
+    },
+    "material_provenance": {
+      "kind": "file",
+      "path": "evaluations/t21r16/material_provenance.json",
+      "sha256": "ba8fc926ea6e03407414af5b2d7d8ad926b36f3d5f7a296865f72d33f81fcad5"
+    },
+    "negative_controls": {
+      "kind": "file",
+      "path": "evaluations/t21r16/negative_controls.json",
+      "sha256": "9c8ab6a6f6703a91af900bd42122e067311acb7b76a4d94611d3cbdd1163cde7"
+    },
+    "official_metric_registry": {
+      "kind": "file",
+      "path": "evaluations/t21r16/official_metric_registry.json",
+      "sha256": "95c33e83ed8699e5172a31f30c39e60245760622b0cf485ed219af627d90ad96"
+    },
+    "qualification_lock": {
+      "kind": "file",
+      "path": "evaluations/t21r16/qualification_lock.json",
+      "sha256": "55d6e8d5b9986e784430ec1e5561bda3ec95fe03bc646ce26d830135fb9196dd"
+    },
+    "r14_closure": {
+      "kind": "file",
+      "path": "evaluations/t21r14/T21R14_CLOSURE.json",
+      "sha256": "f45ac095de8075b4f33bd260a70a1a724f5320f9b921bd84290a4e9987ce67c4"
+    },
+    "r15_closure": {
+      "kind": "file",
+      "path": "evaluations/t21r15/T21R15_CLOSURE.json",
+      "sha256": "68833c56da19b4270568f581b5b227cfbc2c82085ed92ce8bc10c1209047c4d9"
+    },
+    "remediation_exclusion": {
+      "kind": "file",
+      "path": "evaluations/t21r16/remediation_exclusion.json",
+      "sha256": "1a8b397576334134affe22ee38b9a0dcf1a126822a09106d3cf967eb22fb3bf6"
+    },
+    "remediation_uniqueness": {
+      "kind": "file",
+      "path": "evaluations/t21r16/remediation_uniqueness.json",
+      "sha256": "2edc28ff76012a952df4fc5050496871242f223aa4f8f1529dfe7d4012719172"
+    },
+    "root_of_trust": {
+      "kind": "file",
+      "path": "evaluations/t21r16/root_of_trust.json",
+      "sha256": "ff5471b14ccb745d0867a864a84f3e49756f8255225bb7fd890140ea8bcba71f"
+    },
+    "runtime_corpus_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r16/runtime_corpus_contract.json",
+      "sha256": "576a005c93594e0f8f35fcddd95e99b0daf9bcb00a44b696014bfba631d8723f"
+    },
+    "runtime_field_provenance": {
+      "kind": "file",
+      "path": "evaluations/t21r16/runtime_field_provenance.json",
+      "sha256": "4a09824b4eb70a6dd0da91253e0eb06904fd6466da22841e33985324e4c402fd"
+    },
+    "runtime_freeze": {
+      "kind": "file",
+      "path": "evaluations/t21r16/runtime_freeze.json",
+      "sha256": "c0a434ae6721a73b295d41fa138e917767e2916134766134c743c5293d5e4927"
+    },
+    "runtime_loader_validation": {
+      "kind": "file",
+      "path": "evaluations/t21r16/runtime_loader_validation.json",
+      "sha256": "4a668ee2ac81991d3cdd725de10a8460223e658abdea9cfc3cf855ceb2446e84"
+    },
+    "static_gold_audit": {
+      "kind": "file",
+      "path": "evaluations/t21r16/static_gold_audit.json",
+      "sha256": "7698f2b2715c08689dd9fbe0992f26ef96653e6984432013d8c70122c401911e"
+    },
+    "suites": {
+      "kind": "directory",
+      "path": "evaluations/t21r16/suites",
+      "sha256": "47e6838478699ad3c83c7534278acc5a46fe8765f1814748f38c9f2480f5b79c"
+    },
+    "test_cleanliness": {
+      "kind": "file",
+      "path": "evaluations/t21r16/test_cleanliness.json",
+      "sha256": "feab30f38b00e4d3268997e0b2c98c43309877f8cb2acd593485a617431e0304"
+    }
+  },
+  "contract_sha256": "fcf42a19fecf93816fe531e2e53c332e05e75b33f311849f4d9424e9d843a7ab",
+  "experiment": "t21r16",
+  "freeze_root_sha256": "e63d7a3b5fb3a51a9f262e97a415fce143eb0f7810e788f8ce29372ca14f7f5d",
+  "schema_version": "t21-holdout-manifest-v1"
+}

@@ -1,0 +1,6 @@
+{
+  "rows": 650,
+  "rows_root": "1a34446a2b6053f6f9e87c13d836427e8e1cc1b9cf82d2fecc322a4095175a9c",
+  "schema_version": "t21-suite-v1",
+  "suite": "mango-t21r16-adversarial-holdout-v1"
+}

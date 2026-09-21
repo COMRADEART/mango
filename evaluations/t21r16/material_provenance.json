@@ -1,0 +1,21 @@
+{
+  "artifact": "T21R16_MATERIAL_PROVENANCE",
+  "author_fingerprint_root": "1f7f031fa5274ae8127e3b9210ac8c471f5c8dfe5cbe1d84844f72522edeaa23",
+  "author_invocations": 1,
+  "material_mode": "REAL_BLIND",
+  "placeholder_audits": false,
+  "provider_id": "contract-real-blind-author-v1",
+  "provider_kind": "REAL_AUTHOR",
+  "runtime_native": {
+    "candidate_provider_compatibility_artifact": "candidate_provider_compatibility.json",
+    "candidate_rows_executed": 0,
+    "corpus_format": "mango-general-knowledge-corpus-v1",
+    "loader_validation_artifact": "runtime_loader_validation.json",
+    "materializer": "t21_protocol.providers:runtime-native-materializer",
+    "runtime_loader_validated": true
+  },
+  "schema_version": "t21-material-provenance-v1",
+  "status": "PASS",
+  "synthetic": false,
+  "workspace_mode": "REAL_EXPERIMENT"
+}
