@@ -1,0 +1,22 @@
+{
+  "artifact": "T21_CONSTRUCTION_LEDGER",
+  "attempt": 1,
+  "completed_at": "2026-09-21T14:21:27.391768+00:00",
+  "details": {
+    "audits": 9,
+    "material_mode": "REAL_BLIND",
+    "rows": 4800,
+    "suites": 8
+  },
+  "experiment": "t21r15",
+  "failed_at": null,
+  "kind": "construction",
+  "metadata": {
+    "authorization_class": "CONSTRUCTION",
+    "qualification_rehearsal": false,
+    "workspace_mode": "REAL_EXPERIMENT"
+  },
+  "schema_version": "t21-ledger-v1",
+  "started_at": "2026-09-21T14:21:26.147776+00:00",
+  "state": "COMPLETE"
+}

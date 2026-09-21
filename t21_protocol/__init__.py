@@ -7,17 +7,26 @@ same source of truth.
 """
 
 from .contract import Contract, load_contract, validate_master_contract
+from .construction import run_construction
+from .context import ConstructionAuthorization, EvaluationAuthorization, MaterialMode, WorkspaceMode
+from .evaluate import run_evaluation
 from .ledger import ConstructionLedger, EvaluationLedger
 from .state_machine import Phase, ProtocolStateMachine
 
 __all__ = [
     "ConstructionLedger",
+    "ConstructionAuthorization",
     "Contract",
     "EvaluationLedger",
+    "EvaluationAuthorization",
+    "MaterialMode",
     "Phase",
     "ProtocolStateMachine",
+    "WorkspaceMode",
     "load_contract",
+    "run_construction",
+    "run_evaluation",
     "validate_master_contract",
 ]
 
-__version__ = "1.0.0"
+__version__ = "2.0.0"

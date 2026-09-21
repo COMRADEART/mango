@@ -1,0 +1,20 @@
+{
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_rows_executed": 0,
+  "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+  "construction_attempts": 1,
+  "construction_status": "COMPLETE",
+  "corpus_materializations": 1,
+  "evaluator_root": "3f629a3766a3fd1d851bb2e3ce442b6e666aa74d5ddc82732463520af30bfc3a",
+  "experiment": "t21r15",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "freeze_root_sha256": "34782693ef413aced065b09840b1372f7e4d218ecdf25938b8d03894f6c65aff",
+  "holdout_manifest_sha256": "4514bedb096d095db5f35f415e4148a8a472628df2413d00ef838c87bd205a4d",
+  "material_mode": "REAL_BLIND",
+  "official_evaluator_invocations": 0,
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "runtime_rows_executed": 0,
+  "schema_version": "t21-holdout-frozen-v1",
+  "suite_materializations": 1,
+  "workspace_mode": "REAL_EXPERIMENT"
+}

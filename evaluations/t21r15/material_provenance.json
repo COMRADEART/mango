@@ -1,0 +1,13 @@
+{
+  "artifact": "T21R15_MATERIAL_PROVENANCE",
+  "author_fingerprint_root": "06f83b41ccf424f84bc18192039135652612b2cc7bb2a1403760bd3d7594bad8",
+  "author_invocations": 1,
+  "material_mode": "REAL_BLIND",
+  "placeholder_audits": false,
+  "provider_id": "contract-real-blind-author-v1",
+  "provider_kind": "REAL_AUTHOR",
+  "schema_version": "t21-material-provenance-v1",
+  "status": "PASS",
+  "synthetic": false,
+  "workspace_mode": "REAL_EXPERIMENT"
+}

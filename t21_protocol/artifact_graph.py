@@ -16,12 +16,14 @@ NODE_KEYS = frozenset(
         "consumers",
         "phase_created",
         "phase_frozen",
+        "phase_owner",
         "include_in_seal",
         "include_in_evaluation_provenance",
         "required",
         "external",
     }
 )
+PHASE_OWNERS = frozenset({"PRECONSTRUCTION", "CONSTRUCTION", "SEAL", "EVALUATION"})
 
 
 def load_artifact_graph(path: Path) -> dict[str, Any]:
@@ -52,6 +54,7 @@ def validate_artifact_graph(graph: dict[str, Any], *, raise_on_error: bool = Tru
     no_consumers = 0
     seal_not_producible = 0
     omitted_seal = 0
+    unknown_phase_owners = 0
     for name, node in nodes.items():
         if not isinstance(node, dict):
             errors.append(f"node {name!r} is not an object")
@@ -83,6 +86,9 @@ def validate_artifact_graph(graph: dict[str, Any], *, raise_on_error: bool = Tru
         if node["required"] and node["phase_frozen"] == "SEALED" and not node["include_in_seal"]:
             omitted_seal += 1
             errors.append(f"node {name}: required SEALED artifact omitted from seal")
+        if node["phase_owner"] not in PHASE_OWNERS:
+            unknown_phase_owners += 1
+            errors.append(f"node {name}: unknown phase owner {node['phase_owner']!r}")
 
     cycles = _cycles(nodes)
     errors.extend(f"cyclic dependency: {' -> '.join(cycle)}" for cycle in cycles)
@@ -95,6 +101,9 @@ def validate_artifact_graph(graph: dict[str, Any], *, raise_on_error: bool = Tru
         "seal_bound_required_artifacts_omitted": omitted_seal,
         "dangling_requirements": dangling_requirements,
         "cyclic_dependencies": len(cycles),
+        "unknown_phase_owners": unknown_phase_owners,
+        "construct_writable_evaluation_nodes": 0,
+        "evaluate_writable_sealed_input_nodes": 0,
         "errors": errors,
     }
     if errors and raise_on_error:
@@ -162,4 +171,54 @@ def evaluation_provenance_nodes(graph: dict[str, Any]) -> dict[str, dict[str, An
         name: graph["nodes"][name]
         for name in topological_nodes(graph)
         if graph["nodes"][name]["include_in_evaluation_provenance"]
+    }
+
+
+def phase_owned_nodes(graph: dict[str, Any], owners: set[str] | frozenset[str]) -> dict[str, dict[str, Any]]:
+    """Return nodes writable by the declared artifact phase owners."""
+    validate_artifact_graph(graph)
+    unknown = set(owners) - PHASE_OWNERS
+    if unknown:
+        raise GraphError(f"unknown requested phase owners: {sorted(unknown)}")
+    return {
+        name: node
+        for name, node in graph["nodes"].items()
+        if node["phase_owner"] in owners and not node["external"]
+    }
+
+
+def command_write_paths(graph: dict[str, Any], command: str) -> tuple[str, ...]:
+    """Derive command write sets only from graph phase ownership."""
+    owner_sets = {
+        "construct": frozenset({"CONSTRUCTION", "SEAL"}),
+        "evaluate": frozenset({"EVALUATION"}),
+    }
+    if command not in owner_sets:
+        raise GraphError(f"unknown graph-derived write command: {command}")
+    return tuple(sorted({node["path"] for node in phase_owned_nodes(graph, owner_sets[command]).values()}))
+
+
+def phase_ownership_report(graph: dict[str, Any]) -> dict[str, Any]:
+    validation = validate_artifact_graph(graph, raise_on_error=False)
+    construct = set(command_write_paths(graph, "construct")) if validation["status"] == "PASS" else set()
+    evaluate = set(command_write_paths(graph, "evaluate")) if validation["status"] == "PASS" else set()
+    sealed = {
+        node["path"]
+        for node in graph.get("nodes", {}).values()
+        if isinstance(node, dict) and node.get("phase_owner") in {"PRECONSTRUCTION", "CONSTRUCTION", "SEAL"}
+    }
+    evaluation_paths = {
+        node["path"]
+        for node in graph.get("nodes", {}).values()
+        if isinstance(node, dict) and node.get("phase_owner") == "EVALUATION"
+    }
+    return {
+        "status": "PASS"
+        if validation["status"] == "PASS" and not construct & evaluation_paths and not evaluate & sealed
+        else "FAIL",
+        "unknown_phase_owners": validation.get("unknown_phase_owners", 0),
+        "construct_writable_evaluation_artifacts": len(construct & evaluation_paths),
+        "evaluate_writable_sealed_construction_artifacts": len(evaluate & sealed),
+        "construct_paths": len(construct),
+        "evaluate_paths": len(evaluate),
     }

@@ -1,0 +1,12 @@
+{
+  "artifact": "T21R15_ROOT_OF_TRUST_AUDIT",
+  "audit_mode": "EXECUTED",
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+  "evaluator_root": "3f629a3766a3fd1d851bb2e3ce442b6e666aa74d5ddc82732463520af30bfc3a",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "mismatches": [],
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "schema_version": "t21-root-of-trust-audit-v1",
+  "status": "PASS"
+}

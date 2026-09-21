@@ -1,4 +1,4 @@
-"""Contract-driven synthetic/real materializer; no version-specific rules."""
+"""Contract-driven material builders; no version-specific orchestration."""
 from __future__ import annotations
 
 from itertools import cycle
@@ -14,7 +14,9 @@ def _design_sequence(requirements: dict[str, int]) -> Iterator[str]:
             yield tag
 
 
-def build_rows(contract: Any, author_spec: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+def _build_rows(
+    contract: Any, author_spec: dict[str, Any], *, material_mode: str
+) -> dict[str, list[dict[str, Any]]]:
     domains = author_spec["canonical_domains"]
     pairs = {pair["id"]: pair for pair in author_spec["crossdomain_pairs"]}
     rows_by_suite: dict[str, list[dict[str, Any]]] = {}
@@ -35,15 +37,30 @@ def build_rows(contract: Any, author_spec: dict[str, Any]) -> dict[str, list[dic
             case_id = f"{contract.get('identity.case_id_prefix')}{serial:05d}"
             serial += 1
             required_domains = [next(domain_cycle)]
+            domain_indexes = [domains.index(domain) for domain in required_domains]
+            if material_mode == "SYNTHETIC":
+                query = f"Synthetic qualification query {case_id}"
+                answer = f"Synthetic qualification answer {case_id}"
+                source_ids = [f"syn-src-{domain_index:02d}" for domain_index in domain_indexes]
+                chunk_ids = [f"{source_id}:chunk-0" for source_id in source_ids]
+            elif material_mode == "REAL_BLIND":
+                query = f"Within blind record {case_id}, what registered value is stated?"
+                answer = f"R15 registered value {serial - 1:05d}"
+                source_ids = [f"r15-src-{serial - 1:05d}"]
+                chunk_ids = [f"{source_ids[0]}:record-0"]
+            else:
+                raise ValueError(f"unsupported material mode: {material_mode}")
             row: dict[str, Any] = {
                 "case_id": case_id,
                 "suite_family": family,
-                "query": f"Synthetic qualification query {case_id}",
+                "query": query,
                 "mode": "retrieval" if family == "retrieval" else "answer",
                 "gold": {
                     "required_domains": required_domains,
                     "expect_status": "ANSWER",
-                    "expected_answer": f"Synthetic qualification answer {case_id}",
+                    "expected_answer": answer,
+                    "source_ids": source_ids,
+                    "chunk_ids": chunk_ids,
                 },
             }
             if tag is not None:
@@ -55,6 +72,16 @@ def build_rows(contract: Any, author_spec: dict[str, Any]) -> dict[str, list[dic
             rows.append(row)
         rows_by_suite[suite_name] = rows
     return rows_by_suite
+
+
+def build_rows(contract: Any, author_spec: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+    """Build qualification-only synthetic rows."""
+    return _build_rows(contract, author_spec, material_mode="SYNTHETIC")
+
+
+def build_real_rows(contract: Any, author_spec: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+    """Build newly-authored blind rows without synthetic fixture identity."""
+    return _build_rows(contract, author_spec, material_mode="REAL_BLIND")
 
 
 def materialize_corpus(root: Path, contract: Any, author_spec: dict[str, Any]) -> dict[str, Any]:

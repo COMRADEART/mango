@@ -124,7 +124,7 @@ def validate_master_contract(document: dict[str, Any], *, raise_on_error: bool =
             raise ContractError("; ".join(errors))
         return report
 
-    if document["schema_version"] != "t21-master-contract-v1":
+    if document["schema_version"] != "t21-master-contract-v2":
         errors.append("unsupported schema_version")
     if document["artifact"] != "T21_MASTER_CONTRACT":
         errors.append("artifact identity mismatch")
@@ -225,7 +225,7 @@ def _validate_semantics(values: dict[str, Any]) -> list[str]:
         "identity", "roots", "artifacts", "suites", "suite_total", "domain_taxonomy",
         "crossdomain_pairs", "exact_design", "historical_exclusions", "remediation_exclusions",
         "promotion_floors", "one_shot", "state_machine", "author", "r14_disposition",
-        "real_r15_paths", "quarantine",
+        "real_r15_paths", "quarantine", "phase_apis", "workspace_modes", "material_modes",
     }
     if set(values) != expected_fields:
         errors.append(f"values fields differ: expected={sorted(expected_fields)}, actual={sorted(values)}")
@@ -306,6 +306,31 @@ def _validate_semantics(values: dict[str, Any]) -> list[str]:
     if _closed(values["one_shot"], {"construction", "evaluation", "retry", "existing_ledger"}, "one_shot", errors):
         if set(values["one_shot"].values()) != {"ONE_SHOT", "FORBIDDEN", "REFUSE"}:
             errors.append("one_shot policy values invalid")
+    phase_apis = values["phase_apis"]
+    if _closed(phase_apis, {"construct", "evaluate"}, "phase_apis", errors):
+        construct = phase_apis["construct"]
+        evaluate = phase_apis["evaluate"]
+        api_keys = {"required_state", "terminal_states", "authorization_token", "allowed_artifact_phases"}
+        if _closed(construct, api_keys, "phase_apis.construct", errors):
+            if construct != {
+                "required_state": "QUALIFIED",
+                "terminal_states": ["SEALED"],
+                "authorization_token": "T21R15_REAL_BLIND_CONSTRUCTION_AUTHORIZED",
+                "allowed_artifact_phases": ["CONSTRUCTION", "SEAL"],
+            }:
+                errors.append("phase_apis.construct policy invalid")
+        if _closed(evaluate, api_keys, "phase_apis.evaluate", errors):
+            if evaluate != {
+                "required_state": "SEALED",
+                "terminal_states": ["EVALUATION_COMPLETE", "FAILED"],
+                "authorization_token": "T21R15_ONE_SHOT_OFFICIAL_EVALUATION",
+                "allowed_artifact_phases": ["EVALUATION"],
+            }:
+                errors.append("phase_apis.evaluate policy invalid")
+    if values["workspace_modes"] != ["SYNTHETIC_DISPOSABLE", "REAL_EXPERIMENT"]:
+        errors.append("workspace_modes policy invalid")
+    if values["material_modes"] != ["SYNTHETIC", "REAL_BLIND", "REAL_DRY_RUN"]:
+        errors.append("material_modes policy invalid")
     machine = values["state_machine"]
     if not _closed(machine, {"phases", "commands"}, "state_machine", errors):
         machine = {"phases": [], "commands": {}}

@@ -17,7 +17,16 @@
     {"failure_class": "raw exclusion value", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_raw_remediation_exclusion_rejected"},
     {"failure_class": "missing historical exclusion dimension", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_missing_remediation_dimension_rejected"},
     {"failure_class": "historical author collision", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_historical_collision_fails"},
-    {"failure_class": "missing exact-design context", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_missing_exact_design_context_rejected"}
+    {"failure_class": "missing exact-design context", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_missing_exact_design_context_rejected"},
+    {"failure_class": "construction authorization used for evaluation", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_construction_token_rejected_by_evaluation"},
+    {"failure_class": "evaluation authorization used for construction", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_evaluation_token_rejected_by_construction"},
+    {"failure_class": "construction chaining into evaluation", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_construction_has_no_evaluation_call_edges"},
+    {"failure_class": "construction writing evaluation artifact", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_construct_write_set_excludes_evaluation"},
+    {"failure_class": "evaluation mutating sealed construction artifact", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_evaluate_write_set_excludes_sealed_construction"},
+    {"failure_class": "synthetic provider in real workspace", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_synthetic_provider_rejected_in_real_mode"},
+    {"failure_class": "stub candidate in real workspace", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_stub_candidate_rejected_in_real_mode"},
+    {"failure_class": "placeholder audit in real workspace", "latest_legal_phase": "PRECONSTRUCTION", "test": "test_placeholder_audit_rejected_in_real_mode"},
+    {"failure_class": "synthetic material sealed in real workspace", "latest_legal_phase": "CONSTRUCTION_STARTED", "test": "test_synthetic_material_rejected_in_real_mode"}
   ],
   "experiment": "t21r15",
   "infrastructure_errors_must_fail_before_construction": true,

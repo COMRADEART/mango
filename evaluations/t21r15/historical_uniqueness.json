@@ -1,0 +1,11 @@
+{
+  "artifact": "T21R15_HISTORICAL_UNIQUENESS",
+  "audit_mode": "EXECUTED",
+  "collision_total": 0,
+  "collisions": {},
+  "dimensions_checked": 8,
+  "fingerprints_checked": 38400,
+  "material_mode": "REAL_BLIND",
+  "schema_version": "t21-executed-uniqueness-audit-v1",
+  "status": "PASS"
+}

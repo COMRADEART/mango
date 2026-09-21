@@ -1,0 +1,11 @@
+{
+  "artifact": "T21R15_STATIC_GOLD_AUDIT",
+  "audit_mode": "EXECUTED",
+  "gold_validator_status": "PASS",
+  "missing_answers": 0,
+  "missing_chunk_references": 0,
+  "missing_source_references": 0,
+  "rows": 4800,
+  "schema_version": "t21-static-gold-audit-v1",
+  "status": "PASS"
+}

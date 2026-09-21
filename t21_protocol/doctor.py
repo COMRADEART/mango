@@ -8,13 +8,25 @@ from pathlib import Path
 from typing import Any
 
 from .adjudication import generate_applicability, validate_adjudication
-from .artifact_graph import load_artifact_graph, validate_artifact_graph
+from .artifact_graph import load_artifact_graph, phase_ownership_report, validate_artifact_graph
+from .audits import validate_executed_audit
+from .construction import run_construction
+from .context import (
+    CONSTRUCTION_TOKEN,
+    EVALUATION_TOKEN,
+    ConstructionAuthorization,
+    EvaluationAuthorization,
+    WorkspaceMode,
+    require_construction_authorization,
+    require_evaluation_authorization,
+)
 from .contract import load_contract, validate_master_contract
 from .exclusion import validate_historical_policy, validate_remediation_policy
 from .freeze import verify_freeze
 from .import_audit import dynamic_import_write_audit, static_import_write_audit
 from .ledger import ConstructionLedger, EvaluationLedger
-from .pipeline import run_synthetic_twice
+from .pipeline import run_real_mode_dry_rehearsal, run_synthetic_construction_twice, run_synthetic_twice
+from .providers import SyntheticCandidateProvider, SyntheticMaterialProvider, validate_candidate_provider, validate_material_provider
 from .qualification import validate_qualification_lock
 from .seal import HOLDOUT_FROZEN_FIELDS, validate_holdout_frozen, validate_holdout_frozen_schema
 from .state_machine import ProtocolStateMachine
@@ -42,6 +54,15 @@ NEGATIVE_CONTROLS = {
     "missing historical exclusion dimension": "PRECONSTRUCTION",
     "historical author collision": "PRECONSTRUCTION",
     "missing exact-design context": "PRECONSTRUCTION",
+    "construction authorization used for evaluation": "PRECONSTRUCTION",
+    "evaluation authorization used for construction": "PRECONSTRUCTION",
+    "construction chaining into evaluation": "PRECONSTRUCTION",
+    "construction writing evaluation artifact": "PRECONSTRUCTION",
+    "evaluation mutating sealed construction artifact": "PRECONSTRUCTION",
+    "synthetic provider in real workspace": "PRECONSTRUCTION",
+    "stub candidate in real workspace": "PRECONSTRUCTION",
+    "placeholder audit in real workspace": "PRECONSTRUCTION",
+    "synthetic material sealed in real workspace": "CONSTRUCTION_STARTED",
 }
 
 
@@ -90,6 +111,8 @@ def _marker_schema_check(path: Path) -> dict[str, Any]:
         "candidate_rows_executed": 0,
         "runtime_rows_executed": 0,
         "official_evaluator_invocations": 0,
+        "workspace_mode": "REAL_EXPERIMENT",
+        "material_mode": "REAL_BLIND",
     }
     result = validate_holdout_frozen(sample)
     schema = validate_holdout_frozen_schema(read_json(path))
@@ -110,20 +133,69 @@ def _negative_control_registry(path: Path) -> dict[str, Any]:
     }
 
 
-def _real_paths(root: Path) -> dict[str, Any]:
-    paths = [
-        root / "rag" / "gk_holdout_t21r15",
-        root / "evaluations" / "t21r15" / "suites",
-        root / "evaluations" / "t21r15" / "construction_run_ledger.json",
-        root / "evaluations" / "t21r15" / "holdout_manifest.json",
-        root / "evaluations" / "t21r15" / "HOLDOUT_FROZEN",
-        root / "evaluations" / "t21r15" / "evaluation_run_ledger.json",
-        root / "evaluations" / "t21r15" / "candidate_outputs.jsonl",
-        root / "evaluations" / "t21r15" / "evaluator_results.json",
-        root / "evaluations" / "t21r15" / "score_results.json",
-    ]
+def _real_paths(root: Path, contract: Any) -> dict[str, Any]:
+    paths = [root / relative for relative in contract.get("real_r15_paths")]
     present = [path.relative_to(root).as_posix() for path in paths if path.exists()]
     return {"status": "PASS" if not present else "FAIL", "present": present, "checked": len(paths)}
+
+
+def _phase_api_check() -> dict[str, Any]:
+    from .evaluate import run_evaluation
+
+    results = {
+        "production_construction_callable": callable(run_construction),
+        "production_evaluation_callable": callable(run_evaluation),
+    }
+    return {"status": "PASS" if all(results.values()) else "FAIL", **results}
+
+
+def _phase_separation(root: Path, graph: dict[str, Any], construction_rehearsal: dict[str, Any]) -> dict[str, Any]:
+    source = (root / "t21_protocol" / "construction.py").read_text(encoding="utf-8")
+    forbidden = ("run_evaluation", "EvaluationLedger", "evaluate_rows", "score(")
+    static_edges = sum(source.count(token) for token in forbidden)
+    run_1 = construction_rehearsal.get("run_1", {}).get("construction", {})
+    run_2 = construction_rehearsal.get("run_2", {}).get("construction", {})
+    dynamic_evaluation_executions = sum(
+        int(report.get("official_evaluation_executions", -1)) for report in (run_1, run_2)
+    )
+    ownership = phase_ownership_report(graph)
+    passed = static_edges == 0 and dynamic_evaluation_executions == 0 and ownership["status"] == "PASS"
+    return {
+        "status": "PASS" if passed else "FAIL",
+        "construction_to_evaluation_call_edges": static_edges,
+        "dynamic_official_evaluation_executions": dynamic_evaluation_executions,
+        **{key: value for key, value in ownership.items() if key != "status"},
+    }
+
+
+def _provider_separation() -> dict[str, Any]:
+    results: dict[str, bool] = {}
+    synthetic_material = SyntheticMaterialProvider()
+    synthetic_candidate = SyntheticCandidateProvider()
+    try:
+        validate_material_provider(synthetic_material, WorkspaceMode.REAL_EXPERIMENT)
+    except Exception:
+        results["synthetic_provider_rejected_in_real"] = True
+    try:
+        validate_candidate_provider(synthetic_candidate, WorkspaceMode.REAL_EXPERIMENT)
+    except Exception:
+        results["stub_candidate_rejected_in_real"] = True
+    try:
+        validate_executed_audit(
+            {"artifact": "NEGATIVE_CONTROL", "status": "PASS", "audit_mode": "EXECUTED", "placeholder": True},
+            WorkspaceMode.REAL_EXPERIMENT,
+        )
+    except Exception:
+        results["placeholder_audit_rejected_in_real"] = True
+    try:
+        require_construction_authorization(EvaluationAuthorization(EVALUATION_TOKEN))
+    except Exception:
+        results["evaluation_token_rejected_by_construction"] = True
+    try:
+        require_evaluation_authorization(ConstructionAuthorization(CONSTRUCTION_TOKEN))
+    except Exception:
+        results["construction_token_rejected_by_evaluation"] = True
+    return {"status": "PASS" if len(results) == 5 and all(results.values()) else "FAIL", **results}
 
 
 def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
@@ -166,7 +238,9 @@ def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
             "registered_failures": applicability["registered_failures"],
         },
         "negative_controls": _negative_control_registry(out / "negative_controls.json"),
-        "real_paths": _real_paths(root),
+        "real_paths": _real_paths(root, contract),
+        "production_phase_apis": _phase_api_check(),
+        "provider_separation": _provider_separation(),
     }
     module_paths = sorted((root / "t21_protocol").glob("*.py"))
     helper_names = ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures")
@@ -178,6 +252,10 @@ def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
         [f"t21_protocol.{path.stem}" for path in module_paths if path.stem not in {"__init__", "doctor"}]
         + list(helper_names),
     )
+    construction_rehearsal = run_synthetic_construction_twice(root, contract, graph)
+    checks["synthetic_construction_only"] = construction_rehearsal
+    checks["phase_separation"] = _phase_separation(root, graph, construction_rehearsal)
+    checks["real_mode_dry_rehearsal"] = run_real_mode_dry_rehearsal(root, contract, graph)
     checks["synthetic_full_protocol"] = run_synthetic_twice(root, contract, graph)
     cleanliness_path = out / "test_cleanliness.json"
     checks["test_cleanliness"] = read_json(cleanliness_path) if cleanliness_path.is_file() else {"status": "FAIL", "reason": "missing test cleanliness evidence"}
