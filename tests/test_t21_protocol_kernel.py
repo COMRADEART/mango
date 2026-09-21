@@ -8,9 +8,24 @@ from pathlib import Path
 import pytest
 
 from t21_protocol.adjudication import generate_applicability, validate_adjudication
-from t21_protocol.artifact_graph import seal_input_nodes, validate_artifact_graph
+from t21_protocol.artifact_graph import (
+    command_write_paths,
+    phase_ownership_report,
+    seal_input_nodes,
+    validate_artifact_graph,
+)
+from t21_protocol.audits import blindness_audit, validate_executed_audit
 from t21_protocol.author import shadow_author
 from t21_protocol.builder import build_rows
+from t21_protocol.construction import run_construction
+from t21_protocol.context import (
+    CONSTRUCTION_TOKEN,
+    EVALUATION_TOKEN,
+    ConstructionAuthorization,
+    EvaluationAuthorization,
+    MaterialMode,
+    WorkspaceMode,
+)
 from t21_protocol.contract import KNOWN_COMPONENTS, load_contract, validate_master_contract
 from t21_protocol.errors import (
     ContractError,
@@ -20,6 +35,7 @@ from t21_protocol.errors import (
     ValidationError,
     WriteGuardError,
 )
+from t21_protocol.evaluate import run_evaluation
 from t21_protocol.exclusion import (
     DIMENSIONS,
     REMEDIATION_DIMENSIONS,
@@ -31,7 +47,18 @@ from t21_protocol.exclusion import (
 from t21_protocol.exact_design import audit_rows
 from t21_protocol.import_audit import dynamic_import_write_audit, static_import_write_audit
 from t21_protocol.ledger import ConstructionLedger, EvaluationLedger
-from t21_protocol.pipeline import run_synthetic_twice
+from t21_protocol.pipeline import (
+    _copy_preconstruction_inputs,
+    run_real_mode_dry_rehearsal,
+    run_synthetic_construction_twice,
+    run_synthetic_twice,
+)
+from t21_protocol.providers import (
+    SyntheticCandidateProvider,
+    SyntheticMaterialProvider,
+    validate_candidate_provider,
+    validate_material_provider,
+)
 from t21_protocol.qualification import validate_qualification_lock
 from t21_protocol.seal import (
     HOLDOUT_FROZEN_FIELDS,
@@ -102,13 +129,16 @@ def test_contract_exact_design_mismatch_rejected():
 def test_artifact_graph_is_closed():
     report = validate_artifact_graph(GRAPH)
     assert report["status"] == "PASS"
-    assert report["nodes"] == 38
+    assert report["nodes"] == 40
     assert report["required_artifacts_with_no_producer"] == 0
     assert report["produced_artifacts_with_no_declared_consumer"] == 0
     assert report["seal_required_artifacts_not_producible"] == 0
     assert report["seal_bound_required_artifacts_omitted"] == 0
     assert report["dangling_requirements"] == 0
     assert report["cyclic_dependencies"] == 0
+    assert report["unknown_phase_owners"] == 0
+    assert report["construct_writable_evaluation_nodes"] == 0
+    assert report["evaluate_writable_sealed_input_nodes"] == 0
 
 
 def test_missing_seal_input_fails_closed(tmp_path: Path):
@@ -170,6 +200,8 @@ def _valid_marker() -> dict:
         "candidate_rows_executed": 0,
         "runtime_rows_executed": 0,
         "official_evaluator_invocations": 0,
+        "workspace_mode": "REAL_EXPERIMENT",
+        "material_mode": "REAL_BLIND",
     }
 
 
@@ -333,7 +365,7 @@ def test_gold_validator_is_seal_independent():
 
 
 def test_public_protocol_interfaces_exist():
-    from t21_protocol import artifact_graph, author, builder, evaluator, preflight, scorer, seal
+    from t21_protocol import artifact_graph, author, builder, construction, evaluate, evaluator, preflight, scorer, seal
 
     for module, name in (
         (artifact_graph, "seal_input_nodes"),
@@ -344,6 +376,8 @@ def test_public_protocol_interfaces_exist():
         (preflight, "validate_sealed_evaluation_bundle"),
         (scorer, "score"),
         (seal, "seal_holdout"),
+        (construction, "run_construction"),
+        (evaluate, "run_evaluation"),
     ):
         assert callable(getattr(module, name))
 
@@ -390,17 +424,151 @@ def test_real_r15_paths_are_absent():
         assert not (ROOT / relative).exists(), relative
 
 
-def test_full_synthetic_protocol_twice():
-    result = run_synthetic_twice(ROOT, CONTRACT, GRAPH)
+def test_construction_phase_api_twice_stops_at_sealed():
+    result = run_synthetic_construction_twice(ROOT, CONTRACT, GRAPH)
     assert result["status"] == "PASS"
-    assert result["run_1"]["floor_calculations"] == 32
-    assert result["run_2"]["floor_calculations"] == 32
-    assert result["run_1"]["candidate_rows_executed"] == 4800
-    assert result["run_2"]["candidate_rows_executed"] == 4800
+    for name in ("run_1", "run_2"):
+        construction = result[name]["construction"]
+        assert construction["terminal_state"] == "SEALED"
+        assert construction["construction_ledger"] == "COMPLETE"
+        assert construction["evaluation_ledger_absent"] is True
+        assert construction["raw_results_absent"] is True
+        assert construction["holdout_results_absent"] is True
+        assert construction["candidate_executions"] == 0
+        assert construction["official_evaluation_executions"] == 0
     assert result["state_transition_differences"] == 0
     assert result["artifact_graph_differences"] == 0
     assert result["schema_differences"] == 0
+    assert result["seal_binding_set_differences"] == 0
+
+
+def test_full_synthetic_protocol_twice_uses_separate_phases():
+    result = run_synthetic_twice(ROOT, CONTRACT, GRAPH)
+    assert result["status"] == "PASS"
+    assert result["run_1"]["evaluation"]["floor_calculations"] == 32
+    assert result["run_2"]["evaluation"]["floor_calculations"] == 32
+    assert result["run_1"]["evaluation"]["candidate_rows_executed"] == 4800
+    assert result["run_2"]["evaluation"]["candidate_rows_executed"] == 4800
+    assert result["construction_transition_differences"] == 0
+    assert result["evaluation_transition_differences"] == 0
+    assert result["artifact_graph_differences"] == 0
+    assert result["schema_differences"] == 0
+    assert result["seal_binding_set_differences"] == 0
     assert result["disposable_workspaces_destroyed"] is True
+
+
+def test_real_mode_dry_rehearsal_stops_at_sealed():
+    result = run_real_mode_dry_rehearsal(ROOT, CONTRACT, GRAPH)
+    assert result == {
+        "status": "PASS",
+        "terminal_state": "SEALED",
+        "construction_ledger": "COMPLETE",
+        "evaluation_ledger_absent": True,
+        "candidate_executions": 0,
+        "material_mode": "REAL_DRY_RUN",
+        "workspace_destroyed": True,
+    }
+
+
+def test_evaluation_token_rejected_by_construction(tmp_path: Path):
+    with pytest.raises(Exception, match="evaluation authorization cannot authorize construction"):
+        run_construction(
+            "t21r15",
+            tmp_path,
+            EvaluationAuthorization(EVALUATION_TOKEN),
+            workspace_mode=WorkspaceMode.SYNTHETIC_DISPOSABLE,
+        )
+
+
+def test_construction_token_rejected_by_evaluation(tmp_path: Path):
+    with pytest.raises(Exception, match="construction authorization cannot authorize evaluation"):
+        run_evaluation(
+            "t21r15",
+            tmp_path,
+            ConstructionAuthorization(CONSTRUCTION_TOKEN),
+            workspace_mode=WorkspaceMode.SYNTHETIC_DISPOSABLE,
+            candidate_provider=SyntheticCandidateProvider(),
+        )
+
+
+def test_synthetic_provider_rejected_in_real_mode():
+    with pytest.raises(Exception, match="synthetic material provider rejected"):
+        validate_material_provider(SyntheticMaterialProvider(), WorkspaceMode.REAL_EXPERIMENT)
+
+
+def test_stub_candidate_rejected_in_real_mode():
+    with pytest.raises(Exception, match="stub, synthetic, or mock candidate rejected"):
+        validate_candidate_provider(SyntheticCandidateProvider(), WorkspaceMode.REAL_EXPERIMENT)
+
+
+def test_placeholder_audit_rejected_in_real_mode():
+    with pytest.raises(ValidationError, match="placeholder or synthetic PASS audit rejected"):
+        validate_executed_audit(
+            {"artifact": "NEGATIVE", "status": "PASS", "audit_mode": "EXECUTED", "placeholder": True},
+            WorkspaceMode.REAL_EXPERIMENT,
+        )
+
+
+def test_synthetic_material_rejected_in_real_mode(tmp_path: Path):
+    provider = SyntheticMaterialProvider()
+    bundle = provider.build(CONTRACT, shadow_author(CONTRACT, ROOT)["spec"])
+    report = blindness_audit(
+        tmp_path,
+        bundle,
+        provider,
+        WorkspaceMode.REAL_EXPERIMENT,
+        MaterialMode.SYNTHETIC,
+        author_invocations=1,
+    )
+    assert report["status"] == "FAIL"
+    assert report["forbidden_material_hits"]
+
+
+def test_construct_write_set_excludes_evaluation():
+    construct = set(command_write_paths(GRAPH, "construct"))
+    evaluation = {
+        node["path"] for node in GRAPH["nodes"].values() if node["phase_owner"] == "EVALUATION"
+    }
+    assert not construct & evaluation
+
+
+def test_evaluate_write_set_excludes_sealed_construction():
+    evaluate = set(command_write_paths(GRAPH, "evaluate"))
+    sealed = {
+        node["path"]
+        for node in GRAPH["nodes"].values()
+        if node["phase_owner"] in {"PRECONSTRUCTION", "CONSTRUCTION", "SEAL"}
+    }
+    assert not evaluate & sealed
+    assert phase_ownership_report(GRAPH)["status"] == "PASS"
+
+
+def test_construction_has_no_evaluation_call_edges():
+    source = (ROOT / "t21_protocol" / "construction.py").read_text(encoding="utf-8")
+    for forbidden in ("run_evaluation", "EvaluationLedger", "evaluate_rows", "score("):
+        assert forbidden not in source
+
+
+def test_construction_error_marks_ledger_failed(tmp_path: Path):
+    _copy_preconstruction_inputs(ROOT, tmp_path, GRAPH)
+
+    class ExplodingProvider(SyntheticMaterialProvider):
+        provider_id = "exploding-qualified-provider"
+
+        def build(self, contract, author_spec):
+            raise RuntimeError("injected construction failure")
+
+    with pytest.raises(RuntimeError, match="injected construction failure"):
+        run_construction(
+            "t21r15",
+            tmp_path,
+            CONSTRUCTION_TOKEN,
+            workspace_mode=WorkspaceMode.SYNTHETIC_DISPOSABLE,
+            provider=ExplodingProvider(),
+            source_root=ROOT,
+        )
+    ledger = read_json(tmp_path / "evaluations" / "t21r15" / "construction_run_ledger.json")
+    assert ledger["state"] == "FAILED"
 
 
 def test_tracked_tree_hash_is_stable_for_read_only_call():

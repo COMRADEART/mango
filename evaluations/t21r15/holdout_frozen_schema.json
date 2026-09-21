@@ -14,11 +14,13 @@
     "floor_hash": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
     "freeze_root_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
     "holdout_manifest_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "material_mode": {"enum": ["SYNTHETIC", "REAL_BLIND", "REAL_DRY_RUN"], "type": "string"},
     "official_evaluator_invocations": {"minimum": 0, "type": "integer"},
     "runtime_root": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
     "runtime_rows_executed": {"minimum": 0, "type": "integer"},
     "schema_version": {"const": "t21-holdout-frozen-v1", "type": "string"},
-    "suite_materializations": {"const": 1, "type": "integer"}
+    "suite_materializations": {"const": 1, "type": "integer"},
+    "workspace_mode": {"enum": ["SYNTHETIC_DISPOSABLE", "REAL_EXPERIMENT"], "type": "string"}
   },
   "required": [
     "schema_version",
@@ -36,7 +38,9 @@
     "suite_materializations",
     "candidate_rows_executed",
     "runtime_rows_executed",
-    "official_evaluator_invocations"
+    "official_evaluator_invocations",
+    "workspace_mode",
+    "material_mode"
   ],
   "schema_version": "t21-holdout-frozen-schema-v1",
   "type": "object"

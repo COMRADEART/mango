@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 
 from .artifact_graph import seal_input_nodes
+from .context import MaterialMode, WorkspaceMode
 from .errors import SealError
 from .util import read_json, sha256_file, sha256_json, sha256_path, write_json
 
@@ -25,6 +26,8 @@ HOLDOUT_FROZEN_FIELDS: dict[str, type] = {
     "candidate_rows_executed": int,
     "runtime_rows_executed": int,
     "official_evaluator_invocations": int,
+    "workspace_mode": str,
+    "material_mode": str,
 }
 JSON_TYPE_NAMES = {str: "string", int: "integer"}
 
@@ -74,6 +77,10 @@ def validate_holdout_frozen(document: dict[str, Any]) -> dict[str, Any]:
             errors.append(f"HOLDOUT_FROZEN.{name} is not a valid digest")
     if document.get("construction_status") != "COMPLETE":
         errors.append("construction_status must be COMPLETE")
+    if document.get("workspace_mode") not in {mode.value for mode in WorkspaceMode}:
+        errors.append("workspace_mode is invalid")
+    if document.get("material_mode") not in {mode.value for mode in MaterialMode}:
+        errors.append("material_mode is invalid")
     expected_counts = {
         "construction_attempts": 1,
         "corpus_materializations": 1,
@@ -124,7 +131,14 @@ def build_manifest(root: Path, contract: Any, graph: dict[str, Any]) -> dict[str
     }
 
 
-def seal_holdout(root: Path, contract: Any, graph: dict[str, Any]) -> dict[str, Any]:
+def seal_holdout(
+    root: Path,
+    contract: Any,
+    graph: dict[str, Any],
+    *,
+    workspace_mode: WorkspaceMode,
+    qualification_rehearsal: bool = False,
+) -> dict[str, Any]:
     out = root / "evaluations" / contract.experiment
     manifest_path = out / "holdout_manifest.json"
     marker_path = out / "HOLDOUT_FROZEN"
@@ -132,6 +146,18 @@ def seal_holdout(root: Path, contract: Any, graph: dict[str, Any]) -> dict[str, 
         raise SealError("seal artifacts already exist")
     schema = read_json(root / contract.get("artifacts.holdout_frozen_schema"))
     validate_holdout_frozen_schema(schema)
+    provenance = read_json(out / "material_provenance.json")
+    if provenance.get("workspace_mode") != workspace_mode.value:
+        raise SealError("material provenance workspace mode mismatch")
+    material_mode = provenance.get("material_mode")
+    if workspace_mode == WorkspaceMode.REAL_EXPERIMENT:
+        permitted = {MaterialMode.REAL_BLIND.value}
+        if qualification_rehearsal:
+            permitted.add(MaterialMode.REAL_DRY_RUN.value)
+        if material_mode not in permitted:
+            raise SealError("production seal rejects material_mode != REAL_BLIND")
+    elif material_mode != MaterialMode.SYNTHETIC.value:
+        raise SealError("synthetic disposable seal requires SYNTHETIC material")
     manifest = build_manifest(root, contract, graph)
     write_json(manifest_path, manifest, exclusive=True)
     roots = contract.get("roots")
@@ -152,6 +178,8 @@ def seal_holdout(root: Path, contract: Any, graph: dict[str, Any]) -> dict[str, 
         "candidate_rows_executed": 0,
         "runtime_rows_executed": 0,
         "official_evaluator_invocations": 0,
+        "workspace_mode": workspace_mode.value,
+        "material_mode": material_mode,
     }
     validate_holdout_frozen(marker)
     write_json(marker_path, marker, exclusive=True)
@@ -182,6 +210,9 @@ def verify_seal(root: Path, contract: Any, graph: dict[str, Any]) -> dict[str, A
         raise SealError("HOLDOUT_FROZEN manifest binding mismatch")
     if marker["freeze_root_sha256"] != manifest["freeze_root_sha256"]:
         raise SealError("HOLDOUT_FROZEN freeze-root binding mismatch")
+    provenance = read_json(out / "material_provenance.json")
+    if marker["workspace_mode"] != provenance.get("workspace_mode") or marker["material_mode"] != provenance.get("material_mode"):
+        raise SealError("HOLDOUT_FROZEN material provenance mismatch")
     return {
         "status": "PASS",
         "bound": len(manifest["bindings"]),

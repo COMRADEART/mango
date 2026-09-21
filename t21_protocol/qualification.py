@@ -26,11 +26,16 @@ def build_qualification_lock(root: Path, contract: Any) -> dict[str, Any]:
         commit = "0" * 40
     roots = contract.get("roots")
     return {
-        "schema_version": "t21-qualification-lock-v1",
+        "schema_version": "t21-qualification-lock-v2",
         "artifact": "T21_QUALIFICATION_LOCK",
         "experiment": contract.experiment,
         "preconstruction_commit": commit,
         "author_hash": sha256_file(root / "t21_protocol" / "author.py"),
+        "production_construction_runner_hash": sha256_file(root / "t21_protocol" / "construction.py"),
+        "production_evaluation_runner_hash": sha256_file(root / "t21_protocol" / "evaluate.py"),
+        "master_contract_hash": sha256_file(root / "evaluations" / contract.experiment / "t21_master_contract.json"),
+        "artifact_graph_hash": sha256_file(root / "evaluations" / contract.experiment / "artifact_graph.json"),
+        "doctor_hash": sha256_file(root / "t21_protocol" / "doctor.py"),
         "authoring_profile_hash": sha256_file(experiment_path),
         "contract_hash": contract.hash,
         "shadow_fingerprint_root": run_1,
@@ -40,7 +45,7 @@ def build_qualification_lock(root: Path, contract: Any) -> dict[str, Any]:
         "runtime_root": roots["runtime_root"],
         "evaluator_root": roots["evaluator_root"],
         "floor_hash": roots["floor_hash"],
-        "immutable_after": "T21R15_PRECONSTRUCTION_AUDIT_PASS",
+        "immutable_after": "T21R15_PRODUCTION_PHASE_REQUALIFICATION_PASS",
     }
 
 

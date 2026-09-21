@@ -31,3 +31,11 @@ class ValidationError(ProtocolError):
 
 class WriteGuardError(ProtocolError):
     """A command wrote outside its declared allowlist."""
+
+
+class AuthorizationError(ProtocolError):
+    """A phase API received the wrong authorization class or token."""
+
+
+class ProvenanceError(ProtocolError):
+    """Workspace, provider, or material provenance is not phase-compatible."""

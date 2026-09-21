@@ -14,13 +14,16 @@
     {"consumers": ["author", "construction_gate", "remediation_exclusion", "seal"], "freeze_phase": "QUALIFIED", "path": "values.remediation_exclusions", "presence": "required", "producer": "remediation_exclusion", "type": "object", "validation": {"nonempty": true}},
     {"consumers": ["official_validator", "evaluator", "scorer", "qualification"], "freeze_phase": "QUALIFIED", "path": "values.promotion_floors", "presence": "required", "producer": "contract", "type": "object", "validation": {"nonempty": true}},
     {"consumers": ["builder", "seal", "evaluator"], "freeze_phase": "QUALIFIED", "path": "values.one_shot", "presence": "required", "producer": "contract", "type": "object", "validation": {"nonempty": true}},
+    {"consumers": ["state_machine", "builder", "seal", "evaluator", "protocol_doctor"], "freeze_phase": "QUALIFIED", "path": "values.phase_apis", "presence": "required", "producer": "contract", "type": "object", "validation": {"nonempty": true}},
+    {"consumers": ["builder", "seal", "evaluator", "protocol_doctor"], "freeze_phase": "QUALIFIED", "path": "values.workspace_modes", "presence": "required", "producer": "contract", "type": "array", "validation": {"length": 2}},
+    {"consumers": ["builder", "seal", "evaluator", "protocol_doctor"], "freeze_phase": "QUALIFIED", "path": "values.material_modes", "presence": "required", "producer": "contract", "type": "array", "validation": {"length": 3}},
     {"consumers": ["state_machine", "author", "builder", "seal", "evaluator"], "freeze_phase": "QUALIFIED", "path": "values.state_machine", "presence": "required", "producer": "contract", "type": "object", "validation": {"nonempty": true}},
     {"consumers": ["author", "qualification"], "freeze_phase": "QUALIFIED", "path": "values.author", "presence": "required", "producer": "contract", "type": "object", "validation": {"nonempty": true}},
     {"consumers": ["protocol_doctor", "operator"], "freeze_phase": "PRECONSTRUCTION", "path": "values.r14_disposition", "presence": "required", "producer": "qualification", "type": "object", "validation": {"nonempty": true}},
     {"consumers": ["protocol_doctor", "operator"], "freeze_phase": "QUALIFIED", "path": "values.real_r15_paths", "presence": "required", "producer": "contract", "type": "array", "validation": {"nonempty": true}},
     {"consumers": ["author", "builder", "construction_gate", "protocol_doctor"], "freeze_phase": "QUALIFIED", "path": "values.quarantine", "presence": "required", "producer": "contract", "type": "object", "validation": {"nonempty": true}}
   ],
-  "schema_version": "t21-master-contract-v1",
+  "schema_version": "t21-master-contract-v2",
   "values": {
     "artifacts": {
       "adjudication": "evaluations/t21r15/test_failure_adjudication.json",
@@ -61,6 +64,22 @@
     "historical_exclusions": {"dimensions": 8, "milestones": 14, "raw_values": false, "r14_protocol_history_only": true},
     "identity": {"case_id_prefix": "r15-", "namespace": "mango-r15-v1"},
     "one_shot": {"construction": "ONE_SHOT", "evaluation": "ONE_SHOT", "existing_ledger": "REFUSE", "retry": "FORBIDDEN"},
+    "phase_apis": {
+      "construct": {
+        "allowed_artifact_phases": ["CONSTRUCTION", "SEAL"],
+        "authorization_token": "T21R15_REAL_BLIND_CONSTRUCTION_AUTHORIZED",
+        "required_state": "QUALIFIED",
+        "terminal_states": ["SEALED"]
+      },
+      "evaluate": {
+        "allowed_artifact_phases": ["EVALUATION"],
+        "authorization_token": "T21R15_ONE_SHOT_OFFICIAL_EVALUATION",
+        "required_state": "SEALED",
+        "terminal_states": ["EVALUATION_COMPLETE", "FAILED"]
+      }
+    },
+    "workspace_modes": ["SYNTHETIC_DISPOSABLE", "REAL_EXPERIMENT"],
+    "material_modes": ["SYNTHETIC", "REAL_BLIND", "REAL_DRY_RUN"],
     "promotion_floors": {
       "abstention_conflict": {"conflict_detection": {"op": ">=", "value": 0.98}, "conflict_false_resolution": {"op": "<=", "value": 0.01}, "insufficient_evidence_precision": {"op": ">=", "value": 0.98}, "insufficient_evidence_recall": {"op": ">=", "value": 0.97}, "unsupported_confident_answers": {"op": "=", "value": 0}},
       "answers": {"cross_domain_synthesis_accuracy": {"op": ">=", "value": 0.86}, "domain_macro_grounded_accuracy": {"op": ">=", "value": 0.88}, "multi_hop_grounded_accuracy": {"op": ">=", "value": 0.85}, "overall_grounded_accuracy": {"op": ">=", "value": 0.9}, "single_hop_grounded_accuracy": {"op": ">=", "value": 0.92}},
@@ -71,9 +90,34 @@
     },
     "quarantine": {"r13_candidate_output_reads": 0, "r13_raw_results_path": "evaluations/t21r13/raw_results.jsonl", "status": "FORBIDDEN"},
     "r14_disposition": {"candidate_rows": 0, "construction_attempts": 0, "corpus_materialized": false, "official_evaluator_rows": 0, "one_shot_consumed": false, "reason": "T21_PROTOCOL_INFRASTRUCTURE_NOT_CLOSED", "status": "CLOSED / PRECONSTRUCTION_PROTOCOL_INTEGRATION_FAILURE", "suites_materialized": false},
-    "real_r15_paths": ["rag/gk_holdout_t21r15", "evaluations/t21r15/suites", "evaluations/t21r15/construction_run_ledger.json", "evaluations/t21r15/holdout_manifest.json", "evaluations/t21r15/HOLDOUT_FROZEN", "evaluations/t21r15/evaluation_run_ledger.json", "evaluations/t21r15/candidate_outputs.jsonl", "evaluations/t21r15/evaluator_results.json", "evaluations/t21r15/score_results.json"],
+    "real_r15_paths": [
+      "rag/gk_holdout_t21r15",
+      "evaluations/t21r15/suites",
+      "evaluations/t21r15/construction_run_ledger.json",
+      "evaluations/t21r15/author_spec.json",
+      "evaluations/t21r15/material_provenance.json",
+      "evaluations/t21r15/historical_uniqueness.json",
+      "evaluations/t21r15/remediation_uniqueness.json",
+      "evaluations/t21r15/construction_gate.json",
+      "evaluations/t21r15/exact_design_audit.json",
+      "evaluations/t21r15/gate_auditor_crosscheck.json",
+      "evaluations/t21r15/static_gold_audit.json",
+      "evaluations/t21r15/holdout_blindness.json",
+      "evaluations/t21r15/gold_compatibility.json",
+      "evaluations/t21r15/root_of_trust.json",
+      "evaluations/t21r15/holdout_manifest.json",
+      "evaluations/t21r15/HOLDOUT_FROZEN",
+      "evaluations/t21r15/sealed_preflight.json",
+      "evaluations/t21r15/evaluation_run_ledger.json",
+      "evaluations/t21r15/candidate_outputs.jsonl",
+      "evaluations/t21r15/evaluator_results.json",
+      "evaluations/t21r15/score_results.json",
+      "evaluations/t21r15/evaluation_provenance.json",
+      "evaluations/t21r15/raw_results.jsonl",
+      "evaluations/t21r15/holdout_results.json"
+    ],
     "remediation_exclusions": {"dimensions": 9, "raw_values": false, "source_sha256": "f050227671e6fe3e4043c39c9796fcace588a769aaa500484a730eabdb0235d1"},
-    "roots": {"candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f", "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b", "evaluator_root": "fd8a1364c308ab94ce142bfeedb43d88b2f69159c19f4313f0e102cf274a49ee", "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa", "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80"},
+    "roots": {"candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f", "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b", "evaluator_root": "3f629a3766a3fd1d851bb2e3ce442b6e666aa74d5ddc82732463520af30bfc3a", "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa", "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80"},
     "state_machine": {
       "commands": {
         "complete_construction": {"next_state": "CONSTRUCTED", "required_state": "CONSTRUCTION_STARTED", "writable_paths": ["evaluations/t21r15", "rag/gk_holdout_t21r15"]},

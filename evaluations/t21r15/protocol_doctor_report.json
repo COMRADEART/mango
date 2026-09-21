@@ -17,21 +17,24 @@
       "status": "PASS"
     },
     "artifact_graph": {
+      "construct_writable_evaluation_nodes": 0,
       "cyclic_dependencies": 0,
       "dangling_requirements": 0,
       "errors": [],
-      "nodes": 38,
+      "evaluate_writable_sealed_input_nodes": 0,
+      "nodes": 40,
       "produced_artifacts_with_no_declared_consumer": 0,
       "required_artifacts_with_no_producer": 0,
       "seal_bound_required_artifacts_omitted": 0,
       "seal_required_artifacts_not_producible": 0,
-      "status": "PASS"
+      "status": "PASS",
+      "unknown_phase_owners": 0
     },
     "doctor_cleanliness": {
       "status": "PASS",
       "tracked_drift": 0,
-      "tracked_tree_after": "c5101159e4ddb2986b493990b1a2abed2d29ae07fdac0613b9b569842bb5abf2",
-      "tracked_tree_before": "c5101159e4ddb2986b493990b1a2abed2d29ae07fdac0613b9b569842bb5abf2"
+      "tracked_tree_after": "a146031d3c807226eeb5eda4f17892e45043679571e108ad2cd5b729f4f68f8e",
+      "tracked_tree_before": "a146031d3c807226eeb5eda4f17892e45043679571e108ad2cd5b729f4f68f8e"
     },
     "dynamic_import_audit": {
       "paths": [],
@@ -39,8 +42,8 @@
       "writers": 0
     },
     "evaluator_freeze": {
-      "components": 39,
-      "root": "fd8a1364c308ab94ce142bfeedb43d88b2f69159c19f4313f0e102cf274a49ee",
+      "components": 45,
+      "root": "3f629a3766a3fd1d851bb2e3ce442b6e666aa74d5ddc82732463520af30bfc3a",
       "status": "VERIFIED"
     },
     "historical_exclusion": {
@@ -50,9 +53,9 @@
       "status": "PASS"
     },
     "holdout_frozen_schema": {
-      "fields": 16,
+      "fields": 18,
       "missing": 0,
-      "required_fields": 16,
+      "required_fields": 18,
       "schema_status": "PASS",
       "status": "PASS"
     },
@@ -73,10 +76,33 @@
       "untyped_fields": 0
     },
     "negative_controls": {
-      "controls": 17,
+      "controls": 26,
       "missing": [],
       "phase_mismatches": [],
       "status": "PASS"
+    },
+    "phase_separation": {
+      "construct_paths": 16,
+      "construct_writable_evaluation_artifacts": 0,
+      "construction_to_evaluation_call_edges": 0,
+      "dynamic_official_evaluation_executions": 0,
+      "evaluate_paths": 6,
+      "evaluate_writable_sealed_construction_artifacts": 0,
+      "status": "PASS",
+      "unknown_phase_owners": 0
+    },
+    "production_phase_apis": {
+      "production_construction_callable": true,
+      "production_evaluation_callable": true,
+      "status": "PASS"
+    },
+    "provider_separation": {
+      "construction_token_rejected_by_evaluation": true,
+      "evaluation_token_rejected_by_construction": true,
+      "placeholder_audit_rejected_in_real": true,
+      "status": "PASS",
+      "stub_candidate_rejected_in_real": true,
+      "synthetic_provider_rejected_in_real": true
     },
     "qualification_lock": {
       "all_equal": true,
@@ -88,8 +114,17 @@
     "r14_disposition": {
       "status": "PASS"
     },
+    "real_mode_dry_rehearsal": {
+      "candidate_executions": 0,
+      "construction_ledger": "COMPLETE",
+      "evaluation_ledger_absent": true,
+      "material_mode": "REAL_DRY_RUN",
+      "status": "PASS",
+      "terminal_state": "SEALED",
+      "workspace_destroyed": true
+    },
     "real_paths": {
-      "checked": 9,
+      "checked": 24,
       "present": [],
       "status": "PASS"
     },
@@ -112,93 +147,381 @@
       "status": "PASS",
       "writers": 0
     },
-    "synthetic_full_protocol": {
+    "synthetic_construction_only": {
       "artifact_graph_differences": 0,
       "disposable_workspaces_destroyed": true,
       "run_1": {
-        "artifact_graph_root": "7fed666effb9cf8776eb26f4636cce3e3325671eff3154a4734475fc4213375a",
-        "candidate_rows_executed": 4800,
-        "construction": "PASS",
-        "construction_ledger": "COMPLETE",
-        "corpus": {
-          "chunks": 14,
-          "schema_version": "t21-corpus-v1",
-          "sources": 14,
-          "world": 14
+        "artifact_graph_root": "6dfde6a583117bc0f2f6590701affdafbdcbc29da6e9f7bf17d5e8429f32bf2f",
+        "construction": {
+          "audits": {
+            "design_root": "decfb7b0773b2a0511519069f73fa15fd7662b6a46cc3768d0226b33a9813750",
+            "reports": 9,
+            "status": "PASS"
+          },
+          "candidate_executions": 0,
+          "construction_ledger": "COMPLETE",
+          "corpus": {
+            "chunks": 14,
+            "schema_version": "t21-corpus-v1",
+            "sources": 14,
+            "world": 14
+          },
+          "evaluation_ledger_absent": true,
+          "holdout_results_absent": true,
+          "material_mode": "SYNTHETIC",
+          "official_evaluation_executions": 0,
+          "raw_results_absent": true,
+          "seal": "PASS",
+          "seal_binding_set": [
+            "adjudication",
+            "applicability",
+            "artifact_graph",
+            "author_spec",
+            "blindness_audit",
+            "construction_gate",
+            "construction_ledger",
+            "corpus",
+            "domain_taxonomy",
+            "evaluator_freeze",
+            "exact_design_audit",
+            "experiment_config",
+            "gate_auditor_crosscheck",
+            "gold_compatibility",
+            "historical_exclusion",
+            "historical_uniqueness",
+            "holdout_frozen_schema",
+            "master_contract",
+            "material_provenance",
+            "negative_controls",
+            "qualification_lock",
+            "r14_closure",
+            "remediation_exclusion",
+            "remediation_uniqueness",
+            "root_of_trust",
+            "runtime_freeze",
+            "static_gold_audit",
+            "suites",
+            "test_cleanliness"
+          ],
+          "seal_verification": {
+            "bound": 29,
+            "missing_required_bindings": 0,
+            "status": "PASS",
+            "unexpected_bindings": 0
+          },
+          "state_transitions": [
+            "QUALIFIED",
+            "CONSTRUCTION_STARTED",
+            "CONSTRUCTED",
+            "SEALED"
+          ],
+          "status": "PASS",
+          "suite_counts": {
+            "mango-t21r15-adversarial-holdout-v1": 650,
+            "mango-t21r15-citation-claim-holdout-v1": 450,
+            "mango-t21r15-conflict-abstention-holdout-v1": 800,
+            "mango-t21r15-crossdomain-holdout-v1": 700,
+            "mango-t21r15-multihop-holdout-v1": 800,
+            "mango-t21r15-retrieval-holdout-v1": 600,
+            "mango-t21r15-singlehop-holdout-v1": 550,
+            "mango-t21r15-temporal-holdout-v1": 250
+          },
+          "terminal_state": "SEALED",
+          "verdict": "T21R15_REAL_BLIND_HOLDOUT_CONSTRUCTED_AND_SEALED",
+          "workspace_mode": "SYNTHETIC_DISPOSABLE"
         },
-        "evaluation_ledger": "COMPLETE",
-        "evaluator": "PASS",
-        "floor_calculations": 32,
-        "official_preflight": "PASS",
-        "schema_root": "627e2db0bb73ceac0f8a3280577449aadd41ef9f9e8339277dda68dd42f4a0dd",
-        "scorer": "PASS",
-        "seal": "PASS",
-        "shadow_fingerprint_root": "06f83b41ccf424f84bc18192039135652612b2cc7bb2a1403760bd3d7594bad8",
-        "state_transitions": [
-          "QUALIFIED",
-          "CONSTRUCTION_STARTED",
-          "CONSTRUCTED",
-          "SEALED",
-          "SEALED",
-          "EVALUATION_STARTED",
-          "EVALUATION_COMPLETE"
-        ],
-        "status": "PASS",
-        "suite_counts": {
-          "mango-t21r15-adversarial-holdout-v1": 650,
-          "mango-t21r15-citation-claim-holdout-v1": 450,
-          "mango-t21r15-conflict-abstention-holdout-v1": 800,
-          "mango-t21r15-crossdomain-holdout-v1": 700,
-          "mango-t21r15-multihop-holdout-v1": 800,
-          "mango-t21r15-retrieval-holdout-v1": 600,
-          "mango-t21r15-singlehop-holdout-v1": 550,
-          "mango-t21r15-temporal-holdout-v1": 250
-        },
-        "synthetic_only": true
+        "schema_root": "0633dc74d7f97f66c8ebfbc2e28df0c4a135df9192f3708f8b24d50cade91086",
+        "status": "PASS"
       },
       "run_2": {
-        "artifact_graph_root": "7fed666effb9cf8776eb26f4636cce3e3325671eff3154a4734475fc4213375a",
-        "candidate_rows_executed": 4800,
-        "construction": "PASS",
-        "construction_ledger": "COMPLETE",
-        "corpus": {
-          "chunks": 14,
-          "schema_version": "t21-corpus-v1",
-          "sources": 14,
-          "world": 14
+        "artifact_graph_root": "6dfde6a583117bc0f2f6590701affdafbdcbc29da6e9f7bf17d5e8429f32bf2f",
+        "construction": {
+          "audits": {
+            "design_root": "decfb7b0773b2a0511519069f73fa15fd7662b6a46cc3768d0226b33a9813750",
+            "reports": 9,
+            "status": "PASS"
+          },
+          "candidate_executions": 0,
+          "construction_ledger": "COMPLETE",
+          "corpus": {
+            "chunks": 14,
+            "schema_version": "t21-corpus-v1",
+            "sources": 14,
+            "world": 14
+          },
+          "evaluation_ledger_absent": true,
+          "holdout_results_absent": true,
+          "material_mode": "SYNTHETIC",
+          "official_evaluation_executions": 0,
+          "raw_results_absent": true,
+          "seal": "PASS",
+          "seal_binding_set": [
+            "adjudication",
+            "applicability",
+            "artifact_graph",
+            "author_spec",
+            "blindness_audit",
+            "construction_gate",
+            "construction_ledger",
+            "corpus",
+            "domain_taxonomy",
+            "evaluator_freeze",
+            "exact_design_audit",
+            "experiment_config",
+            "gate_auditor_crosscheck",
+            "gold_compatibility",
+            "historical_exclusion",
+            "historical_uniqueness",
+            "holdout_frozen_schema",
+            "master_contract",
+            "material_provenance",
+            "negative_controls",
+            "qualification_lock",
+            "r14_closure",
+            "remediation_exclusion",
+            "remediation_uniqueness",
+            "root_of_trust",
+            "runtime_freeze",
+            "static_gold_audit",
+            "suites",
+            "test_cleanliness"
+          ],
+          "seal_verification": {
+            "bound": 29,
+            "missing_required_bindings": 0,
+            "status": "PASS",
+            "unexpected_bindings": 0
+          },
+          "state_transitions": [
+            "QUALIFIED",
+            "CONSTRUCTION_STARTED",
+            "CONSTRUCTED",
+            "SEALED"
+          ],
+          "status": "PASS",
+          "suite_counts": {
+            "mango-t21r15-adversarial-holdout-v1": 650,
+            "mango-t21r15-citation-claim-holdout-v1": 450,
+            "mango-t21r15-conflict-abstention-holdout-v1": 800,
+            "mango-t21r15-crossdomain-holdout-v1": 700,
+            "mango-t21r15-multihop-holdout-v1": 800,
+            "mango-t21r15-retrieval-holdout-v1": 600,
+            "mango-t21r15-singlehop-holdout-v1": 550,
+            "mango-t21r15-temporal-holdout-v1": 250
+          },
+          "terminal_state": "SEALED",
+          "verdict": "T21R15_REAL_BLIND_HOLDOUT_CONSTRUCTED_AND_SEALED",
+          "workspace_mode": "SYNTHETIC_DISPOSABLE"
         },
-        "evaluation_ledger": "COMPLETE",
-        "evaluator": "PASS",
-        "floor_calculations": 32,
-        "official_preflight": "PASS",
-        "schema_root": "627e2db0bb73ceac0f8a3280577449aadd41ef9f9e8339277dda68dd42f4a0dd",
-        "scorer": "PASS",
-        "seal": "PASS",
-        "shadow_fingerprint_root": "06f83b41ccf424f84bc18192039135652612b2cc7bb2a1403760bd3d7594bad8",
-        "state_transitions": [
-          "QUALIFIED",
-          "CONSTRUCTION_STARTED",
-          "CONSTRUCTED",
-          "SEALED",
-          "SEALED",
-          "EVALUATION_STARTED",
-          "EVALUATION_COMPLETE"
-        ],
-        "status": "PASS",
-        "suite_counts": {
-          "mango-t21r15-adversarial-holdout-v1": 650,
-          "mango-t21r15-citation-claim-holdout-v1": 450,
-          "mango-t21r15-conflict-abstention-holdout-v1": 800,
-          "mango-t21r15-crossdomain-holdout-v1": 700,
-          "mango-t21r15-multihop-holdout-v1": 800,
-          "mango-t21r15-retrieval-holdout-v1": 600,
-          "mango-t21r15-singlehop-holdout-v1": 550,
-          "mango-t21r15-temporal-holdout-v1": 250
-        },
-        "synthetic_only": true
+        "schema_root": "0633dc74d7f97f66c8ebfbc2e28df0c4a135df9192f3708f8b24d50cade91086",
+        "status": "PASS"
       },
       "schema_differences": 0,
+      "seal_binding_set_differences": 0,
       "state_transition_differences": 0,
+      "status": "PASS"
+    },
+    "synthetic_full_protocol": {
+      "artifact_graph_differences": 0,
+      "construction_transition_differences": 0,
+      "disposable_workspaces_destroyed": true,
+      "evaluation_transition_differences": 0,
+      "run_1": {
+        "artifact_graph_root": "6dfde6a583117bc0f2f6590701affdafbdcbc29da6e9f7bf17d5e8429f32bf2f",
+        "construction": {
+          "audits": {
+            "design_root": "decfb7b0773b2a0511519069f73fa15fd7662b6a46cc3768d0226b33a9813750",
+            "reports": 9,
+            "status": "PASS"
+          },
+          "candidate_executions": 0,
+          "construction_ledger": "COMPLETE",
+          "corpus": {
+            "chunks": 14,
+            "schema_version": "t21-corpus-v1",
+            "sources": 14,
+            "world": 14
+          },
+          "evaluation_ledger_absent": true,
+          "holdout_results_absent": true,
+          "material_mode": "SYNTHETIC",
+          "official_evaluation_executions": 0,
+          "raw_results_absent": true,
+          "seal": "PASS",
+          "seal_binding_set": [
+            "adjudication",
+            "applicability",
+            "artifact_graph",
+            "author_spec",
+            "blindness_audit",
+            "construction_gate",
+            "construction_ledger",
+            "corpus",
+            "domain_taxonomy",
+            "evaluator_freeze",
+            "exact_design_audit",
+            "experiment_config",
+            "gate_auditor_crosscheck",
+            "gold_compatibility",
+            "historical_exclusion",
+            "historical_uniqueness",
+            "holdout_frozen_schema",
+            "master_contract",
+            "material_provenance",
+            "negative_controls",
+            "qualification_lock",
+            "r14_closure",
+            "remediation_exclusion",
+            "remediation_uniqueness",
+            "root_of_trust",
+            "runtime_freeze",
+            "static_gold_audit",
+            "suites",
+            "test_cleanliness"
+          ],
+          "seal_verification": {
+            "bound": 29,
+            "missing_required_bindings": 0,
+            "status": "PASS",
+            "unexpected_bindings": 0
+          },
+          "state_transitions": [
+            "QUALIFIED",
+            "CONSTRUCTION_STARTED",
+            "CONSTRUCTED",
+            "SEALED"
+          ],
+          "status": "PASS",
+          "suite_counts": {
+            "mango-t21r15-adversarial-holdout-v1": 650,
+            "mango-t21r15-citation-claim-holdout-v1": 450,
+            "mango-t21r15-conflict-abstention-holdout-v1": 800,
+            "mango-t21r15-crossdomain-holdout-v1": 700,
+            "mango-t21r15-multihop-holdout-v1": 800,
+            "mango-t21r15-retrieval-holdout-v1": 600,
+            "mango-t21r15-singlehop-holdout-v1": 550,
+            "mango-t21r15-temporal-holdout-v1": 250
+          },
+          "terminal_state": "SEALED",
+          "verdict": "T21R15_REAL_BLIND_HOLDOUT_CONSTRUCTED_AND_SEALED",
+          "workspace_mode": "SYNTHETIC_DISPOSABLE"
+        },
+        "evaluation": {
+          "candidate_rows_executed": 4800,
+          "evaluation_ledger": "COMPLETE",
+          "floor_calculations": 32,
+          "official_evaluator_rows": 4800,
+          "scorer": "PASS",
+          "state_transitions": [
+            "EVALUATION_STARTED",
+            "EVALUATION_COMPLETE"
+          ],
+          "status": "PASS",
+          "terminal_state": "EVALUATION_COMPLETE",
+          "verdict": "T21R15_ONE_SHOT_OFFICIAL_EVALUATION_COMPLETE"
+        },
+        "schema_root": "0633dc74d7f97f66c8ebfbc2e28df0c4a135df9192f3708f8b24d50cade91086",
+        "status": "PASS"
+      },
+      "run_2": {
+        "artifact_graph_root": "6dfde6a583117bc0f2f6590701affdafbdcbc29da6e9f7bf17d5e8429f32bf2f",
+        "construction": {
+          "audits": {
+            "design_root": "decfb7b0773b2a0511519069f73fa15fd7662b6a46cc3768d0226b33a9813750",
+            "reports": 9,
+            "status": "PASS"
+          },
+          "candidate_executions": 0,
+          "construction_ledger": "COMPLETE",
+          "corpus": {
+            "chunks": 14,
+            "schema_version": "t21-corpus-v1",
+            "sources": 14,
+            "world": 14
+          },
+          "evaluation_ledger_absent": true,
+          "holdout_results_absent": true,
+          "material_mode": "SYNTHETIC",
+          "official_evaluation_executions": 0,
+          "raw_results_absent": true,
+          "seal": "PASS",
+          "seal_binding_set": [
+            "adjudication",
+            "applicability",
+            "artifact_graph",
+            "author_spec",
+            "blindness_audit",
+            "construction_gate",
+            "construction_ledger",
+            "corpus",
+            "domain_taxonomy",
+            "evaluator_freeze",
+            "exact_design_audit",
+            "experiment_config",
+            "gate_auditor_crosscheck",
+            "gold_compatibility",
+            "historical_exclusion",
+            "historical_uniqueness",
+            "holdout_frozen_schema",
+            "master_contract",
+            "material_provenance",
+            "negative_controls",
+            "qualification_lock",
+            "r14_closure",
+            "remediation_exclusion",
+            "remediation_uniqueness",
+            "root_of_trust",
+            "runtime_freeze",
+            "static_gold_audit",
+            "suites",
+            "test_cleanliness"
+          ],
+          "seal_verification": {
+            "bound": 29,
+            "missing_required_bindings": 0,
+            "status": "PASS",
+            "unexpected_bindings": 0
+          },
+          "state_transitions": [
+            "QUALIFIED",
+            "CONSTRUCTION_STARTED",
+            "CONSTRUCTED",
+            "SEALED"
+          ],
+          "status": "PASS",
+          "suite_counts": {
+            "mango-t21r15-adversarial-holdout-v1": 650,
+            "mango-t21r15-citation-claim-holdout-v1": 450,
+            "mango-t21r15-conflict-abstention-holdout-v1": 800,
+            "mango-t21r15-crossdomain-holdout-v1": 700,
+            "mango-t21r15-multihop-holdout-v1": 800,
+            "mango-t21r15-retrieval-holdout-v1": 600,
+            "mango-t21r15-singlehop-holdout-v1": 550,
+            "mango-t21r15-temporal-holdout-v1": 250
+          },
+          "terminal_state": "SEALED",
+          "verdict": "T21R15_REAL_BLIND_HOLDOUT_CONSTRUCTED_AND_SEALED",
+          "workspace_mode": "SYNTHETIC_DISPOSABLE"
+        },
+        "evaluation": {
+          "candidate_rows_executed": 4800,
+          "evaluation_ledger": "COMPLETE",
+          "floor_calculations": 32,
+          "official_evaluator_rows": 4800,
+          "scorer": "PASS",
+          "state_transitions": [
+            "EVALUATION_STARTED",
+            "EVALUATION_COMPLETE"
+          ],
+          "status": "PASS",
+          "terminal_state": "EVALUATION_COMPLETE",
+          "verdict": "T21R15_ONE_SHOT_OFFICIAL_EVALUATION_COMPLETE"
+        },
+        "schema_root": "0633dc74d7f97f66c8ebfbc2e28df0c4a135df9192f3708f8b24d50cade91086",
+        "status": "PASS"
+      },
+      "schema_differences": 0,
+      "seal_binding_set_differences": 0,
       "status": "PASS"
     },
     "taxonomy": {
@@ -246,22 +569,22 @@
     },
     "test_cleanliness": {
       "applicable_suite": {
-        "collected": 3231,
+        "collected": 3243,
         "exit_code": 0,
         "failed": 0,
         "junit_path": "artifacts/t21r15_applicable_junit.xml",
-        "junit_sha256": "dd10c2400e9973b9e99ec8320f6c76884e92ef00db7f2ac4e5a79d9525fd3ecc",
-        "passed": 3231,
+        "junit_sha256": "5c64ad2897bcbcd5dfc079bbd97d630232f63c775f0f1fb11835d1835525d3a6",
+        "passed": 3243,
         "skipped": 0,
         "tracked_drift": 0,
-        "tracked_tree_after": "5f7f65edc74d1d1726cab2b738b998f579dc611856b2b09c725fdc733e4b32e8",
-        "tracked_tree_before": "5f7f65edc74d1d1726cab2b738b998f579dc611856b2b09c725fdc733e4b32e8"
+        "tracked_tree_after": "826118a7feaa0809c124d2eb921d2445f85a054dabf4ef271879ffd96b23a5a7",
+        "tracked_tree_before": "826118a7feaa0809c124d2eb921d2445f85a054dabf4ef271879ffd96b23a5a7"
       },
       "artifact": "T21R15_TEST_CLEANLINESS",
       "focused_protocol_kernel": {
-        "collected": 42,
+        "collected": 54,
         "failed": 0,
-        "passed": 42,
+        "passed": 54,
         "status": "PASS"
       },
       "historical_regressions": {
@@ -273,18 +596,18 @@
       },
       "raw_full_suite": {
         "adjudication_exact_match": true,
-        "collected": 3246,
+        "collected": 3258,
         "exit_code": 1,
         "failed": 15,
         "junit_path": "artifacts/t21r15_full_junit.xml",
-        "junit_sha256": "3b20fd4bd230278f2e28950b47d71cdc77ee2e6ae6288c09bcdf5694803f669f",
+        "junit_sha256": "1f8ddcbefc9a41bc219bc0eb8330e235f6a0a712bbf1d2fa94c9cc636a858fd4",
         "missing_registered_failures": 0,
-        "passed": 3231,
+        "passed": 3243,
         "registered_failures": 15,
         "skipped": 0,
         "tracked_drift": 0,
-        "tracked_tree_after": "5f7f65edc74d1d1726cab2b738b998f579dc611856b2b09c725fdc733e4b32e8",
-        "tracked_tree_before": "5f7f65edc74d1d1726cab2b738b998f579dc611856b2b09c725fdc733e4b32e8",
+        "tracked_tree_after": "826118a7feaa0809c124d2eb921d2445f85a054dabf4ef271879ffd96b23a5a7",
+        "tracked_tree_before": "826118a7feaa0809c124d2eb921d2445f85a054dabf4ef271879ffd96b23a5a7",
         "unexpected_failures": 0
       },
       "schema_version": "t21-test-cleanliness-v1",

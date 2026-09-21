@@ -60,6 +60,7 @@ def audit_rows(rows: Iterable[dict[str, Any]], contract: Any) -> dict[str, Any]:
         "requirements": len(expected),
         "passed": len(expected) - len(mismatches),
         "failed": len(mismatches),
+        "observed_design": dict(sorted(observed.items())),
         "missing_context": missing_context,
         "unknown_tags": unknown,
         "mismatches": mismatches,
