@@ -1,0 +1,57 @@
+{
+  "artifact": "T21R16_FINAL_DISPOSITION",
+  "capability_failure": false,
+  "capability_verdict": "NONE",
+  "closed_at": "2026-09-21",
+  "consumers": [
+    "t21r17 official_metric_semantics",
+    "t21r17 metric_semantics_fixtures",
+    "protocol_doctor"
+  ],
+  "derivation_provenance": {
+    "aggregate_retained": "two metric implementations were invalid; the frozen observed values 1.0/1.0 are protocol failure provenance",
+    "r16_rows_read_by_r17_material": 0,
+    "rule": "the disposition names only aggregate facts and artifact fingerprints; no R16 blind case, raw result row, or evaluator record value enters R17 construction (quarantine \u00a717)"
+  },
+  "experiment": "t21r16",
+  "failure_class": "measurement_specification",
+  "frozen_observed_values": {
+    "conflict_false_resolution": 1.0,
+    "static_query_unnecessary_web_routing": 1.0
+  },
+  "frozen_observed_values_note": "recorded exactly as scored by the frozen scorer in the one-shot run; the values are never replaced with alternative estimates or repaired observations",
+  "holdout_status": "PERMANENTLY_EXPOSED_CONSUMED",
+  "invalid_metric_designation": "SEMANTICALLY_INVALID_FOR_CAPABILITY_ADJUDICATION",
+  "invalid_metrics": [
+    "conflict_false_resolution",
+    "static_query_unnecessary_web_routing"
+  ],
+  "official_run_preserved": {
+    "branch": "t21r16-official-evaluation",
+    "construction_attempt": 1,
+    "construction_commit": "6d5b069",
+    "evaluation_attempt": 1,
+    "exposures": 1,
+    "floors_failed": [
+      "conflict_false_resolution",
+      "static_query_unnecessary_web_routing"
+    ],
+    "floors_passed": 30,
+    "ledger_status": "COMPLETE",
+    "official_evaluation_commit": "8d9d1be6ffeff4f249a93de876b40ed95a4e4083",
+    "rerun": "PROHIBITED",
+    "rows": 4800
+  },
+  "one_shot_consumed": true,
+  "reason": "OFFICIAL_RUN_COMPLETED_BUT_TWO_FROZEN_FLOOR_METRICS_DID_NOT_SEMANTICALLY_MEASURE_THEIR_REGISTERED_QUANTITIES",
+  "remediation_protocol": "T21R17 metric-semantics preconstruction (explicit per-metric frozen semantics); no Mango candidate remediation is derived from R16",
+  "rerun_policy": {
+    "holdout_reuse": "FORBIDDEN",
+    "holdout_status": "PERMANENTLY_EXPOSED_CONSUMED",
+    "rerun_r16_evaluation": "REFUSED"
+  },
+  "root_cause": "the frozen scorer's generic metric derivation (t21_protocol/scorer.py: if spec['op'] in {'=', '<='} and spec['value'] == 0: metrics[metric] = 0; elif metric == 'domain_macro_grounded_accuracy': metrics[metric] = domain_macro; else: metrics[metric] = accuracy) assigned aggregate accuracy to every floor metric it had no dedicated path for; conflict_false_resolution (<= 0.01) and static_query_unnecessary_web_routing (<= 0.03) therefore reported the run-wide accuracy 1.0 instead of a bad-event rate",
+  "rows_scored": 4800,
+  "schema_version": "t21-experiment-closure-v1",
+  "status": "CLOSED / OFFICIAL_MEASUREMENT_SPECIFICATION_FAILURE"
+}

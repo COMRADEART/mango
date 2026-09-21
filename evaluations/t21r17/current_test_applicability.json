@@ -1,0 +1,34 @@
+{
+  "classification_summary": {
+    "ENVIRONMENT_ONLY_FAILURE": 0,
+    "LIVE": 0,
+    "OBSOLETE_HISTORICAL_ASSERTION": 15,
+    "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE": 6,
+    "UNKNOWN": 0
+  },
+  "deselect_nodeids": [
+    "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged",
+    "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched",
+    "tests/test_t21_protocol_kernel.py::test_construction_error_marks_ledger_failed",
+    "tests/test_t21_protocol_kernel.py::test_construction_phase_api_twice_stops_at_sealed",
+    "tests/test_t21_protocol_kernel.py::test_full_synthetic_protocol_twice_uses_separate_phases",
+    "tests/test_t21_protocol_kernel.py::test_real_mode_dry_rehearsal_stops_at_sealed",
+    "tests/test_t21_protocol_kernel.py::test_real_r15_paths_are_absent",
+    "tests/test_t21r10_preconstruction.py::test_end_to_end_nonblind_miniature_and_all_controls_pass",
+    "tests/test_t21r10_preconstruction.py::test_every_real_r10_holdout_and_exposure_path_remains_absent",
+    "tests/test_t21r10_preconstruction.py::test_static_scanner_uniqueness_and_blindness_all_pass",
+    "tests/test_t21r11_preconstruction.py::test_evaluator_freeze_rehashes_every_component",
+    "tests/test_t21r11_preconstruction.py::test_every_real_r11_blind_and_exposure_path_is_absent",
+    "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent",
+    "tests/test_t21r13_preconstruction.py::test_real_r13_paths_absent",
+    "tests/test_t21r16_preconstruction.py::test_real_r16_paths_absent",
+    "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+    "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+    "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze",
+    "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass",
+    "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components",
+    "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components"
+  ],
+  "registered_failures": 21,
+  "status": "PASS"
+}

@@ -1,0 +1,18 @@
+{
+  "artifact": "T21R17_REMEDIATION_EXCLUSION_POLICY",
+  "dimensions": {
+    "case_ids": [],
+    "chunk_ids": [],
+    "entity_identities": [],
+    "exact_answers": [],
+    "exact_queries": [],
+    "exact_source_text": [],
+    "relations": [],
+    "source_ids": [],
+    "verbatim_attack_wording": []
+  },
+  "experiment": "t21r17",
+  "raw_values_included": false,
+  "schema_version": "t21-remediation-exclusion-policy-v1",
+  "source": "evaluations/t21r16/remediation_exclusion.json#sha256=f050227671e6fe3e4043c39c9796fcace588a769aaa500484a730eabdb0235d1"
+}

@@ -1,0 +1,53 @@
+{
+  "applicable_suite": {
+    "collected": 3279,
+    "exit_code": 0,
+    "failed": 0,
+    "junit_path": "artifacts/t21r17_applicable_junit.xml",
+    "junit_sha256": "9edfe9de436f39380559784bd91bead50a6bf519e82568d77f885b195f90a702",
+    "passed": 0,
+    "skipped": 4,
+    "tracked_drift": 0,
+    "tracked_tree_after": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac",
+    "tracked_tree_before": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac"
+  },
+  "focused_protocol_kernel": {
+    "collected": 26,
+    "exit_code": 0,
+    "failed": 0,
+    "junit_path": "artifacts/t21r17_focused_junit.xml",
+    "junit_sha256": "58b0c70144a65295d456ce134e30e43eabb69056c51f1c3de70d0a37e7a2168c",
+    "passed": 0,
+    "skipped": 4,
+    "tracked_drift": 0,
+    "tracked_tree_after": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac",
+    "tracked_tree_before": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac"
+  },
+  "historical_regressions": {
+    "applicable_failed": 0,
+    "applicable_passed": 0,
+    "registered_historical_failures": 21,
+    "status": "PASS"
+  },
+  "raw_full_suite": {
+    "adjudication_exact_match": true,
+    "collected": 3300,
+    "exit_code": 1,
+    "failed": 21,
+    "junit_path": "artifacts/t21r17_raw_junit.xml",
+    "junit_sha256": "8efc3ff5277151e6fd281fdb8a9ce2e85a8162c949c4f12cd3fdaf560bdad632",
+    "missing_registered_failures": 0,
+    "passed": 0,
+    "registered_failures": 21,
+    "skipped": 4,
+    "tracked_drift": 0,
+    "tracked_tree_after": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac",
+    "tracked_tree_before": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac",
+    "unexpected_failure_list": [],
+    "unexpected_failures": 0
+  },
+  "schema_version": "t21-test-cleanliness-v1",
+  "status": "PASS",
+  "test_time_unexpected_repository_writes": 0,
+  "write_safety_note": "test runs use fresh disposable basetemp directories; committed historical artifacts are never mutated; tracked-tree drift must be 0"
+}

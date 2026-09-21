@@ -1,0 +1,77 @@
+{
+  "artifact": "T21R17_DOMAIN_TAXONOMY_CONTRACT",
+  "domains": [
+    {
+      "aliases": [],
+      "canonical_label": "arts",
+      "description": "visual and performative arts"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "biography",
+      "description": "people, households, and careers"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "civic_architecture",
+      "description": "civic structures and public works"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "computing",
+      "description": "calculation and mechanical computation"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "culture",
+      "description": "customs and cultural institutions"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "economics",
+      "description": "trade and material provisioning"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "education_reference",
+      "description": "schools, registers, and reference institutions"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "geography",
+      "description": "places, boundaries, and terrain"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "government_civics",
+      "description": "offices, succession, and civic governance"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "history",
+      "description": "dated events and chronicles"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "literature",
+      "description": "written and printed works"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "natural_philosophy",
+      "description": "natural inquiry and experiment"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "natural_world",
+      "description": "flora, fauna, weather, and natural phenomena"
+    },
+    {
+      "aliases": [],
+      "canonical_label": "technology_history",
+      "description": "devices, mechanisms, and their development"
+    }
+  ],
+  "experiment": "t21r17",
+  "schema_version": "t21-domain-taxonomy-v1"
+}

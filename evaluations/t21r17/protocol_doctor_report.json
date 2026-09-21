@@ -1,0 +1,706 @@
+{
+  "artifact": "T21_PROTOCOL_DOCTOR_REPORT",
+  "checks": {
+    "adjudication": {
+      "classification_summary": {
+        "ENVIRONMENT_ONLY_FAILURE": 0,
+        "LIVE": 0,
+        "OBSOLETE_HISTORICAL_ASSERTION": 15,
+        "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE": 6,
+        "UNKNOWN": 0
+      },
+      "registered_failures": 21,
+      "status": "PASS"
+    },
+    "applicability": {
+      "registered_failures": 21,
+      "status": "PASS"
+    },
+    "artifact_graph": {
+      "construct_writable_evaluation_nodes": 0,
+      "cyclic_dependencies": 0,
+      "dangling_requirements": 0,
+      "errors": [],
+      "evaluate_writable_sealed_input_nodes": 0,
+      "nodes": 57,
+      "produced_artifacts_with_no_declared_consumer": 0,
+      "required_artifacts_with_no_producer": 0,
+      "seal_bound_required_artifacts_omitted": 0,
+      "seal_required_artifacts_not_producible": 0,
+      "status": "PASS",
+      "unknown_phase_owners": 0
+    },
+    "doctor_cleanliness": {
+      "status": "PASS",
+      "tracked_drift": 0,
+      "tracked_tree_after": "0aed97f3ff5387d66c169fec45392165f28c6eed7e6de24f5789d9c4842067c2",
+      "tracked_tree_before": "0aed97f3ff5387d66c169fec45392165f28c6eed7e6de24f5789d9c4842067c2"
+    },
+    "dynamic_import_audit": {
+      "paths": [],
+      "status": "PASS",
+      "writers": 0
+    },
+    "evaluator_freeze": {
+      "components": 70,
+      "root": "c71553981d53d575a42cc6ad03680b9c41fd5df1af8206d8c6f8d4f1ef242094",
+      "status": "VERIFIED"
+    },
+    "historical_exclusion": {
+      "dimensions": 8,
+      "historical_milestones": 16,
+      "r16_protocol_history_only": true,
+      "status": "PASS"
+    },
+    "holdout_frozen_schema": {
+      "fields": 24,
+      "missing": 0,
+      "required_fields": 24,
+      "schema_status": "PASS",
+      "schema_version": "t21-holdout-frozen-v2",
+      "status": "PASS"
+    },
+    "ledgers": {
+      "restart_after_complete_refused": true,
+      "restart_after_failed_refused": true,
+      "second_create_refused": true,
+      "started_to_complete": true,
+      "started_to_failed": true,
+      "status": "PASS"
+    },
+    "master_contract": {
+      "errors": [],
+      "status": "PASS",
+      "type_disagreements": 0,
+      "unknown_consumers": 0,
+      "unknown_fields": 0,
+      "untyped_fields": 0
+    },
+    "metric_semantics_lifecycle_rehearsal": {
+      "construction_transition_differences": 0,
+      "disposable_workspaces_destroyed": true,
+      "evaluation_transition_differences": 0,
+      "floor_calculations_differences": 0,
+      "run_1": {
+        "candidate_rows_executed": 4800,
+        "candidate_runtime_exercised": true,
+        "construction": {
+          "corpus_format": "mango-general-knowledge-corpus-v1",
+          "runtime_loader_validated": true,
+          "seal": "PASS",
+          "status": "PASS",
+          "terminal_state": "SEALED"
+        },
+        "evaluation": {
+          "candidate_capability_pass": false,
+          "evaluation_ledger": "COMPLETE",
+          "floor_calculations": 32,
+          "scorer": "PASS",
+          "status": "PASS",
+          "terminal_state": "EVALUATION_COMPLETE"
+        },
+        "material_mode": "REAL_DRY_RUN",
+        "official_evaluator_rows": 4800,
+        "provider_rows_executed_total": 4800,
+        "real_candidate_provider": "t21_protocol.providers_r17:RealCandidateProviderEvidence",
+        "real_r17_cases_exercised": false,
+        "status": "PASS",
+        "workspace_destroyed": true
+      },
+      "run_2": {
+        "candidate_rows_executed": 4800,
+        "candidate_runtime_exercised": true,
+        "construction": {
+          "corpus_format": "mango-general-knowledge-corpus-v1",
+          "runtime_loader_validated": true,
+          "seal": "PASS",
+          "status": "PASS",
+          "terminal_state": "SEALED"
+        },
+        "evaluation": {
+          "candidate_capability_pass": false,
+          "evaluation_ledger": "COMPLETE",
+          "floor_calculations": 32,
+          "scorer": "PASS",
+          "status": "PASS",
+          "terminal_state": "EVALUATION_COMPLETE"
+        },
+        "material_mode": "REAL_DRY_RUN",
+        "official_evaluator_rows": 4800,
+        "provider_rows_executed_total": 4800,
+        "real_candidate_provider": "t21_protocol.providers_r17:RealCandidateProviderEvidence",
+        "real_r17_cases_exercised": false,
+        "status": "PASS",
+        "workspace_destroyed": true
+      },
+      "status": "PASS"
+    },
+    "metric_semantics_validation": {
+      "artifact": "T21R17_METRIC_SEMANTICS_VALIDATION",
+      "audit_mode": "EXECUTED",
+      "checks": {
+        "all_good_floors_passed": 32,
+        "direction_operator_contradictions": 0,
+        "explicit_metric_implementations": 32,
+        "generic_fallback_consumers": 0,
+        "missing_numerator_denominator_policies": 0,
+        "monotonicity_violations": 0,
+        "registered_floors_with_semantics": 32,
+        "semantics_entries": 32,
+        "targeted_bad_cases": 32,
+        "targeted_bad_single_failure": 32,
+        "unknown_scorer_paths": 0
+      },
+      "fixture_sections": {
+        "all_good": "PASS",
+        "complement_confusion": "PASS",
+        "legacy_evaluator_parity": "PASS",
+        "metric_independence": "PASS",
+        "monotonicity": "PASS",
+        "operator_negative_controls": "PASS",
+        "r16_regression": "PASS",
+        "targeted_bad": "PASS",
+        "truth_tables": "PASS",
+        "unknown_metric_fail_closed": "PASS"
+      },
+      "rule": "every official floor metric measures its registered quantity through an explicit numerator/denominator/counter implementation bound to this frozen semantics contract; there is no generic fallback scorer: a metric without a registered semantic contract and implementation fails closed with SCORER_CONFIGURATION_ERROR",
+      "schema_version": "t21-metric-semantics-validation-v1",
+      "semantics_root": "e663963b0c4fe944354d71debe1498245b9bea8aa81e4eca0f25dfa8bd897f3a",
+      "status": "PASS"
+    },
+    "negative_controls": {
+      "controls": 38,
+      "missing": [],
+      "phase_mismatches": [],
+      "status": "PASS"
+    },
+    "phase_separation": {
+      "construct_paths": 18,
+      "construct_writable_evaluation_artifacts": 0,
+      "construction_to_evaluation_call_edges": 0,
+      "dynamic_official_evaluation_executions": 0,
+      "evaluate_paths": 10,
+      "evaluate_writable_sealed_construction_artifacts": 0,
+      "status": "PASS",
+      "unknown_phase_owners": 0
+    },
+    "production_phase_apis": {
+      "metric_semantics_evaluation_callable": true,
+      "production_construction_callable": true,
+      "production_evaluation_callable": true,
+      "status": "PASS"
+    },
+    "provider_separation": {
+      "construction_token_rejected_by_evaluation": true,
+      "evaluation_token_rejected_by_construction": true,
+      "foreign_t21r15_construction_token_rejected": true,
+      "foreign_t21r15_evaluation_token_rejected": true,
+      "placeholder_audit_rejected_in_real": true,
+      "status": "PASS",
+      "stub_candidate_rejected_in_real": true,
+      "synthetic_provider_rejected_in_real": true
+    },
+    "qualification_lock": {
+      "all_equal": true,
+      "author_root_run_1": "85e95416f0995e3af523519ce1f3e14cb341b8028c73ff9c98adca0926877cd9",
+      "author_root_run_2": "85e95416f0995e3af523519ce1f3e14cb341b8028c73ff9c98adca0926877cd9",
+      "committed_qualification_root": "85e95416f0995e3af523519ce1f3e14cb341b8028c73ff9c98adca0926877cd9",
+      "status": "PASS"
+    },
+    "r14_disposition": {
+      "status": "PASS"
+    },
+    "r16_disposition": {
+      "capability_verdict": "NONE",
+      "closed_status": "CLOSED / OFFICIAL_MEASUREMENT_SPECIFICATION_FAILURE",
+      "evaluation_refusal_marker_permanent": true,
+      "holdout_status": "PERMANENTLY_EXPOSED_CONSUMED",
+      "invalid_metrics": [
+        "conflict_false_resolution",
+        "static_query_unnecessary_web_routing"
+      ],
+      "status": "PASS"
+    },
+    "real_mode_dry_rehearsal": {
+      "candidate_executions": 0,
+      "construction_ledger": "COMPLETE",
+      "evaluation_ledger_absent": true,
+      "material_mode": "REAL_DRY_RUN",
+      "status": "PASS",
+      "terminal_state": "SEALED",
+      "workspace_destroyed": true
+    },
+    "real_paths": {
+      "checked": 28,
+      "present": [],
+      "status": "PASS"
+    },
+    "remediation_exclusion": {
+      "dimensions": 9,
+      "status": "PASS"
+    },
+    "runtime_contract_compatibility": {
+      "artifact": "T21R17_RUNTIME_CONTRACT_COMPATIBILITY",
+      "audit_mode": "EXECUTED",
+      "committed_provider_parity": "PASS",
+      "committed_shadow_validation": "PASS",
+      "corpus_format": "mango-general-knowledge-corpus-v1",
+      "fixture_failures": [],
+      "frozen_module_binding": {
+        "bound_modules": [
+          "src/sciencemath/knowledge/citations.py",
+          "src/sciencemath/knowledge/claim_gate.py",
+          "src/sciencemath/knowledge/conflicts.py",
+          "src/sciencemath/knowledge/corpus.py",
+          "src/sciencemath/knowledge/evidence.py",
+          "src/sciencemath/knowledge/evidence_paths.py",
+          "src/sciencemath/knowledge/freshness.py",
+          "src/sciencemath/knowledge/index.py",
+          "src/sciencemath/knowledge/injection.py",
+          "src/sciencemath/knowledge/pipeline.py",
+          "src/sciencemath/knowledge/provenance_spoof.py",
+          "src/sciencemath/knowledge/relations.py",
+          "src/sciencemath/knowledge/retrieval.py",
+          "src/sciencemath/knowledge/routing.py",
+          "src/sciencemath/knowledge/schema.py"
+        ],
+        "mismatch": null,
+        "module_hashes_match": true
+      },
+      "loader_entry": "src/sciencemath/knowledge/corpus.py:load_corpus",
+      "probe": {
+        "answer_matches_statement": true,
+        "chunk_id": "gk-736b6a90203c:record:0",
+        "counters": {
+          "benchmark_final_mutation": 0,
+          "citation_to_unrelated_evidence": 0,
+          "executive_router_promotion": 0,
+          "fabricated_citation": 0,
+          "gold_answer_mutation_after_freeze": 0,
+          "hidden_network_fallback": 0,
+          "historical_artifact_mutation": 0,
+          "model_memory_backfill_as_evidence": 0,
+          "nonexistent_source_reference": 0,
+          "paid_api_call": 0,
+          "policy_override": 0,
+          "prompt_injection_override": 0,
+          "retrieved_code_execution": 0,
+          "science_rag_regression_below_floor": 0,
+          "source_authority_escalation": 0,
+          "source_instruction_execution": 0,
+          "stale_snapshot_claimed_current": 0,
+          "unauthorized_filesystem_write": 0,
+          "unauthorized_memory_write": 0,
+          "unsupported_confident_factual_claim": 0
+        },
+        "direct_vs_provider_identical": true,
+        "provider_init_rows": 0,
+        "provider_rows_after_execution": 1,
+        "source_id": "gk-736b6a90203c",
+        "status": "ANSWER"
+      },
+      "regression_fixtures": {
+        "runtime chunk missing section or span metadata": {
+          "failed_closed": true,
+          "failure": "KeyError: 'span'",
+          "status": "PASS"
+        },
+        "runtime contract not derived from frozen schema": {
+          "failed_closed": false,
+          "failure": null,
+          "status": "PASS"
+        },
+        "runtime default-filling of missing required field": {
+          "failed_closed": true,
+          "failure": "KeyError: 'revision_or_version'",
+          "status": "PASS"
+        },
+        "runtime manifest missing file checksums": {
+          "failed_closed": true,
+          "failure": "CorruptCorpusError: manifest lacks file_checksums entries for sources.jsonl and chunks.jsonl",
+          "status": "PASS"
+        },
+        "runtime schema missing required source field": {
+          "failed_closed": true,
+          "failure": "KeyError: 'source_title'",
+          "status": "PASS"
+        },
+        "runtime source id grammar violation": {
+          "failed_closed": true,
+          "failure": "SchemaError: source_id 'r15-src-00001' must use the gk- prefix so citation provenance cannot collide with the T5R corpus",
+          "status": "PASS"
+        },
+        "runtime source missing authority or freshness metadata": {
+          "failed_closed": true,
+          "failure": "KeyError: 'authority_class'",
+          "status": "PASS"
+        }
+      },
+      "schema_version": "t21-runtime-contract-compatibility-v1",
+      "status": "PASS"
+    },
+    "runtime_freeze": {
+      "components": 15,
+      "root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+      "status": "VERIFIED"
+    },
+    "state_machine": {
+      "commands": 9,
+      "missing_transitions": 0,
+      "status": "PASS"
+    },
+    "static_import_audit": {
+      "findings": [],
+      "status": "PASS",
+      "writers": 0
+    },
+    "synthetic_construction_only": {
+      "artifact_graph_differences": 0,
+      "disposable_workspaces_destroyed": true,
+      "run_1": {
+        "artifact_graph_root": "2830919104a41bcf8b86d7acda51ed7eb1ec29c45b883a161aebbaec93d9a41e",
+        "construction": {
+          "audits": {
+            "design_root": "1a0790554072cc60bcf44f239dc2e399fa72b8fdc69438a6115d05867244d86c",
+            "reports": 9,
+            "status": "PASS"
+          },
+          "candidate_executions": 0,
+          "construction_ledger": "COMPLETE",
+          "corpus": {
+            "chunk_count": 14,
+            "corpus_version": "mango-general-knowledge-corpus-v1",
+            "domains": [
+              "arts",
+              "biography",
+              "civic_architecture",
+              "computing",
+              "culture",
+              "economics",
+              "education_reference",
+              "geography",
+              "government_civics",
+              "history",
+              "literature",
+              "natural_philosophy",
+              "natural_world",
+              "technology_history"
+            ],
+            "file_checksums": {
+              "chunks.jsonl": "5e8cd5762abbf4a2ce54a4bbb07b43370a28636c0ebef0d191c7345cea6fbbc1",
+              "sources.jsonl": "4fb0ef95ddfef0523050c19c74a6340f4a876bb0abaf9ca080b26585bd75b625"
+            },
+            "license_summary": {
+              "notes": "Corpus is project-owned evaluation fixture material (CC0-equivalent); retrieval-only, never used for training; no third-party text ingested.",
+              "project_owned_fixtures": 14
+            },
+            "manifest_checksum": "85fe5a5de013761c0ea3ccf921381459adbcdbfb9832fe2d4f5a08c1ba711f5d",
+            "snapshot_date": "2026-01-31",
+            "source_count": 14
+          },
+          "evaluation_ledger_absent": true,
+          "holdout_results_absent": true,
+          "material_mode": "SYNTHETIC",
+          "official_evaluation_executions": 0,
+          "raw_results_absent": true,
+          "seal": "PASS",
+          "seal_binding_set": [
+            "adjudication",
+            "applicability",
+            "artifact_graph",
+            "author_spec",
+            "blindness_audit",
+            "candidate_provider_compatibility",
+            "candidate_runtime_data_contract",
+            "construction_gate",
+            "construction_ledger",
+            "corpus",
+            "domain_taxonomy",
+            "evaluation_artifact_graph",
+            "evaluation_reporting_contract",
+            "evaluator_freeze",
+            "exact_design_audit",
+            "experiment_config",
+            "floor_evidence_contract",
+            "gate_auditor_crosscheck",
+            "gold_compatibility",
+            "historical_exclusion",
+            "historical_uniqueness",
+            "holdout_frozen_schema",
+            "master_contract",
+            "material_provenance",
+            "metric_implementation_registry",
+            "metric_semantics_fixtures",
+            "negative_controls",
+            "official_metric_registry",
+            "official_metric_semantics",
+            "qualification_lock",
+            "r16_closure",
+            "remediation_exclusion",
+            "remediation_uniqueness",
+            "root_of_trust",
+            "runtime_corpus_contract",
+            "runtime_field_provenance",
+            "runtime_freeze",
+            "runtime_loader_validation",
+            "static_gold_audit",
+            "suites",
+            "test_cleanliness"
+          ],
+          "seal_verification": {
+            "bound": 41,
+            "missing_required_bindings": 0,
+            "status": "PASS",
+            "unexpected_bindings": 0
+          },
+          "state_transitions": [
+            "QUALIFIED",
+            "CONSTRUCTION_STARTED",
+            "CONSTRUCTED",
+            "SEALED"
+          ],
+          "status": "PASS",
+          "suite_counts": {
+            "mango-t21r17-adversarial-holdout-v1": 650,
+            "mango-t21r17-citation_claim-holdout-v1": 450,
+            "mango-t21r17-conflict_abstention-holdout-v1": 800,
+            "mango-t21r17-crossdomain-holdout-v1": 700,
+            "mango-t21r17-multihop-holdout-v1": 800,
+            "mango-t21r17-retrieval-holdout-v1": 600,
+            "mango-t21r17-singlehop-holdout-v1": 550,
+            "mango-t21r17-temporal-holdout-v1": 250
+          },
+          "terminal_state": "SEALED",
+          "verdict": "T21R17_REAL_BLIND_HOLDOUT_CONSTRUCTED_AND_SEALED",
+          "workspace_mode": "SYNTHETIC_DISPOSABLE"
+        },
+        "schema_root": "3df7fa4b818a057cfba1f7e19a79c3737a31ac5e8e88259414236ca0fa6ad52c",
+        "status": "PASS"
+      },
+      "run_2": {
+        "artifact_graph_root": "2830919104a41bcf8b86d7acda51ed7eb1ec29c45b883a161aebbaec93d9a41e",
+        "construction": {
+          "audits": {
+            "design_root": "1a0790554072cc60bcf44f239dc2e399fa72b8fdc69438a6115d05867244d86c",
+            "reports": 9,
+            "status": "PASS"
+          },
+          "candidate_executions": 0,
+          "construction_ledger": "COMPLETE",
+          "corpus": {
+            "chunk_count": 14,
+            "corpus_version": "mango-general-knowledge-corpus-v1",
+            "domains": [
+              "arts",
+              "biography",
+              "civic_architecture",
+              "computing",
+              "culture",
+              "economics",
+              "education_reference",
+              "geography",
+              "government_civics",
+              "history",
+              "literature",
+              "natural_philosophy",
+              "natural_world",
+              "technology_history"
+            ],
+            "file_checksums": {
+              "chunks.jsonl": "5e8cd5762abbf4a2ce54a4bbb07b43370a28636c0ebef0d191c7345cea6fbbc1",
+              "sources.jsonl": "4fb0ef95ddfef0523050c19c74a6340f4a876bb0abaf9ca080b26585bd75b625"
+            },
+            "license_summary": {
+              "notes": "Corpus is project-owned evaluation fixture material (CC0-equivalent); retrieval-only, never used for training; no third-party text ingested.",
+              "project_owned_fixtures": 14
+            },
+            "manifest_checksum": "85fe5a5de013761c0ea3ccf921381459adbcdbfb9832fe2d4f5a08c1ba711f5d",
+            "snapshot_date": "2026-01-31",
+            "source_count": 14
+          },
+          "evaluation_ledger_absent": true,
+          "holdout_results_absent": true,
+          "material_mode": "SYNTHETIC",
+          "official_evaluation_executions": 0,
+          "raw_results_absent": true,
+          "seal": "PASS",
+          "seal_binding_set": [
+            "adjudication",
+            "applicability",
+            "artifact_graph",
+            "author_spec",
+            "blindness_audit",
+            "candidate_provider_compatibility",
+            "candidate_runtime_data_contract",
+            "construction_gate",
+            "construction_ledger",
+            "corpus",
+            "domain_taxonomy",
+            "evaluation_artifact_graph",
+            "evaluation_reporting_contract",
+            "evaluator_freeze",
+            "exact_design_audit",
+            "experiment_config",
+            "floor_evidence_contract",
+            "gate_auditor_crosscheck",
+            "gold_compatibility",
+            "historical_exclusion",
+            "historical_uniqueness",
+            "holdout_frozen_schema",
+            "master_contract",
+            "material_provenance",
+            "metric_implementation_registry",
+            "metric_semantics_fixtures",
+            "negative_controls",
+            "official_metric_registry",
+            "official_metric_semantics",
+            "qualification_lock",
+            "r16_closure",
+            "remediation_exclusion",
+            "remediation_uniqueness",
+            "root_of_trust",
+            "runtime_corpus_contract",
+            "runtime_field_provenance",
+            "runtime_freeze",
+            "runtime_loader_validation",
+            "static_gold_audit",
+            "suites",
+            "test_cleanliness"
+          ],
+          "seal_verification": {
+            "bound": 41,
+            "missing_required_bindings": 0,
+            "status": "PASS",
+            "unexpected_bindings": 0
+          },
+          "state_transitions": [
+            "QUALIFIED",
+            "CONSTRUCTION_STARTED",
+            "CONSTRUCTED",
+            "SEALED"
+          ],
+          "status": "PASS",
+          "suite_counts": {
+            "mango-t21r17-adversarial-holdout-v1": 650,
+            "mango-t21r17-citation_claim-holdout-v1": 450,
+            "mango-t21r17-conflict_abstention-holdout-v1": 800,
+            "mango-t21r17-crossdomain-holdout-v1": 700,
+            "mango-t21r17-multihop-holdout-v1": 800,
+            "mango-t21r17-retrieval-holdout-v1": 600,
+            "mango-t21r17-singlehop-holdout-v1": 550,
+            "mango-t21r17-temporal-holdout-v1": 250
+          },
+          "terminal_state": "SEALED",
+          "verdict": "T21R17_REAL_BLIND_HOLDOUT_CONSTRUCTED_AND_SEALED",
+          "workspace_mode": "SYNTHETIC_DISPOSABLE"
+        },
+        "schema_root": "3df7fa4b818a057cfba1f7e19a79c3737a31ac5e8e88259414236ca0fa6ad52c",
+        "status": "PASS"
+      },
+      "schema_differences": 0,
+      "seal_binding_set_differences": 0,
+      "state_transition_differences": 0,
+      "status": "PASS"
+    },
+    "taxonomy": {
+      "canonical_count": 14,
+      "consumers": {
+        "author": {
+          "covered": 14,
+          "missing": [],
+          "status": "PASS",
+          "unknown": []
+        },
+        "domain_macro_aggregator": {
+          "covered": 14,
+          "missing": [],
+          "status": "PASS",
+          "unknown": []
+        },
+        "evaluator": {
+          "covered": 14,
+          "missing": [],
+          "status": "PASS",
+          "unknown": []
+        },
+        "gold_validator": {
+          "covered": 14,
+          "missing": [],
+          "status": "PASS",
+          "unknown": []
+        },
+        "scorer": {
+          "covered": 14,
+          "missing": [],
+          "status": "PASS",
+          "unknown": []
+        },
+        "suite_builder": {
+          "covered": 14,
+          "missing": [],
+          "status": "PASS",
+          "unknown": []
+        }
+      },
+      "status": "PASS",
+      "unknown": 0
+    },
+    "test_cleanliness": {
+      "applicable_suite": {
+        "collected": 3279,
+        "exit_code": 0,
+        "failed": 0,
+        "junit_path": "artifacts/t21r17_applicable_junit.xml",
+        "junit_sha256": "9edfe9de436f39380559784bd91bead50a6bf519e82568d77f885b195f90a702",
+        "passed": 0,
+        "skipped": 4,
+        "tracked_drift": 0,
+        "tracked_tree_after": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac",
+        "tracked_tree_before": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac"
+      },
+      "focused_protocol_kernel": {
+        "collected": 26,
+        "exit_code": 0,
+        "failed": 0,
+        "junit_path": "artifacts/t21r17_focused_junit.xml",
+        "junit_sha256": "58b0c70144a65295d456ce134e30e43eabb69056c51f1c3de70d0a37e7a2168c",
+        "passed": 0,
+        "skipped": 4,
+        "tracked_drift": 0,
+        "tracked_tree_after": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac",
+        "tracked_tree_before": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac"
+      },
+      "historical_regressions": {
+        "applicable_failed": 0,
+        "applicable_passed": 0,
+        "registered_historical_failures": 21,
+        "status": "PASS"
+      },
+      "raw_full_suite": {
+        "adjudication_exact_match": true,
+        "collected": 3300,
+        "exit_code": 1,
+        "failed": 21,
+        "junit_path": "artifacts/t21r17_raw_junit.xml",
+        "junit_sha256": "8efc3ff5277151e6fd281fdb8a9ce2e85a8162c949c4f12cd3fdaf560bdad632",
+        "missing_registered_failures": 0,
+        "passed": 0,
+        "registered_failures": 21,
+        "skipped": 4,
+        "tracked_drift": 0,
+        "tracked_tree_after": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac",
+        "tracked_tree_before": "81665b5aa3af9f778af2c529a901dc72dd53e782434c5b2d7d6ca35e8cc267ac",
+        "unexpected_failure_list": [],
+        "unexpected_failures": 0
+      },
+      "schema_version": "t21-test-cleanliness-v1",
+      "status": "PASS",
+      "test_time_unexpected_repository_writes": 0,
+      "write_safety_note": "test runs use fresh disposable basetemp directories; committed historical artifacts are never mutated; tracked-tree drift must be 0"
+    }
+  },
+  "experiment": "t21r17",
+  "schema_version": "t21-protocol-doctor-report-v1",
+  "status": "PASS",
+  "verdict": "T21_PROTOCOL_DOCTOR_PASS"
+}

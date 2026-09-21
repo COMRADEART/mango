@@ -1,0 +1,38 @@
+{
+  "artifact": "T21R17_HISTORICAL_EXCLUSION_POLICY",
+  "experiment": "t21r17",
+  "historical_milestone_count": 16,
+  "milestones": [
+    "T21",
+    "T21R",
+    "T21R2",
+    "T21R3",
+    "T21R4",
+    "T21R5",
+    "T21R6",
+    "T21R7",
+    "T21R8_DIAGNOSTIC",
+    "T21R9_SEALED",
+    "T21R10_SEALED",
+    "T21R11_INVALID_SEALED",
+    "T21R12_FAILED_PARTIAL_BLIND",
+    "T21R13_SEALED_PARTIAL_OFFICIAL_EXPOSURE",
+    "T21R15_SEALED_UNEVALUABLE",
+    "T21R16_OFFICIAL_EVALUATED_MEASUREMENT_INVALID"
+  ],
+  "r16_protocol_history": {
+    "blind_fingerprints_invented": false,
+    "capability_verdict": "NONE",
+    "closure_reason": "OFFICIAL_RUN_COMPLETED_BUT_TWO_FROZEN_FLOOR_METRICS_DID_NOT_SEMANTICALLY_MEASURE_THEIR_REGISTERED_QUANTITIES",
+    "closure_status": "CLOSED / OFFICIAL_MEASUREMENT_SPECIFICATION_FAILURE",
+    "construction_attempts": 1,
+    "evaluation_permanently_refused": true,
+    "holdout_status": "PERMANENTLY_EXPOSED_CONSUMED",
+    "one_shot_consumed": true,
+    "rows_scored": 4800
+  },
+  "raw_values_included": false,
+  "schema_version": "t21-historical-exclusion-policy-v1",
+  "upstream_registry": "evaluations/t21r17/prior_exclusion.json",
+  "upstream_registry_sha256": "7a098df399689c9de364ae2b64d0acf98884a9005eb3dc00d9af65d657be44f8"
+}

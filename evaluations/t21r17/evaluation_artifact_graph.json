@@ -1,0 +1,46 @@
+{
+  "artifact": "T21R17_EVALUATION_ARTIFACT_GRAPH",
+  "candidate_stub_nodes": 0,
+  "experiment": "t21r17",
+  "nodes": {
+    "candidate_outputs": {
+      "artifact": "evaluations/t21r17/candidate_outputs.jsonl",
+      "producer": "real_candidate_provider"
+    },
+    "evaluation_provenance": {
+      "artifact": "evaluations/t21r17/evaluation_provenance.json",
+      "producer": "evaluator"
+    },
+    "evaluation_run_ledger": {
+      "artifact": "evaluations/t21r17/evaluation_run_ledger.json",
+      "producer": "ledger"
+    },
+    "evaluator_results": {
+      "artifact": "evaluations/t21r17/evaluator_results.json",
+      "producer": "evaluator"
+    },
+    "floor_evidence": {
+      "artifact": "evaluations/t21r17/floor_evidence.json",
+      "producer": "scorer"
+    },
+    "holdout_results": {
+      "artifact": "evaluations/t21r17/holdout_results.json",
+      "producer": "scorer"
+    },
+    "metric_evidence": {
+      "artifact": "evaluations/t21r17/metric_evidence.json",
+      "producer": "evaluator"
+    },
+    "raw_results": {
+      "artifact": "evaluations/t21r17/raw_results.jsonl",
+      "producer": "evaluator"
+    },
+    "score_results": {
+      "artifact": "evaluations/t21r17/score_results.json",
+      "producer": "scorer"
+    }
+  },
+  "post_seal_graph_changes": 0,
+  "rule": "the complete production evaluation artifact graph is fixed before construction; every production node names a production producer",
+  "schema_version": "t21-evaluation-artifact-graph-v1"
+}

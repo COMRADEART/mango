@@ -1,0 +1,1170 @@
+{
+  "artifact": "T21R17_ARTIFACT_GRAPH",
+  "experiment": "t21r17",
+  "known_producers": [
+    "author",
+    "blindness_auditor",
+    "builder",
+    "configuration",
+    "construction_gate",
+    "contract",
+    "evaluator",
+    "evidence_contract",
+    "exact_design_auditor",
+    "field_provenance",
+    "historical_exclusion",
+    "historical_registry",
+    "ledger",
+    "metric_registry",
+    "metric_semantics",
+    "metric_semantics_fixtures",
+    "official_validator",
+    "protocol_doctor",
+    "qualification",
+    "r15_closure",
+    "r16_closure",
+    "real_candidate_provider",
+    "remediation_exclusion",
+    "remediation_registry",
+    "runtime_contract",
+    "scorer",
+    "seal",
+    "shadow_runtime_validator",
+    "static_gold_auditor"
+  ],
+  "nodes": {
+    "adjudication": {
+      "consumers": [
+        "protocol_doctor",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/test_failure_adjudication.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "qualification",
+      "required": true,
+      "required_inputs": []
+    },
+    "applicability": {
+      "consumers": [
+        "protocol_doctor",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/current_test_applicability.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "qualification",
+      "required": true,
+      "required_inputs": [
+        "adjudication"
+      ]
+    },
+    "artifact_graph": {
+      "consumers": [
+        "protocol_doctor",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/artifact_graph.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "contract",
+      "required": true,
+      "required_inputs": [
+        "master_contract"
+      ]
+    },
+    "author_spec": {
+      "consumers": [
+        "builder",
+        "construction_gate",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/author_spec.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "author",
+      "required": true,
+      "required_inputs": [
+        "master_contract",
+        "qualification_lock",
+        "historical_exclusion",
+        "remediation_exclusion"
+      ]
+    },
+    "blindness_audit": {
+      "consumers": [
+        "construction_gate",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/holdout_blindness.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "blindness_auditor",
+      "required": true,
+      "required_inputs": [
+        "corpus",
+        "suites",
+        "author_spec",
+        "material_provenance"
+      ]
+    },
+    "candidate_outputs": {
+      "consumers": [
+        "evaluator"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/candidate_outputs.jsonl",
+      "phase_created": "EVALUATION_STARTED",
+      "phase_frozen": "EVALUATION_COMPLETE",
+      "phase_owner": "EVALUATION",
+      "producer": "real_candidate_provider",
+      "required": true,
+      "required_inputs": [
+        "evaluation_ledger",
+        "sealed_preflight"
+      ]
+    },
+    "candidate_provider_compatibility": {
+      "consumers": [
+        "holdout_manifest",
+        "material_provenance",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/candidate_provider_compatibility.json",
+      "phase_created": "CONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "real_candidate_provider",
+      "required": true,
+      "required_inputs": [
+        "corpus",
+        "runtime_loader_validation"
+      ]
+    },
+    "candidate_runtime_data_contract": {
+      "consumers": [
+        "qualification",
+        "seal",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/candidate_runtime_data_contract.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "runtime_contract",
+      "required": true,
+      "required_inputs": [
+        "runtime_corpus_contract",
+        "runtime_field_provenance",
+        "runtime_freeze"
+      ]
+    },
+    "construction_gate": {
+      "consumers": [
+        "gate_auditor_crosscheck",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/construction_gate.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "construction_gate",
+      "required": true,
+      "required_inputs": [
+        "historical_uniqueness",
+        "remediation_uniqueness",
+        "exact_design_audit",
+        "blindness_audit",
+        "root_of_trust"
+      ]
+    },
+    "construction_ledger": {
+      "consumers": [
+        "builder",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/construction_run_ledger.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "ledger",
+      "required": true,
+      "required_inputs": [
+        "qualification_lock"
+      ]
+    },
+    "corpus": {
+      "consumers": [
+        "suites",
+        "static_gold_audit",
+        "blindness_audit",
+        "gold_compatibility",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "rag/gk_holdout_t21r17",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "builder",
+      "required": true,
+      "required_inputs": [
+        "author_spec",
+        "construction_ledger"
+      ]
+    },
+    "domain_taxonomy": {
+      "consumers": [
+        "author",
+        "builder",
+        "gold_compatibility",
+        "evaluator",
+        "scorer",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/domain_taxonomy_contract.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "contract",
+      "required": true,
+      "required_inputs": [
+        "master_contract"
+      ]
+    },
+    "evaluation_artifact_graph": {
+      "consumers": [
+        "qualification",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/evaluation_artifact_graph.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "evidence_contract",
+      "required": true,
+      "required_inputs": [
+        "evaluation_reporting_contract",
+        "floor_evidence_contract",
+        "artifact_graph"
+      ]
+    },
+    "evaluation_ledger": {
+      "consumers": [
+        "candidate_outputs",
+        "evaluation_provenance"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/evaluation_run_ledger.json",
+      "phase_created": "EVALUATION_STARTED",
+      "phase_frozen": "EVALUATION_COMPLETE",
+      "phase_owner": "EVALUATION",
+      "producer": "ledger",
+      "required": true,
+      "required_inputs": [
+        "sealed_preflight"
+      ]
+    },
+    "evaluation_provenance": {
+      "consumers": [
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/evaluation_provenance.json",
+      "phase_created": "EVALUATION_STARTED",
+      "phase_frozen": "EVALUATION_COMPLETE",
+      "phase_owner": "EVALUATION",
+      "producer": "evaluator",
+      "required": true,
+      "required_inputs": [
+        "holdout_frozen",
+        "evaluation_ledger",
+        "evaluator_results",
+        "score_results"
+      ]
+    },
+    "evaluation_reporting_contract": {
+      "consumers": [
+        "floor_evidence_contract",
+        "evaluation_artifact_graph",
+        "scorer",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/evaluation_reporting_contract.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "evidence_contract",
+      "required": true,
+      "required_inputs": [
+        "master_contract",
+        "official_metric_registry"
+      ]
+    },
+    "evaluator_freeze": {
+      "consumers": [
+        "qualification_lock",
+        "seal",
+        "evaluator"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/evaluator_freeze.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "qualification",
+      "required": true,
+      "required_inputs": []
+    },
+    "evaluator_results": {
+      "consumers": [
+        "scorer",
+        "evaluation_provenance"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/evaluator_results.json",
+      "phase_created": "EVALUATION_STARTED",
+      "phase_frozen": "EVALUATION_COMPLETE",
+      "phase_owner": "EVALUATION",
+      "producer": "evaluator",
+      "required": true,
+      "required_inputs": [
+        "candidate_outputs",
+        "suites",
+        "domain_taxonomy",
+        "evaluator_freeze"
+      ]
+    },
+    "exact_design_audit": {
+      "consumers": [
+        "construction_gate",
+        "gate_auditor_crosscheck",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/exact_design_audit.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "exact_design_auditor",
+      "required": true,
+      "required_inputs": [
+        "suites",
+        "master_contract"
+      ]
+    },
+    "experiment_config": {
+      "consumers": [
+        "author",
+        "qualification_lock",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/experiment.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "configuration",
+      "required": true,
+      "required_inputs": [
+        "master_contract"
+      ]
+    },
+    "floor_evidence": {
+      "consumers": [
+        "holdout_results"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/floor_evidence.json",
+      "phase_created": "EVALUATION_STARTED",
+      "phase_frozen": "EVALUATION_COMPLETE",
+      "phase_owner": "EVALUATION",
+      "producer": "scorer",
+      "required": true,
+      "required_inputs": [
+        "metric_evidence",
+        "floor_evidence_contract"
+      ]
+    },
+    "floor_evidence_contract": {
+      "consumers": [
+        "floor_evidence",
+        "scorer",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/floor_evidence_contract.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "evidence_contract",
+      "required": true,
+      "required_inputs": [
+        "official_metric_registry",
+        "evaluation_reporting_contract"
+      ]
+    },
+    "gate_auditor_crosscheck": {
+      "consumers": [
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/gate_auditor_crosscheck.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "exact_design_auditor",
+      "required": true,
+      "required_inputs": [
+        "construction_gate",
+        "exact_design_audit"
+      ]
+    },
+    "gold_compatibility": {
+      "consumers": [
+        "seal",
+        "sealed_preflight"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/gold_compatibility.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "official_validator",
+      "required": true,
+      "required_inputs": [
+        "corpus",
+        "suites",
+        "domain_taxonomy",
+        "static_gold_audit"
+      ]
+    },
+    "historical_exclusion": {
+      "consumers": [
+        "author_spec",
+        "historical_uniqueness",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/historical_exclusion.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "historical_registry",
+      "required": true,
+      "required_inputs": [
+        "prior_exclusion_registry",
+        "r16_closure"
+      ]
+    },
+    "historical_uniqueness": {
+      "consumers": [
+        "construction_gate",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/historical_uniqueness.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "historical_exclusion",
+      "required": true,
+      "required_inputs": [
+        "historical_exclusion",
+        "author_spec",
+        "corpus",
+        "suites"
+      ]
+    },
+    "holdout_frozen": {
+      "consumers": [
+        "sealed_preflight",
+        "evaluation_provenance"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/HOLDOUT_FROZEN",
+      "phase_created": "SEALED",
+      "phase_frozen": "EVALUATION_STARTED",
+      "phase_owner": "SEAL",
+      "producer": "seal",
+      "required": true,
+      "required_inputs": [
+        "holdout_manifest",
+        "holdout_frozen_schema"
+      ]
+    },
+    "holdout_frozen_schema": {
+      "consumers": [
+        "seal",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/holdout_frozen_schema.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "contract",
+      "required": true,
+      "required_inputs": [
+        "master_contract"
+      ]
+    },
+    "holdout_manifest": {
+      "consumers": [
+        "holdout_frozen",
+        "sealed_preflight"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/holdout_manifest.json",
+      "phase_created": "SEALED",
+      "phase_frozen": "EVALUATION_STARTED",
+      "phase_owner": "SEAL",
+      "producer": "seal",
+      "required": true,
+      "required_inputs": [
+        "artifact_graph",
+        "blindness_audit",
+        "candidate_provider_compatibility",
+        "construction_gate",
+        "construction_ledger",
+        "corpus",
+        "exact_design_audit",
+        "gate_auditor_crosscheck",
+        "gold_compatibility",
+        "master_contract",
+        "material_provenance",
+        "qualification_lock",
+        "root_of_trust",
+        "runtime_loader_validation",
+        "static_gold_audit",
+        "suites"
+      ]
+    },
+    "holdout_results": {
+      "consumers": [
+        "evaluation_provenance"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/holdout_results.json",
+      "phase_created": "EVALUATION_STARTED",
+      "phase_frozen": "EVALUATION_COMPLETE",
+      "phase_owner": "EVALUATION",
+      "producer": "scorer",
+      "required": true,
+      "required_inputs": [
+        "floor_evidence",
+        "score_results"
+      ]
+    },
+    "master_contract": {
+      "consumers": [
+        "artifact_graph",
+        "author",
+        "builder",
+        "construction_gate",
+        "official_validator",
+        "seal",
+        "evaluator",
+        "scorer",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/t21_master_contract.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "contract",
+      "required": true,
+      "required_inputs": []
+    },
+    "material_provenance": {
+      "consumers": [
+        "builder",
+        "blindness_auditor",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/material_provenance.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "builder",
+      "required": true,
+      "required_inputs": [
+        "author_spec",
+        "candidate_provider_compatibility",
+        "construction_ledger",
+        "runtime_loader_validation"
+      ]
+    },
+    "metric_evidence": {
+      "consumers": [
+        "floor_evidence",
+        "score_results"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/metric_evidence.json",
+      "phase_created": "EVALUATION_STARTED",
+      "phase_frozen": "EVALUATION_COMPLETE",
+      "phase_owner": "EVALUATION",
+      "producer": "evaluator",
+      "required": true,
+      "required_inputs": [
+        "raw_results",
+        "official_metric_registry"
+      ]
+    },
+    "metric_implementation_registry": {
+      "consumers": [
+        "scorer",
+        "metric_semantics_fixtures",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/metric_implementation_registry.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "QUALIFIED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "metric_semantics",
+      "required": true,
+      "required_inputs": [
+        "official_metric_semantics"
+      ]
+    },
+    "metric_semantics_fixtures": {
+      "consumers": [
+        "protocol_doctor",
+        "official_validator"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/metric_semantics_fixtures.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "QUALIFIED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "metric_semantics_fixtures",
+      "required": true,
+      "required_inputs": [
+        "official_metric_semantics",
+        "metric_implementation_registry",
+        "evaluator_freeze"
+      ]
+    },
+    "negative_controls": {
+      "consumers": [
+        "protocol_doctor",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/negative_controls.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "qualification",
+      "required": true,
+      "required_inputs": [
+        "master_contract",
+        "artifact_graph"
+      ]
+    },
+    "official_metric_registry": {
+      "consumers": [
+        "floor_evidence_contract",
+        "evaluation_reporting_contract",
+        "scorer",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/official_metric_registry.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "metric_registry",
+      "required": true,
+      "required_inputs": [
+        "master_contract"
+      ]
+    },
+    "official_metric_semantics": {
+      "consumers": [
+        "scorer",
+        "metric_semantics_fixtures",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/official_metric_semantics.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "QUALIFIED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "metric_semantics",
+      "required": true,
+      "required_inputs": [
+        "master_contract"
+      ]
+    },
+    "preconstruction_audit": {
+      "consumers": [
+        "qualification"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": false,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/T21R16_PRECONSTRUCTION_AUDIT.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "protocol_doctor",
+      "required": false,
+      "required_inputs": [
+        "protocol_doctor_report",
+        "qualification_lock"
+      ]
+    },
+    "prior_exclusion_registry": {
+      "consumers": [
+        "historical_exclusion"
+      ],
+      "external": true,
+      "include_in_evaluation_provenance": false,
+      "include_in_seal": false,
+      "path": "evaluations/t21r14/prior_exclusion.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "QUALIFIED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "historical_registry",
+      "required": true,
+      "required_inputs": []
+    },
+    "protocol_doctor_report": {
+      "consumers": [
+        "operator"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": false,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/protocol_doctor_report.json",
+      "phase_created": "QUALIFIED",
+      "phase_frozen": "QUALIFIED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "protocol_doctor",
+      "required": false,
+      "required_inputs": [
+        "artifact_graph",
+        "qualification_lock",
+        "test_cleanliness"
+      ]
+    },
+    "qualification_lock": {
+      "consumers": [
+        "author_spec",
+        "construction_ledger",
+        "seal",
+        "protocol_doctor"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/qualification_lock.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "qualification",
+      "required": true,
+      "required_inputs": [
+        "master_contract",
+        "experiment_config",
+        "domain_taxonomy",
+        "historical_exclusion",
+        "runtime_freeze",
+        "evaluator_freeze"
+      ]
+    },
+    "r16_closure": {
+      "consumers": [
+        "historical_exclusion",
+        "protocol_doctor",
+        "master_contract"
+      ],
+      "external": true,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r16/T21R16_CLOSURE.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "QUALIFIED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "r16_closure",
+      "required": true,
+      "required_inputs": []
+    },
+    "raw_results": {
+      "consumers": [
+        "metric_evidence",
+        "floor_evidence"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/raw_results.jsonl",
+      "phase_created": "EVALUATION_STARTED",
+      "phase_frozen": "EVALUATION_COMPLETE",
+      "phase_owner": "EVALUATION",
+      "producer": "evaluator",
+      "required": true,
+      "required_inputs": [
+        "candidate_outputs",
+        "evaluator_results"
+      ]
+    },
+    "remediation_exclusion": {
+      "consumers": [
+        "author_spec",
+        "remediation_uniqueness",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/remediation_exclusion.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "remediation_registry",
+      "required": true,
+      "required_inputs": [
+        "remediation_registry"
+      ]
+    },
+    "remediation_registry": {
+      "consumers": [
+        "remediation_exclusion"
+      ],
+      "external": true,
+      "include_in_evaluation_provenance": false,
+      "include_in_seal": false,
+      "path": "evaluations/t21r14/remediation_exclusion.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "QUALIFIED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "remediation_registry",
+      "required": true,
+      "required_inputs": []
+    },
+    "remediation_uniqueness": {
+      "consumers": [
+        "construction_gate",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/remediation_uniqueness.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "remediation_exclusion",
+      "required": true,
+      "required_inputs": [
+        "remediation_exclusion",
+        "author_spec",
+        "corpus",
+        "suites"
+      ]
+    },
+    "root_of_trust": {
+      "consumers": [
+        "construction_gate",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/root_of_trust.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "qualification",
+      "required": true,
+      "required_inputs": [
+        "master_contract",
+        "runtime_freeze",
+        "evaluator_freeze"
+      ]
+    },
+    "runtime_corpus_contract": {
+      "consumers": [
+        "candidate_runtime_data_contract",
+        "author",
+        "builder",
+        "protocol_doctor",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/runtime_corpus_contract.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "runtime_contract",
+      "required": true,
+      "required_inputs": [
+        "runtime_freeze"
+      ]
+    },
+    "runtime_field_provenance": {
+      "consumers": [
+        "candidate_runtime_data_contract",
+        "builder",
+        "protocol_doctor",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/runtime_field_provenance.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "field_provenance",
+      "required": true,
+      "required_inputs": [
+        "runtime_corpus_contract"
+      ]
+    },
+    "runtime_freeze": {
+      "consumers": [
+        "qualification_lock",
+        "seal",
+        "evaluator"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/runtime_freeze.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "qualification",
+      "required": true,
+      "required_inputs": []
+    },
+    "runtime_loader_validation": {
+      "consumers": [
+        "candidate_provider_compatibility",
+        "holdout_manifest",
+        "material_provenance",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/runtime_loader_validation.json",
+      "phase_created": "CONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "shadow_runtime_validator",
+      "required": true,
+      "required_inputs": [
+        "corpus",
+        "runtime_corpus_contract"
+      ]
+    },
+    "score_results": {
+      "consumers": [
+        "evaluation_provenance",
+        "operator"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/score_results.json",
+      "phase_created": "EVALUATION_STARTED",
+      "phase_frozen": "EVALUATION_COMPLETE",
+      "phase_owner": "EVALUATION",
+      "producer": "scorer",
+      "required": true,
+      "required_inputs": [
+        "evaluator_results",
+        "master_contract"
+      ]
+    },
+    "sealed_preflight": {
+      "consumers": [
+        "evaluation_ledger",
+        "candidate_outputs"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": false,
+      "path": "evaluations/t21r17/sealed_preflight.json",
+      "phase_created": "SEALED",
+      "phase_frozen": "EVALUATION_STARTED",
+      "phase_owner": "EVALUATION",
+      "producer": "official_validator",
+      "required": true,
+      "required_inputs": [
+        "holdout_frozen",
+        "holdout_manifest",
+        "gold_compatibility"
+      ]
+    },
+    "static_gold_audit": {
+      "consumers": [
+        "gold_compatibility",
+        "construction_gate",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/static_gold_audit.json",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "static_gold_auditor",
+      "required": true,
+      "required_inputs": [
+        "corpus",
+        "suites",
+        "domain_taxonomy"
+      ]
+    },
+    "suites": {
+      "consumers": [
+        "exact_design_audit",
+        "static_gold_audit",
+        "blindness_audit",
+        "gold_compatibility",
+        "evaluator",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/suites",
+      "phase_created": "CONSTRUCTION_STARTED",
+      "phase_frozen": "SEALED",
+      "phase_owner": "CONSTRUCTION",
+      "producer": "builder",
+      "required": true,
+      "required_inputs": [
+        "author_spec",
+        "corpus",
+        "construction_ledger",
+        "material_provenance"
+      ]
+    },
+    "test_cleanliness": {
+      "consumers": [
+        "protocol_doctor",
+        "seal"
+      ],
+      "external": false,
+      "include_in_evaluation_provenance": true,
+      "include_in_seal": true,
+      "path": "evaluations/t21r17/test_cleanliness.json",
+      "phase_created": "PRECONSTRUCTION",
+      "phase_frozen": "SEALED",
+      "phase_owner": "PRECONSTRUCTION",
+      "producer": "qualification",
+      "required": true,
+      "required_inputs": [
+        "adjudication",
+        "applicability"
+      ]
+    }
+  },
+  "schema_version": "t21-artifact-graph-v1"
+}

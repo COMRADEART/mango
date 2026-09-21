@@ -1,0 +1,38 @@
+{
+  "artifact": "T21R17_CANDIDATE_RUNTIME_DATA_CONTRACT",
+  "candidate": {
+    "candidate_rows_executed_in_preconstruction": 0,
+    "corpus_loader": "src/sciencemath/knowledge/corpus.py:load_corpus (frozen, no adapter)",
+    "evidence_passthrough": [
+      "citations",
+      "citation_report",
+      "claim_review",
+      "evidence_pack",
+      "eligibility"
+    ],
+    "generation": {
+      "canonical_serialization": "t21_protocol.providers_r17:canonical_candidate_row_v2",
+      "entry": "src/sciencemath/knowledge/pipeline.py:answer_knowledge"
+    },
+    "initialization": {
+      "executes_holdout_rows": false,
+      "loads_corpus_once": true
+    },
+    "module": "t21_protocol/providers_r17.py",
+    "module_sha256": "6451d4b52f92dd63c872ca7014f6ea644873dd86e550cb6424b1825991ce0e2c",
+    "provider_id": "t21_protocol.providers_r17:RealCandidateProviderEvidence",
+    "serialization": "t21_protocol.providers_r17:canonical_candidate_row_v2"
+  },
+  "experiment": "t21r17",
+  "no_second_corpus_model": true,
+  "rule": "the authored holdout material and the frozen candidate runtime share exactly one corpus contract; there is no second, adapter-repaired corpus model",
+  "runtime_corpus_contract": {
+    "path": "evaluations/t21r17/runtime_corpus_contract.json",
+    "sha256": "b21f2eef58166cc2db499b796a6c33a51bc77d25e99e0de6d7b0e2965b0a5eab"
+  },
+  "runtime_field_provenance": {
+    "path": "evaluations/t21r17/runtime_field_provenance.json",
+    "sha256": "e3cc769255d36bedac31a5c075e755c28806300ddfae5434dcacf9ca9939f814"
+  },
+  "schema_version": "t21-candidate-runtime-data-contract-v1"
+}

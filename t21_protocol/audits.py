@@ -334,11 +334,14 @@ def root_of_trust_audit(source_root: Path, contract: Any) -> dict[str, Any]:
         mismatches.append("floor_hash")
     runtime_contract_checks: dict[str, Any] = {}
     if contract_runtime_native(contract) is not None:
+        # the candidate provider module is whatever the contract registered;
+        # R16 contracts resolve to t21_protocol/providers.py
+        provider_module = contract.get("roots.candidate_provider_id").split(":", 1)[0].replace(".", "/") + ".py"
         expected = {
             "runtime_data_contract_root": sha256_json(read_json(source_root / contract.get("artifacts.candidate_runtime_data_contract"))),
             "runtime_corpus_contract_sha256": sha256_file(source_root / contract.get("artifacts.runtime_corpus_contract")),
             "runtime_field_provenance_sha256": sha256_file(source_root / contract.get("artifacts.runtime_field_provenance")),
-            "candidate_provider_sha256": sha256_file(source_root / "t21_protocol" / "providers.py"),
+            "candidate_provider_sha256": sha256_file(source_root / provider_module),
         }
         for name, expected_digest in expected.items():
             actual = roots.get(name)
@@ -346,7 +349,7 @@ def root_of_trust_audit(source_root: Path, contract: Any) -> dict[str, Any]:
                 mismatches.append(name)
         runtime_contract_checks = {
             "verified_roots": sorted(expected),
-            "provider_module": "t21_protocol/providers.py",
+            "provider_module": provider_module,
         }
     return {
         "schema_version": "t21-root-of-trust-audit-v1",
