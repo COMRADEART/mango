@@ -329,3 +329,50 @@ def test_metadata_rule_requires_stale_request(tmp_path) -> None:
     # Request date inside the snapshot window: the snapshot is current
     # for this request, so no routing.
     assert result.status != ROUTE_WEB_RESEARCH
+
+
+def test_metadata_rule_top_ranked_only(tmp_path) -> None:
+    # The metadata route keys on the TOP-RANKED evidence item: in the
+    # one-record-per-row runtime corpus a static row's own STATIC record
+    # ranks first even when other TIME_SENSITIVE registers sit in the
+    # retrieval window, so no unnecessary routing occurs.
+    corpus_dir = tmp_path / "mixed"
+    rows = [
+        ("gk-t22mix-0001", "TIME_SENSITIVE"),
+        ("gk-t22mix-0002", "STATIC"),
+        ("gk-t22mix-0003", "STATIC"),
+    ]
+    sources, chunks = [], []
+    for source_id, freshness in rows:
+        text = f"Blind record {source_id} states the registered value 41."
+        src = KnowledgeSourceRecord(
+            source_id=source_id,
+            source_title="T22 mixed fixture",
+            source_type="fixture",
+            source_uri_or_origin="project://t22/fixtures",
+            publisher_or_collection="mango-t22",
+            license="CC0",
+            revision_or_version="v1",
+            retrieved_at_or_snapshot_date=SNAPSHOT,
+            language="en",
+            authority_class="GENERAL_REFERENCE",
+            freshness_class=freshness,
+            topic_tags=["cross_domain"],
+            content_text=text,
+        )
+        sources.append(src)
+        chunks.append(KnowledgeChunk(
+            chunk_id=f"{source_id}-001", source_id=source_id,
+            section="main", ordinal=0, text=text, span=(0, len(text))))
+    build_corpus_files(corpus_dir, sources, chunks, snapshot_date=SNAPSHOT)
+    corpus = load_corpus(corpus_dir)
+    # The STATIC record's own query answers; the TIME_SENSITIVE record's
+    # identical-shape query routes.
+    static_result = answer_knowledge(
+        "What registered value does blind record gk-t22mix-0002 state?",
+        corpus, now=REQUEST_DATE)
+    ts_result = answer_knowledge(
+        "What registered value does blind record gk-t22mix-0001 state?",
+        corpus, now=REQUEST_DATE)
+    assert static_result.status != ROUTE_WEB_RESEARCH
+    assert ts_result.status == ROUTE_WEB_RESEARCH
