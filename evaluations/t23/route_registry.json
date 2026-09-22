@@ -1,0 +1,183 @@
+{
+  "authority_boundaries": [
+    "select exactly one registered route",
+    "emit a structured reason code and bounded decision trace",
+    "never rewrite candidate answers",
+    "never rewrite metric semantics or evaluator gold",
+    "never override security restrictions or grant permissions",
+    "never invent tool availability or capability identifiers",
+    "never convert missing/conflicting evidence into confident evidence",
+    "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+  ],
+  "precedence": [
+    "INPUT_VALIDATION",
+    "SECURITY_POLICY",
+    "CURRENT_OR_LIVE_REQUIREMENT",
+    "HISTORICAL_AS_OF",
+    "CONFLICT_OR_INSUFFICIENT_EVIDENCE",
+    "SPECIALIST_OR_TOOL_REQUIREMENT",
+    "QUALIFIED_LOCAL_KNOWLEDGE_RAG",
+    "LOCAL_RESPONSE"
+  ],
+  "routes": {
+    "ANSWER_LOCAL": {
+      "allowed_inputs": [
+        "query"
+      ],
+      "consumer": "GENERAL",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE if downstream lacks support",
+      "preconditions": [
+        "no higher-precedence route applies"
+      ],
+      "producer": "ExecutiveRouterV2.local_answer_gate",
+      "required_capability": "GENERAL",
+      "route_id": "ANSWER_LOCAL",
+      "terminal": true
+    },
+    "CONFLICT_HANDLING": {
+      "allowed_inputs": [
+        "evidence_state",
+        "available_capabilities"
+      ],
+      "consumer": "KNOWLEDGE_RAG conflict handling",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE; never confident resolution",
+      "preconditions": [
+        "evidence_state=CONFLICTING"
+      ],
+      "producer": "ExecutiveRouterV2.evidence_gate",
+      "required_capability": "KNOWLEDGE_RAG",
+      "route_id": "CONFLICT_HANDLING",
+      "terminal": true
+    },
+    "HISTORICAL_AS_OF": {
+      "allowed_inputs": [
+        "query",
+        "request_date",
+        "snapshot_date",
+        "available_capabilities"
+      ],
+      "consumer": "KNOWLEDGE_RAG historical mode",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE when Knowledge/RAG unavailable",
+      "preconditions": [
+        "T22 temporal intent=HISTORICAL_AS_OF"
+      ],
+      "producer": "ExecutiveRouterV2.temporal_gate",
+      "required_capability": "KNOWLEDGE_RAG",
+      "route_id": "HISTORICAL_AS_OF",
+      "terminal": true
+    },
+    "INSUFFICIENT_EVIDENCE": {
+      "allowed_inputs": [
+        "evidence_state",
+        "requested_capability",
+        "available_capabilities",
+        "permission_grants"
+      ],
+      "consumer": "NO_TOOL/abstention response",
+      "fallback_policy": "none; abstention is terminal",
+      "preconditions": [
+        "evidence insufficient or required route unavailable/unauthorized"
+      ],
+      "producer": "ExecutiveRouterV2.fail_closed_gate",
+      "required_capability": "NO_TOOL",
+      "route_id": "INSUFFICIENT_EVIDENCE",
+      "terminal": true
+    },
+    "KNOWLEDGE_RAG": {
+      "allowed_inputs": [
+        "query",
+        "evidence_state",
+        "citation_required",
+        "available_capabilities"
+      ],
+      "consumer": "KNOWLEDGE_RAG",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE when Knowledge/RAG unavailable",
+      "preconditions": [
+        "stable factual/citation-grounded local request"
+      ],
+      "producer": "ExecutiveRouterV2.local_knowledge_gate",
+      "required_capability": "KNOWLEDGE_RAG",
+      "route_id": "KNOWLEDGE_RAG",
+      "terminal": true
+    },
+    "ROUTER_CONFIGURATION_ERROR": {
+      "allowed_inputs": [
+        "query",
+        "request_date",
+        "snapshot_date",
+        "evidence_state",
+        "requested_capability",
+        "available_capabilities",
+        "permission_grants",
+        "security_state",
+        "source_freshness",
+        "citation_required"
+      ],
+      "consumer": "NO_TOOL/configuration error response",
+      "fallback_policy": "none; fail closed and emit no answer/tool route",
+      "preconditions": [
+        "unknown field, malformed value, or invalid registry state"
+      ],
+      "producer": "ExecutiveRouterV2.input_validator",
+      "required_capability": "NO_TOOL",
+      "route_id": "ROUTER_CONFIGURATION_ERROR",
+      "terminal": true
+    },
+    "ROUTE_WEB_RESEARCH": {
+      "allowed_inputs": [
+        "query",
+        "request_date",
+        "snapshot_date",
+        "source_freshness",
+        "available_capabilities",
+        "permission_grants"
+      ],
+      "consumer": "WEB_RESEARCH",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE; never stale local answer",
+      "preconditions": [
+        "current/open-web evidence required",
+        "WEB_RESEARCH executable",
+        "network permission present"
+      ],
+      "producer": "ExecutiveRouterV2.temporal_or_explicit_web_gate",
+      "required_capability": "WEB_RESEARCH",
+      "route_id": "ROUTE_WEB_RESEARCH",
+      "terminal": true
+    },
+    "SECURITY_REFUSAL": {
+      "allowed_inputs": [
+        "query",
+        "security_state"
+      ],
+      "consumer": "NO_TOOL/policy response",
+      "fallback_policy": "none; security restrictions are never downgraded",
+      "preconditions": [
+        "security_state=BLOCK or unsafe action semantics"
+      ],
+      "producer": "ExecutiveRouterV2.security_gate",
+      "required_capability": "NO_TOOL",
+      "route_id": "SECURITY_REFUSAL",
+      "terminal": true
+    },
+    "TOOL_OR_SPECIALIST_ROUTE": {
+      "allowed_inputs": [
+        "query",
+        "requested_capability",
+        "available_capabilities",
+        "permission_grants"
+      ],
+      "consumer": "registered SkillRegistry capability",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE on unsupported/unavailable route",
+      "preconditions": [
+        "specialist required",
+        "capability executable",
+        "permissions present"
+      ],
+      "producer": "ExecutiveRouterV2.specialist_gate",
+      "required_capability": "DYNAMIC_REGISTERED_SPECIALIST",
+      "route_id": "TOOL_OR_SPECIALIST_ROUTE",
+      "terminal": true
+    }
+  },
+  "schema_version": "t23-route-registry-v1"
+}

@@ -1,0 +1,296 @@
+{
+  "artifact": "T23_EXECUTIVE_ROUTER_CONTRACT",
+  "authority_boundaries": [
+    "select exactly one registered route",
+    "emit a structured reason code and bounded decision trace",
+    "never rewrite candidate answers",
+    "never rewrite metric semantics or evaluator gold",
+    "never override security restrictions or grant permissions",
+    "never invent tool availability or capability identifiers",
+    "never convert missing/conflicting evidence into confident evidence",
+    "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+  ],
+  "deterministic_outcome_count": 1,
+  "precedence": [
+    "INPUT_VALIDATION",
+    "SECURITY_POLICY",
+    "CURRENT_OR_LIVE_REQUIREMENT",
+    "HISTORICAL_AS_OF",
+    "CONFLICT_OR_INSUFFICIENT_EVIDENCE",
+    "SPECIALIST_OR_TOOL_REQUIREMENT",
+    "QUALIFIED_LOCAL_KNOWLEDGE_RAG",
+    "LOCAL_RESPONSE"
+  ],
+  "reason_route_map": {
+    "CITATION_GROUNDED_LOCAL": [
+      "KNOWLEDGE_RAG"
+    ],
+    "CONFLICTING_EVIDENCE": [
+      "CONFLICT_HANDLING"
+    ],
+    "CONFLICT_ROUTE_UNAVAILABLE": [
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "CURRENT_REQUIRED": [
+      "ROUTE_WEB_RESEARCH"
+    ],
+    "CURRENT_ROUTE_UNAVAILABLE": [
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "EXPLICIT_WEB_REQUIRED": [
+      "ROUTE_WEB_RESEARCH"
+    ],
+    "HISTORICAL_AS_OF": [
+      "HISTORICAL_AS_OF"
+    ],
+    "HISTORICAL_ROUTE_UNAVAILABLE": [
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "INSUFFICIENT_EVIDENCE": [
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "KNOWLEDGE_ROUTE_UNAVAILABLE": [
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "LOCAL_RESPONSE_SUFFICIENT": [
+      "ANSWER_LOCAL"
+    ],
+    "RECENCY_SENSITIVE_STALE": [
+      "ROUTE_WEB_RESEARCH"
+    ],
+    "ROUTER_CONFIGURATION_ERROR": [
+      "ROUTER_CONFIGURATION_ERROR"
+    ],
+    "SECURITY_POLICY": [
+      "SECURITY_REFUSAL"
+    ],
+    "STATIC_LOCAL_ELIGIBLE": [
+      "KNOWLEDGE_RAG"
+    ],
+    "TIME_SENSITIVE_SOURCE_STALE": [
+      "ROUTE_WEB_RESEARCH"
+    ],
+    "TOOL_PERMISSION_REQUIRED": [
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "TOOL_REQUIRED": [
+      "TOOL_OR_SPECIALIST_ROUTE"
+    ],
+    "TOOL_UNAVAILABLE": [
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "UNSUPPORTED_TOOL": [
+      "INSUFFICIENT_EVIDENCE"
+    ]
+  },
+  "routes": {
+    "ANSWER_LOCAL": {
+      "eligibility_predicate": "no higher-precedence predicate applies",
+      "fallback": "INSUFFICIENT_EVIDENCE if downstream lacks support",
+      "forbidden_conditions": [
+        "gold-only metadata as a predicate",
+        "unregistered capability or implicit input field",
+        "permission/availability invention"
+      ],
+      "priority": 8,
+      "required_evidence": [
+        "no higher-precedence route applies"
+      ],
+      "route_id": "ANSWER_LOCAL",
+      "safety_constraints": [
+        "never rewrite candidate answers",
+        "never rewrite metric semantics or evaluator gold",
+        "never override security restrictions or grant permissions",
+        "never invent tool availability or capability identifiers",
+        "never convert missing/conflicting evidence into confident evidence",
+        "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+      ]
+    },
+    "CONFLICT_HANDLING": {
+      "eligibility_predicate": "evidence_state=CONFLICTING",
+      "fallback": "INSUFFICIENT_EVIDENCE; never confident resolution",
+      "forbidden_conditions": [
+        "gold-only metadata as a predicate",
+        "unregistered capability or implicit input field",
+        "permission/availability invention"
+      ],
+      "priority": 5,
+      "required_evidence": [
+        "evidence_state=CONFLICTING"
+      ],
+      "route_id": "CONFLICT_HANDLING",
+      "safety_constraints": [
+        "never rewrite candidate answers",
+        "never rewrite metric semantics or evaluator gold",
+        "never override security restrictions or grant permissions",
+        "never invent tool availability or capability identifiers",
+        "never convert missing/conflicting evidence into confident evidence",
+        "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+      ]
+    },
+    "HISTORICAL_AS_OF": {
+      "eligibility_predicate": "T22 temporal intent=HISTORICAL_AS_OF",
+      "fallback": "INSUFFICIENT_EVIDENCE when Knowledge/RAG unavailable",
+      "forbidden_conditions": [
+        "gold-only metadata as a predicate",
+        "unregistered capability or implicit input field",
+        "permission/availability invention"
+      ],
+      "priority": 4,
+      "required_evidence": [
+        "T22 temporal intent=HISTORICAL_AS_OF"
+      ],
+      "route_id": "HISTORICAL_AS_OF",
+      "safety_constraints": [
+        "never rewrite candidate answers",
+        "never rewrite metric semantics or evaluator gold",
+        "never override security restrictions or grant permissions",
+        "never invent tool availability or capability identifiers",
+        "never convert missing/conflicting evidence into confident evidence",
+        "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+      ]
+    },
+    "INSUFFICIENT_EVIDENCE": {
+      "eligibility_predicate": "insufficient evidence or required route unavailable",
+      "fallback": "none; abstention is terminal",
+      "forbidden_conditions": [
+        "gold-only metadata as a predicate",
+        "unregistered capability or implicit input field",
+        "permission/availability invention"
+      ],
+      "priority": 5,
+      "required_evidence": [
+        "evidence insufficient or required route unavailable/unauthorized"
+      ],
+      "route_id": "INSUFFICIENT_EVIDENCE",
+      "safety_constraints": [
+        "never rewrite candidate answers",
+        "never rewrite metric semantics or evaluator gold",
+        "never override security restrictions or grant permissions",
+        "never invent tool availability or capability identifiers",
+        "never convert missing/conflicting evidence into confident evidence",
+        "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+      ]
+    },
+    "KNOWLEDGE_RAG": {
+      "eligibility_predicate": "stable factual or citation-grounded local request",
+      "fallback": "INSUFFICIENT_EVIDENCE when Knowledge/RAG unavailable",
+      "forbidden_conditions": [
+        "gold-only metadata as a predicate",
+        "unregistered capability or implicit input field",
+        "permission/availability invention"
+      ],
+      "priority": 7,
+      "required_evidence": [
+        "stable factual/citation-grounded local request"
+      ],
+      "route_id": "KNOWLEDGE_RAG",
+      "safety_constraints": [
+        "never rewrite candidate answers",
+        "never rewrite metric semantics or evaluator gold",
+        "never override security restrictions or grant permissions",
+        "never invent tool availability or capability identifiers",
+        "never convert missing/conflicting evidence into confident evidence",
+        "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+      ]
+    },
+    "ROUTER_CONFIGURATION_ERROR": {
+      "eligibility_predicate": "router state fails closed validation",
+      "fallback": "none; fail closed and emit no answer/tool route",
+      "forbidden_conditions": [
+        "gold-only metadata as a predicate",
+        "unregistered capability or implicit input field",
+        "permission/availability invention"
+      ],
+      "priority": 1,
+      "required_evidence": [
+        "unknown field, malformed value, or invalid registry state"
+      ],
+      "route_id": "ROUTER_CONFIGURATION_ERROR",
+      "safety_constraints": [
+        "never rewrite candidate answers",
+        "never rewrite metric semantics or evaluator gold",
+        "never override security restrictions or grant permissions",
+        "never invent tool availability or capability identifiers",
+        "never convert missing/conflicting evidence into confident evidence",
+        "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+      ]
+    },
+    "ROUTE_WEB_RESEARCH": {
+      "eligibility_predicate": "current/live/explicit web evidence required and authorized",
+      "fallback": "INSUFFICIENT_EVIDENCE; never stale local answer",
+      "forbidden_conditions": [
+        "gold-only metadata as a predicate",
+        "unregistered capability or implicit input field",
+        "permission/availability invention"
+      ],
+      "priority": 3,
+      "required_evidence": [
+        "current/open-web evidence required",
+        "WEB_RESEARCH executable",
+        "network permission present"
+      ],
+      "route_id": "ROUTE_WEB_RESEARCH",
+      "safety_constraints": [
+        "never rewrite candidate answers",
+        "never rewrite metric semantics or evaluator gold",
+        "never override security restrictions or grant permissions",
+        "never invent tool availability or capability identifiers",
+        "never convert missing/conflicting evidence into confident evidence",
+        "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+      ]
+    },
+    "SECURITY_REFUSAL": {
+      "eligibility_predicate": "security_state=BLOCK or unsafe action semantics",
+      "fallback": "none; security restrictions are never downgraded",
+      "forbidden_conditions": [
+        "gold-only metadata as a predicate",
+        "unregistered capability or implicit input field",
+        "permission/availability invention"
+      ],
+      "priority": 2,
+      "required_evidence": [
+        "security_state=BLOCK or unsafe action semantics"
+      ],
+      "route_id": "SECURITY_REFUSAL",
+      "safety_constraints": [
+        "never rewrite candidate answers",
+        "never rewrite metric semantics or evaluator gold",
+        "never override security restrictions or grant permissions",
+        "never invent tool availability or capability identifiers",
+        "never convert missing/conflicting evidence into confident evidence",
+        "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+      ]
+    },
+    "TOOL_OR_SPECIALIST_ROUTE": {
+      "eligibility_predicate": "registered executable specialist required and authorized",
+      "fallback": "INSUFFICIENT_EVIDENCE on unsupported/unavailable route",
+      "forbidden_conditions": [
+        "gold-only metadata as a predicate",
+        "unregistered capability or implicit input field",
+        "permission/availability invention"
+      ],
+      "priority": 6,
+      "required_evidence": [
+        "specialist required",
+        "capability executable",
+        "permissions present"
+      ],
+      "route_id": "TOOL_OR_SPECIALIST_ROUTE",
+      "safety_constraints": [
+        "never rewrite candidate answers",
+        "never rewrite metric semantics or evaluator gold",
+        "never override security restrictions or grant permissions",
+        "never invent tool availability or capability identifiers",
+        "never convert missing/conflicting evidence into confident evidence",
+        "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+      ]
+    }
+  },
+  "schema_version": "t23-executive-router-contract-v1",
+  "single_decision_invariant": {
+    "ambiguous_terminal_decisions_allowed": 0,
+    "eligible_terminal_routes": "exactly 1",
+    "unhandled_supported_states_allowed": 0
+  }
+}

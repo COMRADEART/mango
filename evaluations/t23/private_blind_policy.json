@@ -1,0 +1,15 @@
+{
+  "artifact": "T23_PRIVATE_BLIND_POLICY",
+  "future_blind_publication_allowed": false,
+  "preconstruction_material_public_safe": true,
+  "private_only": [
+    "real blind corpus",
+    "gold suites",
+    "blind outputs",
+    "raw results",
+    "private anchors",
+    "ConstructionLedger",
+    "EvaluationLedger"
+  ],
+  "schema_version": "t23-private-blind-policy-v1"
+}

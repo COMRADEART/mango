@@ -1,0 +1,159 @@
+{
+  "artifact": "T22_FINAL_PROMOTION_RECORD",
+  "blind_material_included": false,
+  "capability_states": {
+    "Executive Router": "EXPERIMENTAL",
+    "KNOWLEDGE_RAG": "QUALIFIED",
+    "knowledge_rag_scope": "exact frozen capability scope measured by T22; no broader deployment or release readiness claim",
+    "registry_sha256_after_promotion": "9946dee466d8e05f43844a45b0b27ebbd3ec565b8569e72a6faeece860a46cec"
+  },
+  "evaluated_candidate": {
+    "candidate_commit": "7d919a255c2df87adcb3dd42011b505b10509713",
+    "candidate_tree": "0bbf81b234458a4ac204ff6b035bc59b59078544",
+    "current_canonical_qualified_candidate": true,
+    "runtime_root": "a9a24e3d8bba5e8b6985493d262f3699cef93cdbdd35cc09a7e4bc073ded7f5f"
+  },
+  "evaluation_identity": {
+    "construction_commit": "26ba8742e96bfa8740a481dabef5a6aa8002af5e",
+    "construction_tree": "6c90316536b4f19e941bbbbdcce7ef9cfc74d264",
+    "evaluation_commit": "13703034733b1fba95bc5831a98aa13dfdebd171",
+    "evaluation_parent": "26ba8742e96bfa8740a481dabef5a6aa8002af5e",
+    "evaluation_tree": "7daea7f128decce7edbb87d46d524995d48b62d1"
+  },
+  "execution": {
+    "automatic_retries": 0,
+    "duplicate_ids": 0,
+    "errors": 0,
+    "evaluation_attempts": 1,
+    "invalid_outputs": 0,
+    "rows_attempted": 4800,
+    "rows_evaluated": 4800,
+    "rows_executed": 4800,
+    "rows_scored": 4800,
+    "timeouts": 0
+  },
+  "floor_summary": {
+    "candidate_capability_pass": true,
+    "failed": 0,
+    "passed": 32,
+    "total": 32
+  },
+  "historical_state": {
+    "T21R16": "CLOSED / OFFICIAL_MEASUREMENT_SPECIFICATION_FAILURE",
+    "T21R17": "CLOSED / VALID_CAPABILITY_FAILURE",
+    "r16_capability_verdict": "NONE",
+    "r17_historical_evidence_preserved": true
+  },
+  "immutability_audit": {
+    "checked": [
+      "candidate identity",
+      "runtime root",
+      "construction commit/tree",
+      "evaluation commit/tree",
+      "holdout_manifest",
+      "HOLDOUT_FROZEN",
+      "seal root",
+      "evaluator root",
+      "scorer semantic root",
+      "floor hash",
+      "construction bundle",
+      "evaluation bundle"
+    ],
+    "mismatches": 0,
+    "status": "PASS"
+  },
+  "next_phase": {
+    "reserved_identifier": "T23",
+    "state": "AWAITING_EXPLICIT_AUTHORIZATION",
+    "started": false
+  },
+  "private_anchors": {
+    "construction": {
+      "anchor_sha256": "3d6550938365597ee0b6f2c64d00ddedb436cc1498ac58378ebab831376b3795",
+      "bundle_sha256": "a0777d645035c93d10cf31a6df9de6716dc55e82ef8ecfe57eba7ba38ea4404c",
+      "checksum_manifest_sha256": "730bb38ff344599ead27e53398c08177086dfef71a7ad62dcfd0fe013451b2e0",
+      "verification": "PASS"
+    },
+    "evaluation": {
+      "anchor_sha256": "6f5a040b2034d4d8a5b3dcce8023815af0d158f1effebc52ecfbc4d7548a7131",
+      "bundle_bytes": 57990758,
+      "bundle_sha256": "66b25abb76b487b92bd911f766601378001549b5a1f33696a7d72b03a2f067d8",
+      "checksum_manifest_sha256": "b84535a2dfb7f00934d2b18e32c8d1038201095df3804c08bf24645d2ddba1c6",
+      "verification": "PASS"
+    },
+    "independent_checksum_revalidation": "PASS",
+    "published": false
+  },
+  "privacy_and_publication": {
+    "blind_corpus_public": false,
+    "construction_pushed_to_public_remote": false,
+    "evaluation_pushed_to_public_remote": false,
+    "floor_evidence_containing_blind_material_public": false,
+    "gold_suites_public": false,
+    "private_anchor_bundles_public": false,
+    "public_publication_authorized": false,
+    "raw_candidate_outputs_public": false
+  },
+  "promotion_date": "2026-09-22",
+  "routing_diagnostics": {
+    "CURRENT_REQUIRED": {
+      "local": 0,
+      "other": 0,
+      "web": 70
+    },
+    "HISTORICAL_AS_OF": {
+      "correct": 50,
+      "incorrect_local": 0,
+      "incorrect_web": 0
+    },
+    "STATIC": {
+      "local": 130,
+      "other": 0,
+      "unnecessary_web": 0
+    },
+    "stale_current_answers": 0
+  },
+  "schema_version": "t22-final-promotion-record-v1",
+  "sealed_inputs": {
+    "HOLDOUT_FROZEN_sha256": "c7120345cf8bbb089a7ba64000729a0b3613540aaf0b3e64490f16bd16b89b10",
+    "evaluator_root": "f040f765b127536fbd221502cb1b06e38bb7bed28def57f8b22913f744b9cbb6",
+    "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+    "holdout_manifest_sha256": "662f684358550c90d749ed57f595b020c531fe9db7c471be0249941af5b86288",
+    "scorer_semantic_root": "d50519d1c0d4c5916a44982343eb6e4978fd1b05f7c15734f709c38aa4468d62",
+    "seal_root": "bd6cbc3c987733c94176df0aee0b39efcf05c80d73bf1b0cba12c32110d3c20a"
+  },
+  "status": "CLOSED / OFFICIAL_EVALUATION_PASS",
+  "temporal_capability": {
+    "explicit_current_routing_accuracy": {
+      "denominator": 70,
+      "numerator": 70,
+      "observed": 1.0,
+      "pass": true
+    },
+    "historical_as_of_handling": {
+      "denominator": 50,
+      "numerator": 50,
+      "observed": 1.0,
+      "pass": true
+    },
+    "stale_snapshot_false_current_answers": {
+      "observed": 0,
+      "pass": true
+    },
+    "static_query_unnecessary_web_routing": {
+      "denominator": 180,
+      "numerator": 0,
+      "observed": 0.0,
+      "pass": true
+    }
+  },
+  "verdict": "MANGO_KNOWLEDGE_RAG_CAPABILITY_PROMOTED",
+  "zero_denominator_policy": {
+    "artifact": "evaluations/t22/zero_denominator_policy_resolution.json",
+    "name": "DESIGN_MANDATED_POSITIVE_POPULATIONS_WITH_RESIDUAL_EMERGENT_CONVENTION",
+    "resolution_sha256": "400216a87507e9fee33e4dc6286f0a2dfe92fd357c27bedfff2eb1f45dc9ab37",
+    "retroactive_effect_on_r17": "NONE",
+    "scorer_implementation": "UNCHANGED",
+    "status": "FROZEN_PROSPECTIVE_T22_SEMANTICS"
+  }
+}

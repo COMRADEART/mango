@@ -1,0 +1,14 @@
+{
+  "ConstructionLedger": "ABSENT",
+  "EvaluationLedger": "ABSENT",
+  "artifact": "T23_ZERO_REAL_BLIND_EXPOSURE",
+  "blind_rows_scored": 0,
+  "candidate_blind_rows": 0,
+  "construction_attempts": 0,
+  "evaluation_attempts": 0,
+  "official_evaluator_blind_rows": 0,
+  "real_t23_corpus": "ABSENT",
+  "real_t23_suites": "ABSENT",
+  "schema_version": "t23-zero-real-exposure-v1",
+  "status": "PASS"
+}

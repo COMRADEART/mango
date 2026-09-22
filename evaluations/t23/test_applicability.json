@@ -1,0 +1,25 @@
+{
+  "LIVE": 0,
+  "UNKNOWN": 0,
+  "applicable": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 198,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "artifact": "T23_TEST_APPLICABILITY",
+  "historical_excluded": {
+    "classification": "CLOSED_T21R15_PROTOCOL_LOCK_OR_PATH_ASSUMPTION",
+    "count": 5,
+    "nodes": [
+      "tests/test_t21_protocol_kernel.py::test_real_r15_paths_are_absent",
+      "tests/test_t21_protocol_kernel.py::test_construction_phase_api_twice_stops_at_sealed",
+      "tests/test_t21_protocol_kernel.py::test_full_synthetic_protocol_twice_uses_separate_phases",
+      "tests/test_t21_protocol_kernel.py::test_real_mode_dry_rehearsal_stops_at_sealed",
+      "tests/test_t21_protocol_kernel.py::test_construction_error_marks_ledger_failed"
+    ],
+    "reason": "These nodes assert the closed T21R15 workspace/qualification lock against a later T22 promotion tree. The T22 aggregate cleanliness record already classifies historical protocol failures; T23 does not rewrite or reopen those artifacts."
+  },
+  "schema_version": "t23-test-applicability-v1"
+}

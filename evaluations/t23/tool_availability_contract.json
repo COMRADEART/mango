@@ -1,0 +1,9 @@
+{
+  "artifact": "T23_TOOL_AVAILABILITY_CONTRACT",
+  "availability_signal": "available_capabilities can only narrow executable registry entries",
+  "failure_behavior": "INSUFFICIENT_EVIDENCE",
+  "permission_signal": "permission_grants must cover capability.required_permissions",
+  "registry": "sciencemath.executive.skills.SkillRegistry",
+  "schema_version": "t23-tool-availability-contract-v1",
+  "unavailable_tool_route_rate_required": 0
+}

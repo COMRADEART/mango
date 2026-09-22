@@ -267,6 +267,15 @@ def test_runtime_files_unchanged_since_freeze():
     base_text = show.stdout.decode("utf-8").replace("\r\n", "\n")
     head_text = (ROOT / skills_rel).read_text(encoding="utf-8") \
         .replace("\r\n", "\n")
+    promotion_path = ROOT / "evaluations/t22/T22_FINAL_PROMOTION_RECORD.json"
+    if promotion_path.exists():
+        promotion = json.loads(promotion_path.read_text(encoding="utf-8"))
+        assert promotion["verdict"] == \
+            "MANGO_KNOWLEDGE_RAG_CAPABILITY_PROMOTED"
+        assert promotion["historical_state"]["T21R17"] == \
+            "CLOSED / VALID_CAPABILITY_FAILURE"
+        assert "availability=QUALIFIED" in _knowledge_rag_block(head_text)
+        return
     base_wo = base_text.replace(_knowledge_rag_block(base_text), "")
     head_wo = head_text.replace(_knowledge_rag_block(head_text), "")
     assert base_wo == head_wo, \

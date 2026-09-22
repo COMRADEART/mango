@@ -1,0 +1,172 @@
+{
+  "artifact": "T23_ROUTER_CONFUSION_MATRIX",
+  "counts": {
+    "ANSWER_LOCAL": {
+      "ANSWER_LOCAL": 80,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "CONFLICT_HANDLING": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 80,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "HISTORICAL_AS_OF": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 96,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "INSUFFICIENT_EVIDENCE": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 200,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "KNOWLEDGE_RAG": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 356,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "ROUTER_CONFIGURATION_ERROR": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 80,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "ROUTE_WEB_RESEARCH": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 196,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "SECURITY_REFUSAL": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 96,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "TOOL_OR_SPECIALIST_ROUTE": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 96
+    }
+  },
+  "gold_location": "evaluator-side nonblind_qualification_gold.jsonl",
+  "macro_accuracy": 1.0,
+  "per_route": {
+    "ANSWER_LOCAL": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "CONFLICT_HANDLING": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "HISTORICAL_AS_OF": {
+      "accuracy": 1.0,
+      "correct": 96,
+      "population": 96,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "INSUFFICIENT_EVIDENCE": {
+      "accuracy": 1.0,
+      "correct": 200,
+      "population": 200,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "KNOWLEDGE_RAG": {
+      "accuracy": 1.0,
+      "correct": 356,
+      "population": 356,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "ROUTER_CONFIGURATION_ERROR": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "ROUTE_WEB_RESEARCH": {
+      "accuracy": 1.0,
+      "correct": 196,
+      "population": 196,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "SECURITY_REFUSAL": {
+      "accuracy": 1.0,
+      "correct": 96,
+      "population": 96,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "TOOL_OR_SPECIALIST_ROUTE": {
+      "accuracy": 1.0,
+      "correct": 96,
+      "population": 96,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "schema_version": "t23-route-confusion-matrix-v1"
+}

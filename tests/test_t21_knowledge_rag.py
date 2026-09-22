@@ -61,23 +61,33 @@ def _assert_no_counters(result) -> None:
 # ---------------------------------------------------------------------------
 # T21.2 registry boundaries
 # ---------------------------------------------------------------------------
-def test_registry_knowledge_rag_experimental() -> None:
+def test_registry_knowledge_rag_qualified_after_t22() -> None:
     reg = SkillRegistry()
     d = reg.as_dict()
-    # T21R2 (strict blind holdout, evaluations/t21r2/) failed the
-    # preregistered abstention-precision, spoof-rejection and
-    # injection-containment floors; the recorded decision
-    # DEMOTE_KNOWLEDGE_RAG_TO_EXPERIMENTAL was applied to the registry.
-    assert d["KNOWLEDGE_RAG"]["availability"] == "EXPERIMENTAL"
+    # The T21R2 demotion remains historical evidence. T22 subsequently
+    # qualified the exact evaluated candidate for the frozen scope.
+    assert d["KNOWLEDGE_RAG"]["availability"] == "QUALIFIED"
     assert d["SCIENCE_RAG"]["availability"] == "ACTIVE"
     assert d["SCIENCE_RAG"]["description"] == \
         "T5R scientific retrieval with citation discipline."
     counts = reg.counts()
     assert counts.get("ACTIVE") == 11
-    assert counts.get("EXPERIMENTAL", 0) == 1
+    assert counts.get("EXPERIMENTAL", 0) == 0
+    assert counts.get("QUALIFIED", 0) == 1
 
 
 def test_registry_hash_matches_registration_record() -> None:
+    promotion_path = ROOT / "evaluations" / "t22" / \
+        "T22_FINAL_PROMOTION_RECORD.json"
+    if promotion_path.exists():
+        promotion = json.loads(promotion_path.read_text(encoding="utf-8"))
+        assert promotion["verdict"] == \
+            "MANGO_KNOWLEDGE_RAG_CAPABILITY_PROMOTED"
+        assert promotion["capability_states"]["KNOWLEDGE_RAG"] == \
+            "QUALIFIED"
+        assert registry_sha256() == \
+            promotion["capability_states"]["registry_sha256_after_promotion"]
+        return
     record = json.loads(
         (T21 / "registry_registration.json").read_text(encoding="utf-8"))
     assert record["registry_sha256_before"] != record["registry_sha256_after"]

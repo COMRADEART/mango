@@ -1,0 +1,1002 @@
+{
+  "artifact": "T23_PRECONSTRUCTION_AUDIT",
+  "candidate": {
+    "artifact": "T23_CANDIDATE_IDENTITY",
+    "changed_files_from_t23_parent": [
+      "scripts/t23_preconstruction.py",
+      "src/sciencemath/executive/router_v2.py",
+      "tests/test_t23_preconstruction.py"
+    ],
+    "component_diff": {
+      "added_top_level_runtime": [
+        "src/sciencemath/executive/router_v2.py"
+      ],
+      "t22_knowledge_component_hashes_changed": [],
+      "t22_knowledge_runtime_preserved": true
+    },
+    "schema_version": "t23-candidate-identity-v1",
+    "t22_candidate": {
+      "candidate_commit": "7d919a255c2df87adcb3dd42011b505b10509713",
+      "candidate_tree": "0bbf81b234458a4ac204ff6b035bc59b59078544",
+      "current_canonical_qualified_candidate": true,
+      "runtime_root": "a9a24e3d8bba5e8b6985493d262f3699cef93cdbdd35cc09a7e4bc073ded7f5f"
+    },
+    "t23_candidate": {
+      "candidate_commit": "29750b8403be4e8bab87bb40e86aa882ba35e80e",
+      "candidate_parent": "32caa05d3250566eeba8da3e96b9199d9616ef0d",
+      "candidate_tree": "89b1069729e6cab459f705c18691b08440163627",
+      "runtime_component_sha256": {
+        "src/sciencemath/executive/router_v2.py": "7aebc77cd4e711e551f89d98943e22d47775a8935440ca285d78a0df3db3bdcb",
+        "src/sciencemath/executive/skills.py": "9aba8945e624f061feb478ca673cb98c5f5c08578a0f02e92dbb0cbf71936d62",
+        "src/sciencemath/knowledge/citations.py": "d48a5bb8ac4e28178cdaf332e9b7867a611d6d851f853858582a752b9039bb48",
+        "src/sciencemath/knowledge/claim_gate.py": "3cf7593f131c081a7a1fcf777d7f27ca995f9dae993efbd68c566e565803f883",
+        "src/sciencemath/knowledge/conflicts.py": "f9c984d1fd10ec4053e78ca373e0c13e9d705c3db7c2a4afa3e09cb2a0c272d2",
+        "src/sciencemath/knowledge/corpus.py": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d",
+        "src/sciencemath/knowledge/evidence.py": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d",
+        "src/sciencemath/knowledge/evidence_paths.py": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375",
+        "src/sciencemath/knowledge/freshness.py": "63104a9a012b1c846e0bb48f74a7e291b8d44e760c23998e472c470f75566e2c",
+        "src/sciencemath/knowledge/index.py": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1",
+        "src/sciencemath/knowledge/injection.py": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0",
+        "src/sciencemath/knowledge/pipeline.py": "b0f99cce2afc181c0ce340b19597f93889652aea036a7996cfc9266d2b21232c",
+        "src/sciencemath/knowledge/provenance_spoof.py": "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212",
+        "src/sciencemath/knowledge/relations.py": "e0ed89e99c42b0d8d92952951b78696a50a3b377a537ef4c2a03ce344a35376f",
+        "src/sciencemath/knowledge/retrieval.py": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9",
+        "src/sciencemath/knowledge/routing.py": "d47af1ea34fc0e82347d2214b6894c15fb005082582bc08b7a7f78aa6cbc7151",
+        "src/sciencemath/knowledge/schema.py": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135"
+      },
+      "runtime_root": "63f3b446f6e147ee0635a74702920f6e5ca367847bb3d165d74341402c1941e1"
+    },
+    "t23_parent_baseline": {
+      "commit": "32caa05d3250566eeba8da3e96b9199d9616ef0d",
+      "disposition": "T22 final-promotion head; Knowledge/RAG QUALIFIED"
+    }
+  },
+  "determinism": {
+    "rerun_mismatches": 0
+  },
+  "doctor": {
+    "artifact": "T23_PROTOCOL_DOCTOR",
+    "base_verdict": "T21_PROTOCOL_DOCTOR_PASS",
+    "contract_integrity": {
+      "dangling_reason_routes": [],
+      "duplicate_route_ids": 0,
+      "reason_route_contradictions": 0,
+      "registered_routes": 9,
+      "status": "PASS",
+      "unreachable_registered_routes": []
+    },
+    "schema_version": "t23-protocol-doctor-v1",
+    "sections": {
+      "EXECUTIVE_ROUTER_CAPABILITY_REGISTRY": "PASS",
+      "EXECUTIVE_ROUTER_CONTRACT": "PASS",
+      "EXECUTIVE_ROUTER_COUNTERPRESSURE": "PASS",
+      "EXECUTIVE_ROUTER_DETERMINISM": "PASS",
+      "EXECUTIVE_ROUTER_FAIL_CLOSED": "PASS",
+      "EXECUTIVE_ROUTER_SIGNAL_VISIBILITY": "PASS"
+    },
+    "status": "PASS",
+    "verdict": "T21_PROTOCOL_DOCTOR_PASS"
+  },
+  "e2e": {
+    "infrastructure_differences": 0,
+    "run1": "PASS",
+    "run2": "PASS"
+  },
+  "final_verdict": "T23_PRECONSTRUCTION_AUDIT_PASS",
+  "historical_exclusion": {
+    "T22_raw_blind_access": 0,
+    "T22_registered": true
+  },
+  "project_state": {
+    "Executive Router": "EXPERIMENTAL",
+    "KNOWLEDGE_RAG": "QUALIFIED",
+    "T22": "CLOSED / OFFICIAL_EVALUATION_PASS",
+    "T23": "PRECONSTRUCTION"
+  },
+  "real_t23_exposure": {
+    "candidate_blind_rows": 0,
+    "construction_attempts": 0,
+    "evaluation_attempts": 0,
+    "official_evaluator_blind_rows": 0,
+    "real_blind_rows": 0
+  },
+  "route_registry": {
+    "ANSWER_LOCAL": {
+      "allowed_inputs": [
+        "query"
+      ],
+      "consumer": "GENERAL",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE if downstream lacks support",
+      "preconditions": [
+        "no higher-precedence route applies"
+      ],
+      "producer": "ExecutiveRouterV2.local_answer_gate",
+      "required_capability": "GENERAL",
+      "terminal": true
+    },
+    "CONFLICT_HANDLING": {
+      "allowed_inputs": [
+        "evidence_state",
+        "available_capabilities"
+      ],
+      "consumer": "KNOWLEDGE_RAG conflict handling",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE; never confident resolution",
+      "preconditions": [
+        "evidence_state=CONFLICTING"
+      ],
+      "producer": "ExecutiveRouterV2.evidence_gate",
+      "required_capability": "KNOWLEDGE_RAG",
+      "terminal": true
+    },
+    "HISTORICAL_AS_OF": {
+      "allowed_inputs": [
+        "query",
+        "request_date",
+        "snapshot_date",
+        "available_capabilities"
+      ],
+      "consumer": "KNOWLEDGE_RAG historical mode",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE when Knowledge/RAG unavailable",
+      "preconditions": [
+        "T22 temporal intent=HISTORICAL_AS_OF"
+      ],
+      "producer": "ExecutiveRouterV2.temporal_gate",
+      "required_capability": "KNOWLEDGE_RAG",
+      "terminal": true
+    },
+    "INSUFFICIENT_EVIDENCE": {
+      "allowed_inputs": [
+        "evidence_state",
+        "requested_capability",
+        "available_capabilities",
+        "permission_grants"
+      ],
+      "consumer": "NO_TOOL/abstention response",
+      "fallback_policy": "none; abstention is terminal",
+      "preconditions": [
+        "evidence insufficient or required route unavailable/unauthorized"
+      ],
+      "producer": "ExecutiveRouterV2.fail_closed_gate",
+      "required_capability": "NO_TOOL",
+      "terminal": true
+    },
+    "KNOWLEDGE_RAG": {
+      "allowed_inputs": [
+        "query",
+        "evidence_state",
+        "citation_required",
+        "available_capabilities"
+      ],
+      "consumer": "KNOWLEDGE_RAG",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE when Knowledge/RAG unavailable",
+      "preconditions": [
+        "stable factual/citation-grounded local request"
+      ],
+      "producer": "ExecutiveRouterV2.local_knowledge_gate",
+      "required_capability": "KNOWLEDGE_RAG",
+      "terminal": true
+    },
+    "ROUTER_CONFIGURATION_ERROR": {
+      "allowed_inputs": [
+        "query",
+        "request_date",
+        "snapshot_date",
+        "evidence_state",
+        "requested_capability",
+        "available_capabilities",
+        "permission_grants",
+        "security_state",
+        "source_freshness",
+        "citation_required"
+      ],
+      "consumer": "NO_TOOL/configuration error response",
+      "fallback_policy": "none; fail closed and emit no answer/tool route",
+      "preconditions": [
+        "unknown field, malformed value, or invalid registry state"
+      ],
+      "producer": "ExecutiveRouterV2.input_validator",
+      "required_capability": "NO_TOOL",
+      "terminal": true
+    },
+    "ROUTE_WEB_RESEARCH": {
+      "allowed_inputs": [
+        "query",
+        "request_date",
+        "snapshot_date",
+        "source_freshness",
+        "available_capabilities",
+        "permission_grants"
+      ],
+      "consumer": "WEB_RESEARCH",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE; never stale local answer",
+      "preconditions": [
+        "current/open-web evidence required",
+        "WEB_RESEARCH executable",
+        "network permission present"
+      ],
+      "producer": "ExecutiveRouterV2.temporal_or_explicit_web_gate",
+      "required_capability": "WEB_RESEARCH",
+      "terminal": true
+    },
+    "SECURITY_REFUSAL": {
+      "allowed_inputs": [
+        "query",
+        "security_state"
+      ],
+      "consumer": "NO_TOOL/policy response",
+      "fallback_policy": "none; security restrictions are never downgraded",
+      "preconditions": [
+        "security_state=BLOCK or unsafe action semantics"
+      ],
+      "producer": "ExecutiveRouterV2.security_gate",
+      "required_capability": "NO_TOOL",
+      "terminal": true
+    },
+    "TOOL_OR_SPECIALIST_ROUTE": {
+      "allowed_inputs": [
+        "query",
+        "requested_capability",
+        "available_capabilities",
+        "permission_grants"
+      ],
+      "consumer": "registered SkillRegistry capability",
+      "fallback_policy": "INSUFFICIENT_EVIDENCE on unsupported/unavailable route",
+      "preconditions": [
+        "specialist required",
+        "capability executable",
+        "permissions present"
+      ],
+      "producer": "ExecutiveRouterV2.specialist_gate",
+      "required_capability": "DYNAMIC_REGISTERED_SPECIALIST",
+      "terminal": true
+    }
+  },
+  "router_contract": {
+    "authority_boundaries": [
+      "select exactly one registered route",
+      "emit a structured reason code and bounded decision trace",
+      "never rewrite candidate answers",
+      "never rewrite metric semantics or evaluator gold",
+      "never override security restrictions or grant permissions",
+      "never invent tool availability or capability identifiers",
+      "never convert missing/conflicting evidence into confident evidence",
+      "never downgrade a stale CURRENT_REQUIRED request to a local answer"
+    ],
+    "precedence": [
+      "INPUT_VALIDATION",
+      "SECURITY_POLICY",
+      "CURRENT_OR_LIVE_REQUIREMENT",
+      "HISTORICAL_AS_OF",
+      "CONFLICT_OR_INSUFFICIENT_EVIDENCE",
+      "SPECIALIST_OR_TOOL_REQUIREMENT",
+      "QUALIFIED_LOCAL_KNOWLEDGE_RAG",
+      "LOCAL_RESPONSE"
+    ]
+  },
+  "router_metrics": {
+    "all_pass": true,
+    "floors": {
+      "ambiguous_decision_events": {
+        "op": "=",
+        "value": 0
+      },
+      "conflict_abstention_route_accuracy": {
+        "op": ">=",
+        "value": 0.98
+      },
+      "current_route_accuracy": {
+        "op": "=",
+        "value": 1.0
+      },
+      "determinism_mismatches": {
+        "op": "=",
+        "value": 0
+      },
+      "gold_signal_leakage_events": {
+        "op": "=",
+        "value": 0
+      },
+      "historical_route_accuracy": {
+        "op": ">=",
+        "value": 0.98
+      },
+      "overall_route_accuracy": {
+        "op": ">=",
+        "value": 0.98
+      },
+      "reason_route_contradictions": {
+        "op": "=",
+        "value": 0
+      },
+      "route_macro_accuracy": {
+        "op": ">=",
+        "value": 0.97
+      },
+      "security_route_accuracy": {
+        "op": "=",
+        "value": 1.0
+      },
+      "static_local_accuracy": {
+        "op": ">=",
+        "value": 0.97
+      },
+      "tool_route_accuracy": {
+        "op": ">=",
+        "value": 0.97
+      },
+      "unavailable_tool_route_events": {
+        "op": "=",
+        "value": 0
+      },
+      "unnecessary_web_rate": {
+        "op": "<=",
+        "value": 0.03
+      },
+      "unsafe_fallback_events": {
+        "op": "=",
+        "value": 0
+      }
+    },
+    "observed": {
+      "ambiguous_decision_events": 0,
+      "conflict_abstention_route_accuracy": 1.0,
+      "current_route_accuracy": 1.0,
+      "determinism_mismatches": 0,
+      "gold_signal_leakage_events": 0,
+      "historical_route_accuracy": 1.0,
+      "overall_route_accuracy": 1.0,
+      "reason_route_contradictions": 0,
+      "route_macro_accuracy": 1.0,
+      "security_route_accuracy": 1.0,
+      "static_local_accuracy": 1.0,
+      "tool_route_accuracy": 1.0,
+      "unavailable_tool_route_events": 0,
+      "unnecessary_web_rate": 0.0,
+      "unsafe_fallback_events": 0
+    }
+  },
+  "router_qualification": {
+    "all_gates_pass": true,
+    "artifact": "T23_ROUTER_QUALIFICATION",
+    "case_count": 1280,
+    "confusion_matrix": {
+      "ANSWER_LOCAL": {
+        "ANSWER_LOCAL": 80,
+        "CONFLICT_HANDLING": 0,
+        "HISTORICAL_AS_OF": 0,
+        "INSUFFICIENT_EVIDENCE": 0,
+        "KNOWLEDGE_RAG": 0,
+        "ROUTER_CONFIGURATION_ERROR": 0,
+        "ROUTE_WEB_RESEARCH": 0,
+        "SECURITY_REFUSAL": 0,
+        "TOOL_OR_SPECIALIST_ROUTE": 0
+      },
+      "CONFLICT_HANDLING": {
+        "ANSWER_LOCAL": 0,
+        "CONFLICT_HANDLING": 80,
+        "HISTORICAL_AS_OF": 0,
+        "INSUFFICIENT_EVIDENCE": 0,
+        "KNOWLEDGE_RAG": 0,
+        "ROUTER_CONFIGURATION_ERROR": 0,
+        "ROUTE_WEB_RESEARCH": 0,
+        "SECURITY_REFUSAL": 0,
+        "TOOL_OR_SPECIALIST_ROUTE": 0
+      },
+      "HISTORICAL_AS_OF": {
+        "ANSWER_LOCAL": 0,
+        "CONFLICT_HANDLING": 0,
+        "HISTORICAL_AS_OF": 96,
+        "INSUFFICIENT_EVIDENCE": 0,
+        "KNOWLEDGE_RAG": 0,
+        "ROUTER_CONFIGURATION_ERROR": 0,
+        "ROUTE_WEB_RESEARCH": 0,
+        "SECURITY_REFUSAL": 0,
+        "TOOL_OR_SPECIALIST_ROUTE": 0
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "ANSWER_LOCAL": 0,
+        "CONFLICT_HANDLING": 0,
+        "HISTORICAL_AS_OF": 0,
+        "INSUFFICIENT_EVIDENCE": 200,
+        "KNOWLEDGE_RAG": 0,
+        "ROUTER_CONFIGURATION_ERROR": 0,
+        "ROUTE_WEB_RESEARCH": 0,
+        "SECURITY_REFUSAL": 0,
+        "TOOL_OR_SPECIALIST_ROUTE": 0
+      },
+      "KNOWLEDGE_RAG": {
+        "ANSWER_LOCAL": 0,
+        "CONFLICT_HANDLING": 0,
+        "HISTORICAL_AS_OF": 0,
+        "INSUFFICIENT_EVIDENCE": 0,
+        "KNOWLEDGE_RAG": 356,
+        "ROUTER_CONFIGURATION_ERROR": 0,
+        "ROUTE_WEB_RESEARCH": 0,
+        "SECURITY_REFUSAL": 0,
+        "TOOL_OR_SPECIALIST_ROUTE": 0
+      },
+      "ROUTER_CONFIGURATION_ERROR": {
+        "ANSWER_LOCAL": 0,
+        "CONFLICT_HANDLING": 0,
+        "HISTORICAL_AS_OF": 0,
+        "INSUFFICIENT_EVIDENCE": 0,
+        "KNOWLEDGE_RAG": 0,
+        "ROUTER_CONFIGURATION_ERROR": 80,
+        "ROUTE_WEB_RESEARCH": 0,
+        "SECURITY_REFUSAL": 0,
+        "TOOL_OR_SPECIALIST_ROUTE": 0
+      },
+      "ROUTE_WEB_RESEARCH": {
+        "ANSWER_LOCAL": 0,
+        "CONFLICT_HANDLING": 0,
+        "HISTORICAL_AS_OF": 0,
+        "INSUFFICIENT_EVIDENCE": 0,
+        "KNOWLEDGE_RAG": 0,
+        "ROUTER_CONFIGURATION_ERROR": 0,
+        "ROUTE_WEB_RESEARCH": 196,
+        "SECURITY_REFUSAL": 0,
+        "TOOL_OR_SPECIALIST_ROUTE": 0
+      },
+      "SECURITY_REFUSAL": {
+        "ANSWER_LOCAL": 0,
+        "CONFLICT_HANDLING": 0,
+        "HISTORICAL_AS_OF": 0,
+        "INSUFFICIENT_EVIDENCE": 0,
+        "KNOWLEDGE_RAG": 0,
+        "ROUTER_CONFIGURATION_ERROR": 0,
+        "ROUTE_WEB_RESEARCH": 0,
+        "SECURITY_REFUSAL": 96,
+        "TOOL_OR_SPECIALIST_ROUTE": 0
+      },
+      "TOOL_OR_SPECIALIST_ROUTE": {
+        "ANSWER_LOCAL": 0,
+        "CONFLICT_HANDLING": 0,
+        "HISTORICAL_AS_OF": 0,
+        "INSUFFICIENT_EVIDENCE": 0,
+        "KNOWLEDGE_RAG": 0,
+        "ROUTER_CONFIGURATION_ERROR": 0,
+        "ROUTE_WEB_RESEARCH": 0,
+        "SECURITY_REFUSAL": 0,
+        "TOOL_OR_SPECIALIST_ROUTE": 96
+      }
+    },
+    "design_mandated_router_classes_with_denominator_0": 0,
+    "family_count": 16,
+    "family_summary": {
+      "ambiguous_route": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "citation_sensitive": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "conflicting_evidence": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "cross_domain_local": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "explicit_current": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "historical_as_of": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "insufficient_evidence": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "malformed_router_state": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "mixed_intent": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "multi_hop_local": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "recency_sensitive": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "route_override_adversarial": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "security_adversarial": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "static_local_factual": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "tool_required": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      },
+      "unsupported_tool_request": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80
+      }
+    },
+    "gates": {
+      "ambiguous_decision_events": {
+        "observed": 0,
+        "op": "=",
+        "pass": true,
+        "value": 0
+      },
+      "conflict_abstention_route_accuracy": {
+        "observed": 1.0,
+        "op": ">=",
+        "pass": true,
+        "value": 0.98
+      },
+      "current_route_accuracy": {
+        "observed": 1.0,
+        "op": "=",
+        "pass": true,
+        "value": 1.0
+      },
+      "determinism_mismatches": {
+        "observed": 0,
+        "op": "=",
+        "pass": true,
+        "value": 0
+      },
+      "gold_signal_leakage_events": {
+        "observed": 0,
+        "op": "=",
+        "pass": true,
+        "value": 0
+      },
+      "historical_route_accuracy": {
+        "observed": 1.0,
+        "op": ">=",
+        "pass": true,
+        "value": 0.98
+      },
+      "overall_route_accuracy": {
+        "observed": 1.0,
+        "op": ">=",
+        "pass": true,
+        "value": 0.98
+      },
+      "reason_route_contradictions": {
+        "observed": 0,
+        "op": "=",
+        "pass": true,
+        "value": 0
+      },
+      "route_macro_accuracy": {
+        "observed": 1.0,
+        "op": ">=",
+        "pass": true,
+        "value": 0.97
+      },
+      "security_route_accuracy": {
+        "observed": 1.0,
+        "op": "=",
+        "pass": true,
+        "value": 1.0
+      },
+      "static_local_accuracy": {
+        "observed": 1.0,
+        "op": ">=",
+        "pass": true,
+        "value": 0.97
+      },
+      "tool_route_accuracy": {
+        "observed": 1.0,
+        "op": ">=",
+        "pass": true,
+        "value": 0.97
+      },
+      "unavailable_tool_route_events": {
+        "observed": 0,
+        "op": "=",
+        "pass": true,
+        "value": 0
+      },
+      "unnecessary_web_rate": {
+        "observed": 0.0,
+        "op": "<=",
+        "pass": true,
+        "value": 0.03
+      },
+      "unsafe_fallback_events": {
+        "observed": 0,
+        "op": "=",
+        "pass": true,
+        "value": 0
+      }
+    },
+    "metrics": {
+      "ambiguous_decision_events": 0,
+      "conflict_abstention_route_accuracy": 1.0,
+      "current_route_accuracy": 1.0,
+      "determinism_mismatches": 0,
+      "gold_signal_leakage_events": 0,
+      "historical_route_accuracy": 1.0,
+      "overall_route_accuracy": 1.0,
+      "reason_route_contradictions": 0,
+      "route_macro_accuracy": 1.0,
+      "security_route_accuracy": 1.0,
+      "static_local_accuracy": 1.0,
+      "tool_route_accuracy": 1.0,
+      "unavailable_tool_route_events": 0,
+      "unnecessary_web_rate": 0.0,
+      "unsafe_fallback_events": 0
+    },
+    "per_route": {
+      "ANSWER_LOCAL": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "CONFLICT_HANDLING": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "HISTORICAL_AS_OF": {
+        "accuracy": 1.0,
+        "correct": 96,
+        "population": 96,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "accuracy": 1.0,
+        "correct": 200,
+        "population": 200,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "KNOWLEDGE_RAG": {
+        "accuracy": 1.0,
+        "correct": 356,
+        "population": 356,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "ROUTER_CONFIGURATION_ERROR": {
+        "accuracy": 1.0,
+        "correct": 80,
+        "population": 80,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "ROUTE_WEB_RESEARCH": {
+        "accuracy": 1.0,
+        "correct": 196,
+        "population": 196,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "SECURITY_REFUSAL": {
+        "accuracy": 1.0,
+        "correct": 96,
+        "population": 96,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "TOOL_OR_SPECIALIST_ROUTE": {
+        "accuracy": 1.0,
+        "correct": 96,
+        "population": 96,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "schema_version": "t23-router-qualification-report-v1"
+  },
+  "router_signals": {
+    "ambiguous_route": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics"
+      ]
+    },
+    "citation_sensitive": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "request metadata",
+        "capability registry"
+      ]
+    },
+    "conflicting_evidence": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "evidence state"
+      ]
+    },
+    "cross_domain_local": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "capability registry"
+      ]
+    },
+    "explicit_current": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "request metadata",
+        "tool state"
+      ]
+    },
+    "historical_as_of": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "source snapshot metadata"
+      ]
+    },
+    "insufficient_evidence": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "evidence state"
+      ]
+    },
+    "malformed_router_state": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "router input validation"
+      ]
+    },
+    "mixed_intent": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "request metadata",
+        "security/evidence/tool state"
+      ]
+    },
+    "multi_hop_local": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "capability registry"
+      ]
+    },
+    "recency_sensitive": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "request metadata",
+        "tool state"
+      ]
+    },
+    "route_override_adversarial": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "policy state",
+        "evidence/tool state"
+      ]
+    },
+    "security_adversarial": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "security policy state"
+      ]
+    },
+    "static_local_factual": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "capability registry"
+      ]
+    },
+    "tool_required": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "query semantics",
+        "tool state",
+        "permission state"
+      ]
+    },
+    "unsupported_tool_request": {
+      "gold_only": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible": [
+        "tool state",
+        "permission state"
+      ]
+    }
+  },
+  "schema_version": "t23-preconstruction-audit-v1",
+  "stop_rule": "STOP; separate T23_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION required",
+  "t22_protection": {
+    "all_component_hashes_unchanged": true,
+    "artifact": "T23_T22_QUALIFIED_CAPABILITY_PROTECTION",
+    "component_checks": {
+      "src/sciencemath/knowledge/citations.py": {
+        "expected": "d48a5bb8ac4e28178cdaf332e9b7867a611d6d851f853858582a752b9039bb48",
+        "match": true,
+        "observed": "d48a5bb8ac4e28178cdaf332e9b7867a611d6d851f853858582a752b9039bb48"
+      },
+      "src/sciencemath/knowledge/claim_gate.py": {
+        "expected": "3cf7593f131c081a7a1fcf777d7f27ca995f9dae993efbd68c566e565803f883",
+        "match": true,
+        "observed": "3cf7593f131c081a7a1fcf777d7f27ca995f9dae993efbd68c566e565803f883"
+      },
+      "src/sciencemath/knowledge/conflicts.py": {
+        "expected": "f9c984d1fd10ec4053e78ca373e0c13e9d705c3db7c2a4afa3e09cb2a0c272d2",
+        "match": true,
+        "observed": "f9c984d1fd10ec4053e78ca373e0c13e9d705c3db7c2a4afa3e09cb2a0c272d2"
+      },
+      "src/sciencemath/knowledge/corpus.py": {
+        "expected": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d",
+        "match": true,
+        "observed": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d"
+      },
+      "src/sciencemath/knowledge/evidence.py": {
+        "expected": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d",
+        "match": true,
+        "observed": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d"
+      },
+      "src/sciencemath/knowledge/evidence_paths.py": {
+        "expected": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375",
+        "match": true,
+        "observed": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375"
+      },
+      "src/sciencemath/knowledge/freshness.py": {
+        "expected": "63104a9a012b1c846e0bb48f74a7e291b8d44e760c23998e472c470f75566e2c",
+        "match": true,
+        "observed": "63104a9a012b1c846e0bb48f74a7e291b8d44e760c23998e472c470f75566e2c"
+      },
+      "src/sciencemath/knowledge/index.py": {
+        "expected": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1",
+        "match": true,
+        "observed": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1"
+      },
+      "src/sciencemath/knowledge/injection.py": {
+        "expected": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0",
+        "match": true,
+        "observed": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0"
+      },
+      "src/sciencemath/knowledge/pipeline.py": {
+        "expected": "b0f99cce2afc181c0ce340b19597f93889652aea036a7996cfc9266d2b21232c",
+        "match": true,
+        "observed": "b0f99cce2afc181c0ce340b19597f93889652aea036a7996cfc9266d2b21232c"
+      },
+      "src/sciencemath/knowledge/provenance_spoof.py": {
+        "expected": "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212",
+        "match": true,
+        "observed": "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212"
+      },
+      "src/sciencemath/knowledge/relations.py": {
+        "expected": "e0ed89e99c42b0d8d92952951b78696a50a3b377a537ef4c2a03ce344a35376f",
+        "match": true,
+        "observed": "e0ed89e99c42b0d8d92952951b78696a50a3b377a537ef4c2a03ce344a35376f"
+      },
+      "src/sciencemath/knowledge/retrieval.py": {
+        "expected": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9",
+        "match": true,
+        "observed": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9"
+      },
+      "src/sciencemath/knowledge/routing.py": {
+        "expected": "d47af1ea34fc0e82347d2214b6894c15fb005082582bc08b7a7f78aa6cbc7151",
+        "match": true,
+        "observed": "d47af1ea34fc0e82347d2214b6894c15fb005082582bc08b7a7f78aa6cbc7151"
+      },
+      "src/sciencemath/knowledge/schema.py": {
+        "expected": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135",
+        "match": true,
+        "observed": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135"
+      }
+    },
+    "knowledge_runtime_root_expected": "a9a24e3d8bba5e8b6985493d262f3699cef93cdbdd35cc09a7e4bc073ded7f5f",
+    "metric_status": {
+      "citation_coverage": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "citation_id_spoof_rejection": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "citation_precision": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "citation_resolvability": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "citation_validity": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "conflict_detection": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "conflict_false_resolution": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "cross_domain_synthesis_accuracy": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "domain_macro_grounded_accuracy": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "explicit_current_routing_accuracy": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "fabricated_citation_count": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "historical_as_of_handling": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "insufficient_evidence_precision": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "insufficient_evidence_recall": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "model_memory_backfill_events": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "mrr": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "multi_hop_grounded_accuracy": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "ndcg_at_5": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "overall_grounded_accuracy": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "prompt_injection_containment": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "recall_at_10": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "recall_at_5": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "retrieved_code_execution_events": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "single_hop_grounded_accuracy": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "source_authority_escalation_events": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "source_diversity": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "stale_snapshot_false_current_answers": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "static_query_unnecessary_web_routing": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "supported_factual_claim_rate": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "unauthorized_memory_write_events": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "unauthorized_network_action_events": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY",
+      "unsupported_confident_answers": "PASS_BY_IMMUTABLE_T22_SUBSYSTEM_IDENTITY"
+    },
+    "protected_floor_pass_count": 32,
+    "protection_rule": "All 32 T22 metric semantics/floors remain protected when every frozen Knowledge/RAG component hash is unchanged and the prospective T23 top-level temporal-route regression passes. No T22 blind row is replayed.",
+    "schema_version": "t23-t22-protection-v1",
+    "status": "PASS",
+    "t22_metric_count": 32,
+    "t22_shape_regression": {
+      "explicit_current_routed": 70,
+      "explicit_current_total": 70,
+      "historical_correct": 80,
+      "historical_total": 80,
+      "stale_current_answers": 0,
+      "static_controls_routed_web": 0,
+      "static_controls_total": 70,
+      "status": "PASS"
+    },
+    "t22_status": "CLOSED / OFFICIAL_EVALUATION_PASS"
+  },
+  "tests": {
+    "LIVE": 0,
+    "UNKNOWN": 0,
+    "errors": 0,
+    "failures": 0,
+    "historical_excluded": 5,
+    "junit_path": "artifacts\\t23_preconstruction_junit.xml",
+    "junit_sha256": "33762370a6f78cb1091ea4b2ef26dafd87e9dc5b55b51331440940538489b745",
+    "passed": 198,
+    "skipped": 0,
+    "status": "PASS",
+    "tests": 198,
+    "tracked_tree_drift": 0
+  }
+}

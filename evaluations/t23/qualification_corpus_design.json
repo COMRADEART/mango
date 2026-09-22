@@ -1,0 +1,186 @@
+{
+  "artifact": "T23_NONBLIND_QUALIFICATION_CORPUS_DESIGN",
+  "case_count": 1280,
+  "cases_per_family": 80,
+  "class_balance": {
+    "ANSWER_LOCAL": 80,
+    "CONFLICT_HANDLING": 80,
+    "HISTORICAL_AS_OF": 96,
+    "INSUFFICIENT_EVIDENCE": 200,
+    "KNOWLEDGE_RAG": 356,
+    "ROUTER_CONFIGURATION_ERROR": 80,
+    "ROUTE_WEB_RESEARCH": 196,
+    "SECURITY_REFUSAL": 96,
+    "TOOL_OR_SPECIALIST_ROUTE": 96
+  },
+  "design_mandated_router_classes_with_denominator_0": 0,
+  "families": [
+    "static_local_factual",
+    "multi_hop_local",
+    "cross_domain_local",
+    "explicit_current",
+    "recency_sensitive",
+    "historical_as_of",
+    "insufficient_evidence",
+    "conflicting_evidence",
+    "security_adversarial",
+    "citation_sensitive",
+    "tool_required",
+    "unsupported_tool_request",
+    "ambiguous_route",
+    "mixed_intent",
+    "malformed_router_state",
+    "route_override_adversarial"
+  ],
+  "material": "DISPOSABLE_PUBLIC_SAFE_NONBLIND",
+  "real_t23_rows_used": 0,
+  "schema_version": "t23-nonblind-qualification-design-v1",
+  "signals": {
+    "ambiguous_route": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "citation_sensitive": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "request metadata",
+        "capability registry"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "conflicting_evidence": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "evidence state"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "cross_domain_local": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "capability registry"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "explicit_current": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "request metadata",
+        "tool state"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "historical_as_of": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "source snapshot metadata"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "insufficient_evidence": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "evidence state"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "malformed_router_state": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "router input validation"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "mixed_intent": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "request metadata",
+        "security/evidence/tool state"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "multi_hop_local": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "capability registry"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "recency_sensitive": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "request metadata",
+        "tool state"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "route_override_adversarial": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "policy state",
+        "evidence/tool state"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "security_adversarial": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "security policy state"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "static_local_factual": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "capability registry"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "tool_required": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "query semantics",
+        "tool state",
+        "permission state"
+      ],
+      "runtime_visible_signal_exists": true
+    },
+    "unsupported_tool_request": {
+      "gold_only_carriers": [],
+      "gold_only_signal_rows": 0,
+      "runtime_visible_carriers": [
+        "tool state",
+        "permission state"
+      ],
+      "runtime_visible_signal_exists": true
+    }
+  },
+  "t22_blind_rows_used": 0
+}

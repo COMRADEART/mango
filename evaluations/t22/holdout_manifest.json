@@ -1,0 +1,250 @@
+{
+  "artifact": "T21_HOLDOUT_MANIFEST",
+  "binding_count": 48,
+  "bindings": {
+    "adjudication": {
+      "kind": "file",
+      "path": "evaluations/t22/test_failure_adjudication.json",
+      "sha256": "62abc21315cd26514682c17cfee21576151e7a91c79c3374c790414a49578478"
+    },
+    "applicability": {
+      "kind": "file",
+      "path": "evaluations/t22/current_test_applicability.json",
+      "sha256": "b6ad580de95997267c093b9d4945695718d244f382497846285392172ba05873"
+    },
+    "artifact_graph": {
+      "kind": "file",
+      "path": "evaluations/t22/artifact_graph.json",
+      "sha256": "f853ad4794a091f94a8df0bd960a0ee7ed2c8b50c2fc698f28273a42fdd84eb7"
+    },
+    "author_spec": {
+      "kind": "file",
+      "path": "evaluations/t22/author_spec.json",
+      "sha256": "b7d03c9106d73bb1e3736f039e2e3f4cc254b2617716612e7ffd9b339cc612db"
+    },
+    "blindness_audit": {
+      "kind": "file",
+      "path": "evaluations/t22/holdout_blindness.json",
+      "sha256": "26a51d146a81c9e68e83e10397035512910826fe2357a4992753aa04cff9b475"
+    },
+    "candidate_identity": {
+      "kind": "file",
+      "path": "evaluations/t22/candidate_identity.json",
+      "sha256": "983e96ba93bc55221c48ba69cd85d862c2846a65fb92e5996e5ea65d0aca70a8"
+    },
+    "candidate_provider_compatibility": {
+      "kind": "file",
+      "path": "evaluations/t22/candidate_provider_compatibility.json",
+      "sha256": "7d86a6abf2ea86bb26ea05c34e18e79f0bf912fe205490d92905cc79e07ed9cd"
+    },
+    "candidate_runtime_data_contract": {
+      "kind": "file",
+      "path": "evaluations/t22/candidate_runtime_data_contract.json",
+      "sha256": "f30174b3d756cc7498533378702aa86063af1027e53b4a0f1364a449a94a6d5c"
+    },
+    "construction_gate": {
+      "kind": "file",
+      "path": "evaluations/t22/construction_gate.json",
+      "sha256": "37068d003f869af67a102ef13dd31ec65ed6d5082c3f67ba5dbd575c8f13263b"
+    },
+    "construction_ledger": {
+      "kind": "file",
+      "path": "evaluations/t22/construction_run_ledger.json",
+      "sha256": "896533ba4b9446a9e1dfa3a7a3facd2919ddb142e1dfaff5fd8e4c11b88515b1"
+    },
+    "corpus": {
+      "kind": "directory",
+      "path": "rag/gk_holdout_t22",
+      "sha256": "88e266d72511d918302b9623ef629823cb513245853dc92d6223430b0883c6d6"
+    },
+    "domain_taxonomy": {
+      "kind": "file",
+      "path": "evaluations/t22/domain_taxonomy_contract.json",
+      "sha256": "86dec5128e1fbe46582d2eb9cc9b3a673d435ce81efb40106c06c72fa3f59b2f"
+    },
+    "evaluation_artifact_graph": {
+      "kind": "file",
+      "path": "evaluations/t22/evaluation_artifact_graph.json",
+      "sha256": "726dba1a4f83e1dadf205544b0d9106f099777bf7e47044e32a0c657386c97e0"
+    },
+    "evaluation_reporting_contract": {
+      "kind": "file",
+      "path": "evaluations/t22/evaluation_reporting_contract.json",
+      "sha256": "e267edbf72cf5864a4eb9dfb71443fa33acdc49bb97dd5a29d09d7376b6f1557"
+    },
+    "evaluator_freeze": {
+      "kind": "file",
+      "path": "evaluations/t22/evaluator_freeze.json",
+      "sha256": "471d3fbb8c4deb688a0a54b8419b87f1768701adcf0e371e416dce05e0b55601"
+    },
+    "exact_design_audit": {
+      "kind": "file",
+      "path": "evaluations/t22/exact_design_audit.json",
+      "sha256": "f210c65ca559b9db3e030ec05fe3478c128883c5cc68f4a5c7bbd1a7dbaf899d"
+    },
+    "experiment_config": {
+      "kind": "file",
+      "path": "evaluations/t22/experiment.json",
+      "sha256": "adeec8cea001ef1d6915d5cb93a821460e3c122380494ff88fda3612fc6cbc9d"
+    },
+    "floor_evidence_contract": {
+      "kind": "file",
+      "path": "evaluations/t22/floor_evidence_contract.json",
+      "sha256": "4eafe4a0d84b886774e11af8a114cac1659b6834814488ed0948a2ee3bd3032c"
+    },
+    "gate_auditor_crosscheck": {
+      "kind": "file",
+      "path": "evaluations/t22/gate_auditor_crosscheck.json",
+      "sha256": "2ae697d90ecbda5fe0cfbe235995f887ef6d009554f97a7ef8f71539d45a6fed"
+    },
+    "gold_compatibility": {
+      "kind": "file",
+      "path": "evaluations/t22/gold_compatibility.json",
+      "sha256": "b3c905f81449e9c003c5d60d0834dd820715e5abad6743a3b109dc50b27b5241"
+    },
+    "historical_exclusion": {
+      "kind": "file",
+      "path": "evaluations/t22/historical_exclusion.json",
+      "sha256": "aa954604974681e0e13dcde57e3c0875e1cfd74e550856554db05e63acd231e7"
+    },
+    "historical_uniqueness": {
+      "kind": "file",
+      "path": "evaluations/t22/historical_uniqueness.json",
+      "sha256": "9ee3721b3037e277cc702178f7a79b9e6c3778bd486f74501b01d8628703a546"
+    },
+    "holdout_frozen_schema": {
+      "kind": "file",
+      "path": "evaluations/t22/holdout_frozen_schema.json",
+      "sha256": "67faedbe525633d900fec182a50ee648cd84f8f990f523a4520b4d2df4f8c19d"
+    },
+    "master_contract": {
+      "kind": "file",
+      "path": "evaluations/t22/t21_master_contract.json",
+      "sha256": "514063c9fd4501dfc0389b04babc4eae6aedfb102029f337588a83098c487cd3"
+    },
+    "material_provenance": {
+      "kind": "file",
+      "path": "evaluations/t22/material_provenance.json",
+      "sha256": "a9abcfd2f321cc1cfa07f6502a591806e3bf33387a8fb3c48d846d0968fbe68d"
+    },
+    "metric_implementation_registry": {
+      "kind": "file",
+      "path": "evaluations/t22/metric_implementation_registry.json",
+      "sha256": "92546df4a793b768d8cb88d2166ea935e795d24a5e4bf3f39c56736219f6c81f"
+    },
+    "metric_semantics_fixtures": {
+      "kind": "file",
+      "path": "evaluations/t22/metric_semantics_fixtures.json",
+      "sha256": "8916d7582fa14c1e532fb2d851925fafb81b64285a9024051f6e714abf33751f"
+    },
+    "negative_controls": {
+      "kind": "file",
+      "path": "evaluations/t22/negative_controls.json",
+      "sha256": "62f8013677bf95d93b89dee002385d368b4ed9dbfbd2df90572374716875374b"
+    },
+    "official_metric_registry": {
+      "kind": "file",
+      "path": "evaluations/t22/official_metric_registry.json",
+      "sha256": "b56723f754ce173182c500d8d76cae3495081567447a9ac4ec89f00e443f6121"
+    },
+    "official_metric_semantics": {
+      "kind": "file",
+      "path": "evaluations/t22/official_metric_semantics.json",
+      "sha256": "d061033f094321930556bd7ba99c4df9f61d49dbccef966049e40786b15e72e0"
+    },
+    "qualification_lock": {
+      "kind": "file",
+      "path": "evaluations/t22/qualification_lock.json",
+      "sha256": "c98e7231aa086f18bffe1cdac73c114a3c356938b23e1c7276ea11ec7655b776"
+    },
+    "r16_closure": {
+      "kind": "file",
+      "path": "evaluations/t21r16/T21R16_CLOSURE.json",
+      "sha256": "44034e4e1261a6ad09d20748b6b130446b90135314bdb34ca0927e72fed993a0"
+    },
+    "r17_closure": {
+      "kind": "file",
+      "path": "evaluations/t22/r17_final_disposition.json",
+      "sha256": "ffe5fcde605284a4293daf4bc3737d0b9f4cff0a628945a3d7b03f46ddeb8b12"
+    },
+    "remediation_exclusion": {
+      "kind": "file",
+      "path": "evaluations/t22/remediation_exclusion.json",
+      "sha256": "85c8040c90690ffb1f33ea4b6fca1f2b1943a057e3c14d5288127f580679b5ee"
+    },
+    "remediation_uniqueness": {
+      "kind": "file",
+      "path": "evaluations/t22/remediation_uniqueness.json",
+      "sha256": "745a00f8be56215edec7d89c962742cdf9c81ef0371cbdb1d0c84136275381f7"
+    },
+    "root_of_trust": {
+      "kind": "file",
+      "path": "evaluations/t22/root_of_trust.json",
+      "sha256": "8bb318a4f81483e59027d2f7bfe905c4881967b47c67af9d25efa43097940f5d"
+    },
+    "runtime_corpus_contract": {
+      "kind": "file",
+      "path": "evaluations/t22/runtime_corpus_contract.json",
+      "sha256": "c6f3c4efe52b2d09f461b8890ba2d71dd20616635fdbeeea69ea25d51e8845fe"
+    },
+    "runtime_field_provenance": {
+      "kind": "file",
+      "path": "evaluations/t22/runtime_field_provenance.json",
+      "sha256": "fea0a5290c6e61bfce28ce6085cce078ff15b380172866073ddc69106c11c2a1"
+    },
+    "runtime_freeze": {
+      "kind": "file",
+      "path": "evaluations/t22/runtime_freeze.json",
+      "sha256": "5098d04e00e3fac93f32f634c1afd76b8eae3d0ab7760ae1fc5b2ee494836385"
+    },
+    "runtime_loader_validation": {
+      "kind": "file",
+      "path": "evaluations/t22/runtime_loader_validation.json",
+      "sha256": "6d43dc0457515294229bcc894447edd98f63f56f5dafdc2c05b8d45d59f71f91"
+    },
+    "semantics_carry_report": {
+      "kind": "file",
+      "path": "evaluations/t22/semantics_carry_report.json",
+      "sha256": "206ca25fdddd58dc5a64157f39cc59bc3be3589d33b53091705d64ba115a756b"
+    },
+    "static_gold_audit": {
+      "kind": "file",
+      "path": "evaluations/t22/static_gold_audit.json",
+      "sha256": "b98363a588e7a2d722f98ffee7c06690f852de4a718e44d0784e01f39b137600"
+    },
+    "suites": {
+      "kind": "directory",
+      "path": "evaluations/t22/suites",
+      "sha256": "9bec3b73ccb72cdd9d1355c165b8f7f47fd90de1b93dacb9adff242415efc028"
+    },
+    "temporal_holdout_design": {
+      "kind": "file",
+      "path": "evaluations/t22/temporal_holdout_design.json",
+      "sha256": "69befb823a08435b28579aac465f321a56c20ee25253bdde282b81db9c8681d7"
+    },
+    "temporal_regression_battery": {
+      "kind": "file",
+      "path": "evaluations/t22/temporal_regressions/results.json",
+      "sha256": "e196f24e72e9f0626ee4391ae247158723bfe05140edcd1f263dff8dc7ad0c35"
+    },
+    "temporal_signal_contract": {
+      "kind": "file",
+      "path": "evaluations/t22/temporal_signal_contract.json",
+      "sha256": "5e2c91d97d62909cceb84ead803e5219d9aa829aeb79f41fd2d4aa3b8f03b47f"
+    },
+    "test_cleanliness": {
+      "kind": "file",
+      "path": "evaluations/t22/test_cleanliness.json",
+      "sha256": "c5009523829e259009d1af3f419563ec8d6c2d5a1c95ddae3de9d35b69542c74"
+    },
+    "zero_denominator_policy_resolution": {
+      "kind": "file",
+      "path": "evaluations/t22/zero_denominator_policy_resolution.json",
+      "sha256": "400216a87507e9fee33e4dc6286f0a2dfe92fd357c27bedfff2eb1f45dc9ab37"
+    }
+  },
+  "contract_sha256": "faf95bfb0c413539f2f6ed187d3adfb13db4c2e60e4a5c47e11056eff270f051",
+  "experiment": "t22",
+  "freeze_root_sha256": "bd6cbc3c987733c94176df0aee0b39efcf05c80d73bf1b0cba12c32110d3c20a",
+  "schema_version": "t21-holdout-manifest-v1"
+}

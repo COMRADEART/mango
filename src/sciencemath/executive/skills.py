@@ -9,9 +9,10 @@ from copy import deepcopy
 
 ACTIVE = "ACTIVE"
 EXPERIMENTAL = "EXPERIMENTAL"
+QUALIFIED = "QUALIFIED"
 PREPARED_ONLY = "PREPARED_ONLY"
 DISABLED = "DISABLED"
-AVAILABILITIES = (ACTIVE, EXPERIMENTAL, PREPARED_ONLY, DISABLED)
+AVAILABILITIES = (ACTIVE, EXPERIMENTAL, QUALIFIED, PREPARED_ONLY, DISABLED)
 
 LOCAL_FREE = "LOCAL_FREE"
 LOCAL_EXPENSIVE = "LOCAL_EXPENSIVE"
@@ -49,7 +50,8 @@ def _skill(**kwargs) -> dict:
         "executable": False,
     }
     base.update(kwargs)
-    base["executable"] = base["availability"] in (ACTIVE, EXPERIMENTAL)
+    base["executable"] = base["availability"] in (ACTIVE, EXPERIMENTAL,
+                                                    QUALIFIED)
     if base["cost_class"] == PAID_COMPUTE:
         base["executable"] = False
     return base
@@ -188,12 +190,11 @@ def default_registry() -> dict[str, dict]:
             description="Local-first general knowledge retrieval with "
                         "source provenance, citation-grounded synthesis, "
                         "conflict handling, freshness boundaries, and "
-                        "evidence-based abstention. Promoted ACTIVE at "
-                        "T21; demoted EXPERIMENTAL at T21R2 after the "
-                        "strict blind holdout failed the preregistered "
-                        "abstention-precision, spoof-rejection and "
-                        "injection-containment floors.",
-            availability=EXPERIMENTAL,
+                        "evidence-based abstention. Qualified for the exact "
+                        "frozen T22 capability scope after the official "
+                        "one-shot evaluation passed all 32 floors; this does "
+                        "not imply a broader deployment or release gate.",
+            availability=QUALIFIED,
             offline=True,
             online=False,
             cost_class=LOCAL_FREE,
@@ -236,7 +237,7 @@ class SkillRegistry:
             return False
         if rec["cost_class"] == PAID_COMPUTE:
             return False
-        return rec["availability"] in (ACTIVE, EXPERIMENTAL)
+        return rec["availability"] in (ACTIVE, EXPERIMENTAL, QUALIFIED)
 
     def ids(self) -> tuple[str, ...]:
         return tuple(self._skills)

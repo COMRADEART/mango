@@ -1,0 +1,28 @@
+{
+  "artifact": "T22_EVALUATION_PROVENANCE",
+  "candidate_provider": "t21_protocol.providers_t22:RealCandidateProviderT22Evidence",
+  "candidate_provider_id": "t21_protocol.providers_t22:RealCandidateProviderT22Evidence",
+  "candidate_provider_kind": "REAL_CANDIDATE",
+  "candidate_serialization": "t21_protocol.providers_r17:canonical_candidate_row_v2",
+  "floor_calculations": 32,
+  "implementation_registry_check": {
+    "implementation_count": 32,
+    "mismatches": [],
+    "scorer_module_sha256": "1dbb0790d0fac1e46aab8b2d7284f70814d3eaf59e7409647bf202e1fe5171ff",
+    "status": "PASS"
+  },
+  "rows": 4800,
+  "runtime_bindings": {
+    "candidate_provider_sha256": "13d3e4aa68a484194c40a35b01f7c3e79825dd531b09353eb64cb4e0d49ffc49",
+    "runtime_corpus_contract_sha256": "c6f3c4efe52b2d09f461b8890ba2d71dd20616635fdbeeea69ea25d51e8845fe",
+    "runtime_data_contract_root": "065b2764d4b32a4c8d825a939e01afa565a651c2e2eae0967c27d63d59c9376c",
+    "runtime_field_provenance_sha256": "fea0a5290c6e61bfce28ce6085cce078ff15b380172866073ddc69106c11c2a1",
+    "runtime_loader_validation_sha256": "6d43dc0457515294229bcc894447edd98f63f56f5dafdc2c05b8d45d59f71f91"
+  },
+  "schema_version": "t21-evaluation-provenance-v2",
+  "scorer": "t21_protocol.scorer_r17:score_explicit",
+  "seal_root": "bd6cbc3c987733c94176df0aee0b39efcf05c80d73bf1b0cba12c32110d3c20a",
+  "semantics_root": "d50519d1c0d4c5916a44982343eb6e4978fd1b05f7c15734f709c38aa4468d62",
+  "status": "PASS",
+  "workspace_mode": "REAL_EXPERIMENT"
+}

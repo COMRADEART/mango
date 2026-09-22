@@ -1,0 +1,18 @@
+{
+  "absolute_uplift": 0.878125,
+  "artifact": "T23_ROUTER_ABLATION",
+  "executive_router_enabled_accuracy": 1.0,
+  "legacy_selected_counts": {
+    "ANSWER_LOCAL": 1188,
+    "ROUTE_WEB_RESEARCH": 92
+  },
+  "population": 1280,
+  "preregistered_interpretation": {
+    "enabled_floor": 0.98,
+    "minimum_absolute_uplift": 0.1,
+    "pass_rule": "enabled accuracy >= 0.98 and uplift >= 0.10"
+  },
+  "router_bypass_legacy_accuracy": 0.121875,
+  "schema_version": "t23-router-ablation-v1",
+  "status": "PASS"
+}
