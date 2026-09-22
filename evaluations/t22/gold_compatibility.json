@@ -1,0 +1,10 @@
+{
+  "artifact": "T22_GOLD_COMPATIBILITY",
+  "audit_mode": "EXECUTED",
+  "floor_paths": 32,
+  "rows": 4800,
+  "same_gold_validator": true,
+  "schema_version": "t21-gold-compatibility-v1",
+  "status": "PASS",
+  "taxonomy_labels": 14
+}
