@@ -8,7 +8,7 @@ from __future__ import annotations
 import pytest
 
 from sciencemath.executive.skills import (
-    ACTIVE, DISABLED, EXPERIMENTAL, SKILL_IDS, SkillRegistry,
+    ACTIVE, DISABLED, EXPERIMENTAL, QUALIFIED, SKILL_IDS, SkillRegistry,
     default_registry,
 )
 from sciencemath.orchestration import contract as C
@@ -323,15 +323,10 @@ def test_registry_pre_existing_skills_unchanged_active():
         assert reg[skill_id]["availability"] == ACTIVE, skill_id
     counts = SkillRegistry().counts()
     assert counts.get(ACTIVE) == 11
-    # T21.2 registration record + T21.60 promotion decision record
-    # (evaluations/t21/registry_registration.json, then
-    # evaluations/t21/promotion_decision.json): KNOWLEDGE_RAG entered
-    # EXPERIMENTAL and was promoted ACTIVE at T21 close with every
-    # preregistered gate met. At T21R2 close the strict blind holdout
-    # (evaluations/t21r2/) failed preregistered floors and the recorded
-    # DEMOTE_KNOWLEDGE_RAG_TO_EXPERIMENTAL decision was applied, so
-    # exactly one EXPERIMENTAL entry (KNOWLEDGE_RAG) remains.
-    assert counts.get(EXPERIMENTAL, 0) == 1
+    # T21R2's demotion remains in its historical record. The exact T22
+    # candidate subsequently passed the frozen one-shot capability gate.
+    assert counts.get(EXPERIMENTAL, 0) == 0
+    assert counts.get(QUALIFIED, 0) == 1
 
 
 def test_skill_registry_accepts_default_registry():
