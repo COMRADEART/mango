@@ -1,0 +1,28 @@
+{
+  "artifact": "T22_PROVIDER_PARITY_REPORT",
+  "audit_mode": "EXECUTED",
+  "candidate_rows_executed_in_rehearsal": 4800,
+  "canonical_serialization": "t21_protocol.providers_r17:canonical_candidate_row_v2",
+  "compared_fields": [
+    "status",
+    "answer",
+    "counters",
+    "citations",
+    "citation_report",
+    "claim_review",
+    "evidence_pack",
+    "eligibility"
+  ],
+  "direct_runtime_output": "answer_knowledge(now=...) over the frozen load_corpus",
+  "experiment": "t22",
+  "pairs_compared": 4800,
+  "provider_id": "t21_protocol.providers_t22:RealCandidateProviderT22Evidence",
+  "provider_init_rows": 0,
+  "provider_rows_after_execution": 4800,
+  "request_date_carrier_threaded": true,
+  "retrieval_and_answer_generation_exercised": true,
+  "rows": 4800,
+  "schema_version": "t21-provider-parity-report-v1",
+  "semantic_differences": [],
+  "status": "PASS"
+}

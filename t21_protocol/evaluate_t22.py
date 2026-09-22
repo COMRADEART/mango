@@ -93,7 +93,7 @@ def run_evaluation_t22(
     root = sealed_workspace.resolve()
     out = root / "evaluations" / experiment
     require_evaluation_authorization(authorization, experiment=experiment)
-    contract = load_contract(out / "t22_master_contract.json")
+    contract = load_contract(out / "t21_master_contract.json")
     if contract.experiment != experiment:
         raise ValidationError("evaluation experiment identity mismatch")
     graph = load_artifact_graph(root / contract.get("artifacts.artifact_graph"))

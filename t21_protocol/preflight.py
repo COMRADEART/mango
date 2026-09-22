@@ -37,7 +37,13 @@ def _validate_gold_bundle(root: Path, contract: Any) -> dict[str, Any]:
             if not row["case_id"].startswith(contract.get("identity.case_id_prefix")):
                 raise ValidationError(f"{context}: case_id namespace mismatch")
             validate_labels(row["gold"].get("required_domains", []), taxonomy, context=context)
-            if row["gold"].get("expect_status") not in {"ANSWER", "INSUFFICIENT_EVIDENCE", "CONFLICTING_EVIDENCE"}:
+            allowed_statuses = {"ANSWER", "INSUFFICIENT_EVIDENCE", "CONFLICTING_EVIDENCE"}
+            if contract.experiment == "t22":
+                # T22 temporal routing rows carry the frozen runtime route
+                # status as their gold expectation (the t22 author contract's
+                # ROUTE_STATUSES); prior experiments' gold semantics unchanged.
+                allowed_statuses |= {"ROUTE_WEB_RESEARCH"}
+            if row["gold"].get("expect_status") not in allowed_statuses:
                 raise ValidationError(f"{context}: unknown expected status")
             rows.append(row)
     expected_total = contract.get("suite_total")

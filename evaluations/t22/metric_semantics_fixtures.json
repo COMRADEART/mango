@@ -1373,7 +1373,8 @@
     "no_retroactive_effect_on_r17": true,
     "ok": true,
     "policy_classes_byte_identical_to_r17": true,
-    "prose_harmonized": {
+    "prose_harmonized": true,
+    "prose_harmonized_detail": {
       "capability_guard": true,
       "conflict_false_resolution_lineage_notes": true
     },

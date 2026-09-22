@@ -1,0 +1,141 @@
+{
+  "artifact": "T22_TEST_FAILURE_ADJUDICATION",
+  "classification_summary": {
+    "ENVIRONMENT_ONLY_FAILURE": 0,
+    "LIVE": 0,
+    "OBSOLETE_HISTORICAL_ASSERTION": 16,
+    "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE": 9,
+    "UNKNOWN": 0
+  },
+  "entries": [
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "nodeid": "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "nodeid": "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "nodeid": "tests/test_t21_protocol_kernel.py::test_construction_error_marks_ledger_failed"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "nodeid": "tests/test_t21_protocol_kernel.py::test_construction_phase_api_twice_stops_at_sealed"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "nodeid": "tests/test_t21_protocol_kernel.py::test_full_synthetic_protocol_twice_uses_separate_phases"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "nodeid": "tests/test_t21_protocol_kernel.py::test_real_mode_dry_rehearsal_stops_at_sealed"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21_protocol_kernel.py::test_real_r15_paths_are_absent"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r10_preconstruction.py::test_end_to_end_nonblind_miniature_and_all_controls_pass"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r10_preconstruction.py::test_every_real_r10_holdout_and_exposure_path_remains_absent"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r10_preconstruction.py::test_static_scanner_uniqueness_and_blindness_all_pass"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r11_preconstruction.py::test_evaluator_freeze_rehashes_every_component"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r11_preconstruction.py::test_every_real_r11_blind_and_exposure_path_is_absent"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "nodeid": "tests/test_t21r11_preconstruction.py::test_remediation_provenance_binds_every_production_change"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "nodeid": "tests/test_t21r11_preconstruction.py::test_runtime_freeze_rehashes_every_component"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r13_preconstruction.py::test_real_r13_paths_absent"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r16_preconstruction.py::test_real_r16_paths_absent"
+    },
+    {
+      "classification": "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE",
+      "nodeid": "tests/test_t21r16_preconstruction.py::test_runtime_contract_is_derived_from_frozen_modules"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r17_preconstruction.py::test_real_r17_paths_absent"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components"
+    },
+    {
+      "classification": "OBSOLETE_HISTORICAL_ASSERTION",
+      "nodeid": "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components"
+    }
+  ],
+  "experiment": "t22",
+  "rationales": {
+    "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21_protocol_kernel.py::test_construction_error_marks_ledger_failed": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21_protocol_kernel.py::test_construction_phase_api_twice_stops_at_sealed": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21_protocol_kernel.py::test_full_synthetic_protocol_twice_uses_separate_phases": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21_protocol_kernel.py::test_real_mode_dry_rehearsal_stops_at_sealed": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21_protocol_kernel.py::test_real_r15_paths_are_absent": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r10_preconstruction.py::test_end_to_end_nonblind_miniature_and_all_controls_pass": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r10_preconstruction.py::test_every_real_r10_holdout_and_exposure_path_remains_absent": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r10_preconstruction.py::test_static_scanner_uniqueness_and_blindness_all_pass": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r11_preconstruction.py::test_evaluator_freeze_rehashes_every_component": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r11_preconstruction.py::test_every_real_r11_blind_and_exposure_path_is_absent": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r11_preconstruction.py::test_remediation_provenance_binds_every_production_change": "the R11 remediation provenance binds the pre-repair sha256 of every changed production file; the authorized T22 candidate remediation changed production bytes, so the R11-bound hashes legitimately no longer match; T22's frozen changed_file_manifest.json (evaluations/t22) carries the same discipline for the current candidate",
+    "tests/test_t21r11_preconstruction.py::test_runtime_freeze_rehashes_every_component": "re-verifies the R11 frozen runtime freeze against current runtime bytes; the authorized T22 candidate remediation (repair chain ending at the T22 candidate commit) changed the runtime component bytes (freshness/routing/pipeline/schema/corpus), so the R11 freeze legitimately no longer re-hashes; the T22 runtime freeze (evaluations/t22/runtime_freeze.json) binds the current bytes and tests/test_t22_preconstruction.py re-verifies it against the T22 root",
+    "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r13_preconstruction.py::test_real_r13_paths_absent": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r16_preconstruction.py::test_real_r16_paths_absent": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r16_preconstruction.py::test_runtime_contract_is_derived_from_frozen_modules": "re-derives the R16 runtime corpus contract from current runtime bytes and compares it to the committed R16 contract; the authorized T22 candidate remediation changed runtime bytes, so the fresh derivation legitimately differs; T22 re-derives the corpus contract from the current frozen bytes into evaluations/t22/runtime_corpus_contract.json (tests/test_t22_preconstruction.py re-checks it)",
+    "tests/test_t21r17_preconstruction.py::test_real_r17_paths_absent": "asserts real R17 holdout paths are absent; the R17 sealed holdout legitimately exists, was consumed by the one-shot official evaluation, and is preserved unmodified (T21R17 final adjudication); the T22 contract carries the equivalent preconstruction pin (tests/test_t22_preconstruction.py::test_real_t22_paths_absent)",
+    "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)",
+    "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components": "classification carried from the committed T21R17 adjudication (same committed historical artifact state)"
+  },
+  "schema_version": "t21-test-failure-adjudication-v1"
+}

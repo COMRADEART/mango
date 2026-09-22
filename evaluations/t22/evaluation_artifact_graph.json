@@ -1,0 +1,46 @@
+{
+  "artifact": "T22_EVALUATION_ARTIFACT_GRAPH",
+  "candidate_stub_nodes": 0,
+  "experiment": "t22",
+  "nodes": {
+    "candidate_outputs": {
+      "artifact": "evaluations/t22/candidate_outputs.jsonl",
+      "producer": "real_candidate_provider"
+    },
+    "evaluation_provenance": {
+      "artifact": "evaluations/t22/evaluation_provenance.json",
+      "producer": "evaluator"
+    },
+    "evaluation_run_ledger": {
+      "artifact": "evaluations/t22/evaluation_run_ledger.json",
+      "producer": "ledger"
+    },
+    "evaluator_results": {
+      "artifact": "evaluations/t22/evaluator_results.json",
+      "producer": "evaluator"
+    },
+    "floor_evidence": {
+      "artifact": "evaluations/t22/floor_evidence.json",
+      "producer": "scorer"
+    },
+    "holdout_results": {
+      "artifact": "evaluations/t22/holdout_results.json",
+      "producer": "scorer"
+    },
+    "metric_evidence": {
+      "artifact": "evaluations/t22/metric_evidence.json",
+      "producer": "evaluator"
+    },
+    "raw_results": {
+      "artifact": "evaluations/t22/raw_results.jsonl",
+      "producer": "evaluator"
+    },
+    "score_results": {
+      "artifact": "evaluations/t22/score_results.json",
+      "producer": "scorer"
+    }
+  },
+  "post_seal_graph_changes": 0,
+  "rule": "the complete production evaluation artifact graph is fixed before construction; every production node names a production producer",
+  "schema_version": "t21-evaluation-artifact-graph-v1"
+}

@@ -1,0 +1,51 @@
+{
+  "artifact": "T22_CANDIDATE_RUNTIME_DATA_CONTRACT",
+  "candidate": {
+    "candidate_rows_executed_in_preconstruction": 0,
+    "corpus_loader": "src/sciencemath/knowledge/corpus.py:load_corpus (frozen, no adapter)",
+    "evidence_passthrough": [
+      "citations",
+      "citation_report",
+      "claim_review",
+      "evidence_pack",
+      "eligibility"
+    ],
+    "generation": {
+      "canonical_serialization": "t21_protocol.providers_r17:canonical_candidate_row_v2",
+      "entry": "src/sciencemath/knowledge/pipeline.py:answer_knowledge"
+    },
+    "gold_only_fields_never_read": [
+      "construction_tag",
+      "signal_class",
+      "expected_route",
+      "expected_status",
+      "gold expected_answer"
+    ],
+    "initialization": {
+      "executes_holdout_rows": false,
+      "loads_corpus_once": true
+    },
+    "module": "t21_protocol/providers_t22.py",
+    "module_sha256": "13d3e4aa68a484194c40a35b01f7c3e79825dd531b09353eb64cb4e0d49ffc49",
+    "provider_id": "t21_protocol.providers_t22:RealCandidateProviderT22Evidence",
+    "request_date_carrier": {
+      "candidate_visible_only": true,
+      "carrier": "E_runtime_request_timestamp",
+      "field": "request_date",
+      "runtime_input": "pipeline.answer_knowledge(now=...)"
+    },
+    "serialization": "t21_protocol.providers_r17:canonical_candidate_row_v2"
+  },
+  "experiment": "t22",
+  "no_second_corpus_model": true,
+  "rule": "the authored holdout material and the frozen candidate runtime share exactly one corpus contract; there is no second, adapter-repaired corpus model",
+  "runtime_corpus_contract": {
+    "path": "evaluations/t22/runtime_corpus_contract.json",
+    "sha256": "c6f3c4efe52b2d09f461b8890ba2d71dd20616635fdbeeea69ea25d51e8845fe"
+  },
+  "runtime_field_provenance": {
+    "path": "evaluations/t22/runtime_field_provenance.json",
+    "sha256": "fea0a5290c6e61bfce28ce6085cce078ff15b380172866073ddc69106c11c2a1"
+  },
+  "schema_version": "t21-candidate-runtime-data-contract-v1"
+}

@@ -1,0 +1,35 @@
+{
+  "artifact": "T22_EXPERIMENT_CONFIGURATION",
+  "author_vocabulary": [
+    "arts",
+    "biography",
+    "civic_architecture",
+    "computing",
+    "culture",
+    "economics",
+    "education_reference",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "natural_philosophy",
+    "natural_world",
+    "technology_history"
+  ],
+  "case_id_prefix": "t22-",
+  "crossdomain_pair_ids": [
+    "arts__geography",
+    "biography__economics",
+    "civic_architecture__natural_world",
+    "computing__history",
+    "culture__government_civics",
+    "education_reference__technology_history",
+    "literature__natural_philosophy"
+  ],
+  "experiment": "t22",
+  "historical_exclusion_milestone_count": 17,
+  "namespace": "mango-t22-v1",
+  "seed": 22022,
+  "suite_total": 4800,
+  "version": "t22-v1"
+}

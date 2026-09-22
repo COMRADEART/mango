@@ -1,0 +1,89 @@
+{
+  "artifact": "T21R17_FINAL_DISPOSITION",
+  "artifact_fingerprints_sha256": {
+    "evaluations/t21r17/HOLDOUT_FROZEN": "02cd4164b8bcd894f7737cf3334f9ecef30a09821f687eebc65c620d2c146948",
+    "evaluations/t21r17/candidate_outputs.jsonl": "92768a7e8ebc2de57eb564539716bd3193f53bee940f25740feb59a07b050149",
+    "evaluations/t21r17/evaluation_provenance.json": "86b935e262dd578882f1b498e889ad43b15bdc3e8f7a07afd4050110c5fda896",
+    "evaluations/t21r17/evaluation_run_ledger.json": "3894aa6bd7f360dfb3e04735a39e10bf673c2bc02a8f69f0dce61090e1483426",
+    "evaluations/t21r17/evaluator_results.json": "8a8db612f308bb6c4d1dd1f855b011eeff183c443e492528322bc256aa888c6b",
+    "evaluations/t21r17/floor_evidence.json": "e22eb091c27c90db3d560b03b89765d2ea729e343633e0f70afdce62664e390d",
+    "evaluations/t21r17/holdout_manifest.json": "bd2642e3b9a8771f2396ff30ce219ac937374adce7e5130f2932e6eee24b6a83",
+    "evaluations/t21r17/holdout_results.json": "17c2964bb7eff17f9c59b92ea372cedb00751176453c341540489dff3fcc98ef",
+    "evaluations/t21r17/metric_evidence.json": "e6a5e2cb745830e0947d734ce89eb519218ccbf48433187a56480ad8c30e9cb7",
+    "evaluations/t21r17/raw_results.jsonl": "5172f140c064cc88dad1fcd596344b4b7a8eba041f592f5476c406f71d5b79dd",
+    "evaluations/t21r17/score_results.json": "e5acd40c0a6082e4837118def7136dba9078d8c69373dfb0347c4b8351a50379",
+    "evaluations/t21r17/sealed_preflight.json": "c30be54869f7e7c087e38745d824550a675db569d80fc84a9a4ff57dee6e98bc"
+  },
+  "capability_failure": true,
+  "capability_verdict": "FAIL",
+  "closed_at": "2026-09-22",
+  "evaluation_completed": true,
+  "experiment": "t21r17",
+  "failed_metric_count": 2,
+  "failed_metric_designation": "VALID_MEASUREMENTS_OF_CANDIDATE_CAPABILITY_FAILURE",
+  "failed_metrics": [
+    "explicit_current_routing_accuracy",
+    "stale_snapshot_false_current_answers"
+  ],
+  "failure_class": "capability_failure",
+  "final_adjudication": "T21R17_FINAL_ADJUDICATION_VALID_CAPABILITY_FAILURE",
+  "frozen_observed_values": {
+    "explicit_current_routing_accuracy": 0.0,
+    "stale_snapshot_false_current_answers": 70
+  },
+  "frozen_observed_values_note": "recorded exactly as scored by the frozen explicit scorer in the one-shot run; the values are never replaced with alternative estimates or repaired observations",
+  "holdout_status": "PERMANENTLY_EXPOSED_CONSUMED",
+  "official_run_preserved": {
+    "branch": "t21r17-official-evaluation",
+    "candidate_provider": "t21_protocol.providers_r17:RealCandidateProviderEvidence",
+    "construction_attempt": 1,
+    "construction_commit": "9631c91687674497400e4e7ec974fa104cd0d3a9",
+    "evaluation_attempt": 1,
+    "exposures": 1,
+    "floors_failed": [
+      "explicit_current_routing_accuracy",
+      "stale_snapshot_false_current_answers"
+    ],
+    "floors_passed": 30,
+    "ledger_status": "COMPLETE",
+    "official_evaluation_commit": "9fc953468921e527d5c340b6e69bb1c3ea48c7a9",
+    "rerun": "PROHIBITED",
+    "rows": 4800,
+    "seal_root": "46557a9f6dd06a762ec320b701b6fa2659f32b0b66e0ceb9bee1df12c19fadf7",
+    "workspace_mode": "REAL_EXPERIMENT"
+  },
+  "one_shot_consumed": true,
+  "reason": "TWO_TEMPORAL_FLOOR_METRICS_MEASURED_A_CANDIDATE_FAILURE_WITHOUT_CANDIDATE_VISIBLE_SIGNALS",
+  "remediation_protocol": "T22 temporal/current-information routing preconstruction (candidate-visible signal carriers; the measuring stick does not change); no candidate repair is derived from any R17 blind case",
+  "rerun": "REFUSED",
+  "rerun_policy": {
+    "holdout_reuse": "FORBIDDEN",
+    "holdout_status": "PERMANENTLY_EXPOSED_CONSUMED",
+    "rerun_r17_evaluation": "REFUSED"
+  },
+  "rows_scored": 4800,
+  "schema_version": "t21-experiment-closure-v1",
+  "status": "CLOSED / VALID_CAPABILITY_FAILURE",
+  "valid_measurement_evidence": {
+    "explicit_current_routing_accuracy": {
+      "denominator": 70,
+      "note": "the metric measured a real, design-mandated, non-empty population (70 temporal rows)",
+      "numerator": 0
+    },
+    "stale_snapshot_false_current_answers": {
+      "denominator": null,
+      "note": "the metric counted 70 real stale-snapshot-presented-as-current events",
+      "numerator": 70
+    }
+  },
+  "zero_denominator_floors_passed_under_frozen_conventions": {
+    "metrics": [
+      "conflict_detection",
+      "conflict_false_resolution",
+      "insufficient_evidence_precision",
+      "insufficient_evidence_recall",
+      "source_diversity"
+    ],
+    "policy_note": "preregistered convention observed=0.0 on an empty eligible population; the T22 zero_denominator_policy_resolution harmonizes the prose prospectively and leaves the frozen implementation unchanged"
+  }
+}
