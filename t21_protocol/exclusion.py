@@ -25,7 +25,13 @@ def fingerprint(value: str) -> str:
 
 
 def validate_historical_policy(policy: dict[str, Any], root: Path) -> dict[str, Any]:
-    history_keys = {"r14_protocol_history", "r15_protocol_history", "r16_protocol_history"}
+    # T22 — R17 is permanently closed as OFFICIAL_VALID_CAPABILITY_FAILURE;
+    # its exclusion record is referenced hash-only through
+    # r17_protocol_history (no raw R17 values ever enter later authoring).
+    history_keys = {
+        "r14_protocol_history", "r15_protocol_history",
+        "r16_protocol_history", "r17_protocol_history",
+    }
     required = {
         "schema_version",
         "artifact",
@@ -36,7 +42,11 @@ def validate_historical_policy(policy: dict[str, Any], root: Path) -> dict[str, 
         "upstream_registry",
         "upstream_registry_sha256",
     }
-    accepted = required | {"r14_protocol_history"}, required | {"r15_protocol_history"}, required | {"r16_protocol_history"}
+    accepted = tuple(
+        required | {key}
+        for key in ("r14_protocol_history", "r15_protocol_history",
+                    "r16_protocol_history", "r17_protocol_history")
+    )
     if set(policy) not in accepted:
         raise ValidationError("historical exclusion policy violates closed schema")
     present_history = sorted(history_keys & set(policy))
