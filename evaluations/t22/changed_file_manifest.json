@@ -130,15 +130,27 @@
     },
     {
       "path": "evaluations/t22/temporal_holdout_design.json",
-      "reason": "preregistered T22 blind temporal family design with per-sub-shape signal-carrier assignment and the signal_carrier_audit definition (gold-only-signal rows = 0, protocol section 33).",
+      "reason": "preregistered T22 blind temporal family design with per-sub-shape signal-carrier assignment and the signal_carrier_audit definition (gold-only-signal rows = 0, protocol section 33). The frozen row_authoring block (value_prefix, request-date carrier, per-tag templates and sub-shapes, the mandatory record-pinned default for the seven non-temporal suites, expect_status_by_tag) makes this design file the single frozen source of authoring truth consumed by the builder.",
       "expected_behavioral_effect": "none at runtime; the design the construction authorization will build from",
-      "regression_coverage": "t22 preconstruction design audit + signal-carrier audit"
+      "regression_coverage": "t22 preconstruction design audit + signal-carrier audit + author_t22 composition validation against the same artifact's frozen templates"
     },
     {
       "path": "evaluations/t22/zero_denominator_policy_resolution.json",
       "reason": "frozen prospective resolution of the R17 prose/implementation inconsistency (protocol section 31): design-mandated populations FAIL_CLOSED, emergent populations apply the preregistered convention, contradictory prose superseded, scorer unchanged, floor hash unchanged, no retroactive effect on R17.",
       "expected_behavioral_effect": "none at runtime; the T22 semantics artifact harmonizes its prose to this policy",
       "regression_coverage": "t22 semantics validation (numeric fields byte-identical to R17) + fixture battery harmonization section"
+    },
+    {
+      "path": "t21_protocol/author_t22.py",
+      "reason": "T22-only row_authoring composition for the contract-driven author spec: loads the frozen block from the contract-declared temporal design artifact and fails closed unless every by_tag template, sub-shape count/order, freshness class, expect_status, and the request-date carrier match the same artifact's candidate_visible_signals families and the contract's exact design. Gated on artifacts.temporal_holdout_design; prior-experiment contracts lack the declaration and compose nothing.",
+      "expected_behavioral_effect": "T22 construction and preconstruction rehearsals author candidate-visible temporal signal carriers from the single frozen source; any authoring drift fails closed before any blind row is built",
+      "regression_coverage": "tests/test_t22_preconstruction.py (prior-experiment None, template-drift refusals, stub-contract attach) + the preconstruction shadow stage builds 4800 rows through this path"
+    },
+    {
+      "path": "t21_protocol/author.py",
+      "reason": "additive contract-gated branch in build_specs: attach the validated row_authoring block only when the contract declares artifacts.temporal_holdout_design; the returned spec is otherwise byte-identical for every prior experiment.",
+      "expected_behavioral_effect": "the T22 author spec (and its fingerprint_root) binds the frozen row authoring into construction provenance; R16/R17 author fingerprints unchanged",
+      "regression_coverage": "tests/test_t22_preconstruction.py: R16/R17 build_specs still carry no row_authoring (byte-identical prior behavior)"
     }
   ],
   "not_changed": {

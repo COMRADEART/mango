@@ -1,0 +1,35 @@
+{
+  "schema_version": "t22-candidate-identity-v1",
+  "artifact": "T22_CANDIDATE_IDENTITY",
+  "experiment": "t22",
+  "status": "FROZEN_PRECONSTRUCTION",
+  "old_candidate": {
+    "experiment": "t21r17",
+    "candidate_commit": "9fc953468921e527d5c340b6e69bb1c3ea48c7a9",
+    "candidate_provider": "t21_protocol.providers_r17:RealCandidateProviderEvidence",
+    "candidate_semantics": "t21_protocol.scorer_r17:score_explicit (unchanged in T22)",
+    "disposition": "CLOSED/T21R17_OFFICIAL_VALID_CAPABILITY_FAILURE; identity never continued (protocol section 28)"
+  },
+  "new_candidate": {
+    "experiment": "t22",
+    "candidate_repair_chain": [
+      "098529c26b5aa53d23a68ac05f87de4bad89d550",
+      "7d919a255c2df87adcb3dd42011b505b10509713"
+    ],
+    "candidate_commit": "7d919a255c2df87adcb3dd42011b505b10509713",
+    "candidate_commit_tree_sha256": "0bbf81b234458a4ac204ff6b035bc59b59078544",
+    "candidate_runtime_files_sha256": {
+      "src/sciencemath/knowledge/freshness.py": "63104a9a012b1c846e0bb48f74a7e291b8d44e760c23998e472c470f75566e2c",
+      "src/sciencemath/knowledge/routing.py": "d47af1ea34fc0e82347d2214b6894c15fb005082582bc08b7a7f78aa6cbc7151",
+      "src/sciencemath/knowledge/pipeline.py": "b0f99cce2afc181c0ce340b19597f93889652aea036a7996cfc9266d2b21232c",
+      "src/sciencemath/knowledge/schema.py": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135",
+      "src/sciencemath/knowledge/corpus.py": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d",
+      "t21_protocol/providers_t22.py": "13d3e4aa68a484194c40a35b01f7c3e79825dd531b09353eb64cb4e0d49ffc49"
+    },
+    "candidate_runtime_identity_root": "a38507e455511c205e6b5250af56646491cab111d92e6f77734b6595a3ab6c8c",
+    "candidate_provider": "t21_protocol.providers_t22:RealCandidateProviderT22Evidence",
+    "candidate_runtime_delta": "five-intent temporal classifier + request-date carrier + post-retrieval metadata rule (top-ranked evidence item)",
+    "scorer_unchanged": true
+  },
+  "note": "the T22 preconstruction branch continues from the closed R17 evaluation head only as the protocol base; the candidate identity is new per the remediation rule; the runtime repair chain is complete at candidate_commit (no later commit touches src/sciencemath or t21_protocol/providers_t22.py)"
+}
