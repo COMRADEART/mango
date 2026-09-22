@@ -151,6 +151,12 @@
       "reason": "additive contract-gated branch in build_specs: attach the validated row_authoring block only when the contract declares artifacts.temporal_holdout_design; the returned spec is otherwise byte-identical for every prior experiment.",
       "expected_behavioral_effect": "the T22 author spec (and its fingerprint_root) binds the frozen row authoring into construction provenance; R16/R17 author fingerprints unchanged",
       "regression_coverage": "tests/test_t22_preconstruction.py: R16/R17 build_specs still carry no row_authoring (byte-identical prior behavior)"
+    },
+    {
+      "path": "scripts/t22_fixtures.py",
+      "reason": "the T22 discriminative fixture battery: the full R17 fixture program re-targeted to the carried T22 semantics artifact (identity parameterization) plus the new zero-denominator harmonization section that proves the frozen prose and the byte-identical scorer agree on every empty-population case (resolution verification requirement 1; design-mandated empty fails closed, emergent empty applies the preregistered convention with pass=true and the policy flag, policy classes byte-identical to R17, no retroactive effect).",
+      "expected_behavioral_effect": "none at runtime; qualification evidence for the section-31 harmonization and all 32 measurement semantics",
+      "regression_coverage": "evaluations/t22/metric_semantics_fixtures.json (12 sections, all PASS) is the regression evidence"
     }
   ],
   "not_changed": {
