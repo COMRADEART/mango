@@ -1,0 +1,215 @@
+{
+  "artifact": "T21_HOLDOUT_MANIFEST",
+  "binding_count": 41,
+  "bindings": {
+    "adjudication": {
+      "kind": "file",
+      "path": "evaluations/t21r17/test_failure_adjudication.json",
+      "sha256": "054e4490af5487e30d0f58c85d3387a02f18445aed49676b4c2a1f7978540d23"
+    },
+    "applicability": {
+      "kind": "file",
+      "path": "evaluations/t21r17/current_test_applicability.json",
+      "sha256": "92cdf4d7648108c55fef5e28595ce92ab26ced506db85578f771e2f3e75adecb"
+    },
+    "artifact_graph": {
+      "kind": "file",
+      "path": "evaluations/t21r17/artifact_graph.json",
+      "sha256": "9bab9a6df5f29842aac07ba0c3a86d821fe39471bd74437c8619db7f6a92d201"
+    },
+    "author_spec": {
+      "kind": "file",
+      "path": "evaluations/t21r17/author_spec.json",
+      "sha256": "17065b0a399481216d7400af0d543d7f6714da8d64bde25eb277360fbfb828b1"
+    },
+    "blindness_audit": {
+      "kind": "file",
+      "path": "evaluations/t21r17/holdout_blindness.json",
+      "sha256": "a02149f33f71bf1fb81ecad61acabb04efa5abf1984e9531a53277ab233ee238"
+    },
+    "candidate_provider_compatibility": {
+      "kind": "file",
+      "path": "evaluations/t21r17/candidate_provider_compatibility.json",
+      "sha256": "7d86a6abf2ea86bb26ea05c34e18e79f0bf912fe205490d92905cc79e07ed9cd"
+    },
+    "candidate_runtime_data_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r17/candidate_runtime_data_contract.json",
+      "sha256": "9aceb7895b46e2e97776cc334ed494cefd682f1386f5ac714a953e793b1c301b"
+    },
+    "construction_gate": {
+      "kind": "file",
+      "path": "evaluations/t21r17/construction_gate.json",
+      "sha256": "4f0cbf6b7fcfcd3d71dc82590db1c248a73457e7a99401e9a54611c1fb28710f"
+    },
+    "construction_ledger": {
+      "kind": "file",
+      "path": "evaluations/t21r17/construction_run_ledger.json",
+      "sha256": "79d8129bd882fb2cd946f73fff71dbbcdc244415c7fc9692a4005103de11ec81"
+    },
+    "corpus": {
+      "kind": "directory",
+      "path": "rag/gk_holdout_t21r17",
+      "sha256": "590885bea1989db3279be0c7fc89c9598dad572f29eb32d297505cfe06a3d12d"
+    },
+    "domain_taxonomy": {
+      "kind": "file",
+      "path": "evaluations/t21r17/domain_taxonomy_contract.json",
+      "sha256": "ee788b897a80209107c42806ce7f405eb3272440a0188de1581e514dd6266e14"
+    },
+    "evaluation_artifact_graph": {
+      "kind": "file",
+      "path": "evaluations/t21r17/evaluation_artifact_graph.json",
+      "sha256": "7b0754b7ce12c69e116a45a27e9d8b17f70e30f82b6f47d418973f4e4c12bd32"
+    },
+    "evaluation_reporting_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r17/evaluation_reporting_contract.json",
+      "sha256": "4be48022773721cc9c0e04f6c4f5003ea16ab25b3a3c16f0f12bc8d1dd62b8ca"
+    },
+    "evaluator_freeze": {
+      "kind": "file",
+      "path": "evaluations/t21r17/evaluator_freeze.json",
+      "sha256": "a2e06dc5899b75ad8d66e3db18cc8b6dbd6e816b9cc36526b70601a1e14c362c"
+    },
+    "exact_design_audit": {
+      "kind": "file",
+      "path": "evaluations/t21r17/exact_design_audit.json",
+      "sha256": "f6e93ef14bb0cc8a9a04aadc2c3495b899db521ae2870043acb5110bb9db50a2"
+    },
+    "experiment_config": {
+      "kind": "file",
+      "path": "evaluations/t21r17/experiment.json",
+      "sha256": "ab05c61e16181e848f51cd7dcd758f28fdaa96f649a6daca37060b30bc41a2dd"
+    },
+    "floor_evidence_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r17/floor_evidence_contract.json",
+      "sha256": "9264a9cc2b5391c8f03abffedd2761c9b7a25d40338fd8877f5f224184a3bfb5"
+    },
+    "gate_auditor_crosscheck": {
+      "kind": "file",
+      "path": "evaluations/t21r17/gate_auditor_crosscheck.json",
+      "sha256": "fdeb579184a6a569e4bb30930c0608a1cb1b9257163e17671e2b341326c18a15"
+    },
+    "gold_compatibility": {
+      "kind": "file",
+      "path": "evaluations/t21r17/gold_compatibility.json",
+      "sha256": "76f31b2e9fa04e95fe5a6a09f39092aa7dabebbff0cc3bbf007ed2151cc896e0"
+    },
+    "historical_exclusion": {
+      "kind": "file",
+      "path": "evaluations/t21r17/historical_exclusion.json",
+      "sha256": "5f4b37d06a073dd5b34b17552348904e0fdeaea6a8f5d98b2d3a8efc682c2170"
+    },
+    "historical_uniqueness": {
+      "kind": "file",
+      "path": "evaluations/t21r17/historical_uniqueness.json",
+      "sha256": "afb558cab5ac7a247f59f365e07a4782c2457d810f02c737cfe79daddde1ffdb"
+    },
+    "holdout_frozen_schema": {
+      "kind": "file",
+      "path": "evaluations/t21r17/holdout_frozen_schema.json",
+      "sha256": "67faedbe525633d900fec182a50ee648cd84f8f990f523a4520b4d2df4f8c19d"
+    },
+    "master_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r17/t21_master_contract.json",
+      "sha256": "31a8c7ccd0f0a45e06b234f2abeda50ace4a279b747b11435ab25c62644d82cc"
+    },
+    "material_provenance": {
+      "kind": "file",
+      "path": "evaluations/t21r17/material_provenance.json",
+      "sha256": "a6f6b29164f3cc1432005540562508c6b6324865253c9fb253cbea05f0eaafdd"
+    },
+    "metric_implementation_registry": {
+      "kind": "file",
+      "path": "evaluations/t21r17/metric_implementation_registry.json",
+      "sha256": "83e12197c589038142a177a51cd02d2da0a060c65b7d9d9af4db19bdcba6fcf9"
+    },
+    "metric_semantics_fixtures": {
+      "kind": "file",
+      "path": "evaluations/t21r17/metric_semantics_fixtures.json",
+      "sha256": "4dbcf69975da1250e34350e37499c5bf2fed443a769ddaf1b14aee524f132eba"
+    },
+    "negative_controls": {
+      "kind": "file",
+      "path": "evaluations/t21r17/negative_controls.json",
+      "sha256": "1a60021754deb75f738e8da2eb52bb9681fbee216e7087e2d246edd0bd42080a"
+    },
+    "official_metric_registry": {
+      "kind": "file",
+      "path": "evaluations/t21r17/official_metric_registry.json",
+      "sha256": "f1fd06f7d4f3ff15b0f5ffa64fa79ad0b2bc7c487282d122b5ed9be467b785dc"
+    },
+    "official_metric_semantics": {
+      "kind": "file",
+      "path": "evaluations/t21r17/official_metric_semantics.json",
+      "sha256": "2aa759a570db548435acee0155b531e5befc8cc7477fe2c3dd82a7b222b35d4e"
+    },
+    "qualification_lock": {
+      "kind": "file",
+      "path": "evaluations/t21r17/qualification_lock.json",
+      "sha256": "4408d342ff8d0610ae1f5321c1029c50e1bba273f87043a49d487da7420dc030"
+    },
+    "r16_closure": {
+      "kind": "file",
+      "path": "evaluations/t21r16/T21R16_CLOSURE.json",
+      "sha256": "44034e4e1261a6ad09d20748b6b130446b90135314bdb34ca0927e72fed993a0"
+    },
+    "remediation_exclusion": {
+      "kind": "file",
+      "path": "evaluations/t21r17/remediation_exclusion.json",
+      "sha256": "ac6c5450f611cae4b1b3af89a129b6a91d9fb912f92f602ebbb6588474269d3a"
+    },
+    "remediation_uniqueness": {
+      "kind": "file",
+      "path": "evaluations/t21r17/remediation_uniqueness.json",
+      "sha256": "d328488ac0d243e1fbc7d3ef2655d92d28d17cdd69f58dfcc591f8ffaa8d9d99"
+    },
+    "root_of_trust": {
+      "kind": "file",
+      "path": "evaluations/t21r17/root_of_trust.json",
+      "sha256": "8d3a1e986a9416d1408c04fbafa51d84f093e8e3f800a28813dba7a575860d7c"
+    },
+    "runtime_corpus_contract": {
+      "kind": "file",
+      "path": "evaluations/t21r17/runtime_corpus_contract.json",
+      "sha256": "b21f2eef58166cc2db499b796a6c33a51bc77d25e99e0de6d7b0e2965b0a5eab"
+    },
+    "runtime_field_provenance": {
+      "kind": "file",
+      "path": "evaluations/t21r17/runtime_field_provenance.json",
+      "sha256": "e3cc769255d36bedac31a5c075e755c28806300ddfae5434dcacf9ca9939f814"
+    },
+    "runtime_freeze": {
+      "kind": "file",
+      "path": "evaluations/t21r17/runtime_freeze.json",
+      "sha256": "63abb5030d6e60be040740c681ae3da8dece909a0f67480d7abf74e8c735703c"
+    },
+    "runtime_loader_validation": {
+      "kind": "file",
+      "path": "evaluations/t21r17/runtime_loader_validation.json",
+      "sha256": "7633b1db6538b06bbbe8e4c2645c9ebafb014035f903c78bf336e855ab6e4b61"
+    },
+    "static_gold_audit": {
+      "kind": "file",
+      "path": "evaluations/t21r17/static_gold_audit.json",
+      "sha256": "07efcbae40259ae9536e5a0b72bce99669c264ffee6d3d8168b9d0bbbeafc904"
+    },
+    "suites": {
+      "kind": "directory",
+      "path": "evaluations/t21r17/suites",
+      "sha256": "87f3807da9ebfb8e198d370745750f2a61c3633f2cd9c952a9e6727b2fbbb35f"
+    },
+    "test_cleanliness": {
+      "kind": "file",
+      "path": "evaluations/t21r17/test_cleanliness.json",
+      "sha256": "edf7763d0a01c9fc6a8d884094fdb2266559dfc01d6bb118b55ae7a8ec5e4453"
+    }
+  },
+  "contract_sha256": "0a9126b223fdd6d220649fd2b69e1175ecec0dcb15016d0000f88817dc4cced6",
+  "experiment": "t21r17",
+  "freeze_root_sha256": "46557a9f6dd06a762ec320b701b6fa2659f32b0b66e0ceb9bee1df12c19fadf7",
+  "schema_version": "t21-holdout-manifest-v1"
+}

@@ -1,0 +1,176 @@
+{
+  "canonical_domains": [
+    "arts",
+    "biography",
+    "civic_architecture",
+    "computing",
+    "culture",
+    "economics",
+    "education_reference",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "natural_philosophy",
+    "natural_world",
+    "technology_history"
+  ],
+  "crossdomain_pairs": [
+    {
+      "domain_a": "arts",
+      "domain_b": "geography",
+      "id": "arts__geography"
+    },
+    {
+      "domain_a": "biography",
+      "domain_b": "economics",
+      "id": "biography__economics"
+    },
+    {
+      "domain_a": "civic_architecture",
+      "domain_b": "natural_world",
+      "id": "civic_architecture__natural_world"
+    },
+    {
+      "domain_a": "computing",
+      "domain_b": "history",
+      "id": "computing__history"
+    },
+    {
+      "domain_a": "culture",
+      "domain_b": "government_civics",
+      "id": "culture__government_civics"
+    },
+    {
+      "domain_a": "education_reference",
+      "domain_b": "technology_history",
+      "id": "education_reference__technology_history"
+    },
+    {
+      "domain_a": "literature",
+      "domain_b": "natural_philosophy",
+      "id": "literature__natural_philosophy"
+    }
+  ],
+  "exact_design": {
+    "adversarial": {
+      "citation_id_spoof": 100,
+      "memory_backfill": 100,
+      "prompt_injection": 150,
+      "retrieved_code_execution": 75,
+      "source_authority_escalation": 100,
+      "unauthorized_memory_write": 50,
+      "unauthorized_network": 75
+    },
+    "citation_claim": {
+      "missing_citation": 50,
+      "multi_source_claim": 60,
+      "partial_citation": 50,
+      "right_source_wrong_chunk": 60,
+      "spoofed_locator": 50,
+      "wrong_chunk": 60,
+      "wrong_locator": 60,
+      "wrong_source": 60
+    },
+    "conflict_abstention": {
+      "authority_ranked_contradiction": 100,
+      "fresh_stale_disagreement": 100,
+      "identity_disagreement": 100,
+      "numeric_disagreement": 100,
+      "relation_disagreement": 100,
+      "resolvable_conflicts": 100,
+      "same_rank_contradiction": 100,
+      "unresolvable_conflicts": 100
+    },
+    "crossdomain": {
+      "novel_pair_families": 7,
+      "prior_exact_pair_templates_forbidden": true,
+      "rows_per_pair": 100
+    },
+    "multihop": {
+      "ambiguous_bridge_entities": 100,
+      "invalid_terminal_evidence": 100,
+      "led_by_relations": 50,
+      "missing_second_hop": 100,
+      "partial_paths": 100,
+      "relation_aliases": 50,
+      "two_hop_bridges": 200,
+      "wrong_bridge_distractors": 100
+    },
+    "temporal": {
+      "explicit_current": 70,
+      "historical_as_of": 50,
+      "stale_snapshot": 70,
+      "static_unnecessary_web": 60
+    }
+  },
+  "experiment": "t21r17",
+  "schema_version": "t21-author-spec-v1",
+  "seed": 21017,
+  "suites": {
+    "mango-t21r17-adversarial-holdout-v1": {
+      "case_id_prefix": "r17-",
+      "count": 650,
+      "family": "adversarial",
+      "namespace": "mango-r17-v1"
+    },
+    "mango-t21r17-citation_claim-holdout-v1": {
+      "case_id_prefix": "r17-",
+      "count": 450,
+      "family": "citation_claim",
+      "namespace": "mango-r17-v1"
+    },
+    "mango-t21r17-conflict_abstention-holdout-v1": {
+      "case_id_prefix": "r17-",
+      "count": 800,
+      "family": "conflict_abstention",
+      "namespace": "mango-r17-v1"
+    },
+    "mango-t21r17-crossdomain-holdout-v1": {
+      "case_id_prefix": "r17-",
+      "count": 700,
+      "family": "crossdomain",
+      "namespace": "mango-r17-v1"
+    },
+    "mango-t21r17-multihop-holdout-v1": {
+      "case_id_prefix": "r17-",
+      "count": 800,
+      "family": "multihop",
+      "namespace": "mango-r17-v1"
+    },
+    "mango-t21r17-retrieval-holdout-v1": {
+      "case_id_prefix": "r17-",
+      "count": 600,
+      "family": "retrieval",
+      "namespace": "mango-r17-v1"
+    },
+    "mango-t21r17-singlehop-holdout-v1": {
+      "case_id_prefix": "r17-",
+      "count": 550,
+      "family": "singlehop",
+      "namespace": "mango-r17-v1"
+    },
+    "mango-t21r17-temporal-holdout-v1": {
+      "case_id_prefix": "r17-",
+      "count": 250,
+      "family": "temporal",
+      "namespace": "mango-r17-v1"
+    }
+  },
+  "vocabulary": [
+    "arts",
+    "biography",
+    "civic_architecture",
+    "computing",
+    "culture",
+    "economics",
+    "education_reference",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "natural_philosophy",
+    "natural_world",
+    "technology_history"
+  ]
+}
