@@ -92,6 +92,7 @@ RUNTIME_CONTRACT_CONTROLS = {
 EXPERIMENT_HELPERS = {
     "t21r15": ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures"),
     "t21r16": ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures", "t21r16_fixtures"),
+    "t21r17": ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures", "t21r16_fixtures", "t21r17_fixtures"),
 }
 
 
@@ -205,13 +206,17 @@ def _real_paths(root: Path, contract: Any) -> dict[str, Any]:
     return {"status": "PASS" if not present else "FAIL", "present": present, "checked": len(paths)}
 
 
-def _phase_api_check() -> dict[str, Any]:
+def _phase_api_check(experiment: str = "t21r15") -> dict[str, Any]:
     from .evaluate import run_evaluation
 
     results = {
         "production_construction_callable": callable(run_construction),
         "production_evaluation_callable": callable(run_evaluation),
     }
+    if experiment == "t21r17":
+        from .evaluate_r17 import run_evaluation_r17
+
+        results["metric_semantics_evaluation_callable"] = callable(run_evaluation_r17)
     return {"status": "PASS" if all(results.values()) else "FAIL", **results}
 
 
@@ -265,7 +270,7 @@ def _provider_separation(experiment: str) -> dict[str, Any]:
         )
     except Exception:
         results["construction_token_rejected_by_evaluation"] = True
-    other = "t21r15" if experiment != "t21r15" else "t21r16"
+    other = next(name for name in CONSTRUCTION_TOKENS if name != experiment)
     try:
         require_construction_authorization(CONSTRUCTION_TOKENS[other], experiment=experiment)
     except Exception:
@@ -577,6 +582,121 @@ def _r15_disposition_check(root: Path) -> dict[str, Any]:
     }
 
 
+def _r16_disposition_check(root: Path) -> dict[str, Any]:
+    """T21R17 preconstruction requires the R16 disposition committed verbatim:
+    closed as a measurement-specification failure, capability verdict NONE,
+    holdout consumed, evaluation permanently refused, both invalid metrics
+    designated semantically invalid for capability adjudication."""
+    closure = read_json(root / "evaluations" / "t21r16" / "T21R16_CLOSURE.json")
+    status_ok = closure.get("status") == "CLOSED / OFFICIAL_MEASUREMENT_SPECIFICATION_FAILURE"
+    reason_ok = (
+        closure.get("reason")
+        == "OFFICIAL_RUN_COMPLETED_BUT_TWO_FROZEN_FLOOR_METRICS_DID_NOT_SEMANTICALLY_MEASURE_THEIR_REGISTERED_QUANTITIES"
+    )
+    capability_ok = closure.get("capability_verdict") == "NONE" and closure.get("capability_failure") is False
+    invalid_metrics = set(closure.get("invalid_metrics") or [])
+    invalid_ok = invalid_metrics == {
+        "conflict_false_resolution",
+        "static_query_unnecessary_web_routing",
+    } and closure.get("invalid_metric_designation") == "SEMANTICALLY_INVALID_FOR_CAPABILITY_ADJUDICATION"
+    holdout_ok = closure.get("holdout_status") == "PERMANENTLY_EXPOSED_CONSUMED"
+    rows_ok = closure.get("rows_scored") == 4800 and closure.get("one_shot_consumed") is True
+    refusal_marker = root / "evaluations" / "t21r16" / "evaluation_refusal.json"
+    marker_ok = refusal_marker.is_file() and read_json(refusal_marker).get("permanent") is True
+    passed = status_ok and reason_ok and capability_ok and invalid_ok and holdout_ok and rows_ok and marker_ok
+    return {
+        "status": "PASS" if passed else "FAIL",
+        "closed_status": closure.get("status"),
+        "capability_verdict": closure.get("capability_verdict"),
+        "holdout_status": closure.get("holdout_status"),
+        "invalid_metrics": sorted(invalid_metrics),
+        "evaluation_refusal_marker_permanent": marker_ok,
+    }
+
+
+def _metric_semantics_validation(root: Path, contract: Any) -> dict[str, Any]:
+    """Mandatory doctor section (T21R17): every official floor metric carries
+    explicit frozen measurement semantics; the scorer has no generic fallback
+    path; the discriminative fixture battery proves each metric measures its
+    own registered quantity."""
+    from .metric_semantics import load_metric_semantics, semantics_root
+    from .scorer_r17 import IMPLEMENTATION_SOURCES, IMPLEMENTATIONS
+
+    floors = contract.get("promotion_floors")
+    floor_metrics = {metric for group in floors.values() for metric in group}
+    semantics = load_metric_semantics(root, contract)
+    entries = semantics["metrics"]
+    registered = set(entries)
+    contradictions = sorted(
+        metric
+        for metric, entry in entries.items()
+        if entry["direction"] != {"=": "EXACT", "<=": "LOWER_IS_BETTER", ">=": "HIGHER_IS_BETTER"}[entry["operator"]]
+    )
+    missing_policies = sorted(
+        metric
+        for metric, entry in entries.items()
+        if not entry["numerator"] or not entry["denominator"] or not entry["zero_denominator_policy"]
+    )
+    unknown_paths = sorted(
+        metric for metric in floor_metrics if metric not in IMPLEMENTATIONS or metric not in IMPLEMENTATION_SOURCES
+    )
+    fixture_doc = read_json(root / "evaluations" / contract.experiment / "metric_semantics_fixtures.json")
+    fixture_sections = {
+        name: fixture_doc.get(name, {}).get("status")
+        for name in (
+            "truth_tables",
+            "monotonicity",
+            "complement_confusion",
+            "operator_negative_controls",
+            "all_good",
+            "targeted_bad",
+            "metric_independence",
+            "r16_regression",
+            "legacy_evaluator_parity",
+            "unknown_metric_fail_closed",
+        )
+    }
+    all_good = fixture_doc.get("all_good") or {}
+    targeted_bad = fixture_doc.get("targeted_bad") or {}
+    monotonicity = fixture_doc.get("monotonicity") or {}
+    checks = {
+        "registered_floors_with_semantics": len(floor_metrics & registered),
+        "explicit_metric_implementations": len(IMPLEMENTATIONS),
+        "semantics_entries": len(entries),
+        "generic_fallback_consumers": 0 if "no generic fallback" in semantics["rule"] else 1,
+        "direction_operator_contradictions": len(contradictions),
+        "missing_numerator_denominator_policies": len(missing_policies),
+        "unknown_scorer_paths": len(unknown_paths),
+        "all_good_floors_passed": all_good.get("floors_passed"),
+        "targeted_bad_cases": targeted_bad.get("cases"),
+        "targeted_bad_single_failure": targeted_bad.get("single_failure"),
+        "monotonicity_violations": monotonicity.get("violations"),
+    }
+    fixture_pass = all(status == "PASS" for status in fixture_sections.values())
+    numbers_pass = (
+        len(floor_metrics & registered) == 32
+        and len(IMPLEMENTATIONS) == 32
+        and len(entries) == 32
+        and not contradictions
+        and not missing_policies
+        and not unknown_paths
+        and all_good.get("floors_passed") == 32
+        and targeted_bad.get("cases") == 32
+        and targeted_bad.get("single_failure") == 32
+        and monotonicity.get("violations") == 0
+    )
+    return {
+        "schema_version": "t21-metric-semantics-validation-v1",
+        "artifact": f"{contract.experiment.upper()}_METRIC_SEMANTICS_VALIDATION",
+        "status": "PASS" if fixture_pass and numbers_pass else "FAIL",
+        "audit_mode": "EXECUTED",
+        "semantics_root": semantics_root(semantics),
+        "rule": semantics["rule"],
+        "fixture_sections": fixture_sections,
+        "checks": checks,
+    }
+
+
 def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
     before = tracked_tree(root)
     out = root / "evaluations" / experiment
@@ -620,10 +740,14 @@ def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
         },
         "negative_controls": _negative_control_registry(out / "negative_controls.json", runtime_native=runtime_native),
         "real_paths": _real_paths(root, contract),
-        "production_phase_apis": _phase_api_check(),
+        "production_phase_apis": _phase_api_check(experiment),
         "provider_separation": _provider_separation(experiment),
-        "r15_disposition": _r15_disposition_check(root),
     }
+    if experiment == "t21r17":
+        checks["r16_disposition"] = _r16_disposition_check(root)
+        checks["metric_semantics_validation"] = _metric_semantics_validation(root, contract)
+    else:
+        checks["r15_disposition"] = _r15_disposition_check(root)
     if runtime_native:
         checks["runtime_contract_compatibility"] = _runtime_contract_compatibility(root, contract)
     module_paths = sorted((root / "t21_protocol").glob("*.py"))
@@ -640,7 +764,17 @@ def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
     checks["synthetic_construction_only"] = construction_rehearsal
     checks["phase_separation"] = _phase_separation(root, graph, construction_rehearsal)
     checks["real_mode_dry_rehearsal"] = run_real_mode_dry_rehearsal(root, contract, graph)
-    checks["synthetic_full_protocol"] = run_synthetic_twice(root, contract, graph)
+    if experiment == "t21r17":
+        # Metric-semantics experiments replace the synthetic full-protocol
+        # rehearsal (whose evaluation driver is R15/R16-scoped) with the full
+        # production lifecycle ×2 on disposable material: real frozen runtime,
+        # v2 evidence candidate provider, explicit per-metric scorer, no stub
+        # candidate anywhere in the E2E.
+        from .pipeline_r17 import run_real_mode_lifecycle_rehearsal_r17_twice
+
+        checks["metric_semantics_lifecycle_rehearsal"] = run_real_mode_lifecycle_rehearsal_r17_twice(root, contract, graph)
+    else:
+        checks["synthetic_full_protocol"] = run_synthetic_twice(root, contract, graph)
     cleanliness_path = out / "test_cleanliness.json"
     checks["test_cleanliness"] = read_json(cleanliness_path) if cleanliness_path.is_file() else {"status": "FAIL", "reason": "missing test cleanliness evidence"}
     r14 = read_json(root / "evaluations" / "t21r14" / "T21R14_CLOSURE.json")

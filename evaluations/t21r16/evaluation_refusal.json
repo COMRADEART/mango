@@ -1,0 +1,9 @@
+{
+  "artifact": "T21R16_EVALUATION_REFUSAL",
+  "authority": "T21R16 final adjudication: holdout PERMANENTLY EXPOSED / CONSUMED; capability verdict NONE",
+  "experiment": "t21r16",
+  "permanent": true,
+  "reason": "OFFICIAL_RUN_COMPLETED_BUT_TWO_FROZEN_FLOOR_METRICS_DID_NOT_SEMANTICALLY_MEASURE_THEIR_REGISTERED_QUANTITIES",
+  "refused_action": "any further T21R16 official evaluation",
+  "schema_version": "t21-evaluation-refusal-v1"
+}

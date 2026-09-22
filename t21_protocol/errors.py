@@ -41,6 +41,13 @@ class ProvenanceError(ProtocolError):
     """Workspace, provider, or material provenance is not phase-compatible."""
 
 
+class ScorerConfigurationError(ProtocolError):
+    """The official scorer refused to score: an unregistered metric, missing
+    measurement semantics, an unknown implementation, or an empty
+    design-mandated population. The T21R16 generic-fallback defect fails
+    closed here instead of producing a generic aggregate value."""
+
+
 class T21R15OfficialEvaluationPermanentlyRefused(ProtocolError):
     """R15's sealed holdout is not loadable by the frozen candidate runtime.
 

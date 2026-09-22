@@ -1,0 +1,19 @@
+{
+  "artifact": "T21R16_EVALUATION_PROVENANCE",
+  "candidate_provider": "t21_protocol.providers:RealCandidateProvider",
+  "candidate_provider_id": "t21_protocol.providers:RealCandidateProvider",
+  "candidate_provider_kind": "REAL_CANDIDATE",
+  "floor_calculations": 32,
+  "rows": 4800,
+  "runtime_bindings": {
+    "candidate_provider_sha256": "92c501950eb5d65cea1a0bfc4af81de6d33411b320be1ef05eea2c306b123c4f",
+    "runtime_corpus_contract_sha256": "576a005c93594e0f8f35fcddd95e99b0daf9bcb00a44b696014bfba631d8723f",
+    "runtime_data_contract_root": "b5ad39cf02fff5e0c5781f947a2ec5144331533a471e635356cbd23bfbb96e65",
+    "runtime_field_provenance_sha256": "4a09824b4eb70a6dd0da91253e0eb06904fd6466da22841e33985324e4c402fd",
+    "runtime_loader_validation_sha256": "4a668ee2ac81991d3cdd725de10a8460223e658abdea9cfc3cf855ceb2446e84"
+  },
+  "schema_version": "t21-evaluation-provenance-v1",
+  "seal_root": "e63d7a3b5fb3a51a9f262e97a415fce143eb0f7810e788f8ce29372ca14f7f5d",
+  "status": "PASS",
+  "workspace_mode": "REAL_EXPERIMENT"
+}

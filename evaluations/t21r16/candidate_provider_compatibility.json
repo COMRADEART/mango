@@ -1,0 +1,12 @@
+{
+  "artifact": "T21R16_CANDIDATE_PROVIDER_COMPATIBILITY",
+  "audit_mode": "EXECUTED",
+  "corpus_format": "mango-general-knowledge-corpus-v1",
+  "init_only": true,
+  "loader": "frozen load_corpus",
+  "provider_id": "t21_protocol.providers:RealCandidateProvider",
+  "provider_kind": "REAL_CANDIDATE",
+  "rows_executed": 0,
+  "schema_version": "t21-candidate-provider-compatibility-v1",
+  "status": "PASS"
+}

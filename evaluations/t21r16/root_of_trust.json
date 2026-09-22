@@ -1,0 +1,21 @@
+{
+  "artifact": "T21R16_ROOT_OF_TRUST_AUDIT",
+  "audit_mode": "EXECUTED",
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+  "evaluator_root": "d7d3f92972000bfb8d58cf09ffae617c6e96309f9fe0523c2bbf1af13a63838a",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "mismatches": [],
+  "runtime_contract_checks": {
+    "provider_module": "t21_protocol/providers.py",
+    "verified_roots": [
+      "candidate_provider_sha256",
+      "runtime_corpus_contract_sha256",
+      "runtime_data_contract_root",
+      "runtime_field_provenance_sha256"
+    ]
+  },
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "schema_version": "t21-root-of-trust-audit-v1",
+  "status": "PASS"
+}

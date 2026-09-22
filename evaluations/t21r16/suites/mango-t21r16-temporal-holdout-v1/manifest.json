@@ -1,0 +1,6 @@
+{
+  "rows": 250,
+  "rows_root": "d22842645a738d2be7f0c6919c577c1e2030ffb892dab6b8db7e998827339b93",
+  "schema_version": "t21-suite-v1",
+  "suite": "mango-t21r16-temporal-holdout-v1"
+}

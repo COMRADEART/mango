@@ -265,6 +265,21 @@ R16_EVALUATE_POLICY = {
     "authorization_token": "T21R16_ONE_SHOT_OFFICIAL_EVALUATION",
     "allowed_artifact_phases": ["EVALUATION"],
 }
+R17_CONSTRUCT_POLICY = {
+    "required_state": "QUALIFIED",
+    "terminal_states": ["SEALED"],
+    "authorization_token": "T21R17_REAL_BLIND_CONSTRUCTION_AUTHORIZED",
+    "allowed_artifact_phases": ["CONSTRUCTION", "SEAL"],
+}
+R17_EVALUATE_POLICY = {
+    "required_state": "SEALED",
+    "terminal_states": ["EVALUATION_COMPLETE", "FAILED"],
+    "authorization_token": "T21R17_ONE_SHOT_OFFICIAL_EVALUATION",
+    "allowed_artifact_phases": ["EVALUATION"],
+}
+R17_EVALUATOR_SEMANTIC_KEYS = frozenset(
+    {"evaluator", "evidence_row_fields", "required_candidate_fields", "accuracy_semantics", "kernel_evaluator_parity_required"}
+)
 RUNTIME_NATIVE_KEYS = frozenset(
     {
         "corpus_format",
@@ -302,6 +317,17 @@ def _validate_semantics(values: dict[str, Any], experiment: str = "t21r15") -> l
         if set(values) != expected_fields:
             errors.append(f"values fields differ: expected={sorted(expected_fields)}, actual={sorted(values)}")
             return errors
+    elif experiment == "t21r17":
+        expected_fields = {
+            "identity", "roots", "artifacts", "suites", "suite_total", "domain_taxonomy",
+            "crossdomain_pairs", "exact_design", "historical_exclusions", "remediation_exclusions",
+            "promotion_floors", "one_shot", "state_machine", "author", "r16_disposition",
+            "real_r17_paths", "quarantine", "phase_apis", "workspace_modes", "material_modes",
+            "runtime_native", "metric_semantics",
+        }
+        if set(values) != expected_fields:
+            errors.append(f"values fields differ: expected={sorted(expected_fields)}, actual={sorted(values)}")
+            return errors
     else:
         return [f"unsupported experiment: {experiment}"]
     _validate_shared_design(values, errors)
@@ -312,13 +338,21 @@ def _validate_semantics(values: dict[str, Any], experiment: str = "t21r15") -> l
         _validate_r14_disposition(values, errors)
         if not isinstance(values["real_r15_paths"], list) or not values["real_r15_paths"]:
             errors.append("real_r15_paths must be a non-empty array")
-    else:
+    elif experiment == "t21r16":
         _validate_roots_r16(values, errors)
         _validate_phase_apis_r16(values, errors)
         _validate_r15_disposition(values, errors)
         _validate_runtime_native(values, errors)
         if not isinstance(values["real_r16_paths"], list) or not values["real_r16_paths"]:
             errors.append("real_r16_paths must be a non-empty array")
+    else:
+        _validate_roots_r17(values, errors)
+        _validate_phase_apis_r17(values, errors)
+        _validate_r16_disposition(values, errors)
+        _validate_runtime_native(values, errors)
+        _validate_metric_semantics_block(values, errors)
+        if not isinstance(values["real_r17_paths"], list) or not values["real_r17_paths"]:
+            errors.append("real_r17_paths must be a non-empty array")
     return errors
 
 
@@ -428,6 +462,16 @@ def _validate_artifact_paths(values: dict[str, Any], experiment: str, errors: li
     if experiment == "t21r16":
         # Runtime-native preconstruction inputs materialized before construction.
         artifact_keys |= {"runtime_corpus_contract", "runtime_field_provenance", "candidate_runtime_data_contract"}
+    if experiment == "t21r17":
+        # Runtime-native preconstruction inputs plus the frozen measurement
+        # semantics contract and implementation registry.
+        artifact_keys |= {
+            "runtime_corpus_contract",
+            "runtime_field_provenance",
+            "candidate_runtime_data_contract",
+            "official_metric_semantics",
+            "metric_implementation_registry",
+        }
     if _closed(values["artifacts"], artifact_keys, "artifacts", errors):
         if any(not isinstance(path, str) or not path.startswith(prefix) for path in values["artifacts"].values()):
             errors.append(f"artifact paths must be {experiment} repository-relative paths")
@@ -443,6 +487,28 @@ def _validate_roots_r15(values: dict[str, Any], errors: list[str]) -> None:
 
 def _validate_roots_r16(values: dict[str, Any], errors: list[str]) -> None:
     expected = R16_ROOT_DIGEST_KEYS | {"candidate_provider_id"}
+    if not isinstance(values["roots"], dict) or set(values["roots"]) != expected:
+        errors.append(f"roots fields differ: expected={sorted(expected)}, actual={sorted(values['roots']) if isinstance(values['roots'], dict) else values['roots']}")
+        return
+    for name, digest in values["roots"].items():
+        if name == "candidate_provider_id":
+            if not isinstance(digest, str) or not digest:
+                errors.append("roots.candidate_provider_id must be a non-empty string")
+            continue
+        length = 40 if name in {"candidate_commit", "candidate_tree"} else 64
+        if not isinstance(digest, str) or len(digest) != length or any(c not in "0123456789abcdef" for c in digest):
+            errors.append(f"roots.{name} is not a {length}-character hex digest")
+
+
+R17_ROOT_DIGEST_KEYS = R16_ROOT_DIGEST_KEYS | {
+    "evaluator_semantic_root",
+    "scorer_semantic_root",
+    "protocol_root",
+}
+
+
+def _validate_roots_r17(values: dict[str, Any], errors: list[str]) -> None:
+    expected = R17_ROOT_DIGEST_KEYS | {"candidate_provider_id"}
     if not isinstance(values["roots"], dict) or set(values["roots"]) != expected:
         errors.append(f"roots fields differ: expected={sorted(expected)}, actual={sorted(values['roots']) if isinstance(values['roots'], dict) else values['roots']}")
         return
@@ -481,6 +547,20 @@ def _validate_phase_apis_r16(values: dict[str, Any], errors: list[str]) -> None:
                 errors.append("phase_apis.construct policy invalid")
         if _closed(evaluate, api_keys, "phase_apis.evaluate", errors):
             if evaluate != R16_EVALUATE_POLICY:
+                errors.append("phase_apis.evaluate policy invalid")
+
+
+def _validate_phase_apis_r17(values: dict[str, Any], errors: list[str]) -> None:
+    phase_apis = values["phase_apis"]
+    if _closed(phase_apis, {"construct", "evaluate"}, "phase_apis", errors):
+        construct = phase_apis["construct"]
+        evaluate = phase_apis["evaluate"]
+        api_keys = {"required_state", "terminal_states", "authorization_token", "allowed_artifact_phases"}
+        if _closed(construct, api_keys, "phase_apis.construct", errors):
+            if construct != R17_CONSTRUCT_POLICY:
+                errors.append("phase_apis.construct policy invalid")
+        if _closed(evaluate, api_keys, "phase_apis.evaluate", errors):
+            if evaluate != R17_EVALUATE_POLICY:
                 errors.append("phase_apis.evaluate policy invalid")
 
 
@@ -523,7 +603,12 @@ def _validate_runtime_native(values: dict[str, Any], errors: list[str]) -> None:
         errors.append("runtime_native.loader_entry invalid")
     if runtime_native["runtime_materializer"] != "t21_protocol.providers:runtime-native-materializer":
         errors.append("runtime_native.runtime_materializer invalid")
-    if runtime_native["candidate_provider"] != "t21_protocol.providers:RealCandidateProvider":
+    expected_provider = (
+        "t21_protocol.providers_r17:RealCandidateProviderEvidence"
+        if "metric_semantics" in values
+        else "t21_protocol.providers:RealCandidateProvider"
+    )
+    if runtime_native["candidate_provider"] != expected_provider:
         errors.append("runtime_native.candidate_provider invalid")
     if runtime_native["source_id_grammar"] != "gk-<sha1(title|publisher|revision)[:12]>":
         errors.append("runtime_native.source_id_grammar invalid")
@@ -533,6 +618,67 @@ def _validate_runtime_native(values: dict[str, Any], errors: list[str]) -> None:
         errors.append("runtime_native.shadow_holdout_rows must equal the suite total")
     if runtime_native["holdout_frozen_schema_version"] != "t21-holdout-frozen-v2":
         errors.append("runtime_native.holdout_frozen_schema_version invalid")
+
+
+def _validate_r16_disposition(values: dict[str, Any], errors: list[str]) -> None:
+    required = {
+        "status", "reason", "construction_attempts", "rows_scored", "one_shot_consumed",
+        "holdout_status", "evaluation_permanently_refused", "capability_verdict",
+        "invalid_metric_count", "invalid_metrics", "invalid_metric_designation",
+        "retroactive_capability_declaration", "rerun",
+    }
+    if not _closed(values["r16_disposition"], required, "r16_disposition", errors):
+        return
+    disposition = values["r16_disposition"]
+    if disposition["status"] != "CLOSED / OFFICIAL_MEASUREMENT_SPECIFICATION_FAILURE":
+        errors.append("R16 disposition status invalid")
+    if disposition["reason"] != "OFFICIAL_RUN_COMPLETED_BUT_TWO_FROZEN_FLOOR_METRICS_DID_NOT_SEMANTICALLY_MEASURE_THEIR_REGISTERED_QUANTITIES":
+        errors.append("R16 disposition reason invalid")
+    if disposition["construction_attempts"] != 1:
+        errors.append("R16 disposition construction_attempts must be 1")
+    if disposition["rows_scored"] != 4800:
+        errors.append("R16 disposition rows_scored must be 4800")
+    if disposition["one_shot_consumed"] is not True:
+        errors.append("R16 disposition one_shot_consumed must be true")
+    if disposition["holdout_status"] != "PERMANENTLY_EXPOSED_CONSUMED":
+        errors.append("R16 disposition holdout_status invalid")
+    if disposition["evaluation_permanently_refused"] is not True:
+        errors.append("R16 disposition must record the permanent evaluation refusal")
+    if disposition["capability_verdict"] != "NONE":
+        errors.append("R16 disposition capability verdict must be NONE")
+    if set(disposition["invalid_metrics"]) != {"conflict_false_resolution", "static_query_unnecessary_web_routing"}:
+        errors.append("R16 disposition invalid_metrics set invalid")
+    if disposition["invalid_metric_count"] != 2:
+        errors.append("R16 disposition invalid_metric_count must be 2")
+    if disposition["invalid_metric_designation"] != "SEMANTICALLY_INVALID_FOR_CAPABILITY_ADJUDICATION":
+        errors.append("R16 disposition invalid metric designation invalid")
+    if disposition["retroactive_capability_declaration"] != "FORBIDDEN":
+        errors.append("R16 disposition forbids retroactive capability declaration")
+    if disposition["rerun"] != "REFUSED":
+        errors.append("R16 disposition rerun must be REFUSED")
+
+
+def _validate_metric_semantics_block(values: dict[str, Any], errors: list[str]) -> None:
+    block = values["metric_semantics"]
+    required = {
+        "rule", "generic_fallback_consumers", "unknown_metric_behavior",
+        "semantics_artifact", "implementation_registry_artifact", "metric_count",
+    }
+    if not _closed(block, required, "metric_semantics", errors):
+        return
+    if block["generic_fallback_consumers"] != 0:
+        errors.append("metric_semantics.generic_fallback_consumers must be 0")
+    if block["unknown_metric_behavior"] != "SCORER_CONFIGURATION_ERROR":
+        errors.append("metric_semantics.unknown_metric_behavior must fail closed")
+    if block["metric_count"] != 32:
+        errors.append("metric_semantics.metric_count must be 32")
+    registered_artifacts = {
+        "semantics_artifact": "official_metric_semantics",
+        "implementation_registry_artifact": "metric_implementation_registry",
+    }
+    for key, artifact_key in registered_artifacts.items():
+        if block[key] != values["artifacts"].get(artifact_key):
+            errors.append(f"metric_semantics.{key} must reference the registered artifact path")
 
 
 def _report(errors: list[str], untyped: int, consumers: int, disagreements: int, unknown: int) -> dict[str, Any]:

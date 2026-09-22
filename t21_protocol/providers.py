@@ -195,16 +195,21 @@ class RealBlindMaterialProvider:
     def _build_runtime_native(
         self, contract: Any, rows_by_suite: dict[str, list[dict[str, Any]]], rows: list[dict[str, Any]]
     ) -> MaterialBundle:
-        """R16 blind author -> runtime-native materializer.
+        """Blind author -> runtime-native materializer.
 
         The author emits semantic facts only. Every runtime-affecting field is
         produced by the frozen schema's own producers: source IDs by
         make_source_id over the authored identity, chunk IDs by make_chunk_id,
         chunk structure by chunk_source_text, record hashes by the frozen
         __post_init__. Gold source/chunk references are filled from those
-        frozen producers during construction (never at evaluation time)."""
+        frozen producers during construction (never at evaluation time).
+        Register identities are derived from the experiment itself so that
+        no two experiments' corpora share source/chunk identities (the R16
+        sealed corpus round-trips exactly: t21r16 -> "R16", "r16-blind-v1")."""
         schema, corpus_module, _ = runtime_modules(_contract_root(contract))
         snapshot = corpus_module.CORPUS_SNAPSHOT_DATE
+        register_tag = contract.experiment.removeprefix("t21").upper()
+        register_revision = f"{register_tag.lower()}-blind-v1"
         world: list[dict[str, Any]] = []
         runtime_sources: list[Any] = []
         runtime_chunks: list[Any] = []
@@ -216,15 +221,15 @@ class RealBlindMaterialProvider:
             # requires every fact-entity token to appear in the query, and the
             # authored query names the record by case_id.
             entity_id = case_id
-            world.append({"record_type": "entity", "entity_id": entity_id, "name": f"R16 blind entity {index:05d}", "domain": row["gold"]["required_domains"][0]})
+            world.append({"record_type": "entity", "entity_id": entity_id, "name": f"{register_tag} blind entity {index:05d}", "domain": row["gold"]["required_domains"][0]})
             source = schema.KnowledgeSourceRecord(
-                source_id=schema.make_source_id(f"R16 blind register {index:05d}", "Mango blind evaluation register", "r16-blind-v1"),
-                source_title=f"R16 blind register {index:05d}",
+                source_id=schema.make_source_id(f"{register_tag} blind register {index:05d}", "Mango blind evaluation register", register_revision),
+                source_title=f"{register_tag} blind register {index:05d}",
                 source_type="fixture_register",
                 source_uri_or_origin=f"blind://{contract.experiment}/{case_id}",
                 publisher_or_collection="Mango blind evaluation register",
                 license="project_owned_fixtures",
-                revision_or_version="r16-blind-v1",
+                revision_or_version=register_revision,
                 retrieved_at_or_snapshot_date=corpus_module.CORPUS_SNAPSHOT_DATE,
                 language="en",
                 authority_class="PRIMARY_REFERENCE",

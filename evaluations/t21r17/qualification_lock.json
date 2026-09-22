@@ -1,0 +1,39 @@
+{
+  "artifact": "T21_QUALIFICATION_LOCK",
+  "artifact_graph_hash": "9bab9a6df5f29842aac07ba0c3a86d821fe39471bd74437c8619db7f6a92d201",
+  "author_hash": "1eb1c6fee9936470257afa1bd6c334891fce93285388512879615b33d0f066fb",
+  "authoring_profile_hash": "ab05c61e16181e848f51cd7dcd758f28fdaa96f649a6daca37060b30bc41a2dd",
+  "contract_hash": "0a9126b223fdd6d220649fd2b69e1175ecec0dcb15016d0000f88817dc4cced6",
+  "doctor_hash": "920a1f3890949e771da743b64bd41d3ecdb895664f7cb9bf72020479b0f7a8c0",
+  "evaluator_root": "0f4a7cf8bf8df31321736dd6297025be3bb2ebf77f931ac4ab7be5dd1bd2a185",
+  "expected_exclusion_root": "5f4b37d06a073dd5b34b17552348904e0fdeaea6a8f5d98b2d3a8efc682c2170",
+  "expected_suite_counts": {
+    "mango-t21r17-adversarial-holdout-v1": 650,
+    "mango-t21r17-citation_claim-holdout-v1": 450,
+    "mango-t21r17-conflict_abstention-holdout-v1": 800,
+    "mango-t21r17-crossdomain-holdout-v1": 700,
+    "mango-t21r17-multihop-holdout-v1": 800,
+    "mango-t21r17-retrieval-holdout-v1": 600,
+    "mango-t21r17-singlehop-holdout-v1": 550,
+    "mango-t21r17-temporal-holdout-v1": 250
+  },
+  "expected_taxonomy_root": "3caecb60d1b887b07207259529b8a1ef6e9bc1791b06ff1ce134971804fcbce4",
+  "experiment": "t21r17",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "immutable_after": "T21R17_PRODUCTION_PHASE_REQUALIFICATION_PASS",
+  "master_contract_hash": "31a8c7ccd0f0a45e06b234f2abeda50ace4a279b747b11435ab25c62644d82cc",
+  "preconstruction_commit": "0758a340b98f4a4a3ecc70d25baf074a79b7f9a0",
+  "production_construction_runner_hash": "b4b90c19f419222d002be752eac7e2c57b63e330893e15924c33903f960eedae",
+  "production_evaluation_runner_hash": "fb4a153d904460f7c305e8b81b16e6978c26beef11923ba2d9b860bcf93704ba",
+  "runtime_native": {
+    "candidate_provider_sha256": "6451d4b52f92dd63c872ca7014f6ea644873dd86e550cb6424b1825991ce0e2c",
+    "corpus_module_sha256": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d",
+    "runtime_corpus_contract_sha256": "b21f2eef58166cc2db499b796a6c33a51bc77d25e99e0de6d7b0e2965b0a5eab",
+    "runtime_data_contract_root": "bfbb912cda860be789b02ceec1ffcdebab7fa9d4fc1b2e4c36331da9f7e523e1",
+    "runtime_field_provenance_sha256": "e3cc769255d36bedac31a5c075e755c28806300ddfae5434dcacf9ca9939f814",
+    "schema_module_sha256": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135"
+  },
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "schema_version": "t21-qualification-lock-v2",
+  "shadow_fingerprint_root": "85e95416f0995e3af523519ce1f3e14cb341b8028c73ff9c98adca0926877cd9"
+}
