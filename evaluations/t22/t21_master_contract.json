@@ -799,7 +799,7 @@
       "candidate_provider_id": "t21_protocol.providers_t22:RealCandidateProviderT22Evidence",
       "candidate_provider_sha256": "13d3e4aa68a484194c40a35b01f7c3e79825dd531b09353eb64cb4e0d49ffc49",
       "candidate_tree": "0bbf81b234458a4ac204ff6b035bc59b59078544",
-      "evaluator_root": "f62bcc8e1fa6401d74ccc9eb89f43cc57f6f00949f162e41d8a134a6c1c3717f",
+      "evaluator_root": "f040f765b127536fbd221502cb1b06e38bb7bed28def57f8b22913f744b9cbb6",
       "evaluator_semantic_root": "d25ca69237175f304c3fe1f294592e5be7a50564927c8b96ac29d0c2c8cd4051",
       "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
       "protocol_root": "1e1273e21d29a1ed1a80a1f461704171bb2710004bbe6d32495e05beca32fe7a",

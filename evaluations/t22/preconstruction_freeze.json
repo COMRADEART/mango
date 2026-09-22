@@ -11,7 +11,7 @@
     "real_t22_rows": 0,
     "rows_scored": 0
   },
-  "head": "b7c37ed39d19f8a32e3cbad43fa8db6909598f18",
+  "head": "4e39a1054f5032ecf43b96c25b0f8cf18baa9ddd",
   "identity_model": {
     "candidate_identity": {
       "candidate_commit": "7d919a255c2df87adcb3dd42011b505b10509713",
@@ -47,16 +47,16 @@
   "metric_semantics": {
     "artifact": "evaluations/t22/official_metric_semantics.json",
     "fixtures_sha256": "8916d7582fa14c1e532fb2d851925fafb81b64285a9024051f6e714abf33751f",
-    "registry_sha256": "70f09ee3bc223fa1b0f79f59bede40ca504d817ae791f9cd982ca9dd6be7a5a6",
+    "registry_sha256": "92546df4a793b768d8cb88d2166ea935e795d24a5e4bf3f39c56736219f6c81f",
     "semantic_roots": {
       "evaluator_semantic_root": "d25ca69237175f304c3fe1f294592e5be7a50564927c8b96ac29d0c2c8cd4051",
       "protocol_root": "1e1273e21d29a1ed1a80a1f461704171bb2710004bbe6d32495e05beca32fe7a",
       "scorer_semantic_root": "d50519d1c0d4c5916a44982343eb6e4978fd1b05f7c15734f709c38aa4468d62"
     },
-    "sha256": "2023ec164da136456eeadd4ebc1542432bf33a1828730530bf73bd5ca87e4830",
+    "sha256": "d061033f094321930556bd7ba99c4df9f61d49dbccef966049e40786b15e72e0",
     "unknown_metric_behavior": "SCORER_CONFIGURATION_ERROR"
   },
-  "parent": "9308eaa45b3e8d98baa58efe6bb2d0de488576af",
+  "parent": "b7c37ed39d19f8a32e3cbad43fa8db6909598f18",
   "phase_apis": {
     "construct": "PRECONSTRUCTION -> SEALED only; construction requires separate authorization (T22_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION)",
     "evaluate": "SEALED -> EVALUATION_COMPLETE/FAILED only"
@@ -128,10 +128,10 @@
       "exit_code": 1,
       "failed": 25,
       "passed": 0,
-      "skipped": 3
+      "skipped": 0
     }
   },
-  "tree_sha": "c0b1410b78ec05a56ef1b696e617c7d20918385d",
+  "tree_sha": "d2adf6d987cf5da89d017797d541184502353de8",
   "write_safety": {
     "status": "PASS",
     "tracked_drift": 0

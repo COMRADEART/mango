@@ -677,7 +677,7 @@
     },
     "no_generic_fallback": true,
     "semantics_root": "d50519d1c0d4c5916a44982343eb6e4978fd1b05f7c15734f709c38aa4468d62",
-    "sha256": "2023ec164da136456eeadd4ebc1542432bf33a1828730530bf73bd5ca87e4830",
+    "sha256": "d061033f094321930556bd7ba99c4df9f61d49dbccef966049e40786b15e72e0",
     "unknown_metric_policy": "SCORER_CONFIGURATION_ERROR",
     "zero_denominator_policy_preregistered": true
   },
@@ -817,11 +817,11 @@
   "roots": {
     "candidate_commit": "7d919a255c2df87adcb3dd42011b505b10509713",
     "candidate_tree": "0bbf81b234458a4ac204ff6b035bc59b59078544",
-    "evaluator_root": "f62bcc8e1fa6401d74ccc9eb89f43cc57f6f00949f162e41d8a134a6c1c3717f",
+    "evaluator_root": "f040f765b127536fbd221502cb1b06e38bb7bed28def57f8b22913f744b9cbb6",
     "fixtures_sha256": "8916d7582fa14c1e532fb2d851925fafb81b64285a9024051f6e714abf33751f",
     "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
     "floor_hash_unchanged_from_r17": true,
-    "registry_sha256": "70f09ee3bc223fa1b0f79f59bede40ca504d817ae791f9cd982ca9dd6be7a5a6",
+    "registry_sha256": "92546df4a793b768d8cb88d2166ea935e795d24a5e4bf3f39c56736219f6c81f",
     "runtime_root": "a9a24e3d8bba5e8b6985493d262f3699cef93cdbdd35cc09a7e4bc073ded7f5f",
     "semantics_root": "d50519d1c0d4c5916a44982343eb6e4978fd1b05f7c15734f709c38aa4468d62"
   },
@@ -945,7 +945,7 @@
       "exit_code": 1,
       "failed": 25,
       "passed": 0,
-      "skipped": 3
+      "skipped": 0
     },
     "registered_failures": 25,
     "status": "PASS"
@@ -960,8 +960,8 @@
   "write_safety": {
     "status": "PASS",
     "tracked_drift": 0,
-    "tracked_tree_after": "83355e2953b42e224aeb0744761b86afdb28c6bbe8c6aabec5d73b1ea468d591",
-    "tracked_tree_before": "83355e2953b42e224aeb0744761b86afdb28c6bbe8c6aabec5d73b1ea468d591"
+    "tracked_tree_after": "0eb02b127e96ba587522addc1fda70726a3162da8b3b6ccd98e4f0e4a2a11e75",
+    "tracked_tree_before": "0eb02b127e96ba587522addc1fda70726a3162da8b3b6ccd98e4f0e4a2a11e75"
   },
   "zero_denominator_harmonization": {
     "design_mandated_empty_cases_refused": 3,
