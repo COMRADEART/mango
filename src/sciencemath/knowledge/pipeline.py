@@ -52,6 +52,8 @@ from sciencemath.knowledge.freshness import (
     _HISTORICAL_AS_OF,
     classify_query_freshness,
     snapshot_is_current_claim_safe,
+    INTENT_AMBIGUOUS,
+    INTENT_STATIC,
 )
 from sciencemath.knowledge.injection import (
     quarantine_source_text,
@@ -79,6 +81,7 @@ from sciencemath.knowledge.routing import (
     CONFLICTING_EVIDENCE,
     INSUFFICIENT_EVIDENCE,
     knowledge_eligibility,
+    ROUTE_WEB_RESEARCH,
 )
 
 # --- preregistered pipeline constants (dev-tuned, frozen before FINAL) -----
@@ -327,7 +330,8 @@ def answer_knowledge(
     counters = _zero_counters()
     normalized = normalize_query(query)
     injection = scan_query_injection(query)
-    temporal = classify_query_freshness(query)
+    temporal = classify_query_freshness(query, now=now,
+                                        snapshot_date=corpus.snapshot_date)
     eligibility = knowledge_eligibility(query, temporal)
     trace.append(f"eligibility:{eligibility['route']}"
                  f"({'eligible' if eligibility['eligible'] else 'routed'})")
@@ -382,6 +386,33 @@ def answer_knowledge(
                         coverage=0.0,
                         snapshot_date=corpus.snapshot_date)
     trace.append(f"retrieval:{len(items)}_items")
+
+    # ---- T22 post-retrieval metadata rule (signal-carrier B) ------------
+    # Query semantics alone cannot always establish a present-state
+    # requirement: when the frozen snapshot is stale for the request date
+    # and the TOP-RANKED retrieved evidence itself carries the
+    # TIME_SENSITIVE freshness class, the frozen temporal contract routes
+    # to web research instead of answering a stale snapshot as current.
+    # The top-ranked keying is deterministic and narrow: in the one-record-
+    # per-row runtime corpus the query's own record ranks first, so a
+    # TIME_SENSITIVE register routes only the row it belongs to. Record-
+    # pinned and historical frames are snapshot-internal and exempt.
+    if (temporal.get("snapshot_stale")
+            and temporal.get("temporal_intent") in
+            (INTENT_STATIC, INTENT_AMBIGUOUS)
+            and temporal.get("frame") != "record_pinned"
+            and items
+            and items[0].freshness_class == "TIME_SENSITIVE"):
+        trace.append("temporal_metadata_route:TIME_SENSITIVE_source_stale_"
+                     "snapshot")
+        metadata_temporal = dict(temporal, action="ROUTE_WEB_RESEARCH")
+        metadata_eligibility = knowledge_eligibility(query,
+                                                     metadata_temporal)
+        return KnowledgeAnswer(
+            query=query, normalized_query=normalized, status=ROUTE_WEB_RESEARCH,
+            answer="", eligibility=metadata_eligibility,
+            freshness=metadata_temporal, query_injection=injection,
+            decision_trace=trace, zero_tolerance=counters)
     path_resolution = None
     path_request = parse_path_request(effective)
     if path_request is not None:

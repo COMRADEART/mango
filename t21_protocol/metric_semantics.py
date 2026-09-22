@@ -23,6 +23,7 @@ from .util import sha256_file, sha256_json
 
 SEMANTICS_SCHEMA_VERSION = "t21-official-metric-semantics-v1"
 SEMANTICS_ARTIFACT = "T21R17_OFFICIAL_METRIC_SEMANTICS"
+SEMANTICS_EXPERIMENT = "t21r17"
 
 SEMANTIC_TYPES = frozenset(
     {
@@ -104,22 +105,30 @@ def _error(context: str, errors: list[str]) -> None:
     errors.append(context)
 
 
-def validate_metric_semantics(document: dict[str, Any], floors: dict[str, Any]) -> dict[str, Any]:
+def validate_metric_semantics(
+    document: dict[str, Any],
+    floors: dict[str, Any],
+    *,
+    artifact: str = SEMANTICS_ARTIFACT,
+    experiment: str = SEMANTICS_EXPERIMENT,
+) -> dict[str, Any]:
     """Closed validation of an official metric semantics contract.
 
     The document must name exactly the registered floor metrics, each with a
     full semantic contract; the registered operators and thresholds must
     equal the frozen floors (no threshold repair), and direction must agree
-    with the operator."""
+    with the operator.  The artifact/experiment identity is parameterized so
+    a carried-forward experiment (T22) validates against its own identity
+    while the default parameters keep the frozen R17 identity."""
     errors: list[str] = []
     if set(document) != METRIC_ROOT_KEYS:
         _error(f"semantics root fields differ: expected={sorted(METRIC_ROOT_KEYS)}, actual={sorted(document)}", errors)
         return {"status": "FAIL", "errors": errors}
     if document["schema_version"] != SEMANTICS_SCHEMA_VERSION:
         _error("unsupported semantics schema_version", errors)
-    if document["artifact"] != SEMANTICS_ARTIFACT:
+    if document["artifact"] != artifact:
         _error("semantics artifact identity mismatch", errors)
-    if document["experiment"] != "t21r17":
+    if document["experiment"] != experiment:
         _error("semantics experiment identity mismatch", errors)
     if not isinstance(document["rule"], str) or "generic fallback" not in document["rule"]:
         _error("semantics rule statement invalid", errors)
@@ -225,6 +234,8 @@ def load_metric_semantics(
     *,
     relative: str | None = None,
     floors: dict[str, Any] | None = None,
+    artifact: str = SEMANTICS_ARTIFACT,
+    experiment: str = SEMANTICS_EXPERIMENT,
 ) -> dict[str, Any]:
     """Load and validate the frozen semantics artifact from a workspace."""
     from .contract import value_at_path
@@ -234,7 +245,9 @@ def load_metric_semantics(
     floors = floors if floors is not None else contract.get("promotion_floors")
     path = root / relative
     document = read_json(path)
-    report = validate_metric_semantics(document, floors)
+    report = validate_metric_semantics(document, floors,
+                                       artifact=artifact,
+                                       experiment=experiment)
     if report["status"] != "PASS":
         raise ContractError("; ".join(report["errors"]))
     return document

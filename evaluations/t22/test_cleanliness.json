@@ -1,0 +1,53 @@
+{
+  "applicable_suite": {
+    "collected": 3333,
+    "exit_code": 0,
+    "failed": 0,
+    "junit_path": "artifacts/t22_applicable_junit.xml",
+    "junit_sha256": "d1d14279796f79c95e25509162e7857973d5a27d36f270bdbe1dc2a42579dfb8",
+    "passed": 0,
+    "skipped": 0,
+    "tracked_drift": 0,
+    "tracked_tree_after": "0eb02b127e96ba587522addc1fda70726a3162da8b3b6ccd98e4f0e4a2a11e75",
+    "tracked_tree_before": "0eb02b127e96ba587522addc1fda70726a3162da8b3b6ccd98e4f0e4a2a11e75"
+  },
+  "focused_protocol_kernel": {
+    "collected": 25,
+    "exit_code": 0,
+    "failed": 0,
+    "junit_path": "artifacts/t22_focused_junit.xml",
+    "junit_sha256": "227d159a757cfe460684abfa773353b93db91bd5319dbd5e0c100f445c973f48",
+    "passed": 0,
+    "skipped": 0,
+    "tracked_drift": 0,
+    "tracked_tree_after": "0eb02b127e96ba587522addc1fda70726a3162da8b3b6ccd98e4f0e4a2a11e75",
+    "tracked_tree_before": "0eb02b127e96ba587522addc1fda70726a3162da8b3b6ccd98e4f0e4a2a11e75"
+  },
+  "historical_regressions": {
+    "applicable_failed": 0,
+    "applicable_passed": 0,
+    "registered_historical_failures": 25,
+    "status": "PASS"
+  },
+  "raw_full_suite": {
+    "adjudication_exact_match": true,
+    "collected": 3358,
+    "exit_code": 1,
+    "failed": 25,
+    "junit_path": "artifacts/t22_raw_junit.xml",
+    "junit_sha256": "5ad1ee4348237d0e8f96d26406ffb9b67559869ddaa47d196bf998e4f48e7d76",
+    "missing_registered_failures": 0,
+    "passed": 0,
+    "registered_failures": 25,
+    "skipped": 0,
+    "tracked_drift": 0,
+    "tracked_tree_after": "0eb02b127e96ba587522addc1fda70726a3162da8b3b6ccd98e4f0e4a2a11e75",
+    "tracked_tree_before": "0eb02b127e96ba587522addc1fda70726a3162da8b3b6ccd98e4f0e4a2a11e75",
+    "unexpected_failure_list": [],
+    "unexpected_failures": 0
+  },
+  "schema_version": "t21-test-cleanliness-v1",
+  "status": "PASS",
+  "test_time_unexpected_repository_writes": 0,
+  "write_safety_note": "test runs use fresh disposable basetemp directories; committed historical artifacts are never mutated; tracked-tree drift must be 0"
+}

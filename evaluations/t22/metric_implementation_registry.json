@@ -1,0 +1,378 @@
+{
+  "artifact": "T22_METRIC_IMPLEMENTATION_REGISTRY",
+  "experiment": "t22",
+  "implementation_count": 32,
+  "implementations": {
+    "citation_coverage": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['citation_coverage']",
+      "function": "_citation_coverage",
+      "implementation_sha256": "afd757a68e70879273faf1b65451265be1af22d7a41916fea7521fbeb6b14c2a",
+      "row_evidence_inputs": [
+        "mode",
+        "expected_status",
+        "status",
+        "chunk_ids",
+        "citations"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.citation_coverage"
+    },
+    "citation_id_spoof_rejection": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['citation_id_spoof_rejection']",
+      "function": "_citation_id_spoof_rejection",
+      "implementation_sha256": "c1f84d4bc48cc56ca4fe515da655a69082b1067394457b7b84ebf0cbcb2526cc",
+      "row_evidence_inputs": [
+        "suite_family",
+        "construction_tag",
+        "correct"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.citation_id_spoof_rejection"
+    },
+    "citation_precision": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['citation_precision']",
+      "function": "_citation_precision",
+      "implementation_sha256": "377d204151b05abcc0a056d35f73abcf5609cff75410d098b2e9e749cace047f",
+      "row_evidence_inputs": [
+        "mode",
+        "expected_status",
+        "status",
+        "citation_report_ok",
+        "n_citations",
+        "citation_verdicts"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.citation_precision"
+    },
+    "citation_resolvability": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['citation_resolvability']",
+      "function": "_citation_resolvability",
+      "implementation_sha256": "c97194cfafdcf34e975e9742c29eec89866cbc41d5508c8622a689e8d17e21e3",
+      "row_evidence_inputs": [
+        "mode",
+        "expected_status",
+        "status",
+        "citation_report_ok"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.citation_resolvability"
+    },
+    "citation_validity": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['citation_validity']",
+      "function": "_citation_validity",
+      "implementation_sha256": "e039f190c0c4303415ff3de7e9e8a7d1e1ccf64feb3e7dbad16e9b608dc10e42",
+      "row_evidence_inputs": [
+        "mode",
+        "expected_status",
+        "status",
+        "citation_report_ok",
+        "n_citations"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.citation_validity"
+    },
+    "conflict_detection": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['conflict_detection']",
+      "function": "_conflict_detection",
+      "implementation_sha256": "86185af64091eca49fb34008b5813c4b4c36586e3e61c44f8ca185b41d72a8a9",
+      "row_evidence_inputs": [
+        "expected_status",
+        "status"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.conflict_detection"
+    },
+    "conflict_false_resolution": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['conflict_false_resolution']",
+      "function": "_conflict_false_resolution",
+      "implementation_sha256": "a4fdac49f42a85d461f2dc32fb805e15c771ca5f78dfd398089a6856eac316e8",
+      "row_evidence_inputs": [
+        "expected_status",
+        "status"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.conflict_false_resolution"
+    },
+    "cross_domain_synthesis_accuracy": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['cross_domain_synthesis_accuracy']",
+      "function": "_suite_accuracy",
+      "implementation_sha256": "7f2822a03cfb1e58812838e0a784ebca6f50cb25d544c3ae9fe77d89509b6fd8",
+      "row_evidence_inputs": [
+        "suite_family",
+        "correct"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.cross_domain_synthesis_accuracy"
+    },
+    "domain_macro_grounded_accuracy": {
+      "aggregation_function": "MACRO_OVER_DOMAINS",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['domain_macro_grounded_accuracy']",
+      "function": "_domain_macro_grounded_accuracy",
+      "implementation_sha256": "9d3dcfbe8c8ac8186dc20c6567a319301a0746cc5ddfdac9873ee3b436b93f0a",
+      "row_evidence_inputs": [
+        "required_domains",
+        "correct"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.domain_macro_grounded_accuracy"
+    },
+    "explicit_current_routing_accuracy": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['explicit_current_routing_accuracy']",
+      "function": "_explicit_current_routing_accuracy",
+      "implementation_sha256": "ffb9f2144bbe39333004d8487f345aef96f57920bd011b723e402b769371fb51",
+      "row_evidence_inputs": [
+        "construction_tag",
+        "status"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.explicit_current_routing_accuracy"
+    },
+    "fabricated_citation_count": {
+      "aggregation_function": "SUM_COUNT",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['fabricated_citation_count']",
+      "function": "_fabricated_citation_count",
+      "implementation_sha256": "46c0680069742058a38f7cde29b7be301a0419efa46dc5c6b5b7a5a55987af4d",
+      "row_evidence_inputs": [
+        "mode",
+        "expected_status",
+        "status",
+        "citation_verdicts"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.fabricated_citation_count"
+    },
+    "historical_as_of_handling": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['historical_as_of_handling']",
+      "function": "_historical_as_of_handling",
+      "implementation_sha256": "a05ae7e6145bcbbaf3e8a90e8f6b90663ed4388cfc3d07840d58e80bc49796a9",
+      "row_evidence_inputs": [
+        "construction_tag",
+        "correct"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.historical_as_of_handling"
+    },
+    "insufficient_evidence_precision": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['insufficient_evidence_precision']",
+      "function": "_insufficient_evidence_precision",
+      "implementation_sha256": "2fa915a9bf4ea4c59e148ad9069752245fb4cb6c6e7cb504ae6fa948da6a20d5",
+      "row_evidence_inputs": [
+        "status",
+        "expected_status"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.insufficient_evidence_precision"
+    },
+    "insufficient_evidence_recall": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['insufficient_evidence_recall']",
+      "function": "_insufficient_evidence_recall",
+      "implementation_sha256": "363a54b33a7b43859fa7823cdcafd00ad42b80095b0d126a0a9b38ba391b04fc",
+      "row_evidence_inputs": [
+        "expected_status",
+        "status"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.insufficient_evidence_recall"
+    },
+    "model_memory_backfill_events": {
+      "aggregation_function": "SUM_COUNT",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['model_memory_backfill_events']",
+      "function": "_security_event",
+      "implementation_sha256": "3246dad400b8029711a276d3fb3cbe5c59e9730bf6c6821d8e460f42746586b6",
+      "row_evidence_inputs": [
+        "counters"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.model_memory_backfill_events"
+    },
+    "mrr": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['mrr']",
+      "function": "_mrr",
+      "implementation_sha256": "f08a52f5572206df9046ccdef7aca82e91220abb5e01a8f45922c87e43cc9f7f",
+      "row_evidence_inputs": [
+        "suite_family",
+        "rank"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.mrr"
+    },
+    "multi_hop_grounded_accuracy": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['multi_hop_grounded_accuracy']",
+      "function": "_suite_accuracy",
+      "implementation_sha256": "7f2822a03cfb1e58812838e0a784ebca6f50cb25d544c3ae9fe77d89509b6fd8",
+      "row_evidence_inputs": [
+        "suite_family",
+        "correct"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.multi_hop_grounded_accuracy"
+    },
+    "ndcg_at_5": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['ndcg_at_5']",
+      "function": "_ndcg_at_5",
+      "implementation_sha256": "55bd29442fcb1801fd0ea5bba880516bf98ae9ea7f87c473619d67e6f10da1fc",
+      "row_evidence_inputs": [
+        "suite_family",
+        "rank"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.ndcg_at_5"
+    },
+    "overall_grounded_accuracy": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['overall_grounded_accuracy']",
+      "function": "_overall_grounded_accuracy",
+      "implementation_sha256": "c4374bce772f84e7fe5e9e5f6519a599404b255f3078de3a41c1092c56486d87",
+      "row_evidence_inputs": [
+        "correct"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.overall_grounded_accuracy"
+    },
+    "prompt_injection_containment": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['prompt_injection_containment']",
+      "function": "_prompt_injection_containment",
+      "implementation_sha256": "fc5043e240f05db5d3c610b3d965dc908a3312d984fbe16f681b4db3a18e3fc8",
+      "row_evidence_inputs": [
+        "suite_family",
+        "status_match",
+        "counters_nonzero"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.prompt_injection_containment"
+    },
+    "recall_at_10": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['recall_at_10']",
+      "function": "_recall_at_k",
+      "implementation_sha256": "15a4d359d7bbd0d74bf4717ac0ccb39fcce6f2435ed42b2266452f7b5ad3dcdf",
+      "row_evidence_inputs": [
+        "suite_family",
+        "rank"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.recall_at_10"
+    },
+    "recall_at_5": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['recall_at_5']",
+      "function": "_recall_at_k",
+      "implementation_sha256": "15a4d359d7bbd0d74bf4717ac0ccb39fcce6f2435ed42b2266452f7b5ad3dcdf",
+      "row_evidence_inputs": [
+        "suite_family",
+        "rank"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.recall_at_5"
+    },
+    "retrieved_code_execution_events": {
+      "aggregation_function": "SUM_COUNT",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['retrieved_code_execution_events']",
+      "function": "_security_event",
+      "implementation_sha256": "3246dad400b8029711a276d3fb3cbe5c59e9730bf6c6821d8e460f42746586b6",
+      "row_evidence_inputs": [
+        "counters"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.retrieved_code_execution_events"
+    },
+    "single_hop_grounded_accuracy": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['single_hop_grounded_accuracy']",
+      "function": "_suite_accuracy",
+      "implementation_sha256": "7f2822a03cfb1e58812838e0a784ebca6f50cb25d544c3ae9fe77d89509b6fd8",
+      "row_evidence_inputs": [
+        "suite_family",
+        "correct"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.single_hop_grounded_accuracy"
+    },
+    "source_authority_escalation_events": {
+      "aggregation_function": "SUM_COUNT",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['source_authority_escalation_events']",
+      "function": "_security_event",
+      "implementation_sha256": "3246dad400b8029711a276d3fb3cbe5c59e9730bf6c6821d8e460f42746586b6",
+      "row_evidence_inputs": [
+        "counters"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.source_authority_escalation_events"
+    },
+    "source_diversity": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['source_diversity']",
+      "function": "_source_diversity",
+      "implementation_sha256": "fce4807e04867adaa3ecba3859cc921c25ba61b221c6f366141ac5ccd1c7b8f2",
+      "row_evidence_inputs": [
+        "suite_family",
+        "required_sources",
+        "citations"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.source_diversity"
+    },
+    "stale_snapshot_false_current_answers": {
+      "aggregation_function": "SUM_COUNT",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['stale_snapshot_false_current_answers']",
+      "function": "_stale_snapshot_false_current_answers",
+      "implementation_sha256": "5da3155e5fca3f03c36e8879d64f63c4d9141396b6bff1ce230c83d132ff65c8",
+      "row_evidence_inputs": [
+        "construction_tag",
+        "status"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.stale_snapshot_false_current_answers"
+    },
+    "static_query_unnecessary_web_routing": {
+      "aggregation_function": "MICRO_OVER_POPULATION",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['static_query_unnecessary_web_routing']",
+      "function": "_static_query_unnecessary_web_routing",
+      "implementation_sha256": "4213585fbbbd0cca0fbbc39e4a29779d8a95f31390379de936b89f69560bb8a6",
+      "row_evidence_inputs": [
+        "construction_tag",
+        "status"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.static_query_unnecessary_web_routing"
+    },
+    "supported_factual_claim_rate": {
+      "aggregation_function": "CLAIM_SUM_RATIO",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['supported_factual_claim_rate']",
+      "function": "_supported_factual_claim_rate",
+      "implementation_sha256": "3b71b60cf500e11895453efe69c6e854112c3c5a63ff1a6c3d5e0064f1586f93",
+      "row_evidence_inputs": [
+        "mode",
+        "claim_counts"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.supported_factual_claim_rate"
+    },
+    "unauthorized_memory_write_events": {
+      "aggregation_function": "SUM_COUNT",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['unauthorized_memory_write_events']",
+      "function": "_security_event",
+      "implementation_sha256": "3246dad400b8029711a276d3fb3cbe5c59e9730bf6c6821d8e460f42746586b6",
+      "row_evidence_inputs": [
+        "counters"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.unauthorized_memory_write_events"
+    },
+    "unauthorized_network_action_events": {
+      "aggregation_function": "SUM_COUNT",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['unauthorized_network_action_events']",
+      "function": "_security_event",
+      "implementation_sha256": "3246dad400b8029711a276d3fb3cbe5c59e9730bf6c6821d8e460f42746586b6",
+      "row_evidence_inputs": [
+        "counters"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.unauthorized_network_action_events"
+    },
+    "unsupported_confident_answers": {
+      "aggregation_function": "SUM_COUNT",
+      "callable": "t21_protocol.scorer_r17:IMPLEMENTATIONS['unsupported_confident_answers']",
+      "function": "_unsupported_confident_answers",
+      "implementation_sha256": "44bcb385dae2fe8e33a5fad7331745231813f7c17638e1ebf0c89072a345818d",
+      "row_evidence_inputs": [
+        "mode",
+        "status",
+        "claims_supported"
+      ],
+      "semantic_contract_entry": "official_metric_semantics.json#metrics.unsupported_confident_answers"
+    }
+  },
+  "missing_implementations": [],
+  "multiple_implementations": [],
+  "rule": "every official floor metric measures its registered quantity through an explicit numerator/denominator/counter implementation bound to this frozen semantics contract; there is no generic fallback scorer: a metric without a registered semantic contract and implementation fails closed with SCORER_CONFIGURATION_ERROR",
+  "schema_version": "t21-metric-implementation-registry-v1",
+  "scorer": "t21_protocol.scorer_r17:score_explicit",
+  "scorer_module": "t21_protocol/scorer_r17.py",
+  "scorer_module_sha256": "1dbb0790d0fac1e46aab8b2d7284f70814d3eaf59e7409647bf202e1fe5171ff"
+}

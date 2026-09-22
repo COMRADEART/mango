@@ -8,7 +8,7 @@ from typing import Any, Protocol
 
 from .builder import build_real_rows, build_real_rows_runtime_native, build_rows
 from .context import MaterialMode, WorkspaceMode
-from .errors import ProvenanceError
+from .errors import ProvenanceError, ValidationError
 from .util import write_json, write_jsonl
 
 RUNTIME_NATIVE_CORPUS_FORMAT = "mango-general-knowledge-corpus-v1"
@@ -222,6 +222,14 @@ class RealBlindMaterialProvider:
             # authored query names the record by case_id.
             entity_id = case_id
             world.append({"record_type": "entity", "entity_id": entity_id, "name": f"{register_tag} blind entity {index:05d}", "domain": row["gold"]["required_domains"][0]})
+            # T22 — the row's preregistered source freshness class (carrier B)
+            # is a construction-time materializer input authored with the row
+            # (default STATIC keeps prior experiments byte-identical); it is
+            # candidate-visible only through the materialized corpus source
+            # record, never through the gold contract.
+            freshness = row.get("source_freshness_class") or "STATIC"
+            if freshness not in schema.FRESHNESS_CLASSES_SET:
+                raise ValidationError(f"authored source freshness class not in frozen schema: {case_id}")
             source = schema.KnowledgeSourceRecord(
                 source_id=schema.make_source_id(f"{register_tag} blind register {index:05d}", "Mango blind evaluation register", register_revision),
                 source_title=f"{register_tag} blind register {index:05d}",
@@ -233,7 +241,7 @@ class RealBlindMaterialProvider:
                 retrieved_at_or_snapshot_date=corpus_module.CORPUS_SNAPSHOT_DATE,
                 language="en",
                 authority_class="PRIMARY_REFERENCE",
-                freshness_class="STATIC",
+                freshness_class=freshness,
                 topic_tags=list(row["gold"]["required_domains"]),
                 content_text=statement,
             )

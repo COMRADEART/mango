@@ -1,0 +1,139 @@
+{
+  "artifact": "T22_PRECONSTRUCTION_FREEZE",
+  "branch": "t22-preconstruction",
+  "construction_authorized": false,
+  "doctor_verdict": "T21_PROTOCOL_DOCTOR_PASS",
+  "experiment": "t22",
+  "exposure": {
+    "candidate_rows_executed": 0,
+    "capability_verdict": "NONE",
+    "official_evaluator_rows": 0,
+    "real_t22_rows": 0,
+    "rows_scored": 0
+  },
+  "head": "4e39a1054f5032ecf43b96c25b0f8cf18baa9ddd",
+  "identity_model": {
+    "candidate_identity": {
+      "candidate_commit": "7d919a255c2df87adcb3dd42011b505b10509713",
+      "candidate_runtime_identity_root": "a38507e455511c205e6b5250af56646491cab111d92e6f77734b6595a3ab6c8c",
+      "repair_chain": [
+        "098529c26b5aa53d23a68ac05f87de4bad89d550",
+        "7d919a255c2df87adcb3dd42011b505b10509713"
+      ],
+      "repair_chain_complete": true,
+      "runtime_files_verified": [
+        "src/sciencemath/knowledge/corpus.py",
+        "src/sciencemath/knowledge/freshness.py",
+        "src/sciencemath/knowledge/pipeline.py",
+        "src/sciencemath/knowledge/routing.py",
+        "src/sciencemath/knowledge/schema.py",
+        "t21_protocol/providers_t22.py"
+      ],
+      "status": "PASS"
+    },
+    "candidate_provider": "t21_protocol.providers_t22:RealCandidateProviderT22Evidence",
+    "candidate_stub_in_known_producers": true,
+    "runtime_native": {
+      "candidate_provider": "t21_protocol.providers_t22:RealCandidateProviderT22Evidence",
+      "corpus_format": "mango-general-knowledge-corpus-v1",
+      "holdout_frozen_schema_version": "t21-holdout-frozen-v2",
+      "loader_entry": "src/sciencemath/knowledge/corpus.py:load_corpus",
+      "manifest_format": "runtime_build_corpus_files",
+      "runtime_materializer": "t21_protocol.providers:runtime-native-materializer",
+      "shadow_holdout_rows": 4800,
+      "source_id_grammar": "gk-<sha1(title|publisher|revision)[:12]>"
+    }
+  },
+  "metric_semantics": {
+    "artifact": "evaluations/t22/official_metric_semantics.json",
+    "fixtures_sha256": "8916d7582fa14c1e532fb2d851925fafb81b64285a9024051f6e714abf33751f",
+    "registry_sha256": "92546df4a793b768d8cb88d2166ea935e795d24a5e4bf3f39c56736219f6c81f",
+    "semantic_roots": {
+      "evaluator_semantic_root": "d25ca69237175f304c3fe1f294592e5be7a50564927c8b96ac29d0c2c8cd4051",
+      "protocol_root": "1e1273e21d29a1ed1a80a1f461704171bb2710004bbe6d32495e05beca32fe7a",
+      "scorer_semantic_root": "d50519d1c0d4c5916a44982343eb6e4978fd1b05f7c15734f709c38aa4468d62"
+    },
+    "sha256": "d061033f094321930556bd7ba99c4df9f61d49dbccef966049e40786b15e72e0",
+    "unknown_metric_behavior": "SCORER_CONFIGURATION_ERROR"
+  },
+  "parent": "b7c37ed39d19f8a32e3cbad43fa8db6909598f18",
+  "phase_apis": {
+    "construct": "PRECONSTRUCTION -> SEALED only; construction requires separate authorization (T22_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION)",
+    "evaluate": "SEALED -> EVALUATION_COMPLETE/FAILED only"
+  },
+  "r17_preservation": {
+    "construction_commit": "9631c91687674497400e4e7ec974fa104cd0d3a9",
+    "evaluation_permanently_refused": true,
+    "frozen_observed_values": {
+      "explicit_current_routing_accuracy": 0.0,
+      "stale_snapshot_false_current_answers": 70
+    },
+    "holdout_status": "PERMANENTLY_EXPOSED_CONSUMED",
+    "official_evaluation_commit": "9fc953468921e527d5c340b6e69bb1c3ea48c7a9",
+    "one_shot_consumed": true,
+    "r16_sealed_holdout_unmodified": true,
+    "raw_access": {
+      "r17_raw_historical_access": 0,
+      "registry_construction_derivation": "hash-only in-memory fingerprinting with t21_protocol.audits._fingerprint; raw values never persisted",
+      "t22_artifacts_containing_raw_r17_values": 0,
+      "t22_row_authoring_used_r17_material": false
+    },
+    "rows_scored": 4800,
+    "sealed_fingerprints_match_registry": {
+      "case_ids": true,
+      "chunk_ids": true,
+      "entity_identities": true,
+      "exact_answers": true,
+      "exact_queries": true,
+      "exact_source_text": true,
+      "source_ids": true,
+      "verbatim_attack_wording": true
+    },
+    "sealed_holdout_unmodified": true
+  },
+  "real_path_absence": {
+    "present": [],
+    "status": "PASS"
+  },
+  "rehearsals": {
+    "committed_lifecycle_twice": "PASS",
+    "metric_semantics_lifecycle_twice": "PASS",
+    "real_mode_dry_rehearsal": "PASS",
+    "synthetic_construction_twice": "PASS"
+  },
+  "schema_version": "t21-preconstruction-freeze-v1",
+  "status": "PASS",
+  "temporal_router_qualification": {
+    "battery_pass": true,
+    "doctor_check": "PASS",
+    "signal_carrier_audit": "PASS",
+    "zero_denominator_harmonization": "PASS"
+  },
+  "tests": {
+    "adjudicated_registered_failures": 25,
+    "applicable_suite": {
+      "collected": 3333,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 0
+    },
+    "focused_protocol_kernel": {
+      "collected": 25,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 0
+    },
+    "full_suite": {
+      "collected": 3358,
+      "exit_code": 1,
+      "failed": 25,
+      "passed": 0,
+      "skipped": 0
+    }
+  },
+  "tree_sha": "d2adf6d987cf5da89d017797d541184502353de8",
+  "write_safety": {
+    "status": "PASS",
+    "tracked_drift": 0
+  }
+}

@@ -93,6 +93,13 @@ EXPERIMENT_HELPERS = {
     "t21r15": ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures"),
     "t21r16": ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures", "t21r16_fixtures"),
     "t21r17": ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures", "t21r16_fixtures", "t21r17_fixtures"),
+    # T22 — the temporal-preconstruction helper scripts join the registry;
+    # every prior experiment's entry stays byte-identical.
+    "t22": (
+        "t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures",
+        "t21r16_fixtures", "t21r17_fixtures",
+        "t22_metric_semantics", "t22_fixtures", "t22_regression_battery", "t22_preconstruction",
+    ),
 }
 
 
@@ -217,6 +224,10 @@ def _phase_api_check(experiment: str = "t21r15") -> dict[str, Any]:
         from .evaluate_r17 import run_evaluation_r17
 
         results["metric_semantics_evaluation_callable"] = callable(run_evaluation_r17)
+    elif experiment == "t22":
+        from .evaluate_t22 import run_evaluation_t22
+
+        results["metric_semantics_evaluation_callable"] = callable(run_evaluation_t22)
     return {"status": "PASS" if all(results.values()) else "FAIL", **results}
 
 
@@ -619,12 +630,20 @@ def _metric_semantics_validation(root: Path, contract: Any) -> dict[str, Any]:
     explicit frozen measurement semantics; the scorer has no generic fallback
     path; the discriminative fixture battery proves each metric measures its
     own registered quantity."""
-    from .metric_semantics import load_metric_semantics, semantics_root
+    from .metric_semantics import (
+        SEMANTICS_ARTIFACT,
+        SEMANTICS_EXPERIMENT,
+        load_metric_semantics,
+        semantics_root,
+    )
     from .scorer_r17 import IMPLEMENTATION_SOURCES, IMPLEMENTATIONS
 
     floors = contract.get("promotion_floors")
     floor_metrics = {metric for group in floors.values() for metric in group}
-    semantics = load_metric_semantics(root, contract)
+    identity = {
+        "t22": ("T22_OFFICIAL_METRIC_SEMANTICS", "t22"),
+    }.get(contract.experiment, (SEMANTICS_ARTIFACT, SEMANTICS_EXPERIMENT))
+    semantics = load_metric_semantics(root, contract, artifact=identity[0], experiment=identity[1])
     entries = semantics["metrics"]
     registered = set(entries)
     contradictions = sorted(
@@ -697,6 +716,203 @@ def _metric_semantics_validation(root: Path, contract: Any) -> dict[str, Any]:
     }
 
 
+def _r17_disposition_check(root: Path) -> dict[str, Any]:
+    """T22 preconstruction requires the R17 disposition committed in the T22
+    artifact namespace (R17 itself is permanently closed and must not gain
+    new files): closed as a valid capability failure, capability verdict
+    FAIL, holdout consumed, the two temporal failures recorded as valid
+    measurements, rerun refused, and the permanent refusal marker present."""
+    disposition = read_json(root / "evaluations" / "t22" / "r17_final_disposition.json")
+    status_ok = disposition.get("status") == "CLOSED / VALID_CAPABILITY_FAILURE"
+    reason_ok = (
+        disposition.get("reason")
+        == "TWO_TEMPORAL_FLOOR_METRICS_MEASURED_A_CANDIDATE_FAILURE_WITHOUT_CANDIDATE_VISIBLE_SIGNALS"
+    )
+    capability_ok = disposition.get("capability_verdict") == "FAIL" and disposition.get("capability_failure") is True
+    rows_ok = disposition.get("rows_scored") == 4800 and disposition.get("one_shot_consumed") is True
+    holdout_ok = disposition.get("holdout_status") == "PERMANENTLY_EXPOSED_CONSUMED"
+    failed_ok = set(disposition.get("failed_metrics") or []) == {
+        "explicit_current_routing_accuracy",
+        "stale_snapshot_false_current_answers",
+    } and disposition.get("failed_metric_designation") == "VALID_MEASUREMENTS_OF_CANDIDATE_CAPABILITY_FAILURE"
+    adjudication_ok = disposition.get("final_adjudication") == "T21R17_FINAL_ADJUDICATION_VALID_CAPABILITY_FAILURE"
+    rerun_ok = disposition.get("rerun") == "REFUSED"
+    marker = root / "evaluations" / "t22" / "r17_evaluation_refusal.json"
+    marker_ok = marker.is_file() and read_json(marker).get("permanent") is True
+    passed = status_ok and reason_ok and capability_ok and rows_ok and holdout_ok and failed_ok and adjudication_ok and rerun_ok and marker_ok
+    return {
+        "status": "PASS" if passed else "FAIL",
+        "closed_status": disposition.get("status"),
+        "capability_verdict": disposition.get("capability_verdict"),
+        "failed_metrics": sorted(disposition.get("failed_metrics") or []),
+        "final_adjudication": disposition.get("final_adjudication"),
+        "evaluation_refusal_marker_permanent": marker_ok,
+    }
+
+
+def _temporal_signal_visibility_check(root: Path, contract: Any) -> dict[str, Any]:
+    """T22 section-41 check (protocol sections 32-34): the frozen temporal
+    design exposes every temporal requirement through at least one
+    candidate-visible signal carrier; the executed preconstruction audit
+    proved gold-only-signal rows = 0; no gold-only field is ever exposed to
+    the candidate; the candidate provider reads only query + request_date."""
+    out = root / "evaluations" / contract.experiment
+    design = read_json(root / contract.get("artifacts.temporal_holdout_design"))
+    shadow = read_json(out / "runtime_native_shadow_validation.json")
+    carriers = shadow.get("signal_carrier_audit") or {}
+    temporal_rows = carriers.get("temporal_rows")
+    rows_with_signal = carriers.get("rows_with_signal")
+    gold_only = carriers.get("gold_only_signal_rows")
+    request_date = (design.get("request_date") or {}).get("value")
+    snapshot_date = (design.get("request_date") or {}).get("snapshot_date")
+    request_ok = (
+        isinstance(request_date, str)
+        and isinstance(snapshot_date, str)
+        and request_date > snapshot_date
+        and carriers.get("request_date") == request_date
+    )
+    blindness_ok = set(
+        (design.get("blindness") or {}).get("never_candidate_visible") or []
+    ) == {"construction_tag", "signal_class", "expected_route", "expected_status", "gold expected_answer"}
+    provider_source = (root / "t21_protocol" / "providers_t22.py").read_text(encoding="utf-8")
+    # The provider must read only the candidate-visible row inputs (the
+    # case id, the query text and the request-date carrier); every
+    # gold-only field must be absent as a row-indexing pattern (a docstring
+    # mention is documentation, an indexed read is an access).
+    forbidden_accessors = tuple(
+        f"row[\"{field}\"" if bracket else f"row.get(\"{field}\""
+        for field in ("construction_tag", "signal_class", "expected_route", "expected_status")
+        for bracket in (True, False)
+    )
+    provider_ok = (
+        "row[\"query\"]" in provider_source
+        and "row.get(\"request_date\"" in provider_source
+        and not any(accessor in provider_source for accessor in forbidden_accessors)
+        and "row[\"gold\"]" not in provider_source
+    )
+    passed = (
+        shadow.get("status") == "PASS"
+        and shadow.get("audit_mode") == "EXECUTED"
+        and temporal_rows == 250
+        and rows_with_signal == 250
+        and gold_only == 0
+        and request_ok
+        and blindness_ok
+        and provider_ok
+    )
+    return {
+        "schema_version": "t22-temporal-signal-visibility-validation-v1",
+        "artifact": "T22_TEMPORAL_SIGNAL_VISIBILITY_VALIDATION",
+        "status": "PASS" if passed else "FAIL",
+        "audit_mode": "EXECUTED",
+        "temporal_rows": temporal_rows,
+        "rows_with_signal": rows_with_signal,
+        "gold_only_signal_rows": gold_only,
+        "request_date": request_date,
+        "snapshot_date": snapshot_date,
+        "carriers": carriers.get("per_signal_counts"),
+        "blindness_contract_enforced": blindness_ok,
+        "candidate_provider_visibility_clean": provider_ok,
+    }
+
+
+def _temporal_router_qualification_check(root: Path, contract: Any) -> dict[str, Any]:
+    """T22 section-41 check (protocol section 38): the frozen temporal
+    regression battery — run on non-blind, project-owned fixture material
+    with the actual remediated candidate — meets all four qualification
+    gates: explicit-current routing accuracy = 1.0, stale-snapshot false
+    current answers = 0, static unnecessary web routing <= 0.03, historical
+    as-of handling >= 0.98."""
+    from t21_protocol.util import sha256_file as _sha256_file
+
+    results = read_json(root / "evaluations" / "t22" / "temporal_regressions" / "results.json")
+    gates = results.get("gates") or {}
+    spec_path = root / "evaluations" / "t22" / "temporal_regressions" / "battery_spec.json"
+    spec_ok = spec_path.is_file() and results.get("spec_sha256") == _sha256_file(spec_path)
+    expected = {
+        "explicit_current_routing_accuracy": {"observed": 1.0, "operator": "="},
+        "stale_snapshot_false_current_answers": {"observed": 0, "operator": "="},
+        "static_query_unnecessary_web_routing": {"observed": 0.0, "operator": "<="},
+        "historical_as_of_handling": {"observed": 1.0, "operator": ">="},
+    }
+    observed_ok = all(
+        gate in gates
+        and gates[gate].get("observed") == spec["observed"]
+        and gates[gate].get("operator") == spec["operator"]
+        and gates[gate].get("pass") is True
+        for gate, spec in expected.items()
+    )
+    blindness = results.get("blindness") or {}
+    blindness_ok = blindness.get("forbidden_gold_only_keys_present") == [] and blindness.get(
+        "candidate_runtime_inputs"
+    ) == ["query", "now (request_date)"]
+    passed = results.get("battery_pass") is True and spec_ok and observed_ok and blindness_ok
+    return {
+        "schema_version": "t22-temporal-router-qualification-validation-v1",
+        "artifact": "T22_TEMPORAL_ROUTER_QUALIFICATION_VALIDATION",
+        "status": "PASS" if passed else "FAIL",
+        "audit_mode": "EXECUTED",
+        "battery_pass": results.get("battery_pass"),
+        "gates": {name: {"observed": gate.get("observed"), "pass": gate.get("pass")} for name, gate in gates.items()},
+        "spec_sha256_pinned": spec_ok,
+        "blindness_audit_clean": blindness_ok,
+    }
+
+
+def _zero_denominator_harmonization_check(root: Path, contract: Any) -> dict[str, Any]:
+    """T22 section-31 closure: the contradictory zero-denominator prose is
+    harmonized against the frozen resolution; numeric semantics stay
+    byte-identical to R17; the emergent-empty convention and the
+    design-mandated fail-closed refusal are both proven by fixtures."""
+    fixtures = read_json(root / "evaluations" / contract.experiment / "metric_semantics_fixtures.json")
+    resolution = read_json(root / contract.get("artifacts.zero_denominator_policy_resolution"))
+    r17_semantics = read_json(root / "evaluations" / "t21r17" / "official_metric_semantics.json")
+    t22_semantics = read_json(root / contract.get("artifacts.official_metric_semantics"))
+    r17_policies = {
+        metric: entry.get("zero_denominator_policy")
+        for metric, entry in (r17_semantics.get("metrics") or {}).items()
+    }
+    t22_policies = {
+        metric: entry.get("zero_denominator_policy")
+        for metric, entry in (t22_semantics.get("metrics") or {}).items()
+    }
+    policies_identical = r17_policies == t22_policies and len(t22_policies) == 32
+    section = fixtures.get("zero_denominator_harmonization") or {}
+    cases = section.get("cases") or []
+    emergent_ok = sum(1 for case in cases if case.get("case", "").startswith("emergent_empty") and case.get("ok") is True)
+    refused_ok = sum(1 for case in cases if case.get("case", "").startswith("design_mandated_empty") and case.get("refused") is True and case.get("ok") is True)
+    harmonized = (
+        fixtures.get("status") == "PASS"
+        and section.get("status") == "PASS"
+        and section.get("ok") is True
+        and emergent_ok == 2
+        and refused_ok == 3
+        and section.get("policy_classes_byte_identical_to_r17") is True
+        and section.get("no_retroactive_effect_on_r17") is True
+        and section.get("prose_harmonized") is True
+    )
+    frozen_policy = (resolution.get("frozen_policy") or {}).get("name")
+    policy_ok = (
+        resolution.get("status") == "FROZEN_PRECONSTRUCTION"
+        and frozen_policy == "DESIGN_MANDATED_POSITIVE_POPULATIONS_WITH_RESIDUAL_EMERGENT_CONVENTION"
+        and (resolution.get("protocol_debt") or {}).get("resolution_authorization").startswith(
+            "T22 preconstruction plan section 31"
+        )
+    )
+    return {
+        "schema_version": "t22-zero-denominator-harmonization-validation-v1",
+        "artifact": "T22_ZERO_DENOMINATOR_HARMONIZATION_VALIDATION",
+        "status": "PASS" if policies_identical and harmonized and policy_ok else "FAIL",
+        "audit_mode": "EXECUTED",
+        "policy_classes_identical_to_r17": policies_identical,
+        "fixture_section": section.get("status"),
+        "emergent_empty_cases": emergent_ok,
+        "design_mandated_fail_closed_cases": refused_ok,
+        "frozen_policy": frozen_policy,
+        "resolution_status": resolution.get("status"),
+    }
+
+
 def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
     before = tracked_tree(root)
     out = root / "evaluations" / experiment
@@ -746,6 +962,16 @@ def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
     if experiment == "t21r17":
         checks["r16_disposition"] = _r16_disposition_check(root)
         checks["metric_semantics_validation"] = _metric_semantics_validation(root, contract)
+    elif experiment == "t22":
+        checks["r16_disposition"] = _r16_disposition_check(root)
+        checks["r17_disposition"] = _r17_disposition_check(root)
+        checks["metric_semantics_validation"] = _metric_semantics_validation(root, contract)
+        # T22 section-41 checks: temporal signal visibility (sections 32-34),
+        # router qualification on non-blind material (section 38), and the
+        # frozen zero-denominator harmonization (section 31).
+        checks["temporal_signal_visibility"] = _temporal_signal_visibility_check(root, contract)
+        checks["temporal_router_qualification"] = _temporal_router_qualification_check(root, contract)
+        checks["zero_denominator_harmonization"] = _zero_denominator_harmonization_check(root, contract)
     else:
         checks["r15_disposition"] = _r15_disposition_check(root)
     if runtime_native:
@@ -753,7 +979,8 @@ def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
     module_paths = sorted((root / "t21_protocol").glob("*.py"))
     helper_names = EXPERIMENT_HELPERS.get(experiment, EXPERIMENT_HELPERS["t21r15"])
     helper_paths = [root / "scripts" / f"{name}.py" for name in helper_names]
-    test_paths = sorted((root / "tests").glob("test_t21*.py"))
+    test_globs = ("test_t21*.py",) if experiment != "t22" else ("test_t21*.py", "test_t22*.py")
+    test_paths = sorted(path for pattern in test_globs for path in (root / "tests").glob(pattern))
     checks["static_import_audit"] = static_import_write_audit([*module_paths, *helper_paths, *test_paths])
     checks["dynamic_import_audit"] = dynamic_import_write_audit(
         root,
@@ -773,6 +1000,13 @@ def run_doctor(root: Path, experiment: str = "t21r15") -> dict[str, Any]:
         from .pipeline_r17 import run_real_mode_lifecycle_rehearsal_r17_twice
 
         checks["metric_semantics_lifecycle_rehearsal"] = run_real_mode_lifecycle_rehearsal_r17_twice(root, contract, graph)
+    elif experiment == "t22":
+        # T22 runs the same full production lifecycle ×2 with the T22
+        # request-date candidate provider and the T22 evaluation driver
+        # (protocol section 40: the actual remediated candidate, no stub).
+        from .pipeline_t22 import run_real_mode_lifecycle_rehearsal_t22_twice
+
+        checks["metric_semantics_lifecycle_rehearsal"] = run_real_mode_lifecycle_rehearsal_t22_twice(root, contract, graph)
     else:
         checks["synthetic_full_protocol"] = run_synthetic_twice(root, contract, graph)
     cleanliness_path = out / "test_cleanliness.json"

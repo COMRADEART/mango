@@ -1,0 +1,179 @@
+{
+  "schema_version": "t22-changed-file-manifest-v1",
+  "artifact": "T22_CHANGED_FILE_MANIFEST",
+  "experiment": "t22",
+  "status": "FROZEN_PRECONSTRUCTION",
+  "rule": "Every file changed by the T22 preconstruction delta is declared here with its reason, expected behavioral effect, and regression coverage. No unrelated improvements are included. Files absent from this manifest must be byte-identical to the T22 base commit (9fc953468921e527d5c340b6e69bb1c3ea48c7a9).",
+  "base_commit": "9fc953468921e527d5c340b6e69bb1c3ea48c7a9",
+  "old_candidate_identity": {
+    "note": "T21R17 official evaluation candidate identity (permanently closed; never continued)",
+    "candidate_commit": "9fc953468921e527d5c340b6e69bb1c3ea48c7a9",
+    "candidate_semantics": "t21_protocol.scorer_r17:score_explicit over frozen R17 semantics",
+    "candidate_provider": "t21_protocol.providers_r17:RealCandidateProviderEvidence",
+    "candidate_runtime": "frozen R16/R17 runtime (classify_query_freshness(query) without request date; no present-state fact-class intent; no post-retrieval metadata rule)"
+  },
+  "new_candidate_identity_rule": "the remediated candidate is the T22 runtime delta below; its identity is the t22-preconstruction branch commit that carries the runtime repair (recorded in T22_candidate_identity.json at commit time)",
+  "changed_files": [
+    {
+      "path": "src/sciencemath/knowledge/freshness.py",
+      "reason": "T21R17 root cause: the runtime classified every temporal family from a lexical cue list only; the 250 blind temporal rows carried no candidate-visible signal, so all routed to the frozen snapshot (explicit_current_routing_accuracy 0/70, 70 stale-current answers). The repair introduces the frozen five-intent temporal classifier (STATIC, HISTORICAL_AS_OF, CURRENT_REQUIRED, RECENCY_SENSITIVE, AMBIGUOUS_FRESHNESS) with the staleness-aware action mapping, the explicit request-date input (signal-carrier E), the present-state role/value lexicons, superlative time-scoping, physics-sense suppression, record-pinning and self-contained referent frames, all frozen in evaluations/t22/temporal_signal_contract.json.",
+      "expected_behavioral_effect": "queries with an explicit current-information requirement or a present-state fact class route to web research exactly when the request date is past the frozen snapshot (or unknown, fail-safe, for CURRENT_REQUIRED); record-pinned, historical as-of, timeless, and unscoped-superlative shapes answer from the frozen frame; physics-sense and proper-noun 'current' no longer trigger routing",
+      "regression_coverage": "tests/test_t22_temporal_router.py (intent classification, no-stale-fallback invariant, static invariant, section-24 false-positive fixes, backward-compatible keys, no-wall-clock determinism); evaluations/t22/temporal_regressions qualification battery"
+    },
+    {
+      "path": "src/sciencemath/knowledge/routing.py",
+      "reason": "carry the frozen temporal_intent additively through knowledge_eligibility so callers, traces, and evidence rows distinguish the five intents; the routing decision logic itself is unchanged (boundary > freshness > eligible).",
+      "expected_behavioral_effect": "eligibility dicts gain temporal_intent; no routing outcome changes",
+      "regression_coverage": "tests/test_t22_temporal_router.py::test_knowledge_eligibility_carries_temporal_intent"
+    },
+    {
+      "path": "src/sciencemath/knowledge/pipeline.py",
+      "reason": "two repair threads: (1) thread the caller-supplied request date into the freshness classifier (answer_knowledge(now=...) now reaches classify_query_freshness instead of being ignored), binding the snapshot date from the corpus; (2) insert the post-retrieval metadata rule (signal-carrier B): a stale snapshot plus retrieved TIME_SENSITIVE source metadata routes to web research for STATIC-not-pinned and AMBIGUOUS intents, which is the deterministic discriminator for the metadata-only explicit-current sub-shape (protocol section 25).",
+      "expected_behavioral_effect": "queries whose only candidate-visible temporal signal is runtime metadata (request_date beyond snapshot, TIME_SENSITIVE source) now route instead of answering stale snapshot state as current; queries with STATIC source metadata and identical text still answer",
+      "regression_coverage": "tests/test_t22_temporal_router.py::test_metadata_only_carrier_rule, test_metadata_rule_exempt_for_record_pinned, test_metadata_rule_requires_stale_request; static_unnecessary_web regression family in the qualification battery"
+    },
+    {
+      "path": "t21_protocol/builder.py",
+      "reason": "contract-driven temporal row authoring: an optional author-spec row_authoring block preregisters per-tag query templates, deterministic sub-shapes, per-tag source freshness classes, the candidate-visible request_date carrier, and per-tag expect_status (ROUTE_WEB_RESEARCH for the explicit-current family). Absent block reproduces the frozen R16/R17 row authoring byte-identically (default branch unchanged).",
+      "expected_behavioral_effect": "T22 blind construction can author candidate-visible temporal signal carriers; R15/R16/R17 row authoring is byte-identical to before",
+      "regression_coverage": "t22 preconstruction exact-design audit, signal-carrier audit (gold-only-signal rows = 0), and backward-compat row-hash equality assertions in the preconstruction script"
+    },
+    {
+      "path": "t21_protocol/providers.py",
+      "reason": "the runtime-native materializer consumes the row's preregistered source freshness class (carrier B) instead of hardcoding STATIC, with a frozen-schema fail-closed check; default STATIC keeps prior experiments byte-identical.",
+      "expected_behavioral_effect": "TIME_SENSITIVE blind registers materialize with the TIME_SENSITIVE freshness class so runtime-visible source metadata can carry the temporal signal",
+      "regression_coverage": "t22 preconstruction signal-carrier audit + corpus schema validation (freshness class must be in FRESHNESS_CLASSES)"
+    },
+    {
+      "path": "t21_protocol/context.py",
+      "reason": "register the T22 construction and evaluation authorization tokens (T22_REAL_BLIND_CONSTRUCTION_AUTHORIZED / T22_ONE_SHOT_OFFICIAL_EVALUATION) so the frozen phase APIs accept the new experiment identity.",
+      "expected_behavioral_effect": "phase APIs validate t22 tokens; no existing token changes",
+      "regression_coverage": "t21_protocol context token registration asserted in the t22 preconstruction tests"
+    },
+    {
+      "path": "t21_protocol/exclusion.py",
+      "reason": "T21R17 is permanently closed as OFFICIAL_VALID_CAPABILITY_FAILURE; the historical exclusion schema gains r17_protocol_history so T22 references R17 exclusively through hash-only aggregate fingerprints (no raw R17 values enter authoring).",
+      "expected_behavioral_effect": "historical exclusion policies may name exactly one prior protocol history including r17; all existing R14/R15/R16 validation behavior unchanged",
+      "regression_coverage": "t22 preconstruction historical exclusion validation"
+    },
+    {
+      "path": "t21_protocol/providers_t22.py",
+      "reason": "new T22 production candidate provider: the identical frozen runtime with the registered v2 serialization plus the request-date carrier threading (answer_knowledge(now=row['request_date'])). The only transformation delta from the R17 evidence provider is the explicit request timestamp input.",
+      "expected_behavioral_effect": "the official T22 candidate exposes carrier E without reading any gold-only field",
+      "regression_coverage": "t22 preconstruction parity stage (provider vs direct runtime) + lifecycle rehearsal x2"
+    },
+    {
+      "path": "t21_protocol/evaluate_t22.py",
+      "reason": "official T22 evaluation driver binding the byte-identical explicit scorer (t21_protocol.scorer_r17:score_explicit) to the T22 frozen semantics contract and the T22 provider; the measuring stick does not change.",
+      "expected_behavioral_effect": "the T22 evaluation phase executes with identical measurement architecture to R17 (fail-closed explicit semantics, one-shot ledger, write guard)",
+      "regression_coverage": "t22 lifecycle rehearsal x2 + implementation registry verification against identical scorer bytes"
+    },
+    {
+      "path": "t21_protocol/pipeline_t22.py",
+      "reason": "disposable qualification harness for the T22 phase APIs (lifecycle rehearsal x2 with the actual remediated candidate on non-blind material, protocol section 40).",
+      "expected_behavioral_effect": "two deterministic full-lifecycle rehearsals exercising the real candidate runtime, construction, seal, evaluation, and all 32 floors",
+      "regression_coverage": "t22 preconstruction lifecycle stage + determinism comparison"
+    },
+    {
+      "path": "t21_protocol/metric_semantics.py",
+      "reason": "the frozen semantics validator pins the R17 artifact/experiment identity; the T22 carried semantics document needs the same closed structural validation under the T22 identity. validate_metric_semantics and load_metric_semantics gain keyword-only artifact/experiment parameters whose defaults keep the frozen R17 identity and default-call behavior byte-identical.",
+      "expected_behavioral_effect": "no prior-experiment behavior changes; the T22 preconstruction and evaluation validate the carried semantics under the T22 identity",
+      "regression_coverage": "R16/R17 contracts and the R17 semantics fixture tests pass unchanged after the parameterization; scripts/t22_metric_semantics.py asserts the R17 document still validates under unchanged defaults"
+    },
+    {
+      "path": "t21_protocol/contract.py",
+      "reason": "the closed contract validator enumerates prior experiments only; T22 needs its own branch. Additive t22 support: values-field set (R17 set plus r17_disposition, real_t22_paths), T22 phase-authorization policies, the r17_disposition validator recording the R17 closure as aggregate provenance, the runtime-native candidate-provider parameterization, and the T22 artifact keys (temporal signal contract, holdout design, zero-denominator resolution, candidate identity). All existing t21r15/t21r16/t21r17 branches are byte-identical in behavior.",
+      "expected_behavioral_effect": "T22 master contract validation; no prior-experiment contract changes",
+      "regression_coverage": "load_contract on the frozen R16 and R17 contracts passes unchanged; T22 contract stage validates under load_contract"
+    },
+    {
+      "path": "evaluations/t22/official_metric_semantics.json",
+      "reason": "T22 measurement-semantics carry (scripts/t22_metric_semantics.py): the frozen R17 semantics carried with only the T22 identity fields, the lineage carry note, and the two prose claims superseded by the zero-denominator resolution; every metric entry is byte-identical otherwise and floor_hash 4656be72 is unchanged.",
+      "expected_behavioral_effect": "none at runtime; the official scorer binds the same semantic quantities as R17",
+      "regression_coverage": "exact-diff proof against the R17 artifact (whitelist only), structural validation PASS, semantics_carry_report.json"
+    },
+    {
+      "path": "evaluations/t22/metric_implementation_registry.json",
+      "reason": "carried implementation registry with all 32 implementation_sha256 values recomputed against the live scorer AST segments (0 mismatches): the T22 measuring stick binds the byte-identical R17 scorer.",
+      "expected_behavioral_effect": "the official T22 scorer registry is identical to R17's",
+      "regression_coverage": "scripts/t22_metric_semantics.py recompute + evaluate_t22._verify_implementation_registry"
+    },
+    {
+      "path": "evaluations/t22/temporal_regressions/battery_spec.json",
+      "reason": "preregistered non-blind qualification battery (310 rows, 11 families) for the remediated candidate: section-38 gates on mirrored populations, section-24 false positives, section-25 discriminator pairs in one shared corpus, adversarial injection/spoof, boundary preservation.",
+      "expected_behavioral_effect": "none at runtime; the qualification evidence for the T22 gates",
+      "regression_coverage": "the battery is its own regression evidence (results.json green)"
+    },
+    {
+      "path": "scripts/t22_regression_battery.py",
+      "reason": "deterministic battery runner: row-scoped synthetic corpora, candidate runtime called with query + request date only, per-family preregistered outcomes, the four section-38 gates, adversarial containment, and a structural blindness control (no gold-only fields on any row).",
+      "expected_behavioral_effect": "none at runtime",
+      "regression_coverage": "the battery is its own regression evidence"
+    },
+    {
+      "path": "scripts/t22_metric_semantics.py",
+      "reason": "the carry transform with its frozen harmonized prose constants and exact-diff/registry-recompute assertions; regenerates the two carried artifacts deterministically.",
+      "expected_behavioral_effect": "none at runtime",
+      "regression_coverage": "the carry assertions are the coverage"
+    },
+    {
+      "path": "tests/test_t22_temporal_router.py",
+      "reason": "new runtime qualification tests for the remediated candidate (non-blind): five intents, no-stale-fallback invariant, static invariant, section-24 false-positive fixes, metadata carrier rule, backward compatibility, no-wall-clock determinism.",
+      "expected_behavioral_effect": "the T22 runtime repair is pinned by 32 deterministic tests",
+      "regression_coverage": "this file is the regression coverage"
+    },
+    {
+      "path": "evaluations/t22/temporal_signal_contract.json",
+      "reason": "frozen temporal signal contract (carriers, intents, actions, vocabularies, staleness mapping, no_stale_fallback, static invariant, runtime date source) — the T22 preconstruction plan sections 5-18, 24-26 frozen before blind construction.",
+      "expected_behavioral_effect": "none at runtime; it is the frozen specification the remediated candidate and all audits are checked against",
+      "regression_coverage": "t22 preconstruction contract stage + runtime tests assert the frozen vocabularies"
+    },
+    {
+      "path": "evaluations/t22/temporal_holdout_design.json",
+      "reason": "preregistered T22 blind temporal family design with per-sub-shape signal-carrier assignment and the signal_carrier_audit definition (gold-only-signal rows = 0, protocol section 33). The frozen row_authoring block (value_prefix, request-date carrier, per-tag templates and sub-shapes, the mandatory record-pinned default for the seven non-temporal suites, expect_status_by_tag) makes this design file the single frozen source of authoring truth consumed by the builder.",
+      "expected_behavioral_effect": "none at runtime; the design the construction authorization will build from",
+      "regression_coverage": "t22 preconstruction design audit + signal-carrier audit + author_t22 composition validation against the same artifact's frozen templates"
+    },
+    {
+      "path": "evaluations/t22/zero_denominator_policy_resolution.json",
+      "reason": "frozen prospective resolution of the R17 prose/implementation inconsistency (protocol section 31): design-mandated populations FAIL_CLOSED, emergent populations apply the preregistered convention, contradictory prose superseded, scorer unchanged, floor hash unchanged, no retroactive effect on R17.",
+      "expected_behavioral_effect": "none at runtime; the T22 semantics artifact harmonizes its prose to this policy",
+      "regression_coverage": "t22 semantics validation (numeric fields byte-identical to R17) + fixture battery harmonization section"
+    },
+    {
+      "path": "t21_protocol/author_t22.py",
+      "reason": "T22-only row_authoring composition for the contract-driven author spec: loads the frozen block from the contract-declared temporal design artifact and fails closed unless every by_tag template, sub-shape count/order, freshness class, expect_status, and the request-date carrier match the same artifact's candidate_visible_signals families and the contract's exact design. Gated on artifacts.temporal_holdout_design; prior-experiment contracts lack the declaration and compose nothing.",
+      "expected_behavioral_effect": "T22 construction and preconstruction rehearsals author candidate-visible temporal signal carriers from the single frozen source; any authoring drift fails closed before any blind row is built",
+      "regression_coverage": "tests/test_t22_preconstruction.py (prior-experiment None, template-drift refusals, stub-contract attach) + the preconstruction shadow stage builds 4800 rows through this path"
+    },
+    {
+      "path": "t21_protocol/author.py",
+      "reason": "additive contract-gated branch in build_specs: attach the validated row_authoring block only when the contract declares artifacts.temporal_holdout_design; the returned spec is otherwise byte-identical for every prior experiment.",
+      "expected_behavioral_effect": "the T22 author spec (and its fingerprint_root) binds the frozen row authoring into construction provenance; R16/R17 author fingerprints unchanged",
+      "regression_coverage": "tests/test_t22_preconstruction.py: R16/R17 build_specs still carry no row_authoring (byte-identical prior behavior)"
+    },
+    {
+      "path": "scripts/t22_fixtures.py",
+      "reason": "the T22 discriminative fixture battery: the full R17 fixture program re-targeted to the carried T22 semantics artifact (identity parameterization) plus the new zero-denominator harmonization section that proves the frozen prose and the byte-identical scorer agree on every empty-population case (resolution verification requirement 1; design-mandated empty fails closed, emergent empty applies the preregistered convention with pass=true and the policy flag, policy classes byte-identical to R17, no retroactive effect).",
+      "expected_behavioral_effect": "none at runtime; qualification evidence for the section-31 harmonization and all 32 measurement semantics",
+      "regression_coverage": "evaluations/t22/metric_semantics_fixtures.json (12 sections, all PASS) is the regression evidence"
+    }
+  ],
+  "not_changed": {
+    "scorer": "t21_protocol/scorer_r17.py is byte-identical (the measuring stick does not change; floor_hash 4656be72 unchanged)",
+    "evaluator_kernel": "t21_protocol/evaluator_r17.py is byte-identical",
+    "r17_artifacts": "evaluations/t21r17/** untouched (R17 permanently closed; referenced only through hash-only exclusion fingerprints)",
+    "schema_and_loader": "src/sciencemath/knowledge/schema.py and corpus.py are byte-identical (the runtime data contract gains request_date at the row level only)",
+    "floors": "the 32 frozen promotion floors and their operators/thresholds are unchanged"
+  },
+  "expected_new_registered_test_failures": {
+    "rule": "prior-milestone tests that pin runtime/protocol bytes to pre-T22 freezes fail deterministically under the authorized candidate change; they are registered by the T22 preconstruction adjudication stage (no LIVE, no UNKNOWN among applicable tests)",
+    "class": "SUPERSEDED_BY_T22_TEMPORAL_REPAIR",
+    "expected": [
+      "tests/test_t21r11_preconstruction.py::test_runtime_freeze_rehashes_every_component",
+      "tests/test_t21r11_preconstruction.py::test_remediation_provenance_binds_every_production_change",
+      "tests/test_t21r16_preconstruction.py::test_runtime_contract_is_derived_from_frozen_modules"
+    ],
+    "note": "the 21 failures registered at the T21R17 preconstruction (evaluations/t21r17/current_test_applicability.json) remain pre-existing at the T22 base commit 9fc95346 and are re-registered unchanged in class OBSOLETE_HISTORICAL_ASSERTION/SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE"
+  }
+}

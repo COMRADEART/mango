@@ -1,0 +1,28 @@
+{
+  "schema_version": "t22-zero-denominator-resolution-v1",
+  "artifact": "T22_ZERO_DENOMINATOR_POLICY_RESOLUTION",
+  "experiment": "t22",
+  "status": "FROZEN_PRECONSTRUCTION",
+  "protocol_debt": {
+    "origin": "T21R17 final adjudication (T21R17_FINAL_ADJUDICATION_VALID_CAPABILITY_FAILURE) recorded an internal tension: the frozen metric-semantics prose (zero_denominator_conventions capability_guard for PREREGISTERED_CONVENTION_0.0 and the conflict/IE notes) said higher-is-better metrics using the convention fail their floors on empty behavioral populations, while the sha256-pinned binding scorer (t21_protocol.scorer_r17:score_explicit) applies the preregistered convention and records pass=true with zero_denominator_policy_applied=true.",
+    "resolution_authorization": "T22 preconstruction plan section 31: resolve the known prose/implementation inconsistency for higher-is-better empty behavioral populations prospectively, without using R17 to rescore; freeze one explicit policy; do not silently carry contradictory prose + scorer semantics into T22."
+  },
+  "frozen_policy": {
+    "name": "DESIGN_MANDATED_POSITIVE_POPULATIONS_WITH_RESIDUAL_EMERGENT_CONVENTION",
+    "rule_1_design_mandated": "Populations whose sizes are fixed by the frozen suites, exact-design tags, and gold expect_status registrations are design-mandated: a design-mandated population must be a positive count, and emptiness means the frozen construction design was violated — the official scorer refuses to score (FAIL_CLOSED).",
+    "rule_2_emergent": "Populations that emerge from the evaluated material rather than from the frozen design (candidate abstentions, candidate multi-source declarations) apply their preregistered convention on an empty population: observed = convention, the floor records pass=true with zero_denominator_policy_applied=true, and every official floor-evidence row records the population counts so the vacuous case is always visible to adjudication.",
+    "rule_3_superseded_prose": "The prior capability_guard claim that every higher-is-better metric using PREREGISTERED_CONVENTION_0.0 fails its floor on an empty population is SUPERSEDED by this resolution and removed from the frozen semantics prose. The binding implementation and the frozen prose now state the same policy: the preregistered convention applies on empty behavioral populations and the floor passes vacuously with the policy flag recorded.",
+    "rule_4_t22_boundedness": "Because T22's metric semantics keep the R17 zero-denominator policy class per metric (no policy class changes), the residual vacuous-pass exposure on emergent populations is bounded by design: (a) the four temporal floor populations remain design-mandated FAIL_CLOSED populations whose sizes are frozen positive counts; (b) the non-temporal emergent populations (candidate abstentions, candidate multi-source declarations) are bounded by the T22 protected-capability regression battery, which exercises the conflict/abstention/multi-source machinery on non-blind material with non-empty populations and preregisters the qualification requirements; (c) every vacuous floor row carries zero_denominator_policy_applied=true and population counts 0/0 in the official floor evidence, so adjudication can always distinguish a measured pass from a conventional pass."
+  },
+  "resolution_effect": {
+    "scorer_implementation": "UNCHANGED (t21_protocol.scorer_r17:score_explicit is byte-identical in T22; its empty-population branch already implements exactly rule_2, and its FAIL_CLOSED branch implements rule_1)",
+    "semantics_prose": "HARMONIZED (the T22 official_metric_semantics.json replaces the contradictory capability_guard prose with this resolution; per-metric zero_denominator_policy classes, operators, thresholds, directions, ranges, populations, and aggregation semantics are byte-identical to the R17 frozen semantics)",
+    "floor_hash": "UNCHANGED (the 32 frozen floor metrics and their thresholds/operators are carried forward unchanged)",
+    "retroactive_effect_on_r17": "NONE (R17 remains CLOSED/VALID_CAPABILITY_FAILURE with its frozen observed values; this resolution is prospective only and does not rescore, reclassify, or re-adjudicate any R17 floor)"
+  },
+  "verification_requirements": [
+    "the T22 fixture battery includes a harmonization section proving the frozen prose and the scorer agree on every empty-population case (design-mandated empty => ScorerConfigurationError; emergent empty => convention, pass=true, policy flag true)",
+    "the T22 semantics validation proves the numeric fields of all 32 metrics are identical to the R17 frozen semantics",
+    "the preconstruction records the R17 tension resolution as prospective-only"
+  ]
+}

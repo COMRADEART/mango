@@ -1,0 +1,156 @@
+{
+  "artifact": "T22_RUNTIME_FIELD_PROVENANCE",
+  "experiment": "t22",
+  "fields": [
+    {
+      "field": "world.jsonl:entity_id",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (semantic identity = case_id)"
+    },
+    {
+      "field": "world.jsonl:name",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (semantic identity)"
+    },
+    {
+      "field": "world.jsonl:domain",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (semantic identity)"
+    },
+    {
+      "field": "sources.jsonl:source_id",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:make_source_id"
+    },
+    {
+      "field": "sources.jsonl:source_title",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (register title)"
+    },
+    {
+      "field": "sources.jsonl:source_type",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (fixture_register)"
+    },
+    {
+      "field": "sources.jsonl:source_uri_or_origin",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (blind:// URI)"
+    },
+    {
+      "field": "sources.jsonl:publisher_or_collection",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (register collection)"
+    },
+    {
+      "field": "sources.jsonl:license",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (project_owned_fixtures)"
+    },
+    {
+      "field": "sources.jsonl:revision_or_version",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (r16-blind-v1)"
+    },
+    {
+      "field": "sources.jsonl:retrieved_at_or_snapshot_date",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/corpus.py:CORPUS_SNAPSHOT_DATE"
+    },
+    {
+      "field": "sources.jsonl:language",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (en)"
+    },
+    {
+      "field": "sources.jsonl:authority_class",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author within the frozen closed vocabulary"
+    },
+    {
+      "field": "sources.jsonl:freshness_class",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author within the frozen closed vocabulary"
+    },
+    {
+      "field": "sources.jsonl:topic_tags",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (required_domains)"
+    },
+    {
+      "field": "sources.jsonl:content_text",
+      "phase": "CONSTRUCTION",
+      "producer": "R16 blind author (registered statement)"
+    },
+    {
+      "field": "sources.jsonl:content_hash",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:KnowledgeSourceRecord.__post_init__"
+    },
+    {
+      "field": "sources.jsonl:document_hash",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:KnowledgeSourceRecord.__post_init__"
+    },
+    {
+      "field": "chunks.jsonl:chunk_id",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:make_chunk_id"
+    },
+    {
+      "field": "chunks.jsonl:source_id",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:KnowledgeSourceRecord.__post_init__"
+    },
+    {
+      "field": "chunks.jsonl:section",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:chunk_source_text"
+    },
+    {
+      "field": "chunks.jsonl:ordinal",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:chunk_source_text"
+    },
+    {
+      "field": "chunks.jsonl:span",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:chunk_source_text"
+    },
+    {
+      "field": "chunks.jsonl:text",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:chunk_source_text"
+    },
+    {
+      "field": "chunks.jsonl:content_hash",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:KnowledgeChunk.__post_init__"
+    },
+    {
+      "field": "chunks.jsonl:metadata",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/schema.py:chunk_source_text + R16 blind author fact metadata"
+    },
+    {
+      "field": "corpus_manifest.json:corpus_version|snapshot_date|source_count|chunk_count|domains|license_summary",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/corpus.py:build_corpus_files"
+    },
+    {
+      "field": "corpus_manifest.json:file_checksums",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/corpus.py:build_corpus_files (_sha256_lf)"
+    },
+    {
+      "field": "corpus_manifest.json:manifest_checksum",
+      "phase": "CONSTRUCTION",
+      "producer": "src/sciencemath/knowledge/corpus.py:build_corpus_files"
+    }
+  ],
+  "post_seal_runtime_field_producers": 0,
+  "raw_values_included": false,
+  "rule": "every runtime-affecting corpus field names its frozen producer; no field is synthesized after authoring and no field is produced after seal",
+  "schema_version": "t21-runtime-field-provenance-v1",
+  "unknown_producer_fields": 0
+}

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "artifact": "T21_HOLDOUT_FROZEN_SCHEMA",
+  "properties": {
+    "candidate_commit": {
+      "type": "string"
+    },
+    "candidate_provider_id": {
+      "type": "string"
+    },
+    "candidate_provider_sha256": {
+      "type": "string"
+    },
+    "candidate_rows_executed": {
+      "type": "integer"
+    },
+    "candidate_tree": {
+      "type": "string"
+    },
+    "construction_attempts": {
+      "type": "integer"
+    },
+    "construction_status": {
+      "type": "string"
+    },
+    "corpus_materializations": {
+      "type": "integer"
+    },
+    "evaluator_root": {
+      "type": "string"
+    },
+    "experiment": {
+      "type": "string"
+    },
+    "floor_hash": {
+      "type": "string"
+    },
+    "freeze_root_sha256": {
+      "type": "string"
+    },
+    "holdout_manifest_sha256": {
+      "type": "string"
+    },
+    "material_mode": {
+      "type": "string"
+    },
+    "official_evaluator_invocations": {
+      "type": "integer"
+    },
+    "runtime_corpus_contract_sha256": {
+      "type": "string"
+    },
+    "runtime_data_contract_root": {
+      "type": "string"
+    },
+    "runtime_field_provenance_sha256": {
+      "type": "string"
+    },
+    "runtime_loader_validation_sha256": {
+      "type": "string"
+    },
+    "runtime_root": {
+      "type": "string"
+    },
+    "runtime_rows_executed": {
+      "type": "integer"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "suite_materializations": {
+      "type": "integer"
+    },
+    "workspace_mode": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "candidate_commit",
+    "candidate_provider_id",
+    "candidate_provider_sha256",
+    "candidate_rows_executed",
+    "candidate_tree",
+    "construction_attempts",
+    "construction_status",
+    "corpus_materializations",
+    "evaluator_root",
+    "experiment",
+    "floor_hash",
+    "freeze_root_sha256",
+    "holdout_manifest_sha256",
+    "material_mode",
+    "official_evaluator_invocations",
+    "runtime_corpus_contract_sha256",
+    "runtime_data_contract_root",
+    "runtime_field_provenance_sha256",
+    "runtime_loader_validation_sha256",
+    "runtime_root",
+    "runtime_rows_executed",
+    "schema_version",
+    "suite_materializations",
+    "workspace_mode"
+  ],
+  "schema_version": "t21-holdout-frozen-schema-v2",
+  "type": "object"
+}

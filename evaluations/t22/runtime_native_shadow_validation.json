@@ -1,0 +1,229 @@
+{
+  "adapter_used": false,
+  "artifact": "T22_RUNTIME_NATIVE_SHADOW_VALIDATION",
+  "audit_mode": "EXECUTED",
+  "author_fingerprint_root": "aa07d4be80d81ee39bea3359571906a5614de58289d79ebe02a61129cc6ed024",
+  "candidate_execution_rows": 0,
+  "checks": {
+    "checksum_failures": 0,
+    "loader_errors": 0,
+    "missing_fields": 0,
+    "referential_failures": 0,
+    "schema_errors": 0
+  },
+  "chunks": 4800,
+  "corpus_format": "mango-general-knowledge-corpus-v1",
+  "experiment": "t22",
+  "frozen_authoring_composition": {
+    "record_pinned_non_temporal_rows": 4550,
+    "request_date_carrier": "2026-06-30",
+    "temporal_suite": "mango-t22-temporal-holdout-v1",
+    "value_prefix": "R22"
+  },
+  "frozen_loader_loads_complete_corpus": true,
+  "manifest": {
+    "chunk_count": 4800,
+    "corpus_version": "mango-general-knowledge-corpus-v1",
+    "snapshot_date": "2026-01-31",
+    "source_count": 4800
+  },
+  "materializer": "t21_protocol.providers:runtime-native-materializer",
+  "protected_dimension_overlap": {
+    "milestones_checked": 17,
+    "overlap_counts": {
+      "T21": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R10_SEALED": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R11_INVALID_SEALED": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R12_FAILED_PARTIAL_BLIND": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R13_SEALED_PARTIAL_OFFICIAL_EXPOSURE": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R15_SEALED_UNEVALUABLE": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R16_OFFICIAL_EVALUATED_MEASUREMENT_INVALID": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R17_OFFICIAL_VALID_CAPABILITY_FAILURE": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R2": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R3": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R4": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R5": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R6": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R7": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R8_DIAGNOSTIC": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R9_SEALED": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      }
+    },
+    "r17_milestone_overlap": 0,
+    "rule": "the disposable shadow material must overlap no historical milestone on any protected dimension (protocol \u00a733)",
+    "total_overlaps": 0
+  },
+  "row_count_matches_design": true,
+  "rows": 4800,
+  "schema_version": "t21-runtime-native-shadow-validation-v1",
+  "signal_carrier_audit": {
+    "gold_only_signal_rows": 0,
+    "gold_only_signal_rows_allowed": 0,
+    "per_signal_counts": {
+      "query_text_signal": 175,
+      "request_metadata_signal": 250,
+      "source_metadata_signal": 70
+    },
+    "request_date": "2026-06-30",
+    "rows_with_signal": 250,
+    "rule": "for every blind temporal family, the preconstruction and construction machinery must automatically prove before construction that a runtime-visible temporal signal exists for every row; temporal rows whose only signal is gold metadata = 0 (protocol section 33, mandatory)",
+    "snapshot_date": "2026-01-31",
+    "temporal_rows": 250
+  },
+  "sources": 4800,
+  "status": "PASS",
+  "world": 4800
+}

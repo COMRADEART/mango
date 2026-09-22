@@ -121,6 +121,10 @@ def knowledge_eligibility(query: str, temporal: dict) -> dict:
         return {"eligible": False, "route": ROUTE_WEB_RESEARCH,
                 "reason": temporal.get("reason", "freshness exceeds snapshot"),
                 "boundary": boundary,
-                "temporal_signals": temporal.get("temporal_signals", [])}
+                "temporal_signals": temporal.get("temporal_signals", []),
+                # T22 — temporal intent is carried additively so callers
+                # and traces can distinguish the five frozen intents.
+                "temporal_intent": temporal.get("temporal_intent")}
     return {"eligible": True, "route": ANSWER_STATUS,
-            "reason": boundary["reason"], "boundary": boundary}
+            "reason": boundary["reason"], "boundary": boundary,
+            "temporal_intent": temporal.get("temporal_intent")}
