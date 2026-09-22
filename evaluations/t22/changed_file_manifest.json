@@ -75,6 +75,48 @@
       "regression_coverage": "t22 preconstruction lifecycle stage + determinism comparison"
     },
     {
+      "path": "t21_protocol/metric_semantics.py",
+      "reason": "the frozen semantics validator pins the R17 artifact/experiment identity; the T22 carried semantics document needs the same closed structural validation under the T22 identity. validate_metric_semantics and load_metric_semantics gain keyword-only artifact/experiment parameters whose defaults keep the frozen R17 identity and default-call behavior byte-identical.",
+      "expected_behavioral_effect": "no prior-experiment behavior changes; the T22 preconstruction and evaluation validate the carried semantics under the T22 identity",
+      "regression_coverage": "R16/R17 contracts and the R17 semantics fixture tests pass unchanged after the parameterization; scripts/t22_metric_semantics.py asserts the R17 document still validates under unchanged defaults"
+    },
+    {
+      "path": "t21_protocol/contract.py",
+      "reason": "the closed contract validator enumerates prior experiments only; T22 needs its own branch. Additive t22 support: values-field set (R17 set plus r17_disposition, real_t22_paths), T22 phase-authorization policies, the r17_disposition validator recording the R17 closure as aggregate provenance, the runtime-native candidate-provider parameterization, and the T22 artifact keys (temporal signal contract, holdout design, zero-denominator resolution, candidate identity). All existing t21r15/t21r16/t21r17 branches are byte-identical in behavior.",
+      "expected_behavioral_effect": "T22 master contract validation; no prior-experiment contract changes",
+      "regression_coverage": "load_contract on the frozen R16 and R17 contracts passes unchanged; T22 contract stage validates under load_contract"
+    },
+    {
+      "path": "evaluations/t22/official_metric_semantics.json",
+      "reason": "T22 measurement-semantics carry (scripts/t22_metric_semantics.py): the frozen R17 semantics carried with only the T22 identity fields, the lineage carry note, and the two prose claims superseded by the zero-denominator resolution; every metric entry is byte-identical otherwise and floor_hash 4656be72 is unchanged.",
+      "expected_behavioral_effect": "none at runtime; the official scorer binds the same semantic quantities as R17",
+      "regression_coverage": "exact-diff proof against the R17 artifact (whitelist only), structural validation PASS, semantics_carry_report.json"
+    },
+    {
+      "path": "evaluations/t22/metric_implementation_registry.json",
+      "reason": "carried implementation registry with all 32 implementation_sha256 values recomputed against the live scorer AST segments (0 mismatches): the T22 measuring stick binds the byte-identical R17 scorer.",
+      "expected_behavioral_effect": "the official T22 scorer registry is identical to R17's",
+      "regression_coverage": "scripts/t22_metric_semantics.py recompute + evaluate_t22._verify_implementation_registry"
+    },
+    {
+      "path": "evaluations/t22/temporal_regressions/battery_spec.json",
+      "reason": "preregistered non-blind qualification battery (310 rows, 11 families) for the remediated candidate: section-38 gates on mirrored populations, section-24 false positives, section-25 discriminator pairs in one shared corpus, adversarial injection/spoof, boundary preservation.",
+      "expected_behavioral_effect": "none at runtime; the qualification evidence for the T22 gates",
+      "regression_coverage": "the battery is its own regression evidence (results.json green)"
+    },
+    {
+      "path": "scripts/t22_regression_battery.py",
+      "reason": "deterministic battery runner: row-scoped synthetic corpora, candidate runtime called with query + request date only, per-family preregistered outcomes, the four section-38 gates, adversarial containment, and a structural blindness control (no gold-only fields on any row).",
+      "expected_behavioral_effect": "none at runtime",
+      "regression_coverage": "the battery is its own regression evidence"
+    },
+    {
+      "path": "scripts/t22_metric_semantics.py",
+      "reason": "the carry transform with its frozen harmonized prose constants and exact-diff/registry-recompute assertions; regenerates the two carried artifacts deterministically.",
+      "expected_behavioral_effect": "none at runtime",
+      "regression_coverage": "the carry assertions are the coverage"
+    },
+    {
       "path": "tests/test_t22_temporal_router.py",
       "reason": "new runtime qualification tests for the remediated candidate (non-blind): five intents, no-stale-fallback invariant, static invariant, section-24 false-positive fixes, metadata carrier rule, backward compatibility, no-wall-clock determinism.",
       "expected_behavioral_effect": "the T22 runtime repair is pinned by 32 deterministic tests",
