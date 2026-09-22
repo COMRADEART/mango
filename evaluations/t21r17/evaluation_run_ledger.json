@@ -1,0 +1,19 @@
+{
+  "artifact": "T21_EVALUATION_LEDGER",
+  "attempt": 1,
+  "completed_at": "2026-09-22T01:37:41.409716+00:00",
+  "details": {
+    "floor_calculations": 32,
+    "rows": 4800
+  },
+  "experiment": "t21r17",
+  "failed_at": null,
+  "kind": "evaluation",
+  "metadata": {
+    "authorization_class": "EVALUATION",
+    "workspace_mode": "REAL_EXPERIMENT"
+  },
+  "schema_version": "t21-ledger-v1",
+  "started_at": "2026-09-22T01:36:33.640209+00:00",
+  "state": "COMPLETE"
+}
