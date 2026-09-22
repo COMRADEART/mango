@@ -1,0 +1,127 @@
+{
+  "schema_version": "t22-temporal-holdout-design-v1",
+  "artifact": "T22_TEMPORAL_HOLDOUT_DESIGN",
+  "experiment": "t22",
+  "status": "PREREGISTERED_PRECONSTRUCTION",
+  "rule": "Every temporal test family exposes the temporal requirement through at least one legitimate candidate-visible signal carrier. Gold-only classification may score the result but must never be the only signal carrier (protocol sections 32-33). Signals communicate the freshness requirement, never the correct answer (protocol section 34).",
+  "design_mandated_populations": {
+    "rule": "the four frozen temporal floor populations keep their design-mandated sizes from the carried-forward R17 design; emptiness of any design-mandated population fails closed at scoring",
+    "explicit_current": 70,
+    "static_population_total": 180,
+    "historical_as_of": 50,
+    "temporal_suite_total": 250
+  },
+  "suite": "mango-t22-temporal-holdout-v1",
+  "suite_total": 250,
+  "request_date": {
+    "policy": "every holdout row carries the candidate-visible request field request_date (carrier E)",
+    "value": "2026-06-30",
+    "must_exceed_snapshot": true,
+    "snapshot_date": "2026-01-31"
+  },
+  "families": {
+    "explicit_current": {
+      "count": 70,
+      "gold_construction_tag": "explicit_current",
+      "gold_only_classification": "gold-only; never candidate-visible",
+      "expected_route": "ROUTE_WEB_RESEARCH",
+      "expected_status": "ROUTE_WEB_RESEARCH",
+      "source_freshness_class": "TIME_SENSITIVE",
+      "candidate_visible_signals": {
+        "direct_cue": {
+          "count": 25,
+          "query_template": "What is the current registered value of blind entry {case_id}?",
+          "carriers": ["A_query_semantics"],
+          "expected_route": "ROUTE_WEB_RESEARCH"
+        },
+        "lexicon_frame": {
+          "count": 30,
+          "query_template": "Who is the registered officeholder for blind entry {case_id}?",
+          "carriers": ["A_query_semantics (present-state role lexicon, present copula, no explicit current word)", "E_runtime_request_timestamp", "B_source_freshness_metadata"],
+          "expected_route": "ROUTE_WEB_RESEARCH",
+          "lexical_independence": "no explicit current/today/latest/now token; classification derives from the frozen present-state role lexicon and the staleness mapping"
+        },
+        "metadata_only": {
+          "count": 15,
+          "query_template": "What registered value is stated for blind entry {case_id}?",
+          "carriers": ["B_source_freshness_metadata (TIME_SENSITIVE source)", "E_runtime_request_timestamp (2026-06-30 > 2026-01-31 snapshot)"],
+          "expected_route": "ROUTE_WEB_RESEARCH",
+          "lexical_independence": "no temporal word of any kind in the query; routing is established exclusively through runtime-visible source/request metadata (protocol section 25)"
+        }
+      },
+      "subshape_assignment": "deterministic: rows 0-24 direct_cue, rows 25-54 lexicon_frame, rows 55-69 metadata_only (suite-local construction order)",
+      "information_task": "the model must still solve the information task: the record states the fact; the candidate-visible signals communicate only that the requirement is present-state and the snapshot is stale (protocol section 34)"
+    },
+    "historical_as_of": {
+      "count": 50,
+      "gold_construction_tag": "historical_as_of",
+      "gold_only_classification": "gold-only; never candidate-visible",
+      "expected_route": "ANSWER",
+      "expected_status": "ANSWER",
+      "source_freshness_class": "STATIC",
+      "candidate_visible_signals": {
+        "as_of_frame": {
+          "count": 50,
+          "query_template": "As of 2019, what registered value is stated for blind entry {case_id}?",
+          "carriers": ["A_query_semantics (explicit historical as-of anchor)", "F_explicit_user_supplied_as_of_date"],
+          "expected_route": "ANSWER",
+          "protection": "must NOT route to current research (protocol section 8)"
+        }
+      }
+    },
+    "stale_snapshot": {
+      "count": 70,
+      "gold_construction_tag": "stale_snapshot",
+      "gold_only_classification": "gold-only; never candidate-visible",
+      "expected_route": "ANSWER",
+      "expected_status": "ANSWER",
+      "source_freshness_class": "STATIC",
+      "candidate_visible_signals": {
+        "record_pinned_frame": {
+          "count": 70,
+          "query_template": "Within blind record {case_id}, what registered value is stated?",
+          "carriers": ["A_query_semantics (record-pinning frame: the record is the evidence universe)"],
+          "expected_route": "ANSWER",
+          "note": "the snapshot is old but the question is snapshot-internal; answering from the snapshot is correct and routing to web is counted as unnecessary by static_query_unnecessary_web_routing"
+        }
+      }
+    },
+    "static_unnecessary_web": {
+      "count": 60,
+      "gold_construction_tag": "static_unnecessary_web",
+      "gold_only_classification": "gold-only; never candidate-visible",
+      "expected_route": "ANSWER",
+      "expected_status": "ANSWER",
+      "source_freshness_class": "STATIC",
+      "candidate_visible_signals": {
+        "timeless_frame": {
+          "count": 60,
+          "query_template": "What registered value is stated for blind entry {case_id}?",
+          "carriers": ["B_source_freshness_metadata (STATIC source: no present-state metadata signal exists)"],
+          "expected_route": "ANSWER",
+          "note": "identical query shape to the metadata_only explicit_current sub-shape; the deterministic discriminator is the candidate-visible source freshness metadata — exactly the protocol section 25 proof that metadata alone establishes or withholds the current requirement"
+        }
+      }
+    }
+  },
+  "non_temporal_suites": {
+    "rule": "all seven non-temporal suites carry the R17 runtime-native record-pinned query template ('Within blind record {case_id}, what registered value is stated?') with STATIC sources and request_date 2026-06-30; the record-pinning frame classifies STATIC, so request_date never triggers routing on them",
+    "protected": ["retrieval", "grounded answers", "citations", "historical handling", "security", "abstention/conflict behavior where populations exist", "static routing"]
+  },
+  "signal_carrier_audit": {
+    "rule": "for every blind temporal family, the preconstruction and construction machinery must automatically prove before construction that a runtime-visible temporal signal exists for every row; temporal rows whose only signal is gold metadata = 0 (protocol section 33, mandatory)",
+    "audit_definition": {
+      "per_row_signals": [
+        "query_text_signal: an explicit-current cue, inherent-recency word, superlative+time-noun, present-state role/value lexicon hit with present copula, historical as-of anchor, record-pinning frame, or self-contained referent detected in the query by the frozen classifier",
+        "request_metadata_signal: request_date present and > corpus snapshot_date (carrier E)",
+        "source_metadata_signal: the row's own corpus sources carry freshness_class TIME_SENSITIVE (carrier B)"
+      ],
+      "row_passes": "at least one of the three signal classes is present",
+      "gold_only_signal_rows_allowed": 0
+    }
+  },
+  "blindness": {
+    "never_candidate_visible": ["construction_tag", "signal_class", "expected_route", "expected_status", "gold expected_answer"],
+    "runtime_data_contract_addition": "the runtime data contract adds the request field request_date; no gold-only field is added to the candidate-visible input"
+  }
+}

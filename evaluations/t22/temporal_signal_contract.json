@@ -1,0 +1,137 @@
+{
+  "schema_version": "t22-temporal-signal-contract-v1",
+  "artifact": "T22_TEMPORAL_SIGNAL_CONTRACT",
+  "experiment": "t22",
+  "status": "FROZEN_PRECONSTRUCTION",
+  "requirement": "When a query requires information newer than the frozen knowledge snapshot, Mango deterministically routes to the current-information/web-research path and never presents stale frozen-snapshot content as current fact.",
+  "rule": "Every temporal routing decision derives only from the permitted candidate-visible signal carriers registered here. No hidden gold metadata participates in any routing decision. The classification is deterministic: the same candidate-visible inputs always produce the same temporal intent and route.",
+  "forbidden_signals": {
+    "never_candidate_visible": [
+      "construction_tag",
+      "gold expected status",
+      "gold expected route",
+      "gold floor identity",
+      "gold-only blind-case category labels",
+      "gold expected_answer"
+    ],
+    "enforcement": "negative controls prove that removing every forbidden field from candidate-visible material leaves the runtime classification mechanism unchanged (protocol section 19)"
+  },
+  "permitted_carriers": {
+    "A_query_semantics": {
+      "field": "query text (candidate-visible)",
+      "visibility": "CANDIDATE_VISIBLE",
+      "producer": "evaluation request (authored blind query)",
+      "routing_semantics": "deterministic semantic classification: explicit-current cue families, superlative + time-scoped-noun scope rule, present-state role/value lexicon with present copula, past-tense frame, record-pinning frame, physics-sense suppression, self-contained referent rule",
+      "frozen_vocabulary_root_key": "frozen_vocabularies"
+    },
+    "B_source_freshness_metadata": {
+      "field": "KnowledgeSourceRecord.freshness_class (candidate-visible on every evidence item)",
+      "visibility": "CANDIDATE_VISIBLE",
+      "producer": "runtime-native materializer over the frozen schema (sealed corpus)",
+      "routing_semantics": "source_freshness_semantics"
+    },
+    "C_source_as_of_observation_timestamps": {
+      "field": "KnowledgeSourceRecord.retrieved_at_or_snapshot_date (candidate-visible)",
+      "visibility": "CANDIDATE_VISIBLE",
+      "producer": "runtime-native materializer over the frozen schema (sealed at corpus build)",
+      "routing_semantics": "per-source valid-through date; parsed ISO date; a source is current for a request when its date >= the request date or the corpus snapshot covers the request"
+    },
+    "D_snapshot_timestamp": {
+      "field": "KnowledgeCorpus.snapshot_date (candidate-visible; 2026-01-31)",
+      "visibility": "CANDIDATE_VISIBLE",
+      "producer": "frozen corpus manifest",
+      "routing_semantics": "corpus-level valid-through: local snapshot evidence is current for a request only when request_date <= snapshot_date"
+    },
+    "E_runtime_request_timestamp": {
+      "field": "request.request_date (candidate-visible request field, threaded as answer_knowledge(now=...))",
+      "visibility": "CANDIDATE_VISIBLE",
+      "producer": "evaluation harness request record (frozen in the runtime data contract; one date per holdout row)",
+      "routing_semantics": "the 'current date' of the router; when absent, the runtime cannot establish that local evidence is current and applies the preregistered fail-safe mapping"
+    },
+    "F_explicit_user_supplied_as_of_date": {
+      "field": "query 'as of <date>' / year anchor phrasing (candidate-visible)",
+      "visibility": "CANDIDATE_VISIBLE",
+      "producer": "evaluation request (authored blind query)",
+      "routing_semantics": "historical-as-of intent: the frozen snapshot answers the anchored frame; never routes to current research"
+    }
+  },
+  "intent_categories": {
+    "STATIC": {
+      "meaning": "the query asks a timeless, record-pinned, or self-contained fact; snapshot evidence satisfies it at any request date",
+      "action": "ANSWER locally (web only when the boundary classifier independently requires it)"
+    },
+    "HISTORICAL_AS_OF": {
+      "meaning": "the query anchors its frame to a past date or past-tense state",
+      "action": "ANSWER from the frozen snapshot (snapshot-compatible); never routed to current research"
+    },
+    "CURRENT_REQUIRED": {
+      "meaning": "the query explicitly requires present/current state (explicit cue family or superlative over a time-scoped referent)",
+      "action": "ROUTE_WEB_RESEARCH when the snapshot is not current for the request date (mandatory); ANSWER locally only when the snapshot validly covers the request date"
+    },
+    "RECENCY_SENSITIVE": {
+      "meaning": "the fact class is present-state (role/value lexicon) in a present-tense frame without an explicit cue",
+      "action": "route per evidence freshness: ROUTE_WEB_RESEARCH when request_date > snapshot_date; ANSWER from the frozen frame when request_date <= snapshot_date; when request_date is unknown, ANSWER from the frozen frame (the answer can never claim currency)"
+    },
+    "AMBIGUOUS_FRESHNESS": {
+      "meaning": "a temporal word matched whose deterministic scope rule did not resolve (superlative over a non-time-scoped noun, non-self-contained)",
+      "action": "deterministic ambiguity policy: answer locally unless runtime-visible source metadata establishes the fact class is present-state (a TIME_SENSITIVE source retrieved with request_date > snapshot_date routes)"
+    }
+  },
+  "router_precedence": [
+    "1. boundary routing (document / memory / compute / web-cue / science) — unchanged from the frozen runtime",
+    "2. explicit current-information requirement (cue or superlative+time-scoped noun or inherent-recency phrase) -> CURRENT_REQUIRED",
+    "3. record-pinning / snapshot-internal framing -> STATIC (the record is the evidence universe)",
+    "4. explicit historical/as-of anchor or past-tense frame -> HISTORICAL_AS_OF",
+    "5. present-state fact class (role/value lexicon) with present copula -> RECENCY_SENSITIVE",
+    "6. unresolved temporal word -> AMBIGUOUS_FRESHNESS (deterministic ambiguity policy)",
+    "7. default -> STATIC",
+    "No evaluator-dependent branch exists anywhere in this precedence."
+  ],
+  "snapshot_staleness_rule": {
+    "rule": "CURRENT_REQUIRED or RECENCY_SENSITIVE intent + request_date present + request_date > corpus snapshot_date => the local snapshot is stale for this request and ROUTE_WEB_RESEARCH is mandatory; request_date <= snapshot_date => the snapshot validly covers the request and the local path is the preregistered allowed current path",
+    "invariant": "CURRENT_REQUIRED + snapshot not current => never ANSWER (protocol section 13, mechanically tested)"
+  },
+  "no_stale_fallback": {
+    "rule": "For CURRENT_REQUIRED: when the current route is unavailable the runtime must NOT silently answer from the frozen snapshot. Preregistered fail-safe behavior: ROUTE_WEB_RESEARCH (the runtime's web-research route always exists in evaluation); when an explicit request_date is absent the runtime cannot establish that the snapshot is current, so CURRENT_REQUIRED routes to web research. The runtime never asserts stale snapshot content as current truth (the snapshot-current claim guard remains active on every composed answer).",
+    "allowed_actions": ["ROUTE_WEB_RESEARCH", "ANSWER when request_date <= snapshot_date (the snapshot is the allowed current path)"],
+    "forbidden_actions": ["ANSWER presenting snapshot state as current when request_date > snapshot_date or request_date unknown"]
+  },
+  "static_query_invariant": {
+    "rule": "STATIC intent answers locally; the web route fires only when the boundary classifier independently requires live evidence (boundary web cues) or runtime-visible source metadata establishes a present-state requirement (protocol section 14)",
+    "counter_pressure": "static_query_unnecessary_web_routing <= 0.03 (frozen floor, 180-row design-mandated population); the repair must not become 'when uncertain, always web'"
+  },
+  "runtime_date_source": {
+    "rule": "The 'current date' used by the router comes only from the explicit runtime request field request_date threaded through answer_knowledge(now=...). The pipeline never reads the wall clock. No hardcoded current year, no model-memory date guess, no training-cutoff inference.",
+    "producer": "evaluation harness request record (frozen in candidate_runtime_data_contract)",
+    "absence_policy": "request_date absent => CURRENT_REQUIRED routes to web research (cannot establish snapshot currency); RECENCY_SENSITIVE/AMBIGUOUS answer from the frozen frame without asserting currency"
+  },
+  "source_freshness_semantics": {
+    "STATIC": "never changes (historical events, authored works, registered record contents); satisfies any non-current-required query at any request date",
+    "SLOW_CHANGING": "stable over the snapshot horizon (capitals, seats of government); satisfies present-state frames and is exempt from the staleness routing rule; an explicit CURRENT_REQUIRED cue still overrides the snapshot when the request date exceeds it",
+    "TIME_SENSITIVE": "can change faster than the snapshot (officeholders, prices, versions); retrieved TIME_SENSITIVE evidence plus request_date > snapshot_date establishes a present-state requirement through metadata alone",
+    "UNKNOWN": "cannot establish currency; exempt from the metadata routing rule (conservative: local answer, never asserting currency)"
+  },
+  "frozen_vocabularies": {
+    "explicit_current_cues": "the frozen _EXPLICIT_CURRENT family of src/sciencemath/knowledge/freshness.py (current, currently, today, now, right now, this week/month/year/quarter, so far, at present, as we speak, live, present-day, modern-day, nowadays, these days, as of now, at the moment) — proper-noun compound suppression and physics-sense suppression apply",
+    "inherent_recency_words": ["recent", "recently", "up to date", "up-to-date", "last week", "last month", "last year", "this year"],
+    "superlative_time_scoped_nouns": ["version", "release", "model", "edition", "update", "report", "news", "event", "figure", "estimate", "ranking", "standings", "score", "build", "firmware", "patch", "draft", "revision", "announcement", "episode", "season", "study", "development"],
+    "role_lexicon_present_state": ["president", "vice president", "prime minister", "chancellor", "premier", "mayor", "governor", "ceo", "cfo", "coo", "cto", "chief", "executive director", "managing director", "chairman", "chairwoman", "chairperson", "chair", "secretary", "secretary general", "secretary-general", "treasurer", "director", "dean", "principal", "rector", "provost", "coach", "captain", "manager", "leader", "proprietor", "owner", "editor", "ambassador", "senator", "minister", "pope", "monarch", "king", "queen", "emperor", "emir", "sultan", "officeholder", "office holder"],
+    "value_lexicon_present_state": ["price", "cost", "exchange rate", "fare", "fee", "salary", "wage", "interest rate", "inflation rate", "unemployment rate", "stock price", "share price", "market cap", "version", "balance", "status", "quote"],
+    "physics_sense_suppression": {
+      "rule": "the noun 'current' in a physics/electrical sense is not a currency cue: suppressed when preceded by a frozen physics modifier (ocean, air, tidal, water, electric, electrical, alternating, direct, eddy, convection) or followed by 'in <electrical|electric|physics|ocean|air|water|tidal|circuit|conductor>' context, or when the frame is a definition lookup ('define current', 'definition of current')",
+      "suppression_preceded_by": ["ocean", "air", "tidal", "water", "electric", "electrical", "alternating", "direct", "eddy", "convection", "warm", "cold"],
+      "suppression_followed_by": ["electrical", "electric", "physics", "ocean", "air", "water", "tidal", "circuit", "conductor", "density", "account"]
+    },
+    "record_pinning_phrases": ["within blind record", "within record", "within the record", "according to the record", "according to this record", "per the record", "per the registered record", "stated in the record", "stated in this record", "the record states", "as recorded in", "as stated in the record", "as registered in"],
+    "self_contained_referents": ["this sequence", "the sequence", "the following", "the above", "this list", "the list", "this puzzle", "this pattern"]
+  },
+  "metadata_provenance": {
+    "fields": [
+      {"field": "freshness_class", "type": "closed vocabulary (schema.py FRESHNESS_CLASSES)", "producer": "runtime-native materializer (sealed corpus)", "source": "authored blind family design", "candidate_visibility": "evidence items + sources", "routing_effect": "metadata-only present-state routing rule (post-retrieval)", "serialization": "sources.jsonl + chunk metadata", "validation": "schema __post_init__ closed-vocabulary check"},
+      {"field": "retrieved_at_or_snapshot_date", "type": "ISO date string", "producer": "runtime-native materializer (sealed corpus)", "source": "corpus snapshot date", "candidate_visibility": "evidence items + sources", "routing_effect": "per-source valid-through (carrier C)", "serialization": "sources.jsonl", "validation": "loader schema validation"},
+      {"field": "request_date", "type": "ISO date string", "producer": "evaluation harness request record (one per holdout row)", "source": "preregistered experiment request date", "candidate_visibility": "request input (threaded as answer_knowledge(now=...))", "routing_effect": "snapshot staleness comparison (carrier E)", "serialization": "holdout row field; never serialized into gold-only metadata", "validation": "runtime data contract field descriptor"}
+    ],
+    "unknown_producers": 0,
+    "post_seal_synthesized_fields": 0
+  }
+}
