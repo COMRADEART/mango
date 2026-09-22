@@ -1,0 +1,233 @@
+{
+  "artifact": "T22_METRIC_EVIDENCE",
+  "evaluator": "t21_protocol.evaluator_r17:evaluate_evidence_rows",
+  "evidence_source": "evaluator_results.json:results",
+  "metric_count": 32,
+  "per_metric": {
+    "citation_coverage": {
+      "denominator": 4130,
+      "numerator": 4130,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "citation_id_spoof_rejection": {
+      "denominator": 100,
+      "numerator": 100,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "citation_precision": {
+      "denominator": 4130,
+      "numerator": 4130,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "citation_resolvability": {
+      "denominator": 4130,
+      "numerator": 4130,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "citation_validity": {
+      "denominator": 4130,
+      "numerator": 4130,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "conflict_detection": {
+      "denominator": 0,
+      "numerator": 0,
+      "observed": 0.0,
+      "zero_denominator_policy_applied": true
+    },
+    "conflict_false_resolution": {
+      "denominator": 0,
+      "numerator": 0,
+      "observed": 0.0,
+      "zero_denominator_policy_applied": true
+    },
+    "cross_domain_synthesis_accuracy": {
+      "denominator": 700,
+      "numerator": 700,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "domain_macro_grounded_accuracy": {
+      "denominator": 5500,
+      "numerator": 5500,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "explicit_current_routing_accuracy": {
+      "denominator": 70,
+      "numerator": 70,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "fabricated_citation_count": {
+      "denominator": null,
+      "numerator": 0,
+      "observed": 0,
+      "zero_denominator_policy_applied": false
+    },
+    "historical_as_of_handling": {
+      "denominator": 50,
+      "numerator": 50,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "insufficient_evidence_precision": {
+      "denominator": 0,
+      "numerator": 0,
+      "observed": 0.0,
+      "zero_denominator_policy_applied": true
+    },
+    "insufficient_evidence_recall": {
+      "denominator": 0,
+      "numerator": 0,
+      "observed": 0.0,
+      "zero_denominator_policy_applied": true
+    },
+    "model_memory_backfill_events": {
+      "denominator": null,
+      "numerator": 0,
+      "observed": 0,
+      "zero_denominator_policy_applied": false
+    },
+    "mrr": {
+      "denominator": 600,
+      "numerator": 600.0,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "multi_hop_grounded_accuracy": {
+      "denominator": 800,
+      "numerator": 800,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "ndcg_at_5": {
+      "denominator": 600,
+      "numerator": 600.0,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "overall_grounded_accuracy": {
+      "denominator": 4800,
+      "numerator": 4800,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "prompt_injection_containment": {
+      "denominator": 650,
+      "numerator": 650,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "recall_at_10": {
+      "denominator": 600,
+      "numerator": 600,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "recall_at_5": {
+      "denominator": 600,
+      "numerator": 600,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "retrieved_code_execution_events": {
+      "denominator": null,
+      "numerator": 0,
+      "observed": 0,
+      "zero_denominator_policy_applied": false
+    },
+    "single_hop_grounded_accuracy": {
+      "denominator": 550,
+      "numerator": 550,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "source_authority_escalation_events": {
+      "denominator": null,
+      "numerator": 0,
+      "observed": 0,
+      "zero_denominator_policy_applied": false
+    },
+    "source_diversity": {
+      "denominator": 0,
+      "numerator": 0,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": true
+    },
+    "stale_snapshot_false_current_answers": {
+      "denominator": null,
+      "numerator": 0,
+      "observed": 0,
+      "zero_denominator_policy_applied": false
+    },
+    "static_query_unnecessary_web_routing": {
+      "denominator": 180,
+      "numerator": 0,
+      "observed": 0.0,
+      "zero_denominator_policy_applied": false
+    },
+    "supported_factual_claim_rate": {
+      "denominator": 4130,
+      "numerator": 4130,
+      "observed": 1.0,
+      "zero_denominator_policy_applied": false
+    },
+    "unauthorized_memory_write_events": {
+      "denominator": null,
+      "numerator": 0,
+      "observed": 0,
+      "zero_denominator_policy_applied": false
+    },
+    "unauthorized_network_action_events": {
+      "denominator": null,
+      "numerator": 0,
+      "observed": 0,
+      "zero_denominator_policy_applied": false
+    },
+    "unsupported_confident_answers": {
+      "denominator": null,
+      "numerator": 0,
+      "observed": 0,
+      "zero_denominator_policy_applied": false
+    }
+  },
+  "row_fields": [
+    "case_id",
+    "suite_family",
+    "mode",
+    "construction_tag",
+    "query",
+    "expected_status",
+    "status",
+    "status_match",
+    "answer_match",
+    "answer",
+    "expected_answer",
+    "required_domains",
+    "required_sources",
+    "chunk_ids",
+    "citations",
+    "n_citations",
+    "cited_chunk_ids",
+    "cited_source_ids",
+    "citation_report_ok",
+    "citation_verdicts",
+    "claim_counts",
+    "claims_supported",
+    "counters",
+    "counters_nonzero",
+    "rank",
+    "n_returned",
+    "correct"
+  ],
+  "rows": 4800,
+  "schema_version": "t21-metric-evidence-v2",
+  "semantics_sha256": "d50519d1c0d4c5916a44982343eb6e4978fd1b05f7c15734f709c38aa4468d62",
+  "status": "PASS"
+}
