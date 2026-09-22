@@ -1,0 +1,20 @@
+{
+  "allowed_inputs": [
+    "evaluations/t22/T22_FINAL_PROMOTION_RECORD.json (aggregate)",
+    "evaluations/t22/official_metric_registry.json (aggregate semantics/floors)",
+    "evaluations/t22/runtime_freeze.json (component hashes)"
+  ],
+  "artifact": "T23_HISTORICAL_EXCLUSION",
+  "forbidden_inputs": [
+    "T22 blind queries",
+    "T22 candidate outputs",
+    "T22 gold rows",
+    "T22 raw evaluation records"
+  ],
+  "generator_forbidden_import_or_read_findings": 0,
+  "registered": true,
+  "registered_prior": "T22_OFFICIAL_EVALUATION_PASS",
+  "schema_version": "t23-historical-exclusion-v1",
+  "status": "PASS",
+  "t22_raw_blind_access": 0
+}

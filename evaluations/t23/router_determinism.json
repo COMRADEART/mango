@@ -1,0 +1,14 @@
+{
+  "artifact": "T23_ROUTER_DETERMINISM",
+  "cases_rerun": 1280,
+  "compared_fields": [
+    "route_id",
+    "reason_code",
+    "priority_resolution",
+    "fallback"
+  ],
+  "mismatches": 0,
+  "runs": 2,
+  "schema_version": "t23-router-determinism-v1",
+  "status": "PASS"
+}

@@ -1,0 +1,23 @@
+{
+  "artifact": "T23_PROTOCOL_DOCTOR",
+  "base_verdict": "T21_PROTOCOL_DOCTOR_PASS",
+  "contract_integrity": {
+    "dangling_reason_routes": [],
+    "duplicate_route_ids": 0,
+    "reason_route_contradictions": 0,
+    "registered_routes": 9,
+    "status": "PASS",
+    "unreachable_registered_routes": []
+  },
+  "schema_version": "t23-protocol-doctor-v1",
+  "sections": {
+    "EXECUTIVE_ROUTER_CAPABILITY_REGISTRY": "PASS",
+    "EXECUTIVE_ROUTER_CONTRACT": "PASS",
+    "EXECUTIVE_ROUTER_COUNTERPRESSURE": "PASS",
+    "EXECUTIVE_ROUTER_DETERMINISM": "PASS",
+    "EXECUTIVE_ROUTER_FAIL_CLOSED": "PASS",
+    "EXECUTIVE_ROUTER_SIGNAL_VISIBILITY": "PASS"
+  },
+  "status": "PASS",
+  "verdict": "T21_PROTOCOL_DOCTOR_PASS"
+}

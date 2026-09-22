@@ -1,0 +1,111 @@
+{
+  "additional_fields_allowed": false,
+  "artifact": "T23_ROUTER_STATE_SERIALIZATION",
+  "fields": {
+    "available_capabilities": {
+      "name": "available_capabilities",
+      "producer": "SkillRegistry",
+      "routing_effect": "availability narrowing",
+      "type": "string[]|null",
+      "validation": "known unique IDs only",
+      "visibility": "candidate-visible"
+    },
+    "citation_required": {
+      "name": "citation_required",
+      "producer": "request metadata",
+      "routing_effect": "grounded local path",
+      "type": "boolean",
+      "validation": "strict boolean",
+      "visibility": "candidate-visible"
+    },
+    "evidence_state": {
+      "name": "evidence_state",
+      "producer": "evidence gate",
+      "routing_effect": "conflict/abstention",
+      "type": "enum",
+      "validation": [
+        "CONFLICTING",
+        "INSUFFICIENT",
+        "NOT_EVALUATED",
+        "SUFFICIENT"
+      ],
+      "visibility": "candidate-visible"
+    },
+    "permission_grants": {
+      "name": "permission_grants",
+      "producer": "permission broker",
+      "routing_effect": "dispatch authorization",
+      "type": "string[]",
+      "validation": "unique strings",
+      "visibility": "candidate-visible"
+    },
+    "query": {
+      "name": "query",
+      "producer": "request normalizer",
+      "routing_effect": "all gates",
+      "type": "string",
+      "validation": "non-empty",
+      "visibility": "candidate-visible"
+    },
+    "request_date": {
+      "name": "request_date",
+      "producer": "request metadata",
+      "routing_effect": "temporal staleness",
+      "type": "ISO date|string empty",
+      "validation": "ISO YYYY-MM-DD",
+      "visibility": "candidate-visible"
+    },
+    "requested_capability": {
+      "name": "requested_capability",
+      "producer": "capability intent parser",
+      "routing_effect": "specialist selection",
+      "type": "string|null",
+      "validation": "non-empty when set",
+      "visibility": "candidate-visible"
+    },
+    "security_state": {
+      "name": "security_state",
+      "producer": "security policy engine",
+      "routing_effect": "security gate",
+      "type": "enum",
+      "validation": [
+        "ALLOW",
+        "BLOCK"
+      ],
+      "visibility": "candidate-visible"
+    },
+    "snapshot_date": {
+      "name": "snapshot_date",
+      "producer": "corpus manifest",
+      "routing_effect": "temporal staleness",
+      "type": "ISO date",
+      "validation": "ISO YYYY-MM-DD",
+      "visibility": "candidate-visible"
+    },
+    "source_freshness": {
+      "name": "source_freshness",
+      "producer": "source metadata",
+      "routing_effect": "metadata temporal gate",
+      "type": "enum",
+      "validation": [
+        "UNKNOWN",
+        "STATIC",
+        "SLOW_CHANGING",
+        "TIME_SENSITIVE"
+      ],
+      "visibility": "candidate-visible"
+    }
+  },
+  "forbidden_gold_only_fields": [
+    "blind_label",
+    "construction_tag",
+    "expected_route",
+    "expected_status",
+    "floor_id",
+    "gold_route",
+    "gold_status",
+    "test_family"
+  ],
+  "implicit_unregistered_fields": 0,
+  "schema_version": "t23-router-input-schema-v1"
+}

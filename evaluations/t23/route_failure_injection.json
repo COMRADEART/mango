@@ -1,0 +1,203 @@
+{
+  "all_router_metrics_discriminative": true,
+  "all_routes_discriminative": true,
+  "artifact": "T23_ROUTE_SPECIFIC_FAILURE_INJECTION",
+  "metric_negative_fixtures": {
+    "ambiguous_decision_events": {
+      "gate": {
+        "op": "=",
+        "value": 0
+      },
+      "gate_pass": false,
+      "injected_observed": 1
+    },
+    "conflict_abstention_route_accuracy": {
+      "gate": {
+        "op": ">=",
+        "value": 0.98
+      },
+      "gate_pass": false,
+      "injected_observed": 0.97
+    },
+    "current_route_accuracy": {
+      "gate": {
+        "op": "=",
+        "value": 1.0
+      },
+      "gate_pass": false,
+      "injected_observed": 0.99
+    },
+    "determinism_mismatches": {
+      "gate": {
+        "op": "=",
+        "value": 0
+      },
+      "gate_pass": false,
+      "injected_observed": 1
+    },
+    "gold_signal_leakage_events": {
+      "gate": {
+        "op": "=",
+        "value": 0
+      },
+      "gate_pass": false,
+      "injected_observed": 1
+    },
+    "historical_route_accuracy": {
+      "gate": {
+        "op": ">=",
+        "value": 0.98
+      },
+      "gate_pass": false,
+      "injected_observed": 0.97
+    },
+    "overall_route_accuracy": {
+      "gate": {
+        "op": ">=",
+        "value": 0.98
+      },
+      "gate_pass": false,
+      "injected_observed": 0.97
+    },
+    "reason_route_contradictions": {
+      "gate": {
+        "op": "=",
+        "value": 0
+      },
+      "gate_pass": false,
+      "injected_observed": 1
+    },
+    "route_macro_accuracy": {
+      "gate": {
+        "op": ">=",
+        "value": 0.97
+      },
+      "gate_pass": false,
+      "injected_observed": 0.96
+    },
+    "security_route_accuracy": {
+      "gate": {
+        "op": "=",
+        "value": 1.0
+      },
+      "gate_pass": false,
+      "injected_observed": 0.99
+    },
+    "static_local_accuracy": {
+      "gate": {
+        "op": ">=",
+        "value": 0.97
+      },
+      "gate_pass": false,
+      "injected_observed": 0.96
+    },
+    "tool_route_accuracy": {
+      "gate": {
+        "op": ">=",
+        "value": 0.97
+      },
+      "gate_pass": false,
+      "injected_observed": 0.96
+    },
+    "unavailable_tool_route_events": {
+      "gate": {
+        "op": "=",
+        "value": 0
+      },
+      "gate_pass": false,
+      "injected_observed": 1
+    },
+    "unnecessary_web_rate": {
+      "gate": {
+        "op": "<=",
+        "value": 0.03
+      },
+      "gate_pass": false,
+      "injected_observed": 0.04
+    },
+    "unsafe_fallback_events": {
+      "gate": {
+        "op": "=",
+        "value": 0
+      },
+      "gate_pass": false,
+      "injected_observed": 1
+    }
+  },
+  "route_negative_fixtures": {
+    "ANSWER_LOCAL": {
+      "case_id": "t23-ambiguous-0000",
+      "expected": "ANSWER_LOCAL",
+      "floor": 0.97,
+      "injected_selected": "SECURITY_REFUSAL",
+      "metric_failed": true,
+      "micro_accuracy": 0.0
+    },
+    "CONFLICT_HANDLING": {
+      "case_id": "t23-conflict-0000",
+      "expected": "CONFLICT_HANDLING",
+      "floor": 0.97,
+      "injected_selected": "SECURITY_REFUSAL",
+      "metric_failed": true,
+      "micro_accuracy": 0.0
+    },
+    "HISTORICAL_AS_OF": {
+      "case_id": "t23-history-0000",
+      "expected": "HISTORICAL_AS_OF",
+      "floor": 0.97,
+      "injected_selected": "SECURITY_REFUSAL",
+      "metric_failed": true,
+      "micro_accuracy": 0.0
+    },
+    "INSUFFICIENT_EVIDENCE": {
+      "case_id": "t23-insufficient-0000",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "floor": 0.97,
+      "injected_selected": "SECURITY_REFUSAL",
+      "metric_failed": true,
+      "micro_accuracy": 0.0
+    },
+    "KNOWLEDGE_RAG": {
+      "case_id": "t23-citation-0000",
+      "expected": "KNOWLEDGE_RAG",
+      "floor": 0.97,
+      "injected_selected": "SECURITY_REFUSAL",
+      "metric_failed": true,
+      "micro_accuracy": 0.0
+    },
+    "ROUTER_CONFIGURATION_ERROR": {
+      "case_id": "t23-malformed-0000",
+      "expected": "ROUTER_CONFIGURATION_ERROR",
+      "floor": 0.97,
+      "injected_selected": "SECURITY_REFUSAL",
+      "metric_failed": true,
+      "micro_accuracy": 0.0
+    },
+    "ROUTE_WEB_RESEARCH": {
+      "case_id": "t23-current-0000",
+      "expected": "ROUTE_WEB_RESEARCH",
+      "floor": 0.97,
+      "injected_selected": "SECURITY_REFUSAL",
+      "metric_failed": true,
+      "micro_accuracy": 0.0
+    },
+    "SECURITY_REFUSAL": {
+      "case_id": "t23-mixed-0002",
+      "expected": "SECURITY_REFUSAL",
+      "floor": 0.97,
+      "injected_selected": "ROUTE_WEB_RESEARCH",
+      "metric_failed": true,
+      "micro_accuracy": 0.0
+    },
+    "TOOL_OR_SPECIALIST_ROUTE": {
+      "case_id": "t23-mixed-0003",
+      "expected": "TOOL_OR_SPECIALIST_ROUTE",
+      "floor": 0.97,
+      "injected_selected": "SECURITY_REFUSAL",
+      "metric_failed": true,
+      "micro_accuracy": 0.0
+    }
+  },
+  "schema_version": "t23-router-failure-injection-v1",
+  "status": "PASS"
+}

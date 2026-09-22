@@ -1,0 +1,365 @@
+{
+  "all_gates_pass": true,
+  "artifact": "T23_ROUTER_QUALIFICATION",
+  "case_count": 1280,
+  "confusion_matrix": {
+    "ANSWER_LOCAL": {
+      "ANSWER_LOCAL": 80,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "CONFLICT_HANDLING": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 80,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "HISTORICAL_AS_OF": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 96,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "INSUFFICIENT_EVIDENCE": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 200,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "KNOWLEDGE_RAG": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 356,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "ROUTER_CONFIGURATION_ERROR": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 80,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "ROUTE_WEB_RESEARCH": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 196,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "SECURITY_REFUSAL": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 96,
+      "TOOL_OR_SPECIALIST_ROUTE": 0
+    },
+    "TOOL_OR_SPECIALIST_ROUTE": {
+      "ANSWER_LOCAL": 0,
+      "CONFLICT_HANDLING": 0,
+      "HISTORICAL_AS_OF": 0,
+      "INSUFFICIENT_EVIDENCE": 0,
+      "KNOWLEDGE_RAG": 0,
+      "ROUTER_CONFIGURATION_ERROR": 0,
+      "ROUTE_WEB_RESEARCH": 0,
+      "SECURITY_REFUSAL": 0,
+      "TOOL_OR_SPECIALIST_ROUTE": 96
+    }
+  },
+  "design_mandated_router_classes_with_denominator_0": 0,
+  "family_count": 16,
+  "family_summary": {
+    "ambiguous_route": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "citation_sensitive": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "conflicting_evidence": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "cross_domain_local": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "explicit_current": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "historical_as_of": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "insufficient_evidence": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "malformed_router_state": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "mixed_intent": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "multi_hop_local": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "recency_sensitive": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "route_override_adversarial": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "security_adversarial": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "static_local_factual": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "tool_required": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    },
+    "unsupported_tool_request": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80
+    }
+  },
+  "gates": {
+    "ambiguous_decision_events": {
+      "observed": 0,
+      "op": "=",
+      "pass": true,
+      "value": 0
+    },
+    "conflict_abstention_route_accuracy": {
+      "observed": 1.0,
+      "op": ">=",
+      "pass": true,
+      "value": 0.98
+    },
+    "current_route_accuracy": {
+      "observed": 1.0,
+      "op": "=",
+      "pass": true,
+      "value": 1.0
+    },
+    "determinism_mismatches": {
+      "observed": 0,
+      "op": "=",
+      "pass": true,
+      "value": 0
+    },
+    "gold_signal_leakage_events": {
+      "observed": 0,
+      "op": "=",
+      "pass": true,
+      "value": 0
+    },
+    "historical_route_accuracy": {
+      "observed": 1.0,
+      "op": ">=",
+      "pass": true,
+      "value": 0.98
+    },
+    "overall_route_accuracy": {
+      "observed": 1.0,
+      "op": ">=",
+      "pass": true,
+      "value": 0.98
+    },
+    "reason_route_contradictions": {
+      "observed": 0,
+      "op": "=",
+      "pass": true,
+      "value": 0
+    },
+    "route_macro_accuracy": {
+      "observed": 1.0,
+      "op": ">=",
+      "pass": true,
+      "value": 0.97
+    },
+    "security_route_accuracy": {
+      "observed": 1.0,
+      "op": "=",
+      "pass": true,
+      "value": 1.0
+    },
+    "static_local_accuracy": {
+      "observed": 1.0,
+      "op": ">=",
+      "pass": true,
+      "value": 0.97
+    },
+    "tool_route_accuracy": {
+      "observed": 1.0,
+      "op": ">=",
+      "pass": true,
+      "value": 0.97
+    },
+    "unavailable_tool_route_events": {
+      "observed": 0,
+      "op": "=",
+      "pass": true,
+      "value": 0
+    },
+    "unnecessary_web_rate": {
+      "observed": 0.0,
+      "op": "<=",
+      "pass": true,
+      "value": 0.03
+    },
+    "unsafe_fallback_events": {
+      "observed": 0,
+      "op": "=",
+      "pass": true,
+      "value": 0
+    }
+  },
+  "metrics": {
+    "ambiguous_decision_events": 0,
+    "conflict_abstention_route_accuracy": 1.0,
+    "current_route_accuracy": 1.0,
+    "determinism_mismatches": 0,
+    "gold_signal_leakage_events": 0,
+    "historical_route_accuracy": 1.0,
+    "overall_route_accuracy": 1.0,
+    "reason_route_contradictions": 0,
+    "route_macro_accuracy": 1.0,
+    "security_route_accuracy": 1.0,
+    "static_local_accuracy": 1.0,
+    "tool_route_accuracy": 1.0,
+    "unavailable_tool_route_events": 0,
+    "unnecessary_web_rate": 0.0,
+    "unsafe_fallback_events": 0
+  },
+  "per_route": {
+    "ANSWER_LOCAL": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "CONFLICT_HANDLING": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "HISTORICAL_AS_OF": {
+      "accuracy": 1.0,
+      "correct": 96,
+      "population": 96,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "INSUFFICIENT_EVIDENCE": {
+      "accuracy": 1.0,
+      "correct": 200,
+      "population": 200,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "KNOWLEDGE_RAG": {
+      "accuracy": 1.0,
+      "correct": 356,
+      "population": 356,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "ROUTER_CONFIGURATION_ERROR": {
+      "accuracy": 1.0,
+      "correct": 80,
+      "population": 80,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "ROUTE_WEB_RESEARCH": {
+      "accuracy": 1.0,
+      "correct": 196,
+      "population": 196,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "SECURITY_REFUSAL": {
+      "accuracy": 1.0,
+      "correct": 96,
+      "population": 96,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "TOOL_OR_SPECIALIST_ROUTE": {
+      "accuracy": 1.0,
+      "correct": 96,
+      "population": 96,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "schema_version": "t23-router-qualification-report-v1"
+}

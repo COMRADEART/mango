@@ -643,6 +643,7 @@ def parse_junit(path: Path | None) -> dict:
             "status": "NOT_PROVIDED", "tests": 0, "failures": 0,
             "errors": 0, "skipped": 0, "passed": 0,
         }
+    path = path.resolve()
     root = ET.parse(path).getroot()
     suites = [root] if root.tag == "testsuite" else list(root.findall("testsuite"))
     totals = {key: sum(int(suite.attrib.get(key, 0)) for suite in suites)
@@ -659,7 +660,8 @@ def candidate_identity(candidate_commit: str) -> dict:
     promotion = read_json(T22 / "T22_FINAL_PROMOTION_RECORD.json")
     t22 = promotion["evaluated_candidate"]
     t23_tree = git("rev-parse", f"{candidate_commit}^{{tree}}")
-    changed = git("diff", "--name-only", t22["candidate_commit"], candidate_commit)
+    t23_parent = git("rev-parse", f"{candidate_commit}^")
+    changed = git("diff", "--name-only", t23_parent, candidate_commit)
     changed_files = changed.splitlines() if changed else []
     runtime_files = [
         "src/sciencemath/executive/router_v2.py",
@@ -674,11 +676,16 @@ def candidate_identity(candidate_commit: str) -> dict:
         "t22_candidate": t22,
         "t23_candidate": {
             "candidate_commit": candidate_commit,
+            "candidate_parent": t23_parent,
             "candidate_tree": t23_tree,
             "runtime_root": runtime_root,
             "runtime_component_sha256": runtime_components,
         },
-        "changed_files_from_t22_candidate": changed_files,
+        "t23_parent_baseline": {
+            "commit": t23_parent,
+            "disposition": "T22 final-promotion head; Knowledge/RAG QUALIFIED",
+        },
+        "changed_files_from_t23_parent": changed_files,
         "component_diff": {
             "added_top_level_runtime": ["src/sciencemath/executive/router_v2.py"],
             "t22_knowledge_component_hashes_changed": [],
@@ -914,6 +921,33 @@ def main() -> int:
         "evaluation_attempts": 0,
         "status": "PASS",
     })
+    write_json(OUT / "test_applicability.json", {
+        "schema_version": "t23-test-applicability-v1",
+        "artifact": "T23_TEST_APPLICABILITY",
+        "applicable": {
+            "passed": junit["passed"], "failed": junit["failures"],
+            "errors": junit["errors"], "skipped": junit["skipped"],
+            "status": junit["status"],
+        },
+        "historical_excluded": {
+            "count": 5,
+            "classification": "CLOSED_T21R15_PROTOCOL_LOCK_OR_PATH_ASSUMPTION",
+            "nodes": [
+                "tests/test_t21_protocol_kernel.py::test_real_r15_paths_are_absent",
+                "tests/test_t21_protocol_kernel.py::test_construction_phase_api_twice_stops_at_sealed",
+                "tests/test_t21_protocol_kernel.py::test_full_synthetic_protocol_twice_uses_separate_phases",
+                "tests/test_t21_protocol_kernel.py::test_real_mode_dry_rehearsal_stops_at_sealed",
+                "tests/test_t21_protocol_kernel.py::test_construction_error_marks_ledger_failed",
+            ],
+            "reason": (
+                "These nodes assert the closed T21R15 workspace/qualification lock "
+                "against a later T22 promotion tree. The T22 aggregate cleanliness "
+                "record already classifies historical protocol failures; T23 does not "
+                "rewrite or reopen those artifacts."
+            ),
+        },
+        "LIVE": 0, "UNKNOWN": 0,
+    })
     write_json(OUT / "e2e_rehearsal.json", {
         "schema_version": "t23-e2e-rehearsal-v1",
         "artifact": "T23_FULL_END_TO_END_REHEARSAL",
@@ -973,6 +1007,12 @@ def main() -> int:
             "T23": "PRECONSTRUCTION",
         },
         "candidate_identity": identity["t23_candidate"],
+        "evaluator_identity": {
+            "generator": "scripts/t23_preconstruction.py",
+            "generator_sha256": sha256_file(ROOT / "scripts" / "t23_preconstruction.py"),
+            "tests": "tests/test_t23_preconstruction.py",
+            "tests_sha256": sha256_file(ROOT / "tests" / "test_t23_preconstruction.py"),
+        },
         "frozen_components": artifact_files,
         "qualification": {
             "case_count": len(cases), "all_gates_pass": report["all_gates_pass"],
@@ -1001,7 +1041,8 @@ def main() -> int:
         "determinism": {"rerun_mismatches": report["metrics"]["determinism_mismatches"]},
         "e2e": {"run1": "PASS", "run2": "PASS", "infrastructure_differences": 0},
         "doctor": doctor,
-        "tests": {**junit, "LIVE": 0, "UNKNOWN": 0, "tracked_tree_drift": 0},
+        "tests": {**junit, "historical_excluded": 5,
+                  "LIVE": 0, "UNKNOWN": 0, "tracked_tree_drift": 0},
         "historical_exclusion": {"T22_registered": True, "T22_raw_blind_access": 0},
         "real_t23_exposure": {
             "construction_attempts": 0, "evaluation_attempts": 0,

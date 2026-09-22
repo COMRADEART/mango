@@ -1,0 +1,28 @@
+{
+  "all_pair_populations_positive": true,
+  "artifact": "T23_ROUTER_COUNTERPRESSURE",
+  "pairs": {
+    "current_vs_static": [
+      "explicit_current",
+      "static_local_factual"
+    ],
+    "insufficient_vs_sufficient": [
+      "insufficient_evidence",
+      "static_local_factual"
+    ],
+    "security_vs_ordinary": [
+      "security_adversarial",
+      "static_local_factual"
+    ],
+    "tool_required_vs_unnecessary": [
+      "tool_required",
+      "ambiguous_route"
+    ],
+    "web_forced_vs_policy": [
+      "route_override_adversarial",
+      "explicit_current"
+    ]
+  },
+  "schema_version": "t23-router-counterpressure-v1",
+  "status": "PASS"
+}

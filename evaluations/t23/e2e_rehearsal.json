@@ -1,0 +1,28 @@
+{
+  "artifact": "T23_FULL_END_TO_END_REHEARSAL",
+  "candidate_runtime": "sciencemath.executive.router_v2:route_request",
+  "infrastructure_differences": 0,
+  "pipeline": [
+    "request",
+    "Executive Router",
+    "selected registered capability",
+    "T23 candidate runtime",
+    "evaluator-side gold join",
+    "router scorer",
+    "router metrics",
+    "protected T22 floors"
+  ],
+  "protected_32_floor_metrics": 32,
+  "run1": {
+    "rows": 1280,
+    "status": "PASS"
+  },
+  "run2": {
+    "rows": 1280,
+    "status": "PASS"
+  },
+  "schema_version": "t23-e2e-rehearsal-v1",
+  "status": "PASS",
+  "stub_candidate_used": false,
+  "stub_router_used": false
+}
