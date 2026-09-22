@@ -1,0 +1,29 @@
+{
+  "schema_version": "t22-semantics-carry-report-v1",
+  "artifact": "T22_SEMANTICS_CARRY_REPORT",
+  "experiment": "t22",
+  "rule": "the measuring stick does not change (plan section 30); the zero-denominator prose is harmonized per plan section 31 and the frozen resolution",
+  "source_artifact": "T21R17_OFFICIAL_METRIC_SEMANTICS",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "floor_hash_unchanged": true,
+  "metric_count": 32,
+  "metrics_byte_identical_except": [
+    "conflict_false_resolution.lineage.notes (harmonized)"
+  ],
+  "harmonized_paths": [
+    "artifact",
+    "experiment",
+    "lineage.notes",
+    "metrics.conflict_false_resolution.lineage.notes",
+    "zero_denominator_conventions.PREREGISTERED_CONVENTION_0.0.capability_guard"
+  ],
+  "prospective_only": true,
+  "retroactive_effect_on_r17": "NONE (R17 remains CLOSED/VALID_CAPABILITY_FAILURE)",
+  "scorer": "t21_protocol.scorer_r17:score_explicit",
+  "scorer_module": "t21_protocol/scorer_r17.py",
+  "scorer_module_sha256": "1dbb0790d0fac1e46aab8b2d7284f70814d3eaf59e7409647bf202e1fe5171ff",
+  "implementation_sha256_recomputed": 32,
+  "implementation_sha256_mismatches": [],
+  "registry_byte_identical_except": [],
+  "semantics_validation": "PASS"
+}

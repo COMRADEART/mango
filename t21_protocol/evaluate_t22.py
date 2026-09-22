@@ -112,7 +112,9 @@ def run_evaluation_t22(
         raise ValidationError("sealed workspace mode differs from evaluation mode")
     verify_seal(root, contract, graph)
 
-    semantics = load_metric_semantics(root, contract)
+    semantics = load_metric_semantics(root, contract,
+                                      artifact="T22_OFFICIAL_METRIC_SEMANTICS",
+                                      experiment="t22")
     if semantics_root(semantics) != contract.get("roots.scorer_semantic_root"):
         raise ScorerConfigurationError("frozen metric semantics root does not match the contract")
     floors = contract.get("promotion_floors")
