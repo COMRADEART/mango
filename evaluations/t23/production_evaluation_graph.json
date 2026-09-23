@@ -6,7 +6,7 @@
     "author_inputs": {"producer": "t23_protocol.author:author_cases", "inputs": [], "path": "evaluations/t23/suites/inputs.jsonl", "privacy": "PRIVATE"},
     "gold_suites": {"producer": "t23_protocol.author:author_cases", "inputs": [], "path": "evaluations/t23/suites/gold.jsonl", "privacy": "PRIVATE"},
     "corpus": {"producer": "t23_protocol.construction:materialize_corpus", "inputs": [], "path": "rag/gk_holdout_t23", "privacy": "PRIVATE"},
-    "construction_ledger": {"producer": "t21_protocol.ledger:ConstructionLedger", "inputs": [], "path": "evaluations/t23/construction_run_ledger.json", "privacy": "PRIVATE"},
+    "construction_ledger": {"producer": "t23_protocol.construction_ledger:T23ConstructionLedger", "inputs": [], "path": "evaluations/t23/construction_run_ledger.json", "privacy": "PRIVATE"},
     "construction_audits": {"producer": "t23_protocol.construction:run_construction_audits", "inputs": ["author_inputs", "gold_suites", "corpus"], "path": "evaluations/t23/construction_audits.json", "privacy": "PRIVATE"},
     "manifest": {"producer": "t23_protocol.construction:build_manifest", "inputs": ["author_inputs", "gold_suites", "corpus", "construction_audits", "construction_ledger"], "path": "evaluations/t23/holdout_manifest.json", "privacy": "PRIVATE"},
     "seal": {"producer": "t23_protocol.construction:seal_holdout", "inputs": ["manifest"], "path": "evaluations/t23/HOLDOUT_FROZEN", "privacy": "PRIVATE"},

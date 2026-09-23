@@ -1,0 +1,40 @@
+{
+  "required_milestones": [
+    "T21",
+    "T21R",
+    "T21R2",
+    "T21R3",
+    "T21R4",
+    "T21R5",
+    "T21R6",
+    "T21R7",
+    "T21R8_DIAGNOSTIC",
+    "T21R9_SEALED",
+    "T21R10_SEALED",
+    "T21R11_INVALID_SEALED",
+    "T21R12_FAILED_PARTIAL_BLIND",
+    "T21R13_SEALED_PARTIAL_OFFICIAL_EXPOSURE",
+    "T21R15_SEALED_UNEVALUABLE",
+    "T21R16_OFFICIAL_EVALUATED_MEASUREMENT_INVALID",
+    "T21R17_OFFICIAL_VALID_CAPABILITY_FAILURE"
+  ],
+  "schema_version": "t23-exclusion-sources-v1",
+  "sources": {
+    "historical": {
+      "path": "evaluations/t22/prior_exclusion.json",
+      "sha256": "880e69010a825a9a6c0d6bd0244f8b505d875d182870969480883ae914a55080"
+    },
+    "qualification": {
+      "path": "evaluations/t23/nonblind_qualification_inputs.jsonl",
+      "sha256": "84345d18703bc58d74678f766684cce924ae59dd54a1136dd6fc2cec315ef754"
+    },
+    "remediation": {
+      "path": "evaluations/t22/remediation_exclusion.json",
+      "sha256": "85c8040c90690ffb1f33ea4b6fca1f2b1943a057e3c14d5288127f580679b5ee"
+    },
+    "t22_anchor": {
+      "path": "evaluations/t23/t22_exclusion_anchor.json",
+      "sha256": "f514aea0e8603a440f2a672fb8e02fd03d8ee0f54114cbccfe2447e0a2e24788"
+    }
+  }
+}

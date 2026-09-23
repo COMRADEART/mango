@@ -15,6 +15,13 @@ BINDINGS = {
     "author_specification": "evaluations/t23/author_specification.json",
     "experiment_registry": "t23_protocol/context.py",
     "construction_implementation": "t23_protocol/construction.py",
+    "contract_validator_and_leaf_enumerator": "t23_protocol/contract.py",
+    "construction_ledger_schema": "t23_protocol/construction_ledger.py",
+    "construction_gate": "t23_protocol/construction_gate.py",
+    "construction_blindness_checker": "t23_protocol/blindness.py",
+    "construction_uniqueness_checker": "t23_protocol/exclusions.py",
+    "construction_manifest_and_seal": "t23_protocol/manifest.py",
+    "real_path_registry_checker": "t23_protocol/registry.py",
     "evaluation_implementation": "t23_protocol/evaluation.py",
     "evaluation_graph_validator": "t23_protocol/graph.py",
     "doctor_implementation": "t23_protocol/doctor.py",
@@ -32,6 +39,8 @@ BINDINGS = {
     "t22_protected_implementations": "evaluations/t22/metric_implementation_registry.json",
     "t22_runtime_freeze": "evaluations/t22/runtime_freeze.json",
     "historical_exclusion": "evaluations/t23/historical_exclusion.json",
+    "construction_exclusion_sources": "evaluations/t23/construction_exclusion_sources.json",
+    "t22_hash_only_exclusion_anchor": "evaluations/t23/t22_exclusion_anchor.json",
     "privacy_policy": "evaluations/t23/private_blind_policy.json",
     "blind_private_ignore_policy": ".gitignore",
     "construction_contract": "evaluations/t23/t23_master_contract.json",
@@ -47,11 +56,15 @@ def expected_lock() -> dict[str, Any]:
     spec = load_spec()
     candidate = json.loads((ROOT / BINDINGS["candidate_identity"]).read_text(encoding="utf-8"))["t23_candidate"]
     return {
-        "schema_version": "t23-author-lock-v1",
+        "schema_version": "t23-author-lock-v2",
         "artifact": "T23_PRODUCTION_AUTHOR_LOCK",
         "experiment": "t23",
         "construction_authorized": False,
         "author_fingerprint_root": fingerprint_root(spec),
+        "taxonomy_spec_root": hashlib.sha256(json.dumps(
+            {"taxonomy": spec["taxonomy"], "material_model": spec["material_model"]},
+            sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest(),
+        "construction_mode": "PRECONSTRUCTION_ONLY",
         "candidate_commit": candidate["candidate_commit"],
         "candidate_tree": candidate["candidate_tree"],
         "runtime_root": candidate["runtime_root"],
@@ -67,4 +80,7 @@ def verify_lock(path: Path = LOCK) -> dict[str, Any]:
     if actual != expected:
         raise ValueError("T23 author lock or production binding drift")
     return {"status": "PASS", "binding_count": len(BINDINGS),
-            "missing_bindings": 0, "author_fingerprint_root": actual["author_fingerprint_root"]}
+            "missing_bindings": 0, "author_fingerprint_root": actual["author_fingerprint_root"],
+            "candidate_commit": actual["candidate_commit"],
+            "candidate_tree": actual["candidate_tree"],
+            "taxonomy_spec_root": actual["taxonomy_spec_root"]}

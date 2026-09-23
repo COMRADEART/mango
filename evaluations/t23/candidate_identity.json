@@ -12,6 +12,11 @@
     "t22_knowledge_component_hashes_changed": [],
     "t22_knowledge_runtime_preserved": true
   },
+  "previous_t23_candidate": {
+    "candidate_commit": "29750b8403be4e8bab87bb40e86aa882ba35e80e",
+    "candidate_tree": "89b1069729e6cab459f705c18691b08440163627",
+    "historical_status": "SUPERSEDED_BY_QUALIFIED_T23_PRECONSTRUCTION"
+  },
   "schema_version": "t23-candidate-identity-v1",
   "t22_candidate": {
     "candidate_commit": "7d919a255c2df87adcb3dd42011b505b10509713",
@@ -20,9 +25,9 @@
     "runtime_root": "a9a24e3d8bba5e8b6985493d262f3699cef93cdbdd35cc09a7e4bc073ded7f5f"
   },
   "t23_candidate": {
-    "candidate_commit": "29750b8403be4e8bab87bb40e86aa882ba35e80e",
-    "candidate_parent": "32caa05d3250566eeba8da3e96b9199d9616ef0d",
-    "candidate_tree": "89b1069729e6cab459f705c18691b08440163627",
+    "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+    "candidate_parent": "b5cb0a8fc9762e55e2224fdb102977337cf7cc46",
+    "candidate_tree": "c88599484db10c0bcf3eeafa50d84746fa539060",
     "runtime_component_sha256": {
       "src/sciencemath/executive/router_v2.py": "7aebc77cd4e711e551f89d98943e22d47775a8935440ca285d78a0df3db3bdcb",
       "src/sciencemath/executive/skills.py": "9aba8945e624f061feb478ca673cb98c5f5c08578a0f02e92dbb0cbf71936d62",

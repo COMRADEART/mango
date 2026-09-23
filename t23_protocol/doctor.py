@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from typing import Any
 
 from sciencemath.executive.router_v2 import validate_router_contract
+from sciencemath.knowledge.corpus import load_corpus
 from sciencemath.web.fixture_provider import FixtureCorpus, FixtureSearchProvider
 from t21_protocol.doctor import run_doctor as run_prior_doctor
 from t21_protocol.util import read_json, sha256_file
@@ -13,6 +15,13 @@ from .author import author_cases, load_spec, shadow_labels
 from .applicability import validate_applicability
 from .context import CONSTRUCTION_TOKENS, EVALUATION_TOKENS
 from .contract import PATHS, load_t23_contract
+from .contract import CANDIDATE_COMMIT, CANDIDATE_TREE, enumerate_leaf_requirements
+from .blindness import audit_blindness, synthetic_provenance
+from .construction import run_shadow_construction
+from .construction_ledger import T23ConstructionLedger, frozen_bindings, verify_ledger
+from .exclusions import audit_exclusions, load_exclusion_sources
+from .manifest import verify_seal as verify_manifest_seal
+from .registry import check_real_path_registry
 from .graph import load_graph, validate_graph
 from .lock import verify_lock
 from .lifecycle import verify_lifecycle
@@ -33,19 +42,27 @@ def run_t23_doctor(root: Path, *, run_prior: bool = True) -> dict[str, Any]:
     registry = read_json(REGISTRY)
     validate_registry(registry)
     spec = load_spec(t23 / "author_specification.json")
+    leaves = enumerate_leaf_requirements(contract.document)
+    path_report = check_real_path_registry(root, require_absent=True)
+    exclusion_registry = read_json(t23 / "construction_exclusion_sources.json")
+    exclusions = load_exclusion_sources(root, exclusion_registry)
     policy = read_json(t23 / "private_blind_policy.json")
     provider_config = read_json(t23 / "production_provider_config.json")
     web = FixtureSearchProvider(FixtureCorpus([], query_time="2026-09-22"))
     provider = ProductionRouterProvider(root / "rag" / "gk_corpus", web_provider=web,
                                         workspace_mode="SYNTHETIC_DISPOSABLE")
     init_rows = provider.rows_executed
-    inputs, _ = author_cases(shadow_labels(), namespace="t23-shadow",
+    inputs, gold = author_cases(shadow_labels(), namespace="t23-shadow",
                              spec=spec, attachment_path="documents/shadow.txt")
     sample = [row for row in inputs if "insufficient_evidence" in row["case_id"]][:3]
     parity = decision_parity(sample, provider.generate(sample))
     checks = {
         "T23_AUTHOR_LOCK": _section(lock["status"] == "PASS" and lock["missing_bindings"] == 0,
                                     binding_count=lock["binding_count"]),
+        "T23_CANDIDATE_BINDING": _section(
+            lock["candidate_commit"] == CANDIDATE_COMMIT
+            and lock["candidate_tree"] == CANDIDATE_TREE
+            and contract.get("identity")["candidate_commit"] == CANDIDATE_COMMIT),
         "T23_PRODUCTION_EXPERIMENT_REGISTRY": _section(
             contract.experiment == "t23" and "t23" in CONSTRUCTION_TOKENS and "t23" in EVALUATION_TOKENS
             and set(CONSTRUCTION_TOKENS) == {"t21r15", "t21r16", "t21r17", "t22", "t23"}),
@@ -53,6 +70,16 @@ def run_t23_doctor(root: Path, *, run_prior: bool = True) -> dict[str, Any]:
             contract.get("construction_authorized") is False
             and contract.get("real_t23_paths") == list(PATHS.values())
             and all(not (root / path).exists() for path in PATHS.values())),
+        "T23_CONTRACT_LEAVES": _section(len(leaves) > 0,
+                                        leaf_requirement_count=len(leaves)),
+        "T23_REAL_PATH_REGISTRY": _section(path_report["registered"] == 22
+                                            and path_report["present"] == 0,
+                                            registered=path_report["registered"],
+                                            present=path_report["present"],
+                                            unknown=path_report["unknown"]),
+        "T23_EXCLUSION_SOURCES": _section(
+            len(exclusions) == 9 and len(exclusion_registry["required_milestones"]) == 17,
+            historical_milestones=18, dimensions=len(exclusions)),
         "T23_EVALUATION_GRAPH": _section(graph["status"] == "PASS", producer_count=graph["producer_count"]),
         "T23_PRODUCTION_PROVIDER": _section(
             init_rows == 0 and parity["status"] == "PASS"
@@ -66,6 +93,52 @@ def run_t23_doctor(root: Path, *, run_prior: bool = True) -> dict[str, Any]:
         "T23_ROUTER_METRICS": _section(len(registry["metrics"]) == 15 and registry["generic_fallback_consumers"] == 0),
         "EXECUTIVE_ROUTER": validate_router_contract(),
     }
+    blind = audit_blindness(root, inputs, gold, synthetic_provenance(), real=False)
+    unique = audit_exclusions(root, exclusion_registry, inputs, gold,
+                              load_corpus(root / "rag/gk_corpus"))
+    checks["T23_BLINDNESS_CHECKER"] = _section(blind["status"] == "PASS"
+                                                and blind["violations"] == 0,
+                                                violations=blind["violations"])
+    checks["T23_UNIQUENESS_EXCLUSIONS"] = _section(unique["status"] == "PASS"
+                                                   and unique["violations"] == 0,
+                                                   historical_milestones=unique["historical_milestones"],
+                                                   fingerprint_dimensions=len(unique["fingerprint_dimensions"]))
+    with TemporaryDirectory(prefix="t23-doctor-ledger-") as temp_ledger:
+        ledger_path = Path(temp_ledger) / "construction_run_ledger.json"
+        bindings = frozen_bindings(root, real=False, namespace="t23-doctor")
+        ledger = T23ConstructionLedger.create_exclusive(ledger_path, bindings)
+        duplicate_refused = False
+        try:
+            T23ConstructionLedger.create_exclusive(ledger_path, bindings)
+        except Exception:
+            duplicate_refused = True
+        ledger.fail("disposable doctor negative control")
+        retry_refused = False
+        try:
+            ledger.advance("MATERIALIZED")
+        except Exception:
+            retry_refused = True
+        checks["T23_LEDGER_SCHEMA_ONE_SHOT"] = _section(
+            duplicate_refused and retry_refused
+            and verify_ledger(ledger_path, bindings)["state"] == "FAILED")
+    with TemporaryDirectory(prefix="t23-doctor-rehearsal-") as temp_rehearsal:
+        workspace = Path(temp_rehearsal)
+        preseal_refused = False
+        try:
+            verify_manifest_seal(root, workspace)
+        except (OSError, ValueError, KeyError):
+            preseal_refused = True
+        rehearsal = run_shadow_construction(root, workspace)
+        checks["T23_CONSTRUCTION_GATE"] = _section(
+            rehearsal["gate"]["status"] == "PASS"
+            and rehearsal["gate"]["check_count"] >= 19,
+            checks=rehearsal["gate"]["check_count"])
+        checks["T23_MANIFEST_SEAL"] = _section(
+            rehearsal["seal"]["status"] == "PASS"
+            and rehearsal["seal"]["bindings"] >= 49,
+            bound_artifacts=rehearsal["seal"]["bindings"])
+        checks["T23_STATE_MACHINE_EVALUATION_LOCKOUT"] = _section(
+            preseal_refused and rehearsal["terminal_state"] == "SEALED")
     lifecycle_t22 = verify_lifecycle(root, "t22")
     lifecycle_t23 = verify_lifecycle(root, "t23")
     checks["HISTORICAL_LIFECYCLE_CONSISTENCY"] = _section(

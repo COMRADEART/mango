@@ -11,7 +11,7 @@ from sciencemath.executive.router_v2 import route_request
 from sciencemath.web.fixture_provider import FixtureCorpus, FixtureSearchProvider
 from t21_protocol.contract import load_contract
 from t21_protocol.errors import AuthorizationError, ContractError, LedgerError
-from t21_protocol.ledger import ConstructionLedger
+from t23_protocol.construction_ledger import T23ConstructionLedger
 from t21_protocol.util import read_json
 from t23_protocol.author import GOLD_ONLY, author_cases, fingerprint_root, load_spec, shadow_labels
 from t23_protocol.construction import run_real_construction, run_shadow_construction, verify_seal
@@ -48,7 +48,9 @@ def test_t23_contract_paths_are_closed_and_distinct() -> None:
     assert validate_t23_contract(contract.document)["status"] == "PASS"
     assert contract.get("construction_authorized") is False
     assert set(contract.get("real_t23_paths")) == set(PATHS.values())
-    assert all("t22" not in path for path in PATHS.values())
+    assert len(PATHS) == 22
+    assert all(not path.startswith(("evaluations/t22/", "rag/gk_holdout_t22"))
+               for path in PATHS.values())
     broken = json.loads(json.dumps(contract.document))
     broken["values"]["artifacts"]["corpus"] = "rag/gk_holdout_t22"
     with pytest.raises(ContractError):
@@ -99,13 +101,13 @@ def test_shadow_ledger_seal_and_exclusive_second_create() -> None:
         assert result["seal"]["status"] == "PASS"
         assert verify_seal(root)["status"] == "PASS"
         ledger = root / "evaluations/t23/construction_run_ledger.json"
-        assert read_json(ledger)["state"] == "COMPLETE"
+        assert read_json(ledger)["state"] == "GATE_PASS"
         with pytest.raises(LedgerError):
-            ConstructionLedger.create_exclusive(ledger, "t23")
+            T23ConstructionLedger.create_exclusive(ledger, read_json(ledger)["bindings"])
         marker = read_json(root / "evaluations/t23/HOLDOUT_FROZEN")
         manifest = read_json(root / "evaluations/t23/holdout_manifest.json")
-        assert marker["schema_version"] == "t23-holdout-frozen-v1"
-        assert manifest["schema_version"] == "t23-holdout-manifest-v1"
+        assert marker["schema_version"] == "t23-holdout-frozen-v2"
+        assert manifest["schema_version"] == "t23-holdout-manifest-v2"
         assert marker["construction_authorized"] is False
 
 
