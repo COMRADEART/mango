@@ -1,0 +1,42 @@
+{
+  "artifact": "T23_CONSTRUCTION_LEDGER",
+  "bindings": {
+    "attempt": 1,
+    "author_lock_sha256": "0ace0cc38bec6e66ce961035bc7fe66678ae1c900d45a58e57f7d828bea699db",
+    "authorization": "T23_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+    "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+    "candidate_tree": "c88599484db10c0bcf3eeafa50d84746fa539060",
+    "component_root": "2c4dca05f94ffc37cc583b2060daa2c6fe3832e8a7ab730f66a150f2786ed4f5",
+    "construction_contract_sha256": "97e36835523838c8cde2f2f135d69581e26d0e84eea44ee4a160b551166688c1",
+    "experiment": "T23",
+    "freeze_root": "6251544bff089783472fcf482af9b5b234d82744d879e1277626a878319b736c",
+    "material_mode": "REAL_BLIND",
+    "preconstruction_freeze_sha256": "bb49149a2a4cce4540de8d7d0abbb5f257feae47d9f15b9b3b047726cb3a0335",
+    "real_namespace": "t23",
+    "starting_preconstruction_commit": "e79fb932def8b691727517906cb1b0ddc86af3d1",
+    "starting_preconstruction_tree": "fed87e94983211cf25cdabb8fe975c98b1dae438"
+  },
+  "created_at": "2026-09-23T21:48:27.736045+00:00",
+  "events": [
+    {
+      "at": "2026-09-23T21:48:27.736045+00:00",
+      "state": "LEDGER_CREATED"
+    },
+    {
+      "at": "2026-09-23T21:48:27.814665+00:00",
+      "state": "MATERIALIZED"
+    },
+    {
+      "at": "2026-09-23T21:48:28.181379+00:00",
+      "state": "AUDITED"
+    },
+    {
+      "at": "2026-09-23T21:48:28.744524+00:00",
+      "state": "GATE_PASS"
+    }
+  ],
+  "identity_root": "50eb6a7f3b8e5fa234743ef05ae3718eeb0203f293f890207a37aa667b2b750d",
+  "schema_version": "t23-construction-ledger-v2",
+  "state": "GATE_PASS",
+  "updated_at": "2026-09-23T21:48:28.744524+00:00"
+}

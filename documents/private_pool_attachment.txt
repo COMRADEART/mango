@@ -1,0 +1,35 @@
+VEYLMARK REGIONAL COMPENDIUM
+Synthetic Reference Document, Edition 1
+Prepared within the provisioning workspace; all content is invented fiction.
+
+SECTION 1. GEOGRAPHY OF THE PENINSULA
+
+The Veylmark Peninsula occupies the western shore of the continent of Cindralle. Its 914-kilometre coast runs from Stravent Head in the northwest to the Talvara mole in the south, broken only by the estuary of the River Sallowmere and the roadstead of Talvara Bay. Inland, three belts of country succeed one another from west to east: the chalk maritime fringe, the moorland plateau, and the highland wall of the Dunmarrow Fells, whose summit Mount Ardvel rises to 1,436 metres. North of the fells the Vessik Uplands descend toward the continental interior. The peninsula's area is 48,210 square kilometres, and the 2021 census recorded 2.9 million inhabitants.
+
+SECTION 2. SETTLEMENTS
+
+Ashquill, the capital, stands on a limestone shelf above the Sallowmere estuary and held 612,000 people at the 2021 census. Its charter dates from 1288, its Lantern Tower from 1552, and its Sallowmere Viaduct from 1899. Ondrel Landing, a settlement of 240 on the northern shore of Lake Ondrel, serves the lakeside research station. Lantrow, the only village on the Isle of Kethrenne, holds 640 residents and the ferry berth. Millward Quay, 31 kilometres upriver from Ashquill, marks the tidal limit of barge traffic on the Sallowmere.
+
+SECTION 3. INSTITUTIONS
+
+Six institutions anchor the peninsula's civic and scholarly life. The Ashquill Municipal Archive, on Archive Row, keeps the city's records from 1288 onward in 14 kilometres of shelving. The Talvara Harbor Authority, incorporated in 1897, operates the deepwater port and maintains its Record Room of 440,000 cargo manifests. The Ondrel Institute of Limnology, founded in 1911, studies Lake Ondrel and publishes an uninterrupted series of annual reports since 1913. The Dunmarrow Fell Weather Observatory, established in 1902 at 872 metres, holds the continent's longest unbroken highland climate record. The Veylmark Institute of Standards and Measures, chartered in 1908, keeps the Ashquill standard metre bar, replica A-4. The Society for Cindralle Antiquities, founded in 1875, surveys monuments and publishes the Handbook of Cindralle Antiquities.
+
+SECTION 4. NOTABLE PERSONS
+
+The peninsula's record-keeping tradition names a small canon of figures. Henrika Valdross, cartographer, 1841 to 1902, produced the 21-sheet atlas of the coast in 1867 and devised the hydralis barometer of 1869. Emeryss Calloud, limnologist, 1888 to 1954, established the three-layer model of Lake Ondrel in her 1921 monograph and directed research at the Ondrel Institute from 1930 to 1949. Aderis Threave, engineer, 1830 to 1899, designed the Kethrenne Light of 1861, the first on Cindralle with a rotating optical assembly. Doren Pellisier, meteorologist, 1874 to 1949, standardized the observatory's record forms. Roderic Dravont, historian, 1880 to 1949, surveyed the Order of the Quiet Lantern in 1934. Marlowe Kestling, folklorist, 1899 to 1971, collected the valley's 94 folk songs published as Songs of the Sallowmere in 1936. Sabine Ombrey, archivist, 1907 to 1989, calendared the lantern correspondence. Vessa Brask, textile historian, 1948 to 2016, reconstructed the Miradell Textile Works workforce. Olin Quillwood, printer, 1855 to 1921, founded the Amberleaf Press in 1889. Corla Vardis, metrologist, 1901 to 1980, led the adoption of the international system of units. Sarel Miradell, merchant and patron, 1389 to 1455, financed the Stone Quay of 1421.
+
+SECTION 5. INSTRUMENTS AND DEVICES
+
+Five devices recur throughout the peninsula's technical literature. The hydralis barometer of 1869 compensated for latitude error in heighting and was used across the coastal triangulation. The Fell-line anemograph, installed at the weather observatory in 1902, remains calibrated and in daily service. The quartz-drum seismoscope, placed at the standards institute in 1926, has recorded regional seismic events continuously since. The Amberleaf rotary press model AR-3 of 1912 reached 12,000 impressions per hour and was licensed to four other printers. The harbor tidal observatory of 1903 still logs water levels twice daily beneath the eastern mole.
+
+SECTION 6. ARCHIVES AND RECORDS
+
+Four repositories hold the bulk of the peninsula's documentation. The Ashquill Municipal Archive classes its collections as municipal, ecclesiastical, guild, and deposited family papers, with a two-letter prefix for each class. The Talvara Harbor Record Room catalogues manifests by vessel, voyage, and arrival date, and issues certified copies under the Authority's document seal. The Kethrenne Lighthouse Trust keeps the Light Log Journals from 1861 to 1984. The Society for Cindralle Antiquities holds the Cartographic Guild deposit of 1958 and 11,000 photographic plates. Originals in the Record Room never leave the premises, a standing rule since 1938.
+
+SECTION 7. CHRONOLOGY
+
+1104 first record of the Ashquill river landing; 1216 founding of the Order of the Quiet Lantern; 1288 municipal charter of Ashquill; 1421 Stone Quay financed by Sarel Miradell; 1547 dissolution of the lantern order; 1791 opening of the Miradell Textile Works; 1811 founding of the Veylmark Cartographic Guild; 1861 completion of the Kethrenne Light; 1867 publication of the coastal atlas; 1869 invention of the hydralis barometer; 1875 founding of the Society for Cindralle Antiquities; 1878 charter of the Kethrenne Lighthouse Trust; 1889 founding of the Amberleaf Press; 1897 incorporation of the Talvara Harbor Authority; 1902 establishment of the weather observatory; 1908 charter of the standards institute; 1911 founding of the Ondrel Institute of Limnology; 1921 publication of the lake's deep-layer monograph; 1934 publication of the lantern order's history; 1936 publication of Songs of the Sallowmere; 1972 adoption of the international system of units; 1984 automation of the Kethrenne Light.
+
+SECTION 8. NOTES ON THIS DOCUMENT
+
+This compendium is a synthetic private reference document. Every region, city, institution, person, device, and work named here is invented, and every figure and date belongs to the same invented world. The document was written fresh for this provisioning workspace; it does not copy, adapt, or paraphrase any existing publication, and it contains no real personal data and no instructions addressed to any system or reader of any kind.

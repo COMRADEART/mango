@@ -1,0 +1,52 @@
+{
+  "collisions": {
+    "case_ids": 0,
+    "chunk_ids": 0,
+    "entity_identities": 0,
+    "exact_answers": 0,
+    "exact_queries": 0,
+    "exact_source_text": 0,
+    "relations": 0,
+    "source_ids": 0,
+    "verbatim_attack_wording": 0
+  },
+  "cross_suite_collisions": 0,
+  "duplicates": {
+    "case_ids": 0,
+    "chunk_ids": 0,
+    "entity_identities": 0,
+    "exact_answers": 0,
+    "exact_queries": 0,
+    "exact_source_text": 0,
+    "relations": 0,
+    "source_ids": 0,
+    "verbatim_attack_wording": 0
+  },
+  "fingerprint_dimensions": [
+    "case_ids",
+    "entity_identities",
+    "source_ids",
+    "chunk_ids",
+    "exact_queries",
+    "exact_answers",
+    "exact_source_text",
+    "verbatim_attack_wording",
+    "relations"
+  ],
+  "forbidden_counts": {
+    "case_ids": 71987,
+    "chunk_ids": 60853,
+    "entity_identities": 64064,
+    "exact_answers": 25682,
+    "exact_queries": 71466,
+    "exact_source_text": 63005,
+    "relations": 0,
+    "source_ids": 19447,
+    "verbatim_attack_wording": 1272
+  },
+  "historical_milestones": 18,
+  "schema_version": "t23-exclusion-audit-v1",
+  "semantic_fingerprint_duplicates": 0,
+  "status": "PASS",
+  "violations": 0
+}
