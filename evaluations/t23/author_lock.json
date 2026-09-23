@@ -1,0 +1,151 @@
+{
+  "artifact": "T23_PRODUCTION_AUTHOR_LOCK",
+  "author_fingerprint_root": "827cb7f44b619a9ae676e82c90602157c2feb1e98c2c0f9195b3ec0f28080743",
+  "bindings": {
+    "author_implementation": {
+      "path": "t23_protocol/author.py",
+      "sha256": "f6274b923a7991b778c7a29dd66980aa8679e18c190c2605f45d80eb22ce3a87"
+    },
+    "author_specification": {
+      "path": "evaluations/t23/author_specification.json",
+      "sha256": "b242a044ed3cbb052c622a0e71a84a2a562f54c20ad0d7a68f6f48aa05a9f23c"
+    },
+    "blind_private_ignore_policy": {
+      "path": ".gitignore",
+      "sha256": "520beb481d8d46832c59ebe079561641f09c674fb801e3c32f0be916f9c1b20c"
+    },
+    "candidate_identity": {
+      "path": "evaluations/t23/candidate_identity.json",
+      "sha256": "2859380f8e8a8a989449f04f201c3808ada2656ba6d5c0e1ea47fb78dd8bf8bb"
+    },
+    "capability_registry": {
+      "path": "evaluations/t23/capability_registry.json",
+      "sha256": "5de4ec40910c9c54d1b8406c15f8cd1a1d9111178faeb9ada9cf2aba221e11ab"
+    },
+    "construction_blindness_checker": {
+      "path": "t23_protocol/blindness.py",
+      "sha256": "f7c8b0804f4fa228e451252bcfa23387a34d5a9359c609e73d01e7a5ec427cdd"
+    },
+    "construction_contract": {
+      "path": "evaluations/t23/t23_master_contract.json",
+      "sha256": "97e36835523838c8cde2f2f135d69581e26d0e84eea44ee4a160b551166688c1"
+    },
+    "construction_exclusion_sources": {
+      "path": "evaluations/t23/construction_exclusion_sources.json",
+      "sha256": "e2964156664be9057948f305a3e7192eb12ef7963131deaaca212d2de534ab37"
+    },
+    "construction_gate": {
+      "path": "t23_protocol/construction_gate.py",
+      "sha256": "873f0b28cd239e4b8e479d88e28c97e48f3f5b477dda86813c0308a56403930b"
+    },
+    "construction_implementation": {
+      "path": "t23_protocol/construction.py",
+      "sha256": "381e93f0fb7901ad0be6b768270d10655f42ee9bc1c223e8dbb05e587f00d7c2"
+    },
+    "construction_ledger_schema": {
+      "path": "t23_protocol/construction_ledger.py",
+      "sha256": "acdbca9cc4d9fddb9d5b544d5286f27d28d329cb0460913949c9c78a69a60944"
+    },
+    "construction_manifest_and_seal": {
+      "path": "t23_protocol/manifest.py",
+      "sha256": "3ca23489e847609a3249f2f82d53e51ff84b95e0f3ee5d6e3ec94051a70a94bb"
+    },
+    "construction_uniqueness_checker": {
+      "path": "t23_protocol/exclusions.py",
+      "sha256": "0a4f10c064dcf0b7cebb58319f76325869977e2bcb2cfa12a121b6be3c99e142"
+    },
+    "contract_validator_and_leaf_enumerator": {
+      "path": "t23_protocol/contract.py",
+      "sha256": "5f366d95db8aec7b071fdcca7742fa3c5f9bf22ed6004125614c9faec5abad97"
+    },
+    "doctor_implementation": {
+      "path": "t23_protocol/doctor.py",
+      "sha256": "4de915d81bb2b8507ee6524f64b2cc7002c1b63b2ef640b1c06bbe5d91dea299"
+    },
+    "evaluation_graph": {
+      "path": "evaluations/t23/production_evaluation_graph.json",
+      "sha256": "06b5a6bce1ff62dc79a591ba8568ea997855d585f7235079363beab5a8e72ff2"
+    },
+    "evaluation_graph_validator": {
+      "path": "t23_protocol/graph.py",
+      "sha256": "be60876a140b1034fdb63a58305aa3ae56659c7778fd045ade08d404ffe55ae8"
+    },
+    "evaluation_implementation": {
+      "path": "t23_protocol/evaluation.py",
+      "sha256": "99e4ea0e72ab2c709849d5aab1e169213c769d8940fd082fc108e48bed763d07"
+    },
+    "experiment_registry": {
+      "path": "t23_protocol/context.py",
+      "sha256": "976d5e5192f53d81ccd446aa360d0eedad5d08f7db79ff685b93d0f1e1567b19"
+    },
+    "historical_exclusion": {
+      "path": "evaluations/t23/historical_exclusion.json",
+      "sha256": "5682ca739fed7e02ce29bd084a8b5419205aae19c3a8314001891eeb4daff834"
+    },
+    "preregistered_router_floors": {
+      "path": "evaluations/t23/router_metric_registry.json",
+      "sha256": "d3c68f63e0847b12634c5a2189ab02098abcba72370710b1775b26bba25a9feb"
+    },
+    "privacy_policy": {
+      "path": "evaluations/t23/private_blind_policy.json",
+      "sha256": "72ed4ed3d13d9b3d2a50b7e52b8e3dea6d798bd5416ce1d30fa7800c6caad8ef"
+    },
+    "production_provider": {
+      "path": "t23_protocol/provider.py",
+      "sha256": "a6fb2b3ecbd2b8c9005a9ae36ec0ea70eed2c026d5228732faa2128e4aafbc96"
+    },
+    "production_provider_config": {
+      "path": "evaluations/t23/production_provider_config.json",
+      "sha256": "982a5827cbe5fd4c5f6dffb2fd271fc66378fb64495ecfda95d090e3d65f1e57"
+    },
+    "production_scorer": {
+      "path": "t23_protocol/scorer.py",
+      "sha256": "6e0c9101780013cbbcf9b28bbe00fcda9d1327ede9e471b7a25be6d02ea58305"
+    },
+    "real_path_registry_checker": {
+      "path": "t23_protocol/registry.py",
+      "sha256": "9b6ac8f87432afbbe66c0128c4027f65d673f20d50f6a3684e72ebde3d70820f"
+    },
+    "route_registry": {
+      "path": "evaluations/t23/route_registry.json",
+      "sha256": "e08cf1f26a889d5dad96d35610cf561dbac09629142a4cf13ea665e4081ff5ee"
+    },
+    "router_contract": {
+      "path": "evaluations/t23/executive_router_contract.json",
+      "sha256": "33fcc66f5d25124681d2de32cdbe1d85a9f5618887262616a4ad998ca89d0446"
+    },
+    "router_metric_semantics_and_floors": {
+      "path": "evaluations/t23/production_router_metric_registry.json",
+      "sha256": "34497ac8c7982969813374f56e3450f51e92e4da7058ceb5e0aa87d27ac9635f"
+    },
+    "t22_hash_only_exclusion_anchor": {
+      "path": "evaluations/t23/t22_exclusion_anchor.json",
+      "sha256": "f514aea0e8603a440f2a672fb8e02fd03d8ee0f54114cbccfe2447e0a2e24788"
+    },
+    "t22_protected_implementations": {
+      "path": "evaluations/t22/metric_implementation_registry.json",
+      "sha256": "92546df4a793b768d8cb88d2166ea935e795d24a5e4bf3f39c56736219f6c81f"
+    },
+    "t22_protected_metrics": {
+      "path": "evaluations/t22/official_metric_registry.json",
+      "sha256": "b56723f754ce173182c500d8d76cae3495081567447a9ac4ec89f00e443f6121"
+    },
+    "t22_protected_semantics": {
+      "path": "evaluations/t22/official_metric_semantics.json",
+      "sha256": "d061033f094321930556bd7ba99c4df9f61d49dbccef966049e40786b15e72e0"
+    },
+    "t22_runtime_freeze": {
+      "path": "evaluations/t22/runtime_freeze.json",
+      "sha256": "5098d04e00e3fac93f32f634c1afd76b8eae3d0ab7760ae1fc5b2ee494836385"
+    }
+  },
+  "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+  "candidate_tree": "c88599484db10c0bcf3eeafa50d84746fa539060",
+  "construction_authorized": false,
+  "construction_mode": "PRECONSTRUCTION_ONLY",
+  "experiment": "t23",
+  "missing_bindings": 0,
+  "runtime_root": "63f3b446f6e147ee0635a74702920f6e5ca367847bb3d165d74341402c1941e1",
+  "schema_version": "t23-author-lock-v2",
+  "taxonomy_spec_root": "efe7ef2cbac55147e3c3f803868245dd279be436107630eb4f857fe112647057"
+}

@@ -1,0 +1,184 @@
+{
+  "artifact": "T23_PRODUCTION_SHADOW_LIFECYCLE",
+  "author_fingerprint_root": "e2d9ea0652d6ad576d9d873d49d57ee8e9447532b46703b68f22eea4ef042b6b",
+  "comparisons": {
+    "artifact_graph_differences": 0,
+    "construction_transition_differences": 0,
+    "evaluation_transition_differences": 0,
+    "metric_calculation_differences": 0
+  },
+  "evaluation_graph": {
+    "dangling_inputs": [],
+    "missing_nodes": [],
+    "missing_producers": [],
+    "producer_count": 21,
+    "status": "PASS",
+    "stub_production_nodes": []
+  },
+  "material": "DISPOSABLE_SYNTHETIC_NONBLIND",
+  "real_blind_rows": 0,
+  "real_construction_attempts": 0,
+  "real_evaluation_attempts": 0,
+  "real_t23_paths_touched": false,
+  "registered_real_t23_paths": 22,
+  "runs": [
+    {
+      "artifact_graph": {
+        "dangling_inputs": [],
+        "missing_nodes": [],
+        "missing_producers": [],
+        "producer_count": 21,
+        "status": "PASS",
+        "stub_production_nodes": []
+      },
+      "construction_product_sha256": {
+        "documents/shadow.txt": "0ada15f3a12cf0fb02d7e75700c2aee756903b96a716a04376d83101746cba8c",
+        "evaluations/t23/construction_audits.json": "edea69bcfe76a578582fa5c7a66f9b69149f12459b657b3a89366c4cc7150f55",
+        "evaluations/t23/suites/gold.jsonl": "ae138b80b2377c017d0ac5d140919992d5147ae3ac331c1228cf3a252c16eb7b",
+        "evaluations/t23/suites/inputs.jsonl": "de7eb4354706d1d316a7c9bbcd3bbe28805b289418657575d270b68749745f69",
+        "rag/gk_holdout_t23/chunks.jsonl": "f8adf753dac76c3a013eb6e2e86890bc5bd1eada4de689d7610788006139bbe5",
+        "rag/gk_holdout_t23/corpus_manifest.json": "9170b3f24427f077c3443e08d093835cc28c95add5ed9a27e90af3f436f16492",
+        "rag/gk_holdout_t23/sources.jsonl": "65c2a10ec27f05b65093ee9d148be40a53f7ccb62bf85f00b7213253bb128e5a"
+      },
+      "construction_terminal": "SEALED",
+      "construction_transitions": [
+        "QUALIFIED",
+        "CONSTRUCTION_STARTED",
+        "CONSTRUCTED",
+        "SEALED"
+      ],
+      "disposable_workspace_destroyed": true,
+      "evaluation_product_sha256": {
+        "candidate_output_semantics": "7942a4c63f8f7f91ac94451dc3be0a40416adc5d36f8e5020786257c682b0cfe",
+        "evaluations/t23/capability_evaluator.jsonl": "0a0aa84fdc832e35340b1fd2821d53b841761a666eb725a97dd63d107a86f1db",
+        "evaluations/t23/holdout_results.json": "06dfc18bc22861c2ad009962e0e7647b531013e364ff883c230aa66da8c7ff72",
+        "evaluations/t23/protected_t22_floor_evidence.json": "c71c42d5f893d2c73b77a82ab8de94fd9cd6c8040a093923ea2315010fad2520",
+        "evaluations/t23/protected_t22_metric_evidence.json": "06eadbd0d98156c6ca1a333dc32d331d082e0b3ee5f06d57c0a294d51feffadd",
+        "evaluations/t23/router_decisions.jsonl": "bede77f89e18530221c51c937eb3c79320af02d4ee9eba1dd432c9ba466194d1",
+        "evaluations/t23/router_evaluator.jsonl": "7a4db427c927e3ed7ec2b6409995b7eaab7c391f23a6237871029b8f094c5541",
+        "evaluations/t23/router_floor_evidence.json": "aaeaa644868e5751fb1a99f240bd6ec80c3eaeeb09c4e2d8aacbe2383405168b",
+        "evaluations/t23/router_metric_evidence.json": "0e8893fd3526da780c3a1fa52cdccc4e33e08898c058d0de41e5d7b6c0bc3ee0"
+      },
+      "evaluation_terminal": "EVALUATION_COMPLETE",
+      "evaluation_transitions": [
+        "SEALED",
+        "EVALUATION_STARTED",
+        "EVALUATION_COMPLETE"
+      ],
+      "protected_t22_floors": 32,
+      "provider_initialization_rows": 0,
+      "provider_parity": {
+        "mismatches": {
+          "reason_code": 0,
+          "route_id": 0,
+          "selected_capability": 0
+        },
+        "rows": 1280,
+        "status": "PASS"
+      },
+      "real_t23_paths_touched": false,
+      "router_floor_pass_count": 15,
+      "router_metrics": {
+        "ambiguous_decision_events": 0,
+        "conflict_abstention_route_accuracy": 1.0,
+        "current_route_accuracy": 1.0,
+        "determinism_mismatches": 0,
+        "gold_signal_leakage_events": 0,
+        "historical_route_accuracy": 1.0,
+        "overall_route_accuracy": 1.0,
+        "reason_route_contradictions": 0,
+        "route_macro_accuracy": 1.0,
+        "security_route_accuracy": 1.0,
+        "static_local_accuracy": 1.0,
+        "tool_route_accuracy": 1.0,
+        "unavailable_tool_route_events": 0,
+        "unnecessary_web_rate": 0.0,
+        "unsafe_fallback_events": 0
+      },
+      "rows": 1280,
+      "run": 1,
+      "seal_status": "PASS",
+      "status": "PASS"
+    },
+    {
+      "artifact_graph": {
+        "dangling_inputs": [],
+        "missing_nodes": [],
+        "missing_producers": [],
+        "producer_count": 21,
+        "status": "PASS",
+        "stub_production_nodes": []
+      },
+      "construction_product_sha256": {
+        "documents/shadow.txt": "0ada15f3a12cf0fb02d7e75700c2aee756903b96a716a04376d83101746cba8c",
+        "evaluations/t23/construction_audits.json": "edea69bcfe76a578582fa5c7a66f9b69149f12459b657b3a89366c4cc7150f55",
+        "evaluations/t23/suites/gold.jsonl": "ae138b80b2377c017d0ac5d140919992d5147ae3ac331c1228cf3a252c16eb7b",
+        "evaluations/t23/suites/inputs.jsonl": "de7eb4354706d1d316a7c9bbcd3bbe28805b289418657575d270b68749745f69",
+        "rag/gk_holdout_t23/chunks.jsonl": "f8adf753dac76c3a013eb6e2e86890bc5bd1eada4de689d7610788006139bbe5",
+        "rag/gk_holdout_t23/corpus_manifest.json": "9170b3f24427f077c3443e08d093835cc28c95add5ed9a27e90af3f436f16492",
+        "rag/gk_holdout_t23/sources.jsonl": "65c2a10ec27f05b65093ee9d148be40a53f7ccb62bf85f00b7213253bb128e5a"
+      },
+      "construction_terminal": "SEALED",
+      "construction_transitions": [
+        "QUALIFIED",
+        "CONSTRUCTION_STARTED",
+        "CONSTRUCTED",
+        "SEALED"
+      ],
+      "disposable_workspace_destroyed": true,
+      "evaluation_product_sha256": {
+        "candidate_output_semantics": "7942a4c63f8f7f91ac94451dc3be0a40416adc5d36f8e5020786257c682b0cfe",
+        "evaluations/t23/capability_evaluator.jsonl": "0a0aa84fdc832e35340b1fd2821d53b841761a666eb725a97dd63d107a86f1db",
+        "evaluations/t23/holdout_results.json": "06dfc18bc22861c2ad009962e0e7647b531013e364ff883c230aa66da8c7ff72",
+        "evaluations/t23/protected_t22_floor_evidence.json": "c71c42d5f893d2c73b77a82ab8de94fd9cd6c8040a093923ea2315010fad2520",
+        "evaluations/t23/protected_t22_metric_evidence.json": "06eadbd0d98156c6ca1a333dc32d331d082e0b3ee5f06d57c0a294d51feffadd",
+        "evaluations/t23/router_decisions.jsonl": "bede77f89e18530221c51c937eb3c79320af02d4ee9eba1dd432c9ba466194d1",
+        "evaluations/t23/router_evaluator.jsonl": "7a4db427c927e3ed7ec2b6409995b7eaab7c391f23a6237871029b8f094c5541",
+        "evaluations/t23/router_floor_evidence.json": "aaeaa644868e5751fb1a99f240bd6ec80c3eaeeb09c4e2d8aacbe2383405168b",
+        "evaluations/t23/router_metric_evidence.json": "0e8893fd3526da780c3a1fa52cdccc4e33e08898c058d0de41e5d7b6c0bc3ee0"
+      },
+      "evaluation_terminal": "EVALUATION_COMPLETE",
+      "evaluation_transitions": [
+        "SEALED",
+        "EVALUATION_STARTED",
+        "EVALUATION_COMPLETE"
+      ],
+      "protected_t22_floors": 32,
+      "provider_initialization_rows": 0,
+      "provider_parity": {
+        "mismatches": {
+          "reason_code": 0,
+          "route_id": 0,
+          "selected_capability": 0
+        },
+        "rows": 1280,
+        "status": "PASS"
+      },
+      "real_t23_paths_touched": false,
+      "router_floor_pass_count": 15,
+      "router_metrics": {
+        "ambiguous_decision_events": 0,
+        "conflict_abstention_route_accuracy": 1.0,
+        "current_route_accuracy": 1.0,
+        "determinism_mismatches": 0,
+        "gold_signal_leakage_events": 0,
+        "historical_route_accuracy": 1.0,
+        "overall_route_accuracy": 1.0,
+        "reason_route_contradictions": 0,
+        "route_macro_accuracy": 1.0,
+        "security_route_accuracy": 1.0,
+        "static_local_accuracy": 1.0,
+        "tool_route_accuracy": 1.0,
+        "unavailable_tool_route_events": 0,
+        "unnecessary_web_rate": 0.0,
+        "unsafe_fallback_events": 0
+      },
+      "rows": 1280,
+      "run": 2,
+      "seal_status": "PASS",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "t23-production-shadow-lifecycle-v1",
+  "status": "PASS"
+}

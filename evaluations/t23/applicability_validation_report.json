@@ -1,0 +1,125 @@
+{
+  "applicability_decision_root": "54ef580e62245c713fa88c8b4206e3657292eb34b44d67159de51dde698ed78d",
+  "classified_failures": [
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21_protocol_kernel.py::test_construction_error_marks_ledger_failed"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21_protocol_kernel.py::test_construction_phase_api_twice_stops_at_sealed"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21_protocol_kernel.py::test_full_synthetic_protocol_twice_uses_separate_phases"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21_protocol_kernel.py::test_real_mode_dry_rehearsal_stops_at_sealed"
+    },
+    {
+      "classification": "STALE_PRECONSTRUCTION_ASSERTION",
+      "test_node_id": "tests/test_t21_protocol_kernel.py::test_real_r15_paths_are_absent"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r10_preconstruction.py::test_end_to_end_nonblind_miniature_and_all_controls_pass"
+    },
+    {
+      "classification": "STALE_PRECONSTRUCTION_ASSERTION",
+      "test_node_id": "tests/test_t21r10_preconstruction.py::test_every_real_r10_holdout_and_exposure_path_remains_absent"
+    },
+    {
+      "classification": "STALE_PRECONSTRUCTION_ASSERTION",
+      "test_node_id": "tests/test_t21r10_preconstruction.py::test_static_scanner_uniqueness_and_blindness_all_pass"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r11_preconstruction.py::test_evaluator_freeze_rehashes_every_component"
+    },
+    {
+      "classification": "STALE_PRECONSTRUCTION_ASSERTION",
+      "test_node_id": "tests/test_t21r11_preconstruction.py::test_every_real_r11_blind_and_exposure_path_is_absent"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r11_preconstruction.py::test_remediation_provenance_binds_every_production_change"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r11_preconstruction.py::test_runtime_freeze_rehashes_every_component"
+    },
+    {
+      "classification": "STALE_PRECONSTRUCTION_ASSERTION",
+      "test_node_id": "tests/test_t21r12_preconstruction.py::test_real_r12_paths_absent"
+    },
+    {
+      "classification": "STALE_PRECONSTRUCTION_ASSERTION",
+      "test_node_id": "tests/test_t21r13_preconstruction.py::test_real_r13_paths_absent"
+    },
+    {
+      "classification": "STALE_PRECONSTRUCTION_ASSERTION",
+      "test_node_id": "tests/test_t21r16_preconstruction.py::test_real_r16_paths_absent"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r16_preconstruction.py::test_runtime_contract_is_derived_from_frozen_modules"
+    },
+    {
+      "classification": "STALE_PRECONSTRUCTION_ASSERTION",
+      "test_node_id": "tests/test_t21r17_preconstruction.py::test_real_r17_paths_absent"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components"
+    },
+    {
+      "classification": "SUPERSEDED_HISTORICAL_ASSERTION",
+      "test_node_id": "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components"
+    },
+    {
+      "classification": "STALE_PRECONSTRUCTION_ASSERTION",
+      "test_node_id": "tests/test_t22_preconstruction.py::test_real_t22_paths_absent"
+    }
+  ],
+  "failure_set_sha256": "4b75ec72013f9d091dfb8a548db4dc70a50f47052a0b65d58c0c2dc089c6b550",
+  "live_failures": 0,
+  "observed_failures": 26,
+  "raw_pytest_failed": 26,
+  "recognized_historical_failures": 26,
+  "replacement_protections_passed": 26,
+  "replacement_protections_total": 26,
+  "schema_version": "t23-applicability-verdict-v1",
+  "stale_preconstruction": 9,
+  "status": "PASS",
+  "superseded_historical": 17,
+  "unexpected_historical_failures": 0,
+  "unexpected_historical_passes": [],
+  "unknown_failures": 0,
+  "unrecognized_failures": [],
+  "verdict": "T23_APPLICABILITY_AWARE_TEST_GATE_PASS"
+}

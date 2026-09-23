@@ -19,6 +19,28 @@ rag/corpus/*.jsonl
 # --- Evaluation predictions can be large; keep metrics/manifests ---
 evaluations/*/predictions.jsonl
 
+# T23 one-shot blind material is private; preconstruction specifications stay tracked.
+rag/gk_holdout_t23/
+evaluations/t23/suites/
+evaluations/t23/construction_run_ledger.json
+evaluations/t23/construction_audits.json
+evaluations/t23/holdout_manifest.json
+evaluations/t23/HOLDOUT_FROZEN
+evaluations/t23/evaluation_run_ledger.json
+evaluations/t23/router_decisions.jsonl
+evaluations/t23/selected_capability_execution.jsonl
+evaluations/t23/candidate_outputs.jsonl
+evaluations/t23/router_evaluator.jsonl
+evaluations/t23/capability_evaluator.jsonl
+evaluations/t23/raw_results.jsonl
+evaluations/t23/router_metric_evidence.json
+evaluations/t23/router_floor_evidence.json
+evaluations/t23/t22_disposable_scorer_rehearsal.json
+evaluations/t23/protected_t22_metric_evidence.json
+evaluations/t23/protected_t22_floor_evidence.json
+evaluations/t23/holdout_results.json
+evaluations/t23/evaluation_provenance.json
+
 # --- T18 persistent memory: local runtime DBs never in git ---
 runtime/memory/*
 !runtime/memory/.gitkeep

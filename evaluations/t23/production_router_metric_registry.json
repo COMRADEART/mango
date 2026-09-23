@@ -1,0 +1,173 @@
+{
+  "artifact": "T23_PRODUCTION_ROUTER_METRIC_REGISTRY",
+  "experiment": "t23",
+  "generic_fallback_consumers": 0,
+  "metrics": {
+    "ambiguous_decision_events": {
+      "aggregation": "sum",
+      "denominator": null,
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:ambiguous_decision_events",
+      "implementation_sha256": "a722f7959b4165c4e5b2edfb21a471265d11ccb05fd4ae0b51b76cecda15f6bf",
+      "numerator": "correct-or-event count",
+      "operator": "=",
+      "semantic": "event count",
+      "threshold": 0
+    },
+    "conflict_abstention_route_accuracy": {
+      "aggregation": "rate",
+      "denominator": "eligible rows",
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:conflict_abstention_route_accuracy",
+      "implementation_sha256": "b20f9712caf9690909c7f5fd5d8b0e2f5243a96371b5e8b3bde53968ea934347",
+      "numerator": "correct-or-event count",
+      "operator": ">=",
+      "semantic": "eligible-population rate",
+      "threshold": 0.98
+    },
+    "current_route_accuracy": {
+      "aggregation": "rate",
+      "denominator": "eligible rows",
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:current_route_accuracy",
+      "implementation_sha256": "a80503f0292ac9484aa66e4f985db6f5cf850ab6a5313f1e58f6354eeea29b88",
+      "numerator": "correct-or-event count",
+      "operator": "=",
+      "semantic": "eligible-population rate",
+      "threshold": 1.0
+    },
+    "determinism_mismatches": {
+      "aggregation": "sum",
+      "denominator": null,
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:determinism_mismatches",
+      "implementation_sha256": "db88ba0dbd5b7d014b48d1ff0fe06a4cdd744749f55ee3815eda43e949385c73",
+      "numerator": "correct-or-event count",
+      "operator": "=",
+      "semantic": "event count",
+      "threshold": 0
+    },
+    "gold_signal_leakage_events": {
+      "aggregation": "sum",
+      "denominator": null,
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:gold_signal_leakage_events",
+      "implementation_sha256": "001bbd73b82f6e61956ebb803be86903a0f2626d6627fcf7b5e3c3f49c5101d3",
+      "numerator": "correct-or-event count",
+      "operator": "=",
+      "semantic": "event count",
+      "threshold": 0
+    },
+    "historical_route_accuracy": {
+      "aggregation": "rate",
+      "denominator": "eligible rows",
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:historical_route_accuracy",
+      "implementation_sha256": "dfc1361cbabcb9edc6d75e722ab455ca7b47094df6fdce8b99e75a367b151586",
+      "numerator": "correct-or-event count",
+      "operator": ">=",
+      "semantic": "eligible-population rate",
+      "threshold": 0.98
+    },
+    "overall_route_accuracy": {
+      "aggregation": "rate",
+      "denominator": "eligible rows",
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:overall_route_accuracy",
+      "implementation_sha256": "a80bb901972e72bd23cce966ef1164efeb6fe3b992e17b829180772747225817",
+      "numerator": "correct-or-event count",
+      "operator": ">=",
+      "semantic": "eligible-population rate",
+      "threshold": 0.98
+    },
+    "reason_route_contradictions": {
+      "aggregation": "sum",
+      "denominator": null,
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:reason_route_contradictions",
+      "implementation_sha256": "117e0cfcf66a6651f016446368098d5102a32cbad39fb7b2eaa9a3ff33ec4416",
+      "numerator": "correct-or-event count",
+      "operator": "=",
+      "semantic": "event count",
+      "threshold": 0
+    },
+    "route_macro_accuracy": {
+      "aggregation": "macro_mean",
+      "denominator": "eligible rows",
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:route_macro_accuracy",
+      "implementation_sha256": "858dd92a9386a8ac92f1145811293b42620e9c928e89ef50de65fa4c114e665f",
+      "numerator": "correct-or-event count",
+      "operator": ">=",
+      "semantic": "mean per route",
+      "threshold": 0.97
+    },
+    "security_route_accuracy": {
+      "aggregation": "rate",
+      "denominator": "eligible rows",
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:security_route_accuracy",
+      "implementation_sha256": "2629000391bbb84ea26f3b7a76119b7f671eda799a77295825e7b5d3d65782d3",
+      "numerator": "correct-or-event count",
+      "operator": "=",
+      "semantic": "eligible-population rate",
+      "threshold": 1.0
+    },
+    "static_local_accuracy": {
+      "aggregation": "rate",
+      "denominator": "eligible rows",
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:static_local_accuracy",
+      "implementation_sha256": "54244274d6acb363ce4b9dfd760c13b4d95c6d2f5f7da5481562efdb01d6ed0b",
+      "numerator": "correct-or-event count",
+      "operator": ">=",
+      "semantic": "eligible-population rate",
+      "threshold": 0.97
+    },
+    "tool_route_accuracy": {
+      "aggregation": "rate",
+      "denominator": "eligible rows",
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:tool_route_accuracy",
+      "implementation_sha256": "49fd25ca46b008224dde8ce1c513a458cd801e0f8387fce43b36d7d1f4b60853",
+      "numerator": "correct-or-event count",
+      "operator": ">=",
+      "semantic": "eligible-population rate",
+      "threshold": 0.97
+    },
+    "unavailable_tool_route_events": {
+      "aggregation": "sum",
+      "denominator": null,
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:unavailable_tool_route_events",
+      "implementation_sha256": "b6e0383a7f0fbbb1bdc1dcc59c5f2c0021b148f122433094ebc328c7b47306aa",
+      "numerator": "correct-or-event count",
+      "operator": "=",
+      "semantic": "event count",
+      "threshold": 0
+    },
+    "unnecessary_web_rate": {
+      "aggregation": "rate",
+      "denominator": "eligible rows",
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:unnecessary_web_rate",
+      "implementation_sha256": "3b9ecb3e274c58669014c85124f78f24b770fb65912ab45d058b566529c1c4d7",
+      "numerator": "correct-or-event count",
+      "operator": "<=",
+      "semantic": "eligible-population rate",
+      "threshold": 0.03
+    },
+    "unsafe_fallback_events": {
+      "aggregation": "sum",
+      "denominator": null,
+      "evidence_source": "evaluations/t23/raw_results.jsonl",
+      "implementation": "t23_protocol.scorer:unsafe_fallback_events",
+      "implementation_sha256": "509045b0d385ab37d6d03355f8e931de7a4069a53b393ad19b45ada1bd1fda2a",
+      "numerator": "correct-or-event count",
+      "operator": "=",
+      "semantic": "event count",
+      "threshold": 0
+    }
+  },
+  "schema_version": "t23-production-router-metric-registry-v1"
+}

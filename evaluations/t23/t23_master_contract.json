@@ -1,0 +1,399 @@
+{
+  "artifact": "T23_MASTER_CONTRACT",
+  "experiment": "t23",
+  "fields": [
+    "values.artifacts",
+    "values.authorization",
+    "values.construction_authorized",
+    "values.construction_design",
+    "values.construction_requirements",
+    "values.construction_states",
+    "values.exclusion_sources",
+    "values.identity",
+    "values.real_t23_paths",
+    "values.shadow_namespace",
+    "values.transitions"
+  ],
+  "schema_version": "t23-master-contract-v2",
+  "values": {
+    "artifacts": {
+      "author_lock": "evaluations/t23/author_lock.json",
+      "author_spec": "evaluations/t23/author_specification.json",
+      "candidate_outputs": "evaluations/t23/candidate_outputs.jsonl",
+      "capability_evaluator": "evaluations/t23/capability_evaluator.jsonl",
+      "capability_registry": "evaluations/t23/capability_registry.json",
+      "construction_audits": "evaluations/t23/construction_audits.json",
+      "construction_ledger": "evaluations/t23/construction_run_ledger.json",
+      "corpus": "rag/gk_holdout_t23",
+      "evaluation_graph": "evaluations/t23/production_evaluation_graph.json",
+      "evaluation_ledger": "evaluations/t23/evaluation_run_ledger.json",
+      "evaluation_provenance": "evaluations/t23/evaluation_provenance.json",
+      "exclusion_sources": "evaluations/t23/construction_exclusion_sources.json",
+      "gold": "evaluations/t23/suites/gold.jsonl",
+      "historical_exclusion": "evaluations/t23/historical_exclusion.json",
+      "holdout_results": "evaluations/t23/holdout_results.json",
+      "inputs": "evaluations/t23/suites/inputs.jsonl",
+      "manifest": "evaluations/t23/holdout_manifest.json",
+      "privacy_policy": "evaluations/t23/private_blind_policy.json",
+      "protected_t22_floor_evidence": "evaluations/t23/protected_t22_floor_evidence.json",
+      "protected_t22_metric_evidence": "evaluations/t23/protected_t22_metric_evidence.json",
+      "provider_config": "evaluations/t23/production_provider_config.json",
+      "raw_results": "evaluations/t23/raw_results.jsonl",
+      "route_registry": "evaluations/t23/route_registry.json",
+      "router_contract": "evaluations/t23/executive_router_contract.json",
+      "router_decisions": "evaluations/t23/router_decisions.jsonl",
+      "router_evaluator": "evaluations/t23/router_evaluator.jsonl",
+      "router_floor_evidence": "evaluations/t23/router_floor_evidence.json",
+      "router_metric_evidence": "evaluations/t23/router_metric_evidence.json",
+      "router_metrics": "evaluations/t23/production_router_metric_registry.json",
+      "seal": "evaluations/t23/HOLDOUT_FROZEN",
+      "selected_capability_execution": "evaluations/t23/selected_capability_execution.jsonl",
+      "suites": "evaluations/t23/suites",
+      "t22_disposable_scorer_rehearsal": "evaluations/t23/t22_disposable_scorer_rehearsal.json",
+      "t22_metrics": "evaluations/t22/official_metric_registry.json"
+    },
+    "authorization": {
+      "construction": "T23_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+      "evaluation": "T23_ONE_SHOT_OFFICIAL_EVALUATION"
+    },
+    "construction_authorized": false,
+    "construction_design": {
+      "candidate_visible_fields": [
+        "query",
+        "request_date",
+        "snapshot_date",
+        "evidence_state",
+        "requested_capability",
+        "available_capabilities",
+        "permission_grants",
+        "security_state",
+        "source_freshness",
+        "citation_required"
+      ],
+      "capability_labels": [
+        "CODE",
+        "DOCUMENT",
+        "GENERAL",
+        "KNOWLEDGE_RAG",
+        "MATH_T4",
+        "MEMORY",
+        "NO_TOOL",
+        "ORCHESTRATION",
+        "PLANNING",
+        "SCICOMP",
+        "SCIENCE_RAG",
+        "WEB_RESEARCH"
+      ],
+      "case_id_pattern": "^t23-[a-z_]+-[0-9]{4}$",
+      "cases_per_family": 80,
+      "counterpressure_pairs": {
+        "current_web__static_local": [
+          "explicit_current",
+          "static_local_factual"
+        ],
+        "insufficient_abstain__sufficient_answer": [
+          "insufficient_evidence",
+          "static_local_factual"
+        ],
+        "security_refusal__ordinary_route": [
+          "security_adversarial",
+          "static_local_factual"
+        ],
+        "tool_required__tool_unnecessary": [
+          "tool_required",
+          "ambiguous_route"
+        ]
+      },
+      "families": {
+        "ambiguous_route": {
+          "expected_route": "ANSWER_LOCAL",
+          "signals": [
+            "query"
+          ]
+        },
+        "citation_sensitive": {
+          "expected_route": "KNOWLEDGE_RAG",
+          "signals": [
+            "query",
+            "request_metadata",
+            "capability_registry"
+          ]
+        },
+        "conflicting_evidence": {
+          "expected_route": "CONFLICT_HANDLING",
+          "signals": [
+            "query",
+            "evidence_state"
+          ]
+        },
+        "cross_domain_local": {
+          "expected_route": "KNOWLEDGE_RAG",
+          "signals": [
+            "query",
+            "capability_registry"
+          ]
+        },
+        "explicit_current": {
+          "expected_route": "ROUTE_WEB_RESEARCH",
+          "signals": [
+            "query",
+            "request_metadata",
+            "tool_state",
+            "permission_state"
+          ]
+        },
+        "historical_as_of": {
+          "expected_route": "HISTORICAL_AS_OF",
+          "signals": [
+            "query",
+            "request_metadata",
+            "evidence_state"
+          ]
+        },
+        "insufficient_evidence": {
+          "expected_route": "INSUFFICIENT_EVIDENCE",
+          "signals": [
+            "query",
+            "evidence_state"
+          ]
+        },
+        "malformed_router_state": {
+          "expected_route": "ROUTER_CONFIGURATION_ERROR",
+          "signals": [
+            "query",
+            "request_metadata"
+          ]
+        },
+        "mixed_intent": {
+          "expected_route": "VARIANT",
+          "signals": [
+            "query",
+            "request_metadata",
+            "security_state",
+            "evidence_state",
+            "tool_state"
+          ]
+        },
+        "multi_hop_local": {
+          "expected_route": "KNOWLEDGE_RAG",
+          "signals": [
+            "query",
+            "capability_registry"
+          ]
+        },
+        "recency_sensitive": {
+          "expected_route": "ROUTE_WEB_RESEARCH",
+          "signals": [
+            "query",
+            "request_metadata",
+            "tool_state",
+            "permission_state"
+          ]
+        },
+        "route_override_adversarial": {
+          "expected_route": "VARIANT",
+          "signals": [
+            "query",
+            "request_metadata",
+            "security_state",
+            "evidence_state",
+            "tool_state"
+          ]
+        },
+        "security_adversarial": {
+          "expected_route": "SECURITY_REFUSAL",
+          "signals": [
+            "query",
+            "security_state"
+          ]
+        },
+        "static_local_factual": {
+          "expected_route": "KNOWLEDGE_RAG",
+          "signals": [
+            "query",
+            "capability_registry"
+          ]
+        },
+        "tool_required": {
+          "expected_route": "TOOL_OR_SPECIALIST_ROUTE",
+          "signals": [
+            "query",
+            "tool_state",
+            "permission_state"
+          ]
+        },
+        "unsupported_tool_request": {
+          "expected_route": "INSUFFICIENT_EVIDENCE",
+          "signals": [
+            "query",
+            "tool_state",
+            "permission_state"
+          ]
+        }
+      },
+      "family_count": 16,
+      "gold_only_fields": [
+        "expected_route",
+        "construction_tag",
+        "blind_family_id",
+        "floor_id",
+        "gold_status",
+        "expected_answer",
+        "gold_reason",
+        "family"
+      ],
+      "mixed_intent_variants": {
+        "ambiguous_freshness_citation": 16,
+        "current_multi_hop": 16,
+        "current_security": 16,
+        "historical_conflict": 16,
+        "local_factual_tool": 16
+      },
+      "privacy": {
+        "gold_suites": "PRIVATE",
+        "private_anchors": "PRIVATE",
+        "raw_outputs": "PRIVATE",
+        "real_blind_corpus": "PRIVATE"
+      },
+      "reason_counts": {
+        "CITATION_GROUNDED_LOCAL": 96,
+        "CONFLICTING_EVIDENCE": 80,
+        "CURRENT_REQUIRED": 116,
+        "HISTORICAL_AS_OF": 96,
+        "INSUFFICIENT_EVIDENCE": 100,
+        "LOCAL_RESPONSE_SUFFICIENT": 80,
+        "RECENCY_SENSITIVE_STALE": 80,
+        "ROUTER_CONFIGURATION_ERROR": 80,
+        "SECURITY_POLICY": 96,
+        "STATIC_LOCAL_ELIGIBLE": 260,
+        "TOOL_REQUIRED": 96,
+        "UNSUPPORTED_TOOL": 100
+      },
+      "route_counts": {
+        "ANSWER_LOCAL": 80,
+        "CONFLICT_HANDLING": 80,
+        "HISTORICAL_AS_OF": 96,
+        "INSUFFICIENT_EVIDENCE": 200,
+        "KNOWLEDGE_RAG": 356,
+        "ROUTER_CONFIGURATION_ERROR": 80,
+        "ROUTE_WEB_RESEARCH": 196,
+        "SECURITY_REFUSAL": 96,
+        "TOOL_OR_SPECIALIST_ROUTE": 96
+      },
+      "source_pool_constraints": {
+        "minimum_unique_labels": 80,
+        "no_prior_holdout_query_reuse": true,
+        "no_t22_blind_material": true
+      },
+      "suite_count": 16,
+      "suite_mapping": {
+        "ambiguous_route": "evaluations/t23/suites/families/ambiguous_route.jsonl",
+        "citation_sensitive": "evaluations/t23/suites/families/citation_sensitive.jsonl",
+        "conflicting_evidence": "evaluations/t23/suites/families/conflicting_evidence.jsonl",
+        "cross_domain_local": "evaluations/t23/suites/families/cross_domain_local.jsonl",
+        "explicit_current": "evaluations/t23/suites/families/explicit_current.jsonl",
+        "historical_as_of": "evaluations/t23/suites/families/historical_as_of.jsonl",
+        "insufficient_evidence": "evaluations/t23/suites/families/insufficient_evidence.jsonl",
+        "malformed_router_state": "evaluations/t23/suites/families/malformed_router_state.jsonl",
+        "mixed_intent": "evaluations/t23/suites/families/mixed_intent.jsonl",
+        "multi_hop_local": "evaluations/t23/suites/families/multi_hop_local.jsonl",
+        "recency_sensitive": "evaluations/t23/suites/families/recency_sensitive.jsonl",
+        "route_override_adversarial": "evaluations/t23/suites/families/route_override_adversarial.jsonl",
+        "security_adversarial": "evaluations/t23/suites/families/security_adversarial.jsonl",
+        "static_local_factual": "evaluations/t23/suites/families/static_local_factual.jsonl",
+        "tool_required": "evaluations/t23/suites/families/tool_required.jsonl",
+        "unsupported_tool_request": "evaluations/t23/suites/families/unsupported_tool_request.jsonl"
+      },
+      "taxonomy": {
+        "case_id_pattern": "^t23-[a-z_]+-[0-9]{4}$",
+        "route_ids": [
+          "ANSWER_LOCAL",
+          "CONFLICT_HANDLING",
+          "HISTORICAL_AS_OF",
+          "INSUFFICIENT_EVIDENCE",
+          "KNOWLEDGE_RAG",
+          "ROUTER_CONFIGURATION_ERROR",
+          "ROUTE_WEB_RESEARCH",
+          "SECURITY_REFUSAL",
+          "TOOL_OR_SPECIALIST_ROUTE"
+        ]
+      },
+      "total_rows": 1280
+    },
+    "construction_requirements": {
+      "annotation_violations": 0,
+      "blindness_status": "PASS",
+      "candidate_rows_executed": 0,
+      "evaluator_rows_executed": 0,
+      "exclusion_status": "PASS",
+      "one_shot_attempt": 1,
+      "uniqueness_status": "PASS"
+    },
+    "construction_states": [
+      "PRECONSTRUCTION",
+      "LEDGER_CREATED",
+      "MATERIALIZED",
+      "AUDITED",
+      "GATE_PASS",
+      "MANIFESTED",
+      "SEALED",
+      "FAILED"
+    ],
+    "exclusion_sources": {
+      "historical": {
+        "path": "evaluations/t22/prior_exclusion.json",
+        "sha256": "880e69010a825a9a6c0d6bd0244f8b505d875d182870969480883ae914a55080"
+      },
+      "qualification": {
+        "path": "evaluations/t23/nonblind_qualification_inputs.jsonl",
+        "sha256": "84345d18703bc58d74678f766684cce924ae59dd54a1136dd6fc2cec315ef754"
+      },
+      "remediation": {
+        "path": "evaluations/t22/remediation_exclusion.json",
+        "sha256": "85c8040c90690ffb1f33ea4b6fca1f2b1943a057e3c14d5288127f580679b5ee"
+      },
+      "t22_anchor": {
+        "path": "evaluations/t23/t22_exclusion_anchor.json",
+        "sha256": "f514aea0e8603a440f2a672fb8e02fd03d8ee0f54114cbccfe2447e0a2e24788"
+      }
+    },
+    "identity": {
+      "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+      "candidate_tree": "c88599484db10c0bcf3eeafa50d84746fa539060",
+      "runtime_root": "63f3b446f6e147ee0635a74702920f6e5ca367847bb3d165d74341402c1941e1"
+    },
+    "real_t23_paths": [
+      "rag/gk_holdout_t23",
+      "evaluations/t23/suites",
+      "evaluations/t23/suites/inputs.jsonl",
+      "evaluations/t23/suites/gold.jsonl",
+      "evaluations/t23/construction_run_ledger.json",
+      "evaluations/t23/construction_audits.json",
+      "evaluations/t23/holdout_manifest.json",
+      "evaluations/t23/HOLDOUT_FROZEN",
+      "evaluations/t23/router_decisions.jsonl",
+      "evaluations/t23/selected_capability_execution.jsonl",
+      "evaluations/t23/candidate_outputs.jsonl",
+      "evaluations/t23/router_evaluator.jsonl",
+      "evaluations/t23/capability_evaluator.jsonl",
+      "evaluations/t23/raw_results.jsonl",
+      "evaluations/t23/router_metric_evidence.json",
+      "evaluations/t23/router_floor_evidence.json",
+      "evaluations/t23/t22_disposable_scorer_rehearsal.json",
+      "evaluations/t23/protected_t22_metric_evidence.json",
+      "evaluations/t23/protected_t22_floor_evidence.json",
+      "evaluations/t23/holdout_results.json",
+      "evaluations/t23/evaluation_provenance.json",
+      "evaluations/t23/evaluation_run_ledger.json"
+    ],
+    "shadow_namespace": "t23-shadow-disposable",
+    "transitions": [
+      "QUALIFIED",
+      "CONSTRUCTION_STARTED",
+      "CONSTRUCTED",
+      "SEALED",
+      "EVALUATION_STARTED",
+      "EVALUATION_COMPLETE"
+    ]
+  }
+}
