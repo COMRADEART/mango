@@ -6,7 +6,12 @@
     "real blind corpus",
     "gold suites",
     "blind outputs",
+    "router decisions",
+    "selected capability results",
+    "candidate outputs",
     "raw results",
+    "holdout results",
+    "evaluation provenance",
     "private anchors",
     "ConstructionLedger",
     "EvaluationLedger"

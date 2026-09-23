@@ -1,0 +1,58 @@
+{
+  "schema_version": "t23-master-contract-v1",
+  "artifact": "T23_MASTER_CONTRACT",
+  "experiment": "t23",
+  "fields": [
+    "values.identity", "values.artifacts", "values.real_t23_paths",
+    "values.shadow_namespace", "values.transitions", "values.authorization",
+    "values.construction_authorized"
+  ],
+  "values": {
+    "identity": {
+      "candidate_commit": "29750b8403be4e8bab87bb40e86aa882ba35e80e",
+      "candidate_tree": "89b1069729e6cab459f705c18691b08440163627",
+      "runtime_root": "63f3b446f6e147ee0635a74702920f6e5ca367847bb3d165d74341402c1941e1"
+    },
+    "artifacts": {
+      "author_spec": "evaluations/t23/author_specification.json",
+      "author_lock": "evaluations/t23/author_lock.json",
+      "evaluation_graph": "evaluations/t23/production_evaluation_graph.json",
+      "router_metrics": "evaluations/t23/production_router_metric_registry.json",
+      "t22_metrics": "evaluations/t22/official_metric_registry.json",
+      "router_contract": "evaluations/t23/executive_router_contract.json",
+      "route_registry": "evaluations/t23/route_registry.json",
+      "capability_registry": "evaluations/t23/capability_registry.json",
+      "historical_exclusion": "evaluations/t23/historical_exclusion.json",
+      "privacy_policy": "evaluations/t23/private_blind_policy.json",
+      "provider_config": "evaluations/t23/production_provider_config.json",
+      "corpus": "rag/gk_holdout_t23",
+      "suites": "evaluations/t23/suites",
+      "construction_ledger": "evaluations/t23/construction_run_ledger.json",
+      "manifest": "evaluations/t23/holdout_manifest.json",
+      "seal": "evaluations/t23/HOLDOUT_FROZEN",
+      "evaluation_ledger": "evaluations/t23/evaluation_run_ledger.json",
+      "router_outputs": "evaluations/t23/router_decisions.jsonl",
+      "candidate_outputs": "evaluations/t23/candidate_outputs.jsonl",
+      "raw_results": "evaluations/t23/raw_results.jsonl",
+      "holdout_results": "evaluations/t23/holdout_results.json"
+    },
+    "real_t23_paths": [
+      "rag/gk_holdout_t23", "evaluations/t23/suites",
+      "evaluations/t23/construction_run_ledger.json",
+      "evaluations/t23/holdout_manifest.json",
+      "evaluations/t23/HOLDOUT_FROZEN",
+      "evaluations/t23/evaluation_run_ledger.json",
+      "evaluations/t23/router_decisions.jsonl",
+      "evaluations/t23/candidate_outputs.jsonl",
+      "evaluations/t23/raw_results.jsonl",
+      "evaluations/t23/holdout_results.json"
+    ],
+    "shadow_namespace": "t23-shadow-disposable",
+    "transitions": ["QUALIFIED", "CONSTRUCTION_STARTED", "CONSTRUCTED", "SEALED", "EVALUATION_STARTED", "EVALUATION_COMPLETE"],
+    "authorization": {
+      "construction": "T23_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+      "evaluation": "T23_ONE_SHOT_OFFICIAL_EVALUATION"
+    },
+    "construction_authorized": false
+  }
+}

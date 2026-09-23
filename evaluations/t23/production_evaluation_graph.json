@@ -1,0 +1,28 @@
+{
+  "schema_version": "t23-evaluation-graph-v1",
+  "artifact": "T23_PRODUCTION_EVALUATION_GRAPH",
+  "experiment": "t23",
+  "nodes": {
+    "author_inputs": {"producer": "t23_protocol.author:author_cases", "inputs": [], "path": "evaluations/t23/suites/inputs.jsonl", "privacy": "PRIVATE"},
+    "gold_suites": {"producer": "t23_protocol.author:author_cases", "inputs": [], "path": "evaluations/t23/suites/gold.jsonl", "privacy": "PRIVATE"},
+    "corpus": {"producer": "t23_protocol.construction:materialize_corpus", "inputs": [], "path": "rag/gk_holdout_t23", "privacy": "PRIVATE"},
+    "construction_ledger": {"producer": "t21_protocol.ledger:ConstructionLedger", "inputs": [], "path": "evaluations/t23/construction_run_ledger.json", "privacy": "PRIVATE"},
+    "construction_audits": {"producer": "t23_protocol.construction:run_construction_audits", "inputs": ["author_inputs", "gold_suites", "corpus"], "path": "evaluations/t23/construction_audits.json", "privacy": "PRIVATE"},
+    "manifest": {"producer": "t23_protocol.construction:build_manifest", "inputs": ["author_inputs", "gold_suites", "corpus", "construction_audits", "construction_ledger"], "path": "evaluations/t23/holdout_manifest.json", "privacy": "PRIVATE"},
+    "seal": {"producer": "t23_protocol.construction:seal_holdout", "inputs": ["manifest"], "path": "evaluations/t23/HOLDOUT_FROZEN", "privacy": "PRIVATE"},
+    "router_decisions": {"producer": "t23_protocol.provider:ProductionRouterProvider", "inputs": ["author_inputs", "seal"], "path": "evaluations/t23/router_decisions.jsonl", "privacy": "PRIVATE"},
+    "selected_capability_execution": {"producer": "t23_protocol.provider:ProductionRouterProvider", "inputs": ["router_decisions", "corpus"], "path": "evaluations/t23/selected_capability_execution.jsonl", "privacy": "PRIVATE"},
+    "candidate_outputs": {"producer": "t23_protocol.provider:ProductionRouterProvider", "inputs": ["router_decisions", "selected_capability_execution"], "path": "evaluations/t23/candidate_outputs.jsonl", "privacy": "PRIVATE"},
+    "router_evaluator": {"producer": "t23_protocol.evaluation:evaluate_router", "inputs": ["gold_suites", "router_decisions"], "path": "evaluations/t23/router_evaluator.jsonl", "privacy": "PRIVATE"},
+    "capability_evaluator": {"producer": "t23_protocol.evaluation:evaluate_capability", "inputs": ["gold_suites", "selected_capability_execution"], "path": "evaluations/t23/capability_evaluator.jsonl", "privacy": "PRIVATE"},
+    "raw_results": {"producer": "t23_protocol.evaluation:combine_raw", "inputs": ["router_evaluator", "capability_evaluator"], "path": "evaluations/t23/raw_results.jsonl", "privacy": "PRIVATE"},
+    "router_metric_evidence": {"producer": "t23_protocol.scorer:score_router", "inputs": ["raw_results"], "path": "evaluations/t23/router_metric_evidence.json", "privacy": "PRIVATE"},
+    "router_floor_evidence": {"producer": "t23_protocol.scorer:score_router", "inputs": ["router_metric_evidence"], "path": "evaluations/t23/router_floor_evidence.json", "privacy": "PRIVATE"},
+    "t22_disposable_scorer_rehearsal": {"producer": "t21_protocol.pipeline_t22:run_real_mode_lifecycle_rehearsal_t22", "inputs": [], "path": "evaluations/t23/t22_disposable_scorer_rehearsal.json", "privacy": "PRIVATE"},
+    "protected_t22_metric_evidence": {"producer": "t23_protocol.evaluation:protected_t22_metric_evidence", "inputs": ["t22_disposable_scorer_rehearsal"], "path": "evaluations/t23/protected_t22_metric_evidence.json", "privacy": "PRIVATE"},
+    "protected_t22_floor_evidence": {"producer": "t23_protocol.evaluation:protected_t22_floor_evidence", "inputs": ["protected_t22_metric_evidence"], "path": "evaluations/t23/protected_t22_floor_evidence.json", "privacy": "PRIVATE"},
+    "combined_holdout_results": {"producer": "t23_protocol.evaluation:combine_results", "inputs": ["router_floor_evidence", "protected_t22_floor_evidence", "capability_evaluator"], "path": "evaluations/t23/holdout_results.json", "privacy": "PRIVATE"},
+    "evaluation_provenance": {"producer": "t23_protocol.evaluation:build_provenance", "inputs": ["combined_holdout_results", "candidate_outputs", "seal"], "path": "evaluations/t23/evaluation_provenance.json", "privacy": "PRIVATE"},
+    "evaluation_ledger": {"producer": "t21_protocol.ledger:EvaluationLedger", "inputs": ["evaluation_provenance"], "path": "evaluations/t23/evaluation_run_ledger.json", "privacy": "PRIVATE"}
+  }
+}

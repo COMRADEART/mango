@@ -1,0 +1,113 @@
+{
+  "artifact": "T23_PRODUCTION_AUTHOR_LOCK",
+  "author_fingerprint_root": "e2d9ea0652d6ad576d9d873d49d57ee8e9447532b46703b68f22eea4ef042b6b",
+  "bindings": {
+    "author_implementation": {
+      "path": "t23_protocol/author.py",
+      "sha256": "3a038cf7fcd481f136b9b03fda028db1a1511a8e4a33f079704311afd6f0843f"
+    },
+    "author_specification": {
+      "path": "evaluations/t23/author_specification.json",
+      "sha256": "e8bd7bba6c7b934fcdb6cfe5ba2a83a604f1dec0e5fbb0d7f9c0849e8eb4ef78"
+    },
+    "blind_private_ignore_policy": {
+      "path": ".gitignore",
+      "sha256": "520beb481d8d46832c59ebe079561641f09c674fb801e3c32f0be916f9c1b20c"
+    },
+    "candidate_identity": {
+      "path": "evaluations/t23/candidate_identity.json",
+      "sha256": "6f6172fdbc825f7c7bf190334daae9209932156868238bcd867d4ca887e7ef06"
+    },
+    "capability_registry": {
+      "path": "evaluations/t23/capability_registry.json",
+      "sha256": "5de4ec40910c9c54d1b8406c15f8cd1a1d9111178faeb9ada9cf2aba221e11ab"
+    },
+    "construction_contract": {
+      "path": "evaluations/t23/t23_master_contract.json",
+      "sha256": "19ab34b4c09b5ef006bb2cbad710aed6ec47bb29c1b465bb62b2bc4fc99b405d"
+    },
+    "construction_implementation": {
+      "path": "t23_protocol/construction.py",
+      "sha256": "7418e1e92938cdc373e4e1842f0e03b9f6862ad3701cfea0f63841c3a71d93d6"
+    },
+    "doctor_implementation": {
+      "path": "t23_protocol/doctor.py",
+      "sha256": "aa9222f8566a0704c4a03f2463a1f93dede3ae9e6194d091756d22c868b7bb06"
+    },
+    "evaluation_graph": {
+      "path": "evaluations/t23/production_evaluation_graph.json",
+      "sha256": "9fb8155892e189a65cf2d0402506b46a6340e872c40cb969f8ee2aa3af931885"
+    },
+    "evaluation_graph_validator": {
+      "path": "t23_protocol/graph.py",
+      "sha256": "be60876a140b1034fdb63a58305aa3ae56659c7778fd045ade08d404ffe55ae8"
+    },
+    "evaluation_implementation": {
+      "path": "t23_protocol/evaluation.py",
+      "sha256": "99e4ea0e72ab2c709849d5aab1e169213c769d8940fd082fc108e48bed763d07"
+    },
+    "experiment_registry": {
+      "path": "t23_protocol/context.py",
+      "sha256": "976d5e5192f53d81ccd446aa360d0eedad5d08f7db79ff685b93d0f1e1567b19"
+    },
+    "historical_exclusion": {
+      "path": "evaluations/t23/historical_exclusion.json",
+      "sha256": "5682ca739fed7e02ce29bd084a8b5419205aae19c3a8314001891eeb4daff834"
+    },
+    "preregistered_router_floors": {
+      "path": "evaluations/t23/router_metric_registry.json",
+      "sha256": "d3c68f63e0847b12634c5a2189ab02098abcba72370710b1775b26bba25a9feb"
+    },
+    "privacy_policy": {
+      "path": "evaluations/t23/private_blind_policy.json",
+      "sha256": "72ed4ed3d13d9b3d2a50b7e52b8e3dea6d798bd5416ce1d30fa7800c6caad8ef"
+    },
+    "production_provider": {
+      "path": "t23_protocol/provider.py",
+      "sha256": "a6fb2b3ecbd2b8c9005a9ae36ec0ea70eed2c026d5228732faa2128e4aafbc96"
+    },
+    "production_provider_config": {
+      "path": "evaluations/t23/production_provider_config.json",
+      "sha256": "982a5827cbe5fd4c5f6dffb2fd271fc66378fb64495ecfda95d090e3d65f1e57"
+    },
+    "production_scorer": {
+      "path": "t23_protocol/scorer.py",
+      "sha256": "6e0c9101780013cbbcf9b28bbe00fcda9d1327ede9e471b7a25be6d02ea58305"
+    },
+    "route_registry": {
+      "path": "evaluations/t23/route_registry.json",
+      "sha256": "e08cf1f26a889d5dad96d35610cf561dbac09629142a4cf13ea665e4081ff5ee"
+    },
+    "router_contract": {
+      "path": "evaluations/t23/executive_router_contract.json",
+      "sha256": "33fcc66f5d25124681d2de32cdbe1d85a9f5618887262616a4ad998ca89d0446"
+    },
+    "router_metric_semantics_and_floors": {
+      "path": "evaluations/t23/production_router_metric_registry.json",
+      "sha256": "34497ac8c7982969813374f56e3450f51e92e4da7058ceb5e0aa87d27ac9635f"
+    },
+    "t22_protected_implementations": {
+      "path": "evaluations/t22/metric_implementation_registry.json",
+      "sha256": "92546df4a793b768d8cb88d2166ea935e795d24a5e4bf3f39c56736219f6c81f"
+    },
+    "t22_protected_metrics": {
+      "path": "evaluations/t22/official_metric_registry.json",
+      "sha256": "b56723f754ce173182c500d8d76cae3495081567447a9ac4ec89f00e443f6121"
+    },
+    "t22_protected_semantics": {
+      "path": "evaluations/t22/official_metric_semantics.json",
+      "sha256": "d061033f094321930556bd7ba99c4df9f61d49dbccef966049e40786b15e72e0"
+    },
+    "t22_runtime_freeze": {
+      "path": "evaluations/t22/runtime_freeze.json",
+      "sha256": "5098d04e00e3fac93f32f634c1afd76b8eae3d0ab7760ae1fc5b2ee494836385"
+    }
+  },
+  "candidate_commit": "29750b8403be4e8bab87bb40e86aa882ba35e80e",
+  "candidate_tree": "89b1069729e6cab459f705c18691b08440163627",
+  "construction_authorized": false,
+  "experiment": "t23",
+  "missing_bindings": 0,
+  "runtime_root": "63f3b446f6e147ee0635a74702920f6e5ca367847bb3d165d74341402c1941e1",
+  "schema_version": "t23-author-lock-v1"
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": "t23-experiment-lifecycle-registry-v1",
+  "artifact": "T23_EXPERIMENT_LIFECYCLE_REGISTRY",
+  "historical_transitions": {
+    "t21r10": {
+      "state": "EVALUATED",
+      "evidence": "evaluations/t21r10/evaluation_run_ledger.json",
+      "field": "phase",
+      "value": "complete",
+      "required_paths": ["evaluations/t21r10/raw_results.jsonl", "evaluations/t21r10/holdout_results.json"],
+      "forbidden_paths": []
+    },
+    "t21r11": {
+      "state": "SEALED",
+      "evidence": "evaluations/t21r11/construction_run_ledger.json",
+      "field": "phase",
+      "value": "complete",
+      "required_paths": ["evaluations/t21r11/HOLDOUT_FROZEN", "evaluations/t21r11/holdout_manifest.json"],
+      "forbidden_paths": ["evaluations/t21r11/evaluation_run_ledger.json"]
+    },
+    "t21r12": {
+      "state": "CONSTRUCTION_FAILED",
+      "evidence": "evaluations/t21r12/construction_run_ledger.json",
+      "field": "status",
+      "value": "failed",
+      "required_paths": ["rag/gk_holdout_t21r12"],
+      "forbidden_paths": ["evaluations/t21r12/evaluation_run_ledger.json"]
+    },
+    "t21r13": {
+      "state": "EVALUATION_FAILED",
+      "evidence": "evaluations/t21r13/evaluation_run_ledger.json",
+      "field": "phase",
+      "value": "failed",
+      "required_paths": ["rag/gk_holdout_t21r13", "evaluations/t21r13/HOLDOUT_FROZEN"],
+      "forbidden_paths": []
+    },
+    "t21r15": {
+      "state": "SEALED",
+      "evidence": "evaluations/t21r15/construction_run_ledger.json",
+      "field": "state",
+      "value": "COMPLETE",
+      "required_paths": ["rag/gk_holdout_t21r15", "evaluations/t21r15/HOLDOUT_FROZEN"],
+      "forbidden_paths": ["evaluations/t21r15/evaluation_run_ledger.json"]
+    },
+    "t21r16": {
+      "state": "EVALUATED",
+      "evidence": "evaluations/t21r16/evaluation_run_ledger.json",
+      "field": "state",
+      "value": "COMPLETE",
+      "required_paths": ["rag/gk_holdout_t21r16", "evaluations/t21r16/HOLDOUT_FROZEN"],
+      "forbidden_paths": []
+    },
+    "t21r17": {
+      "state": "EVALUATED",
+      "evidence": "evaluations/t21r17/evaluation_run_ledger.json",
+      "field": "state",
+      "value": "COMPLETE",
+      "required_paths": ["rag/gk_holdout_t21r17", "evaluations/t21r17/HOLDOUT_FROZEN"],
+      "forbidden_paths": []
+    }
+  },
+  "experiments": {
+    "t22": {
+      "state": "PROMOTED",
+      "contract": "evaluations/t22/t21_master_contract.json",
+      "construction_ledger": "evaluations/t22/construction_run_ledger.json",
+      "evaluation_ledger": "evaluations/t22/evaluation_run_ledger.json",
+      "promotion_record": "evaluations/t22/T22_FINAL_PROMOTION_RECORD.json",
+      "promotion_checksum": "evaluations/t22/T22_FINAL_PROMOTION_RECORD.sha256",
+      "expected_verdict": "MANGO_KNOWLEDGE_RAG_CAPABILITY_PROMOTED",
+      "protected_floor_count": 32
+    },
+    "t23": {
+      "state": "PRECONSTRUCTION",
+      "contract": "evaluations/t23/t23_master_contract.json",
+      "evaluation_graph": "evaluations/t23/production_evaluation_graph.json",
+      "preconstruction_freeze": "evaluations/t23/preconstruction_freeze.json"
+    }
+  }
+}
