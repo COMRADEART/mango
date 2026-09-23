@@ -1,0 +1,12 @@
+{
+  "candidate_leakage": 0,
+  "disposable_shadow_leakage": 0,
+  "future_evaluation_leakage": 0,
+  "historical_leakage": 0,
+  "open_development_leakage": 0,
+  "public_qualification_leakage": 0,
+  "schema_version": "t23-construction-blindness-v1",
+  "source_provenance_sha256": "f971b1be37a3750819297f3e9c92e88dc5ab185b9c3f5d1cdf5c239bbe9443f2",
+  "status": "PASS",
+  "violations": 0
+}

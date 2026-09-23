@@ -1,0 +1,22 @@
+{
+  "author_lock_sha256": "0ace0cc38bec6e66ce961035bc7fe66678ae1c900d45a58e57f7d828bea699db",
+  "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+  "candidate_rows_executed": 0,
+  "candidate_tree": "c88599484db10c0bcf3eeafa50d84746fa539060",
+  "component_root": "2c4dca05f94ffc37cc583b2060daa2c6fe3832e8a7ab730f66a150f2786ed4f5",
+  "construction_attempts": 1,
+  "construction_authorized": true,
+  "construction_contract_sha256": "97e36835523838c8cde2f2f135d69581e26d0e84eea44ee4a160b551166688c1",
+  "construction_gate_sha256": "56fad129988fe721e4f26005a276edb50e5b7867428bfb9abae4721658016c7b",
+  "experiment": "t23",
+  "freeze_root": "6251544bff089783472fcf482af9b5b234d82744d879e1277626a878319b736c",
+  "manifest_semantic_root": "47979dc6d0292dfdeb46b8f0f7c00911a301e949805df7ceb0ab8398e1fdd049",
+  "manifest_sha256": "dbd812f8775a75b931949993b40873efe4550e539cbb9338bee37361177fe005",
+  "material_mode": "REAL_BLIND",
+  "preconstruction_commit": "e79fb932def8b691727517906cb1b0ddc86af3d1",
+  "preconstruction_freeze_sha256": "bb49149a2a4cce4540de8d7d0abbb5f257feae47d9f15b9b3b047726cb3a0335",
+  "schema_version": "t23-holdout-frozen-v2",
+  "semantic_root": "61310b09e43b3f0fbefda5ff2c1688999f6a6e1137fc6022f29657191e3ee05d",
+  "state": "SEALED",
+  "workspace_mode": "REAL_EXPERIMENT"
+}
