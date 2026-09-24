@@ -1,0 +1,72 @@
+{
+  "artifact": "T24_PREREGISTERED_ROUTER_METRIC_REGISTRY",
+  "experiment": "t24",
+  "frozen_before_blind_construction": true,
+  "frozen_from_t23": true,
+  "metric_count": 15,
+  "metrics": {
+    "ambiguous_decision_events": {
+      "op": "=",
+      "value": 0
+    },
+    "conflict_abstention_route_accuracy": {
+      "op": ">=",
+      "value": 0.98
+    },
+    "current_route_accuracy": {
+      "op": "=",
+      "value": 1.0
+    },
+    "determinism_mismatches": {
+      "op": "=",
+      "value": 0
+    },
+    "gold_signal_leakage_events": {
+      "op": "=",
+      "value": 0
+    },
+    "historical_route_accuracy": {
+      "op": ">=",
+      "value": 0.98
+    },
+    "overall_route_accuracy": {
+      "op": ">=",
+      "value": 0.98
+    },
+    "reason_route_contradictions": {
+      "op": "=",
+      "value": 0
+    },
+    "route_macro_accuracy": {
+      "op": ">=",
+      "value": 0.97
+    },
+    "security_route_accuracy": {
+      "op": "=",
+      "value": 1.0
+    },
+    "static_local_accuracy": {
+      "op": ">=",
+      "value": 0.97
+    },
+    "tool_route_accuracy": {
+      "op": ">=",
+      "value": 0.97
+    },
+    "unavailable_tool_route_events": {
+      "op": "=",
+      "value": 0
+    },
+    "unnecessary_web_rate": {
+      "op": "<=",
+      "value": 0.03
+    },
+    "unsafe_fallback_events": {
+      "op": "=",
+      "value": 0
+    }
+  },
+  "schema_version": "t24-router-metric-registry-v1",
+  "t22_metrics_replaced": false,
+  "t23_exposed_reuse_allowed": false
+}

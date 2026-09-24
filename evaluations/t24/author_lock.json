@@ -1,0 +1,212 @@
+{
+  "artifact": "T24_PRODUCTION_AUTHOR_LOCK",
+  "author_fingerprint_root": "f74039b8bba1cf9224bd57b2f5eda7b8a0aa1705cbd3789014803494b2a9fad7",
+  "bindings": {
+    "artifact_classification": {
+      "path": "t24_protocol/classification.py",
+      "sha256": "f1740552f620d9fba79fee67c58ad9ea1621a8eb00eeb0190cbe5430bdaa6060"
+    },
+    "artifact_classification_artifact": {
+      "path": "evaluations/t24/t24_artifact_classification.json",
+      "sha256": "be38bd9c20c382e3972207e10c6af6cfe0b6b095b77c44baecec576c8252b6e0"
+    },
+    "author_implementation": {
+      "path": "t24_protocol/author.py",
+      "sha256": "9f299117476f2f5dc74dbc45406c47a2b0b0e200a9b0504a2a7e83fd5a4f8ad8"
+    },
+    "author_specification": {
+      "path": "evaluations/t24/author_specification.json",
+      "sha256": "6589b008c3f95f040536c8ba7da9a800c78d0cdaecc5313fa19259afb3798cfc"
+    },
+    "blind_private_ignore_policy": {
+      "path": ".gitignore",
+      "sha256": "520beb481d8d46832c59ebe079561641f09c674fb801e3c32f0be916f9c1b20c"
+    },
+    "candidate_identity": {
+      "path": "evaluations/t24/candidate_identity.json",
+      "sha256": "6495427beb7578bc35e206171b69729f69d4d49cf5b0a368beb80ae15fb6651d"
+    },
+    "capability_registry": {
+      "path": "evaluations/t24/capability_registry.json",
+      "sha256": "a4022b47fb772ea47768c96bdb7eefa1c8ca30b85ea3ffe71f8f05b0fa1e0db5"
+    },
+    "construction_contract": {
+      "path": "evaluations/t24/t24_master_contract.json",
+      "sha256": "b68724cc090f54ad480a24d987474c081f3ff5099978c650b19ee65ac1d81a29"
+    },
+    "construction_exclusion_sources": {
+      "path": "evaluations/t24/t24_exclusion_sources.json",
+      "sha256": "1495082bddda718be886cc5b7c530db13382ceb1f5b4f6ab51fb38fc37c1b2fa"
+    },
+    "construction_freeze_builder": {
+      "path": "t24_protocol/freeze.py",
+      "sha256": "3ef46c4d7221eabc06b20953c1b97e65bc7675bd5d47faa8299667b7106f3d23"
+    },
+    "construction_gate": {
+      "path": "t24_protocol/gates.py",
+      "sha256": "6546078a4cce0555a3ecb7d433302399403ce752ba0c83b07be7ff5468c9da45"
+    },
+    "construction_implementation": {
+      "path": "t24_protocol/construction.py",
+      "sha256": "6f332903f0b2631d3bc1893c1405764c55b2ec4b3fd6e33162888ce39349051c"
+    },
+    "construction_ledger_schema": {
+      "path": "t24_protocol/ledgers.py",
+      "sha256": "b895c71c966d3c36402833204dae37eb61ca3d59cf13fc00c6a70bf33a89a94c"
+    },
+    "construction_manifest_and_seal": {
+      "path": "t24_protocol/manifest.py",
+      "sha256": "d75a9b4bd1d8e92cded1d81bb89575b9a12466f79b3350ed67062da6e0d13929"
+    },
+    "construction_uniqueness_checker": {
+      "path": "t24_protocol/exclusions.py",
+      "sha256": "0babb8dc7aa65d338a9c427fe6f6e67144cefc524a3f464a9b9f12cf71ee2009"
+    },
+    "contract_validator_and_leaf_enumerator": {
+      "path": "t24_protocol/contract.py",
+      "sha256": "a98f15a3fcd5e0d9316a7dfaf0b850231697a840ef2a38c72daa373c174ad32b"
+    },
+    "doctor_implementation": {
+      "path": "t24_protocol/doctor.py",
+      "sha256": "3efd692920784e815d19c3f7679e0e46961fe51d45e9779e63102d5547a25b4d"
+    },
+    "evaluation_graph": {
+      "path": "evaluations/t24/production_evaluation_graph.json",
+      "sha256": "0ac6c898914e96f7ab519c7c9e4aba32280d9e21235f15285940a127ea28eef0"
+    },
+    "evaluation_graph_validator": {
+      "path": "t24_protocol/graph.py",
+      "sha256": "2554d7058a2662bdb9913d42d79028c5fd47a40fe82e33ac54e45899d36648c7"
+    },
+    "evaluation_implementation": {
+      "path": "t24_protocol/evaluation.py",
+      "sha256": "b1537ba72f2b99a714eeaf677a76fe6092798b5be129787b3995d005f0b5b926"
+    },
+    "experiment_registry": {
+      "path": "t24_protocol/context.py",
+      "sha256": "541e5af9f42b0dd09e2aa3ac67bf5be7078588759258180734a4b1cc98d20c68"
+    },
+    "frozen_t23_production_provider": {
+      "path": "t23_protocol/provider.py",
+      "sha256": "a6fb2b3ecbd2b8c9005a9ae36ec0ea70eed2c026d5228732faa2128e4aafbc96"
+    },
+    "frozen_t23_scorer": {
+      "path": "t23_protocol/scorer.py",
+      "sha256": "6e0c9101780013cbbcf9b28bbe00fcda9d1327ede9e471b7a25be6d02ea58305"
+    },
+    "git_blind_blob_scanner": {
+      "path": "t24_protocol/leakscan.py",
+      "sha256": "cdecce69a6e8301b1df6fa2c00dcd0d751252a7d751a224ec423ea2fba50ea42"
+    },
+    "holdout_seal_implementation": {
+      "path": "t24_protocol/seal.py",
+      "sha256": "0603aa1f5b221f7c1b0a73fc8575e6d56ecaa3c06afaf256bd30d06517819335"
+    },
+    "live_web_firewall": {
+      "path": "t24_protocol/firewall.py",
+      "sha256": "731fe0768eb05ab26dcfee0e7d1413ee5d0b12c40b11d743b87a8818829a9599"
+    },
+    "live_web_source_firewall_registry": {
+      "path": "evaluations/t24/live_web_source_firewall_registry.json",
+      "sha256": "916c8ad32282be116d27a5025a94239a0b640abcb1c7585c278dd48fa5ca0c6b"
+    },
+    "preregistered_router_floors": {
+      "path": "evaluations/t24/router_metric_registry.json",
+      "sha256": "efb57fca92a9dea7f02c4d2fbb9a162014c0e6648d42bc3a97773655a858207f"
+    },
+    "private_artifact_store": {
+      "path": "t24_protocol/store.py",
+      "sha256": "a70484625e9d81033da50c85c1d88a60fb52b045417f580dd74da99a66890c33"
+    },
+    "private_store_config_artifact": {
+      "path": "evaluations/t24/t24_private_store_config.json",
+      "sha256": "734aebc659461cfa1d32ad20d90defe174317d22e6872705066e0cd51ede00e3"
+    },
+    "private_workspace_manager": {
+      "path": "t24_protocol/workspace.py",
+      "sha256": "ccbdbeb88dcef8bd5dc1e69c1fce2159cd83ad1e1d7581d63346d7d4a94d0444"
+    },
+    "production_provider": {
+      "path": "t24_protocol/provider.py",
+      "sha256": "a9b4db32e432326d0b31ff9f21a6096af71959a73f39e1b4ff9aa9e59e4409bd"
+    },
+    "production_provider_config": {
+      "path": "evaluations/t24/production_provider_config.json",
+      "sha256": "ef6f01be40e065cc62ded27dd4a0adc103c076bdf0b7ffcddd0f08daca55995d"
+    },
+    "production_scorer": {
+      "path": "t24_protocol/scorer.py",
+      "sha256": "daf6fa6c644cfddff8e68358ed6509e571e22113ca1c248ab639950215537084"
+    },
+    "publication_policy": {
+      "path": "t24_protocol/policy.py",
+      "sha256": "e95f539f65664d4ee44c4c443af69fe66cfcfc460f0ff39c60abb774f85d2720"
+    },
+    "publication_policy_artifact": {
+      "path": "evaluations/t24/t24_publication_policy.json",
+      "sha256": "b9c71ae3674015798b83051ec1dde92297a1825249eb1f9a2698ae6a3b207bec"
+    },
+    "route_registry": {
+      "path": "evaluations/t23/route_registry.json",
+      "sha256": "e08cf1f26a889d5dad96d35610cf561dbac09629142a4cf13ea665e4081ff5ee"
+    },
+    "router_contract": {
+      "path": "evaluations/t23/executive_router_contract.json",
+      "sha256": "33fcc66f5d25124681d2de32cdbe1d85a9f5618887262616a4ad998ca89d0446"
+    },
+    "router_metric_semantics_and_floors": {
+      "path": "evaluations/t24/production_router_metric_registry.json",
+      "sha256": "f9517ad11e500ad0079a32d581f160b0f2dfea682f4a2cf2210c5f1b5e598acd"
+    },
+    "shadow_lifecycle_orchestrator": {
+      "path": "t24_protocol/shadow.py",
+      "sha256": "f1e1259f2aa85ed597b9913738bf2fd5e667a6d05868da087a840acc98199800"
+    },
+    "t22_hash_only_exclusion_anchor": {
+      "path": "evaluations/t23/t22_exclusion_anchor.json",
+      "sha256": "f514aea0e8603a440f2a672fb8e02fd03d8ee0f54114cbccfe2447e0a2e24788"
+    },
+    "t22_prior_exclusion": {
+      "path": "evaluations/t22/prior_exclusion.json",
+      "sha256": "880e69010a825a9a6c0d6bd0244f8b505d875d182870969480883ae914a55080"
+    },
+    "t22_protected_implementations": {
+      "path": "evaluations/t22/metric_implementation_registry.json",
+      "sha256": "92546df4a793b768d8cb88d2166ea935e795d24a5e4bf3f39c56736219f6c81f"
+    },
+    "t22_protected_metrics": {
+      "path": "evaluations/t22/official_metric_registry.json",
+      "sha256": "b56723f754ce173182c500d8d76cae3495081567447a9ac4ec89f00e443f6121"
+    },
+    "t22_protected_semantics": {
+      "path": "evaluations/t22/official_metric_semantics.json",
+      "sha256": "d061033f094321930556bd7ba99c4df9f61d49dbccef966049e40786b15e72e0"
+    },
+    "t22_remediation_exclusion": {
+      "path": "evaluations/t22/remediation_exclusion.json",
+      "sha256": "85c8040c90690ffb1f33ea4b6fca1f2b1943a057e3c14d5288127f580679b5ee"
+    },
+    "t22_runtime_freeze": {
+      "path": "evaluations/t22/runtime_freeze.json",
+      "sha256": "5098d04e00e3fac93f32f634c1afd76b8eae3d0ab7760ae1fc5b2ee494836385"
+    },
+    "t23_exposed_sealed_anchor": {
+      "path": "t24_protocol/anchor_t23.py",
+      "sha256": "af448d9e80abe28f29b361fe3a9d71262972a895817c322f8f7a9e484a09429b"
+    },
+    "t23_exposed_sealed_anchor_artifact": {
+      "path": "evaluations/t24/t23_exposed_sealed_anchor.json",
+      "sha256": "bdd9e73328d791ccd38972f309b988cbd5783620a0774e4ab1715df427938053"
+    }
+  },
+  "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+  "candidate_tree": "c88599484db10c0bcf3eeafa50d84746fa539060",
+  "construction_authorized": false,
+  "construction_mode": "PRECONSTRUCTION_ONLY",
+  "experiment": "t24",
+  "missing_bindings": 0,
+  "runtime_root": "63f3b446f6e147ee0635a74702920f6e5ca367847bb3d165d74341402c1941e1",
+  "schema_version": "t24-author-lock-v1",
+  "taxonomy_spec_root": "e4cb3cdf753c31f6062f6ed1141632d591aaca32e5c54a9ffabf4fa6a0902ba9",
+  "unchanged_from_t23_candidate": true
+}
