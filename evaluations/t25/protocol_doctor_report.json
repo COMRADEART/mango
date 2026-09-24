@@ -1,0 +1,249 @@
+{
+  "artifact": "T25_PRODUCTION_PROTOCOL_DOCTOR",
+  "base_verdict": "T21_PROTOCOL_DOCTOR_FAIL",
+  "checks": {
+    "EXECUTIVE_ROUTER": {
+      "dangling_reason_routes": [],
+      "duplicate_route_ids": 0,
+      "reason_route_contradictions": 0,
+      "registered_routes": 9,
+      "status": "PASS",
+      "unreachable_registered_routes": []
+    },
+    "HISTORICAL_LIFECYCLE_CONSISTENCY": {
+      "status": "PASS",
+      "t22": "PASS",
+      "t23_frozen_verifier": {
+        "evidence_valid": false,
+        "experiment": "t23",
+        "reason": "preconstruction state has invalid freeze or real paths",
+        "state": "UNKNOWN",
+        "status": "FAIL"
+      },
+      "t23_terminal": {
+        "absent_evaluation_paths": 14,
+        "adjudication_agrees": true,
+        "construction_record_intact": true,
+        "freeze_binding_intact": true,
+        "interpretation": "SEALED_THEN_PUBLICATION_EXPOSED",
+        "manifest_intact": true,
+        "present_paths": 8,
+        "publication_event_verified": true,
+        "registered_paths": 22,
+        "status": "PASS"
+      },
+      "t24_terminal": {
+        "candidate_identity_differs_from_t24": true,
+        "contract_agrees": true,
+        "interpretation": "T24_SEALED_EVALUATED_NEVER_PUBLISHED",
+        "receipt_commit_ancestor_of_head": true,
+        "status": "PASS",
+        "t24_blind_paths_in_head": []
+      }
+    },
+    "T21_PROTOCOL_DOCTOR": {
+      "frozen_verdict": "T21_PROTOCOL_DOCTOR_FAIL",
+      "other_failures": [],
+      "status": "PASS"
+    },
+    "T23_EXPOSED_SEALED_ANCHOR": {
+      "anchor": {
+        "anchor_root": "b68d7ec1818d491029b59cdbb0f680aa209d3fc7721d54f02f32cf469c914ea5",
+        "dimensions": {
+          "case_ids": 1280,
+          "chunk_ids": 72,
+          "entity_identities": 18,
+          "exact_answers": 1280,
+          "exact_queries": 1280,
+          "exact_source_text": 73,
+          "relations": 0,
+          "source_ids": 18,
+          "verbatim_attack_wording": 160
+        },
+        "exposed_files": 30,
+        "status": "PASS"
+      },
+      "status": "PASS"
+    },
+    "T24_SEALED_EVALUATED_ANCHOR": {
+      "anchor": {
+        "anchor_root": "f98c83561ee7bfd8635ba0e01bae371f9ee71de32a147548c9096d2577563e53",
+        "bound_files": 14,
+        "dimensions": {
+          "artifact_content": 26,
+          "case_ids": 1280,
+          "chunk_ids": 0,
+          "entity_identities": 0,
+          "exact_answers": 1280,
+          "exact_queries": 1280,
+          "exact_source_text": 1,
+          "relations": 0,
+          "source_ids": 0,
+          "verbatim_attack_wording": 160
+        },
+        "status": "PASS"
+      },
+      "status": "PASS"
+    },
+    "T25_ARTIFACT_CLASSIFICATION": {
+      "status": "PASS"
+    },
+    "T25_AUTHOR_LOCK": {
+      "binding_count": 52,
+      "status": "PASS"
+    },
+    "T25_BLINDNESS_CHECKER": {
+      "status": "PASS"
+    },
+    "T25_CANDIDATE_BINDING": {
+      "status": "PASS"
+    },
+    "T25_CONSTRUCTION_CONTRACT": {
+      "status": "PASS"
+    },
+    "T25_CONTRACT_LEAVES": {
+      "leaf_requirement_count": 176,
+      "status": "PASS"
+    },
+    "T25_EVALUATION_GRAPH": {
+      "producer_count": 27,
+      "status": "PASS"
+    },
+    "T25_EXCLUSION_SOURCES": {
+      "forbidden_counts": {
+        "case_ids": 75827,
+        "chunk_ids": 60925,
+        "entity_identities": 64082,
+        "exact_answers": 28265,
+        "exact_queries": 75470,
+        "exact_source_text": 63080,
+        "relations": 0,
+        "source_ids": 19465,
+        "verbatim_attack_wording": 1752
+      },
+      "status": "PASS",
+      "violations": 0
+    },
+    "T25_GIT_BLIND_BLOB_SCAN": {
+      "status": "PASS"
+    },
+    "T25_LIVE_WEB_FIREWALL": {
+      "controls": {
+        "all_denied": true,
+        "control_count": 11,
+        "controls": {
+          "historical_fingerprint_denied": true,
+          "qualification_text_denied": true,
+          "t23_chunk_text_denied": true,
+          "t23_content_hash_denied": true,
+          "t23_exposed_query_denied": true,
+          "t23_raw_url_denied": true,
+          "t23_repo_url_denied": true,
+          "t24_artifact_hash_denied": true,
+          "t24_qualification_query_denied": true,
+          "t24_rehearsal_fingerprint_denied": true,
+          "unfirewalled_web_provider_refused": true
+        },
+        "firewall_counters": {
+          "candidate_visible_results": 0,
+          "historical_eval_rejected": 0,
+          "qualification_derived_rejected": 1,
+          "queries_denied": 1,
+          "rejected_rule_counts": {
+            "QUALIFICATION_FINGERPRINT": 1,
+            "REPOSITORY_IDENTITY": 2,
+            "T23_CONTENT_HASH": 2,
+            "T24_ARTIFACT_HASH": 1,
+            "T24_QUALIFICATION_FINGERPRINT": 1
+          },
+          "results_rejected_total": 7,
+          "results_retrieved": 7,
+          "t23_derived_rejected": 4,
+          "t24_derived_rejected": 2
+        }
+      },
+      "status": "PASS"
+    },
+    "T25_PRECONSTRUCTION_FREEZE": {
+      "freeze": {
+        "component_count": 285,
+        "drifted": [],
+        "frozen_policy": {
+          "PUBLIC_GIT_BLIND_BLOB_COUNT_REQUIRED": 0,
+          "REAL_BLIND_CONTENT_PUBLICATION_ALLOWED_BEFORE_EVALUATION": false,
+          "T23_EXPOSED_MATERIAL_REUSE_ALLOWED": false,
+          "T24_PRIVATE_MATERIAL_OPENING_ALLOWED": false,
+          "T24_SEALED_MATERIAL_REUSE_ALLOWED": false,
+          "T25_CANDIDATE_EXECUTION_ON_T24_ROWS_ALLOWED": false
+        },
+        "status": "PASS"
+      },
+      "status": "PASS"
+    },
+    "T25_PRIVATE_STORE_CONFIG": {
+      "controls": {
+        "all_refused": true,
+        "control_count": 12,
+        "controls": {
+          "blind_blob_mutation_refused": true,
+          "byte_size_drift_refused": true,
+          "duplicate_write_refused": true,
+          "evaluation_ledger_duplicate_creation_refused": true,
+          "immutable_replace_refused": true,
+          "ledger_advance_after_fail_refused": true,
+          "ledger_duplicate_creation_refused": true,
+          "ledger_state_skip_refused": true,
+          "real_namespace_requires_token": true,
+          "seal_before_gate_refused": true,
+          "store_inside_public_git_refused": true,
+          "unknown_role_fail_closed": true
+        },
+        "workspace_outside_repository": {
+          "mounted_count": 1,
+          "outside_repository": true
+        }
+      },
+      "status": "PASS"
+    },
+    "T25_PRODUCTION_EXPERIMENT_REGISTRY": {
+      "status": "PASS"
+    },
+    "T25_PRODUCTION_PROVIDER": {
+      "initialization_rows": 0,
+      "parity": {
+        "parity_mismatches": [],
+        "rows": 3,
+        "status": "PASS"
+      },
+      "status": "PASS"
+    },
+    "T25_PUBLICATION_GATE": {
+      "blind_blob_count": 0,
+      "scan_status": "PASS",
+      "status": "PASS"
+    },
+    "T25_PUBLICATION_POLICY": {
+      "status": "PASS"
+    },
+    "T25_QUALIFICATION_DATA": {
+      "status": "PASS"
+    },
+    "T25_SHADOW_LIFECYCLE": {
+      "comparisons": {
+        "construction_semantic_diff": 0,
+        "evaluation_semantic_diff": 0,
+        "graph_diff": 0,
+        "manifest_commitment_diff": 0,
+        "metric_diff": 0
+      },
+      "status": "PASS"
+    },
+    "T25_STATE_MACHINE_ONE_SHOT": {
+      "status": "PASS"
+    }
+  },
+  "experiment": "t25",
+  "schema_version": "t25-production-doctor-v1",
+  "status": "PASS",
+  "verdict": "T25_PRODUCTION_PROTOCOL_DOCTOR_PASS"
+}

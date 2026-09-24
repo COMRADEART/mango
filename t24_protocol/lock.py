@@ -90,11 +90,54 @@ def expected_lock() -> dict[str, Any]:
     }
 
 
+def _successor_classifiable(actual: dict[str, Any],
+                            expected: dict[str, Any]) -> list[str] | None:
+    """Drifted binding paths when, and only when, the lock diff is byte-drift
+    inside "bindings" and every other field recomputes exactly."""
+    if set(actual) != set(expected) or set(actual.get("bindings", {})) != set(expected["bindings"]):
+        return None
+    for key, value in expected.items():
+        if key == "bindings":
+            continue
+        if actual.get(key) != value:
+            return None
+    drifted = []
+    for name, binding in expected["bindings"].items():
+        stored = actual["bindings"][name]
+        if stored.get("path") != binding["path"]:
+            return None
+        if stored.get("sha256") != binding["sha256"]:
+            drifted.append(binding["path"])
+    return sorted(drifted) or None
+
+
 def verify_lock(path: Path = LOCK) -> dict[str, Any]:
+    """The stored T24 author lock must recompute exactly.
+
+    In the authorized T25 successor tree the lock's byte bindings are
+    historical: the only permitted recomputation differences are sha256
+    values of bindings whose file bytes the authorized T25 remediation
+    changed, and every such byte must be bound exactly by the T25 successor
+    freeze (fail closed otherwise).
+    """
+    from .successor import successor_binding
+
     actual = json.loads(path.read_text(encoding="utf-8"))
     expected = expected_lock()
     if actual != expected:
-        raise ValueError("T24 author lock or production binding drift")
+        drifted_paths = _successor_classifiable(actual, expected)
+        if drifted_paths is None:
+            raise ValueError("T24 author lock or production binding drift")
+        successor = successor_binding(ROOT, drifted_paths)
+        if successor is None:
+            raise ValueError("T24 author lock or production binding drift")
+        return {"status": "PASS", "binding_count": len(BINDINGS),
+                "missing_bindings": 0,
+                "author_fingerprint_root": actual["author_fingerprint_root"],
+                "candidate_commit": actual["candidate_commit"],
+                "candidate_tree": actual["candidate_tree"],
+                "taxonomy_spec_root": actual["taxonomy_spec_root"],
+                "successor_interpretation": successor}
     return {"status": "PASS", "binding_count": len(BINDINGS),
             "missing_bindings": 0, "author_fingerprint_root": actual["author_fingerprint_root"],
             "candidate_commit": actual["candidate_commit"],

@@ -1,0 +1,25 @@
+{
+  "artifact": "T25_PRIVATE_STORE_CONFIG",
+  "disposable_namespaces": [
+    "t25-qualification",
+    "t25-shadow-disposable"
+  ],
+  "example_root": "C:/T25_PRIVATE_EVALUATION",
+  "experiment": "t25",
+  "immutable_artifacts": true,
+  "locator_forbidden_content": [
+    "PRIVATE_CONTENT",
+    "FILESYSTEM_PATH",
+    "PUBLIC_DOWNLOAD_URL"
+  ],
+  "locator_scheme": "t25-private://",
+  "mutating_artifact_ids": [
+    "construction_run_ledger",
+    "evaluation_run_ledger"
+  ],
+  "real_namespace": "t25",
+  "real_namespace_requires_construction_token": true,
+  "real_store_identity": "T25-STORE-01",
+  "schema_version": "t25-private-store-config-v1",
+  "store_location_policy": "OUTSIDE_PUBLIC_GIT_WORKTREE_HISTORY_AND_SERVICES"
+}

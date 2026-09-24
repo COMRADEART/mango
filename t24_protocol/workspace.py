@@ -28,8 +28,13 @@ def verify_source_identity(source_root: Path, *,
     """Every frozen component must be byte-identical in the evaluation source.
 
     Real evaluation reads the frozen preconstruction freeze; disposable
-    rehearsals pass their rehearsal-local freeze document instead.
+    rehearsals pass their rehearsal-local freeze document instead. In the
+    authorized T25 successor tree the T24 freeze binding is historical; drift
+    is accepted only when the T25 successor freeze binds every drifted byte
+    exactly (authorized T25 remediation + successor protocol code).
     """
+    from .successor import successor_binding
+
     source_root = Path(source_root).resolve()
     if freeze_document is None:
         freeze = json.loads(_freeze_path(source_root).read_text(encoding="utf-8"))
@@ -52,7 +57,14 @@ def verify_source_identity(source_root: Path, *,
         if digest != expected:
             mismatches.append({"path": relative, "reason": "CANDIDATE_RUNTIME_DRIFT"})
     if mismatches:
-        raise ValueError(f"T24 evaluation source identity drift: {mismatches[:5]}")
+        successor = successor_binding(source_root,
+                                      sorted(mismatch["path"] for mismatch in mismatches))
+        if successor is None:
+            raise ValueError(f"T24 evaluation source identity drift: {mismatches[:5]}")
+        return {"status": "PASS", "components": freeze["component_count"],
+                "freeze_sha256": freeze["freeze_sha256"],
+                "candidate_runtime_components": len(candidate.get("runtime_component_sha256", {})),
+                "successor_interpretation": successor}
     return {"status": "PASS", "components": freeze["component_count"],
             "freeze_sha256": freeze["freeze_sha256"],
             "candidate_runtime_components": len(candidate.get("runtime_component_sha256", {}))}

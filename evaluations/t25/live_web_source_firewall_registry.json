@@ -1,0 +1,78 @@
+{
+  "artifact": "T25_LIVE_WEB_SOURCE_FIREWALL_REGISTRY",
+  "denial_rules": [
+    "QUERY_FINGERPRINT_T23_EXPOSED",
+    "REPOSITORY_IDENTITY",
+    "URI_PREFIX",
+    "T23_CONTENT_HASH",
+    "T23_TEXT_FINGERPRINT",
+    "HISTORICAL_FINGERPRINT",
+    "QUALIFICATION_FINGERPRINT",
+    "T24_ARTIFACT_HASH",
+    "T24_REHEARSAL_FINGERPRINT",
+    "T24_QUALIFICATION_FINGERPRINT"
+  ],
+  "denied_repositories": [
+    {
+      "host": "github.com",
+      "owner": "COMRADEART",
+      "reason": "T23_EXPOSED_SEALED",
+      "repo": "mango"
+    },
+    {
+      "host": "raw.githubusercontent.com",
+      "owner": "COMRADEART",
+      "reason": "T23_EXPOSED_SEALED",
+      "repo": "mango"
+    }
+  ],
+  "denied_uri_prefixes": [
+    "github.com/comradeart/mango",
+    "raw.githubusercontent.com/comradeart/mango",
+    "https://github.com/comradeart/mango",
+    "https://raw.githubusercontent.com/comradeart/mango",
+    "http://github.com/comradeart/mango",
+    "http://raw.githubusercontent.com/comradeart/mango"
+  ],
+  "experiment": "t25",
+  "historical_bindings": [
+    {
+      "path": "evaluations/t25/firewall_fingerprints/historical_fingerprints.json",
+      "sha256": "592b0857a1e8f269132c9f49635a5f0ef6edfd80c764d709a66864aa3612f2f2"
+    }
+  ],
+  "pre_candidate_filtering": true,
+  "qualification_bindings": [
+    {
+      "path": "evaluations/t25/firewall_fingerprints/qualification_fingerprints.json",
+      "sha256": "0056702bc77ba0be3e1aa746fa09f64833886440feea1454d8d87717655260c4"
+    }
+  ],
+  "schema_version": "t25-live-web-source-firewall-v1",
+  "t23_construction_commit": "aa613c30483f697295f6f993319e37fd45b07f12",
+  "t23_content_bindings": [
+    {
+      "path": "evaluations/t25/firewall_fingerprints/t23_content_fingerprints.json",
+      "sha256": "eb8c78da9acbb05e152ea81ec80b5d19d9dc7d289af5266f3332e7ae1a5397bf"
+    }
+  ],
+  "t23_query_bindings": [
+    {
+      "path": "evaluations/t25/t23_exposed_sealed_anchor.json",
+      "sha256": "bdd9e73328d791ccd38972f309b988cbd5783620a0774e4ab1715df427938053"
+    }
+  ],
+  "t23_text_bindings": [
+    {
+      "path": "evaluations/t25/firewall_fingerprints/t23_text_fingerprints.json",
+      "sha256": "2f676ba19b51fb406401c7a370ef4134e677f213ae451da3c6b6ea9ca11152ef"
+    }
+  ],
+  "t24_anchor_bindings": [
+    {
+      "path": "evaluations/t25/t24_sealed_evaluated_anchor.json",
+      "sha256": "4da0e6e3e65a04152f1cf447e741733f5e5821d82379677d686db05aba638085"
+    }
+  ],
+  "t24_receipt_commit": "d64160bf0ebb715a6a30647d06e420b7dde6b24e"
+}
