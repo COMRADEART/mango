@@ -1,0 +1,255 @@
+{
+  "artifact": "T24_PUBLIC_CONSTRUCTION_COMMITMENT",
+  "artifacts": [
+    {
+      "artifact_logical_id": "construction_audits",
+      "artifact_role": "construction_audits_index",
+      "byte_size": 2707,
+      "canonical_sha256": "611de24d04fcfc63939b07095854d952bc55f9444dc64c469348bd2f8709aaeb",
+      "classification": "PRIVATE_EVALUATION",
+      "locator": "t24-private://T24-STORE-01/t24/construction_audits",
+      "schema_version": "t24-construction-audits-v1"
+    },
+    {
+      "artifact_logical_id": "construction_gate",
+      "artifact_role": "construction_gate",
+      "byte_size": 1002,
+      "canonical_sha256": "c241a9c90f541110c3003c8b1cf6723088322d9bed097d24943e45f2cc5fddd7",
+      "classification": "PRIVATE_EVALUATION",
+      "locator": "t24-private://T24-STORE-01/t24/construction_gate",
+      "schema_version": "t24-construction-gate-v1"
+    },
+    {
+      "artifact_logical_id": "corpus/chunks.jsonl",
+      "artifact_role": "holdout_corpus_chunks",
+      "byte_size": 69942,
+      "canonical_sha256": "dddc4865f01e0118f015d799560a1faedeb9a946125d5291088d0f71c2a86f5d",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/corpus/chunks.jsonl",
+      "schema_version": "t24-holdout-corpus-v1"
+    },
+    {
+      "artifact_logical_id": "corpus/corpus_manifest.json",
+      "artifact_role": "holdout_corpus_manifest",
+      "byte_size": 1073,
+      "canonical_sha256": "2e1fa1732cec79813364f06f50a722b367d2adfdd3965fc71a08f950aa004ae7",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/corpus/corpus_manifest.json",
+      "schema_version": "t24-holdout-corpus-v1"
+    },
+    {
+      "artifact_logical_id": "corpus/sources.jsonl",
+      "artifact_role": "holdout_corpus_sources",
+      "byte_size": 11888,
+      "canonical_sha256": "2f7f528ae2812c18140bff0a1385d12b81aa53d53b8626fbfad00de420c9ee66",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/corpus/sources.jsonl",
+      "schema_version": "t24-holdout-corpus-v1"
+    },
+    {
+      "artifact_logical_id": "documents/private_attachment",
+      "artifact_role": "holdout_document_attachment",
+      "byte_size": 3224,
+      "canonical_sha256": "aeacb7c12e59bf9d189631d1083059870f82e7299bcfe13d7acb24f3f891f378",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/documents/private_attachment",
+      "schema_version": "t24-attachment-v1"
+    },
+    {
+      "artifact_logical_id": "holdout_seal",
+      "artifact_role": "holdout_seal",
+      "byte_size": 1301,
+      "canonical_sha256": "fa5341527ad7914694206c468f27bfb1fcce8c85041099a2e352bc04b9cebe3a",
+      "classification": "PRIVATE_EVALUATION",
+      "locator": "t24-private://T24-STORE-01/t24/holdout_seal",
+      "schema_version": "t24-holdout-sealed-v1"
+    },
+    {
+      "artifact_logical_id": "private_holdout_manifest",
+      "artifact_role": "private_holdout_manifest",
+      "byte_size": 9816,
+      "canonical_sha256": "78c49de202283b0b10675ce1b03e6fc6598c7d01429d2d7fa899b265a2931c12",
+      "classification": "PRIVATE_EVALUATION",
+      "locator": "t24-private://T24-STORE-01/t24/private_holdout_manifest",
+      "schema_version": "t24-private-manifest-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/ambiguous_route.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 11522,
+      "canonical_sha256": "3941970e2940f8db01596da59ff20c7ab3ab5b4f012ee362954ebe0d31a14300",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/ambiguous_route.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/citation_sensitive.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 11922,
+      "canonical_sha256": "abd2be2d375ad0e36fa3c4ed5df9da80a0c91b72464013bba88b7ddef221c727",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/citation_sensitive.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/conflicting_evidence.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 12322,
+      "canonical_sha256": "6896cdaeeb99260672747ec4aa586bfa169b399acf5f3432abed5de56979c076",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/conflicting_evidence.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/cross_domain_local.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 11762,
+      "canonical_sha256": "11ffbcb195b6f9ff1ed265c3d8a6c163df87b70093a5eaddf6a6818530a46e97",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/cross_domain_local.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/explicit_current.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 11442,
+      "canonical_sha256": "497e1edbce91a6c4b141ce11bd55541a89b00526d5bd2c5a17be9d6c4b6e98e9",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/explicit_current.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/historical_as_of.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 11282,
+      "canonical_sha256": "be065fb4f2c8482e71f4f18e0cb66f1d6122f34885154cb5dfbc5fdf2de4f66d",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/historical_as_of.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/insufficient_evidence.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 12882,
+      "canonical_sha256": "b968fcc928614a0c74a983732d73c2a6bafa3358bf0f219ab0dd2b7dbabf8925",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/insufficient_evidence.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/malformed_router_state.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 13842,
+      "canonical_sha256": "46cda063641007e2b1ad83a76483951b638e25e0eabbe5c3471a39d9b1be1cea",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/malformed_router_state.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/mixed_intent.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 10802,
+      "canonical_sha256": "d0274b258cac370ba2df39c9c9efaf6dc72ac8d570d0f44abfc99e9e2290b595",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/mixed_intent.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/multi_hop_local.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 11282,
+      "canonical_sha256": "a5eef7bf570262c69e54111689a3cb2e97ebf666d9bc32aa91e68ef5259e03b0",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/multi_hop_local.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/recency_sensitive.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 12162,
+      "canonical_sha256": "8fb9f41f99b76c179d21430486d4cd51b54cc8e1c4577748f85d2cc4f87bf145",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/recency_sensitive.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/route_override_adversarial.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 13262,
+      "canonical_sha256": "bf501ef525803d85c4ffd6a2ef171b4d659b8755fc06fde9992c58f4c6bd613a",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/route_override_adversarial.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/security_adversarial.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 11842,
+      "canonical_sha256": "8c1aa6be9356621028b2b8fb8dae057682a1fb6d38677cbdb49a7f7aea079062",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/security_adversarial.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/static_local_factual.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 12082,
+      "canonical_sha256": "d3bd41e8142a7b181bd308bad9db955a870340bd758b1aba5de0a10f718018ed",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/static_local_factual.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/tool_required.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 11202,
+      "canonical_sha256": "d4f0efc59b82adc3a0afd353b0d98f4fee546bb412d6054cc31f7fb286fc0d7b",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/tool_required.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/families/unsupported_tool_request.jsonl",
+      "artifact_role": "suite_family",
+      "byte_size": 12962,
+      "canonical_sha256": "fd73adedc85613ae3c37968dda05ec396bcea2fa81cd91604e8d6199c95b2715",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/families/unsupported_tool_request.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/gold.jsonl",
+      "artifact_role": "suite_gold",
+      "byte_size": 192542,
+      "canonical_sha256": "81c1d6a498474bf9d66e96bc314830e16bb0c1cccbd7a0de1baab16fb3c088d0",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/gold.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    },
+    {
+      "artifact_logical_id": "suites/inputs.jsonl",
+      "artifact_role": "suite_inputs",
+      "byte_size": 214342,
+      "canonical_sha256": "90d2ce1a87dfba9a668fc4d451dd4200134d3d7ad04def4e194e5d277747e5f8",
+      "classification": "PRIVATE_BLIND",
+      "locator": "t24-private://T24-STORE-01/t24/suites/inputs.jsonl",
+      "schema_version": "t24-blind-suite-v1"
+    }
+  ],
+  "blind_content_included": false,
+  "blindness_audit_sha256": "994803453ca8c7e73476f7acf078a6e13dd68c791e96d326aa0af92a294a0123",
+  "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+  "candidate_tree": "c88599484db10c0bcf3eeafa50d84746fa539060",
+  "construction_contract_sha256": "4ba448e9e69dbe838387efd523dcacad809f34b4271b9d846e3499b41f2e019b",
+  "construction_gate_sha256": "c241a9c90f541110c3003c8b1cf6723088322d9bed097d24943e45f2cc5fddd7",
+  "exclusion_audit_sha256": "e61a4de5e891b8b9d0ea723ec6f2da74f06543b16d4acc7a20bd263feb86b009",
+  "experiment": "t24",
+  "preconstruction_commit": "254082d0c5876f6a59366ebf8a724164b64f96d9",
+  "preconstruction_freeze_sha256": "3ba1bbf3b3485c74e238d603c14283d2ba571dd4a17765d0c7f379019dfd526d",
+  "private_artifact_root": "7be1d7f7aa26b017e983bd69eb484cd6d78a6929f4fb5d4e761f926cc7356a64",
+  "private_holdout_root": "bd7719be874ae0abc71d3f5d2eb2b6fd6935d77a5fd0cb44ebca146fa47c79c2",
+  "private_ledger_semantic_sha256": "6974e7544aca2c848df6780de14c963dbf85dd8df6a6c9ec35040b4ae580093b",
+  "private_manifest_sha256": "78c49de202283b0b10675ce1b03e6fc6598c7d01429d2d7fa899b265a2931c12",
+  "schema_version": "t24-public-construction-commitment-v1",
+  "uniqueness_audit_sha256": "66760aac1dcba7baf3e1c49251e3f5485f52efa02a0c65ee9d81a56feed7f68f"
+}
