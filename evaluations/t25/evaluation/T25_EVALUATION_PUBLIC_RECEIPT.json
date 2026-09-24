@@ -1,0 +1,10 @@
+{
+  "artifact": "T25_EVALUATION_PUBLIC_RECEIPT",
+  "attempt": 1,
+  "blind_content_included": false,
+  "experiment": "t25",
+  "ledger_sha256": "cd701f76d5cd922e6fb03d62ddcb31472367a6dacbdbaaa5e7052a43527dd1d2",
+  "private_artifact_root": "32f44355f357efded118a5abb0b194f38e74689efce30d0343e2fc74e8f4dfe1",
+  "schema_version": "t25-public-evaluation-receipt-v1",
+  "state": "COMPLETE"
+}
