@@ -1,0 +1,231 @@
+{
+  "artifact": "T25_PROMOTION_AUDIT",
+  "doctor": {
+    "check_count": 24,
+    "failed": [],
+    "verdict": "T25_PRODUCTION_PROTOCOL_DOCTOR_PASS"
+  },
+  "experiment": "t25",
+  "immutability": {
+    "checked": [
+      "candidate_commit_tree",
+      "candidate_runtime_18_components",
+      "capability_registry_frozen",
+      "construction_commitment",
+      "construction_ledger",
+      "construction_receipt",
+      "evaluation_ledger",
+      "evaluation_receipt",
+      "freeze_component_root",
+      "freeze_root",
+      "freeze_sha256",
+      "holdout_seal",
+      "metric_registry",
+      "private_holdout_root",
+      "private_manifest",
+      "runtime_root",
+      "scorer",
+      "store_verify"
+    ],
+    "evidence": {
+      "candidate_commit_tree": {
+        "bound": "459ed3a39ad011b1d061f037348ea0a80bf8f131",
+        "ok": true
+      },
+      "candidate_runtime_18_components": {
+        "bound": "18/18 byte-identical",
+        "ok": true
+      },
+      "capability_registry_frozen": {
+        "bound": "3597505eada82a94134c8d97ce7bc913cae2b8d3a0cb5007f0a59ab7e57a04b0",
+        "ok": true
+      },
+      "construction_commitment": {
+        "bound": "raw bytes identical",
+        "ok": true
+      },
+      "construction_ledger": {
+        "bound": "dc67a32ea634b12045b26d1b66ba0cb5549e549295aa0e94a9790007996bc913",
+        "ok": true
+      },
+      "construction_receipt": {
+        "bound": "raw bytes identical",
+        "ok": true
+      },
+      "evaluation_ledger": {
+        "bound": "cd701f76d5cd922e6fb03d62ddcb31472367a6dacbdbaaa5e7052a43527dd1d2",
+        "ok": true
+      },
+      "evaluation_receipt": {
+        "bound": "identical after CRLF normalization (checkout filter)",
+        "ok": true
+      },
+      "freeze_component_root": {
+        "bound": "19bab158cb573bdae048f619691b3a0016c92649b267d4d6bc7926e9ceb7effd",
+        "ok": true
+      },
+      "freeze_root": {
+        "bound": "fd5c8b57e5378f07ebcb68c3347759aca43bb8c116a03ff6de36c3eea3ed3cca",
+        "ok": true
+      },
+      "freeze_sha256": {
+        "bound": "64ab2392acc14c9b46960089676d22b1caa8b54a78b2f290d6ab3548092c3910",
+        "ok": true
+      },
+      "holdout_seal": {
+        "bound": "54715c5053c727a9ac75d128f7375a88ec53f72c4d3197b8057771345e98bba4",
+        "ok": true
+      },
+      "metric_registry": {
+        "bound": "frozen component byte-identical",
+        "ok": true
+      },
+      "private_holdout_root": {
+        "bound": "bc8a43fec65f350efdb42080726407ccebf802b4e3b5cf698a8b109fd3182a46",
+        "ok": true
+      },
+      "private_manifest": {
+        "bound": "82c0a425817e5dcb56222048933ee87a5c5aa4a84a82d7a9f7c79f69f9e1ecb0",
+        "ok": true
+      },
+      "runtime_root": {
+        "bound": "2beb7a068de3afd0ab0ce25a7a9748fc5cffe6ca04f2db53c1c4d9c71bf87ea9",
+        "ok": true
+      },
+      "scorer": {
+        "bound": "frozen component byte-identical",
+        "ok": true
+      },
+      "store_verify": {
+        "bound": "PASS",
+        "ok": true
+      }
+    },
+    "mismatches": 0,
+    "status": "PASS"
+  },
+  "protection_battery": {
+    "determinism_mismatch_events": 0,
+    "provider_parity": {
+      "diffs": 0,
+      "rows": 1280,
+      "status": "PASS"
+    },
+    "qualification_rows_checked": 1280,
+    "router_integrity": {
+      "dangling_reason_routes": [],
+      "duplicate_route_ids": 0,
+      "reason_route_contradictions": 0,
+      "registered_routes": 9,
+      "status": "PASS",
+      "unreachable_registered_routes": []
+    },
+    "router_protection_battery": {
+      "failed_floors": [],
+      "floor_count": 15,
+      "status": "PASS"
+    },
+    "t23_exposed_rows_as_qualification_data": 0,
+    "t24_sealed_rows_as_qualification_data": 0
+  },
+  "pytest_suite": {
+    "classification": {
+      "historical": [
+        {
+          "cause": "T22 real holdout constructed+sealed in 26ba874 (2026-09-22, authorized); test asserts pre-construction absence",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t22_preconstruction::test_real_t22_paths_absent"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_duplicate_ledger_and_second_attempt_refused"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[author_lock_sha256]"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[candidate_commit]"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[candidate_tree]"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[freeze_root]"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[preconstruction_freeze_sha256]"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_gate_design_controls[missing_family]"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_gate_design_controls[wrong_family_count]"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_gate_design_controls[wrong_total_rows]"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_manifest_missing_artifact_and_seal_root_mismatch"
+        },
+        {
+          "cause": "same module-scoped T23 v3-freeze guard: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24); T23 shadow-construction negative controls pin the superseded T23 freeze",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_construction_remediation::test_unknown_construction_state_and_author_lock_refused"
+        },
+        {
+          "cause": "verify_lifecycle(t23)=FAIL reason 'preconstruction state has invalid freeze or real paths' - real T23 construction artifacts exist since the authorized T23 construction (2026-09-23); test asserts PRECONSTRUCTION state",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_lifecycle::test_preconstruction_t23_paths_are_absent"
+        },
+        {
+          "cause": "real T23 construction artifacts exist since the authorized T23 construction (2026-09-23); test asserts absence",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_production::test_real_t23_paths_remain_absent"
+        },
+        {
+          "cause": "T23 v3 freeze component hash mismatch: src/sciencemath/executive/runner.py changed by the authorized T25 remediation candidate ba34f7b (2026-09-24)",
+          "classification": "HISTORICAL",
+          "test": "tests.test_t23_production::test_shadow_ledger_seal_and_exclusive_second_create"
+        }
+      ],
+      "missing_classified": [],
+      "rule": "the suite ran at the pre-promotion commit 035c661 (clean); tree(035c661) - tree(33308f0) = the t25 evaluation receipt only, so every failure here predates the promotion; the promotion commit adds only 4 public-safe data files under evaluations/t25 and no selected test file globs the t25 directory; post-promotion re-run must reproduce this exact failure set (verified below)",
+      "unclassified": []
+    },
+    "errors": 11,
+    "failures": 4,
+    "new_live_failures": 0,
+    "new_unknown_failures": 0,
+    "note": "no test or protocol file modified; frozen tests are not weakened (stale older-milestone assertions preserved as-is)",
+    "post_promotion_reproduce": {
+      "identical_failure_set": true,
+      "junitxml": "C:\\T25_OFFICIAL_EVALUATION_01\\t25_promo_post_pytest.xml",
+      "new_live_failures": 0,
+      "new_unknown_failures": 0,
+      "note": "run against the promotion file set in the worktree; identical bytes committed below",
+      "tests": 348
+    },
+    "skipped": 0,
+    "suite_commit": "035c661baff1306a20811476ff8999f97850745a",
+    "tests": 348
+  }
+}

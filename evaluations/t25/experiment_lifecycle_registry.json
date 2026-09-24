@@ -1,0 +1,69 @@
+{
+  "artifact": "T25_EXPERIMENT_LIFECYCLE_REGISTRY",
+  "blind_material_included": false,
+  "capability_registry": {
+    "edited": false,
+    "frozen": true,
+    "note": "frozen preconstruction component; lifecycle representation carried in this artifact; unrelated entries preserved byte-for-byte",
+    "path": "evaluations/t25/capability_registry.json",
+    "sha256_after": "3597505eada82a94134c8d97ce7bc913cae2b8d3a0cb5007f0a59ab7e57a04b0",
+    "sha256_before": "3597505eada82a94134c8d97ce7bc913cae2b8d3a0cb5007f0a59ab7e57a04b0"
+  },
+  "experiment": "t25",
+  "experiments": {
+    "t22": {
+      "promotion_record": "evaluations/t22/T22_FINAL_PROMOTION_RECORD.json",
+      "state": "PROMOTED",
+      "verdict": "MANGO_KNOWLEDGE_RAG_CAPABILITY_PROMOTED"
+    },
+    "t23": {
+      "official_blind_evaluation": "INELIGIBLE",
+      "state": "SEALED / UNEVALUATED / PUBLICATION_EXPOSED"
+    },
+    "t24": {
+      "result_preserved": true,
+      "state": "CLOSED / OFFICIAL_CAPABILITY_FAILURE"
+    },
+    "t25": {
+      "construction_evidence": "t25-private://T25-STORE-01/t25/construction_run_ledger (sha256 dc67a32ea634b12045b26d1b66ba0cb5549e549295aa0e94a9790007996bc913, SEALED, attempt 1)",
+      "contract": "evaluations/t25/t25_master_contract.json",
+      "evaluation_evidence": "t25-private://T25-STORE-01/t25/evaluation_run_ledger (sha256 cd701f76d5cd922e6fb03d62ddcb31472367a6dacbdbaaa5e7052a43527dd1d2, COMPLETE, attempt 1, 1280 rows)",
+      "expected_verdict": "MANGO_EXECUTIVE_ROUTER_AND_CAPABILITY_DISPATCH_PROMOTED",
+      "promotion_checksum": "evaluations/t25/T25_FINAL_PROMOTION_RECORD.sha256",
+      "promotion_record": "evaluations/t25/T25_FINAL_PROMOTION_RECORD.json",
+      "protected_floor_count": 32,
+      "public_receipt": {
+        "commit": "035c661baff1306a20811476ff8999f97850745a",
+        "path": "evaluations/t25/evaluation/T25_EVALUATION_PUBLIC_RECEIPT.json"
+      },
+      "router_floor_count": 15,
+      "state": "PROMOTED"
+    }
+  },
+  "lifecycle_updates": {
+    "Executive Router": {
+      "previous": "EXPERIMENTAL",
+      "scope": "Qualified only for the exact frozen T25 routing and capability-dispatch scope measured by the official one-shot evaluation. This does not imply broader deployment or release readiness.",
+      "state": "QUALIFIED"
+    },
+    "KNOWLEDGE_RAG": {
+      "note": "preserved from T22; unchanged",
+      "previous": "QUALIFIED",
+      "state": "QUALIFIED"
+    },
+    "Production Capability Dispatch": {
+      "previous": "no lifecycle record (integration exercised in T23/T24/T25 evaluation envelopes)",
+      "scope": "1280 / 1280 dispatch matches under the frozen T25 capability registry, provider, status semantics, and private evaluation environment. This is an integration qualification; individual capability availability fields remain unchanged.",
+      "state": "QUALIFIED"
+    }
+  },
+  "next_phase": {
+    "reserved_identifier": "T26",
+    "started": false,
+    "state": "AWAITING_EXPLICIT_AUTHORIZATION"
+  },
+  "promotion_branch": "t25-promoted",
+  "promotion_checksum": "evaluations/t25/T25_FINAL_PROMOTION_RECORD.sha256",
+  "promotion_record": "evaluations/t25/T25_FINAL_PROMOTION_RECORD.json",
+  "schema_version": "t25-experiment-lifecycle-registry-v1"
+}
