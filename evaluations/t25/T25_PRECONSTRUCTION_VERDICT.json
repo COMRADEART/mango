@@ -1,0 +1,240 @@
+{
+  "artifact": "T25_PRECONSTRUCTION_VERDICT",
+  "authorization": "T25 AGGREGATE-ONLY REMEDIATION + PRECONSTRUCTION AUTHORIZATION (sections 1-31)",
+  "candidate_identity": {
+    "candidate_commit": "ba34f7b2cc46158a5064a8e1c217f53e4d2dbf83",
+    "candidate_parent": "d64160bf0ebb715a6a30647d06e420b7dde6b24e",
+    "candidate_tree": "459ed3a39ad011b1d061f037348ea0a80bf8f131",
+    "changed_runtime_components": [
+      "src/sciencemath/executive/runner.py"
+    ],
+    "new_candidate_authorized_by": "authorization section 18",
+    "runtime_component_count": 18,
+    "runtime_root": "2beb7a068de3afd0ab0ce25a7a9748fc5cffe6ca04f2db53c1c4d9c71bf87ea9",
+    "unchanged_from_t23_candidate": false,
+    "unchanged_from_t24_candidate": false
+  },
+  "carried_t23_state": {
+    "t23_exclusion_anchor_root": "b68d7ec1818d491029b59cdbb0f680aa209d3fc7721d54f02f32cf469c914ea5",
+    "t23_exclusion_enforced": true,
+    "t23_history_preserved": true,
+    "t23_must_not_be_evaluated": true,
+    "t23_verdict": "T23_SEALED_VALID_BUT_OFFICIAL_BLIND_EVALUATION_INELIGIBLE_DUE_TO_PUBLICATION"
+  },
+  "carried_t24_state": {
+    "t24_candidate_immutability": "candidate e1be88f and receipt d64160b unmodified",
+    "t24_exclusion_anchor_root": "f98c83561ee7bfd8635ba0e01bae371f9ee71de32a147548c9096d2577563e53",
+    "t24_exclusion_enforced": true,
+    "t24_history_preserved": true,
+    "t24_must_not_be_rerun": true,
+    "t24_private_material_must_not_be_opened": true,
+    "t24_verdict": "T24_OFFICIAL_EVALUATION_COMPLETE_CAPABILITY_FAIL"
+  },
+  "doctor": {
+    "artifact": "evaluations/t25/protocol_doctor_report.json",
+    "check_count": 24,
+    "failed": [],
+    "verdict": "T25_PRODUCTION_PROTOCOL_DOCTOR_PASS"
+  },
+  "experiment": "t25",
+  "final_verdict": "T25_REMEDIATION_AND_PRECONSTRUCTION_PASS",
+  "freeze": {
+    "artifact": "evaluations/t25/preconstruction_freeze.json",
+    "component_count": 285,
+    "component_root": "19bab158cb573bdae048f619691b3a0016c92649b267d4d6bc7926e9ceb7effd",
+    "construction_authorized": false,
+    "freeze_root": "fd5c8b57e5378f07ebcb68c3347759aca43bb8c116a03ff6de36c3eea3ed3cca",
+    "freeze_sha256": "64ab2392acc14c9b46960089676d22b1caa8b54a78b2f290d6ab3548092c3910",
+    "lf_checkout_invariance": {
+      "crlf_components": 0,
+      "note": "original CRLF-era freeze (freeze_sha256 b38cc991...) was rebuilt after normalizing 19 components to LF under .gitattributes eol=lf; the committed freeze is checkout-invariant"
+    },
+    "post_freeze_artifacts_excluded": true
+  },
+  "infrastructure": {
+    "base_preconstruction_commit": "d64160bf0ebb715a6a30647d06e420b7dde6b24e",
+    "base_preconstruction_tree": "57199cd464694d4ec32754d40f3360aa9946e811",
+    "branch": "t25-preconstruction",
+    "preconstruction_commit": "441344cf5dfbe3738246d5dd1d21a9617083cc08",
+    "preconstruction_tree": "9ae7f22942fad1602cac8f687d6ed8ef729e827b",
+    "pushed_to_origin": true
+  },
+  "official_result_recorded": {
+    "allowed_count": 0,
+    "remediation_target": "GENERAL -> GENERAL[UNKNOWN] unmatched pairs = 4",
+    "t24_final_verdict": "T24_OFFICIAL_EVALUATION_COMPLETE_CAPABILITY_FAIL",
+    "t24_rerun_performed": false
+  },
+  "private_store": {
+    "one_shot_ledger_state": "UNSPENT",
+    "outside_public_git": true,
+    "real_namespace": "t25",
+    "real_namespace_requires_construction_token": true,
+    "real_store_identity": "T25-STORE-01"
+  },
+  "protection": {
+    "artifact": "evaluations/t25/candidate_protection_report.json",
+    "determinism_mismatch_events": 0,
+    "firewall_counters_all_zero": true,
+    "gold_firewall_status": "PASS",
+    "protected_t22_floors_pass": 32,
+    "provider_parity": {
+      "diffs": 0,
+      "rows": 1280,
+      "status": "PASS"
+    },
+    "router_protection_battery": "PASS",
+    "status": "PASS",
+    "t24_private_rows_opened": 0,
+    "t25_candidate_executions_on_t24_rows": 0
+  },
+  "publication": {
+    "policy": {
+      "PUBLIC_GIT_BLIND_BLOB_COUNT_REQUIRED": 0,
+      "REAL_BLIND_CONTENT_PUBLICATION_ALLOWED_BEFORE_EVALUATION": false,
+      "T23_EXPOSED_MATERIAL_REUSE_ALLOWED": false,
+      "T24_PRIVATE_MATERIAL_OPENING_ALLOWED": false,
+      "T24_SEALED_MATERIAL_REUSE_ALLOWED": false,
+      "T25_CANDIDATE_EXECUTION_ON_T24_ROWS_ALLOWED": false
+    },
+    "postpush_leakscan": {
+      "artifact": "evaluations/t25/postpush_leakscan.json",
+      "blind_blob_count": 0,
+      "path_policy_violations": 0,
+      "refs": [
+        "t25-preconstruction"
+      ],
+      "status": "PASS",
+      "tracked_path_violations": 0
+    },
+    "prepush_leakscan": {
+      "artifact": "evaluations/t25/prepush_leakscan.json",
+      "blind_blob_count": 0,
+      "path_policy_violations": 0,
+      "status": "PASS"
+    }
+  },
+  "qualification": {
+    "artifact": "evaluations/t25/qualification/qualification_report.json",
+    "reason_agreement": 1.0,
+    "route_agreement": 1.0,
+    "rows": 1280,
+    "status": "PASS",
+    "t23_exposed_rows": 0,
+    "t24_sealed_rows": 0
+  },
+  "rehearsals": {
+    "artifact": "evaluations/t25/production_shadow_lifecycle_report.json",
+    "real_blind_rows": 0,
+    "runs": 2,
+    "semantic_diffs": {
+      "construction_semantic_diff": 0,
+      "evaluation_semantic_diff": 0,
+      "graph_diff": 0,
+      "manifest_commitment_diff": 0,
+      "metric_diff": 0
+    },
+    "status": "PASS"
+  },
+  "remediation": {
+    "aggregate_evidence_only": true,
+    "blindness_rule_compliance": {
+      "t24_private_material_used_for_fix_design": false,
+      "t24_private_rows_opened": 0
+    },
+    "closed_status_sets_source": "frozen runtime sources (NO_TOOL_ROUTES, knowledge routing, web pipeline/claims)",
+    "evaluator_or_zero_tolerance_change_absent": true,
+    "forbidden_conversions_absent": true,
+    "root_cause_artifact": "evaluations/t25/remediation/T25_ROOT_CAUSE_ANALYSIS.json",
+    "root_cause_statement": "Frozen provider adapter (t23_protocol/provider.py:100) substitutes literal UNKNOWN whenever the executive runtime terminates without an evidence_status; BUDGET_EXHAUSTED (3 sites), STALLED, and _hard_fail (system errors) never assign one; in the frozen production GENERAL context (no retriever, no registry, max_new_tokens=32) retrieval-cued general questions deterministically reach those terminals. UNKNOWN is an adapter placeholder for status-absent, not an epistemic state.",
+    "router_floor_weakening_absent": true,
+    "semantic_rules_artifact": "evaluations/t25/remediation/T25_SEMANTIC_RULES.md",
+    "semantic_rules_count": 5,
+    "semantic_rules_established_before_mapping": true,
+    "status_taxonomy": [
+      "OK",
+      "PARTIALLY_SUPPORTED",
+      "UNCERTAIN",
+      "INSUFFICIENT_EVIDENCE",
+      "UNKNOWN",
+      "ERROR"
+    ],
+    "status_taxonomy_artifact": "evaluations/t25/remediation/T25_STATUS_TAXONOMY_CONTRACT.json",
+    "synthetic_non_blind_reproduction_section7": {
+      "collected": 32,
+      "failed": 0,
+      "passed": 32,
+      "status_branches_covered": [
+        "fast path",
+        "off-arm",
+        "verified tool match",
+        "unverified/no-signal UNCERTAIN",
+        "empty final text INSUFFICIENT_EVIDENCE",
+        "retrieval decline",
+        "conflicting evidence",
+        "STALLED (identical replan)",
+        "STALLED (retrieval error)",
+        "BUDGET_EXHAUSTED (pre-step)",
+        "BUDGET_EXHAUSTED (post-step, incl. max_replans)",
+        "BUDGET_EXHAUSTED (step wall-time)",
+        "system error _hard_fail",
+        "malformed state transition ERROR branch",
+        "provider never sees absent status across all terminals",
+        "deterministic GENERAL matrix",
+        "frozen dispatch UNKNOWN-unmatched rule retained",
+        "malformed status fail-closed",
+        "status contract fail-closed and capability-covering",
+        "dispatch rows validator fail-closed",
+        "provider exception fail-closed missing GENERAL context"
+      ],
+      "test_module": "tests.test_t25_general_status_remediation"
+    },
+    "terminal_paths_without_status": 7
+  },
+  "reproduction": {
+    "artifact": "evaluations/t25/T25_PRECONSTRUCTION_REPRODUCTION.json",
+    "blind_blob_count": 0,
+    "doctor_report": "T25_PRODUCTION_PROTOCOL_DOCTOR_PASS",
+    "freeze_drifted_components": 0,
+    "fresh_worktree": true,
+    "live_web_control_count": 11,
+    "live_web_controls_all_denied": true,
+    "lock_bindings": 52,
+    "path_policy_violations": 0,
+    "real_blind_rows": 0,
+    "rehearsal_runs": 2,
+    "rehearsal_zero_diff_comparisons": 5,
+    "reproduction_commit": "441344cf5dfbe3738246d5dd1d21a9617083cc08",
+    "storage_control_count": 12,
+    "storage_controls_refused": 12,
+    "tracked_path_violations": 0,
+    "verdict": "T25_PRECONSTRUCTION_REPRODUCTION_PASS"
+  },
+  "schema_version": 1,
+  "stop_rule": "ABSOLUTE STOP (authorization section 31): after this PASS verdict, do NOT construct the real T25 blind holdout and do NOT run any official evaluation; return for T25_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION.",
+  "test_gate": {
+    "baseline_collected": 3463,
+    "baseline_commit": "d64160bf0ebb715a6a30647d06e420b7dde6b24e",
+    "baseline_failures": 40,
+    "baseline_skipped": 0,
+    "failure_classification": "all 40 failures are stale superseded-era frozen-identity assertions, byte-identical at the immutable T24 receipt baseline (d64160b): 11x tests.test_t23_construction_remediation setup ERRORs (T23 v3 component hash re-derivation) + 29 stale re-hash assertions across test_t19_post_merge_audit_cleanup, test_t21_protocol_kernel, and the test_t21r3/r4/r5/r8/r9/r10/r11/r12/r13/r16/r17 preconstruction contracts, test_t22_preconstruction, test_t23_lifecycle, test_t23_production, test_scicomp_registry_active",
+    "failure_sets_identical": true,
+    "historical_authenticated_failures_separately_reported": true,
+    "live_failures": 0,
+    "live_web_failures": 0,
+    "new_deselections": 0,
+    "new_xfails": 0,
+    "population_delta": 57,
+    "population_delta_composition": {
+      "all_passing": true,
+      "tests.test_t25_general_status_remediation": 32,
+      "tests.test_t25_preconstruction": 25
+    },
+    "section": 25,
+    "tree_collected": 3520,
+    "tree_failures": 40,
+    "tree_skipped": 0,
+    "unexplained_skips": 0,
+    "unknown_failures": 0
+  }
+}

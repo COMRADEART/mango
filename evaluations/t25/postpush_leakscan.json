@@ -1,0 +1,17 @@
+{
+  "blind_blob_count": 0,
+  "blind_blob_matches": [],
+  "experiment": "t25",
+  "observed_path_count": 8922,
+  "path_policy_violations": [],
+  "required_blind_blob_count": 0,
+  "schema_version": "t25-git-blind-blob-scan-v1",
+  "status": "PASS",
+  "surfaces_scanned": [
+    "index",
+    "tracked",
+    "worktree",
+    "ref:t25-preconstruction"
+  ],
+  "tracked_path_violations": []
+}
