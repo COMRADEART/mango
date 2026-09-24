@@ -1,0 +1,55 @@
+{
+  "artifact": "T24_CANDIDATE_PROTECTION_REPORT",
+  "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+  "determinism_mismatch_events": 0,
+  "experiment": "t24",
+  "firewall_counters": {
+    "candidate_visible_results": 0,
+    "historical_eval_rejected": 0,
+    "qualification_derived_rejected": 0,
+    "queries_denied": 0,
+    "rejected_rule_counts": {},
+    "results_rejected_total": 0,
+    "results_retrieved": 0,
+    "t23_derived_rejected": 0
+  },
+  "gold_field_refusals": "GOLD_FIELD_EXPOSURE_RAISED",
+  "gold_firewall_status": "PASS",
+  "protected_t22_floor_pass_count": 32,
+  "provider_initialization_rows": 0,
+  "provider_parity": {
+    "diffs": 0,
+    "parity_mismatches": [],
+    "rows": 1280,
+    "status": "PASS"
+  },
+  "qualification_reason_agreement": 1.0,
+  "qualification_route_agreement": 1.0,
+  "qualification_rows": 1280,
+  "qualification_rows_checked": 1280,
+  "rehearsal_comparisons": {
+    "construction_semantic_diff": 0,
+    "evaluation_semantic_diff": 0,
+    "graph_diff": 0,
+    "manifest_commitment_diff": 0,
+    "metric_diff": 0
+  },
+  "router_integrity": {
+    "dangling_reason_routes": [],
+    "duplicate_route_ids": 0,
+    "reason_route_contradictions": 0,
+    "registered_routes": 9,
+    "status": "PASS",
+    "unreachable_registered_routes": []
+  },
+  "schema_version": "t24-candidate-protection-v1",
+  "security_refusal_leak_events": 0,
+  "sources": {
+    "candidate_identity": "evaluations/t24/candidate_identity.json",
+    "qualification_report": "evaluations/t24/qualification/qualification_report.json",
+    "shadow_lifecycle_report": "evaluations/t24/production_shadow_lifecycle_report.json"
+  },
+  "status": "PASS",
+  "t23_exposed_rows_as_qualification_data": 0,
+  "unchanged_from_t23_candidate": true
+}

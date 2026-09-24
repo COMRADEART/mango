@@ -1,0 +1,1549 @@
+{
+  "artifact": "T24_PRECONSTRUCTION_FREEZE",
+  "component_count": 255,
+  "component_root": "c6a96b3446e7fafeb6cc3c81dc1e8d96886dbf2a40c19cb689a50cd79de4a0a3",
+  "components": [
+    {
+      "byte_size": 1822,
+      "path": ".gitignore",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "520beb481d8d46832c59ebe079561641f09c674fb801e3c32f0be916f9c1b20c"
+    },
+    {
+      "byte_size": 5541,
+      "path": "evaluations/t22/T22_FINAL_PROMOTION_RECORD.json",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "7f42dc8aa1b7a889c0ce9dfb98ea2108dada7123e297deec3b14e8ec1f9fb27f"
+    },
+    {
+      "byte_size": 98,
+      "path": "evaluations/t22/T22_FINAL_PROMOTION_RECORD.sha256",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "bd7cf6179ea7b5e3ca5c9371a5c474cf6fd8db607798a286654f0f326ee4e55f"
+    },
+    {
+      "byte_size": 37088,
+      "path": "evaluations/t22/artifact_graph.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "f853ad4794a091f94a8df0bd960a0ee7ed2c8b50c2fc698f28273a42fdd84eb7"
+    },
+    {
+      "byte_size": 2304,
+      "path": "evaluations/t22/candidate_identity.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "983e96ba93bc55221c48ba69cd85d862c2846a65fb92e5996e5ea65d0aca70a8"
+    },
+    {
+      "byte_size": 1975,
+      "path": "evaluations/t22/candidate_runtime_data_contract.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "f30174b3d756cc7498533378702aa86063af1027e53b4a0f1364a449a94a6d5c"
+    },
+    {
+      "byte_size": 19849,
+      "path": "evaluations/t22/changed_file_manifest.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "8c059e916be618fa27d05a42398c7eef04e6318259adde7066b9e5696b3e808c"
+    },
+    {
+      "byte_size": 2596,
+      "path": "evaluations/t22/current_test_applicability.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "b6ad580de95997267c093b9d4945695718d244f382497846285392172ba05873"
+    },
+    {
+      "byte_size": 2002,
+      "path": "evaluations/t22/domain_taxonomy_contract.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "86dec5128e1fbe46582d2eb9cc9b3a673d435ce81efb40106c06c72fa3f59b2f"
+    },
+    {
+      "byte_size": 1452,
+      "path": "evaluations/t22/evaluation_artifact_graph.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "726dba1a4f83e1dadf205544b0d9106f099777bf7e47044e32a0c657386c97e0"
+    },
+    {
+      "byte_size": 1516,
+      "path": "evaluations/t22/evaluation_reporting_contract.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "e267edbf72cf5864a4eb9dfb71443fa33acdc49bb97dd5a29d09d7376b6f1557"
+    },
+    {
+      "byte_size": 9865,
+      "path": "evaluations/t22/evaluator_freeze.json",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "471d3fbb8c4deb688a0a54b8419b87f1768701adcf0e371e416dce05e0b55601"
+    },
+    {
+      "byte_size": 817,
+      "path": "evaluations/t22/experiment.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "adeec8cea001ef1d6915d5cb93a821460e3c122380494ff88fda3612fc6cbc9d"
+    },
+    {
+      "byte_size": 1924,
+      "path": "evaluations/t22/floor_evidence_contract.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "4eafe4a0d84b886774e11af8a114cac1659b6834814488ed0948a2ee3bd3032c"
+    },
+    {
+      "byte_size": 1246,
+      "path": "evaluations/t22/historical_exclusion.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "aa954604974681e0e13dcde57e3c0875e1cfd74e550856554db05e63acd231e7"
+    },
+    {
+      "byte_size": 2376,
+      "path": "evaluations/t22/holdout_frozen_schema.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "67faedbe525633d900fec182a50ee648cd84f8f990f523a4520b4d2df4f8c19d"
+    },
+    {
+      "byte_size": 17345,
+      "path": "evaluations/t22/metric_implementation_registry.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "92546df4a793b768d8cb88d2166ea935e795d24a5e4bf3f39c56736219f6c81f"
+    },
+    {
+      "byte_size": 43215,
+      "path": "evaluations/t22/metric_semantics_fixtures.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "8916d7582fa14c1e532fb2d851925fafb81b64285a9024051f6e714abf33751f"
+    },
+    {
+      "byte_size": 37269,
+      "path": "evaluations/t22/metric_semantics_validation.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "61cb266d674e3fad801d12abc9d423de37cf2403f87e7d647499970934bc8148"
+    },
+    {
+      "byte_size": 8991,
+      "path": "evaluations/t22/negative_controls.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "62f8013677bf95d93b89dee002385d368b4ed9dbfbd2df90572374716875374b"
+    },
+    {
+      "byte_size": 3617,
+      "path": "evaluations/t22/official_metric_registry.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "b56723f754ce173182c500d8d76cae3495081567447a9ac4ec89f00e443f6121"
+    },
+    {
+      "byte_size": 68614,
+      "path": "evaluations/t22/official_metric_semantics.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "d061033f094321930556bd7ba99c4df9f61d49dbccef966049e40786b15e72e0"
+    },
+    {
+      "byte_size": 27818306,
+      "path": "evaluations/t22/prior_exclusion.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "880e69010a825a9a6c0d6bd0244f8b505d875d182870969480883ae914a55080"
+    },
+    {
+      "byte_size": 418,
+      "path": "evaluations/t22/r17_evaluation_refusal.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "9b59e9ad5c024adc67fc2c7cd928a41c0b1611531113adf4ff7b6e11799753c9"
+    },
+    {
+      "byte_size": 4624,
+      "path": "evaluations/t22/r17_final_disposition.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "ffe5fcde605284a4293daf4bc3737d0b9f4cff0a628945a3d7b03f46ddeb8b12"
+    },
+    {
+      "byte_size": 549,
+      "path": "evaluations/t22/remediation_exclusion.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "85c8040c90690ffb1f33ea4b6fca1f2b1943a057e3c14d5288127f580679b5ee"
+    },
+    {
+      "byte_size": 11215,
+      "path": "evaluations/t22/runtime_corpus_contract.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "c6f3c4efe52b2d09f461b8890ba2d71dd20616635fdbeeea69ea25d51e8845fe"
+    },
+    {
+      "byte_size": 5085,
+      "path": "evaluations/t22/runtime_field_provenance.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "fea0a5290c6e61bfce28ce6085cce078ff15b380172866073ddc69106c11c2a1"
+    },
+    {
+      "byte_size": 2125,
+      "path": "evaluations/t22/runtime_freeze.json",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "5098d04e00e3fac93f32f634c1afd76b8eae3d0ab7760ae1fc5b2ee494836385"
+    },
+    {
+      "byte_size": 1262,
+      "path": "evaluations/t22/semantics_carry_report.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "206ca25fdddd58dc5a64157f39cc59bc3be3589d33b53091705d64ba115a756b"
+    },
+    {
+      "byte_size": 9703,
+      "path": "evaluations/t22/temporal_holdout_design.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "69befb823a08435b28579aac465f321a56c20ee25253bdde282b81db9c8681d7"
+    },
+    {
+      "byte_size": 11029,
+      "path": "evaluations/t22/temporal_regressions/battery_spec.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "81dcdcd3f56f69248bb19dfdb6113ca413c71d88ca9e312a84b18dece1a55050"
+    },
+    {
+      "byte_size": 423905,
+      "path": "evaluations/t22/temporal_regressions/results.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "e196f24e72e9f0626ee4391ae247158723bfe05140edcd1f263dff8dc7ad0c35"
+    },
+    {
+      "byte_size": 13719,
+      "path": "evaluations/t22/temporal_signal_contract.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "5e2c91d97d62909cceb84ead803e5219d9aa829aeb79f41fd2d4aa3b8f03b47f"
+    },
+    {
+      "byte_size": 10878,
+      "path": "evaluations/t22/test_failure_adjudication.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "62abc21315cd26514682c17cfee21576151e7a91c79c3374c790414a49578478"
+    },
+    {
+      "byte_size": 4734,
+      "path": "evaluations/t22/zero_denominator_policy_resolution.json",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "400216a87507e9fee33e4dc6286f0a2dfe92fd357c27bedfff2eb1f45dc9ab37"
+    },
+    {
+      "byte_size": 12567,
+      "path": "evaluations/t23/HISTORICAL_FAILURE_RECONCILIATION.md",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "4a5d83b2c63b32de9bc30b9b6e9de5f3479f1e79f6407d47c243b5b6de6a5b74"
+    },
+    {
+      "byte_size": 9258,
+      "path": "evaluations/t24/author_lock.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "2aee678d9c2a0f7055e23fb5ef58f8872963a30e067ce703654bf75f8937f986"
+    },
+    {
+      "byte_size": 7889,
+      "path": "evaluations/t24/author_specification.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "6589b008c3f95f040536c8ba7da9a800c78d0cdaecc5313fa19259afb3798cfc"
+    },
+    {
+      "byte_size": 2754,
+      "path": "evaluations/t24/candidate_identity.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "6495427beb7578bc35e206171b69729f69d4d49cf5b0a368beb80ae15fb6651d"
+    },
+    {
+      "byte_size": 1758,
+      "path": "evaluations/t24/candidate_protection_report.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "f601307b1ce3307667d03444a69fa28cb7074bb243312725028adcb8fe222862"
+    },
+    {
+      "byte_size": 10582,
+      "path": "evaluations/t24/capability_registry.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "a4022b47fb772ea47768c96bdb7eefa1c8ca30b85ea3ffe71f8f05b0fa1e0db5"
+    },
+    {
+      "byte_size": 2125,
+      "path": "evaluations/t24/live_web_source_firewall_registry.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "916c8ad32282be116d27a5025a94239a0b640abcb1c7585c278dd48fa5ca0c6b"
+    },
+    {
+      "byte_size": 8966,
+      "path": "evaluations/t24/production_evaluation_graph.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "0ac6c898914e96f7ab519c7c9e4aba32280d9e21235f15285940a127ea28eef0"
+    },
+    {
+      "byte_size": 1348,
+      "path": "evaluations/t24/production_provider_config.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "ef6f01be40e065cc62ded27dd4a0adc103c076bdf0b7ffcddd0f08daca55995d"
+    },
+    {
+      "byte_size": 7601,
+      "path": "evaluations/t24/production_router_metric_registry.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "f9517ad11e500ad0079a32d581f160b0f2dfea682f4a2cf2210c5f1b5e598acd"
+    },
+    {
+      "byte_size": 963965,
+      "path": "evaluations/t24/production_shadow_lifecycle_report.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "57939a8d1050e4d821aa4d246a7f306b36ef72a0beb724b2f8c885080df293c2"
+    },
+    {
+      "byte_size": 124,
+      "path": "evaluations/t24/qualification/qualification_document.txt",
+      "role": "T24_PUBLIC_QUALIFICATION_DATA",
+      "sha256": "312ff3036a395c69f9868547dd1bcf47c879f62a8a13fac756f6012df835396b"
+    },
+    {
+      "byte_size": 195300,
+      "path": "evaluations/t24/qualification/qualification_exclusions.jsonl",
+      "role": "T24_PUBLIC_QUALIFICATION_DATA",
+      "sha256": "e49ee1b594e610f6a6edb323b8f39b4aedfb07a3330b3719657994dd63adddad"
+    },
+    {
+      "byte_size": 219420,
+      "path": "evaluations/t24/qualification/qualification_gold.jsonl",
+      "role": "T24_PUBLIC_QUALIFICATION_DATA",
+      "sha256": "86002e3cc89a922a61fbfb80a3a688aea9e331a26fd24d923bc5c7d5d340ce1a"
+    },
+    {
+      "byte_size": 269140,
+      "path": "evaluations/t24/qualification/qualification_inputs.jsonl",
+      "role": "T24_PUBLIC_QUALIFICATION_DATA",
+      "sha256": "adeca6a0387d0f6f5f60192eb643ffe615e3b5a502f4cc3dfbeb1495f6cf3f14"
+    },
+    {
+      "byte_size": 376,
+      "path": "evaluations/t24/qualification/qualification_report.json",
+      "role": "T24_PUBLIC_QUALIFICATION_DATA",
+      "sha256": "b6868f9ba7a1eb9d053b834b1855fc393ef8803a1906bad81a2d462a443026fe"
+    },
+    {
+      "byte_size": 296587,
+      "path": "evaluations/t24/rehearsal_exclusion_fingerprints.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "f90a0e630693d5b9ae6dfbc098d52faadca77203b9ba38528f3d49a50a8b15e2"
+    },
+    {
+      "byte_size": 1474,
+      "path": "evaluations/t24/router_metric_registry.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "efb57fca92a9dea7f02c4d2fbb9a162014c0e6648d42bc3a97773655a858207f"
+    },
+    {
+      "byte_size": 232796,
+      "path": "evaluations/t24/t23_exposed_sealed_anchor.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "bdd9e73328d791ccd38972f309b988cbd5783620a0774e4ab1715df427938053"
+    },
+    {
+      "byte_size": 3251,
+      "path": "evaluations/t24/t24_artifact_classification.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "be38bd9c20c382e3972207e10c6af6cfe0b6b095b77c44baecec576c8252b6e0"
+    },
+    {
+      "byte_size": 2564,
+      "path": "evaluations/t24/t24_exclusion_sources.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "1495082bddda718be886cc5b7c530db13382ceb1f5b4f6ab51fb38fc37c1b2fa"
+    },
+    {
+      "byte_size": 14059,
+      "path": "evaluations/t24/t24_master_contract.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "b68724cc090f54ad480a24d987474c081f3ff5099978c650b19ee65ac1d81a29"
+    },
+    {
+      "byte_size": 726,
+      "path": "evaluations/t24/t24_private_store_config.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "734aebc659461cfa1d32ad20d90defe174317d22e6872705066e0cd51ede00e3"
+    },
+    {
+      "byte_size": 1648,
+      "path": "evaluations/t24/t24_publication_policy.json",
+      "role": "T24_PUBLIC_PRECONSTRUCTION_ARTIFACT",
+      "sha256": "b9c71ae3674015798b83051ec1dde92297a1825249eb1f9a2698ae6a3b207bec"
+    },
+    {
+      "byte_size": 289646,
+      "path": "rag/gk_corpus/chunks.jsonl",
+      "role": "T24_REHEARSAL_CORPUS_SOURCE",
+      "sha256": "f8adf753dac76c3a013eb6e2e86890bc5bd1eada4de689d7610788006139bbe5"
+    },
+    {
+      "byte_size": 874,
+      "path": "rag/gk_corpus/corpus_manifest.json",
+      "role": "T24_REHEARSAL_CORPUS_SOURCE",
+      "sha256": "9170b3f24427f077c3443e08d093835cc28c95add5ed9a27e90af3f436f16492"
+    },
+    {
+      "byte_size": 12395,
+      "path": "rag/gk_corpus/sources.jsonl",
+      "role": "T24_REHEARSAL_CORPUS_SOURCE",
+      "sha256": "65c2a10ec27f05b65093ee9d148be40a53f7ccb62bf85f00b7213253bb128e5a"
+    },
+    {
+      "byte_size": 11675,
+      "path": "scripts/t21r12_fixtures.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "bda35b9474ea653a05f875e90360cf2a15eb78ba2f27738b5e4930b4dc52003b"
+    },
+    {
+      "byte_size": 12243,
+      "path": "scripts/t21r13_fixtures.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "bbe8f20dd0558060b37543219ebd9bf1fac548bb42534df42d6118c444ed1104"
+    },
+    {
+      "byte_size": 12243,
+      "path": "scripts/t21r14_fixtures.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "edbda3ab409245c998a527119708e257fce05a89fdb5cc775fd728704a0c768c"
+    },
+    {
+      "byte_size": 2101,
+      "path": "scripts/t21r16_fixtures.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "782d5626a0fe8ad597674b4b7249be52d50be31f2ae80e827be9f43aa6fb6b3f"
+    },
+    {
+      "byte_size": 91239,
+      "path": "scripts/t21r16_preconstruction.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "5ba6b0a3915a34e912825d644b5085dbfc641fea65bbcfc551cda81f3e0c2542"
+    },
+    {
+      "byte_size": 66678,
+      "path": "scripts/t21r17_fixtures.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "4e0dce5f9d914af89e5f47cbae00f577e80a54734751356f94f041a0ec30c960"
+    },
+    {
+      "byte_size": 87311,
+      "path": "scripts/t21r17_preconstruction.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "b4ebc5ed3ecae8800322d9fac9f622fea1cd675f62a93165ed918a829394a3d4"
+    },
+    {
+      "byte_size": 18570,
+      "path": "scripts/t21r_fixtures.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "2bf762b0c61deb6d669d84d81e472c4107f0c50eabfe2eaa9ad6af28938de8f1"
+    },
+    {
+      "byte_size": 74053,
+      "path": "scripts/t22_fixtures.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "27dd80e6de4496ff4bc4ea415b620fcd5ff7f68736dbc543483f7812632cc222"
+    },
+    {
+      "byte_size": 15329,
+      "path": "scripts/t22_metric_semantics.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "b4ecb7f91a068f5e8350d6ea4ded5d52b3aecd340f582bfec16afa00ff0913bb"
+    },
+    {
+      "byte_size": 112662,
+      "path": "scripts/t22_preconstruction.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "46edf3d5e6f6d7ec0c18c13b1ded79f81f0b694348e2140a33d93c702d1ea2a4"
+    },
+    {
+      "byte_size": 15321,
+      "path": "scripts/t22_regression_battery.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "70683da5ee27d2519ece96bcc9b1f23273389324c0a98fdcd5d10eb8cf62a1ab"
+    },
+    {
+      "byte_size": 5495,
+      "path": "scripts/t24_candidate_protection.py",
+      "role": "T24_REPRODUCTION_ENTRYPOINT",
+      "sha256": "fd7764e1593b6a5b67f3ab6b7b290dfdff786c9e5ae465583b95833d0dc3fbc2"
+    },
+    {
+      "byte_size": 2219,
+      "path": "scripts/t24_finalize.py",
+      "role": "T24_REPRODUCTION_ENTRYPOINT",
+      "sha256": "14c66b46c2b2677711df3a708c9274b95117b51390aa1dfff9ec0a964b5d22e1"
+    },
+    {
+      "byte_size": 26196,
+      "path": "scripts/t24_preconstruction_build.py",
+      "role": "T24_REPRODUCTION_ENTRYPOINT",
+      "sha256": "fe0fb8b521990ea3e14103b68c1e49352bbfe2d82765d1d0e9149770e1566a73"
+    },
+    {
+      "byte_size": 4225,
+      "path": "scripts/t24_reproduce.py",
+      "role": "T24_REPRODUCTION_ENTRYPOINT",
+      "sha256": "b1ad43baef3e9751307bab1311507c4a5546631d6d266ece7d063e6dee25fa88"
+    },
+    {
+      "byte_size": 5898,
+      "path": "scripts/t24_shadow_lifecycle.py",
+      "role": "T24_REPRODUCTION_ENTRYPOINT",
+      "sha256": "3e16a4b959c2ea515f2181b4ba5656880ce7d81b23d7ca6548277d4af390dc16"
+    },
+    {
+      "byte_size": 339,
+      "path": "src/sciencemath/document/__init__.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "4ef8ae86fcc04c61307437e4adc710bb203a65b67f9f3081a7fb779094f503db"
+    },
+    {
+      "byte_size": 2575,
+      "path": "src/sciencemath/document/bridges.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "e8e1f20bf089bb0c1017a21ef4e7a70e300f65e703bd12e443d8618a13a13c03"
+    },
+    {
+      "byte_size": 983,
+      "path": "src/sciencemath/document/cache.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "28e9f23e8805b86628132c4ab400f9ae052f2f25447b462251069fbdc92dc264"
+    },
+    {
+      "byte_size": 1888,
+      "path": "src/sciencemath/document/chunking.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "76100741e82fd4c91a058fcf13f1ffcbd96d1b2423dcfa3deaad7e9cf10ed7d7"
+    },
+    {
+      "byte_size": 3881,
+      "path": "src/sciencemath/document/citations.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "168038503fdba74891d5907d2d9db4b5ca5a1ded2ff7f4231573d0b97a185972"
+    },
+    {
+      "byte_size": 4869,
+      "path": "src/sciencemath/document/contract.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "e82285e7eeb8846dca48fd646bd66f89863b3882a81d1ec1f44a0de77af08add"
+    },
+    {
+      "byte_size": 1147,
+      "path": "src/sciencemath/document/corpus.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "0b2d9568f8d32540441ea7b9ff63a825e11cc71c901e327ba866298df7d92b5f"
+    },
+    {
+      "byte_size": 11054,
+      "path": "src/sciencemath/document/dataops.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "75264d5b67e1abd54949f91eef77024f9e75936a5e66d9bb92893a43d36f24f3"
+    },
+    {
+      "byte_size": 4006,
+      "path": "src/sciencemath/document/identify.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "feb2a79e7ab86a523ec5a2caa9a1214b0e2d79ac706e0b0b09b395889a70b081"
+    },
+    {
+      "byte_size": 2587,
+      "path": "src/sciencemath/document/injection.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "8beaaed25a6df0078afc979171ccf843c6aa2587be9356d7e5c70a2407b87bb7"
+    },
+    {
+      "byte_size": 1605,
+      "path": "src/sciencemath/document/limits.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "2688427e3aa453baf1a91fe469563abcf08c95fb2983ac1ec4808e84f502ed5e"
+    },
+    {
+      "byte_size": 6371,
+      "path": "src/sciencemath/document/models.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "ae58dac349f166b607b61e5d7b1a084555edff84651c15f24c3fdb69a823aa19"
+    },
+    {
+      "byte_size": 9497,
+      "path": "src/sciencemath/document/ops.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "728f4a7b6c7b9272809e28e4dcf413b3ca9dbbc51c650f714351f10cf6af50f1"
+    },
+    {
+      "byte_size": 22362,
+      "path": "src/sciencemath/document/parsers.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "2167da7b211e04e05839302d19780c6806689b1d2b755f48e2b003571411f8e0"
+    },
+    {
+      "byte_size": 8076,
+      "path": "src/sciencemath/document/pdfparse.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "78d5d1c614865dcdfe1231e024f6ca673ffad1dcf682574c7aafff459cf6b52d"
+    },
+    {
+      "byte_size": 17093,
+      "path": "src/sciencemath/document/pipeline.py",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "e31a364bd12886df95ae00e8f050acfd0c0029f96cf68097e00a924c2e4eb7bd"
+    },
+    {
+      "byte_size": 5327,
+      "path": "src/sciencemath/document/safety.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "bcd211f7d977bcba7ad0ec0029a4ac7f0712efd043b7711560da5662e09002b7"
+    },
+    {
+      "byte_size": 3489,
+      "path": "src/sciencemath/document/search.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "618f975b0b7dd69d2acfdad42e9fa63293288d789252aee15a5980f21508ed60"
+    },
+    {
+      "byte_size": 7718,
+      "path": "src/sciencemath/document/typesys.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "e08645fcf573e436a3c82543d74cbab3e37fddbdfc2272052ae75aaabcbb3476"
+    },
+    {
+      "byte_size": 1667,
+      "path": "src/sciencemath/executive/__init__.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "8a39f774f66f8089f6ad752b66cee14c670b00e88870b01a2648d9dee8642d40"
+    },
+    {
+      "byte_size": 2996,
+      "path": "src/sciencemath/executive/budgets.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "7983976addd407f05001a15421ff42a9b8b478d5da3353fd2d2c5d8349564fe8"
+    },
+    {
+      "byte_size": 3810,
+      "path": "src/sciencemath/executive/checkpoint.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "31d5015c103d6c61ea64fcfd9c70c4e96aa5bc470cfb8a318a270ffa1be3df93"
+    },
+    {
+      "byte_size": 4080,
+      "path": "src/sciencemath/executive/classify.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "569993b975aca3b42af800972f1a0662dc599e4ef4c403a614944e50618d5ca0"
+    },
+    {
+      "byte_size": 8773,
+      "path": "src/sciencemath/executive/correction.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3"
+    },
+    {
+      "byte_size": 15124,
+      "path": "src/sciencemath/executive/execute.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "706930b07c468975cce1e3c52abe08665b882a652488a4c295c2df7b5f40d8af"
+    },
+    {
+      "byte_size": 16875,
+      "path": "src/sciencemath/executive/executive_router.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "06c59027341e4ef9124a4b5c1610a470e77fd67cfe8133446b380fcf9866af8e"
+    },
+    {
+      "byte_size": 1208,
+      "path": "src/sciencemath/executive/failures.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "a44755ec02ebc1da50d3eca5457e5502ea7cd465fc00c0aa11e10a1c9a32bf4d"
+    },
+    {
+      "byte_size": 2288,
+      "path": "src/sciencemath/executive/llm.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "1e06300c273bdcc67a6573e4e6a29fee8952578feaf86c74febcfdbf565ff517"
+    },
+    {
+      "byte_size": 8729,
+      "path": "src/sciencemath/executive/plan.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "35e2c502ce0af129cfa86135849e13de6b5f44aa8f07b390d68e75ae6dd06211"
+    },
+    {
+      "byte_size": 14039,
+      "path": "src/sciencemath/executive/repair.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "06c4d6e41aa32456128a15c16e6738f8ec74cecda78093d881e8e731d147db40"
+    },
+    {
+      "byte_size": 4252,
+      "path": "src/sciencemath/executive/replan.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "c449bfdf4bd501bfb8e019d03584ecec961a8c93b93b71d1af52c6e2052df505"
+    },
+    {
+      "byte_size": 27139,
+      "path": "src/sciencemath/executive/router_v2.py",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "7aebc77cd4e711e551f89d98943e22d47775a8935440ca285d78a0df3db3bdcb"
+    },
+    {
+      "byte_size": 32133,
+      "path": "src/sciencemath/executive/runner.py",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "74a1628633b9629b05354717e2c610264b8f2df4ef19998bb447aad7e3a72158"
+    },
+    {
+      "byte_size": 10472,
+      "path": "src/sciencemath/executive/skills.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "9aba8945e624f061feb478ca673cb98c5f5c08578a0f02e92dbb0cbf71936d62"
+    },
+    {
+      "byte_size": 6557,
+      "path": "src/sciencemath/executive/state.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "48785eb93a0aa102970ea3b7266ce273549663a4fd3f1ce4e76467d7dd3fcc59"
+    },
+    {
+      "byte_size": 983,
+      "path": "src/sciencemath/executive/trajectory.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "f8abee31717f05e957903d10dc84a230ca585366223b48fa25b7546d4f1d6fbe"
+    },
+    {
+      "byte_size": 4127,
+      "path": "src/sciencemath/executive/uncertainty.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "b5187765d7d09c9e07ed031bb10d4219f4c18568d6b3fe19b0a1ccc766a5e2e7"
+    },
+    {
+      "byte_size": 10341,
+      "path": "src/sciencemath/executive/understand.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "f2a657dadfd34abc4f92e9d8d9adc61ff333968a356afaec9a57369293470e4f"
+    },
+    {
+      "byte_size": 5688,
+      "path": "src/sciencemath/executive/verify.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "7246acccc2a9215963dc8ed1d2c9c21ee5cf807a6b635f9bfab88e6df422f545"
+    },
+    {
+      "byte_size": 659,
+      "path": "src/sciencemath/knowledge/__init__.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "31e67d46279ed79c57692b21766d4ce1cc016ba6cb3a204df1004a0ce0d47392"
+    },
+    {
+      "byte_size": 4591,
+      "path": "src/sciencemath/knowledge/citations.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "d48a5bb8ac4e28178cdaf332e9b7867a611d6d851f853858582a752b9039bb48"
+    },
+    {
+      "byte_size": 5161,
+      "path": "src/sciencemath/knowledge/claim_gate.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "3cf7593f131c081a7a1fcf777d7f27ca995f9dae993efbd68c566e565803f883"
+    },
+    {
+      "byte_size": 19315,
+      "path": "src/sciencemath/knowledge/conflicts.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "f9c984d1fd10ec4053e78ca373e0c13e9d705c3db7c2a4afa3e09cb2a0c272d2"
+    },
+    {
+      "byte_size": 7524,
+      "path": "src/sciencemath/knowledge/corpus.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d"
+    },
+    {
+      "byte_size": 2605,
+      "path": "src/sciencemath/knowledge/evaluator_semantics.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "6418f1dee4cdb234dadb26baec9b5c85ffd8084fda20278b74929360ec4a9d0a"
+    },
+    {
+      "byte_size": 7344,
+      "path": "src/sciencemath/knowledge/evidence.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d"
+    },
+    {
+      "byte_size": 8667,
+      "path": "src/sciencemath/knowledge/evidence_paths.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375"
+    },
+    {
+      "byte_size": 14632,
+      "path": "src/sciencemath/knowledge/fixtures.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "0a769be912100e08abad5d43fa8c1d5dd85c1008f2ea3884af0f607340703d74"
+    },
+    {
+      "byte_size": 19211,
+      "path": "src/sciencemath/knowledge/freshness.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "63104a9a012b1c846e0bb48f74a7e291b8d44e760c23998e472c470f75566e2c"
+    },
+    {
+      "byte_size": 4540,
+      "path": "src/sciencemath/knowledge/index.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1"
+    },
+    {
+      "byte_size": 8367,
+      "path": "src/sciencemath/knowledge/injection.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0"
+    },
+    {
+      "byte_size": 73270,
+      "path": "src/sciencemath/knowledge/pipeline.py",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "b0f99cce2afc181c0ce340b19597f93889652aea036a7996cfc9266d2b21232c"
+    },
+    {
+      "byte_size": 3890,
+      "path": "src/sciencemath/knowledge/provenance_spoof.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212"
+    },
+    {
+      "byte_size": 14389,
+      "path": "src/sciencemath/knowledge/relations.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "e0ed89e99c42b0d8d92952951b78696a50a3b377a537ef4c2a03ce344a35376f"
+    },
+    {
+      "byte_size": 11259,
+      "path": "src/sciencemath/knowledge/retrieval.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9"
+    },
+    {
+      "byte_size": 6257,
+      "path": "src/sciencemath/knowledge/routing.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "d47af1ea34fc0e82347d2214b6894c15fb005082582bc08b7a7f78aa6cbc7151"
+    },
+    {
+      "byte_size": 8968,
+      "path": "src/sciencemath/knowledge/schema.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135"
+    },
+    {
+      "byte_size": 452,
+      "path": "src/sciencemath/training/__init__.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "29ceb9410bee86a29fbbd129223ed8f9b55603c9b4b35b5f0bc52f0ceddb9ad0"
+    },
+    {
+      "byte_size": 3228,
+      "path": "src/sciencemath/training/attach.py",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "40daa0ce081eae7e105b975378d61bd3bdd84ef85abce8f0fe6213b431c2c01d"
+    },
+    {
+      "byte_size": 3717,
+      "path": "src/sciencemath/training/config.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "4399c2faff786cd8578dc29907e6fb2be7363b62f0dbe3e793b6b0d5fcd0e783"
+    },
+    {
+      "byte_size": 6442,
+      "path": "src/sciencemath/training/sft_data.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "fdcebf1937a78058d2e1d9fbe630e8a6213d053f9845de170c709ee7bc52d1ce"
+    },
+    {
+      "byte_size": 6956,
+      "path": "src/sciencemath/training/sft_format.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "8de13dd214e55544ea8e1400b342fdc781365cb1e9f962807ee35f7ef31836c4"
+    },
+    {
+      "byte_size": 32205,
+      "path": "src/sciencemath/training/synthetic_general.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "596b5a90eba45eb84862affba14b84d8fd2844296478b873e37b3e61fee6b554"
+    },
+    {
+      "byte_size": 21142,
+      "path": "src/sciencemath/training/train.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "8eb68267aaaf85f9928f1b00012a69a77120b828985ea6f52fcb80e32f8f331d"
+    },
+    {
+      "byte_size": 274,
+      "path": "src/sciencemath/web/__init__.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "10c803604e7645c66822ab4a93d9e75e1f0f59f4ab3d2fb5d15b964c39b5fa71"
+    },
+    {
+      "byte_size": 1396,
+      "path": "src/sciencemath/web/cache.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "0ac07a3c2ea62116f7620ecb5b9b78f296df00d94a9726ab8d3522b1edef3803"
+    },
+    {
+      "byte_size": 2258,
+      "path": "src/sciencemath/web/citations.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "bcc18704ad02fa93dcf15f711c1c16db46a60736eb67fadca35ca8a8bb1ea92a"
+    },
+    {
+      "byte_size": 3103,
+      "path": "src/sciencemath/web/claims.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "498793f92e591922234ddd13c661dab60f4b7303fb83d66e7f8282c7e6f6d2da"
+    },
+    {
+      "byte_size": 4664,
+      "path": "src/sciencemath/web/contract.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "a1043d16f446fa9857f838eb25ba45e627828a961d2345cb5c87fe422981953d"
+    },
+    {
+      "byte_size": 3379,
+      "path": "src/sciencemath/web/contradiction.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "f9941cc73f56112148b4a05da839be6e4a7c16147292a5bdce84bf8e0b77b176"
+    },
+    {
+      "byte_size": 21823,
+      "path": "src/sciencemath/web/corpus.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "298899dfa36404822413527deb89d803c4f584514b8f3b69b4eb960603c753eb"
+    },
+    {
+      "byte_size": 1754,
+      "path": "src/sciencemath/web/diversity.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "4a408b28e3577fe98a800b96adb5ce9e702b2f83b0ed3ef787e389480ea4ba95"
+    },
+    {
+      "byte_size": 3406,
+      "path": "src/sciencemath/web/entailment.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "e5bcbbee2d7d1e52f7834ca3580a3fff4fa44ad03b8cb10ad821ae365cf54b77"
+    },
+    {
+      "byte_size": 1902,
+      "path": "src/sciencemath/web/extract.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "8c07a43a183ca33f236db766b9786c4eaa19cc2ca9d1c473e25494dff6c9f0cf"
+    },
+    {
+      "byte_size": 4136,
+      "path": "src/sciencemath/web/fixture_provider.py",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "616c0528e9b9faac3eb538969ac45ef9e7a8847b91403d12653ec202d8ad4d31"
+    },
+    {
+      "byte_size": 2884,
+      "path": "src/sciencemath/web/freshness.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "50f39d97133192735c71e63e01d9bf8a5ebde634d74559f53ebd8ea3caf0c154"
+    },
+    {
+      "byte_size": 2370,
+      "path": "src/sciencemath/web/injection.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "553bd9310b7e72fda0159cbf4cbac4669ea24349e5065b407e8034d5df60f8f6"
+    },
+    {
+      "byte_size": 1398,
+      "path": "src/sciencemath/web/limits.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "0d891e0a37ef6b52fbc5c6970564fa8ccc51261881b427e5a610f3269321ebc1"
+    },
+    {
+      "byte_size": 4586,
+      "path": "src/sciencemath/web/live_provider.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "a83e00288291e7e6bcee38e1d73046217bc0070dd198ccc9c1a91421d460bada"
+    },
+    {
+      "byte_size": 15413,
+      "path": "src/sciencemath/web/pipeline.py",
+      "role": "PRIVACY_OR_RUNTIME_ROOT_OF_TRUST",
+      "sha256": "4be68f35e4f03e6d1d9dc79c7daae5b8b66899a801622530da707ffdff4adbbc"
+    },
+    {
+      "byte_size": 4539,
+      "path": "src/sciencemath/web/planner.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "7846ca44a04b68a79ba4eb6511f7737e9830fc63a6ac5967e316464a47d7ebef"
+    },
+    {
+      "byte_size": 1707,
+      "path": "src/sciencemath/web/provider.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "e5e8b99a861fd3c926d6eba65745e3aa605b8c81aa8f950dc12f2703f4371a29"
+    },
+    {
+      "byte_size": 4161,
+      "path": "src/sciencemath/web/ranking.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "d2f5aed5eb93de0d916a456b5580ee677f5966b74879a1f2cb509e3a4659f748"
+    },
+    {
+      "byte_size": 2947,
+      "path": "src/sciencemath/web/safety.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "9c6c8eae439fdc9ec06a8ec8dfabb55816d5def50af260ae09e8e96b476b8e72"
+    },
+    {
+      "byte_size": 2832,
+      "path": "src/sciencemath/web/source.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "44232d0eebbe7b5552b1bb66392e9e3c99b10900dc6fec96552f7c15ca471d8b"
+    },
+    {
+      "byte_size": 1521,
+      "path": "src/sciencemath/web/trace.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "32718a10ba433a2b35174367f375b5a39763fef4e80ee0cc1a9b22a19d2e3e69"
+    },
+    {
+      "byte_size": 1636,
+      "path": "src/sciencemath/web/trust.py",
+      "role": "T24_SELECTED_CAPABILITY_RUNTIME",
+      "sha256": "7232fe5c78661356733a8ba2f851d59331e78d588059bc90ddbc8c4175929e52"
+    },
+    {
+      "byte_size": 1038,
+      "path": "t21_protocol/__init__.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "24da408a59d4b78e0b189145d6d13324759f0301d5688fba23aacce4de1087f2"
+    },
+    {
+      "byte_size": 1864,
+      "path": "t21_protocol/adjudication.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "632698edcb17bed289f8ef953967a55528c5cc5cd7e1d2aeec1e6bced7dda2ec"
+    },
+    {
+      "byte_size": 8289,
+      "path": "t21_protocol/artifact_graph.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "244bc7abc2acf568a5c28f21a024dd4fa247b4a465034143b9037760bc82dd42"
+    },
+    {
+      "byte_size": 20812,
+      "path": "t21_protocol/audits.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "380d1a2824297bdbbcd3050b30f9f20880ee6e99d1be1e84f072ef96cf3a4940"
+    },
+    {
+      "byte_size": 2029,
+      "path": "t21_protocol/author.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "d64bf70333575a1b17cbb24fa198136283e5d221bbd24af4bdf9b46b9a962007"
+    },
+    {
+      "byte_size": 9015,
+      "path": "t21_protocol/author_t22.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "e222847a451616579a593aff83366e71e4f3a6d75caf71b172a6df041f77ba35"
+    },
+    {
+      "byte_size": 10294,
+      "path": "t21_protocol/builder.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "d46187b8d5da9545bf4204ec96efd690a96acef2ff95872320df1ca0cd9efc61"
+    },
+    {
+      "byte_size": 247,
+      "path": "t21_protocol/construct.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "925bd91fdf2a516037db0aa0bfdd840a17fc9dfd676779960f4daa5afb2e3453"
+    },
+    {
+      "byte_size": 14459,
+      "path": "t21_protocol/construction.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "b4b90c19f419222d002be752eac7e2c57b63e330893e15924c33903f960eedae"
+    },
+    {
+      "byte_size": 3169,
+      "path": "t21_protocol/context.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "9159394460fcdb2e44dc447b4456c007561a53320ffd90fba4c095f0ac8795c4"
+    },
+    {
+      "byte_size": 41227,
+      "path": "t21_protocol/contract.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "47ae7fbfaf089938396e5ec60d546de9a2a382f0193d9ee939f07dca0d2d9ce8"
+    },
+    {
+      "byte_size": 52920,
+      "path": "t21_protocol/doctor.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "0731c1de800df790a5258ff0120399b6ea8f8e57556d1008af538312070bf883"
+    },
+    {
+      "byte_size": 1715,
+      "path": "t21_protocol/errors.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "5255cfebc686339c07431b2108daaf7a95fe4cb1af6e226ffc5fea830d871d26"
+    },
+    {
+      "byte_size": 12044,
+      "path": "t21_protocol/evaluate.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "fb4a153d904460f7c305e8b81b16e6978c26beef11923ba2d9b860bcf93704ba"
+    },
+    {
+      "byte_size": 15288,
+      "path": "t21_protocol/evaluate_r17.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "54ab235d92118452d3a6efa07ca64c97ddd5318b749b65419c86c08809730472"
+    },
+    {
+      "byte_size": 14133,
+      "path": "t21_protocol/evaluate_t22.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "dc86bba5fe7fea8411925ec4ca6941e461c66297d9be617b64ae773e187d3b5f"
+    },
+    {
+      "byte_size": 1934,
+      "path": "t21_protocol/evaluator.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "b1d4f71ed21055fb6c5b93ffa516415bd60e1cba64d0454c4f0099f31ee91bb6"
+    },
+    {
+      "byte_size": 7257,
+      "path": "t21_protocol/evaluator_r17.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "af160197694ccd86f6604f188d04ad65a8761423e7dd80ba8ea7dc231f78cbde"
+    },
+    {
+      "byte_size": 3695,
+      "path": "t21_protocol/exact_design.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "58e2604bfed50d195a8540bc24bff342eb0158a3cf81ccf13322dc0cafbcbbfe"
+    },
+    {
+      "byte_size": 5018,
+      "path": "t21_protocol/exclusion.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "f5e64fc786dbe87099f16193576a9dfae6febefe60100c5f2e5601c35d0388ab"
+    },
+    {
+      "byte_size": 2538,
+      "path": "t21_protocol/freeze.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "4d2c76facc832ef85995f02addc1b6a1ecbbe1e343d35c620a56b510dc985df4"
+    },
+    {
+      "byte_size": 3167,
+      "path": "t21_protocol/import_audit.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "07c584783c61c86b58094308b1f408c14c9fb01937d406cbc34a29b3bea1ca53"
+    },
+    {
+      "byte_size": 3681,
+      "path": "t21_protocol/ledger.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "20c68d03f73a05b8f224e1dbd7d059d2d24480f86e32a496b2c02260c7044abb"
+    },
+    {
+      "byte_size": 11348,
+      "path": "t21_protocol/metric_semantics.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "b38b6d6505feb8cac7275bd98dfe3b3445f3fdd7a026c3144340f20402c4d640"
+    },
+    {
+      "byte_size": 11024,
+      "path": "t21_protocol/pipeline.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "a0e60201e7a0a425a94aa23e7200bfe1aedafd139576e51bca7f9e0a45fd161c"
+    },
+    {
+      "byte_size": 5425,
+      "path": "t21_protocol/pipeline_r17.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "24d3090c79ad64c376446c5ad0ee91d4791bcd869698f516f2f7e2b04fbf2e47"
+    },
+    {
+      "byte_size": 5640,
+      "path": "t21_protocol/pipeline_t22.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "6995ec2b5d71d30cb70c742e7384b11d80b1807ceefbe6ec0c778785f43cc3fa"
+    },
+    {
+      "byte_size": 3819,
+      "path": "t21_protocol/preflight.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "a36fcee2acbe515daa6f90b3adfb033186bfcc85953ac55ae6ee25964ae503de"
+    },
+    {
+      "byte_size": 21414,
+      "path": "t21_protocol/providers.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "036bd76c233c99c6cb05d4092acc6a0bf4e46d7cc610006965e0598ae3892fb0"
+    },
+    {
+      "byte_size": 3794,
+      "path": "t21_protocol/providers_r17.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "6451d4b52f92dd63c872ca7014f6ea644873dd86e550cb6424b1825991ce0e2c"
+    },
+    {
+      "byte_size": 2910,
+      "path": "t21_protocol/providers_t22.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "13d3e4aa68a484194c40a35b01f7c3e79825dd531b09353eb64cb4e0d49ffc49"
+    },
+    {
+      "byte_size": 4387,
+      "path": "t21_protocol/qualification.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "423e9ff0a0dbcafa1c806ff59fc1ab96d071515c0a4e5b4671568f7013ea28d1"
+    },
+    {
+      "byte_size": 2143,
+      "path": "t21_protocol/scorer.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "2216656e877651bdcf3f33029a7f91df0f894b6b2994c6fcc9d2d759611395eb"
+    },
+    {
+      "byte_size": 29656,
+      "path": "t21_protocol/scorer_r17.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "1dbb0790d0fac1e46aab8b2d7284f70814d3eaf59e7409647bf202e1fe5171ff"
+    },
+    {
+      "byte_size": 12563,
+      "path": "t21_protocol/seal.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "ff25d5687dd623a313c32689d8cb7a15cc44dc304143bbdc630b05c119c41bec"
+    },
+    {
+      "byte_size": 3324,
+      "path": "t21_protocol/state_machine.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "c60575d26e8d7369e150e9b28dd25d4e011722c9d344683734e94e4007e9b911"
+    },
+    {
+      "byte_size": 3954,
+      "path": "t21_protocol/taxonomy.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "c628a4c174a0dc61594d3d512e905e0abd250f559d55a935812c733d71f62db0"
+    },
+    {
+      "byte_size": 2470,
+      "path": "t21_protocol/util.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "a974a8cd31ddcba232cd5a17896f373ac9159be38ad9210b77932e07a3f1d977"
+    },
+    {
+      "byte_size": 3500,
+      "path": "t21_protocol/write_guard.py",
+      "role": "SHARED_LEDGER_AND_T22_PROTECTION_RUNTIME",
+      "sha256": "3557977a95098dac624488fb7ce0e7de13d56abc0a5cef4a835fb0110acf7f65"
+    },
+    {
+      "byte_size": 80,
+      "path": "t23_protocol/__init__.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "43da29aa2b46fcc7f7ff0373cea3f64706b448f1e8b8382a15c8b67ec93ab01f"
+    },
+    {
+      "byte_size": 15207,
+      "path": "t23_protocol/applicability.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "aaa1e8391fd3a68c1a7eecb56783f505b0058f2b6a96ffad59bae682b7a1dc84"
+    },
+    {
+      "byte_size": 9976,
+      "path": "t23_protocol/author.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "f6274b923a7991b778c7a29dd66980aa8679e18c190c2605f45d80eb22ce3a87"
+    },
+    {
+      "byte_size": 5570,
+      "path": "t23_protocol/blindness.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "f7c8b0804f4fa228e451252bcfa23387a34d5a9359c609e73d01e7a5ec427cdd"
+    },
+    {
+      "byte_size": 13225,
+      "path": "t23_protocol/construction.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "381e93f0fb7901ad0be6b768270d10655f42ee9bc1c223e8dbb05e587f00d7c2"
+    },
+    {
+      "byte_size": 6506,
+      "path": "t23_protocol/construction_gate.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "873f0b28cd239e4b8e479d88e28c97e48f3f5b477dda86813c0308a56403930b"
+    },
+    {
+      "byte_size": 11396,
+      "path": "t23_protocol/construction_ledger.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "acdbca9cc4d9fddb9d5b544d5286f27d28d329cb0460913949c9c78a69a60944"
+    },
+    {
+      "byte_size": 1996,
+      "path": "t23_protocol/context.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "976d5e5192f53d81ccd446aa360d0eedad5d08f7db79ff685b93d0f1e1567b19"
+    },
+    {
+      "byte_size": 11480,
+      "path": "t23_protocol/contract.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "5f366d95db8aec7b071fdcca7742fa3c5f9bf22ed6004125614c9faec5abad97"
+    },
+    {
+      "byte_size": 11138,
+      "path": "t23_protocol/doctor.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "4de915d81bb2b8507ee6524f64b2cc7002c1b63b2ef640b1c06bbe5d91dea299"
+    },
+    {
+      "byte_size": 11912,
+      "path": "t23_protocol/evaluation.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "99e4ea0e72ab2c709849d5aab1e169213c769d8940fd082fc108e48bed763d07"
+    },
+    {
+      "byte_size": 7730,
+      "path": "t23_protocol/exclusions.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "0a4f10c064dcf0b7cebb58319f76325869977e2bcb2cfa12a121b6be3c99e142"
+    },
+    {
+      "byte_size": 3838,
+      "path": "t23_protocol/graph.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "be60876a140b1034fdb63a58305aa3ae56659c7778fd045ade08d404ffe55ae8"
+    },
+    {
+      "byte_size": 9523,
+      "path": "t23_protocol/lifecycle.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "f45fd2b11a1304206a2b85993d0b12ec99a1ac49cb236d25e2466d6160a04478"
+    },
+    {
+      "byte_size": 4444,
+      "path": "t23_protocol/lock.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "e2369e5d3d2416d22e047126a019d07deddadf426d4eba63a80d9403bae3afc8"
+    },
+    {
+      "byte_size": 11633,
+      "path": "t23_protocol/manifest.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "3ca23489e847609a3249f2f82d53e51ff84b95e0f3ee5d6e3ec94051a70a94bb"
+    },
+    {
+      "byte_size": 8015,
+      "path": "t23_protocol/provider.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "a6fb2b3ecbd2b8c9005a9ae36ec0ea70eed2c026d5228732faa2128e4aafbc96"
+    },
+    {
+      "byte_size": 2124,
+      "path": "t23_protocol/registry.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "9b6ac8f87432afbbe66c0128c4027f65d673f20d50f6a3684e72ebde3d70820f"
+    },
+    {
+      "byte_size": 8417,
+      "path": "t23_protocol/scorer.py",
+      "role": "T23_FROZEN_PROTOCOL_RUNTIME",
+      "sha256": "6e0c9101780013cbbcf9b28bbe00fcda9d1327ede9e471b7a25be6d02ea58305"
+    },
+    {
+      "byte_size": 298,
+      "path": "t24_protocol/__init__.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "424a08124e69ecd7dc0c8cbbebc25a80856033036b85c8cfcb8a7ba3fba10dde"
+    },
+    {
+      "byte_size": 9363,
+      "path": "t24_protocol/anchor_t23.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "af448d9e80abe28f29b361fe3a9d71262972a895817c322f8f7a9e484a09429b"
+    },
+    {
+      "byte_size": 5049,
+      "path": "t24_protocol/author.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "9f299117476f2f5dc74dbc45406c47a2b0b0e200a9b0504a2a7e83fd5a4f8ad8"
+    },
+    {
+      "byte_size": 5291,
+      "path": "t24_protocol/classification.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "f1740552f620d9fba79fee67c58ad9ea1621a8eb00eeb0190cbe5430bdaa6060"
+    },
+    {
+      "byte_size": 14913,
+      "path": "t24_protocol/construction.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "6f332903f0b2631d3bc1893c1405764c55b2ec4b3fd6e33162888ce39349051c"
+    },
+    {
+      "byte_size": 1460,
+      "path": "t24_protocol/context.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "541e5af9f42b0dd09e2aa3ac67bf5be7078588759258180734a4b1cc98d20c68"
+    },
+    {
+      "byte_size": 17714,
+      "path": "t24_protocol/contract.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "a98f15a3fcd5e0d9316a7dfaf0b850231697a840ef2a38c72daa373c174ad32b"
+    },
+    {
+      "byte_size": 29236,
+      "path": "t24_protocol/doctor.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "3efd692920784e815d19c3f7679e0e46961fe51d45e9779e63102d5547a25b4d"
+    },
+    {
+      "byte_size": 17686,
+      "path": "t24_protocol/evaluation.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "b1537ba72f2b99a714eeaf677a76fe6092798b5be129787b3995d005f0b5b926"
+    },
+    {
+      "byte_size": 11208,
+      "path": "t24_protocol/exclusions.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "0babb8dc7aa65d338a9c427fe6f6e67144cefc524a3f464a9b9f12cf71ee2009"
+    },
+    {
+      "byte_size": 11173,
+      "path": "t24_protocol/firewall.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "731fe0768eb05ab26dcfee0e7d1413ee5d0b12c40b11d743b87a8818829a9599"
+    },
+    {
+      "byte_size": 7964,
+      "path": "t24_protocol/freeze.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "3ef46c4d7221eabc06b20953c1b97e65bc7675bd5d47faa8299667b7106f3d23"
+    },
+    {
+      "byte_size": 8544,
+      "path": "t24_protocol/gates.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "6546078a4cce0555a3ecb7d433302399403ce752ba0c83b07be7ff5468c9da45"
+    },
+    {
+      "byte_size": 7433,
+      "path": "t24_protocol/graph.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "2554d7058a2662bdb9913d42d79028c5fd47a40fe82e33ac54e45899d36648c7"
+    },
+    {
+      "byte_size": 5247,
+      "path": "t24_protocol/leakscan.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "cdecce69a6e8301b1df6fa2c00dcd0d751252a7d751a224ec423ea2fba50ea42"
+    },
+    {
+      "byte_size": 11872,
+      "path": "t24_protocol/ledgers.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "b895c71c966d3c36402833204dae37eb61ca3d59cf13fc00c6a70bf33a89a94c"
+    },
+    {
+      "byte_size": 5492,
+      "path": "t24_protocol/lock.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "743a776b7191a0f93c6e4069ebc1a3b3af553fc1237d7b8a2a006ae7c7c15dff"
+    },
+    {
+      "byte_size": 10517,
+      "path": "t24_protocol/manifest.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "d75a9b4bd1d8e92cded1d81bb89575b9a12466f79b3350ed67062da6e0d13929"
+    },
+    {
+      "byte_size": 3720,
+      "path": "t24_protocol/policy.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "e95f539f65664d4ee44c4c443af69fe66cfcfc460f0ff39c60abb774f85d2720"
+    },
+    {
+      "byte_size": 2786,
+      "path": "t24_protocol/provider.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "a9b4db32e432326d0b31ff9f21a6096af71959a73f39e1b4ff9aa9e59e4409bd"
+    },
+    {
+      "byte_size": 3458,
+      "path": "t24_protocol/scorer.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "daf6fa6c644cfddff8e68358ed6509e571e22113ca1c248ab639950215537084"
+    },
+    {
+      "byte_size": 6105,
+      "path": "t24_protocol/seal.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "0603aa1f5b221f7c1b0a73fc8575e6d56ecaa3c06afaf256bd30d06517819335"
+    },
+    {
+      "byte_size": 12633,
+      "path": "t24_protocol/shadow.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "f1e1259f2aa85ed597b9913738bf2fd5e667a6d05868da087a840acc98199800"
+    },
+    {
+      "byte_size": 10219,
+      "path": "t24_protocol/store.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "a70484625e9d81033da50c85c1d88a60fb52b045417f580dd74da99a66890c33"
+    },
+    {
+      "byte_size": 5409,
+      "path": "t24_protocol/workspace.py",
+      "role": "T24_PROTOCOL_OR_QUALIFICATION_CODE",
+      "sha256": "ccbdbeb88dcef8bd5dc1e69c1fce2159cd83ad1e1d7581d63346d7d4a94d0444"
+    },
+    {
+      "byte_size": 21963,
+      "path": "tests/test_t21_protocol_kernel.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "6de30297d0fc96cfb42879dca325fb8fce192b46c603d96615372321e775f1d0"
+    },
+    {
+      "byte_size": 17796,
+      "path": "tests/test_t21r16_preconstruction.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "3bb55976a4815734efcac333aca0b131791ca71af6445f4c7aaec5f066be7dfc"
+    },
+    {
+      "byte_size": 21973,
+      "path": "tests/test_t21r17_preconstruction.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "d3854c1191f511c53eb7de2a7d9b5caf4332ec0b71bfca0455ef264faf9d9e93"
+    },
+    {
+      "byte_size": 26683,
+      "path": "tests/test_t22_preconstruction.py",
+      "role": "T22_PROTECTED_COMPONENT",
+      "sha256": "98a8c329a617dc9df73e2e2b50b68381f3a83c152bef999ba6d53b8cf9104bdc"
+    },
+    {
+      "byte_size": 23866,
+      "path": "tests/test_t24_preconstruction.py",
+      "role": "T24_QUALIFICATION_TEST",
+      "sha256": "bbe5b8736d6be1dc1c37440f1e5a35c9c56c8b75ed218e3eb9075f1e22c03fc4"
+    }
+  ],
+  "construction_authorized": false,
+  "experiment": "t24",
+  "freeze_root": "d20dc049513ce468c68e41645067cadd49358e16f4428a34b97ad82cfecc5733",
+  "freeze_sha256": "3ba1bbf3b3485c74e238d603c14283d2ba571dd4a17765d0c7f379019dfd526d",
+  "frozen_policy": {
+    "PUBLIC_GIT_BLIND_BLOB_COUNT_REQUIRED": 0,
+    "REAL_BLIND_CONTENT_PUBLICATION_ALLOWED_BEFORE_EVALUATION": false,
+    "T23_EXPOSED_MATERIAL_REUSE_ALLOWED": false
+  },
+  "infrastructure_commit": "254082d0c5876f6a59366ebf8a724164b64f96d9",
+  "infrastructure_tree": "79e4db563171aece893dd700820bfed5555e975a",
+  "schema_version": "t24-preconstruction-freeze-v1"
+}

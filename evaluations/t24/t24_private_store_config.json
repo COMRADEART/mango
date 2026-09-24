@@ -1,0 +1,25 @@
+{
+  "artifact": "T24_PRIVATE_STORE_CONFIG",
+  "disposable_namespaces": [
+    "t24-qualification",
+    "t24-shadow-disposable"
+  ],
+  "example_root": "C:/T24_PRIVATE_EVALUATION",
+  "experiment": "t24",
+  "immutable_artifacts": true,
+  "locator_forbidden_content": [
+    "PRIVATE_CONTENT",
+    "FILESYSTEM_PATH",
+    "PUBLIC_DOWNLOAD_URL"
+  ],
+  "locator_scheme": "t24-private://",
+  "mutating_artifact_ids": [
+    "construction_run_ledger",
+    "evaluation_run_ledger"
+  ],
+  "real_namespace": "t24",
+  "real_namespace_requires_construction_token": true,
+  "real_store_identity": "T24-STORE-01",
+  "schema_version": "t24-private-store-config-v1",
+  "store_location_policy": "OUTSIDE_PUBLIC_GIT_WORKTREE_HISTORY_AND_SERVICES"
+}

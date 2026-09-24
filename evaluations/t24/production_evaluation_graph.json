@@ -1,0 +1,268 @@
+{
+  "artifact": "T24_PRODUCTION_EVALUATION_GRAPH",
+  "experiment": "t24",
+  "gates": {
+    "evaluation_cannot_start_before": "SEALED",
+    "no_retry": true,
+    "one_shot_attempt": 1,
+    "promotion_cannot_start_before": "EVALUATED"
+  },
+  "nodes": {
+    "candidate_outputs": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "router_decisions",
+        "selected_capability_execution"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/candidate_outputs.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.provider:T24ProductionRouterProvider"
+    },
+    "capability_evaluator": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "candidate_outputs"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/capability_evaluator.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:evaluate_capability"
+    },
+    "combined_holdout_results": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "router_floor_evidence",
+        "capability_evaluator",
+        "protected_t22_floor_evidence"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/holdout_results.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:combine_results"
+    },
+    "construction_audits": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_family_suites",
+        "holdout_corpus"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/construction_audits",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.construction:run_construction_audits"
+    },
+    "construction_family_suites": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [
+        "construction_inputs",
+        "construction_gold"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/suites/families",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.construction:write_suites"
+    },
+    "construction_gate_node": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_audits",
+        "construction_ledger"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/construction_gate",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.gates:run_construction_gate"
+    },
+    "construction_gold": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [
+        "construction_inputs"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/suites/gold.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.author:author_cases"
+    },
+    "construction_inputs": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [],
+      "path": "t24-private://T24-STORE-01/t24/suites/inputs.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.author:author_cases"
+    },
+    "construction_ledger": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [],
+      "path": "t24-private://T24-STORE-01/t24/construction_run_ledger",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.ledgers:T24ConstructionLedger"
+    },
+    "construction_manifest": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_gate_node"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/private_holdout_manifest",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.manifest:build_private_manifest"
+    },
+    "evaluation_ledger": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "holdout_seal"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation_run_ledger",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.ledgers:T24EvaluationLedger"
+    },
+    "evaluation_provenance": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "combined_holdout_results"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/evaluation_provenance.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:build_provenance"
+    },
+    "gold_firewall_verification": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "holdout_corpus",
+        "construction_gold"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/gold_firewall_verification",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:verify_gold_firewall"
+    },
+    "holdout_corpus": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [
+        "construction_inputs"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/corpus",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.construction:write_corpus"
+    },
+    "holdout_seal": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_manifest",
+        "construction_ledger"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/holdout_seal",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.seal:seal_holdout"
+    },
+    "protected_t22_floor_evidence": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "protected_t22_metric_evidence"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/protected_t22_floor_evidence.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:protected_t22_floor_evidence"
+    },
+    "protected_t22_metric_evidence": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_gold"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/protected_t22_metric_evidence.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:protected_t22_metric_evidence"
+    },
+    "public_construction_commitment": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "holdout_seal",
+        "construction_ledger"
+      ],
+      "path": "evaluations/t24/construction_public_commitment.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.manifest:build_public_construction_commitment"
+    },
+    "public_construction_receipt": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "construction_ledger"
+      ],
+      "path": "evaluations/t24/construction_public_receipt.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.ledgers:build_construction_receipt"
+    },
+    "public_evaluation_receipt": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "evaluation_ledger",
+        "combined_holdout_results"
+      ],
+      "path": "evaluations/t24/evaluation_public_receipt.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.ledgers:build_evaluation_receipt"
+    },
+    "public_manifest_commitment": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "construction_manifest"
+      ],
+      "path": "evaluations/t24/manifest_public_commitment.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.manifest:build_public_manifest_commitment"
+    },
+    "raw_results": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "candidate_outputs",
+        "construction_gold",
+        "router_evaluator",
+        "capability_evaluator"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/raw_results.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:combine_raw"
+    },
+    "router_decisions": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "holdout_seal",
+        "construction_inputs"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/router_decisions.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:evaluate_router"
+    },
+    "router_evaluator": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "candidate_outputs",
+        "construction_gold"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/router_evaluator.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:evaluate_router"
+    },
+    "router_floor_evidence": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "router_metric_evidence"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/router_floor_evidence.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.scorer:score_router"
+    },
+    "router_metric_evidence": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "raw_results"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/router_metric_evidence.json",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.scorer:score_router"
+    },
+    "selected_capability_execution": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "holdout_seal",
+        "construction_inputs"
+      ],
+      "path": "t24-private://T24-STORE-01/t24/evaluation/selected_capability_execution.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t24_protocol.evaluation:evaluate_capability"
+    }
+  },
+  "schema_version": "t24-evaluation-graph-v1"
+}

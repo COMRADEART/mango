@@ -1,0 +1,13 @@
+{
+  "artifact": "T24_QUALIFICATION_REPORT",
+  "experiment": "t24",
+  "family_count": 16,
+  "material": "PUBLIC_SAFE_PERMANENTLY_EXCLUDED",
+  "reason_agreement": 1.0,
+  "route_agreement": 1.0,
+  "route_mismatch_count": 0,
+  "router_entry": "sciencemath.executive.router_v2:route_request",
+  "rows": 1280,
+  "schema_version": "t24-qualification-report-v1",
+  "status": "PASS"
+}

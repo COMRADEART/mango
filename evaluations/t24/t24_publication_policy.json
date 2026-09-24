@@ -1,0 +1,49 @@
+{
+  "artifact": "T24_PUBLICATION_POLICY",
+  "enforcement": {
+    "future_construction_publication_shape": "COMMITMENTS_AND_HASHES_ONLY_NOT_T23_SHAPED_30_FILE_BLIND_COMMIT",
+    "post_construction_publication_leakage_state": "T24_POST_CONSTRUCTION_PUBLICATION_LEAKAGE",
+    "pre_evaluation_publication_gate": "FAIL_CLOSED",
+    "publication_gate_action_on_leak": "OFFICIAL_EVALUATION_REFUSED"
+  },
+  "experiment": "t24",
+  "frozen_policy": {
+    "LIVE_WEB_ISOLATION_OPTION": "OPTION_B_BLIND_MATERIAL_PRIVATE_UNTIL_EVALUATION_COMPLETES",
+    "PRIVATE_STORE_EXAMPLE_ROOT": "C:/T24_PRIVATE_EVALUATION",
+    "PUBLIC_GIT_BLIND_BLOB_COUNT_REQUIRED": 0,
+    "REAL_BLIND_CONTENT_PUBLICATION_ALLOWED_BEFORE_EVALUATION": false,
+    "T23_EXPOSED_MATERIAL_REUSE_ALLOWED": false
+  },
+  "private_offline_store_required_content": [
+    "REAL_BLIND_INPUTS",
+    "REAL_BLIND_GOLD",
+    "PRIVATE_CORPUS",
+    "PRIVATE_ATTACHMENTS",
+    "REAL_CONSTRUCTION_LEDGER",
+    "REAL_EVALUATION_LEDGER",
+    "RAW_OFFICIAL_RESULTS"
+  ],
+  "public_repository_allowed_content": [
+    "SCHEMAS",
+    "PROTOCOL_CODE",
+    "PREREGISTRATION",
+    "CANDIDATE_IDENTITY",
+    "HASHES",
+    "COMMITMENTS",
+    "ROOTS",
+    "NON_SECRET_MANIFEST_METADATA",
+    "AUDIT_SUMMARIES",
+    "PUBLIC_SAFE_QUALIFICATION_DATA"
+  ],
+  "public_repository_forbidden_content": [
+    "REAL_BLIND_INPUTS",
+    "REAL_BLIND_GOLD",
+    "REAL_SUITE_ROWS",
+    "PRIVATE_CORPUS",
+    "PRIVATE_ATTACHMENTS",
+    "PRIVATE_SOURCE_TEXT",
+    "CANDIDATE_OUTPUTS_ON_REAL_ROWS_BEFORE_EVALUATION_COMPLETION",
+    "RAW_OFFICIAL_RESULTS_BEFORE_EVALUATION_COMPLETION"
+  ],
+  "schema_version": "t24-publication-policy-v1"
+}

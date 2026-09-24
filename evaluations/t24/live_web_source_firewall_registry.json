@@ -1,0 +1,68 @@
+{
+  "artifact": "T24_LIVE_WEB_SOURCE_FIREWALL_REGISTRY",
+  "denial_rules": [
+    "QUERY_FINGERPRINT_T23_EXPOSED",
+    "REPOSITORY_IDENTITY",
+    "URI_PREFIX",
+    "T23_CONTENT_HASH",
+    "T23_TEXT_FINGERPRINT",
+    "HISTORICAL_FINGERPRINT",
+    "QUALIFICATION_FINGERPRINT"
+  ],
+  "denied_repositories": [
+    {
+      "host": "github.com",
+      "owner": "COMRADEART",
+      "reason": "T23_EXPOSED_SEALED",
+      "repo": "mango"
+    },
+    {
+      "host": "raw.githubusercontent.com",
+      "owner": "COMRADEART",
+      "reason": "T23_EXPOSED_SEALED",
+      "repo": "mango"
+    }
+  ],
+  "denied_uri_prefixes": [
+    "github.com/comradeart/mango",
+    "raw.githubusercontent.com/comradeart/mango",
+    "https://github.com/comradeart/mango",
+    "https://raw.githubusercontent.com/comradeart/mango",
+    "http://github.com/comradeart/mango",
+    "http://raw.githubusercontent.com/comradeart/mango"
+  ],
+  "experiment": "t24",
+  "historical_bindings": [
+    {
+      "path": "evaluations/t24/firewall_fingerprints/historical_fingerprints.json",
+      "sha256": "91fe93bc877b1cb5ffb5089debea52c22c01e5e2db91541ea7480489724174f0"
+    }
+  ],
+  "pre_candidate_filtering": true,
+  "qualification_bindings": [
+    {
+      "path": "evaluations/t24/firewall_fingerprints/qualification_fingerprints.json",
+      "sha256": "971395e5ef6d58d36a65ef5f27aaaebc058acc624d2b6e3ca4caf9fb6c33ce46"
+    }
+  ],
+  "schema_version": "t24-live-web-source-firewall-v1",
+  "t23_construction_commit": "aa613c30483f697295f6f993319e37fd45b07f12",
+  "t23_content_bindings": [
+    {
+      "path": "evaluations/t24/firewall_fingerprints/t23_content_fingerprints.json",
+      "sha256": "17c0042de2ea6058071f7f3b0c3b51642ce3669aecf8f6fa7a42475e1162cf5d"
+    }
+  ],
+  "t23_query_bindings": [
+    {
+      "path": "evaluations/t24/t23_exposed_sealed_anchor.json",
+      "sha256": "bdd9e73328d791ccd38972f309b988cbd5783620a0774e4ab1715df427938053"
+    }
+  ],
+  "t23_text_bindings": [
+    {
+      "path": "evaluations/t24/firewall_fingerprints/t23_text_fingerprints.json",
+      "sha256": "4d06b022e95938381386e6e59aa851eab366e7990ddfe22421e45b154f25571a"
+    }
+  ]
+}
