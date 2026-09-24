@@ -1,0 +1,103 @@
+{
+  "schema_version": "t25-root-cause-analysis-v1",
+  "artifact": "T25_ROOT_CAUSE_ANALYSIS",
+  "experiment": "t25",
+  "authorization": "T25_REMEDIATION_AND_PRECONSTRUCTION",
+  "section": 4,
+  "blindness_rule_compliance": {
+    "t24_private_rows_opened": 0,
+    "t24_private_row_fields_inspected": 0,
+    "t24_private_material_used_for_fix_design": false,
+    "aggregate_evidence_used": {
+      "unmatched_pairs": {"GENERAL->GENERAL[UNKNOWN]": 4},
+      "matched_general_pairs": {
+        "GENERAL->GENERAL[PARTIALLY_SUPPORTED]": 72,
+        "GENERAL->GENERAL[UNCERTAIN]": 4
+      },
+      "general_rows_total": 80,
+      "source": "T24 official report aggregate counts only (PUBLIC_SAFE)"
+    }
+  },
+
+  "call_graph": {
+    "description": "GENERAL dispatch to final capability status, from frozen code at construction commit 71e829d / candidate e1be88f (T24).",
+    "nodes": [
+      {"id": "router", "code": "sciencemath.executive.router_v2:route_request", "role": "selects route_id=GENERAL, selected_capability=GENERAL"},
+      {"id": "provider_generate", "code": "t23_protocol.provider:ProductionRouterProvider.generate", "role": "row gate: rejects gold/unknown fields, builds decision"},
+      {"id": "provider_dispatch", "code": "t23_protocol.provider:ProductionRouterProvider._dispatch", "role": "GENERAL branch lines 92-101"},
+      {"id": "executive_runner", "code": "sciencemath.executive.runner:run_executive", "role": "bounded plan-execute-verify-replan loop; returns packed result dict"},
+      {"id": "uncertainty_engine", "code": "sciencemath.executive.uncertainty:decide_status", "role": "deterministic signal-vector to epistemic status; never returns UNKNOWN"},
+      {"id": "status_assignment", "code": "t23_protocol/provider.py:100", "role": "status = answer.get('evidence_status') or answer.get('status') or 'UNKNOWN'"}
+    ],
+    "edges": [
+      "router -> provider_dispatch",
+      "provider_dispatch -> executive_runner (GENERAL branch, guard: general_context None raises ProductionDispatchError)",
+      "executive_runner -> status_assignment (via _pack output)",
+      "executive_runner -> uncertainty_engine (final paths pass decide_status result as status)"
+    ],
+    "dead_fallback_term": {
+      "fact": "runner._pack emits no top-level 'status' key (verified over _pack fields, runner.py:623-667)",
+      "consequence": "answer.get('status') at provider.py:100 is always None; provider status is exactly state['evidence_status'] when truthy, else the literal fallback 'UNKNOWN'"
+    }
+  },
+
+  "terminal_paths_with_status": [
+    {"path": "OFF arm (features.executive false)", "site": "runner.py:194-196", "status": "PARTIALLY_SUPPORTED"},
+    {"path": "fast_path_eligible bypass", "site": "runner.py:214-216", "status": "PARTIALLY_SUPPORTED"},
+    {"path": "INSUFFICIENT_INFORMATION stop (extracted None + unusable text)", "site": "runner.py:391-395", "status": "INSUFFICIENT_INFORMATION"},
+    {"path": "decline (answer_should_decline)", "site": "runner.py:398-405", "status": "epistemic in {INSUFFICIENT_INFORMATION, CONFLICTING_EVIDENCE}"},
+    {"path": "SOLVED_VERIFIED / SOLVED_UNVERIFIED", "site": "runner.py:406-409", "status": "epistemic = decide_status(signals) in {CONFLICTING_EVIDENCE, INSUFFICIENT_INFORMATION, VERIFIED, PARTIALLY_SUPPORTED, STRONGLY_SUPPORTED, UNCERTAIN}"}
+  ],
+
+  "terminal_paths_without_status_emit_UNKNOWN_via_provider_fallback": [
+    {"path": "BUDGET_EXHAUSTED (pre-step cap)", "site": "runner.py:533-535 via _execute_plan", "status_assigned": null, "mechanism": "_terminate(state, 'BUDGET_EXHAUSTED', failure_category=cap) - no status kwarg"},
+    {"path": "BUDGET_EXHAUSTED (step wall-time max_step_seconds)", "site": "runner.py:573-578", "status_assigned": null},
+    {"path": "BUDGET_EXHAUSTED (post-step cap, includes max_replans axis)", "site": "runner.py:580-588", "status_assigned": null},
+    {"path": "STALLED (identical replan fingerprint)", "site": "runner.py:282-287", "status_assigned": null, "mechanism": "_terminate(state, 'STALLED', failure_category='LOOP_STALLED') - no status kwarg; fires both on fingerprint equality with the current plan and on register_failure counting the same fingerprint twice"},
+    {"path": "_hard_fail (TransitionError -> SYSTEM_ERROR)", "site": "runner.py:112-122, 413-417", "status_assigned": null, "mechanism": "_hard_fail sets termination_reason/failure_category/error only; evidence_status stays None"},
+    {"path": "_hard_fail (generic Exception -> classify_exception)", "site": "runner.py:418-424", "status_assigned": null, "categories": ["MODEL_CALL_FAILED", "MODEL_UNPARSEABLE_OUTPUT", "TOOL_UNKNOWN", "SYSTEM_ERROR", "...17-category closed set"]}
+  ],
+
+  "why_the_trigger_paths_are_reachable_in_the_frozen_production_general_context": {
+    "frozen_config": "evaluations/t24/production_provider_config.json (schema t24-production-provider-config-v1)",
+    "facts": [
+      "general_generation = {do_sample: false, max_new_tokens: 32, seed: 42}; a schema-valid JSON plan needs far more than 32 tokens, so BOTH model plan attempts are unparseable and the deterministic fallback plan is always used (2 model calls consumed, plan_fallback_used=true)",
+      "canonical _general_context() builds ExecContext WITHOUT a retriever and WITHOUT a tool registry (scripts/t24_shadow_lifecycle.py:26-48); Budgets are defaults: max_plan_attempts=2, max_plan_steps=6, max_replans=2, max_model_calls=16, max_tool_calls=8, max_retrievals=3, max_total_seconds=180, max_step_seconds=60",
+      "fallback_plan (plan.py:160-211) emits a RETRIEVE step whenever classify_resources is RETRIEVAL/BOTH or problem_type is SCIENCE or force_retrieval is set; with ctx.retriever None the RETRIEVE step raises AttributeError, is caught in execute.py as a FAILED observation with error_type RETRIEVAL_ERROR",
+      "verify_step_consistency lists the failed step; detect_trigger (replan.py:44-49) maps retrieval failure to RETRIEVAL_INSUFFICIENT",
+      "_amend_plan for RETRIEVAL_INSUFFICIENT sets force_retrieval=true; but the fallback planner ALREADY emitted RETRIEVE for retrieval-cued classifications, so the amended plan is fingerprint-identical to the current plan -> runner.py:282-287 terminates STALLED on the first replan round",
+      "when the amended plan instead differs (e.g. MATH/MIXED additions), two replan rounds exhaust max_replans=2 and the third round's pre-step budget guard reads usage['replans']=2 >= cap and terminates BUDGET_EXHAUSTED before any further step (budgets.exceeded priority order)"
+    ],
+    "aggregate_consistency": {
+      "general_rows": 80,
+      "fast_path_PARTIALLY_SUPPORTED": 72,
+      "synth_only_plan_UNCERTAIN": 4,
+      "retrieval_cued_UNKNOWN": 4,
+      "note": "SIMPLE+NONE+GENERAL rows take the fast path (classify.py:99-105) -> PARTIALLY_SUPPORTED; MULTI_STEP/OPEN_ENDED + resources NONE rows run a single-SYNTHESIZE fallback plan, verify_final yields verdict UNKNOWN (no tool results, no supplied chunks), and decide_status falls through to UNCERTAIN; retrieval-cued rows hit the STALLED/BUDGET_EXHAUSTED no-status paths. The three buckets sum to 80 and match the T24 aggregate exactly without opening any row."
+    }
+  },
+
+  "unknown_emitter_classification": [
+    {"code": "t23_protocol/provider.py:100", "channel": "CAPABILITY_STATUS", "adjudication": "IMPLEMENTATION_DEFECT", "detail": "protocol-adapter fallback meaning 'the runtime did not report a status'; the runtime's own evidence-status taxonomy (state.EVIDENCE_STATUSES) has no UNKNOWN member, so UNKNOWN here is never a runtime epistemic judgment"},
+    {"code": "sciencemath/executive/classify.py:79", "channel": "CLASSIFICATION_AXIS(resources)", "adjudication": "INTERNAL_ONLY_VALID", "detail": "resource-requirement axis, never a capability status"},
+    {"code": "sciencemath/executive/verify.py:22,34,40,101", "channel": "VERIFY_VERDICT", "adjudication": "INTERNAL_ONLY_VALID", "detail": "honest-unverified verdict; feeds decide_status which maps it to UNCERTAIN or PARTIALLY_SUPPORTED, never to the status channel directly"},
+    {"code": "sciencemath/executive/failures.py:40", "channel": "FAILURE_CATEGORY(TOOL_UNKNOWN)", "adjudication": "INTERNAL_ONLY_VALID"},
+    {"code": "sciencemath/executive/state.py:133-135", "channel": "DEFAULT_AXES(problem_type/complexity/resources)", "adjudication": "INTERNAL_ONLY_VALID"},
+    {"code": "sciencemath/executive/understand.py:135,138", "channel": "FACT_LABEL", "adjudication": "INTERNAL_ONLY_VALID"},
+    {"code": "sciencemath/executive/uncertainty.py:41", "channel": "SIGNAL_DEFAULT(verification_verdict)", "adjudication": "INTERNAL_ONLY_VALID", "detail": "default when verification dict lacks a verdict; decide_status treats non-VERIFIED/FAILED as fallthrough"},
+    {"code": "sciencemath/executive/runner.py:318", "channel": "VFINAL_DEFAULT", "adjudication": "INTERNAL_ONLY_VALID", "detail": "pre-verification sentinel; replaced by verify_final before use"},
+    {"code": "sciencemath/executive/repair.py:153", "channel": "REPAIR_REVERIFY_VERDICT", "adjudication": "INTERNAL_ONLY_VALID", "detail": "T10 repair harness, not on the GENERAL dispatch path"},
+    {"code": "sciencemath/evaluation/taxonomy.py", "channel": "ERROR_TAXONOMY_FALLBACK", "adjudication": "INTERNAL_ONLY_VALID", "detail": "harness error bucketing, not a capability status"},
+    {"code": "sciencemath/scicomp/*, tools/*, memory/*, document/*, web/*, curriculum/*, orchestration/*, planning/*, code/*", "channel": "OTHER_SUBSYSTEM_AXES", "adjudication": "INTERNAL_ONLY_VALID", "detail": "trust classes, confidence, provenance, cell types, verdicts of other subsystems; none are capability statuses"}
+  ],
+
+  "root_cause_statement": "The 4 unmatched T24 GENERAL rows carry status UNKNOWN solely because the frozen provider adapter (t23_protocol/provider.py:100) substitutes the literal 'UNKNOWN' whenever the executive runtime terminates without an evidence_status. Three runtime termination classes never assign one: BUDGET_EXHAUSTED (three sites), STALLED, and _hard_fail (system errors). In the frozen production GENERAL context (no retriever, no registry, max_new_tokens=32), retrieval-cued general questions deterministically reach STALLED (fingerprint-identical replan) or BUDGET_EXHAUSTED (max_replans axis). The status is therefore an adapter-fallback placeholder for 'status absent', not an epistemic state; the runtime defect is that these termination paths bypass evidence-status assignment.",
+
+  "semantic_classification": {
+    "externally_valid_unknown": false,
+    "internal_only_unknown": true,
+    "normalized_unknown": true,
+    "implementation_defect": true,
+    "note": "UNKNOWN as a terminal capability status is an implementation defect (adapter fallback for a missing status). UNKNOWN as an internal axis value (classification axes, verify verdicts, provenance) is valid and out of scope. Normalization: every runtime terminal must carry a defined evidence status derived from its recorded signals."
+  }
+}

@@ -97,7 +97,7 @@ def _log(ctx, run_id, event, payload):
 
 
 def _terminate(state: dict, reason: str, *, answer=None, status=None,
-               failure_category=None) -> dict:
+               failure_category=None, observations=None) -> dict:
     target = st.REASON_TO_STATE.get(reason, st.FAILED)
     state = _goto(state, target)
     state["termination_reason"] = reason
@@ -105,11 +105,35 @@ def _terminate(state: dict, reason: str, *, answer=None, status=None,
         state["final_answer"] = answer
     if status is not None:
         state["evidence_status"] = status
+    elif state.get("evidence_status") is None:
+        # T25 remediation (authorization §8, semantic rules R1-R4 in
+        # evaluations/t25/remediation/T25_SEMANTIC_RULES.md): a terminal
+        # without an assigned epistemic status (budget/stall/system
+        # paths) derives one from the run's own recorded signals via the
+        # frozen uncertainty engine — "status absent" is not a status.
+        # Cause fields (termination_reason/failure_category) are
+        # unchanged, and no mapping here was chosen against any
+        # aggregate (rule R5).
+        state["evidence_status"] = _derived_status(state, observations)
     state["failure_category"] = failure_category
     return state
 
 
-def _hard_fail(state: dict, category: str, error: str) -> dict:
+def _derived_status(state: dict, observations: dict | None) -> str:
+    """Terminal status derived from the run's recorded signals via the
+    frozen uncertainty engine. The interrupted round has no final
+    verification, so its verdict is absent from the signal vector
+    (decide_status treats that as unverified). Derivation must never
+    crash the terminal; if it cannot run, the no-signal status is used."""
+    try:
+        signals = unc.signals_from_run(state, observations or {}, {}, [])
+        return unc.decide_status(signals)
+    except Exception:  # noqa: BLE001
+        return "UNCERTAIN"
+
+
+def _hard_fail(state: dict, category: str, error: str, *,
+               observations: dict | None = None) -> dict:
     """Out-of-band failure: reach FAILED deterministically, no raise."""
     try:
         state = _goto(state, st.FAILED)
@@ -119,6 +143,8 @@ def _hard_fail(state: dict, category: str, error: str) -> dict:
     state["termination_reason"] = "SYSTEM_ERROR"
     state["failure_category"] = category
     state["error"] = error
+    if state.get("evidence_status") is None:
+        state["evidence_status"] = _derived_status(state, observations)
     return state
 
 
@@ -282,7 +308,8 @@ def run_executive(question: str, question_id: str, *, ctx: ExecContext,
             if stall or plan_mod.plan_fingerprint(new_plan) == \
                     plan_mod.plan_fingerprint(state["plan"]):
                 state = _terminate(state, "STALLED",
-                                   failure_category="LOOP_STALLED")
+                                   failure_category="LOOP_STALLED",
+                                   observations=observations)
                 return _pack(state, result, observations, plan_meta,
                              t_start, usage=ctx.usage)
             state["plan"] = new_plan
@@ -411,7 +438,8 @@ def run_executive(question: str, question_id: str, *, ctx: ExecContext,
                      t_start, raw=final_text, usage=ctx.usage)
 
     except st.TransitionError as exc:
-        state = _hard_fail(state, "SYSTEM_ERROR", f"state machine: {exc}")
+        state = _hard_fail(state, "SYSTEM_ERROR", f"state machine: {exc}",
+                           observations=observations)
         _log(ctx, question_id, "state_error", {"error": str(exc)})
         return _pack(state, result, observations, plan_meta,
                      t_start, usage=ctx.usage, error=str(exc))
@@ -419,7 +447,8 @@ def run_executive(question: str, question_id: str, *, ctx: ExecContext,
         from sciencemath.executive.failures import classify_exception
         cat = classify_exception(exc)
         _log(ctx, question_id, "error", {"error": str(exc)})
-        state = _hard_fail(state, cat, f"{type(exc).__name__}: {exc}")
+        state = _hard_fail(state, cat, f"{type(exc).__name__}: {exc}",
+                           observations=observations)
         return _pack(state, result, observations, plan_meta,
                      t_start, usage=ctx.usage, error=str(exc))
 
@@ -532,7 +561,8 @@ def _execute_plan(state: dict, observations: dict, ctx: ExecContext,
         if cap:
             state["budget_usage"] = pre_usage
             return _terminate(state, "BUDGET_EXHAUSTED",
-                              failure_category=cap)
+                              failure_category=cap,
+                              observations=observations)
 
         state = _goto(state, st.EXECUTING)  # PLANNING/OBSERVING->...->EXECUTING
         ob, outputs = ex.execute_step(state, step, observations, ctx)
@@ -575,7 +605,8 @@ def _execute_plan(state: dict, observations: dict, ctx: ExecContext,
                 ctx.usage, elapsed_s=time.perf_counter() - t_start,
                 last_step_s=ob.latency_s)
             return _terminate(state, "BUDGET_EXHAUSTED",
-                              failure_category="max_step_seconds")
+                              failure_category="max_step_seconds",
+                              observations=observations)
 
         # post-step budget guard (deterministic priority from
         # budgets.exceeded; count axes are >= the cap)
@@ -585,7 +616,8 @@ def _execute_plan(state: dict, observations: dict, ctx: ExecContext,
         cap = bmod.exceeded(usage, ctx.budgets)
         if cap:
             return _terminate(state, "BUDGET_EXHAUSTED",
-                              failure_category=cap)
+                              failure_category=cap,
+                              observations=observations)
 
         # OBSERVING after each step
         state = st.transition(state, st.OBSERVING)
