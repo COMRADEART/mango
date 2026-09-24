@@ -1,7 +1,7 @@
 {
   "artifact": "T24_PRECONSTRUCTION_FREEZE",
   "component_count": 255,
-  "component_root": "df982efdd1ea5ffe8cdb69b2aebb19b6b95a4c49dbd3e38d268e3a18d9a38747",
+  "component_root": "c6a96b3446e7fafeb6cc3c81dc1e8d96886dbf2a40c19cb689a50cd79de4a0a3",
   "components": [
     {
       "byte_size": 1822,
@@ -472,10 +472,10 @@
       "sha256": "fe0fb8b521990ea3e14103b68c1e49352bbfe2d82765d1d0e9149770e1566a73"
     },
     {
-      "byte_size": 4215,
+      "byte_size": 4225,
       "path": "scripts/t24_reproduce.py",
       "role": "T24_REPRODUCTION_ENTRYPOINT",
-      "sha256": "34999065f9ca1ee07307dea9c4744f6ab5d5b95e9abbca7f8cebc189dde465ce"
+      "sha256": "b1ad43baef3e9751307bab1311507c4a5546631d6d266ece7d063e6dee25fa88"
     },
     {
       "byte_size": 5898,
@@ -1528,16 +1528,16 @@
       "sha256": "98a8c329a617dc9df73e2e2b50b68381f3a83c152bef999ba6d53b8cf9104bdc"
     },
     {
-      "byte_size": 20604,
+      "byte_size": 23866,
       "path": "tests/test_t24_preconstruction.py",
       "role": "T24_QUALIFICATION_TEST",
-      "sha256": "867eae2c5aa68b2ed4e324043245530b92c8e59bc3ff67c5a912a2a49cf12c6f"
+      "sha256": "bbe5b8736d6be1dc1c37440f1e5a35c9c56c8b75ed218e3eb9075f1e22c03fc4"
     }
   ],
   "construction_authorized": false,
   "experiment": "t24",
-  "freeze_root": "624a55c15d95e5a7fa4dcdbed009e5c2dc1d06ad5e1b9d22e0fdeaeb574c6247",
-  "freeze_sha256": "6d8dfa4ea62fe095006f71c352257981129417c7f925cb5e3cccac0b133cdab5",
+  "freeze_root": "d20dc049513ce468c68e41645067cadd49358e16f4428a34b97ad82cfecc5733",
+  "freeze_sha256": "3ba1bbf3b3485c74e238d603c14283d2ba571dd4a17765d0c7f379019dfd526d",
   "frozen_policy": {
     "PUBLIC_GIT_BLIND_BLOB_COUNT_REQUIRED": 0,
     "REAL_BLIND_CONTENT_PUBLICATION_ALLOWED_BEFORE_EVALUATION": false,
