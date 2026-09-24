@@ -1,0 +1,100 @@
+"""Prospective T26 preconstruction byte freeze and independent verification."""
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+
+from t21_protocol.util import sha256_json
+
+SCHEMA = "t26-preconstruction-freeze-v1"
+EXCLUDED = frozenset({
+    "evaluations/t26/preconstruction_freeze.json",
+    "evaluations/t26/protocol_doctor_report.json",
+    "evaluations/t26/T26_PRECONSTRUCTION_VERDICT.json",
+    "evaluations/t26/fresh_worktree_reproduction.json",
+})
+
+
+def components(root: Path) -> dict[str, str]:
+    root = Path(root).resolve()
+    roles: dict[str, str] = {}
+    for directory in ("executive", "planning", "orchestration", "tools",
+                      "rag", "knowledge", "web", "document", "scicomp",
+                      "code", "memory", "integrated"):
+        for path in (root / "src" / "sciencemath" / directory).rglob("*.py"):
+            roles[path.relative_to(root).as_posix()] = "CANDIDATE_OR_PROTECTED_RUNTIME"
+    for directory in ("t26_protocol",):
+        for path in (root / directory).glob("*.py"):
+            roles[path.relative_to(root).as_posix()] = "T26_PROTOCOL_RUNTIME"
+    for pattern, role in (("scripts/t26*.py", "T26_ENTRYPOINT"),
+                          ("tests/test_t26*.py", "T26_TEST_GATE"),
+                          ("evaluations/t26/*.json", "T26_PUBLIC_ARTIFACT"),
+                          ("evaluations/t26/qualification/*.jsonl", "T26_PUBLIC_QUALIFICATION")):
+        for path in root.glob(pattern):
+            relative = path.relative_to(root).as_posix()
+            if relative not in EXCLUDED:
+                roles[relative] = role
+    for relative in (
+        "evaluations/t25/T25_FINAL_PROMOTION_RECORD.json",
+        "evaluations/t25/candidate_identity.json",
+        "evaluations/t25/capability_registry.json",
+        "evaluations/t25/live_web_source_firewall_registry.json",
+        "evaluations/t25/t23_exposed_sealed_anchor.json",
+        "evaluations/t25/t24_sealed_evaluated_anchor.json",
+        "evaluations/t25/preconstruction_freeze.json",
+        "evaluations/t22/T22_FINAL_PROMOTION_RECORD.json",
+        "evaluations/t19/promotion_floors.json",
+        "evaluations/t20/floors.json",
+    ):
+        roles[relative] = "HISTORICAL_PUBLIC_ANCHOR"
+    return dict(sorted(roles.items()))
+
+
+def build_freeze(root: Path) -> dict:
+    root = Path(root).resolve()
+    candidate = json.loads((root / "evaluations/t26/candidate_identity.json").read_text(encoding="utf-8"))
+    entries = []
+    for relative, role in components(root).items():
+        path = root / relative
+        if not path.is_file():
+            raise ValueError(f"freeze component missing: {relative}")
+        data = path.read_bytes()
+        entries.append({"path": relative, "sha256": hashlib.sha256(data).hexdigest(),
+                        "byte_size": len(data), "role": role})
+    component_root = sha256_json(entries)
+    root_input = {
+        "schema_version": SCHEMA, "artifact": "T26_PRECONSTRUCTION_FREEZE",
+        "experiment": "t26", "t25_promotion_commit":
+        "8940d96aacb08d8acf110e5f3e45e9ce84f03577",
+        "candidate_commit": candidate["candidate_commit"],
+        "candidate_tree": candidate["candidate_tree"],
+        "runtime_root": candidate["runtime_root"],
+        "component_root": component_root,
+        "real_blind_construction_authorized": False,
+        "external_action_authority": False,
+    }
+    freeze = {**root_input, "component_count": len(entries),
+              "components": entries, "freeze_root": sha256_json(root_input)}
+    freeze["freeze_sha256"] = hashlib.sha256(json.dumps(
+        freeze, sort_keys=True, separators=(",", ":"),
+        ensure_ascii=False).encode("utf-8")).hexdigest()
+    return freeze
+
+
+def verify_freeze(root: Path, frozen: dict) -> dict:
+    recomputed = build_freeze(root)
+    mismatches = []
+    for key in ("component_count", "component_root", "freeze_root",
+                "freeze_sha256", "candidate_commit", "candidate_tree",
+                "runtime_root"):
+        if frozen.get(key) != recomputed.get(key):
+            mismatches.append(key)
+    if frozen.get("components") != recomputed.get("components"):
+        mismatches.append("components")
+    return {"status": "PASS" if not mismatches else "FAIL",
+            "component_count": recomputed["component_count"],
+            "component_root": recomputed["component_root"],
+            "freeze_root": recomputed["freeze_root"],
+            "freeze_sha256": recomputed["freeze_sha256"],
+            "mismatches": mismatches}

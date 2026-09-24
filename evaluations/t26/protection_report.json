@@ -1,0 +1,67 @@
+{
+  "artifact": "T26_HISTORICAL_PUBLIC_PROTECTION",
+  "candidate_executions_on_historical_rows": 0,
+  "historical_private_rows_accessed": 0,
+  "schema_version": "t26-protection-v1",
+  "status": "PASS",
+  "t19": {
+    "authority": "PROPOSE_ONLY",
+    "floors": {
+      "failed": [],
+      "floor_count": 42,
+      "status": "PASS"
+    },
+    "tests": {
+      "deselected": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "skipped": 0,
+      "status": "PASS",
+      "tests": 38,
+      "xfails": 0
+    }
+  },
+  "t20": {
+    "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+    "floors": {
+      "failed": [],
+      "floor_count": 17,
+      "status": "PASS"
+    },
+    "tests": {
+      "deselected": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "skipped": 0,
+      "status": "PASS",
+      "tests": 239,
+      "xfails": 0
+    }
+  },
+  "t22": {
+    "passed": 32,
+    "raw_blind_rows_accessed": 0,
+    "status": "PASS",
+    "total": 32
+  },
+  "t25_dispatch": {
+    "public_promotion_receipt_rows": 1280,
+    "runtime_byte_identity": {
+      "component_count": 18,
+      "drift": [],
+      "root_recomputed": true,
+      "runtime_root": "2beb7a068de3afd0ab0ce25a7a9748fc5cffe6ca04f2db53c1c4d9c71bf87ea9",
+      "status": "PASS"
+    },
+    "status": "PASS",
+    "unexpected_unknown_terminal": 0,
+    "unmatched": 0
+  },
+  "t25_router": {
+    "failed_floors": [],
+    "floor_count": 15,
+    "status": "PASS"
+  }
+}

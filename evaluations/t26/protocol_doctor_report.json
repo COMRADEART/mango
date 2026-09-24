@@ -1,0 +1,176 @@
+{
+  "artifact": "T26_PROTOCOL_DOCTOR_REPORT",
+  "check_count": 25,
+  "checks": {
+    "AUTHORITY_EDGES": {
+      "candidate_gold_edges": [],
+      "external_action_authority": false,
+      "status": "PASS"
+    },
+    "AUTHORITY_GRAPH": {
+      "sha256": "62cc9450c10428ad32ccc27e2609f41c9aca31c3409d5cf2abdb4cd00b5d2f87",
+      "status": "PASS"
+    },
+    "CANDIDATE_IDENTITY": {
+      "candidate_ancestor_of_head": true,
+      "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
+      "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
+      "drift": [],
+      "runtime_components": 20,
+      "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
+      "status": "PASS",
+      "t25_ancestor": true
+    },
+    "CODE_DISPOSABLE_SANDBOX": {
+      "controls": {
+        "cleanup": true,
+        "disposable_repo_only": true,
+        "network_disabled": true,
+        "runtime_called": true,
+        "source_unchanged": true
+      },
+      "real_repository_mutations": 0,
+      "status": "PASS"
+    },
+    "EXECUTION_CONTRACT": {
+      "sha256": "f0df1061fd88d659b577b53987a0f9041169f463aa43e36eb2fd814fc0d2e4f9",
+      "status": "PASS"
+    },
+    "FREEZE": {
+      "component_count": 235,
+      "component_root": "1f879681a7c138b7d0974e8489284aef010dcbfc8bcc90247c5a7181bf526381",
+      "freeze_root": "55047a78eb3b4ecefa5453225446e091ed214ffe1ca5fe864a24878732ec8c3b",
+      "freeze_sha256": "ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6",
+      "mismatches": [],
+      "status": "PASS"
+    },
+    "GIT_LEAK_SCAN": {
+      "forbidden_local_paths": [],
+      "public_blind_blob_count": 0,
+      "status": "PASS",
+      "tracked_t26_paths": 19
+    },
+    "HISTORICAL_EXCLUSIONS": {
+      "inherited_hash_only_case_ids": 75827,
+      "inherited_hash_only_queries": 75470,
+      "status": "PASS",
+      "t22_raw_blind_rows_accessed": 0,
+      "t23_exposed_rows_used": 0,
+      "t24_private_rows_accessed": 0,
+      "t25_private_rows_accessed": 0
+    },
+    "LIVE_WEB_FIREWALL": {
+      "pre_candidate_filtering": true,
+      "status": "PASS",
+      "t25_inherited_controls": 11,
+      "t26_controls": [
+        {
+          "control": "T26 qualification",
+          "denied": true,
+          "rule": "T25_OR_T26_EXPERIMENT_TEXT"
+        },
+        {
+          "control": "T25 evaluation",
+          "denied": true,
+          "rule": "T25_OR_T26_EXPERIMENT_TEXT"
+        },
+        {
+          "control": "T25 private locator",
+          "denied": true,
+          "rule": "T25_OR_T26_EXPERIMENT_URL"
+        },
+        {
+          "control": "Mango repository",
+          "denied": true,
+          "rule": "REPOSITORY_IDENTITY"
+        }
+      ]
+    },
+    "LIVE_WEB_FIREWALL_REGISTRY": {
+      "status": "PASS"
+    },
+    "MEMORY_SCOPE_ISOLATION": {
+      "controls": {
+        "conflict": true,
+        "deletion": true,
+        "disposable_cleanup": true,
+        "expiry": true,
+        "instruction_authority_zero": true,
+        "owner_isolation": true,
+        "retrieve": true,
+        "scope_isolation": true,
+        "write": true
+      },
+      "production_memory_access": 0,
+      "status": "PASS",
+      "t25_private_evidence_access": 0
+    },
+    "METRIC_REGISTRY": {
+      "sha256": "3cc8b0b5e09ebd29b809a6fe50e5ff27854778c2b749b787746a0509cf3b67b4",
+      "status": "PASS"
+    },
+    "NATIVE_INTEGRATION": {
+      "status": "PASS"
+    },
+    "PLAN_HANDOFF_GOLD_FIREWALL": {
+      "controls": {
+        "authority_escalation": true,
+        "unclassified_handoff_refused": true,
+        "unknown_plan_field": true,
+        "unknown_producer_refused": true,
+        "valid_handoff_accepted": true
+      },
+      "status": "PASS"
+    },
+    "PRIVATE_STORAGE_POLICY": {
+      "sha256": "884475adfd18082059d0dd679800b8b0e3e859eeb46efdf56052cb27686abfc7",
+      "status": "PASS"
+    },
+    "PRIVATE_STORE_CONTROLS": {
+      "controls": {
+        "alias_refused": true,
+        "escape_refused": true,
+        "locator": true,
+        "overwrite_refused": true
+      },
+      "real_store_created": false,
+      "status": "PASS"
+    },
+    "PRODUCTION_DAG": {
+      "errors": [],
+      "node_count": 21,
+      "status": "PASS"
+    },
+    "PRODUCTION_GRAPH": {
+      "sha256": "01bb19c44ed76030b37b38fc6f071500f4788ff11ba61e7b405f539fbecaa02e",
+      "status": "PASS"
+    },
+    "PROTECTION": {
+      "status": "PASS"
+    },
+    "PUBLIC_QUALIFICATION": {
+      "cases": 64,
+      "families": 16,
+      "status": "PASS"
+    },
+    "REHEARSALS": {
+      "status": "PASS"
+    },
+    "SCENARIO_TAXONOMY": {
+      "sha256": "04d26194cd581a5046c424f8c3f62c825f2de6bb495e4dbb76e66092bdd917bf",
+      "status": "PASS"
+    },
+    "T25_PROMOTION_ANCHOR": {
+      "status": "PASS"
+    },
+    "TEST_GATE": {
+      "status": "PASS"
+    },
+    "TOKENS": {
+      "status": "PASS"
+    }
+  },
+  "schema_version": "t26-protocol-doctor-v1",
+  "status": "PASS",
+  "verdict": "T26_PRODUCTION_PROTOCOL_DOCTOR_PASS"
+}

@@ -1,0 +1,179 @@
+{
+  "artifact": "T26_PRODUCTION_GRAPH",
+  "dangling_edges": 0,
+  "missing_producers": 0,
+  "nodes": {
+    "authoring_validation": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": true,
+      "inputs": [],
+      "producer": "t26_protocol.lifecycle:validate_blind_cases"
+    },
+    "budget_controller": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "replan_controller"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner._budget_state"
+    },
+    "capabilities": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "capability_dispatcher"
+      ],
+      "producer": "t26_protocol.production:build_adapters"
+    },
+    "capability_dispatcher": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "executive_router"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner.run"
+    },
+    "checkpoint_manager": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "verification_layer"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner._save"
+    },
+    "completion_gate": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "budget_controller"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner.run"
+    },
+    "construction_ledger": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": false,
+      "inputs": [
+        "authoring_validation"
+      ],
+      "producer": "t26_protocol.lifecycle:construct_real"
+    },
+    "evaluation_ledger": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": false,
+      "inputs": [
+        "completion_gate",
+        "private_manifest"
+      ],
+      "producer": "t26_protocol.lifecycle:evaluate_once"
+    },
+    "evaluator": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": true,
+      "inputs": [
+        "evaluation_ledger",
+        "private_gold"
+      ],
+      "producer": "t26_protocol.scorer:score_case"
+    },
+    "executive_router": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "orchestrator"
+      ],
+      "producer": "sciencemath.executive.router_v2:route_request"
+    },
+    "handoff_validator": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "capabilities"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner._handoff_valid"
+    },
+    "orchestrator": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "plan_validator"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner.run"
+    },
+    "plan_validator": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "planner"
+      ],
+      "producer": "sciencemath.integrated.runner:validate_plan"
+    },
+    "planner": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "private_inputs"
+      ],
+      "producer": "sciencemath.planning.pipeline:Planner.handle"
+    },
+    "private_gold": {
+      "classification": "PRIVATE_BLIND",
+      "gold_access": true,
+      "inputs": [
+        "private_manifest"
+      ],
+      "producer": "t26_protocol.lifecycle:T26PrivateStore.read"
+    },
+    "private_inputs": {
+      "classification": "PRIVATE_BLIND",
+      "gold_access": false,
+      "inputs": [
+        "private_manifest"
+      ],
+      "producer": "t26_protocol.lifecycle:T26PrivateStore.read"
+    },
+    "private_manifest": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": false,
+      "inputs": [
+        "construction_ledger"
+      ],
+      "producer": "t26_protocol.lifecycle:construct_real"
+    },
+    "publication_gate": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "scorer",
+        "private_manifest"
+      ],
+      "producer": "t26_protocol.lifecycle:public_receipt"
+    },
+    "replan_controller": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "checkpoint_manager"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner.run"
+    },
+    "scorer": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": true,
+      "inputs": [
+        "evaluator"
+      ],
+      "producer": "t26_protocol.scorer:score_suite"
+    },
+    "verification_layer": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "handoff_validator"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner._verify"
+    }
+  },
+  "production_stubs": 0,
+  "schema_version": "t26-production-graph-v1",
+  "unclassified_artifacts": 0
+}

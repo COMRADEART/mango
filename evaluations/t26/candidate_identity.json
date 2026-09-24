@@ -1,0 +1,38 @@
+{
+  "artifact": "T26_CANDIDATE_IDENTITY",
+  "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
+  "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
+  "changed_from_t25": true,
+  "changed_runtime_files": [
+    "src/sciencemath/integrated/__init__.py",
+    "src/sciencemath/integrated/runner.py"
+  ],
+  "parent_candidate": "ba34f7b2cc46158a5064a8e1c217f53e4d2dbf83",
+  "promotion_base": "8940d96aacb08d8acf110e5f3e45e9ce84f03577",
+  "public_safe_justification": "Bounded internal multi-capability runner with explicit plan, T25 router dispatch validation, handoff provenance, independent verification, retry/replan budgets, checkpoint resume and fail-closed completion. No T25 private evidence was used.",
+  "runtime_component_count": 20,
+  "runtime_component_sha256": {
+    "src/sciencemath/executive/router_v2.py": "7aebc77cd4e711e551f89d98943e22d47775a8935440ca285d78a0df3db3bdcb",
+    "src/sciencemath/executive/runner.py": "f706f9be41617c0efff87594144979c0eb35e8ec9dda2c508506b4c1d5fad91d",
+    "src/sciencemath/executive/skills.py": "9aba8945e624f061feb478ca673cb98c5f5c08578a0f02e92dbb0cbf71936d62",
+    "src/sciencemath/integrated/__init__.py": "bc00d7d5a7e8f9aa0bbf5e8a045598420845d70720ddc2a9d61fa6304361dcaa",
+    "src/sciencemath/integrated/runner.py": "a097a31c883cd8f93f12576c8ff2a49a945604d7aa3ab194e2df8a8c269b458a",
+    "src/sciencemath/knowledge/citations.py": "d48a5bb8ac4e28178cdaf332e9b7867a611d6d851f853858582a752b9039bb48",
+    "src/sciencemath/knowledge/claim_gate.py": "3cf7593f131c081a7a1fcf777d7f27ca995f9dae993efbd68c566e565803f883",
+    "src/sciencemath/knowledge/conflicts.py": "f9c984d1fd10ec4053e78ca373e0c13e9d705c3db7c2a4afa3e09cb2a0c272d2",
+    "src/sciencemath/knowledge/corpus.py": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d",
+    "src/sciencemath/knowledge/evidence.py": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d",
+    "src/sciencemath/knowledge/evidence_paths.py": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375",
+    "src/sciencemath/knowledge/freshness.py": "63104a9a012b1c846e0bb48f74a7e291b8d44e760c23998e472c470f75566e2c",
+    "src/sciencemath/knowledge/index.py": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1",
+    "src/sciencemath/knowledge/injection.py": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0",
+    "src/sciencemath/knowledge/pipeline.py": "b0f99cce2afc181c0ce340b19597f93889652aea036a7996cfc9266d2b21232c",
+    "src/sciencemath/knowledge/provenance_spoof.py": "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212",
+    "src/sciencemath/knowledge/relations.py": "e0ed89e99c42b0d8d92952951b78696a50a3b377a537ef4c2a03ce344a35376f",
+    "src/sciencemath/knowledge/retrieval.py": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9",
+    "src/sciencemath/knowledge/routing.py": "d47af1ea34fc0e82347d2214b6894c15fb005082582bc08b7a7f78aa6cbc7151",
+    "src/sciencemath/knowledge/schema.py": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135"
+  },
+  "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
+  "schema_version": "t26-candidate-identity-v1"
+}
