@@ -1,0 +1,268 @@
+{
+  "artifact": "T25_PRODUCTION_EVALUATION_GRAPH",
+  "experiment": "t25",
+  "gates": {
+    "evaluation_cannot_start_before": "SEALED",
+    "no_retry": true,
+    "one_shot_attempt": 1,
+    "promotion_cannot_start_before": "EVALUATED"
+  },
+  "nodes": {
+    "candidate_outputs": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "router_decisions",
+        "selected_capability_execution"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/candidate_outputs.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.provider:T25ProductionRouterProvider"
+    },
+    "capability_evaluator": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "candidate_outputs"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/capability_evaluator.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:evaluate_capability"
+    },
+    "combined_holdout_results": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "router_floor_evidence",
+        "capability_evaluator",
+        "protected_t22_floor_evidence"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/holdout_results.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:combine_results"
+    },
+    "construction_audits": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_family_suites",
+        "holdout_corpus"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/construction_audits",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.construction:run_construction_audits"
+    },
+    "construction_family_suites": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [
+        "construction_inputs",
+        "construction_gold"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/suites/families",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.construction:write_suites"
+    },
+    "construction_gate_node": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_audits",
+        "construction_ledger"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/construction_gate",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.gates:run_construction_gate"
+    },
+    "construction_gold": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [
+        "construction_inputs"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/suites/gold.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.author:author_cases"
+    },
+    "construction_inputs": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [],
+      "path": "t25-private://T25-STORE-01/t25/suites/inputs.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.author:author_cases"
+    },
+    "construction_ledger": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [],
+      "path": "t25-private://T25-STORE-01/t25/construction_run_ledger",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.ledgers:T25ConstructionLedger"
+    },
+    "construction_manifest": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_gate_node"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/private_holdout_manifest",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.manifest:build_private_manifest"
+    },
+    "evaluation_ledger": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "holdout_seal"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation_run_ledger",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.ledgers:T25EvaluationLedger"
+    },
+    "evaluation_provenance": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "combined_holdout_results"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/evaluation_provenance.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:build_provenance"
+    },
+    "gold_firewall_verification": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "holdout_corpus",
+        "construction_gold"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/gold_firewall_verification",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:verify_gold_firewall"
+    },
+    "holdout_corpus": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [
+        "construction_inputs"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/corpus",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.construction:write_corpus"
+    },
+    "holdout_seal": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_manifest",
+        "construction_ledger"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/holdout_seal",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.seal:seal_holdout"
+    },
+    "protected_t22_floor_evidence": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "protected_t22_metric_evidence"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/protected_t22_floor_evidence.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:protected_t22_floor_evidence"
+    },
+    "protected_t22_metric_evidence": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_gold"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/protected_t22_metric_evidence.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:protected_t22_metric_evidence"
+    },
+    "public_construction_commitment": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "holdout_seal",
+        "construction_ledger"
+      ],
+      "path": "evaluations/t25/construction_public_commitment.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.manifest:build_public_construction_commitment"
+    },
+    "public_construction_receipt": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "construction_ledger"
+      ],
+      "path": "evaluations/t25/construction_public_receipt.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.ledgers:build_construction_receipt"
+    },
+    "public_evaluation_receipt": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "evaluation_ledger",
+        "combined_holdout_results"
+      ],
+      "path": "evaluations/t25/evaluation_public_receipt.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.ledgers:build_evaluation_receipt"
+    },
+    "public_manifest_commitment": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "construction_manifest"
+      ],
+      "path": "evaluations/t25/manifest_public_commitment.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.manifest:build_public_manifest_commitment"
+    },
+    "raw_results": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "candidate_outputs",
+        "construction_gold",
+        "router_evaluator",
+        "capability_evaluator"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/raw_results.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:combine_raw"
+    },
+    "router_decisions": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "holdout_seal",
+        "construction_inputs"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/router_decisions.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:evaluate_router"
+    },
+    "router_evaluator": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "candidate_outputs",
+        "construction_gold"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/router_evaluator.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:evaluate_router"
+    },
+    "router_floor_evidence": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "router_metric_evidence"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/router_floor_evidence.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.scorer:score_router"
+    },
+    "router_metric_evidence": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "raw_results"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/router_metric_evidence.json",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.scorer:score_router"
+    },
+    "selected_capability_execution": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "holdout_seal",
+        "construction_inputs"
+      ],
+      "path": "t25-private://T25-STORE-01/t25/evaluation/selected_capability_execution.jsonl",
+      "privacy": "PRIVATE",
+      "producer": "t25_protocol.evaluation:evaluate_capability"
+    }
+  },
+  "schema_version": "t25-evaluation-graph-v1"
+}

@@ -1,0 +1,350 @@
+{
+  "artifact": "T25_CAPABILITY_REGISTRY",
+  "capabilities": {
+    "CODE": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_EXPENSIVE",
+      "description": "Bounded repository-level coding intelligence (CODE skill runtime). Promoted ACTIVE at T15R.",
+      "deterministic": false,
+      "executable": true,
+      "fallback_behavior": "GENERAL",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "HIGH",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [],
+      "required_permissions": [
+        "code_exec"
+      ],
+      "skill_id": "CODE",
+      "verification_method": "none"
+    },
+    "DOCUMENT": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_FREE",
+      "description": "Local document and structured-data intelligence: identify, parse, search, QA, summarize, compare, tables, schema, profile, filter, aggregate, join, cite. Fixture-sandbox; no OCR; T17 runtime.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "GENERAL",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "MEDIUM",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [],
+      "required_permissions": [],
+      "skill_id": "DOCUMENT",
+      "verification_method": "none"
+    },
+    "GENERAL": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_FREE",
+      "description": "General conversation and explanation without tools.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "NO_TOOL",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "LOW",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [],
+      "required_permissions": [],
+      "skill_id": "GENERAL",
+      "verification_method": "none"
+    },
+    "KNOWLEDGE_RAG": {
+      "availability": "QUALIFIED",
+      "cost_class": "LOCAL_FREE",
+      "description": "Local-first general knowledge retrieval with source provenance, citation-grounded synthesis, conflict handling, freshness boundaries, and evidence-based abstention. Qualified for the exact frozen T22 capability scope after the official one-shot evaluation passed all 32 floors; this does not imply a broader deployment or release gate.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "GENERAL",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "MEDIUM",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [],
+      "required_permissions": [],
+      "skill_id": "KNOWLEDGE_RAG",
+      "verification_method": "knowledge_evidence_gate"
+    },
+    "MATH_T4": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_FREE",
+      "description": "Deterministic T4 math tools (calculator, symbolic, units, numerical_math, equation_solver).",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "GENERAL",
+      "input_schema": {
+        "properties": {
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "type": "object"
+      },
+      "latency_class": "LOW",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {
+          "value": {
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "preconditions": [
+        "question_is_t4_sufficient_or_helpful"
+      ],
+      "required_permissions": [],
+      "skill_id": "MATH_T4",
+      "verification_method": "t4_verifier"
+    },
+    "MEMORY": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_FREE",
+      "description": "Persistent local memory: explicit write, scoped retrieval, provenance, conflict, expiry, deletion. Stored text is DATA (instruction authority 0). T18 runtime.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "GENERAL",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "LOW",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [],
+      "required_permissions": [],
+      "skill_id": "MEMORY",
+      "verification_method": "none"
+    },
+    "NO_TOOL": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_FREE",
+      "description": "Explicit no-tool / needs-information terminal.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "GENERAL",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "LOW",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [],
+      "required_permissions": [],
+      "skill_id": "NO_TOOL",
+      "verification_method": "none"
+    },
+    "ORCHESTRATION": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_EXPENSIVE",
+      "description": "Bounded multi-agent orchestration: coordinates specialist agents over validated T19 plans with role manifests, handoff contracts, independent verification, budgets, checkpoint/resume, and recovery. COORDINATE_INTERNAL_WORK_ONLY; no external action authority. T20 runtime. Promoted ACTIVE at T20.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "PLANNING",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "MEDIUM",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [],
+      "required_permissions": [],
+      "skill_id": "ORCHESTRATION",
+      "verification_method": "orchestration_run_audit"
+    },
+    "PLANNING": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_FREE",
+      "description": "Long-horizon planner: decompose, sequence, monitor, replan, resume, and completion-gate across registered skills. Propose-only; no autonomous execution. T19 runtime.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "GENERAL",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "MEDIUM",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [],
+      "required_permissions": [],
+      "skill_id": "PLANNING",
+      "verification_method": "plan_schema"
+    },
+    "SCICOMP": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_FREE",
+      "description": "Scientific computing laboratory for bounded numerical and symbolic computation. Promoted ACTIVE at T14R2.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "MATH_T4",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "MEDIUM",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [
+        "compute_necessity_COMPUTE_REQUIRED",
+        "parameter_fidelity_gate",
+        "correction_firewall"
+      ],
+      "required_permissions": [],
+      "skill_id": "SCICOMP",
+      "verification_method": "scicomp_envelope"
+    },
+    "SCIENCE_RAG": {
+      "availability": "ACTIVE",
+      "cost_class": "LOCAL_FREE",
+      "description": "T5R scientific retrieval with citation discipline.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "GENERAL",
+      "input_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "latency_class": "MEDIUM",
+      "offline": true,
+      "online": false,
+      "output_schema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "preconditions": [
+        "external_scientific_fact_needed"
+      ],
+      "required_permissions": [],
+      "skill_id": "SCIENCE_RAG",
+      "verification_method": "t5r_citation_gate"
+    },
+    "WEB_RESEARCH": {
+      "availability": "ACTIVE",
+      "cost_class": "ONLINE_FREE",
+      "description": "Bounded web research: search, fetch, evaluate, extract, verify, synthesize, cite. Fixture-first; optional free live providers. T16 runtime.",
+      "deterministic": true,
+      "executable": true,
+      "fallback_behavior": "SCIENCE_RAG",
+      "input_schema": {
+        "properties": {
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "type": "object"
+      },
+      "latency_class": "HIGH",
+      "offline": true,
+      "online": true,
+      "output_schema": {
+        "properties": {
+          "answer": {
+            "type": "string"
+          },
+          "citations": {
+            "type": "array"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "preconditions": [],
+      "required_permissions": [
+        "network"
+      ],
+      "skill_id": "WEB_RESEARCH",
+      "verification_method": "web_evidence_graph"
+    }
+  },
+  "duplicate_capability_ids": 0,
+  "experiment": "t25",
+  "frozen_from_t23": true,
+  "registry_sha256": "3597505eada82a94134c8d97ce7bc913cae2b8d3a0cb5007f0a59ab7e57a04b0",
+  "registry_sha256_basis": "sha256_json(document minus registry_sha256)",
+  "route_capability_dangling_references": 0,
+  "schema_version": "t25-capability-registry-v1",
+  "status": "PASS",
+  "unknown_capability_references": 0
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "t25-status-taxonomy-contract-v1",
+  "artifact": "T25_STATUS_TAXONOMY_CONTRACT",
+  "experiment": "t25",
+  "authorization": "T25_REMEDIATION_AND_PRECONSTRUCTION",
+  "section": 6,
+  "established_before": "any T25 candidate change or status mapping (section 5 ordering requirement)",
+
+  "closed_status_sets": {
+    "NO_TOOL": {
+      "source": "t23_protocol/provider.py NO_TOOL_ROUTES (frozen)",
+      "statuses": ["SECURITY_REFUSAL", "INSUFFICIENT_EVIDENCE", "ROUTER_CONFIGURATION_ERROR"],
+      "adjudication": "externally_valid"
+    },
+    "KNOWLEDGE_RAG": {
+      "source": "sciencemath/knowledge/routing.py:22-25 (frozen)",
+      "statuses": ["ANSWER", "INSUFFICIENT_EVIDENCE", "CONFLICTING_EVIDENCE", "ROUTE_WEB_RESEARCH"],
+      "adjudication": "externally_valid",
+      "notes": "ROUTE_WEB_RESEARCH as a returned status is a routing outcome, counted matched by the frozen dispatch evaluator when the capability matches; it is not converted to another capability's status."
+    },
+    "WEB_RESEARCH": {
+      "source": "sciencemath/web/pipeline.py (BLOCKED/NEEDS_CLARIFICATION/NO_WEB) + sciencemath/web/claims.py:9-14 (SUPPORTED/SUPPORTED_WITH_CAVEAT/CONTESTED/INSUFFICIENT_EVIDENCE/CONTRADICTED/INFERRED)",
+      "statuses": ["BLOCKED", "NEEDS_CLARIFICATION", "NO_WEB", "SUPPORTED", "SUPPORTED_WITH_CAVEAT", "CONTESTED", "INSUFFICIENT_EVIDENCE", "CONTRADICTED", "INFERRED"],
+      "adjudication": "externally_valid"
+    },
+    "DOCUMENT": {
+      "source": "sciencemath/document/pipeline.py (OK/DOC_BLOCKED/DOC_UNSUPPORTED/DOC_NO_EVIDENCE/DOC_NEEDS_OCR/NO_DOCUMENT_RUNTIME)",
+      "statuses": ["OK", "DOC_BLOCKED", "DOC_UNSUPPORTED", "DOC_NO_EVIDENCE", "DOC_NEEDS_OCR", "NO_DOCUMENT_RUNTIME"],
+      "adjudication": "externally_valid"
+    },
+    "GENERAL": {
+      "source": "sciencemath/executive/state.py EVIDENCE_STATUSES + uncertainty.decide_status + fast path (frozen runtime taxonomy; no UNKNOWN member)",
+      "statuses": ["VERIFIED", "STRONGLY_SUPPORTED", "PARTIALLY_SUPPORTED", "UNCERTAIN", "INSUFFICIENT_INFORMATION", "CONFLICTING_EVIDENCE"],
+      "adjudication": "externally_valid_after_remediation",
+      "defect_repaired": "BUDGET_EXHAUSTED/STALLED/_hard_fail terminals previously crossed the boundary with no status; they now carry a status derived from their own recorded signal vector via the frozen uncertainty engine."
+    }
+  },
+
+  "named_status_adjudication": {
+    "OK": {"exists": true, "adjudication": "externally_valid", "meaning": "capability completed with full support (DOCUMENT success path)"},
+    "PARTIALLY_SUPPORTED": {"exists": true, "adjudication": "externally_valid", "meaning": "evidence-bearing but not fully verified; also the unverified fast-path status"},
+    "UNCERTAIN": {"exists": true, "adjudication": "externally_valid", "meaning": "no usable-evidence signals, verification unverified; honest cannot-determine"},
+    "INSUFFICIENT_EVIDENCE": {"exists": true, "adjudication": "externally_valid", "meaning": "explicit abstention", "related_internal_name": "INSUFFICIENT_INFORMATION is the executive runtime's abstention status name (distinct vocabulary, adjudicated as the executive's abstention status; both remain valid, neither is renamed)"},
+    "UNKNOWN": {"exists": true, "adjudication": "implementation_defect_as_terminal_status__internal_only_valid", "rules": [
+      "MUST NOT terminate a dispatch in T25: every runtime terminal carries a defined status derived from its recorded signal vector",
+      "remains valid as an internal axis value (classification axes, verify verdicts, provenance, trust classes)",
+      "the frozen dispatch evaluator rule (non-empty defined string expected; UNKNOWN => unmatched, zero tolerance) is retained UNCHANGED as the permanent guard",
+      "no conversion of any historical T24 row status is performed or possible (T24 store immutable)"
+    ]},
+    "ERROR": {"exists": false, "adjudication": "reserved_not_produced", "rules": [
+      "no current runtime path emits ERROR as a capability status and T25 does not introduce one",
+      "hard runtime failures surface either as the capability's own defined status with failure_category/termination_reason recorded, or abort the row via ProductionDispatchError (protocol-visible exception), never as a fabricated status"
+    ]}
+  },
+
+  "boundary_rules": [
+    {"rule": "B1 terminal closure", "statement": "A dispatch that terminates must carry exactly one status from its capability's closed set; 'status absent' is not a status and must not reach the evaluator."},
+    {"rule": "B2 status provenance", "statement": "Terminal statuses may come only from the capability runtime's own recorded epistemic signals (frozen uncertainty engine over the run's observations), never from adapter invention or model self-assessment."},
+    {"rule": "B3 unknown guard", "statement": "UNKNOWN never crosses the runtime-to-protocol boundary as a terminal status; the frozen evaluator UNKNOWN=>unmatched rule is the enforcement backstop and is not modified."},
+    {"rule": "B4 cause retention", "statement": "Deriving a status never erases the failure cause: termination_reason, failure_category, and error fields are recorded in the packed result exactly as before."},
+    {"rule": "B5 fail closed", "statement": "unknown / missing / malformed / non-string / empty status values at the dispatch boundary fail closed (negative controls); nondeterministic status assignment for identical inputs is a defect."},
+    {"rule": "B6 no measurement change", "statement": "Floors, thresholds, zero-tolerance conditions, scorer semantics, and the dispatch matching rule are untouched by this contract; only the runtime's status assignment is remediated."}
+  ],
+
+  "forbidden_conversions": [
+    "UNKNOWN -> UNCERTAIN or PARTIALLY_SUPPORTED solely to satisfy the T24 aggregate",
+    "every-UNKNOWN-to-success mapping in any evaluator",
+    "counting UNKNOWN as matched by changing the capability-matching rule",
+    "reducing any capability floor or removing any zero-tolerance condition"
+  ]
+}

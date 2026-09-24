@@ -1,0 +1,90 @@
+{
+  "additional_anchors": [
+    "T22_SEALED",
+    "T23_EXPOSED_SEALED",
+    "T24_SEALED_EVALUATED"
+  ],
+  "artifact": "T25_CONSTRUCTION_EXCLUSION_SOURCES",
+  "dimensions": [
+    "case_ids",
+    "entity_identities",
+    "source_ids",
+    "chunk_ids",
+    "exact_queries",
+    "exact_answers",
+    "exact_source_text",
+    "verbatim_attack_wording",
+    "relations"
+  ],
+  "experiment": "t25",
+  "raw_values_included": false,
+  "rehearsal_registration": {
+    "note": "corpus identities are public shared material and are not rehearsal-exclusive",
+    "registered": true,
+    "registered_dimensions": [
+      "case_ids",
+      "exact_answers",
+      "exact_queries",
+      "exact_source_text",
+      "verbatim_attack_wording"
+    ],
+    "registration_stage": "POST_REHEARSAL"
+  },
+  "required_milestones": [
+    "T21",
+    "T21R",
+    "T21R2",
+    "T21R3",
+    "T21R4",
+    "T21R5",
+    "T21R6",
+    "T21R7",
+    "T21R8_DIAGNOSTIC",
+    "T21R9_SEALED",
+    "T21R10_SEALED",
+    "T21R11_INVALID_SEALED",
+    "T21R12_FAILED_PARTIAL_BLIND",
+    "T21R13_SEALED_PARTIAL_OFFICIAL_EXPOSURE",
+    "T21R15_SEALED_UNEVALUABLE",
+    "T21R16_OFFICIAL_EVALUATED_MEASUREMENT_INVALID",
+    "T21R17_OFFICIAL_VALID_CAPABILITY_FAILURE"
+  ],
+  "schema_version": "t25-exclusion-sources-v2",
+  "sources": {
+    "open_development": {
+      "kind": "remediation",
+      "path": "evaluations/t22/remediation_exclusion.json",
+      "sha256": "85c8040c90690ffb1f33ea4b6fca1f2b1943a057e3c14d5288127f580679b5ee"
+    },
+    "t21_historical": {
+      "kind": "milestone_registry",
+      "path": "evaluations/t22/prior_exclusion.json",
+      "sha256": "880e69010a825a9a6c0d6bd0244f8b505d875d182870969480883ae914a55080"
+    },
+    "t22_anchor": {
+      "kind": "hash_only_anchor",
+      "path": "evaluations/t23/t22_exclusion_anchor.json",
+      "sha256": "f514aea0e8603a440f2a672fb8e02fd03d8ee0f54114cbccfe2447e0a2e24788"
+    },
+    "t23_exposed_sealed": {
+      "kind": "exposed_sealed_anchor",
+      "path": "evaluations/t25/t23_exposed_sealed_anchor.json",
+      "sha256": "bdd9e73328d791ccd38972f309b988cbd5783620a0774e4ab1715df427938053"
+    },
+    "t24_sealed_evaluated": {
+      "kind": "sealed_evaluated_anchor",
+      "path": "evaluations/t25/t24_sealed_evaluated_anchor.json",
+      "sha256": "4da0e6e3e65a04152f1cf447e741733f5e5821d82379677d686db05aba638085"
+    },
+    "t25_disposable_rehearsal": {
+      "kind": "t25_fingerprint_set",
+      "path": "evaluations/t25/rehearsal_exclusion_fingerprints.json",
+      "sha256": "847ca5399d50ef86266f3b87f3b5c1c2a0b6f639be02a1a592591bc1965e1f38"
+    },
+    "t25_public_qualification": {
+      "kind": "qualification_rows",
+      "path": "evaluations/t25/qualification/qualification_exclusions.jsonl",
+      "sha256": "2e92fa9e53e7b8449c6354b8d5290ec953d4294e37f620a1feabc9757378e2cc"
+    }
+  }
+}

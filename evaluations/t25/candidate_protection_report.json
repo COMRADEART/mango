@@ -1,0 +1,157 @@
+{
+  "artifact": "T25_CANDIDATE_PROTECTION_REPORT",
+  "candidate_commit": "ba34f7b2cc46158a5064a8e1c217f53e4d2dbf83",
+  "determinism_mismatch_events": 0,
+  "experiment": "t25",
+  "firewall_counters": {
+    "candidate_visible_results": 0,
+    "historical_eval_rejected": 0,
+    "qualification_derived_rejected": 0,
+    "queries_denied": 0,
+    "rejected_rule_counts": {},
+    "results_rejected_total": 0,
+    "results_retrieved": 0,
+    "t23_derived_rejected": 0,
+    "t24_derived_rejected": 0
+  },
+  "gold_field_refusals": "GOLD_FIELD_EXPOSURE_RAISED",
+  "gold_firewall_status": "PASS",
+  "protected_t22_floor_pass_count": 32,
+  "provider_initialization_rows": 0,
+  "provider_parity": {
+    "diffs": 0,
+    "parity_mismatches": [],
+    "rows": 1280,
+    "status": "PASS"
+  },
+  "qualification_reason_agreement": 1.0,
+  "qualification_route_agreement": 1.0,
+  "qualification_rows": 1280,
+  "qualification_rows_checked": 1280,
+  "rehearsal_comparisons": {
+    "construction_semantic_diff": 0,
+    "evaluation_semantic_diff": 0,
+    "graph_diff": 0,
+    "manifest_commitment_diff": 0,
+    "metric_diff": 0
+  },
+  "router_integrity": {
+    "dangling_reason_routes": [],
+    "duplicate_route_ids": 0,
+    "reason_route_contradictions": 0,
+    "registered_routes": 9,
+    "status": "PASS",
+    "unreachable_registered_routes": []
+  },
+  "router_protection_battery": {
+    "failed_floors": [],
+    "floor_count": 15,
+    "floors": {
+      "ambiguous_decision_events": {
+        "observed": 0,
+        "operator": "=",
+        "pass": true,
+        "threshold": 0
+      },
+      "conflict_abstention_route_accuracy": {
+        "observed": 1.0,
+        "operator": ">=",
+        "pass": true,
+        "threshold": 0.98
+      },
+      "current_route_accuracy": {
+        "observed": 1.0,
+        "operator": "=",
+        "pass": true,
+        "threshold": 1.0
+      },
+      "determinism_mismatches": {
+        "observed": 0,
+        "operator": "=",
+        "pass": true,
+        "threshold": 0
+      },
+      "gold_signal_leakage_events": {
+        "observed": 0,
+        "operator": "=",
+        "pass": true,
+        "threshold": 0
+      },
+      "historical_route_accuracy": {
+        "observed": 1.0,
+        "operator": ">=",
+        "pass": true,
+        "threshold": 0.98
+      },
+      "overall_route_accuracy": {
+        "observed": 1.0,
+        "operator": ">=",
+        "pass": true,
+        "threshold": 0.98
+      },
+      "reason_route_contradictions": {
+        "observed": 0,
+        "operator": "=",
+        "pass": true,
+        "threshold": 0
+      },
+      "route_macro_accuracy": {
+        "observed": 1.0,
+        "operator": ">=",
+        "pass": true,
+        "threshold": 0.97
+      },
+      "security_route_accuracy": {
+        "observed": 1.0,
+        "operator": "=",
+        "pass": true,
+        "threshold": 1.0
+      },
+      "static_local_accuracy": {
+        "observed": 1.0,
+        "operator": ">=",
+        "pass": true,
+        "threshold": 0.97
+      },
+      "tool_route_accuracy": {
+        "observed": 1.0,
+        "operator": ">=",
+        "pass": true,
+        "threshold": 0.97
+      },
+      "unavailable_tool_route_events": {
+        "observed": 0,
+        "operator": "=",
+        "pass": true,
+        "threshold": 0
+      },
+      "unnecessary_web_rate": {
+        "observed": 0.0,
+        "operator": "<=",
+        "pass": true,
+        "threshold": 0.03
+      },
+      "unsafe_fallback_events": {
+        "observed": 0,
+        "operator": "=",
+        "pass": true,
+        "threshold": 0
+      }
+    },
+    "status": "PASS"
+  },
+  "schema_version": "t25-candidate-protection-v1",
+  "security_refusal_leak_events": 0,
+  "sources": {
+    "candidate_identity": "evaluations/t25/candidate_identity.json",
+    "qualification_report": "evaluations/t25/qualification/qualification_report.json",
+    "shadow_lifecycle_report": "evaluations/t25/production_shadow_lifecycle_report.json"
+  },
+  "status": "PASS",
+  "t23_exposed_rows_as_qualification_data": 0,
+  "t24_private_rows_opened": 0,
+  "t24_sealed_rows_as_qualification_data": 0,
+  "t25_candidate_executions_on_t24_rows": 0,
+  "unchanged_from_t23_candidate": false,
+  "unchanged_from_t24_candidate": false
+}

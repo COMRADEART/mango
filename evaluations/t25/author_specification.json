@@ -1,0 +1,275 @@
+{
+  "artifact": "T25_PROSPECTIVE_AUTHOR_SPECIFICATION",
+  "author_entry": "t25_protocol.author:author_cases",
+  "blind_material_source": "t25-private://T25-STORE-01/t25/suites/inputs.jsonl",
+  "candidate_visible_fields": [
+    "query",
+    "request_date",
+    "snapshot_date",
+    "evidence_state",
+    "requested_capability",
+    "available_capabilities",
+    "permission_grants",
+    "security_state",
+    "source_freshness",
+    "citation_required"
+  ],
+  "case_id_prefix": "t25",
+  "cases_per_family": 80,
+  "construction_authorized": false,
+  "counterpressure_pairs": {
+    "current_web__static_local": [
+      "explicit_current",
+      "static_local_factual"
+    ],
+    "insufficient_abstain__sufficient_answer": [
+      "insufficient_evidence",
+      "static_local_factual"
+    ],
+    "security_refusal__ordinary_route": [
+      "security_adversarial",
+      "static_local_factual"
+    ],
+    "tool_required__tool_unnecessary": [
+      "tool_required",
+      "ambiguous_route"
+    ]
+  },
+  "exact_design": {
+    "counterpressure_pairs_nonzero": true,
+    "every_family_nonzero": true,
+    "every_route_nonzero": true,
+    "family_count": 16,
+    "mixed_subpopulations_nonzero": true,
+    "suite_count": 16,
+    "total_rows": 1280
+  },
+  "experiment": "t25",
+  "families": {
+    "ambiguous_route": {
+      "expected_route": "ANSWER_LOCAL",
+      "signals": [
+        "query"
+      ]
+    },
+    "citation_sensitive": {
+      "expected_route": "KNOWLEDGE_RAG",
+      "signals": [
+        "query",
+        "request_metadata",
+        "capability_registry"
+      ]
+    },
+    "conflicting_evidence": {
+      "expected_route": "CONFLICT_HANDLING",
+      "signals": [
+        "query",
+        "evidence_state"
+      ]
+    },
+    "cross_domain_local": {
+      "expected_route": "KNOWLEDGE_RAG",
+      "signals": [
+        "query",
+        "capability_registry"
+      ]
+    },
+    "explicit_current": {
+      "expected_route": "ROUTE_WEB_RESEARCH",
+      "signals": [
+        "query",
+        "request_metadata",
+        "tool_state",
+        "permission_state"
+      ]
+    },
+    "historical_as_of": {
+      "expected_route": "HISTORICAL_AS_OF",
+      "signals": [
+        "query",
+        "request_metadata",
+        "evidence_state"
+      ]
+    },
+    "insufficient_evidence": {
+      "expected_route": "INSUFFICIENT_EVIDENCE",
+      "signals": [
+        "query",
+        "evidence_state"
+      ]
+    },
+    "malformed_router_state": {
+      "expected_route": "ROUTER_CONFIGURATION_ERROR",
+      "signals": [
+        "query",
+        "request_metadata"
+      ]
+    },
+    "mixed_intent": {
+      "expected_route": "VARIANT",
+      "signals": [
+        "query",
+        "request_metadata",
+        "security_state",
+        "evidence_state",
+        "tool_state"
+      ]
+    },
+    "multi_hop_local": {
+      "expected_route": "KNOWLEDGE_RAG",
+      "signals": [
+        "query",
+        "capability_registry"
+      ]
+    },
+    "recency_sensitive": {
+      "expected_route": "ROUTE_WEB_RESEARCH",
+      "signals": [
+        "query",
+        "request_metadata",
+        "tool_state",
+        "permission_state"
+      ]
+    },
+    "route_override_adversarial": {
+      "expected_route": "VARIANT",
+      "signals": [
+        "query",
+        "request_metadata",
+        "security_state",
+        "evidence_state",
+        "tool_state"
+      ]
+    },
+    "security_adversarial": {
+      "expected_route": "SECURITY_REFUSAL",
+      "signals": [
+        "query",
+        "security_state"
+      ]
+    },
+    "static_local_factual": {
+      "expected_route": "KNOWLEDGE_RAG",
+      "signals": [
+        "query",
+        "capability_registry"
+      ]
+    },
+    "tool_required": {
+      "expected_route": "TOOL_OR_SPECIALIST_ROUTE",
+      "signals": [
+        "query",
+        "tool_state",
+        "permission_state"
+      ]
+    },
+    "unsupported_tool_request": {
+      "expected_route": "INSUFFICIENT_EVIDENCE",
+      "signals": [
+        "query",
+        "tool_state",
+        "permission_state"
+      ]
+    }
+  },
+  "gold_only_fields": [
+    "expected_route",
+    "construction_tag",
+    "blind_family_id",
+    "floor_id",
+    "gold_status",
+    "expected_answer",
+    "gold_reason",
+    "family"
+  ],
+  "gold_storage": "private evaluator suite; never passed to route_request or selected capability",
+  "historical_exclusions": [
+    "T21R16_OFFICIAL_MEASUREMENT_SPECIFICATION_FAILURE",
+    "T21R17_VALID_CAPABILITY_FAILURE",
+    "T22_OFFICIAL_EVALUATION_PASS",
+    "T23_SEALED_PUBLICATION_EXCLUDED",
+    "T24_SEALED_EVALUATED"
+  ],
+  "material_model": {
+    "case": "one identified authored example and private gold",
+    "corpus": "one loader-verified source/chunk collection",
+    "family": "one named construction stratum",
+    "family_to_suite": {
+      "ambiguous_route": "evaluations/t23/suites/families/ambiguous_route.jsonl",
+      "citation_sensitive": "evaluations/t23/suites/families/citation_sensitive.jsonl",
+      "conflicting_evidence": "evaluations/t23/suites/families/conflicting_evidence.jsonl",
+      "cross_domain_local": "evaluations/t23/suites/families/cross_domain_local.jsonl",
+      "explicit_current": "evaluations/t23/suites/families/explicit_current.jsonl",
+      "historical_as_of": "evaluations/t23/suites/families/historical_as_of.jsonl",
+      "insufficient_evidence": "evaluations/t23/suites/families/insufficient_evidence.jsonl",
+      "malformed_router_state": "evaluations/t23/suites/families/malformed_router_state.jsonl",
+      "mixed_intent": "evaluations/t23/suites/families/mixed_intent.jsonl",
+      "multi_hop_local": "evaluations/t23/suites/families/multi_hop_local.jsonl",
+      "recency_sensitive": "evaluations/t23/suites/families/recency_sensitive.jsonl",
+      "route_override_adversarial": "evaluations/t23/suites/families/route_override_adversarial.jsonl",
+      "security_adversarial": "evaluations/t23/suites/families/security_adversarial.jsonl",
+      "static_local_factual": "evaluations/t23/suites/families/static_local_factual.jsonl",
+      "tool_required": "evaluations/t23/suites/families/tool_required.jsonl",
+      "unsupported_tool_request": "evaluations/t23/suites/families/unsupported_tool_request.jsonl"
+    },
+    "row": "one case in the global input/gold pair and its family suite",
+    "specification": "public frozen authoring rules and taxonomy",
+    "suite": "one family-specific JSONL output",
+    "suite_count": 16
+  },
+  "mixed_intent_variants": {
+    "ambiguous_freshness_citation": {
+      "count": 16,
+      "expected_route": "KNOWLEDGE_RAG"
+    },
+    "current_multi_hop": {
+      "count": 16,
+      "expected_route": "ROUTE_WEB_RESEARCH"
+    },
+    "current_security": {
+      "count": 16,
+      "expected_route": "SECURITY_REFUSAL"
+    },
+    "historical_conflict": {
+      "count": 16,
+      "expected_route": "HISTORICAL_AS_OF"
+    },
+    "local_factual_tool": {
+      "count": 16,
+      "expected_route": "TOOL_OR_SPECIALIST_ROUTE"
+    }
+  },
+  "privacy": {
+    "gold_suites": "PRIVATE",
+    "private_anchors": "PRIVATE",
+    "raw_outputs": "PRIVATE",
+    "real_blind_corpus": "PRIVATE_OFFLINE_STORE"
+  },
+  "schema_version": "t25-author-spec-v1",
+  "shadow_material_source": "t25-private://T25-REHEARSAL-STORE-01/t25-shadow-disposable/suites/inputs.jsonl",
+  "source_pool_constraints": {
+    "minimum_unique_labels": 80,
+    "no_prior_holdout_query_reuse": true,
+    "no_t22_blind_material": true,
+    "no_t23_exposed_material": true,
+    "no_t24_private_material_opened": true,
+    "no_t24_sealed_material": true,
+    "no_t25_public_qualification_reuse": true
+  },
+  "status": "PRECONSTRUCTION_ONLY",
+  "storage_mode": "PRIVATE_ARTIFACT_STORE_OUTSIDE_PUBLIC_GIT",
+  "taxonomy": {
+    "case_id_pattern": "^t25-[a-z_]+-[0-9]{4}$",
+    "route_ids": [
+      "ANSWER_LOCAL",
+      "CONFLICT_HANDLING",
+      "HISTORICAL_AS_OF",
+      "INSUFFICIENT_EVIDENCE",
+      "KNOWLEDGE_RAG",
+      "ROUTER_CONFIGURATION_ERROR",
+      "ROUTE_WEB_RESEARCH",
+      "SECURITY_REFUSAL",
+      "TOOL_OR_SPECIALIST_ROUTE"
+    ]
+  }
+}

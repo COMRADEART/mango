@@ -1,0 +1,33 @@
+{
+  "artifact": "T25_PRECONSTRUCTION_REPRODUCTION",
+  "blind_blob_count": 0,
+  "branch": "t25-preconstruction",
+  "doctor_report": "T25_PRODUCTION_PROTOCOL_DOCTOR_PASS",
+  "freeze_component_count": 285,
+  "freeze_drifted_components": [],
+  "freeze_sha256": "64ab2392acc14c9b46960089676d22b1caa8b54a78b2f290d6ab3548092c3910",
+  "fresh_worktree": true,
+  "live_web_control_count": 11,
+  "live_web_controls_all_denied": true,
+  "lock_bindings": 52,
+  "lock_status": "PASS",
+  "path_policy_violations": [],
+  "rehearsal_report": {
+    "comparisons": {
+      "construction_semantic_diff": 0,
+      "evaluation_semantic_diff": 0,
+      "graph_diff": 0,
+      "manifest_commitment_diff": 0,
+      "metric_diff": 0
+    },
+    "real_blind_rows": 0,
+    "runs": 2,
+    "status": "PASS"
+  },
+  "reproduction_commit": "441344cf5dfbe3738246d5dd1d21a9617083cc08",
+  "status": "PASS",
+  "storage_control_count": 12,
+  "storage_controls_all_refused": true,
+  "tracked_path_violations": [],
+  "verdict": "T25_PRECONSTRUCTION_REPRODUCTION_PASS"
+}

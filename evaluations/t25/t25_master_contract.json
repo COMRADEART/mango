@@ -1,0 +1,459 @@
+{
+  "artifact": "T25_MASTER_CONTRACT",
+  "experiment": "t25",
+  "fields": [
+    "values.artifacts",
+    "values.authorization",
+    "values.candidate_identity",
+    "values.construction_design",
+    "values.construction_requirements",
+    "values.construction_states",
+    "values.evaluation",
+    "values.exclusion_sources",
+    "values.publication_policy",
+    "values.qualification_namespace",
+    "values.shadow_namespace",
+    "values.storage_policy",
+    "values.t23_exclusion",
+    "values.t24_exclusion",
+    "values.transitions"
+  ],
+  "schema_version": "t25-master-contract-v1",
+  "values": {
+    "artifacts": {
+      "artifact_classification": "evaluations/t25/t25_artifact_classification.json",
+      "author_lock": "evaluations/t25/author_lock.json",
+      "author_specification": "evaluations/t25/author_specification.json",
+      "candidate_identity": "evaluations/t25/candidate_identity.json",
+      "exclusion_source_registry": "evaluations/t25/t25_exclusion_sources.json",
+      "live_web_source_firewall_registry": "evaluations/t25/live_web_source_firewall_registry.json",
+      "master_contract": "evaluations/t25/t25_master_contract.json",
+      "preconstruction_freeze": "evaluations/t25/preconstruction_freeze.json",
+      "preregistered_router_floors": "evaluations/t25/router_metric_registry.json",
+      "private_store_config": "evaluations/t25/t25_private_store_config.json",
+      "production_evaluation_graph": "evaluations/t25/production_evaluation_graph.json",
+      "production_provider_config": "evaluations/t25/production_provider_config.json",
+      "production_router_metric_registry": "evaluations/t25/production_router_metric_registry.json",
+      "publication_policy": "evaluations/t25/t25_publication_policy.json",
+      "t23_exposed_sealed_anchor": "evaluations/t25/t23_exposed_sealed_anchor.json",
+      "t24_sealed_evaluated_anchor": "evaluations/t25/t24_sealed_evaluated_anchor.json"
+    },
+    "authorization": "T25_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+    "candidate_identity": {
+      "candidate_commit": "ba34f7b2cc46158a5064a8e1c217f53e4d2dbf83",
+      "candidate_tree": "459ed3a39ad011b1d061f037348ea0a80bf8f131",
+      "new_candidate_authorized_by": "T25 authorization section 18",
+      "runtime_root": "2beb7a068de3afd0ab0ce25a7a9748fc5cffe6ca04f2db53c1c4d9c71bf87ea9",
+      "unchanged_from_t23_candidate": false,
+      "unchanged_from_t24_candidate": false
+    },
+    "construction_design": {
+      "candidate_visible_fields": [
+        "query",
+        "request_date",
+        "snapshot_date",
+        "evidence_state",
+        "requested_capability",
+        "available_capabilities",
+        "permission_grants",
+        "security_state",
+        "source_freshness",
+        "citation_required"
+      ],
+      "capability_labels": [
+        "CODE",
+        "DOCUMENT",
+        "GENERAL",
+        "KNOWLEDGE_RAG",
+        "MATH_T4",
+        "MEMORY",
+        "NO_TOOL",
+        "ORCHESTRATION",
+        "PLANNING",
+        "SCICOMP",
+        "SCIENCE_RAG",
+        "WEB_RESEARCH"
+      ],
+      "case_id_pattern": "^t25-[a-z_]+-[0-9]{4}$",
+      "cases_per_family": 80,
+      "counterpressure_pairs": {
+        "current_web__static_local": [
+          "explicit_current",
+          "static_local_factual"
+        ],
+        "insufficient_abstain__sufficient_answer": [
+          "insufficient_evidence",
+          "static_local_factual"
+        ],
+        "security_refusal__ordinary_route": [
+          "security_adversarial",
+          "static_local_factual"
+        ],
+        "tool_required__tool_unnecessary": [
+          "tool_required",
+          "ambiguous_route"
+        ]
+      },
+      "families": {
+        "ambiguous_route": {
+          "expected_route": "ANSWER_LOCAL",
+          "signals": [
+            "query"
+          ]
+        },
+        "citation_sensitive": {
+          "expected_route": "KNOWLEDGE_RAG",
+          "signals": [
+            "query",
+            "request_metadata",
+            "capability_registry"
+          ]
+        },
+        "conflicting_evidence": {
+          "expected_route": "CONFLICT_HANDLING",
+          "signals": [
+            "query",
+            "evidence_state"
+          ]
+        },
+        "cross_domain_local": {
+          "expected_route": "KNOWLEDGE_RAG",
+          "signals": [
+            "query",
+            "capability_registry"
+          ]
+        },
+        "explicit_current": {
+          "expected_route": "ROUTE_WEB_RESEARCH",
+          "signals": [
+            "query",
+            "request_metadata",
+            "tool_state",
+            "permission_state"
+          ]
+        },
+        "historical_as_of": {
+          "expected_route": "HISTORICAL_AS_OF",
+          "signals": [
+            "query",
+            "request_metadata",
+            "evidence_state"
+          ]
+        },
+        "insufficient_evidence": {
+          "expected_route": "INSUFFICIENT_EVIDENCE",
+          "signals": [
+            "query",
+            "evidence_state"
+          ]
+        },
+        "malformed_router_state": {
+          "expected_route": "ROUTER_CONFIGURATION_ERROR",
+          "signals": [
+            "query",
+            "request_metadata"
+          ]
+        },
+        "mixed_intent": {
+          "expected_route": "VARIANT",
+          "signals": [
+            "query",
+            "request_metadata",
+            "security_state",
+            "evidence_state",
+            "tool_state"
+          ]
+        },
+        "multi_hop_local": {
+          "expected_route": "KNOWLEDGE_RAG",
+          "signals": [
+            "query",
+            "capability_registry"
+          ]
+        },
+        "recency_sensitive": {
+          "expected_route": "ROUTE_WEB_RESEARCH",
+          "signals": [
+            "query",
+            "request_metadata",
+            "tool_state",
+            "permission_state"
+          ]
+        },
+        "route_override_adversarial": {
+          "expected_route": "VARIANT",
+          "signals": [
+            "query",
+            "request_metadata",
+            "security_state",
+            "evidence_state",
+            "tool_state"
+          ]
+        },
+        "security_adversarial": {
+          "expected_route": "SECURITY_REFUSAL",
+          "signals": [
+            "query",
+            "security_state"
+          ]
+        },
+        "static_local_factual": {
+          "expected_route": "KNOWLEDGE_RAG",
+          "signals": [
+            "query",
+            "capability_registry"
+          ]
+        },
+        "tool_required": {
+          "expected_route": "TOOL_OR_SPECIALIST_ROUTE",
+          "signals": [
+            "query",
+            "tool_state",
+            "permission_state"
+          ]
+        },
+        "unsupported_tool_request": {
+          "expected_route": "INSUFFICIENT_EVIDENCE",
+          "signals": [
+            "query",
+            "tool_state",
+            "permission_state"
+          ]
+        }
+      },
+      "family_count": 16,
+      "gold_only_fields": [
+        "expected_route",
+        "construction_tag",
+        "blind_family_id",
+        "floor_id",
+        "gold_status",
+        "expected_answer",
+        "gold_reason",
+        "family"
+      ],
+      "mixed_intent_variants": {
+        "ambiguous_freshness_citation": 16,
+        "current_multi_hop": 16,
+        "current_security": 16,
+        "historical_conflict": 16,
+        "local_factual_tool": 16
+      },
+      "privacy": {
+        "gold_suites": "PRIVATE",
+        "private_anchors": "PRIVATE",
+        "raw_outputs": "PRIVATE",
+        "real_blind_corpus": "PRIVATE_OFFLINE_STORE"
+      },
+      "reason_counts": {
+        "CITATION_GROUNDED_LOCAL": 96,
+        "CONFLICTING_EVIDENCE": 80,
+        "CURRENT_REQUIRED": 116,
+        "HISTORICAL_AS_OF": 96,
+        "INSUFFICIENT_EVIDENCE": 100,
+        "LOCAL_RESPONSE_SUFFICIENT": 80,
+        "RECENCY_SENSITIVE_STALE": 80,
+        "ROUTER_CONFIGURATION_ERROR": 80,
+        "SECURITY_POLICY": 96,
+        "STATIC_LOCAL_ELIGIBLE": 260,
+        "TOOL_REQUIRED": 96,
+        "UNSUPPORTED_TOOL": 100
+      },
+      "route_counts": {
+        "ANSWER_LOCAL": 80,
+        "CONFLICT_HANDLING": 80,
+        "HISTORICAL_AS_OF": 96,
+        "INSUFFICIENT_EVIDENCE": 200,
+        "KNOWLEDGE_RAG": 356,
+        "ROUTER_CONFIGURATION_ERROR": 80,
+        "ROUTE_WEB_RESEARCH": 196,
+        "SECURITY_REFUSAL": 96,
+        "TOOL_OR_SPECIALIST_ROUTE": 96
+      },
+      "source_pool_constraints": {
+        "minimum_unique_labels": 80,
+        "no_prior_holdout_query_reuse": true,
+        "no_t22_blind_material": true,
+        "no_t23_exposed_material": true,
+        "no_t24_private_material_opened": true,
+        "no_t24_sealed_material": true,
+        "no_t25_public_qualification_reuse": true
+      },
+      "suite_count": 16,
+      "suite_mapping": {
+        "ambiguous_route": "evaluations/t25/suites/families/ambiguous_route.jsonl",
+        "citation_sensitive": "evaluations/t25/suites/families/citation_sensitive.jsonl",
+        "conflicting_evidence": "evaluations/t25/suites/families/conflicting_evidence.jsonl",
+        "cross_domain_local": "evaluations/t25/suites/families/cross_domain_local.jsonl",
+        "explicit_current": "evaluations/t25/suites/families/explicit_current.jsonl",
+        "historical_as_of": "evaluations/t25/suites/families/historical_as_of.jsonl",
+        "insufficient_evidence": "evaluations/t25/suites/families/insufficient_evidence.jsonl",
+        "malformed_router_state": "evaluations/t25/suites/families/malformed_router_state.jsonl",
+        "mixed_intent": "evaluations/t25/suites/families/mixed_intent.jsonl",
+        "multi_hop_local": "evaluations/t25/suites/families/multi_hop_local.jsonl",
+        "recency_sensitive": "evaluations/t25/suites/families/recency_sensitive.jsonl",
+        "route_override_adversarial": "evaluations/t25/suites/families/route_override_adversarial.jsonl",
+        "security_adversarial": "evaluations/t25/suites/families/security_adversarial.jsonl",
+        "static_local_factual": "evaluations/t25/suites/families/static_local_factual.jsonl",
+        "tool_required": "evaluations/t25/suites/families/tool_required.jsonl",
+        "unsupported_tool_request": "evaluations/t25/suites/families/unsupported_tool_request.jsonl"
+      },
+      "taxonomy": {
+        "case_id_pattern": "^t25-[a-z_]+-[0-9]{4}$",
+        "route_ids": [
+          "ANSWER_LOCAL",
+          "CONFLICT_HANDLING",
+          "HISTORICAL_AS_OF",
+          "INSUFFICIENT_EVIDENCE",
+          "KNOWLEDGE_RAG",
+          "ROUTER_CONFIGURATION_ERROR",
+          "ROUTE_WEB_RESEARCH",
+          "SECURITY_REFUSAL",
+          "TOOL_OR_SPECIALIST_ROUTE"
+        ]
+      },
+      "total_rows": 1280
+    },
+    "construction_requirements": {
+      "annotation_violations": 0,
+      "blindness_status": "PASS",
+      "candidate_rows_executed": 0,
+      "evaluator_rows_executed": 0,
+      "exclusion_status": "PASS",
+      "gold_firewall_refusal_proofs_required": true,
+      "one_shot_attempt": 1,
+      "public_git_blind_blob_count": 0,
+      "t23_reuse_violations": 0,
+      "t24_reuse_violations": 0,
+      "uniqueness_status": "PASS"
+    },
+    "construction_states": [
+      "PRECONSTRUCTION",
+      "LEDGER_CREATED",
+      "MATERIALIZED",
+      "AUDITED",
+      "GATE_PASS",
+      "MANIFESTED",
+      "SEALED",
+      "FAILED"
+    ],
+    "evaluation": {
+      "cannot_start_before": "SEALED",
+      "evaluation_token": "T25_ONE_SHOT_OFFICIAL_EVALUATION",
+      "no_delete_or_recreate": true,
+      "no_retry": true,
+      "one_shot_attempt": 1,
+      "promotion_cannot_start_before": "EVALUATED"
+    },
+    "exclusion_sources": {
+      "additional_anchors": [
+        "T22_SEALED",
+        "T23_EXPOSED_SEALED",
+        "T24_SEALED_EVALUATED"
+      ],
+      "dimensions": [
+        "case_ids",
+        "entity_identities",
+        "source_ids",
+        "chunk_ids",
+        "exact_queries",
+        "exact_answers",
+        "exact_source_text",
+        "verbatim_attack_wording",
+        "relations"
+      ],
+      "registry_artifact": "evaluations/t25/t25_exclusion_sources.json",
+      "required_milestones": [
+        "T21",
+        "T21R",
+        "T21R2",
+        "T21R3",
+        "T21R4",
+        "T21R5",
+        "T21R6",
+        "T21R7",
+        "T21R8_DIAGNOSTIC",
+        "T21R9_SEALED",
+        "T21R10_SEALED",
+        "T21R11_INVALID_SEALED",
+        "T21R12_FAILED_PARTIAL_BLIND",
+        "T21R13_SEALED_PARTIAL_OFFICIAL_EXPOSURE",
+        "T21R15_SEALED_UNEVALUABLE",
+        "T21R16_OFFICIAL_EVALUATED_MEASUREMENT_INVALID",
+        "T21R17_OFFICIAL_VALID_CAPABILITY_FAILURE"
+      ]
+    },
+    "publication_policy": {
+      "PUBLIC_GIT_BLIND_BLOB_COUNT_REQUIRED": 0,
+      "REAL_BLIND_CONTENT_PUBLICATION_ALLOWED_BEFORE_EVALUATION": false,
+      "T23_EXPOSED_MATERIAL_REUSE_ALLOWED": false,
+      "T24_PRIVATE_MATERIAL_OPENING_ALLOWED": false,
+      "T24_SEALED_MATERIAL_REUSE_ALLOWED": false,
+      "T25_CANDIDATE_EXECUTION_ON_T24_ROWS_ALLOWED": false
+    },
+    "qualification_namespace": "t25-qualification",
+    "shadow_namespace": "t25-shadow-disposable",
+    "storage_policy": {
+      "locator_example": "t25-private://T25-STORE-01/t25/suites/inputs.jsonl",
+      "locator_scheme": "t25-private://",
+      "private_store_required": true,
+      "public_repository_allowed": [
+        "SCHEMAS",
+        "PROTOCOL_CODE",
+        "PREREGISTRATION",
+        "CANDIDATE_IDENTITY",
+        "HASHES",
+        "COMMITMENTS",
+        "ROOTS",
+        "NON_SECRET_MANIFEST_METADATA",
+        "AUDIT_SUMMARIES",
+        "PUBLIC_SAFE_QUALIFICATION_DATA"
+      ],
+      "public_repository_forbidden": [
+        "REAL_BLIND_INPUTS",
+        "REAL_BLIND_GOLD",
+        "REAL_SUITE_ROWS",
+        "PRIVATE_CORPUS",
+        "PRIVATE_ATTACHMENTS",
+        "PRIVATE_SOURCE_TEXT",
+        "CANDIDATE_OUTPUTS_ON_REAL_ROWS",
+        "RAW_OFFICIAL_RESULTS"
+      ]
+    },
+    "t23_exclusion": {
+      "anchor_artifact": "evaluations/t25/t23_exposed_sealed_anchor.json",
+      "exposed_construction_commit": "aa613c30483f697295f6f993319e37fd45b07f12",
+      "exposed_construction_tree": "79e4db563171aece893dd700820bfed5555e975a",
+      "material": "ALL_T23_BLIND_ARTIFACTS_PERMANENTLY_EXCLUDED",
+      "reuse_allowed": false,
+      "t23_must_not_be_evaluated": true
+    },
+    "t24_exclusion": {
+      "anchor_artifact": "evaluations/t25/t24_sealed_evaluated_anchor.json",
+      "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+      "material": "ALL_T24_BLIND_ARTIFACTS_PRIVATE_STORE_ONLY",
+      "receipt_commit": "d64160bf0ebb715a6a30647d06e420b7dde6b24e",
+      "reuse_allowed": false,
+      "sealed_construction_commit": "71e829d5d7b89298e5c504a0b55278037ec90f28",
+      "t24_must_not_be_rerun": true,
+      "t24_private_material_must_not_be_opened": true,
+      "t25_candidate_must_not_execute_on_t24_rows": true
+    },
+    "transitions": {
+      "construction": [
+        "PRECONSTRUCTION",
+        "LEDGER_CREATED",
+        "MATERIALIZED",
+        "AUDITED",
+        "GATE_PASS",
+        "MANIFESTED",
+        "SEALED"
+      ],
+      "evaluation_cannot_start_before": "SEALED",
+      "failure": [
+        "FAILED"
+      ],
+      "promotion_cannot_start_before": "EVALUATED"
+    }
+  }
+}
