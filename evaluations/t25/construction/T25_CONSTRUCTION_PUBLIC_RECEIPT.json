@@ -1,0 +1,10 @@
+{
+  "artifact": "T25_CONSTRUCTION_PUBLIC_RECEIPT",
+  "attempt": 1,
+  "blind_content_included": false,
+  "experiment": "t25",
+  "ledger_sha256": "dc67a32ea634b12045b26d1b66ba0cb5549e549295aa0e94a9790007996bc913",
+  "private_artifact_root": "32f44355f357efded118a5abb0b194f38e74689efce30d0343e2fc74e8f4dfe1",
+  "schema_version": "t25-public-construction-receipt-v1",
+  "state": "SEALED"
+}
