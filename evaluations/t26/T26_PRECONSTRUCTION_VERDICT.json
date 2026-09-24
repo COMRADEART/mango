@@ -1,0 +1,15 @@
+{
+  "artifact": "T26_PRECONSTRUCTION_VERDICT",
+  "component_count": 235,
+  "component_root": "b5281ebbd0906e2426d70b852153ab626be27987a706088203f33c762972aa7f",
+  "doctor_check_count": 25,
+  "freeze_root": "851ca7688cd2e781c21c9ee535d7e13dd09f54acec8a373f9a49748cad712e74",
+  "freeze_sha256": "cfd1a31d247a484eebfe85446e0af0f78ab8d262d9e7619ce1d3801301f34ef2",
+  "real_blind_rows": 0,
+  "real_construction_attempts": 0,
+  "real_evaluation_attempts": 0,
+  "schema_version": "t26-preconstruction-verdict-v1",
+  "status": "PASS",
+  "t25_private_rows_accessed": 0,
+  "verdict": "T26_INTEGRATED_INTERNAL_EXECUTION_PRECONSTRUCTION_PASS"
+}

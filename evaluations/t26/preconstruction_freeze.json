@@ -1,0 +1,1427 @@
+{
+  "artifact": "T26_PRECONSTRUCTION_FREEZE",
+  "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
+  "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
+  "component_count": 235,
+  "component_root": "b5281ebbd0906e2426d70b852153ab626be27987a706088203f33c762972aa7f",
+  "components": [
+    {
+      "byte_size": 1735,
+      "path": "evaluations/t19/promotion_floors.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "0ccd53fab9aaf0040b63d10f80cb120a10b008f866190af591fc53ae5eef7526"
+    },
+    {
+      "byte_size": 2271,
+      "path": "evaluations/t20/floors.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "9e6fda4bd90ebf7ea4f4f4cf56708d3b3dd1f0702eb10be831cfe9743c9efaf5"
+    },
+    {
+      "byte_size": 5541,
+      "path": "evaluations/t22/T22_FINAL_PROMOTION_RECORD.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "7f42dc8aa1b7a889c0ce9dfb98ea2108dada7123e297deec3b14e8ec1f9fb27f"
+    },
+    {
+      "byte_size": 21577,
+      "path": "evaluations/t25/T25_FINAL_PROMOTION_RECORD.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "160a9cff3d5955d648d049414b10f7af543ff867f50d6def9b69f7091c5732c7"
+    },
+    {
+      "byte_size": 3147,
+      "path": "evaluations/t25/candidate_identity.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "ad86e63730207a7f8a450fe4872cb4644cd826f1e8283b5f20dad78701a8b149"
+    },
+    {
+      "byte_size": 10582,
+      "path": "evaluations/t25/capability_registry.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "152e270725cb151670adf536eed1a0e09ab2d2092e2a03ebf42b43d22d4ebb95"
+    },
+    {
+      "byte_size": 2481,
+      "path": "evaluations/t25/live_web_source_firewall_registry.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "c61c42c3c9e9a9f9ae931a19424b7afd8e6d784f5b91dd3132b93368c1665ca5"
+    },
+    {
+      "byte_size": 64122,
+      "path": "evaluations/t25/preconstruction_freeze.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "4689b1f99b0433162f914be5f6f19d9d7d1099e3a4d6912b730fade3f108ca8a"
+    },
+    {
+      "byte_size": 232796,
+      "path": "evaluations/t25/t23_exposed_sealed_anchor.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "bdd9e73328d791ccd38972f309b988cbd5783620a0774e4ab1715df427938053"
+    },
+    {
+      "byte_size": 313060,
+      "path": "evaluations/t25/t24_sealed_evaluated_anchor.json",
+      "role": "HISTORICAL_PUBLIC_ANCHOR",
+      "sha256": "4da0e6e3e65a04152f1cf447e741733f5e5821d82379677d686db05aba638085"
+    },
+    {
+      "byte_size": 7186,
+      "path": "evaluations/t26/authority_graph.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "62cc9450c10428ad32ccc27e2609f41c9aca31c3409d5cf2abdb4cd00b5d2f87"
+    },
+    {
+      "byte_size": 3204,
+      "path": "evaluations/t26/candidate_identity.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "dc43c0d55baf34fe7782d865b13a829da8507e4e8d5a0f05f85ac64b87f4d743"
+    },
+    {
+      "byte_size": 597,
+      "path": "evaluations/t26/live_web_firewall_registry.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "172cdd1965a7efd5eed8617768967da51001949152b45b5c5e8a2a786d9bd03d"
+    },
+    {
+      "byte_size": 2330,
+      "path": "evaluations/t26/metric_registry.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "3cc8b0b5e09ebd29b809a6fe50e5ff27854778c2b749b787746a0509cf3b67b4"
+    },
+    {
+      "byte_size": 2699,
+      "path": "evaluations/t26/native_smoke_report.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "0b7f7939fdc313bf3861ba7d99811532249b8a9739c414af8ddd10597edd23be"
+    },
+    {
+      "byte_size": 793,
+      "path": "evaluations/t26/private_storage_policy.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "884475adfd18082059d0dd679800b8b0e3e859eeb46efdf56052cb27686abfc7"
+    },
+    {
+      "byte_size": 4858,
+      "path": "evaluations/t26/production_graph.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "01bb19c44ed76030b37b38fc6f071500f4788ff11ba61e7b405f539fbecaa02e"
+    },
+    {
+      "byte_size": 1619,
+      "path": "evaluations/t26/prospective_design.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "04d26194cd581a5046c424f8c3f62c825f2de6bb495e4dbb76e66092bdd917bf"
+    },
+    {
+      "byte_size": 1450,
+      "path": "evaluations/t26/protection_report.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "893d60957ec89d166992c5163d9af2093a79c7ee9d07117303f045eca039f5b8"
+    },
+    {
+      "byte_size": 12661,
+      "path": "evaluations/t26/qualification/gold.jsonl",
+      "role": "T26_PUBLIC_QUALIFICATION",
+      "sha256": "d550f06388151b4da94fad9a5503f66612e4440dc3bcc5d0818870e36e2fffcd"
+    },
+    {
+      "byte_size": 206603,
+      "path": "evaluations/t26/qualification/inputs.jsonl",
+      "role": "T26_PUBLIC_QUALIFICATION",
+      "sha256": "797ff95eedeb6fa0f4487b43972999d7e814f979a5d1525c96f533d708377cff"
+    },
+    {
+      "byte_size": 11279,
+      "path": "evaluations/t26/qualification_exclusions.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "e1d4b46e28d0efcccb9f0e97a7e28ef9d9c543be6eb699eec47b1585e64ee990"
+    },
+    {
+      "byte_size": 9889,
+      "path": "evaluations/t26/qualification_report.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "43a75c682aa88020ec047a40de7d444dd4f3440ea308d18c5b01528291dc244f"
+    },
+    {
+      "byte_size": 5402,
+      "path": "evaluations/t26/rehearsal_report.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "492df5703fc85d9b1aa4d8e48b88933851192dc8f9b1ba960275097129df1251"
+    },
+    {
+      "byte_size": 6380,
+      "path": "evaluations/t26/t26_execution_contract.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "f0df1061fd88d659b577b53987a0f9041169f463aa43e36eb2fd814fc0d2e4f9"
+    },
+    {
+      "byte_size": 4350,
+      "path": "evaluations/t26/test_gate_report.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "d3c9eb3bf84c357a0649cbbe376ea0491f013d8ebc693578cc6e845774b83ff2"
+    },
+    {
+      "byte_size": 10075,
+      "path": "scripts/t26_preconstruction.py",
+      "role": "T26_ENTRYPOINT",
+      "sha256": "d0d1fd38495747db41fa417b914781d7068f55c7ec42027544e3649c4c19e0cd"
+    },
+    {
+      "byte_size": 1434,
+      "path": "scripts/t26_resume_worker.py",
+      "role": "T26_ENTRYPOINT",
+      "sha256": "0833eada5472551410aa665fd0aa4574f1ba7adfe00407b4c1d4fc89ca1abd35"
+    },
+    {
+      "byte_size": 419,
+      "path": "src/sciencemath/code/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "4891b6ca4ae5496b55b83a951d7488ff98c00d1421d00294b05f5d44c491aee6"
+    },
+    {
+      "byte_size": 2419,
+      "path": "src/sciencemath/code/context.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "ad8433fa9295774af1e084af5d0a5d5cac86ef978e41a9255ac2cdec9cc41285"
+    },
+    {
+      "byte_size": 6550,
+      "path": "src/sciencemath/code/contract.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "48837555d3f750a3282db667bc727a3045daee6aa7e0031b1758dfe13de51523"
+    },
+    {
+      "byte_size": 4871,
+      "path": "src/sciencemath/code/discovery.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "b6a3bfdc24a2dacf68289c9a2ecf1ffb62e9e7ed6d8ec6419164c579449de310"
+    },
+    {
+      "byte_size": 9462,
+      "path": "src/sciencemath/code/editor.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "58b477a2230f87382a6368b5b8af18881092dfcffb735dad4396e6001570e3f5"
+    },
+    {
+      "byte_size": 722,
+      "path": "src/sciencemath/code/limits.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "ad885e5e498449affdae6a635ceb3716bc2b88c0c930a5b275619ebdb55db3c8"
+    },
+    {
+      "byte_size": 6468,
+      "path": "src/sciencemath/code/multifile.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "187aca516cfb64c29d0492afed1511df13ecc607f9dd0d924a00ac0460bde7f0"
+    },
+    {
+      "byte_size": 2808,
+      "path": "src/sciencemath/code/planner.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "759add09c2647baec0e3178ecbd73b44363627fd19e1495711fa9bb5c79f143f"
+    },
+    {
+      "byte_size": 25117,
+      "path": "src/sciencemath/code/repair_state.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "996fe5013d19c867729f3d8a6c020fbb584888ae87416ba527e8945c6fd53d25"
+    },
+    {
+      "byte_size": 4402,
+      "path": "src/sciencemath/code/review.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "54bcf573b35e03ef93d3222ad8e8b9fa2b600b0e75c31a1e5f1643912d3a38f0"
+    },
+    {
+      "byte_size": 45464,
+      "path": "src/sciencemath/code/runner.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "2435acae344c04caa7541204949e8a74c6e56790761c3f8b41546ad0ef9b3334"
+    },
+    {
+      "byte_size": 7258,
+      "path": "src/sciencemath/code/safety.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "1c65e65758c0994e1db190d0f3df5f73c53450a15d5aa38dd1fe75f7ff6d519d"
+    },
+    {
+      "byte_size": 3839,
+      "path": "src/sciencemath/code/search.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "3531630cec222c5538301289260842a4d92560187de617e1b4a9ab84f272fc89"
+    },
+    {
+      "byte_size": 4470,
+      "path": "src/sciencemath/code/task_contracts.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "17932bb43b7bc5d527ab7d4c64f5fbc7c514674a3f0ec60f016bd3408658a1aa"
+    },
+    {
+      "byte_size": 6989,
+      "path": "src/sciencemath/code/testsel.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "7f441103d00fceb1f41d240cf96fc10ed0beca4a0c3b6453a3e9e53e5f96aec0"
+    },
+    {
+      "byte_size": 339,
+      "path": "src/sciencemath/document/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "4ef8ae86fcc04c61307437e4adc710bb203a65b67f9f3081a7fb779094f503db"
+    },
+    {
+      "byte_size": 2575,
+      "path": "src/sciencemath/document/bridges.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e8e1f20bf089bb0c1017a21ef4e7a70e300f65e703bd12e443d8618a13a13c03"
+    },
+    {
+      "byte_size": 983,
+      "path": "src/sciencemath/document/cache.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "28e9f23e8805b86628132c4ab400f9ae052f2f25447b462251069fbdc92dc264"
+    },
+    {
+      "byte_size": 1888,
+      "path": "src/sciencemath/document/chunking.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "76100741e82fd4c91a058fcf13f1ffcbd96d1b2423dcfa3deaad7e9cf10ed7d7"
+    },
+    {
+      "byte_size": 3881,
+      "path": "src/sciencemath/document/citations.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "168038503fdba74891d5907d2d9db4b5ca5a1ded2ff7f4231573d0b97a185972"
+    },
+    {
+      "byte_size": 4869,
+      "path": "src/sciencemath/document/contract.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e82285e7eeb8846dca48fd646bd66f89863b3882a81d1ec1f44a0de77af08add"
+    },
+    {
+      "byte_size": 1147,
+      "path": "src/sciencemath/document/corpus.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "0b2d9568f8d32540441ea7b9ff63a825e11cc71c901e327ba866298df7d92b5f"
+    },
+    {
+      "byte_size": 11054,
+      "path": "src/sciencemath/document/dataops.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "75264d5b67e1abd54949f91eef77024f9e75936a5e66d9bb92893a43d36f24f3"
+    },
+    {
+      "byte_size": 4006,
+      "path": "src/sciencemath/document/identify.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "feb2a79e7ab86a523ec5a2caa9a1214b0e2d79ac706e0b0b09b395889a70b081"
+    },
+    {
+      "byte_size": 2587,
+      "path": "src/sciencemath/document/injection.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "8beaaed25a6df0078afc979171ccf843c6aa2587be9356d7e5c70a2407b87bb7"
+    },
+    {
+      "byte_size": 1605,
+      "path": "src/sciencemath/document/limits.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "2688427e3aa453baf1a91fe469563abcf08c95fb2983ac1ec4808e84f502ed5e"
+    },
+    {
+      "byte_size": 6371,
+      "path": "src/sciencemath/document/models.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "ae58dac349f166b607b61e5d7b1a084555edff84651c15f24c3fdb69a823aa19"
+    },
+    {
+      "byte_size": 9497,
+      "path": "src/sciencemath/document/ops.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "728f4a7b6c7b9272809e28e4dcf413b3ca9dbbc51c650f714351f10cf6af50f1"
+    },
+    {
+      "byte_size": 22362,
+      "path": "src/sciencemath/document/parsers.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "2167da7b211e04e05839302d19780c6806689b1d2b755f48e2b003571411f8e0"
+    },
+    {
+      "byte_size": 8076,
+      "path": "src/sciencemath/document/pdfparse.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "78d5d1c614865dcdfe1231e024f6ca673ffad1dcf682574c7aafff459cf6b52d"
+    },
+    {
+      "byte_size": 17093,
+      "path": "src/sciencemath/document/pipeline.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e31a364bd12886df95ae00e8f050acfd0c0029f96cf68097e00a924c2e4eb7bd"
+    },
+    {
+      "byte_size": 5327,
+      "path": "src/sciencemath/document/safety.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "bcd211f7d977bcba7ad0ec0029a4ac7f0712efd043b7711560da5662e09002b7"
+    },
+    {
+      "byte_size": 3489,
+      "path": "src/sciencemath/document/search.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "618f975b0b7dd69d2acfdad42e9fa63293288d789252aee15a5980f21508ed60"
+    },
+    {
+      "byte_size": 7718,
+      "path": "src/sciencemath/document/typesys.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e08645fcf573e436a3c82543d74cbab3e37fddbdfc2272052ae75aaabcbb3476"
+    },
+    {
+      "byte_size": 1667,
+      "path": "src/sciencemath/executive/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "8a39f774f66f8089f6ad752b66cee14c670b00e88870b01a2648d9dee8642d40"
+    },
+    {
+      "byte_size": 2996,
+      "path": "src/sciencemath/executive/budgets.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "7983976addd407f05001a15421ff42a9b8b478d5da3353fd2d2c5d8349564fe8"
+    },
+    {
+      "byte_size": 3810,
+      "path": "src/sciencemath/executive/checkpoint.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "31d5015c103d6c61ea64fcfd9c70c4e96aa5bc470cfb8a318a270ffa1be3df93"
+    },
+    {
+      "byte_size": 4080,
+      "path": "src/sciencemath/executive/classify.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "569993b975aca3b42af800972f1a0662dc599e4ef4c403a614944e50618d5ca0"
+    },
+    {
+      "byte_size": 8773,
+      "path": "src/sciencemath/executive/correction.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "2dc220114a4f3e639842014f2f46d869b0b2091185c60217ca2c90d16da394d3"
+    },
+    {
+      "byte_size": 15124,
+      "path": "src/sciencemath/executive/execute.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "706930b07c468975cce1e3c52abe08665b882a652488a4c295c2df7b5f40d8af"
+    },
+    {
+      "byte_size": 16875,
+      "path": "src/sciencemath/executive/executive_router.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "06c59027341e4ef9124a4b5c1610a470e77fd67cfe8133446b380fcf9866af8e"
+    },
+    {
+      "byte_size": 1208,
+      "path": "src/sciencemath/executive/failures.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a44755ec02ebc1da50d3eca5457e5502ea7cd465fc00c0aa11e10a1c9a32bf4d"
+    },
+    {
+      "byte_size": 2288,
+      "path": "src/sciencemath/executive/llm.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "1e06300c273bdcc67a6573e4e6a29fee8952578feaf86c74febcfdbf565ff517"
+    },
+    {
+      "byte_size": 8729,
+      "path": "src/sciencemath/executive/plan.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "35e2c502ce0af129cfa86135849e13de6b5f44aa8f07b390d68e75ae6dd06211"
+    },
+    {
+      "byte_size": 14039,
+      "path": "src/sciencemath/executive/repair.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "06c4d6e41aa32456128a15c16e6738f8ec74cecda78093d881e8e731d147db40"
+    },
+    {
+      "byte_size": 4252,
+      "path": "src/sciencemath/executive/replan.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "c449bfdf4bd501bfb8e019d03584ecec961a8c93b93b71d1af52c6e2052df505"
+    },
+    {
+      "byte_size": 27139,
+      "path": "src/sciencemath/executive/router_v2.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "7aebc77cd4e711e551f89d98943e22d47775a8935440ca285d78a0df3db3bdcb"
+    },
+    {
+      "byte_size": 33905,
+      "path": "src/sciencemath/executive/runner.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f706f9be41617c0efff87594144979c0eb35e8ec9dda2c508506b4c1d5fad91d"
+    },
+    {
+      "byte_size": 10472,
+      "path": "src/sciencemath/executive/skills.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "9aba8945e624f061feb478ca673cb98c5f5c08578a0f02e92dbb0cbf71936d62"
+    },
+    {
+      "byte_size": 6557,
+      "path": "src/sciencemath/executive/state.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "48785eb93a0aa102970ea3b7266ce273549663a4fd3f1ce4e76467d7dd3fcc59"
+    },
+    {
+      "byte_size": 983,
+      "path": "src/sciencemath/executive/trajectory.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f8abee31717f05e957903d10dc84a230ca585366223b48fa25b7546d4f1d6fbe"
+    },
+    {
+      "byte_size": 4127,
+      "path": "src/sciencemath/executive/uncertainty.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "b5187765d7d09c9e07ed031bb10d4219f4c18568d6b3fe19b0a1ccc766a5e2e7"
+    },
+    {
+      "byte_size": 10341,
+      "path": "src/sciencemath/executive/understand.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f2a657dadfd34abc4f92e9d8d9adc61ff333968a356afaec9a57369293470e4f"
+    },
+    {
+      "byte_size": 5688,
+      "path": "src/sciencemath/executive/verify.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "7246acccc2a9215963dc8ed1d2c9c21ee5cf807a6b635f9bfab88e6df422f545"
+    },
+    {
+      "byte_size": 333,
+      "path": "src/sciencemath/integrated/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "bc00d7d5a7e8f9aa0bbf5e8a045598420845d70720ddc2a9d61fa6304361dcaa"
+    },
+    {
+      "byte_size": 25614,
+      "path": "src/sciencemath/integrated/runner.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a097a31c883cd8f93f12576c8ff2a49a945604d7aa3ab194e2df8a8c269b458a"
+    },
+    {
+      "byte_size": 659,
+      "path": "src/sciencemath/knowledge/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "31e67d46279ed79c57692b21766d4ce1cc016ba6cb3a204df1004a0ce0d47392"
+    },
+    {
+      "byte_size": 4591,
+      "path": "src/sciencemath/knowledge/citations.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "d48a5bb8ac4e28178cdaf332e9b7867a611d6d851f853858582a752b9039bb48"
+    },
+    {
+      "byte_size": 5161,
+      "path": "src/sciencemath/knowledge/claim_gate.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "3cf7593f131c081a7a1fcf777d7f27ca995f9dae993efbd68c566e565803f883"
+    },
+    {
+      "byte_size": 19315,
+      "path": "src/sciencemath/knowledge/conflicts.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f9c984d1fd10ec4053e78ca373e0c13e9d705c3db7c2a4afa3e09cb2a0c272d2"
+    },
+    {
+      "byte_size": 7524,
+      "path": "src/sciencemath/knowledge/corpus.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d"
+    },
+    {
+      "byte_size": 2605,
+      "path": "src/sciencemath/knowledge/evaluator_semantics.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "6418f1dee4cdb234dadb26baec9b5c85ffd8084fda20278b74929360ec4a9d0a"
+    },
+    {
+      "byte_size": 7344,
+      "path": "src/sciencemath/knowledge/evidence.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d"
+    },
+    {
+      "byte_size": 8667,
+      "path": "src/sciencemath/knowledge/evidence_paths.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375"
+    },
+    {
+      "byte_size": 14632,
+      "path": "src/sciencemath/knowledge/fixtures.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "0a769be912100e08abad5d43fa8c1d5dd85c1008f2ea3884af0f607340703d74"
+    },
+    {
+      "byte_size": 19211,
+      "path": "src/sciencemath/knowledge/freshness.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "63104a9a012b1c846e0bb48f74a7e291b8d44e760c23998e472c470f75566e2c"
+    },
+    {
+      "byte_size": 4540,
+      "path": "src/sciencemath/knowledge/index.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1"
+    },
+    {
+      "byte_size": 8367,
+      "path": "src/sciencemath/knowledge/injection.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0"
+    },
+    {
+      "byte_size": 73270,
+      "path": "src/sciencemath/knowledge/pipeline.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "b0f99cce2afc181c0ce340b19597f93889652aea036a7996cfc9266d2b21232c"
+    },
+    {
+      "byte_size": 3890,
+      "path": "src/sciencemath/knowledge/provenance_spoof.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212"
+    },
+    {
+      "byte_size": 14389,
+      "path": "src/sciencemath/knowledge/relations.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e0ed89e99c42b0d8d92952951b78696a50a3b377a537ef4c2a03ce344a35376f"
+    },
+    {
+      "byte_size": 11259,
+      "path": "src/sciencemath/knowledge/retrieval.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9"
+    },
+    {
+      "byte_size": 6257,
+      "path": "src/sciencemath/knowledge/routing.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "d47af1ea34fc0e82347d2214b6894c15fb005082582bc08b7a7f78aa6cbc7151"
+    },
+    {
+      "byte_size": 8968,
+      "path": "src/sciencemath/knowledge/schema.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135"
+    },
+    {
+      "byte_size": 319,
+      "path": "src/sciencemath/memory/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "fe1b79a76a525dbe86a641415e23cc19c446cfa13e4bcc7bc1ef49fa22293971"
+    },
+    {
+      "byte_size": 3632,
+      "path": "src/sciencemath/memory/bridges.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "6f53184f6f66c82d836c92eb34d73d2d61a8d28f3b16ff6db24242f64b4188c0"
+    },
+    {
+      "byte_size": 1113,
+      "path": "src/sciencemath/memory/cache.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "07bd318824e7ebaec61491a2fc57a3413672dcc713d138b3ce7530f2391a9200"
+    },
+    {
+      "byte_size": 3111,
+      "path": "src/sciencemath/memory/contract.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "77cdf3e60973b73db410306317549fd6e838700479e470736ad66c3e0ed2087d"
+    },
+    {
+      "byte_size": 1295,
+      "path": "src/sciencemath/memory/limits.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "382ec05f8e077fd0561f8998283300e383befdd22ee9111def87ced44540018e"
+    },
+    {
+      "byte_size": 3762,
+      "path": "src/sciencemath/memory/models.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "8d02ea8d591184a76d6719f11d406d63a5ec247b7a68ab2b7f6d091955d6a866"
+    },
+    {
+      "byte_size": 2445,
+      "path": "src/sciencemath/memory/normalize.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a6b27b29e5830016fb25017eae7ac20d59d546f6ff4ba5dafb13e8f733a58c04"
+    },
+    {
+      "byte_size": 1555,
+      "path": "src/sciencemath/memory/paths.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a536424becdd10a58001c4190de706b4826a211f32a2450dbeb615ee705df3ee"
+    },
+    {
+      "byte_size": 17979,
+      "path": "src/sciencemath/memory/pipeline.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "25e4c1e36dee5c2504c0c3997ac40646872bd665d1d20ae773a97be91a60dfa4"
+    },
+    {
+      "byte_size": 1954,
+      "path": "src/sciencemath/memory/policy.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "20c7407480eeb6db8443b0185c33b436173f8ea682d0c5f01ab856279a85dfb2"
+    },
+    {
+      "byte_size": 3563,
+      "path": "src/sciencemath/memory/retrieval.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "bdf651c3244107c194325ce8cdd889af056882cd94ee65e8fca3439e65bd2e75"
+    },
+    {
+      "byte_size": 2630,
+      "path": "src/sciencemath/memory/safety.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "c22c6b4ec12a74f6436d8aa2965db404ca0fd1a40ba83fd10a6a4462da71bae5"
+    },
+    {
+      "byte_size": 3381,
+      "path": "src/sciencemath/memory/schema.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "1e3f3c20d85d48e087aa6db7bdfad1b6b4c0bbdbf4d369905c42c00f2f053353"
+    },
+    {
+      "byte_size": 1444,
+      "path": "src/sciencemath/memory/secrets.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "eaeef36f8208fbb297d000a5ff52d070b094eb82542821353536284507c66b0f"
+    },
+    {
+      "byte_size": 25220,
+      "path": "src/sciencemath/memory/store.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "49d685c76a4f10b890a04604fedbd0f5daea54f2f2d1b21714e72b876337a68f"
+    },
+    {
+      "byte_size": 1113,
+      "path": "src/sciencemath/orchestration/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "191897df614447a6923d9af21543cb10a8f11eea96cf415b54892d4e65c7a915"
+    },
+    {
+      "byte_size": 7844,
+      "path": "src/sciencemath/orchestration/assignment.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f4616869a29fa3bb2739900572fbdb6a829545e544d77e1341103c6fa3de61bd"
+    },
+    {
+      "byte_size": 4724,
+      "path": "src/sciencemath/orchestration/checkpoint.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "57b05166635db521b32b1d67b034126eb00f97cdeb0d86d26375b4d1767884ff"
+    },
+    {
+      "byte_size": 5066,
+      "path": "src/sciencemath/orchestration/contract.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "0b5e4aec400dea0e7d6200499803c5c84429c72a4f769c10ba5e6bb86b72d327"
+    },
+    {
+      "byte_size": 5385,
+      "path": "src/sciencemath/orchestration/events.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "da3fc703ff6b855c688a9dde6cbee7fff04de76956833ee74e2fcd517079da12"
+    },
+    {
+      "byte_size": 4643,
+      "path": "src/sciencemath/orchestration/handoffs.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "ab684c0c1431c3595e9a25aee24e61573aef1b2cb0363651bb61e151a451d2af"
+    },
+    {
+      "byte_size": 5289,
+      "path": "src/sciencemath/orchestration/locks.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "b0c14111abde08e5025f185ae572d3239780b3bab6954649b91c4189ee1f2fe8"
+    },
+    {
+      "byte_size": 7782,
+      "path": "src/sciencemath/orchestration/manifests.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "22cf9624d078b608934e901d02d0413c0c7603af64cf32636e59f7d28235324c"
+    },
+    {
+      "byte_size": 10963,
+      "path": "src/sciencemath/orchestration/models.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "db2349bce410c2514e156022caccda0af6aab9e37296ba1915677728bedfd43f"
+    },
+    {
+      "byte_size": 43166,
+      "path": "src/sciencemath/orchestration/orchestrator.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "8438d967bba2501ff24243cbc47df929178435d10fbcd5eebcbfb909761534e1"
+    },
+    {
+      "byte_size": 3744,
+      "path": "src/sciencemath/orchestration/pipeline.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "c9ba2583d12e1cb0a642607f331553e65787f9a731aef0d46026bfb3befbdcde"
+    },
+    {
+      "byte_size": 5741,
+      "path": "src/sciencemath/orchestration/recovery.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "79a8c253f8fcde5567775278e40652f203107ad5c9fc24bbc12a95876517a97b"
+    },
+    {
+      "byte_size": 1899,
+      "path": "src/sciencemath/orchestration/serialize.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "b557904a85b03de4e541668a7c28fc989d1724498ea88cdaef4ae283941559ea"
+    },
+    {
+      "byte_size": 6851,
+      "path": "src/sciencemath/orchestration/verify.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "6a3198439916faf5e8326d8a0b3f3845cd51983ede5ca3aec8d44fd6ed302b20"
+    },
+    {
+      "byte_size": 8835,
+      "path": "src/sciencemath/orchestration/workers.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "72baad493322fd019e51bc9255c3a1f82e2e4543b0c6407a0af5879bb0e32fac"
+    },
+    {
+      "byte_size": 268,
+      "path": "src/sciencemath/planning/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "0108adcb80853915414f1125892361f1cb259b37b949d505bfb91b3dd47844d6"
+    },
+    {
+      "byte_size": 1909,
+      "path": "src/sciencemath/planning/baseline.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f3a200543c065ce3a1017b170c83d634cb320a54c3848330ec5b88af0973bfda"
+    },
+    {
+      "byte_size": 2019,
+      "path": "src/sciencemath/planning/contract.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "234b7118617692e9eb08e52377588d14e4a9aacb8e875da72a12997b1756dea0"
+    },
+    {
+      "byte_size": 16660,
+      "path": "src/sciencemath/planning/decompose.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e52779019603f2d3ad820525d8e9e01eda05a85e99519b6b11fb18f71b513be7"
+    },
+    {
+      "byte_size": 5758,
+      "path": "src/sciencemath/planning/graph.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "dc786fa24b6f22d67e227798709a4049e1a092b992449661a82d1869553190ad"
+    },
+    {
+      "byte_size": 7950,
+      "path": "src/sciencemath/planning/harness.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "0761cccf08b711e43669831763adfd62a89dfd6dd8dacaa1183265e63bbaf7d3"
+    },
+    {
+      "byte_size": 1343,
+      "path": "src/sciencemath/planning/instrument.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "283711c00bf7706b5a4953c5499f20e1d163ceed7d6f8b4d2caafe47bea5af09"
+    },
+    {
+      "byte_size": 6897,
+      "path": "src/sciencemath/planning/models.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "6e0b1d4219c61fc4fe7568cac59dfe96cb8bb2312a2771d4887e5cf68a257fa1"
+    },
+    {
+      "byte_size": 25878,
+      "path": "src/sciencemath/planning/pipeline.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "dea7535fa29d5c3cef4506d72d30a1a8e9bf14b793a6175b9c53fb5baab64e8b"
+    },
+    {
+      "byte_size": 17235,
+      "path": "src/sciencemath/planning/policy.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e26f43fc1f4d6bff88114f2919becde3967413e7f9bde00cc818488623b95ee4"
+    },
+    {
+      "byte_size": 7807,
+      "path": "src/sciencemath/planning/safety.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "407df4112fb8ed35247d4b6254d2f4827e7b8cd805bcc1f107a7f61f363111d0"
+    },
+    {
+      "byte_size": 2643,
+      "path": "src/sciencemath/planning/serialize.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "ad6554ac4d2791f00f34073285fdbf6588924529f056a4242a3bb16379a1c955"
+    },
+    {
+      "byte_size": 2044,
+      "path": "src/sciencemath/rag/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "8cfef01c62cd3584c0ccb7c4c2a0023fc57479e1d16a38d071d5aec69a8fd314"
+    },
+    {
+      "byte_size": 3257,
+      "path": "src/sciencemath/rag/audit.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e67b50f9f3629e53fbd3d5462afef99f311b4a78c814a601761c422b5a245bd9"
+    },
+    {
+      "byte_size": 6022,
+      "path": "src/sciencemath/rag/chunking.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "759b7cef5b840dbb8e64578fe1b3e1a688d26ba27190460d20ee4823274cf18e"
+    },
+    {
+      "byte_size": 9530,
+      "path": "src/sciencemath/rag/citations.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "fc6f48857e7ff1bcd893653dfa38dcebd7daf854b6bba9aa556771ea77f97bd3"
+    },
+    {
+      "byte_size": 7707,
+      "path": "src/sciencemath/rag/cleaning.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "220429192551dd932c639d0fb654881f42da9ceb2b8681be111dc5421dc9b6a5"
+    },
+    {
+      "byte_size": 8235,
+      "path": "src/sciencemath/rag/compression.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "9c4abd80993f1aa86fc6d600104da372cee3063d5b44ed0b9b7340c227367121"
+    },
+    {
+      "byte_size": 9840,
+      "path": "src/sciencemath/rag/decompose.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "36e9e28deaaabe2f844580dcd64e27552ff5610bc989d1dd550cb23ef216d5fa"
+    },
+    {
+      "byte_size": 4092,
+      "path": "src/sciencemath/rag/embeddings.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "5cdc3b64cab22a2239cb607503afbe79cd80fe62af7f5683bfb1119ace424997"
+    },
+    {
+      "byte_size": 11014,
+      "path": "src/sciencemath/rag/evidence.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "4f4bcb889ff92b1e56009c6505b12f7e7bf54a71557ad134d090aa8c3f4fc222"
+    },
+    {
+      "byte_size": 4630,
+      "path": "src/sciencemath/rag/metrics.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "c322502418a535db09c4d18d2f49a21ea82248c06659b9530cb7aecb1542d628"
+    },
+    {
+      "byte_size": 35634,
+      "path": "src/sciencemath/rag/pipeline.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "de375e30fc2c0d47d2eb3ba04eaa98ecb3c66f19268a918570efe2fc599b68a7"
+    },
+    {
+      "byte_size": 3171,
+      "path": "src/sciencemath/rag/reranker.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "83ebf0459ad1f4563f4f2812021f3883d6389f376f6de440dfabe60666bc1bfd"
+    },
+    {
+      "byte_size": 7965,
+      "path": "src/sciencemath/rag/retriever.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "36bfaf841907738e0cc40a83cc87a1768f0e3fe9fb0e881aaff99d3aa0f2ef5f"
+    },
+    {
+      "byte_size": 8944,
+      "path": "src/sciencemath/rag/route.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "77f99390930faf45113af96b5f7dff7c5c01255d89dc9e1cb70274b790dca2db"
+    },
+    {
+      "byte_size": 4719,
+      "path": "src/sciencemath/rag/schema.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a8b5ad256a70b093ab5c75cfdb5d8df5a95620bb7756c1e915afae88323effa3"
+    },
+    {
+      "byte_size": 4218,
+      "path": "src/sciencemath/rag/source_registry.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "2481feb0d6ac48eba0fe631b74253e9229cfecb9355666bfa98a7ebcbf651167"
+    },
+    {
+      "byte_size": 7368,
+      "path": "src/sciencemath/rag/taxonomy.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e36555cc4871d8804c9d8d61ae13e2ea9d816917700763525793e3161083b694"
+    },
+    {
+      "byte_size": 8699,
+      "path": "src/sciencemath/rag/vectorstore.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a001779c828208a7f8fbd4467c27d51bcb757525980f12ead793e29165bd389d"
+    },
+    {
+      "byte_size": 1081,
+      "path": "src/sciencemath/scicomp/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "531a6bf484a4667f6cafcbac851a6fe18a17a4caa38a7d7b2882e35e8c55b4e7"
+    },
+    {
+      "byte_size": 10424,
+      "path": "src/sciencemath/scicomp/adoption.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f09b1fe1b36f18c8154bbede7b52e26aefa32f725273e478aed8601b3607d9dd"
+    },
+    {
+      "byte_size": 9057,
+      "path": "src/sciencemath/scicomp/calculus.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "867d2495d9a96d65ee370b687d341a632fb37eb3d709c508dcb5d7644219792d"
+    },
+    {
+      "byte_size": 4697,
+      "path": "src/sciencemath/scicomp/diagnostics.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e858d14d401768acc71c2f7dfcadc7130a268940bbcb1d316ddbcf87461e314e"
+    },
+    {
+      "byte_size": 7688,
+      "path": "src/sciencemath/scicomp/executor.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "769a7fd3a7fe8fe0bcf773a1b44c7cd57200497bbdb68a63d58e7fc76a9d30e7"
+    },
+    {
+      "byte_size": 28205,
+      "path": "src/sciencemath/scicomp/fidelity.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "052689077a2545e7012fe613d245024480567aa572f30440501d9789db2e2146"
+    },
+    {
+      "byte_size": 7474,
+      "path": "src/sciencemath/scicomp/interpolation.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a3029cac41a3012bab4af9023d3ae0759e9625155c9fdfebde562690db2764e2"
+    },
+    {
+      "byte_size": 4473,
+      "path": "src/sciencemath/scicomp/invocation.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "3bed113faa1f71a680a6c56bbc610386cc55d98d7a97dd022fd4d3a68f87d6b2"
+    },
+    {
+      "byte_size": 12342,
+      "path": "src/sciencemath/scicomp/linear_algebra.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "7ac70a9fc9b951f7bc1fdb348ab0c390dddd65d2701c0ff319fce28ffb3da609"
+    },
+    {
+      "byte_size": 6290,
+      "path": "src/sciencemath/scicomp/ode.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "7a543eaf8ba453856d01c2eaaa9dd89e927d9fcb8bf403b928b8489e05d53f9a"
+    },
+    {
+      "byte_size": 23045,
+      "path": "src/sciencemath/scicomp/ode_intent.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "373b6402342cea6c14faf30c1b6db3ed8280978ea75f401d353eb3b6b241d263"
+    },
+    {
+      "byte_size": 5186,
+      "path": "src/sciencemath/scicomp/optimization.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "d4d7a55356f3872cefe02c7808bea44eed65a29ab1b5dd0b0abdf5c4613f0318"
+    },
+    {
+      "byte_size": 6330,
+      "path": "src/sciencemath/scicomp/parameter_sweep.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "39e677b2d37476e210c2a6165becf7da7d355f806e431c6979472a342fab2296"
+    },
+    {
+      "byte_size": 40329,
+      "path": "src/sciencemath/scicomp/planner_repair.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "ba6fc1ea8c3c3fe0d4d59911a209bc8d328ca90d5ae3796dcfa2a6944c3d7b8f"
+    },
+    {
+      "byte_size": 6824,
+      "path": "src/sciencemath/scicomp/registry.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "dd180ace9d5c114f4eea222bdc83856eab35038b3f9c0461d2e9b300605178e7"
+    },
+    {
+      "byte_size": 19779,
+      "path": "src/sciencemath/scicomp/result_contract.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "d649d128cafb09cd037dd5cc0dae8fc65ba2355d81eefa6b6aa1d0c25777b434"
+    },
+    {
+      "byte_size": 7205,
+      "path": "src/sciencemath/scicomp/roots.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "d667e84dcc1d05819800218c0dcac05506e5eeac55d573b8ec298ccd2729b0e5"
+    },
+    {
+      "byte_size": 24453,
+      "path": "src/sciencemath/scicomp/router.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "dfb62daf4f0b69e479d9a6ebf6f37f61aefb4a6736284f6e170b97190972ed14"
+    },
+    {
+      "byte_size": 9325,
+      "path": "src/sciencemath/scicomp/sandbox.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "aa14cb9ab0995e259e64c812e811f9f15d6c57aeb9e52995665d32712d1fdf37"
+    },
+    {
+      "byte_size": 11527,
+      "path": "src/sciencemath/scicomp/schemas.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "b9d9d8d54b55e06cd5d4c6056a798f45a653aeac9a8efe8e269c862e967518a1"
+    },
+    {
+      "byte_size": 28410,
+      "path": "src/sciencemath/scicomp/semantic.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "537c17ee13846133c3f4975bd00aa90b34e196d0890f3f36926b7c584d3dbec8"
+    },
+    {
+      "byte_size": 11746,
+      "path": "src/sciencemath/scicomp/statistics.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f32b95d35d35bff0267c249900a2320de9456ca9143be299d7ae9855acc87e0f"
+    },
+    {
+      "byte_size": 4339,
+      "path": "src/sciencemath/scicomp/trust.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "9f1e0d5bdc4bead90d157393257bc621138aa74809ed04117532ee27e3b21002"
+    },
+    {
+      "byte_size": 3395,
+      "path": "src/sciencemath/scicomp/verifier.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "87eb1e5c2c82d7322d8326c7e5c33f3624a28b59fffde9263ba6d05e8f5416c5"
+    },
+    {
+      "byte_size": 2086,
+      "path": "src/sciencemath/tools/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "d181c11f508ac6e97a387c12dce22a15e44b89f6d6854e5a85cb16653be87778"
+    },
+    {
+      "byte_size": 7577,
+      "path": "src/sciencemath/tools/base.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "724ee86e0f285adb310d7ec767a7eaa9c2650d139e888a28e9665d4d9f929aa1"
+    },
+    {
+      "byte_size": 21654,
+      "path": "src/sciencemath/tools/benchmark.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "eb85f0149efd4df192166a3a2efe4ed265a1414ecba1d8b142d8df9cfc1ec526"
+    },
+    {
+      "byte_size": 10625,
+      "path": "src/sciencemath/tools/calculator.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "8691ce0d3a32bee691f844ab73401f7d44b7d215b29fe76a01f3e5e1b7b13648"
+    },
+    {
+      "byte_size": 6796,
+      "path": "src/sciencemath/tools/equation_solver.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "c85375d3ae97108bd6b2df939a1f68786f177d78443ca81d062a31821fc20423"
+    },
+    {
+      "byte_size": 9807,
+      "path": "src/sciencemath/tools/numerical_math.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "2dceb3c02bfb0f951b570255375f7b47d1a83879a5f31a82df8776743e9e0f33"
+    },
+    {
+      "byte_size": 10657,
+      "path": "src/sciencemath/tools/router.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "bcc65da016caa1b36e4b937530657ab3d0a9e6307e88305bb5a6df112979e6e9"
+    },
+    {
+      "byte_size": 14638,
+      "path": "src/sciencemath/tools/safeparse.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "0ede1eac99e0b9720f56b7cd1108d37633d5bcc263bef32e41e6deb0fb31fab5"
+    },
+    {
+      "byte_size": 13918,
+      "path": "src/sciencemath/tools/symbolic_math.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "3e6b209fba6be0948e80eccf404328cbdccc99a89556e96768bcfb1f0db0e5a4"
+    },
+    {
+      "byte_size": 19506,
+      "path": "src/sciencemath/tools/unit_converter.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "b8602cfb0eddfa03cb7b60aed7146bf00e2589c09bc009123c77e94243b7b959"
+    },
+    {
+      "byte_size": 28704,
+      "path": "src/sciencemath/tools/verifier.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "1821d42da366bffc8bcb78afa3fe040668219dc50e25808834f4a3f3063dbf54"
+    },
+    {
+      "byte_size": 274,
+      "path": "src/sciencemath/web/__init__.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "10c803604e7645c66822ab4a93d9e75e1f0f59f4ab3d2fb5d15b964c39b5fa71"
+    },
+    {
+      "byte_size": 1396,
+      "path": "src/sciencemath/web/cache.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "0ac07a3c2ea62116f7620ecb5b9b78f296df00d94a9726ab8d3522b1edef3803"
+    },
+    {
+      "byte_size": 2258,
+      "path": "src/sciencemath/web/citations.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "bcc18704ad02fa93dcf15f711c1c16db46a60736eb67fadca35ca8a8bb1ea92a"
+    },
+    {
+      "byte_size": 3103,
+      "path": "src/sciencemath/web/claims.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "498793f92e591922234ddd13c661dab60f4b7303fb83d66e7f8282c7e6f6d2da"
+    },
+    {
+      "byte_size": 4664,
+      "path": "src/sciencemath/web/contract.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a1043d16f446fa9857f838eb25ba45e627828a961d2345cb5c87fe422981953d"
+    },
+    {
+      "byte_size": 3379,
+      "path": "src/sciencemath/web/contradiction.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "f9941cc73f56112148b4a05da839be6e4a7c16147292a5bdce84bf8e0b77b176"
+    },
+    {
+      "byte_size": 21823,
+      "path": "src/sciencemath/web/corpus.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "298899dfa36404822413527deb89d803c4f584514b8f3b69b4eb960603c753eb"
+    },
+    {
+      "byte_size": 1754,
+      "path": "src/sciencemath/web/diversity.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "4a408b28e3577fe98a800b96adb5ce9e702b2f83b0ed3ef787e389480ea4ba95"
+    },
+    {
+      "byte_size": 3406,
+      "path": "src/sciencemath/web/entailment.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e5bcbbee2d7d1e52f7834ca3580a3fff4fa44ad03b8cb10ad821ae365cf54b77"
+    },
+    {
+      "byte_size": 1902,
+      "path": "src/sciencemath/web/extract.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "8c07a43a183ca33f236db766b9786c4eaa19cc2ca9d1c473e25494dff6c9f0cf"
+    },
+    {
+      "byte_size": 4136,
+      "path": "src/sciencemath/web/fixture_provider.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "616c0528e9b9faac3eb538969ac45ef9e7a8847b91403d12653ec202d8ad4d31"
+    },
+    {
+      "byte_size": 2884,
+      "path": "src/sciencemath/web/freshness.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "50f39d97133192735c71e63e01d9bf8a5ebde634d74559f53ebd8ea3caf0c154"
+    },
+    {
+      "byte_size": 2370,
+      "path": "src/sciencemath/web/injection.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "553bd9310b7e72fda0159cbf4cbac4669ea24349e5065b407e8034d5df60f8f6"
+    },
+    {
+      "byte_size": 1398,
+      "path": "src/sciencemath/web/limits.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "0d891e0a37ef6b52fbc5c6970564fa8ccc51261881b427e5a610f3269321ebc1"
+    },
+    {
+      "byte_size": 4586,
+      "path": "src/sciencemath/web/live_provider.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "a83e00288291e7e6bcee38e1d73046217bc0070dd198ccc9c1a91421d460bada"
+    },
+    {
+      "byte_size": 15413,
+      "path": "src/sciencemath/web/pipeline.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "4be68f35e4f03e6d1d9dc79c7daae5b8b66899a801622530da707ffdff4adbbc"
+    },
+    {
+      "byte_size": 4539,
+      "path": "src/sciencemath/web/planner.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "7846ca44a04b68a79ba4eb6511f7737e9830fc63a6ac5967e316464a47d7ebef"
+    },
+    {
+      "byte_size": 1707,
+      "path": "src/sciencemath/web/provider.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "e5e8b99a861fd3c926d6eba65745e3aa605b8c81aa8f950dc12f2703f4371a29"
+    },
+    {
+      "byte_size": 4161,
+      "path": "src/sciencemath/web/ranking.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "d2f5aed5eb93de0d916a456b5580ee677f5966b74879a1f2cb509e3a4659f748"
+    },
+    {
+      "byte_size": 2947,
+      "path": "src/sciencemath/web/safety.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "9c6c8eae439fdc9ec06a8ec8dfabb55816d5def50af260ae09e8e96b476b8e72"
+    },
+    {
+      "byte_size": 2832,
+      "path": "src/sciencemath/web/source.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "44232d0eebbe7b5552b1bb66392e9e3c99b10900dc6fec96552f7c15ca471d8b"
+    },
+    {
+      "byte_size": 1521,
+      "path": "src/sciencemath/web/trace.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "32718a10ba433a2b35174367f375b5a39763fef4e80ee0cc1a9b22a19d2e3e69"
+    },
+    {
+      "byte_size": 1636,
+      "path": "src/sciencemath/web/trust.py",
+      "role": "CANDIDATE_OR_PROTECTED_RUNTIME",
+      "sha256": "7232fe5c78661356733a8ba2f851d59331e78d588059bc90ddbc8c4175929e52"
+    },
+    {
+      "byte_size": 74,
+      "path": "t26_protocol/__init__.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "6fb47d3ba3a1202a0eda835c0d46a21bf3cc7c84ea8bb45ab7cc1fe461d888b1"
+    },
+    {
+      "byte_size": 17235,
+      "path": "t26_protocol/contract.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "2f5d8d039d03b176bbede9af90ea3eaf6cb9f774d159945c7b941f0bce8f982a"
+    },
+    {
+      "byte_size": 14276,
+      "path": "t26_protocol/doctor.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "a6f0a0e2763be51aa85e30d33e77ea3b757b808e875728fff1f536b42faba6ea"
+    },
+    {
+      "byte_size": 4047,
+      "path": "t26_protocol/firewall.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "b017925eea6d5b436569b0a68a6fe2b3d250bec1b0743d5c9e5e93ae84b72269"
+    },
+    {
+      "byte_size": 4539,
+      "path": "t26_protocol/freeze.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "d9c65b6beb1596a1bc792bf88fa591e2ace9672d935f54dd898bbc0370d8e050"
+    },
+    {
+      "byte_size": 11555,
+      "path": "t26_protocol/lifecycle.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "7ab073a24527d9560f68e49f09566d42343e061a5b18e4bea984b26d3657cde9"
+    },
+    {
+      "byte_size": 3352,
+      "path": "t26_protocol/native_smoke.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "8cb645889984503d0fb649f4a4fd2d125f2d4bf706f6729fcf62c7b470d2ee41"
+    },
+    {
+      "byte_size": 11810,
+      "path": "t26_protocol/production.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "594a481fcbf1ea4ad04fe8ce7fae4a9c01a07a2a83563689347b7fae32088697"
+    },
+    {
+      "byte_size": 6592,
+      "path": "t26_protocol/protection.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "3c9e997d715c8f903cc52bb145b9cab7141a12ab1ddbe448527c5c863a18e8e0"
+    },
+    {
+      "byte_size": 14103,
+      "path": "t26_protocol/qualification.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "78dffb2150bb48f4ed1d73cf9d3d17c6ad6b7f71b7e7b63ada7482eab3d16a9a"
+    },
+    {
+      "byte_size": 7841,
+      "path": "t26_protocol/rehearsal.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "999326c8b2e5ec98e0934e01a19248e5e8a6096a55e755fc6fd8985a084f6443"
+    },
+    {
+      "byte_size": 4455,
+      "path": "t26_protocol/sandbox_controls.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "9e5617e2ff8b62058b0a97bae7d0302bc937752c60c726ed10bd62ba4b6aaab3"
+    },
+    {
+      "byte_size": 8574,
+      "path": "t26_protocol/scorer.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "c0185f150c8d52d0c3b451a9e7a076de82cd48c3cd0a3e36ab309a28e9aefa15"
+    },
+    {
+      "byte_size": 5183,
+      "path": "t26_protocol/test_gate.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "8ba730866174d5644d417da24961e1b7f9ff1027c23133f48e4c9f1dbbde10ee"
+    },
+    {
+      "byte_size": 5311,
+      "path": "tests/test_t26_integrated_execution.py",
+      "role": "T26_TEST_GATE",
+      "sha256": "cf96f67bc7661a243268dc204ba43c5e6a1e9a3f1de4508fd211b72c3bc2f8ba"
+    }
+  ],
+  "experiment": "t26",
+  "external_action_authority": false,
+  "freeze_root": "851ca7688cd2e781c21c9ee535d7e13dd09f54acec8a373f9a49748cad712e74",
+  "freeze_sha256": "cfd1a31d247a484eebfe85446e0af0f78ab8d262d9e7619ce1d3801301f34ef2",
+  "real_blind_construction_authorized": false,
+  "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
+  "schema_version": "t26-preconstruction-freeze-v1",
+  "t25_promotion_commit": "8940d96aacb08d8acf110e5f3e45e9ce84f03577"
+}

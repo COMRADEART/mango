@@ -1,0 +1,16 @@
+{
+  "artifact": "T26_LIVE_WEB_FIREWALL_REGISTRY",
+  "denied_classes": [
+    "T23_EXPOSED",
+    "T24_EXPERIMENT",
+    "T25_PRIVATE_EVALUATION",
+    "T26_QUALIFICATION",
+    "HISTORICAL_BLIND",
+    "MANGO_REPOSITORY"
+  ],
+  "inherited_t25_registry_sha256": "c61c42c3c9e9a9f9ae931a19424b7afd8e6d784f5b91dd3132b93368c1665ca5",
+  "pre_candidate_filtering": true,
+  "required_runtime": "t26_protocol.firewall:T26LiveWebSourceFirewall",
+  "schema_version": "t26-live-web-firewall-registry-v1",
+  "t26_qualification_exclusions_sha256": "e1d4b46e28d0efcccb9f0e97a7e28ef9d9c543be6eb699eec47b1585e64ee990"
+}

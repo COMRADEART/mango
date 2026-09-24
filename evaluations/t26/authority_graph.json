@@ -1,0 +1,305 @@
+{
+  "artifact": "T26_AUTHORITY_GRAPH",
+  "candidate_gold_access": false,
+  "external_action_authority": false,
+  "nodes": {
+    "authoring_validation": {
+      "gold_access": true,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "prospective_blind_inputs",
+        "prospective_gold",
+        "exclusion_hashes"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "construction_audit"
+      ]
+    },
+    "budget_controller": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "trace",
+        "budget"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "budget_state"
+      ]
+    },
+    "capabilities": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [
+        "registered_internal_capability"
+      ],
+      "may_perform_external_action": false,
+      "may_read": [
+        "validated_internal_call"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "capability_result"
+      ]
+    },
+    "capability_dispatcher": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [
+        "registered_internal_capability"
+      ],
+      "may_perform_external_action": false,
+      "may_read": [
+        "router_decision",
+        "step.input"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "capability_result"
+      ]
+    },
+    "checkpoint_manager": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "trace",
+        "plan"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "checkpoint"
+      ]
+    },
+    "completion_gate": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "verified_steps",
+        "completion_condition"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "terminal"
+      ]
+    },
+    "construction_ledger": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "construction_audit"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "private_ledger"
+      ]
+    },
+    "evaluation_ledger": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "seal",
+        "candidate_trace"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "private_evaluation_ledger"
+      ]
+    },
+    "evaluator": {
+      "gold_access": true,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "candidate_trace",
+        "private_gold"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "scored_rows"
+      ]
+    },
+    "executive_router": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "step.router_input"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "router_decision"
+      ]
+    },
+    "handoff_validator": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "capability_result",
+        "consumer_step"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "validated_handoff"
+      ]
+    },
+    "orchestrator": {
+      "gold_access": false,
+      "may_delegate": [
+        "registered_internal_capability"
+      ],
+      "may_execute": [
+        "registered_internal_capability"
+      ],
+      "may_perform_external_action": false,
+      "may_read": [
+        "validated_plan",
+        "checkpoint"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "trace",
+        "checkpoint"
+      ]
+    },
+    "plan_validator": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "plan"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "validated_plan"
+      ]
+    },
+    "planner": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "scenario"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "plan"
+      ]
+    },
+    "private_gold": {
+      "gold_access": true,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "private_manifest"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "evaluator_gold"
+      ]
+    },
+    "private_inputs": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "private_manifest"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "candidate_scenarios"
+      ]
+    },
+    "private_manifest": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "private_ledger",
+        "private_inputs",
+        "private_gold"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "private_manifest"
+      ]
+    },
+    "publication_gate": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "aggregate_metrics",
+        "private_manifest"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "public_receipt"
+      ]
+    },
+    "replan_controller": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "failure",
+        "plan"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "plan_version"
+      ]
+    },
+    "scorer": {
+      "gold_access": true,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "scored_rows"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "aggregate_metrics"
+      ]
+    },
+    "verification_layer": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "capability_result",
+        "step.verification"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "verification_result"
+      ]
+    }
+  },
+  "schema_version": "t26-authority-graph-v1"
+}

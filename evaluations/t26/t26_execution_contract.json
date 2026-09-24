@@ -1,0 +1,283 @@
+{
+  "abstention": {
+    "ambiguous_unknown_terminal": "FORBIDDEN",
+    "safe_terminal_states": [
+      "BLOCKED",
+      "BUDGET_EXHAUSTED",
+      "ERROR",
+      "INSUFFICIENT_EVIDENCE",
+      "PARTIAL",
+      "SECURITY_REFUSAL",
+      "UNAVAILABLE_CAPABILITY"
+    ]
+  },
+  "additional_properties": false,
+  "artifact": "T26_EXECUTION_CONTRACT",
+  "authority": {
+    "external_action_authority": false,
+    "orchestrator": "COORDINATE_INTERNAL_WORK_ONLY",
+    "planner": "PROPOSE_ONLY"
+  },
+  "budget": {
+    "defaults": {
+      "max_replans": 2,
+      "max_step_retries": 1,
+      "max_steps": 8,
+      "max_total_retries": 3,
+      "max_wall_seconds": 30
+    },
+    "max_replans_ceiling": 3,
+    "max_step_retries_ceiling": 2,
+    "max_steps_ceiling": 12,
+    "max_total_retries_ceiling": 6,
+    "max_wall_seconds_ceiling": 300
+  },
+  "capability_call": {
+    "external_side_effect_authority": false,
+    "registered_only": true,
+    "router_dispatch_match_required": true
+  },
+  "checkpoint": {
+    "completed_steps_not_reexecuted": true,
+    "idempotency_key": "sha256(scenario_id, step_id)",
+    "integrity": "sha256 canonical JSON state"
+  },
+  "completion": {
+    "all_mandatory_steps_verified": true,
+    "explicit_final_verification": true
+  },
+  "experiment": "t26",
+  "failure": {
+    "recoverable_error": "bounded retry then fallback/abstain",
+    "schema_or_authority_error": "fail closed"
+  },
+  "handoff": {
+    "authority_escalation": "REJECT",
+    "invalid_provenance": "REJECT",
+    "schema_mismatch": "REJECT",
+    "unclassified_data": "REJECT",
+    "unknown_consumer": "REJECT",
+    "unknown_producer": "REJECT"
+  },
+  "plan": {
+    "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+    "dependency_order": "earlier-step-only",
+    "no_unstructured_hidden_plan": true,
+    "required_capabilities": [
+      "GENERAL",
+      "MATH_T4",
+      "SCIENCE_RAG",
+      "SCICOMP",
+      "CODE",
+      "WEB_RESEARCH",
+      "DOCUMENT",
+      "MEMORY",
+      "PLANNING",
+      "NO_TOOL",
+      "ORCHESTRATION",
+      "KNOWLEDGE_RAG"
+    ]
+  },
+  "replan": {
+    "original_plan_preserved": true,
+    "silent_plan_mutation": "REJECT",
+    "triggers": [
+      "BUDGET_CHANGE",
+      "DEPENDENCY_FAILURE",
+      "NEW_EVIDENCE",
+      "RECOVERABLE_ERROR",
+      "RETRIEVAL_CONFLICT",
+      "SCHEMA_MISMATCH",
+      "UNAVAILABLE_CAPABILITY",
+      "VERIFICATION_FAILURE"
+    ],
+    "version_increment_required": true
+  },
+  "scenario": {
+    "classification_enum": [
+      "PRIVATE_BLIND",
+      "PRIVATE_EVALUATION",
+      "PUBLIC_SAFE"
+    ],
+    "gold_fields_candidate_visible": false,
+    "historical_exclusion_oracle_required": true,
+    "maximum_internal_steps": 12,
+    "minimum_internal_steps": 3
+  },
+  "schema_version": "t26-execution-contract-v1",
+  "schemas": {
+    "abstention": {
+      "additionalProperties": false,
+      "required": [
+        "terminal",
+        "reason",
+        "trace_commitment"
+      ],
+      "type": "object"
+    },
+    "authority": {
+      "additionalProperties": false,
+      "required": [
+        "planner",
+        "orchestrator",
+        "external_action_authority"
+      ],
+      "type": "object"
+    },
+    "budget": {
+      "additionalProperties": false,
+      "required": [
+        "max_steps",
+        "max_step_retries",
+        "max_total_retries",
+        "max_replans",
+        "max_wall_seconds"
+      ],
+      "type": "object"
+    },
+    "capability_call": {
+      "additionalProperties": false,
+      "required": [
+        "scenario_id",
+        "step_id",
+        "idempotency_key",
+        "sandbox_root",
+        "authority",
+        "classification",
+        "router_input",
+        "router_decision"
+      ],
+      "type": "object"
+    },
+    "checkpoint": {
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "completion": {
+      "additionalProperties": false,
+      "required": [
+        "required_steps",
+        "final_step",
+        "final_verification"
+      ],
+      "type": "object"
+    },
+    "failure": {
+      "additionalProperties": false,
+      "required": [
+        "step_id",
+        "failure_class",
+        "terminal",
+        "retry_count"
+      ],
+      "type": "object"
+    },
+    "handoff": {
+      "additionalProperties": false,
+      "required": [
+        "producer",
+        "consumer",
+        "producer_capability",
+        "consumer_capability",
+        "schema",
+        "provenance_commitment",
+        "authority",
+        "classification",
+        "confidence",
+        "status"
+      ],
+      "type": "object"
+    },
+    "plan": {
+      "additionalProperties": false,
+      "required": [
+        "plan_id",
+        "version",
+        "goal",
+        "steps",
+        "budgets",
+        "completion_condition",
+        "fallback_condition",
+        "authority"
+      ],
+      "type": "object"
+    },
+    "replan": {
+      "additionalProperties": false,
+      "required": [
+        "trigger",
+        "step_id",
+        "from_capability",
+        "to_capability",
+        "original_plan_sha256",
+        "new_version",
+        "new_plan_sha256"
+      ],
+      "type": "object"
+    },
+    "scenario": {
+      "additionalProperties": false,
+      "required": [
+        "scenario_id",
+        "plan",
+        "classification"
+      ],
+      "type": "object"
+    },
+    "step": {
+      "additionalProperties": false,
+      "required": [
+        "step_id",
+        "capability",
+        "depends_on",
+        "router_input",
+        "input",
+        "input_from",
+        "preconditions",
+        "expected_output",
+        "verification",
+        "fallback_capability"
+      ],
+      "type": "object"
+    },
+    "verification": {
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "required",
+        "parameters"
+      ],
+      "type": "object"
+    }
+  },
+  "trace_required": [
+    "scenario_id",
+    "plan_id",
+    "step_id",
+    "capability_selected",
+    "input_commitment",
+    "output_commitment",
+    "start_timestamp",
+    "end_timestamp",
+    "status",
+    "verification_result",
+    "retry_count",
+    "replan_event",
+    "budget_state",
+    "completion_state"
+  ],
+  "verification": {
+    "independent_numeric_check": "sum residual for additive cases",
+    "kinds": [
+      "schema",
+      "evidence",
+      "numeric",
+      "citation"
+    ],
+    "required": true
+  }
+}

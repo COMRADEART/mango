@@ -1,0 +1,31 @@
+{
+  "artifact": "T26_PRIVATE_STORAGE_POLICY",
+  "historical_reuse_allowed": {
+    "T23": false,
+    "T24": false,
+    "T25": false
+  },
+  "locator_scheme": "t26-private://",
+  "namespace": "t26",
+  "private_classes": [
+    "REAL_BLIND_INPUT",
+    "REAL_BLIND_GOLD",
+    "PRIVATE_CORPUS",
+    "PRIVATE_ATTACHMENT",
+    "RAW_EVALUATION_OUTPUT"
+  ],
+  "public_classes": [
+    "SCHEMA",
+    "PROTOCOL",
+    "HASH",
+    "AGGREGATE",
+    "PUBLIC_SAFE_QUALIFICATION"
+  ],
+  "public_git_blind_blob_count_required": 0,
+  "real_blind_content_publication_allowed_before_evaluation": false,
+  "real_construction_attempts": 0,
+  "real_evaluation_attempts": 0,
+  "schema_version": "t26-storage-policy-v1",
+  "store_id": "T26-STORE-01",
+  "t25_private_exclusion_oracle_required_at_real_construction": true
+}
