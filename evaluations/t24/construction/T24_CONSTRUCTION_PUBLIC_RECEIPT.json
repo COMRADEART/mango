@@ -1,0 +1,10 @@
+{
+  "artifact": "T24_CONSTRUCTION_PUBLIC_RECEIPT",
+  "attempt": 1,
+  "blind_content_included": false,
+  "experiment": "t24",
+  "ledger_sha256": "a71da0b7530b654de4a00d431dfa3de1f93f171b4cab957b995d599ee8200501",
+  "private_artifact_root": "7be1d7f7aa26b017e983bd69eb484cd6d78a6929f4fb5d4e761f926cc7356a64",
+  "schema_version": "t24-public-construction-receipt-v1",
+  "state": "SEALED"
+}
