@@ -1,0 +1,72 @@
+{
+  "artifact": "T24_PRECONSTRUCTION_VERDICT",
+  "experiment": "t24",
+  "schema_version": 1,
+  "final_verdict": "T24_PRECONSTRUCTION_PRIVATE_BLIND_ARCHITECTURE_PASS",
+  "authorization": "T24_PRECONSTRUCTION_AUTHORIZATION",
+  "candidate_identity": {
+    "candidate_commit": "e1be88fee99361bfd47dfa054a99637820cadda8",
+    "candidate_tree": "c88599484db10c0bcf3eeafa50d84746fa539060",
+    "unchanged_from_t23_candidate": true
+  },
+  "infrastructure": {
+    "base_preconstruction_commit": "254082d0c5876f6a59366ebf8a724164b64f96d9",
+    "base_preconstruction_tree": "79e4db563171aece893dd700820bfed5555e975a",
+    "preconstruction_head_at_verification": "9447cda98665b29e57d9495a8dba577530e3761e",
+    "branch": "t24-preconstruction"
+  },
+  "freeze": {
+    "artifact": "T24_PRECONSTRUCTION_FREEZE",
+    "freeze_sha256": "3ba1bbf3b3485c74e238d603c14283d2ba571dd4a17765d0c7f379019dfd526d",
+    "component_count": 255,
+    "post_freeze_artifacts_excluded": true
+  },
+  "doctor": {
+    "artifact": "T24_PRODUCTION_PROTOCOL_DOCTOR",
+    "verdict": "T24_PRODUCTION_PROTOCOL_DOCTOR_PASS",
+    "check_count": 23,
+    "failed": [],
+    "t23_terminal_lifecycle": {
+      "interpretation": "SEALED_THEN_PUBLICATION_EXPOSED",
+      "registered_paths": 22,
+      "present_paths": 8,
+      "absent_evaluation_paths": 14,
+      "frozen_verifier_state": "FAIL/UNKNOWN preserved"
+    }
+  },
+  "reproduction": {
+    "artifact": "T24_PRECONSTRUCTION_REPRODUCTION",
+    "verdict": "T24_PRECONSTRUCTION_REPRODUCTION_PASS",
+    "reproduction_commit": "9447cda98665b29e57d9495a8dba577530e3761e",
+    "fresh_worktree": true,
+    "lock_bindings": 49,
+    "blind_blob_count": 0,
+    "path_policy_violations": 0,
+    "tracked_path_violations": 0,
+    "storage_controls_refused": 12,
+    "storage_control_count": 12,
+    "live_web_controls_all_denied": true,
+    "rehearsal_runs": 2,
+    "rehearsal_zero_diff_comparisons": 5,
+    "real_blind_rows": 0
+  },
+  "battery": {
+    "total": 37,
+    "passed": 37,
+    "skipped": 0,
+    "failed": 0,
+    "fresh_worktree_battery": {
+      "total": 37,
+      "passed": 37,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "carried_t23_state": {
+    "t23_verdict": "T23_SEALED_VALID_BUT_OFFICIAL_BLIND_EVALUATION_INELIGIBLE_DUE_TO_PUBLICATION",
+    "t23_must_not_be_evaluated": true,
+    "t23_exclusion_enforced": true,
+    "t23_history_preserved": true
+  },
+  "stop_rule": "T24_PRECONSTRUCTION_STOP: this PASS authorizes only the preconstruction architecture. It does NOT authorize T24 construction. Per the ABSOLUTE STOP of the T24 authorization: do NOT create a real T24 construction ledger, do NOT author real blind material, do NOT create real gold, do NOT create a private corpus or attachment, and do NOT run an official evaluation. STOP and return for a separate T24_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION."
+}
