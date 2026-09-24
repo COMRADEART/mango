@@ -182,7 +182,14 @@ def reproduce() -> dict:
               "rehearsal_report.json": run_rehearsals(),
               "protection_report.json": run_protection(ROOT),
               "test_gate_report.json": run_test_gate(ROOT)}
-    drift = [name for name in expected if expected[name] != actual[name]]
+    # The committed reports are JSON; a live rehearsal may hold tuple-valued
+    # semantic trace entries that serialize as the same JSON arrays. Compare
+    # the public artifact representation, not Python container identity.
+    canonical = lambda value: json.dumps(value, sort_keys=True,
+                                         separators=(",", ":"),
+                                         ensure_ascii=False)
+    drift = [name for name in expected if
+             canonical(expected[name]) != canonical(actual[name])]
     frozen = json.loads((OUT / "preconstruction_freeze.json").read_text(encoding="utf-8"))
     freeze_report = verify_freeze(ROOT, frozen)
     doctor = run_doctor(ROOT)

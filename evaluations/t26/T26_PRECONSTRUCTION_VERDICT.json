@@ -1,10 +1,10 @@
 {
   "artifact": "T26_PRECONSTRUCTION_VERDICT",
   "component_count": 235,
-  "component_root": "b5281ebbd0906e2426d70b852153ab626be27987a706088203f33c762972aa7f",
+  "component_root": "1f879681a7c138b7d0974e8489284aef010dcbfc8bcc90247c5a7181bf526381",
   "doctor_check_count": 25,
-  "freeze_root": "851ca7688cd2e781c21c9ee535d7e13dd09f54acec8a373f9a49748cad712e74",
-  "freeze_sha256": "cfd1a31d247a484eebfe85446e0af0f78ab8d262d9e7619ce1d3801301f34ef2",
+  "freeze_root": "55047a78eb3b4ecefa5453225446e091ed214ffe1ca5fe864a24878732ec8c3b",
+  "freeze_sha256": "ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6",
   "real_blind_rows": 0,
   "real_construction_attempts": 0,
   "real_evaluation_attempts": 0,

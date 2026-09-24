@@ -3,7 +3,7 @@
   "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
   "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
   "component_count": 235,
-  "component_root": "b5281ebbd0906e2426d70b852153ab626be27987a706088203f33c762972aa7f",
+  "component_root": "1f879681a7c138b7d0974e8489284aef010dcbfc8bcc90247c5a7181bf526381",
   "components": [
     {
       "byte_size": 1735,
@@ -162,10 +162,10 @@
       "sha256": "d3c9eb3bf84c357a0649cbbe376ea0491f013d8ebc693578cc6e845774b83ff2"
     },
     {
-      "byte_size": 10075,
+      "byte_size": 10526,
       "path": "scripts/t26_preconstruction.py",
       "role": "T26_ENTRYPOINT",
-      "sha256": "d0d1fd38495747db41fa417b914781d7068f55c7ec42027544e3649c4c19e0cd"
+      "sha256": "7bc86920bcc4a039002afced96833f64ae5a02666c512b1c6665692bd9b70071"
     },
     {
       "byte_size": 1434,
@@ -1418,8 +1418,8 @@
   ],
   "experiment": "t26",
   "external_action_authority": false,
-  "freeze_root": "851ca7688cd2e781c21c9ee535d7e13dd09f54acec8a373f9a49748cad712e74",
-  "freeze_sha256": "cfd1a31d247a484eebfe85446e0af0f78ab8d262d9e7619ce1d3801301f34ef2",
+  "freeze_root": "55047a78eb3b4ecefa5453225446e091ed214ffe1ca5fe864a24878732ec8c3b",
+  "freeze_sha256": "ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6",
   "real_blind_construction_authorized": false,
   "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
   "schema_version": "t26-preconstruction-freeze-v1",
