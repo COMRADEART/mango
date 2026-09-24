@@ -427,3 +427,74 @@ def test_doctor_module_control_helpers_are_self_consistent() -> None:
     live = t24_doctor._live_web_controls(ROOT)
     assert storage["control_count"] == 12 and storage["all_refused"] is True
     assert all(live.values()), live
+
+
+# ---------------------------------------------------------------------------
+# Section 42 reproduction aggregation (regression: the summary's rehearsal
+# entry is a dict, so the aggregate must read its status, not compare the
+# dict to a string)
+# ---------------------------------------------------------------------------
+
+REPRODUCE_COMPARISON_KEYS = ("construction_semantic_diff", "evaluation_semantic_diff",
+                             "graph_diff", "manifest_commitment_diff", "metric_diff")
+
+
+def _load_reproduce_module():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "t24_reproduce_under_test", ROOT / "scripts" / "t24_reproduce.py")
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(module)
+    return module
+
+
+def _patch_reproduce_inputs(monkeypatch: pytest.MonkeyPatch, module, *,
+                            doctor: str, rehearsal: dict) -> None:
+    from t24_protocol import freeze as t24_freeze
+    from t24_protocol import leakscan as t24_leakscan
+    from t24_protocol import lock as t24_lock
+
+    monkeypatch.setattr(t24_lock, "verify_lock",
+                        lambda: {"status": "PASS", "binding_count": 49})
+    monkeypatch.setattr(t24_freeze, "load_freeze",
+                        lambda: {"freeze_sha256": "0" * 64, "component_count": 0,
+                                 "components": []})
+    monkeypatch.setattr(t24_leakscan, "scan_public_git",
+                        lambda root, blind_hashes: {"status": "PASS",
+                                                    "blind_blob_count": 0,
+                                                    "path_policy_violations": [],
+                                                    "tracked_path_violations": []})
+    monkeypatch.setattr(t24_doctor, "_private_storage_controls",
+                        lambda root: {"all_refused": True, "control_count": 12})
+    monkeypatch.setattr(t24_doctor, "_live_web_controls",
+                        lambda root: {"all_denied": True})
+    monkeypatch.setattr(module, "read_doctor_report", lambda: doctor)
+    monkeypatch.setattr(module, "read_rehearsal_summary", lambda: rehearsal)
+
+
+def test_reproduce_aggregation_accepts_a_passing_checkout(monkeypatch, capsys) -> None:
+    module = _load_reproduce_module()
+    _patch_reproduce_inputs(
+        monkeypatch, module,
+        doctor="T24_PRODUCTION_PROTOCOL_DOCTOR_PASS",
+        rehearsal={"status": "PASS", "runs": 2,
+                   "comparisons": {key: 0 for key in REPRODUCE_COMPARISON_KEYS},
+                   "real_blind_rows": 0})
+    module.main()
+    summary = json.loads(capsys.readouterr().out)
+    assert summary["status"] == "PASS"
+    assert summary["verdict"] == "T24_PRECONSTRUCTION_REPRODUCTION_PASS"
+    assert summary["rehearsal_report"]["real_blind_rows"] == 0
+
+
+def test_reproduce_aggregation_refuses_a_failing_doctor_report(monkeypatch) -> None:
+    module = _load_reproduce_module()
+    _patch_reproduce_inputs(
+        monkeypatch, module, doctor="ABSENT",
+        rehearsal={"status": "PASS", "runs": 2, "comparisons": {},
+                   "real_blind_rows": 0})
+    with pytest.raises(SystemExit) as exc:
+        module.main()
+    assert exc.value.code == 1

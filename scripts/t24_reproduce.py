@@ -75,7 +75,7 @@ def main() -> None:
               and summary["storage_control_count"] == 12
               and summary["live_web_controls_all_denied"] is True
               and summary["doctor_report"] == "T24_PRODUCTION_PROTOCOL_DOCTOR_PASS"
-              and summary["rehearsal_report"] == "PASS")
+              and summary["rehearsal_report"]["status"] == "PASS")
     summary["status"] = "PASS" if passed else "FAIL"
     summary["verdict"] = ("T24_PRECONSTRUCTION_REPRODUCTION_PASS" if passed
                           else "T24_PRECONSTRUCTION_REPRODUCTION_FAIL")
