@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 from t21_protocol.util import sha256_json
@@ -16,6 +17,37 @@ EXCLUDED = frozenset({
     "evaluations/t26/construction_rehearsal_report.json",
 })
 V1_FREEZE_SHA256 = ("ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6")
+
+
+def _text_attributes(root: Path, relatives: list[str]) -> dict[str, str]:
+    request = b"".join(relative.encode("utf-8") + b"\0" for relative in relatives)
+    raw = subprocess.run(
+        ["git", "check-attr", "-z", "--stdin", "text"], cwd=root,
+        input=request, capture_output=True, check=True,
+    ).stdout.split(b"\0")
+    fields = [field.decode("utf-8") for field in raw if field]
+    if len(fields) % 3:
+        raise ValueError("unexpected git check-attr response")
+    return {fields[index]: fields[index + 2]
+            for index in range(0, len(fields), 3)}
+
+
+def _repository_bytes(root: Path, relative: str, text_attribute: str) -> bytes:
+    """Return the byte representation Git will store for a component.
+
+    The freeze is a commitment to the public repository, not to a particular
+    worktree's checkout conversion.  On Windows an older checkout can still
+    contain CRLF bytes after ``.gitattributes`` was changed to require LF;
+    hashing those worktree bytes makes a clean fresh checkout fail the freeze
+    even though both worktrees represent the same Git blob.  Apply Git's text
+    normalization rule before hashing while preserving ``-text``/binary data
+    byte-for-byte.
+    """
+    path = root / relative
+    data = path.read_bytes()
+    if text_attribute not in {"unset", "unspecified"} and b"\0" not in data:
+        data = data.replace(b"\r\n", b"\n")
+    return data
 
 
 def components(root: Path) -> dict[str, str]:
@@ -57,11 +89,13 @@ def build_freeze(root: Path) -> dict:
     root = Path(root).resolve()
     candidate = json.loads((root / "evaluations/t26/candidate_identity.json").read_text(encoding="utf-8"))
     entries = []
-    for relative, role in components(root).items():
+    component_roles = components(root)
+    text_attributes = _text_attributes(root, list(component_roles))
+    for relative, role in component_roles.items():
         path = root / relative
         if not path.is_file():
             raise ValueError(f"freeze component missing: {relative}")
-        data = path.read_bytes()
+        data = _repository_bytes(root, relative, text_attributes[relative])
         entries.append({"path": relative, "sha256": hashlib.sha256(data).hexdigest(),
                         "byte_size": len(data), "role": role})
     component_root = sha256_json(entries)

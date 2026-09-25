@@ -1,7 +1,9 @@
 """T26 construction-infrastructure remediation tests (pre-exposure, no real material)."""
 from __future__ import annotations
 
+import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -60,6 +62,19 @@ def test_candidate_identity_is_frozen():
     assert candidate["candidate_tree"] == "6199df3a4537e5af480098a4bd009c357ecc2910"
     assert candidate["runtime_root"] == (
         "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c")
+
+
+def test_freeze_hashes_repository_bytes_not_checkout_line_endings():
+    frozen = build_freeze(ROOT)
+    relative = "t26_protocol/construction.py"
+    entry = next(item for item in frozen["components"]
+                 if item["path"] == relative)
+    committed = subprocess.run(
+        ["git", "show", f"HEAD:{relative}"], cwd=ROOT,
+        capture_output=True, check=True,
+    ).stdout
+    assert entry["sha256"] == hashlib.sha256(committed).hexdigest()
+    assert entry["byte_size"] == len(committed)
 
 
 def test_nine_dimension_exclusion_model_covers_all_sources():
