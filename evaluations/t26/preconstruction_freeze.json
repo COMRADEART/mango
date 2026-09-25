@@ -2,8 +2,8 @@
   "artifact": "T26_PRECONSTRUCTION_FREEZE",
   "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
   "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
-  "component_count": 235,
-  "component_root": "1f879681a7c138b7d0974e8489284aef010dcbfc8bcc90247c5a7181bf526381",
+  "component_count": 243,
+  "component_root": "093d64e4d5d81507ee1b4d5332d72ace6d720014e2bcb70d011da107f6fff5a3",
   "components": [
     {
       "byte_size": 1735,
@@ -66,16 +66,22 @@
       "sha256": "4da0e6e3e65a04152f1cf447e741733f5e5821d82379677d686db05aba638085"
     },
     {
-      "byte_size": 7186,
+      "byte_size": 10230,
       "path": "evaluations/t26/authority_graph.json",
       "role": "T26_PUBLIC_ARTIFACT",
-      "sha256": "62cc9450c10428ad32ccc27e2609f41c9aca31c3409d5cf2abdb4cd00b5d2f87"
+      "sha256": "2c1400d8d42795bcab30ceb2f651c0c9d54f90add0230614c51eff5f6b154e36"
     },
     {
       "byte_size": 3204,
       "path": "evaluations/t26/candidate_identity.json",
       "role": "T26_PUBLIC_ARTIFACT",
       "sha256": "dc43c0d55baf34fe7782d865b13a829da8507e4e8d5a0f05f85ac64b87f4d743"
+    },
+    {
+      "byte_size": 30338336,
+      "path": "evaluations/t26/historical_exclusions.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "8e16ba796b1a6e18248e3edc219c00f90413892dff835b3ffa9d5412c58d9338"
     },
     {
       "byte_size": 597,
@@ -96,16 +102,22 @@
       "sha256": "0b7f7939fdc313bf3861ba7d99811532249b8a9739c414af8ddd10597edd23be"
     },
     {
+      "byte_size": 1171,
+      "path": "evaluations/t26/negative_gate_controls.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "c47bc2687f201dd3dd6327380da8afce7ba28f25454c61ed74583ca035e3deaf"
+    },
+    {
       "byte_size": 793,
       "path": "evaluations/t26/private_storage_policy.json",
       "role": "T26_PUBLIC_ARTIFACT",
       "sha256": "884475adfd18082059d0dd679800b8b0e3e859eeb46efdf56052cb27686abfc7"
     },
     {
-      "byte_size": 4858,
+      "byte_size": 7114,
       "path": "evaluations/t26/production_graph.json",
       "role": "T26_PUBLIC_ARTIFACT",
-      "sha256": "01bb19c44ed76030b37b38fc6f071500f4788ff11ba61e7b405f539fbecaa02e"
+      "sha256": "215794eca30c8901bb0cc27df42aa429b5732152096c59e9ee71fea715bdc25a"
     },
     {
       "byte_size": 1619,
@@ -118,6 +130,12 @@
       "path": "evaluations/t26/protection_report.json",
       "role": "T26_PUBLIC_ARTIFACT",
       "sha256": "893d60957ec89d166992c5163d9af2093a79c7ee9d07117303f045eca039f5b8"
+    },
+    {
+      "byte_size": 705,
+      "path": "evaluations/t26/protocol_identity_hashes.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "93e33d88273de8be60dc213c24c3c7c969bd448401d49a4b5da2657697f286f8"
     },
     {
       "byte_size": 12661,
@@ -144,6 +162,12 @@
       "sha256": "43a75c682aa88020ec047a40de7d444dd4f3440ea308d18c5b01528291dc244f"
     },
     {
+      "byte_size": 775469,
+      "path": "evaluations/t26/rehearsal_exclusion_fingerprints.json",
+      "role": "T26_PUBLIC_ARTIFACT",
+      "sha256": "9cc8f7ec765b41a1f5bf1fbafc9225f8c9a4634acfd01295c6a4e21dcb004576"
+    },
+    {
       "byte_size": 5402,
       "path": "evaluations/t26/rehearsal_report.json",
       "role": "T26_PUBLIC_ARTIFACT",
@@ -159,13 +183,13 @@
       "byte_size": 4350,
       "path": "evaluations/t26/test_gate_report.json",
       "role": "T26_PUBLIC_ARTIFACT",
-      "sha256": "d3c9eb3bf84c357a0649cbbe376ea0491f013d8ebc693578cc6e845774b83ff2"
+      "sha256": "6997e9904c5499ad8a3cf809b2fd34775381515b7c7fcc566ea175c646cb58ff"
     },
     {
-      "byte_size": 10526,
+      "byte_size": 22192,
       "path": "scripts/t26_preconstruction.py",
       "role": "T26_ENTRYPOINT",
-      "sha256": "7bc86920bcc4a039002afced96833f64ae5a02666c512b1c6665692bd9b70071"
+      "sha256": "78941dd5cf211ed03092474d1ebd44f0d46606fdc8f704eb763ee38659f973ca"
     },
     {
       "byte_size": 1434,
@@ -1332,16 +1356,28 @@
       "sha256": "6fb47d3ba3a1202a0eda835c0d46a21bf3cc7c84ea8bb45ab7cc1fe461d888b1"
     },
     {
-      "byte_size": 17235,
-      "path": "t26_protocol/contract.py",
+      "byte_size": 94609,
+      "path": "t26_protocol/construction.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "2f5d8d039d03b176bbede9af90ea3eaf6cb9f774d159945c7b941f0bce8f982a"
+      "sha256": "4754b1c2c59401a5d93d6e6ddf2882ba913187b8bbb7f477ccec69a3e98445c1"
     },
     {
-      "byte_size": 14276,
+      "byte_size": 19999,
+      "path": "t26_protocol/contract.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "b6d8057198e50470c3c0acba83e8b0009ddc91cf619fd54bad77c72989c63b89"
+    },
+    {
+      "byte_size": 24587,
       "path": "t26_protocol/doctor.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "a6f0a0e2763be51aa85e30d33e77ea3b757b808e875728fff1f536b42faba6ea"
+      "sha256": "e43f615b449171702df1a9927e8606751e039d380a53290aa239b5c892ce36af"
+    },
+    {
+      "byte_size": 11707,
+      "path": "t26_protocol/exclusion.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "07f581bb1d25ae49e46c2eacf137df44beaee04c8c3a33198e8c9bfac05df4ef"
     },
     {
       "byte_size": 4047,
@@ -1350,16 +1386,16 @@
       "sha256": "b017925eea6d5b436569b0a68a6fe2b3d250bec1b0743d5c9e5e93ae84b72269"
     },
     {
-      "byte_size": 4539,
+      "byte_size": 4906,
       "path": "t26_protocol/freeze.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "d9c65b6beb1596a1bc792bf88fa591e2ace9672d935f54dd898bbc0370d8e050"
+      "sha256": "498357feb6d18b17418aaacf7f69008b354bb7f24164a7a79b142c987fa4c676"
     },
     {
-      "byte_size": 11555,
+      "byte_size": 15511,
       "path": "t26_protocol/lifecycle.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "7ab073a24527d9560f68e49f09566d42343e061a5b18e4bea984b26d3657cde9"
+      "sha256": "eb5f7a297c3243be085df16be4c4bcb670cb409b2ecce317ba21de6cd981e2c7"
     },
     {
       "byte_size": 3352,
@@ -1368,22 +1404,28 @@
       "sha256": "8cb645889984503d0fb649f4a4fd2d125f2d4bf706f6729fcf62c7b470d2ee41"
     },
     {
+      "byte_size": 5500,
+      "path": "t26_protocol/oracle.py",
+      "role": "T26_PROTOCOL_RUNTIME",
+      "sha256": "cf0952801eb79c8d9caf17d9d473f53761ed819510acccdcc4692a398eb9755b"
+    },
+    {
       "byte_size": 11810,
       "path": "t26_protocol/production.py",
       "role": "T26_PROTOCOL_RUNTIME",
       "sha256": "594a481fcbf1ea4ad04fe8ce7fae4a9c01a07a2a83563689347b7fae32088697"
     },
     {
-      "byte_size": 6592,
+      "byte_size": 6704,
       "path": "t26_protocol/protection.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "3c9e997d715c8f903cc52bb145b9cab7141a12ab1ddbe448527c5c863a18e8e0"
+      "sha256": "652435187f2fd112e828494f89316b44aae4aa781237d346785bc62fbfd5d862"
     },
     {
-      "byte_size": 14103,
+      "byte_size": 15719,
       "path": "t26_protocol/qualification.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "78dffb2150bb48f4ed1d73cf9d3d17c6ad6b7f71b7e7b63ada7482eab3d16a9a"
+      "sha256": "d42273ffab04a537aaa467a1426dfd87d41a02f41c954eecd243b39eb527072c"
     },
     {
       "byte_size": 7841,
@@ -1404,10 +1446,16 @@
       "sha256": "c0185f150c8d52d0c3b451a9e7a076de82cd48c3cd0a3e36ab309a28e9aefa15"
     },
     {
-      "byte_size": 5183,
+      "byte_size": 5309,
       "path": "t26_protocol/test_gate.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "8ba730866174d5644d417da24961e1b7f9ff1027c23133f48e4c9f1dbbde10ee"
+      "sha256": "6e73e50a1f24fa46ddae5430ab81f310904db409fc279aa794e88f4945799db5"
+    },
+    {
+      "byte_size": 9676,
+      "path": "tests/test_t26_construction_infrastructure.py",
+      "role": "T26_TEST_GATE",
+      "sha256": "77483c3489f5f2cf66eba53da8c547ef02555ac08c6e6323f047769618910bae"
     },
     {
       "byte_size": 5311,
@@ -1416,12 +1464,14 @@
       "sha256": "cf96f67bc7661a243268dc204ba43c5e6a1e9a3f1de4508fd211b72c3bc2f8ba"
     }
   ],
+  "construction_lifecycle_frozen": "LEDGER_CREATED->MATERIALIZED->AUDITED->GATE_PASS->MANIFESTED->SEALED with terminal FAILED",
   "experiment": "t26",
   "external_action_authority": false,
-  "freeze_root": "55047a78eb3b4ecefa5453225446e091ed214ffe1ca5fe864a24878732ec8c3b",
-  "freeze_sha256": "ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6",
+  "freeze_root": "14d4da9d5384185c9b18c4b3cc604be92d01cef4b87b03c865c354775634a081",
+  "freeze_sha256": "658b2bf0e2f021bb25043764f64f9f1d63d37dc5c6c6e4bb0a8aee0ffd329b6e",
   "real_blind_construction_authorized": false,
   "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
-  "schema_version": "t26-preconstruction-freeze-v1",
+  "schema_version": "t26-preconstruction-freeze-v2",
+  "superseded_freeze_v1_sha256": "ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6",
   "t25_promotion_commit": "8940d96aacb08d8acf110e5f3e45e9ce84f03577"
 }

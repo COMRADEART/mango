@@ -1,6 +1,6 @@
 {
   "artifact": "T26_PROTOCOL_DOCTOR_REPORT",
-  "check_count": 25,
+  "check_count": 35,
   "checks": {
     "AUTHORITY_EDGES": {
       "candidate_gold_edges": [],
@@ -8,7 +8,7 @@
       "status": "PASS"
     },
     "AUTHORITY_GRAPH": {
-      "sha256": "62cc9450c10428ad32ccc27e2609f41c9aca31c3409d5cf2abdb4cd00b5d2f87",
+      "sha256": "2c1400d8d42795bcab30ceb2f651c0c9d54f90add0230614c51eff5f6b154e36",
       "status": "PASS"
     },
     "CANDIDATE_IDENTITY": {
@@ -32,15 +32,37 @@
       "real_repository_mutations": 0,
       "status": "PASS"
     },
+    "CONSTRUCTION_CONTRACT_ENUMERATOR": {
+      "enumerator_frozen": true,
+      "leaf_count": 57,
+      "status": "PASS"
+    },
+    "CONSTRUCTION_EXCLUSION_MODEL": {
+      "dimension_count": 9,
+      "exclusion_root": "11dd4b0ef4636190e79d352e413d91ad1ffab09885af276c4e07e67556fdcb8f",
+      "status": "PASS"
+    },
+    "CONSTRUCTION_LIFECYCLE_REHEARSALS": {
+      "runs": 2,
+      "semantic_diffs": {
+        "audit_root_diff": 0,
+        "gate_root_diff": 0,
+        "ledger_semantic_diff": 0,
+        "manifest_semantic_root_diff": 0,
+        "receipt_semantic_diff": 0,
+        "seal_semantic_diff": 0
+      },
+      "status": "PASS"
+    },
     "EXECUTION_CONTRACT": {
       "sha256": "f0df1061fd88d659b577b53987a0f9041169f463aa43e36eb2fd814fc0d2e4f9",
       "status": "PASS"
     },
     "FREEZE": {
-      "component_count": 235,
-      "component_root": "1f879681a7c138b7d0974e8489284aef010dcbfc8bcc90247c5a7181bf526381",
-      "freeze_root": "55047a78eb3b4ecefa5453225446e091ed214ffe1ca5fe864a24878732ec8c3b",
-      "freeze_sha256": "ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6",
+      "component_count": 243,
+      "component_root": "093d64e4d5d81507ee1b4d5332d72ace6d720014e2bcb70d011da107f6fff5a3",
+      "freeze_root": "14d4da9d5384185c9b18c4b3cc604be92d01cef4b87b03c865c354775634a081",
+      "freeze_sha256": "658b2bf0e2f021bb25043764f64f9f1d63d37dc5c6c6e4bb0a8aee0ffd329b6e",
       "mismatches": [],
       "status": "PASS"
     },
@@ -48,7 +70,7 @@
       "forbidden_local_paths": [],
       "public_blind_blob_count": 0,
       "status": "PASS",
-      "tracked_t26_paths": 19
+      "tracked_t26_paths": 18
     },
     "HISTORICAL_EXCLUSIONS": {
       "inherited_hash_only_case_ids": 75827,
@@ -58,6 +80,10 @@
       "t23_exposed_rows_used": 0,
       "t24_private_rows_accessed": 0,
       "t25_private_rows_accessed": 0
+    },
+    "LEDGER_BINDINGS": {
+      "binding_count": 7,
+      "status": "PASS"
     },
     "LIVE_WEB_FIREWALL": {
       "pre_candidate_filtering": true,
@@ -112,6 +138,17 @@
     "NATIVE_INTEGRATION": {
       "status": "PASS"
     },
+    "NEGATIVE_GATE_CONTROLS": {
+      "control_count": 23,
+      "material": "DISPOSABLE_SYNTHETIC_PRIVATE",
+      "not_refused": [],
+      "status": "PASS"
+    },
+    "ONE_SHOT_CONTROLS": {
+      "real_construction_authorized": false,
+      "status": "PASS",
+      "token_alias_refused": true
+    },
     "PLAN_HANDOFF_GOLD_FIREWALL": {
       "controls": {
         "authority_escalation": true,
@@ -121,6 +158,20 @@
         "valid_handoff_accepted": true
       },
       "status": "PASS"
+    },
+    "POST_LEDGER_FAILURE_SEMANTICS": {
+      "attempt_count": 1,
+      "ledger_final_state": "FAILED",
+      "retry_count": 0,
+      "retry_refused": true,
+      "second_attempt_refused": true,
+      "status": "PASS"
+    },
+    "PRIVATE_MANIFEST_AND_SEAL_REHEARSAL": {
+      "root_count": 4,
+      "status": "PASS",
+      "store_tamper_detected": true,
+      "store_verify_artifacts": 1
     },
     "PRIVATE_STORAGE_POLICY": {
       "sha256": "884475adfd18082059d0dd679800b8b0e3e859eeb46efdf56052cb27686abfc7",
@@ -138,11 +189,15 @@
     },
     "PRODUCTION_DAG": {
       "errors": [],
-      "node_count": 21,
+      "node_count": 30,
       "status": "PASS"
     },
     "PRODUCTION_GRAPH": {
-      "sha256": "01bb19c44ed76030b37b38fc6f071500f4788ff11ba61e7b405f539fbecaa02e",
+      "sha256": "215794eca30c8901bb0cc27df42aa429b5732152096c59e9ee71fea715bdc25a",
+      "status": "PASS"
+    },
+    "PRODUCTION_GRAPH_CONSTRUCTION_NODES": {
+      "node_count": 30,
       "status": "PASS"
     },
     "PROTECTION": {
@@ -160,6 +215,12 @@
       "sha256": "04d26194cd581a5046c424f8c3f62c825f2de6bb495e4dbb76e66092bdd917bf",
       "status": "PASS"
     },
+    "T25_PRIVATE_ORACLE_INTERFACE": {
+      "dimensions_bound": 9,
+      "status": "PASS",
+      "t25_private_rows_exposed": 0,
+      "tamper_refused": true
+    },
     "T25_PROMOTION_ANCHOR": {
       "status": "PASS"
     },
@@ -170,7 +231,7 @@
       "status": "PASS"
     }
   },
-  "schema_version": "t26-protocol-doctor-v1",
+  "schema_version": "t26-protocol-doctor-v2",
   "status": "PASS",
   "verdict": "T26_PRODUCTION_PROTOCOL_DOCTOR_PASS"
 }

@@ -168,8 +168,16 @@ def metric_registry() -> dict:
 def authority_graph() -> dict:
     roles = {
         "authoring_validation": ("prospective_blind_inputs,prospective_gold,exclusion_hashes", "construction_audit"),
+        "historical_exclusion_oracle": ("historical_exclusion_hashes", "exclusion_audit"),
         "construction_ledger": ("construction_audit", "private_ledger"),
+        "private_materialization": ("construction_ledger", "private_materialization"),
+        "construction_audit": ("private_materialization,exclusion_audit", "construction_audit"),
+        "construction_gate": ("construction_audit,contract_leaf_audit", "construction_gate"),
+        "contract_leaf_audit": ("construction_requirements", "contract_leaf_audit"),
         "private_manifest": ("private_ledger,private_inputs,private_gold", "private_manifest"),
+        "holdout_seal": ("private_manifest,construction_gate", "holdout_seal"),
+        "publication_leak_gate": ("holdout_seal,public_git", "leak_scan_report"),
+        "public_construction_receipt": ("holdout_seal", "public_construction_receipt"),
         "private_inputs": ("private_manifest", "candidate_scenarios"),
         "private_gold": ("private_manifest", "evaluator_gold"),
         "planner": ("scenario", "plan"),
@@ -187,6 +195,7 @@ def authority_graph() -> dict:
         "evaluation_ledger": ("seal,candidate_trace", "private_evaluation_ledger"),
         "evaluator": ("candidate_trace,private_gold", "scored_rows"),
         "scorer": ("scored_rows", "aggregate_metrics"),
+        "public_evaluation_receipt": ("aggregate_metrics,evaluation_ledger", "public_evaluation_receipt"),
         "publication_gate": ("aggregate_metrics,private_manifest", "public_receipt"),
     }
     nodes = {}
@@ -200,24 +209,35 @@ def authority_graph() -> dict:
             "gold_access": name in {"authoring_validation", "private_gold",
                                     "evaluator", "scorer"},
         }
-    return {"schema_version": "t26-authority-graph-v1",
+    return {"schema_version": "t26-authority-graph-v2",
             "artifact": "T26_AUTHORITY_GRAPH", "nodes": nodes,
             "external_action_authority": False,
             "candidate_gold_access": False}
 
 
 def production_graph() -> dict:
-    order = ["authoring_validation", "construction_ledger", "private_manifest",
+    order = ["authoring_validation", "historical_exclusion_oracle",
+             "construction_ledger", "private_materialization", "construction_audit",
+             "construction_gate", "contract_leaf_audit", "private_manifest",
+             "holdout_seal", "publication_leak_gate", "public_construction_receipt",
              "private_inputs", "private_gold", "planner", "plan_validator",
              "orchestrator", "executive_router", "capability_dispatcher",
              "capabilities", "handoff_validator", "verification_layer",
              "checkpoint_manager", "replan_controller", "budget_controller",
              "completion_gate", "evaluation_ledger", "evaluator", "scorer",
-             "publication_gate"]
+             "public_evaluation_receipt", "publication_gate"]
     producers = {
-        "authoring_validation": "t26_protocol.lifecycle:validate_blind_cases",
-        "construction_ledger": "t26_protocol.lifecycle:construct_real",
-        "private_manifest": "t26_protocol.lifecycle:construct_real",
+        "authoring_validation": "t26_protocol.construction:static_blind_design_audit",
+        "historical_exclusion_oracle": "t26_protocol.exclusion:audit_nine_dimensions",
+        "construction_ledger": "t26_protocol.construction:T26ConstructionLedger.create_exclusive",
+        "private_materialization": "t26_protocol.construction:construct_real",
+        "construction_audit": "t26_protocol.construction:run_construction_audit",
+        "construction_gate": "t26_protocol.construction:run_construction_gate",
+        "contract_leaf_audit": "t26_protocol.construction:contract_leaf_audit",
+        "private_manifest": "t26_protocol.construction:build_private_manifest",
+        "holdout_seal": "t26_protocol.construction:seal_holdout",
+        "publication_leak_gate": "t26_protocol.construction:run_publication_leak_gate",
+        "public_construction_receipt": "t26_protocol.construction:build_public_receipt",
         "private_inputs": "t26_protocol.lifecycle:T26PrivateStore.read",
         "private_gold": "t26_protocol.lifecycle:T26PrivateStore.read",
         "planner": "sciencemath.planning.pipeline:Planner.handle",
@@ -235,12 +255,23 @@ def production_graph() -> dict:
         "evaluation_ledger": "t26_protocol.lifecycle:evaluate_once",
         "evaluator": "t26_protocol.scorer:score_case",
         "scorer": "t26_protocol.scorer:score_suite",
-        "publication_gate": "t26_protocol.lifecycle:public_receipt",
+        "public_evaluation_receipt": "t26_protocol.lifecycle:public_receipt",
+        "publication_gate": "t26_protocol.construction:run_publication_leak_gate",
     }
     edges = {
         "authoring_validation": [],
-        "construction_ledger": ["authoring_validation"],
-        "private_manifest": ["construction_ledger"],
+        "historical_exclusion_oracle": ["authoring_validation"],
+        "construction_ledger": ["authoring_validation",
+                                "historical_exclusion_oracle"],
+        "private_materialization": ["construction_ledger"],
+        "construction_audit": ["private_materialization",
+                               "historical_exclusion_oracle"],
+        "construction_gate": ["construction_audit"],
+        "contract_leaf_audit": ["construction_audit"],
+        "private_manifest": ["construction_gate", "contract_leaf_audit"],
+        "holdout_seal": ["private_manifest"],
+        "publication_leak_gate": ["holdout_seal"],
+        "public_construction_receipt": ["publication_leak_gate"],
         "private_inputs": ["private_manifest"],
         "private_gold": ["private_manifest"],
         "planner": ["private_inputs"],
@@ -255,25 +286,32 @@ def production_graph() -> dict:
         "replan_controller": ["checkpoint_manager"],
         "budget_controller": ["replan_controller"],
         "completion_gate": ["budget_controller"],
-        "evaluation_ledger": ["completion_gate", "private_manifest"],
+        "evaluation_ledger": ["completion_gate", "holdout_seal",
+                              "publication_leak_gate"],
         "evaluator": ["evaluation_ledger", "private_gold"],
         "scorer": ["evaluator"],
+        "public_evaluation_receipt": ["scorer"],
         "publication_gate": ["scorer", "private_manifest"],
     }
+    private_evaluation = {"construction_ledger", "private_manifest",
+                          "construction_audit", "construction_gate",
+                          "contract_leaf_audit", "holdout_seal",
+                          "evaluation_ledger", "evaluator", "scorer",
+                          "private_materialization"}
     nodes = {}
     for name in order:
         classification = ("PRIVATE_BLIND" if name in {"private_inputs", "private_gold"}
-                          else "PRIVATE_EVALUATION" if name in {"construction_ledger", "private_manifest",
-                                                           "evaluation_ledger", "evaluator", "scorer"}
+                          else "PRIVATE_EVALUATION" if name in private_evaluation
                           else "PUBLIC_SAFE")
         nodes[name] = {"producer": producers[name], "inputs": edges[name],
                        "classification": classification,
                        "gold_access": name in {"authoring_validation", "private_gold",
                                                "evaluator", "scorer"}}
-    return {"schema_version": "t26-production-graph-v1",
+    return {"schema_version": "t26-production-graph-v2",
             "artifact": "T26_PRODUCTION_GRAPH", "nodes": nodes,
             "missing_producers": 0, "dangling_edges": 0,
             "production_stubs": 0, "unclassified_artifacts": 0}
+
 
 
 def storage_policy() -> dict:

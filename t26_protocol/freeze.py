@@ -7,13 +7,15 @@ from pathlib import Path
 
 from t21_protocol.util import sha256_json
 
-SCHEMA = "t26-preconstruction-freeze-v1"
+SCHEMA = "t26-preconstruction-freeze-v2"
 EXCLUDED = frozenset({
     "evaluations/t26/preconstruction_freeze.json",
     "evaluations/t26/protocol_doctor_report.json",
     "evaluations/t26/T26_PRECONSTRUCTION_VERDICT.json",
     "evaluations/t26/fresh_worktree_reproduction.json",
+    "evaluations/t26/construction_rehearsal_report.json",
 })
+V1_FREEZE_SHA256 = ("ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6")
 
 
 def components(root: Path) -> dict[str, str]:
@@ -71,6 +73,10 @@ def build_freeze(root: Path) -> dict:
         "candidate_tree": candidate["candidate_tree"],
         "runtime_root": candidate["runtime_root"],
         "component_root": component_root,
+        "superseded_freeze_v1_sha256": V1_FREEZE_SHA256,
+        "construction_lifecycle_frozen": (
+            "LEDGER_CREATED->MATERIALIZED->AUDITED->GATE_PASS->"
+            "MANIFESTED->SEALED with terminal FAILED"),
         "real_blind_construction_authorized": False,
         "external_action_authority": False,
     }

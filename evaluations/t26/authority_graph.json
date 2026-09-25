@@ -91,6 +91,34 @@
         "terminal"
       ]
     },
+    "construction_audit": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "private_materialization",
+        "exclusion_audit"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "construction_audit"
+      ]
+    },
+    "construction_gate": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "construction_audit",
+        "contract_leaf_audit"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "construction_gate"
+      ]
+    },
     "construction_ledger": {
       "gold_access": false,
       "may_delegate": [],
@@ -102,6 +130,19 @@
       "may_request_external_action": false,
       "may_write": [
         "private_ledger"
+      ]
+    },
+    "contract_leaf_audit": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "construction_requirements"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "contract_leaf_audit"
       ]
     },
     "evaluation_ledger": {
@@ -157,6 +198,33 @@
       "may_request_external_action": false,
       "may_write": [
         "validated_handoff"
+      ]
+    },
+    "historical_exclusion_oracle": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "historical_exclusion_hashes"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "exclusion_audit"
+      ]
+    },
+    "holdout_seal": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "private_manifest",
+        "construction_gate"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "holdout_seal"
       ]
     },
     "orchestrator": {
@@ -245,6 +313,46 @@
         "private_manifest"
       ]
     },
+    "private_materialization": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "construction_ledger"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "private_materialization"
+      ]
+    },
+    "public_construction_receipt": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "holdout_seal"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "public_construction_receipt"
+      ]
+    },
+    "public_evaluation_receipt": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "aggregate_metrics",
+        "evaluation_ledger"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "public_evaluation_receipt"
+      ]
+    },
     "publication_gate": {
       "gold_access": false,
       "may_delegate": [],
@@ -257,6 +365,20 @@
       "may_request_external_action": false,
       "may_write": [
         "public_receipt"
+      ]
+    },
+    "publication_leak_gate": {
+      "gold_access": false,
+      "may_delegate": [],
+      "may_execute": [],
+      "may_perform_external_action": false,
+      "may_read": [
+        "holdout_seal",
+        "public_git"
+      ],
+      "may_request_external_action": false,
+      "may_write": [
+        "leak_scan_report"
       ]
     },
     "replan_controller": {
@@ -301,5 +423,5 @@
       ]
     }
   },
-  "schema_version": "t26-authority-graph-v1"
+  "schema_version": "t26-authority-graph-v2"
 }

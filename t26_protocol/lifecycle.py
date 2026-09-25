@@ -9,6 +9,8 @@ from pathlib import Path
 from typing import Any, Callable
 
 from sciencemath.integrated.runner import IntegratedRunner, validate_plan
+from t21_protocol.util import sha256_json
+
 from .contract import FAMILIES
 from .scorer import score_suite
 
@@ -43,6 +45,14 @@ class T26PrivateStore:
             raise ValueError("wrong private store identity")
         self.public_repo = repo
         self.namespace = self.root / "t26"
+        self._commitments: dict[str, dict] = {}
+        self._index_path = self.root / "commitments.json"
+        if self._index_path.exists():
+            index = json.loads(self._index_path.read_text(encoding="utf-8"))
+            if index.get("store_identity") != STORE_ID or index.get("namespace") != "t26":
+                raise ValueError("T26 private store identity mismatch")
+            self._commitments = {entry["logical_id"]: entry
+                                 for entry in index["commitments"]}
 
     def path(self, relative: str) -> Path:
         if not isinstance(relative, str) or not relative or "\\" in relative:
@@ -56,6 +66,9 @@ class T26PrivateStore:
         self.path(relative)
         return f"{SCHEME}{STORE_ID}/t26/{relative}"
 
+    def has(self, relative: str) -> bool:
+        return self.path(relative).is_file()
+
     def write_once(self, relative: str, value: Any) -> dict:
         path = self.path(relative)
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -64,35 +77,126 @@ class T26PrivateStore:
             handle.write(data)
             handle.flush()
             os.fsync(handle.fileno())
-        return {"locator": self.locator(relative), "sha256": _sha(data),
-                "bytes": len(data), "classification": "PRIVATE_BLIND"}
+        meta = {"logical_id": relative, "locator": self.locator(relative),
+                "sha256": _sha(data), "bytes": len(data),
+                "classification": "PRIVATE_BLIND"}
+        self._commit(relative, meta)
+        return meta
+
+    def replace(self, relative: str, value: Any) -> dict:
+        """Replace an existing store artifact and refresh its commitment."""
+        path = self.path(relative)
+        data = _bytes(value)
+        with path.open("wb") as handle:
+            handle.write(data)
+            handle.flush()
+            os.fsync(handle.fileno())
+        meta = dict(self._commitments.get(relative, {}))
+        meta.update({"logical_id": relative, "locator": self.locator(relative),
+                     "sha256": _sha(data), "bytes": len(data)})
+        self._commit(relative, meta)
+        return meta
+
+    def _commit(self, relative: str, meta: dict) -> None:
+        self._commitments[relative] = meta
+        self._index_path.parent.mkdir(parents=True, exist_ok=True)
+        self._index_path.write_text(json.dumps(
+            {"schema_version": "t26-private-store-index-v1",
+             "store_identity": STORE_ID, "namespace": "t26",
+             "commitments": [self._commitments[key]
+                             for key in sorted(self._commitments)]},
+            indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+            encoding="utf-8", newline="\n")
 
     def read(self, relative: str) -> Any:
         return json.loads(self.path(relative).read_text(encoding="utf-8"))
+
+    def read_bytes(self, relative: str) -> bytes:
+        return self.path(relative).read_bytes()
+
+    def commitment(self, relative: str) -> dict:
+        if relative not in self._commitments:
+            raise ValueError(f"T26 store commitment absent: {relative}")
+        return dict(self._commitments[relative])
+
+    def commitments(self) -> list[dict]:
+        return [dict(self._commitments[key]) for key in sorted(self._commitments)]
+
+    def artifact_root(self, exclude: frozenset[str] = frozenset()) -> str:
+        entries = [self._commitments[key] for key in sorted(self._commitments)
+                   if key not in exclude]
+        return sha256_json(entries)
+
+    def verify(self) -> dict:
+        """Full independent verification of every private commitment."""
+        missing: list[str] = []
+        hash_mismatches: list[str] = []
+        classification_mismatches: list[str] = []
+        root_mismatches: list[str] = []
+        valid_classes = {"PRIVATE_BLIND", "PRIVATE_EVALUATION", "REAL_BLIND_INPUT",
+                         "REAL_BLIND_GOLD"}
+        for logical_id, entry in sorted(self._commitments.items()):
+            path = self.path(logical_id)
+            if not path.is_file():
+                missing.append(logical_id)
+                continue
+            if _sha(path.read_bytes()) != entry.get("sha256"):
+                hash_mismatches.append(logical_id)
+            if entry.get("classification") not in valid_classes:
+                classification_mismatches.append(logical_id)
+        recomputed_root = self.artifact_root()
+        if self._commitments and self._index_path.exists():
+            stored_root = json.loads(
+                self._index_path.read_text(encoding="utf-8")).get("artifact_root")
+            if stored_root is not None and stored_root != recomputed_root:
+                root_mismatches.append("commitments.artifact_root")
+        if missing or hash_mismatches or classification_mismatches or root_mismatches:
+            raise ValueError("T26 private store verification failed: "
+                             f"missing={missing} hash_mismatches={hash_mismatches} "
+                             f"classification_mismatches={classification_mismatches} "
+                             f"root_mismatches={root_mismatches}")
+        return {"status": "PASS", "store_identity": STORE_ID, "namespace": "t26",
+                "artifact_count": len(self._commitments),
+                "missing_artifacts": 0, "hash_mismatches": 0,
+                "classification_mismatches": 0, "root_mismatches": 0,
+                "artifact_root": recomputed_root}
 
 
 def validate_blind_cases(cases: list[dict], gold: list[dict],
                          exclusions: dict[str, Any],
                          historical_exclusions: dict[str, Any]) -> dict:
-    """Validate future authored private material without exposing it publicly."""
-    required_historical = {"case_ids", "exact_queries", "exact_answers",
-                           "t25_private_overlap_attested"}
+    """Validate future authored private material without exposing it publicly.
+
+    Uses the full nine-dimensional exclusion model. A bare Boolean T25
+    attestation is no longer accepted: the T25 private overlap must be a
+    hash-bound oracle result verified by ``t26_protocol.oracle``.
+    """
+    from .exclusion import DIMENSIONS
+
     if (not isinstance(historical_exclusions, dict) or
-            set(historical_exclusions) != required_historical or
-            historical_exclusions["t25_private_overlap_attested"] is not True or
-            any(not isinstance(historical_exclusions[key], list)
-                for key in required_historical - {"t25_private_overlap_attested"})):
-        raise ValueError("sealed T23/T24/T25 exclusion oracle required")
+            set(historical_exclusions) != set(DIMENSIONS)):
+        raise ValueError("full nine-dimensional historical exclusion oracle required")
+    oracle_result = exclusions.get("t25_private_overlap_oracle_result") if isinstance(
+        exclusions, dict) else None
+    if oracle_result is None:
+        raise ValueError("hash-bound T25 private overlap oracle result required "
+                         "(bare boolean attestation is not sufficient)")
+    from .oracle import verify_oracle_result
+
+    verify_oracle_result(oracle_result)
+    for dimension in DIMENSIONS:
+        values = historical_exclusions[dimension]
+        if not isinstance(values, list):
+            raise ValueError(f"historical exclusion dimension invalid: {dimension}")
     if len(cases) != 512 or len(gold) != 512:
         raise ValueError("T26 blind design requires exactly 512 scenarios")
     counts = Counter()
     ids = set()
-    forbidden_ids = set(exclusions["case_id_sha256"])
-    forbidden_goals = set(exclusions["goal_sha256"])
-    forbidden_queries = set(exclusions["router_query_sha256"])
-    historical_ids = set(historical_exclusions["case_ids"])
-    historical_queries = set(historical_exclusions["exact_queries"])
-    historical_answers = set(historical_exclusions["exact_answers"])
+    forbidden_ids = set(exclusions.get("case_id_sha256", []))
+    forbidden_goals = set(exclusions.get("goal_sha256", []))
+    forbidden_queries = set(exclusions.get("router_query_sha256", []))
+    historical_sets = {dimension: set(historical_exclusions[dimension])
+                       for dimension in DIMENSIONS}
     for scenario, key in zip(cases, gold):
         if set(scenario) != {"scenario_id", "plan", "classification", "family"}:
             raise ValueError("private scenario schema mismatch")
@@ -102,17 +206,19 @@ def validate_blind_cases(cases: list[dict], gold: list[dict],
         candidate_case = {k: v for k, v in scenario.items() if k != "family"}
         validate_plan(candidate_case["plan"])
         sid = candidate_case["scenario_id"]
-        if sid in ids or _sha(sid.encode()) in forbidden_ids | historical_ids:
-            raise ValueError("duplicate or qualification-excluded case id")
+        if sid in ids or _sha(sid.encode()) in (forbidden_ids |
+                                                historical_sets["case_ids"]):
+            raise ValueError("duplicate or excluded case id")
         if _sha(candidate_case["plan"]["goal"].encode()) in forbidden_goals:
             raise ValueError("qualification-excluded goal")
-        if any(_sha(step["router_input"]["query"].encode()) in forbidden_queries | historical_queries
+        if any(_sha(step["router_input"]["query"].encode()) in
+               (forbidden_queries | historical_sets["exact_queries"])
                for step in candidate_case["plan"]["steps"]):
             raise ValueError("qualification-excluded query")
         if key.get("scenario_id") != sid:
             raise ValueError("gold identity mismatch")
         answer = key.get("expected_answer")
-        if isinstance(answer, str) and _sha(answer.encode()) in historical_answers:
+        if isinstance(answer, str) and _sha(answer.encode()) in historical_sets["exact_answers"]:
             raise ValueError("historically excluded answer")
         ids.add(sid)
         counts[family] += 1
@@ -124,46 +230,30 @@ def validate_blind_cases(cases: list[dict], gold: list[dict],
 
 def construct_real(token: str, store: T26PrivateStore,
                    cases: list[dict], gold: list[dict], exclusions: dict,
-                   historical_exclusions: dict) -> dict:
-    """Future authorized one-shot private materialization. Never called in preconstruction."""
-    require_token(token, "construction")
-    # Carry every T25 public hash-only exclusion source forward without
-    # opening any historical blind row. The secure private oracle must add
-    # T25's private overlap attestation at construction time.
-    from t25_protocol.exclusions import load_exclusion_sources
+                   historical_exclusions: dict, *,
+                   root: Path | None = None,
+                   fixtures: list[dict] | None = None,
+                   oracle_result: dict | None = None,
+                   provenance: dict | None = None,
+                   inject_failure_after_ledger: bool = False) -> dict:
+    """Future authorized one-shot private materialization. Never called in preconstruction.
 
-    registry = json.loads((store.public_repo / "evaluations/t25/t25_exclusion_sources.json")
-                          .read_text(encoding="utf-8"))
-    public_forbidden = load_exclusion_sources(store.public_repo, registry)
-    combined = dict(historical_exclusions)
-    for field in ("case_ids", "exact_queries", "exact_answers"):
-        combined[field] = sorted(set(historical_exclusions.get(field, [])) |
-                                 public_forbidden[field])
-    audit = validate_blind_cases(cases, gold, exclusions, combined)
-    ledger = store.path("construction/ledger.json")
-    ledger.parent.mkdir(parents=True, exist_ok=True)
-    with ledger.open("xb") as handle:
-        handle.write(_bytes({"phase": "LEDGER_CREATED", "attempt": 1}))
-        handle.flush()
-        os.fsync(handle.fileno())
-    inputs = store.write_once("construction/inputs.json", cases)
-    gold_meta = store.write_once("construction/gold.json", gold)
-    manifest = {"schema_version": "t26-private-manifest-v1",
-                "inputs": inputs, "gold": gold_meta, "audit": audit}
-    manifest_meta = store.write_once("construction/manifest.json", manifest)
-    seal = {"schema_version": "t26-holdout-seal-v1",
-            "manifest_sha256": manifest_meta["sha256"],
-            "inputs_sha256": inputs["sha256"],
-            "gold_sha256": gold_meta["sha256"],
-            "state": "SEALED"}
-    seal_meta = store.write_once("construction/seal.json", seal)
-    # The ledger is append-only after its one exclusive creation.
-    with ledger.open("ab") as handle:
-        handle.write(_bytes({"phase": "SEALED", "seal_sha256": seal_meta["sha256"]}))
-        handle.flush()
-        os.fsync(handle.fileno())
-    return {"status": "SEALED", "case_count": 512,
-            "seal_sha256": seal_meta["sha256"], "private_manifest_sha256": manifest_meta["sha256"]}
+    Delegates to the production-grade lifecycle in ``t26_protocol.construction``:
+    the exclusive ledger binds the complete experiment identity, the event chain
+    is hash-chained, and the one-shot state machine is
+    LEDGER_CREATED -> MATERIALIZED -> AUDITED -> GATE_PASS -> MANIFESTED -> SEALED
+    with terminal FAILED semantics.
+    """
+    require_token(token, "construction")
+    if root is None:
+        root = Path(__file__).resolve().parents[1]
+    from .construction import construct_real as production_construct_real
+
+    return production_construct_real(
+        root, store, token=token, cases=cases, gold=gold,
+        fixtures=fixtures, oracle_result=oracle_result,
+        provenance=provenance,
+        inject_failure_after_ledger=inject_failure_after_ledger)
 
 
 def evaluate_once(token: str, store: T26PrivateStore,

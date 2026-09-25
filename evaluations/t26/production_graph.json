@@ -7,7 +7,7 @@
       "classification": "PUBLIC_SAFE",
       "gold_access": true,
       "inputs": [],
-      "producer": "t26_protocol.lifecycle:validate_blind_cases"
+      "producer": "t26_protocol.construction:static_blind_design_audit"
     },
     "budget_controller": {
       "classification": "PUBLIC_SAFE",
@@ -49,20 +49,47 @@
       ],
       "producer": "sciencemath.integrated.runner:IntegratedRunner.run"
     },
+    "construction_audit": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": false,
+      "inputs": [
+        "private_materialization",
+        "historical_exclusion_oracle"
+      ],
+      "producer": "t26_protocol.construction:run_construction_audit"
+    },
+    "construction_gate": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": false,
+      "inputs": [
+        "construction_audit"
+      ],
+      "producer": "t26_protocol.construction:run_construction_gate"
+    },
     "construction_ledger": {
       "classification": "PRIVATE_EVALUATION",
       "gold_access": false,
       "inputs": [
-        "authoring_validation"
+        "authoring_validation",
+        "historical_exclusion_oracle"
       ],
-      "producer": "t26_protocol.lifecycle:construct_real"
+      "producer": "t26_protocol.construction:T26ConstructionLedger.create_exclusive"
+    },
+    "contract_leaf_audit": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": false,
+      "inputs": [
+        "construction_audit"
+      ],
+      "producer": "t26_protocol.construction:contract_leaf_audit"
     },
     "evaluation_ledger": {
       "classification": "PRIVATE_EVALUATION",
       "gold_access": false,
       "inputs": [
         "completion_gate",
-        "private_manifest"
+        "holdout_seal",
+        "publication_leak_gate"
       ],
       "producer": "t26_protocol.lifecycle:evaluate_once"
     },
@@ -90,6 +117,22 @@
         "capabilities"
       ],
       "producer": "sciencemath.integrated.runner:IntegratedRunner._handoff_valid"
+    },
+    "historical_exclusion_oracle": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "authoring_validation"
+      ],
+      "producer": "t26_protocol.exclusion:audit_nine_dimensions"
+    },
+    "holdout_seal": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": false,
+      "inputs": [
+        "private_manifest"
+      ],
+      "producer": "t26_protocol.construction:seal_holdout"
     },
     "orchestrator": {
       "classification": "PUBLIC_SAFE",
@@ -135,9 +178,34 @@
       "classification": "PRIVATE_EVALUATION",
       "gold_access": false,
       "inputs": [
+        "construction_gate",
+        "contract_leaf_audit"
+      ],
+      "producer": "t26_protocol.construction:build_private_manifest"
+    },
+    "private_materialization": {
+      "classification": "PRIVATE_EVALUATION",
+      "gold_access": false,
+      "inputs": [
         "construction_ledger"
       ],
-      "producer": "t26_protocol.lifecycle:construct_real"
+      "producer": "t26_protocol.construction:construct_real"
+    },
+    "public_construction_receipt": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "publication_leak_gate"
+      ],
+      "producer": "t26_protocol.construction:build_public_receipt"
+    },
+    "public_evaluation_receipt": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "scorer"
+      ],
+      "producer": "t26_protocol.lifecycle:public_receipt"
     },
     "publication_gate": {
       "classification": "PUBLIC_SAFE",
@@ -146,7 +214,15 @@
         "scorer",
         "private_manifest"
       ],
-      "producer": "t26_protocol.lifecycle:public_receipt"
+      "producer": "t26_protocol.construction:run_publication_leak_gate"
+    },
+    "publication_leak_gate": {
+      "classification": "PUBLIC_SAFE",
+      "gold_access": false,
+      "inputs": [
+        "holdout_seal"
+      ],
+      "producer": "t26_protocol.construction:run_publication_leak_gate"
     },
     "replan_controller": {
       "classification": "PUBLIC_SAFE",
@@ -174,6 +250,6 @@
     }
   },
   "production_stubs": 0,
-  "schema_version": "t26-production-graph-v1",
+  "schema_version": "t26-production-graph-v2",
   "unclassified_artifacts": 0
 }

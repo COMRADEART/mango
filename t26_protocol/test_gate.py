@@ -62,9 +62,12 @@ def run_test_gate(root: Path) -> dict:
     root = Path(root).resolve()
     with tempfile.TemporaryDirectory(prefix="t26-full-pytest-") as tmp:
         junit = Path(tmp) / "results.xml"
+        basetemp = Path(tmp) / "basetemp"
+        basetemp.mkdir()
         result = subprocess.run([sys.executable, "-m", "pytest", "-q",
                                  "-p", "no:cacheprovider", "--disable-warnings",
-                                 "--tb=no", f"--junitxml={junit}"],
+                                 "--tb=no", f"--basetemp={basetemp}",
+                                 f"--junitxml={junit}"],
                                 cwd=root, capture_output=True, text=True,
                                 timeout=1800)
         if not junit.is_file():
