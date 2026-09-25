@@ -3,7 +3,7 @@
   "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
   "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
   "component_count": 243,
-  "component_root": "093d64e4d5d81507ee1b4d5332d72ace6d720014e2bcb70d011da107f6fff5a3",
+  "component_root": "04364c0e12892aa63d08b1ddc230e747a66bad2de8b0f6cdcb3e6861eb865910",
   "components": [
     {
       "byte_size": 1735,
@@ -1446,10 +1446,10 @@
       "sha256": "c0185f150c8d52d0c3b451a9e7a076de82cd48c3cd0a3e36ab309a28e9aefa15"
     },
     {
-      "byte_size": 5309,
+      "byte_size": 5373,
       "path": "t26_protocol/test_gate.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "6e73e50a1f24fa46ddae5430ab81f310904db409fc279aa794e88f4945799db5"
+      "sha256": "6564b3a43b30b7a1358204887c3a9017f70edc7bf9957374675e9ea1c6e96e77"
     },
     {
       "byte_size": 9676,
@@ -1467,8 +1467,8 @@
   "construction_lifecycle_frozen": "LEDGER_CREATED->MATERIALIZED->AUDITED->GATE_PASS->MANIFESTED->SEALED with terminal FAILED",
   "experiment": "t26",
   "external_action_authority": false,
-  "freeze_root": "14d4da9d5384185c9b18c4b3cc604be92d01cef4b87b03c865c354775634a081",
-  "freeze_sha256": "658b2bf0e2f021bb25043764f64f9f1d63d37dc5c6c6e4bb0a8aee0ffd329b6e",
+  "freeze_root": "31509d1bedd1539b4f30f5ef4cffb37e0804c7e876cec46c3382d1fe709721d4",
+  "freeze_sha256": "fc8143fba9ffef3fdddbb303fb7063d18a04501a50fe8c8ac5d2d31254e457ed",
   "real_blind_construction_authorized": false,
   "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
   "schema_version": "t26-preconstruction-freeze-v2",
