@@ -311,6 +311,13 @@ def test_full_construction_lifecycle_rehearsal(tmp_path):
             result["contract_leaf_audit"]["leaf_root"])
     assert len(manifest["construction_ledger_identity"]["ledger_root"]) == 64
     assert result["seal"]["state"] == "SEALED"
+    assert len(result["seal"]["pre_seal_ledger_root"]) == 64
+    assert (result["seal"]["authority_audit_root"] ==
+            manifest["authority_audit"]["audit_root"])
+    assert len(result["seal"]["authority_audit_root"]) == 64
+    assert (result["seal"]["gold_firewall_audit_root"] ==
+            manifest["gold_firewall_audit"]["audit_root"])
+    assert len(result["seal"]["gold_firewall_audit_root"]) == 64
     assert result["seal"]["blind_content_included"] is False
     assert result["receipt"]["blind_content_included"] is False
     assert result["receipt"]["state"] == "SEALED"

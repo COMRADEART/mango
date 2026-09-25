@@ -60,9 +60,9 @@
     },
     "FREEZE": {
       "component_count": 243,
-      "component_root": "74ed42f998179f4b147ea99518dbd0fd78796d10b27c3085c03411d44e951406",
-      "freeze_root": "c3fd1cd50d7b748f468527f79857ffad87f3b2cda9d056f38a5ef5d50d2f84c9",
-      "freeze_sha256": "9d3cf5c656be48750bd80d4c53c3ea5db886ffcfc79d335cc05b5cdeeb72136a",
+      "component_root": "015a45720ffcd70867006a84af9a2908386bfc1988a2db7d1ea1b410fcefb430",
+      "freeze_root": "20191c43dbdf6d567f54fc51af241dcc37e51ab3a8c2bf1e88c81c448623936e",
+      "freeze_sha256": "98ae5124de494e99fb1398633f19131e1e5af976cbeb672249c57c83d3d9ae35",
       "mismatches": [],
       "status": "PASS"
     },

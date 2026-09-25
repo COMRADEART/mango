@@ -38,8 +38,8 @@ MATERIAL_MODE = "REAL_BLIND"
 ATTEMPT = 1
 
 LEDGER_SCHEMA = "t26-construction-ledger-v2"
-MANIFEST_SCHEMA = "t26-private-manifest-v3"
-SEAL_SCHEMA = "t26-holdout-seal-v2"
+MANIFEST_SCHEMA = "t26-private-manifest-v4"
+SEAL_SCHEMA = "t26-holdout-seal-v3"
 RECEIPT_SCHEMA = "t26-public-construction-receipt-v2"
 COMMITMENT_SCHEMA = "t26-public-construction-commitment-v2"
 CONSTRUCTION_AUDIT_SCHEMA = "t26-real-construction-audit-v1"
@@ -984,11 +984,15 @@ def build_private_manifest(store: Any, *, bindings: dict[str, Any],
             "content_included": False},
         "uniqueness_audit": {"status": audit["components"]["uniqueness"]["status"],
                              "duplicate_total": audit["components"]["uniqueness"]["duplicate_total"]},
-        "authority_audit": {"status": audit["components"]["authority"]["status"],
-                            "violation_count": audit["components"]["authority"]["violation_count"]},
-        "gold_firewall_audit": {"status": audit["components"]["gold_firewall"]["status"],
-                                "gold_only_field_count":
-                                audit["components"]["gold_firewall"]["gold_only_field_count"]},
+        "authority_audit": {
+            "status": audit["components"]["authority"]["status"],
+            "violation_count": audit["components"]["authority"]["violation_count"],
+            "audit_root": sha256_json(audit["components"]["authority"])},
+        "gold_firewall_audit": {
+            "status": audit["components"]["gold_firewall"]["status"],
+            "gold_only_field_count":
+                audit["components"]["gold_firewall"]["gold_only_field_count"],
+            "audit_root": sha256_json(audit["components"]["gold_firewall"])},
         "construction_contract_audit": {
             "status": leaf_audit["status"],
             "total_leaves": leaf_audit["total_leaves"],
@@ -1054,6 +1058,12 @@ def seal_holdout(store: Any, manifest: dict[str, Any],
     recomputed = recompute_manifest_roots(manifest)
     if any(recomputed[key] != manifest[key] for key in recomputed):
         raise ValueError("T26 seal manifest root mismatch")
+    audit = store.read("construction/audit.json")
+    if (manifest["authority_audit"].get("audit_root") !=
+            sha256_json(audit["components"]["authority"]) or
+            manifest["gold_firewall_audit"].get("audit_root") !=
+            sha256_json(audit["components"]["gold_firewall"])):
+        raise ValueError("T26 seal component-audit root mismatch")
     seal = {
         "schema_version": SEAL_SCHEMA, "artifact": "T26_HOLDOUT_SEALED",
         "experiment": EXPERIMENT, "state": "SEALED",
@@ -1072,6 +1082,7 @@ def seal_holdout(store: Any, manifest: dict[str, Any],
         "private_storage_policy_sha256":
             manifest["bindings"]["private_storage_policy_sha256"],
         "construction_attempt": ledger_document["attempt"],
+        "pre_seal_ledger_root": ledger_document["final_event_hash"],
         "pre_seal_ledger_semantic_sha256":
             ledger_semantic_digest(ledger_document),
         "private_manifest_sha256": manifest_sha256,
@@ -1079,8 +1090,8 @@ def seal_holdout(store: Any, manifest: dict[str, Any],
         "private_blind_root": manifest["private_blind_root"],
         "exclusion_audit_root": manifest["construction_audit_root"],
         "t25_oracle_result_root": manifest["t25_private_overlap_oracle_result"]["result_sha256"],
-        "authority_audit_root": manifest["authority_audit"]["status"],
-        "gold_firewall_audit_root": manifest["gold_firewall_audit"]["status"],
+        "authority_audit_root": manifest["authority_audit"]["audit_root"],
+        "gold_firewall_audit_root": manifest["gold_firewall_audit"]["audit_root"],
         "contract_leaf_root": leaf_audit["leaf_root"],
         "construction_gate_root": manifest["construction_gate_result"]["gate_root"],
         "blind_content_included": False,
