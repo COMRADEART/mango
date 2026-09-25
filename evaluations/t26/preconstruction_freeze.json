@@ -3,7 +3,7 @@
   "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
   "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
   "component_count": 243,
-  "component_root": "3a98e371424328d98814f0dd8b308e969e71f7864afa900f4c42e89e21aada3f",
+  "component_root": "49946001e812c1c5db364edb5fc6096790c21e4b75b71a2046ed975b753c0577",
   "components": [
     {
       "byte_size": 1735,
@@ -183,13 +183,13 @@
       "byte_size": 4350,
       "path": "evaluations/t26/test_gate_report.json",
       "role": "T26_PUBLIC_ARTIFACT",
-      "sha256": "df8249b8617d13b86f0a99d377a806fa75b215bd1af084d5a552b1ed9a01da6b"
+      "sha256": "2715893d9af9e6f015a46b8753019dc66bf30913e77888fe840c4b461c88475c"
     },
     {
-      "byte_size": 23093,
+      "byte_size": 24625,
       "path": "scripts/t26_preconstruction.py",
       "role": "T26_ENTRYPOINT",
-      "sha256": "16816ebc833cbbf6142fc42625a7bdce2cb348e82832ca780451bf1a43260790"
+      "sha256": "a53bf9f6597d56e05b14d6c3f375b0fc7d40f83b9827c1567643ae5440059a1b"
     },
     {
       "byte_size": 1434,
@@ -1452,10 +1452,10 @@
       "sha256": "6564b3a43b30b7a1358204887c3a9017f70edc7bf9957374675e9ea1c6e96e77"
     },
     {
-      "byte_size": 10216,
+      "byte_size": 11911,
       "path": "tests/test_t26_construction_infrastructure.py",
       "role": "T26_TEST_GATE",
-      "sha256": "7f604dffd6e58feeeb883a27597871a9a8732e61bc1e9a7116c77aaeb05d6624"
+      "sha256": "db98b250c37e8b09f49274ac4506560859d7735194db678f0a55e7f3e83a191f"
     },
     {
       "byte_size": 5311,
@@ -1467,8 +1467,8 @@
   "construction_lifecycle_frozen": "LEDGER_CREATED->MATERIALIZED->AUDITED->GATE_PASS->MANIFESTED->SEALED with terminal FAILED",
   "experiment": "t26",
   "external_action_authority": false,
-  "freeze_root": "7b6971616a9e87385dd00d085f4068f0c2232b1bbf115d3f6cf035f7f1ed241b",
-  "freeze_sha256": "3c9dcf7cc6ea035ed74098e31635582e5e0ad0d5cb520867b4b787224f77c6c1",
+  "freeze_root": "515d7eb433c7d2e376c26a0f48856bb5678646d21541851030ff370ebef8f34b",
+  "freeze_sha256": "457521caf7bea45eee59f11917a85a39410d9ef50f2033a03d3067d8ac3cb9bb",
   "real_blind_construction_authorized": false,
   "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
   "schema_version": "t26-preconstruction-freeze-v2",

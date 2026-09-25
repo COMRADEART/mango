@@ -77,6 +77,40 @@ def test_freeze_hashes_repository_bytes_not_checkout_line_endings():
     assert entry["byte_size"] == len(committed)
 
 
+def test_reproduction_view_excludes_only_declared_self_referential_roots():
+    from scripts.t26_preconstruction import (
+        _construction_rehearsal_reproduction_view,
+    )
+
+    report = {
+        "status": "PASS",
+        "runs": [{
+            "status": "SEALED", "commitment_root": "timestamp-bound",
+            "execution_checkout_commit": "commit-a",
+            "execution_checkout_tree": "tree-a", "gate_root": "gate-a",
+            "ledger_semantic_digest": "ledger-a",
+            "manifest_roots": {"construction_semantic_root": "semantic-a",
+                               "private_blind_root": "stable-blind"},
+            "commitment_semantic": {"construction_gate_root": "gate-a",
+                                    "private_manifest_sha256": "manifest-a",
+                                    "scenario_count": 512},
+        }],
+    }
+    changed = json.loads(json.dumps(report))
+    run = changed["runs"][0]
+    run.update({"commitment_root": "timestamp-b", "execution_checkout_commit":
+                "commit-b", "execution_checkout_tree": "tree-b",
+                "gate_root": "gate-b", "ledger_semantic_digest": "ledger-b"})
+    run["manifest_roots"]["construction_semantic_root"] = "semantic-b"
+    run["commitment_semantic"]["construction_gate_root"] = "gate-b"
+    run["commitment_semantic"]["private_manifest_sha256"] = "manifest-b"
+    assert (_construction_rehearsal_reproduction_view(report) ==
+            _construction_rehearsal_reproduction_view(changed))
+    changed["runs"][0]["commitment_semantic"]["scenario_count"] = 511
+    assert (_construction_rehearsal_reproduction_view(report) !=
+            _construction_rehearsal_reproduction_view(changed))
+
+
 def test_nine_dimension_exclusion_model_covers_all_sources():
     historical = build_historical_exclusion_document(ROOT)
     assert len(historical["dimensions"]) == 9

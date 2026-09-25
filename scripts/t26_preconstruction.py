@@ -263,6 +263,10 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
                 "ledger_state": result["ledger"]["state"],
                 "ledger_attempt": result["ledger"]["attempt"],
                 "ledger_event_count": result["ledger"]["event_count"],
+                "execution_checkout_commit":
+                    result["ledger"]["bindings"]["execution_checkout_commit"],
+                "execution_checkout_tree":
+                    result["ledger"]["bindings"]["execution_checkout_tree"],
                 "ledger_semantic_digest": ledger_semantic_digest(result["ledger"]),
                 "audit_root": result["audit"]["audit_root"],
                 "gate_root": result["gate"]["gate_root"],
@@ -296,6 +300,12 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
         "seal_sha256": "VOLATILE_TIMESTAMP_BEARING",
         "commitment_root": "VOLATILE_TIMESTAMP_BEARING",
         "ledger_event_timestamps": "VOLATILE_TIMESTAMP_BEARING",
+        "execution_checkout_commit": "VOLATILE_PUBLICATION_COMMIT_BOUND",
+        "execution_checkout_tree": "VOLATILE_PUBLICATION_COMMIT_BOUND",
+        "ledger_semantic_digest": "VOLATILE_PUBLICATION_COMMIT_BOUND",
+        "construction_gate_root": "VOLATILE_PUBLICATION_COMMIT_BOUND",
+        "private_manifest_sha256": "VOLATILE_PUBLICATION_COMMIT_BOUND",
+        "construction_semantic_root": "VOLATILE_PUBLICATION_COMMIT_BOUND",
     }
     passed = (all(run["status"] == "SEALED" for run in runs)
               and not any(semantic_diffs.values()) and failure["status"] == "PASS")
@@ -311,6 +321,29 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
     if persist:
         _write(OUT / "construction_rehearsal_report.json", report)
     return report
+
+
+def _construction_rehearsal_reproduction_view(value: dict) -> dict:
+    """Remove only timestamp- or publication-commit-bound rehearsal fields.
+
+    A report cannot commit a rehearsal that names the report's own eventual
+    Git commit: publishing the report necessarily creates a new commit.  The
+    listed derived roots therefore change once between the authoring checkout
+    and the exact published checkout.  Their internal validity is enforced by
+    the construction gate, store verification, and the zero-diff comparison
+    between both runs; fresh reproduction compares the remaining semantics.
+    """
+    normalized = json.loads(json.dumps(value))
+    for run in normalized.get("runs", []):
+        for field in ("commitment_root", "execution_checkout_commit",
+                      "execution_checkout_tree", "gate_root",
+                      "ledger_semantic_digest"):
+            run.pop(field, None)
+        run.get("manifest_roots", {}).pop("construction_semantic_root", None)
+        commitment = run.get("commitment_semantic", {})
+        commitment.pop("construction_gate_root", None)
+        commitment.pop("private_manifest_sha256", None)
+    return normalized
 
 
 # T26_SCRIPT_PART_4
@@ -380,21 +413,13 @@ def reproduce() -> dict:
     canonical = lambda value: json.dumps(value, sort_keys=True,
                                          separators=(",", ":"),
                                          ensure_ascii=False)
-    def semantic_report(name: str, value: dict) -> dict:
-        if name != "construction_rehearsal_report.json":
-            return value
-        normalized = json.loads(json.dumps(value))
-        for run in normalized.get("runs", []):
-            # These values bind timestamp-bearing ledger/seal hashes and are
-            # explicitly classified volatile in the report.  The semantic
-            # commitment, audit, gate, manifest roots, receipt view, counts,
-            # and lifecycle states remain comparison-critical.
-            run.pop("commitment_root", None)
-        return normalized
-
     drift = [name for name in expected if
-             canonical(semantic_report(name, expected[name])) !=
-             canonical(semantic_report(name, actual[name]))]
+             canonical(_construction_rehearsal_reproduction_view(expected[name])
+                       if name == "construction_rehearsal_report.json"
+                       else expected[name]) !=
+             canonical(_construction_rehearsal_reproduction_view(actual[name])
+                       if name == "construction_rehearsal_report.json"
+                       else actual[name])]
     frozen = json.loads((OUT / "preconstruction_freeze.json").read_text(encoding="utf-8"))
     freeze_report = verify_freeze(ROOT, frozen)
     doctor = run_doctor(ROOT)

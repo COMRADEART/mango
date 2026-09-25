@@ -60,6 +60,6 @@
   "schema_version": "t26-unrestricted-test-gate-v1",
   "skips": 0,
   "status": "PASS",
-  "total": 3541,
+  "total": 3542,
   "xfails": 0
 }
