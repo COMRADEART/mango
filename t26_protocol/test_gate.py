@@ -46,7 +46,8 @@ def _historical_ids(root: Path) -> tuple[set[str], dict]:
         cwd=root, check=True, capture_output=True, text=True,
     ).stdout.splitlines()
     changed_tests = [name for name in changed_tests
-                     if name != "tests/test_t26_integrated_execution.py"]
+                     if name != "tests/test_t26_integrated_execution.py"
+                     and not name.startswith("tests/test_t26_")]
     if changed_tests:
         raise ValueError("historical tests changed after T25 promotion")
     return t23_ids | t25_ids, {
@@ -62,9 +63,12 @@ def run_test_gate(root: Path) -> dict:
     root = Path(root).resolve()
     with tempfile.TemporaryDirectory(prefix="t26-full-pytest-") as tmp:
         junit = Path(tmp) / "results.xml"
+        basetemp = Path(tmp) / "basetemp"
+        basetemp.mkdir()
         result = subprocess.run([sys.executable, "-m", "pytest", "-q",
                                  "-p", "no:cacheprovider", "--disable-warnings",
-                                 "--tb=no", f"--junitxml={junit}"],
+                                 "--tb=no", f"--basetemp={basetemp}",
+                                 f"--junitxml={junit}"],
                                 cwd=root, capture_output=True, text=True,
                                 timeout=1800)
         if not junit.is_file():

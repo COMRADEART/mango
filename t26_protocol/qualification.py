@@ -10,6 +10,7 @@ from sciencemath.executive.skills import SKILL_IDS
 from sciencemath.integrated.runner import (AUTHORITY, Adapter, IntegratedRunner,
                                            RecoverableError, UnavailableError)
 from .contract import FAMILIES
+from .exclusion import DIMENSIONS, observed_bundle_fingerprints
 from .scorer import score_suite
 
 CAPABILITY_CHAINS = {
@@ -271,3 +272,37 @@ def exclusion_fingerprints(cases: list[dict]) -> dict:
                 _sha(s["router_input"]["query"])
                 for c in cases for s in c["plan"]["steps"]}),
             "permanently_excluded_from_real_t26": True}
+
+
+def construction_rehearsal_fingerprints() -> dict:
+    """Hash-only fingerprints of disposable synthetic construction rehearsals.
+
+    The synthetic rehearsal bundles are deterministic functions of
+    ``t26_protocol.construction.synthetic_private_bundle``; registering their
+    fingerprints permanently excludes them from any future real bundle.
+    """
+    from .construction import synthetic_private_bundle
+
+    documents = []
+    for variant in (0, 1):
+        cases, gold, fixtures = synthetic_private_bundle(variant)
+        observed = observed_bundle_fingerprints(cases, gold, fixtures)
+        documents.append({"variant": variant,
+                          "dimensions": {name: sorted(set(values))
+                                         for name, values in observed.items()}})
+    dimensions: dict[str, dict] = {}
+    for name in DIMENSIONS:
+        merged: list[str] = []
+        for document in documents:
+            merged.extend(document["dimensions"][name])
+        values = sorted(set(merged))
+        dimensions[name] = {"applicable": bool(values), "population": len(values),
+                            "fingerprints": values}
+    return {"schema_version": "t26-construction-rehearsal-fingerprints-v1",
+            "artifact": "T26_CONSTRUCTION_REHEARSAL_EXCLUSION_FINGERPRINTS",
+            "experiment": "t26", "raw_content_included": False,
+            "material": "DISPOSABLE_SYNTHETIC_PRIVATE",
+            "real_blind_rows": 0,
+            "dimensions": dimensions,
+            "permanently_excluded_from_real_t26": True}
+

@@ -280,12 +280,232 @@ def run_doctor(root: Path, *, require_freeze: bool = True) -> dict:
     checks["TOKENS"] = {"status": "PASS" if
         design()["construction_token"] == "T26_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION" and
         design()["evaluation_token"] == "T26_ONE_SHOT_OFFICIAL_EVALUATION" else "FAIL"}
+    checks.update(_construction_readiness_checks(root))
     if require_freeze:
         freeze = _read(root, "evaluations/t26/preconstruction_freeze.json")
         checks["FREEZE"] = verify_freeze(root, freeze)
     status = "PASS" if all(v["status"] == "PASS" for v in checks.values()) else "FAIL"
-    return {"schema_version": "t26-protocol-doctor-v1",
+    return {"schema_version": "t26-protocol-doctor-v2",
             "artifact": "T26_PROTOCOL_DOCTOR_REPORT",
             "status": status, "check_count": len(checks), "checks": checks,
             "verdict": "T26_PRODUCTION_PROTOCOL_DOCTOR_PASS" if status == "PASS"
             else "T26_PRODUCTION_PROTOCOL_DOCTOR_FAIL"}
+
+
+def _construction_readiness_checks(root: Path) -> dict:
+    """Expanded construction-readiness checks (authorization sections 7-32)."""
+    root = Path(root)
+    checks: dict[str, dict] = {}
+    try:
+        from .construction import protocol_hashes as _protocol_hashes
+        from .exclusion import build_historical_exclusion_document
+
+        historical = build_historical_exclusion_document(root)
+        checks["CONSTRUCTION_EXCLUSION_MODEL"] = {
+            "status": "PASS" if len(historical["dimensions"]) == 9
+            and all(entry["population"] >= 0 for entry in
+                    historical["dimensions"].values()) else "FAIL",
+            "dimension_count": len(historical["dimensions"]),
+            "exclusion_root": historical["exclusion_root"]}
+        hashes = _protocol_hashes(root)
+        checks["LEDGER_BINDINGS"] = {
+            "status": "PASS" if len(hashes) == 7 and
+            all(len(value) == 64 for value in hashes.values()) else "FAIL",
+            "binding_count": len(hashes)}
+    except Exception as exc:
+        for name in ("CONSTRUCTION_EXCLUSION_MODEL", "LEDGER_BINDINGS"):
+            if name not in checks:
+                checks[name] = {"status": "FAIL", "error": type(exc).__name__}
+    checks["T25_PRIVATE_ORACLE_INTERFACE"] = _oracle_interface_check(root)
+    checks["CONSTRUCTION_CONTRACT_ENUMERATOR"] = _contract_enumerator_check(root)
+    checks["NEGATIVE_GATE_CONTROLS"] = _negative_controls_check(root)
+    checks["PRIVATE_MANIFEST_AND_SEAL_REHEARSAL"] = _manifest_seal_rehearsal_check(root)
+    checks["POST_LEDGER_FAILURE_SEMANTICS"] = _failure_semantics_check(root)
+    checks["ONE_SHOT_CONTROLS"] = _one_shot_controls_check(root)
+    checks["CONSTRUCTION_LIFECYCLE_REHEARSALS"] = _lifecycle_rehearsal_check(root)
+    checks["PRODUCTION_GRAPH_CONSTRUCTION_NODES"] = _production_graph_nodes_check(root)
+    return checks
+
+
+def _oracle_interface_check(root: Path) -> dict:
+    from .construction import _synthetic_oracle_result, synthetic_private_bundle
+    from .oracle import verify_oracle_result
+
+    cases, gold, fixtures = synthetic_private_bundle(0)
+    result = _synthetic_oracle_result(root, cases, gold, fixtures)
+    verification = verify_oracle_result(result)
+    tampered = dict(result)
+    tampered["overall_overlap_count"] = 1
+    try:
+        verify_oracle_result(tampered)
+        tamper_refused = False
+    except ValueError:
+        tamper_refused = True
+    return {"status": "PASS" if verification["status"] == "PASS" and
+            tamper_refused and verification["t25_private_rows_exposed_to_t26"] == 0
+            else "FAIL", "t25_private_rows_exposed": 0,
+            "tamper_refused": tamper_refused,
+            "dimensions_bound": len(result["dimensions"])}
+
+
+def _contract_enumerator_check(root: Path) -> dict:
+    from .construction import CONTRACT_LEAF_REQUIREMENTS
+
+    leaf_count = len(CONTRACT_LEAF_REQUIREMENTS)
+    stable = len(set(CONTRACT_LEAF_REQUIREMENTS)) == leaf_count
+    return {"status": "PASS" if stable and leaf_count >= 50 else "FAIL",
+            "leaf_count": leaf_count, "enumerator_frozen": stable}
+
+
+def _negative_controls_check(root: Path) -> dict:
+    from .construction import run_negative_gate_controls
+
+    report = run_negative_gate_controls(root)
+    return {"status": report["status"], "control_count": report["control_count"],
+            "not_refused": report["not_refused"],
+            "material": report["material"]}
+
+
+def _manifest_seal_rehearsal_check(root: Path) -> dict:
+    from .construction import recompute_manifest_roots
+
+    manifest_probe = {
+        "artifacts": [
+            {"logical_id": "probe/inputs", "classification": "REAL_BLIND_INPUT",
+             "sha256": "0" * 64, "byte_size": 1, "schema": "probe-v1"},
+            {"logical_id": "probe/gold", "classification": "REAL_BLIND_GOLD",
+             "sha256": "1" * 64, "byte_size": 1, "schema": "probe-v1"}],
+        "counts_by_class": {"REAL_BLIND_GOLD": 1, "REAL_BLIND_INPUT": 1},
+    }
+    roots = recompute_manifest_roots(manifest_probe)
+    independent = recompute_manifest_roots(manifest_probe)
+    roots_match = roots == independent and len(roots) == 4
+    import tempfile
+
+    from .lifecycle import T26PrivateStore
+
+    with tempfile.TemporaryDirectory(prefix="t26-doctor-manifest-") as tmp:
+        store_root = Path(tmp) / "T26-STORE-01"
+        store = T26PrivateStore(store_root, root)
+        meta = store.write_once("probe/artifact.json", {"probe": True})
+        verify = store.verify()
+        tamper_detected = False
+        (store.path("probe/artifact.json")).write_text("{}\n", encoding="utf-8")
+        try:
+            store.verify()
+        except ValueError:
+            tamper_detected = True
+        ok = (roots_match and verify["missing_artifacts"] == 0 and
+              verify["hash_mismatches"] == 0 and
+              verify["classification_mismatches"] == 0 and
+              verify["root_mismatches"] == 0 and tamper_detected)
+        return {"status": "PASS" if ok else "FAIL",
+                "root_count": len(roots), "store_verify_artifacts": verify["artifact_count"],
+                "store_tamper_detected": tamper_detected}
+
+
+def _failure_semantics_check(root: Path) -> dict:
+    import tempfile
+
+    from .construction import (CONSTRUCTION_TOKEN, ConstructionLedgerError,
+                               T26ConstructionLedger)
+    from .freeze import build_freeze
+
+    with tempfile.TemporaryDirectory(prefix="t26-doctor-failure-") as tmp:
+        store_root = Path(tmp) / "T26-STORE-01"
+        from .lifecycle import T26PrivateStore
+
+        store = T26PrivateStore(store_root, root)
+        frozen = build_freeze(root)
+        bindings = {
+            "experiment": "t26", "attempt": 1, "authorization": CONSTRUCTION_TOKEN,
+            "material_mode": "REAL_BLIND", "namespace": "t26",
+            "store_identity": "T26-STORE-01",
+            "execution_checkout_commit": "e" * 64,
+            "execution_checkout_tree": "f" * 64,
+            "candidate_commit": frozen["candidate_commit"],
+            "candidate_tree": frozen["candidate_tree"],
+            "runtime_root": frozen["runtime_root"],
+            "preconstruction_freeze_sha256": frozen["freeze_sha256"],
+            "freeze_component_count": frozen["component_count"],
+            "freeze_component_root": frozen["component_root"],
+            "freeze_root": frozen["freeze_root"],
+            "execution_contract_sha256": "0" * 64,
+            "authority_graph_sha256": "0" * 64,
+            "production_graph_sha256": "0" * 64,
+            "metric_registry_sha256": "0" * 64,
+            "private_storage_policy_sha256": "0" * 64,
+            "qualification_exclusion_sha256": "0" * 64,
+            "live_web_firewall_registry_sha256": "0" * 64,
+            "historical_exclusion_identity": "T26_HISTORICAL_EXCLUSIONS",
+            "historical_exclusion_root": "1" * 64,
+        }
+        try:
+            ledger = T26ConstructionLedger.create_exclusive(store, bindings,
+                                                            CONSTRUCTION_TOKEN)
+            chain = ledger.verify_event_chain()
+            ledger.fail("LEDGER_CREATED", "RehearsalInjectedFailure", {"probe": True})
+            failed_chain = ledger.verify_event_chain()
+            second_refused = False
+            try:
+                T26ConstructionLedger.create_exclusive(store, bindings,
+                                                       CONSTRUCTION_TOKEN)
+            except ConstructionLedgerError:
+                second_refused = True
+            retry_refused = False
+            try:
+                ledger.advance("MATERIALIZED")
+            except ConstructionLedgerError:
+                retry_refused = True
+            ok = (chain["event_chain_valid"] and failed_chain["event_chain_valid"]
+                  and ledger.state == "FAILED" and second_refused and retry_refused
+                  and ledger.document["attempt"] == 1)
+            return {"status": "PASS" if ok else "FAIL",
+                    "ledger_final_state": ledger.state,
+                    "attempt_count": ledger.document["attempt"],
+                    "retry_count": 0, "second_attempt_refused": second_refused,
+                    "retry_refused": retry_refused}
+        except Exception as exc:
+            return {"status": "FAIL", "error": type(exc).__name__}
+
+
+def _one_shot_controls_check(root: Path) -> dict:
+    from .construction import ATTEMPT, CONSTRUCTION_TOKEN, NAMESPACE, STORE_ID
+
+    alias_refused = False
+    try:
+        require_token(CONSTRUCTION_TOKEN + "-v2", "construction")
+    except PermissionError:
+        alias_refused = True
+    return {"status": "PASS" if alias_refused and ATTEMPT == 1 and
+            NAMESPACE == "t26" and STORE_ID == "T26-STORE-01" else "FAIL",
+            "token_alias_refused": alias_refused,
+            "real_construction_authorized": False}
+
+
+def _lifecycle_rehearsal_check(root: Path) -> dict:
+    report_path = root / "evaluations/t26/construction_rehearsal_report.json"
+    if not report_path.is_file():
+        return {"status": "FAIL", "error": "construction_rehearsal_report absent"}
+    report = _read(root, "evaluations/t26/construction_rehearsal_report.json")
+    return {"status": report.get("status", "FAIL"),
+            "runs": report.get("run_count", 0),
+            "semantic_diffs": report.get("semantic_diffs", {})}
+
+
+def _production_graph_nodes_check(root: Path) -> dict:
+    from .contract import production_graph
+
+    graph = production_graph()
+    present = set(graph["nodes"])
+    required_any = {"authoring_validation", "historical_exclusion_oracle",
+                    "construction_ledger", "private_materialization",
+                    "construction_audit", "construction_gate", "private_manifest",
+                    "holdout_seal", "publication_leak_gate",
+                    "public_construction_receipt", "evaluation_ledger",
+                    "evaluator", "scorer", "public_evaluation_receipt"}
+    return {"status": "PASS" if graph["missing_producers"] == 0 and
+            graph["dangling_edges"] == 0 and graph["production_stubs"] == 0
+            and graph["unclassified_artifacts"] == 0 and
+            required_any <= present else "FAIL",
+            "node_count": len(present)}

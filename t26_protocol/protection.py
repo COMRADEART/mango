@@ -33,8 +33,11 @@ def _read(root: Path, path: str) -> dict:
 def _pytest(root: Path, files: list[str]) -> dict:
     with tempfile.TemporaryDirectory(prefix="t26-protection-pytest-") as tmp:
         junit = Path(tmp) / "results.xml"
+        basetemp = Path(tmp) / "basetemp"
+        basetemp.mkdir()
         command = [sys.executable, "-m", "pytest", *files, "-q",
                    "-p", "no:cacheprovider", "--disable-warnings",
+                   f"--basetemp={basetemp}",
                    f"--junitxml={junit}"]
         result = subprocess.run(command, cwd=root, capture_output=True,
                                 text=True, timeout=180)
