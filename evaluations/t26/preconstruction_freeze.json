@@ -3,7 +3,7 @@
   "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
   "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
   "component_count": 243,
-  "component_root": "49946001e812c1c5db364edb5fc6096790c21e4b75b71a2046ed975b753c0577",
+  "component_root": "74ed42f998179f4b147ea99518dbd0fd78796d10b27c3085c03411d44e951406",
   "components": [
     {
       "byte_size": 1735,
@@ -183,13 +183,13 @@
       "byte_size": 4350,
       "path": "evaluations/t26/test_gate_report.json",
       "role": "T26_PUBLIC_ARTIFACT",
-      "sha256": "2715893d9af9e6f015a46b8753019dc66bf30913e77888fe840c4b461c88475c"
+      "sha256": "4cba7b27c4d809a78f03aa503fb31d7749406b942f62de12d638314b8e829743"
     },
     {
-      "byte_size": 24625,
+      "byte_size": 25338,
       "path": "scripts/t26_preconstruction.py",
       "role": "T26_ENTRYPOINT",
-      "sha256": "a53bf9f6597d56e05b14d6c3f375b0fc7d40f83b9827c1567643ae5440059a1b"
+      "sha256": "f145c1c10f0ca142d394f4e135f77d348c0000d51a7cf0036a56599828ab1a66"
     },
     {
       "byte_size": 1434,
@@ -1356,10 +1356,10 @@
       "sha256": "6fb47d3ba3a1202a0eda835c0d46a21bf3cc7c84ea8bb45ab7cc1fe461d888b1"
     },
     {
-      "byte_size": 92929,
+      "byte_size": 103295,
       "path": "t26_protocol/construction.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "4f83ba2769b41ae25bda6b15a87e083a64717437cb6a64b5ae5f6fb4afeccdae"
+      "sha256": "37b1c2291709ff5c627d58586f3e4cc848943988eb3c81b6b9eb67ac27a0679b"
     },
     {
       "byte_size": 19999,
@@ -1368,10 +1368,10 @@
       "sha256": "b6d8057198e50470c3c0acba83e8b0009ddc91cf619fd54bad77c72989c63b89"
     },
     {
-      "byte_size": 24587,
+      "byte_size": 25026,
       "path": "t26_protocol/doctor.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "e43f615b449171702df1a9927e8606751e039d380a53290aa239b5c892ce36af"
+      "sha256": "58e33b23504986147270dc5758fb92fd305c6e57b282ba010ea6d20e9bc89d5a"
     },
     {
       "byte_size": 11707,
@@ -1392,10 +1392,10 @@
       "sha256": "01c1e963eab1f415cdac91285455244feeee7e763708a334dc2f1eefeda41e79"
     },
     {
-      "byte_size": 15511,
+      "byte_size": 16150,
       "path": "t26_protocol/lifecycle.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "eb5f7a297c3243be085df16be4c4bcb670cb409b2ecce317ba21de6cd981e2c7"
+      "sha256": "9cb895b92bfb229f4989822d4f97cd4fc274bd79430294d87486fa60cbc25707"
     },
     {
       "byte_size": 3352,
@@ -1452,10 +1452,10 @@
       "sha256": "6564b3a43b30b7a1358204887c3a9017f70edc7bf9957374675e9ea1c6e96e77"
     },
     {
-      "byte_size": 11911,
+      "byte_size": 17205,
       "path": "tests/test_t26_construction_infrastructure.py",
       "role": "T26_TEST_GATE",
-      "sha256": "db98b250c37e8b09f49274ac4506560859d7735194db678f0a55e7f3e83a191f"
+      "sha256": "c48ea9c50caba3ea1ecf6815aee4c53f960fbdabf63e1c10f725425770d4dd98"
     },
     {
       "byte_size": 5311,
@@ -1467,8 +1467,8 @@
   "construction_lifecycle_frozen": "LEDGER_CREATED->MATERIALIZED->AUDITED->GATE_PASS->MANIFESTED->SEALED with terminal FAILED",
   "experiment": "t26",
   "external_action_authority": false,
-  "freeze_root": "515d7eb433c7d2e376c26a0f48856bb5678646d21541851030ff370ebef8f34b",
-  "freeze_sha256": "457521caf7bea45eee59f11917a85a39410d9ef50f2033a03d3067d8ac3cb9bb",
+  "freeze_root": "c3fd1cd50d7b748f468527f79857ffad87f3b2cda9d056f38a5ef5d50d2f84c9",
+  "freeze_sha256": "9d3cf5c656be48750bd80d4c53c3ea5db886ffcfc79d335cc05b5cdeeb72136a",
   "real_blind_construction_authorized": false,
   "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
   "schema_version": "t26-preconstruction-freeze-v2",

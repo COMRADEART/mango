@@ -297,7 +297,8 @@ def _construction_readiness_checks(root: Path) -> dict:
     root = Path(root)
     checks: dict[str, dict] = {}
     try:
-        from .construction import protocol_hashes as _protocol_hashes
+        from .construction import (LEDGER_BINDING_FIELDS,
+                                   protocol_hashes as _protocol_hashes)
         from .exclusion import build_historical_exclusion_document
 
         historical = build_historical_exclusion_document(root)
@@ -310,8 +311,10 @@ def _construction_readiness_checks(root: Path) -> dict:
         hashes = _protocol_hashes(root)
         checks["LEDGER_BINDINGS"] = {
             "status": "PASS" if len(hashes) == 7 and
+            len(LEDGER_BINDING_FIELDS) == 24 and
             all(len(value) == 64 for value in hashes.values()) else "FAIL",
-            "binding_count": len(hashes)}
+            "ledger_binding_count": len(LEDGER_BINDING_FIELDS),
+            "protocol_identity_count": len(hashes)}
     except Exception as exc:
         for name in ("CONSTRUCTION_EXCLUSION_MODEL", "LEDGER_BINDINGS"):
             if name not in checks:
@@ -370,6 +373,13 @@ def _manifest_seal_rehearsal_check(root: Path) -> dict:
     from .construction import recompute_manifest_roots
 
     manifest_probe = {
+        "construction_ledger_identity": {
+            "ledger_sha256": "2" * 64,
+            "ledger_root": "3" * 64,
+            "ledger_semantic_sha256": "4" * 64,
+            "ledger_state_at_manifest": "GATE_PASS",
+            "attempt": 1,
+        },
         "artifacts": [
             {"logical_id": "probe/inputs", "classification": "REAL_BLIND_INPUT",
              "sha256": "0" * 64, "byte_size": 1, "schema": "probe-v1"},
