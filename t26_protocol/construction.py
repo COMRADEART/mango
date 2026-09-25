@@ -7,6 +7,7 @@ fixtures during rehearsals; no real T26 blind row exists.
 """
 from __future__ import annotations
 
+import base64
 import hashlib
 import json
 import os
@@ -37,16 +38,17 @@ MATERIAL_MODE = "REAL_BLIND"
 ATTEMPT = 1
 
 LEDGER_SCHEMA = "t26-construction-ledger-v2"
-MANIFEST_SCHEMA = "t26-private-manifest-v2"
+MANIFEST_SCHEMA = "t26-private-manifest-v3"
 SEAL_SCHEMA = "t26-holdout-seal-v2"
-RECEIPT_SCHEMA = "t26-public-construction-receipt-v1"
-COMMITMENT_SCHEMA = "t26-public-construction-commitment-v1"
+RECEIPT_SCHEMA = "t26-public-construction-receipt-v2"
+COMMITMENT_SCHEMA = "t26-public-construction-commitment-v2"
 CONSTRUCTION_AUDIT_SCHEMA = "t26-real-construction-audit-v1"
 CONTRACT_LEAF_SCHEMA = "t26-construction-contract-leaf-audit-v1"
 GATE_SCHEMA = "t26-real-construction-gate-v1"
 PUBLICATION_GATE_SCHEMA = "t26-construction-publication-gate-v1"
 PUBLICATION_LEAKAGE_STATE = "T26_POST_CONSTRUCTION_PUBLICATION_LEAKAGE"
 ONE_SHOT_TOKEN = "T26_ONE_SHOT_STATE_MACHINE_V2"
+ONE_SHOT_MARKER = "construction/one_shot_spent.json"
 
 CONSTRUCTION_STATES = ("LEDGER_CREATED", "MATERIALIZED", "AUDITED",
                        "GATE_PASS", "MANIFESTED", "SEALED")
@@ -60,6 +62,35 @@ GOLD_ONLY_FIELDS = ("expected_terminal", "expected_answer",
                     "safe_abstention")
 CANDIDATE_FIELDS = ("scenario_id", "plan", "classification", "family")
 
+LEDGER_BINDING_FIELDS = (
+    "experiment", "attempt", "authorization", "material_mode", "namespace",
+    "store_identity", "execution_checkout_commit", "execution_checkout_tree",
+    "candidate_commit", "candidate_tree", "runtime_root",
+    "preconstruction_freeze_sha256", "freeze_component_count",
+    "freeze_component_root", "freeze_root", "execution_contract_sha256",
+    "authority_graph_sha256", "production_graph_sha256",
+    "metric_registry_sha256", "private_storage_policy_sha256",
+    "qualification_exclusion_sha256", "live_web_firewall_registry_sha256",
+    "historical_exclusion_identity", "historical_exclusion_root",
+)
+
+AUTHOR_PROVENANCE_SCHEMA = "t26-private-author-attestation-v1"
+AUTHOR_READ_COUNTERS = (
+    "t23_reads", "t24_private_reads", "t25_private_reads",
+    "candidate_output_reads", "qualification_case_reads",
+    "rehearsal_case_reads", "future_evaluation_reads",
+)
+AUTHOR_PROVENANCE_FIELDS = (
+    "schema_version", "private_author_identity", "authoring_packet_sha256",
+    "scenario_bundle_sha256", "scenario_bundle_root", "gold_bundle_sha256",
+    "gold_bundle_root", "auxiliary_private_fixture_root", *AUTHOR_READ_COUNTERS,
+)
+FIXTURE_REQUIRED_FIELDS = (
+    "logical_id", "classification", "sha256", "byte_size", "schema",
+    "content_base64",
+)
+FIXTURE_ALLOWED_FIELDS = frozenset(FIXTURE_REQUIRED_FIELDS) | frozenset(DIMENSIONS)
+
 
 def _canonical(value: Any) -> bytes:
     return (json.dumps(value, sort_keys=True, separators=(",", ":"),
@@ -72,6 +103,93 @@ def _now() -> str:
 
 def _sha_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def build_author_provenance(cases: list[dict[str, Any]],
+                            gold: list[dict[str, Any]],
+                            fixtures: list[dict[str, Any]], *,
+                            private_author_identity: str,
+                            read_counters: dict[str, int]) -> dict[str, Any]:
+    """Build the hash-bound clean-room attestation supplied by the author."""
+    if set(read_counters) != set(AUTHOR_READ_COUNTERS):
+        raise ValueError("private author read-counter set mismatch")
+    return {
+        "schema_version": AUTHOR_PROVENANCE_SCHEMA,
+        "private_author_identity": private_author_identity,
+        "authoring_packet_sha256": sha256_json(
+            observed_bundle_fingerprints(cases, gold, fixtures)),
+        "scenario_bundle_sha256": _sha_bytes(_canonical(cases)),
+        "scenario_bundle_root": sha256_json(cases),
+        "gold_bundle_sha256": _sha_bytes(_canonical(gold)),
+        "gold_bundle_root": sha256_json(gold),
+        "auxiliary_private_fixture_root":
+            sha256_json(fixtures) if fixtures else None,
+        **dict(sorted(read_counters.items())),
+    }
+
+
+def synthetic_author_provenance(cases: list[dict[str, Any]],
+                                gold: list[dict[str, Any]],
+                                fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    """Disposable rehearsal attestation; never authorizes real construction."""
+    return build_author_provenance(
+        cases, gold, fixtures,
+        private_author_identity="T26_DISPOSABLE_SYNTHETIC_AUTHOR_V1",
+        read_counters={key: 0 for key in AUTHOR_READ_COUNTERS},
+    )
+
+
+def validate_author_provenance(provenance: dict[str, Any],
+                               cases: list[dict[str, Any]],
+                               gold: list[dict[str, Any]],
+                               fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    """Validate author provenance before the exclusive ledger is created."""
+    if not isinstance(provenance, dict) or set(provenance) != set(AUTHOR_PROVENANCE_FIELDS):
+        raise ValueError("private author provenance binding set mismatch")
+    if provenance["schema_version"] != AUTHOR_PROVENANCE_SCHEMA:
+        raise ValueError("private author provenance schema mismatch")
+    if not isinstance(provenance["private_author_identity"], str) or not provenance[
+            "private_author_identity"].strip():
+        raise ValueError("private author identity missing")
+    expected = build_author_provenance(
+        cases, gold, fixtures,
+        private_author_identity=provenance["private_author_identity"],
+        read_counters={key: provenance.get(key) for key in AUTHOR_READ_COUNTERS},
+    )
+    if any(provenance.get(key) != 0 for key in AUTHOR_READ_COUNTERS):
+        raise ValueError("private author provenance reports prohibited reads")
+    if provenance != expected:
+        raise ValueError("private author provenance hash binding mismatch")
+    return dict(sorted(provenance.items()))
+
+
+def validate_private_fixtures(fixtures: list[dict[str, Any]]) -> list[bytes]:
+    """Fail closed on auxiliary private fixture metadata and payload bytes."""
+    payloads: list[bytes] = []
+    logical_ids: set[str] = set()
+    for fixture in fixtures:
+        if (not isinstance(fixture, dict) or
+                not set(FIXTURE_REQUIRED_FIELDS) <= set(fixture) or
+                not set(fixture) <= FIXTURE_ALLOWED_FIELDS):
+            raise ValueError("auxiliary private fixture binding set mismatch")
+        logical_id = fixture["logical_id"]
+        if (not isinstance(logical_id, str) or not logical_id or
+                logical_id in logical_ids):
+            raise ValueError("auxiliary private fixture logical ID invalid")
+        logical_ids.add(logical_id)
+        if fixture["classification"] != "PRIVATE_BLIND":
+            raise ValueError("auxiliary private fixture classification invalid")
+        if not isinstance(fixture["schema"], str) or not fixture["schema"]:
+            raise ValueError("auxiliary private fixture schema missing")
+        try:
+            payload = base64.b64decode(fixture["content_base64"], validate=True)
+        except (ValueError, TypeError) as exc:
+            raise ValueError("auxiliary private fixture payload invalid") from exc
+        if (fixture["byte_size"] != len(payload) or
+                fixture["sha256"] != _sha_bytes(payload)):
+            raise ValueError("auxiliary private fixture hash mismatch")
+        payloads.append(payload)
+    return payloads
 
 
 class ConstructionLedgerError(RuntimeError):
@@ -105,24 +223,21 @@ class T26ConstructionLedger:
             raise ValueError("T26 real construction namespace mismatch")
         if bindings.get("store_identity") != STORE_ID:
             raise ValueError("T26 private store identity mismatch")
-        required = ("experiment", "attempt", "authorization", "material_mode",
-                    "namespace", "store_identity", "execution_checkout_commit",
-                    "execution_checkout_tree", "candidate_commit", "candidate_tree",
-                    "runtime_root", "preconstruction_freeze_sha256",
-                    "freeze_component_count", "freeze_component_root", "freeze_root",
-                    "execution_contract_sha256", "authority_graph_sha256",
-                    "production_graph_sha256", "metric_registry_sha256",
-                    "private_storage_policy_sha256",
-                    "qualification_exclusion_sha256",
-                    "live_web_firewall_registry_sha256",
-                    "historical_exclusion_identity", "historical_exclusion_root")
+        required = LEDGER_BINDING_FIELDS
         missing = [key for key in required if key not in bindings]
         if missing:
             raise ValueError(f"construction ledger binding incomplete: {missing}")
         unknown = set(bindings) - set(required)
         if unknown:
             raise ValueError(f"construction ledger carries unknown bindings: {sorted(unknown)}")
-        if store.has("construction/ledger.json"):
+        marker_committed = False
+        try:
+            store.commitment(ONE_SHOT_MARKER)
+            marker_committed = True
+        except (KeyError, ValueError):
+            pass
+        if (store.has("construction/ledger.json") or
+                store.has(ONE_SHOT_MARKER) or marker_committed):
             raise ConstructionLedgerError(
                 "T26 one-shot construction ledger already exists (duplicate refused)")
         created = _now()
@@ -142,7 +257,20 @@ class T26ConstructionLedger:
                     "events": [genesis], "event_count": 1,
                     "final_event_hash": genesis["event_hash"]}
         store.write_once("construction/ledger.json", document)
-        return cls(store, document)
+        ledger = cls(store, document)
+        try:
+            store.write_once(ONE_SHOT_MARKER, {
+                "schema_version": "t26-construction-one-shot-marker-v1",
+                "artifact": "T26_CONSTRUCTION_ONE_SHOT_SPENT",
+                "experiment": EXPERIMENT, "attempt": ATTEMPT,
+                "ledger_genesis_hash": genesis["event_hash"],
+                "created_at": created,
+            })
+        except Exception as exc:
+            ledger.fail("LEDGER_CREATED", type(exc).__name__,
+                        {"error": "one-shot marker creation failed"})
+            raise
+        return ledger
 
     # -- state machine ----------------------------------------------------
     def advance(self, target: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -223,6 +351,13 @@ class T26ConstructionLedger:
                 raise ConstructionLedgerError("ledger transition invalid")
         if document["state"] != states[-1]:
             raise ConstructionLedgerError("ledger state/event mismatch")
+        try:
+            marker = self._store.read(ONE_SHOT_MARKER)
+        except (FileNotFoundError, ValueError) as exc:
+            raise ConstructionLedgerError("one-shot marker missing") from exc
+        if (marker.get("attempt") != document["attempt"] or
+                marker.get("ledger_genesis_hash") != document["events"][0]["event_hash"]):
+            raise ConstructionLedgerError("one-shot marker/ledger mismatch")
         return {"status": "PASS", "event_chain_valid": True,
                 "event_count": document["event_count"],
                 "final_event_hash": document["final_event_hash"]}
@@ -485,6 +620,11 @@ CONTRACT_LEAF_REQUIREMENTS = (
     "oracle.t25_rows_not_revealed",
     "provenance.author_identity_present",
     "provenance.authoring_packet_sha_present",
+    "provenance.schema_valid",
+    "provenance.scenario_bundle_hashes_present",
+    "provenance.gold_bundle_hashes_present",
+    "provenance.auxiliary_fixture_root_bound",
+    "provenance.verified_before_ledger",
     "provenance.no_disallowed_private_reads",
     "fixtures.first_class_manifest_entries",
     "fixtures.classification_present",
@@ -567,6 +707,21 @@ def contract_leaf_audit(context: dict[str, Any]) -> dict[str, Any]:
     checks["oracle.t25_rows_not_revealed"] = oracle.get("t25_private_rows_exposed_to_t26") == 0
     checks["provenance.author_identity_present"] = bool(provenance.get("private_author_identity"))
     checks["provenance.authoring_packet_sha_present"] = isinstance(provenance.get("authoring_packet_sha256"), str) and len(provenance.get("authoring_packet_sha256", "")) == 64
+    checks["provenance.schema_valid"] = (
+        provenance.get("schema_version") == AUTHOR_PROVENANCE_SCHEMA and
+        set(provenance) == set(AUTHOR_PROVENANCE_FIELDS))
+    checks["provenance.scenario_bundle_hashes_present"] = all(
+        isinstance(provenance.get(key), str) and len(provenance[key]) == 64
+        for key in ("scenario_bundle_sha256", "scenario_bundle_root"))
+    checks["provenance.gold_bundle_hashes_present"] = all(
+        isinstance(provenance.get(key), str) and len(provenance[key]) == 64
+        for key in ("gold_bundle_sha256", "gold_bundle_root"))
+    checks["provenance.auxiliary_fixture_root_bound"] = (
+        isinstance(provenance.get("auxiliary_private_fixture_root"), str) and
+        len(provenance["auxiliary_private_fixture_root"]) == 64
+        if fixtures else provenance.get("auxiliary_private_fixture_root") is None)
+    checks["provenance.verified_before_ledger"] = (
+        context.get("author_provenance_verified_preledger") is True)
     checks["provenance.no_disallowed_private_reads"] = all(
         provenance.get(key) == 0 for key in
         ("t23_reads", "t24_private_reads", "t25_private_reads", "candidate_output_reads",
@@ -701,12 +856,19 @@ def run_construction_gate(bindings: dict[str, Any], audit: dict[str, Any],
         {"historical_exclusion_identity": bindings.get("historical_exclusion_identity"),
          "historical_exclusion_root": historical.get("exclusion_root")})
     provenance_ok = (bool(provenance.get("private_author_identity")) and
+                     provenance.get("schema_version") == AUTHOR_PROVENANCE_SCHEMA and
+                     set(provenance) == set(AUTHOR_PROVENANCE_FIELDS) and
                      isinstance(provenance.get("authoring_packet_sha256"), str) and
                      len(provenance.get("authoring_packet_sha256", "")) == 64 and
+                     all(isinstance(provenance.get(key), str) and
+                         len(provenance[key]) == 64 for key in
+                         ("scenario_bundle_sha256", "scenario_bundle_root",
+                          "gold_bundle_sha256", "gold_bundle_root")) and
+                     (provenance.get("auxiliary_private_fixture_root") is None or
+                      isinstance(provenance.get("auxiliary_private_fixture_root"), str)
+                      and len(provenance["auxiliary_private_fixture_root"]) == 64) and
                      all(provenance.get(key) == 0 for key in
-                         ("t23_reads", "t24_private_reads", "t25_private_reads",
-                          "candidate_output_reads", "qualification_case_reads",
-                          "rehearsal_case_reads", "future_evaluation_reads")))
+                         AUTHOR_READ_COUNTERS))
     add("GATE_PRIVATE_AUTHOR_PROVENANCE", provenance_ok,
         {"scenario_bundle_root": provenance.get("scenario_bundle_root"),
          "gold_bundle_root": provenance.get("gold_bundle_root")})
@@ -768,6 +930,7 @@ MANIFEST_ARTIFACT_CLASSES = ("REAL_BLIND_INPUT", "REAL_BLIND_GOLD",
 def build_private_manifest(store: Any, *, bindings: dict[str, Any],
                            artifacts: list[dict[str, Any]], audit: dict[str, Any],
                            gate: dict[str, Any], provenance: dict[str, Any],
+                           leaf_audit: dict[str, Any],
                            oracle_result: dict[str, Any],
                            historical: dict[str, Any],
                            candidate: dict[str, Any], freeze: dict[str, Any],
@@ -796,6 +959,9 @@ def build_private_manifest(store: Any, *, bindings: dict[str, Any],
         "schema_version": MANIFEST_SCHEMA, "artifact": "T26_PRIVATE_MANIFEST",
         "experiment": EXPERIMENT, "material_mode": MATERIAL_MODE,
         "construction_ledger_identity": {
+            "ledger_sha256": _sha_bytes(
+                store.read_bytes("construction/ledger.json")),
+            "ledger_root": ledger["final_event_hash"],
             "ledger_semantic_sha256": ledger_semantic_digest(ledger),
             "ledger_state_at_manifest": ledger["state"],
             "attempt": ledger["attempt"]},
@@ -823,7 +989,13 @@ def build_private_manifest(store: Any, *, bindings: dict[str, Any],
         "gold_firewall_audit": {"status": audit["components"]["gold_firewall"]["status"],
                                 "gold_only_field_count":
                                 audit["components"]["gold_firewall"]["gold_only_field_count"]},
-        "construction_contract_audit": {"total_leaves": 0, "leaf_root": None},
+        "construction_contract_audit": {
+            "status": leaf_audit["status"],
+            "total_leaves": leaf_audit["total_leaves"],
+            "pass_count": leaf_audit["pass_count"],
+            "fail_count": leaf_audit["fail_count"],
+            "unverifiable_count": leaf_audit["unverifiable_count"],
+            "leaf_root": leaf_audit["leaf_root"]},
         "construction_gate_result": {"state": gate["state"],
                                      "check_count": gate["check_count"],
                                      "gate_root": gate["gate_root"]},
@@ -843,6 +1015,19 @@ def recompute_manifest_roots(manifest: dict[str, Any]) -> dict[str, str]:
     """Independent deterministic recomputation of the four manifest roots."""
     entries = manifest["artifacts"]
     blind_classes = {"REAL_BLIND_INPUT", "REAL_BLIND_GOLD", "PRIVATE_BLIND"}
+    semantic_manifest = {
+        key: value for key, value in manifest.items()
+        if key not in {"private_artifact_root", "private_blind_root",
+                       "private_evaluation_root", "construction_semantic_root"}
+    }
+    # The manifest itself binds the exact ledger bytes and final event root.
+    # Its semantic root deliberately replaces those timestamp-bearing values
+    # with the stable ledger semantic digest so two equivalent constructions
+    # can be compared without pretending their event timestamps are semantics.
+    semantic_ledger = dict(semantic_manifest["construction_ledger_identity"])
+    semantic_ledger.pop("ledger_sha256", None)
+    semantic_ledger.pop("ledger_root", None)
+    semantic_manifest["construction_ledger_identity"] = semantic_ledger
     return {
         "private_artifact_root": sha256_json(
             [entry for entry in entries if entry["classification"] in blind_classes]),
@@ -850,10 +1035,7 @@ def recompute_manifest_roots(manifest: dict[str, Any]) -> dict[str, str]:
             [entry for entry in entries if entry["classification"] == "REAL_BLIND_INPUT"]),
         "private_evaluation_root": sha256_json(
             [entry for entry in entries if entry["classification"] == "PRIVATE_EVALUATION"]),
-        "construction_semantic_root": sha256_json(
-            {key: value for key, value in manifest.items()
-             if key not in {"private_artifact_root", "private_blind_root",
-                            "private_evaluation_root", "construction_semantic_root"}}),
+        "construction_semantic_root": sha256_json(semantic_manifest),
     }
 
 def seal_holdout(store: Any, manifest: dict[str, Any],
@@ -912,6 +1094,7 @@ def build_public_receipt(store: Any, seal: dict[str, Any]) -> dict[str, Any]:
     """PUBLIC_SAFE construction receipt: hashes and roots only, no blind bytes."""
     manifest_sha256 = _sha_bytes(store.read_bytes("construction/manifest.json"))
     ledger_sha256 = _sha_bytes(store.read_bytes("construction/ledger.json"))
+    ledger = store.read("construction/ledger.json")
     manifest = store.read("construction/manifest.json")
     receipt = {
         "schema_version": RECEIPT_SCHEMA,
@@ -922,6 +1105,7 @@ def build_public_receipt(store: Any, seal: dict[str, Any]) -> dict[str, Any]:
         "candidate_tree": seal["candidate_tree"],
         "freeze_sha256": seal["freeze_sha256"],
         "construction_ledger_sha256": ledger_sha256,
+        "construction_ledger_root": ledger["final_event_hash"],
         "private_manifest_sha256": manifest_sha256,
         "private_artifact_root": manifest["private_artifact_root"],
         "private_blind_root": manifest["private_blind_root"],
@@ -935,6 +1119,7 @@ def build_public_receipt(store: Any, seal: dict[str, Any]) -> dict[str, Any]:
 
 def build_public_commitment(receipt: dict[str, Any], gate: dict[str, Any],
                             audit: dict[str, Any],
+                            leaf_audit: dict[str, Any],
                             protocol_hashes: dict[str, str]) -> dict[str, Any]:
     """Separately hashable PUBLIC_SAFE construction commitment (hashes/counts only)."""
     commitment = {
@@ -946,6 +1131,7 @@ def build_public_commitment(receipt: dict[str, Any], gate: dict[str, Any],
         "candidate_tree": receipt["candidate_tree"],
         "freeze_sha256": receipt["freeze_sha256"],
         "construction_ledger_sha256": receipt["construction_ledger_sha256"],
+        "construction_ledger_root": receipt["construction_ledger_root"],
         "private_manifest_sha256": receipt["private_manifest_sha256"],
         "private_artifact_root": receipt["private_artifact_root"],
         "private_blind_root": receipt["private_blind_root"],
@@ -956,7 +1142,8 @@ def build_public_commitment(receipt: dict[str, Any], gate: dict[str, Any],
         "scenario_count": audit["scenario_count"],
         "family_count": audit["family_count"],
         "exclusion_overlap_count": audit["components"]["exclusion"]["overlap_count"],
-        "contract_leaf_total": 0,
+        "contract_leaf_total": leaf_audit["total_leaves"],
+        "contract_leaf_root": leaf_audit["leaf_root"],
         "protocol_identities": dict(sorted(protocol_hashes.items())),
         "queries_included": False, "answers_included": False,
         "scenario_bodies_included": False, "gold_included": False,
@@ -999,7 +1186,6 @@ def run_publication_leak_gate(store: Any, root: Path,
             continue
         digest = hashlib.sha1(b"blob %d\x00" % len(data) + data).hexdigest()
         blind_git_hashes.add(digest)
-    cache: dict[str, str] = {}
     surfaces: dict[str, dict[str, str]] = {}
     for path in Path(root).rglob("*"):
         if not path.is_file() or ".git" in path.parts:
@@ -1010,35 +1196,39 @@ def run_publication_leak_gate(store: Any, root: Path,
     for line in git("ls-files", "-s").splitlines():
         _meta, object_hash, _stage, *parts = line.split()
         index["/".join(parts)] = object_hash
-    refs_trees: dict[str, dict[str, str]] = {}
     scan_refs = refs or tuple(git("for-each-ref", "--format=%(refname)",
                                   "refs/remotes/origin").splitlines())
-    for ref in scan_refs:
-        tree: dict[str, str] = {}
-        out = git("ls-tree", "-r", ref)
-        for line in out.splitlines():
-            meta, path = line.split("\t", 1)
-            _mode, kind, object_hash = meta.split()
-            if kind == "blob":
-                tree[path] = object_hash
-        refs_trees[ref] = tree
+    # Scan the full object history reachable from every fetched public ref,
+    # not merely each ref's current tree.  This detects a blind blob even if a
+    # later public commit deleted or renamed it.
+    history_objects: dict[str, set[str]] = {}
+    history_paths: set[str] = set()
+    if scan_refs:
+        for line in git("rev-list", "--objects", *scan_refs).splitlines():
+            object_hash, *path_parts = line.split(" ", 1)
+            if not path_parts:
+                continue
+            path = path_parts[0]
+            history_objects.setdefault(object_hash, set()).add(path)
+        # ``rev-list --objects`` emits an object only once and may therefore
+        # omit another historical path that reused identical bytes.  Enumerate
+        # changed paths independently so the forbidden-path policy covers the
+        # full reachable history as well as every unique object.
+        history_paths = {
+            line.strip() for line in
+            git("log", "--format=", "--name-only", *scan_refs).splitlines()
+            if line.strip()
+        }
     violations: list[dict[str, str]] = []
-
-    def git_sha1_of(object_hash: str) -> str | None:
-        if object_hash not in cache:
-            data = subprocess.run(["git", "cat-file", "blob", object_hash],
-                                  cwd=root, capture_output=True, check=True).stdout
-            cache[object_hash] = _sha_bytes(data)
-        return cache[object_hash]
 
     if blind_git_hashes:
         for relative, object_hash in index.items():
             if object_hash in blind_git_hashes:
                 violations.append({"surface": "index", "path": relative})
-        for ref, tree in refs_trees.items():
-            for relative, object_hash in tree.items():
-                if object_hash in blind_git_hashes:
-                    violations.append({"surface": f"ref:{ref}", "path": relative})
+        for object_hash in sorted(blind_git_hashes & set(history_objects)):
+            for relative in sorted(history_objects[object_hash]):
+                violations.append({"surface": "fetched_ref_history",
+                                   "path": relative})
         for relative, content_hash in surfaces.items():
             if content_hash in blind_content_hashes:
                 violations.append({"surface": "worktree", "path": relative})
@@ -1046,12 +1236,14 @@ def run_publication_leak_gate(store: Any, root: Path,
                            "/evaluation/", "blind/")
     path_policy = sorted({relative for relative in
                           list(surfaces) + list(index) +
-                          [p for tree in refs_trees.values() for p in tree]
+                          list(history_paths)
                           if any(fragment in relative for fragment in forbidden_fragments)
                           and relative.startswith("evaluations/t26/")})
     return {"schema_version": PUBLICATION_GATE_SCHEMA,
             "artifact": "T26_CONSTRUCTION_PUBLICATION_LEAK_GATE",
-            "experiment": "t26", "refs_scanned": sorted(refs_trees),
+            "experiment": "t26", "refs_scanned": sorted(scan_refs),
+            "history_object_count": len(history_objects),
+            "history_path_count": len(history_paths),
             "blind_blob_count": len(violations), "blind_blob_matches": violations,
             "path_policy_violations": path_policy,
             "required_blind_blob_count": 0,
@@ -1122,11 +1314,14 @@ def construct_real(root: Path, store: Any, *, token: str,
             raise ConstructionLedgerError(
                 "T26 one-shot construction ledger already exists (second attempt refused)")
         observed = observed_bundle_fingerprints(cases, gold, fixtures)
+        fixture_payloads = validate_private_fixtures(fixtures)
         static_audit = static_blind_design_audit(cases, gold)
         exclusion_audit = audit_nine_dimensions(observed, historical)
         if oracle_result is None:
             raise ValueError("T25 private overlap oracle result required before ledger")
         oracle_verification = verify_oracle_result(oracle_result)
+        verified_provenance = validate_author_provenance(
+            provenance, cases, gold, fixtures)
         if static_audit["status"] != "PASS" or exclusion_audit["status"] != "PASS":
             raise ValueError("pre-ledger validation failed")
         # ---- exclusive ledger creation: ONE-SHOT SPENT HERE ----------------
@@ -1163,7 +1358,9 @@ def construct_real(root: Path, store: Any, *, token: str,
         return _post_ledger_pipeline(root, store, ledger, bindings, candidate,
                                      frozen, hashes, historical, coverage,
                                      cases, gold, fixtures, oracle_result,
-                                     oracle_verification, token)
+                                     oracle_verification, verified_provenance,
+                                     fixture_payloads,
+                                     token)
     except Exception as exc:
         if ledger is not None and ledger.state not in {"SEALED", "FAILED"}:
             ledger.fail(failure_phase=ledger.state, failure_class=type(exc).__name__,
@@ -1177,10 +1374,21 @@ def _post_ledger_pipeline(root: Path, store: Any, ledger: T26ConstructionLedger,
                           cases: list[dict], gold: list[dict],
                           fixtures: list[dict], oracle_result: dict[str, Any],
                           oracle_verification: dict[str, Any],
+                          provenance: dict[str, Any],
+                          fixture_payloads: list[bytes],
                           token: str) -> dict[str, Any]:
     # ---- MATERIALIZED -------------------------------------------------------
-    inputs_meta = store.write_once("construction/inputs.json", cases)
-    gold_meta = store.write_once("construction/gold.json", gold)
+    inputs_meta = store.write_once(
+        "construction/inputs.json", cases, classification="REAL_BLIND_INPUT")
+    gold_meta = store.write_once(
+        "construction/gold.json", gold, classification="REAL_BLIND_GOLD")
+    for fixture, payload in zip(fixtures, fixture_payloads, strict=True):
+        meta = store.write_bytes_once(
+            fixture["logical_id"], payload,
+            classification=fixture["classification"])
+        if (meta["sha256"] != fixture["sha256"] or
+                meta["bytes"] != fixture["byte_size"]):
+            raise ValueError("materialized private fixture commitment mismatch")
     ledger.advance("MATERIALIZED", {"inputs_sha256": inputs_meta["sha256"],
                                     "gold_sha256": gold_meta["sha256"]})
     # ---- AUDITED -------------------------------------------------------------
@@ -1190,22 +1398,12 @@ def _post_ledger_pipeline(root: Path, store: Any, ledger: T26ConstructionLedger,
     store.write_once("construction/audit.json", full_audit)
     ledger.advance("AUDITED", {"audit_root": full_audit["audit_root"]})
     # ---- contract leaf audit + GATE_PASS --------------------------------------
-    full_provenance = {
-        "private_author_identity": "T26_CLEAN_ROOM_AUTHOR_V1",
-        "authoring_packet_sha256": sha256_json(observed_bundle_fingerprints(
-            cases, gold, fixtures)),
-        "scenario_bundle_root": sha256_json(cases),
-        "gold_bundle_root": sha256_json(gold),
-        "auxiliary_private_fixture_root":
-            sha256_json(fixtures) if fixtures else None,
-        "t23_reads": 0, "t24_private_reads": 0, "t25_private_reads": 0,
-        "candidate_output_reads": 0, "qualification_case_reads": 0,
-        "rehearsal_case_reads": 0, "future_evaluation_reads": 0,
-    }
+    full_provenance = provenance
     leaf_context = {
         "candidate": candidate, "freeze": frozen, "bindings": bindings,
         "audit": full_audit, "gold_count": len(gold),
         "oracle_verification": oracle_verification, "provenance": full_provenance,
+        "author_provenance_verified_preledger": True,
         "authorization": token, "authorization_alias": token,
         "protocol_identities": hashes, "fixtures": fixtures,
         "ledger_exclusive": True, "second_attempt_refused": True,
@@ -1241,7 +1439,8 @@ def _post_ledger_pipeline(root: Path, store: Any, ledger: T26ConstructionLedger,
     ]
     manifest = build_private_manifest(
         store, bindings=bindings, artifacts=artifacts, audit=full_audit,
-        gate=gate, provenance=full_provenance, oracle_result=oracle_result,
+        gate=gate, provenance=full_provenance, leaf_audit=leaf_audit,
+        oracle_result=oracle_result,
         historical=historical, candidate=candidate, freeze=frozen,
         protocol_hashes=hashes)
     ledger.advance("MANIFESTED", {
@@ -1249,10 +1448,13 @@ def _post_ledger_pipeline(root: Path, store: Any, ledger: T26ConstructionLedger,
             _sha_bytes(store.read_bytes("construction/manifest.json"))})
     # ---- SEALED -------------------------------------------------------------------
     seal = seal_holdout(store, manifest, leaf_audit)
+    pre_seal_verification = store.verify()
     ledger.advance("SEALED", {"seal_sha256":
                               _sha_bytes(store.read_bytes("construction/seal.json"))})
+    final_store_verification = store.verify()
     receipt = build_public_receipt(store, seal)
-    commitment = build_public_commitment(receipt, gate, full_audit, hashes)
+    commitment = build_public_commitment(
+        receipt, gate, full_audit, leaf_audit, hashes)
     leak_gate = run_publication_leak_gate(store, root)
     return {"status": "SEALED", "case_count": len(cases),
             "ledger": ledger.document, "audit": full_audit,
@@ -1262,6 +1464,8 @@ def _post_ledger_pipeline(root: Path, store: Any, ledger: T26ConstructionLedger,
                                 "private_evaluation_root",
                                 "construction_semantic_root")},
             "seal": seal, "receipt": receipt, "commitment": commitment,
+            "pre_seal_store_verification": pre_seal_verification,
+            "store_verification": final_store_verification,
             "publication_leak_gate": leak_gate,
             "oracle_verification": oracle_verification}
 
@@ -1289,12 +1493,14 @@ def synthetic_private_bundle(variant: int = 0) -> tuple[list[dict], list[dict], 
     cases: list[dict] = []
     gold: list[dict] = []
     fixtures: list[dict] = []
+    fixture_payload = f"disposable-synthetic-private-fixture-{variant}".encode()
     fixture = {
         "logical_id": "fixtures/private_rehearsal_attachment",
         "classification": "PRIVATE_BLIND",
-        "sha256": hashlib.sha256(
-            f"disposable-synthetic-private-fixture-{variant}".encode()).hexdigest(),
-        "byte_size": 64, "schema": "t26-private-fixture-v1",
+        "sha256": hashlib.sha256(fixture_payload).hexdigest(),
+        "byte_size": len(fixture_payload),
+        "schema": "t26-private-fixture-v1",
+        "content_base64": base64.b64encode(fixture_payload).decode("ascii"),
         "entity_identities": [f"synthetic entity {variant}"],
         "source_ids": [f"SYNTH-SRC-{variant}"],
         "chunk_ids": [f"SYNTH-CHUNK-{variant}"],
@@ -1434,15 +1640,7 @@ def run_negative_gate_controls(root: Path, *, freeze: dict[str, Any] | None = No
                  "candidate_tree": frozen["candidate_tree"],
                  "runtime_root": frozen["runtime_root"]}
     full_audit = run_construction_audit(cases, gold, fixtures, historical)
-    provenance = {
-        "private_author_identity": "T26_CLEAN_ROOM_AUTHOR_V1",
-        "authoring_packet_sha256": sha256_json(observed),
-        "scenario_bundle_root": sha256_json(cases), "gold_bundle_root": sha256_json(gold),
-        "auxiliary_private_fixture_root": sha256_json(fixtures),
-        "t23_reads": 0, "t24_private_reads": 0, "t25_private_reads": 0,
-        "candidate_output_reads": 0, "qualification_case_reads": 0,
-        "rehearsal_case_reads": 0, "future_evaluation_reads": 0,
-    }
+    provenance = synthetic_author_provenance(cases, gold, fixtures)
     coverage = {"all_covered": True}
 
     def leaf_context(**overrides: Any) -> dict[str, Any]:
@@ -1450,6 +1648,7 @@ def run_negative_gate_controls(root: Path, *, freeze: dict[str, Any] | None = No
             "candidate": candidate, "freeze": frozen, "bindings": bindings,
             "audit": full_audit, "gold_count": len(gold),
             "oracle_verification": oracle_verification, "provenance": provenance,
+            "author_provenance_verified_preledger": True,
             "authorization": CONSTRUCTION_TOKEN, "authorization_alias": CONSTRUCTION_TOKEN,
             "protocol_identities": hashes, "fixtures": fixtures,
             "ledger_exclusive": True, "second_attempt_refused": True,

@@ -194,6 +194,7 @@ def run_failure_rehearsal() -> dict:
     from t26_protocol.construction import (ConstructionLedgerError,
                                            _synthetic_oracle_result,
                                            construct_real,
+                                           synthetic_author_provenance,
                                            synthetic_private_bundle)
     from t26_protocol.lifecycle import T26PrivateStore
 
@@ -201,11 +202,13 @@ def run_failure_rehearsal() -> dict:
         store = T26PrivateStore(Path(tmp) / "T26-STORE-01", ROOT)
         cases, gold, fixtures = synthetic_private_bundle(3)
         oracle = _synthetic_oracle_result(ROOT, cases, gold, fixtures)
+        provenance = synthetic_author_provenance(cases, gold, fixtures)
         token = "T26_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION"
         raised = False
         try:
             construct_real(ROOT, store, token=token, cases=cases, gold=gold,
                            fixtures=fixtures, oracle_result=oracle,
+                           provenance=provenance,
                            inject_failure_after_ledger=True)
         except RuntimeError:
             raised = True
@@ -214,7 +217,8 @@ def run_failure_rehearsal() -> dict:
         second_refused = False
         try:
             construct_real(ROOT, store, token=token, cases=cases, gold=gold,
-                           fixtures=fixtures, oracle_result=oracle)
+                           fixtures=fixtures, oracle_result=oracle,
+                           provenance=provenance)
         except (ConstructionLedgerError, RuntimeError, ValueError):
             second_refused = True
         failure_event = ledger_doc["events"][-1]
@@ -240,6 +244,7 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
 
     from t26_protocol.construction import (_synthetic_oracle_result, construct_real,
                                            ledger_semantic_digest,
+                                           synthetic_author_provenance,
                                            synthetic_private_bundle)
     from t26_protocol.lifecycle import T26PrivateStore
 
@@ -252,11 +257,13 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
             # fingerprints; live lifecycle rehearsals use fresh variant 2.
             cases, gold, fixtures = synthetic_private_bundle(2)
             oracle = _synthetic_oracle_result(ROOT, cases, gold, fixtures)
+            provenance = synthetic_author_provenance(cases, gold, fixtures)
             result = construct_real(ROOT, store,
                                     token="T26_REAL_BLIND_HOLDOUT_"
                                           "CONSTRUCTION_AUTHORIZATION",
                                     cases=cases, gold=gold, fixtures=fixtures,
-                                    oracle_result=oracle)
+                                    oracle_result=oracle,
+                                    provenance=provenance)
             runs.append({
                 "run": index, "status": result["status"],
                 "case_count": result["case_count"],
@@ -277,7 +284,9 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
                 "receipt_state": result["receipt"]["state"],
                 "commitment_semantic": {
                     key: value for key, value in result["commitment"].items()
-                    if key not in {"construction_ledger_sha256", "seal_sha256",
+                    if key not in {"construction_ledger_sha256",
+                                   "construction_ledger_root",
+                                   "private_manifest_sha256", "seal_sha256",
                                    "commitment_root"}},
                 "commitment_root": result["commitment"]["commitment_root"],
                 "publication_leak_gate": result["publication_leak_gate"]["status"],
@@ -297,6 +306,7 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
     }
     volatile_classification = {
         "construction_ledger_sha256": "VOLATILE_TIMESTAMP_BEARING",
+        "construction_ledger_root": "VOLATILE_TIMESTAMP_BEARING",
         "seal_sha256": "VOLATILE_TIMESTAMP_BEARING",
         "commitment_root": "VOLATILE_TIMESTAMP_BEARING",
         "ledger_event_timestamps": "VOLATILE_TIMESTAMP_BEARING",
@@ -304,7 +314,7 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
         "execution_checkout_tree": "VOLATILE_PUBLICATION_COMMIT_BOUND",
         "ledger_semantic_digest": "VOLATILE_PUBLICATION_COMMIT_BOUND",
         "construction_gate_root": "VOLATILE_PUBLICATION_COMMIT_BOUND",
-        "private_manifest_sha256": "VOLATILE_PUBLICATION_COMMIT_BOUND",
+        "private_manifest_sha256": "VOLATILE_TIMESTAMP_AND_PUBLICATION_COMMIT_BOUND",
         "construction_semantic_root": "VOLATILE_PUBLICATION_COMMIT_BOUND",
     }
     passed = (all(run["status"] == "SEALED" for run in runs)
@@ -342,6 +352,7 @@ def _construction_rehearsal_reproduction_view(value: dict) -> dict:
         run.get("manifest_roots", {}).pop("construction_semantic_root", None)
         commitment = run.get("commitment_semantic", {})
         commitment.pop("construction_gate_root", None)
+        commitment.pop("construction_ledger_root", None)
         commitment.pop("private_manifest_sha256", None)
     return normalized
 

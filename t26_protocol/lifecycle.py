@@ -69,17 +69,27 @@ class T26PrivateStore:
     def has(self, relative: str) -> bool:
         return self.path(relative).is_file()
 
-    def write_once(self, relative: str, value: Any) -> dict:
+    def write_once(self, relative: str, value: Any,
+                   classification: str = "PRIVATE_BLIND") -> dict:
         path = self.path(relative)
         path.parent.mkdir(parents=True, exist_ok=True)
         data = _bytes(value)
+        return self.write_bytes_once(relative, data, classification=classification)
+
+    def write_bytes_once(self, relative: str, data: bytes,
+                         classification: str = "PRIVATE_BLIND") -> dict:
+        path = self.path(relative)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if classification not in {"PRIVATE_BLIND", "PRIVATE_EVALUATION",
+                                  "REAL_BLIND_INPUT", "REAL_BLIND_GOLD"}:
+            raise ValueError("unknown private artifact classification")
         with path.open("xb") as handle:
             handle.write(data)
             handle.flush()
             os.fsync(handle.fileno())
         meta = {"logical_id": relative, "locator": self.locator(relative),
                 "sha256": _sha(data), "bytes": len(data),
-                "classification": "PRIVATE_BLIND"}
+                "classification": classification}
         self._commit(relative, meta)
         return meta
 
@@ -100,11 +110,13 @@ class T26PrivateStore:
     def _commit(self, relative: str, meta: dict) -> None:
         self._commitments[relative] = meta
         self._index_path.parent.mkdir(parents=True, exist_ok=True)
+        commitments = [self._commitments[key]
+                       for key in sorted(self._commitments)]
         self._index_path.write_text(json.dumps(
             {"schema_version": "t26-private-store-index-v1",
              "store_identity": STORE_ID, "namespace": "t26",
-             "commitments": [self._commitments[key]
-                             for key in sorted(self._commitments)]},
+             "commitments": commitments,
+             "artifact_root": sha256_json(commitments)},
             indent=2, sort_keys=True, ensure_ascii=False) + "\n",
             encoding="utf-8", newline="\n")
 
@@ -148,7 +160,7 @@ class T26PrivateStore:
         if self._commitments and self._index_path.exists():
             stored_root = json.loads(
                 self._index_path.read_text(encoding="utf-8")).get("artifact_root")
-            if stored_root is not None and stored_root != recomputed_root:
+            if stored_root != recomputed_root:
                 root_mismatches.append("commitments.artifact_root")
         if missing or hash_mismatches or classification_mismatches or root_mismatches:
             raise ValueError("T26 private store verification failed: "

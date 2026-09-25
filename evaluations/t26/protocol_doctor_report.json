@@ -34,7 +34,7 @@
     },
     "CONSTRUCTION_CONTRACT_ENUMERATOR": {
       "enumerator_frozen": true,
-      "leaf_count": 57,
+      "leaf_count": 62,
       "status": "PASS"
     },
     "CONSTRUCTION_EXCLUSION_MODEL": {
@@ -60,9 +60,9 @@
     },
     "FREEZE": {
       "component_count": 243,
-      "component_root": "49946001e812c1c5db364edb5fc6096790c21e4b75b71a2046ed975b753c0577",
-      "freeze_root": "515d7eb433c7d2e376c26a0f48856bb5678646d21541851030ff370ebef8f34b",
-      "freeze_sha256": "457521caf7bea45eee59f11917a85a39410d9ef50f2033a03d3067d8ac3cb9bb",
+      "component_root": "74ed42f998179f4b147ea99518dbd0fd78796d10b27c3085c03411d44e951406",
+      "freeze_root": "c3fd1cd50d7b748f468527f79857ffad87f3b2cda9d056f38a5ef5d50d2f84c9",
+      "freeze_sha256": "9d3cf5c656be48750bd80d4c53c3ea5db886ffcfc79d335cc05b5cdeeb72136a",
       "mismatches": [],
       "status": "PASS"
     },
@@ -82,7 +82,8 @@
       "t25_private_rows_accessed": 0
     },
     "LEDGER_BINDINGS": {
-      "binding_count": 7,
+      "ledger_binding_count": 24,
+      "protocol_identity_count": 7,
       "status": "PASS"
     },
     "LIVE_WEB_FIREWALL": {
