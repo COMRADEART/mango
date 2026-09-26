@@ -3,7 +3,7 @@
   "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
   "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
   "component_count": 244,
-  "component_root": "94d62e5b84bf2e2d7ba37420637d1560e0af9caeb1d5b2015e0396c92de8d2ae",
+  "component_root": "b59aa987472f1b7ef1d098ebf80fc5a3b1b6244fb96eba3ca852c6ee0c725a0a",
   "components": [
     {
       "byte_size": 1735,
@@ -78,10 +78,10 @@
       "sha256": "dc43c0d55baf34fe7782d865b13a829da8507e4e8d5a0f05f85ac64b87f4d743"
     },
     {
-      "byte_size": 13965,
+      "byte_size": 14023,
       "path": "evaluations/t26/construction_rehearsal_report.json",
       "role": "T26_PUBLIC_ARTIFACT",
-      "sha256": "a6c6128566ff547f31c49960be2abfd61853c314eaf97a1c432e8397081673b3"
+      "sha256": "5fea176b28d344649ce18b94c0cd676d6c25b25ae1f92e30c89894ce7f28c4dc"
     },
     {
       "byte_size": 30338336,
@@ -192,10 +192,10 @@
       "sha256": "41033cafd7d8a3891f3bb590d85584411e617e36907f5d5c542e2693d787780b"
     },
     {
-      "byte_size": 28914,
+      "byte_size": 29022,
       "path": "scripts/t26_preconstruction.py",
       "role": "T26_ENTRYPOINT",
-      "sha256": "81b105a4aa90800bbde2f35b6f3be2292db77c92e30187aed736f3a226b09a3f"
+      "sha256": "4e6717416312ed2b05c9397d8a7da8c91e0d6bd8745c5667e03948329036d7e5"
     },
     {
       "byte_size": 1434,
@@ -1458,10 +1458,10 @@
       "sha256": "6564b3a43b30b7a1358204887c3a9017f70edc7bf9957374675e9ea1c6e96e77"
     },
     {
-      "byte_size": 20033,
+      "byte_size": 20159,
       "path": "tests/test_t26_construction_infrastructure.py",
       "role": "T26_TEST_GATE",
-      "sha256": "306f0df02684740a4b778b2425c47fa2a24161624d4d94523f4aeaeba82c1b1a"
+      "sha256": "1334c58e6935edcd183722c8b48b76599a638291883280bcac42776a640830c8"
     },
     {
       "byte_size": 5311,
@@ -1473,8 +1473,8 @@
   "construction_lifecycle_frozen": "LEDGER_CREATED->MATERIALIZED->AUDITED->GATE_PASS->MANIFESTED->SEALED with terminal FAILED",
   "experiment": "t26",
   "external_action_authority": false,
-  "freeze_root": "d163f8f9df11c08c1627e8a96c914ac924aa44a8053eefb84c5cf31d2c888f1e",
-  "freeze_sha256": "5d937750fc5ae7561553f669f2cd958037be552df40cc15a58644578a5995539",
+  "freeze_root": "7ec02173e02fb498ebe487aa01e225fa1e6c0c8600672aeec0b107e363efa5da",
+  "freeze_sha256": "b0c49c7f6370130420e9881a9312fd87e212c09d5818df9876f0ba28f534e3dd",
   "real_blind_construction_authorized": false,
   "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
   "schema_version": "t26-preconstruction-freeze-v3",

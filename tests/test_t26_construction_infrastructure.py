@@ -97,6 +97,7 @@ def test_reproduction_view_excludes_only_declared_self_referential_roots():
             "commitment_semantic": {"construction_gate_root": "gate-a",
                                     "construction_ledger_root": "ledger-root-a",
                                     "private_manifest_sha256": "manifest-a",
+                                    "freeze_sha256": "freeze-a",
                                     "scenario_count": 512},
         }],
     }
@@ -109,6 +110,7 @@ def test_reproduction_view_excludes_only_declared_self_referential_roots():
     run["commitment_semantic"]["construction_gate_root"] = "gate-b"
     run["commitment_semantic"]["construction_ledger_root"] = "ledger-root-b"
     run["commitment_semantic"]["private_manifest_sha256"] = "manifest-b"
+    run["commitment_semantic"]["freeze_sha256"] = "freeze-b"
     assert (_construction_rehearsal_reproduction_view(report) ==
             _construction_rehearsal_reproduction_view(changed))
     changed["runs"][0]["commitment_semantic"]["scenario_count"] = 511
