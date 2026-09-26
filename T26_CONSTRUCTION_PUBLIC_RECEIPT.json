@@ -1,0 +1,19 @@
+{
+  "artifact": "T26_PUBLIC_CONSTRUCTION_RECEIPT",
+  "attempt": 1,
+  "blind_content_included": false,
+  "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
+  "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
+  "construction_gate_root": "9746ae212664cd80d714095b57e508a5fa1c63b2d95b71a319be25fa847fc639",
+  "construction_ledger_root": "6c491ac4c3a9a39d8c2449891baa8e7e32bbb334ac7b425e8db4e572ff1042bc",
+  "construction_ledger_sha256": "aa9dc9e91d0792e57a73859fa9cc39316ec21d3ae80d607e0621bfed498c844c",
+  "experiment": "t26",
+  "freeze_sha256": "b0c49c7f6370130420e9881a9312fd87e212c09d5818df9876f0ba28f534e3dd",
+  "private_artifact_root": "37c2141962bc67dae5777db63b068890335dc8b052695b6dcc953233a9854fe6",
+  "private_blind_root": "d4fd363fbc8f0024b1192af064728bf5d9636efd09726c936342545182dda667",
+  "private_manifest_sha256": "b5fdb4d12c75b5f37740faecfed499f30ecf540ace93dd2fddd3678b41b1f564",
+  "receipt_root": "526680d17c73f033528b4ead95a4f3f98999180b0d432f64f85fa4bb85909d51",
+  "schema_version": "t26-public-construction-receipt-v2",
+  "seal_sha256": "b386423b25de469beee91d6e9495bf195bc09c88b89502aacce979759878ede7",
+  "state": "SEALED"
+}
