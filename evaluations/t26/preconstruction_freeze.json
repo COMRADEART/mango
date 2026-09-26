@@ -3,7 +3,7 @@
   "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
   "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
   "component_count": 243,
-  "component_root": "74ed42f998179f4b147ea99518dbd0fd78796d10b27c3085c03411d44e951406",
+  "component_root": "015a45720ffcd70867006a84af9a2908386bfc1988a2db7d1ea1b410fcefb430",
   "components": [
     {
       "byte_size": 1735,
@@ -1356,10 +1356,10 @@
       "sha256": "6fb47d3ba3a1202a0eda835c0d46a21bf3cc7c84ea8bb45ab7cc1fe461d888b1"
     },
     {
-      "byte_size": 103295,
+      "byte_size": 103860,
       "path": "t26_protocol/construction.py",
       "role": "T26_PROTOCOL_RUNTIME",
-      "sha256": "37b1c2291709ff5c627d58586f3e4cc848943988eb3c81b6b9eb67ac27a0679b"
+      "sha256": "9773fc3a4a1c921d4fe2c50164a4136cd990a1a02c34e4e2fadd3fcccd7c1f46"
     },
     {
       "byte_size": 19999,
@@ -1452,10 +1452,10 @@
       "sha256": "6564b3a43b30b7a1358204887c3a9017f70edc7bf9957374675e9ea1c6e96e77"
     },
     {
-      "byte_size": 17205,
+      "byte_size": 17618,
       "path": "tests/test_t26_construction_infrastructure.py",
       "role": "T26_TEST_GATE",
-      "sha256": "c48ea9c50caba3ea1ecf6815aee4c53f960fbdabf63e1c10f725425770d4dd98"
+      "sha256": "adb8fd475412859d8d04b651a5fd4a8843130a32a2579888c8847b194fff88eb"
     },
     {
       "byte_size": 5311,
@@ -1467,8 +1467,8 @@
   "construction_lifecycle_frozen": "LEDGER_CREATED->MATERIALIZED->AUDITED->GATE_PASS->MANIFESTED->SEALED with terminal FAILED",
   "experiment": "t26",
   "external_action_authority": false,
-  "freeze_root": "c3fd1cd50d7b748f468527f79857ffad87f3b2cda9d056f38a5ef5d50d2f84c9",
-  "freeze_sha256": "9d3cf5c656be48750bd80d4c53c3ea5db886ffcfc79d335cc05b5cdeeb72136a",
+  "freeze_root": "20191c43dbdf6d567f54fc51af241dcc37e51ab3a8c2bf1e88c81c448623936e",
+  "freeze_sha256": "98ae5124de494e99fb1398633f19131e1e5af976cbeb672249c57c83d3d9ae35",
   "real_blind_construction_authorized": false,
   "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
   "schema_version": "t26-preconstruction-freeze-v2",
