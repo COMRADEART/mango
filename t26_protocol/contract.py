@@ -319,6 +319,8 @@ def storage_policy() -> dict:
             "artifact": "T26_PRIVATE_STORAGE_POLICY",
             "store_id": "T26-STORE-01", "namespace": "t26",
             "locator_scheme": "t26-private://",
+            "auxiliary_private_fixtures_required": False,
+            "auxiliary_private_fixtures_optional": True,
             "real_blind_content_publication_allowed_before_evaluation": False,
             "public_git_blind_blob_count_required": 0,
             "historical_reuse_allowed": {"T23": False, "T24": False, "T25": False},

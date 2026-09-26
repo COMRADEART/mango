@@ -11,9 +11,10 @@ import pytest
 from t26_protocol.construction import (
     CONSTRUCTION_TOKEN, ConstructionLedgerError, GATE_CHECKS,
     NEGATIVE_CONTROL_IDS, T26ConstructionLedger,
-    _synthetic_oracle_result, construct_real, protocol_hashes,
+    _synthetic_oracle_result, construct_real, load_fixture_policy, protocol_hashes,
     run_construction_audit, run_negative_gate_controls,
-    run_publication_leak_gate, synthetic_author_provenance,
+    run_publication_leak_gate, run_zero_fixture_contract_controls,
+    synthetic_author_provenance,
     synthetic_private_bundle,
 )
 from t26_protocol.exclusion import (DIMENSIONS,
@@ -280,9 +281,59 @@ def test_publication_gate_scans_deleted_history(tmp_path):
 def test_all_negative_gate_controls_refuse():
     report = run_negative_gate_controls(ROOT)
     assert report["status"] == "PASS"
-    assert report["control_count"] == len(NEGATIVE_CONTROL_IDS) == 23
+    assert report["control_count"] == len(NEGATIVE_CONTROL_IDS) == 24
     assert report["not_refused"] == []
     assert report["material"] == "DISPOSABLE_SYNTHETIC_PRIVATE"
+
+
+def test_zero_fixture_policy_and_contract_controls():
+    policy = load_fixture_policy(ROOT)
+    assert policy["auxiliary_private_fixtures_required"] is False
+    assert policy["auxiliary_private_fixtures_optional"] is True
+    assert len(policy["private_storage_policy_sha256"]) == 64
+    controls = run_zero_fixture_contract_controls(ROOT)
+    assert controls["status"] == "PASS"
+    assert controls["fixture_count"] == 0
+    assert controls["auxiliary_private_fixture_root"] is None
+    assert controls["private_fixture_commitments"] == []
+    assert controls["positive"] == {
+        **controls["positive"],
+        "total_leaves": 62,
+        "pass_count": 62,
+        "fail_count": 0,
+        "unverifiable_count": 0,
+        "fixture_leaf": "PASS",
+    }
+    assert controls["negative"]["fixture_leaf"] == "FAIL"
+    assert controls["negative"]["failed_leaves"] == [
+        "audit.fixture_commitments_pass"]
+
+
+def test_zero_fixture_full_construction_lifecycle_rehearsal(tmp_path):
+    store = _make_store(tmp_path)
+    cases, gold, _ = synthetic_private_bundle(4)
+    fixtures = []
+    oracle = _synthetic_oracle_result(ROOT, cases, gold, fixtures)
+    provenance = synthetic_author_provenance(cases, gold, fixtures)
+    result = construct_real(ROOT, store, token=TOKEN, cases=cases, gold=gold,
+                            fixtures=fixtures, oracle_result=oracle,
+                            provenance=provenance)
+    assert result["status"] == "SEALED"
+    assert [event["event_type"] for event in result["ledger"]["events"]] == [
+        "LEDGER_CREATED", "MATERIALIZED", "AUDITED", "GATE_PASS",
+        "MANIFESTED", "SEALED"]
+    assert result["contract_leaf_audit"]["total_leaves"] == 62
+    assert result["contract_leaf_audit"]["pass_count"] == 62
+    assert result["contract_leaf_audit"]["fail_count"] == 0
+    assert result["gate"]["check_count"] == 24
+    assert result["gate"]["pass_count"] == 24
+    assert result["manifest_roots"]
+    assert result["seal"]["state"] == "SEALED"
+    assert result["store_verification"]["status"] == "PASS"
+    assert result["publication_leak_gate"]["status"] == "PASS"
+    assert store.read("construction/manifest.json")["artifacts"] == [
+        entry for entry in store.read("construction/manifest.json")["artifacts"]
+        if entry["classification"] in {"REAL_BLIND_INPUT", "REAL_BLIND_GOLD"}]
 
 
 def test_full_construction_lifecycle_rehearsal(tmp_path):

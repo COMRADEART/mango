@@ -167,6 +167,18 @@ OLD_FREEZE_V1 = {
     "preserved_in_git_history": True,
 }
 
+OLD_FREEZE_V2 = {
+    "record": "T26_PRECONSTRUCTION_FREEZE_V2_SUPERSEDED_PRE_EXPOSURE",
+    "reason": "ZERO_FIXTURE_CONTRACT_OPTIONALITY_WIRING_DEFECT",
+    "freeze_sha256": "98ae5124de494e99fb1398633f19131e1e5af976cbeb672249c57c83d3d9ae35",
+    "component_count": 243,
+    "component_root": "015a45720ffcd70867006a84af9a2908386bfc1988a2db7d1ea1b410fcefb430",
+    "freeze_root": "20191c43dbdf6d567f54fc51af241dcc37e51ab3a8c2bf1e88c81c448623936e",
+    "blind_material_under_it": "none",
+    "real_construction_attempts": 0,
+    "preserved_in_git_history": True,
+}
+
 
 def build_construction_infrastructure() -> dict:
     """Rebuild every construction-infrastructure public artifact (sections 7-32)."""
@@ -239,23 +251,29 @@ def run_failure_rehearsal() -> dict:
 
 
 def build_construction_rehearsals(*, persist: bool = True) -> dict:
-    """Disposable real-lifecycle rehearsal x2 + failure rehearsal (sections 31/32)."""
+    """Fixture-bearing x2, zero-fixture, and failure lifecycle rehearsals."""
     import tempfile
 
     from t26_protocol.construction import (_synthetic_oracle_result, construct_real,
                                            ledger_semantic_digest,
+                                           run_zero_fixture_contract_controls,
                                            synthetic_author_provenance,
                                            synthetic_private_bundle)
     from t26_protocol.lifecycle import T26PrivateStore
 
     runs = []
-    for index in (1, 2):
+    run_specs = ((1, "FIXTURE_BEARING", 2),
+                 (2, "FIXTURE_BEARING", 2),
+                 (3, "ZERO_FIXTURE", 4))
+    for index, fixture_mode, variant in run_specs:
         with tempfile.TemporaryDirectory(
                 prefix=f"t26-construction-rehearsal-{index}-") as tmp:
             store = T26PrivateStore(Path(tmp) / "T26-STORE-01", ROOT)
             # Variants 0/1 are permanently registered as disposable rehearsal
-            # fingerprints; live lifecycle rehearsals use fresh variant 2.
-            cases, gold, fixtures = synthetic_private_bundle(2)
+            # fingerprints. Fixture-bearing runs use variant 2; the zero-
+            # fixture policy rehearsal uses fresh variant 4.
+            cases, gold, authored_fixtures = synthetic_private_bundle(variant)
+            fixtures = authored_fixtures if fixture_mode == "FIXTURE_BEARING" else []
             oracle = _synthetic_oracle_result(ROOT, cases, gold, fixtures)
             provenance = synthetic_author_provenance(cases, gold, fixtures)
             result = construct_real(ROOT, store,
@@ -265,7 +283,8 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
                                     oracle_result=oracle,
                                     provenance=provenance)
             runs.append({
-                "run": index, "status": result["status"],
+                "run": index, "fixture_mode": fixture_mode,
+                "fixture_count": len(fixtures), "status": result["status"],
                 "case_count": result["case_count"],
                 "ledger_state": result["ledger"]["state"],
                 "ledger_attempt": result["ledger"]["attempt"],
@@ -279,8 +298,13 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
                 "gate_root": result["gate"]["gate_root"],
                 "gate_check_count": result["gate"]["check_count"],
                 "contract_leaf_total": result["contract_leaf_audit"]["total_leaves"],
+                "contract_leaf_pass_count":
+                    result["contract_leaf_audit"]["pass_count"],
+                "contract_leaf_fail_count":
+                    result["contract_leaf_audit"]["fail_count"],
                 "manifest_roots": result["manifest_roots"],
                 "seal_state": result["seal"]["state"],
+                "store_verify": result["store_verification"]["status"],
                 "receipt_state": result["receipt"]["state"],
                 "commitment_semantic": {
                     key: value for key, value in result["commitment"].items()
@@ -291,18 +315,26 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
                 "commitment_root": result["commitment"]["commitment_root"],
                 "publication_leak_gate": result["publication_leak_gate"]["status"],
                 "blind_blob_count": result["publication_leak_gate"]["blind_blob_count"]})
+    fixture_runs = [run for run in runs
+                    if run["fixture_mode"] == "FIXTURE_BEARING"]
+    zero_fixture_run = next(run for run in runs
+                            if run["fixture_mode"] == "ZERO_FIXTURE")
     failure = run_failure_rehearsal()
+    zero_fixture_controls = run_zero_fixture_contract_controls(ROOT)
     semantic_diffs = {
-        "ledger_semantic_diff": int(runs[0]["ledger_semantic_digest"] !=
-                                    runs[1]["ledger_semantic_digest"]),
-        "audit_root_diff": int(runs[0]["audit_root"] != runs[1]["audit_root"]),
-        "gate_root_diff": int(runs[0]["gate_root"] != runs[1]["gate_root"]),
+        "ledger_semantic_diff": int(fixture_runs[0]["ledger_semantic_digest"] !=
+                                    fixture_runs[1]["ledger_semantic_digest"]),
+        "audit_root_diff": int(fixture_runs[0]["audit_root"] !=
+                               fixture_runs[1]["audit_root"]),
+        "gate_root_diff": int(fixture_runs[0]["gate_root"] !=
+                              fixture_runs[1]["gate_root"]),
         "manifest_semantic_root_diff": int(
-            runs[0]["manifest_roots"]["construction_semantic_root"] !=
-            runs[1]["manifest_roots"]["construction_semantic_root"]),
-        "seal_semantic_diff": int(runs[0]["seal_state"] != runs[1]["seal_state"]),
-        "receipt_semantic_diff": int(runs[0]["commitment_semantic"] !=
-                                     runs[1]["commitment_semantic"]),
+            fixture_runs[0]["manifest_roots"]["construction_semantic_root"] !=
+            fixture_runs[1]["manifest_roots"]["construction_semantic_root"]),
+        "seal_semantic_diff": int(fixture_runs[0]["seal_state"] !=
+                                  fixture_runs[1]["seal_state"]),
+        "receipt_semantic_diff": int(fixture_runs[0]["commitment_semantic"] !=
+                                     fixture_runs[1]["commitment_semantic"]),
     }
     volatile_classification = {
         "construction_ledger_sha256": "VOLATILE_TIMESTAMP_BEARING",
@@ -318,11 +350,39 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
         "construction_semantic_root": "VOLATILE_PUBLICATION_COMMIT_BOUND",
     }
     passed = (all(run["status"] == "SEALED" for run in runs)
-              and not any(semantic_diffs.values()) and failure["status"] == "PASS")
-    report = {"schema_version": "t26-construction-lifecycle-rehearsals-v1",
+              and all(run["gate_check_count"] == 24 for run in runs)
+              and all(run["contract_leaf_total"] == 62 and
+                      run["contract_leaf_pass_count"] == 62 and
+                      run["contract_leaf_fail_count"] == 0 for run in runs)
+              and all(run["store_verify"] == "PASS" and
+                      run["publication_leak_gate"] == "PASS" for run in runs)
+              and zero_fixture_run["fixture_count"] == 0
+              and not any(semantic_diffs.values())
+              and zero_fixture_controls["status"] == "PASS"
+              and failure["status"] == "PASS")
+    report = {"schema_version": "t26-construction-lifecycle-rehearsals-v2",
               "artifact": "T26_CONSTRUCTION_LIFECYCLE_REHEARSALS",
               "status": "PASS" if passed else "FAIL",
               "run_count": len(runs), "runs": runs,
+              "fixture_bearing_lifecycle": {
+                  "status": "PASS" if all(run["status"] == "SEALED"
+                                            for run in fixture_runs) else "FAIL",
+                  "run_count": len(fixture_runs)},
+              "zero_fixture_lifecycle": {
+                  "status": "PASS" if zero_fixture_run["status"] == "SEALED"
+                            else "FAIL",
+                  "run": zero_fixture_run["run"],
+                  "fixture_count": zero_fixture_run["fixture_count"],
+                  "ledger_state": zero_fixture_run["ledger_state"],
+                  "ledger_event_count": zero_fixture_run["ledger_event_count"],
+                  "contract_leaf_total": zero_fixture_run["contract_leaf_total"],
+                  "contract_leaf_pass_count":
+                      zero_fixture_run["contract_leaf_pass_count"],
+                  "gate_check_count": zero_fixture_run["gate_check_count"],
+                  "store_verify": zero_fixture_run["store_verify"],
+                  "publication_leak_gate":
+                      zero_fixture_run["publication_leak_gate"]},
+              "zero_fixture_contract_controls": zero_fixture_controls,
               "failure_rehearsal": failure,
               "semantic_diffs": semantic_diffs,
               "volatile_classified_fields": volatile_classification,
@@ -372,7 +432,7 @@ def finalize() -> dict:
     _write(OUT / "protocol_doctor_report.json", doctor)
     status = "PASS" if doctor["status"] == "PASS" else "FAIL"
     verdict = {
-        "schema_version": "t26-preconstruction-verdict-v2",
+        "schema_version": "t26-preconstruction-verdict-v3",
         "artifact": "T26_PRECONSTRUCTION_VERDICT",
         "status": status,
         "verdict": "T26_INTEGRATED_INTERNAL_EXECUTION_PRECONSTRUCTION_PASS"
@@ -384,6 +444,7 @@ def finalize() -> dict:
         "component_root": frozen["component_root"],
         "freeze_root": frozen["freeze_root"],
         "superseded_freeze_v1": OLD_FREEZE_V1,
+        "superseded_freeze_v2": OLD_FREEZE_V2,
         "real_blind_rows": 0,
         "real_construction_attempts": 0,
         "real_evaluation_attempts": 0,

@@ -1,6 +1,6 @@
 {
   "artifact": "T26_NEGATIVE_GATE_CONTROLS",
-  "control_count": 23,
+  "control_count": 24,
   "controls": {
     "attempt_2": "REFUSED",
     "contract_leaf_failure": "REFUSED",
@@ -24,12 +24,13 @@
     "wrong_freeze_root": "REFUSED",
     "wrong_metric_registry": "REFUSED",
     "wrong_runtime_root": "REFUSED",
-    "wrong_total_count": "REFUSED"
+    "wrong_total_count": "REFUSED",
+    "zero_fixture_policy_required": "REFUSED"
   },
   "experiment": "t26",
   "material": "DISPOSABLE_SYNTHETIC_PRIVATE",
   "not_refused": [],
-  "refused_count": 23,
+  "refused_count": 24,
   "schema_version": "t26-negative-gate-controls-v1",
   "status": "PASS"
 }

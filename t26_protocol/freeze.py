@@ -8,15 +8,15 @@ from pathlib import Path
 
 from t21_protocol.util import sha256_json
 
-SCHEMA = "t26-preconstruction-freeze-v2"
+SCHEMA = "t26-preconstruction-freeze-v3"
 EXCLUDED = frozenset({
     "evaluations/t26/preconstruction_freeze.json",
     "evaluations/t26/protocol_doctor_report.json",
     "evaluations/t26/T26_PRECONSTRUCTION_VERDICT.json",
     "evaluations/t26/fresh_worktree_reproduction.json",
-    "evaluations/t26/construction_rehearsal_report.json",
 })
 V1_FREEZE_SHA256 = ("ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6")
+V2_FREEZE_SHA256 = ("98ae5124de494e99fb1398633f19131e1e5af976cbeb672249c57c83d3d9ae35")
 
 
 def _text_attributes(root: Path, relatives: list[str]) -> dict[str, str]:
@@ -108,6 +108,11 @@ def build_freeze(root: Path) -> dict:
         "runtime_root": candidate["runtime_root"],
         "component_root": component_root,
         "superseded_freeze_v1_sha256": V1_FREEZE_SHA256,
+        "superseded_freeze_v2_sha256": V2_FREEZE_SHA256,
+        "superseded_freeze_v2_classification":
+            "T26_PRECONSTRUCTION_FREEZE_V2_SUPERSEDED_PRE_EXPOSURE",
+        "superseded_freeze_v2_reason":
+            "ZERO_FIXTURE_CONTRACT_OPTIONALITY_WIRING_DEFECT",
         "construction_lifecycle_frozen": (
             "LEDGER_CREATED->MATERIALIZED->AUDITED->GATE_PASS->"
             "MANIFESTED->SEALED with terminal FAILED"),

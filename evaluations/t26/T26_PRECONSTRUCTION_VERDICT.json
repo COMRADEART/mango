@@ -1,18 +1,18 @@
 {
   "artifact": "T26_PRECONSTRUCTION_VERDICT",
-  "component_count": 243,
-  "component_root": "015a45720ffcd70867006a84af9a2908386bfc1988a2db7d1ea1b410fcefb430",
-  "doctor_check_count": 35,
+  "component_count": 244,
+  "component_root": "94d62e5b84bf2e2d7ba37420637d1560e0af9caeb1d5b2015e0396c92de8d2ae",
+  "doctor_check_count": 40,
   "external_action_authority": false,
-  "freeze_root": "20191c43dbdf6d567f54fc51af241dcc37e51ab3a8c2bf1e88c81c448623936e",
-  "freeze_sha256": "98ae5124de494e99fb1398633f19131e1e5af976cbeb672249c57c83d3d9ae35",
+  "freeze_root": "d163f8f9df11c08c1627e8a96c914ac924aa44a8053eefb84c5cf31d2c888f1e",
+  "freeze_sha256": "5d937750fc5ae7561553f669f2cd958037be552df40cc15a58644578a5995539",
   "real_blind_construction_authorized": false,
   "real_blind_rows": 0,
   "real_construction_attempts": 0,
   "real_construction_ledger": "absent",
   "real_evaluation_attempts": 0,
   "real_evaluation_ledger": "absent",
-  "schema_version": "t26-preconstruction-verdict-v2",
+  "schema_version": "t26-preconstruction-verdict-v3",
   "status": "PASS",
   "superseded_freeze_v1": {
     "blind_material_under_it": "none",
@@ -22,6 +22,17 @@
     "freeze_sha256": "ff09bed6caf8b7c9760bf57b7f2954374a22610797e785c35e54b78daa033ac6",
     "preserved_in_git_history": true,
     "record": "T26_PRECONSTRUCTION_FREEZE_V1_SUPERSEDED_PRE_EXPOSURE"
+  },
+  "superseded_freeze_v2": {
+    "blind_material_under_it": "none",
+    "component_count": 243,
+    "component_root": "015a45720ffcd70867006a84af9a2908386bfc1988a2db7d1ea1b410fcefb430",
+    "freeze_root": "20191c43dbdf6d567f54fc51af241dcc37e51ab3a8c2bf1e88c81c448623936e",
+    "freeze_sha256": "98ae5124de494e99fb1398633f19131e1e5af976cbeb672249c57c83d3d9ae35",
+    "preserved_in_git_history": true,
+    "real_construction_attempts": 0,
+    "reason": "ZERO_FIXTURE_CONTRACT_OPTIONALITY_WIRING_DEFECT",
+    "record": "T26_PRECONSTRUCTION_FREEZE_V2_SUPERSEDED_PRE_EXPOSURE"
   },
   "t25_private_rows_accessed": 0,
   "verdict": "T26_INTEGRATED_INTERNAL_EXECUTION_PRECONSTRUCTION_PASS"
