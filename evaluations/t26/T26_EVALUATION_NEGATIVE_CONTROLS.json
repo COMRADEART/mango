@@ -1,0 +1,69 @@
+{
+  "artifact": "T26_EVALUATION_NEGATIVE_CONTROLS",
+  "control_count": 14,
+  "controls": [
+    {
+      "control": "attempt_2",
+      "refused": true
+    },
+    {
+      "control": "duplicate_evaluation_ledger",
+      "refused": true
+    },
+    {
+      "control": "gold_field_candidate_exposure",
+      "refused": true
+    },
+    {
+      "control": "public_leakage",
+      "refused": true
+    },
+    {
+      "control": "unsealed_construction",
+      "refused": true
+    },
+    {
+      "control": "wrong_authority_graph",
+      "refused": true
+    },
+    {
+      "control": "wrong_candidate",
+      "refused": true
+    },
+    {
+      "control": "wrong_construction_ledger",
+      "refused": true
+    },
+    {
+      "control": "wrong_manifest",
+      "refused": true
+    },
+    {
+      "control": "wrong_metric_registry",
+      "refused": true
+    },
+    {
+      "control": "wrong_private_blind_root",
+      "refused": true
+    },
+    {
+      "control": "wrong_scorer_sha",
+      "refused": true
+    },
+    {
+      "control": "wrong_seal",
+      "refused": true
+    },
+    {
+      "control": "wrong_token",
+      "refused": true
+    }
+  ],
+  "not_refused": [],
+  "official_evaluator_invocations": 0,
+  "real_candidate_executions": 0,
+  "real_private_rows_read": 0,
+  "refused_count": 14,
+  "schema_version": "t26-evaluation-negative-controls-v1",
+  "status": "PASS"
+}
