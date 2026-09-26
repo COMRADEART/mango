@@ -1,0 +1,70 @@
+{
+  "artifact": "T26_PRODUCTION_RUNNER_NEGATIVE_CONTROLS",
+  "classification": "PUBLIC_SAFE",
+  "new_control_count": 13,
+  "new_controls": [
+    {
+      "control": "anonymous_lambda_factory",
+      "refused": true
+    },
+    {
+      "control": "caller_selected_corpus_path",
+      "refused": true
+    },
+    {
+      "control": "disposable_runner_factory",
+      "refused": true
+    },
+    {
+      "control": "fixture_adapters_factory",
+      "refused": true
+    },
+    {
+      "control": "fixture_web_provider",
+      "refused": true
+    },
+    {
+      "control": "gold_containing_mount",
+      "refused": true
+    },
+    {
+      "control": "synthetic_provider",
+      "refused": true
+    },
+    {
+      "control": "unfirewalled_live_provider",
+      "refused": true
+    },
+    {
+      "control": "wrong_factory_id",
+      "refused": true
+    },
+    {
+      "control": "wrong_factory_sha",
+      "refused": true
+    },
+    {
+      "control": "wrong_production_py_sha",
+      "refused": true
+    },
+    {
+      "control": "wrong_provider_class",
+      "refused": true
+    },
+    {
+      "control": "wrong_t26_firewall",
+      "refused": true
+    }
+  ],
+  "new_refused_count": 13,
+  "not_refused": [],
+  "official_evaluator_invocations": 0,
+  "old_control_count": 14,
+  "old_refused_count": 14,
+  "real_candidate_executions": 0,
+  "real_private_rows_read": 0,
+  "schema_version": "t26-production-runner-negative-controls-v1",
+  "status": "PASS",
+  "total_control_count": 27,
+  "total_refused_count": 27
+}
