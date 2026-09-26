@@ -344,6 +344,7 @@ def build_construction_rehearsals(*, persist: bool = True) -> dict:
         "ledger_event_timestamps": "VOLATILE_TIMESTAMP_BEARING",
         "execution_checkout_commit": "VOLATILE_PUBLICATION_COMMIT_BOUND",
         "execution_checkout_tree": "VOLATILE_PUBLICATION_COMMIT_BOUND",
+        "freeze_sha256": "VOLATILE_PUBLICATION_COMMIT_BOUND",
         "ledger_semantic_digest": "VOLATILE_PUBLICATION_COMMIT_BOUND",
         "construction_gate_root": "VOLATILE_PUBLICATION_COMMIT_BOUND",
         "private_manifest_sha256": "VOLATILE_TIMESTAMP_AND_PUBLICATION_COMMIT_BOUND",
@@ -414,6 +415,7 @@ def _construction_rehearsal_reproduction_view(value: dict) -> dict:
         commitment.pop("construction_gate_root", None)
         commitment.pop("construction_ledger_root", None)
         commitment.pop("private_manifest_sha256", None)
+        commitment.pop("freeze_sha256", None)
     return normalized
 
 
