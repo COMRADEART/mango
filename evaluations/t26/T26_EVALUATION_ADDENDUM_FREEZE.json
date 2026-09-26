@@ -1,0 +1,137 @@
+{
+  "artifact": "T26_EVALUATION_ADDENDUM_FREEZE",
+  "authority_graph_sha256": "2c1400d8d42795bcab30ceb2f651c0c9d54f90add0230614c51eff5f6b154e36",
+  "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
+  "candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
+  "classification": "PUBLIC_SAFE",
+  "component_count": 18,
+  "component_root": "7a6cf07ad64ee037495af9f339150eef2e82281f9087e38db50b752fd8505ca6",
+  "components": [
+    {
+      "byte_size": 1171,
+      "path": "T26_CONSTRUCTION_PUBLIC_RECEIPT.json",
+      "role": "SEALED_CONSTRUCTION_RECEIPT",
+      "sha256": "dfe04a10bbdfc2acfa46a4d811869d29b71307f34f67c28e4c0c52b2345c1434"
+    },
+    {
+      "byte_size": 2348,
+      "path": "T26_PUBLIC_CONSTRUCTION_COMMITMENT.json",
+      "role": "SEALED_CONSTRUCTION_COMMITMENT",
+      "sha256": "5116853023893353cddd5527260a4c755594fcf45ae23efd7f74009e3d1071ac"
+    },
+    {
+      "byte_size": 1364,
+      "path": "evaluations/t26/T26_EVALUATION_NEGATIVE_CONTROLS.json",
+      "role": "PUBLIC_NEGATIVE_CONTROLS",
+      "sha256": "87a94998c36eae435f0bd99d3dee3ee9ca838a595ce3760217cf41cba23388cb"
+    },
+    {
+      "byte_size": 3226,
+      "path": "evaluations/t26/T26_EVALUATION_PROTOCOL_ADDENDUM.json",
+      "role": "PUBLIC_ADDENDUM",
+      "sha256": "9ee0319b36715743c81fe56f600410b1a18347289a8425e5dacf05a0144ce6f2"
+    },
+    {
+      "byte_size": 4988,
+      "path": "evaluations/t26/T26_EVALUATION_REHEARSAL_REPORT.json",
+      "role": "PUBLIC_REHEARSAL_REPORT",
+      "sha256": "fabb53b61405003f6684a5a0a47d7e62d8eaa5a804d76794ea930e020f987de5"
+    },
+    {
+      "byte_size": 10230,
+      "path": "evaluations/t26/authority_graph.json",
+      "role": "FROZEN_AUTHORITY_GRAPH",
+      "sha256": "2c1400d8d42795bcab30ceb2f651c0c9d54f90add0230614c51eff5f6b154e36"
+    },
+    {
+      "byte_size": 3204,
+      "path": "evaluations/t26/candidate_identity.json",
+      "role": "CANDIDATE_IDENTITY",
+      "sha256": "dc43c0d55baf34fe7782d865b13a829da8507e4e8d5a0f05f85ac64b87f4d743"
+    },
+    {
+      "byte_size": 597,
+      "path": "evaluations/t26/live_web_firewall_registry.json",
+      "role": "FROZEN_FIREWALL",
+      "sha256": "172cdd1965a7efd5eed8617768967da51001949152b45b5c5e8a2a786d9bd03d"
+    },
+    {
+      "byte_size": 2330,
+      "path": "evaluations/t26/metric_registry.json",
+      "role": "FROZEN_METRIC_REGISTRY",
+      "sha256": "3cc8b0b5e09ebd29b809a6fe50e5ff27854778c2b749b787746a0509cf3b67b4"
+    },
+    {
+      "byte_size": 55067,
+      "path": "evaluations/t26/preconstruction_freeze.json",
+      "role": "ORIGINAL_V3_FREEZE",
+      "sha256": "334952ca2330249d9419ca7955092340762d10f9b97a41883b73fbb7514e94a6"
+    },
+    {
+      "byte_size": 8501,
+      "path": "scripts/t26_evaluation_addendum.py",
+      "role": "EVALUATION_REPRODUCTION_ENTRYPOINT",
+      "sha256": "17237c870011c7ef8da806c083f0fc24ae2d2377bf1fb3405466a200d4bb3cd6"
+    },
+    {
+      "byte_size": 25614,
+      "path": "src/sciencemath/integrated/runner.py",
+      "role": "FROZEN_CANDIDATE_RUNTIME",
+      "sha256": "a097a31c883cd8f93f12576c8ff2a49a945604d7aa3ab194e2df8a8c269b458a"
+    },
+    {
+      "byte_size": 111500,
+      "path": "t26_protocol/construction.py",
+      "role": "SEALED_CONSTRUCTION_PROTOCOL",
+      "sha256": "a3b5c2fd6cb074da03c0bce4e2d9d12ef84b8adf3b238f3717c05dfc03395ff2"
+    },
+    {
+      "byte_size": 51787,
+      "path": "t26_protocol/evaluation_v2.py",
+      "role": "EVALUATION_PROTOCOL",
+      "sha256": "1aee171fac85f438b75737e098c7b3fa8d5332cdba9b1ee40a4f8a7e608584b6"
+    },
+    {
+      "byte_size": 16150,
+      "path": "t26_protocol/lifecycle.py",
+      "role": "PRIVATE_STORE_RUNTIME",
+      "sha256": "9cb895b92bfb229f4989822d4f97cd4fc274bd79430294d87486fa60cbc25707"
+    },
+    {
+      "byte_size": 11810,
+      "path": "t26_protocol/production.py",
+      "role": "FROZEN_PRODUCTION_RUNTIME",
+      "sha256": "594a481fcbf1ea4ad04fe8ce7fae4a9c01a07a2a83563689347b7fae32088697"
+    },
+    {
+      "byte_size": 8574,
+      "path": "t26_protocol/scorer.py",
+      "role": "FROZEN_SCORER",
+      "sha256": "c0185f150c8d52d0c3b451a9e7a076de82cd48c3cd0a3e36ab309a28e9aefa15"
+    },
+    {
+      "byte_size": 6231,
+      "path": "tests/test_t26_evaluation_v2.py",
+      "role": "EVALUATION_TEST_GATE",
+      "sha256": "b35bd4827c717b6c6c6892c1947f69b700d9c1f3c12b82e8845b485f92ed510e"
+    }
+  ],
+  "construction_commitment_root": "231eb9bf766a046ca93ae4cb935e3d71bbd00a5167578961ab17fce87e05d03c",
+  "construction_public_commit": "4fb890d99806d484d59c7a667df61ed4d1cbfed8",
+  "construction_receipt_root": "526680d17c73f033528b4ead95a4f3f98999180b0d432f64f85fa4bb85909d51",
+  "evaluation_implementation_sha256": "1aee171fac85f438b75737e098c7b3fa8d5332cdba9b1ee40a4f8a7e608584b6",
+  "experiment": "t26",
+  "firewall_sha256": "172cdd1965a7efd5eed8617768967da51001949152b45b5c5e8a2a786d9bd03d",
+  "freeze_root": "b0baf8653add2b34a37261676fbdd5fff566f7d372dedc4c079251c2fce873e1",
+  "freeze_sha256": "5b39e7a38a8f83b3a52df685e56c83773cef104f73d713aa41d363ac8b12adde",
+  "metric_registry_sha256": "3cc8b0b5e09ebd29b809a6fe50e5ff27854778c2b749b787746a0509cf3b67b4",
+  "original_construction_freeze_replaced": false,
+  "original_v3_freeze_component_root": "b59aa987472f1b7ef1d098ebf80fc5a3b1b6244fb96eba3ca852c6ee0c725a0a",
+  "original_v3_freeze_root": "7ec02173e02fb498ebe487aa01e225fa1e6c0c8600672aeec0b107e363efa5da",
+  "original_v3_freeze_sha256": "b0c49c7f6370130420e9881a9312fd87e212c09d5818df9876f0ba28f534e3dd",
+  "production_runtime_sha256": "594a481fcbf1ea4ad04fe8ce7fae4a9c01a07a2a83563689347b7fae32088697",
+  "real_evaluation_authorized": false,
+  "runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
+  "schema_version": "t26-evaluation-addendum-freeze-v1",
+  "scorer_sha256": "c0185f150c8d52d0c3b451a9e7a076de82cd48c3cd0a3e36ab309a28e9aefa15"
+}
