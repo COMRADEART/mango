@@ -1,5 +1,7 @@
 {
   "artifact": "T26_PRIVATE_STORAGE_POLICY",
+  "auxiliary_private_fixtures_optional": true,
+  "auxiliary_private_fixtures_required": false,
   "historical_reuse_allowed": {
     "T23": false,
     "T24": false,

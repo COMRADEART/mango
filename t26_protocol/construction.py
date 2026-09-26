@@ -19,7 +19,7 @@ from typing import Any
 
 from t21_protocol.util import sha256_json
 
-from .contract import FAMILIES
+from .contract import FAMILIES, storage_policy
 from .exclusion import (DIMENSIONS, SCHEMA as EXCLUSION_SCHEMA,
                         ARTIFACT as EXCLUSION_ARTIFACT,
                         audit_nine_dimensions,
@@ -1285,6 +1285,29 @@ def protocol_hashes(root: Path) -> dict[str, str]:
     return {key: _sha_bytes((root / relative).read_bytes())
             for key, relative in sorted(names.items())}
 
+
+def load_fixture_policy(root: Path) -> dict[str, Any]:
+    """Load the frozen policy that authorizes an empty auxiliary-fixture set.
+
+    The policy artifact is already included in the protocol identity hashes,
+    construction ledger, private manifest, seal, and preconstruction freeze.
+    Fail closed if the checked-in machine-readable document drifts from the
+    contract producer or carries ambiguous optionality semantics.
+    """
+    path = Path(root).resolve() / "evaluations/t26/private_storage_policy.json"
+    document = json.loads(path.read_text(encoding="utf-8"))
+    if document != storage_policy():
+        raise ValueError("T26 private fixture policy artifact drift")
+    required = document.get("auxiliary_private_fixtures_required")
+    optional = document.get("auxiliary_private_fixtures_optional")
+    if required is not False or optional is not True:
+        raise ValueError("T26 private fixture optionality policy invalid")
+    return {
+        "auxiliary_private_fixtures_required": required,
+        "auxiliary_private_fixtures_optional": optional,
+        "private_storage_policy_sha256": _sha_bytes(path.read_bytes()),
+    }
+
 def construct_real(root: Path, store: Any, *, token: str,
                    cases: list[dict], gold: list[dict],
                    fixtures: list[dict] | None = None,
@@ -1312,6 +1335,7 @@ def construct_real(root: Path, store: Any, *, token: str,
 
     frozen = build_freeze_document(root)
     hashes = protocol_hashes(root)
+    fixture_policy = load_fixture_policy(root)
     historical = build_historical_exclusion_document(root)
     from .exclusion import REQUIRED_SOURCES
 
@@ -1370,7 +1394,7 @@ def construct_real(root: Path, store: Any, *, token: str,
                                      frozen, hashes, historical, coverage,
                                      cases, gold, fixtures, oracle_result,
                                      oracle_verification, verified_provenance,
-                                     fixture_payloads,
+                                     fixture_policy, fixture_payloads,
                                      token)
     except Exception as exc:
         if ledger is not None and ledger.state not in {"SEALED", "FAILED"}:
@@ -1386,6 +1410,7 @@ def _post_ledger_pipeline(root: Path, store: Any, ledger: T26ConstructionLedger,
                           fixtures: list[dict], oracle_result: dict[str, Any],
                           oracle_verification: dict[str, Any],
                           provenance: dict[str, Any],
+                          fixture_policy: dict[str, Any],
                           fixture_payloads: list[bytes],
                           token: str) -> dict[str, Any]:
     # ---- MATERIALIZED -------------------------------------------------------
@@ -1417,6 +1442,8 @@ def _post_ledger_pipeline(root: Path, store: Any, ledger: T26ConstructionLedger,
         "author_provenance_verified_preledger": True,
         "authorization": token, "authorization_alias": token,
         "protocol_identities": hashes, "fixtures": fixtures,
+        "fixtures_optional":
+            fixture_policy["auxiliary_private_fixtures_optional"],
         "ledger_exclusive": True, "second_attempt_refused": True,
         "historical_source_coverage": coverage,
         "gate_stable_ids": True, "candidate_rows_executed": 0,
@@ -1488,7 +1515,7 @@ NEGATIVE_CONTROL_IDS = (
     "duplicate_scenario_id", "qualification_overlap", "historical_overlap",
     "t25_oracle_mismatch", "gold_field_candidate_exposure", "external_authority_edge",
     "missing_auxiliary_fixture", "fixture_hash_mismatch", "contract_leaf_failure",
-    "premature_evaluation_artifact",
+    "zero_fixture_policy_required", "premature_evaluation_artifact",
 )
 
 
@@ -1607,6 +1634,118 @@ def _synthetic_oracle_result(root: Path, cases: list[dict], gold: list[dict],
     return result
 
 
+def run_zero_fixture_contract_controls(root: Path) -> dict[str, Any]:
+    """Exercise the existing fixture leaf with policy true and false.
+
+    This is a pure, pre-ledger control over disposable synthetic material.  It
+    proves that zero fixtures pass only when the frozen storage policy permits
+    them, while preserving the 62-leaf enumerator.
+    """
+    root = Path(root).resolve()
+    from .exclusion import REQUIRED_SOURCES
+    from .freeze import build_freeze
+
+    cases, gold, _fixture_bearing = synthetic_private_bundle(4)
+    fixtures: list[dict[str, Any]] = []
+    frozen = build_freeze(root)
+    historical = build_historical_exclusion_document(root)
+    hashes = protocol_hashes(root)
+    audit = run_construction_audit(cases, gold, fixtures, historical)
+    provenance = synthetic_author_provenance(cases, gold, fixtures)
+    oracle = _synthetic_oracle_result(root, cases, gold, fixtures)
+    oracle_verification = verify_oracle_result(oracle)
+    bindings = {
+        "experiment": EXPERIMENT, "attempt": ATTEMPT,
+        "authorization": CONSTRUCTION_TOKEN, "material_mode": MATERIAL_MODE,
+        "namespace": NAMESPACE, "store_identity": STORE_ID,
+        "execution_checkout_commit": "e" * 64,
+        "execution_checkout_tree": "f" * 64,
+        "candidate_commit": frozen["candidate_commit"],
+        "candidate_tree": frozen["candidate_tree"],
+        "runtime_root": frozen["runtime_root"],
+        "preconstruction_freeze_sha256": frozen["freeze_sha256"],
+        "freeze_component_count": frozen["component_count"],
+        "freeze_component_root": frozen["component_root"],
+        "freeze_root": frozen["freeze_root"],
+        "execution_contract_sha256": hashes["execution_contract_sha256"],
+        "authority_graph_sha256": hashes["authority_graph_sha256"],
+        "production_graph_sha256": hashes["production_graph_sha256"],
+        "metric_registry_sha256": hashes["metric_registry_sha256"],
+        "private_storage_policy_sha256": hashes["private_storage_policy_sha256"],
+        "qualification_exclusion_sha256": hashes["qualification_exclusion_sha256"],
+        "live_web_firewall_registry_sha256":
+            hashes["live_web_firewall_registry_sha256"],
+        "historical_exclusion_identity": historical["artifact"],
+        "historical_exclusion_root": historical["exclusion_root"],
+    }
+    candidate = {"candidate_commit": frozen["candidate_commit"],
+                 "candidate_tree": frozen["candidate_tree"],
+                 "runtime_root": frozen["runtime_root"]}
+    policy = load_fixture_policy(root)
+    context = {
+        "candidate": candidate, "freeze": frozen, "bindings": bindings,
+        "audit": audit, "gold_count": len(gold),
+        "oracle_verification": oracle_verification,
+        "provenance": provenance,
+        "author_provenance_verified_preledger": True,
+        "authorization": CONSTRUCTION_TOKEN,
+        "authorization_alias": CONSTRUCTION_TOKEN,
+        "protocol_identities": hashes, "fixtures": fixtures,
+        "fixtures_optional":
+            policy["auxiliary_private_fixtures_optional"],
+        "ledger_exclusive": True, "second_attempt_refused": True,
+        "historical_source_coverage": {
+            "all_covered": True,
+            "sources": {name: True for name in REQUIRED_SOURCES}},
+        "gate_stable_ids": True, "candidate_rows_executed": 0,
+        "official_evaluator_invocations": 0,
+        "receipt_blind_free": True, "publication_gate_required": True,
+    }
+    positive = contract_leaf_audit(context)
+    negative_context = dict(context)
+    negative_context["fixtures_optional"] = False
+    negative = contract_leaf_audit(negative_context)
+    negative_failed = [key for key, value in negative["results"].items()
+                       if value != "PASS"]
+    passed = (
+        positive["status"] == "PASS"
+        and positive["total_leaves"] == positive["pass_count"] == 62
+        and positive["fail_count"] == positive["unverifiable_count"] == 0
+        and positive["results"]["audit.fixture_commitments_pass"] == "PASS"
+        and negative["status"] == "FAIL"
+        and negative["results"]["audit.fixture_commitments_pass"] == "FAIL"
+        and negative_failed == ["audit.fixture_commitments_pass"]
+    )
+    return {
+        "schema_version": "t26-zero-fixture-contract-controls-v1",
+        "artifact": "T26_ZERO_FIXTURE_CONTRACT_CONTROLS",
+        "experiment": EXPERIMENT,
+        "status": "PASS" if passed else "FAIL",
+        "fixture_count": 0,
+        "auxiliary_private_fixture_root":
+            provenance["auxiliary_private_fixture_root"],
+        "private_fixture_commitments": audit["private_fixture_commitments"],
+        "policy": policy,
+        "positive": {
+            "total_leaves": positive["total_leaves"],
+            "pass_count": positive["pass_count"],
+            "fail_count": positive["fail_count"],
+            "unverifiable_count": positive["unverifiable_count"],
+            "fixture_leaf":
+                positive["results"]["audit.fixture_commitments_pass"],
+            "leaf_root": positive["leaf_root"],
+        },
+        "negative": {
+            "fixtures_optional": False,
+            "fixture_leaf":
+                negative["results"]["audit.fixture_commitments_pass"],
+            "failed_leaves": negative_failed,
+            "leaf_root": negative["leaf_root"],
+        },
+        "material": "DISPOSABLE_SYNTHETIC_PRIVATE",
+    }
+
+
 def run_negative_gate_controls(root: Path, *, freeze: dict[str, Any] | None = None,
                                historical: dict[str, Any] | None = None) -> dict[str, Any]:
     """Prove the gate rejects every listed control using disposable fixtures."""
@@ -1652,6 +1791,7 @@ def run_negative_gate_controls(root: Path, *, freeze: dict[str, Any] | None = No
                  "runtime_root": frozen["runtime_root"]}
     full_audit = run_construction_audit(cases, gold, fixtures, historical)
     provenance = synthetic_author_provenance(cases, gold, fixtures)
+    fixture_policy = load_fixture_policy(root)
     coverage = {"all_covered": True}
 
     def leaf_context(**overrides: Any) -> dict[str, Any]:
@@ -1662,6 +1802,8 @@ def run_negative_gate_controls(root: Path, *, freeze: dict[str, Any] | None = No
             "author_provenance_verified_preledger": True,
             "authorization": CONSTRUCTION_TOKEN, "authorization_alias": CONSTRUCTION_TOKEN,
             "protocol_identities": hashes, "fixtures": fixtures,
+            "fixtures_optional":
+                fixture_policy["auxiliary_private_fixtures_optional"],
             "ledger_exclusive": True, "second_attempt_refused": True,
             "historical_source_coverage": coverage,
             "gate_stable_ids": True, "candidate_rows_executed": 0,
@@ -1792,6 +1934,16 @@ def run_negative_gate_controls(root: Path, *, freeze: dict[str, Any] | None = No
     tampered_fixture = json.loads(json.dumps(full_audit))
     tampered_fixture["private_fixture_commitments"][0]["sha256"] = "0" * 64
     refuse("fixture_hash_mismatch", lambda: _leaf_must_refuse(tampered_fixture))
+    zero_fixture_audit = run_construction_audit(cases, gold, [], historical)
+    zero_fixture_provenance = synthetic_author_provenance(cases, gold, [])
+    def _zero_fixture_policy_must_refuse() -> None:
+        leaf = contract_leaf_audit(leaf_context(
+            audit=zero_fixture_audit, fixtures=[],
+            provenance=zero_fixture_provenance, fixtures_optional=False))
+        if (leaf["results"].get("audit.fixture_commitments_pass") == "FAIL"
+                and leaf["fail_count"] == 1):
+            raise ValueError("zero fixtures refused when policy requires fixtures")
+    refuse("zero_fixture_policy_required", _zero_fixture_policy_must_refuse)
     # -- contract leaf control --------------------------------------------------------------------
     failed_leaf = json.loads(json.dumps(contract_leaf_audit(leaf_context())))
     failed_leaf["results"]["oneshot.attempt_is_one"] = "FAIL"

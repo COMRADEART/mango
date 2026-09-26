@@ -1,6 +1,6 @@
 {
   "artifact": "T26_PROTOCOL_DOCTOR_REPORT",
-  "check_count": 35,
+  "check_count": 40,
   "checks": {
     "AUTHORITY_EDGES": {
       "candidate_gold_edges": [],
@@ -43,7 +43,7 @@
       "status": "PASS"
     },
     "CONSTRUCTION_LIFECYCLE_REHEARSALS": {
-      "runs": 2,
+      "runs": 3,
       "semantic_diffs": {
         "audit_root_diff": 0,
         "gate_root_diff": 0,
@@ -58,11 +58,22 @@
       "sha256": "f0df1061fd88d659b577b53987a0f9041169f463aa43e36eb2fd814fc0d2e4f9",
       "status": "PASS"
     },
+    "FIXTURE_BEARING_LIFECYCLE": {
+      "run_count": 2,
+      "status": "PASS"
+    },
+    "FIXTURE_OPTIONALITY_POLICY": {
+      "auxiliary_private_fixtures_optional": true,
+      "auxiliary_private_fixtures_required": false,
+      "policy_frozen": true,
+      "policy_sha256": "63c1e626ffac0f1f911bf34ea3ffee20e01e161c1f43cd311cba6389fa05d295",
+      "status": "PASS"
+    },
     "FREEZE": {
-      "component_count": 243,
-      "component_root": "015a45720ffcd70867006a84af9a2908386bfc1988a2db7d1ea1b410fcefb430",
-      "freeze_root": "20191c43dbdf6d567f54fc51af241dcc37e51ab3a8c2bf1e88c81c448623936e",
-      "freeze_sha256": "98ae5124de494e99fb1398633f19131e1e5af976cbeb672249c57c83d3d9ae35",
+      "component_count": 244,
+      "component_root": "94d62e5b84bf2e2d7ba37420637d1560e0af9caeb1d5b2015e0396c92de8d2ae",
+      "freeze_root": "d163f8f9df11c08c1627e8a96c914ac924aa44a8053eefb84c5cf31d2c888f1e",
+      "freeze_sha256": "5d937750fc5ae7561553f669f2cd958037be552df40cc15a58644578a5995539",
       "mismatches": [],
       "status": "PASS"
     },
@@ -140,7 +151,7 @@
       "status": "PASS"
     },
     "NEGATIVE_GATE_CONTROLS": {
-      "control_count": 23,
+      "control_count": 24,
       "material": "DISPOSABLE_SYNTHETIC_PRIVATE",
       "not_refused": [],
       "status": "PASS"
@@ -175,7 +186,7 @@
       "store_verify_artifacts": 1
     },
     "PRIVATE_STORAGE_POLICY": {
-      "sha256": "884475adfd18082059d0dd679800b8b0e3e859eeb46efdf56052cb27686abfc7",
+      "sha256": "63c1e626ffac0f1f911bf34ea3ffee20e01e161c1f43cd311cba6389fa05d295",
       "status": "PASS"
     },
     "PRIVATE_STORE_CONTROLS": {
@@ -209,6 +220,11 @@
       "families": 16,
       "status": "PASS"
     },
+    "REAL_ENTRYPOINT_FIXTURE_POLICY_BINDING": {
+      "fixtures_optional_bound": true,
+      "status": "PASS",
+      "zero_fixture_real_entrypoint_sealed": true
+    },
     "REHEARSALS": {
       "status": "PASS"
     },
@@ -230,9 +246,33 @@
     },
     "TOKENS": {
       "status": "PASS"
+    },
+    "ZERO_FIXTURE_CONTRACT_CONTROLS": {
+      "fail_count": 0,
+      "fixture_leaf": "PASS",
+      "leaf_count": 62,
+      "negative_failed_leaves": [
+        "audit.fixture_commitments_pass"
+      ],
+      "negative_fixture_leaf": "FAIL",
+      "pass_count": 62,
+      "status": "PASS",
+      "unverifiable_count": 0
+    },
+    "ZERO_FIXTURE_LIFECYCLE": {
+      "contract_leaf_pass_count": 62,
+      "contract_leaf_total": 62,
+      "fixture_count": 0,
+      "gate_check_count": 24,
+      "ledger_event_count": 6,
+      "ledger_state": "SEALED",
+      "publication_leak_gate": "PASS",
+      "run": 3,
+      "status": "PASS",
+      "store_verify": "PASS"
     }
   },
-  "schema_version": "t26-protocol-doctor-v2",
+  "schema_version": "t26-protocol-doctor-v3",
   "status": "PASS",
   "verdict": "T26_PRODUCTION_PROTOCOL_DOCTOR_PASS"
 }

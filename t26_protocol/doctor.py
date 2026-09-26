@@ -285,7 +285,7 @@ def run_doctor(root: Path, *, require_freeze: bool = True) -> dict:
         freeze = _read(root, "evaluations/t26/preconstruction_freeze.json")
         checks["FREEZE"] = verify_freeze(root, freeze)
     status = "PASS" if all(v["status"] == "PASS" for v in checks.values()) else "FAIL"
-    return {"schema_version": "t26-protocol-doctor-v2",
+    return {"schema_version": "t26-protocol-doctor-v3",
             "artifact": "T26_PROTOCOL_DOCTOR_REPORT",
             "status": status, "check_count": len(checks), "checks": checks,
             "verdict": "T26_PRODUCTION_PROTOCOL_DOCTOR_PASS" if status == "PASS"
@@ -320,12 +320,18 @@ def _construction_readiness_checks(root: Path) -> dict:
             if name not in checks:
                 checks[name] = {"status": "FAIL", "error": type(exc).__name__}
     checks["T25_PRIVATE_ORACLE_INTERFACE"] = _oracle_interface_check(root)
+    checks["FIXTURE_OPTIONALITY_POLICY"] = _fixture_optionality_policy_check(root)
+    checks["ZERO_FIXTURE_CONTRACT_CONTROLS"] = _zero_fixture_contract_check(root)
     checks["CONSTRUCTION_CONTRACT_ENUMERATOR"] = _contract_enumerator_check(root)
     checks["NEGATIVE_GATE_CONTROLS"] = _negative_controls_check(root)
     checks["PRIVATE_MANIFEST_AND_SEAL_REHEARSAL"] = _manifest_seal_rehearsal_check(root)
     checks["POST_LEDGER_FAILURE_SEMANTICS"] = _failure_semantics_check(root)
     checks["ONE_SHOT_CONTROLS"] = _one_shot_controls_check(root)
     checks["CONSTRUCTION_LIFECYCLE_REHEARSALS"] = _lifecycle_rehearsal_check(root)
+    checks["REAL_ENTRYPOINT_FIXTURE_POLICY_BINDING"] = (
+        _real_entrypoint_fixture_policy_check(root))
+    checks["ZERO_FIXTURE_LIFECYCLE"] = _zero_fixture_lifecycle_check(root)
+    checks["FIXTURE_BEARING_LIFECYCLE"] = _fixture_bearing_lifecycle_check(root)
     checks["PRODUCTION_GRAPH_CONSTRUCTION_NODES"] = _production_graph_nodes_check(root)
     return checks
 
@@ -358,6 +364,53 @@ def _contract_enumerator_check(root: Path) -> dict:
     stable = len(set(CONTRACT_LEAF_REQUIREMENTS)) == leaf_count
     return {"status": "PASS" if stable and leaf_count >= 50 else "FAIL",
             "leaf_count": leaf_count, "enumerator_frozen": stable}
+
+
+def _fixture_optionality_policy_check(root: Path) -> dict:
+    from .construction import load_fixture_policy, protocol_hashes
+    from .freeze import build_freeze
+
+    try:
+        policy = load_fixture_policy(root)
+        frozen = build_freeze(root)
+        component = next((entry for entry in frozen["components"]
+                          if entry["path"] ==
+                          "evaluations/t26/private_storage_policy.json"), None)
+        identities = protocol_hashes(root)
+        ok = (policy["auxiliary_private_fixtures_required"] is False
+              and policy["auxiliary_private_fixtures_optional"] is True
+              and component is not None
+              and component["sha256"] ==
+              policy["private_storage_policy_sha256"]
+              and identities["private_storage_policy_sha256"] ==
+              policy["private_storage_policy_sha256"])
+        return {
+            "status": "PASS" if ok else "FAIL",
+            "auxiliary_private_fixtures_required":
+                policy["auxiliary_private_fixtures_required"],
+            "auxiliary_private_fixtures_optional":
+                policy["auxiliary_private_fixtures_optional"],
+            "policy_frozen": component is not None,
+            "policy_sha256": policy["private_storage_policy_sha256"],
+        }
+    except Exception as exc:
+        return {"status": "FAIL", "error": type(exc).__name__}
+
+
+def _zero_fixture_contract_check(root: Path) -> dict:
+    from .construction import run_zero_fixture_contract_controls
+
+    report = run_zero_fixture_contract_controls(root)
+    return {
+        "status": report["status"],
+        "leaf_count": report["positive"]["total_leaves"],
+        "pass_count": report["positive"]["pass_count"],
+        "fail_count": report["positive"]["fail_count"],
+        "unverifiable_count": report["positive"]["unverifiable_count"],
+        "fixture_leaf": report["positive"]["fixture_leaf"],
+        "negative_fixture_leaf": report["negative"]["fixture_leaf"],
+        "negative_failed_leaves": report["negative"]["failed_leaves"],
+    }
 
 
 def _negative_controls_check(root: Path) -> dict:
@@ -501,6 +554,47 @@ def _lifecycle_rehearsal_check(root: Path) -> dict:
     return {"status": report.get("status", "FAIL"),
             "runs": report.get("run_count", 0),
             "semantic_diffs": report.get("semantic_diffs", {})}
+
+
+def _real_entrypoint_fixture_policy_check(root: Path) -> dict:
+    report_path = root / "evaluations/t26/construction_rehearsal_report.json"
+    if not report_path.is_file():
+        return {"status": "FAIL", "error": "construction_rehearsal_report absent"}
+    report = _read(root, "evaluations/t26/construction_rehearsal_report.json")
+    zero = report.get("zero_fixture_lifecycle", {})
+    policy = report.get("zero_fixture_contract_controls", {}).get("policy", {})
+    ok = (zero.get("status") == "PASS"
+          and zero.get("fixture_count") == 0
+          and zero.get("contract_leaf_total") == 62
+          and zero.get("contract_leaf_pass_count") == 62
+          and policy.get("auxiliary_private_fixtures_optional") is True)
+    return {"status": "PASS" if ok else "FAIL",
+            "zero_fixture_real_entrypoint_sealed": zero.get("status") == "PASS",
+            "fixtures_optional_bound":
+                policy.get("auxiliary_private_fixtures_optional") is True}
+
+
+def _zero_fixture_lifecycle_check(root: Path) -> dict:
+    report = _read(root, "evaluations/t26/construction_rehearsal_report.json")
+    zero = report.get("zero_fixture_lifecycle", {})
+    ok = (zero.get("status") == "PASS"
+          and zero.get("fixture_count") == 0
+          and zero.get("ledger_state") == "SEALED"
+          and zero.get("ledger_event_count") == 6
+          and zero.get("contract_leaf_total") == 62
+          and zero.get("contract_leaf_pass_count") == 62
+          and zero.get("gate_check_count") == 24
+          and zero.get("store_verify") == "PASS"
+          and zero.get("publication_leak_gate") == "PASS")
+    return {"status": "PASS" if ok else "FAIL", **zero}
+
+
+def _fixture_bearing_lifecycle_check(root: Path) -> dict:
+    report = _read(root, "evaluations/t26/construction_rehearsal_report.json")
+    fixture = report.get("fixture_bearing_lifecycle", {})
+    ok = fixture.get("status") == "PASS" and fixture.get("run_count") == 2
+    return {"status": "PASS" if ok else "FAIL",
+            "run_count": fixture.get("run_count", 0)}
 
 
 def _production_graph_nodes_check(root: Path) -> dict:
