@@ -1,0 +1,230 @@
+{
+  "artifact": "T26_PRODUCTION_RUNNER_REHEARSAL_REPORT",
+  "classification": "PUBLIC_SAFE",
+  "failure": {
+    "artifact": "T26_PRODUCTION_RUNNER_FAILURE_REHEARSAL",
+    "attempt": 1,
+    "candidate_executions": 0,
+    "classification": "PUBLIC_SAFE",
+    "event_count": 2,
+    "event_types": [
+      "STARTED",
+      "FAILED"
+    ],
+    "failure_class": "RuntimeError",
+    "failure_phase": "STARTED",
+    "real_private_rows_read": 0,
+    "retry_count": 0,
+    "schema_version": "t26-production-runner-failure-rehearsal-v1",
+    "second_evaluation_refused": true,
+    "state": "FAILED",
+    "status": "PASS"
+  },
+  "official_evaluator_invocations": 0,
+  "pair": {
+    "artifact": "T26_PRODUCTION_RUNNER_REHEARSAL_PAIR",
+    "classification": "PUBLIC_SAFE",
+    "external_authority": false,
+    "gold_exposure": 0,
+    "integrated_runner_used": true,
+    "official_evaluator_invocations": 0,
+    "production_adapter_registry_used": true,
+    "real_candidate_executions": 0,
+    "real_private_rows_read": 0,
+    "run_count": 2,
+    "runs": [
+      {
+        "construction_manifest_schema": "t26-private-manifest-v4",
+        "construction_seal_schema": "t26-holdout-seal-v3",
+        "run": 1,
+        "semantic": {
+          "critical_counters": {
+            "authority_violation_events": 0,
+            "external_side_effect_events": 0,
+            "gold_signal_leakage_events": 0,
+            "memory_scope_violation_events": 0,
+            "provenance_loss_events": 0,
+            "schema_bypass_events": 0,
+            "unbounded_retry_events": 0,
+            "unverified_completion_events": 0
+          },
+          "gold_firewall": {
+            "candidate_fields": [
+              "classification",
+              "plan",
+              "scenario_id"
+            ],
+            "gold_fields_exposed": 0,
+            "ingress_counts": {
+              "adapter_registry": 0,
+              "corpus_mount": 0,
+              "document_roots": 0,
+              "general_context": 0,
+              "memory": 0,
+              "provider": 0,
+              "web_provider": 0,
+              "workspace_initialization": 0
+            },
+            "status": "PASS"
+          },
+          "gold_included": false,
+          "ledger_states": [
+            "STARTED",
+            "EXECUTED",
+            "SCORED",
+            "COMPLETE"
+          ],
+          "material_mode": "DISPOSABLE_SYNTHETIC_PRODUCTION_STACK",
+          "metrics": {
+            "capability_selection_accuracy": 1.0,
+            "handoff_validity_rate": 1.0,
+            "plan_execution_adherence": 1.0,
+            "plan_validity_rate": 1.0,
+            "recovery_success_rate": 1.0,
+            "replan_correctness_rate": 1.0,
+            "safe_abstention_accuracy": 1.0,
+            "scenario_completion_rate": 1.0,
+            "verification_success_rate": 1.0,
+            "verified_completion_rate": 1.0
+          },
+          "raw_rows_included": false,
+          "runner_binding": {
+            "general_context_identity_root": "51b5e08a84b85fcd1aebfc538ed39473f17a7e519ee46c5493e10ff51fd554e7",
+            "live_provider_identity_root": "e747c28713b9287c8433fcdf8e25e165bd1a4313ca636e4eff7bc45df13b339a",
+            "official_runner_factory_id": "T26_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
+            "official_runner_factory_sha256": "e8e2abd2056df3d251b1f6b414d81a1a40187d4b4b94d31f35bca98d066adf7f",
+            "official_runner_policy_root": "89ed801bd79cbf8cef6cb66bc4ecb99ff153bdcf4358f87225d91afa1c30f7cb",
+            "production_adapter_registry_root": "1275c104575f1dcf0ea4e9bc91d4312b8e76b7c52bb0324063f6622ed8ae63f6",
+            "production_provider_id": "t25_protocol.provider:T25ProductionRouterProvider",
+            "production_provider_sha256": "103c6d9978f6a29963156770be1c42b5dc8c9b06d973988f11ecd42ca3cbc293",
+            "production_runtime_sha256": "594a481fcbf1ea4ad04fe8ce7fae4a9c01a07a2a83563689347b7fae32088697"
+          },
+          "runner_stack": {
+            "adapter_registry_root": "1275c104575f1dcf0ea4e9bc91d4312b8e76b7c52bb0324063f6622ed8ae63f6",
+            "candidate_gold_access": false,
+            "corpus_source": "FROZEN_PUBLIC",
+            "document_root_source": "PER_SCENARIO_PRIVATE_WORKSPACE",
+            "external_authority": false,
+            "factory_id": "T26_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
+            "firewall_mandatory": true,
+            "firewall_search_provider_used": true,
+            "general_context_identity_root": "51b5e08a84b85fcd1aebfc538ed39473f17a7e519ee46c5493e10ff51fd554e7",
+            "inner_live_or_fixture": "fixture",
+            "integrated_runner_used": true,
+            "production_adapter_registry_used": true,
+            "provider_id": "t25_protocol.provider:T25ProductionRouterProvider",
+            "provider_kind": "REAL_CANDIDATE",
+            "provider_synthetic": false,
+            "t26_firewall_used": true,
+            "workspace_mode": "SYNTHETIC_DISPOSABLE"
+          },
+          "scenario_count": 512,
+          "status": "COMPLETE"
+        }
+      },
+      {
+        "construction_manifest_schema": "t26-private-manifest-v4",
+        "construction_seal_schema": "t26-holdout-seal-v3",
+        "run": 2,
+        "semantic": {
+          "critical_counters": {
+            "authority_violation_events": 0,
+            "external_side_effect_events": 0,
+            "gold_signal_leakage_events": 0,
+            "memory_scope_violation_events": 0,
+            "provenance_loss_events": 0,
+            "schema_bypass_events": 0,
+            "unbounded_retry_events": 0,
+            "unverified_completion_events": 0
+          },
+          "gold_firewall": {
+            "candidate_fields": [
+              "classification",
+              "plan",
+              "scenario_id"
+            ],
+            "gold_fields_exposed": 0,
+            "ingress_counts": {
+              "adapter_registry": 0,
+              "corpus_mount": 0,
+              "document_roots": 0,
+              "general_context": 0,
+              "memory": 0,
+              "provider": 0,
+              "web_provider": 0,
+              "workspace_initialization": 0
+            },
+            "status": "PASS"
+          },
+          "gold_included": false,
+          "ledger_states": [
+            "STARTED",
+            "EXECUTED",
+            "SCORED",
+            "COMPLETE"
+          ],
+          "material_mode": "DISPOSABLE_SYNTHETIC_PRODUCTION_STACK",
+          "metrics": {
+            "capability_selection_accuracy": 1.0,
+            "handoff_validity_rate": 1.0,
+            "plan_execution_adherence": 1.0,
+            "plan_validity_rate": 1.0,
+            "recovery_success_rate": 1.0,
+            "replan_correctness_rate": 1.0,
+            "safe_abstention_accuracy": 1.0,
+            "scenario_completion_rate": 1.0,
+            "verification_success_rate": 1.0,
+            "verified_completion_rate": 1.0
+          },
+          "raw_rows_included": false,
+          "runner_binding": {
+            "general_context_identity_root": "51b5e08a84b85fcd1aebfc538ed39473f17a7e519ee46c5493e10ff51fd554e7",
+            "live_provider_identity_root": "e747c28713b9287c8433fcdf8e25e165bd1a4313ca636e4eff7bc45df13b339a",
+            "official_runner_factory_id": "T26_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
+            "official_runner_factory_sha256": "e8e2abd2056df3d251b1f6b414d81a1a40187d4b4b94d31f35bca98d066adf7f",
+            "official_runner_policy_root": "89ed801bd79cbf8cef6cb66bc4ecb99ff153bdcf4358f87225d91afa1c30f7cb",
+            "production_adapter_registry_root": "1275c104575f1dcf0ea4e9bc91d4312b8e76b7c52bb0324063f6622ed8ae63f6",
+            "production_provider_id": "t25_protocol.provider:T25ProductionRouterProvider",
+            "production_provider_sha256": "103c6d9978f6a29963156770be1c42b5dc8c9b06d973988f11ecd42ca3cbc293",
+            "production_runtime_sha256": "594a481fcbf1ea4ad04fe8ce7fae4a9c01a07a2a83563689347b7fae32088697"
+          },
+          "runner_stack": {
+            "adapter_registry_root": "1275c104575f1dcf0ea4e9bc91d4312b8e76b7c52bb0324063f6622ed8ae63f6",
+            "candidate_gold_access": false,
+            "corpus_source": "FROZEN_PUBLIC",
+            "document_root_source": "PER_SCENARIO_PRIVATE_WORKSPACE",
+            "external_authority": false,
+            "factory_id": "T26_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
+            "firewall_mandatory": true,
+            "firewall_search_provider_used": true,
+            "general_context_identity_root": "51b5e08a84b85fcd1aebfc538ed39473f17a7e519ee46c5493e10ff51fd554e7",
+            "inner_live_or_fixture": "fixture",
+            "integrated_runner_used": true,
+            "production_adapter_registry_used": true,
+            "provider_id": "t25_protocol.provider:T25ProductionRouterProvider",
+            "provider_kind": "REAL_CANDIDATE",
+            "provider_synthetic": false,
+            "t26_firewall_used": true,
+            "workspace_mode": "SYNTHETIC_DISPOSABLE"
+          },
+          "scenario_count": 512,
+          "status": "COMPLETE"
+        }
+      }
+    ],
+    "scenario_count_per_run": 512,
+    "schema_version": "t26-production-runner-rehearsal-pair-v1",
+    "semantic_reproducibility": true,
+    "status": "PASS",
+    "t25_production_router_provider_used": true,
+    "t26_firewall_used": true,
+    "total_synthetic_candidate_executions": 1024
+  },
+  "predecessor_mechanics_rehearsals_preserved": true,
+  "real_candidate_executions": 0,
+  "real_evaluation_attempts": 0,
+  "real_evaluation_ledger_created": false,
+  "real_private_rows_read": 0,
+  "schema_version": "t26-production-runner-rehearsal-report-v1",
+  "status": "PASS"
+}

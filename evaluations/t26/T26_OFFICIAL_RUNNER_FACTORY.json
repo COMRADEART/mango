@@ -1,0 +1,172 @@
+{
+  "artifact": "T26_OFFICIAL_RUNNER_FACTORY_IDENTITY",
+  "candidate_gold_access": false,
+  "classification": "PUBLIC_SAFE",
+  "experiment": "t26",
+  "external_action_authority": false,
+  "factory_entrypoint": "t26_protocol.official_runner:build_official_runner_factory",
+  "factory_id": "T26_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
+  "factory_implementation_sha256": "8257f80abf0a1ad20ad6b89682fea8454683a117d852e7bc2bd786e7d4204d60",
+  "general_context_identity_root": "3cdb3f242807a13ee8ab3668aca692834811d990a2ee1b1c6e365337c194b355",
+  "identity_root": "291fc505f189501fed61a97f67df84a358bd912e65fdec5219c15773c165c478",
+  "integrated_runner_runtime_sha256": "a097a31c883cd8f93f12576c8ff2a49a945604d7aa3ab194e2df8a8c269b458a",
+  "live_provider_policy": {
+    "anonymous_or_closure_provider_allowed": false,
+    "fixture_allowed_only_for_disposable_rehearsal": true,
+    "identity_bound_before_ledger": true,
+    "real_network_required": true,
+    "real_required_live_or_fixture": "live",
+    "required_interface": [
+      "search",
+      "timestamp",
+      "provider_name",
+      "live_or_fixture",
+      "network_required"
+    ]
+  },
+  "mount_policy": {
+    "caller_selected_directories_allowed": false,
+    "corpus": {
+      "file_count": 3,
+      "file_root": "80b9435fbef681b6bec27d5f33f7688d3953e27a1e0f61d0b36cd7eeeb963ee0",
+      "files": [
+        {
+          "byte_size": 289646,
+          "path": "rag/gk_corpus/chunks.jsonl",
+          "sha256": "f8adf753dac76c3a013eb6e2e86890bc5bd1eada4de689d7610788006139bbe5"
+        },
+        {
+          "byte_size": 874,
+          "path": "rag/gk_corpus/corpus_manifest.json",
+          "sha256": "9170b3f24427f077c3443e08d093835cc28c95add5ed9a27e90af3f436f16492"
+        },
+        {
+          "byte_size": 12395,
+          "path": "rag/gk_corpus/sources.jsonl",
+          "sha256": "65c2a10ec27f05b65093ee9d148be40a53f7ccb62bf85f00b7213253bb128e5a"
+        }
+      ],
+      "path": "rag/gk_corpus",
+      "source": "FROZEN_PUBLIC"
+    },
+    "document_roots": {
+      "cross_scenario_visibility": false,
+      "initially_empty": true,
+      "relative_path": "documents",
+      "source": "PER_SCENARIO_PRIVATE_WORKSPACE"
+    },
+    "general_context": {
+      "gold_fields_forbidden": true,
+      "source": "IDENTITY_BOUND_PRODUCTION_DEPENDENCY"
+    }
+  },
+  "official_runner_policy_root": "1af676892259e5fec35300041054509017557fba3a24dcffb6802d8fdb0d850d",
+  "production_adapter_builder": "t26_protocol.production:build_adapters",
+  "production_adapter_registry": {
+    "entries": [
+      {
+        "capability": "GENERAL",
+        "implementation": "t26_protocol.production:_provider_call",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "MATH_T4",
+        "implementation": "t26_protocol.production:_math",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "SCIENCE_RAG",
+        "implementation": "t26_protocol.production:_provider_call",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "SCICOMP",
+        "implementation": "t26_protocol.production:_scicomp",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "CODE",
+        "implementation": "t26_protocol.production:_code",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "WEB_RESEARCH",
+        "implementation": "t26_protocol.production:_provider_call",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "DOCUMENT",
+        "implementation": "t26_protocol.production:_provider_call",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "MEMORY",
+        "implementation": "t26_protocol.production:_memory",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "PLANNING",
+        "implementation": "t26_protocol.production:_planning",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "NO_TOOL",
+        "implementation": "t26_protocol.production:_no_tool",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "ORCHESTRATION",
+        "implementation": "t26_protocol.production:_orchestration",
+        "internal_only": true,
+        "may_perform_external_action": false
+      },
+      {
+        "capability": "KNOWLEDGE_RAG",
+        "implementation": "t26_protocol.production:_provider_call",
+        "internal_only": true,
+        "may_perform_external_action": false
+      }
+    ],
+    "registered_skill_ids": [
+      "GENERAL",
+      "MATH_T4",
+      "SCIENCE_RAG",
+      "SCICOMP",
+      "CODE",
+      "WEB_RESEARCH",
+      "DOCUMENT",
+      "MEMORY",
+      "PLANNING",
+      "NO_TOOL",
+      "ORCHESTRATION",
+      "KNOWLEDGE_RAG"
+    ],
+    "registry_root": "1275c104575f1dcf0ea4e9bc91d4312b8e76b7c52bb0324063f6622ed8ae63f6"
+  },
+  "production_adapter_registry_root": "1275c104575f1dcf0ea4e9bc91d4312b8e76b7c52bb0324063f6622ed8ae63f6",
+  "production_provider_id": "t25_protocol.provider:T25ProductionRouterProvider",
+  "production_provider_policy": {
+    "firewall_mandatory": true,
+    "provider_id": "t25_protocol.provider:T25ProductionRouterProvider",
+    "provider_kind": "REAL_CANDIDATE",
+    "real_workspace_mode": "REAL_EXPERIMENT",
+    "rehearsal_workspace_mode": "SYNTHETIC_DISPOSABLE",
+    "synthetic": false
+  },
+  "production_provider_sha256": "103c6d9978f6a29963156770be1c42b5dc8c9b06d973988f11ecd42ca3cbc293",
+  "production_runtime_sha256": "594a481fcbf1ea4ad04fe8ce7fae4a9c01a07a2a83563689347b7fae32088697",
+  "runner_class": "sciencemath.integrated.runner:IntegratedRunner",
+  "schema_version": "t26-official-runner-factory-identity-v1",
+  "t25_firewall_sha256": "9961693a4487452d4eac48e16536731375bc792866eea35023c5da5aa324686d",
+  "t26_firewall_sha256": "b017925eea6d5b436569b0a68a6fe2b3d250bec1b0743d5c9e5e93ae84b72269"
+}
