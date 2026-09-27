@@ -155,8 +155,15 @@ def generate(root: Path) -> dict:
     _write(out / "preconstruction_freeze.json", freeze)
     doctor = run_doctor(root)
     _write(out / "protocol_doctor_report.json", doctor)
-    passed = (all(document.get("status", "PASS") == "PASS"
-                  for document in documents.values()) and
+    passed = (documents["T26_HISTORICAL_FAILURE_ANCHOR.json"]["status"] ==
+              "OFFICIAL_CAPABILITY_FAILURE" and
+              documents["T27_PUBLIC_ROOT_CAUSE_REPRODUCTION.json"]["status"] ==
+              "REPRODUCED_AND_REMEDIATED" and
+              documents["qualification_report.json"]["status"] == "PASS" and
+              documents["protection_report.json"]["status"] == "PASS" and
+              documents["test_gate_report.json"]["status"] == "PASS" and
+              all(item["status"] == "PASS" for item in
+                  documents["diagnostics_report.json"].values()) and
               _read_status(out / "public_leak_scan.json") == "PASS" and
               verify_freeze(root, freeze)["status"] == "PASS" and
               doctor["status"] == "PASS")
