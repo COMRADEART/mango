@@ -1,0 +1,17 @@
+{
+  "artifact": "T27_REAL_EXPOSURE",
+  "candidate_real_executions": 0,
+  "classification": "PUBLIC_SAFE",
+  "construction_attempts": 0,
+  "evaluation_attempts": 0,
+  "official_real_evaluator_invocations": 0,
+  "real_construction_ledger_present": false,
+  "real_construction_one_shot_marker_present": false,
+  "real_evaluation_ledger_present": false,
+  "real_evaluation_marker_present": false,
+  "schema_version": "t27-real-exposure-v2",
+  "t26_private_rows_opened": 0,
+  "t26_reruns": 0,
+  "t27_real_blind_rows": 0,
+  "t27_real_gold": 0
+}

@@ -1,0 +1,70 @@
+{
+  "artifact": "T27_DISPOSABLE_CONSTRUCTION_REHEARSALS",
+  "classification": "PUBLIC_SAFE",
+  "real_blind_rows": 0,
+  "real_construction_attempts": 0,
+  "real_gold_rows": 0,
+  "runs": [
+    {
+      "contract_leaf_count": 45,
+      "designated_counts": {
+        "handoff_cases": 512,
+        "recoverable_cases": 128,
+        "replan_required_cases": 128,
+        "safe_abstention_cases": 128,
+        "successful_completion_cases": 384,
+        "verification_cases": 512
+      },
+      "gate_check_count": 34,
+      "gold_count": 512,
+      "leak_gate_status": "PASS",
+      "receipt_blind_content_included": false,
+      "run": 1,
+      "scenario_count": 512,
+      "semantic_signature": "54dd4ce4267cc27b0e598f5f06ea4bb405ad57697ba66f92563eee28e5eb65da",
+      "state": "SEALED",
+      "state_sequence": [
+        "LEDGER_CREATED",
+        "MATERIALIZED",
+        "AUDITED",
+        "GATE_PASS",
+        "MANIFESTED",
+        "SEALED"
+      ],
+      "status": "PASS",
+      "store_status": "PASS"
+    },
+    {
+      "contract_leaf_count": 45,
+      "designated_counts": {
+        "handoff_cases": 512,
+        "recoverable_cases": 128,
+        "replan_required_cases": 128,
+        "safe_abstention_cases": 128,
+        "successful_completion_cases": 384,
+        "verification_cases": 512
+      },
+      "gate_check_count": 34,
+      "gold_count": 512,
+      "leak_gate_status": "PASS",
+      "receipt_blind_content_included": false,
+      "run": 2,
+      "scenario_count": 512,
+      "semantic_signature": "54dd4ce4267cc27b0e598f5f06ea4bb405ad57697ba66f92563eee28e5eb65da",
+      "state": "SEALED",
+      "state_sequence": [
+        "LEDGER_CREATED",
+        "MATERIALIZED",
+        "AUDITED",
+        "GATE_PASS",
+        "MANIFESTED",
+        "SEALED"
+      ],
+      "status": "PASS",
+      "store_status": "PASS"
+    }
+  ],
+  "schema_version": "t27-construction-rehearsals-v1",
+  "semantic_equivalence": true,
+  "status": "PASS"
+}

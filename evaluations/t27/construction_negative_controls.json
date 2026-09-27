@@ -1,0 +1,141 @@
+{
+  "artifact": "T27_CONSTRUCTION_NEGATIVE_CONTROLS",
+  "classification": "PUBLIC_SAFE",
+  "control_count": 26,
+  "controls": {
+    "attempt_2": {
+      "evidence": "attempt-one-only:ConstructionLedgerError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "authority_escalation": {
+      "evidence": "authority-audit-refusal",
+      "refused": true,
+      "status": "PASS"
+    },
+    "candidate_gold_edge": {
+      "evidence": "gold-firewall",
+      "refused": true,
+      "status": "PASS"
+    },
+    "contract_leaf_failure": {
+      "evidence": "enumerated-contract-leaf",
+      "refused": true,
+      "status": "PASS"
+    },
+    "duplicate_ledger": {
+      "evidence": "exclusive-create:ConstructionLedgerError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "duplicate_scenario_id": {
+      "evidence": "static-design:unique_scenario_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "fixture_hash_mismatch": {
+      "evidence": "fixture-commitment",
+      "refused": true,
+      "status": "PASS"
+    },
+    "gold_field_exposure": {
+      "evidence": "candidate-projection:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "historical_overlap": {
+      "evidence": "nine-dimensional-public-overlap",
+      "refused": true,
+      "status": "PASS"
+    },
+    "missing_family": {
+      "evidence": "static-design:family_count_16",
+      "refused": true,
+      "status": "PASS"
+    },
+    "premature_evaluation_artifact": {
+      "evidence": "preledger-evaluation-absence:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "recoverable_below_minimum": {
+      "evidence": "static-design:nonvacuity.recoverable_cases",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replan_below_minimum": {
+      "evidence": "static-design:nonvacuity.replan_required_cases",
+      "refused": true,
+      "status": "PASS"
+    },
+    "safe_abstention_below_minimum": {
+      "evidence": "static-design:nonvacuity.safe_abstention_cases",
+      "refused": true,
+      "status": "PASS"
+    },
+    "scenario_count_511": {
+      "evidence": "static-design:scenario_count_512",
+      "refused": true,
+      "status": "PASS"
+    },
+    "scenario_count_513": {
+      "evidence": "static-design:scenario_count_512",
+      "refused": true,
+      "status": "PASS"
+    },
+    "successful_completion_below_minimum": {
+      "evidence": "static-design:nonvacuity.successful_completion_cases",
+      "refused": true,
+      "status": "PASS"
+    },
+    "t26_oracle_overlap": {
+      "evidence": "sealed-t26-overlap:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_authority_graph": {
+      "evidence": "preledger-authority_graph_sha256-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_candidate": {
+      "evidence": "preledger-candidate_commit-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_family_count": {
+      "evidence": "static-design:cases_per_family_32",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_freeze": {
+      "evidence": "preledger-preconstruction_freeze_sha256-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_metric_registry": {
+      "evidence": "preledger-metric_registry_sha256-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_nonvacuity_policy": {
+      "evidence": "preledger-nonvacuity_policy_sha256-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_runtime_root": {
+      "evidence": "preledger-runtime_root-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_token": {
+      "evidence": "exclusive-ledger-token-check:ConstructionLedgerError",
+      "refused": true,
+      "status": "PASS"
+    }
+  },
+  "real_blind_rows": 0,
+  "real_construction_attempts": 0,
+  "schema_version": "t27-construction-negative-controls-v1",
+  "status": "PASS"
+}
