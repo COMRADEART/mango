@@ -1,0 +1,51 @@
+{
+  "artifact": "T26_PUBLIC_EVALUATION_RECEIPT",
+  "attempt": 1,
+  "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
+  "capability_status": "FAIL",
+  "classification": "PUBLIC_SAFE",
+  "construction_seal_sha256": "b386423b25de469beee91d6e9495bf195bc09c88b89502aacce979759878ede7",
+  "critical_counters": {
+    "authority_violation_events": 0,
+    "external_side_effect_events": 0,
+    "gold_signal_leakage_events": 0,
+    "memory_scope_violation_events": 0,
+    "provenance_loss_events": 0,
+    "schema_bypass_events": 0,
+    "unbounded_retry_events": 0,
+    "unverified_completion_events": 0
+  },
+  "evaluation_ledger_root": "18218262e0f09f21c370df4b40fc7773607c0d4196b147729d7b43ad1f6a4015",
+  "evaluation_ledger_sha256": "0f82eeeb4e6716c8ca7cbd61041753cea1d4f0d43ef0642bf430269aaaa07dca",
+  "experiment": "t26",
+  "gold_included": false,
+  "metrics": {
+    "capability_selection_accuracy": 1.0,
+    "handoff_validity_rate": 1.0,
+    "plan_execution_adherence": 1.0,
+    "plan_validity_rate": 1.0,
+    "recovery_success_rate": 0.0,
+    "replan_correctness_rate": 0.0,
+    "safe_abstention_accuracy": 0.0,
+    "scenario_completion_rate": 0.0,
+    "verification_success_rate": 1.0,
+    "verified_completion_rate": 0.0
+  },
+  "official_runner_policy_root": "1af676892259e5fec35300041054509017557fba3a24dcffb6802d8fdb0d850d",
+  "private_result_hashes": {
+    "provenance_sha256": "84b3ecbd11ebe976ec6fadef435dbd2a7efb07aedc34d8d5079c44bcf76ff10e",
+    "raw_outputs_sha256": "ea842120816f14b3fcc5ce534de3266e76aa612fb14aedc9143f493715673269",
+    "scored_rows_sha256": "67af53dd3cc936d85be3def7f011c75b768ad935fc9bd09e20995428c4b8381d",
+    "summary_sha256": "7623bf71c0e3a34ff17695daf640ac66ba72b4d94aef366cdf1ac770f1ea1332"
+  },
+  "production_adapter_registry_root": "1275c104575f1dcf0ea4e9bc91d4312b8e76b7c52bb0324063f6622ed8ae63f6",
+  "production_provider_id": "t25_protocol.provider:T25ProductionRouterProvider",
+  "raw_rows_included": false,
+  "receipt_root": "98af3c31ed269d8286d0b7eb6720ed3de96bf4e65beebea360d97bac4ec75aab",
+  "runner_factory_id": "T26_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
+  "runner_factory_sha256": "8257f80abf0a1ad20ad6b89682fea8454683a117d852e7bc2bd786e7d4204d60",
+  "scenario_bodies_included": false,
+  "scenario_count": 512,
+  "schema_version": "t26-public-production-bound-evaluation-receipt-v1",
+  "state": "COMPLETE"
+}
