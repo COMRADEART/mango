@@ -1,0 +1,43 @@
+{
+  "artifact": "T27_DISPOSABLE_EVALUATION_REHEARSALS",
+  "classification": "PUBLIC_SAFE",
+  "official_real_evaluator_invocations": 0,
+  "real_evaluation_attempts": 0,
+  "runs": [
+    {
+      "all_public_qualification_floors_pass": true,
+      "critical_counters_zero": true,
+      "denominators_nonzero": true,
+      "gold_firewall": "PASS",
+      "run": 1,
+      "scenario_count": 64,
+      "semantic_signature": "999929bfaf8db099125b87bcee79adc23cb45fa51dd04cca5e775fef02513552",
+      "state_sequence": [
+        "STARTED",
+        "EXECUTED",
+        "SCORED",
+        "COMPLETE"
+      ],
+      "status": "PASS"
+    },
+    {
+      "all_public_qualification_floors_pass": true,
+      "critical_counters_zero": true,
+      "denominators_nonzero": true,
+      "gold_firewall": "PASS",
+      "run": 2,
+      "scenario_count": 64,
+      "semantic_signature": "999929bfaf8db099125b87bcee79adc23cb45fa51dd04cca5e775fef02513552",
+      "state_sequence": [
+        "STARTED",
+        "EXECUTED",
+        "SCORED",
+        "COMPLETE"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "t27-evaluation-rehearsals-v1",
+  "semantic_equivalence": true,
+  "status": "PASS"
+}

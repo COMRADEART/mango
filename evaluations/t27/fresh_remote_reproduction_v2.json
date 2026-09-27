@@ -1,0 +1,31 @@
+{
+  "artifact": "T27_FRESH_REMOTE_REPRODUCTION_V2",
+  "checks": {
+    "authority_graph": true,
+    "candidate_identity": true,
+    "construction_failure_rehearsal": true,
+    "construction_rehearsals": true,
+    "diagnostics": true,
+    "doctor": true,
+    "evaluation_failure_rehearsal": true,
+    "evaluation_rehearsals": true,
+    "freeze": true,
+    "negative_controls": true,
+    "official_runner": true,
+    "production_graph": true,
+    "protections": true,
+    "public_leak_scan": true,
+    "public_reproducer": true,
+    "qualification": true
+  },
+  "classification": "PUBLIC_SAFE",
+  "real_blind_rows": 0,
+  "real_construction_attempts": 0,
+  "real_evaluation_attempts": 0,
+  "real_gold_rows": 0,
+  "schema_version": "t27-fresh-remote-reproduction-v2",
+  "semantic_drift": 0,
+  "status": "PASS",
+  "t26_private_rows_opened": 0,
+  "t26_reruns": 0
+}

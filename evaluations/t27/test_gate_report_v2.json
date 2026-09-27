@@ -1,0 +1,20 @@
+{
+  "artifact": "T27_APPLICABILITY_AWARE_TEST_GATE_V2",
+  "classification": "PUBLIC_SAFE",
+  "deselections": 0,
+  "live_failures": 0,
+  "passed": 0,
+  "return_code": 0,
+  "schema_version": "t27-applicability-aware-test-gate-v2",
+  "status": "PASS",
+  "summary_sha256": "fa6dc8c4d1aa757a7f68d8baf4a1789fc737adc51e2dee609874239a0488b033",
+  "test_files": [
+    "tests\\test_t27_construction_infrastructure.py",
+    "tests\\test_t27_integrated_remediation.py",
+    "tests\\test_t27_preconstruction.py",
+    "tests\\test_t27_scorer.py"
+  ],
+  "unexplained_skips": 0,
+  "unknown_failures": 0,
+  "xfails": 0
+}

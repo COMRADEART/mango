@@ -1,0 +1,27 @@
+{
+  "artifact": "T27_FAILURE_REHEARSALS",
+  "classification": "PUBLIC_SAFE",
+  "construction": {
+    "artifact": "T27_CONSTRUCTION_FAILURE_REHEARSAL",
+    "classification": "PUBLIC_SAFE",
+    "one_shot": "SPENT",
+    "post_ledger_failure_recorded": true,
+    "real_construction_attempts": 0,
+    "retry_refused": true,
+    "schema_version": "t27-construction-failure-rehearsal-v1",
+    "status": "PASS",
+    "terminal": "T27_REAL_BLIND_CONSTRUCTION_FAILED_ONE_SHOT_CONSUMED"
+  },
+  "evaluation": {
+    "artifact": "T27_EVALUATION_FAILURE_REHEARSAL",
+    "classification": "PUBLIC_SAFE",
+    "one_shot": "SPENT",
+    "post_ledger_failure_recorded": true,
+    "real_evaluation_attempts": 0,
+    "retry_refused": true,
+    "schema_version": "t27-evaluation-failure-rehearsal-v1",
+    "status": "PASS"
+  },
+  "schema_version": "t27-failure-rehearsals-v1",
+  "status": "PASS"
+}

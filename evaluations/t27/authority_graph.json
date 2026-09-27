@@ -2,33 +2,166 @@
   "artifact": "T27_AUTHORITY_GRAPH",
   "candidate_gold_access": false,
   "classification": "PUBLIC_SAFE",
+  "construction_candidate_execution_authority": false,
   "external_action_authority": false,
   "nodes": {
-    "capabilities": {
-      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+    "T26_overlap_oracle": {
+      "authority": "COMPARE_T26_SEALED_HASHES_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
       "gold_access": false
     },
-    "future_evaluator": {
-      "active": false,
+    "completion_gate": {
+      "authority": "VERIFY_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "construction_audit": {
+      "authority": "AUDIT_PRIVATE_NO_EXECUTION",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "construction_gate": {
+      "authority": "VERIFY_PRIVATE_NO_EXECUTION",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "construction_ledger": {
+      "authority": "WRITE_PRIVATE_ONCE",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "evaluation_ledger": {
       "authority": "SCORE_PRIVATE_ONCE",
-      "gold_access": true
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "gold_firewall": {
+      "authority": "PROJECT_CANDIDATE_INPUT_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "handoff_validator": {
+      "authority": "VERIFY_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "historical_exclusion_oracle": {
+      "authority": "COMPARE_PUBLIC_HASHES_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "holdout_seal": {
+      "authority": "SEAL_PRIVATE_ONCE",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "official_runner": {
+      "authority": "SCORE_PRIVATE_ONCE",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": true,
+      "gold_access": false
     },
     "orchestrator": {
       "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": true,
       "gold_access": false
     },
     "planner": {
       "authority": "PROPOSE_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "private_author": {
+      "authority": "AUTHOR_PRIVATE_ONCE",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "private_manifest": {
+      "authority": "COMMIT_PRIVATE_ONCE",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "private_materialization": {
+      "authority": "WRITE_PRIVATE_ONCE",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "provider_normalizer": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "public_construction_receipt": {
+      "authority": "PUBLISH_HASHES_COUNTS_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "public_evaluation_receipt": {
+      "authority": "SCORE_PRIVATE_ONCE",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": true
+    },
+    "publication_gate": {
+      "authority": "SCAN_PUBLIC_REFS_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "registered_capabilities": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": true,
+      "gold_access": false
+    },
+    "replan_controller": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": false
+    },
+    "retry_controller": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
       "gold_access": false
     },
     "router": {
       "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
       "gold_access": false
     },
-    "verifier": {
+    "scorer": {
+      "authority": "SCORE_PRIVATE_ONCE",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
+      "gold_access": true
+    },
+    "verification_layer": {
       "authority": "VERIFY_ONLY",
+      "autonomous_external_action_authority": false,
+      "candidate_execution_authority": false,
       "gold_access": false
     }
   },
-  "schema_version": "t27-authority-graph-v1"
+  "private_evaluator_authority": "SCORE_PRIVATE_ONCE",
+  "schema_version": "t27-authority-graph-v2"
 }

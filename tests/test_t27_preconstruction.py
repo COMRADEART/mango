@@ -6,7 +6,7 @@ from pathlib import Path
 
 from t27_protocol.doctor import run_doctor
 from t27_protocol.exclusion import DIMENSIONS
-from t27_protocol.freeze import verify_freeze
+from t27_protocol.freeze import verify_freeze_v2
 
 ROOT = Path(__file__).resolve().parents[1]
 EVAL = ROOT / "evaluations" / "t27"
@@ -61,8 +61,10 @@ def test_protections_qualification_test_gate_and_diagnostics_pass():
 
 
 def test_doctor_and_freeze_reproduce():
-    frozen = _read("preconstruction_freeze.json")
-    assert verify_freeze(ROOT, frozen)["status"] == "PASS"
+    historical = _read("preconstruction_freeze.json")
+    assert historical["freeze_sha256"] == "ac11569f973ca819795eef370d5befe384b9cb2dcc23c850a0ef84ea1bb536b8"
+    frozen = _read("preconstruction_freeze_v2.json")
+    assert verify_freeze_v2(ROOT, frozen)["status"] == "PASS"
     report = run_doctor(ROOT)
     assert report["status"] == "PASS"
     assert report["failed_checks"] == []

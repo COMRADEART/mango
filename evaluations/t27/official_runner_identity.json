@@ -1,0 +1,31 @@
+{
+  "artifact": "T27_OFFICIAL_RUNNER_IDENTITY",
+  "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+  "candidate_tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+  "classification": "PUBLIC_SAFE",
+  "components": {
+    "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+    "candidate_runtime": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d",
+    "corpus_document_mounts": "PRIVATE_MANIFEST_BOUND",
+    "general_context": "BOUND_BY_OFFICIAL_FACTORY",
+    "production_adapter_registry": "c88a2708c52dc3c94d4194d65174b24724ef4528c8dccae054c19374eda22c03",
+    "production_provider": "t25_protocol.provider:T25ProductionRouterProvider",
+    "runner_factory": "fe2b312ce759b59354a369021acd37b84579750aa26897af6f58176d425aada5",
+    "web_firewall_stack": "t26_protocol.firewall:T26LiveWebSourceFirewall"
+  },
+  "corpus_document_mount_root": "7e6d40351f8cab0142b5abec226dc9f84f99be3e3a2c0a3ab7235caacbc64130",
+  "factory_id": "t27_protocol.evaluation:OfficialRunnerFactory",
+  "factory_sha256": "2ee1abae10a9740d5b53156355d8688ad43e681039bebc36f06fd9bd99a60e88",
+  "general_context_identity_root": "cd681771e08909112edb94622c13bc13d246b459a19fbc34dc9fc18535a559cf",
+  "official_runner_policy_root": "709ca6b9b68d1cf26799df52b6be1715d560443c44b209355cf6c066cbf4145c",
+  "policy": {
+    "arbitrary_caller_supplied_runner_allowed": false,
+    "candidate_gold_access": false,
+    "factory_owns_provider_construction": true,
+    "real_mode_requires_sealed_store": true,
+    "synthetic_data_source_allowed_only_for_disposable_rehearsal": true
+  },
+  "provider_firewall_identity_root": "2b4a803b12aa59a5215e800307d099a67a6838b21c8459b61899752ec71eb582",
+  "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d",
+  "schema_version": "t27-official-runner-identity-v1"
+}
