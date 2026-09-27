@@ -1,8 +1,8 @@
-"""T26 official evaluation with canonical production-runner binding.
+"""T26 official evaluation with bounded GENERAL-context identity binding.
 
-This additive successor leaves the sealed construction and evaluation-v2
-predecessor bytes unchanged.  The real path has no runner-factory argument:
-it internally builds and attests the one canonical production stack.
+This additive successor leaves the sealed construction and predecessor freeze
+documents unchanged.  It binds the complete production ExecContext surface
+without recursively traversing opaque model/tokenizer implementation graphs.
 """
 from __future__ import annotations
 
@@ -31,6 +31,7 @@ from .evaluation_v2 import (
 from .lifecycle import T26PrivateStore
 from .official_runner import (
     FACTORY_ID, DeterministicFixtureSearchProvider,
+    GENERAL_CONTEXT_IDENTITY_PATH,
     DeterministicGeneralContext, OfficialRunnerFactory,
     build_official_runner_factory, build_runner_identity_document,
     validate_corpus_mount, validate_factory_instance,
@@ -40,23 +41,26 @@ from .official_runner import (
 from .scorer import score_suite
 
 SYNTHETIC_TOKEN = "T26_PRODUCTION_STACK_DISPOSABLE_EVALUATION"
-IMPLEMENTATION = "t26_protocol.evaluation_v3:run_real_evaluation"
-ADDENDUM_SCHEMA = "t26-evaluation-protocol-addendum-v2"
-FREEZE_SCHEMA = "t26-evaluation-runner-binding-freeze-v1"
+IMPLEMENTATION = "t26_protocol.evaluation_v4:run_real_evaluation"
+ADDENDUM_SCHEMA = "t26-evaluation-protocol-addendum-v3"
+FREEZE_SCHEMA = "t26-evaluation-general-context-freeze-v1"
 LEDGER_SCHEMA = "t26-production-bound-evaluation-ledger-v1"
 MARKER_SCHEMA = "t26-evaluation-one-shot-marker-v2"
 
-ADDENDUM_PATH = "evaluations/t26/T26_EVALUATION_PROTOCOL_ADDENDUM_V2.json"
-FREEZE_PATH = "evaluations/t26/T26_EVALUATION_RUNNER_BINDING_FREEZE.json"
-REHEARSAL_PATH = "evaluations/t26/T26_PRODUCTION_RUNNER_REHEARSAL_REPORT.json"
+ADDENDUM_PATH = "evaluations/t26/T26_EVALUATION_PROTOCOL_ADDENDUM_V3.json"
+FREEZE_PATH = "evaluations/t26/T26_EVALUATION_GENERAL_CONTEXT_FREEZE.json"
+REHEARSAL_PATH = (
+    "evaluations/t26/T26_GENERAL_CONTEXT_PREFLIGHT_REPRODUCTION.json")
+DIAGNOSTIC_PATH = (
+    "evaluations/t26/T26_GENERAL_CONTEXT_OLD_INSPECTOR_DIAGNOSTIC.json")
 NEGATIVE_PATH = "evaluations/t26/T26_PRODUCTION_RUNNER_NEGATIVE_CONTROLS.json"
 LEDGER_PATH = "evaluation/ledger.json"
 MARKER_PATH = "evaluation/one_shot_spent.json"
 
-PREDECESSOR_COMMIT = "8282a78a3c9543fb3dfa828d0fe1ed5267b8c7e7"
-PREDECESSOR_FREEZE_SHA256 = "5b39e7a38a8f83b3a52df685e56c83773cef104f73d713aa41d363ac8b12adde"
-PREDECESSOR_FREEZE_ROOT = "b0baf8653add2b34a37261676fbdd5fff566f7d372dedc4c079251c2fce873e1"
-PREDECESSOR_COMPONENT_ROOT = "7a6cf07ad64ee037495af9f339150eef2e82281f9087e38db50b752fd8505ca6"
+PREDECESSOR_COMMIT = "31028980f0d2af0e8cf4e3e6b86082ab133a3779"
+PREDECESSOR_FREEZE_SHA256 = "874b6ce57fe1fb4903a91880a3702414fcadd02532a5d92fea07b0fb4194bfde"
+PREDECESSOR_FREEZE_ROOT = "444b814fe0db11dc9887b42e509c101b9f6c55a7c5dafa237da8e5a0fc1a0b2e"
+PREDECESSOR_COMPONENT_ROOT = "de531c7805b7cf9dffbb3a2a02cc2cdaa0379062f6c28b7225623a117a97e14c"
 
 STATES = ("STARTED", "EXECUTED", "SCORED", "COMPLETE")
 NEXT_STATE = {"STARTED": "EXECUTED", "EXECUTED": "SCORED",
@@ -88,22 +92,34 @@ FREEZE_COMPONENTS = {
     "T26_PUBLIC_CONSTRUCTION_COMMITMENT.json": "CONSTRUCTION_COMMITMENT",
     "evaluations/t26/preconstruction_freeze.json": "ORIGINAL_V3_FREEZE",
     "evaluations/t26/candidate_identity.json": "CANDIDATE_IDENTITY",
-    "evaluations/t26/T26_EVALUATION_ADDENDUM_FREEZE.json": "PREDECESSOR_FREEZE",
-    "evaluations/t26/T26_EVALUATION_PROTOCOL_ADDENDUM.json": "PREDECESSOR_ADDENDUM",
+    "evaluations/t26/T26_EVALUATION_RUNNER_BINDING_FREEZE.json":
+        "PREDECESSOR_RUNNER_BINDING_FREEZE",
+    "evaluations/t26/T26_EVALUATION_PROTOCOL_ADDENDUM_V2.json":
+        "PREDECESSOR_RUNNER_BINDING_ADDENDUM",
     "evaluations/t26/T26_OFFICIAL_RUNNER_FACTORY.json": "RUNNER_FACTORY_IDENTITY",
-    ADDENDUM_PATH: "RUNNER_BOUND_ADDENDUM",
-    REHEARSAL_PATH: "PRODUCTION_STACK_REHEARSALS",
-    NEGATIVE_PATH: "RUNNER_BINDING_NEGATIVE_CONTROLS",
+    GENERAL_CONTEXT_IDENTITY_PATH: "GENERAL_CONTEXT_IDENTITY",
+    ADDENDUM_PATH: "GENERAL_CONTEXT_ADDENDUM",
+    DIAGNOSTIC_PATH: "OLD_INSPECTOR_DIAGNOSTIC",
+    REHEARSAL_PATH: "PRODUCTION_CONTEXT_PREFLIGHT_REPRODUCTION",
     "t26_protocol/official_runner.py": "CANONICAL_RUNNER_FACTORY",
-    "t26_protocol/evaluation_v3.py": "RUNNER_BOUND_EVALUATOR",
-    "scripts/t26_runner_binding_addendum.py": "REPRODUCTION_ENTRYPOINT",
-    "tests/test_t26_production_runner_binding.py": "TEST_GATE",
+    "t26_protocol/evaluation_v3.py": "SUPERSEDED_RUNNER_BOUND_EVALUATOR",
+    "t26_protocol/evaluation_v4.py": "GENERAL_CONTEXT_BOUND_EVALUATOR",
+    "scripts/t26_general_context_remediation.py": "REPRODUCTION_ENTRYPOINT",
+    "tests/test_t26_general_context_inspection.py": "GENERAL_CONTEXT_TEST_GATE",
+    "tests/test_t26_production_runner_binding.py": "PREDECESSOR_TEST_GATE",
     "t26_protocol/production.py": "FROZEN_PRODUCTION_ADAPTERS",
     "t25_protocol/provider.py": "FROZEN_PRODUCTION_PROVIDER",
     "t25_protocol/firewall.py": "FROZEN_T25_FIREWALL",
     "t26_protocol/firewall.py": "FROZEN_T26_FIREWALL",
     "src/sciencemath/integrated/runner.py": "FROZEN_INTEGRATED_RUNNER",
     "src/sciencemath/executive/skills.py": "FROZEN_SKILL_REGISTRY",
+    "src/sciencemath/executive/runner.py": "FROZEN_EXEC_CONTEXT",
+    "src/sciencemath/executive/budgets.py": "FROZEN_EXEC_BUDGETS",
+    "src/sciencemath/web/live_provider.py": "FROZEN_LIVE_PROVIDER",
+    "evaluations/t25/production_provider_config.json":
+        "FROZEN_GENERAL_PRODUCTION_CONFIG",
+    "training/adapters/sciencemath-v0.1-t3/artifact_manifest.json":
+        "FROZEN_ADAPTER_MANIFEST",
     "t26_protocol/scorer.py": "FROZEN_SCORER",
     "evaluations/t26/metric_registry.json": "FROZEN_METRIC_REGISTRY",
     "evaluations/t26/authority_graph.json": "FROZEN_AUTHORITY_GRAPH",
@@ -130,36 +146,49 @@ def _repo_sha(root: Path, relative: str) -> str:
 
 
 def _verify_predecessor(root: Path) -> dict[str, Any]:
-    verify_addendum_document(root)
-    observed = verify_addendum_freeze(root)
+    from .evaluation_v3 import (verify_addendum_document_v2,
+                                verify_addendum_freeze_v2)
+
+    verify_addendum_document_v2(root)
+    observed = verify_addendum_freeze_v2(root)
     expected = {
         "freeze_sha256": PREDECESSOR_FREEZE_SHA256,
         "freeze_root": PREDECESSOR_FREEZE_ROOT,
         "component_root": PREDECESSOR_COMPONENT_ROOT,
-        "component_count": 18,
+        "component_count": 23,
     }
     if any(observed.get(key) != value for key, value in expected.items()):
-        raise ValueError("evaluation-v2 predecessor addendum drift")
+        raise ValueError("evaluation-v3 predecessor addendum drift")
     return {"status": "PASS", "commit": PREDECESSOR_COMMIT, **expected}
 
 
 def build_addendum_document(root: Path) -> dict[str, Any]:
     root = Path(root).resolve()
     predecessor = _verify_predecessor(root)
-    base = verify_addendum_document(root)
+    base = json.loads((root /
+        "evaluations/t26/T26_EVALUATION_PROTOCOL_ADDENDUM_V2.json")
+        .read_text(encoding="utf-8"))
     runner = verify_runner_identity_document(root)
+    context = json.loads((root / GENERAL_CONTEXT_IDENTITY_PATH)
+                         .read_text(encoding="utf-8"))
+    diagnostic = json.loads((root / DIAGNOSTIC_PATH)
+                            .read_text(encoding="utf-8"))
+    if (context.get("candidate_gold_access") is not False or
+            context.get("private_store_dependency") is not False or
+            diagnostic.get("candidate_accessible_gold_channel_present") is not False):
+        raise ValueError("GENERAL context remediation evidence invalid")
     return {
         "schema_version": ADDENDUM_SCHEMA,
-        "artifact": "T26_EVALUATION_PROTOCOL_ADDENDUM_V2",
+        "artifact": "T26_EVALUATION_PROTOCOL_ADDENDUM_V3",
         "classification": "PUBLIC_SAFE", "experiment": "t26",
-        "root_cause": "PRE_EVALUATION_PRODUCTION_RUNNER_IDENTITY_BINDING_DEFECT",
+        "root_cause": "PRE_EVALUATION_GENERAL_CONTEXT_INSPECTION_OVERBROAD",
         "predecessor_addendum_commit": predecessor["commit"],
         "predecessor_addendum_freeze_sha256": predecessor["freeze_sha256"],
         "predecessor_addendum_freeze_root": predecessor["freeze_root"],
         "predecessor_addendum_component_root": predecessor["component_root"],
         "replacement_evaluation_entrypoint": IMPLEMENTATION,
         "superseded_evaluation_entrypoint":
-            "t26_protocol.evaluation_v2:run_real_evaluation",
+            "t26_protocol.evaluation_v3:run_real_evaluation",
         "construction_superseded": False,
         "construction_public_commit": base["construction_public_commit"],
         "construction_receipt_root": base["construction_receipt_root"],
@@ -180,7 +209,9 @@ def build_addendum_document(root: Path) -> dict[str, Any]:
         "authority_graph_sha256": base["authority_graph_sha256"],
         "firewall_sha256": base["firewall_sha256"],
         "evaluation_implementation_sha256": _repo_sha(
-            root, "t26_protocol/evaluation_v3.py"),
+            root, "t26_protocol/evaluation_v4.py"),
+        "predecessor_evaluation_implementation_sha256":
+            "42894d4dd41d7a91f73b71c9f1bd18f6a39441f813d4ad0784b0252610c250cd",
         "official_runner_factory_id": runner["factory_id"],
         "official_runner_factory_sha256":
             runner["factory_implementation_sha256"],
@@ -195,6 +226,10 @@ def build_addendum_document(root: Path) -> dict[str, Any]:
         "t26_firewall_sha256": runner["t26_firewall_sha256"],
         "official_runner_policy_root": runner["official_runner_policy_root"],
         "runner_factory_identity_root": runner["identity_root"],
+        "general_context_identity_root": context["identity_root"],
+        "general_context_schema": context["schema_version"],
+        "old_inspector_diagnostic_path": DIAGNOSTIC_PATH,
+        "old_inspector_false_positive_proven": True,
         "real_path_accepts_runner_factory": False,
         "real_path_requires_live_provider": True,
         "real_evaluation_authorized": False,
@@ -203,44 +238,33 @@ def build_addendum_document(root: Path) -> dict[str, Any]:
     }
 
 
-def verify_addendum_document_v2(
+def verify_addendum_document_v3(
         root: Path, document: dict[str, Any] | None = None) -> dict[str, Any]:
     root = Path(root).resolve()
     observed = document if document is not None else json.loads(
         (root / ADDENDUM_PATH).read_text(encoding="utf-8"))
-    # Immutable predecessor verification: successor remediation changes the
-    # runner inspector, so predecessor source components are not recomputed.
-    if (_repo_sha(root, ADDENDUM_PATH) !=
-            "3c7039aec5a37a6ea9499fe3e73bd8c908627b3b9a33ae806499d97349d2d3f2" or
-            observed.get("schema_version") != ADDENDUM_SCHEMA or
-            observed.get("evaluation_implementation_sha256") !=
-            "42894d4dd41d7a91f73b71c9f1bd18f6a39441f813d4ad0784b0252610c250cd" or
-            observed.get("official_runner_factory_sha256") !=
-            "e8e2abd2056df3d251b1f6b414d81a1a40187d4b4b94d31f35bca98d066adf7f" or
-            observed.get("candidate_commit") !=
-            "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f" or
-            observed.get("runtime_root") !=
-            "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c"):
-        raise ValueError("T26 runner-bound predecessor addendum mismatch")
+    expected = build_addendum_document(root)
+    if observed != expected:
+        raise ValueError("T26 GENERAL-context evaluation addendum mismatch")
     return dict(observed)
 
 
 def build_addendum_freeze(root: Path) -> dict[str, Any]:
     root = Path(root).resolve()
-    addendum = verify_addendum_document_v2(root)
+    addendum = verify_addendum_document_v3(root)
     original = verify_original_v3_components(root)
     predecessor = _verify_predecessor(root)
     entries = []
     for relative, role in sorted(FREEZE_COMPONENTS.items()):
         path = root / relative
         if not path.is_file():
-            raise ValueError(f"runner-binding freeze component missing: {relative}")
+            raise ValueError(f"GENERAL-context freeze component missing: {relative}")
         data = _repo_bytes(root, relative)
         entries.append({"path": relative, "sha256": _sha(data),
                         "byte_size": len(data), "role": role})
     core = {
         "schema_version": FREEZE_SCHEMA,
-        "artifact": "T26_EVALUATION_RUNNER_BINDING_FREEZE",
+        "artifact": "T26_EVALUATION_GENERAL_CONTEXT_FREEZE",
         "classification": "PUBLIC_SAFE", "experiment": "t26",
         "original_v3_freeze_sha256": original["freeze_sha256"],
         "original_v3_freeze_root": original["freeze_root"],
@@ -258,6 +282,8 @@ def build_addendum_freeze(root: Path) -> dict[str, Any]:
             addendum["official_runner_factory_sha256"],
         "official_runner_policy_root":
             addendum["official_runner_policy_root"],
+        "general_context_identity_root":
+            addendum["general_context_identity_root"],
         "production_adapter_registry_root":
             addendum["production_adapter_registry_root"],
         "production_provider_sha256":
@@ -265,6 +291,7 @@ def build_addendum_freeze(root: Path) -> dict[str, Any]:
         "real_evaluation_authorized": False,
         "original_construction_freeze_replaced": False,
         "predecessor_addendum_rewritten": False,
+        "predecessor_runner_binding_freeze_rewritten": False,
     }
     document = {**core, "component_count": len(entries),
                 "components": entries, "component_root": sha256_json(entries),
@@ -275,33 +302,14 @@ def build_addendum_freeze(root: Path) -> dict[str, Any]:
     return document
 
 
-def verify_addendum_freeze_v2(
+def verify_addendum_freeze_v3(
         root: Path, document: dict[str, Any] | None = None) -> dict[str, Any]:
     root = Path(root).resolve()
     observed = document if document is not None else json.loads(
         (root / FREEZE_PATH).read_text(encoding="utf-8"))
-    core = {key: value for key, value in observed.items() if key not in {
-        "component_count", "components", "component_root", "freeze_root",
-        "freeze_sha256"}}
-    unhashed = {key: value for key, value in observed.items()
-                if key != "freeze_sha256"}
-    fixed = {
-        "component_count": 23,
-        "component_root":
-            "de531c7805b7cf9dffbb3a2a02cc2cdaa0379062f6c28b7225623a117a97e14c",
-        "freeze_root":
-            "444b814fe0db11dc9887b42e509c101b9f6c55a7c5dafa237da8e5a0fc1a0b2e",
-        "freeze_sha256":
-            "874b6ce57fe1fb4903a91880a3702414fcadd02532a5d92fea07b0fb4194bfde",
-    }
-    if (any(observed.get(key) != value for key, value in fixed.items()) or
-            observed.get("component_count") != len(observed.get("components", [])) or
-            observed.get("component_root") != sha256_json(observed["components"]) or
-            observed.get("freeze_root") != sha256_json(core) or
-            observed.get("freeze_sha256") != _sha(json.dumps(
-                unhashed, sort_keys=True, separators=(",", ":"),
-                ensure_ascii=False).encode("utf-8"))):
-        raise ValueError("T26 runner-binding predecessor freeze mismatch")
+    expected = build_addendum_freeze(root)
+    if observed != expected:
+        raise ValueError("T26 GENERAL-context evaluation freeze mismatch")
     return {"status": "PASS", "component_count": observed["component_count"],
             "component_root": observed["component_root"],
             "freeze_root": observed["freeze_root"],
@@ -480,10 +488,10 @@ def _run(root: Path, store: T26PrivateStore, *, token: str,
     expected_token = EVALUATION_TOKEN if real else SYNTHETIC_TOKEN
     if token != expected_token:
         raise PermissionError("exact T26 production-bound authorization required")
-    addendum = verify_addendum_document_v2(root)
+    addendum = verify_addendum_document_v3(root)
     verify_original_v3_components(root)
     if verify_freeze_document:
-        freeze_check = verify_addendum_freeze_v2(root)
+        freeze_check = verify_addendum_freeze_v3(root)
         freeze = json.loads((root / FREEZE_PATH).read_text(encoding="utf-8"))
     else:
         freeze_check = {"status": "NOT_YET_FINALIZED"}
@@ -660,8 +668,10 @@ def run_real_evaluation(
         live_web_provider: Any, general_context: Any,
         refs: tuple[str, ...] = ()) -> dict[str, Any]:
     """Official entrypoint: the caller cannot inject a runner factory."""
-    raise RuntimeError(
-        "T26_EVALUATION_V3_SUPERSEDED_BY_GENERAL_CONTEXT_INSPECTION_ADDENDUM")
+    return _run(
+        root, store, token=token, real=True,
+        live_web_provider=live_web_provider, general_context=general_context,
+        refs=refs, verify_freeze_document=True)
 
 
 def run_production_disposable_evaluation(

@@ -1,0 +1,21 @@
+{
+  "artifact": "T26_GENERAL_CONTEXT_OLD_INSPECTOR_DIAGNOSTIC",
+  "candidate_accessible_gold_channel_present": false,
+  "classification": "PUBLIC_SAFE",
+  "first_offending_structure": {
+    "containing_type": "builtins:dict",
+    "field_or_key": "Gold",
+    "hit_kind": "DICT_KEY",
+    "marker_responsible": "gold",
+    "object_path": "context.__dict__['tokenizer'].__dict__['_vocab'][key]",
+    "value_type": "builtins:int"
+  },
+  "large_values_included": false,
+  "model_weights_included": false,
+  "opaque_model_or_tokenizer_internal": true,
+  "predecessor_contains_gold_result": true,
+  "private_store_path_present": false,
+  "root_cause": "PRE_EVALUATION_GENERAL_CONTEXT_INSPECTION_OVERBROAD",
+  "schema_version": "t26-general-context-old-inspector-diagnostic-v1",
+  "sealed_store_accessed": false
+}
