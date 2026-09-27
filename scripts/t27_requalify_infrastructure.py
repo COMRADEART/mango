@@ -7,6 +7,8 @@ import json
 import re
 import subprocess
 import sys
+import tempfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,19 +38,28 @@ def write(path: Path, value: object) -> None:
 
 def test_gate(root: Path) -> dict:
     tests = sorted(str(path.relative_to(root)) for path in (root / "tests").glob("test_t27*.py"))
-    completed = subprocess.run(
-        [sys.executable, "-m", "pytest", "-q", *tests], cwd=root,
-        capture_output=True, text=True, timeout=600)
+    with tempfile.TemporaryDirectory(prefix="t27-test-gate-") as directory:
+        junit = Path(directory) / "junit.xml"
+        completed = subprocess.run(
+            [sys.executable, "-m", "pytest", "-q", f"--junitxml={junit}", *tests],
+            cwd=root, capture_output=True, text=True, timeout=600)
+        suite = ET.parse(junit).getroot() if junit.is_file() else None
     output = completed.stdout + "\n" + completed.stderr
-    match = re.search(r"(\d+) passed", output)
     status = "PASS" if completed.returncode == 0 else "FAIL"
+    suites = ([] if suite is None else [suite] if suite.tag == "testsuite"
+              else list(suite.findall("./testsuite")))
+    collected = sum(int(item.attrib.get("tests", 0)) for item in suites)
+    failures = sum(int(item.attrib.get("failures", 0)) for item in suites)
+    errors = sum(int(item.attrib.get("errors", 0)) for item in suites)
+    skipped = sum(int(item.attrib.get("skipped", 0)) for item in suites)
+    passed = collected - failures - errors - skipped
     return {
         "schema_version": "t27-applicability-aware-test-gate-v2",
         "artifact": "T27_APPLICABILITY_AWARE_TEST_GATE_V2",
         "classification": "PUBLIC_SAFE", "status": status,
-        "test_files": tests, "passed": int(match.group(1)) if match else 0,
-        "live_failures": 0 if status == "PASS" else 1,
-        "unknown_failures": 0, "unexplained_skips": 0,
+        "test_files": tests, "passed": passed,
+        "live_failures": failures, "errors": errors,
+        "unknown_failures": 0, "unexplained_skips": skipped,
         "xfails": 0, "deselections": 0,
         "return_code": completed.returncode,
         "summary_sha256": __import__("hashlib").sha256(output.encode()).hexdigest(),

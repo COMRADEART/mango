@@ -14,6 +14,7 @@ EXCLUDED = frozenset({
     "evaluations/t27/preconstruction_freeze_v2.json",
     "evaluations/t27/T27_INFRASTRUCTURE_REQUALIFICATION_VERDICT.json",
     "evaluations/t27/fresh_remote_reproduction_v2.json",
+    "evaluations/t27/test_gate_report_v2.json",
 })
 
 

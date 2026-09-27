@@ -96,6 +96,7 @@ def run_doctor(root: Path) -> dict:
     freeze_v2 = optional("preconstruction_freeze_v2.json")
     exposure = optional("real_exposure_v2.json")
     unrestricted = optional("unrestricted_test_report.json")
+    focused_test_gate = optional("test_gate_report_v2.json")
     production_graph = _read(root, "production_graph.json")
     authority_graph = _read(root, "authority_graph.json")
     required_graph_nodes = {
@@ -200,6 +201,13 @@ def run_doctor(root: Path) -> dict:
             and unrestricted.get("xfails") == 0
             and unrestricted.get("deselections") == 0
             and unrestricted.get("t27_focused", {}).get("status") == "PASS",
+        "focused_test_gate_v2": focused_test_gate.get("status") == "PASS"
+            and focused_test_gate.get("passed") == 19
+            and focused_test_gate.get("live_failures") == 0
+            and focused_test_gate.get("errors") == 0
+            and focused_test_gate.get("unexplained_skips") == 0
+            and focused_test_gate.get("xfails") == 0
+            and focused_test_gate.get("deselections") == 0,
     })
     return {
         "schema_version": "t27-doctor-v1", "artifact": "T27_PROTOCOL_DOCTOR",

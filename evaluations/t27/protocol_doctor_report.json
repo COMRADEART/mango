@@ -1,6 +1,6 @@
 {
   "artifact": "T27_PROTOCOL_DOCTOR",
-  "check_count": 57,
+  "check_count": 58,
   "checks": {
     "applicability_aware_test_gate": true,
     "authority_graph_complete": true,
@@ -28,6 +28,7 @@
     "evaluation_token": true,
     "exclusive_construction_ledger": true,
     "fail_nonvacuity_scorer": true,
+    "focused_test_gate_v2": true,
     "freeze_v1_preserved_historically": true,
     "freeze_v2": true,
     "gold_firewall": true,
