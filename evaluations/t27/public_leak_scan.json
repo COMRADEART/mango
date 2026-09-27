@@ -1,0 +1,12 @@
+{
+  "artifact": "T27_PUBLIC_LEAK_SCAN",
+  "blind_blob_count": 0,
+  "classification": "PUBLIC_SAFE",
+  "forbidden_paths_present": [],
+  "raw_private_rows": 0,
+  "real_gold": 0,
+  "real_inputs": 0,
+  "schema_version": "t27-public-leak-scan-v1",
+  "status": "PASS",
+  "t26_private_paths_scanned": 0
+}

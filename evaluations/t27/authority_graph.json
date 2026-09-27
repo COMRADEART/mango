@@ -1,0 +1,34 @@
+{
+  "artifact": "T27_AUTHORITY_GRAPH",
+  "candidate_gold_access": false,
+  "classification": "PUBLIC_SAFE",
+  "external_action_authority": false,
+  "nodes": {
+    "capabilities": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "gold_access": false
+    },
+    "future_evaluator": {
+      "active": false,
+      "authority": "SCORE_PRIVATE_ONCE",
+      "gold_access": true
+    },
+    "orchestrator": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "gold_access": false
+    },
+    "planner": {
+      "authority": "PROPOSE_ONLY",
+      "gold_access": false
+    },
+    "router": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "gold_access": false
+    },
+    "verifier": {
+      "authority": "VERIFY_ONLY",
+      "gold_access": false
+    }
+  },
+  "schema_version": "t27-authority-graph-v1"
+}

@@ -27,7 +27,13 @@ TERMINALS = frozenset({"COMPLETE", "PARTIAL", "INSUFFICIENT_EVIDENCE", "BLOCKED"
 REPLAN_TRIGGERS = frozenset({"UNAVAILABLE_CAPABILITY", "VERIFICATION_FAILURE",
                              "RETRIEVAL_CONFLICT", "DEPENDENCY_FAILURE",
                              "RECOVERABLE_ERROR", "BUDGET_CHANGE",
-                             "NEW_EVIDENCE", "SCHEMA_MISMATCH"})
+                             "NEW_EVIDENCE", "SCHEMA_MISMATCH",
+                             "MISSING_EVIDENCE"})
+KNOWN_RESULT_STATUSES = frozenset({
+    "OK", "SECURITY_REFUSAL", "INSUFFICIENT_EVIDENCE",
+    "CONFLICTING_EVIDENCE", "BLOCKED", "UNAVAILABLE_CAPABILITY",
+    "RECOVERABLE_ERROR", "BUDGET_CHANGE",
+})
 DEFAULT_BUDGET = {"max_steps": 8, "max_step_retries": 1,
                   "max_total_retries": 3, "max_replans": 2,
                   "max_wall_seconds": 30}
@@ -325,12 +331,23 @@ class IntegratedRunner:
                         raise AuthorityError("external action request refused")
                     if not isinstance(result, dict) or set(result) - RESULT_FIELDS:
                         raise ExecutionError("invalid capability response")
-                    if result.get("status") == "SECURITY_REFUSAL":
+                    status = result.get("status")
+                    if status not in KNOWN_RESULT_STATUSES:
+                        raise ExecutionError("unknown capability response status")
+                    if status == "SECURITY_REFUSAL":
                         outcome, failure = "SECURITY_REFUSAL", "AUTHORITY_REQUEST"
-                    elif result.get("status") == "INSUFFICIENT_EVIDENCE":
+                    elif status == "INSUFFICIENT_EVIDENCE":
                         outcome, failure = "INSUFFICIENT_EVIDENCE", "MISSING_EVIDENCE"
-                    elif result.get("status") == "CONFLICTING_EVIDENCE":
+                    elif status == "CONFLICTING_EVIDENCE":
                         outcome, failure = "INSUFFICIENT_EVIDENCE", "RETRIEVAL_CONFLICT"
+                    elif status == "BLOCKED":
+                        outcome, failure = "BLOCKED", "BLOCKED"
+                    elif status == "UNAVAILABLE_CAPABILITY":
+                        outcome, failure = "UNAVAILABLE_CAPABILITY", "UNAVAILABLE_CAPABILITY"
+                    elif status == "RECOVERABLE_ERROR":
+                        outcome, failure = "RECOVERABLE_ERROR", "RECOVERABLE_ERROR"
+                    elif status == "BUDGET_CHANGE":
+                        outcome, failure = "BUDGET_CHANGE", "BUDGET_CHANGE"
                     elif not self._verify(step, result, payload):
                         outcome, failure = "VERIFICATION_FAILURE", "VERIFICATION_FAILURE"
                     else:
@@ -368,8 +385,6 @@ class IntegratedRunner:
                     continue
                 if outcome == "SECURITY_REFUSAL":
                     state["terminal"] = "SECURITY_REFUSAL"
-                elif outcome == "INSUFFICIENT_EVIDENCE":
-                    state["terminal"] = "INSUFFICIENT_EVIDENCE"
                 elif failure in REPLAN_TRIGGERS and not fallback_used and step["fallback_capability"] and state["plan_version"] - 1 < plan["budgets"]["max_replans"]:
                     fallback_used = True
                     selected = step["fallback_capability"]
@@ -386,20 +401,21 @@ class IntegratedRunner:
                     event["replan_event"] = replan
                     self._save(path, state)
                     continue
+                elif outcome == "INSUFFICIENT_EVIDENCE":
+                    state["terminal"] = "INSUFFICIENT_EVIDENCE"
+                elif outcome == "BLOCKED":
+                    state["terminal"] = "BLOCKED"
                 elif outcome == "UNAVAILABLE_CAPABILITY":
                     state["terminal"] = "UNAVAILABLE_CAPABILITY"
-                elif outcome == "RECOVERABLE_ERROR" and state["retry_count"] >= plan["budgets"]["max_total_retries"]:
+                elif outcome in {"RECOVERABLE_ERROR", "BUDGET_CHANGE"}:
                     state["terminal"] = "BUDGET_EXHAUSTED"
                 else:
                     state["terminal"] = "ERROR"
                 break
             if state["terminal"] != "PARTIAL":
                 break
-        if len(state["verified"]) == len(plan["steps"]) and all(
-                sid_ in state["verified"] for sid_ in plan["completion_condition"]["required_steps"]):
-            final_id = plan["completion_condition"]["final_step"]
-            if final_id in state["outputs"] and state["trace"][-1]["verification_result"] == "PASS":
-                state["terminal"] = "COMPLETE"
+        if self._completion_ready(plan, state):
+            state["terminal"] = "COMPLETE"
         state["elapsed_seconds"] += time.monotonic() - tick
         if state["trace"]:
             state["trace"][-1]["completion_state"] = state["terminal"]
@@ -418,6 +434,18 @@ class IntegratedRunner:
                 and output["provenance"].get("instruction_authority", 0) == 0
                 and output.get("confidence") in {"HIGH", "MEDIUM", "LOW"}
                 and all(f in output for f in producer["expected_output"]["required_fields"]))
+
+    @staticmethod
+    def _completion_ready(plan: dict[str, Any], state: dict[str, Any]) -> bool:
+        """Apply the complete terminal gate as one independently testable rule."""
+        condition = plan["completion_condition"]
+        required = condition["required_steps"]
+        return (len(state.get("verified", [])) == len(required)
+                and all(step_id in state.get("verified", [])
+                        for step_id in required)
+                and condition["final_step"] in state.get("outputs", {})
+                and bool(state.get("trace"))
+                and state["trace"][-1].get("verification_result") == "PASS")
 
     @staticmethod
     def _budget_state(state: dict[str, Any]) -> dict[str, int]:

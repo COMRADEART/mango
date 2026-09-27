@@ -1,0 +1,28 @@
+{
+  "artifact": "T27_PRODUCTION_GRAPH",
+  "bindings": {
+    "adapter_registry": "t27_protocol.production:build_adapters",
+    "orchestrator": "sciencemath.integrated.runner:IntegratedRunner.run",
+    "provider_normalizer": "t27_protocol.production:_provider_call",
+    "scorer": "t27_protocol.scorer:score_suite"
+  },
+  "classification": "PUBLIC_SAFE",
+  "dangling_edges": 0,
+  "external_action_authority": false,
+  "missing_producers": 0,
+  "ordered_components": [
+    "plan_validator",
+    "orchestrator",
+    "executive_router",
+    "t27_provider_normalizer",
+    "registered_capabilities",
+    "handoff_validator",
+    "verification_layer",
+    "retry_controller",
+    "replan_controller",
+    "completion_gate",
+    "prospective_scorer"
+  ],
+  "production_stubs": 0,
+  "schema_version": "t27-production-graph-v1"
+}

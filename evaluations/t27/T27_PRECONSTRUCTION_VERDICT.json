@@ -1,0 +1,10 @@
+{
+  "absolute_stop": true,
+  "artifact": "T27_PRECONSTRUCTION_VERDICT",
+  "classification": "PUBLIC_SAFE",
+  "construction_authorized": false,
+  "evaluation_authorized": false,
+  "schema_version": "t27-preconstruction-verdict-v1",
+  "status": "PASS",
+  "verdict": "T27_AGGREGATE_ONLY_REMEDIATION_AND_PRECONSTRUCTION_PASS"
+}
