@@ -1,0 +1,43 @@
+{
+  "artifact": "T27_PUBLIC_ROOT_CAUSE_REPRODUCTION",
+  "claim_scope": "PUBLIC_SYNTHETIC_PREDECESSOR_DEFECTS_ONLY",
+  "classification": "PUBLIC_SAFE",
+  "demonstrated_public_defects": [
+    "unknown provider statuses were coerced to insufficient evidence",
+    "missing-evidence fallback was terminalized before replanning",
+    "zero metric denominators silently produced passing 1.0 values"
+  ],
+  "predecessor_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
+  "predecessor_observations": {
+    "missing_evidence_fallback": {
+      "fallback_used": false,
+      "observed_terminal": "INSUFFICIENT_EVIDENCE",
+      "replan_count": 0
+    },
+    "unknown_provider_status": {
+      "input": "UNRECOGNIZED_PUBLIC_STATUS",
+      "observed_normalized_status": "INSUFFICIENT_EVIDENCE",
+      "unknown_status_refused": false
+    },
+    "zero_denominator_metrics": {
+      "explicit_denominators_present": false,
+      "scenario_completion_rate": 0.0,
+      "vacuous_observed_ones": [
+        "capability_selection_accuracy",
+        "handoff_validity_rate",
+        "plan_execution_adherence",
+        "verification_success_rate"
+      ]
+    }
+  },
+  "remediation_checks": {
+    "missing_evidence_fallback_replans": true,
+    "unknown_status_rejected": true,
+    "zero_denominator_fails_nonvacuity": true
+  },
+  "schema_version": "t27-public-root-cause-reproduction-v1",
+  "status": "REPRODUCED_AND_REMEDIATED",
+  "t26_candidate_reruns": 0,
+  "t26_private_rows_opened": 0,
+  "t26_row_specific_cause_claimed": false
+}

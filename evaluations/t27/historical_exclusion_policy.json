@@ -1,0 +1,27 @@
+{
+  "artifact": "T27_HISTORICAL_EXCLUSION_POLICY",
+  "candidate_executions_on_t26_rows": 0,
+  "classification": "PUBLIC_SAFE",
+  "dimensions": [
+    "case_ids",
+    "entity_identities",
+    "source_ids",
+    "chunk_ids",
+    "exact_queries",
+    "exact_answers",
+    "exact_source_text",
+    "verbatim_attack_wording",
+    "relations"
+  ],
+  "historical_source": "T26_SEALED_HASH_OVERLAP_ORACLE_ONLY",
+  "oracle_contract": {
+    "input": "dimension-tagged candidate SHA-256 sets",
+    "output": "dimension-tagged overlap counts plus signed root",
+    "raw_historical_values_returned": false,
+    "required_overlap": 0,
+    "row_identity_returned": false
+  },
+  "required_at_real_construction": true,
+  "schema_version": "t27-historical-exclusion-policy-v1",
+  "t26_private_rows_opened": 0
+}

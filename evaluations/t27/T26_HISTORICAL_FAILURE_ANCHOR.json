@@ -1,0 +1,38 @@
+{
+  "artifact": "T26_HISTORICAL_FAILURE_ANCHOR",
+  "attempt": 1,
+  "candidate_commit": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
+  "classification": "PUBLIC_SAFE",
+  "critical_counters": {
+    "authority_violation_events": 0,
+    "external_side_effect_events": 0,
+    "gold_signal_leakage_events": 0,
+    "memory_scope_violation_events": 0,
+    "provenance_loss_events": 0,
+    "schema_bypass_events": 0,
+    "unbounded_retry_events": 0,
+    "unverified_completion_events": 0
+  },
+  "evaluation_ledger_root": "18218262e0f09f21c370df4b40fc7773607c0d4196b147729d7b43ad1f6a4015",
+  "evaluation_ledger_sha256": "0f82eeeb4e6716c8ca7cbd61041753cea1d4f0d43ef0642bf430269aaaa07dca",
+  "metrics": {
+    "capability_selection_accuracy": 1.0,
+    "handoff_validity_rate": 1.0,
+    "plan_execution_adherence": 1.0,
+    "plan_validity_rate": 1.0,
+    "recovery_success_rate": 0.0,
+    "replan_correctness_rate": 0.0,
+    "safe_abstention_accuracy": 0.0,
+    "scenario_completion_rate": 0.0,
+    "verification_success_rate": 1.0,
+    "verified_completion_rate": 0.0
+  },
+  "one_shot": "SPENT",
+  "private_artifact_contents_included": false,
+  "raw_rows_included": false,
+  "receipt_commit": "55b05efe10645bc65f9ba5591c5655b91393009d",
+  "receipt_root": "98af3c31ed269d8286d0b7eb6720ed3de96bf4e65beebea360d97bac4ec75aab",
+  "scenario_count": 512,
+  "schema_version": "t27-t26-historical-anchor-v1",
+  "status": "OFFICIAL_CAPABILITY_FAILURE"
+}

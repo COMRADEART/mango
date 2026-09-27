@@ -1,0 +1,36 @@
+{
+  "artifact": "T27_CANDIDATE_IDENTITY",
+  "base_receipt_commit": "55b05efe10645bc65f9ba5591c5655b91393009d",
+  "candidate_changed": true,
+  "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+  "candidate_tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+  "changed_files": [
+    "scripts/t27_preconstruction.py",
+    "src/sciencemath/integrated/runner.py",
+    "t27_protocol/__init__.py",
+    "t27_protocol/contract.py",
+    "t27_protocol/doctor.py",
+    "t27_protocol/exclusion.py",
+    "t27_protocol/freeze.py",
+    "t27_protocol/production.py",
+    "t27_protocol/protection.py",
+    "t27_protocol/qualification.py",
+    "t27_protocol/scorer.py",
+    "tests/test_t27_integrated_remediation.py",
+    "tests/test_t27_preconstruction.py",
+    "tests/test_t27_scorer.py"
+  ],
+  "classification": "PUBLIC_SAFE",
+  "parent_candidate": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
+  "parent_candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
+  "parent_runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
+  "public_synthetic_reproducer": "evaluations/t27/T27_PUBLIC_ROOT_CAUSE_REPRODUCTION.json",
+  "runtime_component_count": 3,
+  "runtime_component_sha256": {
+    "src/sciencemath/integrated/__init__.py": "bc00d7d5a7e8f9aa0bbf5e8a045598420845d70720ddc2a9d61fa6304361dcaa",
+    "src/sciencemath/integrated/runner.py": "5a87e2a49076023da9747deb3d84d2c60da1eb599acaca436ca0cf46996d95b3",
+    "t27_protocol/production.py": "c88a2708c52dc3c94d4194d65174b24724ef4528c8dccae054c19374eda22c03"
+  },
+  "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d",
+  "schema_version": "t27-candidate-identity-v1"
+}
