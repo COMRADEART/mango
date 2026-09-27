@@ -153,10 +153,6 @@ def fixture_adapters(injection: dict) -> dict[str, Adapter]:
         def execute(payload: dict, context: dict) -> dict:
             step_id = context["step_id"]
             attempts[step_id] = attempts.get(step_id, 0) + 1
-            final = step_id == context.get("final_step", step_id)  # context is patched below only in tests
-            # Qualification injections target the highest numbered step.
-            target = int(step_id[1:]) == max(
-                int(key[1:]) for key in attempts | {step_id: 0})
             # The primary guard prevents a fallback call from being reinjected.
             inject = capability == primary and kind != "none"
             first = attempts[step_id] == 1
@@ -377,6 +373,25 @@ def public_reproducer_record() -> dict:
             "missing-evidence fallback was terminalized before replanning",
             "zero metric denominators silently produced passing 1.0 values",
         ],
+        "predecessor_observations": {
+            "unknown_provider_status": {
+                "input": "UNRECOGNIZED_PUBLIC_STATUS",
+                "observed_normalized_status": "INSUFFICIENT_EVIDENCE",
+                "unknown_status_refused": False,
+            },
+            "missing_evidence_fallback": {
+                "observed_terminal": "INSUFFICIENT_EVIDENCE",
+                "replan_count": 0, "fallback_used": False,
+            },
+            "zero_denominator_metrics": {
+                "scenario_completion_rate": 0.0,
+                "explicit_denominators_present": False,
+                "vacuous_observed_ones": [
+                    "capability_selection_accuracy", "handoff_validity_rate",
+                    "plan_execution_adherence", "verification_success_rate",
+                ],
+            },
+        },
         "remediation_checks": {
             "unknown_status_rejected": True,
             "missing_evidence_fallback_replans": True,

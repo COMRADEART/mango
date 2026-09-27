@@ -75,15 +75,16 @@ def build_candidate_identity(root: Path) -> dict:
                             capture_output=True, text=True, check=True).stdout.strip()
     tree = subprocess.run(["git", "rev-parse", "HEAD^{tree}"], cwd=root,
                           capture_output=True, text=True, check=True).stdout.strip()
+    receipt_commit = "55b05efe10645bc65f9ba5591c5655b91393009d"
     changed = subprocess.run(
-        ["git", "diff", "--name-only",
-         "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f", commit],
+        ["git", "diff", "--name-only", receipt_commit, commit],
         cwd=root, capture_output=True, text=True, check=True).stdout.splitlines()
     mapping, runtime_root = runtime_identity(root)
     return {
         "schema_version": "t27-candidate-identity-v1",
         "artifact": "T27_CANDIDATE_IDENTITY", "classification": "PUBLIC_SAFE",
         "candidate_commit": commit, "candidate_tree": tree,
+        "base_receipt_commit": receipt_commit,
         "parent_candidate": "6cb029c0f4edb4116c7f9a1f187cdc4671077a1f",
         "parent_candidate_tree": "6199df3a4537e5af480098a4bd009c357ecc2910",
         "parent_runtime_root": "28f83990f5382400bac72cb34448ad5854c875d74655f1a571703f50d9cb453c",
