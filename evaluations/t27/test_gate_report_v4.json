@@ -1,0 +1,23 @@
+{
+  "artifact": "T27_T26_ORACLE_MARKER_COMPATIBILITY_TEST_GATE_V4",
+  "classification": "PUBLIC_SAFE",
+  "deselections": 0,
+  "errors": 0,
+  "live_failures": 0,
+  "passed": 34,
+  "return_code": 0,
+  "schema_version": "t27-applicability-aware-test-gate-v4",
+  "status": "PASS",
+  "summary_sha256": "1b1c5a4c632f81f89bbd4541ffeded1a7220882b227c4042aed86c1068089f59",
+  "test_files": [
+    "tests\\test_t27_construction_infrastructure.py",
+    "tests\\test_t27_historical_exclusion_provenance.py",
+    "tests\\test_t27_integrated_remediation.py",
+    "tests\\test_t27_preconstruction.py",
+    "tests\\test_t27_scorer.py",
+    "tests\\test_t27_t26_oracle_marker_layout.py"
+  ],
+  "unexplained_skips": 0,
+  "unknown_failures": 0,
+  "xfails": 0
+}

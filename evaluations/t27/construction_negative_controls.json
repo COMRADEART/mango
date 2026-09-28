@@ -1,9 +1,9 @@
 {
   "FAIL": 0,
-  "PASS": 41,
+  "PASS": 55,
   "artifact": "T27_CONSTRUCTION_NEGATIVE_CONTROLS",
   "classification": "PUBLIC_SAFE",
-  "control_count": 41,
+  "control_count": 55,
   "controls": {
     "attempt_2": {
       "evidence": "attempt-one-only:ConstructionLedgerError",
@@ -22,6 +22,11 @@
     },
     "contract_leaf_failure": {
       "evidence": "enumerated-contract-leaf",
+      "refused": true,
+      "status": "PASS"
+    },
+    "disposable_standin_using_legacy_path": {
+      "evidence": "official-marker-layout:ValueError",
       "refused": true,
       "status": "PASS"
     },
@@ -65,6 +70,41 @@
       "refused": true,
       "status": "PASS"
     },
+    "ledger_chain_invalid": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "ledger_started_event_hash_mismatch": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "ledger_state_not_complete": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "legacy_rehearsal_marker_path_only": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "marker_byte_count_mismatch": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "marker_commitment_hash_mismatch": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "marker_missing_from_commitment_index": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
     "missing_family": {
       "evidence": "static-design:family_count_16",
       "refused": true,
@@ -82,6 +122,36 @@
     },
     "missing_source_root": {
       "evidence": "source-root-required:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_absent": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_wrong_artifact": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_wrong_attempt": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_wrong_experiment": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_wrong_genesis_hash": {
+      "evidence": "official-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_wrong_schema": {
+      "evidence": "official-marker-layout:ValueError",
       "refused": true,
       "status": "PASS"
     },

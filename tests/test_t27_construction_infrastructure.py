@@ -17,7 +17,9 @@ from t27_protocol.construction import (
 )
 from t27_protocol.contract import CONSTRUCTION_TOKEN, EVALUATION_TOKEN
 from t27_protocol.evaluation import EVALUATION_STATES, runner_identity
-from t27_protocol.freeze import verify_freeze_v3
+from t27_protocol.freeze import (PRESERVED_V1_FREEZE_SHA256,
+                                 PRESERVED_V2_FREEZE_SHA256,
+                                 PRESERVED_V3_FREEZE_SHA256, verify_freeze_v4)
 from t27_protocol.oracle import verify_oracle_result
 from t27_protocol.store import T27PrivateStore, storage_policy_successor
 
@@ -104,7 +106,7 @@ def test_static_design_oracle_and_fixture_optionality_are_nonvacuous():
 
 
 def test_public_reports_cover_contract_gate_rehearsals_and_failures():
-    contract = read("construction_contract.json")
+    contract = read("construction_contract_v3.json")
     construction = read("construction_rehearsal_report.json")
     evaluation = read("evaluation_rehearsal_report.json")
     failures = read("failure_rehearsal_report.json")
@@ -112,8 +114,8 @@ def test_public_reports_cover_contract_gate_rehearsals_and_failures():
     assert contract["leaf_count"] == len(CONTRACT_LEAF_IDS)
     assert construction_contract()["leaf_ids"] == list(CONTRACT_LEAF_IDS)
     assert construction["status"] == evaluation["status"] == "PASS"
-    assert len(CONTRACT_LEAF_IDS) == 51
-    assert len(CONSTRUCTION_GATE_IDS) == 41
+    assert len(CONTRACT_LEAF_IDS) == 56
+    assert len(CONSTRUCTION_GATE_IDS) == 46
     assert construction["semantic_equivalence"] is True
     assert evaluation["semantic_equivalence"] is True
     assert all(run["gate_check_count"] == len(CONSTRUCTION_GATE_IDS)
@@ -122,6 +124,7 @@ def test_public_reports_cover_contract_gate_rehearsals_and_failures():
     assert failures["construction"]["retry_refused"] is True
     assert failures["evaluation"]["retry_refused"] is True
     assert negative["status"] == "PASS"
+    assert negative["control_count"] == 55
 
 
 def test_evaluation_identity_scorer_and_freeze_are_frozen():
@@ -134,7 +137,12 @@ def test_evaluation_identity_scorer_and_freeze_are_frozen():
         assert run["gold_firewall"] == "PASS"
     assert read("preconstruction_freeze_v2.json")["freeze_sha256"] == (
         "163cf013d2c2c5fec20b00824600b3eae09040644bbc8de4ad245dbdd13948b9")
-    assert verify_freeze_v3(ROOT, read("preconstruction_freeze_v3.json"))["status"] == "PASS"
+    assert read("preconstruction_freeze.json")["freeze_sha256"] == (
+        PRESERVED_V1_FREEZE_SHA256)
+    assert read("preconstruction_freeze_v3.json")["freeze_sha256"] == (
+        PRESERVED_V3_FREEZE_SHA256)
+    assert verify_freeze_v4(ROOT, read("preconstruction_freeze_v4.json"))[
+        "status"] == "PASS"
 
 
 def test_storage_policy_leak_gate_and_real_exposure_remain_safe():

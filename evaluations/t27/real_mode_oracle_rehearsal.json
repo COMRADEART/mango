@@ -21,7 +21,7 @@
   "overall_prohibited_overlap": 0,
   "prospective_root_exact": true,
   "real_mode_not_synthetic": true,
-  "result_sha256": "f5c8bba2ba00907ac6d0173eb1f0f514487d9598e0a43e2b7cf9c57cf65e87e2",
+  "result_sha256": "36df8eeabe6927de5fe9c75ee5c452f1a9951c5d452ed1cf56cb361316fe98f4",
   "schema_version": "t27-real-mode-oracle-validation-rehearsal-v1",
   "status": "PASS",
   "store_authenticated": true,

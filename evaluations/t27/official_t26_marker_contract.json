@@ -1,0 +1,42 @@
+{
+  "artifact": "T27_T26_OFFICIAL_MARKER_BINDING",
+  "classification": "PUBLIC_SAFE",
+  "disposable_layout": {
+    "evaluation_attempt_one": true,
+    "evaluation_state_complete": true,
+    "event_count_four": true,
+    "fingerprint_derivation_invoked": false,
+    "legacy_marker_path_present": false,
+    "marker_artifact_match": true,
+    "marker_attempt_one": true,
+    "marker_committed": true,
+    "marker_genesis_matches_ledger": true,
+    "marker_path_match": true,
+    "marker_schema_match": true,
+    "private_rows_read": 0,
+    "store_authenticated": true
+  },
+  "disposable_layout_mirrors_official": true,
+  "legacy_marker_path": "markers/evaluation.one-shot",
+  "legacy_marker_path_accepted": false,
+  "marker_path_exact": true,
+  "marker_schema_exact": true,
+  "marker_source": "t26_protocol.evaluation_v4:MARKER_PATH/MARKER_SCHEMA",
+  "official_marker_artifact": "T26_EVALUATION_ONE_SHOT_SPENT",
+  "official_marker_experiment": "t26",
+  "official_marker_fields": [
+    "schema_version",
+    "artifact",
+    "experiment",
+    "attempt",
+    "ledger_genesis_hash",
+    "created_at"
+  ],
+  "official_marker_path": "evaluation/one_shot_spent.json",
+  "official_marker_schema": "t26-evaluation-one-shot-marker-v2",
+  "oracle_marker_path": "evaluation/one_shot_spent.json",
+  "oracle_marker_schema": "t26-evaluation-one-shot-marker-v2",
+  "real_store_metadata_preflight_required": true,
+  "schema_version": "t27-t26-official-marker-binding-v1",
+  "status": "PASS"
+}

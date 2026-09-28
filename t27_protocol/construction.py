@@ -640,13 +640,16 @@ CONTRACT_LEAF_IDS = (
     "uniqueness.scenario_ids", "uniqueness.scenario_bodies",
     "uniqueness.gold_records", "fixtures.commitments", "authority.no_escalation",
     "audit.candidate_executions_zero", "audit.evaluator_invocations_zero",
+    "oracle.official_marker_path_exact", "oracle.official_marker_schema_exact",
+    "oracle.marker_committed_in_store", "oracle.marker_genesis_matches_ledger",
+    "oracle.real_store_layout_authenticated",
 )
 
 
 def construction_contract() -> dict[str, Any]:
     return {
-        "schema_version": "t27-construction-contract-v2",
-        "artifact": "T27_CONSTRUCTION_CONTRACT", "classification": "PUBLIC_SAFE",
+        "schema_version": "t27-construction-contract-v3",
+        "artifact": "T27_CONSTRUCTION_CONTRACT_V3", "classification": "PUBLIC_SAFE",
         "leaf_enumerator": "t27_protocol.construction:CONTRACT_LEAF_IDS",
         "leaf_count": len(CONTRACT_LEAF_IDS), "leaf_ids": list(CONTRACT_LEAF_IDS),
         "unknown_requirement_policy": "UNVERIFIABLE",
@@ -654,10 +657,55 @@ def construction_contract() -> dict[str, Any]:
     }
 
 
+def _t26_marker_leaf_evidence(evidence: dict[str, Any] | None,
+                              static: dict[str, Any]) -> dict[str, Any]:
+    """Soft (non-raising) official-marker leaf evidence for the T27 audit.
+
+    Invalid or absent authentication evidence fails every marker leaf closed
+    instead of raising, so the leaf audit stays total and negative controls
+    observe FAIL rows rather than exceptions.
+    """
+    from t26_protocol.t27_private_oracle import (
+        official_marker_binding, validate_t26_store_authentication_evidence)
+    binding = official_marker_binding()
+    real = static.get("oracle_mode") == "REAL"
+    if isinstance(evidence, dict):
+        try:
+            validate_t26_store_authentication_evidence(evidence, real=real)
+        except Exception:
+            valid = False
+        else:
+            valid = True
+    else:
+        valid = False
+        evidence = {}
+    return {
+        "valid": valid, "binding": binding,
+        "marker_path": evidence.get("t26_official_marker_path"),
+        "marker_schema": evidence.get("t26_official_marker_schema"),
+        "marker_committed": evidence.get("t26_official_marker_committed"),
+        "marker_genesis_matches_ledger": evidence.get(
+            "t26_official_marker_genesis_matches_ledger"),
+        "store_authenticated": evidence.get("t26_store_authenticated"),
+        "legacy_marker_path_present": evidence.get(
+            "t26_legacy_marker_path_present"),
+        "evaluation_state": evidence.get("t26_official_evaluation_state"),
+        "evaluation_attempt": evidence.get("t26_official_evaluation_attempt"),
+        "event_count": evidence.get("t26_evaluation_event_count"),
+        "fingerprint_derivation_invoked": evidence.get(
+            "t27_fingerprint_derivation_invoked"),
+        "private_rows_exposed": evidence.get(
+            "outside_boundary_private_rows_exposed"),
+    }
+
+
 def contract_leaf_audit(bindings: dict[str, Any], audit: dict[str, Any],
-                        ledger: T27ConstructionLedger) -> dict[str, Any]:
+                        ledger: T27ConstructionLedger, *,
+                        t26_store_authentication: dict[str, Any] | None = None
+                        ) -> dict[str, Any]:
     components = audit["components"]
     static = components["static_design"]
+    marker = _t26_marker_leaf_evidence(t26_store_authentication, static)
     checks = {
         "authorization.token_exact": bindings["authorization_token"] == CONSTRUCTION_TOKEN,
         "ledger.attempt_one": bindings["attempt"] == 1,
@@ -725,13 +773,31 @@ def contract_leaf_audit(bindings: dict[str, Any], audit: dict[str, Any],
         "authority.no_escalation": components["authority"]["status"] == "PASS",
         "audit.candidate_executions_zero": audit["candidate_executions"] == 0,
         "audit.evaluator_invocations_zero": audit["official_evaluator_invocations"] == 0,
+        "oracle.official_marker_path_exact": (
+            marker["valid"] and marker["binding"]["marker_path_exact"] is True
+            and marker["marker_path"] == marker["binding"]["official_marker_path"]),
+        "oracle.official_marker_schema_exact": (
+            marker["valid"] and marker["binding"]["marker_schema_exact"] is True
+            and marker["marker_schema"] == marker["binding"]["official_marker_schema"]),
+        "oracle.marker_committed_in_store": (
+            marker["valid"] and marker["marker_committed"] is True),
+        "oracle.marker_genesis_matches_ledger": (
+            marker["valid"] and marker["marker_genesis_matches_ledger"] is True),
+        "oracle.real_store_layout_authenticated": (
+            marker["valid"] and marker["store_authenticated"] is True
+            and marker["legacy_marker_path_present"] is False
+            and marker["evaluation_state"] == "COMPLETE"
+            and marker["evaluation_attempt"] == 1
+            and marker["event_count"] == 4
+            and marker["fingerprint_derivation_invoked"] is False
+            and marker["private_rows_exposed"] == 0),
     }
     if set(checks) != set(CONTRACT_LEAF_IDS):
         raise ValueError("construction contract leaf enumerator drift")
     results = {name: "PASS" if value else "FAIL" for name, value in checks.items()}
     counts = Counter(results.values())
     core = {
-        "schema_version": "t27-construction-contract-audit-v2",
+        "schema_version": "t27-construction-contract-audit-v3",
         "artifact": "T27_CONSTRUCTION_CONTRACT_AUDIT",
         "classification": "PRIVATE_AUDIT", "results": dict(sorted(results.items())),
         "leaf_count": len(results), "PASS": counts["PASS"],
@@ -764,12 +830,18 @@ CONSTRUCTION_GATE_IDS = (
     "G39_T26_ORACLE_REAL_MODE_IDENTITY",
     "G40_T27_FINGERPRINT_ROOT_EQUALITY",
     "G41_COMBINED_EXCLUSION_ROOT_BOUND",
+    "G42_T26_OFFICIAL_MARKER_PATH", "G43_T26_OFFICIAL_MARKER_SCHEMA",
+    "G44_T26_OFFICIAL_MARKER_COMMITMENT",
+    "G45_T26_MARKER_LEDGER_GENESIS_RELATION",
+    "G46_T26_REAL_STORE_LAYOUT_PREFLIGHT",
 )
 
 
 def run_construction_gate(bindings: dict[str, Any], expected: dict[str, Any],
                           audit: dict[str, Any], leaf_audit: dict[str, Any],
-                          ledger: T27ConstructionLedger) -> dict[str, Any]:
+                          ledger: T27ConstructionLedger, *,
+                          t26_store_authentication: dict[str, Any] | None = None
+                          ) -> dict[str, Any]:
     components = audit["components"]
     static = components["static_design"]
     protocol_pairs = (
@@ -782,6 +854,7 @@ def run_construction_gate(bindings: dict[str, Any], expected: dict[str, Any],
         ("G13_HISTORICAL_EXCLUSION_POLICY", "historical_exclusion_policy_sha256"),
         ("G14_T26_FAILURE_ANCHOR", "t26_historical_failure_anchor_sha256"),
     )
+    marker = _t26_marker_leaf_evidence(t26_store_authentication, static)
     checks: dict[str, bool] = {
         "G01_AUTHORIZATION_TOKEN": bindings["authorization_token"] == CONSTRUCTION_TOKEN,
         "G02_ATTEMPT_ONE": bindings["attempt"] == 1,
@@ -837,6 +910,22 @@ def run_construction_gate(bindings: dict[str, Any], expected: dict[str, Any],
                 ("t26_overlap_oracle_result_sha256", "t26_oracle_result_sha256"),
                 ("combined_historical_exclusion_root",
                  "combined_historical_exclusion_root"))),
+        "G42_T26_OFFICIAL_MARKER_PATH": (
+            marker["valid"] and marker["binding"]["marker_path_exact"] is True
+            and marker["marker_path"] == marker["binding"]["official_marker_path"]),
+        "G43_T26_OFFICIAL_MARKER_SCHEMA": (
+            marker["valid"] and marker["binding"]["marker_schema_exact"] is True
+            and marker["marker_schema"] == marker["binding"]["official_marker_schema"]),
+        "G44_T26_OFFICIAL_MARKER_COMMITMENT": (
+            marker["valid"] and marker["marker_committed"] is True),
+        "G45_T26_MARKER_LEDGER_GENESIS_RELATION": (
+            marker["valid"] and marker["marker_genesis_matches_ledger"] is True),
+        "G46_T26_REAL_STORE_LAYOUT_PREFLIGHT": (
+            marker["valid"] and marker["store_authenticated"] is True
+            and marker["legacy_marker_path_present"] is False
+            and marker["evaluation_state"] == "COMPLETE"
+            and marker["evaluation_attempt"] == 1
+            and marker["event_count"] == 4),
     }
     checks.update({gate_id: bindings[key] == expected[key]
                    for gate_id, key in protocol_pairs})
@@ -844,7 +933,7 @@ def run_construction_gate(bindings: dict[str, Any], expected: dict[str, Any],
         raise ValueError("construction gate check enumerator drift")
     failed = sorted(name for name, passed in checks.items() if not passed)
     core = {
-        "schema_version": "t27-construction-gate-v2",
+        "schema_version": "t27-construction-gate-v3",
         "artifact": "T27_CONSTRUCTION_GATE", "classification": "PRIVATE_AUDIT",
         "checks": dict(sorted(checks.items())), "check_count": len(checks),
         "PASS": len(checks) - len(failed), "FAIL": len(failed),
@@ -1135,7 +1224,14 @@ def construct_once(*, root: Path, store: T27PrivateStore,
                    historical_index: dict[str, Any] | None,
                    oracle_mode: str = "SYNTHETIC",
                    clock: Callable[[], str] = _now,
-                   inject_failure_phase: str | None = None) -> dict[str, Any]:
+                   inject_failure_phase: str | None = None,
+                   t26_store_authentication: dict[str, Any]) -> dict[str, Any]:
+    # Official T26 store authentication evidence is validated fail-closed
+    # BEFORE any ledger or private authoring occurs.
+    from t26_protocol.t27_private_oracle import (
+        validate_t26_store_authentication_evidence)
+    validate_t26_store_authentication_evidence(
+        t26_store_authentication, real=oracle_mode == "REAL")
     # All authoring and overlap validation occurs before exclusive creation.
     static = require_static_design(
         cases, gold, fixtures, oracle_result, provenance,
@@ -1178,12 +1274,15 @@ def construct_once(*, root: Path, store: T27PrivateStore,
         phase = "AUDITED"
         if inject_failure_phase == phase:
             raise RuntimeError("injected post-audit construction failure")
-        leaf_audit = contract_leaf_audit(bindings, audit, ledger)
+        leaf_audit = contract_leaf_audit(
+            bindings, audit, ledger,
+            t26_store_authentication=t26_store_authentication)
         if leaf_audit["status"] != "PASS":
             raise ValueError("T27 construction contract audit failed")
         store.write_once_json("construction/contract_audit.json", leaf_audit)
         gate = run_construction_gate(
-            bindings, expected_bindings, audit, leaf_audit, ledger)
+            bindings, expected_bindings, audit, leaf_audit, ledger,
+            t26_store_authentication=t26_store_authentication)
         if gate["status"] != "PASS":
             raise ValueError("T27 construction gate failed")
         store.write_once_json("construction/gate.json", gate)
@@ -1235,24 +1334,36 @@ def construct_once(*, root: Path, store: T27PrivateStore,
 def construct_real(*, root: Path, private_store_root: Path,
                    cases: list[dict[str, Any]], gold: list[dict[str, Any]],
                    fixtures: list[dict[str, Any]], oracle_result: dict[str, Any],
-                   provenance: dict[str, Any], token: str
-                   ) -> dict[str, Any]:
+                   provenance: dict[str, Any], token: str,
+                   t26_store: Any) -> dict[str, Any]:
     """Real entrypoint.  Merely importing this function spends nothing."""
     root = Path(root).resolve()
-    freeze = json.loads((root / "evaluations/t27/preconstruction_freeze_v3.json").read_text(
+    from t26_protocol.lifecycle import T26PrivateStore
+    from t26_protocol.t27_private_oracle import (
+        authenticate_official_t26_store_for_t27,
+        validate_t26_store_authentication_evidence)
+    if not isinstance(t26_store, T26PrivateStore):
+        raise ValueError("real T27 construction requires the official T26 "
+                         "private store for metadata authentication")
+    freeze = json.loads((root / "evaluations/t27/preconstruction_freeze_v4.json").read_text(
         encoding="utf-8"))
     historical_index = build_authenticated_public_historical_index(root)
     historical = historical_exclusion_audit(
         cases, gold, historical_index, oracle_result, mode="REAL", root=root)
     if historical["status"] != "PASS":
         raise ValueError("T27 real historical provenance failed before ledger creation")
+    # Metadata-only official store authentication runs before any T27 private
+    # authoring; it never reads T26 rows or derives fingerprints.
+    t26_authentication = authenticate_official_t26_store_for_t27(root, t26_store)
+    validate_t26_store_authentication_evidence(t26_authentication, real=True)
     bindings = required_bindings(root, freeze, historical=historical)
     store = T27PrivateStore(private_store_root, repository_root=root)
     return construct_once(
         root=root, store=store, bindings=bindings, expected_bindings=bindings,
         cases=cases, gold=gold, fixtures=fixtures, oracle_result=oracle_result,
         provenance=provenance, token=token,
-        historical_index=historical_index, oracle_mode="REAL")
+        historical_index=historical_index, oracle_mode="REAL",
+        t26_store_authentication=t26_authentication)
 
 
 def synthetic_private_bundle(variant: int = 0, *, with_fixture: bool = False
@@ -1316,6 +1427,73 @@ def synthetic_oracle_result(cases: list[dict[str, Any]],
         prospective_root=fingerprint_root(future), prospective=future,
         sealed_historical=historical, t26_bindings=bindings,
         timestamp=f"2026-09-27T00:00:0{variant}+00:00")
+
+
+def official_marker_contract_report(root: Path) -> dict[str, Any]:
+    """Code-level official-marker binding plus disposable layout evidence.
+
+    Pinned literals in ``t26_protocol.t27_private_oracle:official_marker_binding``
+    freeze exact equality against the authoritative official V4 constants; a
+    disposable stand-in proves the rehearsal layout mirrors the production
+    layout. Deterministic and reproducible; contains no real-store material.
+    """
+    root = Path(root).resolve()
+    from t26_protocol.t27_private_oracle import (
+        authenticate_official_t26_store_for_t27, disposable_t26_sealed_store,
+        official_marker_binding)
+    binding = official_marker_binding()
+    with TemporaryDirectory(prefix="t27-official-marker-contract-") as tmp:
+        store, expected = disposable_t26_sealed_store(
+            Path(tmp), variant=0, public_repo=root)
+        authentication = authenticate_official_t26_store_for_t27(
+            root, store, expected=expected)
+    layout = {
+        "marker_path_match": (
+            authentication["t26_official_marker_path"] ==
+            binding["official_marker_path"]),
+        "marker_schema_match": (
+            authentication["t26_official_marker_schema"] ==
+            binding["official_marker_schema"]),
+        "marker_artifact_match": (
+            authentication["t26_official_marker_artifact"] ==
+            binding["official_marker_artifact"]),
+        "marker_attempt_one": authentication["t26_official_marker_attempt"] == 1,
+        "marker_committed": authentication["t26_official_marker_committed"] is True,
+        "marker_genesis_matches_ledger": authentication[
+            "t26_official_marker_genesis_matches_ledger"] is True,
+        "legacy_marker_path_present": authentication[
+            "t26_legacy_marker_path_present"],
+        "evaluation_state_complete": (
+            authentication["t26_official_evaluation_state"] == "COMPLETE"),
+        "evaluation_attempt_one": (
+            authentication["t26_official_evaluation_attempt"] == 1),
+        "event_count_four": authentication["t26_evaluation_event_count"] == 4,
+        "store_authenticated": authentication["t26_store_authenticated"] is True,
+        "private_rows_read": authentication["t26_private_rows_read"],
+        "fingerprint_derivation_invoked": authentication[
+            "t27_fingerprint_derivation_invoked"],
+    }
+    mirrors = all(value is True or value == 0 for key, value in layout.items()
+                  if key not in {"legacy_marker_path_present",
+                                 "private_rows_read",
+                                 "fingerprint_derivation_invoked"})
+    mirrors = mirrors and layout["legacy_marker_path_present"] is False
+    mirrors = mirrors and layout["private_rows_read"] == 0
+    mirrors = mirrors and layout["fingerprint_derivation_invoked"] is False
+    passed = (binding["marker_path_exact"] is True
+              and binding["marker_schema_exact"] is True
+              and binding["legacy_marker_path_accepted"] is False
+              and mirrors)
+    return {
+        "schema_version": "t27-t26-official-marker-contract-v1",
+        "artifact": "T27_T26_OFFICIAL_MARKER_CONTRACT",
+        "classification": "PUBLIC_SAFE",
+        "status": "PASS" if passed else "FAIL",
+        **binding,
+        "disposable_layout_mirrors_official": mirrors,
+        "disposable_layout": layout,
+        "real_store_metadata_preflight_required": True,
+    }
 
 
 def run_real_mode_oracle_validation_rehearsal(root: Path) -> dict[str, Any]:
@@ -1415,6 +1593,8 @@ def _rehearsal_summary(index: int, result: dict[str, Any]) -> dict[str, Any]:
 
 def run_construction_rehearsals(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
     root = Path(root).resolve()
+    from t26_protocol.t27_private_oracle import (
+        authenticate_official_t26_store_for_t27, disposable_t26_sealed_store)
     runs = []
     for index in (1, 2):
         cases, gold, fixtures = synthetic_private_bundle(
@@ -1425,6 +1605,12 @@ def run_construction_rehearsals(root: Path, freeze: dict[str, Any]) -> dict[str,
         provenance = author_provenance(
             f"T27-DISPOSABLE-AUTHOR-{index}", "e" * 64,
             f"2026-09-27T00:00:0{index}+00:00")
+        with TemporaryDirectory(
+                prefix=f"t27-rehearsal-t26-standin-{index}-") as t26_tmp:
+            t26_store, t26_expected = disposable_t26_sealed_store(
+                Path(t26_tmp), variant=0, public_repo=root)
+            t26_authentication = authenticate_official_t26_store_for_t27(
+                root, t26_store, expected=t26_expected)
         with TemporaryDirectory(prefix=f"t27-construction-rehearsal-{index}-") as tmp:
             store = T27PrivateStore(Path(tmp) / "private", repository_root=root,
                                     disposable=True)
@@ -1437,7 +1623,8 @@ def run_construction_rehearsals(root: Path, freeze: dict[str, Any]) -> dict[str,
                 fixtures=fixtures, oracle_result=oracle, provenance=provenance,
                 token=CONSTRUCTION_TOKEN,
                 historical_index=historical_index, oracle_mode="SYNTHETIC",
-                clock=_fixed_clock_factory(0))
+                clock=_fixed_clock_factory(0),
+                t26_store_authentication=t26_authentication)
             runs.append(_rehearsal_summary(index, result))
     comparable = [{key: value for key, value in item.items()
                    if key not in {"run", "semantic_signature"}}
@@ -1465,6 +1652,8 @@ def run_construction_rehearsals(root: Path, freeze: dict[str, Any]) -> dict[str,
 def run_construction_failure_rehearsal(root: Path, freeze: dict[str, Any]
                                        ) -> dict[str, Any]:
     root = Path(root).resolve()
+    from t26_protocol.t27_private_oracle import (
+        authenticate_official_t26_store_for_t27, disposable_t26_sealed_store)
     cases, gold, fixtures = synthetic_private_bundle(3)
     oracle = synthetic_oracle_result(cases, gold, variant=3)
     historical_index, historical = synthetic_historical_evidence(
@@ -1472,6 +1661,11 @@ def run_construction_failure_rehearsal(root: Path, freeze: dict[str, Any]
     provenance = author_provenance(
         "T27-DISPOSABLE-FAILURE-AUTHOR", "f" * 64,
         "2026-09-27T00:00:03+00:00")
+    with TemporaryDirectory(prefix="t27-failure-t26-standin-") as t26_tmp:
+        t26_store, t26_expected = disposable_t26_sealed_store(
+            Path(t26_tmp), variant=3, public_repo=root)
+        t26_authentication = authenticate_official_t26_store_for_t27(
+            root, t26_store, expected=t26_expected)
     with TemporaryDirectory(prefix="t27-construction-failure-") as tmp:
         store = T27PrivateStore(Path(tmp) / "private", repository_root=root,
                                 disposable=True)
@@ -1486,7 +1680,8 @@ def run_construction_failure_rehearsal(root: Path, freeze: dict[str, Any]
                 fixtures=fixtures, oracle_result=oracle, provenance=provenance,
                 token=CONSTRUCTION_TOKEN,
                 historical_index=historical_index, oracle_mode="SYNTHETIC",
-                clock=_fixed_clock_factory(3), inject_failure_phase="MATERIALIZED")
+                clock=_fixed_clock_factory(3), inject_failure_phase="MATERIALIZED",
+                t26_store_authentication=t26_authentication)
         except RuntimeError:
             injected = True
         ledger = T27ConstructionLedger.load(store)
@@ -1526,7 +1721,139 @@ NEGATIVE_CONTROL_IDS = (
     "wrong_t26_evaluation_ledger_hash", "wrong_t26_holdout_root",
     "wrong_t27_prospective_root", "missing_oracle_dimension",
     "t26_overlap_gt_zero",
+    "legacy_rehearsal_marker_path_only", "official_marker_absent",
+    "official_marker_wrong_schema", "official_marker_wrong_artifact",
+    "official_marker_wrong_experiment", "official_marker_wrong_attempt",
+    "official_marker_wrong_genesis_hash", "marker_missing_from_commitment_index",
+    "marker_commitment_hash_mismatch", "marker_byte_count_mismatch",
+    "ledger_started_event_hash_mismatch", "ledger_chain_invalid",
+    "ledger_state_not_complete", "disposable_standin_using_legacy_path",
 )
+
+
+def run_t26_marker_layout_negative_controls(root: Path) -> dict[str, Any]:
+    """Official T26 marker-layout negative controls (disposable stand-ins only).
+
+    Every control authenticates a mutated disposable stand-in through the exact
+    production metadata-only path; each must refuse. The real sealed T26 store
+    is never touched here.
+    """
+    root = Path(root).resolve()
+    from t26_protocol.lifecycle import T26PrivateStore
+    from t26_protocol.t27_private_oracle import (
+        OFFICIAL_MARKER_PATH, authenticate_official_t26_store_for_t27,
+        disposable_t26_sealed_store)
+    results: dict[str, dict[str, Any]] = {}
+
+    def record(name: str, refused: bool, evidence: str) -> None:
+        results[name] = {"status": "PASS" if refused else "FAIL",
+                         "refused": refused, "evidence": evidence}
+
+    def attempt(name: str, store_root: Path, expected: dict[str, Any]) -> None:
+        try:
+            fresh = T26PrivateStore(store_root, root)
+            authenticate_official_t26_store_for_t27(root, fresh, expected=expected)
+        except Exception as exc:
+            record(name, True, f"official-marker-layout:{type(exc).__name__}")
+        else:
+            record(name, False, "official-marker-layout")
+
+    def edit_index(store_root: Path, mutation: Callable[[dict], None]) -> None:
+        path = store_root / "commitments.json"
+        index = json.loads(path.read_text(encoding="utf-8"))
+        mutation(index)
+        index["artifact_root"] = sha256_json(index["commitments"])
+        path.write_text(json.dumps(index, indent=2, sort_keys=True,
+                                   ensure_ascii=False) + "\n", encoding="utf-8")
+
+    def scenario(name: str, *, legacy_marker: bool = False,
+                 mutate: Callable[[T26PrivateStore], None] | None = None,
+                 index_mutation: Callable[[dict], None] | None = None) -> None:
+        with TemporaryDirectory(prefix=f"t27-marker-control-{name}-") as tmp:
+            store, expected = disposable_t26_sealed_store(
+                Path(tmp), variant=1, legacy_marker=legacy_marker,
+                public_repo=root)
+            if mutate is not None:
+                mutate(store)
+            if index_mutation is not None:
+                edit_index(store.root, index_mutation)
+            attempt(name, store.root, expected)
+
+    scenario("legacy_rehearsal_marker_path_only", legacy_marker=True)
+
+    def add_legacy(store: T26PrivateStore) -> None:
+        store.write_once("markers/evaluation.one-shot", {
+            "schema_version": "t26-evaluation-one-shot-marker-v1",
+            "artifact": "T26_EVALUATION_ONE_SHOT_SPENT", "attempt": 1,
+            "ledger_genesis_hash": "0" * 64,
+        }, classification="PRIVATE_EVALUATION")
+
+    scenario("disposable_standin_using_legacy_path", mutate=add_legacy)
+
+    def absent(store: T26PrivateStore) -> None:
+        store.path(OFFICIAL_MARKER_PATH).unlink()
+
+    scenario("official_marker_absent", mutate=absent)
+
+    def field_drift(field: str, value: Any) -> Callable[[T26PrivateStore], None]:
+        def mutate(store: T26PrivateStore) -> None:
+            marker = store.read(OFFICIAL_MARKER_PATH)
+            marker[field] = value
+            store.replace(OFFICIAL_MARKER_PATH, marker)
+        return mutate
+
+    scenario("official_marker_wrong_schema", mutate=field_drift(
+        "schema_version", "t26-evaluation-one-shot-marker-v1"))
+    scenario("official_marker_wrong_artifact", mutate=field_drift(
+        "artifact", "T26_EVALUATION_ONE_SHOT_SPENT_V2"))
+    scenario("official_marker_wrong_experiment", mutate=field_drift(
+        "experiment", "t27"))
+    scenario("official_marker_wrong_attempt", mutate=field_drift("attempt", 2))
+    scenario("official_marker_wrong_genesis_hash", mutate=field_drift(
+        "ledger_genesis_hash", "0" * 64))
+
+    def remove_marker_entry(index: dict) -> None:
+        index["commitments"] = [entry for entry in index["commitments"]
+                                if entry["logical_id"] != OFFICIAL_MARKER_PATH]
+
+    scenario("marker_missing_from_commitment_index",
+             index_mutation=remove_marker_entry)
+
+    def break_marker_hash(index: dict) -> None:
+        for entry in index["commitments"]:
+            if entry["logical_id"] == OFFICIAL_MARKER_PATH:
+                entry["sha256"] = "0" * 64
+
+    scenario("marker_commitment_hash_mismatch", index_mutation=break_marker_hash)
+
+    def break_marker_bytes(index: dict) -> None:
+        for entry in index["commitments"]:
+            if entry["logical_id"] == OFFICIAL_MARKER_PATH:
+                entry["bytes"] = entry["bytes"] + 1
+
+    scenario("marker_byte_count_mismatch", index_mutation=break_marker_bytes)
+
+    def break_started_event(store: T26PrivateStore) -> None:
+        ledger = store.read("evaluation/ledger.json")
+        ledger["events"][0]["event_hash"] = "0" * 64
+        store.replace("evaluation/ledger.json", ledger)
+
+    scenario("ledger_started_event_hash_mismatch", mutate=break_started_event)
+
+    def break_chain(store: T26PrivateStore) -> None:
+        ledger = store.read("evaluation/ledger.json")
+        ledger["events"][1]["previous_event_hash"] = "0" * 64
+        store.replace("evaluation/ledger.json", ledger)
+
+    scenario("ledger_chain_invalid", mutate=break_chain)
+
+    def break_state(store: T26PrivateStore) -> None:
+        ledger = store.read("evaluation/ledger.json")
+        ledger["state"] = "SCORED"
+        store.replace("evaluation/ledger.json", ledger)
+
+    scenario("ledger_state_not_complete", mutate=break_state)
+    return results
 
 
 def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
@@ -1710,7 +2037,8 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
         "builder-identity-authentication")
 
     from t26_protocol.t27_private_oracle import (
-        disposable_real_mode_oracle_result,
+        authenticate_official_t26_store_for_t27,
+        disposable_real_mode_oracle_result, disposable_t26_sealed_store,
         run_sealed_t26_to_t27_overlap_oracle)
 
     prospective_root = fingerprint_root(future)
@@ -1818,7 +2146,13 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
             "components": components, "scenario_count": 512, "gold_count": 512,
             "candidate_executions": 1, "official_evaluator_invocations": 0,
         }
-        leaf = contract_leaf_audit(baseline, synthetic_audit, ledger)
+        with TemporaryDirectory(prefix="t27-negative-t26-standin-") as t26_tmp:
+            standin, standin_expected = disposable_t26_sealed_store(
+                Path(t26_tmp), variant=7, public_repo=root)
+            valid_marker_evidence = authenticate_official_t26_store_for_t27(
+                root, standin, expected=standin_expected)
+        leaf = contract_leaf_audit(baseline, synthetic_audit, ledger,
+                                   t26_store_authentication=valid_marker_evidence)
         record("contract_leaf_failure", leaf["status"] == "FAIL" and
                leaf["results"]["audit.candidate_executions_zero"] == "FAIL",
                "enumerated-contract-leaf")
@@ -1829,6 +2163,8 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
         store.write_once_json("markers/evaluation.one-shot", {"premature": True})
         expect_exception("premature_evaluation_artifact", lambda: validate_preledger(
             baseline, baseline, store), "preledger-evaluation-absence")
+
+    results.update(run_t26_marker_layout_negative_controls(root))
 
     if set(results) != set(NEGATIVE_CONTROL_IDS):
         raise ValueError("negative control enumerator drift")
