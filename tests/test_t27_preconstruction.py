@@ -8,7 +8,8 @@ from t27_protocol.doctor import run_doctor
 from t27_protocol.exclusion import DIMENSIONS
 from t27_protocol.freeze import (PRESERVED_V1_FREEZE_SHA256,
                                  PRESERVED_V2_FREEZE_SHA256,
-                                 PRESERVED_V3_FREEZE_SHA256, verify_freeze_v4)
+                                 PRESERVED_V3_FREEZE_SHA256,
+                                 PRESERVED_V4_FREEZE_SHA256, verify_freeze_v5)
 
 ROOT = Path(__file__).resolve().parents[1]
 EVAL = ROOT / "evaluations" / "t27"
@@ -76,7 +77,15 @@ def test_doctor_and_freeze_reproduce():
         "T26_OFFICIAL_EVALUATION_MARKER_PATH_COMPATIBILITY_DEFECT")
     assert frozen_v4["real_construction_authorized"] is False
     assert frozen_v4["real_evaluation_authorized"] is False
-    assert verify_freeze_v4(ROOT, frozen_v4)["status"] == "PASS"
+    assert frozen_v4["freeze_sha256"] == PRESERVED_V4_FREEZE_SHA256
+    frozen_v5 = _read("preconstruction_freeze_v5.json")
+    assert frozen_v5["supersedes"]["reason"] == (
+        "STRUCTURAL_HISTORICAL_EXCLUSION_SEMANTICS_DEFECT")
+    assert frozen_v5["real_construction_authorized"] is False
+    assert frozen_v5["real_evaluation_authorized"] is False
+    assert frozen_v5["preserved_v4_freeze_sha256"] == (
+        PRESERVED_V4_FREEZE_SHA256)
+    assert verify_freeze_v5(ROOT, frozen_v5)["status"] == "PASS"
     report = run_doctor(ROOT)
     assert report["status"] == "PASS"
     assert report["failed_checks"] == []

@@ -1,9 +1,9 @@
 {
   "FAIL": 0,
-  "PASS": 55,
+  "PASS": 72,
   "artifact": "T27_CONSTRUCTION_NEGATIVE_CONTROLS",
   "classification": "PUBLIC_SAFE",
-  "control_count": 55,
+  "control_count": 72,
   "controls": {
     "attempt_2": {
       "evidence": "attempt-one-only:ConstructionLedgerError",
@@ -22,6 +22,11 @@
     },
     "contract_leaf_failure": {
       "evidence": "enumerated-contract-leaf",
+      "refused": true,
+      "status": "PASS"
+    },
+    "dimension_policy_root_tampered": {
+      "evidence": "policy-root-mismatch",
       "refused": true,
       "status": "PASS"
     },
@@ -67,6 +72,31 @@
     },
     "historical_overlap": {
       "evidence": "nine-dimensional-public-overlap",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_case_ids_marked_structural": {
+      "evidence": "identity-marked-structural:case_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_chunk_ids_marked_structural": {
+      "evidence": "identity-marked-structural:chunk_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_exact_answers_marked_structural": {
+      "evidence": "identity-marked-structural:exact_answers",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_exact_queries_marked_structural": {
+      "evidence": "identity-marked-structural:exact_queries",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_exact_source_text_marked_structural": {
+      "evidence": "identity-marked-structural:exact_source_text",
       "refused": true,
       "status": "PASS"
     },
@@ -175,6 +205,31 @@
       "refused": true,
       "status": "PASS"
     },
+    "reuse_case_ids_detected": {
+      "evidence": "genuine-reuse-detected:case_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "reuse_chunk_ids_detected": {
+      "evidence": "genuine-reuse-detected:chunk_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "reuse_exact_answers_detected": {
+      "evidence": "genuine-reuse-detected:exact_answers",
+      "refused": true,
+      "status": "PASS"
+    },
+    "reuse_exact_queries_detected": {
+      "evidence": "genuine-reuse-detected:exact_queries",
+      "refused": true,
+      "status": "PASS"
+    },
+    "reuse_exact_source_text_detected": {
+      "evidence": "genuine-reuse-detected:exact_source_text",
+      "refused": true,
+      "status": "PASS"
+    },
     "safe_abstention_below_minimum": {
       "evidence": "static-design:nonvacuity.safe_abstention_cases",
       "refused": true,
@@ -187,6 +242,31 @@
     },
     "scenario_count_513": {
       "evidence": "static-design:scenario_count_512",
+      "refused": true,
+      "status": "PASS"
+    },
+    "source_policy_root_tampered": {
+      "evidence": "source-policy-mismatch",
+      "refused": true,
+      "status": "PASS"
+    },
+    "structural_entity_identities_populated": {
+      "evidence": "structural-populated:entity_identities",
+      "refused": true,
+      "status": "PASS"
+    },
+    "structural_relations_populated": {
+      "evidence": "structural-populated:relations",
+      "refused": true,
+      "status": "PASS"
+    },
+    "structural_source_ids_populated": {
+      "evidence": "structural-populated:source_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "structural_verbatim_attack_wording_populated": {
+      "evidence": "structural-populated:verbatim_attack_wording",
       "refused": true,
       "status": "PASS"
     },
@@ -207,6 +287,11 @@
     },
     "t26_overlap_gt_zero": {
       "evidence": "real-oracle-overlap:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "unknown_structural_dimension": {
+      "evidence": "unknown-dimension-in-policy",
       "refused": true,
       "status": "PASS"
     },

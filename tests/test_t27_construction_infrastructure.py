@@ -19,7 +19,8 @@ from t27_protocol.contract import CONSTRUCTION_TOKEN, EVALUATION_TOKEN
 from t27_protocol.evaluation import EVALUATION_STATES, runner_identity
 from t27_protocol.freeze import (PRESERVED_V1_FREEZE_SHA256,
                                  PRESERVED_V2_FREEZE_SHA256,
-                                 PRESERVED_V3_FREEZE_SHA256, verify_freeze_v4)
+                                 PRESERVED_V3_FREEZE_SHA256,
+                                 PRESERVED_V4_FREEZE_SHA256)
 from t27_protocol.oracle import verify_oracle_result
 from t27_protocol.store import T27PrivateStore, storage_policy_successor
 
@@ -48,6 +49,9 @@ def minimal_bindings() -> dict:
         "public_historical_index_root": "1" * 64,
         "t26_overlap_oracle_result_sha256": "2" * 64,
         "combined_historical_exclusion_root": "3" * 64,
+        "generated_public_dimension_policy_sha256": "a0" * 32,
+        "structural_unsatisfiability_reproducer_sha256": "a1" * 32,
+        "structural_satisfiability_witness_sha256": "a2" * 32,
         "construction_timestamp": "2026-09-27T00:00:00+00:00",
         "state": "LEDGER_CREATED",
     }
@@ -106,7 +110,7 @@ def test_static_design_oracle_and_fixture_optionality_are_nonvacuous():
 
 
 def test_public_reports_cover_contract_gate_rehearsals_and_failures():
-    contract = read("construction_contract_v3.json")
+    contract = read("construction_contract_v4.json")
     construction = read("construction_rehearsal_report.json")
     evaluation = read("evaluation_rehearsal_report.json")
     failures = read("failure_rehearsal_report.json")
@@ -114,8 +118,8 @@ def test_public_reports_cover_contract_gate_rehearsals_and_failures():
     assert contract["leaf_count"] == len(CONTRACT_LEAF_IDS)
     assert construction_contract()["leaf_ids"] == list(CONTRACT_LEAF_IDS)
     assert construction["status"] == evaluation["status"] == "PASS"
-    assert len(CONTRACT_LEAF_IDS) == 56
-    assert len(CONSTRUCTION_GATE_IDS) == 46
+    assert len(CONTRACT_LEAF_IDS) == 60
+    assert len(CONSTRUCTION_GATE_IDS) == 52
     assert construction["semantic_equivalence"] is True
     assert evaluation["semantic_equivalence"] is True
     assert all(run["gate_check_count"] == len(CONSTRUCTION_GATE_IDS)
@@ -124,7 +128,7 @@ def test_public_reports_cover_contract_gate_rehearsals_and_failures():
     assert failures["construction"]["retry_refused"] is True
     assert failures["evaluation"]["retry_refused"] is True
     assert negative["status"] == "PASS"
-    assert negative["control_count"] == 55
+    assert negative["control_count"] == 72
 
 
 def test_evaluation_identity_scorer_and_freeze_are_frozen():
@@ -141,8 +145,11 @@ def test_evaluation_identity_scorer_and_freeze_are_frozen():
         PRESERVED_V1_FREEZE_SHA256)
     assert read("preconstruction_freeze_v3.json")["freeze_sha256"] == (
         PRESERVED_V3_FREEZE_SHA256)
-    assert verify_freeze_v4(ROOT, read("preconstruction_freeze_v4.json"))[
-        "status"] == "PASS"
+    # The V4 freeze is preserved historically by SHA: its live rebuild no
+    # longer matches after the remediated generated-public policy, which is
+    # exactly the recorded SUPERSEDED_PRE_EXPOSURE fact.
+    assert read("preconstruction_freeze_v4.json")["freeze_sha256"] == (
+        PRESERVED_V4_FREEZE_SHA256)
 
 
 def test_storage_policy_leak_gate_and_real_exposure_remain_safe():

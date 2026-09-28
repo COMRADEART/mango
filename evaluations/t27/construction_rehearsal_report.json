@@ -6,8 +6,8 @@
   "real_gold_rows": 0,
   "runs": [
     {
-      "combined_historical_exclusion_root": "3c6aa03c93a4bc17fabee9ac8f8d7429dcf71af91e7ec56fa21a2d202d7987a7",
-      "contract_leaf_count": 56,
+      "combined_historical_exclusion_root": "982bc63472f7b5a6bac05572854fe70e1c1caf1a3570701353b5e5702f334ef3",
+      "contract_leaf_count": 60,
       "designated_counts": {
         "handoff_cases": 512,
         "recoverable_cases": 128,
@@ -16,16 +16,16 @@
         "successful_completion_cases": 384,
         "verification_cases": 512
       },
-      "gate_check_count": 46,
+      "gate_check_count": 52,
       "gold_count": 512,
       "historical_source_count": 11,
       "leak_gate_status": "PASS",
       "oracle_mode": "SYNTHETIC",
-      "public_historical_index_root": "83ac6fdda91287f43eeb52acea543076e81c3bba8de341157677beccd88abbdd",
+      "public_historical_index_root": "98c1c55185f14c2bc56c67978c9ed1ca86e911b27ebd21d9f606b13b005324d9",
       "receipt_blind_content_included": false,
       "run": 1,
       "scenario_count": 512,
-      "semantic_signature": "1678cd9330fe81dae26942c0c4b68fd7eed09e2141d94a2eaf64608936bfdad5",
+      "semantic_signature": "1b319da315d83e9d585a368f60ebaa6c454c362e0e5563daa939c6dd0190ac1d",
       "state": "SEALED",
       "state_sequence": [
         "LEDGER_CREATED",
@@ -39,8 +39,8 @@
       "store_status": "PASS"
     },
     {
-      "combined_historical_exclusion_root": "3c6aa03c93a4bc17fabee9ac8f8d7429dcf71af91e7ec56fa21a2d202d7987a7",
-      "contract_leaf_count": 56,
+      "combined_historical_exclusion_root": "982bc63472f7b5a6bac05572854fe70e1c1caf1a3570701353b5e5702f334ef3",
+      "contract_leaf_count": 60,
       "designated_counts": {
         "handoff_cases": 512,
         "recoverable_cases": 128,
@@ -49,16 +49,16 @@
         "successful_completion_cases": 384,
         "verification_cases": 512
       },
-      "gate_check_count": 46,
+      "gate_check_count": 52,
       "gold_count": 512,
       "historical_source_count": 11,
       "leak_gate_status": "PASS",
       "oracle_mode": "SYNTHETIC",
-      "public_historical_index_root": "83ac6fdda91287f43eeb52acea543076e81c3bba8de341157677beccd88abbdd",
+      "public_historical_index_root": "98c1c55185f14c2bc56c67978c9ed1ca86e911b27ebd21d9f606b13b005324d9",
       "receipt_blind_content_included": false,
       "run": 2,
       "scenario_count": 512,
-      "semantic_signature": "1678cd9330fe81dae26942c0c4b68fd7eed09e2141d94a2eaf64608936bfdad5",
+      "semantic_signature": "1b319da315d83e9d585a368f60ebaa6c454c362e0e5563daa939c6dd0190ac1d",
       "state": "SEALED",
       "state_sequence": [
         "LEDGER_CREATED",

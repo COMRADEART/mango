@@ -23,6 +23,10 @@ EXCLUDED = frozenset({
     "evaluations/t27/T27_T26_ORACLE_MARKER_COMPATIBILITY_REMEDIATION_VERDICT.json",
     "evaluations/t27/fresh_remote_reproduction_v4.json",
     "evaluations/t27/test_gate_report_v4.json",
+    "evaluations/t27/preconstruction_freeze_v5.json",
+    "evaluations/t27/T27_STRUCTURAL_HISTORICAL_EXCLUSION_REMEDIATION_VERDICT.json",
+    "evaluations/t27/fresh_remote_reproduction_v5.json",
+    "evaluations/t27/test_gate_report_v5.json",
 })
 
 
@@ -397,6 +401,136 @@ def build_freeze_v4(root: Path) -> dict:
 
 def verify_freeze_v4(root: Path, frozen: dict) -> dict:
     computed = build_freeze_v4(root)
+    keys = ("candidate_commit", "candidate_tree", "runtime_root",
+            "component_count", "component_root", "freeze_root", "freeze_sha256")
+    mismatches = [key for key in keys if frozen.get(key) != computed.get(key)]
+    if frozen.get("components") != computed.get("components"):
+        mismatches.append("components")
+    if frozen.get("protocol_identities") != computed.get("protocol_identities"):
+        mismatches.append("protocol_identities")
+    return {"status": "PASS" if not mismatches else "FAIL",
+            "mismatches": mismatches,
+            **{key: computed[key] for key in keys}}
+
+
+PRESERVED_V4_FREEZE_SHA256 = (
+    "6e78f9ff79dc05bfa8de144271b387c75c497ce84f414a281a6cac0f6d7f8af8")
+
+
+def build_freeze_v5(root: Path) -> dict:
+    """Pre-exposure structural historical-exclusion remediation freeze.
+
+    Binds the remediated generated-public exclusion dimension policy, the
+    proved public satisfiability witness and reproducer, the remediated
+    authenticated public historical index, and the unchanged real
+    prospective fingerprint semantics; authorization stays false.
+    """
+    root = Path(root).resolve()
+    candidate = json.loads((root / "evaluations/t27/candidate_identity.json").read_text(
+        encoding="utf-8"))
+    entries = []
+    for relative, role in components(root).items():
+        path = root / relative
+        if not path.is_file():
+            raise ValueError(f"freeze component missing: {relative}")
+        data = _repository_bytes(path)
+        entries.append({"path": relative, "sha256": hashlib.sha256(data).hexdigest(),
+                        "byte_size": len(data), "role": role})
+    component_root = _sha_json(entries)
+    protocol_paths = {
+        "terminal_contract": "evaluations/t27/terminal_contract.json",
+        "metric_registry": "evaluations/t27/metric_registry.json",
+        "nonvacuity_policy": "evaluations/t27/nonvacuity_policy.json",
+        "authenticated_historical_index_builder": "t27_protocol/exclusion.py",
+        "remediated_historical_index_report":
+            "evaluations/t27/public_historical_index_report.json",
+        "generated_public_dimension_policy":
+            "evaluations/t27/generated_public_exclusion_dimension_policy.json",
+        "historical_exclusion_policy_v4":
+            "evaluations/t27/historical_exclusion_policy_v4.json",
+        "structural_unsatisfiability_reproducer":
+            "evaluations/t27/structural_unsatisfiability_reproducer.json",
+        "structural_satisfiability_witness":
+            "evaluations/t27/structural_satisfiability_witness.json",
+        "structural_exclusion_supersession":
+            "evaluations/t27/public_index_supersession.json",
+        "t26_public_qualification_exclusion_precedent":
+            "evaluations/t27/t26_public_qualification_exclusion_precedent.json",
+        "sealed_t26_oracle": "t26_protocol/t27_private_oracle.py",
+        "official_t26_marker_contract":
+            "evaluations/t27/official_t26_marker_contract.json",
+        "oracle_verifier": "t27_protocol/oracle.py",
+        "construction_protocol_contract_and_gate": "t27_protocol/construction.py",
+        "construction_contract_v4": "evaluations/t27/construction_contract_v4.json",
+        "evaluation_protocol": "t27_protocol/evaluation.py",
+        "ledgers_and_store": "t27_protocol/store.py",
+        "official_runner_and_gold_firewall":
+            "evaluations/t27/official_runner_identity.json",
+        "production_graph": "evaluations/t27/production_graph.json",
+        "authority_graph": "evaluations/t27/authority_graph.json",
+        "doctor": "t27_protocol/doctor.py",
+        "tests": "tests/test_t27_construction_infrastructure.py",
+        "historical_exclusion_provenance_tests":
+            "tests/test_t27_historical_exclusion_provenance.py",
+        "t26_oracle_marker_layout_tests":
+            "tests/test_t27_t26_oracle_marker_layout.py",
+        "structural_exclusion_policy_tests":
+            "tests/test_t27_structural_exclusion_policy.py",
+        "real_store_metadata_preflight":
+            "evaluations/t27/official_t26_store_preflight.json",
+        "construction_rehearsals": "evaluations/t27/construction_rehearsal_report.json",
+        "real_mode_oracle_rehearsal": "evaluations/t27/real_mode_oracle_rehearsal.json",
+        "negative_controls": "evaluations/t27/construction_negative_controls.json",
+        "structural_exclusion_requalification_driver":
+            "scripts/t27_requalify_structural_exclusion.py",
+        "structural_unsatisfiability_reproducer_script":
+            "scripts/t27_structural_unsatisfiability_reproducer.py",
+        "structural_satisfiability_witness_script":
+            "scripts/t27_structural_satisfiability_witness.py",
+    }
+    identities = {name: hashlib.sha256(_repository_bytes(root / relative)).hexdigest()
+                  for name, relative in protocol_paths.items()}
+    root_input = {
+        "schema_version": "t27-preconstruction-freeze-v5",
+        "artifact": "T27_PRECONSTRUCTION_FREEZE_V5",
+        "classification": "PUBLIC_SAFE", "experiment": "t27",
+        "candidate_commit": candidate["candidate_commit"],
+        "candidate_tree": candidate["candidate_tree"],
+        "runtime_root": candidate["runtime_root"],
+        "component_root": component_root, "protocol_identities": identities,
+        "supersedes": {
+            "artifact": "T27_PRECONSTRUCTION_FREEZE_V4_SUPERSEDED_PRE_EXPOSURE",
+            "freeze_sha256": PRESERVED_V4_FREEZE_SHA256,
+            "reason": "STRUCTURAL_HISTORICAL_EXCLUSION_SEMANTICS_DEFECT",
+            "blind_material_existed": False,
+        },
+        "preserved_v1_freeze_sha256": PRESERVED_V1_FREEZE_SHA256,
+        "preserved_v2_freeze_sha256": PRESERVED_V2_FREEZE_SHA256,
+        "preserved_v3_freeze_sha256": PRESERVED_V3_FREEZE_SHA256,
+        "preserved_v4_freeze_sha256": PRESERVED_V4_FREEZE_SHA256,
+        "candidate_runtime_changed": False,
+        "authenticated_historical_provenance_frozen": True,
+        "sealed_t26_oracle_frozen": True,
+        "synthetic_real_oracle_separation_frozen": True,
+        "official_t26_marker_layout_frozen": True,
+        "real_store_metadata_preflight_frozen": True,
+        "generated_public_dimension_policy_frozen": True,
+        "generated_structural_dimensions_frozen_empty": True,
+        "public_structural_satisfiability_proven": True,
+        "real_fingerprint_semantics_frozen": True,
+        "real_construction_authorized": False,
+        "real_evaluation_authorized": False,
+        "real_blind_rows": 0, "real_gold_rows": 0,
+        "real_construction_attempts": 0, "real_evaluation_attempts": 0,
+    }
+    freeze = {**root_input, "component_count": len(entries),
+              "components": entries, "freeze_root": _sha_json(root_input)}
+    freeze["freeze_sha256"] = _sha_json(freeze)
+    return freeze
+
+
+def verify_freeze_v5(root: Path, frozen: dict) -> dict:
+    computed = build_freeze_v5(root)
     keys = ("candidate_commit", "candidate_tree", "runtime_root",
             "component_count", "component_root", "freeze_root", "freeze_sha256")
     mismatches = [key for key in keys if frozen.get(key) != computed.get(key)]

@@ -6,13 +6,18 @@ import json
 from pathlib import Path
 
 from .contract import CONSTRUCTION_TOKEN, EVALUATION_TOKEN, REPLAN_TRIGGERS
-from .exclusion import (DIMENSIONS, PUBLIC_HISTORY_BUILDER,
-                        REQUIRED_HISTORICAL_SOURCES,
+from .exclusion import (DIMENSIONS, GENERATED_PUBLIC_POLICY_SCHEMA,
+                        GENERATED_PUBLIC_SOURCES, PUBLIC_HISTORY_BUILDER,
+                        REQUIRED_HISTORICAL_SOURCES, SUPERSEDED_INDEX_ROOT,
                         authenticated_construction_policy,
                         build_authenticated_public_historical_index,
-                        public_index_report)
-from .freeze import (PRESERVED_V2_FREEZE_SHA256, PRESERVED_V3_FREEZE_SHA256,
-                     runtime_identity, verify_freeze_v4)
+                        generated_public_dimension_policy,
+                        historical_exclusion_policy_v4, public_index_report,
+                        public_index_supersession,
+                        t26_public_qualification_exclusion_precedent)
+from .freeze import (PRESERVED_V1_FREEZE_SHA256, PRESERVED_V2_FREEZE_SHA256,
+                     PRESERVED_V3_FREEZE_SHA256, PRESERVED_V4_FREEZE_SHA256,
+                     runtime_identity, verify_freeze_v5)
 
 
 def _read(root: Path, name: str) -> dict:
@@ -83,9 +88,42 @@ def run_doctor(root: Path) -> dict:
         "tokens_exact_no_aliases": CONSTRUCTION_TOKEN != EVALUATION_TOKEN,
     }
     from .construction import (CONSTRUCTION_GATE_IDS, CONTRACT_LEAF_IDS,
-                               construction_contract)
+                               construction_contract,
+                               real_fingerprint_semantics_probe,
+                               t26_oracle_nine_dimension_probe)
     from .evaluation import EVALUATION_STATES, runner_identity
     from .store import storage_policy_successor
+
+    live_index = build_authenticated_public_historical_index(root)
+    live_sources = {source["source_class"]: source for source in live_index["sources"]}
+    policy = generated_public_dimension_policy()
+    policy_sources_exact = all(
+        live_sources[source_class].get("dimension_policy_schema")
+        == GENERATED_PUBLIC_POLICY_SCHEMA
+        and live_sources[source_class].get("dimension_policy_root")
+        == policy["dimension_policy_root"]
+        for source_class in GENERATED_PUBLIC_SOURCES)
+    non_policy_sources_exact = all(
+        "dimension_policy_schema" not in source
+        and "dimension_policy_root" not in source
+        for source_class, source in live_sources.items()
+        if source_class not in GENERATED_PUBLIC_SOURCES)
+    structural_empty = all(
+        not live_sources[source_class]["dimensions"][name]["historical_population"]
+        and live_sources[source_class]["dimensions"][name]["applicable"] is False
+        and live_sources[source_class]["dimensions"][name]["empty_contract"]
+        == f"{source_class}:{name}:STRUCTURAL_SHARED_FROZEN_EMPTY"
+        for source_class in GENERATED_PUBLIC_SOURCES
+        for name in (name for name, classification in
+                     policy["dimension_classifications"].items()
+                     if classification == "STRUCTURAL_SHARED_FROZEN_EMPTY"))
+    identity_retained = all(
+        live_sources[source_class]["dimensions"][name]["applicable"] is True
+        and live_sources[source_class]["dimensions"][name]["historical_population"] > 0
+        for source_class in GENERATED_PUBLIC_SOURCES
+        for name in (name for name, classification in
+                     policy["dimension_classifications"].items()
+                     if classification != "STRUCTURAL_SHARED_FROZEN_EMPTY"))
 
     def optional(name: str) -> dict:
         path = root / "evaluations" / "t27" / name
@@ -112,6 +150,15 @@ def run_doctor(root: Path) -> dict:
     store_preflight = optional("official_t26_store_preflight.json")
     freeze_v4 = optional("preconstruction_freeze_v4.json")
     exposure_v4 = optional("real_exposure_v4.json")
+    dimension_policy = optional("generated_public_exclusion_dimension_policy.json")
+    exclusion_v4 = optional("historical_exclusion_policy_v4.json")
+    reproducer = optional("structural_unsatisfiability_reproducer.json")
+    witness = optional("structural_satisfiability_witness.json")
+    supersession = optional("public_index_supersession.json")
+    precedent = optional("t26_public_qualification_exclusion_precedent.json")
+    focused_test_gate_v5 = optional("test_gate_report_v5.json")
+    exposure_v5 = optional("real_exposure_v5.json")
+    freeze_v5 = optional("preconstruction_freeze_v5.json")
     production_graph = _read(root, "production_graph.json")
     authority_graph = _read(root, "authority_graph.json")
     required_graph_nodes = {
@@ -150,6 +197,16 @@ def run_doctor(root: Path) -> dict:
         "marker_commitment_hash_mismatch", "marker_byte_count_mismatch",
         "ledger_started_event_hash_mismatch", "ledger_chain_invalid",
         "ledger_state_not_complete", "disposable_standin_using_legacy_path",
+        "structural_entity_identities_populated", "structural_source_ids_populated",
+        "structural_verbatim_attack_wording_populated", "structural_relations_populated",
+        "identity_case_ids_marked_structural", "identity_exact_queries_marked_structural",
+        "identity_exact_answers_marked_structural",
+        "identity_exact_source_text_marked_structural",
+        "identity_chunk_ids_marked_structural", "unknown_structural_dimension",
+        "dimension_policy_root_tampered", "source_policy_root_tampered",
+        "reuse_case_ids_detected", "reuse_exact_queries_detected",
+        "reuse_exact_answers_detected", "reuse_exact_source_text_detected",
+        "reuse_chunk_ids_detected",
     }
     checks.update({
         "construction_ready_storage_policy": storage_v2 == storage_policy_successor(),
@@ -245,8 +302,8 @@ def run_doctor(root: Path) -> dict:
             PRESERVED_V2_FREEZE_SHA256,
         "freeze_v3_preserved_historically": freeze_v3.get("freeze_sha256") ==
             PRESERVED_V3_FREEZE_SHA256,
-        "freeze_v4": bool(freeze_v4) and verify_freeze_v4(root, freeze_v4).get(
-            "status") == "PASS"
+        "freeze_v4_preserved_historically": freeze_v4.get("freeze_sha256") ==
+            PRESERVED_V4_FREEZE_SHA256
             and freeze_v4.get("real_construction_authorized") is False
             and freeze_v4.get("real_evaluation_authorized") is False
             and freeze_v4.get("supersedes", {}).get("reason") ==
@@ -313,6 +370,68 @@ def run_doctor(root: Path) -> dict:
             and focused_test_gate_v4.get("deselections") == 0,
         "real_exposure_zero_v4": bool(exposure_v4) and all(
             exposure_v4.get(key) == 0 for key in (
+                "t27_real_blind_rows", "t27_real_gold", "construction_attempts",
+                "evaluation_attempts", "candidate_real_executions",
+                "official_real_evaluator_invocations",
+                "t26_private_rows_exposed_outside_sealed_oracle",
+                "t26_candidate_reruns")),
+        "old_structural_contradiction_reproduced": (
+            reproducer.get("status") == "REPRODUCED"
+            and reproducer.get("old_semantics_minimum_overlap") == 33
+            and reproducer.get("contract_forced_structural_overlap") is True
+            and reproducer.get("remediated_semantics") is True
+            and reproducer.get("t26_private_rows_opened") == 0
+            and reproducer.get("real_blind_rows_authored") == 0),
+        "generated_public_dimension_policy_frozen": (
+            dimension_policy == generated_public_dimension_policy()),
+        "remediated_historical_exclusion_policy_v4": (
+            exclusion_v4 == historical_exclusion_policy_v4()),
+        "all_four_affected_sources_use_new_policy": (
+            policy_sources_exact and non_policy_sources_exact),
+        "structural_dimensions_empty_exactly_where_authorized": structural_empty,
+        "identity_content_dimensions_retained": identity_retained,
+        "public_satisfiability_witness_zero_overlap": (
+            witness.get("status") == "PASS"
+            and witness.get("overall_prohibited_overlap") == 0
+            and witness.get("scenario_count") == 512
+            and witness.get("family_count") == 16
+            and witness.get("capabilities_exercised") == 12
+            and witness.get("deterministic") is True
+            and witness.get("reused_public_blind_material") is False
+            and witness.get("t26_private_rows_opened") == 0
+            and witness.get("real_blind_rows_authored") == 0),
+        "real_fingerprint_sets_unchanged": (
+            real_fingerprint_semantics_probe().get("status") == "PASS"),
+        "t26_sealed_oracle_still_all_nine_dimension": (
+            t26_oracle_nine_dimension_probe().get("status") == "PASS"
+            and t26_oracle_nine_dimension_probe().get("t26_private_rows_opened") == 0),
+        "old_public_history_root_superseded": (
+            supersession == public_index_supersession(live_index)
+            and supersession.get("superseded_root") == SUPERSEDED_INDEX_ROOT
+            and supersession.get("superseded_classification")
+            == "SUPERSEDED_PRE_EXPOSURE"
+            and live_index["public_historical_index_root"] != SUPERSEDED_INDEX_ROOT),
+        "t26_precedent_recorded": (
+            precedent == t26_public_qualification_exclusion_precedent()),
+        "freeze_v5": bool(freeze_v5) and verify_freeze_v5(root, freeze_v5).get(
+            "status") == "PASS"
+            and freeze_v5.get("real_construction_authorized") is False
+            and freeze_v5.get("real_evaluation_authorized") is False
+            and freeze_v5.get("supersedes", {}).get("reason") ==
+            "STRUCTURAL_HISTORICAL_EXCLUSION_SEMANTICS_DEFECT"
+            and freeze_v5.get("preserved_v1_freeze_sha256")
+            == PRESERVED_V1_FREEZE_SHA256
+            and freeze_v5.get("preserved_v4_freeze_sha256")
+            == PRESERVED_V4_FREEZE_SHA256,
+        "focused_test_gate_v5": focused_test_gate_v5.get("status") == "PASS"
+            and focused_test_gate_v5.get("passed", 0) >= 19
+            and focused_test_gate_v5.get("live_failures") == 0
+            and focused_test_gate_v5.get("errors") == 0
+            and focused_test_gate_v5.get("unexplained_skips") == 0
+            and focused_test_gate_v5.get("xfails") == 0
+            and focused_test_gate_v5.get("deselections") == 0,
+        "real_exposure_zero_v5": bool(exposure_v5) and all(
+            exposure_v5.get(key) == 0 for key in (
                 "t27_real_blind_rows", "t27_real_gold", "construction_attempts",
                 "evaluation_attempts", "candidate_real_executions",
                 "official_real_evaluator_invocations",

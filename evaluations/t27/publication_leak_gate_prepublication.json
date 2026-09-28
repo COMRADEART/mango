@@ -9,8 +9,8 @@
   "official_evaluation_eligible": true,
   "path_policy_violations": 0,
   "public_ref_count": 158,
-  "reachable_object_count": 6790,
-  "scan_root": "1a610fe6713c1e49d4e2877940e394e40cadaa8316717d6af060c563f8d3f127",
+  "reachable_object_count": 6823,
+  "scan_root": "22be8dfa63cc90494a4cc0c96a5c4f9fd386fb3444a67531cdc988b6726df8ed",
   "schema_version": "t27-publication-leak-gate-v1",
   "status": "PASS"
 }
