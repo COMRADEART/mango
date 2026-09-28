@@ -74,9 +74,9 @@ def test_synthetic_oracle_cannot_verify_as_real():
 
 def test_expanded_contract_gate_and_all_negative_controls_pass():
     controls = read("construction_negative_controls.json")
-    assert len(CONTRACT_LEAF_IDS) == 56
-    assert len(CONSTRUCTION_GATE_IDS) == 46
+    assert len(CONTRACT_LEAF_IDS) == 60
+    assert len(CONSTRUCTION_GATE_IDS) == 52
     assert controls["status"] == "PASS"
-    assert controls["control_count"] >= 55
+    assert controls["control_count"] >= 72
     assert controls["PASS"] == controls["control_count"]
     assert controls["FAIL"] == 0

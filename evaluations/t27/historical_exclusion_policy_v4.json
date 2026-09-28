@@ -1,0 +1,75 @@
+{
+  "artifact": "T27_STRUCTURAL_HISTORICAL_EXCLUSION_POLICY",
+  "candidate_execution_on_historical_rows": false,
+  "classification": "PUBLIC_SAFE",
+  "dimensions": [
+    "case_ids",
+    "entity_identities",
+    "source_ids",
+    "chunk_ids",
+    "exact_queries",
+    "exact_answers",
+    "exact_source_text",
+    "verbatim_attack_wording",
+    "relations"
+  ],
+  "generated_public_dimension_policy": {
+    "root": "eaa6c1db8bafa5bcfd544dc9abfe8ed5fb147bd044e9dc0a9fbd7549c476af71",
+    "schema": "t27-generated-public-exclusion-dimension-policy-v1"
+  },
+  "generated_public_reusable_vocabulary": {
+    "content_bearing": [
+      "exact_queries",
+      "exact_answers",
+      "exact_source_text"
+    ],
+    "genuine_reuse_still_rejected": true,
+    "identity_bearing": [
+      "case_ids",
+      "chunk_ids"
+    ],
+    "nonvacuous": true,
+    "overlap_enforced_against_real_material": true
+  },
+  "generated_public_structural_vocabulary": {
+    "classification": "STRUCTURAL_SHARED_FROZEN_EMPTY",
+    "dimensions": [
+      "entity_identities",
+      "source_ids",
+      "verbatim_attack_wording",
+      "relations"
+    ],
+    "excluded_from_public_history_comparison": true,
+    "identity_bearing_historical_contamination": false,
+    "would_be_populations_recorded_in_source_records": true
+  },
+  "historical_private_row_exposure_to_author": 0,
+  "overall_prohibited_overlap_required": 0,
+  "policy_root": "383e008b94f11141488ad7682c1dbc02d3618b434d19cad0dfee239b1d4c062c",
+  "private_historical_overlap": {
+    "comparison": "SEALED_ALL_NINE_DIMENSION_WHERE_APPLICABLE",
+    "generated_public_structural_exemption": "NONE",
+    "oracle": "t26_protocol.t27_private_oracle:run_sealed_t26_to_t27_overlap_oracle"
+  },
+  "public_history_comparison": "SOURCE_AND_DIMENSION_APPLICABILITY_GOVERNED_BY_AUTHENTICATED_FROZEN_POLICY",
+  "public_history_schema": "t27-authenticated-public-historical-index-v2",
+  "real_fingerprint_sets_implementation": "t27_protocol.construction:fingerprint_sets (UNCHANGED)",
+  "real_prospective_fingerprints": "ALL_NINE_DIMENSIONS",
+  "required_sources": [
+    "T21_T21R_HISTORICAL",
+    "T22_PROTECTED",
+    "T23_EXPOSED",
+    "T24_PRIVATE_EVALUATED",
+    "T25_PRIVATE_EVALUATED",
+    "T26_SEALED_EVALUATED",
+    "T27_PUBLIC_QUALIFICATION",
+    "T27_DIAGNOSTICS",
+    "T27_PUBLIC_REPRODUCER",
+    "T27_SYNTHETIC_TERMINAL_MATRIX",
+    "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES"
+  ],
+  "schema_version": "t27-historical-exclusion-policy-v4",
+  "superseded_public_history_root": "9b199cfd74df2b30b660263bac5166877d2ea4a913d2aad319f3d3a2072c6b41",
+  "supersedes": "t27-historical-exclusion-policy-v3",
+  "t26_public_qualification_precedent": "evaluations/t27/t26_public_qualification_exclusion_precedent.json"
+}

@@ -1,0 +1,24 @@
+{
+  "artifact": "T27_STRUCTURAL_HISTORICAL_EXCLUSION_REMEDIATION_TEST_GATE_V5",
+  "classification": "PUBLIC_SAFE",
+  "deselections": 0,
+  "errors": 0,
+  "live_failures": 0,
+  "passed": 42,
+  "return_code": 0,
+  "schema_version": "t27-applicability-aware-test-gate-v5",
+  "status": "PASS",
+  "summary_sha256": "bb4e50be053c8b0229e162a60ed53b0afd39c99ced7ed24890146b58bb21ac72",
+  "test_files": [
+    "tests\\test_t27_construction_infrastructure.py",
+    "tests\\test_t27_historical_exclusion_provenance.py",
+    "tests\\test_t27_integrated_remediation.py",
+    "tests\\test_t27_preconstruction.py",
+    "tests\\test_t27_scorer.py",
+    "tests\\test_t27_structural_exclusion_policy.py",
+    "tests\\test_t27_t26_oracle_marker_layout.py"
+  ],
+  "unexplained_skips": 0,
+  "unknown_failures": 0,
+  "xfails": 0
+}

@@ -1,0 +1,81 @@
+{
+  "aggregate_overlap_by_dimension": {
+    "case_ids": 0,
+    "chunk_ids": 0,
+    "entity_identities": 0,
+    "exact_answers": 0,
+    "exact_queries": 0,
+    "exact_source_text": 0,
+    "relations": 0,
+    "source_ids": 0,
+    "verbatim_attack_wording": 0
+  },
+  "artifact": "T27_STRUCTURAL_SATISFIABILITY_WITNESS",
+  "authoring_constraints_recorded_for_real_construction": [
+    "abstention gold rows must carry a non-None expected_answer sentinel (the frozen scorer never reads expected_answer for designated_abstention rows; None would collide with the single None fingerprint retained in the public qualification exact_answers dimension)",
+    "expected_answer values must avoid the public qualification numeric answers and terminal strings",
+    "scenario ids, plan goals and step inputs must use a fresh namespace disjoint from the public generated material",
+    "plan fallback_condition must equal the frozen validate_plan dict for every scenario"
+  ],
+  "capabilities_exercised": 12,
+  "cases_per_family": 32,
+  "classification": "PUBLIC_SAFE",
+  "compared_index_root": "b436d16d4cc72c5279caee962eafc057adc455a9b1c2c349d46e48752a3aa8e2",
+  "compared_index_schema": "t27-authenticated-public-historical-index-v2",
+  "construction_one_shot_spent": false,
+  "designated_counts": {
+    "handoff_cases": 512,
+    "recoverable_cases": 128,
+    "replan_required_cases": 128,
+    "safe_abstention_cases": 128,
+    "successful_completion_cases": 384,
+    "verification_cases": 512
+  },
+  "deterministic": true,
+  "dimension_policy_root": "eaa6c1db8bafa5bcfd544dc9abfe8ed5fb147bd044e9dc0a9fbd7549c476af71",
+  "family_count": 16,
+  "fingerprint_root": "190c7516d8b646d4775e1d07526867136a5ab4e6542abeafb30a265c1c16fcdc",
+  "generated_public_dimension_policy_schema": "t27-generated-public-exclusion-dimension-policy-v1",
+  "nonvacuity_minimums": {
+    "handoff_cases": 128,
+    "recoverable_cases": 32,
+    "replan_required_cases": 32,
+    "safe_abstention_cases": 32,
+    "successful_completion_cases": 96,
+    "verification_cases": 512
+  },
+  "nonvacuity_pass": true,
+  "overall_prohibited_overlap": 0,
+  "per_source_overlap_zero": true,
+  "real_blind_rows_authored": 0,
+  "real_gold_rows_authored": 0,
+  "reused_public_blind_material": false,
+  "scenario_count": 512,
+  "schema_version": "t27-structural-satisfiability-witness-v1",
+  "static_checks": {
+    "abstention_semantics": true,
+    "all_capabilities_exercised": true,
+    "fallback_semantics_frozen": true,
+    "family_count_16": true,
+    "plans_validate": true,
+    "scenario_count_512": true,
+    "step_range_3_12": true
+  },
+  "status": "PASS",
+  "step_range": [
+    3,
+    12
+  ],
+  "t26_candidate_reruns": 0,
+  "t26_private_rows_opened": 0,
+  "t27_construction_ledger_created": false,
+  "value_level_disjointness": {
+    "answers_disjoint": true,
+    "goals_disjoint": true,
+    "inputs_disjoint": true,
+    "scenario_ids_disjoint": true,
+    "step_pairs_disjoint": true
+  },
+  "witness_material_is_not_real_blind_material": true,
+  "witness_material_retired_after_proof": true
+}

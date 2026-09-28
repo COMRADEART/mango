@@ -35,6 +35,88 @@ SYNTHETIC_HISTORY_BUILDER = (
     "t27_protocol.exclusion:build_synthetic_historical_index"
 )
 
+# Root cause of the V4 pre-exposure refusal: the generated-public fingerprint
+# bundles encoded frozen structural vocabulary (family names, the 12 registered
+# capabilities, the contractually fixed fallback condition, and the generic
+# step-relation topology).  Any contract-complete real package necessarily
+# reproduces that vocabulary, so an all-nine-dimensional public-history
+# comparison made real zero-overlap structurally unsatisfiable.  The frozen
+# policy below classifies each dimension for generated-public sources only.
+GENERATED_PUBLIC_POLICY_SCHEMA = (
+    "t27-generated-public-exclusion-dimension-policy-v1")
+GENERATED_PUBLIC_SOURCES = (
+    "T27_PUBLIC_QUALIFICATION", "T27_DIAGNOSTICS",
+    "T27_SYNTHETIC_TERMINAL_MATRIX",
+    "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES",
+)
+GENERATED_PUBLIC_EXCLUSION_LOADER = (
+    "t27_protocol.exclusion:_generated_public_identity_fingerprints")
+IDENTITY_BEARING = "IDENTITY_BEARING"
+CONTENT_BEARING = "CONTENT_BEARING"
+STRUCTURAL_SHARED_FROZEN_EMPTY = "STRUCTURAL_SHARED_FROZEN_EMPTY"
+GENERATED_PUBLIC_DIMENSION_CLASSIFICATIONS = {
+    "case_ids": IDENTITY_BEARING,
+    "entity_identities": STRUCTURAL_SHARED_FROZEN_EMPTY,
+    "source_ids": STRUCTURAL_SHARED_FROZEN_EMPTY,
+    "chunk_ids": IDENTITY_BEARING,
+    "exact_queries": CONTENT_BEARING,
+    "exact_answers": CONTENT_BEARING,
+    "exact_source_text": CONTENT_BEARING,
+    "verbatim_attack_wording": STRUCTURAL_SHARED_FROZEN_EMPTY,
+    "relations": STRUCTURAL_SHARED_FROZEN_EMPTY,
+}
+GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS = tuple(
+    name for name in DIMENSIONS
+    if GENERATED_PUBLIC_DIMENSION_CLASSIFICATIONS[name]
+    == STRUCTURAL_SHARED_FROZEN_EMPTY)
+GENERATED_PUBLIC_REUSABLE_DIMENSIONS = tuple(
+    name for name in DIMENSIONS
+    if GENERATED_PUBLIC_DIMENSION_CLASSIFICATIONS[name]
+    != STRUCTURAL_SHARED_FROZEN_EMPTY)
+
+
+def generated_public_dimension_policy() -> dict[str, Any]:
+    core = {
+        "schema_version": GENERATED_PUBLIC_POLICY_SCHEMA,
+        "artifact": "T27_GENERATED_PUBLIC_EXCLUSION_DIMENSION_POLICY",
+        "classification": "PUBLIC_SAFE",
+        "frozen_prospectively": True,
+        "applies_to_sources": list(GENERATED_PUBLIC_SOURCES),
+        "dimension_classifications": {
+            name: GENERATED_PUBLIC_DIMENSION_CLASSIFICATIONS[name]
+            for name in DIMENSIONS},
+        "structural_shared_frozen_empty_dimensions":
+            list(GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS),
+        "reusable_dimensions": list(GENERATED_PUBLIC_REUSABLE_DIMENSIONS),
+        "exclusion_loader": GENERATED_PUBLIC_EXCLUSION_LOADER,
+        "structural_empty_contract_template":
+            "<SOURCE>:<DIMENSION>:STRUCTURAL_SHARED_FROZEN_EMPTY",
+        "identity_dimensions_fail_closed": True,
+        "structural_vocabulary_is_identity_bearing_contamination": False,
+        "t26_sealed_oracle_exemption": False,
+        "real_prospective_fingerprints_unchanged": True,
+    }
+    return {**core, "dimension_policy_root": sha256_json(core)}
+
+
+def validate_generated_public_dimension_policy(document: Any) -> None:
+    if not isinstance(document, dict):
+        raise ValueError("generated-public dimension policy absent")
+    if document.get("schema_version") != GENERATED_PUBLIC_POLICY_SCHEMA:
+        raise ValueError("unknown generated-public dimension policy")
+    if set(document.get("dimension_classifications", {})) != set(DIMENSIONS):
+        raise ValueError("generated-public dimension policy dimension drift")
+    for name, classification in document["dimension_classifications"].items():
+        if classification != GENERATED_PUBLIC_DIMENSION_CLASSIFICATIONS[name]:
+            raise ValueError(
+                f"generated-public dimension classification drift: {name}")
+    if (document.get("structural_shared_frozen_empty_dimensions") !=
+            list(GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS)
+            or document.get("reusable_dimensions") !=
+            list(GENERATED_PUBLIC_REUSABLE_DIMENSIONS)):
+        raise ValueError("generated-public dimension policy partition drift")
+
+
 # Fixed repository evidence. Private classes contribute commitments only;
 # their row-level comparison remains inside a sealed private boundary.
 SOURCE_REGISTRY: dict[str, dict[str, Any]] = {
@@ -86,6 +168,7 @@ SOURCE_REGISTRY: dict[str, dict[str, Any]] = {
                   "t27_protocol/qualification.py"),
         "representation": "PUBLIC_GENERATED_CASES",
         "fingerprint_loader": "T27_QUALIFICATION",
+        "exclusion_loader": GENERATED_PUBLIC_EXCLUSION_LOADER,
     },
     "T27_DIAGNOSTICS": {
         "source_id": "t27-public-diagnostics",
@@ -93,6 +176,7 @@ SOURCE_REGISTRY: dict[str, dict[str, Any]] = {
                   "t27_protocol/qualification.py"),
         "representation": "PUBLIC_GENERATED_TERMINAL_MATRIX",
         "fingerprint_loader": "T27_TERMINAL_MATRIX",
+        "exclusion_loader": GENERATED_PUBLIC_EXCLUSION_LOADER,
     },
     "T27_PUBLIC_REPRODUCER": {
         "source_id": "t27-public-reproducer",
@@ -106,6 +190,7 @@ SOURCE_REGISTRY: dict[str, dict[str, Any]] = {
                   "t27_protocol/qualification.py"),
         "representation": "PUBLIC_GENERATED_TERMINAL_MATRIX",
         "fingerprint_loader": "T27_TERMINAL_MATRIX",
+        "exclusion_loader": GENERATED_PUBLIC_EXCLUSION_LOADER,
     },
     "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES": {
         "source_id": "t27-synthetic-recovery-replan",
@@ -113,6 +198,7 @@ SOURCE_REGISTRY: dict[str, dict[str, Any]] = {
                   "t27_protocol/qualification.py"),
         "representation": "PUBLIC_GENERATED_RECOVERY_REPLAN_CASES",
         "fingerprint_loader": "T27_RECOVERY_REPLAN",
+        "exclusion_loader": GENERATED_PUBLIC_EXCLUSION_LOADER,
     },
 }
 
@@ -216,6 +302,34 @@ def _t27_generated_fingerprints(loader: str) -> dict[str, list[str]]:
     raise ValueError("unknown T27 historical fingerprint loader")
 
 
+def _generated_public_identity_fingerprints(
+        loader: str) -> tuple[dict[str, list[str]], dict[str, int]]:
+    """Generated-public exclusion loader (the frozen policy's sole entrypoint).
+
+    Computes all nine dimensions from the actual generated cases, then keeps
+    only identity/content-bearing dimensions.  Structural dimensions are
+    dropped as STRUCTURAL_SHARED_FROZEN_EMPTY and their would-be populations
+    are returned for the audit's structural-exempt accounting.
+    """
+    full = _t27_generated_fingerprints(loader)
+    structural_exempt = {
+        name: (len(full[name]) if name in GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS
+               else 0)
+        for name in DIMENSIONS}
+    result: dict[str, list[str]] = {}
+    for name in DIMENSIONS:
+        if GENERATED_PUBLIC_DIMENSION_CLASSIFICATIONS[name] \
+                == STRUCTURAL_SHARED_FROZEN_EMPTY:
+            result[name] = []
+        else:
+            if not full[name]:
+                raise ValueError(
+                    "identity-bearing generated-public dimension "
+                    f"unexpectedly empty: {name}")
+            result[name] = full[name]
+    return result, structural_exempt
+
+
 def _load_dimension_fingerprints(loader: str, documents: list[Any]
                                  ) -> dict[str, list[str]]:
     if loader == "NONE":
@@ -271,15 +385,38 @@ def _source_record(root: Path, source_class: str,
             documents.append({"path": relative, "sha256": files[-1]["sha256"]})
     representation = specification["representation"]
     source_commitment = sha256_json(files)
-    values = _load_dimension_fingerprints(
-        specification["fingerprint_loader"], documents)
-    dimensions = {
-        name: _dimension_record(
-            values[name], applicable=bool(values[name]),
-            empty_contract=(None if values[name] else
-                            f"{source_class}:{name}:{representation}:FROZEN_EMPTY"))
-        for name in DIMENSIONS
-    }
+    exclusion_loader = specification.get("exclusion_loader")
+    policy_document: dict[str, Any] | None = None
+    structural_exempt: dict[str, int] | None = None
+    if exclusion_loader is not None:
+        if exclusion_loader != GENERATED_PUBLIC_EXCLUSION_LOADER:
+            raise ValueError("unknown generated-public exclusion loader")
+        policy_document = generated_public_dimension_policy()
+        values, structural_exempt = _generated_public_identity_fingerprints(
+            specification["fingerprint_loader"])
+    else:
+        values = _load_dimension_fingerprints(
+            specification["fingerprint_loader"], documents)
+    if structural_exempt is not None:
+        dimensions = {}
+        for name in DIMENSIONS:
+            if name in GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS:
+                dimensions[name] = _dimension_record(
+                    [], applicable=False,
+                    empty_contract=(f"{source_class}:{name}:"
+                                    "STRUCTURAL_SHARED_FROZEN_EMPTY"))
+            else:
+                dimensions[name] = _dimension_record(values[name],
+                                                     applicable=True)
+    else:
+        dimensions = {
+            name: _dimension_record(
+                values[name], applicable=bool(values[name]),
+                empty_contract=(None if values[name] else
+                                f"{source_class}:{name}:{representation}:"
+                                "FROZEN_EMPTY"))
+            for name in DIMENSIONS
+        }
     core = {
         "source_id": specification["source_id"],
         "source_class": source_class,
@@ -293,6 +430,10 @@ def _source_record(root: Path, source_class: str,
         "builder_implementation_identity": PUBLIC_HISTORY_BUILDER,
         "builder_implementation_sha256": _builder_sha256(),
     }
+    if policy_document is not None:
+        core["dimension_policy_schema"] = GENERATED_PUBLIC_POLICY_SCHEMA
+        core["dimension_policy_root"] = policy_document["dimension_policy_root"]
+        core["structural_exempt_populations"] = structural_exempt
     return {**core, "overall_source_root": sha256_json(core)}
 
 
@@ -311,12 +452,15 @@ def build_authenticated_public_historical_index(root: Path) -> dict[str, Any]:
             values, applicable=bool(values),
             empty_contract=None if values else "FROZEN_PUBLIC_REGISTRY_EMPTY")
     core = {
-        "schema_version": "t27-authenticated-public-historical-index-v1",
+        "schema_version": "t27-authenticated-public-historical-index-v2",
         "artifact": "T27_AUTHENTICATED_PUBLIC_HISTORICAL_INDEX",
         "classification": "PUBLIC_SAFE",
         "mode": "REAL_AUTHENTICATED",
         "builder_implementation_identity": PUBLIC_HISTORY_BUILDER,
         "builder_implementation_sha256": _builder_sha256(),
+        "dimension_policy_schema": GENERATED_PUBLIC_POLICY_SCHEMA,
+        "dimension_policy_root":
+            generated_public_dimension_policy()["dimension_policy_root"],
         "required_source_count": len(REQUIRED_HISTORICAL_SOURCES),
         "required_source_classes": list(REQUIRED_HISTORICAL_SOURCES),
         "sources": sources,
@@ -326,27 +470,47 @@ def build_authenticated_public_historical_index(root: Path) -> dict[str, Any]:
 
 
 def build_synthetic_historical_index(variant: int = 0) -> dict[str, Any]:
-    """Explicit disposable index. It is never accepted by real construction."""
+    """Explicit disposable index. It is never accepted by real construction.
+
+    Generated-public classes mirror the frozen dimension policy exactly, so
+    disposable rehearsals exercise the remediated comparison semantics.
+    """
     sources = []
     for source_class in REQUIRED_HISTORICAL_SOURCES:
-        values = {name: [sha256_json(("synthetic-history", variant,
-                                      source_class, name))]
-                  for name in DIMENSIONS}
-        dimensions = {name: _dimension_record(values[name], applicable=True)
-                      for name in DIMENSIONS}
+        policy_bound = source_class in GENERATED_PUBLIC_SOURCES
+        dimensions = {}
+        for name in DIMENSIONS:
+            if policy_bound and name in GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS:
+                dimensions[name] = _dimension_record(
+                    [], applicable=False,
+                    empty_contract=(f"{source_class}:{name}:"
+                                    "STRUCTURAL_SHARED_FROZEN_EMPTY"))
+            else:
+                dimensions[name] = _dimension_record(
+                    [sha256_json(("synthetic-history", variant,
+                                  source_class, name))], applicable=True)
         core = {
             "source_id": f"synthetic-{variant}-{source_class.lower()}",
             "source_class": source_class,
             "source_commitment": sha256_json(("synthetic-source", variant,
                                                 source_class)),
             "representation": "SYNTHETIC_DISPOSABLE_HASHES",
-            "dimension_populations": {name: 1 for name in DIMENSIONS},
+            "dimension_populations": {
+                name: dimensions[name]["historical_population"]
+                for name in DIMENSIONS},
             "dimension_roots": {name: dimensions[name]["dimension_root"]
                                 for name in DIMENSIONS},
             "dimensions": dimensions,
             "builder_implementation_identity": SYNTHETIC_HISTORY_BUILDER,
             "builder_implementation_sha256": sha256_json(SYNTHETIC_HISTORY_BUILDER),
         }
+        if policy_bound:
+            policy = generated_public_dimension_policy()
+            core["dimension_policy_schema"] = GENERATED_PUBLIC_POLICY_SCHEMA
+            core["dimension_policy_root"] = policy["dimension_policy_root"]
+            core["structural_exempt_populations"] = {
+                name: (1 if name in GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS
+                       else 0) for name in DIMENSIONS}
         sources.append({**core, "overall_source_root": sha256_json(core)})
     aggregate_dimensions = {}
     for name in DIMENSIONS:
@@ -360,6 +524,9 @@ def build_synthetic_historical_index(variant: int = 0) -> dict[str, Any]:
         "mode": "SYNTHETIC_DISPOSABLE",
         "builder_implementation_identity": SYNTHETIC_HISTORY_BUILDER,
         "builder_implementation_sha256": sha256_json(SYNTHETIC_HISTORY_BUILDER),
+        "dimension_policy_schema": GENERATED_PUBLIC_POLICY_SCHEMA,
+        "dimension_policy_root":
+            generated_public_dimension_policy()["dimension_policy_root"],
         "required_source_count": len(REQUIRED_HISTORICAL_SOURCES),
         "required_source_classes": list(REQUIRED_HISTORICAL_SOURCES),
         "sources": sources,
@@ -377,15 +544,36 @@ def _validate_structure(index: dict[str, Any]) -> None:
     if [item.get("source_class") for item in sources] != list(REQUIRED_HISTORICAL_SOURCES):
         raise ValueError("required historical source class missing")
     for source in sources:
+        requires_policy = source.get("source_class") in GENERATED_PUBLIC_SOURCES
         required = {"source_id", "source_class", "source_commitment",
                     "representation", "dimension_populations", "dimension_roots",
                     "dimensions", "builder_implementation_identity",
                     "builder_implementation_sha256", "overall_source_root"}
+        if requires_policy:
+            required |= {"dimension_policy_schema", "dimension_policy_root",
+                         "structural_exempt_populations"}
         if set(source) != required:
             raise ValueError("historical source provenance fields missing")
         if not isinstance(source["source_commitment"], str) or len(
                 source["source_commitment"]) != 64:
             raise ValueError("historical source commitment invalid")
+        if requires_policy:
+            if source["dimension_policy_schema"] != GENERATED_PUBLIC_POLICY_SCHEMA:
+                raise ValueError("unknown generated-public dimension policy")
+            if source["dimension_policy_root"] != \
+                    generated_public_dimension_policy()["dimension_policy_root"]:
+                raise ValueError("generated-public dimension policy root mismatch")
+            exempt = source["structural_exempt_populations"]
+            if (not isinstance(exempt, dict) or set(exempt) != set(DIMENSIONS)
+                    or any(not isinstance(count, int) or count < 0
+                           for count in exempt.values())):
+                raise ValueError("generated-public structural exempt "
+                                 "populations invalid")
+            for name in DIMENSIONS:
+                if name not in GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS \
+                        and exempt[name] != 0:
+                    raise ValueError(
+                        f"non-structural exempt population recorded: {name}")
         if set(source["dimensions"]) != set(DIMENSIONS):
             raise ValueError("historical source dimension missing")
         for name in DIMENSIONS:
@@ -403,12 +591,34 @@ def _validate_structure(index: dict[str, Any]) -> None:
                 raise ValueError("historical source fingerprint set invalid")
             if dimension["historical_population"] != len(values):
                 raise ValueError("historical source dimension population mismatch")
-            if dimension["applicable"] and not values:
-                raise ValueError("applicable historical dimension unexpectedly empty")
-            if not dimension["applicable"] and dimension.get("empty_contract") is None:
-                raise ValueError("inapplicable historical dimension lacks empty contract")
             if dimension["dimension_root"] != sha256_json(values):
                 raise ValueError("historical source dimension root mismatch")
+            if requires_policy:
+                if name in GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS:
+                    if (dimension["applicable"] or values
+                            or dimension["historical_population"] != 0):
+                        raise ValueError(
+                            "structural generated-public dimension "
+                            f"unexpectedly populated: {name}")
+                    if dimension.get("empty_contract") != (
+                            f"{source['source_class']}:"
+                            f"{name}:STRUCTURAL_SHARED_FROZEN_EMPTY"):
+                        raise ValueError(
+                            "structural generated-public empty contract "
+                            f"mismatch: {name}")
+                else:
+                    if not dimension["applicable"] or not values:
+                        raise ValueError(
+                            "identity-bearing generated-public dimension "
+                            f"unexpectedly empty: {name}")
+            else:
+                if dimension["applicable"] and not values:
+                    raise ValueError(
+                        "applicable historical dimension unexpectedly empty")
+                if not dimension["applicable"] \
+                        and dimension.get("empty_contract") is None:
+                    raise ValueError(
+                        "inapplicable historical dimension lacks empty contract")
         if source["dimension_populations"] != {
                 name: source["dimensions"][name]["historical_population"]
                 for name in DIMENSIONS}:
@@ -435,6 +645,11 @@ def _validate_structure(index: dict[str, Any]) -> None:
                 or aggregate["historical_population"] != len(values)
                 or aggregate["dimension_root"] != sha256_json(values)):
             raise ValueError("aggregate historical dimension mismatch")
+    if (index.get("dimension_policy_schema") != GENERATED_PUBLIC_POLICY_SCHEMA
+            or index.get("dimension_policy_root") !=
+            generated_public_dimension_policy()["dimension_policy_root"]):
+        raise ValueError("index-level generated-public dimension policy "
+                         "binding mismatch")
     core = {key: value for key, value in index.items()
             if key != "public_historical_index_root"}
     if index.get("public_historical_index_root") != sha256_json(core):
@@ -463,12 +678,40 @@ def verify_historical_index(index: dict[str, Any], *, root: Path | None,
         "repository_authenticated": authenticated,
         "explicit_synthetic": mode == "SYNTHETIC",
         "public_historical_index_root": index["public_historical_index_root"],
+        # Policy-accounting projection (§23): per-source class, policy
+        # binding, and populations only — never per-row fingerprints.
+        "sources": [
+            {
+                "source_class": source["source_class"],
+                "dimension_policy_schema": source.get("dimension_policy_schema"),
+                "dimension_policy_root": source.get("dimension_policy_root"),
+                "structural_exempt_populations":
+                    source.get("structural_exempt_populations"),
+                "dimension_populations": source["dimension_populations"],
+                "dimensions": {
+                    name: {"applicable": record["applicable"],
+                           "historical_population":
+                               record["historical_population"],
+                           "empty_contract": record.get("empty_contract")}
+                    for name, record in source["dimensions"].items()},
+            }
+            for source in index["sources"]
+        ],
     }
 
 
 def public_index_report(index: dict[str, Any]) -> dict[str, Any]:
     """Public-safe provenance report without the already-hashed value sets."""
     _validate_structure(index)
+    source_projection = ("source_id", "source_class", "source_commitment",
+                         "representation", "dimension_populations",
+                         "dimension_roots", "overall_source_root")
+    projected = []
+    for source in index["sources"]:
+        keys = list(source_projection)
+        if "dimension_policy_schema" in source:
+            keys += ["dimension_policy_schema", "dimension_policy_root"]
+        projected.append({key: source[key] for key in keys})
     return {
         "schema_version": "t27-public-historical-index-report-v1",
         "artifact": "T27_PUBLIC_HISTORICAL_INDEX_REPORT",
@@ -476,10 +719,9 @@ def public_index_report(index: dict[str, Any]) -> dict[str, Any]:
         "builder_implementation_identity": index["builder_implementation_identity"],
         "builder_implementation_sha256": index["builder_implementation_sha256"],
         "required_source_count": index["required_source_count"],
-        "sources": [{key: source[key] for key in (
-            "source_id", "source_class", "source_commitment", "representation",
-            "dimension_populations", "dimension_roots", "overall_source_root")}
-            for source in index["sources"]],
+        "dimension_policy_schema": index["dimension_policy_schema"],
+        "dimension_policy_root": index["dimension_policy_root"],
+        "sources": projected,
         "aggregate_dimension_populations": {
             name: index["aggregate_dimensions"][name]["historical_population"]
             for name in DIMENSIONS},
@@ -571,3 +813,112 @@ def authenticated_construction_policy() -> dict[str, Any]:
         "candidate_execution_on_historical_rows": False,
         "historical_private_row_exposure_to_author": 0,
     }
+
+
+# The V4-era authenticated public historical index root whose generated-public
+# structural dimensions made real zero-overlap structurally unsatisfiable.
+SUPERSEDED_INDEX_ROOT = (
+    "9b199cfd74df2b30b660263bac5166877d2ea4a913d2aad319f3d3a2072c6b41")
+
+
+def public_index_supersession(new_index: dict[str, Any]) -> dict[str, Any]:
+    """Supersession record preserving the pre-remediation root historically."""
+    core = {
+        "schema_version": "t27-public-historical-index-supersession-v1",
+        "artifact": "T27_PUBLIC_HISTORICAL_INDEX_SUPERSESSION",
+        "classification": "PUBLIC_SAFE",
+        "superseded_root": SUPERSEDED_INDEX_ROOT,
+        "superseded_classification": "SUPERSEDED_PRE_EXPOSURE",
+        "superseded_reason":
+            "STRUCTURALLY_SHARED_GENERATED_PUBLIC_DIMENSIONS_MADE_REAL_"
+            "ZERO_OVERLAP_UNSATISFIABLE",
+        "superseded_schema": "t27-authenticated-public-historical-index-v1",
+        "superseded_index_report_retained": False,
+        "superseded_index_not_authorized_for_comparison": True,
+        "successor_schema": new_index["schema_version"],
+        "current_root": new_index["public_historical_index_root"],
+        "generated_public_dimension_policy":
+            generated_public_dimension_policy()["dimension_policy_root"],
+    }
+    return {**core, "supersession_root": sha256_json(core)}
+
+
+def t26_public_qualification_exclusion_precedent() -> dict[str, Any]:
+    """Public-safe design note on the T25-era T26 public-history precedent."""
+    core = {
+        "schema_version": "t27-t26-exclusion-precedent-design-note-v1",
+        "artifact": "T26_PUBLIC_QUALIFICATION_EXCLUSION_PRECEDENT",
+        "classification": "PUBLIC_SAFE",
+        "status": "PASS",
+        "precedent_experiment": "T26",
+        "precedent_scope":
+            "T26 public qualification history was compared against real "
+            "material on identity-bearing dimensions only",
+        "precedent_identity_dimensions": [
+            "case_id_sha256", "goal_sha256", "router_query_sha256"],
+        "precedent_structural_vocabulary":
+            "NOT_PRESENT_IN_PREDECESSOR_FINGERPRINT_VOCABULARY",
+        "analogy": "the T27 generated-public remediation follows the same "
+                   "identity-bearing-only public-history comparison",
+        "difference": "T27 additionally quantifies the exempted structural "
+                      "vocabulary and freezes it under an authenticated "
+                      "dimension policy",
+        "t26_private_rows_opened": 0,
+        "t26_candidate_reruns": 0,
+    }
+    return {**core, "design_note_root": sha256_json(core)}
+
+
+def historical_exclusion_policy_v4() -> dict[str, Any]:
+    """Structural historical-exclusion policy V4 (successor to V3)."""
+    policy = generated_public_dimension_policy()
+    core = {
+        "schema_version": "t27-historical-exclusion-policy-v4",
+        "artifact": "T27_STRUCTURAL_HISTORICAL_EXCLUSION_POLICY",
+        "classification": "PUBLIC_SAFE",
+        "supersedes": "t27-historical-exclusion-policy-v3",
+        "dimensions": list(DIMENSIONS),
+        "required_sources": list(REQUIRED_HISTORICAL_SOURCES),
+        "real_prospective_fingerprints": "ALL_NINE_DIMENSIONS",
+        "real_fingerprint_sets_implementation":
+            "t27_protocol.construction:fingerprint_sets (UNCHANGED)",
+        "public_history_comparison":
+            "SOURCE_AND_DIMENSION_APPLICABILITY_GOVERNED_BY_"
+            "AUTHENTICATED_FROZEN_POLICY",
+        "generated_public_dimension_policy": {
+            "schema": GENERATED_PUBLIC_POLICY_SCHEMA,
+            "root": policy["dimension_policy_root"],
+        },
+        "generated_public_structural_vocabulary": {
+            "classification": STRUCTURAL_SHARED_FROZEN_EMPTY,
+            "dimensions": list(GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS),
+            "identity_bearing_historical_contamination": False,
+            "excluded_from_public_history_comparison": True,
+            "would_be_populations_recorded_in_source_records": True,
+        },
+        "generated_public_reusable_vocabulary": {
+            "identity_bearing": [name for name in GENERATED_PUBLIC_REUSABLE_DIMENSIONS
+                                 if GENERATED_PUBLIC_DIMENSION_CLASSIFICATIONS[name]
+                                 == IDENTITY_BEARING],
+            "content_bearing": [name for name in GENERATED_PUBLIC_REUSABLE_DIMENSIONS
+                                if GENERATED_PUBLIC_DIMENSION_CLASSIFICATIONS[name]
+                                == CONTENT_BEARING],
+            "nonvacuous": True,
+            "genuine_reuse_still_rejected": True,
+            "overlap_enforced_against_real_material": True,
+        },
+        "private_historical_overlap": {
+            "comparison": "SEALED_ALL_NINE_DIMENSION_WHERE_APPLICABLE",
+            "oracle":
+                "t26_protocol.t27_private_oracle:run_sealed_t26_to_t27_overlap_oracle",
+            "generated_public_structural_exemption": "NONE",
+        },
+        "public_history_schema": "t27-authenticated-public-historical-index-v2",
+        "superseded_public_history_root": SUPERSEDED_INDEX_ROOT,
+        "t26_public_qualification_precedent":
+            "evaluations/t27/t26_public_qualification_exclusion_precedent.json",
+        "overall_prohibited_overlap_required": 0,
+        "candidate_execution_on_historical_rows": False,
+        "historical_private_row_exposure_to_author": 0,
+    }
+    return {**core, "policy_root": sha256_json(core)}

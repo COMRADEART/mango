@@ -173,19 +173,19 @@ def test_real_store_preflight_artifact_is_authentic_and_row_free():
 
 
 def test_expanded_contract_and_gate_enumerators_match():
-    contract = read("construction_contract_v3.json")
+    contract = read("construction_contract_v4.json")
     assert contract == construction_contract()
-    assert len(CONTRACT_LEAF_IDS) == 56
-    assert len(CONSTRUCTION_GATE_IDS) == 46
+    assert len(CONTRACT_LEAF_IDS) == 60
+    assert len(CONSTRUCTION_GATE_IDS) == 52
     assert "oracle.official_marker_path_exact" in CONTRACT_LEAF_IDS
     assert "oracle.real_store_layout_authenticated" in CONTRACT_LEAF_IDS
     assert "G42_T26_OFFICIAL_MARKER_PATH" in CONSTRUCTION_GATE_IDS
     assert "G46_T26_REAL_STORE_LAYOUT_PREFLIGHT" in CONSTRUCTION_GATE_IDS
     negative = read("construction_negative_controls.json")
-    assert negative["control_count"] == 55
+    assert negative["control_count"] == 72
     assert negative["status"] == "PASS"
     assert set(NEGATIVE_CONTROL_IDS) == set(negative["controls"])
-    assert negative["PASS"] == 55
+    assert negative["PASS"] == 72
 
 
 def test_oracle_result_document_and_schema_unchanged():

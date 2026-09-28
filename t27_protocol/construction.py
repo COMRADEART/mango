@@ -20,9 +20,16 @@ from t21_protocol.util import sha256_json
 
 from .contract import (CONSTRUCTION_TOKEN, FAMILIES, NONVACUITY_MINIMUMS,
                        design)
-from .exclusion import (DIMENSIONS, REQUIRED_HISTORICAL_SOURCES,
+from .exclusion import (DIMENSIONS, GENERATED_PUBLIC_POLICY_SCHEMA,
+                        GENERATED_PUBLIC_REUSABLE_DIMENSIONS,
+                        GENERATED_PUBLIC_SOURCES,
+                        GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS,
+                        REQUIRED_HISTORICAL_SOURCES, STRUCTURAL_SHARED_FROZEN_EMPTY,
+                        SUPERSEDED_INDEX_ROOT,
                         build_authenticated_public_historical_index,
                         build_synthetic_historical_index,
+                        generated_public_dimension_policy,
+                        validate_generated_public_dimension_policy,
                         verify_historical_index)
 from .oracle import verify_oracle_result
 from .store import (CLASSIFICATIONS, NAMESPACE, STORE_ID, T27PrivateStore,
@@ -59,6 +66,9 @@ LEDGER_BINDING_FIELDS = frozenset({
     "t26_historical_failure_anchor_sha256", "construction_timestamp",
     "public_historical_index_root", "t26_overlap_oracle_result_sha256",
     "combined_historical_exclusion_root",
+    "generated_public_dimension_policy_sha256",
+    "structural_unsatisfiability_reproducer_sha256",
+    "structural_satisfiability_witness_sha256",
     "state",
 })
 
@@ -430,6 +440,33 @@ def historical_exclusion_audit(
     future = fingerprint_sets(cases, gold)
     historical = {name: historical_index["aggregate_dimensions"][name]["fingerprints"]
                   for name in DIMENSIONS}
+    # Structural historical-exclusion accounting (§23): generated-public
+    # sources bound to the frozen dimension policy distinguish the
+    # prospective population, the historical comparable population, the
+    # structural-exempt population, and the overlap count per dimension.
+    policy_root = generated_public_dimension_policy()["dimension_policy_root"]
+    policy_sources = [source for source in index["sources"]
+                      if source.get("dimension_policy_schema") is not None]
+    policy_exact = (
+        sorted(source["source_class"] for source in policy_sources)
+        == sorted(GENERATED_PUBLIC_SOURCES)
+        and all(source["dimension_policy_schema"] == GENERATED_PUBLIC_POLICY_SCHEMA
+                and source["dimension_policy_root"] == policy_root
+                for source in policy_sources))
+    structural_empty = policy_exact and all(
+        source["dimensions"][name]["historical_population"] == 0
+        for source in policy_sources
+        for name in GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS)
+    identity_nonvacuous = policy_exact and all(
+        source["dimensions"][name]["historical_population"] > 0
+        for source in policy_sources
+        for name in GENERATED_PUBLIC_REUSABLE_DIMENSIONS)
+    exempted = {
+        name: sum(source.get("structural_exempt_populations", {}).get(name, 0)
+                  for source in policy_sources)
+        for name in DIMENSIONS}
+    satisfiability = (policy_exact and structural_empty and identity_nonvacuous
+                      and index["source_classes_complete"])
     dimensions = {}
     total = 0
     for name in DIMENSIONS:
@@ -440,6 +477,7 @@ def historical_exclusion_audit(
             "applicable": bool(future[name]),
             "prospective_population": len(future[name]),
             "historical_population": len(prior),
+            "structural_exempt_population": exempted[name],
             "overlap_count": overlap,
         }
     prospective_root = fingerprint_root(future)
@@ -459,7 +497,7 @@ def historical_exclusion_audit(
                                        and oracle["t26_commitments_exact"]
                                        and oracle["real_mode_not_synthetic"])))
     core = {
-        "schema_version": "t27-historical-exclusion-audit-v2",
+        "schema_version": "t27-historical-exclusion-audit-v3",
         "artifact": "T27_HISTORICAL_EXCLUSION_AUDIT",
         "classification": "PRIVATE_AUDIT",
         "status": "PASS" if passed else "FAIL",
@@ -469,6 +507,15 @@ def historical_exclusion_audit(
         "source_classes_complete": index["source_classes_complete"],
         "public_history_authenticated": index["repository_authenticated"],
         "synthetic_history_explicit": index["explicit_synthetic"],
+        "dimension_policy_schema": GENERATED_PUBLIC_POLICY_SCHEMA,
+        "dimension_policy_root": policy_root,
+        "generated_public_policy_sources": sorted(
+            source["source_class"] for source in policy_sources),
+        "dimension_policy_exact": policy_exact,
+        "generated_structural_dimensions_frozen_empty": structural_empty,
+        "generated_identity_dimensions_nonvacuous": identity_nonvacuous,
+        "structural_satisfiability_proven": satisfiability,
+        "generated_public_structural_exempt_populations": exempted,
         "dimensions": dimensions, "overall_prohibited_overlap": total,
         "t26_oracle_result_sha256": oracle["result_sha256"],
         "t26_store_authenticated": oracle["t26_store_authenticated"],
@@ -643,13 +690,17 @@ CONTRACT_LEAF_IDS = (
     "oracle.official_marker_path_exact", "oracle.official_marker_schema_exact",
     "oracle.marker_committed_in_store", "oracle.marker_genesis_matches_ledger",
     "oracle.real_store_layout_authenticated",
+    "exclusion.dimension_policy_exact",
+    "exclusion.generated_structural_dimensions_frozen_empty",
+    "exclusion.identity_dimensions_nonvacuous",
+    "exclusion.structural_satisfiability_proven",
 )
 
 
 def construction_contract() -> dict[str, Any]:
     return {
-        "schema_version": "t27-construction-contract-v3",
-        "artifact": "T27_CONSTRUCTION_CONTRACT_V3", "classification": "PUBLIC_SAFE",
+        "schema_version": "t27-construction-contract-v4",
+        "artifact": "T27_CONSTRUCTION_CONTRACT_V4", "classification": "PUBLIC_SAFE",
         "leaf_enumerator": "t27_protocol.construction:CONTRACT_LEAF_IDS",
         "leaf_count": len(CONTRACT_LEAF_IDS), "leaf_ids": list(CONTRACT_LEAF_IDS),
         "unknown_requirement_policy": "UNVERIFIABLE",
@@ -791,13 +842,29 @@ def contract_leaf_audit(bindings: dict[str, Any], audit: dict[str, Any],
             and marker["event_count"] == 4
             and marker["fingerprint_derivation_invoked"] is False
             and marker["private_rows_exposed"] == 0),
+        "exclusion.dimension_policy_exact": (
+            len(bindings["generated_public_dimension_policy_sha256"]) == 64
+            and components["historical_exclusion"]["dimension_policy_exact"]
+            is True),
+        "exclusion.generated_structural_dimensions_frozen_empty":
+            components["historical_exclusion"][
+                "generated_structural_dimensions_frozen_empty"] is True,
+        "exclusion.identity_dimensions_nonvacuous": components[
+            "historical_exclusion"][
+            "generated_identity_dimensions_nonvacuous"] is True,
+        "exclusion.structural_satisfiability_proven": (
+            components["historical_exclusion"][
+                "structural_satisfiability_proven"] is True
+            and len(bindings["structural_satisfiability_witness_sha256"]) == 64
+            and len(bindings["structural_unsatisfiability_reproducer_sha256"])
+            == 64),
     }
     if set(checks) != set(CONTRACT_LEAF_IDS):
         raise ValueError("construction contract leaf enumerator drift")
     results = {name: "PASS" if value else "FAIL" for name, value in checks.items()}
     counts = Counter(results.values())
     core = {
-        "schema_version": "t27-construction-contract-audit-v3",
+        "schema_version": "t27-construction-contract-audit-v4",
         "artifact": "T27_CONSTRUCTION_CONTRACT_AUDIT",
         "classification": "PRIVATE_AUDIT", "results": dict(sorted(results.items())),
         "leaf_count": len(results), "PASS": counts["PASS"],
@@ -834,6 +901,12 @@ CONSTRUCTION_GATE_IDS = (
     "G44_T26_OFFICIAL_MARKER_COMMITMENT",
     "G45_T26_MARKER_LEDGER_GENESIS_RELATION",
     "G46_T26_REAL_STORE_LAYOUT_PREFLIGHT",
+    "G47_GENERATED_PUBLIC_DIMENSION_POLICY_EXACT",
+    "G48_GENERATED_STRUCTURAL_DIMENSIONS_FROZEN_EMPTY",
+    "G49_GENERATED_IDENTITY_DIMENSIONS_NONVACUOUS",
+    "G50_OLD_STRUCTURAL_UNSATISFIABILITY_REPRODUCED",
+    "G51_STRUCTURAL_SATISFIABILITY_WITNESS_PASS",
+    "G52_NEW_PUBLIC_HISTORY_ROOT_EXACT",
 )
 
 
@@ -926,6 +999,27 @@ def run_construction_gate(bindings: dict[str, Any], expected: dict[str, Any],
             and marker["evaluation_state"] == "COMPLETE"
             and marker["evaluation_attempt"] == 1
             and marker["event_count"] == 4),
+        "G47_GENERATED_PUBLIC_DIMENSION_POLICY_EXACT": components[
+            "historical_exclusion"]["dimension_policy_exact"] is True,
+        "G48_GENERATED_STRUCTURAL_DIMENSIONS_FROZEN_EMPTY": components[
+            "historical_exclusion"][
+            "generated_structural_dimensions_frozen_empty"] is True,
+        "G49_GENERATED_IDENTITY_DIMENSIONS_NONVACUOUS": components[
+            "historical_exclusion"][
+            "generated_identity_dimensions_nonvacuous"] is True,
+        "G50_OLD_STRUCTURAL_UNSATISFIABILITY_REPRODUCED": bindings[
+            "structural_unsatisfiability_reproducer_sha256"] == expected[
+            "structural_unsatisfiability_reproducer_sha256"],
+        "G51_STRUCTURAL_SATISFIABILITY_WITNESS_PASS": (
+            components["historical_exclusion"][
+                "structural_satisfiability_proven"] is True
+            and bindings["structural_satisfiability_witness_sha256"] == expected[
+            "structural_satisfiability_witness_sha256"]),
+        "G52_NEW_PUBLIC_HISTORY_ROOT_EXACT": (
+            bindings["public_historical_index_root"] ==
+            components["historical_exclusion"]["public_historical_index_root"]
+            and bindings["public_historical_index_root"]
+            != SUPERSEDED_INDEX_ROOT),
     }
     checks.update({gate_id: bindings[key] == expected[key]
                    for gate_id, key in protocol_pairs})
@@ -933,7 +1027,7 @@ def run_construction_gate(bindings: dict[str, Any], expected: dict[str, Any],
         raise ValueError("construction gate check enumerator drift")
     failed = sorted(name for name, passed in checks.items() if not passed)
     core = {
-        "schema_version": "t27-construction-gate-v3",
+        "schema_version": "t27-construction-gate-v4",
         "artifact": "T27_CONSTRUCTION_GATE", "classification": "PRIVATE_AUDIT",
         "checks": dict(sorted(checks.items())), "check_count": len(checks),
         "PASS": len(checks) - len(failed), "FAIL": len(failed),
@@ -1005,7 +1099,10 @@ def build_private_manifest(store: T27PrivateStore, ledger: T27ConstructionLedger
             "terminal_contract_sha256", "metric_registry_sha256",
             "nonvacuity_policy_sha256", "authority_graph_sha256",
             "production_graph_sha256", "storage_policy_sha256",
-            "historical_exclusion_policy_sha256")},
+            "historical_exclusion_policy_sha256",
+            "generated_public_dimension_policy_sha256",
+            "structural_unsatisfiability_reproducer_sha256",
+            "structural_satisfiability_witness_sha256")},
     }
     roots = manifest_roots(artifacts, semantic)
     return {
@@ -1170,8 +1267,14 @@ def required_bindings(root: Path, freeze: dict[str, Any], *,
         "authority_graph_sha256": "evaluations/t27/authority_graph.json",
         "production_graph_sha256": "evaluations/t27/production_graph.json",
         "storage_policy_sha256": "evaluations/t27/construction_ready_storage_policy.json",
-        "historical_exclusion_policy_sha256": "evaluations/t27/historical_exclusion_policy_v3.json",
+        "historical_exclusion_policy_sha256": "evaluations/t27/historical_exclusion_policy_v4.json",
         "t26_historical_failure_anchor_sha256": "evaluations/t27/T26_HISTORICAL_FAILURE_ANCHOR.json",
+        "generated_public_dimension_policy_sha256":
+            "evaluations/t27/generated_public_exclusion_dimension_policy.json",
+        "structural_unsatisfiability_reproducer_sha256":
+            "evaluations/t27/structural_unsatisfiability_reproducer.json",
+        "structural_satisfiability_witness_sha256":
+            "evaluations/t27/structural_satisfiability_witness.json",
     }
     if historical is None:
         raise ValueError("historical exclusion roots required before ledger bindings")
@@ -1345,7 +1448,7 @@ def construct_real(*, root: Path, private_store_root: Path,
     if not isinstance(t26_store, T26PrivateStore):
         raise ValueError("real T27 construction requires the official T26 "
                          "private store for metadata authentication")
-    freeze = json.loads((root / "evaluations/t27/preconstruction_freeze_v4.json").read_text(
+    freeze = json.loads((root / "evaluations/t27/preconstruction_freeze_v5.json").read_text(
         encoding="utf-8"))
     historical_index = build_authenticated_public_historical_index(root)
     historical = historical_exclusion_audit(
@@ -1728,7 +1831,203 @@ NEGATIVE_CONTROL_IDS = (
     "marker_commitment_hash_mismatch", "marker_byte_count_mismatch",
     "ledger_started_event_hash_mismatch", "ledger_chain_invalid",
     "ledger_state_not_complete", "disposable_standin_using_legacy_path",
+    "structural_entity_identities_populated",
+    "structural_source_ids_populated",
+    "structural_verbatim_attack_wording_populated",
+    "structural_relations_populated",
+    "identity_case_ids_marked_structural",
+    "identity_exact_queries_marked_structural",
+    "identity_exact_answers_marked_structural",
+    "identity_exact_source_text_marked_structural",
+    "identity_chunk_ids_marked_structural",
+    "unknown_structural_dimension",
+    "dimension_policy_root_tampered",
+    "source_policy_root_tampered",
+    "reuse_case_ids_detected",
+    "reuse_exact_queries_detected",
+    "reuse_exact_answers_detected",
+    "reuse_exact_source_text_detected",
+    "reuse_chunk_ids_detected",
 )
+
+
+def run_generated_public_policy_controls(root: Path) -> dict[str, Any]:
+    """Structural policy negative and identity-reuse positive controls.
+
+    Negative controls prove the frozen generated-public dimension policy is
+    enforced fail-closed by index structure validation in both modes; the
+    reuse controls prove genuine identity/content reuse of generated-public
+    material is still detected. Public generated material only.
+    """
+    root = Path(root).resolve()
+    from .qualification import build_public_cases
+
+    index = build_authenticated_public_historical_index(root)
+    results: dict[str, dict[str, Any]] = {}
+
+    def reseal_source(source: dict[str, Any]) -> None:
+        source["overall_source_root"] = sha256_json({
+            key: value for key, value in source.items()
+            if key != "overall_source_root"})
+
+    def reseal_index(document: dict[str, Any]) -> None:
+        document["public_historical_index_root"] = sha256_json({
+            key: value for key, value in document.items()
+            if key != "public_historical_index_root"})
+
+    def mutate_dimension(document: dict[str, Any], source_class: str,
+                         name: str, values: list[str], *,
+                         applicable: bool = True,
+                         empty_contract: str | None = None) -> None:
+        source = next(item for item in document["sources"]
+                      if item["source_class"] == source_class)
+        dimension = source["dimensions"][name]
+        dimension["fingerprints"] = values
+        dimension["historical_population"] = len(values)
+        dimension["dimension_root"] = sha256_json(values)
+        if applicable:
+            dimension["applicable"] = True
+            dimension.pop("empty_contract", None)
+        else:
+            dimension["applicable"] = False
+            dimension["empty_contract"] = empty_contract
+        source["dimension_populations"][name] = len(values)
+        source["dimension_roots"][name] = sha256_json(values)
+        reseal_source(source)
+        aggregate = sorted({value for item in document["sources"]
+                            for value in item["dimensions"][name]["fingerprints"]})
+        aggregate_record = document["aggregate_dimensions"][name]
+        aggregate_record["fingerprints"] = aggregate
+        aggregate_record["historical_population"] = len(aggregate)
+        aggregate_record["dimension_root"] = sha256_json(aggregate)
+        aggregate_record["applicable"] = bool(aggregate)
+        if aggregate:
+            aggregate_record.pop("empty_contract", None)
+        else:
+            aggregate_record["empty_contract"] = "FROZEN_PUBLIC_REGISTRY_EMPTY"
+        reseal_index(document)
+
+    structural_probe = sha256_json(("structural-tamper", "probe"))
+
+    for control, source_class, name in (
+        ("structural_entity_identities_populated",
+         "T27_PUBLIC_QUALIFICATION", "entity_identities"),
+        ("structural_source_ids_populated",
+         "T27_SYNTHETIC_TERMINAL_MATRIX", "source_ids"),
+        ("structural_verbatim_attack_wording_populated",
+         "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES", "verbatim_attack_wording"),
+        ("structural_relations_populated", "T27_DIAGNOSTICS", "relations"),
+    ):
+        tampered = copy.deepcopy(index)
+        mutate_dimension(tampered, source_class, name,
+                         [sha256_json(("tampered", control))])
+        try:
+            verify_historical_index(tampered, root=root, mode="REAL")
+            refused = False
+        except ValueError:
+            refused = True
+        results[control] = {
+            "status": "PASS" if refused else "FAIL", "refused": refused,
+            "evidence": f"structural-populated:{name}",
+        }
+
+    for control, name in (
+        ("identity_case_ids_marked_structural", "case_ids"),
+        ("identity_exact_queries_marked_structural", "exact_queries"),
+        ("identity_exact_answers_marked_structural", "exact_answers"),
+        ("identity_exact_source_text_marked_structural", "exact_source_text"),
+        ("identity_chunk_ids_marked_structural", "chunk_ids"),
+    ):
+        tampered = copy.deepcopy(index)
+        mutate_dimension(
+            tampered, "T27_PUBLIC_QUALIFICATION", name, [], applicable=False,
+            empty_contract=("T27_PUBLIC_QUALIFICATION:" + name +
+                            ":STRUCTURAL_SHARED_FROZEN_EMPTY"))
+        try:
+            verify_historical_index(tampered, root=root, mode="REAL")
+            refused = False
+        except ValueError:
+            refused = True
+        results[control] = {
+            "status": "PASS" if refused else "FAIL", "refused": refused,
+            "evidence": f"identity-marked-structural:{name}",
+        }
+
+    unknown_policy = copy.deepcopy(generated_public_dimension_policy())
+    unknown_policy["dimension_classifications"]["unknown_future_dimension"] = \
+        STRUCTURAL_SHARED_FROZEN_EMPTY
+    try:
+        validate_generated_public_dimension_policy(unknown_policy)
+        refused = False
+    except ValueError:
+        refused = True
+    results["unknown_structural_dimension"] = {
+        "status": "PASS" if refused else "FAIL", "refused": refused,
+        "evidence": "unknown-dimension-in-policy",
+    }
+
+    root_tampered = copy.deepcopy(index)
+    next(item for item in root_tampered["sources"]
+         if item["source_class"] == "T27_PUBLIC_QUALIFICATION")[
+        "dimension_policy_root"] = "0" * 64
+    for item in root_tampered["sources"]:
+        reseal_source(item)
+    reseal_index(root_tampered)
+    try:
+        verify_historical_index(root_tampered, root=root, mode="REAL")
+        refused = False
+    except ValueError:
+        refused = True
+    results["dimension_policy_root_tampered"] = {
+        "status": "PASS" if refused else "FAIL", "refused": refused,
+        "evidence": "policy-root-mismatch",
+    }
+
+    mismatched = copy.deepcopy(index)
+    source = next(item for item in mismatched["sources"]
+                  if item["source_class"] == "T22_PROTECTED")
+    source["dimension_policy_schema"] = GENERATED_PUBLIC_POLICY_SCHEMA
+    source["dimension_policy_root"] = generated_public_dimension_policy()[
+        "dimension_policy_root"]
+    source["structural_exempt_populations"] = {
+        name: 0 for name in DIMENSIONS}
+    reseal_source(source)
+    reseal_index(mismatched)
+    try:
+        verify_historical_index(mismatched, root=root, mode="REAL")
+        refused = False
+    except ValueError:
+        refused = True
+    results["source_policy_root_tampered"] = {
+        "status": "PASS" if refused else "FAIL", "refused": refused,
+        "evidence": "source-policy-mismatch",
+    }
+
+    cases, gold, _ = build_public_cases()
+    scenario = cases[0]
+    step = scenario["plan"]["steps"][0]
+    aggregates = {
+        name: set(index["aggregate_dimensions"][name]["fingerprints"])
+        for name in DIMENSIONS}
+    reuse_probes = (
+        ("reuse_case_ids_detected", "case_ids",
+         sha256_json(scenario["scenario_id"])),
+        ("reuse_exact_queries_detected", "exact_queries",
+         sha256_json(scenario["plan"]["goal"])),
+        ("reuse_exact_answers_detected", "exact_answers",
+         sha256_json(gold[0]["expected_answer"])),
+        ("reuse_exact_source_text_detected", "exact_source_text",
+         sha256_json(step["input"])),
+        ("reuse_chunk_ids_detected", "chunk_ids",
+         sha256_json((scenario["scenario_id"], step["step_id"]))),
+    )
+    for control, name, value in reuse_probes:
+        detected = value in aggregates[name]
+        results[control] = {
+            "status": "PASS" if detected else "FAIL", "refused": detected,
+            "evidence": f"genuine-reuse-detected:{name}",
+        }
+    return results
 
 
 def run_t26_marker_layout_negative_controls(root: Path) -> dict[str, Any]:
@@ -2165,6 +2464,7 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
             baseline, baseline, store), "preledger-evaluation-absence")
 
     results.update(run_t26_marker_layout_negative_controls(root))
+    results.update(run_generated_public_policy_controls(root))
 
     if set(results) != set(NEGATIVE_CONTROL_IDS):
         raise ValueError("negative control enumerator drift")
@@ -2178,3 +2478,96 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
         "control_count": len(results), "controls": dict(sorted(results.items())),
         "real_construction_attempts": 0, "real_blind_rows": 0,
     }
+
+
+def real_fingerprint_semantics_probe() -> dict[str, Any]:
+    """Prove real prospective fingerprint_sets semantics are unchanged.
+
+    Disposable synthetic material only; checks each of the nine dimensions
+    still hashes exactly the V4-era value (family, capability,
+    (family, fallback_condition), (step_id, depends_on), ...).
+    """
+    cases, gold, _ = synthetic_private_bundle(0)
+    scenario, expected = cases[0], gold[0]
+    sets = fingerprint_sets([scenario], [expected])
+    plan = scenario["plan"]
+    checks = {
+        "nine_dimensions": set(sets) == set(DIMENSIONS),
+        "nonempty_all_nine": all(sets[name] for name in DIMENSIONS),
+        "case_ids_hash": sets["case_ids"] == [
+            sha256_json(scenario["scenario_id"])],
+        "entity_family_hash": sets["entity_identities"] == [
+            sha256_json(expected["family"])],
+        "source_ids_capability_hashes": sets["source_ids"] == sorted({
+            sha256_json(step["capability"]) for step in plan["steps"]}),
+        "chunk_ids_pair_hashes": sets["chunk_ids"] == sorted({
+            sha256_json((scenario["scenario_id"], step["step_id"]))
+            for step in plan["steps"]}),
+        "exact_queries_goal_hash": sets["exact_queries"] == [
+            sha256_json(plan["goal"])],
+        "exact_answers_answer_hash": sets["exact_answers"] == [
+            sha256_json(expected["expected_answer"])],
+        "exact_source_text_input_hashes": sets["exact_source_text"] == sorted({
+            sha256_json(step["input"]) for step in plan["steps"]}),
+        "verbatim_family_fallback_hash": sets["verbatim_attack_wording"] == [
+            sha256_json((expected["family"], plan["fallback_condition"]))],
+        "relations_dependency_hashes": sets["relations"] == sorted({
+            sha256_json((step["step_id"], step["depends_on"]))
+            for step in plan["steps"]}),
+    }
+    passed = all(checks.values())
+    core = {
+        "schema_version": "t27-real-fingerprint-semantics-probe-v1",
+        "artifact": "T27_REAL_FINGERPRINT_SEMANTICS_PROBE",
+        "classification": "PUBLIC_SAFE", "status": "PASS" if passed else "FAIL",
+        "checks": checks,
+        "real_prospective_fingerprints_unchanged": passed,
+    }
+    return {**core, "probe_root": sha256_json(core)}
+
+
+def t26_oracle_nine_dimension_probe() -> dict[str, Any]:
+    """Prove the sealed T26 oracle still enforces all nine dimensions.
+
+    Disposable synthetic hash sets only; the oracle must refuse an
+    eight-dimensional comparison and accept the nine-dimensional one.
+    """
+    from t26_protocol.t27_private_oracle import compare_hashes
+
+    future = {name: [sha256_json(("probe", "prospective", name))]
+              for name in DIMENSIONS}
+    sealed = {name: [sha256_json(("probe", "sealed", name))]
+              for name in DIMENSIONS}
+    bindings = {
+        "t26_private_holdout_root": "a" * 64,
+        "t26_private_manifest_sha256": "b" * 64,
+        "t26_construction_seal_sha256": "c" * 64,
+        "t26_evaluation_ledger_sha256": "d" * 64,
+    }
+    nine = compare_hashes(
+        prospective_root=fingerprint_root(future), prospective=future,
+        sealed_historical=sealed, t26_bindings=bindings,
+        timestamp="2026-09-28T00:00:00+00:00")
+    eight = {name: value for name, value in sealed.items()
+             if name != DIMENSIONS[-1]}
+    refused = False
+    try:
+        compare_hashes(
+            prospective_root=fingerprint_root(future), prospective=future,
+            sealed_historical=eight, t26_bindings=bindings,
+            timestamp="2026-09-28T00:00:01+00:00")
+    except Exception:
+        refused = True
+    passed = (set(nine["dimensions"]) == set(DIMENSIONS) and refused
+              and nine["overall_prohibited_overlap"] == 0)
+    core = {
+        "schema_version": "t27-t26-oracle-nine-dimension-probe-v1",
+        "artifact": "T26_SEALED_ORACLE_NINE_DIMENSION_PROBE",
+        "classification": "PUBLIC_SAFE", "status": "PASS" if passed else "FAIL",
+        "oracle_implementation":
+            "t26_protocol.t27_private_oracle:compare_hashes",
+        "nine_dimension_result_pass": set(nine["dimensions"]) == set(DIMENSIONS),
+        "eight_dimension_refused": refused,
+        "t26_private_rows_opened": 0,
+    }
+    return {**core, "probe_root": sha256_json(core)}

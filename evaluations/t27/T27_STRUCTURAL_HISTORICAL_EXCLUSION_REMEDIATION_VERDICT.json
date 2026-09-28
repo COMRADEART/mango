@@ -1,0 +1,118 @@
+{
+  "affected_sources": [
+    "T27_PUBLIC_QUALIFICATION",
+    "T27_DIAGNOSTICS",
+    "T27_SYNTHETIC_TERMINAL_MATRIX",
+    "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES"
+  ],
+  "artifact": "T27_STRUCTURAL_HISTORICAL_EXCLUSION_REMEDIATION_VERDICT",
+  "candidate_identity": {
+    "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+    "candidate_runtime_changed": false
+  },
+  "classification": "PUBLIC_SAFE",
+  "construction_contract": {
+    "new_leaf_count": 60,
+    "old_leaf_count": 56
+  },
+  "construction_gate": {
+    "new_check_count": 52,
+    "old_check_count": 46
+  },
+  "construction_one_shot": "UNSPENT",
+  "construction_rehearsals": {
+    "failure_construction": "PASS",
+    "failure_evaluation": "PASS",
+    "run_count": 2,
+    "semantic_equivalence": true,
+    "status": "PASS"
+  },
+  "dimension_classification": {
+    "content_bearing": [
+      "exact_queries",
+      "exact_answers",
+      "exact_source_text"
+    ],
+    "identity_bearing": [
+      "case_ids",
+      "chunk_ids"
+    ],
+    "structural_shared_frozen_empty": [
+      "entity_identities",
+      "source_ids",
+      "verbatim_attack_wording",
+      "relations"
+    ]
+  },
+  "doctor": "PASS",
+  "identity_reuse_controls": {
+    "all_pass": true,
+    "control_count": 72,
+    "reuse_positives": [
+      "reuse_case_ids_detected",
+      "reuse_exact_queries_detected",
+      "reuse_exact_answers_detected",
+      "reuse_exact_source_text_detected",
+      "reuse_chunk_ids_detected"
+    ]
+  },
+  "negative_control_count": {
+    "new_count": 72,
+    "old_count": 55
+  },
+  "new_public_history_root": "b436d16d4cc72c5279caee962eafc057adc455a9b1c2c349d46e48752a3aa8e2",
+  "new_public_history_schema": "t27-public-historical-index-report-v1",
+  "next_required_token": "T27_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+  "old_public_history_classification": "SUPERSEDED_PRE_EXPOSURE",
+  "old_public_history_root": "9b199cfd74df2b30b660263bac5166877d2ea4a913d2aad319f3d3a2072c6b41",
+  "preconstruction_freeze_v5_sha256": "b0467875b333d3df82a7839ac4f1a61237acb1f59971321affd4d5921782c644",
+  "preserved_v4_freeze_sha256": "6e78f9ff79dc05bfa8de144271b387c75c497ce84f414a281a6cac0f6d7f8af8",
+  "real_construction_authorized": false,
+  "real_evaluation_authorized": false,
+  "real_exposure": {
+    "artifact": "T27_REAL_EXPOSURE",
+    "candidate_real_executions": 0,
+    "classification": "PUBLIC_SAFE",
+    "construction_attempts": 0,
+    "construction_one_shot": "UNSPENT",
+    "evaluation_attempts": 0,
+    "official_real_evaluator_invocations": 0,
+    "real_construction_ledger_present": false,
+    "real_construction_one_shot_marker_present": false,
+    "real_evaluation_ledger_present": false,
+    "real_evaluation_marker_present": false,
+    "schema_version": "t27-real-exposure-v5",
+    "t26_candidate_reruns": 0,
+    "t26_private_rows_exposed_outside_sealed_oracle": 0,
+    "t26_private_rows_read_during_remediation": 0,
+    "t27_real_blind_rows": 0,
+    "t27_real_gold": 0
+  },
+  "root_cause": "PRE_EXPOSURE_STRUCTURAL_HISTORICAL_EXCLUSION_SEMANTICS_DEFECT",
+  "root_cause_detail": "Generated-public fingerprints encoded frozen structural vocabulary (entity_identities=sha256(family), source_ids=sha256(step.capability), verbatim=sha256((family, fallback_condition)) with the fallback dict contractually fixed, relations=sha256((step_id, depends_on)) generic topology), so any contract-complete 512-package forced structural overlap >= 33 against the authenticated public historical index and zero-overlap was unsatisfiable.",
+  "satisfiability_witness": {
+    "artifact": "evaluations/t27/structural_satisfiability_witness.json",
+    "overall_prohibited_overlap": 0,
+    "scenario_count": 512,
+    "status": "PASS"
+  },
+  "schema_version": "t27-structural-historical-exclusion-remediation-verdict-v1",
+  "t26_overlap_oracle": "NEVER EXECUTED ON REAL MATERIAL",
+  "t26_store_preflight": {
+    "metadata_only": true,
+    "status": "PASS",
+    "t26_store_identity": "T26-STORE-01"
+  },
+  "test_gate": {
+    "live_failures": 0,
+    "passed": 42,
+    "status": "PASS"
+  },
+  "unsatisfiability_reproducer": {
+    "artifact": "evaluations/t27/structural_unsatisfiability_reproducer.json",
+    "capability_overlap_all_exercised": 12,
+    "old_semantics_minimum_overlap": 33,
+    "status": "REPRODUCED"
+  },
+  "verdict": "T27_STRUCTURAL_HISTORICAL_EXCLUSION_REMEDIATION_PASS"
+}
