@@ -161,8 +161,8 @@ def authority_graph() -> dict:
     }
     construction_nodes = {
         "private_author": "AUTHOR_PRIVATE_ONCE",
-        "historical_exclusion_oracle": "COMPARE_PUBLIC_HASHES_ONLY",
-        "T26_overlap_oracle": "COMPARE_T26_SEALED_HASHES_ONLY",
+        "historical_exclusion_oracle": "BUILD_AND_VERIFY_AUTHENTICATED_PUBLIC_INDEX",
+        "T26_overlap_oracle": "AUTHENTICATE_T26_SEALED_STORE_AND_COMPARE_HASHES_ONLY",
         "construction_ledger": "WRITE_PRIVATE_ONCE",
         "private_materialization": "WRITE_PRIVATE_ONCE",
         "construction_audit": "AUDIT_PRIVATE_NO_EXECUTION",
@@ -190,7 +190,7 @@ def authority_graph() -> dict:
             "autonomous_external_action_authority": False,
         }
     return {
-        "schema_version": "t27-authority-graph-v2",
+        "schema_version": "t27-authority-graph-v3",
         "artifact": "T27_AUTHORITY_GRAPH", "classification": "PUBLIC_SAFE",
         "nodes": nodes, "candidate_gold_access": False,
         "external_action_authority": False,
@@ -213,8 +213,10 @@ def production_graph() -> dict:
     ]
     producers = {
         "private_author": "EXTERNAL_CLEAN_ROOM_AUTHOR_BOUND_BY_PROVENANCE",
-        "historical_exclusion_oracle": "t27_protocol.construction:historical_exclusion_audit",
-        "T26_overlap_oracle": "t26_protocol.t27_private_oracle:compare_hashes",
+        "historical_exclusion_oracle":
+            "t27_protocol.exclusion:build_authenticated_public_historical_index",
+        "T26_overlap_oracle":
+            "t26_protocol.t27_private_oracle:run_sealed_t26_to_t27_overlap_oracle",
         "construction_ledger": "t27_protocol.construction:T27ConstructionLedger.create_exclusive",
         "private_materialization": "t27_protocol.construction:materialize_private",
         "construction_audit": "t27_protocol.construction:run_construction_audit",
@@ -274,7 +276,7 @@ def production_graph() -> dict:
         for name in order
     }
     return {
-        "schema_version": "t27-production-graph-v2",
+        "schema_version": "t27-production-graph-v3",
         "artifact": "T27_PRODUCTION_GRAPH", "classification": "PUBLIC_SAFE",
         "ordered_components": order, "nodes": nodes,
         "missing_producers": 0, "dangling_edges": 0,

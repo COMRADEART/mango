@@ -12,12 +12,12 @@ from t27_protocol.construction import (
     CONTRACT_LEAF_IDS, CONSTRUCTION_GATE_IDS, ConstructionLedgerError,
     T27ConstructionLedger, _fixed_clock_factory, author_provenance,
     construction_contract, fingerprint_sets, require_static_design,
-    run_publication_leak_gate, synthetic_oracle_result,
+    fingerprint_root, run_publication_leak_gate, synthetic_oracle_result,
     synthetic_private_bundle, verify_event_chain,
 )
 from t27_protocol.contract import CONSTRUCTION_TOKEN, EVALUATION_TOKEN
 from t27_protocol.evaluation import EVALUATION_STATES, runner_identity
-from t27_protocol.freeze import verify_freeze_v2
+from t27_protocol.freeze import verify_freeze_v3
 from t27_protocol.oracle import verify_oracle_result
 from t27_protocol.store import T27PrivateStore, storage_policy_successor
 
@@ -43,6 +43,9 @@ def minimal_bindings() -> dict:
         "production_graph_sha256": "d" * 64, "storage_policy_sha256": "e" * 64,
         "historical_exclusion_policy_sha256": "f" * 64,
         "t26_historical_failure_anchor_sha256": "0" * 64,
+        "public_historical_index_root": "1" * 64,
+        "t26_overlap_oracle_result_sha256": "2" * 64,
+        "combined_historical_exclusion_root": "3" * 64,
         "construction_timestamp": "2026-09-27T00:00:00+00:00",
         "state": "LEDGER_CREATED",
     }
@@ -84,7 +87,10 @@ def test_deleted_or_recreated_ledger_and_deleted_marker_are_detected():
 def test_static_design_oracle_and_fixture_optionality_are_nonvacuous():
     cases, gold, fixtures = synthetic_private_bundle(5)
     oracle = synthetic_oracle_result(cases, gold, variant=5)
-    assert verify_oracle_result(oracle)["status"] == "PASS"
+    assert verify_oracle_result(
+        oracle, mode="SYNTHETIC",
+        expected_t27_root=fingerprint_root(fingerprint_sets(cases, gold)),
+    )["status"] == "PASS"
     provenance = author_provenance(
         "TEST-DISPOSABLE", "1" * 64, "2026-09-27T00:00:00+00:00")
     audit = require_static_design(cases, gold, fixtures, oracle, provenance)
@@ -106,6 +112,8 @@ def test_public_reports_cover_contract_gate_rehearsals_and_failures():
     assert contract["leaf_count"] == len(CONTRACT_LEAF_IDS)
     assert construction_contract()["leaf_ids"] == list(CONTRACT_LEAF_IDS)
     assert construction["status"] == evaluation["status"] == "PASS"
+    assert len(CONTRACT_LEAF_IDS) == 51
+    assert len(CONSTRUCTION_GATE_IDS) == 41
     assert construction["semantic_equivalence"] is True
     assert evaluation["semantic_equivalence"] is True
     assert all(run["gate_check_count"] == len(CONSTRUCTION_GATE_IDS)
@@ -124,7 +132,9 @@ def test_evaluation_identity_scorer_and_freeze_are_frozen():
         assert run["all_public_qualification_floors_pass"] is True
         assert run["critical_counters_zero"] is True
         assert run["gold_firewall"] == "PASS"
-    assert verify_freeze_v2(ROOT, read("preconstruction_freeze_v2.json"))["status"] == "PASS"
+    assert read("preconstruction_freeze_v2.json")["freeze_sha256"] == (
+        "163cf013d2c2c5fec20b00824600b3eae09040644bbc8de4ad245dbdd13948b9")
+    assert verify_freeze_v3(ROOT, read("preconstruction_freeze_v3.json"))["status"] == "PASS"
 
 
 def test_storage_policy_leak_gate_and_real_exposure_remain_safe():
@@ -132,11 +142,13 @@ def test_storage_policy_leak_gate_and_real_exposure_remain_safe():
     scan = run_publication_leak_gate(ROOT)
     assert scan["status"] == "PASS"
     assert scan["blind_blob_count"] == scan["forbidden_path_count"] == 0
-    exposure = read("real_exposure_v2.json")
+    exposure = read("real_exposure_v3.json")
     assert all(exposure[key] == 0 for key in (
         "t27_real_blind_rows", "t27_real_gold", "construction_attempts",
         "evaluation_attempts", "candidate_real_executions",
-        "official_real_evaluator_invocations", "t26_private_rows_opened", "t26_reruns"))
+        "official_real_evaluator_invocations",
+        "t26_private_rows_exposed_outside_sealed_oracle",
+        "t26_candidate_reruns"))
     assert CONSTRUCTION_TOKEN == "T27_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION"
     assert EVALUATION_TOKEN == "T27_ONE_SHOT_OFFICIAL_EVALUATION"
     unrestricted = read("unrestricted_test_report.json")

@@ -1,0 +1,22 @@
+{
+  "artifact": "T27_HISTORICAL_PROVENANCE_TEST_GATE_V3",
+  "classification": "PUBLIC_SAFE",
+  "deselections": 0,
+  "errors": 0,
+  "live_failures": 0,
+  "passed": 24,
+  "return_code": 0,
+  "schema_version": "t27-applicability-aware-test-gate-v3",
+  "status": "PASS",
+  "summary_sha256": "2a797d916968e17b3a1f9422760aae1fb8754cef7eac00fc00ab3ee0fa5e98c5",
+  "test_files": [
+    "tests\\test_t27_construction_infrastructure.py",
+    "tests\\test_t27_historical_exclusion_provenance.py",
+    "tests\\test_t27_integrated_remediation.py",
+    "tests\\test_t27_preconstruction.py",
+    "tests\\test_t27_scorer.py"
+  ],
+  "unexplained_skips": 0,
+  "unknown_failures": 0,
+  "xfails": 0
+}

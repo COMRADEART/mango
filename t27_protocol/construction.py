@@ -20,7 +20,10 @@ from t21_protocol.util import sha256_json
 
 from .contract import (CONSTRUCTION_TOKEN, FAMILIES, NONVACUITY_MINIMUMS,
                        design)
-from .exclusion import DIMENSIONS
+from .exclusion import (DIMENSIONS, REQUIRED_HISTORICAL_SOURCES,
+                        build_authenticated_public_historical_index,
+                        build_synthetic_historical_index,
+                        verify_historical_index)
 from .oracle import verify_oracle_result
 from .store import (CLASSIFICATIONS, NAMESPACE, STORE_ID, T27PrivateStore,
                     _json_bytes)
@@ -43,14 +46,7 @@ GOLD_ONLY_FIELDS = frozenset({
     "expected_fallback_capability", "designated_recoverable",
     "designated_abstention", "metric_designations", "gold",
 })
-HISTORICAL_SOURCES = (
-    "T21_T21R_HISTORICAL", "T22_PROTECTED", "T23_EXPOSED",
-    "T24_PRIVATE_EVALUATED", "T25_PRIVATE_EVALUATED",
-    "T26_SEALED_EVALUATED", "T27_PUBLIC_QUALIFICATION",
-    "T27_DIAGNOSTICS", "T27_PUBLIC_REPRODUCER",
-    "T27_SYNTHETIC_TERMINAL_MATRIX",
-    "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES",
-)
+HISTORICAL_SOURCES = REQUIRED_HISTORICAL_SOURCES
 LEDGER_BINDING_FIELDS = frozenset({
     "experiment", "attempt", "mode", "authorization_token", "store_id",
     "namespace", "execution_commit", "execution_tree", "candidate_commit",
@@ -61,6 +57,8 @@ LEDGER_BINDING_FIELDS = frozenset({
     "production_graph_sha256", "storage_policy_sha256",
     "historical_exclusion_policy_sha256",
     "t26_historical_failure_anchor_sha256", "construction_timestamp",
+    "public_historical_index_root", "t26_overlap_oracle_result_sha256",
+    "combined_historical_exclusion_root",
     "state",
 })
 
@@ -315,7 +313,9 @@ def _fixture_valid(item: dict[str, Any]) -> bool:
 def static_design_audit(cases: list[dict[str, Any]], gold: list[dict[str, Any]],
                         fixtures: list[dict[str, Any]],
                         oracle_result: dict[str, Any],
-                        provenance: dict[str, Any]) -> dict[str, Any]:
+                        provenance: dict[str, Any], *,
+                        oracle_mode: str = "SYNTHETIC",
+                        root: Path | None = None) -> dict[str, Any]:
     from sciencemath.integrated.runner import validate_plan
 
     checks: dict[str, bool] = {}
@@ -373,19 +373,27 @@ def static_design_audit(cases: list[dict[str, Any]], gold: list[dict[str, Any]],
     }
     for name, minimum in NONVACUITY_MINIMUMS.items():
         checks[f"nonvacuity.{name}"] = designated[name] >= minimum
+    sets = (fingerprint_sets(cases, gold) if len(cases) == len(gold)
+            else {name: [] for name in DIMENSIONS})
+    prospective_root = fingerprint_root(sets)
     try:
-        oracle = verify_oracle_result(oracle_result)
+        oracle = verify_oracle_result(
+            oracle_result, mode=oracle_mode, root=root,
+            expected_t27_root=prospective_root)
         checks["t26_overlap_oracle"] = oracle["status"] == "PASS"
+        checks["oracle_mode_separation"] = (
+            oracle["real_mode_not_synthetic"] and
+            oracle["synthetic_mode_explicit"])
     except Exception:
         checks["t26_overlap_oracle"] = False
+        checks["oracle_mode_separation"] = False
     try:
         author = verify_author_provenance(provenance)
         checks["author_provenance"] = author["status"] == "PASS"
     except Exception:
         checks["author_provenance"] = False
-    sets = fingerprint_sets(cases, gold) if len(cases) == len(gold) else {name: [] for name in DIMENSIONS}
     checks["fingerprint_root_matches_oracle"] = (
-        oracle_result.get("t27_prospective_fingerprint_root") == fingerprint_root(sets))
+        oracle_result.get("t27_prospective_fingerprint_root") == prospective_root)
     status = "PASS" if all(checks.values()) else "FAIL"
     return {
         "schema_version": "t27-static-design-audit-v1",
@@ -397,7 +405,8 @@ def static_design_audit(cases: list[dict[str, Any]], gold: list[dict[str, Any]],
         "minimum_steps": min(steps) if steps else None,
         "maximum_steps": max(steps) if steps else None,
         "designated_counts": designated,
-        "prospective_fingerprint_root": fingerprint_root(sets),
+        "prospective_fingerprint_root": prospective_root,
+        "oracle_mode": oracle_mode,
         "candidate_executions": 0, "official_evaluator_invocations": 0,
     }
 
@@ -411,12 +420,16 @@ def require_static_design(*args: Any, **kwargs: Any) -> dict[str, Any]:
 
 def historical_exclusion_audit(
         cases: list[dict[str, Any]], gold: list[dict[str, Any]],
-        public_historical_hashes: dict[str, list[str]] | None,
-        oracle_result: dict[str, Any]) -> dict[str, Any]:
+        historical_index: dict[str, Any] | None,
+        oracle_result: dict[str, Any], *, mode: str = "SYNTHETIC",
+        root: Path | None = None) -> dict[str, Any]:
+    if historical_index is None:
+        raise ValueError("authenticated historical index required; empty default forbidden")
+    index = verify_historical_index(
+        historical_index, root=root, mode="REAL" if mode == "REAL" else "SYNTHETIC")
     future = fingerprint_sets(cases, gold)
-    historical = public_historical_hashes or {name: [] for name in DIMENSIONS}
-    if set(historical) != set(DIMENSIONS):
-        raise ValueError("public historical exclusions must bind nine dimensions")
+    historical = {name: historical_index["aggregate_dimensions"][name]["fingerprints"]
+                  for name in DIMENSIONS}
     dimensions = {}
     total = 0
     for name in DIMENSIONS:
@@ -429,16 +442,42 @@ def historical_exclusion_audit(
             "historical_population": len(prior),
             "overlap_count": overlap,
         }
-    oracle = verify_oracle_result(oracle_result)
-    passed = total == 0 and oracle["overall_prohibited_overlap"] == 0
+    prospective_root = fingerprint_root(future)
+    oracle = verify_oracle_result(
+        oracle_result, mode="REAL" if mode == "REAL" else "SYNTHETIC",
+        root=root, expected_t27_root=prospective_root)
+    private_root = oracle["result_sha256"]
+    combined_root = sha256_json({
+        "public_historical_index_root": index["public_historical_index_root"],
+        "private_historical_oracle_root": private_root,
+        "t27_prospective_fingerprint_root": prospective_root,
+    })
+    passed = (total == 0 and oracle["overall_prohibited_overlap"] == 0
+              and index["source_classes_complete"]
+              and (mode != "REAL" or (index["repository_authenticated"]
+                                       and oracle["t26_store_authenticated"]
+                                       and oracle["t26_commitments_exact"]
+                                       and oracle["real_mode_not_synthetic"])))
     core = {
-        "schema_version": "t27-historical-exclusion-audit-v1",
+        "schema_version": "t27-historical-exclusion-audit-v2",
         "artifact": "T27_HISTORICAL_EXCLUSION_AUDIT",
         "classification": "PRIVATE_AUDIT",
         "status": "PASS" if passed else "FAIL",
         "historical_sources": list(HISTORICAL_SOURCES),
+        "required_source_count": len(HISTORICAL_SOURCES),
+        "represented_source_count": index["source_count"],
+        "source_classes_complete": index["source_classes_complete"],
+        "public_history_authenticated": index["repository_authenticated"],
+        "synthetic_history_explicit": index["explicit_synthetic"],
         "dimensions": dimensions, "overall_prohibited_overlap": total,
         "t26_oracle_result_sha256": oracle["result_sha256"],
+        "t26_store_authenticated": oracle["t26_store_authenticated"],
+        "t26_commitments_exact": oracle["t26_commitments_exact"],
+        "oracle_real_mode_not_synthetic": oracle["real_mode_not_synthetic"],
+        "t27_prospective_fingerprint_root": prospective_root,
+        "public_historical_index_root": index["public_historical_index_root"],
+        "private_historical_oracle_root": private_root,
+        "combined_historical_exclusion_root": combined_root,
         "t26_private_rows_opened": 0,
         "historical_private_rows_exposed_to_author": 0,
     }
@@ -545,15 +584,20 @@ def materialize_private(store: T27PrivateStore, cases: list[dict[str, Any]],
 
 def run_construction_audit(store: T27PrivateStore,
                            fixtures: list[dict[str, Any]],
-                           public_historical_hashes: dict[str, list[str]] | None = None
+                           historical_index: dict[str, Any], *,
+                           oracle_mode: str = "SYNTHETIC",
+                           root: Path | None = None
                            ) -> dict[str, Any]:
     cases = json.loads(store.read_bytes("blind/inputs.json"))
     gold = json.loads(store.read_bytes("blind/gold.json"))
     oracle_result = store.read_json("construction/t26_oracle_result.json")
     provenance = store.read_json("construction/author_provenance.json")
-    static = static_design_audit(cases, gold, fixtures, oracle_result, provenance)
+    static = static_design_audit(
+        cases, gold, fixtures, oracle_result, provenance,
+        oracle_mode=oracle_mode, root=root)
     exclusion = historical_exclusion_audit(
-        cases, gold, public_historical_hashes, oracle_result)
+        cases, gold, historical_index, oracle_result,
+        mode="REAL" if oracle_mode == "REAL" else "SYNTHETIC", root=root)
     unique = uniqueness_audit(cases, gold)
     firewall = gold_firewall_audit(cases, gold)
     authority = authority_audit()
@@ -584,7 +628,11 @@ CONTRACT_LEAF_IDS = (
     "protocol.production_graph", "protocol.storage_policy",
     "protocol.historical_exclusion_policy", "history.t26_failure_anchor",
     "author.clean_room", "oracle.t26_hash_only", "oracle.nine_dimensions",
-    "oracle.overlap_zero", "design.scenarios_512", "design.gold_512",
+    "oracle.overlap_zero", "exclusion.public_history_complete",
+    "exclusion.public_history_authenticated", "oracle.t26_store_authenticated",
+    "oracle.t26_commitments_exact", "oracle.real_mode_not_synthetic",
+    "exclusion.combined_root_bound",
+    "design.scenarios_512", "design.gold_512",
     "design.families_16", "design.family_size_32", "design.steps_3_12",
     "design.nonvacuity", "schema.scenario", "schema.plan", "schema.gold",
     "schema.fixtures", "firewall.gold_fields_zero", "firewall.gold_edges_zero",
@@ -597,7 +645,7 @@ CONTRACT_LEAF_IDS = (
 
 def construction_contract() -> dict[str, Any]:
     return {
-        "schema_version": "t27-construction-contract-v1",
+        "schema_version": "t27-construction-contract-v2",
         "artifact": "T27_CONSTRUCTION_CONTRACT", "classification": "PUBLIC_SAFE",
         "leaf_enumerator": "t27_protocol.construction:CONTRACT_LEAF_IDS",
         "leaf_count": len(CONTRACT_LEAF_IDS), "leaf_ids": list(CONTRACT_LEAF_IDS),
@@ -636,6 +684,25 @@ def contract_leaf_audit(bindings: dict[str, Any], audit: dict[str, Any],
         "oracle.t26_hash_only": components["static_design"]["checks"]["t26_overlap_oracle"],
         "oracle.nine_dimensions": len(components["historical_exclusion"]["dimensions"]) == 9,
         "oracle.overlap_zero": components["historical_exclusion"]["overall_prohibited_overlap"] == 0,
+        "exclusion.public_history_complete": components["historical_exclusion"][
+            "source_classes_complete"] is True,
+        "exclusion.public_history_authenticated": (
+            components["historical_exclusion"]["public_history_authenticated"] is True
+            or components["historical_exclusion"]["synthetic_history_explicit"] is True),
+        "oracle.t26_store_authenticated": (
+            components["historical_exclusion"]["t26_store_authenticated"] is True
+            or static["oracle_mode"] == "SYNTHETIC"),
+        "oracle.t26_commitments_exact": (
+            components["historical_exclusion"]["t26_commitments_exact"] is True
+            or static["oracle_mode"] == "SYNTHETIC"),
+        "oracle.real_mode_not_synthetic": static["checks"]["oracle_mode_separation"],
+        "exclusion.combined_root_bound": all(
+            bindings[key] == components["historical_exclusion"][value]
+            for key, value in (
+                ("public_historical_index_root", "public_historical_index_root"),
+                ("t26_overlap_oracle_result_sha256", "t26_oracle_result_sha256"),
+                ("combined_historical_exclusion_root",
+                 "combined_historical_exclusion_root"))),
         "design.scenarios_512": static["scenario_count"] == 512,
         "design.gold_512": static["gold_count"] == 512,
         "design.families_16": static["checks"]["family_count_16"],
@@ -664,7 +731,7 @@ def contract_leaf_audit(bindings: dict[str, Any], audit: dict[str, Any],
     results = {name: "PASS" if value else "FAIL" for name, value in checks.items()}
     counts = Counter(results.values())
     core = {
-        "schema_version": "t27-construction-contract-audit-v1",
+        "schema_version": "t27-construction-contract-audit-v2",
         "artifact": "T27_CONSTRUCTION_CONTRACT_AUDIT",
         "classification": "PRIVATE_AUDIT", "results": dict(sorted(results.items())),
         "leaf_count": len(results), "PASS": counts["PASS"],
@@ -690,6 +757,13 @@ CONSTRUCTION_GATE_IDS = (
     "G28_FIXTURE_AUDIT", "G29_AUTHORITY_AUDIT", "G30_CONTRACT_LEAVES",
     "G31_CANDIDATE_EXECUTIONS_ZERO", "G32_EVALUATOR_INVOCATIONS_ZERO",
     "G33_LEDGER_HASH_CHAIN", "G34_ONE_SHOT_MARKER",
+    "G35_REQUIRED_HISTORICAL_SOURCES_COMPLETE",
+    "G36_PUBLIC_HISTORICAL_ROOT_AUTHENTICATED",
+    "G37_T26_SEALED_STORE_AUTHENTICATED",
+    "G38_T26_EXACT_OFFICIAL_COMMITMENTS",
+    "G39_T26_ORACLE_REAL_MODE_IDENTITY",
+    "G40_T27_FINGERPRINT_ROOT_EQUALITY",
+    "G41_COMBINED_EXCLUSION_ROOT_BOUND",
 )
 
 
@@ -741,6 +815,28 @@ def run_construction_gate(bindings: dict[str, Any], expected: dict[str, Any],
         "G32_EVALUATOR_INVOCATIONS_ZERO": audit["official_evaluator_invocations"] == 0,
         "G33_LEDGER_HASH_CHAIN": verify_event_chain(ledger.document),
         "G34_ONE_SHOT_MARKER": ledger.store.has(T27ConstructionLedger.MARKER),
+        "G35_REQUIRED_HISTORICAL_SOURCES_COMPLETE": components[
+            "historical_exclusion"]["source_classes_complete"] is True,
+        "G36_PUBLIC_HISTORICAL_ROOT_AUTHENTICATED": (
+            components["historical_exclusion"]["public_history_authenticated"] is True
+            or components["historical_exclusion"]["synthetic_history_explicit"] is True),
+        "G37_T26_SEALED_STORE_AUTHENTICATED": (
+            components["historical_exclusion"]["t26_store_authenticated"] is True
+            or static["oracle_mode"] == "SYNTHETIC"),
+        "G38_T26_EXACT_OFFICIAL_COMMITMENTS": (
+            components["historical_exclusion"]["t26_commitments_exact"] is True
+            or static["oracle_mode"] == "SYNTHETIC"),
+        "G39_T26_ORACLE_REAL_MODE_IDENTITY": static["checks"][
+            "oracle_mode_separation"],
+        "G40_T27_FINGERPRINT_ROOT_EQUALITY": static["checks"][
+            "fingerprint_root_matches_oracle"],
+        "G41_COMBINED_EXCLUSION_ROOT_BOUND": all(
+            bindings[key] == components["historical_exclusion"][value]
+            for key, value in (
+                ("public_historical_index_root", "public_historical_index_root"),
+                ("t26_overlap_oracle_result_sha256", "t26_oracle_result_sha256"),
+                ("combined_historical_exclusion_root",
+                 "combined_historical_exclusion_root"))),
     }
     checks.update({gate_id: bindings[key] == expected[key]
                    for gate_id, key in protocol_pairs})
@@ -748,7 +844,7 @@ def run_construction_gate(bindings: dict[str, Any], expected: dict[str, Any],
         raise ValueError("construction gate check enumerator drift")
     failed = sorted(name for name, passed in checks.items() if not passed)
     core = {
-        "schema_version": "t27-construction-gate-v1",
+        "schema_version": "t27-construction-gate-v2",
         "artifact": "T27_CONSTRUCTION_GATE", "classification": "PRIVATE_AUDIT",
         "checks": dict(sorted(checks.items())), "check_count": len(checks),
         "PASS": len(checks) - len(failed), "FAIL": len(failed),
@@ -799,6 +895,12 @@ def build_private_manifest(store: T27PrivateStore, ledger: T27ConstructionLedger
         "t26_oracle_result_root": store.read_json(
             "construction/t26_oracle_result.json")["result_sha256"],
         "historical_exclusion_root": audit["components"]["historical_exclusion"]["audit_root"],
+        "public_historical_index_root": audit["components"][
+            "historical_exclusion"]["public_historical_index_root"],
+        "private_historical_oracle_root": audit["components"][
+            "historical_exclusion"]["private_historical_oracle_root"],
+        "combined_historical_exclusion_root": audit["components"][
+            "historical_exclusion"]["combined_historical_exclusion_root"],
         "uniqueness_audit_root": audit["components"]["uniqueness"]["audit_root"],
         "nonvacuity_design_audit_root": sha256_json(
             audit["components"]["static_design"]["designated_counts"]),
@@ -855,6 +957,12 @@ def seal_holdout(store: T27PrivateStore, ledger: T27ConstructionLedger,
         "t26_overlap_oracle_root": store.read_json(
             "construction/t26_oracle_result.json")["result_sha256"],
         "historical_exclusion_root": audit["components"]["historical_exclusion"]["audit_root"],
+        "public_historical_index_root": audit["components"][
+            "historical_exclusion"]["public_historical_index_root"],
+        "private_historical_oracle_root": audit["components"][
+            "historical_exclusion"]["private_historical_oracle_root"],
+        "combined_historical_exclusion_root": audit["components"][
+            "historical_exclusion"]["combined_historical_exclusion_root"],
         "nonvacuity_audit_root": sha256_json(
             audit["components"]["static_design"]["designated_counts"]),
         "authority_audit_root": audit["components"]["authority"]["audit_root"],
@@ -941,6 +1049,7 @@ def run_publication_leak_gate(root: Path, *, fetch: bool = False) -> dict[str, A
         "status": "PASS" if passed else "FAIL",
         "public_ref_count": len(refs), "reachable_object_count": len(objects),
         "blind_blob_count": len(forbidden), "forbidden_path_count": len(forbidden),
+        "path_policy_violations": len(forbidden),
         "forbidden_paths": forbidden,
         "official_evaluation_eligible": passed,
         "failure_code": None if passed else "T27_POST_CONSTRUCTION_PUBLICATION_LEAKAGE",
@@ -954,6 +1063,7 @@ def _file_sha(root: Path, relative: str) -> str:
 
 
 def required_bindings(root: Path, freeze: dict[str, Any], *,
+                      historical: dict[str, Any] | None = None,
                       timestamp: str | None = None) -> dict[str, Any]:
     root = Path(root).resolve()
     candidate = json.loads((root / "evaluations/t27/candidate_identity.json").read_text(
@@ -971,9 +1081,20 @@ def required_bindings(root: Path, freeze: dict[str, Any], *,
         "authority_graph_sha256": "evaluations/t27/authority_graph.json",
         "production_graph_sha256": "evaluations/t27/production_graph.json",
         "storage_policy_sha256": "evaluations/t27/construction_ready_storage_policy.json",
-        "historical_exclusion_policy_sha256": "evaluations/t27/historical_exclusion_policy_v2.json",
+        "historical_exclusion_policy_sha256": "evaluations/t27/historical_exclusion_policy_v3.json",
         "t26_historical_failure_anchor_sha256": "evaluations/t27/T26_HISTORICAL_FAILURE_ANCHOR.json",
     }
+    if historical is None:
+        raise ValueError("historical exclusion roots required before ledger bindings")
+    historical_bindings = {
+        "public_historical_index_root": historical["public_historical_index_root"],
+        "t26_overlap_oracle_result_sha256": historical["t26_oracle_result_sha256"],
+        "combined_historical_exclusion_root": historical[
+            "combined_historical_exclusion_root"],
+    }
+    if any(not isinstance(value, str) or len(value) != 64
+           for value in historical_bindings.values()):
+        raise ValueError("historical exclusion binding root invalid")
     return {
         "experiment": EXPERIMENT, "attempt": 1, "mode": "REAL_BLIND",
         "authorization_token": CONSTRUCTION_TOKEN, "store_id": STORE_ID,
@@ -987,6 +1108,7 @@ def required_bindings(root: Path, freeze: dict[str, Any], *,
         "component_root": freeze["component_root"],
         "freeze_root": freeze["freeze_root"],
         **{name: _file_sha(root, relative) for name, relative in files.items()},
+        **historical_bindings,
         "construction_timestamp": timestamp or _now(), "state": "LEDGER_CREATED",
     }
 
@@ -1010,15 +1132,26 @@ def construct_once(*, root: Path, store: T27PrivateStore,
                    cases: list[dict[str, Any]], gold: list[dict[str, Any]],
                    fixtures: list[dict[str, Any]], oracle_result: dict[str, Any],
                    provenance: dict[str, Any], token: str,
-                   public_historical_hashes: dict[str, list[str]] | None = None,
+                   historical_index: dict[str, Any] | None,
+                   oracle_mode: str = "SYNTHETIC",
                    clock: Callable[[], str] = _now,
                    inject_failure_phase: str | None = None) -> dict[str, Any]:
     # All authoring and overlap validation occurs before exclusive creation.
-    static = require_static_design(cases, gold, fixtures, oracle_result, provenance)
+    static = require_static_design(
+        cases, gold, fixtures, oracle_result, provenance,
+        oracle_mode=oracle_mode, root=root)
     historical = historical_exclusion_audit(
-        cases, gold, public_historical_hashes, oracle_result)
+        cases, gold, historical_index, oracle_result,
+        mode="REAL" if oracle_mode == "REAL" else "SYNTHETIC", root=root)
     if historical["status"] != "PASS":
         raise ValueError("T27 historical exclusion failed before ledger creation")
+    for binding, evidence in (
+            ("public_historical_index_root", "public_historical_index_root"),
+            ("t26_overlap_oracle_result_sha256", "t26_oracle_result_sha256"),
+            ("combined_historical_exclusion_root",
+             "combined_historical_exclusion_root")):
+        if bindings.get(binding) != historical[evidence]:
+            raise ValueError(f"T27 pre-ledger historical binding mismatch: {binding}")
     validate_preledger(bindings, expected_bindings, store)
     ledger = T27ConstructionLedger.create_exclusive(
         store, bindings, token, clock=clock)
@@ -1035,7 +1168,9 @@ def construct_once(*, root: Path, store: T27PrivateStore,
         phase = "MATERIALIZED"
         if inject_failure_phase == phase:
             raise RuntimeError("injected post-materialization construction failure")
-        audit = run_construction_audit(store, fixtures, public_historical_hashes)
+        audit = run_construction_audit(
+            store, fixtures, historical_index,
+            oracle_mode=oracle_mode, root=root)
         if audit["status"] != "PASS":
             raise ValueError("T27 construction audit failed")
         store.write_once_json("construction/audit.json", audit)
@@ -1100,20 +1235,24 @@ def construct_once(*, root: Path, store: T27PrivateStore,
 def construct_real(*, root: Path, private_store_root: Path,
                    cases: list[dict[str, Any]], gold: list[dict[str, Any]],
                    fixtures: list[dict[str, Any]], oracle_result: dict[str, Any],
-                   provenance: dict[str, Any], token: str,
-                   public_historical_hashes: dict[str, list[str]] | None = None
+                   provenance: dict[str, Any], token: str
                    ) -> dict[str, Any]:
     """Real entrypoint.  Merely importing this function spends nothing."""
     root = Path(root).resolve()
-    freeze = json.loads((root / "evaluations/t27/preconstruction_freeze_v2.json").read_text(
+    freeze = json.loads((root / "evaluations/t27/preconstruction_freeze_v3.json").read_text(
         encoding="utf-8"))
-    bindings = required_bindings(root, freeze)
+    historical_index = build_authenticated_public_historical_index(root)
+    historical = historical_exclusion_audit(
+        cases, gold, historical_index, oracle_result, mode="REAL", root=root)
+    if historical["status"] != "PASS":
+        raise ValueError("T27 real historical provenance failed before ledger creation")
+    bindings = required_bindings(root, freeze, historical=historical)
     store = T27PrivateStore(private_store_root, repository_root=root)
     return construct_once(
         root=root, store=store, bindings=bindings, expected_bindings=bindings,
         cases=cases, gold=gold, fixtures=fixtures, oracle_result=oracle_result,
         provenance=provenance, token=token,
-        public_historical_hashes=public_historical_hashes)
+        historical_index=historical_index, oracle_mode="REAL")
 
 
 def synthetic_private_bundle(variant: int = 0, *, with_fixture: bool = False
@@ -1179,9 +1318,64 @@ def synthetic_oracle_result(cases: list[dict[str, Any]],
         timestamp=f"2026-09-27T00:00:0{variant}+00:00")
 
 
+def run_real_mode_oracle_validation_rehearsal(root: Path) -> dict[str, Any]:
+    """Exercise production verifier semantics with an authenticated stand-in."""
+    from t26_protocol.t27_private_oracle import disposable_real_mode_oracle_result
+
+    cases, gold, _ = synthetic_private_bundle(8)
+    prospective = fingerprint_sets(cases, gold)
+    prospective_root = fingerprint_root(prospective)
+    result = disposable_real_mode_oracle_result(
+        root=Path(root).resolve(), prospective_root=prospective_root,
+        prospective=prospective, variant=8)
+    bindings = {key: result[key] for key in (
+        "t26_store_identity", "t26_namespace", "t26_private_holdout_root",
+        "t26_private_manifest_sha256", "t26_construction_seal_sha256",
+        "t26_evaluation_ledger_sha256", "t26_official_evaluation_state",
+        "t26_official_evaluation_attempt")}
+    verified = verify_oracle_result(
+        result, mode="REAL_REHEARSAL", expected_t27_root=prospective_root,
+        expected_t26_bindings=bindings)
+    return {
+        "schema_version": "t27-real-mode-oracle-validation-rehearsal-v1",
+        "artifact": "T27_REAL_MODE_ORACLE_VALIDATION_REHEARSAL",
+        "classification": "PUBLIC_SAFE",
+        "status": verified["status"],
+        "oracle_implementation": result["oracle_implementation"],
+        "commitment_scope": result["official_commitment_scope"],
+        "store_authenticated": verified["t26_store_authenticated"],
+        "commitments_exact": verified["t26_commitments_exact"],
+        "real_mode_not_synthetic": verified["real_mode_not_synthetic"],
+        "prospective_root_exact":
+            result["t27_prospective_fingerprint_root"] == prospective_root,
+        "dimension_count": verified["dimension_count"],
+        "dimension_populations": {
+            name: result["dimensions"][name]["historical_population"]
+            for name in DIMENSIONS},
+        "overall_prohibited_overlap": verified["overall_prohibited_overlap"],
+        "t26_fingerprint_index_origin": result[
+            "t26_fingerprint_index_origin"],
+        "t26_fingerprint_index_root": result["t26_fingerprint_index_root"],
+        "result_sha256": result["result_sha256"],
+        "outside_boundary_private_rows_exposed": 0,
+        "candidate_executions": 0,
+    }
+
+
 def synthetic_public_historical_hashes(variant: int = 0) -> dict[str, list[str]]:
+    """Legacy flat helper retained only for authenticated negative controls."""
     return {name: [_fingerprint(("public-history", variant, name))]
             for name in DIMENSIONS}
+
+
+def synthetic_historical_evidence(
+        cases: list[dict[str, Any]], gold: list[dict[str, Any]],
+        oracle_result: dict[str, Any], *, variant: int = 0
+        ) -> tuple[dict[str, Any], dict[str, Any]]:
+    index = build_synthetic_historical_index(variant)
+    historical = historical_exclusion_audit(
+        cases, gold, index, oracle_result, mode="SYNTHETIC")
+    return index, historical
 
 
 def _fixed_clock_factory(variant: int = 0) -> Callable[[], str]:
@@ -1205,6 +1399,13 @@ def _rehearsal_summary(index: int, result: dict[str, Any]) -> dict[str, Any]:
         "store_status": result["final_store_verify"]["status"],
         "leak_gate_status": result["leak_gate"]["status"],
         "receipt_blind_content_included": result["receipt"]["blind_content_included"],
+        "public_historical_index_root": audit["components"][
+            "historical_exclusion"]["public_historical_index_root"],
+        "combined_historical_exclusion_root": audit["components"][
+            "historical_exclusion"]["combined_historical_exclusion_root"],
+        "historical_source_count": audit["components"][
+            "historical_exclusion"]["represented_source_count"],
+        "oracle_mode": audit["components"]["static_design"]["oracle_mode"],
     }
     return {
         "run": index, "status": result["status"], "state": result["ledger"]["state"],
@@ -1219,6 +1420,8 @@ def run_construction_rehearsals(root: Path, freeze: dict[str, Any]) -> dict[str,
         cases, gold, fixtures = synthetic_private_bundle(
             0, with_fixture=index == 2)
         oracle = synthetic_oracle_result(cases, gold, variant=0)
+        historical_index, historical = synthetic_historical_evidence(
+            cases, gold, oracle, variant=0)
         provenance = author_provenance(
             f"T27-DISPOSABLE-AUTHOR-{index}", "e" * 64,
             f"2026-09-27T00:00:0{index}+00:00")
@@ -1226,13 +1429,14 @@ def run_construction_rehearsals(root: Path, freeze: dict[str, Any]) -> dict[str,
             store = T27PrivateStore(Path(tmp) / "private", repository_root=root,
                                     disposable=True)
             bindings = required_bindings(
-                root, freeze, timestamp="2026-09-27T00:00:00+00:00")
+                root, freeze, historical=historical,
+                timestamp="2026-09-27T00:00:00+00:00")
             result = construct_once(
                 root=root, store=store, bindings=bindings,
                 expected_bindings=copy.deepcopy(bindings), cases=cases, gold=gold,
                 fixtures=fixtures, oracle_result=oracle, provenance=provenance,
                 token=CONSTRUCTION_TOKEN,
-                public_historical_hashes=synthetic_public_historical_hashes(0),
+                historical_index=historical_index, oracle_mode="SYNTHETIC",
                 clock=_fixed_clock_factory(0))
             runs.append(_rehearsal_summary(index, result))
     comparable = [{key: value for key, value in item.items()
@@ -1263,6 +1467,8 @@ def run_construction_failure_rehearsal(root: Path, freeze: dict[str, Any]
     root = Path(root).resolve()
     cases, gold, fixtures = synthetic_private_bundle(3)
     oracle = synthetic_oracle_result(cases, gold, variant=3)
+    historical_index, historical = synthetic_historical_evidence(
+        cases, gold, oracle, variant=3)
     provenance = author_provenance(
         "T27-DISPOSABLE-FAILURE-AUTHOR", "f" * 64,
         "2026-09-27T00:00:03+00:00")
@@ -1270,7 +1476,8 @@ def run_construction_failure_rehearsal(root: Path, freeze: dict[str, Any]
         store = T27PrivateStore(Path(tmp) / "private", repository_root=root,
                                 disposable=True)
         bindings = required_bindings(
-            root, freeze, timestamp="2026-09-27T00:00:03+00:00")
+            root, freeze, historical=historical,
+            timestamp="2026-09-27T00:00:03+00:00")
         injected = False
         try:
             construct_once(
@@ -1278,7 +1485,7 @@ def run_construction_failure_rehearsal(root: Path, freeze: dict[str, Any]
                 expected_bindings=copy.deepcopy(bindings), cases=cases, gold=gold,
                 fixtures=fixtures, oracle_result=oracle, provenance=provenance,
                 token=CONSTRUCTION_TOKEN,
-                public_historical_hashes=synthetic_public_historical_hashes(3),
+                historical_index=historical_index, oracle_mode="SYNTHETIC",
                 clock=_fixed_clock_factory(3), inject_failure_phase="MATERIALIZED")
         except RuntimeError:
             injected = True
@@ -1311,6 +1518,14 @@ NEGATIVE_CONTROL_IDS = (
     "historical_overlap", "t26_oracle_overlap", "gold_field_exposure",
     "candidate_gold_edge", "authority_escalation", "fixture_hash_mismatch",
     "contract_leaf_failure", "premature_evaluation_artifact",
+    "public_history_none", "empty_nine_dimensional_history",
+    "missing_required_historical_source", "missing_source_root",
+    "fake_source_commitment", "fake_public_history_builder_identity",
+    "synthetic_t26_oracle_real_mode", "wrong_t26_store",
+    "wrong_t26_manifest_hash", "wrong_t26_seal_hash",
+    "wrong_t26_evaluation_ledger_hash", "wrong_t26_holdout_root",
+    "wrong_t27_prospective_root", "missing_oracle_dimension",
+    "t26_overlap_gt_zero",
 )
 
 
@@ -1318,11 +1533,14 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
     root = Path(root).resolve()
     cases, gold, fixtures = synthetic_private_bundle(7)
     oracle = synthetic_oracle_result(cases, gold, variant=7)
+    historical_index, historical_evidence = synthetic_historical_evidence(
+        cases, gold, oracle, variant=7)
     provenance = author_provenance(
         "T27-DISPOSABLE-NEGATIVE-AUTHOR", "9" * 64,
         "2026-09-27T00:00:07+00:00")
     baseline = required_bindings(
-        root, freeze, timestamp="2026-09-27T00:00:07+00:00")
+        root, freeze, historical=historical_evidence,
+        timestamp="2026-09-27T00:00:07+00:00")
     results: dict[str, dict[str, Any]] = {}
 
     def record(name: str, refused: bool, evidence: str) -> None:
@@ -1375,7 +1593,8 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
                        changed_gold: list[dict[str, Any]], check: str) -> None:
         changed_oracle = synthetic_oracle_result(changed_cases, changed_gold, variant=7)
         audit = static_design_audit(
-            changed_cases, changed_gold, fixtures, changed_oracle, provenance)
+            changed_cases, changed_gold, fixtures, changed_oracle, provenance,
+            oracle_mode="SYNTHETIC")
         record(name, audit["status"] == "FAIL" and not audit["checks"].get(check, True),
                f"static-design:{check}")
 
@@ -1416,9 +1635,27 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
                    "unique_scenario_ids")
 
     future = fingerprint_sets(cases, gold)
-    historical = synthetic_public_historical_hashes(7)
-    historical["case_ids"].append(future["case_ids"][0])
-    overlap_audit = historical_exclusion_audit(cases, gold, historical, oracle)
+    overlap_index = copy.deepcopy(historical_index)
+    source = overlap_index["sources"][0]
+    values = sorted(set(source["dimensions"]["case_ids"]["fingerprints"] +
+                        [future["case_ids"][0]]))
+    source["dimensions"]["case_ids"]["fingerprints"] = values
+    source["dimensions"]["case_ids"]["historical_population"] = len(values)
+    source["dimensions"]["case_ids"]["dimension_root"] = sha256_json(values)
+    source["dimension_populations"]["case_ids"] = len(values)
+    source["dimension_roots"]["case_ids"] = sha256_json(values)
+    source["overall_source_root"] = sha256_json({
+        key: value for key, value in source.items() if key != "overall_source_root"})
+    aggregate = sorted({value for item in overlap_index["sources"]
+                        for value in item["dimensions"]["case_ids"]["fingerprints"]})
+    overlap_index["aggregate_dimensions"]["case_ids"]["fingerprints"] = aggregate
+    overlap_index["aggregate_dimensions"]["case_ids"]["historical_population"] = len(aggregate)
+    overlap_index["aggregate_dimensions"]["case_ids"]["dimension_root"] = sha256_json(aggregate)
+    overlap_index["public_historical_index_root"] = sha256_json({
+        key: value for key, value in overlap_index.items()
+        if key != "public_historical_index_root"})
+    overlap_audit = historical_exclusion_audit(
+        cases, gold, overlap_index, oracle, mode="SYNTHETIC")
     record("historical_overlap", overlap_audit["status"] == "FAIL",
            "nine-dimensional-public-overlap")
     oracle_overlap = copy.deepcopy(oracle)
@@ -1426,8 +1663,122 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
     oracle_overlap["overall_prohibited_overlap"] = 1
     oracle_overlap["result_sha256"] = sha256_json({
         key: value for key, value in oracle_overlap.items() if key != "result_sha256"})
-    expect_exception("t26_oracle_overlap", lambda: verify_oracle_result(oracle_overlap),
+    expect_exception("t26_oracle_overlap", lambda: verify_oracle_result(
+        oracle_overlap, mode="SYNTHETIC"),
                      "sealed-t26-overlap")
+
+    # Provenance completeness controls execute before any real ledger exists.
+    expect_exception("public_history_none", lambda: historical_exclusion_audit(
+        cases, gold, None, oracle, mode="REAL", root=root),
+        "real-history-none")
+    expect_exception("empty_nine_dimensional_history", lambda:
+        historical_exclusion_audit(
+            cases, gold, {name: [] for name in DIMENSIONS}, oracle,
+            mode="REAL", root=root), "real-empty-history")
+    real_index = build_authenticated_public_historical_index(root)
+    missing_source = copy.deepcopy(real_index)
+    missing_source["sources"].pop()
+    expect_exception("missing_required_historical_source", lambda:
+        historical_exclusion_audit(
+            cases, gold, missing_source, oracle, mode="REAL", root=root),
+        "required-source-completeness")
+    missing_root = copy.deepcopy(real_index)
+    missing_root["sources"][0].pop("overall_source_root")
+    expect_exception("missing_source_root", lambda: verify_historical_index(
+        missing_root, root=root, mode="REAL"), "source-root-required")
+
+    def reseal_index(index: dict[str, Any], source_index: int = 0) -> None:
+        source_value = index["sources"][source_index]
+        source_value["overall_source_root"] = sha256_json({
+            key: value for key, value in source_value.items()
+            if key != "overall_source_root"})
+        index["public_historical_index_root"] = sha256_json({
+            key: value for key, value in index.items()
+            if key != "public_historical_index_root"})
+
+    fake_commitment = copy.deepcopy(real_index)
+    fake_commitment["sources"][0]["source_commitment"] = "0" * 64
+    reseal_index(fake_commitment)
+    expect_exception("fake_source_commitment", lambda: verify_historical_index(
+        fake_commitment, root=root, mode="REAL"), "source-commitment-authentication")
+    fake_builder = copy.deepcopy(real_index)
+    fake_builder["builder_implementation_identity"] = "caller:fake_builder"
+    fake_builder["sources"][0]["builder_implementation_identity"] = "caller:fake_builder"
+    reseal_index(fake_builder)
+    expect_exception("fake_public_history_builder_identity", lambda:
+        verify_historical_index(fake_builder, root=root, mode="REAL"),
+        "builder-identity-authentication")
+
+    from t26_protocol.t27_private_oracle import (
+        disposable_real_mode_oracle_result,
+        run_sealed_t26_to_t27_overlap_oracle)
+
+    prospective_root = fingerprint_root(future)
+    real_rehearsal = disposable_real_mode_oracle_result(
+        root=root, prospective_root=prospective_root,
+        prospective=future, variant=7)
+    rehearsal_bindings = {key: real_rehearsal[key] for key in (
+        "t26_store_identity", "t26_namespace", "t26_private_holdout_root",
+        "t26_private_manifest_sha256", "t26_construction_seal_sha256",
+        "t26_evaluation_ledger_sha256", "t26_official_evaluation_state",
+        "t26_official_evaluation_attempt")}
+    assert verify_oracle_result(
+        real_rehearsal, mode="REAL_REHEARSAL",
+        expected_t27_root=prospective_root,
+        expected_t26_bindings=rehearsal_bindings)["status"] == "PASS"
+    expect_exception("synthetic_t26_oracle_real_mode", lambda:
+        verify_oracle_result(
+            oracle, mode="REAL", root=root,
+            expected_t27_root=prospective_root),
+        "real-mode-rejects-synthetic")
+    expect_exception("wrong_t26_store", lambda:
+        run_sealed_t26_to_t27_overlap_oracle(
+            root=root, store=object(), prospective_root=prospective_root,
+            prospective=future), "sealed-store-type-and-identity")
+
+    def tampered_oracle(field: str, value: Any) -> dict[str, Any]:
+        changed = copy.deepcopy(real_rehearsal)
+        changed[field] = value
+        changed["result_sha256"] = sha256_json({
+            key: item for key, item in changed.items() if key != "result_sha256"})
+        return changed
+
+    for control, field in (
+        ("wrong_t26_manifest_hash", "t26_private_manifest_sha256"),
+        ("wrong_t26_seal_hash", "t26_construction_seal_sha256"),
+        ("wrong_t26_evaluation_ledger_hash", "t26_evaluation_ledger_sha256"),
+        ("wrong_t26_holdout_root", "t26_private_holdout_root"),
+    ):
+        changed = tampered_oracle(field, "0" * 64)
+        expect_exception(control, lambda value=changed: verify_oracle_result(
+            value, mode="REAL_REHEARSAL", expected_t27_root=prospective_root,
+            expected_t26_bindings=rehearsal_bindings),
+            f"exact-{field}")
+    wrong_prospective = tampered_oracle(
+        "t27_prospective_fingerprint_root", "0" * 64)
+    expect_exception("wrong_t27_prospective_root", lambda: verify_oracle_result(
+        wrong_prospective, mode="REAL_REHEARSAL",
+        expected_t27_root=prospective_root,
+        expected_t26_bindings=rehearsal_bindings), "prospective-root-equality")
+    missing_dimension = copy.deepcopy(real_rehearsal)
+    missing_dimension["dimensions"].pop(DIMENSIONS[-1])
+    missing_dimension["result_sha256"] = sha256_json({
+        key: value for key, value in missing_dimension.items()
+        if key != "result_sha256"})
+    expect_exception("missing_oracle_dimension", lambda: verify_oracle_result(
+        missing_dimension, mode="REAL_REHEARSAL",
+        expected_t27_root=prospective_root,
+        expected_t26_bindings=rehearsal_bindings), "nine-oracle-dimensions")
+    real_overlap = copy.deepcopy(real_rehearsal)
+    real_overlap["dimensions"][DIMENSIONS[0]]["overlap_count"] = 1
+    real_overlap["overall_prohibited_overlap"] = 1
+    real_overlap["result_sha256"] = sha256_json({
+        key: value for key, value in real_overlap.items()
+        if key != "result_sha256"})
+    expect_exception("t26_overlap_gt_zero", lambda: verify_oracle_result(
+        real_overlap, mode="REAL_REHEARSAL",
+        expected_t27_root=prospective_root,
+        expected_t26_bindings=rehearsal_bindings), "real-oracle-overlap")
 
     exposed = copy.deepcopy(cases[0]); exposed["expected_answer"] = "forbidden"
     expect_exception("gold_field_exposure", lambda: candidate_input_projection(exposed),
@@ -1452,11 +1803,13 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
                                 disposable=True)
         ledger = T27ConstructionLedger.create_exclusive(
             store, baseline, CONSTRUCTION_TOKEN, clock=_fixed_clock_factory(7))
-        static = require_static_design(cases, gold, fixtures, oracle, provenance)
+        static = require_static_design(
+            cases, gold, fixtures, oracle, provenance,
+            oracle_mode="SYNTHETIC")
         components = {
             "static_design": static,
             "historical_exclusion": historical_exclusion_audit(
-                cases, gold, synthetic_public_historical_hashes(7), oracle),
+                cases, gold, historical_index, oracle, mode="SYNTHETIC"),
             "uniqueness": uniqueness_audit(cases, gold),
             "gold_firewall": gold_firewall_audit(cases, gold),
             "authority": authority_audit(), "fixtures": fixture_audit(fixtures),
@@ -1484,6 +1837,8 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
         "schema_version": "t27-construction-negative-controls-v1",
         "artifact": "T27_CONSTRUCTION_NEGATIVE_CONTROLS",
         "classification": "PUBLIC_SAFE", "status": "PASS" if passed else "FAIL",
+        "PASS": sum(item["status"] == "PASS" for item in results.values()),
+        "FAIL": sum(item["status"] == "FAIL" for item in results.values()),
         "control_count": len(results), "controls": dict(sorted(results.items())),
         "real_construction_attempts": 0, "real_blind_rows": 0,
     }

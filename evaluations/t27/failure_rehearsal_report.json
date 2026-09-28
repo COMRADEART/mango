@@ -22,6 +22,6 @@
     "schema_version": "t27-evaluation-failure-rehearsal-v1",
     "status": "PASS"
   },
-  "schema_version": "t27-failure-rehearsals-v1",
+  "schema_version": "t27-failure-rehearsals-v2",
   "status": "PASS"
 }

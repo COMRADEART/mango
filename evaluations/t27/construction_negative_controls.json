@@ -1,7 +1,9 @@
 {
+  "FAIL": 0,
+  "PASS": 41,
   "artifact": "T27_CONSTRUCTION_NEGATIVE_CONTROLS",
   "classification": "PUBLIC_SAFE",
-  "control_count": 26,
+  "control_count": 41,
   "controls": {
     "attempt_2": {
       "evidence": "attempt-one-only:ConstructionLedgerError",
@@ -33,6 +35,21 @@
       "refused": true,
       "status": "PASS"
     },
+    "empty_nine_dimensional_history": {
+      "evidence": "real-empty-history:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "fake_public_history_builder_identity": {
+      "evidence": "builder-identity-authentication:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "fake_source_commitment": {
+      "evidence": "source-commitment-authentication:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
     "fixture_hash_mismatch": {
       "evidence": "fixture-commitment",
       "refused": true,
@@ -53,8 +70,28 @@
       "refused": true,
       "status": "PASS"
     },
+    "missing_oracle_dimension": {
+      "evidence": "nine-oracle-dimensions:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "missing_required_historical_source": {
+      "evidence": "required-source-completeness:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "missing_source_root": {
+      "evidence": "source-root-required:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
     "premature_evaluation_artifact": {
       "evidence": "preledger-evaluation-absence:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "public_history_none": {
+      "evidence": "real-history-none:ValueError",
       "refused": true,
       "status": "PASS"
     },
@@ -88,8 +125,18 @@
       "refused": true,
       "status": "PASS"
     },
+    "synthetic_t26_oracle_real_mode": {
+      "evidence": "real-mode-rejects-synthetic:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
     "t26_oracle_overlap": {
       "evidence": "sealed-t26-overlap:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "t26_overlap_gt_zero": {
+      "evidence": "real-oracle-overlap:ValueError",
       "refused": true,
       "status": "PASS"
     },
@@ -125,6 +172,36 @@
     },
     "wrong_runtime_root": {
       "evidence": "preledger-runtime_root-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t26_evaluation_ledger_hash": {
+      "evidence": "exact-t26_evaluation_ledger_sha256:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t26_holdout_root": {
+      "evidence": "exact-t26_private_holdout_root:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t26_manifest_hash": {
+      "evidence": "exact-t26_private_manifest_sha256:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t26_seal_hash": {
+      "evidence": "exact-t26_construction_seal_sha256:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t26_store": {
+      "evidence": "sealed-store-type-and-identity:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t27_prospective_root": {
+      "evidence": "prospective-root-equality:ValueError",
       "refused": true,
       "status": "PASS"
     },

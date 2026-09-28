@@ -7,9 +7,10 @@
   "forbidden_paths": [],
   "history_rewrite_restores_eligibility": false,
   "official_evaluation_eligible": true,
-  "public_ref_count": 156,
-  "reachable_object_count": 6739,
-  "scan_root": "81cbe6e2b2ad220901b165bd7448ef0410dd991c3f25dc2010787ec5503ad452",
+  "path_policy_violations": 0,
+  "public_ref_count": 157,
+  "reachable_object_count": 6753,
+  "scan_root": "f4989459b8742ac25e5bbe2bfee7f728ca886d16295ac9056475cd890a6a59db",
   "schema_version": "t27-publication-leak-gate-v1",
   "status": "PASS"
 }

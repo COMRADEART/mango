@@ -6,7 +6,8 @@
   "real_gold_rows": 0,
   "runs": [
     {
-      "contract_leaf_count": 45,
+      "combined_historical_exclusion_root": "3c6aa03c93a4bc17fabee9ac8f8d7429dcf71af91e7ec56fa21a2d202d7987a7",
+      "contract_leaf_count": 51,
       "designated_counts": {
         "handoff_cases": 512,
         "recoverable_cases": 128,
@@ -15,13 +16,16 @@
         "successful_completion_cases": 384,
         "verification_cases": 512
       },
-      "gate_check_count": 34,
+      "gate_check_count": 41,
       "gold_count": 512,
+      "historical_source_count": 11,
       "leak_gate_status": "PASS",
+      "oracle_mode": "SYNTHETIC",
+      "public_historical_index_root": "83ac6fdda91287f43eeb52acea543076e81c3bba8de341157677beccd88abbdd",
       "receipt_blind_content_included": false,
       "run": 1,
       "scenario_count": 512,
-      "semantic_signature": "54dd4ce4267cc27b0e598f5f06ea4bb405ad57697ba66f92563eee28e5eb65da",
+      "semantic_signature": "aab04677e9e33c0199a5cd8c349a59d5b95de06dbe73fe693416c1f7fba66843",
       "state": "SEALED",
       "state_sequence": [
         "LEDGER_CREATED",
@@ -35,7 +39,8 @@
       "store_status": "PASS"
     },
     {
-      "contract_leaf_count": 45,
+      "combined_historical_exclusion_root": "3c6aa03c93a4bc17fabee9ac8f8d7429dcf71af91e7ec56fa21a2d202d7987a7",
+      "contract_leaf_count": 51,
       "designated_counts": {
         "handoff_cases": 512,
         "recoverable_cases": 128,
@@ -44,13 +49,16 @@
         "successful_completion_cases": 384,
         "verification_cases": 512
       },
-      "gate_check_count": 34,
+      "gate_check_count": 41,
       "gold_count": 512,
+      "historical_source_count": 11,
       "leak_gate_status": "PASS",
+      "oracle_mode": "SYNTHETIC",
+      "public_historical_index_root": "83ac6fdda91287f43eeb52acea543076e81c3bba8de341157677beccd88abbdd",
       "receipt_blind_content_included": false,
       "run": 2,
       "scenario_count": 512,
-      "semantic_signature": "54dd4ce4267cc27b0e598f5f06ea4bb405ad57697ba66f92563eee28e5eb65da",
+      "semantic_signature": "aab04677e9e33c0199a5cd8c349a59d5b95de06dbe73fe693416c1f7fba66843",
       "state": "SEALED",
       "state_sequence": [
         "LEDGER_CREATED",
