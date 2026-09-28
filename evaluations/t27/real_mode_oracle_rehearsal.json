@@ -1,0 +1,30 @@
+{
+  "artifact": "T27_REAL_MODE_ORACLE_VALIDATION_REHEARSAL",
+  "candidate_executions": 0,
+  "classification": "PUBLIC_SAFE",
+  "commitment_scope": "DISPOSABLE_STANDIN",
+  "commitments_exact": true,
+  "dimension_count": 9,
+  "dimension_populations": {
+    "case_ids": 1,
+    "chunk_ids": 1,
+    "entity_identities": 1,
+    "exact_answers": 1,
+    "exact_queries": 1,
+    "exact_source_text": 1,
+    "relations": 1,
+    "source_ids": 1,
+    "verbatim_attack_wording": 1
+  },
+  "oracle_implementation": "t26_protocol.t27_private_oracle:run_sealed_t26_to_t27_overlap_oracle",
+  "outside_boundary_private_rows_exposed": 0,
+  "overall_prohibited_overlap": 0,
+  "prospective_root_exact": true,
+  "real_mode_not_synthetic": true,
+  "result_sha256": "36df8eeabe6927de5fe9c75ee5c452f1a9951c5d452ed1cf56cb361316fe98f4",
+  "schema_version": "t27-real-mode-oracle-validation-rehearsal-v1",
+  "status": "PASS",
+  "store_authenticated": true,
+  "t26_fingerprint_index_origin": "PRE_EXISTING_SEALED",
+  "t26_fingerprint_index_root": "512747249b3dd12a1d04a8d4c0581f52679ae6c076afa3a089d8021fc7d4ca56"
+}

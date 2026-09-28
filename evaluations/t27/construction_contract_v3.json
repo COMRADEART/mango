@@ -1,7 +1,7 @@
 {
-  "artifact": "T27_CONSTRUCTION_CONTRACT",
+  "artifact": "T27_CONSTRUCTION_CONTRACT_V3",
   "classification": "PUBLIC_SAFE",
-  "leaf_count": 51,
+  "leaf_count": 56,
   "leaf_enumerator": "t27_protocol.construction:CONTRACT_LEAF_IDS",
   "leaf_ids": [
     "authorization.token_exact",
@@ -54,10 +54,15 @@
     "fixtures.commitments",
     "authority.no_escalation",
     "audit.candidate_executions_zero",
-    "audit.evaluator_invocations_zero"
+    "audit.evaluator_invocations_zero",
+    "oracle.official_marker_path_exact",
+    "oracle.official_marker_schema_exact",
+    "oracle.marker_committed_in_store",
+    "oracle.marker_genesis_matches_ledger",
+    "oracle.real_store_layout_authenticated"
   ],
   "required_fail_count": 0,
   "required_unverifiable_count": 0,
-  "schema_version": "t27-construction-contract-v2",
+  "schema_version": "t27-construction-contract-v3",
   "unknown_requirement_policy": "UNVERIFIABLE"
 }

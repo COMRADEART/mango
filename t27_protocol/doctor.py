@@ -6,8 +6,13 @@ import json
 from pathlib import Path
 
 from .contract import CONSTRUCTION_TOKEN, EVALUATION_TOKEN, REPLAN_TRIGGERS
-from .exclusion import DIMENSIONS
-from .freeze import runtime_identity, verify_freeze_v2
+from .exclusion import (DIMENSIONS, PUBLIC_HISTORY_BUILDER,
+                        REQUIRED_HISTORICAL_SOURCES,
+                        authenticated_construction_policy,
+                        build_authenticated_public_historical_index,
+                        public_index_report)
+from .freeze import (PRESERVED_V2_FREEZE_SHA256, PRESERVED_V3_FREEZE_SHA256,
+                     runtime_identity, verify_freeze_v4)
 
 
 def _read(root: Path, name: str) -> dict:
@@ -88,15 +93,25 @@ def run_doctor(root: Path) -> dict:
 
     storage_v2 = optional("construction_ready_storage_policy.json")
     exclusion_v2 = optional("historical_exclusion_policy_v2.json")
+    exclusion_v3 = optional("historical_exclusion_policy_v3.json")
+    public_history = optional("public_historical_index_report.json")
+    real_oracle_rehearsal = optional("real_mode_oracle_rehearsal.json")
     construction_rehearsals = optional("construction_rehearsal_report.json")
     evaluation_rehearsals = optional("evaluation_rehearsal_report.json")
     failure_rehearsals = optional("failure_rehearsal_report.json")
     negative_controls = optional("construction_negative_controls.json")
     runner = optional("official_runner_identity.json")
     freeze_v2 = optional("preconstruction_freeze_v2.json")
-    exposure = optional("real_exposure_v2.json")
+    freeze_v3 = optional("preconstruction_freeze_v3.json")
+    exposure = optional("real_exposure_v3.json")
     unrestricted = optional("unrestricted_test_report.json")
     focused_test_gate = optional("test_gate_report_v2.json")
+    focused_test_gate_v3 = optional("test_gate_report_v3.json")
+    focused_test_gate_v4 = optional("test_gate_report_v4.json")
+    marker_contract = optional("official_t26_marker_contract.json")
+    store_preflight = optional("official_t26_store_preflight.json")
+    freeze_v4 = optional("preconstruction_freeze_v4.json")
+    exposure_v4 = optional("real_exposure_v4.json")
     production_graph = _read(root, "production_graph.json")
     authority_graph = _read(root, "authority_graph.json")
     required_graph_nodes = {
@@ -120,6 +135,21 @@ def run_doctor(root: Path) -> dict:
         "historical_overlap", "t26_oracle_overlap", "gold_field_exposure",
         "candidate_gold_edge", "authority_escalation", "fixture_hash_mismatch",
         "contract_leaf_failure", "premature_evaluation_artifact",
+        "public_history_none", "empty_nine_dimensional_history",
+        "missing_required_historical_source", "missing_source_root",
+        "fake_source_commitment", "fake_public_history_builder_identity",
+        "synthetic_t26_oracle_real_mode", "wrong_t26_store",
+        "wrong_t26_manifest_hash", "wrong_t26_seal_hash",
+        "wrong_t26_evaluation_ledger_hash", "wrong_t26_holdout_root",
+        "wrong_t27_prospective_root", "missing_oracle_dimension",
+        "t26_overlap_gt_zero",
+        "legacy_rehearsal_marker_path_only", "official_marker_absent",
+        "official_marker_wrong_schema", "official_marker_wrong_artifact",
+        "official_marker_wrong_experiment", "official_marker_wrong_attempt",
+        "official_marker_wrong_genesis_hash", "marker_missing_from_commitment_index",
+        "marker_commitment_hash_mismatch", "marker_byte_count_mismatch",
+        "ledger_started_event_hash_mismatch", "ledger_chain_invalid",
+        "ledger_state_not_complete", "disposable_standin_using_legacy_path",
     }
     checks.update({
         "construction_ready_storage_policy": storage_v2 == storage_policy_successor(),
@@ -134,10 +164,35 @@ def run_doctor(root: Path) -> dict:
                 "MANIFESTED", "SEALED"]
             for run in construction_rehearsals.get("runs", []))
             and len(construction_rehearsals.get("runs", [])) == 2,
-        "t26_overlap_oracle_interface": exclusion_v2.get("t26_boundary", {}).get(
+        "t26_overlap_oracle_interface": exclusion_v3.get("t26_boundary", {}).get(
             "result_artifact") == "T26_TO_T27_OVERLAP_ORACLE_RESULT",
-        "clean_room_author_provenance": exclusion_v2.get(
+        "clean_room_author_provenance": exclusion_v3.get(
             "historical_private_row_exposure_to_author") == 0,
+        "public_historical_source_completeness": public_history.get(
+            "required_source_count") == len(REQUIRED_HISTORICAL_SOURCES)
+            and {item.get("source_class") for item in public_history.get("sources", [])}
+            == set(REQUIRED_HISTORICAL_SOURCES),
+        "public_history_builder_identity": public_history.get(
+            "builder_implementation_identity") == PUBLIC_HISTORY_BUILDER
+            and exclusion_v3 == authenticated_construction_policy(),
+        "public_history_aggregate_root": public_history == public_index_report(
+            build_authenticated_public_historical_index(root)),
+        "sealed_t26_oracle_entrypoint": exclusion_v3.get("t26_boundary", {}).get(
+            "implementation") ==
+            "t26_protocol.t27_private_oracle:run_sealed_t26_to_t27_overlap_oracle",
+        "t26_store_authentication": real_oracle_rehearsal.get(
+            "store_authenticated") is True,
+        "exact_t26_commitment_binding": real_oracle_rehearsal.get(
+            "commitments_exact") is True,
+        "synthetic_real_oracle_separation": real_oracle_rehearsal.get(
+            "real_mode_not_synthetic") is True,
+        "combined_historical_exclusion_root": all(
+            isinstance(run.get("combined_historical_exclusion_root"), str)
+            and len(run["combined_historical_exclusion_root"]) == 64
+            for run in construction_rehearsals.get("runs", []))
+            and len(construction_rehearsals.get("runs", [])) == 2,
+        "exclusion_contract_gate_coverage": (
+            len(CONTRACT_LEAF_IDS) > 45 and len(CONSTRUCTION_GATE_IDS) > 34),
         "nonvacuity_design_gate": all(
             run.get("designated_counts", {}).get(name, 0) >= minimum
             for run in construction_rehearsals.get("runs", [])
@@ -186,14 +241,89 @@ def run_doctor(root: Path) -> dict:
         "authority_graph_complete": authority_graph.get("candidate_gold_access") is False
             and authority_graph.get("construction_candidate_execution_authority") is False
             and authority_graph.get("private_evaluator_authority") == "SCORE_PRIVATE_ONCE",
-        "freeze_v2": bool(freeze_v2) and verify_freeze_v2(root, freeze_v2).get("status") == "PASS"
-            and freeze_v2.get("real_construction_authorized") is False
-            and freeze_v2.get("real_evaluation_authorized") is False,
-        "real_exposure_zero_v2": bool(exposure) and all(exposure.get(key) == 0 for key in (
+        "freeze_v2_preserved_historically": freeze_v2.get("freeze_sha256") ==
+            PRESERVED_V2_FREEZE_SHA256,
+        "freeze_v3_preserved_historically": freeze_v3.get("freeze_sha256") ==
+            PRESERVED_V3_FREEZE_SHA256,
+        "freeze_v4": bool(freeze_v4) and verify_freeze_v4(root, freeze_v4).get(
+            "status") == "PASS"
+            and freeze_v4.get("real_construction_authorized") is False
+            and freeze_v4.get("real_evaluation_authorized") is False
+            and freeze_v4.get("supersedes", {}).get("reason") ==
+            "T26_OFFICIAL_EVALUATION_MARKER_PATH_COMPATIBILITY_DEFECT",
+        "t26_official_marker_path_exact": (
+            marker_contract.get("marker_path_exact") is True
+            and marker_contract.get("official_marker_path") ==
+            "evaluation/one_shot_spent.json"),
+        "t26_official_marker_schema_exact": (
+            marker_contract.get("marker_schema_exact") is True
+            and marker_contract.get("official_marker_schema") ==
+            "t26-evaluation-one-shot-marker-v2"),
+        "t26_official_marker_contract_current": (
+            marker_contract.get("status") == "PASS"
+            and marker_contract.get("legacy_marker_path_accepted") is False
+            and marker_contract.get("official_marker_artifact") ==
+            "T26_EVALUATION_ONE_SHOT_SPENT"),
+        "rehearsal_layout_equals_production_layout": (
+            marker_contract.get("disposable_layout_mirrors_official") is True),
+        "legacy_marker_path_rejected": (
+            negative_controls.get("controls", {}).get(
+                "legacy_rehearsal_marker_path_only", {}).get("status") == "PASS"
+            and negative_controls.get("controls", {}).get(
+                "disposable_standin_using_legacy_path", {}).get("status") == "PASS"),
+        "t26_official_marker_negative_controls": all(
+            negative_controls.get("controls", {}).get(name, {}).get("status")
+            == "PASS" for name in (
+                "official_marker_absent", "official_marker_wrong_schema",
+                "official_marker_wrong_artifact", "official_marker_wrong_experiment",
+                "official_marker_wrong_attempt", "official_marker_wrong_genesis_hash",
+                "marker_missing_from_commitment_index",
+                "marker_commitment_hash_mismatch", "marker_byte_count_mismatch",
+                "ledger_started_event_hash_mismatch", "ledger_chain_invalid",
+                "ledger_state_not_complete")),
+        "real_store_metadata_preflight_pass": (
+            store_preflight.get("status") == "PASS"
+            and store_preflight.get("t26_store_authenticated") is True
+            and store_preflight.get("official_commitment_scope") == "OFFICIAL_T26"
+            and store_preflight.get("t26_store_identity") == "T26-STORE-01"
+            and store_preflight.get("t26_official_marker_path") ==
+            "evaluation/one_shot_spent.json"
+            and store_preflight.get("t26_official_marker_schema") ==
+            "t26-evaluation-one-shot-marker-v2"
+            and store_preflight.get("t26_official_marker_committed") is True
+            and store_preflight.get("t26_official_marker_genesis_matches_ledger")
+            is True
+            and store_preflight.get("t26_legacy_marker_path_present") is False
+            and store_preflight.get("t26_official_evaluation_state") == "COMPLETE"
+            and store_preflight.get("t26_official_evaluation_attempt") == 1
+            and store_preflight.get("t26_evaluation_event_count") == 4
+            and store_preflight.get("t26_official_commitments_exact") is True),
+        "t26_private_rows_read_during_metadata_preflight_zero": all(
+            store_preflight.get(key) == 0 for key in (
+                "t26_private_rows_read", "t26_gold_rows_read",
+                "t26_raw_output_rows_read", "t26_scored_rows_read",
+                "t26_candidate_reruns", "outside_boundary_private_rows_exposed"))
+            and store_preflight.get("t27_fingerprint_derivation_invoked") is False,
+        "focused_test_gate_v4": focused_test_gate_v4.get("status") == "PASS"
+            and focused_test_gate_v4.get("passed", 0) >= 19
+            and focused_test_gate_v4.get("live_failures") == 0
+            and focused_test_gate_v4.get("errors") == 0
+            and focused_test_gate_v4.get("unexplained_skips") == 0
+            and focused_test_gate_v4.get("xfails") == 0
+            and focused_test_gate_v4.get("deselections") == 0,
+        "real_exposure_zero_v4": bool(exposure_v4) and all(
+            exposure_v4.get(key) == 0 for key in (
+                "t27_real_blind_rows", "t27_real_gold", "construction_attempts",
+                "evaluation_attempts", "candidate_real_executions",
+                "official_real_evaluator_invocations",
+                "t26_private_rows_exposed_outside_sealed_oracle",
+                "t26_candidate_reruns")),
+        "real_exposure_zero_v3": bool(exposure) and all(exposure.get(key) == 0 for key in (
             "t27_real_blind_rows", "t27_real_gold", "construction_attempts",
             "evaluation_attempts", "candidate_real_executions",
-            "official_real_evaluator_invocations", "t26_private_rows_opened",
-            "t26_reruns")),
+            "official_real_evaluator_invocations",
+            "t26_private_rows_exposed_outside_sealed_oracle",
+            "t26_candidate_reruns")),
         "applicability_aware_test_gate": bool(unrestricted)
             and unrestricted.get("new_live_failures") == 0
             and unrestricted.get("new_unknown_failures") == 0
@@ -208,9 +338,16 @@ def run_doctor(root: Path) -> dict:
             and focused_test_gate.get("unexplained_skips") == 0
             and focused_test_gate.get("xfails") == 0
             and focused_test_gate.get("deselections") == 0,
+        "focused_test_gate_v3": focused_test_gate_v3.get("status") == "PASS"
+            and focused_test_gate_v3.get("passed", 0) >= 19
+            and focused_test_gate_v3.get("live_failures") == 0
+            and focused_test_gate_v3.get("errors") == 0
+            and focused_test_gate_v3.get("unexplained_skips") == 0
+            and focused_test_gate_v3.get("xfails") == 0
+            and focused_test_gate_v3.get("deselections") == 0,
     })
     return {
-        "schema_version": "t27-doctor-v1", "artifact": "T27_PROTOCOL_DOCTOR",
+        "schema_version": "t27-doctor-v2", "artifact": "T27_PROTOCOL_DOCTOR",
         "classification": "PUBLIC_SAFE",
         "status": "PASS" if all(checks.values()) else "FAIL",
         "checks": checks, "check_count": len(checks),

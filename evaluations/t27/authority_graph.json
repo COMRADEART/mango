@@ -6,7 +6,7 @@
   "external_action_authority": false,
   "nodes": {
     "T26_overlap_oracle": {
-      "authority": "COMPARE_T26_SEALED_HASHES_ONLY",
+      "authority": "AUTHENTICATE_T26_SEALED_STORE_AND_COMPARE_HASHES_ONLY",
       "autonomous_external_action_authority": false,
       "candidate_execution_authority": false,
       "gold_access": false
@@ -54,7 +54,7 @@
       "gold_access": false
     },
     "historical_exclusion_oracle": {
-      "authority": "COMPARE_PUBLIC_HASHES_ONLY",
+      "authority": "BUILD_AND_VERIFY_AUTHENTICATED_PUBLIC_INDEX",
       "autonomous_external_action_authority": false,
       "candidate_execution_authority": false,
       "gold_access": false
@@ -163,5 +163,5 @@
     }
   },
   "private_evaluator_authority": "SCORE_PRIVATE_ONCE",
-  "schema_version": "t27-authority-graph-v2"
+  "schema_version": "t27-authority-graph-v3"
 }

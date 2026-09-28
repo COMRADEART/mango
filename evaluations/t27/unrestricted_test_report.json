@@ -2,7 +2,7 @@
   "applicability_policy": "T27 changes plus live shared-runtime protections are LIVE; predecessor one-shot, path-absence, and historical freeze assertions are HISTORICAL_AUTHENTICATED",
   "artifact": "T27_UNRESTRICTED_APPLICABILITY_AWARE_TEST_REPORT",
   "classification": "PUBLIC_SAFE",
-  "collected": 3602,
+  "collected": 3607,
   "deselections": 0,
   "errors": 11,
   "failed": 48,
@@ -33,11 +33,11 @@
   },
   "new_live_failures": 0,
   "new_unknown_failures": 0,
-  "passed": 3543,
+  "passed": 3548,
   "schema_version": "t27-unrestricted-test-report-v1",
   "t27_focused": {
     "failed": 0,
-    "passed": 19,
+    "passed": 24,
     "status": "PASS"
   },
   "unexplained_skips": 0,

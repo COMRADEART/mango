@@ -10,7 +10,7 @@
       "inputs": [
         "private_author"
       ],
-      "producer": "t26_protocol.t27_private_oracle:compare_hashes"
+      "producer": "t26_protocol.t27_private_oracle:run_sealed_t26_to_t27_overlap_oracle"
     },
     "completion_gate": {
       "classification": "PUBLIC_SAFE",
@@ -68,7 +68,7 @@
       "inputs": [
         "private_author"
       ],
-      "producer": "t27_protocol.construction:historical_exclusion_audit"
+      "producer": "t27_protocol.exclusion:build_authenticated_public_historical_index"
     },
     "holdout_seal": {
       "classification": "PRIVATE_EVALUATION",
@@ -217,5 +217,5 @@
     "public_evaluation_receipt"
   ],
   "production_stubs": 0,
-  "schema_version": "t27-production-graph-v2"
+  "schema_version": "t27-production-graph-v3"
 }
