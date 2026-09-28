@@ -1,0 +1,23 @@
+{
+  "artifact": "T27_PUBLIC_CONSTRUCTION_RECEIPT",
+  "attempt": 1,
+  "blind_content_included": false,
+  "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+  "candidate_tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+  "classification": "PUBLIC_SAFE",
+  "component_root": "28e166126db77781c6df43a76263183290200bb177a660e403805d358db3c2fb",
+  "construction_gate_root": "f14caf51087fd7410e836daa4cb6a3483e4dd79b62750484812f16297afa473c",
+  "construction_ledger_root": "55dfaa06c7baa5f511b6481f064e5e32fc12c5c06dde6fedec0eeb46fbb25e0b",
+  "construction_ledger_sha256": "d36aaa077a38ca1eda34569630d1e5a7e322174a56d2b592b0a106a68bf6cc62",
+  "experiment": "t27",
+  "freeze_root": "7244e02c437f6825e47729b7dc5a63289471c0eb231821d5589fd0da1c16aceb",
+  "freeze_sha256": "b0467875b333d3df82a7839ac4f1a61237acb1f59971321affd4d5921782c644",
+  "manifest_sha256": "d99927be1cc7ffd93cddde16fe9dabc49b7531d89a7428ed235dea1f789836a3",
+  "nonvacuity_audit_root": "6c0bc3ea3f073d68e081ba01c69204d2b328c29a0cbded4889b6ec01bda822fe",
+  "private_artifact_root": "338cc8b6ae4f5e414b5d06c4f5c77fe6a07fffb3c439d87b0988e7840f41b753",
+  "private_blind_root": "0a3188531b88fb4b1bf28b6674e1a72b188d19cd49312e8026f29f59a721eaa2",
+  "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d",
+  "schema_version": "t27-public-construction-receipt-v1",
+  "seal_sha256": "9d7cb8be80e621312a3b997b000225ad8e604fee64afee05b92cf98c6257e5f4",
+  "state": "SEALED"
+}

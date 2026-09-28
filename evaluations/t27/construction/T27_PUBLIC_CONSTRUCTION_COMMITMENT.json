@@ -1,0 +1,26 @@
+{
+  "aggregate_design_counts": {
+    "gold": 512,
+    "handoff_cases": 512,
+    "recoverable_cases": 192,
+    "replan_required_cases": 192,
+    "safe_abstention_cases": 96,
+    "scenarios": 512,
+    "successful_completion_cases": 416,
+    "verification_cases": 512
+  },
+  "artifact": "T27_PUBLIC_CONSTRUCTION_COMMITMENT",
+  "attempt": 1,
+  "blind_content_included": false,
+  "classification": "PUBLIC_SAFE",
+  "experiment": "t27",
+  "roots": {
+    "construction_gate_root": "f14caf51087fd7410e836daa4cb6a3483e4dd79b62750484812f16297afa473c",
+    "construction_ledger_root": "55dfaa06c7baa5f511b6481f064e5e32fc12c5c06dde6fedec0eeb46fbb25e0b",
+    "nonvacuity_audit_root": "6c0bc3ea3f073d68e081ba01c69204d2b328c29a0cbded4889b6ec01bda822fe",
+    "private_artifact_root": "338cc8b6ae4f5e414b5d06c4f5c77fe6a07fffb3c439d87b0988e7840f41b753",
+    "private_blind_root": "0a3188531b88fb4b1bf28b6674e1a72b188d19cd49312e8026f29f59a721eaa2"
+  },
+  "schema_version": "t27-public-construction-commitment-v1",
+  "state": "SEALED"
+}
