@@ -1,0 +1,131 @@
+{
+  "schema_version": "t28-official-evaluation-eligibility-adjudication-v1",
+  "artifact": "T28_OFFICIAL_EVALUATION_ELIGIBILITY_ADJUDICATION",
+  "classification": "PUBLIC_SAFE",
+  "date": "2026-09-29",
+  "construction_predecessor": "T28_REAL_BLIND_HOLDOUT_CONSTRUCTED_AND_SEALED_PRIVATE",
+  "attempted_official_evaluation_terminal": "T28_OFFICIAL_EVALUATION_REFUSED_SEALED_T27_COMPATIBILITY_PREFLIGHT_FROZEN_REPORT_KEY_SHAPE_DEFECT",
+  "construction_state": {
+    "construction_one_shot": "SPENT",
+    "construction_valid": true,
+    "construction_result_invalidated": false
+  },
+  "public_construction": {
+    "branch": "t28-constructed-sealed-private",
+    "commit": "9c3f320edea143e46afe9b6e5bcb2a3da33a989a",
+    "tree": "aa3835903cb89e16cbe736ed539141bbbe54968f",
+    "parent": "16a2384a3d0463c56f909c69c2825254aa4a8105",
+    "publication_file_count": 2,
+    "receipt_blob_sha256": "d5c49afd54575d700823de64bee273b49343961cf99220780c0594363d9617c5",
+    "commitment_blob_sha256": "e9501961e3ed0e48f1838fc1b8bb85156fe9a0e7e9b5cd46c49badf386e60b5b"
+  },
+  "candidate": {
+    "commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+    "tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+    "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d"
+  },
+  "preconstruction_freeze": {
+    "component_count": 265,
+    "component_root": "fb79faf8fd42132bb123e084b0bc88332d72b45b2d4770f6685886e162481473",
+    "freeze_root": "3bcb5fe6e084bea1ea5dbcf4e1e5e30b7852edfa7da82d25f4cc48b2d4f6de55",
+    "freeze_sha256": "58281c91989f0e5871b2cf9b61581007e5c7e7cfd8f73abdab9ee80c996d98a0",
+    "canonical_loader": "t28_protocol.freeze:load_preconstruction_freeze",
+    "candidate_runtime_changes": 0
+  },
+  "sealed_commitments": {
+    "construction_ledger_sha256": "2e104783ebb38cd690c838b69a6f127a8d651dabaeab1bd9865ab9d79b2a790c",
+    "construction_ledger_root": "d10397caef04ba24fee0209dd7bfaf4b1dd16fa8774e78f6ccb55a2ea2f882e6",
+    "manifest_sha256": "7f1b853d34e4194c714db542418b483f198aa1743c807aa23b54bac06fb8f7c1",
+    "seal_sha256": "eb6f74685aab85f06038c9597b1ab23eee475a004589ab82f504593b89f789f0",
+    "private_blind_root": "2b4f8f54284d9bb77fdaee9f94979d52d745520ff916bf3a1178d8a9d55025e2",
+    "sealed_store": "T28-STORE-01"
+  },
+  "defect": {
+    "id": "FROZEN_PRODUCER_CONSUMER_REPORT_SCHEMA_MISMATCH",
+    "deterministic_incompatibility": "CONFIRMED",
+    "producer": {
+      "qualified_id": "t28_protocol.construction:official_marker_contract_report",
+      "module": "t28_protocol/construction.py",
+      "implementation_sha256": "3cf1ba4a7c6bd1eb7acff92858642a3c954e324fd84469e60ddb74718051dc9b",
+      "git_blob_sha1": "589db92b5b1471b9d7349cb0255dae847bb16eed",
+      "shape": "returns marker-contract status PASS with T27 layout fields nested under report[\"disposable_layout\"]"
+    },
+    "consumer": {
+      "qualified_id": "t28_protocol.evaluation:sealed_t27_compatibility_preflight",
+      "module": "t28_protocol/evaluation.py",
+      "implementation_sha256": "8352e5b39ab613c82522f42b50323e3f502599677ad4394f596b98253864bd8c",
+      "git_blob_sha1": "068e23812a04c7499d1151f98200ec07085aecb8",
+      "pinned_by": "authorization §16 frozen implementation SHAs (metric registry binding)",
+      "shape": "reads report[\"evaluation_state_sealed_unevaluated\"], report[\"evaluation_attempt_zero\"], report[\"private_rows_read\"], report[\"fingerprint_derivation_invoked\"] at top level (consumer line 294)"
+    },
+    "incompatibility_site": "official entrypoint t28_protocol.evaluation:evaluate_official line 542 invokes the consumer strictly before the one-shot ledger boundary",
+    "observed_exception": "KeyError: 'evaluation_state_sealed_unevaluated' at evaluation.py:294 via evaluation.py:542",
+    "substantive_marker_contract_status": "PASS",
+    "independent_of": [
+      "T28 authoring quality",
+      "sealed row contents",
+      "candidate behavior",
+      "model availability",
+      "adapter hydration",
+      "network availability",
+      "T27 store validity",
+      "T28 store validity"
+    ],
+    "why_the_battery_missed_it": [
+      "run_evaluation_rehearsals exercises _evaluate_once directly and bypasses the evaluate_official preflight chain",
+      "test_official_evaluator_refuses_unsealed_store_no_marker stops earlier at the §19 unsealed-store refusal under a bare pytest.raises(Exception)"
+    ],
+    "repair_performed": false
+  },
+  "substantive_t27_anchor_state": {
+    "t27_construction": "SEALED",
+    "t27_evaluation_physical_one_shot": "UNSPENT",
+    "t27_official_evaluation_eligibility": "PERMANENTLY_NOT_AUTHORIZED_FOR_T27",
+    "t27_evaluation_attempt": 0,
+    "t27_private_rows_read": 0,
+    "valid": true,
+    "refusal_cause": "integration glue only; not a substantive failure of the T27 anchor"
+  },
+  "evaluation_entrypoint_invocation_count": 1,
+  "evaluation_invocation_note": "exactly one pre-ledger evaluate_official invocation; refused in the sealed-T27-compatibility preflight before ledger creation",
+  "evaluation_attempt_count": 0,
+  "candidate_real_execution_count": 0,
+  "blind_rows_parsed_for_adjudication": 0,
+  "blind_rows_opened_for_adjudication": 0,
+  "evaluation_ledger_present": false,
+  "evaluation_marker_present": false,
+  "raw_outputs_present": false,
+  "scored_rows_present": false,
+  "summary_present": false,
+  "evaluation_workspaces_created": 0,
+  "evaluation_one_shot_physical_state": "UNSPENT",
+  "official_evaluation_eligibility": "INELIGIBLE",
+  "official_evaluation_eligibility_state": "PERMANENTLY_INELIGIBLE",
+  "evaluation_one_shot_terminal": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "capability_status": "NOT_MEASURED",
+  "capability_measurement_occurred": false,
+  "not_classified_as": [
+    "CAPABILITY_PASS",
+    "CAPABILITY_FAIL",
+    "TECHNICAL_ABORT_ONE_SHOT_CONSUMED"
+  ],
+  "short_status": [
+    "SEALED",
+    "UNEVALUATED",
+    "OFFICIAL_EVALUATION_INELIGIBLE"
+  ],
+  "terminal_record": "T28_SEALED_VALID_BUT_OFFICIAL_BLIND_EVALUATION_INELIGIBLE_DUE_TO_FROZEN_PREFLIGHT_KEY_SHAPE_DEFECT",
+  "t28_holdout_state_preserved": true,
+  "holdout_inspected_for_adjudication": false,
+  "evaluation_protocol_modules_modified": 0,
+  "no_successor_evaluation_protocol_created": true,
+  "evidence_basis": [
+    "public source code",
+    "public preconstruction freeze",
+    "public construction receipt and commitment",
+    "aggregate sealed metadata",
+    "existence and status checks only"
+  ],
+  "blind_content_included": false,
+  "successor_protocol_required": true
+}
