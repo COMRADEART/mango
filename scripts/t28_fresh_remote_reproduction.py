@@ -67,8 +67,38 @@ def reproduce(root: Path, *, clone_parent: str | None = None) -> dict:
         if cloned_freeze.get("components") != pushed_freeze.get("components"):
             freeze_drift.append("components")
 
+        # remediation re-execution from exact pushed bytes (§30): the fresh
+        # clone re-runs the real-entrypoint wrapper rehearsal and the six
+        # freeze-path negative controls against the pushed canonical freeze
+        # and reproduces the pushed PUBLIC_SAFE artifact bytes exactly.
+        reexec = subprocess.run(
+            [sys.executable, "scripts/t28_preconstruction.py",
+             "--reexecute-remediation"],
+            cwd=clone, capture_output=True, text=True, timeout=1800)
+        try:
+            reexec_report = json.loads(reexec.stdout) if reexec.stdout.strip() \
+                else {}
+        except ValueError:
+            reexec_report = {}
+        wrapper_bytes_equal = controls_bytes_equal = None
+        errors: list[str] = []
+        try:
+            wrapper_bytes_equal = (
+                (root / "evaluations/t28/real_entrypoint_rehearsal.json")
+                .read_bytes() ==
+                (clone / "evaluations/t28/real_entrypoint_rehearsal.json")
+                .read_bytes())
+            controls_bytes_equal = (
+                (root / "evaluations/t28/freeze_path_negative_controls.json")
+                .read_bytes() ==
+                (clone / "evaluations/t28/freeze_path_negative_controls.json")
+                .read_bytes())
+        except FileNotFoundError as exc:
+            errors.append(f"remediation artifact absent: {exc}")
+
         doctor = report.get("doctor", {})
         verdict = report.get("verdict", {})
+        remediation = report.get("remediation", {})
         semantic = {
             "source_commit": pushed_commit,
             "clone_commit": cloned_commit,
@@ -76,10 +106,21 @@ def reproduce(root: Path, *, clone_parent: str | None = None) -> dict:
             "clone_freeze_sha256": cloned_freeze.get("freeze_sha256"),
             "doctor_rerun_status": doctor.get("status"),
             "doctor_check_count": doctor.get("check_count"),
+            "remediation_verdict": remediation.get("verdict"),
+            "remediation_one_shot": remediation.get("construction_one_shot"),
+            "wrapper_reexec_status": reexec_report.get("wrapper"),
+            "controls_reexec_status": reexec_report.get("controls"),
+            "wrapper_bytes_reproduced": wrapper_bytes_equal,
+            "controls_bytes_reproduced": controls_bytes_equal,
         }
         drifted = int(bool(freeze_drift)
                       or doctor.get("status") != "PASS"
                       or verdict.get("status") != "PASS"
+                      or remediation.get("status") != "PASS"
+                      or remediation.get("construction_one_shot") != "UNSPENT"
+                      or reexec_report.get("status") != "PASS"
+                      or wrapper_bytes_equal is not True
+                      or controls_bytes_equal is not True
                       or cloned_commit != pushed_commit)
         document = {
             "schema_version": "t28-fresh-remote-reproduction-v1",
@@ -92,13 +133,23 @@ def reproduce(root: Path, *, clone_parent: str | None = None) -> dict:
             "fresh_remote_commit_matches_push": cloned_commit == pushed_commit,
             "semantic_signature": sha256_json(semantic),
             "semantic": semantic,
+            "remediation_artifact_errors": errors,
+            "real_entrypoint_rehearsal_reproduced_byte_exact": (
+                wrapper_bytes_equal),
+            "freeze_path_negative_controls_reproduced_byte_exact": (
+                controls_bytes_equal),
+            "remediation_reexecution_status": reexec_report.get("status"),
+            "construction_one_shot": "UNSPENT",
             "freeze_components_identical": (
-                cloned_freeze.get("components") == pushed_freeze.get("components")),
+                cloned_freeze.get("components")
+                == pushed_freeze.get("components")),
             "freeze_drift_keys": freeze_drift,
             "clone_verdict": verdict.get("status"),
             "semantic_drift": drifted,
             "t27_private_rows_read": 0, "t27_gold_rows_read": 0,
             "t27_candidate_reruns": 0, "t28_candidate_executions": 0,
+            "t28_real_blind_rows": 0, "t28_real_gold_rows": 0,
+            "t28_construction_attempts": 0, "t28_evaluation_attempts": 0,
         }
         return {**document, "reproduction_sha256": sha256_json(document)}
 

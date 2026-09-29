@@ -13,6 +13,7 @@ from .contract import (CONSTRUCTION_TOKEN, CRITICAL_COUNTERS, EVALUATION_TOKEN,
                        T27_OFFICIAL_EVALUATION_STATE,
                        T27_PREDECESSOR_VERDICT)
 from .construction import (CONSTRUCTION_GATE_IDS, CONTRACT_LEAF_IDS,
+                           FREEZE_PATH_NEGATIVE_CONTROL_IDS,
                            NEGATIVE_CONTROL_IDS, construction_contract,
                            official_marker_contract_report,
                            real_fingerprint_semantics_probe,
@@ -31,9 +32,11 @@ from .exclusion import (DIMENSIONS, GENERATED_PUBLIC_POLICY_SCHEMA,
                         GENERATED_PUBLIC_DIMENSION_CLASSIFICATIONS,
                         GENERATED_PUBLIC_STRUCTURAL_DIMENSIONS,
                         verify_historical_index)
-from .freeze import (PINNED_CANDIDATE_COMMIT, PINNED_CANDIDATE_TREE,
-                     PINNED_RUNTIME_ROOT, T27_ADJUDICATION_COMMIT,
-                     verify_freeze)
+from .freeze import (FREEZE_LOADER_ID, PINNED_CANDIDATE_COMMIT,
+                     PINNED_CANDIDATE_TREE, PINNED_RUNTIME_ROOT,
+                     SUPERSEDED_PRE_EXPOSURE_PATH, EXCLUDED,
+                     T27_ADJUDICATION_COMMIT, T28_PRECONSTRUCTION_FREEZE_PATH,
+                     load_preconstruction_freeze, verify_freeze)
 from .scorer import ZERO_DENOMINATOR_POLICY
 from .store import storage_policy_successor
 from .contract import metric_registry, nonvacuity_policy, production_graph, \
@@ -110,6 +113,11 @@ def run_doctor(root: Path) -> dict:
     freeze = _optional(root, "preconstruction_freeze.json")
     freeze_verify = (verify_freeze(root, freeze) if bool(freeze)
                      else {"status": "UNSTAGED"})
+    wrapper_rehearsal = _optional(root, "real_entrypoint_rehearsal.json")
+    freeze_path_controls = _optional(
+        root, "freeze_path_negative_controls.json")
+    superseded_record = _optional(
+        root, "preconstruction_freeze_superseded_pre_exposure.json")
 
     from .construction import run_publication_leak_gate
     live_leak = run_publication_leak_gate(root, fetch=True)
@@ -492,6 +500,65 @@ def run_doctor(root: Path) -> dict:
             root / "evaluations/t28/construction_ledger.json").exists(),
         "evaluation_ledger_absent_project_side": not (
             root / "evaluations/t28/evaluation_ledger.json").exists(),
+        # --- real-entrypoint freeze-path remediation (§9/§11/§14–§18/§23) ---
+        "canonical_freeze_path_canonical": _canonical_loader_roundtrip(
+            root, freeze),
+        "construct_real_uses_canonical_loader":
+            _construct_real_loader_bound(root),
+        "obsolete_freeze_path_not_active": (
+            _freeze_path_sources_clean(root)
+            and superseded_record_present(superseded_record)
+            and not any(("preconstruction_freeze_" + "v1") in entry
+                        for entry in EXCLUDED)),
+        "real_entrypoint_rehearsal_staged": (
+            wrapper_rehearsal.get("status") == "PASS"
+            and all(wrapper_rehearsal.get(name) is True for name in (
+                "canonical_freeze_loaded", "freeze_path_exact",
+                "freeze_component_root_verified", "freeze_root_verified",
+                "freeze_sha256_verified", "t27_metadata_authentication_reached",
+                "historical_index_verification_reached",
+                "construct_once_reached", "disposable_sealed"))
+            and wrapper_rehearsal.get("state_sequence") == [
+                "LEDGER_CREATED", "MATERIALIZED", "AUDITED", "GATE_PASS",
+                "MANIFESTED", "SEALED"]
+            and wrapper_rehearsal.get("contract_leaf_count") ==
+            len(CONTRACT_LEAF_IDS)
+            and wrapper_rehearsal.get("gate_check_count") ==
+            len(CONSTRUCTION_GATE_IDS)
+            and wrapper_rehearsal.get("store_status") == "PASS"
+            and wrapper_rehearsal.get("leak_gate_status") == "PASS"
+            and wrapper_rehearsal.get("one_shot") == "UNSPENT"
+            and wrapper_rehearsal.get("real_blind_rows", 1) == 0
+            and wrapper_rehearsal.get("real_gold_rows", 1) == 0
+            and wrapper_rehearsal.get("real_construction_attempts", 1) == 0
+            and wrapper_rehearsal.get("real_evaluation_attempts", 1) == 0
+            and wrapper_rehearsal.get("t27_private_rows_read", 1) == 0),
+        "freeze_path_tamper_controls": (
+            freeze_path_controls.get("status") == "PASS"
+            and freeze_path_controls.get("control_count") ==
+            len(FREEZE_PATH_NEGATIVE_CONTROL_IDS)
+            and set(freeze_path_controls.get("controls", {}))
+            == set(FREEZE_PATH_NEGATIVE_CONTROL_IDS)
+            and all(item.get("status") == "PASS"
+                    and item.get("refused_pre_ledger") is True
+                    and item.get("no_private_store_artifacts") is True
+                    and item.get("construction_ledger_absent") is True
+                    and item.get("construction_marker_absent") is True
+                    and item.get("one_shot") == "UNSPENT"
+                    for item in
+                    freeze_path_controls.get("controls", {}).values())
+            and freeze_path_controls.get("forbidden_alias_paths_active", 1)
+            == 0),
+        "superseded_freeze_record_staged": superseded_record_present(
+            superseded_record),
+        "evaluation_readiness_after_remediation": (
+            wrapper_rehearsal.get("status") == "PASS"
+            and freeze_path_controls.get("status") == "PASS"
+            and wrapper_rehearsal.get("one_shot") == "UNSPENT"
+            and freeze_path_controls.get("one_shot") == "UNSPENT"
+            and live_leak.get("status") == "PASS"
+            and bool(test_gate) and test_gate.get("status") == "PASS"
+            and bool(freeze) and freeze_verify.get("status") == "PASS"),
     }
     return {
         "schema_version": "t28-doctor-v1", "artifact": "T28_PROTOCOL_DOCTOR",
@@ -504,6 +571,82 @@ def run_doctor(root: Path) -> dict:
         "t27_gold_rows_read": 0, "t27_candidate_reruns": 0,
         "t27_candidate_executions": 0,
     }
+
+
+def _forbidden_alias_freeze_filename() -> str:
+    """Assembled from fragments: no production source contains the `_v1`
+    freeze filename as a contiguous literal, this file included (§9/§14)."""
+    return ("evaluations/t28/preconstruction_freeze_"
+            + "v1" + ".json")
+
+
+def _source_text(path: Path) -> str:
+    data = path.read_bytes()
+    if b"\0" not in data:
+        data = data.replace(b"\r\n", b"\n")
+    return data.decode("utf-8")
+
+
+def _canonical_loader_roundtrip(root: Path, staged: dict) -> bool:
+    if not bool(staged):
+        return False
+    try:
+        loaded = load_preconstruction_freeze(root)
+    except Exception:
+        return False
+    return (loaded.get("freeze_path") == T28_PRECONSTRUCTION_FREEZE_PATH
+            and loaded.get("freeze_path_verified") is True
+            and loaded.get("canonical_freeze_loader") == FREEZE_LOADER_ID
+            and loaded.get("freeze_sha256") == staged.get("freeze_sha256")
+            and loaded.get("candidate_commit") == PINNED_CANDIDATE_COMMIT
+            and loaded.get("real_construction_authorized") is False
+            and loaded.get("real_evaluation_authorized") is False)
+
+
+def _construct_real_loader_bound(root: Path) -> bool:
+    try:
+        source = _source_text(root / "t28_protocol" / "construction.py")
+    except OSError:
+        return False
+    return ("freeze = load_preconstruction_freeze(root)" in source
+            and "load_preconstruction_freeze" in source
+            and FREEZE_LOADER_ID in _source_text(
+                root / "t28_protocol" / "freeze.py"))
+
+
+def _freeze_path_sources_clean(root: Path) -> bool:
+    forbidden = _forbidden_alias_freeze_filename()
+    scanned = list((root / "t28_protocol").glob("*.py"))
+    scanned.extend((root / "scripts").glob("t28*.py"))
+    scanned.extend((root / "tests").glob("test_t28*.py"))
+    return all(
+        forbidden not in _source_text(path) for path in scanned)
+
+
+def superseded_record_present(record: dict) -> bool:
+    """§11: the historical freeze is preserved under the supersession name
+    (never at a `_v1` path), with its exact identity and flags false."""
+    frozen = record.get("superseded_freeze", {})
+    return (record.get("schema_version") == "t28-freeze-supersession-record-v1"
+            and record.get("artifact") ==
+            "T28_PRECONSTRUCTION_FREEZE_SUPERSEDED_PRE_EXPOSURE"
+            and record.get("classification") == "SUPERSEDED_PRE_EXPOSURE"
+            and record.get("record_name") ==
+            "T28_PRECONSTRUCTION_FREEZE_V1_SUPERSEDED_PRE_EXPOSURE"
+            and record.get("supersession_reason") ==
+            "REAL_CONSTRUCTION_ENTRYPOINT_REFERENCED_NONEXISTENT_FREEZE_PATH"
+            and record.get("historical_rewrite_of_predecessor") is False
+            and record.get("real_exposure", 1) == 0
+            and frozen.get("artifact") == "T28_PRECONSTRUCTION_FREEZE"
+            and frozen.get("component_count") == 262
+            and frozen.get("component_root") ==
+            "c413a58598d811eee81ada1afcd5470c18579c507576908d8d067ee9f4780bc7"
+            and frozen.get("freeze_root") ==
+            "fbb7d58b0034128d35a2730cc54b1049a50111291f1a0aec9d7a3060ac708965"
+            and frozen.get("freeze_sha256") ==
+            "06b01fe5eab5383fc0b3a785c0030af7b945f829ee005c3dfccb2d61b3f72e99"
+            and frozen.get("real_construction_authorized") is False
+            and frozen.get("real_evaluation_authorized") is False)
 
 
 def adjudication_anchor_ok(root: Path) -> bool:

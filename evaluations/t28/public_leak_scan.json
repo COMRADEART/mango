@@ -8,9 +8,9 @@
   "history_rewrite_restores_eligibility": false,
   "official_evaluation_eligible": true,
   "path_policy_violations": 0,
-  "public_ref_count": 163,
-  "reachable_object_count": 6884,
-  "scan_root": "878ce52d050089b0858f096ac9d817b2a6b3187ef6d6a78fe76d7bd067083188",
+  "public_ref_count": 164,
+  "reachable_object_count": 6955,
+  "scan_root": "f7d18300c9b86945b5d380d55fc910fd231d2241c7c7a6a40e686b23c4db3542",
   "schema_version": "t28-publication-leak-gate-v1",
   "status": "PASS"
 }

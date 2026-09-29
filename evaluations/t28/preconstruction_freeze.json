@@ -5,8 +5,8 @@
   "candidate_tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
   "classification": "PUBLIC_SAFE",
   "completion_recovery_replan_abstention_frozen": true,
-  "component_count": 262,
-  "component_root": "c413a58598d811eee81ada1afcd5470c18579c507576908d8d067ee9f4780bc7",
+  "component_count": 265,
+  "component_root": "8ffb3031867235e893b3a98ffec03de701dc8053e51d5576b0f19e52c257971d",
   "components": [
     {
       "byte_size": 1735,
@@ -120,7 +120,7 @@
       "byte_size": 2518,
       "path": "evaluations/t28/construction_rehearsal_report.json",
       "role": "T28_PUBLIC_ARTIFACT",
-      "sha256": "9f4ea1e3d2bcaeeb69b267752375d3d0a6293da0bf5899f57b1325b7d541c760"
+      "sha256": "31118af4e685af6c73842f3c34e8d7a00b98fa554a4c52e74cbdc23974d83397"
     },
     {
       "byte_size": 1291,
@@ -138,7 +138,13 @@
       "byte_size": 2352,
       "path": "evaluations/t28/evaluation_rehearsal_report.json",
       "role": "T28_PUBLIC_ARTIFACT",
-      "sha256": "b520d3f12e7f0405e0eb55ee53373d00b61857199bdef12c5b4c86bc93f1e00b"
+      "sha256": "c9ad2b68452f7c212935396a6d2b462ae4337236430370e88d933019e9713ea6"
+    },
+    {
+      "byte_size": 3010,
+      "path": "evaluations/t28/freeze_path_negative_controls.json",
+      "role": "T28_PUBLIC_ARTIFACT",
+      "sha256": "e9a89566d0be4425287a50db864d1603d272ce9e6f701a1bc4d6f99b1986d75d"
     },
     {
       "byte_size": 1731,
@@ -207,6 +213,12 @@
       "sha256": "f0b27917476e26f57b44e7baadcdb6320fdea48e5685a5aa928cd20a81904759"
     },
     {
+      "byte_size": 1624,
+      "path": "evaluations/t28/preconstruction_freeze_superseded_pre_exposure.json",
+      "role": "T28_PUBLIC_ARTIFACT",
+      "sha256": "54acd0ad0d84586ff7b444e41fc59399e3d0cbe54e35bf75ae2274c96676efe6"
+    },
+    {
       "byte_size": 647,
       "path": "evaluations/t28/private_storage_policy.json",
       "role": "T28_PUBLIC_ARTIFACT",
@@ -252,7 +264,7 @@
       "byte_size": 520,
       "path": "evaluations/t28/public_leak_scan.json",
       "role": "T28_PUBLIC_ARTIFACT",
-      "sha256": "604655d090ca8907c77510e1da75d026b914aad459c5b2fa5297f8fbf0f27578"
+      "sha256": "79b1f7a63a2915025e2a780f32866cfbedf707f375a521ec9d00ef4e0b689ce8"
     },
     {
       "byte_size": 4882,
@@ -265,6 +277,12 @@
       "path": "evaluations/t28/qualification_report.json",
       "role": "T28_PUBLIC_ARTIFACT",
       "sha256": "4239236e7153df26cee7cc394166ec368823a55078e6e755ff29f592297aac75"
+    },
+    {
+      "byte_size": 1034,
+      "path": "evaluations/t28/real_entrypoint_rehearsal.json",
+      "role": "T28_PUBLIC_ARTIFACT",
+      "sha256": "bf492d283c59ff5c4477b8c99cda2eed05a7617d6536e71714df441bdfbe43e4"
     },
     {
       "byte_size": 180,
@@ -318,19 +336,19 @@
       "byte_size": 443,
       "path": "evaluations/t28/test_gate_report.json",
       "role": "T28_PUBLIC_ARTIFACT",
-      "sha256": "c2196040d37567919cb34d6c59fb27511e85cee834f78058a75fa31d71d9c89f"
+      "sha256": "2c69a726a3365602a0c729d3f1deb8838b523784ff52dde7148c2c2150cf09e0"
     },
     {
-      "byte_size": 5598,
+      "byte_size": 8304,
       "path": "scripts/t28_fresh_remote_reproduction.py",
       "role": "T28_ENTRYPOINT",
-      "sha256": "e8d99664cf8e90e88c44abf016ba9721e8d6ee96649b14549ba46a2569bce249"
+      "sha256": "44e675090ffde5ceedd167b7e52e650b9a59243993b620d016896f324efd3858"
     },
     {
-      "byte_size": 22382,
+      "byte_size": 32082,
       "path": "scripts/t28_preconstruction.py",
       "role": "T28_ENTRYPOINT",
-      "sha256": "d72b885876ac414b58f55fefc2e6bf8f5908411380ba6b6420084aa43ebe9c0a"
+      "sha256": "fbac74c174d2e279dbfd53e7f7b3b3cb9c3ca5a32f3803b5fa1ffbbb502c7dd1"
     },
     {
       "byte_size": 15874,
@@ -1497,10 +1515,10 @@
       "sha256": "7232fe5c78661356733a8ba2f851d59331e78d588059bc90ddbc8c4175929e52"
     },
     {
-      "byte_size": 134721,
+      "byte_size": 151776,
       "path": "t28_protocol/construction.py",
       "role": "T28_PROTOCOL_RUNTIME",
-      "sha256": "f79e5a169d5dab073309eff7a32d8421b25b5cdeab8e08de54c04ab1d715376c"
+      "sha256": "3cf1ba4a7c6bd1eb7acff92858642a3c954e324fd84469e60ddb74718051dc9b"
     },
     {
       "byte_size": 18115,
@@ -1509,10 +1527,10 @@
       "sha256": "0044f23ce0663960fea584264549c76538fa44e32f7fa5576b4ec65bcd974d2d"
     },
     {
-      "byte_size": 34360,
+      "byte_size": 41771,
       "path": "t28_protocol/doctor.py",
       "role": "T28_PROTOCOL_RUNTIME",
-      "sha256": "564076b6f75344af94cf8eebf72a806c463dd119db68fb78f76735926655fa48"
+      "sha256": "829f34a4b56fcebff431257e28641a7de582171e2743235f7c6f0277988b49a9"
     },
     {
       "byte_size": 39546,
@@ -1527,10 +1545,10 @@
       "sha256": "34f2c75f4b172e6fadb6d35f76cbe1312a4db59b79dfd8428faf7282f02a97f5"
     },
     {
-      "byte_size": 9448,
+      "byte_size": 15363,
       "path": "t28_protocol/freeze.py",
       "role": "T28_PROTOCOL_RUNTIME",
-      "sha256": "1c3ac3cc7cf4d4644481a101d6ff02a9de9963d57ba3b69cb6bd51e32d2f157c"
+      "sha256": "875caf9558d2e66b835af8604004302badb31450d5b4224075626135444cb0d7"
     },
     {
       "byte_size": 27557,
@@ -1575,15 +1593,15 @@
       "sha256": "360daa1541efa67bb671eca2d2e58596eb60dfa340196ca7fc1c06e10d03c43c"
     },
     {
-      "byte_size": 9652,
+      "byte_size": 16977,
       "path": "tests/test_t28_preconstruction.py",
       "role": "T28_TEST_GATE",
-      "sha256": "7bbd1ba4ed314ab25f76ba593c5dfce00b3adf2f33023ca937f7c35af03607b0"
+      "sha256": "f38201f7d5bc4b84df22aefc6496a9396140b0e14e16e1ebfefb298cf0362658"
     }
   ],
   "experiment": "t28",
-  "freeze_root": "fbb7d58b0034128d35a2730cc54b1049a50111291f1a0aec9d7a3060ac708965",
-  "freeze_sha256": "06b01fe5eab5383fc0b3a785c0030af7b945f829ee005c3dfccb2d61b3f72e99",
+  "freeze_root": "bef68e161b0f580c3bb174bbcf162594793d82e8c43aeb5782d61f4ef7055e50",
+  "freeze_sha256": "0e5389f87a288f354fa1038184379e2349d3e0d83338cba770c5905b3581e1c8",
   "provider_and_scorer_bindings_frozen": true,
   "real_blind_rows": 0,
   "real_construction_attempts": 0,

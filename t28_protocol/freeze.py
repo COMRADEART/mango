@@ -20,11 +20,22 @@ PINNED_RUNTIME_ROOT = (
     "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d")
 T27_ADJUDICATION_COMMIT = "16314c515312e8da86f2b268d788f9aa6b0abd7f"
 
+# §7 single canonical preconstruction freeze path: every code path that reads
+# or writes the T28 preconstruction freeze consumes this constant; no raw
+# path literal (and no `_v1` alias) may appear anywhere else in production.
+T28_PRECONSTRUCTION_FREEZE_PATH = "evaluations/t28/preconstruction_freeze.json"
+FREEZE_LOADER_ID = "t28_protocol.freeze:load_preconstruction_freeze"
+PROVISIONAL_FREEZE_BUILDER_ID = "t28_protocol.freeze:build_freeze:driver-provisional"
+SUPERSEDED_PRE_EXPOSURE_PATH = (
+    "evaluations/t28/preconstruction_freeze_superseded_pre_exposure.json")
+
 EXCLUDED = frozenset({
     "evaluations/t28/preconstruction_freeze.json",
-    "evaluations/t28/preconstruction_freeze_v1.json",
     "evaluations/t28/protocol_doctor_report.json",
     "evaluations/t28/T28_PRECONSTRUCTION_VERDICT.json",
+    # The remediation verdict carries the new freeze identity itself, so it
+    # can never be a frozen component (self-reference non-convergence).
+    "evaluations/t28/T28_REAL_ENTRYPOINT_FREEZE_PATH_REMEDIATION_VERDICT.json",
     "evaluations/t28/fresh_remote_reproduction.json",
 })
 
@@ -212,3 +223,104 @@ def verify_freeze(root: Path, frozen: dict) -> dict:
     return {"status": "PASS" if not mismatches else "FAIL",
             "mismatches": mismatches,
             **{key: computed[key] for key in keys}}
+
+
+def _recompute_freeze_identity(frozen: dict) -> list[str]:
+    """Recompute the frozen identity from the document itself.
+
+    Mirrors :func:`build_freeze` hashing exactly (component root over the
+    component entries, freeze root over the root-input fields, freeze
+    SHA-256 over the freeze document without its own SHA-256 field) so a
+    tampered document is refused with a named field before any repository
+    access.  Used by the canonical loader; repository-byte agreement is
+    then verified separately by :func:`verify_freeze`.
+    """
+    if not isinstance(frozen, dict):
+        return ["document"]
+    entries = frozen.get("components")
+    if (not isinstance(entries, list) or not entries
+            or not all(isinstance(entry, dict)
+                       and set(entry) == {"path", "sha256", "byte_size", "role"}
+                       and isinstance(entry["sha256"], str)
+                       and len(entry["sha256"]) == 64
+                       for entry in entries)):
+        return ["components"]
+    root_inputs, mismatches = {}, []
+    for key, value in frozen.items():
+        if key in ("component_count", "components", "freeze_root",
+                   "freeze_sha256"):
+            continue
+        root_inputs[key] = value
+    if not isinstance(frozen.get("component_count"), int) or (
+            frozen["component_count"] != len(entries)):
+        mismatches.append("component_count")
+    if sha256_json(entries) != frozen.get("component_root"):
+        mismatches.append("component_root")
+    if sha256_json(root_inputs) != frozen.get("freeze_root"):
+        mismatches.append("freeze_root")
+    if sha256_json({key: value for key, value in frozen.items()
+                    if key != "freeze_sha256"}) != frozen.get(
+            "freeze_sha256"):
+        mismatches.append("freeze_sha256")
+    return mismatches
+
+
+def load_preconstruction_freeze(root: Path) -> dict:
+    """Canonical T28 preconstruction freeze loader (authorization §8).
+
+    Reads only the canonical path, validates the schema/artifact identity
+    and component count, recomputes the component root, the freeze root,
+    and the freeze SHA-256, verifies the frozen byte identity against the
+    repository, and refuses the pinned authorization state if anything is
+    absent, stale, or tampered.  No `_v1` path is ever read; the historical
+    superseded record is never a loadable freeze.
+    """
+    root = Path(root).resolve()
+    path = root / T28_PRECONSTRUCTION_FREEZE_PATH
+    if not path.is_file():
+        raise ValueError("T28 canonical preconstruction freeze absent: "
+                         + T28_PRECONSTRUCTION_FREEZE_PATH)
+    try:
+        frozen = json.loads(path.read_text(encoding="utf-8"))
+    except ValueError as exc:
+        raise ValueError("T28 canonical preconstruction freeze malformed: "
+                         + str(exc)) from exc
+    if (not isinstance(frozen, dict)
+            or frozen.get("schema_version") != "t28-preconstruction-freeze-v1"
+            or frozen.get("artifact") != "T28_PRECONSTRUCTION_FREEZE"
+            or frozen.get("classification") != "PUBLIC_SAFE"
+            or frozen.get("experiment") != "t28"):
+        raise ValueError("T28 canonical preconstruction freeze schema invalid")
+    if (frozen.get("real_construction_authorized") is not False
+            or frozen.get("real_evaluation_authorized") is not False
+            or frozen.get("candidate_runtime_changes") != 0
+            or frozen.get("real_blind_rows") != 0
+            or frozen.get("real_gold_rows") != 0
+            or frozen.get("real_construction_attempts") != 0
+            or frozen.get("real_evaluation_attempts") != 0):
+        raise ValueError("T28 preconstruction freeze authorization state invalid")
+    if (frozen.get("candidate_commit") != PINNED_CANDIDATE_COMMIT
+            or frozen.get("candidate_tree") != PINNED_CANDIDATE_TREE
+            or frozen.get("runtime_root") != PINNED_RUNTIME_ROOT):
+        raise ValueError("T28 preconstruction freeze candidate identity "
+                         "deviates from the pinned successor candidate")
+    mismatches = _recompute_freeze_identity(frozen)
+    if mismatches:
+        raise ValueError("T28 preconstruction freeze identity recomputation "
+                         "mismatch: " + ",".join(sorted(set(mismatches))))
+    try:
+        verified = verify_freeze(root, frozen)
+    except Exception as exc:
+        raise ValueError("T28 canonical preconstruction freeze repository "
+                         "verification refused: " + type(exc).__name__) from exc
+    if verified["status"] != "PASS":
+        raise ValueError("T28 preconstruction freeze repository identity "
+                         "drift: " + ",".join(verified["mismatches"]))
+    if frozen["freeze_sha256"] != verified["freeze_sha256"]:
+        raise ValueError("T28 preconstruction freeze SHA-256 mismatch")
+    document = {key: value for key, value in frozen.items()
+                if key != "freeze_path"}
+    document["freeze_path"] = T28_PRECONSTRUCTION_FREEZE_PATH
+    document["canonical_freeze_loader"] = FREEZE_LOADER_ID
+    document["freeze_path_verified"] = True
+    return document
