@@ -1,0 +1,41 @@
+{
+  "artifact": "T29_PUBLIC_ROOT_CAUSE_REPRODUCTION",
+  "classification": "PUBLIC_SAFE",
+  "frozen_consumer": "t29_protocol.oracle:_scan_t28_access_journal",
+  "frozen_consumer_error_sha256": "036221265c248ec043fd5b599d20a39c366f675139c0556efbb004a567241528",
+  "frozen_consumer_refused_lifecycle_journal": true,
+  "frozen_t29_standin_has_replace_ledger": false,
+  "frozen_t29_standin_operations": [
+    "has",
+    "machine_only_blind_hash",
+    "write_once"
+  ],
+  "lifecycle_journal_records": 93,
+  "lifecycle_journal_sha256": "8c0d8e35198bb2c3276c7474c6723e5596cabc13e69350d7b243ef2c7ad0bf04",
+  "official_store_opened": false,
+  "private_rows_parsed": 0,
+  "producer": "t28_protocol.store:T28PrivateStore.replace_ledger",
+  "producer_replace_ledger_keys": [
+    "op",
+    "path",
+    "seq",
+    "state",
+    "store",
+    "timestamp"
+  ],
+  "rehearsal_gap": "REAL_STORE_LAYOUT_NOT_FULLY_REPRESENTED_BY_DISPOSABLE_STANDIN",
+  "reproduction_root": "c011e500985ad7b6d727f00d4ab35df4fc19aded4c12b080fbafae5aa5b5daf2",
+  "root_cause": "FROZEN_T28_ACCESS_JOURNAL_SCHEMA_COMPATIBILITY_DEFECT",
+  "schema_version": "t30-t29-journal-defect-reproduction-v1",
+  "status": "REPRODUCED_AND_REMEDIATED",
+  "t30_replace_ledger_state_sequence": [
+    "MATERIALIZED",
+    "AUDITED",
+    "GATE_PASS",
+    "MANIFESTED",
+    "SEALED"
+  ],
+  "t30_validator": "t30_protocol.oracle:_scan_t28_access_journal",
+  "t30_validator_accepts_lifecycle_journal": true,
+  "verdict": "T29_FROZEN_T28_ACCESS_JOURNAL_SCHEMA_DEFECT_REPRODUCED"
+}

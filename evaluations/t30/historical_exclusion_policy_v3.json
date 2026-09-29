@@ -1,0 +1,62 @@
+{
+  "artifact": "T28_AUTHENTICATED_HISTORICAL_EXCLUSION_POLICY",
+  "candidate_execution_on_historical_rows": false,
+  "classification": "PUBLIC_SAFE",
+  "combined_roots_required_before_ledger": [
+    "public_historical_index_root",
+    "T27_overlap_oracle_result_sha256",
+    "combined_historical_exclusion_root"
+  ],
+  "dimensions": [
+    "case_ids",
+    "entity_identities",
+    "source_ids",
+    "chunk_ids",
+    "exact_queries",
+    "exact_answers",
+    "exact_source_text",
+    "verbatim_attack_wording",
+    "relations"
+  ],
+  "historical_private_row_exposure_to_author": 0,
+  "overall_prohibited_overlap_required": 0,
+  "private_source_representation": "SEALED_HASH_BOUND_ORACLE_ONLY",
+  "public_history_builder": "t30_protocol.exclusion:build_authenticated_public_historical_index",
+  "public_history_schema": "t28-authenticated-public-historical-index-v1",
+  "real_empty_default_allowed": false,
+  "required_sources": [
+    "T21_T21R_HISTORICAL",
+    "T22_PROTECTED",
+    "T23_EXPOSED",
+    "T24_PRIVATE_EVALUATED",
+    "T25_PRIVATE_EVALUATED",
+    "T26_SEALED_EVALUATED",
+    "T27_SEALED_UNEVALUATED",
+    "T27_PUBLIC_QUALIFICATION",
+    "T27_DIAGNOSTICS",
+    "T27_PUBLIC_REPRODUCER",
+    "T27_SYNTHETIC_TERMINAL_MATRIX",
+    "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES",
+    "T29_PUBLIC_QUALIFICATION",
+    "T29_DIAGNOSTICS",
+    "T29_PUBLIC_REPRODUCER",
+    "T29_SYNTHETIC_TERMINAL_MATRIX",
+    "T29_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES",
+    "T30_PUBLIC_QUALIFICATION",
+    "T30_DIAGNOSTICS",
+    "T30_PUBLIC_REPRODUCER",
+    "T30_SYNTHETIC_TERMINAL_MATRIX",
+    "T30_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES"
+  ],
+  "schema_version": "t28-historical-exclusion-policy-v3",
+  "synthetic_real_schema_separation": true,
+  "t27_boundary": {
+    "implementation": "t27_protocol.t28_private_oracle:run_sealed_t27_to_t28_overlap_oracle",
+    "input_values": "SHA256_ONLY",
+    "official_commitments_exact": true,
+    "output_values": "COUNTS_AND_ROOTS_ONLY",
+    "private_rows_returned": 0,
+    "result_artifact": "T27_TO_T28_OVERLAP_ORACLE_RESULT",
+    "store_authenticated": true
+  }
+}

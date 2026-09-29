@@ -1,0 +1,33 @@
+{
+  "access_journal_sha256": "f28a38710a86294a405a5c4764fa0c4d547ad77828e88b3d22f8e82be4c4aaba",
+  "artifact": "T30_OFFICIAL_T28_JOURNAL_COMPATIBILITY",
+  "blind_bytes_read": 0,
+  "classification": "PUBLIC_SAFE",
+  "evaluation_artifacts_absent": true,
+  "evaluation_surface_operations": 0,
+  "fingerprints_derived": false,
+  "journal_record_count": 156,
+  "journal_unchanged_by_check": true,
+  "operation_counts": {
+    "has": 63,
+    "machine_only_blind_hash": 15,
+    "read_bytes": 43,
+    "read_json": 11,
+    "replace_ledger": 5,
+    "write_once": 19
+  },
+  "private_rows_exposed": 0,
+  "replace_ledger_count": 5,
+  "replace_ledger_state_sequence": [
+    "MATERIALIZED",
+    "AUDITED",
+    "GATE_PASS",
+    "MANIFESTED",
+    "SEALED"
+  ],
+  "schema_version": "t30-official-t28-journal-compatibility-v1",
+  "status": "PASS",
+  "store_identity": "T28-STORE-01",
+  "store_writes": 0,
+  "validator": "t30_protocol.oracle:_scan_t28_access_journal"
+}

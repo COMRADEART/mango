@@ -1,0 +1,34 @@
+{
+  "artifact": "T30_T29_PREDECESSOR_STATUS",
+  "candidate_unchanged": {
+    "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+    "candidate_runtime_changes": 0,
+    "candidate_tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+    "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d"
+  },
+  "capability_verdict": "NOT_MEASURED",
+  "classification": "PUBLIC_SAFE",
+  "construction_one_shot": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "construction_one_shot_physical_state": "UNSPENT",
+  "historical_rewrite_of_predecessor": false,
+  "real_construction_eligibility": "PERMANENTLY_INELIGIBLE",
+  "root_cause": "FROZEN_T28_ACCESS_JOURNAL_SCHEMA_COMPATIBILITY_DEFECT",
+  "schema_version": "t30-t29-predecessor-status-v1",
+  "sealed_holdout": false,
+  "t29_adjudication_path": "evaluations/t29/T29_REAL_CONSTRUCTION_ELIGIBILITY_ADJUDICATION.json",
+  "t29_adjudication_root": "5741c9aee288bd6c7b9737a204fda78d766ff2461fe8c57274bb4613d132db92",
+  "t29_construct_real_invocations": 0,
+  "t29_construction_ledger": "ABSENT",
+  "t29_construction_marker": "ABSENT",
+  "t29_package_reuse_forbidden": true,
+  "t29_preconstruction_freeze_sha256": "85d4f923249a9af41f796177df3ab6c0200a958b146e02b58a8c029cdda45158",
+  "t29_preconstruction_tip": "0e74648f58c59d8a05f425282942ae1009dfe58d",
+  "t29_protocol_repair_forbidden": true,
+  "t29_real_oracle_invocations": {
+    "t27": 0,
+    "t28": 0
+  },
+  "t29_refusal": "T29_REAL_CONSTRUCTION_REFUSED_FROZEN_T28_ORACLE_REJECTS_OFFICIAL_T28_ACCESS_JOURNAL",
+  "t29_terminal": "T29_REAL_PACKAGE_AUTHORED_BUT_CONSTRUCTION_PERMANENTLY_INELIGIBLE_DUE_TO_FROZEN_T28_ACCESS_JOURNAL_SCHEMA_DEFECT",
+  "t29_token_reuse_forbidden": "T29_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION"
+}

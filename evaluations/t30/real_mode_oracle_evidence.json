@@ -1,0 +1,26 @@
+{
+  "artifact": "T30_REAL_MODE_ORACLE_VALIDATION_REHEARSAL",
+  "candidate_executions": 0,
+  "classification": "PUBLIC_SAFE",
+  "dual_oracle_root": "c24f07a51bad505c3ce899835bdfe370e5e0da517eb3b17eeb5bac89df2d95d6",
+  "outside_boundary_private_rows_exposed": 0,
+  "overall_prohibited_overlap": 0,
+  "predecessor_oracle_root": "5cad71b6904b588126b82773267cca4ecccfffa9f69ea41a8f4a82ebe9e559d1",
+  "predecessors": [
+    "t27",
+    "t28"
+  ],
+  "prospective_root_exact": true,
+  "real_mode_not_synthetic": true,
+  "schema_version": "t30-real-mode-oracle-validation-rehearsal-v2",
+  "status": "PASS",
+  "t27_commitments_exact": true,
+  "t27_fingerprint_index_origin": "PRE_EXISTING_SEALED",
+  "t27_store_authenticated": true,
+  "t28_commitments_exact": true,
+  "t28_fingerprint_index_origin": "DERIVED_MACHINE_ONLY_FROM_SEALED_BLIND_BYTES",
+  "t28_store_authenticated": true,
+  "t29_abandoned_commitment_exact": true,
+  "t29_abandoned_package_authenticated": true,
+  "t29_abandoned_row_files_opened": 0
+}

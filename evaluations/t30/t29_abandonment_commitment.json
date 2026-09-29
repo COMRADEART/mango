@@ -1,0 +1,18 @@
+{
+  "artifact": "T30_T29_ABANDONMENT_COMMITMENT",
+  "capability_verdict": "NOT_MEASURED",
+  "classification": "PUBLIC_SAFE",
+  "commitment_root": "98a269e9eac0df68c7b33ac81a9b70ce58f35aea26411cbc632ed2d12aaeb20c",
+  "construction_one_shot": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "finalization_root": "9976a5acb9c1b3452551fe20eb68413bc34e23e72eceac89966ab7e0d81bd60b",
+  "gold_bundle_root": "18bbf6b00ff1dfc4d9c552703247e42863f6351347029605701bd2188eee8326",
+  "package_classification": "T29_ABANDONED_REAL_PACKAGE_INELIGIBLE_FOR_SUCCESSOR_USE",
+  "prospective_fingerprint_root": "8d4ade57a74b7ecf139ae4446f4706ab6775bd6a5b7157ff0b5e20f13bcdca60",
+  "reuse_permitted": false,
+  "row_data_included": false,
+  "scenario_bundle_root": "2e756beb4c0c8ab829a4a2f109794a522a233418271c8792708e840c427cd66e",
+  "schema_version": "t30-t29-abandonment-commitment-v1",
+  "source_adjudication": "evaluations/t29/T29_REAL_CONSTRUCTION_ELIGIBILITY_ADJUDICATION.json",
+  "source_adjudication_root": "5741c9aee288bd6c7b9737a204fda78d766ff2461fe8c57274bb4613d132db92",
+  "t29_terminal": "T29_REAL_PACKAGE_AUTHORED_BUT_CONSTRUCTION_PERMANENTLY_INELIGIBLE_DUE_TO_FROZEN_T28_ACCESS_JOURNAL_SCHEMA_DEFECT"
+}

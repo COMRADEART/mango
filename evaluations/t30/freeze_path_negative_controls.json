@@ -1,0 +1,78 @@
+{
+  "artifact": "T30_FREEZE_PATH_NEGATIVE_CONTROLS",
+  "canonical_freeze_path": "evaluations/t30/preconstruction_freeze.json",
+  "classification": "PUBLIC_SAFE",
+  "control_count": 6,
+  "controls": {
+    "missing_canonical_freeze": {
+      "construction_ledger_absent": true,
+      "construction_marker_absent": true,
+      "evidence": "ValueError:T30 canonical preconstruction freeze absent: evaluations/t30/preconstruction_freeze.json",
+      "marker_evidence": "absent",
+      "no_private_store_artifacts": true,
+      "one_shot": "UNSPENT",
+      "refused_pre_ledger": true,
+      "status": "PASS"
+    },
+    "tampered_candidate_identity": {
+      "construction_ledger_absent": true,
+      "construction_marker_absent": true,
+      "evidence": "ValueError:T30 preconstruction freeze candidate identity deviates from the pinned successor candidate",
+      "marker_evidence": "candidate identity",
+      "no_private_store_artifacts": true,
+      "one_shot": "UNSPENT",
+      "refused_pre_ledger": true,
+      "status": "PASS"
+    },
+    "tampered_component_count": {
+      "construction_ledger_absent": true,
+      "construction_marker_absent": true,
+      "evidence": "ValueError:T30 preconstruction freeze identity recomputation mismatch: component_count,freeze_sha256",
+      "marker_evidence": "component_count",
+      "no_private_store_artifacts": true,
+      "one_shot": "UNSPENT",
+      "refused_pre_ledger": true,
+      "status": "PASS"
+    },
+    "tampered_component_root": {
+      "construction_ledger_absent": true,
+      "construction_marker_absent": true,
+      "evidence": "ValueError:T30 preconstruction freeze identity recomputation mismatch: component_root,freeze_root,freeze_sha256",
+      "marker_evidence": "component_root",
+      "no_private_store_artifacts": true,
+      "one_shot": "UNSPENT",
+      "refused_pre_ledger": true,
+      "status": "PASS"
+    },
+    "tampered_freeze_root": {
+      "construction_ledger_absent": true,
+      "construction_marker_absent": true,
+      "evidence": "ValueError:T30 preconstruction freeze identity recomputation mismatch: freeze_root,freeze_sha256",
+      "marker_evidence": "freeze_root",
+      "no_private_store_artifacts": true,
+      "one_shot": "UNSPENT",
+      "refused_pre_ledger": true,
+      "status": "PASS"
+    },
+    "tampered_freeze_sha256": {
+      "construction_ledger_absent": true,
+      "construction_marker_absent": true,
+      "evidence": "ValueError:T30 preconstruction freeze identity recomputation mismatch: freeze_sha256",
+      "marker_evidence": "freeze_sha256",
+      "no_private_store_artifacts": true,
+      "one_shot": "UNSPENT",
+      "refused_pre_ledger": true,
+      "status": "PASS"
+    }
+  },
+  "forbidden_alias_paths_active": 0,
+  "one_shot": "UNSPENT",
+  "schema_version": "t30-freeze-path-negative-controls-v1",
+  "status": "PASS",
+  "t27_candidate_reruns": 0,
+  "t27_private_rows_read": 0,
+  "t30_construction_attempts": 0,
+  "t30_evaluation_attempts": 0,
+  "t30_real_blind_rows": 0,
+  "t30_real_gold": 0
+}

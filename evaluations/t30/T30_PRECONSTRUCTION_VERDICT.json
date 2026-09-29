@@ -1,0 +1,18 @@
+{
+  "absolute_stop": true,
+  "artifact": "T30_PRECONSTRUCTION_VERDICT",
+  "classification": "PUBLIC_SAFE",
+  "construction_authorized": false,
+  "evaluation_authorized": false,
+  "next_state": "T30_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+  "rehearsal_freeze_note": "construction/evaluation rehearsals bound the provisional freeze root; the canonical preconstruction freeze was recomputed after every artifact was staged and is the only root a real construction authorization consumes",
+  "schema_version": "t30-preconstruction-verdict-v1",
+  "status": "PASS",
+  "t27_token_binding": "T27_ONE_SHOT_OFFICIAL_EVALUATION UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "t28_token_binding": "T28_ONE_SHOT_OFFICIAL_EVALUATION UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "t29_terminal": "T29_REAL_PACKAGE_AUTHORED_BUT_CONSTRUCTION_PERMANENTLY_INELIGIBLE_DUE_TO_FROZEN_T28_ACCESS_JOURNAL_SCHEMA_DEFECT",
+  "t29_token_binding": "T29_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "t30_construction_one_shot": "UNSPENT",
+  "t30_evaluation_one_shot": "NOT_YET_AUTHORIZED",
+  "verdict": "T30_PRECONSTRUCTION_PASS"
+}

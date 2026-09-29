@@ -1,0 +1,12 @@
+{
+  "capability_status": "NOT_MEASURED",
+  "commitment_root": "d4c80c500f61d1434b655029020215129682e95ceeac307d43d87b6fa77b8e44",
+  "construction_attempt": 1,
+  "construction_state": "SEALED",
+  "evaluation_attempt": 0,
+  "evaluation_eligibility": "PERMANENTLY_NOT_AUTHORIZED_FOR_T27",
+  "evaluation_state": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "experiment": "t27",
+  "private_rows_read": 0,
+  "store_authenticated": true
+}

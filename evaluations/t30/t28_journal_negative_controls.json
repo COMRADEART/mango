@@ -1,0 +1,91 @@
+{
+  "artifact": "T30_T28_JOURNAL_NEGATIVE_CONTROLS",
+  "baseline_accepted": true,
+  "baseline_source": "FROZEN_T28_LIFECYCLE_DISPOSABLE_STANDIN",
+  "classification": "PUBLIC_SAFE",
+  "control_count": 16,
+  "controls": {
+    "evaluation_ledger_replacement": {
+      "error_sha256": "f977b7002c9e3804720be43765b5e1509cdb27a4aa7d53c7d166d85b108fbd63",
+      "refused": true,
+      "status": "PASS"
+    },
+    "foreign_store": {
+      "error_sha256": "0f5ddd691723d8726c21b8c4e77c68fabe985b7f86ac121785c1d1d981b2a34a",
+      "refused": true,
+      "status": "PASS"
+    },
+    "non_dense_journal_sequence": {
+      "error_sha256": "21a481f6403114164548665b449fc917f61e805d4a35edf8ed249f66be8d5f0a",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replace_ledger_before_genesis": {
+      "error_sha256": "788bce0f613ccc066c436c0a6f5c941837146c1bba2135baee1228a254aca6cf",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replace_ledger_duplicate_transition": {
+      "error_sha256": "8096577e94b705dbc111dc3c44d4fd8a8941237c906be95bd66834727516bcf1",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replace_ledger_extra_key": {
+      "error_sha256": "0b1264e8c534f1689d429d39d0018dc72e3e76a4e4d760260d276085a543101a",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replace_ledger_missing_final": {
+      "error_sha256": "7c512b6d259c5a295945ada6564fe672acda02952f61f39f3319cea5f245b052",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replace_ledger_missing_state": {
+      "error_sha256": "0b1264e8c534f1689d429d39d0018dc72e3e76a4e4d760260d276085a543101a",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replace_ledger_skipped_transition": {
+      "error_sha256": "493c22ea4f077ad15137514e11d1e41c12d0fa85d30706e27d98b75b50be174b",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replace_ledger_unknown_state": {
+      "error_sha256": "0a10c715c48a51195d89ba4ddabb6a56cd6ab51c16f051e469cc2c630c36565b",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replace_ledger_wrong_ordering": {
+      "error_sha256": "493c22ea4f077ad15137514e11d1e41c12d0fa85d30706e27d98b75b50be174b",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replace_ledger_wrong_path": {
+      "error_sha256": "f977b7002c9e3804720be43765b5e1509cdb27a4aa7d53c7d166d85b108fbd63",
+      "refused": true,
+      "status": "PASS"
+    },
+    "state_attached_to_has": {
+      "error_sha256": "93dd96be1a669c4f20436513f5263ee7efd19bfb18460609b329137c9ebb8587",
+      "refused": true,
+      "status": "PASS"
+    },
+    "state_attached_to_machine_only_blind_hash": {
+      "error_sha256": "078872ef3bfa5eeb071a06342a462181d0f32d95de4cfc60ef87e08332dfc612",
+      "refused": true,
+      "status": "PASS"
+    },
+    "state_attached_to_write_once": {
+      "error_sha256": "55092ababc9745a8ecf8fc6b08c87e59bc0755499e976e1eb8261df6e4074a1e",
+      "refused": true,
+      "status": "PASS"
+    },
+    "unknown_operation": {
+      "error_sha256": "47d7a9aa6bf56f34f51248b7f358eebca9edae4f433b8903c257c01d966dd654",
+      "refused": true,
+      "status": "PASS"
+    }
+  },
+  "schema_version": "t30-t28-journal-negative-controls-v1",
+  "status": "PASS"
+}

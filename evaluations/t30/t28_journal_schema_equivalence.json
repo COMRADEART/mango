@@ -1,0 +1,171 @@
+{
+  "SCHEMA_EQUIVALENT": true,
+  "artifact": "T30_T28_JOURNAL_SCHEMA_EQUIVALENCE",
+  "classification": "PUBLIC_SAFE",
+  "compared_properties": [
+    "operation_types",
+    "per_operation_key_sets",
+    "replace_ledger_count",
+    "replace_ledger_state_sequence",
+    "sanctioned_path_classes_conformant",
+    "evaluation_absence_semantics",
+    "blind_hash_semantics"
+  ],
+  "equivalence_root": "9ec469ece426af5219642cbb2b741c43c62c8b919a65eaf1762ecd3da3d7e23d",
+  "official_profile": {
+    "blind_hash_semantics": true,
+    "evaluation_absence_semantics": true,
+    "journal_evaluation_surface_operations": 0,
+    "operation_types": [
+      "has",
+      "machine_only_blind_hash",
+      "read_bytes",
+      "read_json",
+      "replace_ledger",
+      "write_once"
+    ],
+    "per_operation_key_sets": {
+      "has": [
+        "exists",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ],
+      "machine_only_blind_hash": [
+        "bytes",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ],
+      "read_bytes": [
+        "bytes",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ],
+      "read_json": [
+        "bytes",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ],
+      "replace_ledger": [
+        "op",
+        "path",
+        "seq",
+        "state",
+        "store",
+        "timestamp"
+      ],
+      "write_once": [
+        "bytes",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ]
+    },
+    "replace_ledger_count": 5,
+    "replace_ledger_state_sequence": [
+      "MATERIALIZED",
+      "AUDITED",
+      "GATE_PASS",
+      "MANIFESTED",
+      "SEALED"
+    ],
+    "sanctioned_path_classes_conformant": true
+  },
+  "private_row_values_included": false,
+  "property_matches": {
+    "blind_hash_semantics": true,
+    "evaluation_absence_semantics": true,
+    "operation_types": true,
+    "per_operation_key_sets": true,
+    "replace_ledger_count": true,
+    "replace_ledger_state_sequence": true,
+    "sanctioned_path_classes_conformant": true
+  },
+  "schema_version": "t30-t28-journal-schema-equivalence-v1",
+  "standin_profile": {
+    "blind_hash_semantics": true,
+    "evaluation_absence_semantics": true,
+    "journal_evaluation_surface_operations": 0,
+    "operation_types": [
+      "has",
+      "machine_only_blind_hash",
+      "read_bytes",
+      "read_json",
+      "replace_ledger",
+      "write_once"
+    ],
+    "per_operation_key_sets": {
+      "has": [
+        "exists",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ],
+      "machine_only_blind_hash": [
+        "bytes",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ],
+      "read_bytes": [
+        "bytes",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ],
+      "read_json": [
+        "bytes",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ],
+      "replace_ledger": [
+        "op",
+        "path",
+        "seq",
+        "state",
+        "store",
+        "timestamp"
+      ],
+      "write_once": [
+        "bytes",
+        "op",
+        "path",
+        "seq",
+        "store",
+        "timestamp"
+      ]
+    },
+    "replace_ledger_count": 5,
+    "replace_ledger_state_sequence": [
+      "MATERIALIZED",
+      "AUDITED",
+      "GATE_PASS",
+      "MANIFESTED",
+      "SEALED"
+    ],
+    "sanctioned_path_classes_conformant": true
+  },
+  "status": "PASS"
+}

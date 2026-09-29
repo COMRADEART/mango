@@ -1,0 +1,22 @@
+{
+  "artifact": "T30_T29_ABANDONMENT_ORACLE_REQUIREMENT",
+  "classification": "PUBLIC_SAFE",
+  "fail_closed_policy": "absent hash-only file, commitment mismatch, or nonzero overlap refuses T30 construction pre-ledger",
+  "forbidden_files": [
+    "cases.json",
+    "gold.json",
+    "author_seed.private.json"
+  ],
+  "invocation": "inside t30_protocol.construction:construct_real (live recomputation bound to the packaged result)",
+  "mechanism": "hash-only nine-dimension fingerprint file authenticated against the public one-way commitment; row files are never opened",
+  "oracle_implementation": "t30_protocol.abandonment:run_sealed_t29_abandoned_to_t30_overlap_oracle",
+  "readable_files": [
+    "fingerprints.json",
+    "finalization.json"
+  ],
+  "reason": "the abandoned T29 package is real clean-room material that never reached a sealed store; neither the T27/T28 sealed oracles nor the public historical index cover it",
+  "schema_version": "t30-t29-abandonment-oracle-requirement-v1",
+  "sealed_machine_only_abandonment_oracle_required": true,
+  "t29_package_reuse_forbidden": true,
+  "t30_real_material_must_be_newly_authored": true
+}

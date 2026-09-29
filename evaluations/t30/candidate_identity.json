@@ -1,0 +1,20 @@
+{
+  "artifact": "T30_CANDIDATE_IDENTITY",
+  "candidate_changed": false,
+  "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+  "candidate_runtime_changes": 0,
+  "candidate_runtime_changes_policy": "T30_INHERITS_T27_CANDIDATE_RUNTIME_UNCHANGED",
+  "candidate_tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+  "classification": "PUBLIC_SAFE",
+  "predecessor_adjudication_commit": "16314c515312e8da86f2b268d788f9aa6b0abd7f",
+  "predecessor_public_construction_commit": "f7ce9021693a9e62b216245fa33ad1f970cb9a23",
+  "runtime_component_count": 3,
+  "runtime_component_sha256": {
+    "src/sciencemath/integrated/__init__.py": "bc00d7d5a7e8f9aa0bbf5e8a045598420845d70720ddc2a9d61fa6304361dcaa",
+    "src/sciencemath/integrated/runner.py": "5a87e2a49076023da9747deb3d84d2c60da1eb599acaca436ca0cf46996d95b3",
+    "t27_protocol/production.py": "c88a2708c52dc3c94d4194d65174b24724ef4528c8dccae054c19374eda22c03"
+  },
+  "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d",
+  "runtime_root_matches_pinned_successor": true,
+  "schema_version": "t30-candidate-identity-v1"
+}

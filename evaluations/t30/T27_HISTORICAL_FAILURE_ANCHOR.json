@@ -1,0 +1,21 @@
+{
+  "adjudication_commit": "16314c515312e8da86f2b268d788f9aa6b0abd7f",
+  "artifact": "T27_HISTORICAL_FAILURE_ANCHOR",
+  "attempt": 1,
+  "classification": "PUBLIC_SAFE",
+  "construction_state": "SEALED",
+  "eligibility": "PERMANENTLY_NOT_AUTHORIZED_FOR_T27",
+  "evaluation_attempt": 0,
+  "frozen_official_evaluation_attempt": 0,
+  "frozen_official_evaluation_eligibility": "PERMANENTLY_NOT_AUTHORIZED_FOR_T27",
+  "frozen_official_evaluation_state": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "machine_only_blind_hashing_boundary": "T27 sealed artifacts are hashed as raw bytes only for any metadata authentication; rows parsed = 0, rows exposed = 0, content returned = 0",
+  "official_evaluation_state": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "private_artifact_contents_included": false,
+  "public_construction_commit": "f7ce9021693a9e62b216245fa33ad1f970cb9a23",
+  "raw_rows_included": false,
+  "schema_version": "t30-t27-historical-failure-anchor-v1",
+  "t27_one_shot_reuse": "FORBIDDEN_PRESERVE_UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "t28_token_binding": "T28_ONE_SHOT_OFFICIAL_EVALUATION is superseded by UNSPENT_BUT_PERMANENTLY_INELIGIBLE and is never reused",
+  "verdict": "T27_SEALED_VALID_BUT_OFFICIAL_BLIND_EVALUATION_INELIGIBLE_DUE_TO_FROZEN_EVALUATION_PROTOCOL_DEFECT"
+}
