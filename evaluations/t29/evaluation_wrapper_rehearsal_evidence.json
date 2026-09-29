@@ -1,0 +1,83 @@
+{
+  "artifact": "T29_DISPOSABLE_EVALUATION_REHEARSALS",
+  "classification": "PUBLIC_SAFE",
+  "official_real_evaluator_invocations": 0,
+  "public_leak_preflight": {
+    "blind_blob_count": 0,
+    "public_leak_scan_root": "a8ee152d73abf7bbc69758bf264b64ad049aa00a7b4823454adc78128e22265a",
+    "status": "PASS"
+  },
+  "real_blind_rows": 0,
+  "real_evaluation_attempts": 0,
+  "real_gold_rows": 0,
+  "runs": [
+    {
+      "denominators_nonzero": true,
+      "designated_counts": {
+        "handoff_cases": 512,
+        "recoverable_cases": 128,
+        "replan_required_cases": 128,
+        "safe_abstention_cases": 128,
+        "successful_completion_cases": 384,
+        "verification_cases": 2176
+      },
+      "fail_nonvacuity_policy": true,
+      "fixture_count": 0,
+      "gold_firewall_projected_rows": 512,
+      "mode": "REAL_REHEARSAL",
+      "ordering_binding_precedes_blind_reads": true,
+      "ordering_blind_inputs_before_gold": true,
+      "ordering_reads_before_workspace": true,
+      "ordering_strictly_increasing": true,
+      "ordering_workspace_precedes_candidate_execution": true,
+      "post_ledger_store_verified": true,
+      "scenario_count": 512,
+      "semantic_signature": "2eb3a4b7d25348941e2c93ed42385985e2e6f617dc53175250980c6616ce965f",
+      "state_sequence": [
+        "STARTED",
+        "EXECUTED",
+        "SCORED",
+        "COMPLETE"
+      ],
+      "status": "PASS",
+      "variant": 1,
+      "wrapper_qualified_id": "t29_protocol.evaluation:evaluate_official"
+    },
+    {
+      "denominators_nonzero": true,
+      "designated_counts": {
+        "handoff_cases": 512,
+        "recoverable_cases": 128,
+        "replan_required_cases": 128,
+        "safe_abstention_cases": 128,
+        "successful_completion_cases": 384,
+        "verification_cases": 2176
+      },
+      "fail_nonvacuity_policy": true,
+      "fixture_count": 1,
+      "gold_firewall_projected_rows": 512,
+      "mode": "REAL_REHEARSAL",
+      "ordering_binding_precedes_blind_reads": true,
+      "ordering_blind_inputs_before_gold": true,
+      "ordering_reads_before_workspace": true,
+      "ordering_strictly_increasing": true,
+      "ordering_workspace_precedes_candidate_execution": true,
+      "post_ledger_store_verified": true,
+      "scenario_count": 512,
+      "semantic_signature": "2eb3a4b7d25348941e2c93ed42385985e2e6f617dc53175250980c6616ce965f",
+      "state_sequence": [
+        "STARTED",
+        "EXECUTED",
+        "SCORED",
+        "COMPLETE"
+      ],
+      "status": "PASS",
+      "variant": 2,
+      "wrapper_qualified_id": "t29_protocol.evaluation:evaluate_official"
+    }
+  ],
+  "schema_version": "t29-evaluation-rehearsals-v2",
+  "semantic_equivalence": true,
+  "status": "PASS",
+  "wrapper_invocations_on_disposable_standins": 2
+}

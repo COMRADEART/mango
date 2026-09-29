@@ -1,0 +1,23 @@
+{
+  "artifact": "T29_NONVACUITY_POLICY",
+  "classification": "PUBLIC_SAFE",
+  "frozen_before_real_construction": true,
+  "qualification_requirements": {
+    "handoff_cases": 1,
+    "recoverable_cases": 1,
+    "replan_required_cases": 1,
+    "safe_abstention_cases": 1,
+    "successful_completion_cases": 1,
+    "verification_cases": 1
+  },
+  "rate_policy": "FAIL_NONVACUITY",
+  "requirements": {
+    "handoff_cases": 128,
+    "recoverable_cases": 32,
+    "replan_required_cases": 32,
+    "safe_abstention_cases": 32,
+    "successful_completion_cases": 96,
+    "verification_cases": 512
+  },
+  "schema_version": "t29-nonvacuity-policy-v1"
+}

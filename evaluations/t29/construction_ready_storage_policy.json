@@ -1,0 +1,33 @@
+{
+  "artifact": "T29_CONSTRUCTION_READY_PRIVATE_STORAGE_POLICY",
+  "classification": "PUBLIC_SAFE",
+  "construction_ledger_required_for_real": true,
+  "construction_one_shot_required": true,
+  "evaluation_ledger_required_for_official": true,
+  "historical_policy_rewritten": false,
+  "holdout_seal_required": true,
+  "ledger_before_blind_material": true,
+  "locator_scheme": "t29-private://",
+  "namespace": "t29",
+  "physical_storage_forbidden": [
+    "repository",
+    "git_worktrees",
+    "git_history",
+    "github",
+    "public_github_actions_artifacts",
+    "public_object_storage",
+    "public_indexing"
+  ],
+  "private_fixture_optionality": {
+    "allowed": true,
+    "every_present_fixture_manifested": true,
+    "zero_fixtures_allowed": true
+  },
+  "private_manifest_required": true,
+  "public_git_blind_blob_count_required": 0,
+  "real_blind_content_publication_allowed": false,
+  "schema_version": "t29-storage-policy-v2",
+  "store_id": "T29-STORE-01",
+  "store_verification_required": true,
+  "supersedes_prospectively": "t29-storage-policy-v1"
+}

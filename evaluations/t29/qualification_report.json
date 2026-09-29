@@ -1,0 +1,179 @@
+{
+  "schema_version": "t29-public-qualification-v1",
+  "artifact": "T29_PUBLIC_QUALIFICATION_REPORT",
+  "classification": "PUBLIC_SAFE",
+  "status": "PASS",
+  "material": "NEW_PUBLIC_SYNTHETIC_PERMANENTLY_EXCLUDED",
+  "family_count": 16,
+  "cases_per_family": 4,
+  "scenario_count": 64,
+  "terminal_distribution": {
+    "BLOCKED": 4,
+    "BUDGET_EXHAUSTED": 0,
+    "COMPLETE": 48,
+    "ERROR": 0,
+    "INSUFFICIENT_EVIDENCE": 4,
+    "PARTIAL": 0,
+    "SECURITY_REFUSAL": 4,
+    "UNAVAILABLE_CAPABILITY": 4
+  },
+  "replan_trigger_counts": {
+    "UNAVAILABLE_CAPABILITY": 3,
+    "VERIFICATION_FAILURE": 3,
+    "RETRIEVAL_CONFLICT": 3,
+    "RECOVERABLE_ERROR": 3,
+    "BUDGET_CHANGE": 2,
+    "MISSING_EVIDENCE": 2
+  },
+  "multi_step_matrix": {
+    "3": 16,
+    "4": 16,
+    "5": 16,
+    "6": 16
+  },
+  "capability_call_counts": {
+    "GENERAL": 59,
+    "MATH_T4": 59,
+    "SCIENCE_RAG": 32,
+    "SCICOMP": 46,
+    "CODE": 15,
+    "WEB_RESEARCH": 14,
+    "DOCUMENT": 27,
+    "MEMORY": 10,
+    "PLANNING": 8,
+    "NO_TOOL": 16,
+    "ORCHESTRATION": 6,
+    "KNOWLEDGE_RAG": 28
+  },
+  "score": {
+    "schema_version": "t29-score-v1",
+    "artifact": "T29_AGGREGATE_SCORE",
+    "status": "PASS",
+    "scenario_count": 64,
+    "metrics": {
+      "scenario_completion_rate": {
+        "numerator": 48,
+        "denominator": 64,
+        "observed": 0.75,
+        "floor": 0.7,
+        "denominator_definition": "all scenarios",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "verified_completion_rate": {
+        "numerator": 48,
+        "denominator": 48,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "designated successful-completion scenarios",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "terminal_correctness_rate": {
+        "numerator": 64,
+        "denominator": 64,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "all scenarios",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "plan_validity_rate": {
+        "numerator": 64,
+        "denominator": 64,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "all scenarios",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "plan_execution_adherence": {
+        "numerator": 272,
+        "denominator": 272,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "steps expected to verify before the designated terminal",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "capability_selection_accuracy": {
+        "numerator": 320,
+        "denominator": 320,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "all capability calls",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "handoff_validity_rate": {
+        "numerator": 224,
+        "denominator": 224,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "all produced handoffs",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "verification_success_rate": {
+        "numerator": 272,
+        "denominator": 272,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "steps expected to verify before the designated terminal",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "recovery_success_rate": {
+        "numerator": 16,
+        "denominator": 16,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "designated recoverable scenarios",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "replan_correctness_rate": {
+        "numerator": 16,
+        "denominator": 16,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "designated replan-required scenarios",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      },
+      "safe_abstention_accuracy": {
+        "numerator": 16,
+        "denominator": 16,
+        "observed": 1.0,
+        "floor": 1.0,
+        "denominator_definition": "designated safe-abstention scenarios",
+        "zero_denominator_policy": "FAIL_NONVACUITY",
+        "pass": true
+      }
+    },
+    "critical_counters": {
+      "authority_violation_events": 0,
+      "external_side_effect_events": 0,
+      "gold_signal_leakage_events": 0,
+      "memory_scope_violation_events": 0,
+      "provenance_loss_events": 0,
+      "schema_bypass_events": 0,
+      "unbounded_retry_events": 0,
+      "unverified_completion_events": 0,
+      "invalid_terminal_transition_events": 0
+    },
+    "designated_counts": {
+      "successful_completion_cases": 48,
+      "recoverable_cases": 16,
+      "replan_required_cases": 16,
+      "safe_abstention_cases": 16,
+      "handoff_cases": 64,
+      "verification_cases": 272
+    },
+    "zero_denominator_policy": "FAIL_NONVACUITY"
+  },
+  "raw_rows_included": false,
+  "scenario_bodies_included": false,
+  "t27_private_rows_opened": 0,
+  "t27_candidate_reruns": 0
+}

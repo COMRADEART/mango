@@ -1,0 +1,23 @@
+{
+  "allowed_public_classes": [
+    "PROTOCOL",
+    "SCHEMA",
+    "HASH",
+    "ROOT",
+    "AGGREGATE",
+    "PUBLIC_SAFE_QUALIFICATION"
+  ],
+  "artifact": "T29_PRIVATE_STORAGE_POLICY",
+  "classification": "PUBLIC_SAFE",
+  "construction_ledger_required_now": false,
+  "evaluation_ledger_required_now": false,
+  "ledger_before_blind_material": true,
+  "locator_scheme": "t29-private://",
+  "namespace": "t29",
+  "public_git_blind_blob_count_required": 0,
+  "real_blind_content_publication_allowed": false,
+  "real_construction_attempts": 0,
+  "real_evaluation_attempts": 0,
+  "schema_version": "t29-storage-policy-v1",
+  "store_id": "T29-STORE-01"
+}

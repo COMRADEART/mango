@@ -1,0 +1,72 @@
+{
+  "construction_ledger_chain_invalid": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "construction_ledger_started_event_hash_mismatch": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "construction_ledger_state_not_sealed": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "disposable_standin_using_legacy_path": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "legacy_rehearsal_marker_path_only": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "marker_byte_count_mismatch": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "marker_commitment_hash_mismatch": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "marker_missing_from_manifest": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "official_marker_absent": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "official_marker_unspent": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "official_marker_wrong_artifact": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "official_marker_wrong_bindings": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "official_marker_wrong_genesis_hash": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  },
+  "official_marker_wrong_schema": {
+    "evidence": "sealed-marker-layout:ValueError",
+    "refused": true,
+    "status": "PASS"
+  }
+}

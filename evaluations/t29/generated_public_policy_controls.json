@@ -1,0 +1,87 @@
+{
+  "dimension_policy_root_tampered": {
+    "evidence": "policy-root-mismatch",
+    "refused": true,
+    "status": "PASS"
+  },
+  "identity_case_ids_marked_structural": {
+    "evidence": "identity-marked-structural:case_ids",
+    "refused": true,
+    "status": "PASS"
+  },
+  "identity_chunk_ids_marked_structural": {
+    "evidence": "identity-marked-structural:chunk_ids",
+    "refused": true,
+    "status": "PASS"
+  },
+  "identity_exact_answers_marked_structural": {
+    "evidence": "identity-marked-structural:exact_answers",
+    "refused": true,
+    "status": "PASS"
+  },
+  "identity_exact_queries_marked_structural": {
+    "evidence": "identity-marked-structural:exact_queries",
+    "refused": true,
+    "status": "PASS"
+  },
+  "identity_exact_source_text_marked_structural": {
+    "evidence": "identity-marked-structural:exact_source_text",
+    "refused": true,
+    "status": "PASS"
+  },
+  "reuse_case_ids_detected": {
+    "evidence": "genuine-reuse-detected:case_ids",
+    "refused": true,
+    "status": "PASS"
+  },
+  "reuse_chunk_ids_detected": {
+    "evidence": "genuine-reuse-detected:chunk_ids",
+    "refused": true,
+    "status": "PASS"
+  },
+  "reuse_exact_answers_detected": {
+    "evidence": "genuine-reuse-detected:exact_answers",
+    "refused": true,
+    "status": "PASS"
+  },
+  "reuse_exact_queries_detected": {
+    "evidence": "genuine-reuse-detected:exact_queries",
+    "refused": true,
+    "status": "PASS"
+  },
+  "reuse_exact_source_text_detected": {
+    "evidence": "genuine-reuse-detected:exact_source_text",
+    "refused": true,
+    "status": "PASS"
+  },
+  "source_policy_root_tampered": {
+    "evidence": "source-policy-mismatch",
+    "refused": true,
+    "status": "PASS"
+  },
+  "structural_entity_identities_populated": {
+    "evidence": "structural-populated:entity_identities",
+    "refused": true,
+    "status": "PASS"
+  },
+  "structural_relations_populated": {
+    "evidence": "structural-populated:relations",
+    "refused": true,
+    "status": "PASS"
+  },
+  "structural_source_ids_populated": {
+    "evidence": "structural-populated:source_ids",
+    "refused": true,
+    "status": "PASS"
+  },
+  "structural_verbatim_attack_wording_populated": {
+    "evidence": "structural-populated:verbatim_attack_wording",
+    "refused": true,
+    "status": "PASS"
+  },
+  "unknown_structural_dimension": {
+    "evidence": "unknown-dimension-in-policy",
+    "refused": true,
+    "status": "PASS"
+  }
+}

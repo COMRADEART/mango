@@ -1,0 +1,61 @@
+{
+  "artifact": "T29_EVALUATION_PRELEDGER_REFUSAL_CONTROLS",
+  "blind_rows_parsed": 0,
+  "classification": "PUBLIC_SAFE",
+  "evaluation_ledger_absent_in_every_scenario": true,
+  "one_shot": "UNSPENT",
+  "scenarios": [
+    {
+      "blind_rows_parsed": 0,
+      "evaluation_ledger_absent": true,
+      "evaluation_marker_absent": true,
+      "evaluation_one_shot": "UNSPENT",
+      "passed": true,
+      "refusal_phase": "historical_anchor_preflight",
+      "refused": true,
+      "scenario": "historical_anchor_schema_invalid"
+    },
+    {
+      "blind_rows_parsed": 0,
+      "evaluation_ledger_absent": true,
+      "evaluation_marker_absent": true,
+      "evaluation_one_shot": "UNSPENT",
+      "passed": true,
+      "refusal_phase": "sealed_store_preflight",
+      "refused": true,
+      "scenario": "store_verification_failure"
+    },
+    {
+      "blind_rows_parsed": 0,
+      "evaluation_ledger_absent": true,
+      "evaluation_marker_absent": true,
+      "evaluation_one_shot": "UNSPENT",
+      "passed": true,
+      "refusal_phase": "public_leak_preflight",
+      "refused": true,
+      "scenario": "public_leak"
+    },
+    {
+      "blind_rows_parsed": 0,
+      "evaluation_ledger_absent": true,
+      "evaluation_marker_absent": true,
+      "evaluation_one_shot": "UNSPENT",
+      "passed": true,
+      "refusal_phase": "model_hydration_preflight",
+      "refused": true,
+      "scenario": "model_hydration_failure"
+    },
+    {
+      "blind_rows_parsed": 0,
+      "evaluation_ledger_absent": true,
+      "evaluation_marker_absent": true,
+      "evaluation_one_shot": "UNSPENT",
+      "passed": true,
+      "refusal_phase": "environment_construction",
+      "refused": true,
+      "scenario": "environment_mismatch"
+    }
+  ],
+  "schema_version": "t29-evaluation-preledger-refusals-v1",
+  "status": "PASS"
+}

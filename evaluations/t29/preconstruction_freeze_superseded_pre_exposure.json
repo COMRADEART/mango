@@ -1,0 +1,28 @@
+{
+  "artifact": "T29_PRECONSTRUCTION_FREEZE_SUPERSEDED_PRE_EXPOSURE",
+  "candidate_unchanged": {
+    "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+    "candidate_runtime_changes": 0,
+    "candidate_tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+    "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d"
+  },
+  "classification": "SUPERSEDED_PRE_EXPOSURE",
+  "historical_rewrite_of_predecessor": false,
+  "real_exposure": 0,
+  "record_name": "T29_PRECONSTRUCTION_FREEZE_V1_SUPERSEDED_PRE_EXPOSURE",
+  "schema_version": "t29-freeze-supersession-record-v1",
+  "successor": "T29_PRECONSTRUCTION_FREEZE",
+  "superseded_at_authorization_commit": "b9ffbbb508ded09696d9e9f0edb51c70ffc1e245",
+  "superseded_freeze": {
+    "artifact": "T29_PRECONSTRUCTION_FREEZE",
+    "component_count": 262,
+    "component_root": "c413a58598d811eee81ada1afcd5470c18579c507576908d8d067ee9f4780bc7",
+    "freeze_root": "fbb7d58b0034128d35a2730cc54b1049a50111291f1a0aec9d7a3060ac708965",
+    "freeze_sha256": "06b01fe5eab5383fc0b3a785c0030af7b945f829ee005c3dfccb2d61b3f72e99",
+    "path": "evaluations/t29/preconstruction_freeze.json",
+    "real_construction_authorized": false,
+    "real_evaluation_authorized": false
+  },
+  "supersession_detail": "the corrected construct_real entrypoint now loads the canonical preconstruction freeze through the shared loader at the single canonical path constant; the historical freeze identity below was verified exact and is preserved here; no alias path was created",
+  "supersession_reason": "REAL_CONSTRUCTION_ENTRYPOINT_REFERENCED_NONEXISTENT_FREEZE_PATH"
+}
