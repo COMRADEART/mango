@@ -4,13 +4,14 @@
   "deselections": 0,
   "historical_frozen_identity_tests": "INAPPLICABLE_TO_AUTHORIZED_SUCCESSOR_BYTE_CHANGES",
   "live_failures": 0,
-  "passed": 32,
+  "passed": 42,
   "schema_version": "t30-test-gate-v1",
   "status": "PASS",
   "test_files": [
-    "C:/Users/allam/Documents/new/model/.wt-t30-preconstruction/tests/test_t30_preconstruction.py"
+    "C:/Users/allam/Documents/new/model/.wt-t30-preconstruction/tests/test_t30_preconstruction.py",
+    "C:/Users/allam/Documents/new/model/.wt-t30-preconstruction/tests/test_t30_recovery_control.py"
   ],
-  "tests": 32,
+  "tests": 42,
   "unexplained_skips": 0,
   "unknown_failures": 0,
   "xfails": 0

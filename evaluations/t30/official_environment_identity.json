@@ -1,9 +1,9 @@
 {
   "artifact": "T30_OFFICIAL_ENVIRONMENT_IDENTITY",
   "classification": "PUBLIC_SAFE",
-  "environment_root": "cbcc3ca716126db23316bb6c46b4e66945e01c9af2052c2a41b1689a666746c3",
+  "environment_root": "1bfec912530a0c0d1251407797496da4e33cef4d5dd756d212be0e6f080426e0",
   "experiment": "t30",
   "live_provider_identity_root": "775a79daa101aa541bf608492d337e753b237e3d24fa4064cd1bf0b45c5738a9",
-  "rehearsal_environment_root": "d828e65566e1985a7b2781eeff18a8323b772050675425d2734bfe07a9e0b7d1",
+  "rehearsal_environment_root": "d7cedc668da6219f6262e05a2adea1cf4dea502b5ebb40b6d4787eed933f171e",
   "schema_version": "t30-official-environment-identity-v1"
 }

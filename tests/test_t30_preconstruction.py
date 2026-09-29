@@ -238,12 +238,15 @@ def test_store_guard_and_disposable_materialization():
         descriptors = materialize_private(
             disposable, [{"a": 1}], [{"b": 2}], [fixture],
             {"status": "PASS"}, {"author_id": "SYNTHETIC"},
-            {"status": "PASS"}, {"status": "PASS"})
+            {"status": "PASS"}, {"status": "PASS"}, {"entries": []})
         assert descriptors
         assert disposable.path("blind/inputs.json").is_file()
         assert disposable.path("blind/gold.json").is_file()
+        assert disposable.path("control/recovery_control.json").is_file()
         with pytest.raises(Exception):
             disposable.read_json("blind/gold.json")
+        with pytest.raises(Exception):
+            disposable.read_bytes("control/recovery_control.json")
 
 
 def test_evaluation_ledger_token_refused_and_absence_preflight():
@@ -289,7 +292,11 @@ def test_verification_matrix_pass():
 
 def test_construction_readiness_items_frozen():
     from t30_protocol.evaluation import EVALUATION_STATES
-    assert len(EVALUATION_READINESS_ITEMS) == 12
+    from t30_protocol.evaluation import T30_RECOVERY_CONTRACT_LEAVES
+    assert len(EVALUATION_READINESS_ITEMS) == 12 + 7
+    assert "production_stack_recovery_32_pass" in EVALUATION_READINESS_ITEMS
+    assert "control_read_postledger" in EVALUATION_READINESS_ITEMS
+    assert len(T30_RECOVERY_CONTRACT_LEAVES) == 16
     assert "production_environment_pass" in EVALUATION_READINESS_ITEMS
     assert "model_hydration_pass" in EVALUATION_READINESS_ITEMS
     assert sorted(EVALUATION_STATES) == [
@@ -400,12 +407,15 @@ def test_real_entrypoint_contract_and_gate_leaves():
                                            CONTRACT_LEAF_IDS)
     assert "protocol.canonical_freeze_path_exact" in CONTRACT_LEAF_IDS
     assert "protocol.real_entrypoint_freeze_reproduces" in CONTRACT_LEAF_IDS
-    assert len(CONTRACT_LEAF_IDS) == 69
+    assert len(CONTRACT_LEAF_IDS) == 69 + 9
+    assert "recovery.control_gold_designation_derived" in CONTRACT_LEAF_IDS
     assert "exclusion.t29_abandoned_package_excluded" in CONTRACT_LEAF_IDS
     assert "oracle.live_authentication_bound" in CONTRACT_LEAF_IDS
     assert "G53_REAL_ENTRYPOINT_CANONICAL_FREEZE_PATH" in CONSTRUCTION_GATE_IDS
     assert "G54_REAL_ENTRYPOINT_FREEZE_REPRODUCTION" in CONSTRUCTION_GATE_IDS
-    assert len(CONSTRUCTION_GATE_IDS) == 63
+    assert len(CONSTRUCTION_GATE_IDS) == 63 + 6
+    assert "G63_RECOVERY_SCHEDULE_GOLD_CAUSAL_ORDER" in CONSTRUCTION_GATE_IDS
+    assert "G64_ADAPTER_IMPLEMENTATION_IDENTITY_EXACT" in CONSTRUCTION_GATE_IDS
     assert "G56_ACTUAL_T28_JOURNAL_POSITIVE_CONTROL" in CONSTRUCTION_GATE_IDS
     assert "G57_DISPOSABLE_T28_JOURNAL_EQUIVALENCE" in CONSTRUCTION_GATE_IDS
 

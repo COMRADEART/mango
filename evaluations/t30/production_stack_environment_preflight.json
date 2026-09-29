@@ -2,14 +2,14 @@
   "artifact": "T30_PRODUCTION_STACK_ENVIRONMENT_PREFLIGHT",
   "binding": {
     "environment_builder_id": "t30_protocol.official_environment:build_official_evaluation_environment",
-    "environment_root": "cbcc3ca716126db23316bb6c46b4e66945e01c9af2052c2a41b1689a666746c3",
+    "environment_root": "1bfec912530a0c0d1251407797496da4e33cef4d5dd756d212be0e6f080426e0",
     "general_context_identity_root": "d037cd9aa18830a98d3c2bce284c4239f2381cf6cce20c124183b0a4b8cfd3e6",
     "live_or_fixture": "live",
     "live_provider_identity_root": "775a79daa101aa541bf608492d337e753b237e3d24fa4064cd1bf0b45c5738a9",
     "live_provider_name": "WIKIPEDIA_LIVE",
     "network_required": true,
     "official_runner_factory_id": "T30_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
-    "official_runner_identity_root": "9d61db2c83e2a86fe34d4e0fe87a98aeb9557aed88dc8ee0a81acebd254678ae",
+    "official_runner_identity_root": "5d6085c77f557f06ff90a61abce25549612f2c81fcd214731d6a6cc1527d0f3f",
     "official_runner_policy_root": "4403572457b140da6eca92ddc9f68638e4629c8ba6f6d6830741ff5756f62562",
     "policy": {
       "caller_supplied_runner_allowed": false,
@@ -21,7 +21,7 @@
   "candidate_executions": 0,
   "checkpoints_written": 0,
   "classification": "PUBLIC_SAFE",
-  "environment_root": "cbcc3ca716126db23316bb6c46b4e66945e01c9af2052c2a41b1689a666746c3",
+  "environment_root": "1bfec912530a0c0d1251407797496da4e33cef4d5dd756d212be0e6f080426e0",
   "general_context_identity_root": "d037cd9aa18830a98d3c2bce284c4239f2381cf6cce20c124183b0a4b8cfd3e6",
   "hydration_preflight": {
     "adapter_bytes": 139512976,
@@ -51,6 +51,7 @@
   "runner_count": 0,
   "schema_version": "t30-production-stack-environment-preflight-v1",
   "stack_attestation": {
+    "adapter_builder_actual": "t30_protocol.production:build_adapters",
     "adapter_substitute_source": "t30_protocol.production:build_adapters",
     "candidate_gold_access": false,
     "corpus_source": "FROZEN_PUBLIC",
@@ -67,6 +68,8 @@
     "provider_id": "t25_protocol.provider:T25ProductionRouterProvider",
     "provider_kind": "REAL_CANDIDATE",
     "provider_synthetic": false,
+    "recovery_control_policy_root": "42c069292c19d26ac24f3cb2b4d3e80c632ef7a3fe8621d1416d4d98bab570c9",
+    "recovery_control_wrapper": "t30_protocol.recovery_control:wrap_production_adapters",
     "t26_firewall_used": true,
     "workspace_mode": "T30_OFFICIAL_EVALUATION"
   },

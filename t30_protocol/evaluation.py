@@ -30,7 +30,7 @@ from .construction import (T30ConstructionLedger, _event, _fixed_clock_factory,
                            candidate_input_projection, construct_once,
                            manifest_roots, required_bindings,
                            run_publication_leak_gate, synthetic_oracle_result,
-                           synthetic_private_bundle,
+                           synthetic_private_bundle, synthetic_recovery_control,
                            synthetic_historical_evidence, verify_event_chain)
 from .contract import CONSTRUCTION_TOKEN, CRITICAL_COUNTERS, EVALUATION_TOKEN
 from .freeze import (PINNED_CANDIDATE_COMMIT, PINNED_CANDIDATE_TREE,
@@ -40,6 +40,12 @@ from .official_environment import (FACTORY_CLASS, FACTORY_ID, IDENTITY_PATH,
                                    WORKSPACE_MODE,
                                    build_official_evaluation_environment,
                                    stage_environment_identity)
+from .recovery_control import (
+    CONTROL_PATH as RECOVERY_CONTROL_PATH,
+    POLICY_ROOT as RECOVERY_CONTROL_POLICY_ROOT,
+    SCHEMA_VERSION as RECOVERY_CONTROL_SCHEMA, aggregate_audits,
+    candidate_control_exposure, check_designation_consistency,
+    validate_control_shape, validate_recovery_control)
 from .scorer import score_suite
 from .store import NAMESPACE, STORE_ID, T30PrivateStore
 
@@ -55,6 +61,7 @@ EVALUATION_ABSENCE_PATHS = (
     "evaluation/ledger.json", "markers/evaluation.one-shot",
     "evaluation/raw_outputs.json", "evaluation/scored_rows.json",
     "evaluation/summary.json", "evaluation/events",
+    "evaluation/recovery_control_audit.json",
 )
 REAL_BLIND_SCENARIOS = 512
 REAL_BLIND_GOLD = 512
@@ -79,6 +86,10 @@ EVALUATION_BINDING_FIELDS = frozenset({
     "general_context_identity_root", "corpus_root",
     "document_mount_policy_root", "environment_root",
     "public_leak_scan_root", "store_verification_root", "authority",
+    # Recovery-reachability remediation (§23): bound pre-ledger from the
+    # sealed commitments only; the control content is parsed after STARTED.
+    "recovery_control_sha256", "recovery_control_schema",
+    "recovery_control_population", "recovery_control_policy_root",
     "timestamp", "state",
 })
 
@@ -99,6 +110,7 @@ def evaluation_ordering_proof(store: T30PrivateStore) -> dict[str, Any]:
 
     bind = next((record["seq"] for record in records
                  if record.get("op") == "bind_ledger"), None)
+    first_control = first_seq(RECOVERY_CONTROL_PATH)
     first_inputs = first_seq("blind/inputs.json")
     first_gold = first_seq("blind/gold.json")
     first_workspace = next((record["seq"] for record in records
@@ -108,12 +120,14 @@ def evaluation_ordering_proof(store: T30PrivateStore) -> dict[str, Any]:
                            None)
     preledger = [record for record in records
                  if "pre_ledger" in str(record.get("op", ""))]
-    chain = (bind, first_inputs, first_gold, first_workspace, first_execution)
+    chain = (bind, first_control, first_inputs, first_gold, first_workspace,
+             first_execution)
     strictly_increasing = all(entry is not None for entry in chain) and all(
         chain[index] < chain[index + 1] for index in range(len(chain) - 1))
     return {
         "ledger_created_seq": bind,
         "bind_ledger_seq": bind,
+        "first_recovery_control_read_seq": first_control,
         "first_blind_inputs_read_seq": first_inputs,
         "first_blind_gold_read_seq": first_gold,
         "first_workspace_created_seq": first_workspace,
@@ -121,6 +135,12 @@ def evaluation_ordering_proof(store: T30PrivateStore) -> dict[str, Any]:
         "ordering_binding_precedes_blind_reads":
             bind is not None and first_inputs is not None
             and bind < first_inputs,
+        "ordering_binding_precedes_control_read":
+            bind is not None and first_control is not None
+            and bind < first_control,
+        "ordering_control_before_blind_inputs":
+            first_control is not None and first_inputs is not None
+            and first_control < first_inputs,
         "ordering_blind_inputs_before_gold":
             first_inputs is not None and first_gold is not None
             and first_inputs < first_gold,
@@ -485,6 +505,10 @@ def evaluation_bindings(root: Path, seal: dict[str, Any], ledger_root: str,
         "environment_root": binding["environment_root"],
         "public_leak_scan_root": sha256_json(leak),
         "store_verification_root": commitments["store_verification_root"],
+        "recovery_control_sha256": seal["recovery_control_sha256"],
+        "recovery_control_schema": seal["recovery_control_schema"],
+        "recovery_control_population": seal["recovery_control_population"],
+        "recovery_control_policy_root": seal["recovery_control_policy_root"],
         "authority": "SCORE_PRIVATE_ONCE", "timestamp": timestamp or _now(),
         "state": "STARTED",
     }
@@ -495,8 +519,11 @@ def evaluation_bindings(root: Path, seal: dict[str, Any], ledger_root: str,
 
 def _public_evaluation_receipt(store: T30PrivateStore,
                                ledger: T30EvaluationLedger,
-                               score: dict[str, Any]) -> dict[str, Any]:
+                               score: dict[str, Any],
+                               recovery: dict[str, Any] | None = None
+                               ) -> dict[str, Any]:
     return {
+        "recovery_control": recovery,
         "schema_version": "t30-public-evaluation-receipt-v1",
         "artifact": "T30_PUBLIC_EVALUATION_RECEIPT",
         "classification": "PUBLIC_SAFE", "experiment": "t30", "attempt": 1,
@@ -522,8 +549,14 @@ def _evaluate_once(*, store: T30PrivateStore, bindings: dict[str, Any],
                    expected_counts: tuple[int, int] = (REAL_BLIND_SCENARIOS,
                                                        REAL_BLIND_GOLD),
                    clock: Callable[[], str] = _now,
-                   inject_failure_phase: str | None = None) -> dict[str, Any]:
+                   inject_failure_phase: str | None = None,
+                   bind_recovery_control: Callable[[dict], dict] | None = None,
+                   recovery_audits: Callable[[], list] | None = None
+                   ) -> dict[str, Any]:
     """Ledger-first single official pass; callers cannot retry or inject."""
+    if bind_recovery_control is None or recovery_audits is None:
+        raise ValueError("official T30 evaluation requires the recovery-control "
+                         "binding of the frozen official environment")
     if inject_failure_phase is not None and inject_failure_phase not in FAILURE_PHASES:
         raise ValueError(f"unknown injection phase: {inject_failure_phase}")
     ledger = T30EvaluationLedger.create_exclusive(
@@ -532,7 +565,20 @@ def _evaluate_once(*, store: T30PrivateStore, bindings: dict[str, Any],
     try:
         if inject_failure_phase == phase:
             raise RuntimeError("injected post-ledger T30 evaluation failure")
-        # Ledger bound; the exclusive ledger unlocks blind material (§35).
+        # Ledger bound; the exclusive ledger unlocks the sealed recovery
+        # control first (§22/§40), then blind material (§35).
+        control_bytes = store.read_bytes(RECOVERY_CONTROL_PATH)
+        if _sha_bytes(control_bytes) != bindings["recovery_control_sha256"]:
+            raise ValueError("sealed T30 recovery control commitment mismatch")
+        recovery_control = json.loads(control_bytes)
+        validate_control_shape(recovery_control)
+        if (recovery_control["entry_count"]
+                != bindings["recovery_control_population"]
+                or recovery_control["schema_version"]
+                != bindings["recovery_control_schema"]
+                or recovery_control["policy_root"]
+                != bindings["recovery_control_policy_root"]):
+            raise ValueError("sealed T30 recovery control binding mismatch")
         cases = json.loads(store.read_bytes("blind/inputs.json"))
         phase = "BLIND_READ"
         gold = json.loads(store.read_bytes("blind/gold.json"))
@@ -544,8 +590,14 @@ def _evaluate_once(*, store: T30PrivateStore, bindings: dict[str, Any],
         if any(set(case) != {"scenario_id", "classification", "plan"}
                for case in cases):
             raise ValueError("sealed T30 scenario schema mismatch")
+        # Recovery control: scenario-bound and designation-consistent (§24).
+        validate_recovery_control(recovery_control, cases)
+        check_designation_consistency(recovery_control, gold)
         # Gold firewall: project candidate inputs (§36).
         projected = [candidate_input_projection(case) for case in cases]
+        if candidate_control_exposure(projected) != 0:
+            raise ValueError("recovery-control field exposed to candidate")
+        bind_recovery_control(recovery_control)
         if inject_failure_phase == phase:
             raise RuntimeError(
                 "injected post-blind-read T30 evaluation failure")
@@ -563,6 +615,11 @@ def _evaluate_once(*, store: T30PrivateStore, bindings: dict[str, Any],
         if len(outputs) != len(cases):
             raise ValueError("official T30 runner output cardinality mismatch")
         store.write_once_json("evaluation/raw_outputs.json", outputs)
+        recovery = {
+            "recovery_control_sha256": bindings["recovery_control_sha256"],
+            "recovery_control_policy_root": RECOVERY_CONTROL_POLICY_ROOT,
+            **aggregate_audits(recovery_audits(), recovery_control)}
+        store.write_once_json("evaluation/recovery_control_audit.json", recovery)
         ledger.advance("EXECUTED", {
             "output_count": len(outputs),
             "raw_outputs_sha256": _sha_bytes(store.read_bytes(
@@ -594,10 +651,12 @@ def _evaluate_once(*, store: T30PrivateStore, bindings: dict[str, Any],
         ledger.advance("COMPLETE", {
             "score_status": score["status"], "scenario_count": len(cases)},
             clock=clock)
-        receipt = _public_evaluation_receipt(store, ledger, score)
+        receipt = _public_evaluation_receipt(store, ledger, score, recovery)
         ordering = evaluation_ordering_proof(store)
         ordering_proved = all((
             ordering["ordering_binding_precedes_blind_reads"],
+            ordering["ordering_binding_precedes_control_read"],
+            ordering["ordering_control_before_blind_inputs"],
             ordering["ordering_blind_inputs_before_gold"],
             ordering["ordering_reads_before_workspace"],
             ordering["ordering_workspace_precedes_candidate_execution"],
@@ -611,6 +670,7 @@ def _evaluate_once(*, store: T30PrivateStore, bindings: dict[str, Any],
             "status": "PASS", "ledger": ledger.document, "score": score,
             "receipt": receipt, "ordering": ordering,
             "ordering_proved": ordering_proved,
+            "recovery_control": recovery,
             "gold_firewall": {
                 "status": "PASS", "projected_rows": len(projected),
                 "gold_fields_in_candidate_input": 0,
@@ -913,11 +973,13 @@ def run_model_hydration_preflight(root: Path, *, mode: str = "REAL"
             "registry")
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     if (registry.get("explicitly_tagged_disposable_substitute") is not True
-            or registry.get("official_production_adapter_used") is not False):
+            or registry.get("official_production_adapter_used") is not True
+            or registry.get("recovery_control_wrapper")
+            != "t30_protocol.recovery_control:wrap_production_adapters"):
         raise OfficialEvaluationRefusal(
             "model_hydration_preflight",
-            "REAL_REHEARSAL requires an explicitly tagged disposable "
-            "adapter substitute registry")
+            "REAL_REHEARSAL requires the explicitly tagged disposable "
+            "provider stack around the production adapter registry")
     return {
         "schema_version": "t30-model-hydration-preflight-v1",
         "artifact": "T30_MODEL_HYDRATION_PREFLIGHT",
@@ -1138,6 +1200,15 @@ def _prepare_official_evaluation(root: Path, store: T30PrivateStore, *,
         construction_ledger = json.loads(store.read_bytes(
             T30ConstructionLedger.PATH))
         seal = json.loads(store.read_bytes("construction/seal.json"))
+        if (seal.get("recovery_control_policy_root")
+                != RECOVERY_CONTROL_POLICY_ROOT
+                or seal.get("recovery_control_schema")
+                != RECOVERY_CONTROL_SCHEMA
+                or not isinstance(seal.get("recovery_control_population"), int)
+                or len(str(seal.get("recovery_control_sha256", ""))) != 64):
+            raise OfficialEvaluationRefusal(
+                "bindings", "sealed T30 recovery-control commitment absent or "
+                "not bound to the frozen recovery-control policy")
         bindings = evaluation_bindings(
             root, seal, construction_ledger["ledger_root"], environment,
             commitments, leak)
@@ -1160,6 +1231,8 @@ def _prepare_official_evaluation(root: Path, store: T30PrivateStore, *,
         "bindings": bindings,
         "expected_counts": expected_counts,
         "build_runner": build_runner,
+        "bind_recovery_control": environment.factory.bind_recovery_control,
+        "recovery_audits": lambda: list(environment.factory.recovery_audits),
         "environment": environment,
         "phase_chain": [name for name in WRAPPER_PHASE_CHAIN],
         "preflights": phases,
@@ -1194,7 +1267,9 @@ def evaluate_official(root: Path, private_store_root: Path, token: str,
     return _evaluate_once(
         store=store, bindings=preparation["bindings"], token=token,
         build_runner=preparation["build_runner"],
-        expected_counts=preparation["expected_counts"])
+        expected_counts=preparation["expected_counts"],
+        bind_recovery_control=preparation["bind_recovery_control"],
+        recovery_audits=preparation["recovery_audits"])
 
 
 # --- wrapper-driven disposable rehearsal machinery (§17–§21, §38–§39) --------
@@ -1330,7 +1405,8 @@ def _materialize_standin_store(skeleton: Path, store: T30PrivateStore, *,
         fixtures=fixtures, oracle_result=oracle_result, provenance=provenance,
         token=CONSTRUCTION_TOKEN, historical_index=historical_index,
         oracle_mode="SYNTHETIC", clock=clock,
-        t27_store_authentication=t27_authentication)
+        t27_store_authentication=t27_authentication,
+        recovery_control=synthetic_recovery_control(cases, variant=variant))
     if (result["status"] != "PASS"
             or result["ledger"]["state"] != "SEALED"
             or result["final_store_verify"]["status"] != "PASS"):
@@ -1378,7 +1454,10 @@ def _materialize_standin_store(skeleton: Path, store: T30PrivateStore, *,
                 "artifact": "T30_REHEARSAL_ADAPTER_REGISTRY",
                 "classification": "SYNTHETIC_DISPOSABLE",
                 "explicitly_tagged_disposable_substitute": True,
-                "official_production_adapter_used": False,
+                "official_production_adapter_used": True,
+                "adapter_builder": "t30_protocol.production:build_adapters",
+                "recovery_control_wrapper":
+                    "t30_protocol.recovery_control:wrap_production_adapters",
                 "variant": variant,
             }))
     return {
@@ -1491,6 +1570,29 @@ def run_evaluation_rehearsals(root: Path) -> dict[str, Any]:
                     ordering["ordering_strictly_increasing"],
                 "gold_firewall_projected_rows":
                     result["gold_firewall"]["projected_rows"],
+                "ordering_binding_precedes_control_read":
+                    ordering["ordering_binding_precedes_control_read"],
+                "ordering_control_before_blind_inputs":
+                    ordering["ordering_control_before_blind_inputs"],
+                "score_pass": score["status"] == "PASS",
+                "recovery_success_rate": {
+                    key: score["metrics"]["recovery_success_rate"][key]
+                    for key in ("numerator", "denominator", "observed",
+                                "pass")},
+                "recovery_pass_32_of_32": (
+                    score["metrics"]["recovery_success_rate"]["pass"] is True
+                    and score["metrics"]["recovery_success_rate"][
+                        "numerator"] >= 32
+                    and score["metrics"]["recovery_success_rate"][
+                        "denominator"] >= 32),
+                "recovery_injections_exact":
+                    result["recovery_control"]["injected_first_failures"]
+                    == result["recovery_control"]["scheduled_entries"]
+                    and result["recovery_control"]["max_injections_observed"]
+                    == 1
+                    and result["recovery_control"][
+                        "unscheduled_injections"] == 0,
+                "production_adapter_registry_used": True,
                 "post_ledger_store_verified":
                     store.verify()["status"] == "PASS",
                 # fixture_count is a variant-identity field (variant 2 packs
@@ -1843,7 +1945,9 @@ def run_evaluation_failure_rehearsal(root: Path) -> dict[str, Any]:
                     build_runner=preparation["build_runner"],
                     expected_counts=preparation["expected_counts"],
                     clock=_fixed_clock_factory(70 + index),
-                    inject_failure_phase=failure_phase)
+                    inject_failure_phase=failure_phase,
+                    bind_recovery_control=preparation["bind_recovery_control"],
+                    recovery_audits=preparation["recovery_audits"])
             except RuntimeError:
                 injected = True
             ledger = T30EvaluationLedger.load(store)
@@ -2075,8 +2179,176 @@ T30_SUCCESSOR_CONTRACT_LEAVES = (
     "t29_abandoned_exclusion_ready",
     "defect.t29_journal_schema_reproduced",
 )
+#: Recovery-reachability remediation (§44): stable leaves; the expected
+#: count is always derived from this registry, never hardcoded.
+T30_RECOVERY_CONTRACT_LEAVES = (
+    "recovery.real_stack_reachable",
+    "recovery.control_gold_independent",
+    "recovery.control_candidate_hidden",
+    "recovery.single_injection_exact",
+    "recovery.scorer_semantics_unchanged",
+    "recovery.control_negative_controls_refused",
+    "production.adapter_source_identity_exact",
+    "nonvacuity.success_reachable",
+    "nonvacuity.recovery_reachable",
+    "nonvacuity.replan_reachable",
+    "nonvacuity.abstention_reachable",
+    "nonvacuity.handoff_reachable",
+    "nonvacuity.verification_reachable",
+    "evaluation.control_read_postledger",
+    "evaluation.full_production_wrapper_rehearsed",
+    "remediation.refusal_and_supersession_recorded",
+)
 PRECONSTRUCTION_CONTRACT_LEAF_IDS = (PRECONSTRUCTION_CONTRACT_LEAF_IDS
-                                     + T30_SUCCESSOR_CONTRACT_LEAVES)
+                                     + T30_SUCCESSOR_CONTRACT_LEAVES
+                                     + T30_RECOVERY_CONTRACT_LEAVES)
+RECOVERY_EVIDENCE_PATHS = (
+    ("recovery_control_policy", "evaluations/t30/recovery_control_policy.json"),
+    ("nonvacuity_reachability_gate",
+     "evaluations/t30/nonvacuity_reachability_gate.json"),
+    ("recovery_control_negative_controls",
+     "evaluations/t30/recovery_control_negative_controls.json"),
+    ("adapter_identity", "evaluations/t30/adapter_identity.json"),
+    ("refusal_record",
+     "evaluations/t30/T30_REAL_CONSTRUCTION_REFUSAL_RECOVERY_REACHABILITY.json"),
+    ("old_stack_reproducer",
+     "evaluations/t30/T30_OLD_STACK_RECOVERY_REACHABILITY_REPRODUCER.json"),
+    ("freeze_supersession",
+     "evaluations/t30/preconstruction_freeze_superseded_pre_exposure.json"),
+    ("lifecycle_classification",
+     "evaluations/t30/T30_RECOVERY_REACHABILITY_REMEDIATION_LIFECYCLE.json"),
+)
+OLD_STACK_REPRODUCER_SHA256 = (
+    "8978ff4613711aa8141cc646859c4c4c7a409ac0b5c5b9c80f9e9498858a8bd0")
+T30_RECOVERY_REFUSAL_ROOT = (
+    "593e1337383716604aca93f8faed3daff063ddcf870bf66a11d7ca4c2961b9e6")
+SUPERSEDED_FREEZE_SHA256 = (
+    "96e3ee5e12ffa8b7e5c3e6dd01dfe19ecfc4bd5ead1cb740a66f46080fb616ce")
+
+
+def _recovery_contract_leaves(root: Path, wrapper: dict | None
+                              ) -> dict[str, bool]:
+    from .recovery_control import (recovery_control_policy,
+                                   unchanged_semantics_report)
+    documents = {key: _read_evidence(root, relative) or {}
+                 for key, relative in RECOVERY_EVIDENCE_PATHS}
+    gate = documents["nonvacuity_reachability_gate"]
+    negatives = documents["recovery_control_negative_controls"]
+    identity = documents["adapter_identity"]
+    refusal = documents["refusal_record"]
+    reproducer = documents["old_stack_reproducer"]
+    supersession = documents["freeze_supersession"]
+    lifecycle = documents["lifecycle_classification"]
+    gate_checks = gate.get("checks") or {}
+    proof = gate.get("recovery_proof") or {}
+    designations = {item.get("designation"): item
+                    for item in gate.get("designations", [])
+                    if isinstance(item, dict)}
+    refused = lambda *names: all(  # noqa: E731
+        (negatives.get("controls") or {}).get(name, {}).get("refused") is True
+        for name in names)
+    runs = (wrapper or {}).get("runs", [])
+
+    def reachable(name: str) -> bool:
+        item = designations.get(name) or {}
+        evidence = item.get("evidence") or {}
+        return (item.get("reachable") is True
+                and evidence.get("denominator", 0) > 0
+                and evidence.get("pass") is True)
+    try:
+        unchanged = unchanged_semantics_report(root)["unchanged"]
+    except Exception:
+        unchanged = False
+    return {
+        "recovery.real_stack_reachable": (
+            gate.get("status") == "GATE_GREEN"
+            and gate_checks.get("production_adapter_registry_used") is True
+            and gate_checks.get("fixture_adapters_not_used") is True
+            and proof.get("all_cases_pass") is True
+            and proof.get("scheduled_recoverable_cases", 0) >= 32
+            and proof.get("recovery_numerator", 0) >= 32
+            and proof.get("recovery_numerator")
+            == proof.get("recovery_denominator")
+            and proof.get("recovery_pass") is True),
+        "recovery.control_gold_independent": (
+            gate_checks.get("designation_consistency") is True
+            and refused("control_generator_accepts_no_gold",
+                        "gold_field_in_control", "expected_answer_in_control",
+                        "expected_terminal_in_control",
+                        "recoverable_gold_missing_control_entry",
+                        "control_entry_without_gold_designation")),
+        "recovery.control_candidate_hidden": (
+            gate_checks.get("candidate_control_exposure_zero") is True
+            and refused("control_field_exposed_to_candidate")),
+        "recovery.single_injection_exact": (
+            gate_checks.get(
+                "recovery_exactly_one_injection_per_scheduled_case") is True
+            and refused("fault_injected_more_than_once",
+                        "fault_injected_into_unscheduled_scenario",
+                        "fault_state_leaks_across_scenarios",
+                        "max_injections_not_one")),
+        "recovery.scorer_semantics_unchanged": (
+            unchanged
+            and documents["recovery_control_policy"]
+            == recovery_control_policy()
+            and documents["recovery_control_policy"].get(
+                "scorer_semantics_unchanged") is True),
+        "recovery.control_negative_controls_refused": (
+            negatives.get("status") == "PASS"
+            and negatives.get("FAIL") == 0
+            and negatives.get("control_count", 0) >= 22),
+        "production.adapter_source_identity_exact": (
+            identity.get("status") == "PASS"
+            and identity.get("identity_exact") is True
+            and identity.get("actual_adapter_builder")
+            == "t30_protocol.production:build_adapters"
+            and identity.get("t26_build_adapters_import_present") is False
+            and refused("t26_adapter_substitution_detected",
+                        "attested_adapter_identity_restored")),
+        "nonvacuity.success_reachable": reachable("successful_completion"),
+        "nonvacuity.recovery_reachable": reachable("recovery"),
+        "nonvacuity.replan_reachable": (
+            reachable("replan")
+            and gate_checks.get("replan_triggers_observed") is True),
+        "nonvacuity.abstention_reachable": (
+            reachable("safe_abstention")
+            and gate_checks.get("abstention_answers_null") is True),
+        "nonvacuity.handoff_reachable": (
+            reachable("handoff")
+            and gate_checks.get("handoffs_valid_and_bound") is True),
+        "nonvacuity.verification_reachable": reachable("verification"),
+        "evaluation.control_read_postledger": (
+            refused("control_parsed_before_started",
+                    "runner_without_postledger_control")
+            and len(runs) == 2
+            and all(run.get("ordering_binding_precedes_control_read") is True
+                    and run.get("ordering_control_before_blind_inputs") is True
+                    for run in runs)),
+        "evaluation.full_production_wrapper_rehearsed": (
+            (wrapper or {}).get("status") == "PASS"
+            and (wrapper or {}).get("semantic_equivalence") is True
+            and len(runs) == 2
+            and all(run.get("score_pass") is True
+                    and run.get("recovery_pass_32_of_32") is True
+                    and run.get("recovery_injections_exact") is True
+                    and run.get("production_adapter_registry_used") is True
+                    for run in runs)),
+        "remediation.refusal_and_supersession_recorded": (
+            refusal.get("refusal_root") == T30_RECOVERY_REFUSAL_ROOT
+            and refusal.get("t30_construction_one_shot") == "UNSPENT"
+            and refusal.get("old_real_stack_recovery_reachable") is False
+            and reproducer.get("reproducer_sha256")
+            == OLD_STACK_REPRODUCER_SHA256
+            and reproducer.get("old_frozen_real_stack_recovery_reachable")
+            is False
+            and supersession.get("classification")
+            == "SUPERSEDED_PRE_EXPOSURE"
+            and (supersession.get("superseded_freeze") or {}).get(
+                "freeze_sha256") == SUPERSEDED_FREEZE_SHA256
+            and lifecycle.get("lifecycle_state")
+            == "T30_PRE_EXPOSURE_RECOVERY_REACHABILITY_REMEDIATION_REQUIRED"
+            and lifecycle.get("construction_one_shot") == "UNSPENT"),
+    }
 
 
 def _t30_successor_contract_leaves(root: Path, real_mode: dict | None,
@@ -2243,6 +2515,8 @@ def run_preconstruction_contract_audit(root: Path) -> dict[str, Any]:
         # T30 §38 successor leaves (journal-schema remediation, abandoned
         # T29 package preservation and non-reuse).
         **_t30_successor_contract_leaves(root, real_mode, entrypoint),
+        # Recovery-reachability remediation leaves (§44).
+        **_recovery_contract_leaves(root, wrapper),
         # Stable binding leaves for the staged evidence surface.
         **{
             f"evidence.{key}_staged": (
@@ -2297,7 +2571,8 @@ def run_preconstruction_contract_audit(root: Path) -> dict[str, Any]:
         # therefore the leaf root below.
         "evidence_sha256": {
             key: _sha256_file(root, relative)
-            for key, relative in READINESS_EVIDENCE_PATHS},
+            for key, relative in READINESS_EVIDENCE_PATHS
+            + RECOVERY_EVIDENCE_PATHS},
         "PASS": counts["PASS"], "FAIL": counts["FAIL"],
         "UNVERIFIABLE": counts["UNVERIFIABLE"],
         "required_fail_count": 0, "required_unverifiable_count": 0,
@@ -2316,6 +2591,11 @@ EVALUATION_READINESS_ITEMS = (
     "public_leak_preflight_pass", "production_environment_pass",
     "model_hydration_pass", "gold_firewall_pass", "nonvacuity_pass",
     "failure_semantics_pass",
+    # Recovery-reachability remediation (§46).
+    "production_adapter_source_exact", "recovery_control_gold_independent",
+    "recovery_control_candidate_hidden", "production_stack_recovery_32_pass",
+    "all_nonvacuity_designations_reachable", "control_read_postledger",
+    "scorer_metrics_fail_nonvacuity_unchanged",
 )
 
 
@@ -2345,6 +2625,8 @@ def run_evaluation_readiness_gate(root: Path) -> dict[str, Any]:
         and wrapper.get("wrapper_invocations_on_disposable_standins") == 2
         and all(run.get("state_sequence")
                 == ["STARTED", "EXECUTED", "SCORED", "COMPLETE"]
+                and run.get("production_adapter_registry_used") is True
+                and run.get("score_pass") is True
                 for run in wrapper.get("runs", [])))
     items["historical_anchor_roundtrip_pass"] = (
         anchors is not None and anchors["roundtrip_exact"] is True)
@@ -2452,6 +2734,26 @@ def run_evaluation_readiness_gate(root: Path) -> dict[str, Any]:
         failure is not None and failure["status"] == "PASS"
         and failure.get("post_ledger_failure_recorded") is True
         and len(failure.get("failure_phases", [])) == 4)
+    leaves = contract.get("results", {})
+    leaf = lambda *names: all(leaves.get(name) == "PASS"  # noqa: E731
+                              for name in names)
+    items["production_adapter_source_exact"] = leaf(
+        "production.adapter_source_identity_exact")
+    items["recovery_control_gold_independent"] = leaf(
+        "recovery.control_gold_independent")
+    items["recovery_control_candidate_hidden"] = leaf(
+        "recovery.control_candidate_hidden")
+    items["production_stack_recovery_32_pass"] = leaf(
+        "recovery.real_stack_reachable", "recovery.single_injection_exact",
+        "evaluation.full_production_wrapper_rehearsed")
+    items["all_nonvacuity_designations_reachable"] = leaf(
+        "nonvacuity.success_reachable", "nonvacuity.recovery_reachable",
+        "nonvacuity.replan_reachable", "nonvacuity.abstention_reachable",
+        "nonvacuity.handoff_reachable", "nonvacuity.verification_reachable")
+    items["control_read_postledger"] = leaf("evaluation.control_read_postledger")
+    items["scorer_metrics_fail_nonvacuity_unchanged"] = (
+        leaf("recovery.scorer_semantics_unchanged")
+        and items.get("nonvacuity_pass") is True)
     missing = sorted(name for name in EVALUATION_READINESS_ITEMS
                      if not items.get(name))
     green = (contract["status"] == "PASS"

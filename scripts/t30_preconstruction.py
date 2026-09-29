@@ -441,6 +441,59 @@ def _stage_environment(root: Path) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Stage R: recovery-reachability remediation evidence (pre-exposure)
+# ---------------------------------------------------------------------------
+
+
+RECOVERY_REMEDIATION_STATIC = (
+    "T30_REAL_CONSTRUCTION_REFUSAL_RECOVERY_REACHABILITY.json",
+    "T30_OLD_STACK_RECOVERY_REACHABILITY_REPRODUCER.json",
+    "preconstruction_freeze_superseded_pre_exposure.json",
+    "T30_RECOVERY_REACHABILITY_REMEDIATION_LIFECYCLE.json",
+)
+
+
+def _stage_recovery_remediation(root: Path) -> dict:
+    """Recovery-control policy, adapter identity, REAL-stack nonvacuity
+    reachability gate and recovery-control negative controls.  Runs after
+    the environment identity is staged (the reachability gate drives the
+    frozen official factory) and before any freeze/rehearsal consumes it.
+    Disposable synthetic material only; no real row, gold or control."""
+    from t30_protocol.reachability import (
+        run_real_stack_nonvacuity_reachability,
+        run_recovery_control_negative_controls)
+    from t30_protocol.recovery_control import (adapter_identity_report,
+                                               recovery_control_policy)
+
+    out = root / "evaluations" / "t30"
+    for name in RECOVERY_REMEDIATION_STATIC:
+        if not (out / name).is_file():
+            raise RuntimeError(f"T30 remediation record absent: {name}")
+    documents = {
+        "recovery_control_policy.json": recovery_control_policy(),
+        "adapter_identity.json": adapter_identity_report(root),
+        "nonvacuity_reachability_gate.json":
+            run_real_stack_nonvacuity_reachability(root),
+        "recovery_control_negative_controls.json":
+            run_recovery_control_negative_controls(root),
+    }
+    expected = {"recovery_control_policy.json": ("classification", "PUBLIC_SAFE"),
+                "adapter_identity.json": ("status", "PASS"),
+                "nonvacuity_reachability_gate.json": ("status", "GATE_GREEN"),
+                "recovery_control_negative_controls.json": ("status", "PASS")}
+    for name, document in documents.items():
+        _write(out / name, document)
+        key, value = expected[name]
+        if document.get(key) != value:
+            raise RuntimeError(f"T30 recovery remediation evidence not green: "
+                               f"{name}: " + json.dumps(
+                                   {k: document.get(k) for k in (
+                                       "status", "failed_checks",
+                                       "failed_controls")}, sort_keys=True))
+    return documents
+
+
+# ---------------------------------------------------------------------------
 # Stage E: provisional freeze + readiness evidence + contract + readiness gate
 # ---------------------------------------------------------------------------
 
@@ -665,6 +718,12 @@ def _final_verdict(root: Path, frozen: dict, doctor: dict) -> dict:
                              "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
         "t30_construction_one_shot": "UNSPENT",
         "t30_evaluation_one_shot": "NOT_YET_AUTHORIZED",
+        "remediation_verdict": (
+            "T30_PRE_EXPOSURE_RECOVERY_REACHABILITY_REMEDIATION_PASS" if passed
+            else "T30_PRE_EXPOSURE_RECOVERY_REACHABILITY_REMEDIATION_FAIL"),
+        "superseded_freeze_sha256":
+            "96e3ee5e12ffa8b7e5c3e6dd01dfe19ecfc4bd5ead1cb740a66f46080fb616ce",
+        "prior_construction_authorization": "WITHDRAWN_NOT_USABLE",
         "rehearsal_freeze_note":
             "construction/evaluation rehearsals bound the provisional "
             "freeze root; the canonical preconstruction freeze was "
@@ -699,6 +758,35 @@ def _preconstruction_report(root: Path, frozen: dict, doctor: dict,
         "artifact": "T30_PRECONSTRUCTION_REPORT",
         "classification": "PUBLIC_SAFE",
         "verdict": verdict["verdict"],
+        "remediation_verdict": verdict["remediation_verdict"],
+        "RECOVERY_REMEDIATION": {
+            "reachability_gate": {key: _read(
+                "nonvacuity_reachability_gate.json").get(key) for key in (
+                "status", "recovery_proof", "designations",
+                "replan_triggers_observed", "safe_terminals_observed",
+                "adapter_stack", "reachability_root")},
+            "recovery_negative_controls": {key: _read(
+                "recovery_control_negative_controls.json").get(key)
+                for key in ("status", "control_count", "PASS", "FAIL")},
+            "adapter_identity": {key: _read("adapter_identity.json").get(key)
+                                 for key in ("status", "identity_exact",
+                                             "actual_adapter_builder",
+                                             "historical_defect",
+                                             "adapter_identity_root")},
+            "recovery_control_policy_root": _read(
+                "recovery_control_policy.json").get("policy_root"),
+            "wrapper_rehearsal_runs": [
+                {key: run.get(key) for key in (
+                    "variant", "status", "score_pass", "recovery_success_rate",
+                    "recovery_pass_32_of_32", "recovery_injections_exact",
+                    "ordering_binding_precedes_control_read",
+                    "ordering_control_before_blind_inputs",
+                    "ordering_strictly_increasing", "state_sequence",
+                    "semantic_signature")}
+                for run in rehearsal.get("runs", [])],
+            "wrapper_semantic_equivalence": rehearsal.get(
+                "semantic_equivalence"),
+        },
         # --- §52 required sections ---
         "START_STATE": {
             "predecessor": T27_PREDECESSOR_VERDICT,
@@ -910,7 +998,7 @@ _EVALUATION_WRAPPER_SEMANTIC_KEYS = (
     "status", "semantic_equivalence",
     "wrapper_invocations_on_disposable_standins",
     "official_real_evaluator_invocations", "real_evaluation_attempts",
-    "real_blind_rows")
+    "real_blind_rows", "runs")
 
 
 def _verify_full(root: Path) -> int:
@@ -981,6 +1069,22 @@ def _verify_full(root: Path) -> int:
     compare("evaluation_wrapper_rehearsals", run_evaluation_rehearsals(root),
             staged("evaluation_wrapper_rehearsal_evidence.json"),
             _EVALUATION_WRAPPER_SEMANTIC_KEYS)
+    # Recovery-reachability remediation surfaces (fresh-clone reproduction).
+    from t30_protocol.reachability import (
+        run_real_stack_nonvacuity_reachability,
+        run_recovery_control_negative_controls)
+    from t30_protocol.recovery_control import (adapter_identity_report,
+                                               recovery_control_policy)
+    compare("recovery_control_policy", recovery_control_policy(),
+            staged("recovery_control_policy.json"))
+    compare("adapter_implementation_identity", adapter_identity_report(root),
+            staged("adapter_identity.json"))
+    compare("real_stack_nonvacuity_reachability",
+            run_real_stack_nonvacuity_reachability(root),
+            staged("nonvacuity_reachability_gate.json"))
+    compare("recovery_control_negative_controls",
+            run_recovery_control_negative_controls(root),
+            staged("recovery_control_negative_controls.json"))
     compare("preconstruction_contract", run_preconstruction_contract_audit(root),
             staged("preconstruction_contract.json"))
     compare("evaluation_readiness_gate", run_evaluation_readiness_gate(root),
@@ -1032,6 +1136,7 @@ def main() -> int:
     _stage_successor_evidence(root)
     _stage_t30_boundaries(root)
     identity = _stage_environment(root)
+    _stage_recovery_remediation(root)
     _stage_provisional_freeze(root)
     _stage_readiness(root)
     _stage_leak_and_gate(root)

@@ -92,6 +92,12 @@ def components(root: Path) -> dict[str, str]:
     ):
         if (root / relative).is_file():
             roles[relative] = "HISTORICAL_PUBLIC_ANCHOR"
+    # Recovery-reachability remediation: the production adapter registry's
+    # local implementations (the recovery-control targets delegate to them
+    # unchanged) and the T25 provider it wraps are execution dependencies.
+    for relative in ("t26_protocol/production.py", "t25_protocol/provider.py"):
+        if (root / relative).is_file():
+            roles[relative] = "T30_PRODUCTION_DEPENDENCY"
     return dict(sorted(roles.items()))
 
 

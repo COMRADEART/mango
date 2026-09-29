@@ -31,12 +31,17 @@ CLASSIFICATIONS = frozenset({
     "PRIVATE_FIXTURE", "PRIVATE_AUDIT", "PRIVATE_MANIFEST",
     "PRIVATE_SEAL", "PRIVATE_EVALUATION", "PUBLIC_SAFE",
     "SYNTHETIC_DISPOSABLE",
+    # Recovery-reachability remediation: the sealed transient-fault control
+    # schedule is neither gold nor candidate input nor public metadata.
+    "PRIVATE_EVALUATION_CONTROL",
 })
 CONSTRUCTION_LEDGER_PATH = "construction/ledger.json"
 EVALUATION_LEDGER_PATH = "evaluation/ledger.json"
 EVALUATION_MARKER_PATH = "markers/evaluation.one-shot"
 CONSTRUCTION_MARKER_PATH = "markers/construction.one-shot"
-LEDGER_GUARDED_PREFIXES = ("blind/",)
+#: ``control/`` holds the PRIVATE_EVALUATION_CONTROL recovery schedule; like
+#: blind material it may be hashed machine-only but never parsed pre-ledger.
+LEDGER_GUARDED_PREFIXES = ("blind/", "control/")
 
 OP_KINDS = (
     "read_bytes", "read_json", "write_once", "write_once_json",
@@ -331,7 +336,8 @@ class T30PrivateStore:
             if _sha(data) != entry["sha256"] or len(data) != entry["byte_size"]:
                 hash_mismatches += 1
         # Machine-only integrity hashing of blind bodies: raw bytes only.
-        for logical in ("blind/inputs.json", "blind/gold.json"):
+        for logical in ("blind/inputs.json", "blind/gold.json",
+                        "control/recovery_control.json"):
             if not self.has(logical):
                 missing += 1
         ledger_path = self.path(CONSTRUCTION_LEDGER_PATH)

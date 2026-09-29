@@ -6,8 +6,8 @@
   "real_gold_rows": 0,
   "runs": [
     {
-      "combined_historical_exclusion_root": "abe20f8c07fa974ee9907aae6c3d3f60b98bde661077e9f5cf742cdbc7d43ec5",
-      "contract_leaf_count": 69,
+      "combined_historical_exclusion_root": "2db9b25087ccb6d0e3b481d891e1451fc6c3ad7d0ef337b3adcd34a33b51308f",
+      "contract_leaf_count": 78,
       "designated_counts": {
         "handoff_cases": 512,
         "recoverable_cases": 128,
@@ -16,7 +16,7 @@
         "successful_completion_cases": 384,
         "verification_cases": 512
       },
-      "gate_check_count": 63,
+      "gate_check_count": 69,
       "gold_count": 512,
       "historical_source_count": 22,
       "leak_gate_status": "PASS",
@@ -25,7 +25,7 @@
       "receipt_blind_content_included": false,
       "run": 1,
       "scenario_count": 512,
-      "semantic_signature": "85032f52f0ab2ea2cbf6234c85f20ec01a87e5f88c48fa740171f0c0e7d76b76",
+      "semantic_signature": "8e8367a5f21b552bca59a30e3438a85f256940ce80c5ce8932edd50d675c1170",
       "state": "SEALED",
       "state_sequence": [
         "LEDGER_CREATED",
@@ -39,8 +39,8 @@
       "store_status": "PASS"
     },
     {
-      "combined_historical_exclusion_root": "abe20f8c07fa974ee9907aae6c3d3f60b98bde661077e9f5cf742cdbc7d43ec5",
-      "contract_leaf_count": 69,
+      "combined_historical_exclusion_root": "2db9b25087ccb6d0e3b481d891e1451fc6c3ad7d0ef337b3adcd34a33b51308f",
+      "contract_leaf_count": 78,
       "designated_counts": {
         "handoff_cases": 512,
         "recoverable_cases": 128,
@@ -49,7 +49,7 @@
         "successful_completion_cases": 384,
         "verification_cases": 512
       },
-      "gate_check_count": 63,
+      "gate_check_count": 69,
       "gold_count": 512,
       "historical_source_count": 22,
       "leak_gate_status": "PASS",
@@ -58,7 +58,7 @@
       "receipt_blind_content_included": false,
       "run": 2,
       "scenario_count": 512,
-      "semantic_signature": "85032f52f0ab2ea2cbf6234c85f20ec01a87e5f88c48fa740171f0c0e7d76b76",
+      "semantic_signature": "8e8367a5f21b552bca59a30e3438a85f256940ce80c5ce8932edd50d675c1170",
       "state": "SEALED",
       "state_sequence": [
         "LEDGER_CREATED",

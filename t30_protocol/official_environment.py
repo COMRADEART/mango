@@ -36,7 +36,16 @@ from t26_protocol.official_runner import (DeterministicFixtureSearchProvider,
                                           _public_file_identity,
                                           build_general_context_identity,
                                           inspect_live_provider)
-from t26_protocol.production import build_adapters
+# §8 (T30 recovery-reachability remediation): the REAL adapter registry is
+# the attested T30 successor registry; the historical t26 import was the
+# T30_REAL_ADAPTER_IMPLEMENTATION_IDENTITY_MISMATCH defect.
+from .production import build_adapters
+from .recovery_control import (ATTESTED_ADAPTER_BUILDER, POLICY_ROOT as
+                               RECOVERY_CONTROL_POLICY_ROOT, WRAPPER_ID as
+                               RECOVERY_CONTROL_WRAPPER_ID,
+                               adapter_builder_identity, control_sha256,
+                               entries_by_scenario, validate_control_shape,
+                               wrap_production_adapters)
 
 ENVIRONMENT_BUILDER_ID = (
     "t30_protocol.official_environment:build_official_evaluation_environment")
@@ -48,13 +57,6 @@ PUBLIC_CORPUS = "rag/gk_corpus"
 EXPECTED_BASE_MODEL = "Qwen/Qwen3-1.7B"
 TOKENIZER_FILES = ("merges.txt", "tokenizer.json",
                    "tokenizer_config.json", "vocab.json")
-
-import re as _re
-
-#: ``t30-disposable-<construction-variant>-<family>-<case index 1..32>``
-#: (§30 disposable witness); ``family`` carries underscores, never hyphens.
-_DISPOSABLE_SCENARIO_ID_RE = _re.compile(
-    r"t30-disposable-\d+-(.+?)-(\d{2})")
 
 MODEL_PINS = {
     "base_model_id": "Qwen/Qwen3-1.7B",
@@ -212,8 +214,7 @@ def environment_identity(root: Path, *, real: bool,
         ["git", "rev-parse", f"HEAD:{PUBLIC_CORPUS}"], cwd=root,
         capture_output=True, text=True, check=True).stdout.strip()
     from sciencemath.executive.skills import SKILL_IDS
-    adapter_builder = ("t30_protocol.production:build_adapters" if real
-                       else "t30_protocol.qualification:fixture_adapters")
+    adapter_builder = ATTESTED_ADAPTER_BUILDER
     registry_root = sha256_json({
         "registered_skills": list(SKILL_IDS),
         "builder": adapter_builder})
@@ -269,7 +270,20 @@ def environment_identity(root: Path, *, real: bool,
             "internal_only": True,
             "may_perform_external_action": False,
             "registry_root": registry_root,
-            "explicitly_tagged_disposable_substitute": not real,
+            "explicitly_tagged_disposable_substitute": False,
+            "provider_stack_disposable_substitute": not real,
+            "implementation_sha256": _sha(_repo_bytes(
+                root, "t30_protocol/production.py")),
+            "local_implementation_sha256": _sha(_repo_bytes(
+                root, "t26_protocol/production.py")),
+        },
+        "recovery_control": {
+            "policy_root": RECOVERY_CONTROL_POLICY_ROOT,
+            "wrapper": RECOVERY_CONTROL_WRAPPER_ID,
+            "wrapper_implementation_sha256": _sha(_repo_bytes(
+                root, "t30_protocol/recovery_control.py")),
+            "wrapped_adapter_builder": adapter_builder,
+            "control_read": "POST_STARTED_LEDGER_ONLY",
         },
         "corpus": {"path_policy": PUBLIC_CORPUS, "source": "FROZEN_PUBLIC",
                    "content_root": corpus_root,
@@ -320,6 +334,27 @@ class T30OfficialRunnerFactory:
         self.last_stack: dict[str, Any] = {}
         self._provider: T25ProductionRouterProvider | None = None
         self._adapters: dict[str, Any] | None = None
+        # Post-ledger recovery control (§22): unbound until the evaluation
+        # wrapper has created STARTED and read the sealed control artifact.
+        self._control_entries: dict[str, dict[str, Any]] | None = None
+        self.recovery_control_sha256: str | None = None
+        self.recovery_audits: list[Any] = []
+        self._preflighting = False
+
+    def bind_recovery_control(self, document: dict[str, Any]) -> dict[str, Any]:
+        """Bind the validated post-ledger control; exactly once per factory."""
+        if self._control_entries is not None:
+            raise ValueError("official T30 recovery control already bound")
+        validate_control_shape(document)
+        self._control_entries = entries_by_scenario(document)
+        self.recovery_control_sha256 = control_sha256(document)
+        return {"recovery_control_bound": True,
+                "recovery_control_sha256": self.recovery_control_sha256,
+                "entry_count": len(self._control_entries)}
+
+    @property
+    def recovery_control_bound(self) -> bool:
+        return self._control_entries is not None
 
     def _validate_corpus(self) -> Path:
         approved = (self.root / PUBLIC_CORPUS).resolve()
@@ -328,22 +363,6 @@ class T30OfficialRunnerFactory:
         if _contains_gold(approved):
             raise ValueError("corpus mount carries gold content")
         return approved
-
-    def _fixture_injection_for_workspace(self, workspace: Path) -> dict[str, Any]:
-        """Disposable §18/§30 stand-in: the designated rehearsal behavior is
-        derived deterministically from the disposable scenario id (never
-        from gold).  Unparseable workspace names (the preflight probe) get a
-        neutral injection; preflight never executes a scenario."""
-        from .qualification import make_case
-        match = _DISPOSABLE_SCENARIO_ID_RE.fullmatch(workspace.name)
-        if match is not None:
-            case_index = int(match.group(2)) - 1
-            if 0 <= case_index < 32:
-                try:
-                    return make_case(match.group(1), case_index % 4)[2]
-                except ValueError:
-                    pass
-        return {"kind": "none", "primary": None}
 
     def __call__(self, workspace: Path) -> IntegratedRunner:
         workspace = Path(workspace).resolve()
@@ -375,8 +394,9 @@ class T30OfficialRunnerFactory:
                     "REAL_EXPERIMENT" if self.real else
                     "SYNTHETIC_DISPOSABLE"),
                 firewall_mandatory=True)
-            if self.real:
-                self._adapters = build_adapters(self._provider)
+            # §20: the production registry in BOTH modes; the disposable
+            # rehearsal differs only by its tagged fixture provider stack.
+            self._adapters = build_adapters(self._provider)
         else:
             # Evaluation is sequential; rebinding the sole DOCUMENT root per
             # runner preserves scenario isolation while the frozen
@@ -384,19 +404,19 @@ class T30OfficialRunnerFactory:
             self._provider.document_roots = (document_root,)
         provider, adapters = self._provider, self._adapters
         from sciencemath.executive.skills import SKILL_IDS
-        if self.real:
-            if adapters is None or set(adapters) != set(SKILL_IDS):
-                raise ValueError("official T30 adapter registry mismatch")
-        else:
-            # REAL_REHEARSAL executes through the explicitly tagged
-            # disposable adapter-substitute stack (§18/§26): the same real
-            # IntegratedRunner, driven by the deterministic qualification
-            # fixture behaviors derived from the disposable scenario id.
-            from .qualification import fixture_adapters
-            adapters = fixture_adapters(
-                self._fixture_injection_for_workspace(workspace))
-        if set(adapters) != set(SKILL_IDS):
+        if adapters is None or set(adapters) != set(SKILL_IDS):
             raise ValueError("official T30 adapter registry mismatch")
+        if adapter_builder_identity(build_adapters) != ATTESTED_ADAPTER_BUILDER:
+            raise ValueError("official T30 adapter implementation identity "
+                             "mismatch")
+        if self._control_entries is None and not self._preflighting:
+            raise ValueError("official T30 runner requires the post-ledger "
+                             "recovery control")
+        entry = (self._control_entries or {}).get(workspace.name)
+        adapters, audit = wrap_production_adapters(
+            adapters, scenario_id=workspace.name, entry=entry)
+        if not self._preflighting:
+            self.recovery_audits.append(audit)
         if any(not adapter.internal_only or adapter.may_perform_external_action
                for adapter in adapters.values()):
             raise ValueError("official T30 adapter authority mismatch")
@@ -409,11 +429,12 @@ class T30OfficialRunnerFactory:
         self.last_stack = {
             "factory_id": FACTORY_ID,
             "integrated_runner_used": isinstance(runner, IntegratedRunner),
-            "production_adapter_registry_used": self.real,
+            "production_adapter_registry_used": True,
             "explicitly_tagged_disposable_substitute": not self.real,
-            "adapter_substitute_source": (
-                "t30_protocol.production:build_adapters" if self.real
-                else "t30_protocol.qualification:fixture_adapters"),
+            "adapter_substitute_source": ATTESTED_ADAPTER_BUILDER,
+            "adapter_builder_actual": adapter_builder_identity(build_adapters),
+            "recovery_control_wrapper": RECOVERY_CONTROL_WRAPPER_ID,
+            "recovery_control_policy_root": RECOVERY_CONTROL_POLICY_ROOT,
             "provider_id": provider.provider_id,
             "provider_kind": provider.provider_kind,
             "provider_synthetic": provider.synthetic,
@@ -437,7 +458,11 @@ class T30OfficialRunnerFactory:
         with TemporaryDirectory(prefix="t30-official-runner-preflight-") as tmp:
             workspace = Path(tmp) / "workspace"
             workspace.mkdir()
-            runner = self(workspace)
+            self._preflighting = True
+            try:
+                runner = self(workspace)
+            finally:
+                self._preflighting = False
             if not isinstance(runner, IntegratedRunner):
                 raise ValueError("official preflight runner type mismatch")
             if list(workspace.rglob("checkpoints/*.json")):
@@ -462,11 +487,12 @@ def require_stack_attestation(stack: dict[str, Any], *, real: bool) -> None:
     required = {
         "factory_id": FACTORY_ID,
         "integrated_runner_used": True,
-        "production_adapter_registry_used": real,
+        "production_adapter_registry_used": True,
         "explicitly_tagged_disposable_substitute": not real,
-        "adapter_substitute_source": (
-            "t30_protocol.production:build_adapters" if real
-            else "t30_protocol.qualification:fixture_adapters"),
+        "adapter_substitute_source": ATTESTED_ADAPTER_BUILDER,
+        "adapter_builder_actual": ATTESTED_ADAPTER_BUILDER,
+        "recovery_control_wrapper": RECOVERY_CONTROL_WRAPPER_ID,
+        "recovery_control_policy_root": RECOVERY_CONTROL_POLICY_ROOT,
         "provider_kind": "REAL_CANDIDATE",
         "provider_synthetic": False,
         "workspace_mode": WORKSPACE_MODE,

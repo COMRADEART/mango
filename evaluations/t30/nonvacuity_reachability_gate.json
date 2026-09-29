@@ -1,0 +1,185 @@
+{
+  "adapter_stack": {
+    "adapter_builder_actual": "t30_protocol.production:build_adapters",
+    "adapter_substitute_source": "t30_protocol.production:build_adapters",
+    "explicitly_tagged_disposable_substitute": true,
+    "factory_id": "T30_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
+    "production_adapter_registry_used": true,
+    "recovery_control_policy_root": "42c069292c19d26ac24f3cb2b4d3e80c632ef7a3fe8621d1416d4d98bab570c9",
+    "recovery_control_wrapper": "t30_protocol.recovery_control:wrap_production_adapters"
+  },
+  "artifact": "T30_REAL_STACK_NONVACUITY_REACHABILITY_GATE",
+  "candidate_real_executions": 0,
+  "checks": {
+    "abstention_answers_null": true,
+    "all_designations_reachable": true,
+    "candidate_control_exposure_zero": true,
+    "critical_counters_zero": true,
+    "designation_consistency": true,
+    "fixture_adapters_not_used": true,
+    "handoffs_valid_and_bound": true,
+    "production_adapter_registry_used": true,
+    "recovery_exactly_one_injection_per_scheduled_case": true,
+    "recovery_minimum_32": true,
+    "recovery_proof_all_cases": true,
+    "replan_triggers_observed": true,
+    "safe_terminals_observed": true,
+    "score_suite_pass": true
+  },
+  "classification": "PUBLIC_SAFE",
+  "critical_counters": {
+    "authority_violation_events": 0,
+    "external_side_effect_events": 0,
+    "gold_signal_leakage_events": 0,
+    "invalid_terminal_transition_events": 0,
+    "memory_scope_violation_events": 0,
+    "provenance_loss_events": 0,
+    "schema_bypass_events": 0,
+    "unbounded_retry_events": 0,
+    "unverified_completion_events": 0
+  },
+  "designated_counts": {
+    "handoff_cases": 512,
+    "recoverable_cases": 128,
+    "replan_required_cases": 128,
+    "safe_abstention_cases": 128,
+    "successful_completion_cases": 384,
+    "verification_cases": 2176
+  },
+  "designations": [
+    {
+      "designation": "successful_completion",
+      "evidence": {
+        "denominator": 384,
+        "floor": 1.0,
+        "numerator": 384,
+        "observed": 1.0,
+        "pass": true
+      },
+      "expected_observable": "COMPLETE, all required steps verified, final answer commitment, last verification PASS",
+      "reachable": true,
+      "real_execution_mechanism": "t30 production MATH_T4 calculator + SCICOMP describe",
+      "scorer_predicate": "verified_completion_rate",
+      "stimulus": "MATH_T4/SCICOMP numeric dependency chain"
+    },
+    {
+      "designation": "recovery",
+      "evidence": {
+        "denominator": 128,
+        "floor": 1.0,
+        "numerator": 128,
+        "observed": 1.0,
+        "pass": true
+      },
+      "expected_observable": "RECOVERABLE_ERROR then retry, COMPLETE",
+      "reachable": true,
+      "real_execution_mechanism": "recovery-control wrapper around the production adapter; IntegratedRunner bounded retry",
+      "scorer_predicate": "recovery_success_rate (COMPLETE and total_retries >= 1)",
+      "stimulus": "one frozen transient fault (T30_FROZEN_TRANSIENT_EVALUATION_FAULT)"
+    },
+    {
+      "designation": "replan",
+      "evidence": {
+        "denominator": 128,
+        "floor": 1.0,
+        "numerator": 128,
+        "observed": 1.0,
+        "pass": true
+      },
+      "expected_observable": "exactly one replan, version 2, expected trigger and fallback, COMPLETE",
+      "reachable": true,
+      "real_execution_mechanism": "production UnavailableError / INSUFFICIENT_EVIDENCE / numeric verification failure -> fallback capability",
+      "scorer_predicate": "replan_correctness_rate",
+      "stimulus": "CODE unavailable / MATH_T4 missing evidence / MATH_T4 verification failure"
+    },
+    {
+      "designation": "safe_abstention",
+      "evidence": {
+        "denominator": 128,
+        "floor": 1.0,
+        "numerator": 128,
+        "observed": 1.0,
+        "pass": true
+      },
+      "expected_observable": "designated safe terminal, final_answer null, final_answer_commitment null",
+      "reachable": true,
+      "real_execution_mechanism": "production NO_TOOL INSUFFICIENT_EVIDENCE / CODE UnavailableError",
+      "scorer_predicate": "safe_abstention_accuracy",
+      "stimulus": "NO_TOOL / CODE without fallback"
+    },
+    {
+      "designation": "handoff",
+      "evidence": {
+        "denominator": 1792,
+        "floor": 1.0,
+        "numerator": 1792,
+        "observed": 1.0,
+        "pass": true
+      },
+      "expected_observable": "VALID handoffs, internal authority, registered capabilities, provenance commitment",
+      "reachable": true,
+      "real_execution_mechanism": "IntegratedRunner handoff validation",
+      "scorer_predicate": "handoff_validity_rate",
+      "stimulus": "input_from dependency handoffs"
+    },
+    {
+      "designation": "verification",
+      "evidence": {
+        "denominator": 2176,
+        "floor": 1.0,
+        "numerator": 2176,
+        "observed": 1.0,
+        "pass": true
+      },
+      "expected_observable": "verified steps meet expected verified steps",
+      "reachable": true,
+      "real_execution_mechanism": "IntegratedRunner._verify on production adapter results",
+      "scorer_predicate": "verification_success_rate",
+      "stimulus": "numeric add / add_previous and evidence verification"
+    }
+  ],
+  "disposable_control_sha256": "2eba32993e61788a0266cf53f1676b327f5a70ae6e6525d0a8561f4c5450da51",
+  "failed_checks": [],
+  "handoff_count": 1792,
+  "material": "SYNTHETIC_DISPOSABLE_PERMANENTLY_EXCLUDED",
+  "reachability_root": "b504a0585c2bba3f1347eea670332cdd5428bd582f3731c7e6eea00a9717e550",
+  "real_blind_rows": 0,
+  "real_gold_rows": 0,
+  "real_recovery_control_entries": 0,
+  "recovery_control_policy_root": "42c069292c19d26ac24f3cb2b4d3e80c632ef7a3fe8621d1416d4d98bab570c9",
+  "recovery_proof": {
+    "all_cases_pass": true,
+    "complete_count": 128,
+    "first_attempt_recoverable_error_count": 128,
+    "foreign_scenario_refusals": 0,
+    "injected_first_failures": 128,
+    "max_injections_observed": 1,
+    "recovery_denominator": 128,
+    "recovery_numerator": 128,
+    "recovery_observed": 1.0,
+    "recovery_pass": true,
+    "retries_observed": 128,
+    "scenario_count": 512,
+    "scenarios_injected": 128,
+    "scheduled_but_not_injected": 0,
+    "scheduled_entries": 128,
+    "scheduled_recoverable_cases": 128,
+    "unscheduled_injections": 0,
+    "verification_pass_count": 128
+  },
+  "replan_triggers_observed": [
+    "MISSING_EVIDENCE",
+    "UNAVAILABLE_CAPABILITY",
+    "VERIFICATION_FAILURE"
+  ],
+  "reusable_as_real_material": false,
+  "safe_terminals_observed": [
+    "INSUFFICIENT_EVIDENCE",
+    "UNAVAILABLE_CAPABILITY"
+  ],
+  "scenario_count": 512,
+  "schema_version": "t30-real-stack-nonvacuity-reachability-v1",
+  "score_status": "PASS",
+  "scorer_unchanged": true,
+  "status": "GATE_GREEN"
+}

@@ -39,6 +39,12 @@ from .oracle import (PREDECESSORS, T27_COMMITMENT_FIELDS,
                      verify_oracle_result)
 from .store import (CLASSIFICATIONS, NAMESPACE, STORE_ID, T30PrivateStore,
                     _json_bytes)
+from .recovery_control import (
+    CANDIDATE_HIDDEN_FIELDS, CONTROL_PATH as RECOVERY_CONTROL_PATH,
+    POLICY_ROOT as RECOVERY_CONTROL_POLICY_ROOT,
+    STORE_CLASSIFICATION as RECOVERY_CONTROL_CLASSIFICATION,
+    check_designation_consistency, control_sha256 as recovery_control_sha256,
+    validate_recovery_control)
 from .abandonment import (T29_ABANDONMENT_COMMITMENT_PATH,
                           run_sealed_t29_abandoned_to_t30_overlap_oracle,
                           synthetic_abandonment_oracle_result,
@@ -93,6 +99,10 @@ LEDGER_BINDING_FIELDS = frozenset({
     "t29_abandoned_oracle_result_sha256", "predecessor_oracle_root",
     "t29_abandonment_commitment_sha256", "t28_journal_compatibility_sha256",
     "t28_journal_equivalence_sha256",
+    # Recovery-reachability remediation: frozen recovery-control policy,
+    # real-stack nonvacuity reachability gate and adapter identity.
+    "recovery_control_policy_sha256", "nonvacuity_reachability_gate_sha256",
+    "adapter_identity_sha256",
     "state",
 })
 
@@ -296,6 +306,8 @@ def candidate_input_projection(scenario: dict[str, Any]) -> dict[str, Any]:
     encoded = json.dumps(scenario, sort_keys=True)
     if any(f'"{field}"' in encoded for field in GOLD_ONLY_FIELDS):
         raise ValueError("gold-only field exposed to candidate")
+    if any(f'"{field}"' in encoded for field in CANDIDATE_HIDDEN_FIELDS):
+        raise ValueError("recovery-control field exposed to candidate")
     return copy.deepcopy(scenario)
 
 
@@ -349,7 +361,9 @@ def static_design_audit(cases: list[dict[str, Any]], gold: list[dict[str, Any]],
                         oracle_result: dict[str, Any],
                         provenance: dict[str, Any], *,
                         oracle_mode: str = "SYNTHETIC",
-                        root: Path | None = None) -> dict[str, Any]:
+                        root: Path | None = None,
+                        recovery_control: dict[str, Any] | None = None
+                        ) -> dict[str, Any]:
     from sciencemath.integrated.runner import validate_plan
 
     checks: dict[str, bool] = {}
@@ -445,6 +459,11 @@ def static_design_audit(cases: list[dict[str, Any]], gold: list[dict[str, Any]],
         checks["author_provenance"] = False
     checks["fingerprint_root_matches_oracle"] = (
         oracle_result.get("t30_prospective_fingerprint_root") == prospective_root)
+    # Recovery-reachability remediation (§12–§17/§24): the sealed control is
+    # generated from candidate-visible scenarios only, targets qualified local
+    # deterministic steps, and the gold designation is derived FROM it.
+    recovery = _recovery_control_checks(recovery_control, cases, gold)
+    checks.update(recovery["checks"])
     status = "PASS" if all(checks.values()) else "FAIL"
     return {
         "schema_version": "t30-static-design-audit-v1",
@@ -458,8 +477,43 @@ def static_design_audit(cases: list[dict[str, Any]], gold: list[dict[str, Any]],
         "designated_counts": designated,
         "prospective_fingerprint_root": prospective_root,
         "oracle_mode": oracle_mode,
+        "recovery_control": recovery["summary"],
         "candidate_executions": 0, "official_evaluator_invocations": 0,
     }
+
+
+def _recovery_control_checks(recovery_control: dict[str, Any] | None,
+                             cases: list[dict[str, Any]],
+                             gold: list[dict[str, Any]]) -> dict[str, Any]:
+    checks = {"recovery_control.present": isinstance(recovery_control, dict),
+              "recovery_control.schema_and_targets": False,
+              "recovery_control.bound_to_scenario_bundle": False,
+              "recovery_control.gold_designation_derived": False,
+              "recovery_control.population_minimum": False,
+              "recovery_control.candidate_hidden": False}
+    summary: dict[str, Any] = {"entry_count": 0, "control_sha256": None,
+                               "policy_root": RECOVERY_CONTROL_POLICY_ROOT}
+    if not isinstance(recovery_control, dict):
+        return {"checks": checks, "summary": summary}
+    try:
+        validated = validate_recovery_control(recovery_control, cases)
+        checks["recovery_control.schema_and_targets"] = True
+        checks["recovery_control.bound_to_scenario_bundle"] = True
+        summary.update(entry_count=validated["entry_count"],
+                       control_sha256=validated["control_sha256"])
+    except Exception:
+        pass
+    try:
+        check_designation_consistency(recovery_control, gold)
+        checks["recovery_control.gold_designation_derived"] = True
+    except Exception:
+        pass
+    checks["recovery_control.population_minimum"] = (
+        summary["entry_count"] >= NONVACUITY_MINIMUMS["recoverable_cases"])
+    encoded = [json.dumps(item, sort_keys=True) for item in cases]
+    checks["recovery_control.candidate_hidden"] = not any(
+        f'"{field}"' in row for row in encoded for field in CANDIDATE_HIDDEN_FIELDS)
+    return {"checks": checks, "summary": summary}
 
 
 def require_static_design(*args: Any, **kwargs: Any) -> dict[str, Any]:
@@ -684,11 +738,13 @@ def materialize_private(store: T30PrivateStore, cases: list[dict[str, Any]],
                         static_audit: dict[str, Any],
                         provenance: dict[str, Any],
                         oracle_result: dict[str, Any],
-                        historical: dict[str, Any]) -> list[dict[str, Any]]:
+                        historical: dict[str, Any],
+                        recovery_control: dict[str, Any]) -> list[dict[str, Any]]:
     if static_audit.get("status") != "PASS":
         raise ValueError("cannot materialize a failed T30 static design")
     store.write_once_json("blind/inputs.json", cases)
     store.write_once_json("blind/gold.json", gold)
+    store.write_once_json(RECOVERY_CONTROL_PATH, recovery_control)
     store.write_once_json("construction/static_design_audit.json", static_audit)
     store.write_once_json("construction/author_provenance.json", provenance)
     store.write_once_json("construction/overlap_oracle_results.json",
@@ -697,6 +753,7 @@ def materialize_private(store: T30PrivateStore, cases: list[dict[str, Any]],
     descriptors = [
         store.descriptor("blind/inputs.json", "REAL_BLIND_INPUT"),
         store.descriptor("blind/gold.json", "REAL_BLIND_GOLD"),
+        store.descriptor(RECOVERY_CONTROL_PATH, RECOVERY_CONTROL_CLASSIFICATION),
         store.descriptor("construction/static_design_audit.json", "PRIVATE_AUDIT"),
         store.descriptor("construction/author_provenance.json", "PRIVATE_AUDIT"),
         store.descriptor("construction/overlap_oracle_results.json", "PRIVATE_AUDIT"),
@@ -716,7 +773,8 @@ def run_construction_audit(store: T30PrivateStore,
                            cases: list[dict[str, Any]],
                            gold: list[dict[str, Any]], *,
                            oracle_mode: str = "SYNTHETIC",
-                           root: Path | None = None
+                           root: Path | None = None,
+                           recovery_control: dict[str, Any] | None = None
                            ) -> dict[str, Any]:
     # cases/gold arrive from the caller's own authoring memory; the store
     # only serves machine-only byte hashing (descriptor), never a blind-row
@@ -725,7 +783,27 @@ def run_construction_audit(store: T30PrivateStore,
     provenance = store.read_json("construction/author_provenance.json")
     static = static_design_audit(
         cases, gold, fixtures, oracle_result, provenance,
-        oracle_mode=oracle_mode, root=root)
+        oracle_mode=oracle_mode, root=root, recovery_control=recovery_control)
+    # Machine-only commitment of the materialized control bytes (never parsed
+    # from the store pre-evaluation-ledger): must equal the authored control.
+    control_descriptor = store.descriptor(RECOVERY_CONTROL_PATH,
+                                          RECOVERY_CONTROL_CLASSIFICATION)
+    recovery_checks = {
+        name: value for name, value in static["checks"].items()
+        if name.startswith("recovery_control.")}
+    recovery_checks["recovery_control.materialized_bytes_exact"] = (
+        isinstance(recovery_control, dict) and control_descriptor["sha256"]
+        == recovery_control_sha256(recovery_control))
+    recovery_core = {
+        "schema_version": "t30-recovery-control-audit-v1",
+        "status": "PASS" if all(recovery_checks.values()) else "FAIL",
+        "checks": recovery_checks,
+        "entry_count": static["recovery_control"]["entry_count"],
+        "recovery_control_sha256": control_descriptor["sha256"],
+        "recovery_control_policy_root": RECOVERY_CONTROL_POLICY_ROOT,
+        "classification": RECOVERY_CONTROL_CLASSIFICATION,
+    }
+    recovery_audit = {**recovery_core, "audit_root": sha256_json(recovery_core)}
     exclusion = historical_exclusion_audit(
         cases, gold, historical_index, oracle_result,
         mode="SYNTHETIC" if oracle_mode == "SYNTHETIC" else oracle_mode,
@@ -738,6 +816,7 @@ def run_construction_audit(store: T30PrivateStore,
         "static_design": static, "historical_exclusion": exclusion,
         "uniqueness": unique, "gold_firewall": firewall,
         "authority": authority, "fixtures": fixture_result,
+        "recovery_control": recovery_audit,
     }
     passed = all(item["status"] == "PASS" for item in components.values())
     core = {
@@ -788,6 +867,12 @@ CONTRACT_LEAF_IDS = (
     "exclusion.predecessor_oracle_root_bound",
     "readiness.t28_journal_evidence_bound",
     "oracle.live_authentication_bound",
+    # Recovery-reachability remediation leaves
+    "recovery.control_schema_valid", "recovery.control_bound_to_scenarios",
+    "recovery.control_gold_designation_derived",
+    "recovery.control_population_minimum", "recovery.control_candidate_hidden",
+    "recovery.control_materialized_exact", "recovery.policy_bound",
+    "recovery.reachability_gate_bound", "production.adapter_identity_bound",
 )
 
 
@@ -912,6 +997,7 @@ def contract_leaf_audit(bindings: dict[str, Any], audit: dict[str, Any],
         "readiness.t28_journal_evidence_bound": successor["journal_bound"],
         "oracle.live_authentication_bound": _provenance_valid(
             oracle_provenance, static["oracle_mode"]),
+        **_recovery_leaves(bindings, components),
         "authorization.token_exact": bindings["authorization_token"] == CONSTRUCTION_TOKEN,
         "ledger.attempt_one": bindings["attempt"] == 1,
         "ledger.mode_real_blind": bindings["mode"] == "REAL_BLIND",
@@ -1046,6 +1132,35 @@ def contract_leaf_audit(bindings: dict[str, Any], audit: dict[str, Any],
     return {**core, "leaf_root": sha256_json(core)}
 
 
+def _recovery_leaves(bindings: dict[str, Any],
+                     components: dict[str, Any]) -> dict[str, bool]:
+    recovery = components.get("recovery_control") or {}
+    checks = recovery.get("checks") or {}
+    return {
+        "recovery.control_schema_valid":
+            checks.get("recovery_control.schema_and_targets") is True,
+        "recovery.control_bound_to_scenarios":
+            checks.get("recovery_control.bound_to_scenario_bundle") is True,
+        "recovery.control_gold_designation_derived":
+            checks.get("recovery_control.gold_designation_derived") is True,
+        "recovery.control_population_minimum":
+            checks.get("recovery_control.population_minimum") is True,
+        "recovery.control_candidate_hidden":
+            checks.get("recovery_control.candidate_hidden") is True,
+        "recovery.control_materialized_exact":
+            checks.get("recovery_control.materialized_bytes_exact") is True,
+        "recovery.policy_bound":
+            len(str(bindings.get("recovery_control_policy_sha256", ""))) == 64
+            and recovery.get("recovery_control_policy_root")
+            == RECOVERY_CONTROL_POLICY_ROOT,
+        "recovery.reachability_gate_bound":
+            len(str(bindings.get("nonvacuity_reachability_gate_sha256", "")))
+            == 64,
+        "production.adapter_identity_bound":
+            len(str(bindings.get("adapter_identity_sha256", ""))) == 64,
+    }
+
+
 CONSTRUCTION_GATE_IDS = (
     "G01_AUTHORIZATION_TOKEN", "G02_ATTEMPT_ONE", "G03_CANDIDATE_IDENTITY",
     "G04_RUNTIME_ROOT", "G05_EXECUTION_CHECKOUT", "G06_FREEZE_IDENTITY",
@@ -1091,6 +1206,13 @@ CONSTRUCTION_GATE_IDS = (
     "G59_EVALUATION_READINESS_FROZEN",
     "G60_ORACLE_LIVE_AUTHENTICATION_BOUND",
     "G61_PREDECESSOR_ORACLE_ROOT_BOUND",
+    # Recovery-reachability remediation checks
+    "G62_RECOVERY_CONTROL_SCHEMA",
+    "G63_RECOVERY_SCHEDULE_GOLD_CAUSAL_ORDER",
+    "G64_ADAPTER_IMPLEMENTATION_IDENTITY_EXACT",
+    "G65_SCORER_AND_METRICS_UNCHANGED",
+    "G66_REAL_STACK_NONVACUITY_REACHABILITY",
+    "G67_EVALUATION_READINESS_WITH_RECOVERY_CONTROL",
 )
 
 
@@ -1249,6 +1371,34 @@ def run_construction_gate(bindings: dict[str, Any], expected: dict[str, Any],
             oracle_provenance, static["oracle_mode"]),
         "G61_PREDECESSOR_ORACLE_ROOT_BOUND": successor["predecessor_root_bound"],
     })
+    recovery = components.get("recovery_control") or {}
+    recovery_checks = recovery.get("checks") or {}
+    checks.update({
+        "G62_RECOVERY_CONTROL_SCHEMA": (
+            recovery.get("status") == "PASS"
+            and recovery_checks.get("recovery_control.schema_and_targets") is True
+            and recovery_checks.get("recovery_control.materialized_bytes_exact")
+            is True),
+        "G63_RECOVERY_SCHEDULE_GOLD_CAUSAL_ORDER": (
+            recovery_checks.get("recovery_control.bound_to_scenario_bundle") is True
+            and recovery_checks.get("recovery_control.gold_designation_derived")
+            is True),
+        "G64_ADAPTER_IMPLEMENTATION_IDENTITY_EXACT": (
+            bindings["adapter_identity_sha256"]
+            == expected["adapter_identity_sha256"]),
+        "G65_SCORER_AND_METRICS_UNCHANGED": (
+            bindings["metric_registry_sha256"] == expected["metric_registry_sha256"]
+            and bindings["nonvacuity_policy_sha256"]
+            == expected["nonvacuity_policy_sha256"]),
+        "G66_REAL_STACK_NONVACUITY_REACHABILITY": (
+            bindings["nonvacuity_reachability_gate_sha256"]
+            == expected["nonvacuity_reachability_gate_sha256"]),
+        "G67_EVALUATION_READINESS_WITH_RECOVERY_CONTROL": (
+            bindings["recovery_control_policy_sha256"]
+            == expected["recovery_control_policy_sha256"]
+            and recovery.get("recovery_control_policy_root")
+            == RECOVERY_CONTROL_POLICY_ROOT),
+    })
     if set(checks) != set(CONSTRUCTION_GATE_IDS):
         raise ValueError("construction gate check enumerator drift")
     failed = sorted(name for name, passed in checks.items() if not passed)
@@ -1268,7 +1418,8 @@ def manifest_roots(artifacts: list[dict[str, Any]],
     blind = [item for item in ordered if item["classification"] in {
         "REAL_BLIND_INPUT", "REAL_BLIND_GOLD", "PRIVATE_FIXTURE"}]
     evaluation = [item for item in ordered
-                  if item["classification"] == "REAL_BLIND_GOLD"]
+                  if item["classification"] in {
+                      "REAL_BLIND_GOLD", RECOVERY_CONTROL_CLASSIFICATION}]
     return {
         "private_artifact_root": sha256_json(ordered),
         "private_blind_root": sha256_json(blind),
@@ -1284,6 +1435,8 @@ def build_private_manifest(store: T30PrivateStore, ledger: T30ConstructionLedger
     paths = [
         ("blind/inputs.json", "REAL_BLIND_INPUT", "application/json"),
         ("blind/gold.json", "REAL_BLIND_GOLD", "application/json"),
+        (RECOVERY_CONTROL_PATH, RECOVERY_CONTROL_CLASSIFICATION,
+         "application/json"),
         ("construction/static_design_audit.json", "PRIVATE_AUDIT", "application/json"),
         ("construction/author_provenance.json", "PRIVATE_AUDIT", "application/json"),
         ("construction/overlap_oracle_results.json", "PRIVATE_AUDIT", "application/json"),
@@ -1322,6 +1475,13 @@ def build_private_manifest(store: T30PrivateStore, ledger: T30ConstructionLedger
         "gold_firewall_audit_root": audit["components"]["gold_firewall"]["audit_root"],
         "contract_leaf_root": leaf_audit["leaf_root"],
         "construction_gate_root": gate["gate_root"],
+        "recovery_control_audit_root": audit["components"][
+            "recovery_control"]["audit_root"],
+        "recovery_control_sha256": audit["components"]["recovery_control"][
+            "recovery_control_sha256"],
+        "recovery_control_population": audit["components"][
+            "recovery_control"]["entry_count"],
+        "recovery_control_policy_root": RECOVERY_CONTROL_POLICY_ROOT,
         "candidate_identity": {key: bindings[key] for key in (
             "candidate_commit", "candidate_tree", "runtime_root")},
         "freeze_identity": {key: bindings[key] for key in (
@@ -1396,6 +1556,13 @@ def seal_holdout(store: T30PrivateStore, ledger: T30ConstructionLedger,
         "gold_firewall_root": audit["components"]["gold_firewall"]["audit_root"],
         "contract_leaf_root": leaf_audit["leaf_root"],
         "construction_gate_root": gate["gate_root"],
+        "private_evaluation_root": manifest["private_evaluation_root"],
+        "recovery_control_sha256": audit["components"]["recovery_control"][
+            "recovery_control_sha256"],
+        "recovery_control_schema": "t30-recovery-control-v1",
+        "recovery_control_population": audit["components"][
+            "recovery_control"]["entry_count"],
+        "recovery_control_policy_root": RECOVERY_CONTROL_POLICY_ROOT,
     }
     store.write_once_json("construction/seal.json", seal)
     return seal
@@ -1509,6 +1676,11 @@ READINESS_EVIDENCE = {
         "evaluations/t30/t28_journal_compatibility.json",
     "t28_journal_equivalence_sha256":
         "evaluations/t30/t28_journal_schema_equivalence.json",
+    "recovery_control_policy_sha256":
+        "evaluations/t30/recovery_control_policy.json",
+    "nonvacuity_reachability_gate_sha256":
+        "evaluations/t30/nonvacuity_reachability_gate.json",
+    "adapter_identity_sha256": "evaluations/t30/adapter_identity.json",
 }
 T28_OFFICIAL_REPLACE_LEDGER_SEQUENCE = [
     "MATERIALIZED", "AUDITED", "GATE_PASS", "MANIFESTED", "SEALED"]
@@ -1537,6 +1709,14 @@ def require_readiness_evidence(root: Path) -> dict[str, Any]:
     if documents["t29_abandonment_commitment_sha256"] != \
             t29_abandonment_commitment(root):
         raise ValueError("T29 abandonment commitment does not reproduce")
+    from .recovery_control import recovery_control_policy
+    if documents["recovery_control_policy_sha256"] != recovery_control_policy():
+        raise ValueError("recovery-control policy does not reproduce")
+    if documents["nonvacuity_reachability_gate_sha256"].get(
+            "status") != "GATE_GREEN":
+        raise ValueError("real-stack nonvacuity reachability gate is not green")
+    if documents["adapter_identity_sha256"].get("identity_exact") is not True:
+        raise ValueError("production adapter implementation identity mismatch")
     return {"status": "PASS", "documents": sorted(READINESS_EVIDENCE.values())}
 
 
@@ -1649,7 +1829,8 @@ def construct_once(*, root: Path, store: T30PrivateStore,
                    clock: Callable[[], str] = _now,
                    inject_failure_phase: str | None = None,
                    t27_store_authentication: dict[str, Any],
-                   oracle_provenance: dict[str, Any] | None = None
+                   oracle_provenance: dict[str, Any] | None = None,
+                   recovery_control: dict[str, Any]
                    ) -> dict[str, Any]:
     # Official T27 store authentication evidence is validated fail-closed
     # BEFORE any ledger or private authoring occurs.  REAL demands the
@@ -1668,7 +1849,7 @@ def construct_once(*, root: Path, store: T30PrivateStore,
     # All authoring and overlap validation occurs before exclusive creation.
     static = require_static_design(
         cases, gold, fixtures, oracle_result, provenance,
-        oracle_mode=oracle_mode, root=root)
+        oracle_mode=oracle_mode, root=root, recovery_control=recovery_control)
     historical = historical_exclusion_audit(
         cases, gold, historical_index, oracle_result,
         mode="SYNTHETIC" if oracle_mode == "SYNTHETIC" else oracle_mode,
@@ -1691,17 +1872,22 @@ def construct_once(*, root: Path, store: T30PrivateStore,
         if inject_failure_phase == phase:
             raise RuntimeError("injected post-ledger construction failure")
         materialize_private(store, cases, gold, fixtures, static, provenance,
-                            oracle_result, historical)
+                            oracle_result, historical, recovery_control)
         ledger.advance("MATERIALIZED", {
             "scenario_count": len(cases), "gold_count": len(gold),
             "fixture_count": len(fixtures),
+            "recovery_control_population": static["recovery_control"][
+                "entry_count"],
+            "recovery_control_sha256": static["recovery_control"][
+                "control_sha256"],
         }, clock=clock)
         phase = "MATERIALIZED"
         if inject_failure_phase == phase:
             raise RuntimeError("injected post-materialization construction failure")
         audit = run_construction_audit(
             store, fixtures, historical_index, cases, gold,
-            oracle_mode=oracle_mode, root=root)
+            oracle_mode=oracle_mode, root=root,
+            recovery_control=recovery_control)
         if audit["status"] != "PASS":
             raise ValueError("T30 construction audit failed")
         store.write_once_json("construction/audit.json", audit)
@@ -1868,7 +2054,9 @@ def construct_real(*, root: Path, private_store_root: Path,
                    t27_expected: dict[str, Any] | None = None,
                    t28_expected: dict[str, Any] | None = None,
                    t29_commitment: dict[str, Any] | None = None,
-                   oracle_mode: str = "REAL") -> dict[str, Any]:
+                   oracle_mode: str = "REAL",
+                   recovery_control: dict[str, Any] | None = None
+                   ) -> dict[str, Any]:
     """Real entrypoint.  Merely importing this function spends nothing.
 
     The canonical preconstruction freeze is loaded only through
@@ -1900,6 +2088,13 @@ def construct_real(*, root: Path, private_store_root: Path,
         raise ValueError("real T30 construction requires the official T27 "
                          "private store for metadata authentication")
     freeze = load_preconstruction_freeze(root)
+    # Recovery-reachability remediation: the sealed transient-fault control
+    # is mandatory and validated against the scenarios (never gold) and the
+    # recoverable-gold designation before any oracle or ledger work.
+    if not isinstance(recovery_control, dict):
+        raise ValueError("T30 real construction requires the recovery control")
+    validate_recovery_control(recovery_control, cases)
+    check_designation_consistency(recovery_control, gold)
     historical_index = build_authenticated_public_historical_index(root)
     historical = historical_exclusion_audit(
         cases, gold, historical_index, oracle_result, mode=oracle_mode,
@@ -1924,7 +2119,8 @@ def construct_real(*, root: Path, private_store_root: Path,
         provenance=provenance, token=token,
         historical_index=historical_index, oracle_mode=oracle_mode,
         t27_store_authentication=t27_authentication,
-        oracle_provenance=oracle_provenance)
+        oracle_provenance=oracle_provenance,
+        recovery_control=recovery_control)
     return {**result,
             "canonical_freeze_path": T30_PRECONSTRUCTION_FREEZE_PATH,
             "canonical_freeze_loader": FREEZE_LOADER_ID,
@@ -1935,51 +2131,27 @@ def construct_real(*, root: Path, private_store_root: Path,
 def synthetic_private_bundle(variant: int = 0, *, with_fixture: bool = False
                              ) -> tuple[list[dict[str, Any]], list[dict[str, Any]],
                                         list[dict[str, Any]]]:
-    """Deterministic disposable 512/512 bundle; never valid as real material."""
-    from .qualification import make_case
+    """Deterministic disposable 512/512 bundle; never valid as real material.
 
-    cases: list[dict[str, Any]] = []
-    gold: list[dict[str, Any]] = []
-    for family in FAMILIES:
-        for index in range(32):
-            case, expected, _ = make_case(family, index % 4)
-            case = copy.deepcopy(case)
-            case_id = f"t30-disposable-{variant}-{family}-{index + 1:02d}"
-            case["scenario_id"] = case_id
-            # Row-body vocabulary stays the frozen candidate-executor
-            # vocabulary produced by make_case ("PUBLIC_SAFE"): the runner's
-            # step verification requires the executed row body to carry the
-            # step expected_output classification.  The SYNTHETIC_DISPOSABLE
-            # provenance of this material is bound at the
-            # store/receipt/anchor level (§18), never by mutating the
-            # runner-executed row body.
-            assert case["classification"] == "PUBLIC_SAFE"
-            case["plan"]["plan_id"] = f"plan-{case_id}"
-            case["plan"]["goal"] = (
-                f"Disposable T30 lifecycle rehearsal {variant} {family} {index + 1}")
-            record = {
-                "scenario_id": case_id, "family": family,
-                **copy.deepcopy(expected),
-                "metric_designations": {
-                    "successful_completion": expected["expected_terminal"] == "COMPLETE",
-                    "recoverable": expected["designated_recoverable"],
-                    "replan_required": bool(expected["expected_replan_trigger"]),
-                    "safe_abstention": expected["designated_abstention"],
-                    "handoff": True, "verification": True,
-                },
-            }
-            cases.append(case)
-            gold.append(record)
-    fixtures: list[dict[str, Any]] = []
-    if with_fixture:
-        content = f"disposable-t30-private-fixture-{variant}".encode("utf-8")
-        fixtures.append({
-            "logical_id": f"rehearsal-{variant}.bin",
-            "classification": "PRIVATE_FIXTURE",
-            "sha256": _sha_bytes(content), "byte_size": len(content),
-            "schema_type": "application/octet-stream", "content": content,
-        })
+    Recovery-reachability remediation: the disposable construction/evaluation
+    material is executable by the UNCHANGED T30 production adapter registry
+    (qualification fixture adapters are never used for rehearsals), built in
+    the §14 causal order — scenarios, then the recovery control, then gold
+    whose ``designated_recoverable`` is derived from the control.  The row
+    body keeps the frozen candidate-executor vocabulary ("PUBLIC_SAFE").
+    """
+    from .reachability import production_disposable_bundle
+    cases, gold, fixtures, _control = production_disposable_bundle(
+        variant, with_fixture=with_fixture)
     return cases, gold, fixtures
+
+
+def synthetic_recovery_control(cases: list[dict[str, Any]], *,
+                               variant: int) -> dict[str, Any]:
+    """Disposable recovery control regenerated from the (possibly freshened)
+    candidate-visible scenarios of ``synthetic_private_bundle(variant)``."""
+    from .reachability import production_disposable_control
+    return production_disposable_control(cases, variant=variant)
 
 
 def _predecessor_oracle_root(document: dict[str, Any]) -> str:
@@ -2293,7 +2465,8 @@ def run_construction_rehearsals(root: Path, freeze: dict[str, Any]) -> dict[str,
                 token=CONSTRUCTION_TOKEN,
                 historical_index=historical_index, oracle_mode="SYNTHETIC",
                 clock=_fixed_clock_factory(0),
-                t27_store_authentication=t27_authentication)
+                t27_store_authentication=t27_authentication,
+                recovery_control=synthetic_recovery_control(cases, variant=0))
             runs.append(_rehearsal_summary(index, result))
     comparable = [{key: value for key, value in item.items()
                    if key not in {"run", "semantic_signature"}}
@@ -2350,7 +2523,8 @@ def run_construction_failure_rehearsal(root: Path, freeze: dict[str, Any]
                 token=CONSTRUCTION_TOKEN,
                 historical_index=historical_index, oracle_mode="SYNTHETIC",
                 clock=_fixed_clock_factory(3), inject_failure_phase="MATERIALIZED",
-                t27_store_authentication=t27_authentication)
+                t27_store_authentication=t27_authentication,
+                recovery_control=synthetic_recovery_control(cases, variant=3))
         except RuntimeError:
             injected = True
         ledger = T30ConstructionLedger.load(store)
@@ -2477,7 +2651,9 @@ def run_real_entrypoint_rehearsal(root: Path) -> dict[str, Any]:
                     t29_abandoned_package=t29_package,
                     t27_expected=t27_expected, t28_expected=t28_expected,
                     t29_commitment=t29_commitment,
-                    oracle_mode="REAL_REHEARSAL")
+                    oracle_mode="REAL_REHEARSAL",
+                    recovery_control=synthetic_recovery_control(
+                        cases, variant=9))
     except Exception as exc:  # fail-closed rehearsal report
         return {
             "schema_version": "t30-real-entrypoint-rehearsal-v1",
@@ -3325,7 +3501,8 @@ def run_negative_controls(root: Path, freeze: dict[str, Any]) -> dict[str, Any]:
             store, baseline, CONSTRUCTION_TOKEN, clock=_fixed_clock_factory(7))
         static = require_static_design(
             cases, gold, fixtures, oracle, provenance,
-            oracle_mode="SYNTHETIC")
+            oracle_mode="SYNTHETIC",
+            recovery_control=synthetic_recovery_control(cases, variant=7))
         components = {
             "static_design": static,
             "historical_exclusion": historical_exclusion_audit(

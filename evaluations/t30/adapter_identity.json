@@ -1,0 +1,23 @@
+{
+  "actual_adapter_builder": "t30_protocol.production:build_adapters",
+  "adapter_identity_root": "67ff47201919b09b39aa4c9db4032998fe717b5f4ea9d5890bd27ecda810b88d",
+  "artifact": "T30_PRODUCTION_ADAPTER_IDENTITY",
+  "attested_adapter_builder": "t30_protocol.production:build_adapters",
+  "classification": "PUBLIC_SAFE",
+  "historical_defect": {
+    "code": "T30_REAL_ADAPTER_IMPLEMENTATION_IDENTITY_MISMATCH",
+    "corrected_implementation": "t30_protocol.production:build_adapters",
+    "old_attested_implementation": "t30_protocol.production:build_adapters",
+    "old_imported_implementation": "t26_protocol.production:build_adapters"
+  },
+  "identity_exact": true,
+  "production_implementation_sha256": {
+    "t26_protocol/production.py": "594a481fcbf1ea4ad04fe8ce7fae4a9c01a07a2a83563689347b7fae32088697",
+    "t30_protocol/production.py": "331a9215b9bbb6495faa8b8696cec3055fb2bfeecd4440a05fa611ca840a6962",
+    "t30_protocol/recovery_control.py": "750caaa2b6550c7470efb235bee86b48572b550ea40a7a972fcfac66cd5d506d"
+  },
+  "recovery_control_wrapper": "t30_protocol.recovery_control:wrap_production_adapters",
+  "schema_version": "t30-adapter-identity-v1",
+  "status": "PASS",
+  "t26_build_adapters_import_present": false
+}

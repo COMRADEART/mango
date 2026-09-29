@@ -1,0 +1,24 @@
+{
+  "artifact": "T30_PRECONSTRUCTION_FREEZE_SUPERSEDED_PRE_EXPOSURE",
+  "classification": "SUPERSEDED_PRE_EXPOSURE",
+  "historical_bytes_preserved_in_git_history": true,
+  "historical_rewrite_of_predecessor": false,
+  "real_exposure": 0,
+  "record_name": "T30_PRECONSTRUCTION_FREEZE_96E3EE5E_SUPERSEDED_PRE_EXPOSURE",
+  "schema_version": "t30-freeze-supersession-record-v1",
+  "secondary_defect": "T30_REAL_ADAPTER_IMPLEMENTATION_IDENTITY_MISMATCH",
+  "successor": "T30_PRECONSTRUCTION_FREEZE (recovery-reachability remediation)",
+  "superseded_at_commit": "252b3de1d2606e7aa67626aacbd2daa0bf46b193",
+  "superseded_freeze": {
+    "artifact": "T30_PRECONSTRUCTION_FREEZE",
+    "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+    "component_count": 288,
+    "component_root": "60818456da5236ad0d0d1167f25111d634382c6718d0aab5e1cd66903a553980",
+    "freeze_root": "dbaf3b19481391dd43e4def238a3e321b24a9be4a5cf696a8df5fd93015ac459",
+    "freeze_sha256": "96e3ee5e12ffa8b7e5c3e6dd01dfe19ecfc4bd5ead1cb740a66f46080fb616ce",
+    "real_construction_authorized": false,
+    "real_evaluation_authorized": false
+  },
+  "superseded_freeze_git_blob": "5a9213cb2ded3b1bef8e3fcfd345a42433ee79bb",
+  "supersession_reason": "DESIGNATED_RECOVERY_UNREACHABLE_IN_FROZEN_REAL_EXECUTION_STACK"
+}

@@ -722,7 +722,8 @@ def run_doctor(root: Path) -> dict:
         "evaluation_readiness_gate_green": (
             bool(readiness_gate)
             and readiness_gate.get("status") == "GATE_GREEN"
-            and readiness_gate.get("item_count") == 12
+            and readiness_gate.get("item_count")
+            == len(_readiness_items())
             and readiness_gate.get("items_failed", [1]) == []
             and readiness_gate.get("refusal") in (None, "")
             and readiness_gate.get("classification") == "PUBLIC_SAFE"
@@ -796,6 +797,8 @@ def run_doctor(root: Path) -> dict:
             t29_predecessor_status_present(root, t29_status),
         # --- T30 §40 successor checks (journal schema, stand-in, T29 package)
         **_t30_successor_checks(root),
+        # --- recovery-reachability remediation (§47), fail-closed ---
+        **_recovery_remediation_checks(root, evaluation_rehearsals),
         "evaluation_readiness_after_remediation": (
             wrapper_rehearsal.get("status") == "PASS"
             and freeze_path_controls.get("status") == "PASS"
@@ -817,6 +820,146 @@ def run_doctor(root: Path) -> dict:
         "t27_private_paths_probed": 1, "t27_private_rows_read": 0,
         "t27_gold_rows_read": 0, "t27_candidate_reruns": 0,
         "t27_candidate_executions": 0,
+    }
+
+
+def _readiness_items() -> tuple:
+    from .evaluation import EVALUATION_READINESS_ITEMS
+    return EVALUATION_READINESS_ITEMS
+
+
+def _recovery_remediation_checks(root: Path, rehearsals: dict) -> dict:
+    """§47: fail closed on every recovery-reachability regression."""
+    import hashlib
+    import inspect
+    from .construction import construct_real
+    from .evaluation import (OLD_STACK_REPRODUCER_SHA256,
+                             SUPERSEDED_FREEZE_SHA256,
+                             T30_RECOVERY_REFUSAL_ROOT, _evaluate_once)
+    from .recovery_control import (adapter_identity_report,
+                                   build_recovery_control,
+                                   recovery_control_policy,
+                                   unchanged_semantics_report)
+    from .store import LEDGER_GUARDED_PREFIXES
+    from t21_protocol.util import sha256_json
+
+    policy = _optional(root, "recovery_control_policy.json")
+    identity = _optional(root, "adapter_identity.json")
+    gate = _optional(root, "nonvacuity_reachability_gate.json")
+    negatives = _optional(root, "recovery_control_negative_controls.json")
+    refusal = _optional(
+        root, "T30_REAL_CONSTRUCTION_REFUSAL_RECOVERY_REACHABILITY.json")
+    reproducer = _optional(
+        root, "T30_OLD_STACK_RECOVERY_REACHABILITY_REPRODUCER.json")
+    supersession = _optional(
+        root, "preconstruction_freeze_superseded_pre_exposure.json")
+    lifecycle = _optional(
+        root, "T30_RECOVERY_REACHABILITY_REMEDIATION_LIFECYCLE.json")
+    try:
+        live_identity = adapter_identity_report(root)
+    except Exception:
+        live_identity = {}
+    environment_source = _source_text(
+        root / "t30_protocol" / "official_environment.py")
+    controls = negatives.get("controls") or {}
+    refused = lambda *names: all(  # noqa: E731
+        controls.get(name, {}).get("refused") is True for name in names)
+    gate_checks = gate.get("checks") or {}
+    proof = gate.get("recovery_proof") or {}
+    runs = rehearsals.get("runs") or []
+    refusal_record = refusal.get("refusal_record") or {}
+    refusal_core = {key: value for key, value in refusal_record.items()
+                    if key != "refusal_root"}
+    reproducer_result = reproducer.get("reproducer_result")
+    try:
+        unchanged = unchanged_semantics_report(root)["unchanged"]
+    except Exception:
+        unchanged = False
+    return {
+        "recovery_adapter_identity_exact_not_t26": (
+            identity.get("identity_exact") is True
+            and live_identity.get("identity_exact") is True
+            and identity == live_identity
+            and "from t26_protocol.production import build_adapters"
+            not in environment_source
+            and refused("t26_adapter_substitution_detected")),
+        "recovery_not_fixture_only": (
+            "fixture_adapters" not in environment_source
+            and gate_checks.get("production_adapter_registry_used") is True
+            and gate_checks.get("fixture_adapters_not_used") is True
+            and all(run.get("production_adapter_registry_used") is True
+                    for run in runs) and len(runs) == 2),
+        "recovery_real_control_mandatory": (
+            "recovery_control" in inspect.signature(construct_real).parameters
+            and "bind_recovery_control" in inspect.signature(
+                _evaluate_once).parameters
+            and refused("missing_control_schedule",
+                        "runner_without_postledger_control")),
+        "recovery_schedule_gold_independent": (
+            "gold" not in inspect.signature(build_recovery_control).parameters
+            and refused("control_generator_accepts_no_gold",
+                        "gold_field_in_control", "expected_answer_in_control",
+                        "expected_terminal_in_control")),
+        "recovery_schedule_candidate_hidden": (
+            gate_checks.get("candidate_control_exposure_zero") is True
+            and refused("control_field_exposed_to_candidate")),
+        "recovery_single_injection_only": (
+            refused("fault_injected_more_than_once", "max_injections_not_one",
+                    "fault_injected_into_unscheduled_scenario",
+                    "fault_state_leaks_across_scenarios")
+            and gate_checks.get(
+                "recovery_exactly_one_injection_per_scheduled_case") is True),
+        "recovery_control_read_postledger": (
+            "control/" in LEDGER_GUARDED_PREFIXES
+            and refused("control_parsed_before_started")
+            and all(run.get("ordering_binding_precedes_control_read") is True
+                    and run.get("ordering_control_before_blind_inputs")
+                    is True for run in runs) and len(runs) == 2),
+        "recovery_designation_control_consistency": refused(
+            "recoverable_gold_missing_control_entry",
+            "control_entry_without_gold_designation", "unknown_scenario",
+            "unknown_step", "capability_mismatch", "duplicate_schedule_entry",
+            "nonlocal_unqualified_target", "target_without_retry_budget"),
+        "recovery_production_stack_proof_32": (
+            gate.get("status") == "GATE_GREEN"
+            and proof.get("all_cases_pass") is True
+            and proof.get("scheduled_recoverable_cases", 0) >= 32
+            and proof.get("recovery_numerator", 0) >= 32
+            and proof.get("recovery_numerator")
+            == proof.get("recovery_denominator")
+            and proof.get("recovery_pass") is True
+            and all(run.get("recovery_pass_32_of_32") is True
+                    and run.get("recovery_injections_exact") is True
+                    and run.get("score_pass") is True for run in runs)),
+        "recovery_all_nonvacuity_reachable": (
+            gate_checks.get("all_designations_reachable") is True
+            and len(gate.get("designations", [])) == 6
+            and all(item.get("reachable") is True
+                    for item in gate.get("designations", []))),
+        "recovery_negative_controls_all_refused": (
+            negatives.get("status") == "PASS" and negatives.get("FAIL") == 0),
+        "recovery_policy_frozen": policy == recovery_control_policy(),
+        "recovery_scorer_metrics_unchanged": unchanged,
+        "recovery_refusal_and_reproducer_bound": (
+            refusal.get("refusal_root") == T30_RECOVERY_REFUSAL_ROOT
+            and sha256_json(refusal_core) == T30_RECOVERY_REFUSAL_ROOT
+            and refusal.get("old_real_stack_recovery_reachable") is False
+            and refusal.get("t30_construction_one_shot") == "UNSPENT"
+            and reproducer_result is not None
+            and hashlib.sha256(json.dumps(reproducer_result, sort_keys=True)
+                               .encode()).hexdigest()
+            == OLD_STACK_REPRODUCER_SHA256
+            and reproducer.get("reproducer_sha256")
+            == OLD_STACK_REPRODUCER_SHA256
+            and (root / "scripts" /
+                 "t30_recovery_reachability_reproducer.py").is_file()),
+        "recovery_old_freeze_superseded_pre_exposure": (
+            supersession.get("classification") == "SUPERSEDED_PRE_EXPOSURE"
+            and (supersession.get("superseded_freeze") or {}).get(
+                "freeze_sha256") == SUPERSEDED_FREEZE_SHA256
+            and supersession.get("historical_rewrite_of_predecessor") is False
+            and lifecycle.get("construction_one_shot") == "UNSPENT"
+            and lifecycle.get("capability_verdict") == "NOT_MEASURED"),
     }
 
 
