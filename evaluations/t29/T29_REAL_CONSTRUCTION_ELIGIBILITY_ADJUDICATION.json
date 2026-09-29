@@ -1,0 +1,118 @@
+{
+  "abandoned_package": {
+    "cases_per_family": 32,
+    "classification": "T29_ABANDONED_REAL_PACKAGE_INELIGIBLE_FOR_SUCCESSOR_USE",
+    "family_count": 16,
+    "finalization_root": "9976a5acb9c1b3452551fe20eb68413bc34e23e72eceac89966ab7e0d81bd60b",
+    "fixture_count": 0,
+    "fixture_root": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "gold_bundle_root": "18bbf6b00ff1dfc4d9c552703247e42863f6351347029605701bd2188eee8326",
+    "gold_bundle_sha256": "3299dbbd6702b277048205e8a694db0edcdc2addbf850bb5ddc182995772e656",
+    "gold_count": 512,
+    "max_steps": 12,
+    "min_steps": 3,
+    "nonvacuity": {
+      "handoff_cases": 512,
+      "recoverable_cases": 34,
+      "replan_required_cases": 116,
+      "safe_abstention_cases": 164,
+      "successful_completion_cases": 348,
+      "verification_cases": 512
+    },
+    "prospective_fingerprint_root": "8d4ade57a74b7ecf139ae4446f4706ab6775bd6a5b7157ff0b5e20f13bcdca60",
+    "provenance_root": "c9d7f68852347f26cf43bb56c35b8d52f86e5191de0f5c854f6be5418691f71d",
+    "public_first_overlap": 0,
+    "refusal_root": "8effdcb3e68521e7042e3af4428cfbd080304721f3564ec36a2191c4b5706d37",
+    "retained_immutable_private": true,
+    "reuse_permitted": false,
+    "row_content_published": false,
+    "scenario_bundle_root": "2e756beb4c0c8ab829a4a2f109794a522a233418271c8792708e840c427cd66e",
+    "scenario_bundle_sha256": "2b3dbc8d0d092c06e99abb5e0b2bf612ec53566f7efd2d11e51732bf0c5b7b96",
+    "scenario_count": 512,
+    "state": [
+      "FINALIZED",
+      "PRIVATE",
+      "NEVER_QUERIED_AGAINST_T27",
+      "NEVER_QUERIED_AGAINST_T28",
+      "NEVER_MATERIALIZED_INTO_T29_STORE",
+      "NEVER_EXECUTED_BY_CANDIDATE"
+    ]
+  },
+  "adjudication_root": "5741c9aee288bd6c7b9737a204fda78d766ff2461fe8c57274bb4613d132db92",
+  "artifact": "T29_REAL_CONSTRUCTION_ELIGIBILITY_ADJUDICATION",
+  "blind_content_included": false,
+  "candidate": {
+    "commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+    "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d",
+    "tree": "1b1a0296232d1b89f94d95902dbce515f59bb266"
+  },
+  "classification": "PUBLIC_SAFE",
+  "counters": {
+    "candidate_executions": 0,
+    "construct_real_invocations": 0,
+    "official_evaluator_invocations": 0,
+    "t27_private_rows_read": 0,
+    "t27_real_oracle_invocations": 0,
+    "t28_blind_bytes_read": 0,
+    "t28_private_rows_read": 0,
+    "t28_real_oracle_invocations": 0
+  },
+  "defect": {
+    "consumer": "t29_protocol.oracle:_scan_t28_access_journal",
+    "consumer_allowed_keys": [
+      "seq",
+      "op",
+      "path",
+      "store",
+      "timestamp",
+      "exists",
+      "bytes"
+    ],
+    "deterministic": true,
+    "independent_of": [
+      "T29 scenario quality",
+      "T29 gold quality",
+      "candidate behavior",
+      "T27 overlap",
+      "T28 overlap",
+      "public historical overlap"
+    ],
+    "official_replace_ledger_records": 5,
+    "official_t28_journal_records": 156,
+    "producer": "t28_protocol.store:T28PrivateStore.replace_ledger journals {'state': value.get('state')}",
+    "producer_record_keys": [
+      "seq",
+      "op",
+      "path",
+      "store",
+      "timestamp",
+      "state"
+    ],
+    "t28_access_journal_sha256": "f28a38710a86294a405a5c4764fa0c4d547ad77828e88b3d22f8e82be4c4aaba",
+    "t28_store_py_sha256": "360daa1541efa67bb671eca2d2e58596eb60dfa340196ca7fc1c06e10d03c43c",
+    "t29_oracle_py_sha256": "1cd11487811d6edd8261c56bb91f4f29b488e9f0c34d0d44f22edcfaac97a4a6"
+  },
+  "failure_classification": "T29_T28_REAL_STORE_JOURNAL_SCHEMA_INCOMPATIBILITY",
+  "lifecycle": {
+    "capability_failure": false,
+    "capability_verdict": "NOT_MEASURED",
+    "construction_ledger": "ABSENT",
+    "construction_marker": "ABSENT",
+    "construction_one_shot": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+    "construction_one_shot_physical_state": "UNSPENT",
+    "real_construction_eligibility": "PERMANENTLY_INELIGIBLE",
+    "real_package_authored": true,
+    "sealed_holdout": false
+  },
+  "refusal_verdict": "T29_REAL_CONSTRUCTION_REFUSED_FROZEN_T28_ORACLE_REJECTS_OFFICIAL_T28_ACCESS_JOURNAL",
+  "rehearsal_gap": "REAL_STORE_LAYOUT_NOT_FULLY_REPRESENTED_BY_DISPOSABLE_STANDIN",
+  "root_cause": "FROZEN_T28_ACCESS_JOURNAL_SCHEMA_COMPATIBILITY_DEFECT",
+  "schema_version": "t29-real-construction-eligibility-adjudication-v1",
+  "starting_identity": {
+    "commit": "0e74648f58c59d8a05f425282942ae1009dfe58d",
+    "tree": "1e42b88a53e0077534a4acecf65ca4ab44d8a2cc"
+  },
+  "t29_freeze_sha256": "85d4f923249a9af41f796177df3ab6c0200a958b146e02b58a8c029cdda45158",
+  "terminal": "T29_REAL_PACKAGE_AUTHORED_BUT_CONSTRUCTION_PERMANENTLY_INELIGIBLE_DUE_TO_FROZEN_T28_ACCESS_JOURNAL_SCHEMA_DEFECT",
+  "token_reuse_forbidden": "T29_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION"
+}
