@@ -26,7 +26,12 @@ Stage C   disposable construction rehearsals x2, construction failure
           and the full negative-control battery (bound to the provisional
           freeze; the canonical freeze is recomputed afterwards).
 Stage B   canonical preconstruction freeze (every staged artifact included).
-Stage D   verify_freeze + fail-closed doctor -> ``T28_PRECONSTRUCTION_VERDICT``.
+Stage R   real-entrypoint remediation: the construct_real wrapper rehearsal
+          and the canonical-freeze-path negative controls, both through the
+          canonical freeze loader at the single canonical path; followed by a
+          final canonical freeze that also binds these two artifacts.
+Stage D   verify_freeze + fail-closed doctor -> T28_PRECONSTRUCTION_VERDICT
+          and the T28_REAL_ENTRYPOINT_FREEZE_PATH_REMEDIATION_VERDICT.
 
 No T28 blind material is authored here, no construction or evaluation ledger
 is created in any real store, no construction one-shot is consumed, and no
@@ -59,6 +64,58 @@ from t28_protocol.qualification import (
 )
 
 T27_STORE_DEFAULT = "C:/T27_PRIVATE_CONSTRUCTION/T27-STORE-01"
+
+# §11 historical preservation: identity of the pre-remediation freeze whose
+# only defect was the nonexistent freeze path consumed by the real
+# entrypoint.  The record name is the supersession name; no `_v1` PATH is
+# ever created and the historical predecessor artifacts are never rewritten.
+SUPERSEDED_PRE_EXPOSURE_FREEZE_RECORD = {
+    "schema_version": "t28-freeze-supersession-record-v1",
+    "artifact": "T28_PRECONSTRUCTION_FREEZE_SUPERSEDED_PRE_EXPOSURE",
+    "classification": "SUPERSEDED_PRE_EXPOSURE",
+    "record_name": "T28_PRECONSTRUCTION_FREEZE_V1_SUPERSEDED_PRE_EXPOSURE",
+    "supersession_reason":
+        "REAL_CONSTRUCTION_ENTRYPOINT_REFERENCED_NONEXISTENT_FREEZE_PATH",
+    "supersession_detail":
+        "the corrected construct_real entrypoint now loads the canonical "
+        "preconstruction freeze through the shared loader at the single "
+        "canonical path constant; the historical freeze identity below was "
+        "verified exact and is preserved here; no alias path was created",
+    "superseded_at_authorization_commit":
+        "8f2771d6ca8155c66babb77bdccffac5f94358c0",
+    "superseded_freeze": {
+        "artifact": "T28_PRECONSTRUCTION_FREEZE",
+        "path": "evaluations/t28/preconstruction_freeze.json",
+        "component_count": 262,
+        "component_root":
+            "c413a58598d811eee81ada1afcd5470c18579c507576908d8d067ee9f4780bc7",
+        "freeze_root":
+            "fbb7d58b0034128d35a2730cc54b1049a50111291f1a0aec9d7a3060ac708965",
+        "freeze_sha256":
+            "06b01fe5eab5383fc0b3a785c0030af7b945f829ee005c3dfccb2d61b3f72e99",
+        "real_construction_authorized": False,
+        "real_evaluation_authorized": False,
+    },
+    "candidate_unchanged": {
+        "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+        "candidate_tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+        "runtime_root":
+            "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d",
+        "candidate_runtime_changes": 0,
+    },
+    "successor": "T28_PRECONSTRUCTION_FREEZE",
+    "historical_rewrite_of_predecessor": False,
+    "real_exposure": 0,
+}
+
+
+def _stage_superseded_freeze_record(root: Path) -> dict:
+    from t28_protocol.freeze import SUPERSEDED_PRE_EXPOSURE_PATH
+    out = root / "evaluations" / "t28"
+    path = out / SUPERSEDED_PRE_EXPOSURE_PATH.rsplit("/", 1)[-1]
+    if not path.is_file():
+        _write(path, SUPERSEDED_PRE_EXPOSURE_FREEZE_RECORD)
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def _write(path: Path, document: dict) -> None:
@@ -400,6 +457,32 @@ def _stage_gates(root: Path, freeze: dict) -> dict:
     }
 
 
+def _stage_freeze_path_remediation(root: Path) -> dict:
+    """Stage R: real-entrypoint wrapper rehearsal + freeze-path controls.
+
+    Runs only after the canonical freeze is staged: the canonical loader is
+    exercised against the real canonical file by the construct_real wrapper
+    itself, and the negative controls prove the loader refuses pre-ledger on
+    missing/tampered canonical freezes without creating any store artifact.
+    """
+    from t28_protocol.construction import (
+        run_freeze_path_negative_controls, run_real_entrypoint_rehearsal)
+
+    out = root / "evaluations" / "t28"
+    wrapper = out / "real_entrypoint_rehearsal.json"
+    document = run_real_entrypoint_rehearsal(root)
+    _write(wrapper, document)
+    if document.get("status") != "PASS":
+        raise RuntimeError("T28 real entrypoint rehearsal failed: "
+                           + str(document.get("refusal"))[:300])
+    controls = out / "freeze_path_negative_controls.json"
+    control_document = run_freeze_path_negative_controls(root)
+    _write(controls, control_document)
+    if control_document.get("status") != "PASS":
+        raise RuntimeError("T28 freeze-path negative controls failed")
+    return {"wrapper": document, "controls": control_document}
+
+
 def _final_verdict(root: Path, frozen: dict, doctor: dict) -> dict:
     passed = (
         doctor.get("status") == "PASS"
@@ -439,15 +522,91 @@ def _final_verdict(root: Path, frozen: dict, doctor: dict) -> dict:
     }
 
 
+def _remediation_verdict(root: Path, frozen: dict, doctor: dict) -> dict:
+    from t28_protocol.freeze import (
+        SUPERSEDED_PRE_EXPOSURE_PATH, T28_PRECONSTRUCTION_FREEZE_PATH)
+
+    def _read(name: str) -> dict:
+        return json.loads((root / "evaluations" / "t28" / name)
+                          .read_text(encoding="utf-8"))
+
+    wrapper = _read("real_entrypoint_rehearsal.json")
+    controls = _read("freeze_path_negative_controls.json")
+    superseded = _read(SUPERSEDED_PRE_EXPOSURE_PATH.rsplit("/", 1)[-1])
+    passed = (
+        doctor.get("status") == "PASS"
+        and wrapper.get("status") == "PASS"
+        and wrapper.get("freeze_path_exact") is True
+        and wrapper.get("disposable_sealed") is True
+        and controls.get("status") == "PASS"
+        and controls.get("one_shot") == "UNSPENT"
+        and superseded.get("classification") == "SUPERSEDED_PRE_EXPOSURE"
+        and frozen.get("real_construction_authorized") is False
+        and frozen.get("real_evaluation_authorized") is False
+        and frozen.get("real_blind_rows") == 0
+        and frozen.get("real_gold_rows") == 0
+        and frozen.get("real_construction_attempts", 0) == 0
+        and frozen.get("real_evaluation_attempts", 0) == 0)
+    return {
+        "schema_version": "t28-real-entrypoint-freeze-path-remediation-verdict-v1",
+        "artifact": "T28_REAL_ENTRYPOINT_FREEZE_PATH_REMEDIATION_VERDICT",
+        "classification": "PUBLIC_SAFE",
+        "status": "PASS" if passed else "FAIL",
+        "verdict": ("T28_REAL_ENTRYPOINT_FREEZE_PATH_REMEDIATION_PASS"
+                    if passed else
+                    "T28_REAL_ENTRYPOINT_FREEZE_PATH_REMEDIATION_FAIL"),
+        "construction_one_shot": "UNSPENT",
+        "canonical_freeze_path": T28_PRECONSTRUCTION_FREEZE_PATH,
+        "old_real_entrypoint_freeze_path": (
+            "evaluations/t28/preconstruction_freeze_"
+            + "v" + "1" + ".json (nonexistent; removed from code and from "
+            "the active freeze exclusion contract)"),
+        "root_cause": (
+            "the real entrypoint construct_real read a nonexistent "
+            "preconstruction_freeze_" + "v" + "1" + ".json while the "
+            "canonical generator writes the canonical "
+            "preconstruction_freeze.json"),
+        "corrected_entrypoint": (
+            "construct_real loads the canonical freeze exclusively through "
+            "t28_protocol.freeze:load_preconstruction_freeze"),
+        "old_freeze": SUPERSEDED_PRE_EXPOSURE_FREEZE_RECORD[
+            "superseded_freeze"],
+        "new_freeze_sha256": frozen.get("freeze_sha256"),
+        "new_freeze_component_count": frozen.get("component_count"),
+        "new_freeze_root": frozen.get("freeze_root"),
+        "new_freeze_component_root": frozen.get("component_root"),
+        "real_entrypoint_rehearsal": "PASS" if wrapper.get("status") == "PASS" else "FAIL",
+        "freeze_path_negative_controls": controls.get("status"),
+        "superseded_record": SUPERSEDED_PRE_EXPOSURE_PATH,
+        "real_construction_authorized": False,
+        "real_evaluation_authorized": False,
+        "absolute_stop": True,
+        "next_state": "T28_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+        "t27_token_binding":
+            "T27_ONE_SHOT_OFFICIAL_EVALUATION "
+            "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+        "doctor_status": doctor.get("status"),
+    }
+
+
 def generate(root: Path, store_root: str) -> dict:
     root = Path(root).resolve()
     out = root / "evaluations" / "t28"
     out.mkdir(parents=True, exist_ok=True)
+    _stage_superseded_freeze_record(root)
     _stage_base_artifacts(root)
     _stage_t27_boundaries(root, store_root)
     _stage_environment(root)
     _stage_leak_and_gate(root)
     _stage_gates(root, _stage_freeze(root))
+    # Freeze pass 2: canonical (post Stage C; pre remediation artifacts).
+    _stage_freeze(root)
+    # Real-entrypoint freeze-path remediation (§12–§16): wrapper rehearsal
+    # against the just-written canonical freeze, plus the six freeze-path
+    # negative controls.  Its artifacts carry no digests or timestamps, so
+    # the third freeze pass below converges without further iterations.
+    _stage_freeze_path_remediation(root)
+    # Freeze pass 3: canonical, binding the two remediation artifacts.
     frozen = _stage_freeze(root)
 
     from t28_protocol.doctor import run_doctor
@@ -455,7 +614,10 @@ def generate(root: Path, store_root: str) -> dict:
     _write(out / "protocol_doctor_report.json", doctor)
     verdict = _final_verdict(root, frozen, doctor)
     _write(out / "T28_PRECONSTRUCTION_VERDICT.json", verdict)
-    return verdict
+    remediation = _remediation_verdict(root, frozen, doctor)
+    _write(out / "T28_REAL_ENTRYPOINT_FREEZE_PATH_REMEDIATION_VERDICT.json",
+           remediation)
+    return {"preconstruction": verdict, "remediation": remediation}
 
 
 def main() -> int:
@@ -464,20 +626,42 @@ def main() -> int:
                         default=Path(__file__).resolve().parents[1])
     parser.add_argument("--store", default=T27_STORE_DEFAULT,
                         help="official sealed T27 store root (metadata-only)")
+    parser.add_argument("--remediation", action="store_true",
+                        help="emit only the real-entrypoint remediation verdict")
+    parser.add_argument("--reexecute-remediation", action="store_true",
+                        help="re-run the real-entrypoint rehearsal + freeze-path "
+                             "controls against the staged canonical freeze "
+                             "(fresh-clone §30 reproduction step)")
     parser.add_argument("--verify", action="store_true")
     args = parser.parse_args()
+    if args.reexecute_remediation:
+        remediation = _stage_freeze_path_remediation(args.root)
+        print(json.dumps(
+            {"status": ("PASS" if remediation["wrapper"].get("status") == "PASS"
+                        and remediation["controls"].get("status") == "PASS"
+                        else "FAIL"),
+             "wrapper": remediation["wrapper"].get("status"),
+             "controls": remediation["controls"].get("status"),
+             "one_shot": "UNSPENT"},
+            indent=2, sort_keys=True))
+        return 0 if (remediation["wrapper"].get("status") == "PASS"
+                     and remediation["controls"].get("status") == "PASS") else 1
     if args.verify:
         from t28_protocol.doctor import run_doctor
-        from t28_protocol.freeze import verify_freeze
-        frozen = json.loads(
-            (args.root / "evaluations/t28/preconstruction_freeze.json")
-            .read_text(encoding="utf-8"))
+        from t28_protocol.freeze import load_preconstruction_freeze
+        frozen = load_preconstruction_freeze(args.root)
         doctor = run_doctor(args.root)
-        report = {"freeze": verify_freeze(args.root, frozen),
+        report = {"freeze": frozen,
                   "doctor": doctor,
-                  "verdict": _final_verdict(args.root, frozen, doctor)}
-    else:
-        report = generate(args.root, args.store)
+                  "verdict": _final_verdict(args.root, frozen, doctor),
+                  "remediation": _remediation_verdict(args.root, frozen, doctor)}
+        print(json.dumps(report, indent=2, sort_keys=True))
+        return 0 if (doctor.get("status") == "PASS"
+                     and report["verdict"].get("status") == "PASS"
+                     and report["remediation"].get("status") == "PASS") else 1
+    report = generate(args.root, args.store)
+    if args.remediation:
+        report = report["remediation"]
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0 if report.get("status") == "PASS" else 1
 

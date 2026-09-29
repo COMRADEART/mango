@@ -12,7 +12,7 @@
   "official_real_evaluator_invocations": 0,
   "public_leak_preflight": {
     "blind_blob_count": 0,
-    "public_leak_scan_root": "6d0f64d2db99814d1f5326c51516beb5d9cbc2b8e87baa81f8392e07364883d6",
+    "public_leak_scan_root": "ec9558a506c3ea7d87246208b75f4e11b36c579c68b976248b69ae72b8780ac3",
     "status": "PASS"
   },
   "real_evaluation_attempts": 0,

@@ -201,3 +201,148 @@ def test_inherited_candidate_runtime_frozen():
 
 def test_verification_matrix_pass():
     assert run_verification_matrix()["status"] == "PASS"
+
+
+# --- real-entrypoint freeze-path remediation (§7/§8/§9/§14–§16) ---
+
+
+def _synthetic_freeze_document(**overrides) -> dict:
+    from t21_protocol.util import sha256_json
+    from t28_protocol.freeze import (PINNED_CANDIDATE_COMMIT,
+                                     PINNED_CANDIDATE_TREE,
+                                     PINNED_RUNTIME_ROOT)
+    entries = [
+        {"path": f"t28_protocol/mod{i}.py", "sha256": f"{i:064d}",
+         "byte_size": 900 + i, "role": "T28_PROTOCOL_RUNTIME"}
+        for i in range(3)]
+    root_input = {
+        "schema_version": "t28-preconstruction-freeze-v1",
+        "artifact": "T28_PRECONSTRUCTION_FREEZE",
+        "classification": "PUBLIC_SAFE", "experiment": "t28",
+        "candidate_commit": PINNED_CANDIDATE_COMMIT,
+        "candidate_tree": PINNED_CANDIDATE_TREE,
+        "runtime_root": PINNED_RUNTIME_ROOT,
+        "candidate_runtime_changes": 0,
+        "component_root": sha256_json(entries),
+        "terminal_semantics_frozen": True,
+        "completion_recovery_replan_abstention_frozen": True,
+        "provider_and_scorer_bindings_frozen": True,
+        "real_construction_authorized": False,
+        "real_evaluation_authorized": False,
+        "real_blind_rows": 0, "real_gold_rows": 0,
+        "real_construction_attempts": 0, "real_evaluation_attempts": 0,
+    }
+    document = {**root_input, "component_count": len(entries),
+                "components": entries, "freeze_root": sha256_json(root_input)}
+    document["freeze_sha256"] = sha256_json(document)
+    document.update(overrides)
+    return document
+
+
+def test_canonical_freeze_path_and_loader_semantics():
+    from t28_protocol.freeze import (EXCLUDED, FREEZE_LOADER_ID,
+                                     SUPERSEDED_PRE_EXPOSURE_PATH,
+                                     T28_PRECONSTRUCTION_FREEZE_PATH,
+                                     load_preconstruction_freeze)
+    forbidden = "evaluations/t28/preconstruction_freeze_" + "v1" + ".json"
+    assert T28_PRECONSTRUCTION_FREEZE_PATH == (
+        "evaluations/t28/preconstruction_freeze.json")
+    assert FREEZE_LOADER_ID == "t28_protocol.freeze:load_preconstruction_freeze"
+    assert SUPERSEDED_PRE_EXPOSURE_PATH == (
+        "evaluations/t28/preconstruction_freeze_superseded_pre_exposure.json")
+    assert forbidden not in T28_PRECONSTRUCTION_FREEZE_PATH
+    assert forbidden not in SUPERSEDED_PRE_EXPOSURE_PATH
+    assert not any(forbidden in entry for entry in EXCLUDED)
+
+    def loader_refusal(document, marker, *, write=True):
+        with TemporaryDirectory(prefix="t28-loader-refusal-") as tmp:
+            sparse = Path(tmp) / "repo"
+            (sparse / "evaluations" / "t28").mkdir(parents=True)
+            if write:
+                (sparse / "evaluations" / "t28" /
+                 "preconstruction_freeze.json").write_text(
+                    json.dumps(document, indent=2, sort_keys=True) + "\n",
+                    encoding="utf-8")
+            with pytest.raises(ValueError) as raised:
+                load_preconstruction_freeze(sparse)
+            assert marker in str(raised.value), str(raised.value)
+            assert not list((sparse / "evaluations" / "t28").glob("*_v1*"))
+
+    loader_refusal(None, "absent", write=False)
+    # a doc-internally coherent freeze survives the loader's internal
+    # recomputation and is refused only by repository re-verification,
+    # which is impossible inside the sparse temporary root
+    loader_refusal(_synthetic_freeze_document(), "repository")
+    # tampered freeze identity is refused by field name before any
+    # repository access (§16)
+    loader_refusal(_synthetic_freeze_document(freeze_sha256="1" * 64),
+                   "freeze_sha256")
+    loader_refusal(_synthetic_freeze_document(component_count=99),
+                   "component_count")
+    loader_refusal(_synthetic_freeze_document(component_root="2" * 64),
+                   "component_root")
+    loader_refusal(_synthetic_freeze_document(freeze_root="3" * 64),
+                   "freeze_root")
+    loader_refusal(_synthetic_freeze_document(candidate_commit="b" * 40),
+                   "candidate identity")
+
+
+def test_real_entrypoint_loader_bound_and_forbidden_scans_clean():
+    from t28_protocol.freeze import FREEZE_LOADER_ID
+    with (ROOT / "t28_protocol" / "construction.py").open(
+            encoding="utf-8") as handle:
+        construction_source = handle.read()
+    assert "freeze = load_preconstruction_freeze(root)" in construction_source
+    assert "construct_real" in construction_source
+    with (ROOT / "t28_protocol" / "freeze.py").open(
+            encoding="utf-8") as handle:
+        assert FREEZE_LOADER_ID in handle.read()
+    forbidden = "evaluations/t28/preconstruction_freeze_" + "v1" + ".json"
+    scanned = list((ROOT / "t28_protocol").glob("*.py"))
+    scanned.extend((ROOT / "scripts").glob("t28*.py"))
+    scanned.extend((ROOT / "tests").glob("test_t28*.py"))
+    assert scanned, "T28 production surface must not be empty"
+    for path in scanned:
+        with path.open(encoding="utf-8") as handle:
+            assert forbidden not in handle.read(), path
+
+
+def test_real_entrypoint_contract_and_gate_leaves():
+    from t28_protocol.construction import (CONSTRUCTION_GATE_IDS,
+                                           CONTRACT_LEAF_IDS,
+                                           construction_contract)
+    assert "protocol.canonical_freeze_path_exact" in CONTRACT_LEAF_IDS
+    assert "protocol.real_entrypoint_freeze_reproduces" in CONTRACT_LEAF_IDS
+    assert construction_contract()["leaf_count"] == len(CONTRACT_LEAF_IDS)
+    assert len(CONTRACT_LEAF_IDS) == 62
+    assert "G53_REAL_ENTRYPOINT_CANONICAL_FREEZE_PATH" in CONSTRUCTION_GATE_IDS
+    assert "G54_REAL_ENTRYPOINT_FREEZE_REPRODUCTION" in CONSTRUCTION_GATE_IDS
+    assert len(CONSTRUCTION_GATE_IDS) == 54
+
+
+def test_real_rehearsal_oracle_binding():
+    from t21_protocol.util import sha256_json
+    from t28_protocol.construction import (fingerprint_root, fingerprint_sets,
+                                           synthetic_private_bundle)
+    from t28_protocol.oracle import verify_oracle_result
+    from t27_protocol.t28_private_oracle import (
+        disposable_real_mode_oracle_result)
+    cases, gold, _fixtures = synthetic_private_bundle(13, with_fixture=True)
+    prospective = fingerprint_sets(cases, gold)
+    result = disposable_real_mode_oracle_result(
+        root=ROOT, prospective_root=fingerprint_root(prospective),
+        # single-digit variant: the disposable candidate commit embeds the
+        # variant digit and must stay a 40-hex identifier
+        prospective=prospective, variant=7)
+    verdict = verify_oracle_result(result, mode="REAL_REHEARSAL")
+    assert verdict["real_mode_not_synthetic"] is True
+    assert verdict["t27_store_authenticated"] is True
+    assert verdict["overall_prohibited_overlap"] == 0
+    # promoting the disposable stand-in scope to OFFICIAL_T27 is refused —
+    # a rehearsal oracle can never impersonate the official T27 scope
+    tampered = dict(result, official_commitment_scope="OFFICIAL_T27")
+    tampered["result_sha256"] = sha256_json(
+        {key: value for key, value in tampered.items()
+         if key != "result_sha256"})
+    with pytest.raises(ValueError):
+        verify_oracle_result(tampered, mode="REAL_REHEARSAL")
