@@ -8,9 +8,9 @@
   "doctor_status": "PASS",
   "freeze_path_negative_controls": "PASS",
   "new_freeze_component_count": 265,
-  "new_freeze_component_root": "8ffb3031867235e893b3a98ffec03de701dc8053e51d5576b0f19e52c257971d",
-  "new_freeze_root": "bef68e161b0f580c3bb174bbcf162594793d82e8c43aeb5782d61f4ef7055e50",
-  "new_freeze_sha256": "0e5389f87a288f354fa1038184379e2349d3e0d83338cba770c5905b3581e1c8",
+  "new_freeze_component_root": "fb79faf8fd42132bb123e084b0bc88332d72b45b2d4770f6685886e162481473",
+  "new_freeze_root": "3bcb5fe6e084bea1ea5dbcf4e1e5e30b7852edfa7da82d25f4cc48b2d4f6de55",
+  "new_freeze_sha256": "58281c91989f0e5871b2cf9b61581007e5c7e7cfd8f73abdab9ee80c996d98a0",
   "next_state": "T28_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
   "old_freeze": {
     "artifact": "T28_PRECONSTRUCTION_FREEZE",

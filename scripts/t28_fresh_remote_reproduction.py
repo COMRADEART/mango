@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -39,10 +40,15 @@ def reproduce(root: Path, *, clone_parent: str | None = None) -> dict:
     with tempfile.TemporaryDirectory(
             prefix="t28-fresh-remote-", dir=clone_parent) as tmp:
         clone = Path(tmp) / "clone"
+        environment = dict(os.environ)
+        # unrelated historical LFS checkpoints are irrelevant to the T28
+        # verification surface; skipping smudge avoids their bulk fetch
+        environment["GIT_LFS_SKIP_SMUDGE"] = "1"
         subprocess.run(
             ["git", "clone", "--branch", "t28-preconstruction",
              origin, str(clone)],
-            capture_output=True, text=True, check=True, timeout=600)
+            capture_output=True, text=True, check=True, timeout=600,
+            env=environment)
         cloned_commit = subprocess.run(
             ["git", "rev-parse", "HEAD"], cwd=clone, capture_output=True,
             text=True, check=True).stdout.strip()

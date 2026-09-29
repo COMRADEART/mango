@@ -6,7 +6,7 @@
   "classification": "PUBLIC_SAFE",
   "completion_recovery_replan_abstention_frozen": true,
   "component_count": 265,
-  "component_root": "8ffb3031867235e893b3a98ffec03de701dc8053e51d5576b0f19e52c257971d",
+  "component_root": "fb79faf8fd42132bb123e084b0bc88332d72b45b2d4770f6685886e162481473",
   "components": [
     {
       "byte_size": 1735,
@@ -138,7 +138,7 @@
       "byte_size": 2352,
       "path": "evaluations/t28/evaluation_rehearsal_report.json",
       "role": "T28_PUBLIC_ARTIFACT",
-      "sha256": "c9ad2b68452f7c212935396a6d2b462ae4337236430370e88d933019e9713ea6"
+      "sha256": "18bc8c1202455fc8999e507d94f7242e48910fb6d33fb30bf63528be347fb372"
     },
     {
       "byte_size": 3010,
@@ -264,7 +264,7 @@
       "byte_size": 520,
       "path": "evaluations/t28/public_leak_scan.json",
       "role": "T28_PUBLIC_ARTIFACT",
-      "sha256": "79b1f7a63a2915025e2a780f32866cfbedf707f375a521ec9d00ef4e0b689ce8"
+      "sha256": "67e13e7a1f5c68a7243bf1cb7a7bf808fd834490e883a160f6cf64287c04483f"
     },
     {
       "byte_size": 4882,
@@ -339,10 +339,10 @@
       "sha256": "2c69a726a3365602a0c729d3f1deb8838b523784ff52dde7148c2c2150cf09e0"
     },
     {
-      "byte_size": 8304,
+      "byte_size": 8576,
       "path": "scripts/t28_fresh_remote_reproduction.py",
       "role": "T28_ENTRYPOINT",
-      "sha256": "44e675090ffde5ceedd167b7e52e650b9a59243993b620d016896f324efd3858"
+      "sha256": "6fd5a340715aa36cb5924e9564cbdf831d4f1aa2572d3a4fa6fd20282be3738b"
     },
     {
       "byte_size": 32082,
@@ -1600,8 +1600,8 @@
     }
   ],
   "experiment": "t28",
-  "freeze_root": "bef68e161b0f580c3bb174bbcf162594793d82e8c43aeb5782d61f4ef7055e50",
-  "freeze_sha256": "0e5389f87a288f354fa1038184379e2349d3e0d83338cba770c5905b3581e1c8",
+  "freeze_root": "3bcb5fe6e084bea1ea5dbcf4e1e5e30b7852edfa7da82d25f4cc48b2d4f6de55",
+  "freeze_sha256": "58281c91989f0e5871b2cf9b61581007e5c7e7cfd8f73abdab9ee80c996d98a0",
   "provider_and_scorer_bindings_frozen": true,
   "real_blind_rows": 0,
   "real_construction_attempts": 0,
