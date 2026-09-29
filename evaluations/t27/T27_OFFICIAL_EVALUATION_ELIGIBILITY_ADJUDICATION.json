@@ -1,0 +1,201 @@
+{
+  "schema_version": "t27-official-evaluation-eligibility-adjudication-v1",
+  "artifact": "T27_OFFICIAL_EVALUATION_ELIGIBILITY_ADJUDICATION",
+  "classification": "PUBLIC_SAFE",
+  "date": "2026-09-28",
+  "construction_predecessor": "T27_REAL_BLIND_HOLDOUT_CONSTRUCTED_AND_SEALED_PRIVATE",
+  "construction_state": {
+    "construction_one_shot": "SPENT",
+    "construction_valid": true,
+    "construction_result_invalidated": false
+  },
+  "public_construction": {
+    "branch": "t27-constructed-sealed-private",
+    "commit": "f7ce9021693a9e62b216245fa33ad1f970cb9a23",
+    "tree": "6da82b8e2895f1d2a177b80940861bff54e9737f",
+    "parent": "6981a3eeea29b5111481d66b503c0f51431aa5e2",
+    "publication_file_count": 2,
+    "receipt_blob_sha256": "d80d8700bb75feb07e5a57d45412d68ff9a32c46d34475d1fc6606a21cba880a",
+    "commitment_blob_sha256": "3ee1718829560b644225b34b7453269f2847e5189fa08d91f6b7e73acf9d12de"
+  },
+  "candidate": {
+    "commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+    "tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+    "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d"
+  },
+  "v5_freeze": {
+    "component_count": 276,
+    "component_root": "28e166126db77781c6df43a76263183290200bb177a660e403805d358db3c2fb",
+    "freeze_root": "7244e02c437f6825e47729b7dc5a63289471c0eb231821d5589fd0da1c16aceb",
+    "freeze_sha256": "b0467875b333d3df82a7839ac4f1a61237acb1f59971321affd4d5921782c644"
+  },
+  "sealed_commitments": {
+    "construction_ledger_sha256": "d36aaa077a38ca1eda34569630d1e5a7e322174a56d2b592b0a106a68bf6cc62",
+    "construction_ledger_root": "55dfaa06c7baa5f511b6481f064e5e32fc12c5c06dde6fedec0eeb46fbb25e0b",
+    "manifest_sha256": "d99927be1cc7ffd93cddde16fe9dabc49b7531d89a7428ed235dea1f789836a3",
+    "seal_sha256": "9d7cb8be80e621312a3b997b000225ad8e604fee64afee05b92cf98c6257e5f4",
+    "private_artifact_root": "338cc8b6ae4f5e414b5d06c4f5c77fe6a07fffb3c439d87b0988e7840f41b753",
+    "private_blind_root": "0a3188531b88fb4b1bf28b6674e1a72b188d19cd49312e8026f29f59a721eaa2"
+  },
+  "evaluation_invocation_count": 0,
+  "candidate_real_execution_count": 0,
+  "evaluation_ledger_present": false,
+  "evaluation_marker_present": false,
+  "evidence_basis": [
+    "public source code",
+    "public V5 freeze",
+    "public construction receipt and commitment",
+    "aggregate sealed metadata",
+    "existence and status checks only"
+  ],
+  "audit_identity": {
+    "evaluation_module_blob": "a5462ffc937dd9a3d7670149f92e40939b19169f",
+    "evaluation_module_sha256": "fe2b312ce759b59354a369021acd37b84579750aa26897af6f58176d425aada5",
+    "production_module_blob": "81b7b134caa432f35e23df74707f6e8e567660bb",
+    "production_module_sha256": "c88a2708c52dc3c94d4194d65174b24724ef4528c8dccae054c19374eda22c03",
+    "factory_id": "t27_protocol.evaluation:OfficialRunnerFactory",
+    "factory_sha256": "2ee1abae10a9740d5b53156355d8688ad43e681039bebc36f06fd9bd99a60e88",
+    "runner_identity_recomputed_equals_committed": true,
+    "general_context_identity_root": "cd681771e08909112edb94622c13bc13d246b459a19fbc34dc9fc18535a559cf",
+    "corpus_document_mount_root": "7e6d40351f8cab0142b5abec226dc9f84f99be3e3a2c0a3ab7235caacbc64130",
+    "provider_firewall_identity_root": "2b4a803b12aa59a5215e800307d099a67a6838b21c8459b61899752ec71eb582",
+    "static_identity_literal_proofs": {
+      "general_context_identity_root_is_sha256_of_static_literal": true,
+      "corpus_document_mount_root_is_sha256_of_static_literal": true,
+      "provider_firewall_identity_root_is_sha256_of_class_names_only": true
+    }
+  },
+  "defects": [
+    {
+      "id": "A",
+      "name": "BLIND_ACCESS_PRECEDES_ONE_SHOT_BOUNDARY",
+      "status": "CONFIRMED",
+      "evidence": [
+        "t27_protocol/evaluation.py:363-364 official reads construction/closure metadata",
+        "t27_protocol/evaluation.py:369-370 blind scenario and gold bundles fully read",
+        "t27_protocol/evaluation.py:374-378 production runner built and official workspace created",
+        "t27_protocol/evaluation.py:387 ledger path entered only via _evaluate_once",
+        "t27_protocol/evaluation.py:301 ledger create_exclusive called only inside _evaluate_once",
+        "t27_protocol/evaluation.py:131 one-shot marker written only inside create_exclusive",
+        "AST ordering proof: all pre-ledger reads precede the ledger-creation path"
+      ],
+      "consequence": "one-shot not spent when blind data first accessed; invalid state blind-data-accessed/ledger-absent/marker-absent"
+    },
+    {
+      "id": "B",
+      "name": "CALLER_SUPPLIED_PRODUCTION_DEPENDENCIES",
+      "status": "CONFIRMED",
+      "evidence": [
+        "t27_protocol/evaluation.py:356-359 official entrypoint accepts corpus_mount, web_provider, general_context, document_roots from caller",
+        "t27_protocol/evaluation.py:374-376 caller objects forwarded to OfficialRunnerFactory.build_real_runner",
+        "t27_protocol/evaluation.py:227-230 caller objects forwarded into production provider",
+        "not reconstructed solely from sealed/frozen identities inside the official evaluator"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "STATIC_GENERAL_CONTEXT_IDENTITY",
+      "status": "CONFIRMED",
+      "evidence": [
+        "t27_protocol/evaluation.py:54 general context represented as static literal",
+        "t27_protocol/evaluation.py:76 identity root computed from that static literal",
+        "recomputed sha256 of the literal equals the frozen general_context_identity_root",
+        "the actual caller-supplied general context object is never hashed or bound"
+      ]
+    },
+    {
+      "id": "D",
+      "name": "STATIC_CORPUS_DOCUMENT_IDENTITY",
+      "status": "CONFIRMED",
+      "evidence": [
+        "t27_protocol/evaluation.py:55 corpus/document mounts represented as static literal",
+        "t27_protocol/evaluation.py:77 mount root computed from that static literal",
+        "recomputed sha256 of the literal equals the frozen corpus_document_mount_root",
+        "t27_protocol/evaluation.py:28-36 ledger binding fields carry only the static root"
+      ]
+    },
+    {
+      "id": "E",
+      "name": "PROVIDER_FIREWALL_IDENTITY_INCOMPLETE",
+      "status": "CONFIRMED",
+      "evidence": [
+        "t27_protocol/evaluation.py:73-75 provider/firewall root commits to class-name strings only",
+        "t27_protocol/evaluation.py:224-226 build_real_runner performs isinstance wrap checks only",
+        "no cryptographic binding of the actual low-level live-provider instance, configuration, or firewall instance into the official ledger"
+      ]
+    },
+    {
+      "id": "F",
+      "name": "STORE_INTEGRITY_NOT_FULLY_REVERIFIED",
+      "status": "CONFIRMED",
+      "evidence": [
+        "t27_protocol/evaluation.py:363-366 only closure-state equality checks on seal and construction ledger",
+        "no full sealed-store revalidation (manifested hashes, classifications, roots) anywhere in the official pre-evaluation gate",
+        "absence of store verify call in the evaluation module mechanically confirmed"
+      ]
+    },
+    {
+      "id": "G",
+      "name": "SEALED_MANIFEST_SEAL_COMPATIBILITY_NOT_FULLY_REVALIDATED",
+      "status": "CONFIRMED",
+      "evidence": [
+        "no comprehensive official preflight reproducing sealed closure identities before official execution",
+        "t27_protocol/evaluation.py:240-264 historical sealed values consumed directly as binding inputs",
+        "absence of freeze verification, historical-index verification, and closure-root recomputation in the evaluation module mechanically confirmed"
+      ]
+    },
+    {
+      "id": "H",
+      "name": "NO_ALL_PUBLIC_REF_LEAK_PREFLIGHT",
+      "status": "CONFIRMED",
+      "evidence": [
+        "the official evaluation entrypoint performs no repository-wide leak scan of any kind before blind execution",
+        "absence of subprocess/network imports, remote fetch, and publication leak gate invocation mechanically confirmed",
+        "construction-time scans are not re-run at the evaluation boundary"
+      ]
+    },
+    {
+      "id": "I",
+      "name": "PRE_LEDGER_WORKSPACE_MUTATION",
+      "status": "CONFIRMED",
+      "evidence": [
+        "t27_protocol/evaluation.py:377-378 official evaluation workspace subtree created inside the private store",
+        "t27_protocol/evaluation.py:387 executed strictly before the one-shot ledger creation path",
+        "weakens ledger-first/evaluation-mutation-second boundary; creation precedes the attempt"
+      ]
+    }
+  ],
+  "defect_status_summary": {
+    "total": 9,
+    "confirmed": 9,
+    "refuted": 0,
+    "contrary_evidence": false
+  },
+  "external_repair_insufficiency": "frozen ledger bindings carry static policy identities rather than exact attestations of the objects and mounts supplied at runtime, so an external preflight cannot make the frozen ledger fully attest the execution stack",
+  "repair_performed": false,
+  "evaluation_protocol_modules_modified": 0,
+  "protocol_tree_matches_construction_parent": true,
+  "no_successor_evaluation_protocol_created": true,
+  "blind_rows_opened_for_adjudication": 0,
+  "t26_private_rows_opened_for_adjudication": 0,
+  "evaluation_one_shot_physical_state": "UNSPENT",
+  "official_evaluation_eligibility": "INELIGIBLE",
+  "official_evaluation_eligibility_state": "PERMANENTLY_NOT_AUTHORIZED_FOR_T27",
+  "evaluation_one_shot_terminal": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "capability_status": "NOT_MEASURED",
+  "capability_measurement_occurred": false,
+  "not_classified_as": [
+    "CAPABILITY_FAIL",
+    "CAPABILITY_PASS",
+    "TECHNICAL_ABORT"
+  ],
+  "short_status": [
+    "SEALED",
+    "UNEVALUATED",
+    "OFFICIAL_EVALUATION_INELIGIBLE"
+  ],
+  "terminal_record": "T27_SEALED_VALID_BUT_OFFICIAL_BLIND_EVALUATION_INELIGIBLE_DUE_TO_FROZEN_EVALUATION_PROTOCOL_DEFECT",
+  "t26_state_unchanged": "T26_OFFICIAL_VALID_CAPABILITY_FAILURE",
+  "blind_content_included": false,
+  "successor_protocol_required": true
+}
