@@ -1,0 +1,10 @@
+{
+  "artifact": "T28_OFFICIAL_ENVIRONMENT_IDENTITY",
+  "classification": "PUBLIC_SAFE",
+  "environment_root": "aa06c40ab1e0f9e7095ad7f9ed36d05a481823b8940c509c262c4fb66ee11efb",
+  "experiment": "t28",
+  "general_context_identity_root": "a3ee8602c887a3555cee58f6366b6d5a0c5097679c89441a5033805e70e5e222",
+  "live_provider_identity_root": "775a79daa101aa541bf608492d337e753b237e3d24fa4064cd1bf0b45c5738a9",
+  "rehearsal_environment_root": "bc44a02318a39c38d551f8e53d116a6da8ad87cf90f7ff73808773f52dbc029f",
+  "schema_version": "t28-official-environment-identity-v1"
+}

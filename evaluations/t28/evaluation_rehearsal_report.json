@@ -1,0 +1,81 @@
+{
+  "artifact": "T28_DISPOSABLE_EVALUATION_REHEARSALS",
+  "classification": "PUBLIC_SAFE",
+  "identities_shared_with_real_mode": [
+    "runner_identity",
+    "scorer",
+    "gold firewall",
+    "mount policy",
+    "FAIL_NONVACUITY",
+    "ledger ordering"
+  ],
+  "official_real_evaluator_invocations": 0,
+  "public_leak_preflight": {
+    "blind_blob_count": 0,
+    "public_leak_scan_root": "6d0f64d2db99814d1f5326c51516beb5d9cbc2b8e87baa81f8392e07364883d6",
+    "status": "PASS"
+  },
+  "real_evaluation_attempts": 0,
+  "runs": [
+    {
+      "denominators_nonzero": true,
+      "designated_counts": {
+        "handoff_cases": 64,
+        "recoverable_cases": 16,
+        "replan_required_cases": 16,
+        "safe_abstention_cases": 16,
+        "successful_completion_cases": 48,
+        "verification_cases": 272
+      },
+      "fail_nonvacuity_policy": true,
+      "gold_firewall_projected_rows": 64,
+      "ordering_binding_precedes_blind_reads": true,
+      "ordering_blind_inputs_before_gold": true,
+      "ordering_reads_before_workspace": true,
+      "run": 1,
+      "scenario_count": 64,
+      "semantic_signature": "1531866305925a2a3a7aaad06922a76ce86031de7ee7e50bb7829a92c2586369",
+      "state_sequence": [
+        "STARTED",
+        "EXECUTED",
+        "SCORED",
+        "COMPLETE"
+      ],
+      "status": "PASS"
+    },
+    {
+      "denominators_nonzero": true,
+      "designated_counts": {
+        "handoff_cases": 64,
+        "recoverable_cases": 16,
+        "replan_required_cases": 16,
+        "safe_abstention_cases": 16,
+        "successful_completion_cases": 48,
+        "verification_cases": 272
+      },
+      "fail_nonvacuity_policy": true,
+      "gold_firewall_projected_rows": 64,
+      "ordering_binding_precedes_blind_reads": true,
+      "ordering_blind_inputs_before_gold": true,
+      "ordering_reads_before_workspace": true,
+      "run": 2,
+      "scenario_count": 64,
+      "semantic_signature": "1531866305925a2a3a7aaad06922a76ce86031de7ee7e50bb7829a92c2586369",
+      "state_sequence": [
+        "STARTED",
+        "EXECUTED",
+        "SCORED",
+        "COMPLETE"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "t28-evaluation-rehearsals-v1",
+  "semantic_equivalence": true,
+  "status": "PASS",
+  "substitutes": [
+    "disposable general context",
+    "fixture search provider",
+    "synthetic rows"
+  ]
+}

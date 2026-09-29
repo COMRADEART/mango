@@ -1,0 +1,373 @@
+{
+  "FAIL": 0,
+  "PASS": 72,
+  "artifact": "T28_CONSTRUCTION_NEGATIVE_CONTROLS",
+  "classification": "PUBLIC_SAFE",
+  "control_count": 72,
+  "controls": {
+    "attempt_2": {
+      "evidence": "attempt-one-only:ConstructionLedgerError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "authority_escalation": {
+      "evidence": "authority-audit-refusal",
+      "refused": true,
+      "status": "PASS"
+    },
+    "candidate_gold_edge": {
+      "evidence": "gold-firewall",
+      "refused": true,
+      "status": "PASS"
+    },
+    "construction_ledger_chain_invalid": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "construction_ledger_started_event_hash_mismatch": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "construction_ledger_state_not_sealed": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "contract_leaf_failure": {
+      "evidence": "enumerated-contract-leaf",
+      "refused": true,
+      "status": "PASS"
+    },
+    "dimension_policy_root_tampered": {
+      "evidence": "policy-root-mismatch",
+      "refused": true,
+      "status": "PASS"
+    },
+    "disposable_standin_using_legacy_path": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "duplicate_ledger": {
+      "evidence": "exclusive-create:ConstructionLedgerError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "duplicate_scenario_id": {
+      "evidence": "static-design:unique_scenario_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "empty_nine_dimensional_history": {
+      "evidence": "real-empty-history:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "fake_public_history_builder_identity": {
+      "evidence": "builder-identity-authentication:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "fake_source_commitment": {
+      "evidence": "source-commitment-authentication:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "fixture_hash_mismatch": {
+      "evidence": "fixture-commitment",
+      "refused": true,
+      "status": "PASS"
+    },
+    "gold_field_exposure": {
+      "evidence": "candidate-projection:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "historical_overlap": {
+      "evidence": "nine-dimensional-public-overlap",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_case_ids_marked_structural": {
+      "evidence": "identity-marked-structural:case_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_chunk_ids_marked_structural": {
+      "evidence": "identity-marked-structural:chunk_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_exact_answers_marked_structural": {
+      "evidence": "identity-marked-structural:exact_answers",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_exact_queries_marked_structural": {
+      "evidence": "identity-marked-structural:exact_queries",
+      "refused": true,
+      "status": "PASS"
+    },
+    "identity_exact_source_text_marked_structural": {
+      "evidence": "identity-marked-structural:exact_source_text",
+      "refused": true,
+      "status": "PASS"
+    },
+    "legacy_rehearsal_marker_path_only": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "marker_byte_count_mismatch": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "marker_commitment_hash_mismatch": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "marker_missing_from_manifest": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "missing_family": {
+      "evidence": "static-design:family_count_16",
+      "refused": true,
+      "status": "PASS"
+    },
+    "missing_oracle_dimension": {
+      "evidence": "nine-oracle-dimensions:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "missing_required_historical_source": {
+      "evidence": "required-source-completeness:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "missing_source_root": {
+      "evidence": "source-root-required:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_absent": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_unspent": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_wrong_artifact": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_wrong_bindings": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_wrong_genesis_hash": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "official_marker_wrong_schema": {
+      "evidence": "sealed-marker-layout:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "premature_evaluation_artifact": {
+      "evidence": "preledger-evaluation-absence:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "public_history_none": {
+      "evidence": "real-history-none:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "recoverable_below_minimum": {
+      "evidence": "static-design:nonvacuity.recoverable_cases",
+      "refused": true,
+      "status": "PASS"
+    },
+    "replan_below_minimum": {
+      "evidence": "static-design:nonvacuity.replan_required_cases",
+      "refused": true,
+      "status": "PASS"
+    },
+    "reuse_case_ids_detected": {
+      "evidence": "genuine-reuse-detected:case_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "reuse_chunk_ids_detected": {
+      "evidence": "genuine-reuse-detected:chunk_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "reuse_exact_answers_detected": {
+      "evidence": "genuine-reuse-detected:exact_answers",
+      "refused": true,
+      "status": "PASS"
+    },
+    "reuse_exact_queries_detected": {
+      "evidence": "genuine-reuse-detected:exact_queries",
+      "refused": true,
+      "status": "PASS"
+    },
+    "reuse_exact_source_text_detected": {
+      "evidence": "genuine-reuse-detected:exact_source_text",
+      "refused": true,
+      "status": "PASS"
+    },
+    "safe_abstention_below_minimum": {
+      "evidence": "static-design:nonvacuity.safe_abstention_cases",
+      "refused": true,
+      "status": "PASS"
+    },
+    "scenario_count_511": {
+      "evidence": "static-design:scenario_count_512",
+      "refused": true,
+      "status": "PASS"
+    },
+    "scenario_count_513": {
+      "evidence": "static-design:scenario_count_512",
+      "refused": true,
+      "status": "PASS"
+    },
+    "source_policy_root_tampered": {
+      "evidence": "source-policy-mismatch",
+      "refused": true,
+      "status": "PASS"
+    },
+    "structural_entity_identities_populated": {
+      "evidence": "structural-populated:entity_identities",
+      "refused": true,
+      "status": "PASS"
+    },
+    "structural_relations_populated": {
+      "evidence": "structural-populated:relations",
+      "refused": true,
+      "status": "PASS"
+    },
+    "structural_source_ids_populated": {
+      "evidence": "structural-populated:source_ids",
+      "refused": true,
+      "status": "PASS"
+    },
+    "structural_verbatim_attack_wording_populated": {
+      "evidence": "structural-populated:verbatim_attack_wording",
+      "refused": true,
+      "status": "PASS"
+    },
+    "successful_completion_below_minimum": {
+      "evidence": "static-design:nonvacuity.successful_completion_cases",
+      "refused": true,
+      "status": "PASS"
+    },
+    "synthetic_t27_oracle_real_mode": {
+      "evidence": "real-mode-rejects-synthetic:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "t27_oracle_overlap": {
+      "evidence": "sealed-t27-overlap:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "t27_overlap_gt_zero": {
+      "evidence": "real-oracle-overlap:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "unknown_structural_dimension": {
+      "evidence": "unknown-dimension-in-policy",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_authority_graph": {
+      "evidence": "preledger-authority_graph_sha256-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_candidate": {
+      "evidence": "preledger-candidate_commit-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_family_count": {
+      "evidence": "static-design:cases_per_family_32",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_freeze": {
+      "evidence": "preledger-preconstruction_freeze_sha256-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_metric_registry": {
+      "evidence": "preledger-metric_registry_sha256-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_nonvacuity_policy": {
+      "evidence": "preledger-nonvacuity_policy_sha256-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_runtime_root": {
+      "evidence": "preledger-runtime_root-binding:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t27_candidate_commit": {
+      "evidence": "exact-t27_candidate_commit:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t27_holdout_root": {
+      "evidence": "exact-t27_private_holdout_root:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t27_manifest_hash": {
+      "evidence": "exact-t27_private_manifest_sha256:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t27_seal_hash": {
+      "evidence": "exact-t27_construction_seal_sha256:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t27_store": {
+      "evidence": "sealed-store-type-and-identity:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_t28_prospective_root": {
+      "evidence": "prospective-root-equality:ValueError",
+      "refused": true,
+      "status": "PASS"
+    },
+    "wrong_token": {
+      "evidence": "exclusive-ledger-token-check:ConstructionLedgerError",
+      "refused": true,
+      "status": "PASS"
+    }
+  },
+  "real_blind_rows": 0,
+  "real_construction_attempts": 0,
+  "schema_version": "t28-construction-negative-controls-v1",
+  "status": "PASS"
+}

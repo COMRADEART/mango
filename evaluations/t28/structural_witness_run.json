@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "script": "scripts/t28_structural_satisfiability_witness.py",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "    \"relations\": 0,\n    \"source_ids\": 0,\n    \"verbatim_attack_wording\": 0\n  },\n  \"artifact\": \"C:/Users/allam/Documents/new/model/.wt-t28-preconstruction/evaluations/t28/structural_satisfiability_witness.json\",\n  \"capabilities_exercised\": 12,\n  \"designated_counts\": {\n    \"handoff_cases\": 512,\n    \"recoverable_cases\": 128,\n    \"replan_required_cases\": 128,\n    \"safe_abstention_cases\": 128,\n    \"successful_completion_cases\": 384,\n    \"verification_cases\": 512\n  },\n  \"deterministic\": true,\n  \"disjointness\": {\n    \"answers_disjoint\": true,\n    \"goals_disjoint\": true,\n    \"inputs_disjoint\": true,\n    \"scenario_ids_disjoint\": true,\n    \"step_pairs_disjoint\": true\n  },\n  \"overall_prohibited_overlap\": 0,\n  \"status\": \"PASS\"\n}"
+}

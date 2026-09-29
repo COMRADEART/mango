@@ -1,0 +1,17 @@
+{
+  "artifact": "T28_APPLICABILITY_AWARE_TEST_GATE",
+  "classification": "PUBLIC_SAFE",
+  "deselections": 0,
+  "historical_frozen_identity_tests": "INAPPLICABLE_TO_AUTHORIZED_SUCCESSOR_BYTE_CHANGES",
+  "live_failures": 0,
+  "passed": 13,
+  "schema_version": "t28-test-gate-v1",
+  "status": "PASS",
+  "test_files": [
+    "tests/test_t28_preconstruction.py"
+  ],
+  "tests": 13,
+  "unexplained_skips": 0,
+  "unknown_failures": 0,
+  "xfails": 0
+}

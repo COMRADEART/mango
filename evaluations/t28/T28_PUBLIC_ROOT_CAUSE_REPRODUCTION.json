@@ -1,0 +1,50 @@
+{
+  "artifact": "T28_PUBLIC_ROOT_CAUSE_REPRODUCTION",
+  "claim_scope": "PUBLIC_T27_ADJUDICATION_DEFECTS_ONLY",
+  "classification": "PUBLIC_SAFE",
+  "demonstrated_public_defects": [
+    "the evaluation lifecycle created blind reads before any ledger",
+    "the official environment was an open builder allowing ad hoc",
+    "identity bindings were anonymous callables instead of frozen implementation identities",
+    "corpus and per-scenario document mounts were not wired into the official environment",
+    "the web-source firewall was not bound to the declared SHA values",
+    "the sealed store verification was executed with row parsing outside a machine-only boundary",
+    "the sealed T27 compatibility preflight was absent",
+    "the all-public-reference leak preflight was absent",
+    "evaluation workspaces were created on paths whose workspace lifecycle preceded the ledger"
+  ],
+  "predecessor_artifacts": [
+    "evaluations/t27/T27_OFFICIAL_EVALUATION_ELIGIBILITY_ADJUDICATION.json"
+  ],
+  "predecessor_commit": "f7ce9021693a9e62b216245fa33ad1f970cb9a23",
+  "predecessor_observations": {
+    "evaluation_ledger_ordering": {
+      "blind_reads_before_ledger": true,
+      "pre_ledger_refusal_enforced": false
+    },
+    "official_environment_builder": {
+      "candidate_executions_during_preflight": 0,
+      "closed_builder_with_implementation_identity": false
+    },
+    "zero_overlap_oracle_semantics": {
+      "t27_evaluation_ever_run": false,
+      "t27_one_shot_physical_state": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+      "t27_state_preserved": true
+    }
+  },
+  "remediation_checks": {
+    "all_public_ref_leak_preflight": true,
+    "closed_environment_builder_with_attestation": true,
+    "ledger_first_exclusive_creation": true,
+    "machine_only_store_reverify": true,
+    "post_ledger_workspace_creation": true,
+    "sealed_t27_compatibility_preflight": true,
+    "sha_bound_firewall": true,
+    "store_guard_raises_pre_ledger_violation": true
+  },
+  "schema_version": "t28-public-root-cause-reproduction-v1",
+  "status": "REPRODUCED_AND_REMEDIATED",
+  "t27_candidate_reruns": 0,
+  "t27_private_rows_opened": 0,
+  "t27_row_specific_cause_claimed": false
+}

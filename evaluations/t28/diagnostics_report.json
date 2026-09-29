@@ -1,0 +1,58 @@
+{
+  "completion_gate": {
+    "checks": {
+      "last_verification_fail": false,
+      "missing_final_output": false,
+      "missing_required_step": false,
+      "partial_verification": false,
+      "positive": true
+    },
+    "status": "PASS"
+  },
+  "terminal_matrix": {
+    "aggregate_observed_counts": {
+      "BLOCKED": 1,
+      "BUDGET_EXHAUSTED": 1,
+      "COMPLETE": 1,
+      "ERROR": 1,
+      "INSUFFICIENT_EVIDENCE": 1,
+      "PARTIAL": 1,
+      "SECURITY_REFUSAL": 1,
+      "UNAVAILABLE_CAPABILITY": 1
+    },
+    "checks": {
+      "BLOCKED": true,
+      "BUDGET_EXHAUSTED": true,
+      "COMPLETE": true,
+      "ERROR": true,
+      "INSUFFICIENT_EVIDENCE": true,
+      "PARTIAL": true,
+      "SECURITY_REFUSAL": true,
+      "UNAVAILABLE_CAPABILITY": true
+    },
+    "expected_terminal_count": 8,
+    "raw_rows_included": false,
+    "status": "PASS"
+  },
+  "verification_matrix": {
+    "checks": {
+      "citation": {
+        "known_invalid": false,
+        "known_valid": true
+      },
+      "evidence": {
+        "known_invalid": false,
+        "known_valid": true
+      },
+      "numeric": {
+        "known_invalid": false,
+        "known_valid": true
+      },
+      "schema": {
+        "known_invalid": false,
+        "known_valid": true
+      }
+    },
+    "status": "PASS"
+  }
+}

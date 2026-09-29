@@ -1,0 +1,39 @@
+{
+  "artifact": "T28_T27_OFFICIAL_MARKER_CONTRACT",
+  "classification": "PUBLIC_SAFE",
+  "disposable_layout": {
+    "evaluation_artifacts_absent": true,
+    "evaluation_attempt_zero": true,
+    "evaluation_eligibility_permament": true,
+    "evaluation_state_sealed_unevaluated": true,
+    "event_count_zero": true,
+    "fingerprint_derivation_invoked": false,
+    "legacy_marker_path_present": false,
+    "marker_artifact_match": true,
+    "marker_committed": true,
+    "marker_genesis_matches_ledger": true,
+    "marker_path_match": true,
+    "marker_schema_match": true,
+    "private_rows_read": 0,
+    "store_authenticated": true
+  },
+  "disposable_layout_mirrors_official": true,
+  "legacy_marker_path_accepted": false,
+  "marker_path_exact": true,
+  "marker_schema_exact": true,
+  "official_evaluation_absence_paths": [
+    "evaluation/ledger.json",
+    "markers/evaluation.one-shot",
+    "evaluation/raw_outputs.json",
+    "evaluation/scored_rows.json",
+    "evaluation/summary.json",
+    "evaluation/one_shot_spent.json"
+  ],
+  "official_marker_artifact": "T27_CONSTRUCTION_ONE_SHOT_SPENT",
+  "official_marker_classification": "PRIVATE_LEDGER",
+  "official_marker_path": "markers/construction.one-shot",
+  "official_marker_schema": "t27-construction-one-shot-v1",
+  "real_store_metadata_preflight_required": true,
+  "schema_version": "t28-t27-official-marker-contract-v1",
+  "status": "PASS"
+}
