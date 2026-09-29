@@ -1,0 +1,291 @@
+{
+  "artifact": "T29_PRODUCTION_GRAPH",
+  "classification": "PUBLIC_SAFE",
+  "dangling_edges": 0,
+  "evaluation_ledger_precedes": [
+    "blind_reader",
+    "workspace_factory",
+    "official_runner"
+  ],
+  "external_action_authority": false,
+  "missing_producers": 0,
+  "nodes": {
+    "T27_to_T29_sealed_overlap_oracle": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "private_author"
+      ],
+      "producer": "t29_protocol.oracle:run_sealed_t27_to_t29_overlap_oracle"
+    },
+    "T28_to_T29_sealed_overlap_oracle": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "private_author"
+      ],
+      "producer": "t29_protocol.oracle:run_sealed_t28_to_t29_overlap_oracle"
+    },
+    "blind_reader": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [
+        "evaluation_ledger"
+      ],
+      "producer": "t29_protocol.store:T29PrivateStore.read_json"
+    },
+    "completion_gate": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "replan_controller"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner.run"
+    },
+    "construction_audit": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "private_materialization"
+      ],
+      "producer": "t29_protocol.construction:run_construction_audit"
+    },
+    "construction_gate": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_audit"
+      ],
+      "producer": "t29_protocol.construction:run_construction_gate"
+    },
+    "construction_ledger": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "historical_exclusion_oracle",
+        "T27_to_T29_sealed_overlap_oracle",
+        "T28_to_T29_sealed_overlap_oracle"
+      ],
+      "producer": "t29_protocol.construction:T29ConstructionLedger.create_exclusive"
+    },
+    "environment_builder": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "public_construction_receipt"
+      ],
+      "producer": "t29_protocol.official_environment:build_official_evaluation_environment"
+    },
+    "evaluation_absence_preflight": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "public_leak_preflight"
+      ],
+      "producer": "t29_protocol.evaluation:run_evaluation_absence_preflight"
+    },
+    "evaluation_ledger": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "evaluation_absence_preflight"
+      ],
+      "producer": "t29_protocol.evaluation:T29EvaluationLedger.create_exclusive"
+    },
+    "gold_firewall": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "blind_reader"
+      ],
+      "producer": "t29_protocol.construction:candidate_input_projection"
+    },
+    "handoff_validator": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "registered_capabilities"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner._handoff_valid"
+    },
+    "historical_anchor_preflight": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "sealed_store_preflight"
+      ],
+      "producer": "t29_protocol.evaluation:run_predecessor_anchor_preflight"
+    },
+    "historical_exclusion_oracle": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "private_author"
+      ],
+      "producer": "t29_protocol.exclusion:build_authenticated_public_historical_index"
+    },
+    "holdout_seal": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "private_manifest"
+      ],
+      "producer": "t29_protocol.construction:seal_holdout"
+    },
+    "official_runner": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "workspace_factory",
+        "environment_builder"
+      ],
+      "producer": "t29_protocol.official_environment:T29OfficialRunnerFactory"
+    },
+    "orchestrator": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "planner"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner.run"
+    },
+    "planner": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "holdout_seal"
+      ],
+      "producer": "sciencemath.planning.pipeline:Planner.handle"
+    },
+    "private_author": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [],
+      "producer": "EXTERNAL_CLEAN_ROOM_AUTHOR_BOUND_BY_PROVENANCE"
+    },
+    "private_manifest": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "construction_gate"
+      ],
+      "producer": "t29_protocol.construction:build_private_manifest"
+    },
+    "private_materialization": {
+      "classification": "PRIVATE_BLIND",
+      "inputs": [
+        "construction_ledger"
+      ],
+      "producer": "t29_protocol.construction:materialize_private"
+    },
+    "provider_normalizer": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "router"
+      ],
+      "producer": "t29_protocol.production:_provider_call"
+    },
+    "public_construction_receipt": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "publication_gate"
+      ],
+      "producer": "t29_protocol.construction:build_public_receipt"
+    },
+    "public_evaluation_receipt": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "scorer"
+      ],
+      "producer": "t29_protocol.evaluation:_public_evaluation_receipt"
+    },
+    "public_leak_preflight": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "historical_anchor_preflight"
+      ],
+      "producer": "t29_protocol.construction:run_publication_leak_gate"
+    },
+    "publication_gate": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "holdout_seal"
+      ],
+      "producer": "t29_protocol.construction:run_publication_leak_gate"
+    },
+    "registered_capabilities": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "provider_normalizer"
+      ],
+      "producer": "t29_protocol.production:build_adapters"
+    },
+    "replan_controller": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "retry_controller"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner.run"
+    },
+    "retry_controller": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "verification_layer"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner.run"
+    },
+    "router": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "orchestrator"
+      ],
+      "producer": "sciencemath.executive.router_v2:route_request"
+    },
+    "scorer": {
+      "classification": "PRIVATE_EVALUATION",
+      "inputs": [
+        "official_runner"
+      ],
+      "producer": "t29_protocol.scorer:score_suite"
+    },
+    "sealed_store_preflight": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "environment_builder"
+      ],
+      "producer": "t29_protocol.evaluation:run_sealed_store_preflight"
+    },
+    "verification_layer": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "handoff_validator"
+      ],
+      "producer": "sciencemath.integrated.runner:IntegratedRunner._verify"
+    },
+    "workspace_factory": {
+      "classification": "PUBLIC_SAFE",
+      "inputs": [
+        "gold_firewall"
+      ],
+      "producer": "t29_protocol.store:T29PrivateStore.create_evaluation_workspace"
+    }
+  },
+  "ordered_components": [
+    "private_author",
+    "historical_exclusion_oracle",
+    "T27_to_T29_sealed_overlap_oracle",
+    "T28_to_T29_sealed_overlap_oracle",
+    "construction_ledger",
+    "private_materialization",
+    "construction_audit",
+    "construction_gate",
+    "private_manifest",
+    "holdout_seal",
+    "publication_gate",
+    "public_construction_receipt",
+    "environment_builder",
+    "sealed_store_preflight",
+    "historical_anchor_preflight",
+    "public_leak_preflight",
+    "evaluation_absence_preflight",
+    "evaluation_ledger",
+    "blind_reader",
+    "gold_firewall",
+    "workspace_factory",
+    "official_runner",
+    "scorer",
+    "public_evaluation_receipt",
+    "planner",
+    "orchestrator",
+    "router",
+    "provider_normalizer",
+    "registered_capabilities",
+    "handoff_validator",
+    "verification_layer",
+    "retry_controller",
+    "replan_controller",
+    "completion_gate"
+  ],
+  "production_stubs": 0,
+  "schema_version": "t29-production-graph-v3"
+}

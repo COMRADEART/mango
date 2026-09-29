@@ -1,0 +1,17 @@
+{
+  "artifact": "T29_APPLICABILITY_AWARE_TEST_GATE",
+  "classification": "PUBLIC_SAFE",
+  "deselections": 0,
+  "historical_frozen_identity_tests": "INAPPLICABLE_TO_AUTHORIZED_SUCCESSOR_BYTE_CHANGES",
+  "live_failures": 0,
+  "passed": 23,
+  "schema_version": "t29-test-gate-v1",
+  "status": "PASS",
+  "test_files": [
+    "C:/Users/allam/Documents/new/model/.wt-t29-preconstruction/tests/test_t29_preconstruction.py"
+  ],
+  "tests": 23,
+  "unexplained_skips": 0,
+  "unknown_failures": 0,
+  "xfails": 0
+}

@@ -1,0 +1,52 @@
+{
+  "artifact": "T28_CONSTRUCTION_READY_HISTORICAL_EXCLUSION_POLICY",
+  "candidate_execution_on_historical_rows": false,
+  "classification": "PUBLIC_SAFE",
+  "dimensions": [
+    "case_ids",
+    "entity_identities",
+    "source_ids",
+    "chunk_ids",
+    "exact_queries",
+    "exact_answers",
+    "exact_source_text",
+    "verbatim_attack_wording",
+    "relations"
+  ],
+  "historical_private_row_exposure_to_author": 0,
+  "historical_sources": [
+    "T21_T21R_HISTORICAL",
+    "T22_PROTECTED",
+    "T23_EXPOSED",
+    "T24_PRIVATE_EVALUATED",
+    "T25_PRIVATE_EVALUATED",
+    "T26_SEALED_EVALUATED",
+    "T27_SEALED_UNEVALUATED",
+    "T27_PUBLIC_QUALIFICATION",
+    "T27_DIAGNOSTICS",
+    "T27_PUBLIC_REPRODUCER",
+    "T27_SYNTHETIC_TERMINAL_MATRIX",
+    "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES",
+    "T29_PUBLIC_QUALIFICATION",
+    "T29_DIAGNOSTICS",
+    "T29_PUBLIC_REPRODUCER",
+    "T29_SYNTHETIC_TERMINAL_MATRIX",
+    "T29_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES"
+  ],
+  "overall_prohibited_overlap_required": 0,
+  "per_dimension_fields": [
+    "applicable",
+    "prospective_population",
+    "historical_population",
+    "overlap_count"
+  ],
+  "required_before_real_construction_ledger": true,
+  "schema_version": "t28-historical-exclusion-policy-v2",
+  "t27_boundary": {
+    "implementation": "t27_protocol.t28_private_oracle:compare_hashes",
+    "input_values": "SHA256_ONLY",
+    "output_values": "COUNTS_AND_ROOTS_ONLY",
+    "private_rows_returned": 0,
+    "result_artifact": "T27_TO_T28_OVERLAP_ORACLE_RESULT"
+  }
+}

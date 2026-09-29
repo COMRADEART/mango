@@ -1,0 +1,21 @@
+{
+  "artifact": "T29_HISTORICAL_ANCHOR_CONTROL_REHEARSAL",
+  "classification": "PUBLIC_SAFE",
+  "consumer_validated": true,
+  "mutation_control_status": "PASS",
+  "mutation_refusals_failed": 0,
+  "official_anchor_commitment_roots": {
+    "t27": "d4c80c500f61d1434b655029020215129682e95ceeac307d43d87b6fa77b8e44",
+    "t28": "fce26f5c1b87eed425663cd655b6edb31a9a04541624fac853097b27aa5d2605"
+  },
+  "raw_indexing_consumers": 0,
+  "roundtrip_exact": true,
+  "schema_exact": {
+    "t27": true,
+    "t28": true
+  },
+  "schema_version": "t29-historical-anchor-control-rehearsal-v1",
+  "status": "PASS",
+  "t27_private_rows_read": 0,
+  "t28_private_rows_read": 0
+}

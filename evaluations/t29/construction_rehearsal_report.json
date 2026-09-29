@@ -1,0 +1,78 @@
+{
+  "artifact": "T29_DISPOSABLE_CONSTRUCTION_REHEARSALS",
+  "classification": "PUBLIC_SAFE",
+  "real_blind_rows": 0,
+  "real_construction_attempts": 0,
+  "real_gold_rows": 0,
+  "runs": [
+    {
+      "combined_historical_exclusion_root": "5df22832ce321ab7331c808470827f3ae42c7936cc261f2586529986f5ad502d",
+      "contract_leaf_count": 65,
+      "designated_counts": {
+        "handoff_cases": 512,
+        "recoverable_cases": 128,
+        "replan_required_cases": 128,
+        "safe_abstention_cases": 128,
+        "successful_completion_cases": 384,
+        "verification_cases": 512
+      },
+      "gate_check_count": 56,
+      "gold_count": 512,
+      "historical_source_count": 17,
+      "leak_gate_status": "PASS",
+      "oracle_mode": "SYNTHETIC",
+      "public_historical_index_root": "7b5d06d03b9b86ee422d3e8323a19028227b615bef11eafe25c4aa77fae6effc",
+      "receipt_blind_content_included": false,
+      "run": 1,
+      "scenario_count": 512,
+      "semantic_signature": "4ef3efceb0b8d7a5a2e328eabb10e29109994ea8fda148199880a35436e71290",
+      "state": "SEALED",
+      "state_sequence": [
+        "LEDGER_CREATED",
+        "MATERIALIZED",
+        "AUDITED",
+        "GATE_PASS",
+        "MANIFESTED",
+        "SEALED"
+      ],
+      "status": "PASS",
+      "store_status": "PASS"
+    },
+    {
+      "combined_historical_exclusion_root": "5df22832ce321ab7331c808470827f3ae42c7936cc261f2586529986f5ad502d",
+      "contract_leaf_count": 65,
+      "designated_counts": {
+        "handoff_cases": 512,
+        "recoverable_cases": 128,
+        "replan_required_cases": 128,
+        "safe_abstention_cases": 128,
+        "successful_completion_cases": 384,
+        "verification_cases": 512
+      },
+      "gate_check_count": 56,
+      "gold_count": 512,
+      "historical_source_count": 17,
+      "leak_gate_status": "PASS",
+      "oracle_mode": "SYNTHETIC",
+      "public_historical_index_root": "7b5d06d03b9b86ee422d3e8323a19028227b615bef11eafe25c4aa77fae6effc",
+      "receipt_blind_content_included": false,
+      "run": 2,
+      "scenario_count": 512,
+      "semantic_signature": "4ef3efceb0b8d7a5a2e328eabb10e29109994ea8fda148199880a35436e71290",
+      "state": "SEALED",
+      "state_sequence": [
+        "LEDGER_CREATED",
+        "MATERIALIZED",
+        "AUDITED",
+        "GATE_PASS",
+        "MANIFESTED",
+        "SEALED"
+      ],
+      "status": "PASS",
+      "store_status": "PASS"
+    }
+  ],
+  "schema_version": "t29-construction-rehearsals-v1",
+  "semantic_equivalence": true,
+  "status": "PASS"
+}

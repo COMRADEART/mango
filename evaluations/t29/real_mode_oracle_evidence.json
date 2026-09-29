@@ -1,0 +1,22 @@
+{
+  "artifact": "T29_REAL_MODE_ORACLE_VALIDATION_REHEARSAL",
+  "candidate_executions": 0,
+  "classification": "PUBLIC_SAFE",
+  "dual_oracle_root": "c5f6c8b4401fa8bbe9b9938cdccbb67643bb5491536969b124b9626c66cdc1b4",
+  "outside_boundary_private_rows_exposed": 0,
+  "overall_prohibited_overlap": 0,
+  "predecessors": [
+    "t27",
+    "t28"
+  ],
+  "prospective_root_exact": true,
+  "real_mode_not_synthetic": true,
+  "schema_version": "t29-real-mode-oracle-validation-rehearsal-v2",
+  "status": "PASS",
+  "t27_commitments_exact": true,
+  "t27_fingerprint_index_origin": "PRE_EXISTING_SEALED",
+  "t27_store_authenticated": true,
+  "t28_commitments_exact": true,
+  "t28_fingerprint_index_origin": "DERIVED_MACHINE_ONLY_FROM_SEALED_BLIND_BYTES",
+  "t28_store_authenticated": true
+}

@@ -1,0 +1,43 @@
+{
+  "artifact": "T29_EVALUATION_FAILURE_REHEARSAL",
+  "classification": "PUBLIC_SAFE",
+  "failure_phases": [
+    {
+      "injected": true,
+      "ledger_state": "FAILED",
+      "marker_spent": true,
+      "phase": "STARTED",
+      "retry_refused": true,
+      "standin_store_disposable": true
+    },
+    {
+      "injected": true,
+      "ledger_state": "FAILED",
+      "marker_spent": true,
+      "phase": "BLIND_READ",
+      "retry_refused": true,
+      "standin_store_disposable": true
+    },
+    {
+      "injected": true,
+      "ledger_state": "FAILED",
+      "marker_spent": true,
+      "phase": "EXECUTED",
+      "retry_refused": true,
+      "standin_store_disposable": true
+    },
+    {
+      "injected": true,
+      "ledger_state": "FAILED",
+      "marker_spent": true,
+      "phase": "SCORED",
+      "retry_refused": true,
+      "standin_store_disposable": true
+    }
+  ],
+  "one_shot": "SPENT_ON_DISPOSABLE_STANDINS",
+  "post_ledger_failure_recorded": true,
+  "real_evaluation_attempts": 0,
+  "schema_version": "t29-evaluation-failure-rehearsal-v2",
+  "status": "PASS"
+}

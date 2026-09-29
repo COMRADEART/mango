@@ -1,0 +1,35 @@
+{
+  "artifact": "T29_EVALUATION_READINESS_GATE",
+  "classification": "PUBLIC_SAFE",
+  "construction_contract_leaf_count": 21,
+  "item_count": 12,
+  "items": {
+    "caller_injection_impossible": true,
+    "failure_semantics_pass": true,
+    "gold_firewall_pass": true,
+    "historical_anchor_roundtrip_pass": true,
+    "ledger_first_pass": true,
+    "model_hydration_pass": true,
+    "nonvacuity_pass": true,
+    "production_environment_pass": true,
+    "public_leak_preflight_pass": true,
+    "shape_mutation_controls_pass": true,
+    "store_closure_pass": true,
+    "wrapper_pass": true
+  },
+  "items_failed": [],
+  "readiness_contract": {
+    "FAIL": 0,
+    "PASS": 21,
+    "UNVERIFIABLE": 0,
+    "leaf_count": 21,
+    "leaf_root": "60ddc5919b141971174bd35a86060f49dee571e588dea821189294206eb2e588"
+  },
+  "real_blind_rows": 0,
+  "real_construction_attempts": 0,
+  "real_evaluation_attempts": 0,
+  "real_gold_rows": 0,
+  "refusal": null,
+  "schema_version": "t29-evaluation-readiness-gate-v1",
+  "status": "GATE_GREEN"
+}
