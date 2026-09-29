@@ -1,0 +1,117 @@
+{
+  "artifact": "T28_STRUCTURAL_UNSATISFIABILITY_REPRODUCER",
+  "classification": "PUBLIC_SAFE",
+  "classification_of_defect": "T27_PRE_EXPOSURE_STRUCTURAL_HISTORICAL_EXCLUSION_SEMANTICS_DEFECT",
+  "construction_one_shot_spent": false,
+  "contract_complete_package_overlap_measured": {
+    "all_dimensions_overlap": {
+      "case_ids": 0,
+      "chunk_ids": 0,
+      "entity_identities": 16,
+      "exact_answers": 0,
+      "exact_queries": 0,
+      "exact_source_text": 0,
+      "relations": 6,
+      "source_ids": 12,
+      "verbatim_attack_wording": 16
+    },
+    "package": "synthetic_private_bundle(variant=2025) (disposable)",
+    "structural_overlap": {
+      "entity_identities": 16,
+      "relations": 6,
+      "source_ids": 12,
+      "verbatim_attack_wording": 16
+    }
+  },
+  "contract_forced_structural_overlap": true,
+  "contract_forcing": {
+    "entity_identities": {
+      "forced_hash_count": 16,
+      "forcing_leaf": "design.families_16",
+      "overlap_measured": 16
+    },
+    "non_forced_dimensions": [
+      "case_ids",
+      "chunk_ids",
+      "exact_queries",
+      "exact_answers",
+      "exact_source_text"
+    ],
+    "relations": {
+      "forced": false,
+      "reason": "depends_on topology is author-chosen; chain topology hashes are avoidable with a non-chain DAG"
+    },
+    "source_ids": {
+      "capability_hashes_in_generated_public": 12,
+      "forcing_leaf": "schema.plan",
+      "mechanism": "every step must carry a registered capability, so any package contributes at least one capability hash",
+      "unconditional_minimum": 1
+    },
+    "verbatim_attack_wording": {
+      "forced_hash_count": 16,
+      "forcing_leaf": "schema.plan",
+      "mechanism": "validate_plan refuses every fallback_condition other than the frozen dict, so sha256((family, fallback_condition)) is contractually fixed per family",
+      "overlap_measured": 16
+    }
+  },
+  "contradiction": "33 > 0 -> UNSATISFIABLE",
+  "dimension_policy_root": "186ab5fcf36fd0d3c18fe37b084016801711202a18d7a356e1f0b8d19b1b712b",
+  "generated_public_dimension_policy_schema": "t28-generated-public-exclusion-dimension-policy-v1",
+  "mechanism_probe": {
+    "forcing_leaf": "schema.plan",
+    "forcing_mechanism": "sciencemath.integrated.runner:validate_plan",
+    "frozen_fallback_condition": {
+      "on_failure": "SAFE_ABSTAIN",
+      "on_insufficient_evidence": "INSUFFICIENT_EVIDENCE"
+    },
+    "frozen_fallback_condition_accepted": true,
+    "mutated_fallback_condition_refused": true
+  },
+  "old_semantics": {
+    "generated_public_sources": [
+      "T27_PUBLIC_QUALIFICATION",
+      "T27_DIAGNOSTICS",
+      "T27_SYNTHETIC_TERMINAL_MATRIX",
+      "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES",
+      "T28_PUBLIC_QUALIFICATION",
+      "T28_DIAGNOSTICS",
+      "T28_SYNTHETIC_TERMINAL_MATRIX",
+      "T28_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES"
+    ],
+    "index_schema": "t27-authenticated-public-historical-index-v1",
+    "old_public_history_root": "9b199cfd74df2b30b660263bac5166877d2ea4a913d2aad319f3d3a2072c6b41",
+    "structural_aggregate_populations": {
+      "entity_identities": 17,
+      "relations": 6,
+      "source_ids": 12,
+      "verbatim_attack_wording": 17
+    }
+  },
+  "overall_prohibited_overlap_required": 0,
+  "overclaim_guard": "capability overlap is exact 12 only if all 12 registered capabilities are exercised; the machine-readable lower bound is 33 (16 entity + 16 verbatim + >=1 capability)",
+  "real_blind_rows_authored": 0,
+  "real_gold_rows_authored": 0,
+  "remediated_index_root": "afc85ceb83bf377bdaf645cd8a92fa8cec236215853eea78f9adf851c5c314dd",
+  "remediated_index_schema": "t28-authenticated-public-historical-index-v2",
+  "remediated_semantics_inherited_for_t28": true,
+  "remediated_structural_overlap": 0,
+  "remediated_structural_populations": {
+    "entity_identities": 0,
+    "relations": 0,
+    "source_ids": 0,
+    "verbatim_attack_wording": 0
+  },
+  "reproduces_state": "T27_REAL_CONSTRUCTION_REFUSED_HISTORICAL_EXCLUSION_STRUCTURALLY_UNSATISFIABLE",
+  "root_cause": "Generated-public fingerprints under the T27 V4-era semantics encoded frozen structural vocabulary: entity_identities = sha256(family), source_ids = sha256(step.capability), verbatim_attack_wording = sha256((family, fallback_condition)) with the fallback dict contractually fixed, and relations = sha256((step_id, depends_on)) generic chain topology.  Any contract-complete 512-package therefore forced structural overlap against the authenticated public historical index, making overall_prohibited_overlap_required == 0 unsatisfiable.",
+  "satisfiability_witness_reference": "evaluations/t28/structural_satisfiability_witness.json",
+  "schema_version": "t28-structural-unsatisfiability-reproducer-v1",
+  "status": "REPRODUCED",
+  "t27_old_semantics_capability_overlap_all_exercised": 12,
+  "t27_old_semantics_minimum_overlap": 33,
+  "t27_old_semantics_minimum_overlap_all_exercised": 44,
+  "t27_private_rows_opened": 0,
+  "t28_candidate_reruns": 0,
+  "t28_construction_ledger_created": false,
+  "t28_private_rows_opened": 0,
+  "witness_material_is_not_real_blind_material": true
+}

@@ -1,0 +1,35 @@
+{
+  "artifact": "T28_EVALUATION_FAILURE_REHEARSAL",
+  "classification": "PUBLIC_SAFE",
+  "failure_phases": [
+    {
+      "injected": true,
+      "ledger_state": "FAILED",
+      "phase": "STARTED",
+      "retry_refused": true
+    },
+    {
+      "injected": true,
+      "ledger_state": "FAILED",
+      "phase": "BLIND_READ",
+      "retry_refused": true
+    },
+    {
+      "injected": true,
+      "ledger_state": "FAILED",
+      "phase": "EXECUTED",
+      "retry_refused": true
+    },
+    {
+      "injected": true,
+      "ledger_state": "FAILED",
+      "phase": "SCORED",
+      "retry_refused": true
+    }
+  ],
+  "one_shot": "SPENT",
+  "post_ledger_failure_recorded": true,
+  "real_evaluation_attempts": 0,
+  "schema_version": "t28-evaluation-failure-rehearsal-v1",
+  "status": "PASS"
+}

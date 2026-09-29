@@ -1,0 +1,16 @@
+{
+  "artifact": "T28_PUBLICATION_LEAK_GATE",
+  "blind_blob_count": 0,
+  "classification": "PUBLIC_SAFE",
+  "failure_code": null,
+  "forbidden_path_count": 0,
+  "forbidden_paths": [],
+  "history_rewrite_restores_eligibility": false,
+  "official_evaluation_eligible": true,
+  "path_policy_violations": 0,
+  "public_ref_count": 163,
+  "reachable_object_count": 6884,
+  "scan_root": "878ce52d050089b0858f096ac9d817b2a6b3187ef6d6a78fe76d7bd067083188",
+  "schema_version": "t28-publication-leak-gate-v1",
+  "status": "PASS"
+}

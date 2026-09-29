@@ -1,0 +1,15 @@
+{
+  "artifact": "T28_PUBLIC_HISTORICAL_INDEX_SUPERSESSION",
+  "classification": "PUBLIC_SAFE",
+  "current_root": "afc85ceb83bf377bdaf645cd8a92fa8cec236215853eea78f9adf851c5c314dd",
+  "generated_public_dimension_policy": "186ab5fcf36fd0d3c18fe37b084016801711202a18d7a356e1f0b8d19b1b712b",
+  "schema_version": "t28-public-historical-index-supersession-v1",
+  "successor_schema": "t28-authenticated-public-historical-index-v2",
+  "superseded_classification": "SUPERSEDED_PRE_EXPOSURE",
+  "superseded_index_not_authorized_for_comparison": true,
+  "superseded_index_report_retained": false,
+  "superseded_reason": "STRUCTURALLY_SHARED_GENERATED_PUBLIC_DIMENSIONS_MADE_REAL_ZERO_OVERLAP_UNSATISFIABLE",
+  "superseded_root": "9b199cfd74df2b30b660263bac5166877d2ea4a913d2aad319f3d3a2072c6b41",
+  "superseded_schema": "t28-authenticated-public-historical-index-v1",
+  "supersession_root": "f1c4c463572daa10e2e0b0161637eab80fd6c92e94a498ded3d89b8c3ea88c29"
+}

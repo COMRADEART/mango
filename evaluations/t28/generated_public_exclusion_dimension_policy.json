@@ -1,0 +1,47 @@
+{
+  "applies_to_sources": [
+    "T27_PUBLIC_QUALIFICATION",
+    "T27_DIAGNOSTICS",
+    "T27_SYNTHETIC_TERMINAL_MATRIX",
+    "T27_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES",
+    "T28_PUBLIC_QUALIFICATION",
+    "T28_DIAGNOSTICS",
+    "T28_SYNTHETIC_TERMINAL_MATRIX",
+    "T28_SYNTHETIC_RECOVERY_REPLAN_EXAMPLES"
+  ],
+  "artifact": "T28_GENERATED_PUBLIC_EXCLUSION_DIMENSION_POLICY",
+  "classification": "PUBLIC_SAFE",
+  "dimension_classifications": {
+    "case_ids": "IDENTITY_BEARING",
+    "chunk_ids": "IDENTITY_BEARING",
+    "entity_identities": "STRUCTURAL_SHARED_FROZEN_EMPTY",
+    "exact_answers": "CONTENT_BEARING",
+    "exact_queries": "CONTENT_BEARING",
+    "exact_source_text": "CONTENT_BEARING",
+    "relations": "STRUCTURAL_SHARED_FROZEN_EMPTY",
+    "source_ids": "STRUCTURAL_SHARED_FROZEN_EMPTY",
+    "verbatim_attack_wording": "STRUCTURAL_SHARED_FROZEN_EMPTY"
+  },
+  "dimension_policy_root": "186ab5fcf36fd0d3c18fe37b084016801711202a18d7a356e1f0b8d19b1b712b",
+  "exclusion_loader": "t28_protocol.exclusion:_generated_public_identity_fingerprints",
+  "frozen_prospectively": true,
+  "identity_dimensions_fail_closed": true,
+  "real_prospective_fingerprints_unchanged": true,
+  "reusable_dimensions": [
+    "case_ids",
+    "chunk_ids",
+    "exact_queries",
+    "exact_answers",
+    "exact_source_text"
+  ],
+  "schema_version": "t28-generated-public-exclusion-dimension-policy-v1",
+  "structural_empty_contract_template": "<SOURCE>:<DIMENSION>:STRUCTURAL_SHARED_FROZEN_EMPTY",
+  "structural_shared_frozen_empty_dimensions": [
+    "entity_identities",
+    "source_ids",
+    "verbatim_attack_wording",
+    "relations"
+  ],
+  "structural_vocabulary_is_identity_bearing_contamination": false,
+  "t27_sealed_oracle_exemption": false
+}

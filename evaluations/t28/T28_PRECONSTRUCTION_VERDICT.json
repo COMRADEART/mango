@@ -1,0 +1,25 @@
+{
+  "absolute_stop": true,
+  "artifact": "T28_PRECONSTRUCTION_VERDICT",
+  "classification": "PUBLIC_SAFE",
+  "construction_authorized": false,
+  "defect_remediation": {
+    "A_ledger_first": true,
+    "B_closed_environment_builder": true,
+    "C_real_identity_binding": true,
+    "D_corpus_and_document_mounts": true,
+    "E_sha_bound_firewall": true,
+    "F_machine_only_store_reverify": true,
+    "G_sealed_t27_compatibility_preflight": true,
+    "H_all_public_ref_leak_preflight": true,
+    "I_post_ledger_workspace_creation": true
+  },
+  "evaluation_authorized": false,
+  "evaluation_readiness_gate": true,
+  "next_state": "T28_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+  "schema_version": "t28-preconstruction-verdict-v1",
+  "status": "PASS",
+  "t27_token_binding": "T27_ONE_SHOT_OFFICIAL_EVALUATION UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "t28_rehearsal_freeze_note": "construction/evaluation rehearsals bound the provisional freeze root; the canonical preconstruction freeze was recomputed after every rehearsal artifact was staged and is the only root a real construction authorization consumes",
+  "verdict": "T28_PRECONSTRUCTION_PASS"
+}

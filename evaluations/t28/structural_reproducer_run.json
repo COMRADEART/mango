@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "script": "scripts/t28_structural_unsatisfiability_reproducer.py",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\n  \"artifact\": \"C:/Users/allam/Documents/new/model/.wt-t28-preconstruction/evaluations/t28/structural_unsatisfiability_reproducer.json\",\n  \"capability_hashes_in_generated_public\": 12,\n  \"entity_overlap\": 16,\n  \"package_structural_overlap\": {\n    \"entity_identities\": 16,\n    \"relations\": 6,\n    \"source_ids\": 12,\n    \"verbatim_attack_wording\": 16\n  },\n  \"remediated_structural_overlap\": 0,\n  \"status\": \"REPRODUCED\",\n  \"t27_old_semantics_minimum_overlap\": 33,\n  \"verbatim_overlap\": 16\n}"
+}

@@ -1,0 +1,58 @@
+{
+  "artifact": "T28_PRODUCTION_STACK_ENVIRONMENT_PREFLIGHT",
+  "binding": {
+    "environment_builder_id": "t28_protocol.official_environment:build_official_evaluation_environment",
+    "environment_root": "aa06c40ab1e0f9e7095ad7f9ed36d05a481823b8940c509c262c4fb66ee11efb",
+    "general_context_identity_root": "a3ee8602c887a3555cee58f6366b6d5a0c5097679c89441a5033805e70e5e222",
+    "live_or_fixture": "live",
+    "live_provider_identity_root": "775a79daa101aa541bf608492d337e753b237e3d24fa4064cd1bf0b45c5738a9",
+    "live_provider_name": "WIKIPEDIA_LIVE",
+    "network_required": true,
+    "official_runner_factory_id": "T28_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
+    "official_runner_identity_root": "00f82695815546135a6b4932e4c0556db0daa99fb7364d28c76630fb8b6efc62",
+    "official_runner_policy_root": "f60ac439c9ccb3d8f703c6019d42ff81367bc5d958051690facc0f45794f7527",
+    "policy": {
+      "caller_supplied_runner_allowed": false,
+      "candidate_gold_access": false,
+      "external_action_authority": false
+    },
+    "workspace_mode": "T28_OFFICIAL_EVALUATION"
+  },
+  "candidate_executions": 0,
+  "checkpoints_written": 0,
+  "classification": "PUBLIC_SAFE",
+  "environment_root": "aa06c40ab1e0f9e7095ad7f9ed36d05a481823b8940c509c262c4fb66ee11efb",
+  "general_context_identity_root": "a3ee8602c887a3555cee58f6366b6d5a0c5097679c89441a5033805e70e5e222",
+  "live_provider_identity_root": "775a79daa101aa541bf608492d337e753b237e3d24fa4064cd1bf0b45c5738a9",
+  "model_identity_evidence": {
+    "adapter_bytes": 139512976,
+    "adapter_sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "base_model_id": "Qwen/Qwen3-1.7B",
+    "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "verification": "adapter SHA-256 plus provenance manifest verified inside load_production_model_stack"
+  },
+  "model_identity_verified": true,
+  "real_environment": true,
+  "runner_count": 0,
+  "schema_version": "t28-production-stack-environment-preflight-v1",
+  "stack_attestation": {
+    "candidate_gold_access": false,
+    "corpus_source": "FROZEN_PUBLIC",
+    "document_root_source": "PER_SCENARIO_PRIVATE_EVALUATION_WORKSPACE",
+    "external_authority": false,
+    "factory_id": "T28_OFFICIAL_PRODUCTION_RUNNER_FACTORY_V1",
+    "firewall_mandatory": true,
+    "firewall_search_provider_used": true,
+    "general_context_identity_bound": true,
+    "inner_live_or_fixture": "live",
+    "integrated_runner_used": true,
+    "production_adapter_registry_used": true,
+    "provider_id": "t25_protocol.provider:T25ProductionRouterProvider",
+    "provider_kind": "REAL_CANDIDATE",
+    "provider_synthetic": false,
+    "t26_firewall_used": true,
+    "workspace_mode": "T28_OFFICIAL_EVALUATION"
+  },
+  "status": "PASS",
+  "zero_denominator_policy": "FAIL_NONVACUITY"
+}

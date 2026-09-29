@@ -1,0 +1,70 @@
+{
+  "artifact": "T28_EXECUTION_CONTRACT",
+  "authority": {
+    "external_action_authority": false,
+    "orchestrator": "COORDINATE_INTERNAL_WORK_ONLY",
+    "planner": "PROPOSE_ONLY"
+  },
+  "budgets": {
+    "max_replans": 2,
+    "max_step_retries": 1,
+    "max_steps": 8,
+    "max_total_retries": 3,
+    "max_wall_seconds": 30
+  },
+  "classification": "PUBLIC_SAFE",
+  "completion": {
+    "all_required_steps_verified": true,
+    "final_step_output_exists": true,
+    "last_verification_result": "PASS"
+  },
+  "frozen_before_real_construction": true,
+  "recovery": {
+    "bounded": true,
+    "exhausted_terminal": "BUDGET_EXHAUSTED",
+    "retry_before_replan": true
+  },
+  "registered_capabilities": [
+    "GENERAL",
+    "MATH_T4",
+    "SCIENCE_RAG",
+    "SCICOMP",
+    "CODE",
+    "WEB_RESEARCH",
+    "DOCUMENT",
+    "MEMORY",
+    "PLANNING",
+    "NO_TOOL",
+    "ORCHESTRATION",
+    "KNOWLEDGE_RAG"
+  ],
+  "replan_triggers": [
+    "UNAVAILABLE_CAPABILITY",
+    "VERIFICATION_FAILURE",
+    "RETRIEVAL_CONFLICT",
+    "RECOVERABLE_ERROR",
+    "BUDGET_CHANGE",
+    "MISSING_EVIDENCE"
+  ],
+  "safe_abstention": {
+    "final_answer": null,
+    "terminals": [
+      "INSUFFICIENT_EVIDENCE",
+      "SECURITY_REFUSAL",
+      "UNAVAILABLE_CAPABILITY",
+      "BLOCKED"
+    ]
+  },
+  "schema_version": "t28-execution-contract-v1",
+  "terminals": [
+    "BLOCKED",
+    "BUDGET_EXHAUSTED",
+    "COMPLETE",
+    "ERROR",
+    "INSUFFICIENT_EVIDENCE",
+    "PARTIAL",
+    "SECURITY_REFUSAL",
+    "UNAVAILABLE_CAPABILITY"
+  ],
+  "unknown_provider_status": "REJECT"
+}
