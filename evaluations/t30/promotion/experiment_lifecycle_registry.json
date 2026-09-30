@@ -1,0 +1,79 @@
+{
+  "artifact": "T30_EXPERIMENT_LIFECYCLE_REGISTRY",
+  "blind_material_included": false,
+  "classification": "PUBLIC_SAFE",
+  "experiment": "t30",
+  "experiments": {
+    "t25": {
+      "promotion_record": "evaluations/t25/T25_FINAL_PROMOTION_RECORD.json",
+      "state": "PROMOTED"
+    },
+    "t26": {
+      "state": "CLOSED / OFFICIAL_VALID_CAPABILITY_FAILURE"
+    },
+    "t27": {
+      "state": "SEALED / UNEVALUATED / PERMANENTLY INELIGIBLE / NOT_MEASURED"
+    },
+    "t28": {
+      "state": "SEALED / UNEVALUATED / PERMANENTLY INELIGIBLE / NOT_MEASURED"
+    },
+    "t29": {
+      "state": "REAL_PACKAGE_AUTHORED_BUT_CONSTRUCTION_PERMANENTLY_INELIGIBLE / NOT_MEASURED"
+    },
+    "t30": {
+      "construction_evidence": "t30-private://T30-STORE-01/t30/construction/ledger.json (sha256 e61763b608c6b4ed2ff1f613c00cec9b1a816edd60d7eb139b5b9510f0867f83, SEALED, attempt 1)",
+      "construction_one_shot": "SPENT",
+      "evaluation_evidence": "t30-private://T30-STORE-01/t30/evaluation/ledger.json (sha256 429b39366ef0004bf94e99f3538182c8676bc338b9bdb5d8a0203d4ef491b43e, COMPLETE, attempt 1, 512 scenarios)",
+      "evaluation_one_shot": "SPENT",
+      "official_evaluation_attempt": 1,
+      "official_evaluation_result": "PASS",
+      "official_evaluation_state": "COMPLETE",
+      "promotion_audit": "evaluations/t30/promotion/T30_PROMOTION_AUDIT.json",
+      "promotion_checksum": "evaluations/t30/promotion/T30_FINAL_PROMOTION_RECORD.sha256",
+      "promotion_record": "evaluations/t30/promotion/T30_FINAL_PROMOTION_RECORD.json",
+      "public_receipt": {
+        "commit": "fbf35e6d4b28334880f53e5ba7c3c4e95598ed90",
+        "path": "evaluations/t30/evaluation/T30_PUBLIC_EVALUATION_RECEIPT.json"
+      },
+      "state": "PROMOTED",
+      "verdict": "MANGO_INTEGRATED_INTERNAL_TASK_EXECUTION_PROMOTED"
+    }
+  },
+  "frozen_preconstruction_components_modified": false,
+  "lifecycle_updates": {
+    "Executive Router": {
+      "note": "preserved from T25",
+      "previous": "QUALIFIED",
+      "state": "QUALIFIED"
+    },
+    "Integrated Internal Task Execution": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "previous": "no lifecycle record (T30 measured scope)",
+      "scope": "Qualified only within the exact frozen T30 envelope measured by the official one-shot evaluation.",
+      "state": "QUALIFIED"
+    },
+    "KNOWLEDGE_RAG": {
+      "note": "preserved",
+      "previous": "QUALIFIED",
+      "state": "QUALIFIED"
+    },
+    "Production Capability Dispatch": {
+      "note": "preserved from T25",
+      "previous": "QUALIFIED",
+      "state": "QUALIFIED"
+    }
+  },
+  "next_phase": {
+    "state": "AWAITING_EXPLICIT_T31_AUTHORIZATION",
+    "t31": "NOT STARTED",
+    "t31_identifier_claim_remediation_or_construction_authorized": false
+  },
+  "qualified_candidate": {
+    "candidate_commit": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+    "candidate_tree": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+    "designation": "canonical qualified candidate for the T30 Integrated Internal Task Execution scope",
+    "replaces_earlier_scope_qualified_candidates": false,
+    "runtime_root": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d"
+  },
+  "schema_version": "t30-experiment-lifecycle-registry-v1"
+}
