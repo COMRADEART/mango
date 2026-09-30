@@ -1,0 +1,427 @@
+{
+  "artifact": "T30_PROMOTION_AUDIT",
+  "artifact_placement": {
+    "directory": "evaluations/t30/promotion/",
+    "reason": "The frozen canonical freeze enumerates evaluations/t30/*.json non-recursively with a fixed EXCLUDED set; writing the audit, record, or lifecycle registry at evaluations/t30/ top level changes the component set (302 -> 305) and the canonical loader refuses with repository identity drift. The subdirectory follows the construction/ and evaluation/ post-freeze receipt precedent and keeps 302/302 PASS."
+  },
+  "audit_root": "83a239cd954031e1a6ecb52817162f37ba7cbc9c3ce8d00c4ddc5e24ea38df43",
+  "classification": "PUBLIC_SAFE",
+  "decision": "T30_PROMOTION_PASS",
+  "decision_inputs": {
+    "all_11_metrics_pass": true,
+    "all_9_counters_zero": true,
+    "doctor_pass": true,
+    "evaluation_attempt_1": true,
+    "evaluation_one_shot_spent": true,
+    "immutability_pass": true,
+    "official_receipt_complete_pass": true,
+    "one_shot_integrity": true,
+    "privacy_audit_pass": true,
+    "protection_battery_pass": true,
+    "test_gate_pass": true
+  },
+  "doctor": {
+    "baseline": "137/137 PASS",
+    "check_count": 137,
+    "failed_checks": [],
+    "historically_inapplicable_checks": [],
+    "mode": "PROMOTION_READ_ONLY",
+    "new_live_failures": 0,
+    "new_unknown_failures": 0,
+    "pass_count": 137,
+    "status": "PASS"
+  },
+  "experiment": "t30",
+  "gold_firewall": {
+    "candidate_gold_access_edges": 0,
+    "candidate_visible_fields": [
+      "classification",
+      "plan",
+      "scenario_id"
+    ],
+    "gold_fields_exposed": 0,
+    "recovery_control_fields_exposed": 0
+  },
+  "historical_state_preservation": {
+    "t25": "PROMOTED",
+    "t26": "CLOSED / OFFICIAL_VALID_CAPABILITY_FAILURE",
+    "t27": "SEALED / UNEVALUATED / PERMANENTLY INELIGIBLE / NOT_MEASURED",
+    "t28": "SEALED / UNEVALUATED / PERMANENTLY INELIGIBLE / NOT_MEASURED",
+    "t29": "REAL_PACKAGE_AUTHORED_BUT_CONSTRUCTION_PERMANENTLY_INELIGIBLE / NOT_MEASURED",
+    "t30": "OFFICIAL_EVALUATION_PASS",
+    "t30_pass_retroactive_effect_on_t26_t29": false
+  },
+  "immutability_audit": {
+    "check_count": 44,
+    "checks": {
+      "candidate_commit_reachable": {
+        "expected": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+        "match": true
+      },
+      "candidate_runtime_changes": {
+        "expected": 0,
+        "match": true
+      },
+      "candidate_runtime_root": {
+        "expected": "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d",
+        "match": true
+      },
+      "candidate_runtime_status": {
+        "expected": "PASS",
+        "match": true
+      },
+      "candidate_tree": {
+        "expected": "1b1a0296232d1b89f94d95902dbce515f59bb266",
+        "match": true
+      },
+      "construction_attempt": {
+        "expected": 1,
+        "match": true
+      },
+      "construction_event_chain": {
+        "expected": true,
+        "match": true
+      },
+      "construction_ledger_root": {
+        "expected": "857d63b8fc89b72b4912aad6659a4cd5efc3ed35d8bf58b0a53a6fb411dfee45",
+        "match": true
+      },
+      "construction_ledger_sha256": {
+        "expected": "e61763b608c6b4ed2ff1f613c00cec9b1a816edd60d7eb139b5b9510f0867f83",
+        "match": true
+      },
+      "construction_manifest_sha256": {
+        "expected": "c8a6fe63f7f39964387abd9ea7be0eff6930faaac4d9d2109d7158b5e84dd50a",
+        "match": true
+      },
+      "construction_marker_sha256": {
+        "expected": "d9b0d2c34394ebe1d55cf36030153e909edf70b8ffa37060de8023e38853617c",
+        "match": true
+      },
+      "construction_seal_sha256": {
+        "expected": "023666f742548bdc4c33e84b6da4433acb6803c1e61d6044be2ab810d9663f07",
+        "match": true
+      },
+      "construction_state": {
+        "expected": "SEALED",
+        "match": true
+      },
+      "evaluation_attempt": {
+        "expected": 1,
+        "match": true
+      },
+      "evaluation_event_chain": {
+        "expected": true,
+        "match": true
+      },
+      "evaluation_event_types": {
+        "expected": [
+          "STARTED",
+          "EXECUTED",
+          "SCORED",
+          "COMPLETE"
+        ],
+        "match": true
+      },
+      "evaluation_ledger_binds_candidate": {
+        "expected": [
+          "11d76c6392ec1f3d08840cfca641618ca61d9247",
+          "c55da12937ed4bce5df0f0ad3692a85c0ae323278a5bacd5610fdf87f258a44d"
+        ],
+        "match": true
+      },
+      "evaluation_ledger_binds_freeze": {
+        "expected": "d5671bc059d3134675b2eb7343d3deaee58bf98ad3a6aaf66d1c61ecb54db5da",
+        "match": true
+      },
+      "evaluation_ledger_binds_scorer": {
+        "expected": "0d67b3ac17071f1c470767e85c612728dc8d0a1f10eb48e8da8bf7c9ff3a271c",
+        "match": true
+      },
+      "evaluation_ledger_root": {
+        "expected": "3485c00a624fa43ed38fc3b2b6cedc0f28340478cc5c5723b6bd814ac913e128",
+        "match": true
+      },
+      "evaluation_ledger_sha256": {
+        "expected": "429b39366ef0004bf94e99f3538182c8676bc338b9bdb5d8a0203d4ef491b43e",
+        "match": true
+      },
+      "evaluation_marker_sha256": {
+        "expected": "5c8f78893da5159165ef660ce67186d4e7b28700ef2c728dd7fc86915e079259",
+        "match": true
+      },
+      "evaluation_state": {
+        "expected": "COMPLETE",
+        "match": true
+      },
+      "freeze_302_component_verification": {
+        "expected": "PASS",
+        "match": true
+      },
+      "freeze_component_count": {
+        "expected": 302,
+        "match": true
+      },
+      "freeze_component_root": {
+        "expected": "32d7164ff68b8a5ee23333fc0b5bc77a17ef4de94228d266c33a8ab11a144723",
+        "match": true
+      },
+      "freeze_root": {
+        "expected": "496e9e34163ba3dba8a22920cb61eac27cb061a2b3df92f18fe5bba0242bd0fb",
+        "match": true
+      },
+      "freeze_sha256": {
+        "expected": "d5671bc059d3134675b2eb7343d3deaee58bf98ad3a6aaf66d1c61ecb54db5da",
+        "match": true
+      },
+      "frozen:evaluations/t30/evaluation_readiness_gate.json": {
+        "expected": "2e07dfa4241d12b4adf59364ca831eece7512e5d6488deee48a66ca5a9979830",
+        "match": true
+      },
+      "frozen:evaluations/t30/metric_registry.json": {
+        "expected": "372b5ab67075d6ff0563253ecd79ded6230f034b1bb7a1a68a7639ef54b6bbb0",
+        "match": true
+      },
+      "frozen:evaluations/t30/nonvacuity_policy.json": {
+        "expected": "20f3ad5a1412599c58934b464a1d94db05e5aba586d2d84e1c1096a2e028c2f6",
+        "match": true
+      },
+      "frozen:t30_protocol/contract.py": {
+        "expected": "f75793b4a63c32ced2047088c63a19872e4e5fd00fa499f724c89f595cfd286b",
+        "match": true
+      },
+      "frozen:t30_protocol/evaluation.py": {
+        "expected": "1f79c8d3707bdd9092d8c2120b9f098ad7d4e3591ad5ebb3d135fcad0387f56a",
+        "match": true
+      },
+      "frozen:t30_protocol/official_environment.py": {
+        "expected": "5c038d5972eb848be5c57864d699678d957cebe8201380c2af34c76c9d2f9165",
+        "match": true
+      },
+      "frozen:t30_protocol/production.py": {
+        "expected": "331a9215b9bbb6495faa8b8696cec3055fb2bfeecd4440a05fa611ca840a6962",
+        "match": true
+      },
+      "frozen:t30_protocol/recovery_control.py": {
+        "expected": "750caaa2b6550c7470efb235bee86b48572b550ea40a7a972fcfac66cd5d506d",
+        "match": true
+      },
+      "frozen:t30_protocol/scorer.py": {
+        "expected": "0d67b3ac17071f1c470767e85c612728dc8d0a1f10eb48e8da8bf7c9ff3a271c",
+        "match": true
+      },
+      "official_environment_root": {
+        "expected": "1bfec912530a0c0d1251407797496da4e33cef4d5dd756d212be0e6f080426e0",
+        "match": true
+      },
+      "private_blind_root": {
+        "expected": "d8aebe96680b7186180d5951bc35eb0bee355fc2f8c0edd42590ec03eeb6cc8e",
+        "match": true
+      },
+      "public_evaluation_receipt_sha256": {
+        "expected": "94eda3b68fc242047fd3aea53ef641470fc2918c19caf3281fc1eea4354ec160",
+        "match": true
+      },
+      "receipt_binds_evaluation_ledger": {
+        "expected": [
+          "429b39366ef0004bf94e99f3538182c8676bc338b9bdb5d8a0203d4ef491b43e",
+          "3485c00a624fa43ed38fc3b2b6cedc0f28340478cc5c5723b6bd814ac913e128"
+        ],
+        "match": true
+      },
+      "recovery_control_policy_root": {
+        "expected": "42c069292c19d26ac24f3cb2b4d3e80c632ef7a3fe8621d1416d4d98bab570c9",
+        "match": true
+      },
+      "recovery_control_sealed_population": {
+        "expected": 64,
+        "match": true
+      },
+      "recovery_control_sealed_sha256": {
+        "expected": "3f589584070734e1542dd45956dafeee755d7a31ca5972d872b434c2e284eff2",
+        "match": true
+      }
+    },
+    "mismatches": [],
+    "status": "PASS"
+  },
+  "official_result_verification": {
+    "critical_counters_all_zero": true,
+    "evaluation": {
+      "attempt": 1,
+      "candidate_executions": 512,
+      "evaluation_ledger_root": "3485c00a624fa43ed38fc3b2b6cedc0f28340478cc5c5723b6bd814ac913e128",
+      "evaluation_ledger_sha256": "429b39366ef0004bf94e99f3538182c8676bc338b9bdb5d8a0203d4ef491b43e",
+      "evaluation_marker_sha256": "5c8f78893da5159165ef660ce67186d4e7b28700ef2c728dd7fc86915e079259",
+      "event_chain": [
+        "STARTED",
+        "EXECUTED",
+        "SCORED",
+        "COMPLETE"
+      ],
+      "event_count": 4,
+      "public_receipt_commit": "fbf35e6d4b28334880f53e5ba7c3c4e95598ed90",
+      "public_receipt_path": "evaluations/t30/evaluation/T30_PUBLIC_EVALUATION_RECEIPT.json",
+      "public_receipt_sha256": "94eda3b68fc242047fd3aea53ef641470fc2918c19caf3281fc1eea4354ec160",
+      "scenario_count": 512,
+      "state": "COMPLETE",
+      "status": "PASS",
+      "token": "T30_ONE_SHOT_OFFICIAL_EVALUATION"
+    },
+    "metrics_all_pass": true,
+    "receipt": {
+      "artifact": "T30_PUBLIC_EVALUATION_RECEIPT",
+      "attempt": 1,
+      "experiment": "t30",
+      "gold_included": false,
+      "raw_outputs_included": false,
+      "scenario_bodies_included": false,
+      "scenario_count": 512,
+      "scored_rows_included": false,
+      "state": "COMPLETE",
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  "one_shot_verification": {
+    "bind_ledger_ops": 1,
+    "candidate_execution_records": 512,
+    "construction_one_shot": "SPENT",
+    "deleted_ledgers": 0,
+    "deleted_markers": 0,
+    "evaluation_attempts": 1,
+    "evaluation_event_files": 4,
+    "evaluation_ledger_count": 1,
+    "evaluation_ledger_present": true,
+    "evaluation_ledger_replace_ops": 3,
+    "evaluation_ledger_write_once_ops": 1,
+    "evaluation_marker_count": 1,
+    "evaluation_marker_present": true,
+    "evaluation_marker_write_once_ops": 1,
+    "evaluation_one_shot": "SPENT",
+    "evaluation_retries": 0,
+    "official_evaluator_invocations": 1,
+    "recreated_ledgers": 0,
+    "recreated_markers": 0,
+    "status": "PASS"
+  },
+  "privacy_verification": {
+    "blind_material_included": false,
+    "candidate_runs_on_t30_blind_rows_during_promotion": 0,
+    "evaluate_official_invocations_during_promotion": 0,
+    "excluded": [
+      "real scenario bodies",
+      "real gold",
+      "expected answers",
+      "recovery-control entries",
+      "scenario IDs",
+      "step IDs",
+      "raw outputs",
+      "scored rows",
+      "workspace contents",
+      "private source text"
+    ],
+    "private_files_never_opened": [
+      "blind/inputs.json",
+      "blind/gold.json",
+      "control/recovery_control.json",
+      "evaluation/raw_outputs.json",
+      "evaluation/scored_rows.json",
+      "evaluation/workspaces/*"
+    ],
+    "private_files_opened_by_promotion": [
+      "construction/ledger.json",
+      "construction/manifest.json (hash only)",
+      "construction/seal.json",
+      "markers/*.one-shot (hash only)",
+      "evaluation/ledger.json",
+      "access_journal.jsonl (metadata ops only)"
+    ],
+    "scorer_reruns_during_promotion": 0,
+    "store_verify": {
+      "artifact_count": 10,
+      "blind_rows_deserialized": 0,
+      "classification_mismatches": 0,
+      "hash_mismatches": 0,
+      "missing_artifacts": 0,
+      "root_mismatches": 0,
+      "status": "PASS",
+      "verification_root": "ad4453e93950f0fa1ae997071a02ba918660b834d3462339cca6354b7c17740d"
+    }
+  },
+  "promotion_date": "2026-09-30",
+  "protection_battery": {
+    "candidate_executions_on_historical_rows": 0,
+    "evidence_mode": "LIVE_PUBLIC_SYNTHETIC_ONLY",
+    "historical_private_rows_accessed": 0,
+    "new_live_regressions": 0,
+    "status": "PASS",
+    "t19": {
+      "authority": "PROPOSE_ONLY",
+      "tests": "PASS"
+    },
+    "t20": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "tests": "PASS"
+    },
+    "t22": {
+      "passed": 32,
+      "total": 32
+    },
+    "t25_dispatch": {
+      "public_promotion_receipt_rows": 1280,
+      "status": "PASS",
+      "unexpected_unknown_terminal": 0,
+      "unmatched": 0
+    },
+    "t25_router": {
+      "floor_count": 15,
+      "status": "PASS"
+    }
+  },
+  "schema_version": "t30-promotion-audit-v1",
+  "scope_qualification": {
+    "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+    "capability": "Integrated Internal Task Execution",
+    "claim": "Mango can execute bounded multi-step internal workflows across registered skills, correctly reach verified completion or safe terminal states, and recover/replan within frozen budgets.",
+    "does_not_establish": [
+      "unbounded autonomy",
+      "external action authority",
+      "external side-effect authority",
+      "general AGI",
+      "arbitrary tool correctness",
+      "arbitrary scientific correctness",
+      "arbitrary mathematical correctness",
+      "deployment/release readiness",
+      "qualification of future descendants"
+    ],
+    "envelope": {
+      "authority": "COORDINATE_INTERNAL_WORK_ONLY",
+      "budgets": "frozen T30 budgets",
+      "candidate": "11d76c6392ec1f3d08840cfca641618ca61d9247",
+      "execution_semantics": "frozen T30 execution contract",
+      "production_adapters": "t30_protocol.production:build_adapters (frozen)",
+      "recovery_control": "frozen T30 recovery-control mechanism, policy 42c06929",
+      "registered_skills": "registered T30 skills (frozen SKILL_IDS)",
+      "scorer_and_metric_registry": "frozen t30_protocol.scorer:score_suite / metric_registry.json"
+    },
+    "scope_statement": "T30 qualifies Mango's Integrated Internal Task Execution capability only within the exact frozen T30 envelope measured by the official one-shot evaluation. The result demonstrates bounded multi-step internal workflow execution, verified completion or safe terminal handling, bounded recovery, bounded replanning, valid handoffs, and verification under the frozen registered-skill and authority model. It does not authorize external actions, broaden authority beyond COORDINATE_INTERNAL_WORK_ONLY, establish unrestricted autonomy, or automatically qualify unmeasured descendants or individual skills.",
+    "state": "QUALIFIED"
+  },
+  "test_gate": {
+    "deselections": 0,
+    "errors": 0,
+    "failures": 0,
+    "historically_stale_classified": 0,
+    "new_live_failures": 0,
+    "new_unknown_failures": 0,
+    "skipped": 0,
+    "suites": [
+      "tests/test_t30_preconstruction.py",
+      "tests/test_t30_recovery_control.py"
+    ],
+    "tests": 42,
+    "tests_weakened": false,
+    "xfails": 0
+  }
+}
