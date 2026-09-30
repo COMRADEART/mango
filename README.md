@@ -25,6 +25,35 @@ pipeline, base-model selection + baseline evaluation, first balanced SFT
 adapter + comparison). T4 (mathematical verification/tool-use) is next.
 See [Milestones](#milestones).
 
+### Hugging Face release
+
+**[ComradeRt/Mango-T30-1.7B](https://huggingface.co/ComradeRt/Mango-T30-1.7B)**
+(tag `v1.0-t30`): the Mango T30 PEFT/LoRA adapter for `Qwen/Qwen3-1.7B`
+(base revision `70d244cc86ccca08cf5af4e1e306ecf908b1ad5e`), with the public
+T30 evaluation receipt and promotion record.
+
+* T30 qualification: **Integrated Internal Task Execution = QUALIFIED**,
+  authority `COORDINATE_INTERNAL_WORK_ONLY`. All 11 frozen metrics passed, and
+  all 9 critical counters were zero, on the one-shot 512-scenario blind
+  evaluation.
+* The T30 metrics measure the frozen Mango runtime/orchestration system with
+  this adapter pinned as its general language model. Loading the adapter with
+  PEFT gives you the language-model component only, not the evaluated runtime.
+* License: the adapter is released as **CC BY-NC 4.0** (non-commercial),
+  because the training corpus includes SciQ (CC BY-NC 3.0). The base model
+  `Qwen/Qwen3-1.7B` is Apache-2.0 and is not redistributed.
+
+```python
+from peft import PeftModel
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+base_id, rev = "Qwen/Qwen3-1.7B", "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+tokenizer = AutoTokenizer.from_pretrained(base_id, revision=rev)
+base = AutoModelForCausalLM.from_pretrained(base_id, revision=rev,
+                                            device_map="auto", dtype="auto")
+model = PeftModel.from_pretrained(base, "ComradeRt/Mango-T30-1.7B")
+```
+
 ---
 
 ## 1. What Mango is
