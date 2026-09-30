@@ -1,0 +1,84 @@
+{
+  "schema_version": "t31-comparability-v1",
+  "artifact": "T31_TRACKED_SUITE_CLASSIFICATION",
+  "created_utc": "2026-09-30T18:05:00+00:00",
+  "purpose": "Full-battery failure attribution for T31 closure: whether any failing test was caused by the T31-comparability working tree, and what the honest regression record therefore is.",
+
+  "full_battery": {
+    "command": "python -m pytest --basetemp=tests/.pytest_tmp_t31full (repo root, PYTHONPATH=src)",
+    "log": "evaluations/t31/recovery/measured_tests.txt",
+    "junit": "evaluations/t31/recovery/t31_measured_tests_junit.xml",
+    "totals": {"tests": 4504, "passed": 4441, "failed": 51, "errors": 11, "skipped": 1},
+    "modules_collected": 185
+  },
+
+  "classification": {
+    "t31_comparability_modules": {
+      "untracked_new_files": "all tests/test_t31_comparability_*.py, tests/test_t31_resume_recovery.py, tests/t31_comparability_support.py",
+      "outcome": "green — none of the 51 failed / 11 error tests belongs to a T31-comparability module",
+      "skip": "1 skip: tests.test_t31_comparability_loading::test_the_real_benchmarks_load_to_their_pinned_counts — behind the T31_REAL_DATASETS=1 guard by design; real loading is verified by the frozen-experiment verification (per-row render check) and by verify_run over the raw pack"
+    },
+    "legacy_tracked_suites_failing": {
+      "files": 23,
+      "failed": 49,
+      "collection_errors": 11,
+      "collection_error_source": "tests/test_t23_construction_remediation.py module fixture run_shadow_construction raises ValueError('historical T23 freeze changed') at setup — all 11 errors are that one fixture",
+      "per_file_counts": {
+        "tests/test_t26_construction_infrastructure.py": 10,
+        "tests/test_t26_production_runner_binding.py": 5,
+        "tests/test_t21_protocol_kernel.py": 5,
+        "tests/test_t21r11_preconstruction.py": 4,
+        "tests/test_t21r10_preconstruction.py": 3,
+        "tests/test_t23_production.py": 2,
+        "tests/test_t21r9_preregistration.py": 2,
+        "tests/test_t21r16_preconstruction.py": 2,
+        "tests/test_t26_evaluation_v2.py": 2,
+        "tests/test_t26_general_context_inspection.py": 2,
+        "tests/test_t27_preconstruction.py": 1,
+        "tests/test_t23_lifecycle.py": 1,
+        "tests/test_t22_preconstruction.py": 1,
+        "tests/test_t21r8_holdout_freeze_protocol.py": 1,
+        "tests/test_t21r5_blind_holdout_contract.py": 1,
+        "tests/test_t21r4_blind_holdout_contract.py": 1,
+        "tests/test_t21r3_blind_holdout_contract.py": 1,
+        "tests/test_t21r17_preconstruction.py": 1,
+        "tests/test_t21r13_preconstruction.py": 1,
+        "tests/test_t21r12_preconstruction.py": 1,
+        "tests/test_t19_post_merge_audit_cleanup.py": 1,
+        "tests/test_scicomp_registry_active.py": 1
+      },
+      "fail_in_isolation_examples": [
+        "tests/test_t26_evaluation_v2.py::test_original_v3_explicit_component_set_remains_exact",
+        "tests/test_t23_construction_remediation.py (all tests via the module fixture)",
+        "tests/test_t27_preconstruction.py (the doctor/freeze-reproduce assertion)"
+      ]
+    },
+    "state_engine_wip_suites": {
+      "files": "tests/test_t31_concurrency.py, tests/test_t31_history.py (untracked work-in-progress; the module they exercise, src/sciencemath/state_engine/, is also untracked WIP)",
+      "failed": 2,
+      "failures": [
+        "tests/test_t31_concurrency.py::test_concurrent_transitions_are_all_durable — StateStoreError raised by the WIP FileStateStore._write_json under real thread contention (src/sciencemath/state_engine/store.py:345); reproduced in isolation",
+        "tests/test_t31_history.py::test_history_default_returns_summaries — passes in isolation; fails only in the full battery (order-dependent fixture interaction in the WIP module)"
+      ],
+      "status": "out of the T31-public-comparability deliverable; the WIP module is separate from src/sciencemath/comparability; excluded from the stage-1 commit and from the regression record (it has no tracked baseline at the base commit); disclosed here instead of hidden"
+    }
+  },
+
+  "clean_head_proof": {
+    "method": "git worktree add .wt-t31-clean-head d25d457 --detach (pristine tree, zero untracked files), then run all 23 legacy-failing suites there",
+    "base_commit": "d25d457",
+    "result": "every one of the 23 files fails with the identical per-file count as the main working tree — 49 FAILED + 11 setup errors, no more, no fewer, no different files",
+    "conclusion": "all tracked-suite failures pre-exist at the T31 base commit; the T31 working tree (src/sciencemath/comparability/, the T31 test files, the recovered raw rows, the README edit) is not their cause",
+    "representative_root_cause": "later authorized remediations changed files pinned by earlier byte-freeze assertions without re-pinning the earlier tests: commit 8caf8d0 (2026-09-27, 'feat: remediate integrated execution for T27') modified src/sciencemath/integrated/runner.py whose sha256 is one of the 244 components of the T26 V3 freeze written by 9fdfe2a (2026-09-26, 'T26: make freeze-bound rehearsal reproducible'); the T26 verification recomputes component hashes from the live repository and now mismatches. The T23 and T27 assertions are the same class: historical freeze identities recomputed against superseded freeze records."
+  },
+
+  "regression_record_definition": {
+    "tracked_modules_in_battery": 151,
+    "legacy_failing_excluded": 23,
+    "recorded": {"passed": 3221, "failed": 0, "errors": 0, "skipped": 0},
+    "definition": "the 128 tracked test modules at the T31 base commit that passed in the full battery, run unchanged against the T31 working tree",
+    "excluded_and_disclosed": "the 23 legacy suites above (pre-existing failures, proven base-commit-level by clean-worktree replication) — their full-battery totals are recorded under Tests; and the 34 new untracked T31 modules (795 passed, 2 WIP-state-engine failures, 1 guard skip), which have no baseline at the base commit"
+  },
+
+  "t31_attributable_regressions": 0
+}

@@ -1,0 +1,474 @@
+{
+  "schema_version": "t31-comparability-v1",
+  "artifact": "T31_PAIRED_ANALYSIS",
+  "benchmarks": [
+    {
+      "benchmark": "gsm8k",
+      "total_items": 1319,
+      "base_correct": 1069,
+      "adapter_correct": 770,
+      "base_accuracy": 0.810462,
+      "adapter_accuracy": 0.583776,
+      "delta_pp": -22.6687,
+      "relative_delta": -0.279701,
+      "comparison": "negative_model_level_delta_observed",
+      "paired": {
+        "both_correct": 705,
+        "base_only": 364,
+        "adapter_only": 65,
+        "neither": 185
+      },
+      "mcnemar": {
+        "n_discordant": 429,
+        "base_only": 364,
+        "adapter_only": 65,
+        "p_value": 1.649814025383609e-51,
+        "method": "exact_binomial_two_sided",
+        "question_answered": "Among items where the arms disagreed, is the split distinguishable from a fair coin? This is not a test of overall capability, and a non-significant result is not evidence that the arms are equivalent."
+      },
+      "uncertainty": {
+        "method": "cluster_percentile_bootstrap",
+        "cluster_key": "normalized_question_stem",
+        "resamples": 10000,
+        "seed": 20260930,
+        "alpha": 0.05,
+        "ci_low_pp": -25.4738,
+        "ci_high_pp": -19.7877,
+        "cluster_count": 1319,
+        "item_count": 1319,
+        "clustering_material": false,
+        "excludes_zero": true,
+        "note": "Every question stem is unique here, so cluster resampling reduces to item resampling."
+      },
+      "invalid_outputs": {
+        "base": 24,
+        "adapter": 20
+      },
+      "extraction_failures": {
+        "base": 0,
+        "adapter": 0
+      },
+      "schema_content": {
+        "base": {
+          "schema_and_content": 289,
+          "schema_only": 65,
+          "content_only": 780,
+          "neither": 185
+        },
+        "adapter": {
+          "schema_and_content": 0,
+          "schema_only": 1,
+          "content_only": 770,
+          "neither": 548
+        }
+      },
+      "errors": {
+        "base_error_counts": {
+          "wrong_final_answer": 250
+        },
+        "adapter_error_counts": {
+          "wrong_final_answer": 549
+        },
+        "extraction_failures": {
+          "base": 0,
+          "adapter": 0
+        },
+        "extraction_failure_status": {
+          "base": {},
+          "adapter": {}
+        },
+        "shared_failures": 185,
+        "note": "Categories are assigned by the scorer from the generation alone; no failure was reclassified after viewing results."
+      }
+    },
+    {
+      "benchmark": "math500",
+      "total_items": 500,
+      "base_correct": 299,
+      "adapter_correct": 152,
+      "base_accuracy": 0.598,
+      "adapter_accuracy": 0.304,
+      "delta_pp": -29.4,
+      "relative_delta": -0.491639,
+      "comparison": "negative_model_level_delta_observed",
+      "paired": {
+        "both_correct": 133,
+        "base_only": 166,
+        "adapter_only": 19,
+        "neither": 182
+      },
+      "mcnemar": {
+        "n_discordant": 185,
+        "base_only": 166,
+        "adapter_only": 19,
+        "p_value": 1.730505044977673e-30,
+        "method": "exact_binomial_two_sided",
+        "question_answered": "Among items where the arms disagreed, is the split distinguishable from a fair coin? This is not a test of overall capability, and a non-significant result is not evidence that the arms are equivalent."
+      },
+      "uncertainty": {
+        "method": "cluster_percentile_bootstrap",
+        "cluster_key": "normalized_question_stem",
+        "resamples": 10000,
+        "seed": 20260930,
+        "alpha": 0.05,
+        "ci_low_pp": -34.2,
+        "ci_high_pp": -24.6,
+        "cluster_count": 500,
+        "item_count": 500,
+        "clustering_material": false,
+        "excludes_zero": true,
+        "note": "Every question stem is unique here, so cluster resampling reduces to item resampling."
+      },
+      "invalid_outputs": {
+        "base": 128,
+        "adapter": 77
+      },
+      "extraction_failures": {
+        "base": 4,
+        "adapter": 0
+      },
+      "schema_content": {
+        "base": {
+          "schema_and_content": 299,
+          "schema_only": 76,
+          "content_only": 0,
+          "neither": 125
+        },
+        "adapter": {
+          "schema_and_content": 152,
+          "schema_only": 271,
+          "content_only": 0,
+          "neither": 77
+        }
+      },
+      "errors": {
+        "base_error_counts": {
+          "truncated_generation": 4,
+          "wrong_final_answer": 197
+        },
+        "adapter_error_counts": {
+          "wrong_final_answer": 348
+        },
+        "extraction_failures": {
+          "base": 4,
+          "adapter": 0
+        },
+        "extraction_failure_status": {
+          "base": {
+            "FAILED": 4
+          },
+          "adapter": {}
+        },
+        "shared_failures": 182,
+        "note": "Categories are assigned by the scorer from the generation alone; no failure was reclassified after viewing results."
+      }
+    },
+    {
+      "benchmark": "arc_easy",
+      "total_items": 2376,
+      "base_correct": 1888,
+      "adapter_correct": 2083,
+      "base_accuracy": 0.794613,
+      "adapter_accuracy": 0.876684,
+      "delta_pp": 8.2071,
+      "relative_delta": 0.103284,
+      "comparison": "positive_model_level_lift_observed",
+      "paired": {
+        "both_correct": 1802,
+        "base_only": 86,
+        "adapter_only": 281,
+        "neither": 207
+      },
+      "mcnemar": {
+        "n_discordant": 367,
+        "base_only": 86,
+        "adapter_only": 281,
+        "p_value": 2.818847645210226e-25,
+        "method": "exact_binomial_two_sided",
+        "question_answered": "Among items where the arms disagreed, is the split distinguishable from a fair coin? This is not a test of overall capability, and a non-significant result is not evidence that the arms are equivalent."
+      },
+      "uncertainty": {
+        "method": "cluster_percentile_bootstrap",
+        "cluster_key": "normalized_question_stem",
+        "resamples": 10000,
+        "seed": 20260930,
+        "alpha": 0.05,
+        "ci_low_pp": 6.7283,
+        "ci_high_pp": 9.7981,
+        "cluster_count": 2371,
+        "item_count": 2376,
+        "clustering_material": true,
+        "excludes_zero": true,
+        "note": "Resampling unit is the normalized question stem, not the item: outcomes for items sharing a stem are correlated and resampling items would understate the interval."
+      },
+      "invalid_outputs": {
+        "base": 1419,
+        "adapter": 816
+      },
+      "extraction_failures": {
+        "base": 265,
+        "adapter": 7
+      },
+      "schema_content": {
+        "base": {
+          "schema_and_content": 1836,
+          "schema_only": 302,
+          "content_only": 52,
+          "neither": 186
+        },
+        "adapter": {
+          "schema_and_content": 1940,
+          "schema_only": 261,
+          "content_only": 143,
+          "neither": 32
+        }
+      },
+      "errors": {
+        "base_error_counts": {
+          "invalid_option": 99,
+          "truncated_generation": 166,
+          "wrong_final_answer": 223
+        },
+        "adapter_error_counts": {
+          "answer_extraction_failure": 2,
+          "invalid_option": 1,
+          "truncated_generation": 4,
+          "wrong_final_answer": 286
+        },
+        "extraction_failures": {
+          "base": 265,
+          "adapter": 7
+        },
+        "extraction_failure_status": {
+          "base": {
+            "AMBIGUOUS": 99,
+            "FAILED": 166
+          },
+          "adapter": {
+            "AMBIGUOUS": 1,
+            "FAILED": 6
+          }
+        },
+        "shared_failures": 207,
+        "note": "Categories are assigned by the scorer from the generation alone; no failure was reclassified after viewing results."
+      }
+    },
+    {
+      "benchmark": "arc_challenge",
+      "total_items": 1172,
+      "base_correct": 722,
+      "adapter_correct": 906,
+      "base_accuracy": 0.616041,
+      "adapter_accuracy": 0.773038,
+      "delta_pp": 15.6997,
+      "relative_delta": 0.254848,
+      "comparison": "positive_model_level_lift_observed",
+      "paired": {
+        "both_correct": 672,
+        "base_only": 50,
+        "adapter_only": 234,
+        "neither": 216
+      },
+      "mcnemar": {
+        "n_discordant": 284,
+        "base_only": 50,
+        "adapter_only": 234,
+        "p_value": 1.2640921575230907e-29,
+        "method": "exact_binomial_two_sided",
+        "question_answered": "Among items where the arms disagreed, is the split distinguishable from a fair coin? This is not a test of overall capability, and a non-significant result is not evidence that the arms are equivalent."
+      },
+      "uncertainty": {
+        "method": "cluster_percentile_bootstrap",
+        "cluster_key": "normalized_question_stem",
+        "resamples": 10000,
+        "seed": 20260930,
+        "alpha": 0.05,
+        "ci_low_pp": 13.0658,
+        "ci_high_pp": 18.3447,
+        "cluster_count": 1170,
+        "item_count": 1172,
+        "clustering_material": true,
+        "excludes_zero": true,
+        "note": "Resampling unit is the normalized question stem, not the item: outcomes for items sharing a stem are correlated and resampling items would understate the interval."
+      },
+      "invalid_outputs": {
+        "base": 828,
+        "adapter": 526
+      },
+      "extraction_failures": {
+        "base": 236,
+        "adapter": 3
+      },
+      "schema_content": {
+        "base": {
+          "schema_and_content": 696,
+          "schema_only": 258,
+          "content_only": 26,
+          "neither": 192
+        },
+        "adapter": {
+          "schema_and_content": 869,
+          "schema_only": 238,
+          "content_only": 37,
+          "neither": 28
+        }
+      },
+      "errors": {
+        "base_error_counts": {
+          "invalid_option": 67,
+          "truncated_generation": 169,
+          "wrong_final_answer": 214
+        },
+        "adapter_error_counts": {
+          "truncated_generation": 3,
+          "wrong_final_answer": 263
+        },
+        "extraction_failures": {
+          "base": 236,
+          "adapter": 3
+        },
+        "extraction_failure_status": {
+          "base": {
+            "AMBIGUOUS": 67,
+            "FAILED": 169
+          },
+          "adapter": {
+            "FAILED": 3
+          }
+        },
+        "shared_failures": 216,
+        "note": "Categories are assigned by the scorer from the generation alone; no failure was reclassified after viewing results."
+      }
+    },
+    {
+      "benchmark": "sciq",
+      "total_items": 1000,
+      "base_correct": 849,
+      "adapter_correct": 869,
+      "base_accuracy": 0.849,
+      "adapter_accuracy": 0.869,
+      "delta_pp": 2.0,
+      "relative_delta": 0.023557,
+      "comparison": "no_clear_model_level_lift_demonstrated",
+      "paired": {
+        "both_correct": 806,
+        "base_only": 43,
+        "adapter_only": 63,
+        "neither": 88
+      },
+      "mcnemar": {
+        "n_discordant": 106,
+        "base_only": 43,
+        "adapter_only": 63,
+        "p_value": 0.06446359198949372,
+        "method": "exact_binomial_two_sided",
+        "question_answered": "Among items where the arms disagreed, is the split distinguishable from a fair coin? This is not a test of overall capability, and a non-significant result is not evidence that the arms are equivalent."
+      },
+      "uncertainty": {
+        "method": "cluster_percentile_bootstrap",
+        "cluster_key": "normalized_question_stem",
+        "resamples": 10000,
+        "seed": 20260930,
+        "alpha": 0.05,
+        "ci_low_pp": 0.0,
+        "ci_high_pp": 4.1,
+        "cluster_count": 1000,
+        "item_count": 1000,
+        "clustering_material": false,
+        "excludes_zero": false,
+        "note": "Every question stem is unique here, so cluster resampling reduces to item resampling."
+      },
+      "invalid_outputs": {
+        "base": 526,
+        "adapter": 181
+      },
+      "extraction_failures": {
+        "base": 43,
+        "adapter": 3
+      },
+      "schema_content": {
+        "base": {
+          "schema_and_content": 838,
+          "schema_only": 137,
+          "content_only": 11,
+          "neither": 14
+        },
+        "adapter": {
+          "schema_and_content": 706,
+          "schema_only": 90,
+          "content_only": 163,
+          "neither": 41
+        }
+      },
+      "errors": {
+        "base_error_counts": {
+          "invalid_option": 29,
+          "truncated_generation": 14,
+          "wrong_final_answer": 108
+        },
+        "adapter_error_counts": {
+          "answer_extraction_failure": 3,
+          "wrong_final_answer": 128
+        },
+        "extraction_failures": {
+          "base": 43,
+          "adapter": 3
+        },
+        "extraction_failure_status": {
+          "base": {
+            "AMBIGUOUS": 29,
+            "FAILED": 14
+          },
+          "adapter": {
+            "FAILED": 3
+          }
+        },
+        "shared_failures": 88,
+        "note": "Categories are assigned by the scorer from the generation alone; no failure was reclassified after viewing results."
+      }
+    }
+  ],
+  "aggregate": {
+    "aggregation": "micro_average_over_items",
+    "benchmarks": [
+      "gsm8k",
+      "math500",
+      "arc_easy",
+      "arc_challenge",
+      "sciq"
+    ],
+    "total_items": 6367,
+    "base_accuracy": 0.758128,
+    "adapter_accuracy": 0.750746,
+    "delta_pp": -0.7382,
+    "note": "A single pooled rate over benchmarks of different sizes; the per-benchmark table is the interpretable one."
+  },
+  "decoding": {
+    "config_sha256": "2f86db2e577807ed8021a4b647f3fa2243762e327d6e3c22c76184520e842eff",
+    "decoding_primary": {
+      "do_sample": false,
+      "temperature": null,
+      "top_p": null,
+      "top_k": null,
+      "repetition_penalty": 1.0,
+      "num_beams": 1,
+      "enable_thinking": false,
+      "dtype": "bfloat16",
+      "device": "cuda:0",
+      "quantization": "none",
+      "batch_size": 8,
+      "seed": 20260930,
+      "seed_policy": "Greedy decoding is seed-independent. A fixed seed is still recorded and set so that the optional sampled robustness arm is reproducible.",
+      "max_new_tokens": {
+        "gsm8k": 512,
+        "math500": 1024,
+        "arc_easy": 32,
+        "arc_challenge": 32,
+        "sciq": 32
+      },
+      "stop_token_ids": [
+        151645
+      ]
+    }
+  }
+}

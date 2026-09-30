@@ -1,0 +1,141 @@
+{
+  "schema_version": "t31-comparability-v1",
+  "artifact": "T31_FROZEN_EVALUATION_CONFIG",
+  "models": {
+    "base": {
+      "repo_id": "Qwen/Qwen3-1.7B",
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "role": "frozen base model"
+    },
+    "adapter": {
+      "repo_id": "ComradeRt/Mango-T30-1.7B",
+      "revision": "ad4bac714e442ca5c9b20420847fcadad61a6123",
+      "role": "frozen T30 release adapter",
+      "weights_file": "adapter_model.safetensors",
+      "weights_sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+      "weights_bytes": 139512976,
+      "declared_base_repo_id": "Qwen/Qwen3-1.7B",
+      "declared_base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "provenance_note": "The T30 frozen adapter bytes are the historical T3 adapter checkpoint (training/adapters/sciencemath-v0.1-t3/adapter_model.safetensors), re-tagged as the T30 release. The T30 promotion record pins this artifact by sha256 only; the T30 official evaluation never measured it on any public benchmark."
+    }
+  },
+  "benchmarks": {
+    "gsm8k": {
+      "repo_id": "openai/gsm8k",
+      "config": "main",
+      "split": "test",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "expected_items": 1319,
+      "license": "MIT"
+    },
+    "math500": {
+      "repo_id": "HuggingFaceH4/MATH-500",
+      "config": null,
+      "split": "test",
+      "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+      "expected_items": 500,
+      "license": "MIT (derived from hendrycks/competition_math)"
+    },
+    "arc_easy": {
+      "repo_id": "allenai/ai2_arc",
+      "config": "ARC-Easy",
+      "split": "test",
+      "revision": "210d026faf9955653af8916fad021475a3f00453",
+      "expected_items": 2376,
+      "license": "CC-BY-SA-4.0"
+    },
+    "arc_challenge": {
+      "repo_id": "allenai/ai2_arc",
+      "config": "ARC-Challenge",
+      "split": "test",
+      "revision": "210d026faf9955653af8916fad021475a3f00453",
+      "expected_items": 1172,
+      "license": "CC-BY-SA-4.0"
+    },
+    "sciq": {
+      "repo_id": "allenai/sciq",
+      "config": null,
+      "split": "test",
+      "revision": "2c94ad3e1aafab77146f384e23536f97a4849815",
+      "expected_items": 1000,
+      "license": "CC-BY-NC-3.0"
+    }
+  },
+  "prompt_policy_hash": "3625ff07bbb3d9075c774502d4d2bc32cb441bc710c073fd7bb78f79b714899c",
+  "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+  "suite_hashes": {
+    "arc_challenge": "908e1da4612da3f672cf74b70b34fb2742db30f5597792c0f3bf2b6d2e7a43d0",
+    "arc_easy": "db95bb705616c3aa56510d648c3c7a499920c54d86a2e044a69afa6f8720a95c",
+    "gsm8k": "a105481b6461e992dc8ae0a18332f91d7049efc26b17b50154b57294a8051608",
+    "math500": "4257a3b724a609eba487c34cdab10bb20f241e9f3d24164fa88289b83378541c",
+    "sciq": "acf9ca9e146222981c9a1f0692c526a323434c65f4f4e5fcdab1dcb8a6521d1f"
+  },
+  "decoding_primary": {
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "repetition_penalty": 1.0,
+    "num_beams": 1,
+    "enable_thinking": false,
+    "dtype": "bfloat16",
+    "device": "cuda:0",
+    "quantization": "none",
+    "batch_size": 8,
+    "seed": 20260930,
+    "seed_policy": "Greedy decoding is seed-independent. A fixed seed is still recorded and set so that the optional sampled robustness arm is reproducible.",
+    "max_new_tokens": {
+      "gsm8k": 512,
+      "math500": 1024,
+      "arc_easy": 32,
+      "arc_challenge": 32,
+      "sciq": 32
+    },
+    "stop_token_ids": [
+      151645
+    ]
+  },
+  "decoding_secondary": {
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "repetition_penalty": 1.0,
+    "num_beams": 1,
+    "enable_thinking": true,
+    "dtype": "bfloat16",
+    "device": "cuda:0",
+    "quantization": "none",
+    "batch_size": 8,
+    "seed": 20260930,
+    "seed_policy": "Greedy decoding is seed-independent. A fixed seed is still recorded and set so that the optional sampled robustness arm is reproducible.",
+    "max_new_tokens": {
+      "gsm8k": 2048,
+      "math500": 4096,
+      "arc_easy": 128,
+      "arc_challenge": 128,
+      "sciq": 128
+    },
+    "stop_token_ids": [
+      151645
+    ]
+  },
+  "experimental_variable": "The adapter is attached to the same base revision it declares as its parent. Items, prompt policy, chat template, decoding settings, extractor and scorer are identical for both arms; the only difference is which weights produce the tokens.",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "torch": "2.5.1+cu121",
+    "torch_cuda": "12.1",
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "gpu_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_total_memory_bytes": 6438780928,
+    "transformers": "5.16.1",
+    "datasets": "5.0.1",
+    "peft": "0.20.0",
+    "accelerate": "1.14.0",
+    "sympy": "1.13.1"
+  },
+  "config_sha256": "2f86db2e577807ed8021a4b647f3fa2243762e327d6e3c22c76184520e842eff"
+}

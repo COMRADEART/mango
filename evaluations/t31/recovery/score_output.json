@@ -1,0 +1,12 @@
+{
+  "base:gsm8k": 1319,
+  "adapter:gsm8k": 1319,
+  "base:math500": 500,
+  "adapter:math500": 500,
+  "base:arc_easy": 2376,
+  "adapter:arc_easy": 2376,
+  "base:arc_challenge": 1172,
+  "adapter:arc_challenge": 1172,
+  "base:sciq": 1000,
+  "adapter:sciq": 1000
+}
