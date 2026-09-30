@@ -1,0 +1,43 @@
+{
+  "artifact": "T32_TRAINING_MIXTURE",
+  "candidate": "t32-C-conservative",
+  "schema_version": "t32-mixture-v1",
+  "blocks": {
+    "t30_replay": {
+      "records": 2910,
+      "sha256": "ffbf7c7abf21f934d6fca62bb9e68cda38e4ed9338f6e179c3d2a75ffdc60d0e"
+    }
+  },
+  "validation_blocks": {
+    "t30_validation": {
+      "records": 121
+    }
+  },
+  "train_sha256": "80b85e141f710fd7808766caf36754952d7a5f6f8893fd8fa12bca598ace8ba6",
+  "validation_sha256": "ed082f9f74af68c5678914af4a43985c2262ce7d30da080527385bc67932ec88",
+  "gates": {
+    "new_record_direct_gate": "excluded at pool/dev carve; re-checked here",
+    "new_record_near_gate_removed": 0,
+    "t30_replay_near_matches_disclosed": 0,
+    "t30_replay_removal_rationale": "T30 corpus is frozen evidence; the T30 adapter already trained on it; removing rows would break the C-candidate == T30-corpus identity",
+    "within_mixture_dedup_dropped": {
+      "A": {},
+      "B": {
+        "mango_sft_v2": 9
+      },
+      "C": {}
+    },
+    "mc_slice_letter_counts": {
+      "A": 75,
+      "B": 75,
+      "C": 75,
+      "D": 75
+    },
+    "phase5": "structured records verified for schema AND math content; invalid math content dropped regardless of schema validity"
+  },
+  "provenance": {
+    "fresh_pool": "C:/Users/allam/Documents/new/model/training/t32/pools/fresh_pool_clean.jsonl",
+    "dev_fingerprints_excluded": true,
+    "t30_replay": "training/datasets/sciencemath-sft-v1/train.jsonl"
+  }
+}

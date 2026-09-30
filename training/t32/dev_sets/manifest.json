@@ -1,0 +1,48 @@
+{
+  "artifact": "T32_DEV_SETS",
+  "schema_version": "t32-mixture-v1",
+  "carve_order": "dev sets carved FIRST; every dev question fingerprint is excluded from every T32 training mixture",
+  "seed": 42,
+  "sources": {
+    "dev_gsm8k": "fresh gsm8k train records from the T32 clean pool",
+    "dev_math": "fresh MATH train records from the T32 clean pool (subject-stratified)",
+    "dev_sciq": "raw sciq train rows (distractors required for the frozen MC option construction), fingerprint-gated vs T31 eval and the T30 corpus",
+    "dev_arc_easy": "ai2_arc ARC-Easy TRAIN rows (eval_only license: measurement only, never training), fingerprint-gated vs T31 arc_easy eval",
+    "dev_arc_challenge": "ai2_arc ARC-Challenge TRAIN rows (same terms)"
+  },
+  "benchmark_tags": "dev items reuse the frozen benchmark tags (gsm8k/math500/arc_easy/arc_challenge/sciq) so the frozen scorer paths apply; tags are scoring-path selectors, not T31 membership claims",
+  "files": {
+    "dev_gsm8k": {
+      "path": "C:/Users/allam/Documents/new/model/training/t32/dev_sets/dev_gsm8k.jsonl",
+      "n": 200,
+      "benchmark_tag": "gsm8k",
+      "sha256": "06b6988384140390ef82dbf314aa50757cb1deeee9900b31cd2b6f6f7061d34c"
+    },
+    "dev_math": {
+      "path": "C:/Users/allam/Documents/new/model/training/t32/dev_sets/dev_math.jsonl",
+      "n": 200,
+      "benchmark_tag": "math500",
+      "sha256": "69d7f0d7cbda59f535c1d0b7a5c745570975e81083223880a9db36b8eb2a61d5"
+    },
+    "dev_sciq": {
+      "path": "C:/Users/allam/Documents/new/model/training/t32/dev_sets/dev_sciq.jsonl",
+      "n": 150,
+      "benchmark_tag": "sciq",
+      "sha256": "8dd8ad351bbefb81911a3eae96fad388ea091cb5eca3c7c7d09a4ee14187dbb5"
+    },
+    "dev_arc_easy": {
+      "path": "C:/Users/allam/Documents/new/model/training/t32/dev_sets/dev_arc_easy.jsonl",
+      "n": 120,
+      "benchmark_tag": "arc_easy",
+      "sha256": "39d00117b2311e76f0aa477280e953fa107813184ea3ad9a7d0716f72d30e2c7"
+    },
+    "dev_arc_challenge": {
+      "path": "C:/Users/allam/Documents/new/model/training/t32/dev_sets/dev_arc_challenge.jsonl",
+      "n": 80,
+      "benchmark_tag": "arc_challenge",
+      "sha256": "79749f44213e9555619ae952859c954176946d81137ef348647751b92dc10894"
+    }
+  },
+  "excluded_fingerprints_file": "C:/Users/allam/Documents/new/model/training/t32/dev_sets/dev_excluded_fingerprints.json",
+  "excluded_fingerprints_n": 750
+}

@@ -1,0 +1,55 @@
+{
+  "artifact": "T32_FRESH_POOL",
+  "schema_version": "t32-mixture-v1",
+  "pipeline": "normalize_all-equivalent of scripts/build_sft_corpus.py (field mappings, data.yaml quality limits, build_target canonical targets, make_id)",
+  "load_log": [
+    {
+      "source": "gsm8k",
+      "hf_id": "openai/gsm8k",
+      "actual_load": "openai/gsm8k#main [train]",
+      "rows": 7473,
+      "kept_with_target": 7473
+    },
+    {
+      "source": "math-competition",
+      "hf_id": "hendrycks/competition_math (canonical ref)",
+      "actual_load": "EleutherAI/hendrycks_math (parquet mirror; script loader incompatible with datasets 5.x)",
+      "rows": 7500,
+      "kept_with_target": 7189
+    },
+    {
+      "source": "sciq",
+      "hf_id": "allenai/sciq",
+      "actual_load": "allenai/sciq [train]",
+      "rows": 11679,
+      "kept_with_target": 9714
+    }
+  ],
+  "rejects_n": 2348,
+  "pool_total_kept": 24376,
+  "excluded": {
+    "already_in_t30_corpus_fingerprints": 2851,
+    "by_source_t30": {
+      "gsm8k": 842,
+      "math-competition": 809,
+      "sciq": 1200
+    },
+    "matches_t31_eval_question": 8,
+    "by_source_t31": {
+      "sciq": 8
+    },
+    "within_pool_duplicate": 72
+  },
+  "fresh": {
+    "gsm8k": 6631,
+    "math-competition": 6372,
+    "sciq": 8442
+  },
+  "records": "C:/Users/allam/Documents/new/model/training/t32/pools/fresh_pool.jsonl",
+  "sha256": "720e36b06aee7f08a5957fe9f6ad1d7915933a30a12012f1ac14cfa3103f38e6",
+  "notes": [
+    "Fingerprints via the same text_fingerprint used by the T30 build.",
+    "ARC is not pooled (eval_only); T31 eval questions (incl. MATH-500 test membership) are excluded by fingerprint.",
+    "Pools are complete inventories; candidate mixtures select deterministically from this file and the selection is recorded."
+  ]
+}

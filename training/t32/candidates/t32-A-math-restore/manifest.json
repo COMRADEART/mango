@@ -1,0 +1,64 @@
+{
+  "artifact": "T32_TRAINING_MIXTURE",
+  "candidate": "t32-A-math-restore",
+  "schema_version": "t32-mixture-v1",
+  "blocks": {
+    "gsm8k_fresh_additions": {
+      "records": 570,
+      "sha256": "dd5302ee0f21c86d842de5ea45cca9ed9dfa1924136ad5880e437b027c0d7e13"
+    },
+    "math_fresh_additions": {
+      "records": 570,
+      "sha256": "c63436defce8346a4159b4a642ed6bfcf3afcc57e00bd7d2e7504f589f6b1489"
+    },
+    "t30_replay": {
+      "records": 2910,
+      "sha256": "ffbf7c7abf21f934d6fca62bb9e68cda38e4ed9338f6e179c3d2a75ffdc60d0e"
+    },
+    "verified_drills": {
+      "records": 370,
+      "sha256": "68bfc294752b9cdec617e24430919b2e73ea9dbddf84735b0c313b6e880edd17"
+    }
+  },
+  "validation_blocks": {
+    "drills_val": {
+      "records": 30
+    },
+    "gsm8k_fresh_val": {
+      "records": 30
+    },
+    "math_fresh_val": {
+      "records": 30
+    },
+    "t30_validation": {
+      "records": 121
+    }
+  },
+  "train_sha256": "33f6c41961cc68f07b9259a704f327e2587b3974fb7b5583fb611c4442b7558f",
+  "validation_sha256": "d7afd04ba5ca86d44d367e628af8086bc59666d8022faa8fac6d6fb6b24098cf",
+  "gates": {
+    "new_record_direct_gate": "excluded at pool/dev carve; re-checked here",
+    "new_record_near_gate_removed": 0,
+    "t30_replay_near_matches_disclosed": 0,
+    "t30_replay_removal_rationale": "T30 corpus is frozen evidence; the T30 adapter already trained on it; removing rows would break the C-candidate == T30-corpus identity",
+    "within_mixture_dedup_dropped": {
+      "A": {},
+      "B": {
+        "mango_sft_v2": 9
+      },
+      "C": {}
+    },
+    "mc_slice_letter_counts": {
+      "A": 75,
+      "B": 75,
+      "C": 75,
+      "D": 75
+    },
+    "phase5": "structured records verified for schema AND math content; invalid math content dropped regardless of schema validity"
+  },
+  "provenance": {
+    "fresh_pool": "C:/Users/allam/Documents/new/model/training/t32/pools/fresh_pool_clean.jsonl",
+    "dev_fingerprints_excluded": true,
+    "t30_replay": "training/datasets/sciencemath-sft-v1/train.jsonl"
+  }
+}

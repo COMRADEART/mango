@@ -1,0 +1,75 @@
+{
+  "artifact": "T32_MIXTURE_BUILD_REPORT",
+  "schema_version": "t32-mixture-v1",
+  "candidates": {
+    "t32-A-math-restore": {
+      "blocks": {
+        "t30_replay": 2910,
+        "gsm8k_fresh_additions": 570,
+        "math_fresh_additions": 570,
+        "verified_drills": 370
+      },
+      "validation_blocks": {
+        "t30_validation": 121,
+        "gsm8k_fresh_val": 30,
+        "math_fresh_val": 30,
+        "drills_val": 30
+      }
+    },
+    "t32-B-task-balanced": {
+      "blocks": {
+        "t30_replay": 2910,
+        "gsm8k_fresh_additions": 570,
+        "math_fresh_additions": 570,
+        "verified_drills": 370,
+        "protocol": 130,
+        "abstain": 30,
+        "recovery": 20,
+        "mc": 300,
+        "mango_sft_v2": 706
+      },
+      "validation_blocks": {
+        "t30_validation": 121,
+        "gsm8k_fresh_val": 30,
+        "math_fresh_val": 30,
+        "drills_val": 30,
+        "mango_sft_v2_val": 39,
+        "protocol_val": 20
+      }
+    },
+    "t32-C-conservative": {
+      "blocks": {
+        "t30_replay": 2910
+      },
+      "validation_blocks": {
+        "t30_validation": 121
+      }
+    }
+  },
+  "authored_blocks": {
+    "protocol": 150,
+    "abstain": 30,
+    "recovery": 20,
+    "mc": 300
+  },
+  "gate_ctx": {
+    "new_record_direct_gate": "excluded at pool/dev carve; re-checked here",
+    "new_record_near_gate_removed": 0,
+    "t30_replay_near_matches_disclosed": 0,
+    "t30_replay_removal_rationale": "T30 corpus is frozen evidence; the T30 adapter already trained on it; removing rows would break the C-candidate == T30-corpus identity",
+    "within_mixture_dedup_dropped": {
+      "A": {},
+      "B": {
+        "mango_sft_v2": 9
+      },
+      "C": {}
+    },
+    "mc_slice_letter_counts": {
+      "A": 75,
+      "B": 75,
+      "C": 75,
+      "D": 75
+    },
+    "phase5": "structured records verified for schema AND math content; invalid math content dropped regardless of schema validity"
+  }
+}

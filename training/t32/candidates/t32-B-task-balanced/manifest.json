@@ -1,0 +1,90 @@
+{
+  "artifact": "T32_TRAINING_MIXTURE",
+  "candidate": "t32-B-task-balanced",
+  "schema_version": "t32-mixture-v1",
+  "blocks": {
+    "abstain": {
+      "records": 30,
+      "sha256": "255480a647f5047fdd93f0200f5b91a34750b5d8029c14a634aa018362afca6f"
+    },
+    "gsm8k_fresh_additions": {
+      "records": 570,
+      "sha256": "dd5302ee0f21c86d842de5ea45cca9ed9dfa1924136ad5880e437b027c0d7e13"
+    },
+    "mango_sft_v2": {
+      "records": 706,
+      "sha256": "d2cf805b863c6f8213a20ddb0234aead9b54ab7a88b64ea6ee66bb4e89c75c38"
+    },
+    "math_fresh_additions": {
+      "records": 570,
+      "sha256": "c63436defce8346a4159b4a642ed6bfcf3afcc57e00bd7d2e7504f589f6b1489"
+    },
+    "mc": {
+      "records": 300,
+      "sha256": "59d90ca9b56ee006fe93e7fe59abde92563bb4c42a24e1b87c166be2ec767f2b"
+    },
+    "protocol": {
+      "records": 130,
+      "sha256": "8f7aa24b399d05798705b31e19471d81d37b740c2e7fe0a5f07bcce1fdffaae0"
+    },
+    "recovery": {
+      "records": 20,
+      "sha256": "3948048207624cb6cf71e84d64dcf00a4f48e910f0814ff9ef81744878f3dfd9"
+    },
+    "t30_replay": {
+      "records": 2910,
+      "sha256": "ffbf7c7abf21f934d6fca62bb9e68cda38e4ed9338f6e179c3d2a75ffdc60d0e"
+    },
+    "verified_drills": {
+      "records": 370,
+      "sha256": "68bfc294752b9cdec617e24430919b2e73ea9dbddf84735b0c313b6e880edd17"
+    }
+  },
+  "validation_blocks": {
+    "drills_val": {
+      "records": 30
+    },
+    "gsm8k_fresh_val": {
+      "records": 30
+    },
+    "mango_sft_v2_val": {
+      "records": 39
+    },
+    "math_fresh_val": {
+      "records": 30
+    },
+    "protocol_val": {
+      "records": 20
+    },
+    "t30_validation": {
+      "records": 121
+    }
+  },
+  "train_sha256": "e25c1845b608dcbd9d90fe917d78fc9b4c9de97dabdb63453fa65313d689f3ef",
+  "validation_sha256": "896e7cac35e701a0f596293254b4c7bd11ffd94eee7e0987ad6b641e9106b8cf",
+  "gates": {
+    "new_record_direct_gate": "excluded at pool/dev carve; re-checked here",
+    "new_record_near_gate_removed": 0,
+    "t30_replay_near_matches_disclosed": 0,
+    "t30_replay_removal_rationale": "T30 corpus is frozen evidence; the T30 adapter already trained on it; removing rows would break the C-candidate == T30-corpus identity",
+    "within_mixture_dedup_dropped": {
+      "A": {},
+      "B": {
+        "mango_sft_v2": 9
+      },
+      "C": {}
+    },
+    "mc_slice_letter_counts": {
+      "A": 75,
+      "B": 75,
+      "C": 75,
+      "D": 75
+    },
+    "phase5": "structured records verified for schema AND math content; invalid math content dropped regardless of schema validity"
+  },
+  "provenance": {
+    "fresh_pool": "C:/Users/allam/Documents/new/model/training/t32/pools/fresh_pool_clean.jsonl",
+    "dev_fingerprints_excluded": true,
+    "t30_replay": "training/datasets/sciencemath-sft-v1/train.jsonl"
+  }
+}

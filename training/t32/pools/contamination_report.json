@@ -1,0 +1,21 @@
+{
+  "artifact": "T32_CONTAMINATION_REPORT",
+  "schema_version": "t32-mixture-v1",
+  "gate": "T32 fresh pool vs all T31 evaluation item questions (base-arm scored rows; both arms share frozen membership)",
+  "run_at": "2026-09-30T22:56:12.689193+00:00",
+  "stage_order": [
+    "1. pools.py: direct fingerprint exclusion vs T30 corpus (train+validation) and T31 eval questions",
+    "2. THIS GATE: near-leakage (4-gram shingle Jaccard >= 0.90, the T30-build parameters) vs T31 eval questions; direct re-check"
+  ],
+  "eval_questions_total": 6367,
+  "candidates_checked": 21445,
+  "direct_leakage_found": 0,
+  "near_leakage_found": 0,
+  "records_removed": 0,
+  "removals_by_source_kind": {},
+  "removed_records": [],
+  "kept": 21445,
+  "remediation": "contaminated records (direct and near >= 0.90 Jaccard) REMOVED from the T32 pool before any mixture use; full removal list in fresh_pool_removed.jsonl",
+  "kept_sha256": "720e36b06aee7f08a5957fe9f6ad1d7915933a30a12012f1ac14cfa3103f38e6",
+  "passed_after_remediation": true
+}
