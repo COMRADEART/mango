@@ -4,7 +4,7 @@
   "official_real_evaluator_invocations": 0,
   "public_leak_preflight": {
     "blind_blob_count": 0,
-    "public_leak_scan_root": "2e22f5eed0f08f49c69e0898fc73e7e3f5b56111677af0eea2baf875b4fc78ba",
+    "public_leak_scan_root": "9605637d995c492463385f62b896fdeea91b7693d2715be675203068e4d3dca1",
     "status": "PASS"
   },
   "real_blind_rows": 0,

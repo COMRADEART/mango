@@ -482,7 +482,12 @@ def _stage_recovery_remediation(root: Path) -> dict:
                 "nonvacuity_reachability_gate.json": ("status", "GATE_GREEN"),
                 "recovery_control_negative_controls.json": ("status", "PASS")}
     for name, document in documents.items():
-        _write(out / name, document)
+        # Byte-exact LF staging: the preconstruction contract binds these
+        # files' raw bytes (evidence_sha256), so they must be
+        # platform-independent exactly like the readiness evidence.
+        (out / name).write_bytes(
+            (json.dumps(document, indent=2, sort_keys=True, ensure_ascii=False)
+             + "\n").encode("utf-8"))
         key, value = expected[name]
         if document.get(key) != value:
             raise RuntimeError(f"T30 recovery remediation evidence not green: "

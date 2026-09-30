@@ -6,7 +6,7 @@
   "classification": "PUBLIC_SAFE",
   "completion_recovery_replan_abstention_frozen": true,
   "component_count": 302,
-  "component_root": "3aa91eb3303ba9ed7431657e3f8c8f252a5b4322898c98417e94f664b5b7979e",
+  "component_root": "32d7164ff68b8a5ee23333fc0b5bc77a17ef4de94228d266c33a8ab11a144723",
   "components": [
     {
       "byte_size": 1735,
@@ -204,13 +204,13 @@
       "byte_size": 1351,
       "path": "evaluations/t30/evaluation_readiness_gate.json",
       "role": "T30_PUBLIC_ARTIFACT",
-      "sha256": "ad3c4f66e7b6aec48a7da34a883c1f65057195e8f9783446932f0f1471f746c2"
+      "sha256": "2e07dfa4241d12b4adf59364ca831eece7512e5d6488deee48a66ca5a9979830"
     },
     {
       "byte_size": 3562,
       "path": "evaluations/t30/evaluation_wrapper_rehearsal_evidence.json",
       "role": "T30_PUBLIC_ARTIFACT",
-      "sha256": "591a9d8c9cd16a56a1f732c2313d0cb7a00e0b3406b74cfa7628a7f58a2ddf81"
+      "sha256": "0fb963d8bbe80078e62f944f1b454d1f7bd85ddcf80fd710fffcec410be838f4"
     },
     {
       "byte_size": 3010,
@@ -312,7 +312,7 @@
       "byte_size": 6337,
       "path": "evaluations/t30/preconstruction_contract.json",
       "role": "T30_PUBLIC_ARTIFACT",
-      "sha256": "a9da77a2fc33f623bb1c7229d20b9e64123243f37241a64f35fe1c1f1ad79a51"
+      "sha256": "ff70a3c41aec342b019d0f84d217f6147a64b34d17190c3b33c1c3d418d1bf16"
     },
     {
       "byte_size": 1290,
@@ -366,7 +366,7 @@
       "byte_size": 549,
       "path": "evaluations/t30/public_leak_scan.json",
       "role": "T30_PUBLIC_ARTIFACT",
-      "sha256": "e723f2aaa6cebe46f622c600c9f2c5b1def4cea4fab01b9b17e2a1bdda7534d2"
+      "sha256": "07209f37e4c6d9bc24d706f1ea03ba0309d061322a8449b120f4ea1a6b52f91d"
     },
     {
       "byte_size": 4882,
@@ -396,7 +396,7 @@
       "byte_size": 1000,
       "path": "evaluations/t30/real_mode_oracle_evidence.json",
       "role": "T30_PUBLIC_ARTIFACT",
-      "sha256": "de7faada3a6c94dc06d8afeb8ff831e3a02d448984efa3fcb33580a46c415883"
+      "sha256": "24fc6a224333579fcc92c64493adc67eddae97468f96ea15591d38ca4a28fd3c"
     },
     {
       "byte_size": 3171,
@@ -507,10 +507,10 @@
       "sha256": "2e57cd7c8ca37c71c7c284e43ee284a7863a8495f168a0a36bdc9668c2ab3e86"
     },
     {
-      "byte_size": 56875,
+      "byte_size": 57194,
       "path": "scripts/t30_preconstruction.py",
       "role": "T30_ENTRYPOINT",
-      "sha256": "25b5234d39ceadaac5738da2adf90eb001db8f0d2a8394db55369feee93957a8"
+      "sha256": "daef6cd407ed2ae4350b16cebee1c8aedacec76bb1c9e10634365fd2606ef867"
     },
     {
       "byte_size": 5146,
@@ -1822,8 +1822,8 @@
     }
   ],
   "experiment": "t30",
-  "freeze_root": "2e11eff461ed7939c1d7014db8fc3f384bea9b0e58451224e8c75d57ce98a240",
-  "freeze_sha256": "8865431941168697f6a2fd352ec83c8c55dfc33c415b8c6545b93cbfad5fad7b",
+  "freeze_root": "496e9e34163ba3dba8a22920cb61eac27cb061a2b3df92f18fe5bba0242bd0fb",
+  "freeze_sha256": "d5671bc059d3134675b2eb7343d3deaee58bf98ad3a6aaf66d1c61ecb54db5da",
   "provider_and_scorer_bindings_frozen": true,
   "real_blind_rows": 0,
   "real_construction_attempts": 0,

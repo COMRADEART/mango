@@ -2,10 +2,10 @@
   "artifact": "T30_REAL_MODE_ORACLE_VALIDATION_REHEARSAL",
   "candidate_executions": 0,
   "classification": "PUBLIC_SAFE",
-  "dual_oracle_root": "759964759aad35bdb735495a3d2034b75c6bf0a8f55568e86600bc8f0511eb47",
+  "dual_oracle_root": "83de328a025b38b62541a209f3d799079d6c8a610d149978d980c98068c7e706",
   "outside_boundary_private_rows_exposed": 0,
   "overall_prohibited_overlap": 0,
-  "predecessor_oracle_root": "f54ddca736fbb08dec21f5504403cfe471c5571042619c684a2bb9c8085a4db5",
+  "predecessor_oracle_root": "622e4a0b2bd5e6a568f7c129c97c88d4b4d9c46b002dff2bd566ee2049ed076d",
   "predecessors": [
     "t27",
     "t28"
