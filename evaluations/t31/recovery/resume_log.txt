@@ -1,0 +1,13 @@
+running adapter…
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 8215.11it/s]
+  adapter sciq: 384/1000
+  adapter sciq: 448/1000
+  adapter sciq: 512/1000
+  adapter sciq: 576/1000
+  adapter sciq: 640/1000
+  adapter sciq: 704/1000
+  adapter sciq: 768/1000
+  adapter sciq: 832/1000
+  adapter sciq: 896/1000
+  adapter sciq: 960/1000
+  adapter sciq: 1000/1000

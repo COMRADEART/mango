@@ -1,0 +1,111 @@
+{
+  "schema_version": "t31-comparability-v1",
+  "artifact": "T31_GATE_RESULTS",
+  "gates": [
+    {
+      "gate": "GATE 1",
+      "name": "T30 frozen",
+      "requirement": "The frozen T30 adapter, its evidence pack and its records are unmodified.",
+      "status": "PASS",
+      "evidence": "evaluations/t30 is unmodified against HEAD; the measured adapter is the frozen T30 bytes (f57b2fd4a653abb9…); the T30 freeze root is the one the promotion record declares"
+    },
+    {
+      "gate": "GATE 2",
+      "name": "Base model pinned",
+      "requirement": "The base model is loaded at the revision the manifest names.",
+      "status": "PASS",
+      "evidence": "measured base revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+    },
+    {
+      "gate": "GATE 3",
+      "name": "Adapter pinned",
+      "requirement": "The adapter is loaded by revision and its weights verified by sha256.",
+      "status": "PASS",
+      "evidence": "adapter sha256 f57b2fd4a653abb9…; adapter revision ad4bac714e44…"
+    },
+    {
+      "gate": "GATE 4",
+      "name": "Evaluation configuration frozen",
+      "requirement": "One frozen configuration produced every row.",
+      "status": "PASS",
+      "evidence": "2f86db2e577807ed… on every row file"
+    },
+    {
+      "gate": "GATE 5",
+      "name": "gsm8k comparison",
+      "requirement": "Base and adapter scored, paired and reported.",
+      "status": "PASS",
+      "evidence": "1319 paired items, Δ -22.67 pp, negative_model_level_delta_observed"
+    },
+    {
+      "gate": "GATE 6",
+      "name": "math500 comparison",
+      "requirement": "Base and adapter scored, paired and reported.",
+      "status": "PASS",
+      "evidence": "500 paired items, Δ -29.40 pp, negative_model_level_delta_observed"
+    },
+    {
+      "gate": "GATE 7",
+      "name": "arc_easy comparison",
+      "requirement": "Base and adapter scored, paired and reported.",
+      "status": "PASS",
+      "evidence": "2376 paired items, Δ +8.21 pp, positive_model_level_lift_observed"
+    },
+    {
+      "gate": "GATE 8",
+      "name": "arc_challenge comparison",
+      "requirement": "Base and adapter scored, paired and reported.",
+      "status": "PASS",
+      "evidence": "1172 paired items, Δ +15.70 pp, positive_model_level_lift_observed"
+    },
+    {
+      "gate": "GATE 9",
+      "name": "sciq comparison",
+      "requirement": "Base and adapter scored, paired and reported.",
+      "status": "PASS",
+      "evidence": "1000 paired items, Δ +2.00 pp, no_clear_model_level_lift_demonstrated"
+    },
+    {
+      "gate": "GATE 10",
+      "name": "Raw outputs retained",
+      "requirement": "Every item's unaugmented generation is on disk.",
+      "status": "PASS",
+      "evidence": "12734 raw generations across 10 arm×benchmark files"
+    },
+    {
+      "gate": "GATE 11",
+      "name": "Schema/content split operational",
+      "requirement": "schema_valid and content_valid are recorded independently and both outcomes are reachable.",
+      "status": "PASS",
+      "evidence": "12734 scored rows: content_only=1982, neither=1428, schema_and_content=7625, schema_only=1699"
+    },
+    {
+      "gate": "GATE 12",
+      "name": "Training-overlap disclosure complete",
+      "requirement": "Every benchmark has a measured overlap and an interpretation.",
+      "status": "PASS",
+      "evidence": "disclosed for ['arc_challenge', 'arc_easy', 'gsm8k', 'math500', 'sciq']"
+    },
+    {
+      "gate": "GATE 13",
+      "name": "Public reproduction path",
+      "requirement": "A third party can rerun the comparison from the published config and commands.",
+      "status": "PASS",
+      "evidence": "commands=['PYTHONPATH=src python -m sciencemath.comparability --root . run --arm both', 'PYTHONPATH=src python -m sciencemath.comparability --root . run --arm adapter --benchmark sciq', 'PYTHONPATH=src python -m sciencemath.comparability --root . score', 'PYTHONPATH=src python -m sciencemath.comparability --root . analyse', 'PYTHONPATH=src python -m sciencemath.comparability --root . contamination', 'PYTHONPATH=src python -m sciencemath.comparability --root . report --branch t31-public-comparability --base-commit d25d4574bcfe1634f91bce435efd75566fba8f7d --final-commit 58e911f484928e1e3da6d4fd9f888d96373af6df', 'PYTHONPATH=src python -m sciencemath.comparability --root . manifest', 'PYTHONPATH=src python -m sciencemath.comparability --root . verify', 'PYTHONPATH=src python -m pytest tests/test_t31_comparability_runner.py tests/test_t31_comparability_rows.py tests/test_t31_comparability_pipeline.py tests/test_t31_resume_recovery.py']; config_path=evaluations/t31/config/t31_frozen_config.json; environment=evaluations/t31/manifests/environment.json; hashes_path=evaluations/t31/SHA256SUMS"
+    },
+    {
+      "gate": "GATE 14",
+      "name": "Regression",
+      "requirement": "The pre-existing test suite still passes.",
+      "status": "PASS",
+      "evidence": "3221 passed, 0 failed, 0 skipped"
+    },
+    {
+      "gate": "GATE 15",
+      "name": "Final audit",
+      "requirement": "No metric is attributed to the wrong system.",
+      "status": "PASS",
+      "evidence": "weights, runtime and integrated system each named and separated"
+    }
+  ]
+}

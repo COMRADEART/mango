@@ -1,0 +1,96 @@
+{
+  "schema_version": "t31-comparability-v1",
+  "artifact": "T31_RESUME_RECOVERY_RECORD",
+  "recovery_status": "ALL_DONE_AFTER_RESUME",
+  "created_utc": "2026-09-30T16:30:00+00:00",
+
+  "interruption": {
+    "occurred": true,
+    "description": "The original T31 benchmark process was interrupted during the adapter SciQ arm after 320/1000 persisted rows. No other arm or benchmark was affected.",
+    "evidence": "evaluations/t31/recovery/T31_PRERESUME_PRESERVATION.json (pre-resume hashes, taken before any recovery action)"
+  },
+
+  "frozen_configuration": {
+    "config_sha256": "2f86db2e577807ed8021a4b647f3fa2243762e327d6e3c22c76184520e842eff",
+    "verified_by": "config.load_frozen recomputes config_hash over every field and compares to the recorded digest — matched exactly before any resume action.",
+    "prompt_policy_hash": "3625ff07bbb3d9075c774502d4d2bc32cb441bc710c073fd7bb78f79b714899c",
+    "prompt_policy_unchanged": true,
+    "chat_template_sha256_unchanged": true,
+    "suite_hashes_unchanged": true,
+    "dataset_revisions_unchanged": "all five pinned revisions in identity.BENCHMARK_IDENTITIES (sciq @ 2c94ad3e1aafab77146f384e23536f97a4849815) verified against the loaded suites by suite_hash",
+    "per_row_prompt_verification": "all 6,367 base rows and 320 adapter SciQ rows plus 150-row samples of the other four adapter files re-rendered through the current prompt policy: user_prompt text and prompt_sha256 identical on 12,054/12,054 checked rows (full render cross-check on sciq both arms; deterministic-sample cross-check elsewhere)",
+    "adapter_weights_sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668 — re-verified against the local snapshot bytes before the resumed run",
+    "environment_note": "The only environment difference since freeze is the OS platform build string (Windows-11-10.0.26200 -> 10.0.26300). Python 3.12.10, torch 2.5.1+cu121, transformers 5.16.1, datasets 5.0.1, peft 0.20.0, CUDA runtime, GPU (RTX 4050 Laptop, VRAM) are all identical to the frozen record. Disclosed, not silently ignored."
+  },
+
+  "resume_safety_determination": "RESUME_SAFE_AS_IS",
+  "resume_safety_evidence": [
+    "run_benchmark (runner.py) resumes by stable content-addressed item_id, never by position: rows already present form the skip set before any generation starts.",
+    "append_rows (rows.py) writes through a read-merge-dedup-write with a temp file + fsync + atomic os.replace: there is no in-place append, no truncation, no overwrite of completed rows.",
+    "run_arm/CLI accept arm- and benchmark-specific execution: the resume ran 'run --arm adapter --benchmark sciq' only.",
+    "A source patch was NOT required; the existing runner already satisfied the brief's resume mechanism.",
+    "Pre-resume merge rehearsal: re-serializing the 320 persisted adapter SciQ rows exactly as append_rows does reproduced all 320 lines byte-identically (no serializer drift)."
+  ],
+
+  "pre_resume_test_evidence": {
+    "directed_module": "tests/test_t31_resume_recovery.py",
+    "tests": {
+      "A_completed_rows_survive_byte_identical": "pass",
+      "B_only_missing_ids_execute": "pass",
+      "C_second_resume_generates_zero": "pass",
+      "D_interrupted_resume_completes_cleanly": "pass",
+      "E_arm_isolation": "pass",
+      "F_benchmark_isolation": "pass"
+    },
+    "existing_suites": "tests/test_t31_comparability_runner.py + test_t31_comparability_rows.py + test_t31_comparability_pipeline.py: 64 passed before the resumed run."
+  },
+
+  "sciq_boundary_verification": {
+    "persisted_adapter_rows": 320,
+    "ids_unique": true,
+    "ids_are_first_320_of_frozen_ordering": "verified positionally: the 320 item ids sit at frozen dataset-order positions 0..319 with no internal gaps (not inferred from the row count)",
+    "base_sciq_covers_all_1000": true,
+    "missing_count": 680,
+    "missing_ids_are_positions_320_to_999": true,
+    "missing_set_source": "constructed from the frozen loader ordering minus the persisted row ids, recorded from persisted evidence"
+  },
+
+  "resume_execution": {
+    "command": "python -m sciencemath.comparability run --arm adapter --benchmark sciq",
+    "root": "C:/Users/allam/Documents/new/model (repository root; evidence pack at evaluations/t31)",
+    "batch_size": 8,
+    "decoding": "frozen primary (greedy, do_sample=false, num_beams=1, batch_size=8, enable_thinking=false; per-benchmark budget: sciq max_new_tokens=32)",
+    "generated": 680,
+    "process_exit": 0,
+    "output": "{\"adapter\": {\"sciq\": 680}}",
+    "wall_clock": "launched 2026-09-30 ~16:14 local, completed 16:22 local (~8 minutes)",
+    "regenerated_completed_rows": false
+  },
+
+  "completion_validation": {
+    "adapter_sciq": "1000/1000",
+    "base_total": 6367,
+    "adapter_total": 6367,
+    "grand_total": 12734,
+    "duplicate_ids": "0 across all 10 files",
+    "verify_run": "all 10 arm×benchmark files complete=True against the frozen config hash (missing=0, unexpected=0, duplicates=0)",
+    "membership_identical_between_arms": "true for all five benchmarks",
+    "pre_resume_preservation": {
+      "raw/base/* and raw/adapter/{gsm8k,math500,arc_easy,arc_challenge}": "byte-identical (sha256 match on every file)",
+      "raw/adapter/sciq.jsonl": "first 320 lines byte-identical at their original positions; the file grew 320 -> 1000 rows because the row store's write mechanism rewrites the whole file atomically on append — the storage format's inherent rewrite, disclosed here; every persisted row was verified unchanged per-line",
+      "non-raw files (config, environment, contamination, pack README)": "byte-identical"
+    }
+  },
+
+  "count_accounting_note": "The recovery directive stated '11,054' existing rows; the per-file counts it also states sum to 12,054 (6,367 base + 5,687 adapter). The disk evidence matched the per-file counts exactly (12,054), and all rows the directive intended (all but the 680 missing adapter SciQ items) were present and preserved. 12,054 + 680 generated = 12,734.",
+
+  "storage_normalization_note": "The repository's .gitattributes forces LF endings on the pack files, so the commit step normalizes the working copies from CRLF to LF (line-content identical; parse-complete by read_rows and gate-counted identically). The pre-resume preservation record's per-file and per-line hashes were taken over the bytes on disk at capture time and document that pre-resume state; after normalization the same records re-verify as parsed, completed row sets rather than byte hashes. Disclosed rather than silent.",
+
+  "directive_compliance": {
+    "did_not_begin_inference_before_phase_1": true,
+    "existing_rows_never_regenerated": true,
+    "only_missing_ids_generated": true,
+    "prompts_decoding_scoring_ordering_unmodified": "no source modification to measurement semantics; no patch of any kind was needed for the resume path",
+    "original_all_done_marker_not_fabricated": "no historical ALL_DONE exists anywhere in this pack; recovery_status is ALL_DONE_AFTER_RESUME, which documents the interruption instead of erasing it"
+  }
+}
