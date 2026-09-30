@@ -1,0 +1,17 @@
+{
+  "artifact": "T30_PUBLICATION_LEAK_GATE",
+  "blind_blob_count": 0,
+  "classification": "PUBLIC_SAFE",
+  "failure_code": null,
+  "fetch_status": "SKIPPED",
+  "forbidden_path_count": 0,
+  "forbidden_paths": [],
+  "history_rewrite_restores_eligibility": false,
+  "official_evaluation_eligible": true,
+  "path_policy_violations": 0,
+  "public_ref_count": 174,
+  "reachable_object_count": 7225,
+  "scan_root": "4d459b07b05e318f8e780469f26292e879354de54610b73c5da619062f94b3e7",
+  "schema_version": "t30-publication-leak-gate-v1",
+  "status": "PASS"
+}

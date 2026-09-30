@@ -1,0 +1,82 @@
+{
+  "artifact": "T30_RECOVERY_CONTROL_POLICY",
+  "candidate_hidden_fields": [
+    "designated_recoverable",
+    "fault_class",
+    "fault_schedule",
+    "injection_count",
+    "max_injections",
+    "recovery_control"
+  ],
+  "causal_order": [
+    "author_and_finalize_candidate_visible_scenarios",
+    "generate_recovery_control_from_scenarios_only",
+    "derive_designated_recoverable_from_control",
+    "finalize_gold",
+    "freeze_package"
+  ],
+  "classification": "PUBLIC_SAFE",
+  "control_path": "control/recovery_control.json",
+  "control_schema_version": "t30-recovery-control-v1",
+  "designation_rule": "set(control.scenario_id) == set(gold.designated_recoverable)",
+  "entry_fields": [
+    "scenario_id",
+    "step_id",
+    "capability",
+    "fault_class",
+    "max_injections"
+  ],
+  "evaluation_ordering": [
+    "preflight",
+    "environment_identity",
+    "STARTED_ledger_and_marker",
+    "recovery_control_read",
+    "blind_inputs_read",
+    "gold_read",
+    "workspace_creation",
+    "candidate_execution",
+    "EXECUTED",
+    "SCORED",
+    "COMPLETE"
+  ],
+  "fault_class": "TRANSIENT_RECOVERABLE_ERROR",
+  "fault_message": "T30_FROZEN_TRANSIENT_EVALUATION_FAULT",
+  "forbidden_control_fields": [
+    "designated_abstention",
+    "designated_recoverable",
+    "expected_answer",
+    "expected_fallback_capability",
+    "expected_replan_trigger",
+    "expected_terminal",
+    "expected_verified_steps",
+    "family",
+    "gold",
+    "metric_designations",
+    "metrics",
+    "score"
+  ],
+  "max_injections": 1,
+  "policy_root": "42c069292c19d26ac24f3cb2b4d3e80c632ef7a3fe8621d1416d4d98bab570c9",
+  "preledger_binding_only": [
+    "recovery_control_sha256",
+    "recovery_control_schema",
+    "recovery_control_population",
+    "recovery_control_policy_root"
+  ],
+  "production_provider_status_normalization_unchanged": true,
+  "qualified_target_capabilities": [
+    "MATH_T4",
+    "SCICOMP"
+  ],
+  "recovery_success_predicate": "terminal == COMPLETE and budget_state.total_retries >= 1",
+  "recovery_success_rate_floor": 1.0,
+  "remediation": "FROZEN_EVALUATION_TRANSIENT_FAULT_CONTROL",
+  "schema_version": "t30-recovery-control-policy-v1",
+  "scorer_semantics_unchanged": true,
+  "second_matching_invocation": "DELEGATE_UNCHANGED",
+  "state_scope": "PER_SCENARIO_RUNNER",
+  "store_classification": "PRIVATE_EVALUATION_CONTROL",
+  "wrapped_adapter_builder": "t30_protocol.production:build_adapters",
+  "wrapper": "t30_protocol.recovery_control:wrap_production_adapters",
+  "zero_denominator_policy": "FAIL_NONVACUITY"
+}

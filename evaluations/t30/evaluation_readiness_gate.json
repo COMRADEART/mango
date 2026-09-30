@@ -1,0 +1,42 @@
+{
+  "artifact": "T30_EVALUATION_READINESS_GATE",
+  "classification": "PUBLIC_SAFE",
+  "construction_contract_leaf_count": 45,
+  "item_count": 19,
+  "items": {
+    "all_nonvacuity_designations_reachable": true,
+    "caller_injection_impossible": true,
+    "control_read_postledger": true,
+    "failure_semantics_pass": true,
+    "gold_firewall_pass": true,
+    "historical_anchor_roundtrip_pass": true,
+    "ledger_first_pass": true,
+    "model_hydration_pass": true,
+    "nonvacuity_pass": true,
+    "production_adapter_source_exact": true,
+    "production_environment_pass": true,
+    "production_stack_recovery_32_pass": true,
+    "public_leak_preflight_pass": true,
+    "recovery_control_candidate_hidden": true,
+    "recovery_control_gold_independent": true,
+    "scorer_metrics_fail_nonvacuity_unchanged": true,
+    "shape_mutation_controls_pass": true,
+    "store_closure_pass": true,
+    "wrapper_pass": true
+  },
+  "items_failed": [],
+  "readiness_contract": {
+    "FAIL": 0,
+    "PASS": 45,
+    "UNVERIFIABLE": 0,
+    "leaf_count": 45,
+    "leaf_root": "a67657427d7d40684cee8a867e2f5af49432484828a63866bab6cbdc5d85f80a"
+  },
+  "real_blind_rows": 0,
+  "real_construction_attempts": 0,
+  "real_evaluation_attempts": 0,
+  "real_gold_rows": 0,
+  "refusal": null,
+  "schema_version": "t30-evaluation-readiness-gate-v1",
+  "status": "GATE_GREEN"
+}

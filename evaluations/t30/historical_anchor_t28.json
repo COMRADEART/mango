@@ -1,0 +1,12 @@
+{
+  "capability_status": "NOT_MEASURED",
+  "commitment_root": "fce26f5c1b87eed425663cd655b6edb31a9a04541624fac853097b27aa5d2605",
+  "construction_attempt": 1,
+  "construction_state": "SEALED",
+  "evaluation_attempt": 0,
+  "evaluation_eligibility": "PERMANENTLY_INELIGIBLE",
+  "evaluation_state": "UNSPENT_BUT_PERMANENTLY_INELIGIBLE",
+  "experiment": "t28",
+  "private_rows_read": 0,
+  "store_authenticated": true
+}

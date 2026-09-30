@@ -1,0 +1,115 @@
+{
+  "FAIL": 0,
+  "PASS": 25,
+  "artifact": "T30_RECOVERY_CONTROL_NEGATIVE_CONTROLS",
+  "classification": "PUBLIC_SAFE",
+  "control_count": 25,
+  "controls": {
+    "attested_adapter_identity_restored": {
+      "failure_class": "IDENTITY",
+      "refused": true
+    },
+    "capability_mismatch": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "control_entry_without_gold_designation": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "control_field_exposed_to_candidate": {
+      "failure_class": "ValueError",
+      "refused": true
+    },
+    "control_generator_accepts_no_gold": {
+      "failure_class": "SIGNATURE",
+      "refused": true
+    },
+    "control_parsed_before_started": {
+      "failure_class": "PreLedgerViolation",
+      "refused": true
+    },
+    "duplicate_schedule_entry": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "entry_bound_to_other_scenario": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "expected_answer_in_control": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "expected_terminal_in_control": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "fault_injected_into_unscheduled_scenario": {
+      "failure_class": "ExecutionError",
+      "refused": true
+    },
+    "fault_injected_more_than_once": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "fault_state_leaks_across_scenarios": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "gold_field_in_control": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "malformed_schema": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "max_injections_not_one": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "missing_control_schedule": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "nonlocal_unqualified_target": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "recoverable_gold_missing_control_entry": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "runner_without_postledger_control": {
+      "failure_class": "ValueError",
+      "refused": true
+    },
+    "t26_adapter_substitution_detected": {
+      "failure_class": "IDENTITY",
+      "refused": true
+    },
+    "target_without_retry_budget": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "unknown_scenario": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "unknown_step": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    },
+    "unsupported_fault_class": {
+      "failure_class": "RecoveryControlError",
+      "refused": true
+    }
+  },
+  "failed_controls": [],
+  "material": "SYNTHETIC_DISPOSABLE_PERMANENTLY_EXCLUDED",
+  "real_blind_rows": 0,
+  "real_recovery_control_entries": 0,
+  "schema_version": "t30-recovery-control-negative-controls-v1",
+  "status": "PASS"
+}

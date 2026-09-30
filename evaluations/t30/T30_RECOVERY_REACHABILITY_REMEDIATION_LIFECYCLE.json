@@ -1,0 +1,19 @@
+{
+  "artifact": "T30_RECOVERY_REACHABILITY_REMEDIATION_LIFECYCLE",
+  "capability_verdict": "NOT_MEASURED",
+  "classification": "PUBLIC_SAFE",
+  "construction_eligibility": "SUSPENDED_PENDING_REMEDIATION",
+  "construction_one_shot": "UNSPENT",
+  "lifecycle_state": "T30_PRE_EXPOSURE_RECOVERY_REACHABILITY_REMEDIATION_REQUIRED",
+  "new_construction_authorization_required_after_successor_freeze": true,
+  "not_classified_as": [
+    "CAPABILITY_FAIL",
+    "CONSTRUCTION_FAILED_ONE_SHOT_CONSUMED",
+    "PERMANENTLY_INELIGIBLE"
+  ],
+  "prior_construction_authorization": "WITHDRAWN_NOT_USABLE",
+  "real_blind_rows": 0,
+  "real_gold_rows": 0,
+  "remediation": "FROZEN_EVALUATION_TRANSIENT_FAULT_CONTROL",
+  "schema_version": "t30-remediation-lifecycle-v1"
+}

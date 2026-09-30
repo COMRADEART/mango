@@ -1,0 +1,23 @@
+{
+  "artifact": "T30_T29_ABANDONMENT_READINESS",
+  "classification": "PUBLIC_SAFE",
+  "commitment_root": "98a269e9eac0df68c7b33ac81a9b70ce58f35aea26411cbc632ed2d12aaeb20c",
+  "fingerprint_populations": {
+    "case_ids": 512,
+    "chunk_ids": 3851,
+    "entity_identities": 16,
+    "exact_answers": 512,
+    "exact_queries": 512,
+    "exact_source_text": 3851,
+    "relations": 3851,
+    "source_ids": 4,
+    "verbatim_attack_wording": 16
+  },
+  "hash_only_fingerprint_file_authenticated": true,
+  "package_retained_immutable": true,
+  "private_rows_exposed": 0,
+  "schema_version": "t30-t29-abandonment-readiness-v1",
+  "sealed_machine_only_abandonment_oracle_required": true,
+  "status": "PASS",
+  "t29_row_files_opened": 0
+}

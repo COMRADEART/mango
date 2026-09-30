@@ -1,0 +1,170 @@
+{
+  "artifact": "T30_OFFICIAL_GENERAL_CONTEXT_IDENTITY",
+  "budgets": {
+    "root": "ee2f444221f1b5a703f59c513c067432f6f0de970d6e27fae012949bc47bd469",
+    "value": {
+      "max_model_calls": 16,
+      "max_plan_attempts": 2,
+      "max_plan_steps": 6,
+      "max_replans": 2,
+      "max_retrievals": 3,
+      "max_step_seconds": 60.0,
+      "max_tool_calls": 8,
+      "max_total_seconds": 180.0
+    }
+  },
+  "candidate_gold_access": false,
+  "checkpointer_policy": "NONE",
+  "classification": "PUBLIC_SAFE",
+  "context": {
+    "class": "ExecContext",
+    "context_kind": "PRODUCTION",
+    "field_contract": [
+      "model",
+      "tokenizer",
+      "registry",
+      "retriever",
+      "generation",
+      "usage",
+      "budgets",
+      "features",
+      "trajectory",
+      "checkpointer",
+      "retrieval_k"
+    ],
+    "implementation_sha256": "f706f9be41617c0efff87594144979c0eb35e8ec9dda2c508506b4c1d5fad91d",
+    "module": "sciencemath.executive.runner",
+    "source": "src/sciencemath/executive/runner.py"
+  },
+  "experiment": "t30",
+  "features": {
+    "root": "655bdcd3b64aed4a388706f7aa7ca25833dc7ab5812f6b1d801e0acb21cd5cd8",
+    "value": {
+      "correction_gate": true,
+      "distractor_filter": true,
+      "executive": true,
+      "fast_path": true,
+      "model_plan": true,
+      "replanning": true,
+      "retrieval": true,
+      "tools": true,
+      "verification": true
+    }
+  },
+  "generation": {
+    "root": "12035d3923f213dc6d6ccc1e20408e18e82929c3c8b1f82f0a164225cf3d03e7",
+    "value": {
+      "do_sample": false,
+      "max_new_tokens": 32,
+      "seed": 42
+    }
+  },
+  "gold_channel_count": 0,
+  "identity_root": "d037cd9aa18830a98d3c2bce284c4239f2381cf6cce20c124183b0a4b8cfd3e6",
+  "initial_usage": {
+    "root": "69980becd42cc4fc5a0cfa0f68c87df010d17d8f7d25bed40d686a1bc850f104",
+    "value": {
+      "elapsed_s": 0.0,
+      "input_tokens": 0,
+      "model_calls": 0,
+      "output_tokens": 0,
+      "plan_attempts": 0,
+      "replans": 0,
+      "retrievals": 0,
+      "steps_executed": 0,
+      "tool_calls": 0
+    }
+  },
+  "model": {
+    "adapter": {
+      "active": true,
+      "bytes": 139512976,
+      "name": "t3",
+      "path": "training/adapters/sciencemath-v0.1-t3/adapter_model.safetensors",
+      "sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668"
+    },
+    "base_model_id": "Qwen/Qwen3-1.7B",
+    "base_public_metadata": [
+      {
+        "bytes": 726,
+        "path": "config.json",
+        "sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197"
+      },
+      {
+        "bytes": 25605,
+        "path": "model.safetensors.index.json",
+        "sha256": "0d660e94b165eb912669a5249dff44b83188c4777a07ddb9611fb78d91b0578d"
+      }
+    ],
+    "base_public_metadata_root": "3989e54efa7f017e507938264e5e301ac6b12ae21fa6f460417d715adfbedf56",
+    "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "class": "PeftModelForCausalLM",
+    "eval_mode": true,
+    "inference_mode": true,
+    "initialized_from_public_artifacts": true,
+    "module": "peft.peft_model",
+    "quantization": {
+      "is_quantized": false,
+      "mode": "bf16",
+      "parameter_dtype": "torch.bfloat16"
+    }
+  },
+  "opaque_dependency_boundary": {
+    "bounded_control_plane_recursive_inspection": true,
+    "model_recursive_introspection": false,
+    "tokenizer_recursive_introspection": false
+  },
+  "private_dependency_count": 0,
+  "private_store_dependency": false,
+  "registry": {
+    "kind": "NONE"
+  },
+  "retrieval_k": 3,
+  "retriever": {
+    "kind": "NONE"
+  },
+  "schema_version": "t30-official-general-context-identity-v1",
+  "t26_predecessor_document": {
+    "artifact": "T26_OFFICIAL_GENERAL_CONTEXT_IDENTITY",
+    "identity_root": "3cdb3f242807a13ee8ab3668aca692834811d990a2ee1b1c6e365337c194b355",
+    "schema_version": "t26-official-general-context-identity-v1"
+  },
+  "tokenizer": {
+    "chat_template_included": false,
+    "chat_template_root": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+    "class": "Qwen2Tokenizer",
+    "initialized_from_public_artifacts": true,
+    "is_fast": true,
+    "module": "transformers.models.qwen2.tokenization_qwen2",
+    "public_file_root": "8db7442549cc42e27faf19886b463184e5f15907b318e33cfd7e708659a29c47",
+    "public_files": [
+      {
+        "bytes": 1671853,
+        "path": "merges.txt",
+        "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+      },
+      {
+        "bytes": 11422654,
+        "path": "tokenizer.json",
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+      },
+      {
+        "bytes": 9732,
+        "path": "tokenizer_config.json",
+        "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+      },
+      {
+        "bytes": 2776833,
+        "path": "vocab.json",
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    ],
+    "source_id": "Qwen/Qwen3-1.7B",
+    "source_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"
+  },
+  "trajectory_policy": "NONE",
+  "workspaces": {
+    "mode": "T30_OFFICIAL_EVALUATION",
+    "predecessor_mode": "REAL_EXPERIMENT"
+  }
+}

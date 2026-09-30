@@ -1,0 +1,107 @@
+{
+  "artifact": "T30_DISPOSABLE_EVALUATION_REHEARSALS",
+  "classification": "PUBLIC_SAFE",
+  "official_real_evaluator_invocations": 0,
+  "public_leak_preflight": {
+    "blind_blob_count": 0,
+    "public_leak_scan_root": "9605637d995c492463385f62b896fdeea91b7693d2715be675203068e4d3dca1",
+    "status": "PASS"
+  },
+  "real_blind_rows": 0,
+  "real_evaluation_attempts": 0,
+  "real_gold_rows": 0,
+  "runs": [
+    {
+      "denominators_nonzero": true,
+      "designated_counts": {
+        "handoff_cases": 512,
+        "recoverable_cases": 128,
+        "replan_required_cases": 128,
+        "safe_abstention_cases": 128,
+        "successful_completion_cases": 384,
+        "verification_cases": 2176
+      },
+      "fail_nonvacuity_policy": true,
+      "fixture_count": 0,
+      "gold_firewall_projected_rows": 512,
+      "mode": "REAL_REHEARSAL",
+      "ordering_binding_precedes_blind_reads": true,
+      "ordering_binding_precedes_control_read": true,
+      "ordering_blind_inputs_before_gold": true,
+      "ordering_control_before_blind_inputs": true,
+      "ordering_reads_before_workspace": true,
+      "ordering_strictly_increasing": true,
+      "ordering_workspace_precedes_candidate_execution": true,
+      "post_ledger_store_verified": true,
+      "production_adapter_registry_used": true,
+      "recovery_injections_exact": true,
+      "recovery_pass_32_of_32": true,
+      "recovery_success_rate": {
+        "denominator": 128,
+        "numerator": 128,
+        "observed": 1.0,
+        "pass": true
+      },
+      "scenario_count": 512,
+      "score_pass": true,
+      "semantic_signature": "9e78963f115997e0bd178c66fcbb1998a3282551cfa8f6ac53a0c30acd80efbd",
+      "state_sequence": [
+        "STARTED",
+        "EXECUTED",
+        "SCORED",
+        "COMPLETE"
+      ],
+      "status": "PASS",
+      "variant": 1,
+      "wrapper_qualified_id": "t30_protocol.evaluation:evaluate_official"
+    },
+    {
+      "denominators_nonzero": true,
+      "designated_counts": {
+        "handoff_cases": 512,
+        "recoverable_cases": 128,
+        "replan_required_cases": 128,
+        "safe_abstention_cases": 128,
+        "successful_completion_cases": 384,
+        "verification_cases": 2176
+      },
+      "fail_nonvacuity_policy": true,
+      "fixture_count": 1,
+      "gold_firewall_projected_rows": 512,
+      "mode": "REAL_REHEARSAL",
+      "ordering_binding_precedes_blind_reads": true,
+      "ordering_binding_precedes_control_read": true,
+      "ordering_blind_inputs_before_gold": true,
+      "ordering_control_before_blind_inputs": true,
+      "ordering_reads_before_workspace": true,
+      "ordering_strictly_increasing": true,
+      "ordering_workspace_precedes_candidate_execution": true,
+      "post_ledger_store_verified": true,
+      "production_adapter_registry_used": true,
+      "recovery_injections_exact": true,
+      "recovery_pass_32_of_32": true,
+      "recovery_success_rate": {
+        "denominator": 128,
+        "numerator": 128,
+        "observed": 1.0,
+        "pass": true
+      },
+      "scenario_count": 512,
+      "score_pass": true,
+      "semantic_signature": "9e78963f115997e0bd178c66fcbb1998a3282551cfa8f6ac53a0c30acd80efbd",
+      "state_sequence": [
+        "STARTED",
+        "EXECUTED",
+        "SCORED",
+        "COMPLETE"
+      ],
+      "status": "PASS",
+      "variant": 2,
+      "wrapper_qualified_id": "t30_protocol.evaluation:evaluate_official"
+    }
+  ],
+  "schema_version": "t30-evaluation-rehearsals-v2",
+  "semantic_equivalence": true,
+  "status": "PASS",
+  "wrapper_invocations_on_disposable_standins": 2
+}

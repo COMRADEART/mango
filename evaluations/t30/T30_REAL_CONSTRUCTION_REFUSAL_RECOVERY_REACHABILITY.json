@@ -1,0 +1,119 @@
+{
+  "artifact": "T30_REAL_CONSTRUCTION_REFUSAL_RECOVERY_REACHABILITY",
+  "classification": "PUBLIC_SAFE",
+  "construct_real_invocations": 0,
+  "construction_ledger": "ABSENT",
+  "construction_marker": "ABSENT",
+  "evaluation_ledger": "ABSENT",
+  "evaluation_marker": "ABSENT",
+  "gold_rows_authored": 0,
+  "old_real_stack_recovery_reachable": false,
+  "oracle_invocations": {
+    "t27": 0,
+    "t28": 0,
+    "t29_abandoned": 0
+  },
+  "private_paths_included": false,
+  "real_rows_authored": 0,
+  "recovery_requirement": {
+    "nonvacuity_minimum": "recoverable_cases >= 32",
+    "source": "t30_protocol.contract:NONVACUITY_MINIMUMS"
+  },
+  "recovery_success_rate_floor": 1.0,
+  "refusal_record": {
+    "artifact": "T30_REAL_CONSTRUCTION_REFUSAL",
+    "checkout": {
+      "clean": true,
+      "commit": "252b3de1d2606e7aa67626aacbd2daa0bf46b193",
+      "frozen_source": "5b0878d016ddf0923eb81d30ba63cbdd6521e67f",
+      "tree": "710d00a68386ff33a1dd186e43c404b83de8cd4a"
+    },
+    "classification": "PUBLIC_SAFE",
+    "counters": {
+      "candidate_real_executions": 0,
+      "construct_real_invocations": 0,
+      "construction_ledger": "ABSENT",
+      "construction_marker": "ABSENT",
+      "evaluation_ledger": "ABSENT",
+      "evaluation_marker": "ABSENT",
+      "official_evaluator_invocations": 0,
+      "t27_real_oracle_invocations": 0,
+      "t28_real_oracle_invocations": 0,
+      "t29_abandonment_oracle_invocations": 0,
+      "t29_row_files_opened": 0,
+      "t30_real_gold_authored": 0,
+      "t30_real_scenarios_authored": 0,
+      "t30_store_created": false
+    },
+    "defect_class": "FROZEN_NONVACUITY_REQUIRES_UNREACHABLE_RECOVERY_DESIGNATION",
+    "freeze_sha256": "96e3ee5e12ffa8b7e5c3e6dd01dfe19ecfc4bd5ead1cb740a66f46080fb616ce",
+    "preflight_pass": {
+      "s20_public_index_root": "ad56bdfded40634026c3ae3e91113920f771dd690b353951dd22a84b27127aa7",
+      "s2_environment": true,
+      "s3_candidate": true,
+      "s4_freeze": true,
+      "s6_no_t30_store": true,
+      "s8_t28_journal": true,
+      "s9_equivalence": true
+    },
+    "refusal_phase": "PRE_AUTHORING_PRE_ORACLE_PRE_LEDGER",
+    "refusal_root": "593e1337383716604aca93f8faed3daff063ddcf870bf66a11d7ca4c2961b9e6",
+    "reproducer": {
+      "best_case_recovery_success_rate": {
+        "denominator": 32,
+        "floor": 1.0,
+        "numerator": 0,
+        "observed": 0.0,
+        "pass": false
+      },
+      "best_case_suite_status": "FAIL",
+      "disposable_only_raise_sites": [
+        "t30_protocol/qualification.py:164",
+        "t30_protocol/qualification.py:170",
+        "t26_protocol/qualification.py:170",
+        "t26_protocol/rehearsal.py:35"
+      ],
+      "nonvacuity_recoverable_minimum": 32,
+      "provider_status_normalization": {
+        "BUDGET_CHANGE": "REJECTED_ExecutionError",
+        "RECOVERABLE_ERROR": "REJECTED_ExecutionError"
+      },
+      "provider_transient_exception": "CONVERTED_TO_UnavailableError",
+      "real_stack_RecoverableError_subclasses": [],
+      "real_stack_raise_RecoverableError_sites": [
+        "t26_protocol/qualification.py:170",
+        "t26_protocol/rehearsal.py:35"
+      ],
+      "real_stack_status_literals": [
+        "src/sciencemath/integrated/runner.py:29:RECOVERABLE_ERROR",
+        "src/sciencemath/integrated/runner.py:29:BUDGET_CHANGE",
+        "src/sciencemath/integrated/runner.py:35:RECOVERABLE_ERROR",
+        "src/sciencemath/integrated/runner.py:35:BUDGET_CHANGE",
+        "src/sciencemath/integrated/runner.py:382:RECOVERABLE_ERROR",
+        "src/sciencemath/integrated/runner.py:358:RECOVERABLE_ERROR",
+        "src/sciencemath/integrated/runner.py:358:RECOVERABLE_ERROR",
+        "src/sciencemath/integrated/runner.py:347:RECOVERABLE_ERROR",
+        "src/sciencemath/integrated/runner.py:410:RECOVERABLE_ERROR",
+        "src/sciencemath/integrated/runner.py:410:BUDGET_CHANGE",
+        "src/sciencemath/integrated/runner.py:348:RECOVERABLE_ERROR",
+        "src/sciencemath/integrated/runner.py:348:RECOVERABLE_ERROR",
+        "src/sciencemath/integrated/runner.py:349:BUDGET_CHANGE",
+        "src/sciencemath/integrated/runner.py:350:BUDGET_CHANGE",
+        "src/sciencemath/integrated/runner.py:350:BUDGET_CHANGE",
+        "t26_protocol/rehearsal.py:44:RECOVERABLE_ERROR"
+      ],
+      "scanned_module_count": 288,
+      "schema_version": "t30-recovery-reachability-reproducer-v1"
+    },
+    "reproducer_sha256": "8978ff4613711aa8141cc646859c4c4c7a409ac0b5c5b9c80f9e9498858a8bd0",
+    "schema_version": "t30-real-construction-refusal-v1",
+    "t30_construction_one_shot": "UNSPENT",
+    "t30_evaluation_one_shot": "NOT_YET_AUTHORIZED",
+    "verdict": "T30_REAL_CONSTRUCTION_REFUSED_DESIGNATED_RECOVERY_UNREACHABLE_IN_FROZEN_REAL_STACK"
+  },
+  "refusal_root": "593e1337383716604aca93f8faed3daff063ddcf870bf66a11d7ca4c2961b9e6",
+  "schema_version": "t30-public-refusal-record-v1",
+  "scorer_predicate": "recovery_success = terminal == COMPLETE AND budget_state.total_retries >= 1",
+  "t30_construction_one_shot": "UNSPENT",
+  "terminal": "T30_REAL_CONSTRUCTION_REFUSED_DESIGNATED_RECOVERY_UNREACHABLE_IN_FROZEN_REAL_STACK"
+}

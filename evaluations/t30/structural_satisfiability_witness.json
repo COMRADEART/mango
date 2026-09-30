@@ -1,0 +1,9 @@
+{
+  "artifact": "STRUCTURAL_SATISFIABILITY_WITNESS",
+  "classification": "PUBLIC_SAFE",
+  "experiment": "t30",
+  "explicitly_tagged_disposable_substitute": true,
+  "real_binding": "replaced by the real artifact on the authorized T30 real construction pass; absent placeholders fail the construction gate",
+  "schema_version": "t30-standin-public-placeholder-v1",
+  "standin_public_placeholder": "structural_satisfiability_witness.json"
+}

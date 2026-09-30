@@ -1,0 +1,19 @@
+{
+  "analogy": "the T28 generated-public remediation follows the same identity-bearing-only public-history comparison",
+  "artifact": "T27_PUBLIC_QUALIFICATION_EXCLUSION_PRECEDENT",
+  "classification": "PUBLIC_SAFE",
+  "design_note_root": "72acce240d0da2da15a3e955ccf52e51dbba83aef1d3734f602e41f21f5dafc0",
+  "difference": "T28 additionally quantifies the exempted structural vocabulary and freezes it under an authenticated dimension policy",
+  "precedent_experiment": "T27",
+  "precedent_identity_dimensions": [
+    "case_id_sha256",
+    "goal_sha256",
+    "router_query_sha256"
+  ],
+  "precedent_scope": "T27 public qualification history was compared against real material on identity-bearing dimensions only",
+  "precedent_structural_vocabulary": "NOT_PRESENT_IN_PREDECESSOR_FINGERPRINT_VOCABULARY",
+  "schema_version": "t28-t27-exclusion-precedent-design-note-v1",
+  "status": "PASS",
+  "t27_candidate_reruns": 0,
+  "t27_private_rows_opened": 0
+}
