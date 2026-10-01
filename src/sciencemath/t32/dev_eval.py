@@ -62,6 +62,9 @@ def load_candidate(adapter_dir: Path):
     base = MODEL_IDENTITIES[ARM_BASE]
     tok = AutoTokenizer.from_pretrained(base["repo_id"],
                                         revision=base["revision"])
+    tok.padding_side = "left"
+    if tok.pad_token_id is None:
+        tok.pad_token = tok.eos_token
     model = _load_pretrained(AutoModelForCausalLM, base["repo_id"],
                              base["revision"], dtype=torch.bfloat16)
     model.to("cuda:0")
@@ -105,6 +108,9 @@ def measure(runtime: Any, slices: list[str]) -> dict[str, Any]:
                 done.add(r["dev_id"])
                 raws.append(r)
         pending = [r for r in rows if r["item_id"] not in done]
+        expected = {r["item_id"] for r in rows}
+        if len(done) != len(raws) or not done <= expected:
+            raise ValueError(f"Invalid persisted development IDs in {slice_path}")
         if not pending and raws:
             print(f"[{time.time() - t0:6.1f}s] {s}: all {len(raws)} rows "
                   f"already on disk; skipping", flush=True)
@@ -148,11 +154,18 @@ def measure(runtime: Any, slices: list[str]) -> dict[str, Any]:
                      slice_path.read_text(encoding="utf-8").splitlines()
                      if line.strip()]
         n = len(disk_rows)
+        if {r["dev_id"] for r in disk_rows} != expected or n != len(expected):
+            raise ValueError(f"Incomplete development slice {s}")
         correct = sum(1 for r in disk_rows if r["content_valid"] is True)
         trunc = sum(1 for r in disk_rows if r["finish_reason"] != "stop")
         rec[s] = {"n": n, "correct": correct,
                   "accuracy": round(correct / n, 4) if n else None,
-                  "truncated": trunc}
+                  "truncated": trunc,
+                  "truncation_rate": trunc / n if n else None,
+                  "extraction_failure_rate": sum(r.get("extracted_answer") is None for r in disk_rows) / n if n else None,
+                  "mean_output_tokens": sum(r["output_tokens"] for r in disk_rows) / n if n else None}
+        import statistics
+        rec[s]["median_output_tokens"] = statistics.median(r["output_tokens"] for r in disk_rows) if n else None
         print(f"[{time.time() - t0:6.1f}s] {s}: {rec[s]}", flush=True)
 
     metrics: dict[str, Any] = {"arm": runtime.arm,

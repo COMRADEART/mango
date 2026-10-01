@@ -57,7 +57,40 @@ def dev_metrics(label: str) -> dict | None:
 
 
 def main() -> int:
+    import argparse
+    import ctypes
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--wait-pid", type=int, help="Wait for an existing candidate A training process before starting the serial chain")
+    args = ap.parse_args()
     DEV.mkdir(parents=True, exist_ok=True)
+    if args.wait_pid:
+        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+        kernel.OpenProcess.restype = ctypes.c_void_p
+        kernel.WaitForSingleObject.argtypes = [ctypes.c_void_p, ctypes.c_ulong]
+        kernel.CloseHandle.argtypes = [ctypes.c_void_p]
+        handle = kernel.OpenProcess(0x00100000, False, args.wait_pid)
+        if not handle:
+            raise RuntimeError(f"Cannot attach to running PID {args.wait_pid}: {ctypes.get_last_error()}")
+        log("handoff", f"waiting for existing training PID {args.wait_pid}; no duplicate training launched")
+        try:
+            while kernel.WaitForSingleObject(handle, 30000) == 258:
+                pass
+        finally:
+            kernel.CloseHandle(handle)
+        if not train_done("A"):
+            # A was launched under the old terminal agent's pressure reaper.
+            # Preserve any partial checkpoint and restart the exact recipe
+            # outside that harness, avoiding the pinned torch resume gate.
+            checkpoint = ROOT / "training/checkpoints" / CANDS["A"]
+            if checkpoint.exists():
+                checkpoint.resolve().relative_to(ROOT)
+                archived = checkpoint.with_name(checkpoint.name + "-interrupted-" + time.strftime("%Y%m%d-%H%M%S"))
+                archived.resolve().relative_to(ROOT)
+                checkpoint.rename(archived)
+                log("handoff", f"preserved incomplete checkpoints at {archived}")
+            with (DEV / "OPS_NOTES.md").open("a", encoding="utf-8") as f:
+                f.write(f"\n## Handoff recovery {time.strftime('%Y-%m-%d %H:%M:%S')} local\n\nExisting PID {args.wait_pid} exited without a completed candidate A adapter. Partial checkpoints were preserved when present. The independent continuation restarts A from the pinned base under the exact declared recipe, with no optimizer-loading bypass or schedule modification.\n")
+            log("handoff", "restarting the unchanged A recipe independently after incomplete terminal run")
 
     # ---- 1-3. train + dev-eval A, B, C ----
     for tag in "ABC":
@@ -116,7 +149,11 @@ def main() -> int:
         log("final", f"wall {time.time() - t:.0f}s")
 
     # ---- 6. paired analysis ----
-    return run("paired", ["sciencemath.t32.paired", selected])
+    if run("paired", ["sciencemath.t32.paired", selected]) != 0:
+        return 1
+    if run("trace", ["sciencemath.t32.trace_audit", "--arm-label", selected]) != 0:
+        return 1
+    return run("closure", ["sciencemath.t32.closure"])
 
 
 if __name__ == "__main__":

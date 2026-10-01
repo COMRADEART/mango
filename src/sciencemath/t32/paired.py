@@ -34,6 +34,8 @@ def correct_map(path: Path) -> dict[str, dict]:
             if not line.strip():
                 continue
             r = json.loads(line)
+            if r["item_id"] in out:
+                raise ValueError(f"duplicate item id in {path}: {r['item_id']}")
             out[r["item_id"]] = r
     return out
 
@@ -44,18 +46,18 @@ def _mcnemar_exact(b: int, c: int) -> float:
     if n == 0:
         return 1.0
     k = min(b, c)
-    tail = sum(math.comb(n, i) for i in range(0, k + 1)) * (0.5 ** n)
+    tail = sum(math.exp(math.lgamma(n + 1) - math.lgamma(i + 1)
+                        - math.lgamma(n - i + 1) - n * math.log(2))
+               for i in range(k + 1))
     return min(1.0, 2.0 * tail)
 
 
 def _cohens_g(b: int, c: int) -> float:
-    """Effect size (odds ratio equivalent for the discordant cells)."""
+    """Signed Cohen g: fresh-correct fraction of discordant pairs minus .5."""
     n = b + c
     if n == 0:
         return 0.0
-    if min(b, c) == 0:
-        return float("inf") if max(b, c) > 0 else 0.0
-    return (max(b, c) - min(b, c)) / (max(b, c) + min(b, c))
+    return c / n - .5
 
 
 def paired_table(frozen_arm: str, fresh_arm: str, benchmark: str,
@@ -64,6 +66,10 @@ def paired_table(frozen_arm: str, fresh_arm: str, benchmark: str,
     ids = sorted(set(frozen_rows) & set(fresh_rows))
     only_frozen = len(set(frozen_rows) - set(fresh_rows))
     only_fresh = len(set(fresh_rows) - set(frozen_rows))
+    if only_frozen or only_fresh:
+        raise ValueError(f"Incomplete paired membership for {benchmark}")
+    if any(frozen_rows[i]["prompt_sha256"] != fresh_rows[i]["prompt_sha256"] for i in ids):
+        raise ValueError(f"Prompt drift for {benchmark}")
     both = only_a = only_b = neither = 0
     for iid in ids:
         a = frozen_rows[iid].get("content_valid") is True
@@ -91,6 +97,8 @@ def paired_table(frozen_arm: str, fresh_arm: str, benchmark: str,
         "delta_pp": (round(100.0 * ((both + only_b) / n
                                     - (both + only_a) / n), 2)
                      if n else None),
+        "delta_pp_normal_95_ci": ([round(100 * ((only_b - only_a) / n - 1.96 * math.sqrt(max(0, (only_a + only_b) / n - ((only_b - only_a) / n) ** 2) / n)), 3),
+                                    round(100 * ((only_b - only_a) / n + 1.96 * math.sqrt(max(0, (only_a + only_b) / n - ((only_b - only_a) / n) ** 2) / n)), 3)] if n else None),
         "table": {"both_correct": both,
                   f"{frozen_arm}_correct_only": only_a,
                   f"{fresh_arm}_correct_only": only_b,

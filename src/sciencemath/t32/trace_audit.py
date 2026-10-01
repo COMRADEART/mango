@@ -22,7 +22,7 @@ ROOT = Path(".")
 T31 = ROOT / "evaluations" / "t31" / "scored"
 FINAL = ROOT / "evaluations" / "t32" / "final"
 OUT = ROOT / "evaluations" / "t32" / "final"
-BENCHMARKS_ALL = ("gsm8k", "math500")
+BENCHMARKS_ALL = ("gsm8k", "math500", "arc_easy", "arc_challenge")
 N_PER_BENCH = 8
 
 
@@ -48,7 +48,6 @@ def main() -> int:
     ap.add_argument("--benchmarks", default=",".join(BENCHMARKS_ALL))
     args = ap.parse_args()
 
-    t32 = read_rows(FINAL / args.arm_label)
     lines = [
         "# T32 Phase 10 — qualitative trace audit",
         "",
@@ -58,11 +57,18 @@ def main() -> int:
         "",
     ]
     for b in [s for s in args.benchmarks.split(",") if s]:
+        t32 = read_rows(FINAL / args.arm_label / f"{b}.jsonl")
         base = read_rows(T31 / "base" / f"{b}.jsonl")
         t30 = read_rows(T31 / "adapter" / f"{b}.jsonl")
         shared = sorted(set(base) & set(t30) & set(t32))
         items = items_map(b)
-        picked = shared[: args.per_bench]
+        categories = {
+            "t30_wrong_t32_right": [i for i in shared if not t30[i]["content_valid"] and t32[i]["content_valid"]],
+            "t30_right_t32_wrong": [i for i in shared if t30[i]["content_valid"] and not t32[i]["content_valid"]],
+            "base_right_t32_wrong": [i for i in shared if base[i]["content_valid"] and not t32[i]["content_valid"]],
+        }
+        picked = list(dict.fromkeys(i for group in categories.values() for i in group[:args.per_bench]))
+        lines += [f"Category population counts: { {k: len(v) for k, v in categories.items()} }", ""]
         lines += [f"## {b} — {len(picked)} sampled of {len(shared)} rows",
                   ""]
         for iid in picked:

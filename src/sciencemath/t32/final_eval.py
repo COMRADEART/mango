@@ -70,14 +70,37 @@ def main() -> int:
     )
     from sciencemath.comparability.scoring import score_row
     from sciencemath.t32.dev_eval import load_candidate
+    from sciencemath.comparability.config import load_frozen
+
+    frozen = load_frozen(T31 / "config/t31_frozen_config.json")
+    selection = json.loads((ROOT / "evaluations/t32/development/T32_PHASE8_SELECTION.json").read_text(encoding="utf-8"))
+    if selection.get("selected") != args.arm_name:
+        raise SystemExit("Final arm must be the preselected development winner")
 
     budgets = frozen_budgets()
     adapter_dir = Path(args.adapter_dir)
     if not (adapter_dir / "adapter_model.safetensors").is_file():
         raise SystemExit(f"no adapter_model.safetensors in {adapter_dir}")
+    from sciencemath.t32.closure import read, sha, write
+    preserved = read(ROOT / "evaluations/t32/manifests/T32_HANDOFF_PRESERVATION.json")
+    changed = [p for p, h in preserved["files"].items() if not Path(p).is_file() or sha(p) != h]
+    if changed:
+        raise SystemExit(f"Frozen evidence changed: {changed}")
+    freeze_path = FINAL / "T32_SELECTED_CANDIDATE_FREEZE.json"
+    freeze = {"selected": args.arm_name, "adapter_sha256": sha(adapter_dir / "adapter_model.safetensors"),
+              "training_manifest_sha256": sha(adapter_dir / "training_manifest.json"),
+              "selection_sha256": sha(ROOT / "evaluations/t32/development/T32_PHASE8_SELECTION.json"),
+              "frozen_config_sha256": frozen["config_sha256"]}
+    if freeze_path.exists() and read(freeze_path) != freeze:
+        raise SystemExit("Selected candidate freeze drift")
+    if not freeze_path.exists():
+        write(freeze_path, freeze)
 
     # load the T32 arm EXACTLY the way dev_eval attached its candidates
     tok, model, identity = load_candidate(adapter_dir)
+    from sciencemath.comparability.manifest import chat_template_sha256
+    if chat_template_sha256(tok) != frozen["chat_template_sha256"]:
+        raise SystemExit("Frozen chat template drift")
     runtime = ArmRuntime(arm=args.arm_name, model=model, tokenizer=tok)
     runtime.identity = identity
     print(json.dumps(identity, indent=1), flush=True)
@@ -88,39 +111,61 @@ def main() -> int:
     for b in BENCHMARKS_ALL:
         kind = BENCHMARKS[b]["kind"]
         items = load_benchmark(b)
+        from sciencemath.comparability.loaders import suite_hash
+        if suite_hash(items) != frozen["suite_hashes"][b]:
+            raise SystemExit(f"Frozen benchmark membership drift: {b}")
         raws = []
-        for start in range(0, len(items), BATCH):
-            chunk = items[start:start + BATCH]
+        path = arm_dir / f"{b}.jsonl"
+        if path.exists():
+            raws = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+        done = {r["item_id"] for r in raws}
+        expected = {it.item_id for it in items}
+        if len(done) != len(raws) or not done <= expected:
+            raise SystemExit(f"Invalid persisted membership: {path}")
+        for row in raws:
+            if row["adapter_sha256"] != identity["weights_sha256"]:
+                raise SystemExit(f"Adapter drift in {path}")
+        pending = [it for it in items if it.item_id not in done]
+        for start in range(0, len(pending), BATCH):
+            chunk = pending[start:start + BATCH]
             texts = [prompt_text(it, kind) for it in chunk]
             chats = [render_chat(tok, t, enable_thinking=False)
                      for t in texts]
             gens, finish, _, out_toks, _ = generate_batch(
                 runtime, chats, max_new_tokens=budgets[b])
+            fresh = []
             for it, gen, fin, tok_n, text in zip(chunk, gens, finish,
                                                  out_toks, texts):
                 scored = score_row({"arm": args.arm_name, "benchmark": b,
                                     "raw_generation": gen,
                                     "finish_reason": fin}, it)
-                raws.append({
+                fresh.append({
                     "item_id": it.item_id, "benchmark": it.benchmark,
                     "model_id": identity["base_repo_id"],
                     "model_revision": identity["base_revision"],
                     "adapter_label": args.arm_name,
                     "adapter_sha256": identity["weights_sha256"],
                     "prompt_sha256": hashlib.sha256(
-                        text.encode("utf-8")).hexdigest(),
+                        ("\x00" + text).encode("utf-8")).hexdigest(),
                     "max_new_tokens": budgets[b],
+                    "config_hash": frozen["config_sha256"],
+                    "rendered_prompt_sha256": hashlib.sha256(render_chat(tok, text, enable_thinking=False).encode("utf-8")).hexdigest(),
                     "raw_generation": gen, "finish_reason": fin,
                     "output_tokens": tok_n,
                     "content_valid": scored["content_valid"],
-                    "extracted_answer": scored.get("extracted_answer")})
+                    "extracted_answer": scored.get("extracted_answer"),
+                    "extraction_status": scored.get("extraction_status"),
+                    "error_category": scored.get("error_category")})
+            with open(path, "a", encoding="utf-8", newline="\n") as f:
+                for row in fresh:
+                    f.write(json.dumps(row, ensure_ascii=False) + "\n")
+                f.flush()
+                import os
+                os.fsync(f.fileno())
+            raws.extend(fresh)
             if (start // BATCH) % 20 == 0:
                 print(f"[{time.time() - t0:7.1f}s] {b}: "
                       f"{start + len(chunk)}/{len(items)}", flush=True)
-        path = arm_dir / f"{b}.jsonl"
-        with open(path, "w", encoding="utf-8", newline="\n") as f:
-            for r in raws:
-                f.write(json.dumps(r, ensure_ascii=False) + "\n")
         n = len(raws)
         corr = sum(1 for r in raws if r["content_valid"] is True)
         print(f"[{time.time() - t0:7.1f}s] {b}: DONE n={n} "

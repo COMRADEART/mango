@@ -39,6 +39,9 @@ def main() -> int:
     ap.add_argument("--candidates", default="t32-A,t32-B,t32-C")
     args = ap.parse_args()
     names = [s.strip() for s in args.candidates.split(",") if s.strip()]
+    missing_candidates = [n for n in names if arm_metrics(n)["missing"]]
+    if missing_candidates:
+        raise ValueError(f"All declared candidates must be evaluated: {missing_candidates}")
 
     base = arm_metrics("base")
     t30 = arm_metrics("t30-anchor")
@@ -63,12 +66,12 @@ def main() -> int:
             print(f"candidate {c}: metrics missing; skipped")
             report["candidates"][c] = {"missing": True}
             continue
-        d_math = round((m.get("math_dev_mean") or 0.0)
-                       - (t30.get("math_dev_mean") or 0.0), 4)
-        d_mc = round((m.get("acc_mc_dev") or 0.0)
-                     - (t30.get("acc_mc_dev") or 0.0), 4)
-        d_sciq = round((m.get("acc_sciq_dev") or 0.0)
-                       - (t30.get("acc_sciq_dev") or 0.0), 4)
+        d_math = round(100 * ((m.get("math_dev_mean") or 0.0)
+                       - (t30.get("math_dev_mean") or 0.0)), 4)
+        d_mc = round(100 * ((m.get("acc_mc_dev") or 0.0)
+                     - (t30.get("acc_mc_dev") or 0.0)), 4)
+        d_sciq = round(100 * ((m.get("acc_sciq_dev") or 0.0)
+                       - (t30.get("acc_sciq_dev") or 0.0)), 4)
         gates = {
             "g1_math_restoration": d_math >= GATE_MATH_PP,
             "g2_mc_preservation": d_mc >= -GATE_MC_PP,
@@ -138,14 +141,14 @@ def main() -> int:
 def _contamination_ok(cand: str) -> bool:
     """Gate 4: the candidate's mixture manifest records clean gates."""
     name = {"A": "t32-A-math-restore", "B": "t32-B-task-balanced",
-            "C": "t32-C-conservative"}.get(cand)
+            "C": "t32-C-conservative"}.get(cand.removeprefix("t32-"))
     if not name:
         return False
     path = Path("training/t32/candidates") / name / "manifest.json"
     if not path.exists():
         return False
     m = json.loads(path.read_text(encoding="utf-8"))
-    gates = m.get("gates")
+    gates = m.get("gates", {})
     if int(gates.get("new_record_near_gate_removed", 1)) != 0:
         return False
     if int(gates.get("t30_replay_near_matches_disclosed", 1)) != 0:
@@ -161,13 +164,26 @@ def _contamination_ok(cand: str) -> bool:
 def _manifest_ok(cand: str) -> bool:
     """Gate 5: a training summary with the adapter sha exists."""
     name = {"A": "Mango-T32-A-math-restore", "B": "Mango-T32-B-task-balanced",
-            "C": "Mango-T32-C-conservative"}.get(cand)
+            "C": "Mango-T32-C-conservative"}.get(cand.removeprefix("t32-"))
     if not name:
         return False
     p = OUT / f"train_{name}.json"
     if not p.exists():
         return False
     d = json.loads(p.read_text(encoding="utf-8"))
+    import hashlib
+    adapter_name = {"A": "t32-A-math-restore", "B": "t32-B-task-balanced", "C": "t32-C-conservative"}[cand.removeprefix("t32-")]
+    adapter = Path("training/adapters") / adapter_name
+    manifest = adapter / "training_manifest.json"
+    weights = adapter / "adapter_model.safetensors"
+    if not manifest.is_file() or not weights.is_file():
+        return False
+    m = json.loads(manifest.read_text(encoding="utf-8"))
+    if not m.get("dataset", {}).get("checksums") or not m.get("training_config") or m.get("seed") is None:
+        return False
+    digest = hashlib.sha256(weights.read_bytes()).hexdigest()
+    receipt = OUT / f"{cand}_artifact_hash.json"
+    receipt.write_text(json.dumps({"adapter_sha256": digest, "training_manifest_sha256": hashlib.sha256(manifest.read_bytes()).hexdigest()}, indent=2) + "\n", encoding="utf-8")
     return d.get("summary", {}).get("status") == "COMPLETE" \
         and d.get("summary", {}).get("reload_ok") is True
 
