@@ -1,0 +1,63 @@
+{
+  "schema_version": "t32-diagnostic-v1",
+  "artifact": "T31_FREEZE_RECORD",
+  "created_utc": "2026-09-30T22:30:00+00:00",
+  "frozen_branch": "t32-math-remediation, created from T31 tip; T31 evidence files are committed at the T31 tip and are not modified by T32",
+  "t31": {
+    "final_commit": "5a646aec4205a21ad83de7d07f7a63fbbce98b0c",
+    "branch": "t31-public-comparability (pushed to origin, NOT merged)",
+    "base_repo_id": "Qwen/Qwen3-1.7B",
+    "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "t30_adapter_repo_id": "ComradeRt/Mango-T30-1.7B",
+    "t30_adapter_revision": "ad4bac714e442ca5c9b20420847fcadad61a6123",
+    "t30_adapter_weights_sha256": "f57b2fd4a653abb90217e1156076dc7b583003dc2afc8da5682f958a11214668",
+    "frozen_config_sha256": "2f86db2e577807ed8021a4b647f3fa2243762e327d6e3c22c76184520e842eff",
+    "prompt_policy_hash": "3625ff07bbb3d9075c774502d4d2bc32cb441bc710c073fd7bb78f79b714899c",
+    "report_sha256": "04a878dd0ae0f4a01f8875c33af2dd57b691ea49672e5d4e5965a2a70d7cdcde",
+    "decision": "MANGO_T31_PUBLIC_COMPARABILITY_PASS (15/15 gates)"
+  },
+  "t31_model_only_benchmark_table": {
+    "note": "content_valid accuracy, identical prompts/scores/decoding; from the frozen T31 report",
+    "gsm8k": {
+      "base": 0.8105,
+      "t30": 0.5838,
+      "delta_pp": -22.67,
+      "n": 1319
+    },
+    "math500": {
+      "base": 0.598,
+      "t30": 0.304,
+      "delta_pp": -29.4,
+      "n": 500
+    },
+    "arc_easy": {
+      "base": 0.7946,
+      "t30": 0.8767,
+      "delta_pp": 8.21,
+      "n": 2376
+    },
+    "arc_challenge": {
+      "base": 0.616,
+      "t30": 0.773,
+      "delta_pp": 15.7,
+      "n": 1172
+    },
+    "sciq": {
+      "base": 0.849,
+      "t30": 0.869,
+      "delta_pp": 2.0,
+      "n": 1000
+    },
+    "pooled": {
+      "base": 0.7581,
+      "t30": 0.7507,
+      "delta_pp": -0.74,
+      "n": 6367
+    }
+  },
+  "unchanged_verification": {
+    "method": "The T31 pack's SHA256SUMS was recomputed from disk on the new T32 branch immediately after branch creation (before any T32 artifact was written).",
+    "result": "PASS \u2014 sums_ok true, 0 problems; all 10 arm-by-benchmark row files present with duplicate=0, missing=0, unexpected=0 and the frozen config hash on every row",
+    "command": "PYTHONPATH=src python -m sciencemath.comparability --root . verify"
+  }
+}

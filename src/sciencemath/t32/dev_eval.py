@@ -95,9 +95,21 @@ def measure(runtime: Any, slices: list[str]) -> dict[str, Any]:
         rows = [json.loads(line) for line in
                 (DEV / f"{s}.jsonl").read_text(encoding="utf-8").splitlines()
                 if line.strip()]
-        raws = []
-        for start in range(0, len(rows), BATCH):
-            chunk = rows[start:start + BATCH]
+        # kill-safe resume: skip (dev_id) pairs already on disk
+        slice_path = arm_dir / f"{s}.jsonl"
+        done: set[str] = set()
+        raws: list[dict[str, Any]] = []
+        if slice_path.exists():
+            for line in slice_path.read_text(encoding="utf-8").splitlines():
+                r = json.loads(line)
+                done.add(r["dev_id"])
+                raws.append(r)
+        pending = [r for r in rows if r["item_id"] not in done]
+        if not pending and raws:
+            print(f"[{time.time() - t0:6.1f}s] {s}: all {len(raws)} rows "
+                  f"already on disk; skipping", flush=True)
+        for start in range(0, len(pending), BATCH):
+            chunk = pending[start:start + BATCH]
             # EvalItems first so the frozen prompt/score paths apply verbatim
             items = []
             for r in chunk:
@@ -109,29 +121,35 @@ def measure(runtime: Any, slices: list[str]) -> dict[str, Any]:
                      for t in texts]
             gens, finish, _, out_toks, _ = generate_batch(
                 runtime, chats, max_new_tokens=cfg["budget"])
+            fresh = []
             for r, it, gen, fin, tok_n in zip(chunk, items, gens, finish,
                                               out_toks):
                 scored = score_row({"arm": runtime.arm,
                                     "benchmark": cfg["benchmark"],
                                     "raw_generation": gen,
                                     "finish_reason": fin}, it)
-                raws.append({"dev_id": r["item_id"],
-                             "benchmark": cfg["benchmark"],
-                             "raw_generation": gen, "finish_reason": fin,
-                             "output_tokens": tok_n,
-                             "gold": r["gold"],
-                             "content_valid": scored["content_valid"],
-                             "extracted_answer":
-                             scored.get("extracted_answer")})
+                fresh.append({"dev_id": r["item_id"],
+                              "benchmark": cfg["benchmark"],
+                              "raw_generation": gen, "finish_reason": fin,
+                              "output_tokens": tok_n,
+                              "gold": r["gold"],
+                              "content_valid": scored["content_valid"],
+                              "extracted_answer":
+                              scored.get("extracted_answer")})
+            # append + flush immediately (kill loses at most one batch)
+            with open(slice_path, "a", encoding="utf-8", newline="\n") as f:
+                for r in fresh:
+                    f.write(json.dumps(r, ensure_ascii=False) + "\n")
+            raws.extend(fresh)
             print(f"[{time.time() - t0:6.1f}s] {s}: "
-                  f"{min(start + BATCH, len(rows))}/{len(rows)}", flush=True)
-        with open(arm_dir / f"{s}.jsonl", "w", encoding="utf-8",
-                  newline="\n") as f:
-            for r in raws:
-                f.write(json.dumps(r, ensure_ascii=False) + "\n")
-        n = len(raws)
-        correct = sum(1 for r in raws if r["content_valid"] is True)
-        trunc = sum(1 for r in raws if r["finish_reason"] != "stop")
+                  f"{len(raws)}/{len(rows)}", flush=True)
+        # recompute fully from disk so resumed slices count everything
+        disk_rows = [json.loads(line) for line in
+                     slice_path.read_text(encoding="utf-8").splitlines()
+                     if line.strip()]
+        n = len(disk_rows)
+        correct = sum(1 for r in disk_rows if r["content_valid"] is True)
+        trunc = sum(1 for r in disk_rows if r["finish_reason"] != "stop")
         rec[s] = {"n": n, "correct": correct,
                   "accuracy": round(correct / n, 4) if n else None,
                   "truncated": trunc}
