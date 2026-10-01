@@ -34,6 +34,31 @@
 | 2026-10-01 00:5x | decision per policy above: fresh restart | running (b83w1hwrg) |
 | 2026-10-01 01:4x | reap #3 of train A (step 144, run b83w1hwrg, PID 34176) | partial checkpoints archived by the handoff chain below |
 
+## 2026-10-01 11:43–11:52 — abrupt death of the handoff chain mid-step, event unknown
+
+* The external chain (PID 38464) and its train-B subprocess (PID 34160)
+  disappeared abruptly between 11:43:21 (last `train_B_log.txt` write,
+  step 574/702) and 11:52. No traceback, no OOM message, no chain-step
+  failure log — a hard-kill signature (both processes stopped mid-flight
+  with no Python unwinding). This was the external terminal's tree; if
+  that console itself was another agent session's background task, the
+  same idle-reaper applies to it that killed the first three A trainings.
+  GPU TDR and CUDA OOM are possible but would normally leave a traceback;
+  none exists. New consumers appeared on the GPU around this period:
+  brave.exe (×2), EpicGamesLauncher, EOSOverlayRenderer — ~2379 MiB of the
+  6141 MiB card now held by non-training apps.
+* State preserved: `training/checkpoints/t32-B-task-balanced/checkpoint-500`
+  (~82% of steps; 500/702, optimizer.pt present ⇒ torch-gate blocks direct
+  resume). Loss at death: step 570 log shows loss 0.6031, lr 9.12e-06,
+  epoch 1.63 — falling normally, no divergence.
+* A's adapter (complete) and dev-A evidence are committed (a2ad f89); B's
+  receipt was not reached. Chain relaunch resumes B from checkpoint-500;
+  because optimizer.pt is unloadable under the pinned torch, the
+  predeclared fallback applies: strip optimizer.pt/scheduler.pt from
+  checkpoint-500, resume model-only, disclose the re-created schedule
+  (warmup replay ~17/17 + cosine re-extended over the remaining ~128
+  steps) in the B receipt and final report. ~128 steps remain of B.
+
 ## handoff audit 2026-10-01 (session resumed from compaction)
 
 An independent continuation (not launched by this session) took over after
