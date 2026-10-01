@@ -1,0 +1,170 @@
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 5200.57it/s]
+[  17.2s] dev_gsm8k: 8/200
+[  33.0s] dev_gsm8k: 16/200
+[  47.9s] dev_gsm8k: 24/200
+[  64.8s] dev_gsm8k: 32/200
+[ 100.4s] dev_gsm8k: 40/200
+[ 156.1s] dev_gsm8k: 48/200
+[ 190.0s] dev_gsm8k: 56/200
+[ 229.3s] dev_gsm8k: 64/200
+[ 254.1s] dev_gsm8k: 72/200
+[ 279.4s] dev_gsm8k: 80/200
+[ 304.5s] dev_gsm8k: 88/200
+[ 328.8s] dev_gsm8k: 96/200
+[ 360.6s] dev_gsm8k: 104/200
+[ 380.5s] dev_gsm8k: 112/200
+[ 410.8s] dev_gsm8k: 120/200
+[ 451.4s] dev_gsm8k: 128/200
+[ 475.3s] dev_gsm8k: 136/200
+[ 494.2s] dev_gsm8k: 144/200
+[ 512.6s] dev_gsm8k: 152/200
+[ 540.1s] dev_gsm8k: 160/200
+[ 568.1s] dev_gsm8k: 168/200
+[ 598.6s] dev_gsm8k: 176/200
+[ 622.1s] dev_gsm8k: 184/200
+[ 651.9s] dev_gsm8k: 192/200
+[ 678.0s] dev_gsm8k: 200/200
+[ 678.0s] dev_gsm8k: {'n': 200, 'correct': 136, 'accuracy': 0.68, 'truncated': 0, 'truncation_rate': 0.0, 'extraction_failure_rate': 0.0, 'mean_output_tokens': 89.64, 'median_output_tokens': 83.0}
+[ 870.8s] dev_math: 8/200
+[ 919.4s] dev_math: 16/200
+[1166.4s] dev_math: 24/200
+[1239.2s] dev_math: 32/200
+[1292.5s] dev_math: 40/200
+[1480.5s] dev_math: 48/200
+[1667.6s] dev_math: 56/200
+[1797.4s] dev_math: 64/200
+[1982.7s] dev_math: 72/200
+[2174.2s] dev_math: 80/200
+[2208.4s] dev_math: 88/200
+[2245.6s] dev_math: 96/200
+[2451.3s] dev_math: 104/200
+[2468.4s] dev_math: 112/200
+[2530.0s] dev_math: 120/200
+[2586.1s] dev_math: 128/200
+[2668.8s] dev_math: 136/200
+[2771.0s] dev_math: 144/200
+[2953.2s] dev_math: 152/200
+[3039.7s] dev_math: 160/200
+[3232.6s] dev_math: 168/200
+[3807.0s] dev_math: 176/200
+[3873.3s] dev_math: 184/200
+[4087.3s] dev_math: 192/200
+[4271.1s] dev_math: 200/200
+[4271.2s] dev_math: {'n': 200, 'correct': 67, 'accuracy': 0.335, 'truncated': 21, 'truncation_rate': 0.105, 'extraction_failure_rate': 0.0, 'mean_output_tokens': 254.385, 'median_output_tokens': 144.0}
+[4276.2s] dev_sciq: 8/150
+[4282.1s] dev_sciq: 16/150
+[4286.8s] dev_sciq: 24/150
+[4292.6s] dev_sciq: 32/150
+[4297.3s] dev_sciq: 40/150
+[4302.5s] dev_sciq: 48/150
+[4307.8s] dev_sciq: 56/150
+[4312.9s] dev_sciq: 64/150
+[4318.9s] dev_sciq: 72/150
+[4324.9s] dev_sciq: 80/150
+[4330.3s] dev_sciq: 88/150
+[4335.6s] dev_sciq: 96/150
+[4341.2s] dev_sciq: 104/150
+[4346.6s] dev_sciq: 112/150
+[4351.8s] dev_sciq: 120/150
+[4357.2s] dev_sciq: 128/150
+[4363.0s] dev_sciq: 136/150
+[4368.5s] dev_sciq: 144/150
+[4372.8s] dev_sciq: 150/150
+[4372.8s] dev_sciq: {'n': 150, 'correct': 135, 'accuracy': 0.9, 'truncated': 14, 'truncation_rate': 0.09333333333333334, 'extraction_failure_rate': 0.0, 'mean_output_tokens': 22.393333333333334, 'median_output_tokens': 22.0}
+[4378.6s] dev_arc_easy: 8/120
+[4384.3s] dev_arc_easy: 16/120
+[4390.2s] dev_arc_easy: 24/120
+[4396.4s] dev_arc_easy: 32/120
+[4402.6s] dev_arc_easy: 40/120
+[4408.3s] dev_arc_easy: 48/120
+[4414.1s] dev_arc_easy: 56/120
+[4420.8s] dev_arc_easy: 64/120
+[4427.2s] dev_arc_easy: 72/120
+[4434.0s] dev_arc_easy: 80/120
+[4439.9s] dev_arc_easy: 88/120
+[4446.3s] dev_arc_easy: 96/120
+[4453.1s] dev_arc_easy: 104/120
+[4459.7s] dev_arc_easy: 112/120
+[4466.1s] dev_arc_easy: 120/120
+[4466.1s] dev_arc_easy: {'n': 120, 'correct': 109, 'accuracy': 0.9083, 'truncated': 41, 'truncation_rate': 0.3416666666666667, 'extraction_failure_rate': 0.0, 'mean_output_tokens': 24.758333333333333, 'median_output_tokens': 26.0}
+[4473.0s] dev_arc_challenge: 8/80
+[4479.1s] dev_arc_challenge: 16/80
+[4484.8s] dev_arc_challenge: 24/80
+[4490.6s] dev_arc_challenge: 32/80
+[4496.3s] dev_arc_challenge: 40/80
+[4502.1s] dev_arc_challenge: 48/80
+[4507.8s] dev_arc_challenge: 56/80
+[4513.4s] dev_arc_challenge: 64/80
+[4519.1s] dev_arc_challenge: 72/80
+[4524.7s] dev_arc_challenge: 80/80
+[4524.8s] dev_arc_challenge: {'n': 80, 'correct': 64, 'accuracy': 0.8, 'truncated': 27, 'truncation_rate': 0.3375, 'extraction_failure_rate': 0.0375, 'mean_output_tokens': 25.2, 'median_output_tokens': 26.0}
+[4525.3s] released; metrics -> evaluations\t32\development\t32-A_metrics.json
+{
+  "arm": "t32-A",
+  "identity": {
+    "base_repo_id": "Qwen/Qwen3-1.7B",
+    "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "adapter_dir": "C:/Users/allam/Documents/new/model/training/adapters/t32-A-math-restore",
+    "weights_sha256": "64c2787f3457526ccd5aee571a0c106b8dc67b820886260714d3f55169318acb"
+  },
+  "slices": {
+    "dev_gsm8k": {
+      "n": 200,
+      "correct": 136,
+      "accuracy": 0.68,
+      "truncated": 0,
+      "truncation_rate": 0.0,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 89.64,
+      "median_output_tokens": 83.0
+    },
+    "dev_math": {
+      "n": 200,
+      "correct": 67,
+      "accuracy": 0.335,
+      "truncated": 21,
+      "truncation_rate": 0.105,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 254.385,
+      "median_output_tokens": 144.0
+    },
+    "dev_sciq": {
+      "n": 150,
+      "correct": 135,
+      "accuracy": 0.9,
+      "truncated": 14,
+      "truncation_rate": 0.09333333333333334,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 22.393333333333334,
+      "median_output_tokens": 22.0
+    },
+    "dev_arc_easy": {
+      "n": 120,
+      "correct": 109,
+      "accuracy": 0.9083,
+      "truncated": 41,
+      "truncation_rate": 0.3416666666666667,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 24.758333333333333,
+      "median_output_tokens": 26.0
+    },
+    "dev_arc_challenge": {
+      "n": 80,
+      "correct": 64,
+      "accuracy": 0.8,
+      "truncated": 27,
+      "truncation_rate": 0.3375,
+      "extraction_failure_rate": 0.0375,
+      "mean_output_tokens": 25.2,
+      "median_output_tokens": 26.0
+    }
+  },
+  "wall_s": 4524.8,
+  "acc_gsm8k_dev": 0.68,
+  "acc_math_dev": 0.335,
+  "acc_sciq_dev": 0.9,
+  "acc_mc_dev": 0.865,
+  "math_dev_mean": 0.5075
+}
+
+===== dev_A relaunch 2026-10-01 06:18:40 =====

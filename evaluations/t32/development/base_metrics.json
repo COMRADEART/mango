@@ -1,0 +1,44 @@
+{
+  "arm": "base",
+  "identity": {
+    "arm": "base"
+  },
+  "slices": {
+    "dev_gsm8k": {
+      "n": 200,
+      "correct": 174,
+      "accuracy": 0.87,
+      "truncated": 3
+    },
+    "dev_math": {
+      "n": 200,
+      "correct": 123,
+      "accuracy": 0.615,
+      "truncated": 50
+    },
+    "dev_sciq": {
+      "n": 150,
+      "correct": 129,
+      "accuracy": 0.86,
+      "truncated": 82
+    },
+    "dev_arc_easy": {
+      "n": 120,
+      "correct": 93,
+      "accuracy": 0.775,
+      "truncated": 73
+    },
+    "dev_arc_challenge": {
+      "n": 80,
+      "correct": 51,
+      "accuracy": 0.6375,
+      "truncated": 57
+    }
+  },
+  "wall_s": 4957.3,
+  "acc_gsm8k_dev": 0.87,
+  "acc_math_dev": 0.615,
+  "acc_sciq_dev": 0.86,
+  "acc_mc_dev": 0.72,
+  "math_dev_mean": 0.7425
+}

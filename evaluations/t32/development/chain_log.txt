@@ -1,0 +1,7 @@
+chain [handoff] waiting for existing training PID 34176; no duplicate training launched
+chain [handoff] preserved incomplete checkpoints at C:\Users\allam\Documents\new\model\training\checkpoints\t32-A-math-restore-interrupted-20261001-021023
+chain [handoff] restarting the unchanged A recipe independently after incomplete terminal run
+chain [train_A] exit=0
+chain [train_A] wall 14897s
+chain [dev_A] exit=0
+chain [dev_A] wall 4588s

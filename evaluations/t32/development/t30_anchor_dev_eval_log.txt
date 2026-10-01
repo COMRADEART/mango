@@ -1,0 +1,145 @@
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 3918.94it/s]
+[  15.7s] dev_gsm8k: 8/200
+[  29.3s] dev_gsm8k: 16/200
+[  40.9s] dev_gsm8k: 24/200
+[  59.9s] dev_gsm8k: 32/200
+[ 112.0s] dev_gsm8k: 40/200
+[ 131.8s] dev_gsm8k: 48/200
+[ 144.1s] dev_gsm8k: 56/200
+[ 160.5s] dev_gsm8k: 64/200
+[ 184.1s] dev_gsm8k: 72/200
+[ 199.3s] dev_gsm8k: 80/200
+[ 237.8s] dev_gsm8k: 88/200
+[ 253.7s] dev_gsm8k: 96/200
+[ 265.0s] dev_gsm8k: 104/200
+[ 276.5s] dev_gsm8k: 112/200
+[ 294.1s] dev_gsm8k: 120/200
+[ 323.8s] dev_gsm8k: 128/200
+[ 346.6s] dev_gsm8k: 136/200
+[ 362.3s] dev_gsm8k: 144/200
+[ 379.5s] dev_gsm8k: 152/200
+[ 400.0s] dev_gsm8k: 160/200
+[ 416.1s] dev_gsm8k: 168/200
+[ 434.5s] dev_gsm8k: 176/200
+[ 448.5s] dev_gsm8k: 184/200
+[ 475.2s] dev_gsm8k: 192/200
+[ 491.0s] dev_gsm8k: 200/200
+[ 491.1s] dev_gsm8k: {'n': 200, 'correct': 126, 'accuracy': 0.63, 'truncated': 1}
+[ 518.8s] dev_math: 8/200
+[ 625.6s] dev_math: 16/200
+[1011.2s] dev_math: 24/200
+[1109.6s] dev_math: 32/200
+[1140.1s] dev_math: 40/200
+[1244.7s] dev_math: 48/200
+[1347.6s] dev_math: 56/200
+[1458.1s] dev_math: 64/200
+[1566.2s] dev_math: 72/200
+[1675.5s] dev_math: 80/200
+[1782.4s] dev_math: 88/200
+[1804.7s] dev_math: 96/200
+[1925.8s] dev_math: 104/200
+[1939.2s] dev_math: 112/200
+[1972.3s] dev_math: 120/200
+[2078.3s] dev_math: 128/200
+[2122.1s] dev_math: 136/200
+[2233.3s] dev_math: 144/200
+[2342.4s] dev_math: 152/200
+[2447.9s] dev_math: 160/200
+[2564.9s] dev_math: 168/200
+[3187.5s] dev_math: 176/200
+[3224.1s] dev_math: 184/200
+[3301.6s] dev_math: 192/200
+[3405.9s] dev_math: 200/200
+[3406.0s] dev_math: {'n': 200, 'correct': 70, 'accuracy': 0.35, 'truncated': 28}
+[3409.0s] dev_sciq: 8/150
+[3412.4s] dev_sciq: 16/150
+[3415.4s] dev_sciq: 24/150
+[3418.8s] dev_sciq: 32/150
+[3422.3s] dev_sciq: 40/150
+[3425.7s] dev_sciq: 48/150
+[3428.6s] dev_sciq: 56/150
+[3431.6s] dev_sciq: 64/150
+[3435.6s] dev_sciq: 72/150
+[3439.6s] dev_sciq: 80/150
+[3443.4s] dev_sciq: 88/150
+[3447.4s] dev_sciq: 96/150
+[3451.4s] dev_sciq: 104/150
+[3455.2s] dev_sciq: 112/150
+[3458.8s] dev_sciq: 120/150
+[3462.8s] dev_sciq: 128/150
+[3466.4s] dev_sciq: 136/150
+[3469.9s] dev_sciq: 144/150
+[3472.4s] dev_sciq: 150/150
+[3472.5s] dev_sciq: {'n': 150, 'correct': 131, 'accuracy': 0.8733, 'truncated': 23}
+[3476.3s] dev_arc_easy: 8/120
+[3480.1s] dev_arc_easy: 16/120
+[3483.9s] dev_arc_easy: 24/120
+[3487.9s] dev_arc_easy: 32/120
+[3491.1s] dev_arc_easy: 40/120
+[3495.0s] dev_arc_easy: 48/120
+[3498.7s] dev_arc_easy: 56/120
+[3502.6s] dev_arc_easy: 64/120
+[3506.4s] dev_arc_easy: 72/120
+[3510.4s] dev_arc_easy: 80/120
+[3514.3s] dev_arc_easy: 88/120
+[3518.4s] dev_arc_easy: 96/120
+[3522.3s] dev_arc_easy: 104/120
+[3526.2s] dev_arc_easy: 112/120
+[3529.7s] dev_arc_easy: 120/120
+[3529.7s] dev_arc_easy: {'n': 120, 'correct': 105, 'accuracy': 0.875, 'truncated': 47}
+[3533.6s] dev_arc_challenge: 8/80
+[3537.3s] dev_arc_challenge: 16/80
+[3540.9s] dev_arc_challenge: 24/80
+[3544.5s] dev_arc_challenge: 32/80
+[3548.3s] dev_arc_challenge: 40/80
+[3552.1s] dev_arc_challenge: 48/80
+[3555.8s] dev_arc_challenge: 56/80
+[3559.5s] dev_arc_challenge: 64/80
+[3563.2s] dev_arc_challenge: 72/80
+[3567.0s] dev_arc_challenge: 80/80
+[3567.0s] dev_arc_challenge: {'n': 80, 'correct': 62, 'accuracy': 0.775, 'truncated': 30}
+[3567.5s] released; metrics -> evaluations\t32\development\t30-anchor_metrics.json
+{
+  "arm": "t30-anchor",
+  "identity": {
+    "arm": "adapter"
+  },
+  "slices": {
+    "dev_gsm8k": {
+      "n": 200,
+      "correct": 126,
+      "accuracy": 0.63,
+      "truncated": 1
+    },
+    "dev_math": {
+      "n": 200,
+      "correct": 70,
+      "accuracy": 0.35,
+      "truncated": 28
+    },
+    "dev_sciq": {
+      "n": 150,
+      "correct": 131,
+      "accuracy": 0.8733,
+      "truncated": 23
+    },
+    "dev_arc_easy": {
+      "n": 120,
+      "correct": 105,
+      "accuracy": 0.875,
+      "truncated": 47
+    },
+    "dev_arc_challenge": {
+      "n": 80,
+      "correct": 62,
+      "accuracy": 0.775,
+      "truncated": 30
+    }
+  },
+  "wall_s": 3567.0,
+  "acc_gsm8k_dev": 0.63,
+  "acc_math_dev": 0.35,
+  "acc_sciq_dev": 0.8733,
+  "acc_mc_dev": 0.835,
+  "math_dev_mean": 0.49
+}

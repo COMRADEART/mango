@@ -1,0 +1,67 @@
+{
+  "arm": "t32-A",
+  "identity": {
+    "base_repo_id": "Qwen/Qwen3-1.7B",
+    "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "adapter_dir": "C:/Users/allam/Documents/new/model/training/adapters/t32-A-math-restore",
+    "weights_sha256": "64c2787f3457526ccd5aee571a0c106b8dc67b820886260714d3f55169318acb"
+  },
+  "slices": {
+    "dev_gsm8k": {
+      "n": 200,
+      "correct": 136,
+      "accuracy": 0.68,
+      "truncated": 0,
+      "truncation_rate": 0.0,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 89.64,
+      "median_output_tokens": 83.0
+    },
+    "dev_math": {
+      "n": 200,
+      "correct": 67,
+      "accuracy": 0.335,
+      "truncated": 21,
+      "truncation_rate": 0.105,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 254.385,
+      "median_output_tokens": 144.0
+    },
+    "dev_sciq": {
+      "n": 150,
+      "correct": 135,
+      "accuracy": 0.9,
+      "truncated": 14,
+      "truncation_rate": 0.09333333333333334,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 22.393333333333334,
+      "median_output_tokens": 22.0
+    },
+    "dev_arc_easy": {
+      "n": 120,
+      "correct": 109,
+      "accuracy": 0.9083,
+      "truncated": 41,
+      "truncation_rate": 0.3416666666666667,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 24.758333333333333,
+      "median_output_tokens": 26.0
+    },
+    "dev_arc_challenge": {
+      "n": 80,
+      "correct": 64,
+      "accuracy": 0.8,
+      "truncated": 27,
+      "truncation_rate": 0.3375,
+      "extraction_failure_rate": 0.0375,
+      "mean_output_tokens": 25.2,
+      "median_output_tokens": 26.0
+    }
+  },
+  "wall_s": 4524.8,
+  "acc_gsm8k_dev": 0.68,
+  "acc_math_dev": 0.335,
+  "acc_sciq_dev": 0.9,
+  "acc_mc_dev": 0.865,
+  "math_dev_mean": 0.5075
+}

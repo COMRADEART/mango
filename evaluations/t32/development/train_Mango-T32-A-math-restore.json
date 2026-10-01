@@ -1,0 +1,66 @@
+{
+  "candidate": "Mango-T32-A-math-restore",
+  "recipe_echo": {
+    "overrides_applied": {
+      "corpus.dir": "training/t32/candidates/t32-A-math-restore",
+      "training.output_dir": "training/checkpoints/t32-A-math-restore",
+      "training.adapter_output_dir": "training/adapters/t32-A-math-restore",
+      "training.num_train_epochs": 2,
+      "training.learning_rate": 0.0001
+    },
+    "everything_else": {
+      "max_seq_length": 1024,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 16,
+      "warmup_ratio": 0.03,
+      "weight_decay": 0.01,
+      "lr_scheduler_type": "cosine",
+      "max_grad_norm": 1.0,
+      "seed": 42,
+      "gradient_checkpointing": true,
+      "bf16": "auto",
+      "logging_steps": 10,
+      "save_steps": 100,
+      "eval_steps": 100,
+      "save_total_limit": 3,
+      "packing": false,
+      "dataloader_num_workers": 0
+    }
+  },
+  "summary": {
+    "status": "COMPLETE",
+    "dry_run": false,
+    "resumed_from_checkpoint": null,
+    "train_examples": 4415,
+    "validation_examples": 211,
+    "steps": 552,
+    "final_train_loss": 0.523814582824707,
+    "best_eval_loss": 0.7029886245727539,
+    "peak_vram_bytes": 6612189184,
+    "base_vram_bytes": 2596759552,
+    "train_time_s": 14797.5,
+    "adapter_dir": "training\\adapters\\t32-A-math-restore",
+    "parent_adapter": null,
+    "parent_adapter_info": null,
+    "tokenize_stats": {
+      "train": {
+        "kept": 4415,
+        "question_shortened": 0,
+        "dropped_too_long": 5
+      },
+      "validation": {
+        "kept": 211,
+        "question_shortened": 0,
+        "dropped_too_long": 0
+      }
+    },
+    "reload_ok": true,
+    "loss_divergence": {
+      "first_eval_loss": 0.7537770867347717,
+      "last_eval_loss": 0.7032529711723328,
+      "eval_trend": "falling",
+      "final_train_loss": 0.523814582824707,
+      "likely_overfitting": false
+    }
+  }
+}
