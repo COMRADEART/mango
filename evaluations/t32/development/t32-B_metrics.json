@@ -1,0 +1,67 @@
+{
+  "arm": "t32-B",
+  "identity": {
+    "base_repo_id": "Qwen/Qwen3-1.7B",
+    "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "adapter_dir": "C:/Users/allam/Documents/new/model/training/adapters/t32-B-task-balanced",
+    "weights_sha256": "ec3be76a5bd1e84242c64326a0adc9f484826f5a9f703b40323fe4a0d99a25d1"
+  },
+  "slices": {
+    "dev_gsm8k": {
+      "n": 200,
+      "correct": 133,
+      "accuracy": 0.665,
+      "truncated": 1,
+      "truncation_rate": 0.005,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 96.185,
+      "median_output_tokens": 89.0
+    },
+    "dev_math": {
+      "n": 200,
+      "correct": 58,
+      "accuracy": 0.29,
+      "truncated": 27,
+      "truncation_rate": 0.135,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 279.63,
+      "median_output_tokens": 144.5
+    },
+    "dev_sciq": {
+      "n": 150,
+      "correct": 138,
+      "accuracy": 0.92,
+      "truncated": 0,
+      "truncation_rate": 0.0,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 8.0,
+      "median_output_tokens": 8.0
+    },
+    "dev_arc_easy": {
+      "n": 120,
+      "correct": 106,
+      "accuracy": 0.8833,
+      "truncated": 0,
+      "truncation_rate": 0.0,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 8.0,
+      "median_output_tokens": 8.0
+    },
+    "dev_arc_challenge": {
+      "n": 80,
+      "correct": 66,
+      "accuracy": 0.825,
+      "truncated": 0,
+      "truncation_rate": 0.0,
+      "extraction_failure_rate": 0.0,
+      "mean_output_tokens": 8.0,
+      "median_output_tokens": 8.0
+    }
+  },
+  "wall_s": 7768.7,
+  "acc_gsm8k_dev": 0.665,
+  "acc_math_dev": 0.29,
+  "acc_sciq_dev": 0.92,
+  "acc_mc_dev": 0.86,
+  "math_dev_mean": 0.4775
+}

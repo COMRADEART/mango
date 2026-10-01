@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "writers": 0,
+  "paths": [],
+  "scope": "Isolated copy of unchanged protocol modules and helper scripts; excludes the actively changing training workspace.",
+  "original_failure_mechanism": "The full-workspace snapshot test can count concurrent training/log writes as import side effects."
+}

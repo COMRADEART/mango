@@ -1,0 +1,6 @@
+chain [train_A] manifest exists; skipping training for t32-A-math-restore
+chain [dev_A] metrics exist; skipping dev eval
+chain [train_B] exit=0
+chain [train_B] wall 2418s
+chain [dev_B] exit=0
+chain [dev_B] wall 7811s

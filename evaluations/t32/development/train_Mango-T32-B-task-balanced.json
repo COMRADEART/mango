@@ -1,0 +1,82 @@
+{
+  "candidate": "Mango-T32-B-task-balanced",
+  "recipe_echo": {
+    "overrides_applied": {
+      "corpus.dir": "training/t32/candidates/t32-B-task-balanced",
+      "training.output_dir": "training/checkpoints/t32-B-task-balanced",
+      "training.adapter_output_dir": "training/adapters/t32-B-task-balanced",
+      "training.num_train_epochs": 2,
+      "training.learning_rate": 0.0001
+    },
+    "everything_else": {
+      "max_seq_length": 1024,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 16,
+      "warmup_ratio": 0.03,
+      "weight_decay": 0.01,
+      "lr_scheduler_type": "cosine",
+      "max_grad_norm": 1.0,
+      "seed": 42,
+      "gradient_checkpointing": true,
+      "bf16": "auto",
+      "logging_steps": 10,
+      "save_steps": 100,
+      "eval_steps": 100,
+      "save_total_limit": 3,
+      "packing": false,
+      "dataloader_num_workers": 0
+    }
+  },
+  "summary": {
+    "status": "COMPLETE",
+    "dry_run": false,
+    "resumed_from_checkpoint": "training\\checkpoints\\t32-B-task-balanced\\checkpoint-500",
+    "train_examples": 5601,
+    "validation_examples": 270,
+    "steps": 702,
+    "final_train_loss": 0.5349886417388916,
+    "best_eval_loss": 0.6111308932304382,
+    "peak_vram_bytes": 6612146688,
+    "base_vram_bytes": 2596759552,
+    "train_time_s": 2370.0,
+    "adapter_dir": "training\\adapters\\t32-B-task-balanced",
+    "parent_adapter": null,
+    "parent_adapter_info": null,
+    "tokenize_stats": {
+      "train": {
+        "kept": 5601,
+        "question_shortened": 0,
+        "dropped_too_long": 5
+      },
+      "validation": {
+        "kept": 270,
+        "question_shortened": 0,
+        "dropped_too_long": 0
+      }
+    },
+    "reload_ok": true,
+    "loss_divergence": {
+      "first_eval_loss": 0.6697971820831299,
+      "last_eval_loss": 0.6115815043449402,
+      "eval_trend": "falling",
+      "final_train_loss": 0.5349886417388916,
+      "likely_overfitting": false
+    }
+  },
+  "interruption_recovery": {
+    "checkpoint": "training/checkpoints/t32-B-task-balanced/checkpoint-500",
+    "last_logged_step_before_interruption": 574,
+    "global_step": 500,
+    "optimizer_state_restored": false,
+    "checkpoint_weights_sha256": "586a4b4faf1300ea54496717607581317f746310787f8f97e7f9cf2646e223dd",
+    "recovery": "model-only resume under previously recorded fallback policy",
+    "created_utc": "2026-10-01T16:33:47.5277944Z",
+    "scheduler_state_restored": false,
+    "original_segment_elapsed_seconds_at_last_log": 14841,
+    "rng_state_restored": false,
+    "lost_steps_since_checkpoint": 74,
+    "rng_archive": "training/checkpoints/t32-B-task-balanced/recovery-archive-checkpoint-500/rng_state.pth",
+    "disclosure": "Optimizer and scheduler files were absent from checkpoint-500 before this recovery. RNG state was archived to avoid loading blocked pickle data. Training resumes safetensors model weights and trainer step metadata; optimizer, LR scheduler, and RNG are recreated. This is not an exact optimizer-state continuation. Final saved weights remain chosen by the declared validation-loss rule.",
+    "candidate": "B"
+  }
+}

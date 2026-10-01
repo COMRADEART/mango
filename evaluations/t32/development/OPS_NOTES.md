@@ -91,3 +91,16 @@ Diffs were reviewed AS DATA against the predeclared DEV_PROTOCOL:
   identity and pack hashability) instead of hardcoded `True`; hypothesis
   report lines fall back `detail` -> `evidence`. The gate-failure cap on a
   numerically-earned PASS is retained.
+
+## Codex candidate B recovery
+
+Resuming checkpoint-500 after the interruption at logged step 574. Optimizer and scheduler files were already absent. Archived rng_state.pth because the same pinned torch safety gate also blocks RNG pickle loading. Safetensors weights and trainer metadata are retained; optimizer, scheduler, and RNG are recreated. This changes optimization history and reproducibility; see B_RECOVERY_RECORD.json. No torch safety gate is bypassed.
+
+
+## Recovery regression review
+
+The full suite recorded 54 failures, 11 errors, 4438 passes and one skip. Sixty-two failed/error test IDs match the frozen T31 closure run; three additional IDs were reviewed. The whole-workspace import audit includes active training/log changes; the isolated unchanged protocol/fixtures audit passed with zero writes. Two state-engine concurrency tests had Windows os.replace PermissionError; both passed the focused rerun without runtime changes. Four T32 infrastructure tests also passed in that rerun (six passed total). Original results remain preserved; see isolated_import_audit_result.json and recovery_focused_junit.xml.
+
+
+The redundant whole-workspace audit rerun was stopped after the isolated import audit and focused concurrency/handoff checks completed. It did not produce a complete JUnit report; recovery_focused_junit.xml and isolated_import_audit_result.json are the completed rerun evidence.
+

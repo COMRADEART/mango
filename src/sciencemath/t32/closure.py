@@ -79,8 +79,24 @@ def main():
     old = set(baseline['failures'])
     existing = {k: v for k, v in current['failures'].items() if k in old}
     new = {k: v for k, v in current['failures'].items() if k not in old}
+    reviewed = {}
+    rerun_path = PACK / 'development/recovery_focused_junit.xml'
+    if rerun_path.exists():
+        rerun = regression(rerun_path)
+        passed_ids = {f"{t.get('classname')}::{t.get('name')}" for t in ET.parse(rerun_path).getroot().iter('testcase')
+                      if not any(e.tag in ('failure', 'error', 'skipped') for e in t)}
+        for key in list(new):
+            if key.startswith('tests.test_t31_concurrency::') and key in passed_ids and 'PermissionError' in new[key]:
+                reviewed[key] = {'classification': 'Intermittent Windows atomic-file-replacement access failure; passed the focused rerun without source changes.',
+                                 'original_failure': new.pop(key), 'rerun_artifact': str(rerun_path)}
+    import_audit_path = PACK / 'development/isolated_import_audit_result.json'
+    import_key = 'tests.test_t21_protocol_kernel::test_protocol_imports_are_side_effect_free'
+    if import_key in new and import_audit_path.exists() and read(import_audit_path).get('status') == 'PASS':
+        reviewed[import_key] = {'classification': 'Whole-workspace write-snapshot interference during active training. Isolated unchanged protocol and fixtures passed with zero writes.',
+                                'original_failure': new.pop(import_key), 'rerun_artifact': str(import_audit_path)}
     reg = {**current, 'baseline_counts': {k: v for k, v in baseline.items() if k != 'failures'},
            'preexisting_failed_test_ids': list(existing), 'new_or_unclassified_failures': new,
+           'reviewed_environment_or_concurrency_failures': reviewed,
            'classification_note': 'Matching test IDs are present in the frozen T31 closure run. Newly failing IDs require review; absence from that baseline does not alone prove T32 causation.',
            'command': 'PYTHONPATH=src python -m pytest --basetemp=tests/.pytest_tmp_t32_handoff --junitxml=evaluations/t32/development/regression_junit.xml'}
     write(PACK / 'reports/T32_REGRESSION_CLASSIFICATION.json', reg)
@@ -171,17 +187,19 @@ def main():
               '## Trace audit', '', f'`final/T32_TRACE_AUDIT_{label}.md` contains deterministic samples of T30-wrong/T32-right, T30-right/T32-wrong and base-right/T32-wrong for both math and ARC benchmarks. Human qualitative conclusions require inspection of these traces.', '',
               '## Contamination audit', '', json.dumps(contamination, indent=2), '',
               '## Tests', '', reg['command'], '', f"{current['passed']} passed, {current['failed_or_error']} failures/errors, {current['skipped']} skipped.", '',
-              '## Regression classification', '', f'{len(existing)} failed test IDs also failed in the T31 closure run; {len(new)} are new or unclassified. Details: `reports/T32_REGRESSION_CLASSIFICATION.json`.', '',
+              '## Regression classification', '', f'{len(existing)} failed test IDs also failed in the T31 closure run; {len(reviewed)} were reviewed as environment/concurrency failures with passing isolated or focused checks; {len(new)} remain new or unclassified. Original failures are retained. Details: `reports/T32_REGRESSION_CLASSIFICATION.json`.', '',
               '## Artifacts', '', 'Diagnostics, development rows and selection, fresh final generations with scored fields, paired analysis, trace samples, frozen candidate manifests, training receipt, gate results and SHA256SUMS are retained. Final raw text is preserved on every scored row.', '',
               '## Known limitations', '',
-              'The base/T30 arms reuse historical frozen generations rather than fresh runs. The development protocol omitted a model-generated schema-validity metric, so schema preservation is not established. Diagnostic hypotheses are observational and the explicit-derivation probe uses a selected failure set. Paired normal intervals are approximate. Training checkpoint interruptions and restart history are disclosed in the operational notes and receipt. Final trace samples require qualitative review before interpreting mechanism.', '',
+              'The base/T30 arms reuse historical frozen generations rather than fresh runs. The development protocol omitted a model-generated schema-validity metric, so schema preservation is not established. Diagnostic hypotheses are observational and the explicit-derivation probe uses a selected failure set. Paired normal intervals are approximate. Training checkpoint interruptions and restart history are disclosed in the operational notes and receipt. Candidate B resumed model weights at step 500 with recreated optimizer, scheduler and RNG after interruption at step 574; its altered optimization history limits interpretation as a pure mixture ablation. Final trace samples require qualitative review before interpreting mechanism.', '',
               '## Gate results', '', '| Gate | Result |', '|---|---|']
     lines += [f"| {k} | {'PASS' if v else 'FAIL'} |" for k, v in gates.items()]
     lines += ['', '## Decision', '', f'`{decision}`', '']
     report = PACK / 'reports/MANGO_T32_MATH_REGRESSION_REMEDIATION_REPORT.md'
     report.write_text('\n'.join(lines), encoding='utf-8')
     # Hash the evidence and external candidate files. Omit the live orchestration log.
-    files = sorted(p for p in PACK.rglob('*') if p.is_file() and p.name not in ('SHA256SUMS', 'T32_PACK_VERIFICATION.json', 'chain_log.txt', 'chain_error.txt', 'closure_log.txt'))
+    files = sorted(p for p in PACK.rglob('*') if p.is_file()
+                   and p.name not in ('SHA256SUMS', 'T32_PACK_VERIFICATION.json', 'closure_log.txt')
+                   and not p.name.startswith('chain_') and '__pycache__' not in p.parts)
     for name in NAMES.values():
         files += sorted(p for p in (ROOT / 'training/t32/candidates' / name).rglob('*') if p.is_file())
         files += sorted(p for p in (ROOT / 'training/adapters' / name).rglob('*') if p.is_file())
