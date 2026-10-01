@@ -1,0 +1,85 @@
+{
+  "artifact": "T32_PHASE2_HYPOTHESES",
+  "schema_version": "t32-diagnostic-v1",
+  "directive_rule": "Test each hypothesis H1-H6 with evidence for and against; never label on ambiguous evidence (phase1 rule respected).",
+  "probe_artifact": {
+    "file": "evaluations/t32/diagnostics/probe_verbosity_summary.json",
+    "sha256": "70da3ed039f5c293b304511b35f442052543d6840eb6e441af466ceb28c91afb",
+    "rows_file": "evaluations/t32/diagnostics/probe_verbosity_rows.jsonl",
+    "rows_sha256": "b014ddf71b1438a9c6d8e10c1489cb54abd59a4894d2d1d3b40b8c7c38a7c617",
+    "n_items": 80,
+    "sampling": "adapter-wrong & base-right, deterministic item_id head; gsm8k 60, math500 20",
+    "verdict_rule": "derive_explicit materially above control => capability present under a different verbosity policy (style-policy failure, addressable by mixture); derive_explicit near control => capability damage (conservative-adaptation candidates matter)"
+  },
+  "hypotheses": {
+    "H1_protocol_overfitting": {
+      "verdict": "NOT_THE_DRIVER",
+      "for": [
+        "626 rows show protocol vocabulary (MANGO_MARKERS) across both arms"
+      ],
+      "against": [
+        "the deployed T30 adapter never trained on protocol data (its lineage: sciencemath-sft-v1 -> T3 recipe only; mango-sft-v2-L1 is a separate lineage that does NOT back the release adapter)",
+        "protocol-vocabulary rows appear on BOTH arms; being wrong is not explained by vocabulary presence"
+      ],
+      "evidence": "T32_PHASE1_TAXONOMY.json protocol_vocabulary_scan + training/adapters/mango-v0.2-L1 lineage check"
+    },
+    "H2_catastrophic_forgetting": {
+      "verdict": "PARTIAL \u2014 style-suppression confirmed, full capability destruction REFUTED",
+      "detail": "derive_explicit recovers 24/80 (30.0%) of adapter-wrong items (gsm8k 20/60=33.3%, math500 4/20=20.0%), all 24 with finish_reason=stop: the derivation ability is present in the weights and suppressed by short-form prompting. The un-recovered ~70% overlaps the both-arms-wrong core plus derivation-present-but-wrong rows; those are depth/chain errors the mixture must also address.",
+      "for": [
+        "derive_explicit 24/80 recovered vs control 0/80"
+      ],
+      "against": [
+        "not all failures recover (70% remain under explicit derivation) \u2014 so partial capability damage on harder chains cannot be excluded; recorded, not averaged away"
+      ],
+      "evidence": "probe_verbosity_summary.json results.derive_explicit vs control_frozen"
+    },
+    "H3_data_imbalance": {
+      "verdict": "CONTRIBUTES",
+      "for": [
+        "T30 train corpus 2910 records: sciq 1152 (39.6%), gsm8k 806, math-competition 779, synthetic 173",
+        "REASONING_BUDGETS (math 1600 / science 700 / general 400 chars) REJECT over-length targets at build: the corpus contains ONLY terse derivations; median target words gsm8k 49 / math-comp 72 / sciq 40",
+        "answer_types: free_text 1152 vs numeric 845 vs expression 779 \u2014 short-form answer types dominate"
+      ],
+      "against": [
+        "math records still = 53% of the corpus by count; imbalance alone may not explain the size of the drop"
+      ],
+      "evidence": "training/datasets/sciencemath-sft-v1 manifests + sft_format.REASONING_BUDGETS + build_target contracts"
+    },
+    "H4_sequence_length_truncation": {
+      "verdict": "REFUTED as the driver",
+      "for": [
+        "math500 adapter-wrong rows: 22.1% carry a truncation label \u2014 a real minority mode"
+      ],
+      "against": [
+        "probe budget_1024 EXACTLY equals control_frozen (0/80 both) with truncation 2/60 gsm8k, 4/20 math500: more budget with identical prompts recovers nothing",
+        "control and budget_1024 generations are greedy-identical (both median 105.5 tokens); the adapter stops, it does not ram"
+      ],
+      "evidence": "probe results control_frozen vs budget_1024; T32_PHASE1_TAXONOMY truncation_all_rows"
+    },
+    "H5_final_answer_supervision_weakness": {
+      "verdict": "SUPPORTED",
+      "for": [
+        "explicit derivation instruction flips 24/80 adapter-failed items to correct, all natural stops",
+        "derived-mode median tokens 136.5 vs 105.5 \u2014 the model extends its chain when told and finishes within budget",
+        "T30 supervision never modeled long chains (1600-char build rejection + short median targets): final-answer shortcuts were never punished nor derivations rewarded"
+      ],
+      "against": [
+        "recovery is partial (30%): the harder tail needs stronger supervision than an instruction provides"
+      ],
+      "evidence": "probe derive_explicit condition; corpus shape (H3 evidence)"
+    },
+    "H6_multiple_choice_specialization": {
+      "verdict": "CONTRIBUTES (interaction effect)",
+      "for": [
+        "adapter-fixed MC rows are truncation-dominated: 255/281 arc_easy, 234/234 arc_challenge, 49/63 sciq base failures fixed at <=32-token budgets (adapter medians 30/32/24 tokens)",
+        "the adapter's learned surface form is bounded answers, suppressing chains on math prompts from the same corpus signal"
+      ],
+      "against": [
+        "MC gains are a verbosity-policy effect at the frozen 32-token budget; nothing yet shows the MC modes and derivation modes are mutually exclusive \u2014 Candidate B supervises both explicitly"
+      ],
+      "evidence": "T32_PHASE1_TAXONOMY adapter_gains base_failure_modes (MC truncation shares)"
+    }
+  },
+  "overall_diagnosis": "The T30 math regression is primarily a STYLE-POLICY displacement: bounded short-target supervision (H3/H5/H6, 1600-char build rejection) trained the adapter into a terse answer mode; under frozen short-form prompts it under-derives and its chains break (ArithmeticError/derivation-wrong labels, Phase 1). It is addressable by adding long-form VERIFIED derivation supervision alongside the MC/protocol modes (candidates A/B), and NOT primarily by budget (H4), protocol data (H1), or backbone damage alone (H2)."
+}

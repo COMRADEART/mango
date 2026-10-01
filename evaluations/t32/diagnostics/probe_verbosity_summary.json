@@ -1,0 +1,58 @@
+{
+  "schema_version": "t32-diagnostic-v1",
+  "artifact": "T32_PHASE2_VERBOSITY_PROBE",
+  "purpose": "Separate verbosity policy from capability on the adapter-wrong/base-right math subset of the frozen T31 evidence.",
+  "sampling": "Adapter-wrong & base-right items from the frozen T31 scored rows; deterministic head of the item_id sort; gsm8k 60, math500 20; batch 8, greedy, shared tokenizer and chat template; kill-safe incremental writes; resumed runs skip completed pairs",
+  "conditions": [
+    "control_frozen",
+    "budget_1024",
+    "derive_explicit"
+  ],
+  "derive_prompt_suffix": "\n\nSolve this step by step: write out every calculation explicitly, one line at a time, before giving the final answer.",
+  "results": {
+    "control_frozen": {
+      "gsm8k": {
+        "n": 60,
+        "correct": 0,
+        "accuracy": 0.0,
+        "truncated": 2
+      },
+      "math500": {
+        "n": 20,
+        "correct": 0,
+        "accuracy": 0.0,
+        "truncated": 4
+      }
+    },
+    "budget_1024": {
+      "gsm8k": {
+        "n": 60,
+        "correct": 0,
+        "accuracy": 0.0,
+        "truncated": 2
+      },
+      "math500": {
+        "n": 20,
+        "correct": 0,
+        "accuracy": 0.0,
+        "truncated": 4
+      }
+    },
+    "derive_explicit": {
+      "gsm8k": {
+        "n": 60,
+        "correct": 20,
+        "accuracy": 0.3333333333333333,
+        "truncated": 2
+      },
+      "math500": {
+        "n": 20,
+        "correct": 4,
+        "accuracy": 0.2,
+        "truncated": 7
+      }
+    }
+  },
+  "n_pair_complete_items": 80,
+  "verdict_rule": "derive_explicit materially above control => capability present under a different verbosity policy (style-policy failure, addressable by mixture); derive_explicit near control => capability damage (conservative-adaptation candidates matter)"
+}

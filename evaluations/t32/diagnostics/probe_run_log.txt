@@ -1,0 +1,95 @@
+[    0.1s] resume check: 0 (item, condition) rows already done
+[    0.1s] loading adapter arm (frozen T31 path)
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 9755.29it/s]
+[   13.4s] adapter arm loaded
+[   14.5s] gsm8k: adapter-wrong/base-right available=364 sampled=60
+[   74.2s]   gsm8k control_frozen: +8 (total done=8)
+[  227.6s]   gsm8k budget_1024: +8 (total done=8)
+[  262.9s]   gsm8k derive_explicit: +8 (total done=8)
+[  262.9s]   gsm8k: 8/60
+[  280.3s]   gsm8k control_frozen: +8 (total done=16)
+[  297.2s]   gsm8k budget_1024: +8 (total done=16)
+[  326.5s]   gsm8k derive_explicit: +8 (total done=16)
+[  326.5s]   gsm8k: 16/60
+[  349.6s]   gsm8k control_frozen: +8 (total done=24)
+[  373.0s]   gsm8k budget_1024: +8 (total done=24)
+[  523.4s]   gsm8k derive_explicit: +8 (total done=24)
+[  523.4s]   gsm8k: 24/60
+[  550.1s]   gsm8k control_frozen: +8 (total done=32)
+[  579.7s]   gsm8k budget_1024: +8 (total done=32)
+[  748.3s]   gsm8k derive_explicit: +8 (total done=32)
+[  748.3s]   gsm8k: 32/60
+[  829.7s]   gsm8k control_frozen: +8 (total done=40)
+[  995.9s]   gsm8k budget_1024: +8 (total done=40)
+[ 1021.3s]   gsm8k derive_explicit: +8 (total done=40)
+[ 1021.3s]   gsm8k: 40/60
+[ 1043.7s]   gsm8k control_frozen: +8 (total done=48)
+[ 1068.5s]   gsm8k budget_1024: +8 (total done=48)
+[ 2072.2s]   gsm8k derive_explicit: +8 (total done=48)
+[ 2072.2s]   gsm8k: 48/60
+[ 4431.2s]   gsm8k control_frozen: +8 (total done=56)
+[ 4474.7s]   gsm8k budget_1024: +8 (total done=56)
+[ 4498.9s]   gsm8k derive_explicit: +8 (total done=56)
+[ 4498.9s]   gsm8k: 56/60
+[ 4535.9s]   gsm8k control_frozen: +4 (total done=60)
+[ 4569.0s]   gsm8k budget_1024: +4 (total done=60)
+[ 4606.7s]   gsm8k derive_explicit: +4 (total done=60)
+[ 4606.7s]   gsm8k: 60/60
+[ 4607.5s] math500: adapter-wrong/base-right available=166 sampled=20
+[ 4778.3s]   math500 control_frozen: +8 (total done=8)
+[ 4949.7s]   math500 budget_1024: +8 (total done=8)
+[ 5123.9s]   math500 derive_explicit: +8 (total done=8)
+[ 5123.9s]   math500: 8/20
+[ 5299.7s]   math500 control_frozen: +8 (total done=16)
+[ 5475.9s]   math500 budget_1024: +8 (total done=16)
+[ 5656.9s]   math500 derive_explicit: +8 (total done=16)
+[ 5656.9s]   math500: 16/20
+[ 5788.2s]   math500 control_frozen: +4 (total done=20)
+[ 5918.6s]   math500 budget_1024: +4 (total done=20)
+[ 6051.1s]   math500 derive_explicit: +4 (total done=20)
+[ 6051.1s]   math500: 20/20
+[ 6051.4s] released
+{
+  "control_frozen": {
+    "gsm8k": {
+      "n": 60,
+      "correct": 0,
+      "accuracy": 0.0,
+      "truncated": 2
+    },
+    "math500": {
+      "n": 20,
+      "correct": 0,
+      "accuracy": 0.0,
+      "truncated": 4
+    }
+  },
+  "budget_1024": {
+    "gsm8k": {
+      "n": 60,
+      "correct": 0,
+      "accuracy": 0.0,
+      "truncated": 2
+    },
+    "math500": {
+      "n": 20,
+      "correct": 0,
+      "accuracy": 0.0,
+      "truncated": 4
+    }
+  },
+  "derive_explicit": {
+    "gsm8k": {
+      "n": 60,
+      "correct": 20,
+      "accuracy": 0.3333333333333333,
+      "truncated": 2
+    },
+    "math500": {
+      "n": 20,
+      "correct": 4,
+      "accuracy": 0.2,
+      "truncated": 7
+    }
+  }
+}
