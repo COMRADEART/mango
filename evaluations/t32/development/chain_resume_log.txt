@@ -4,3 +4,5 @@ chain [train_B] exit=0
 chain [train_B] wall 2418s
 chain [dev_B] exit=0
 chain [dev_B] wall 7811s
+chain [train_C] exit=0
+chain [train_C] wall 8661s
