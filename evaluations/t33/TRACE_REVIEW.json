@@ -1,0 +1,92 @@
+{
+  "review_status": "COMPLETE",
+  "reviewed_by": "session Claude Code (manual review per directive phase: target trace audit)",
+  "source": "evaluations/t33/TRACE_SAMPLES.md",
+  "sample_count": 24,
+  "sample_groups": [
+    {"benchmark": "gsm8k", "group": "t32_wrong_t33_right", "items": ["t31-gsm8k-06b5b5dcbb41", "t31-gsm8k-09f4a934bf73"]},
+    {"benchmark": "gsm8k", "group": "t32_right_t33_wrong", "items": ["t31-gsm8k-001e092a011a", "t31-gsm8k-00ada270dd6f"]},
+    {"benchmark": "gsm8k", "group": "base_right_t33_wrong", "items": ["t31-gsm8k-001e092a011a", "t31-gsm8k-0073a3c25214"]},
+    {"benchmark": "math500", "group": "t32_wrong_t33_right", "items": ["t31-math500-0baabc521e23", "t31-math500-15fc93fd27db"]},
+    {"benchmark": "math500", "group": "t32_right_t33_wrong", "items": ["t31-math500-00a7be5d6e30", "t31-math500-01b1258edf9f"]},
+    {"benchmark": "math500", "group": "base_right_t33_wrong", "items": ["t31-math500-013c07aba3bd", "t31-math500-01b1258edf9f"]},
+    {"benchmark": "arc_easy", "group": "ARC_preserved", "items": ["t31-arc_easy-001194ee270e", "t31-arc_easy-002d4867714c"]},
+    {"benchmark": "arc_easy", "group": "ARC_regressed", "items": ["t31-arc_easy-00f02b479850", "t31-arc_easy-0197f0fb8a6c"]},
+    {"benchmark": "arc_challenge", "group": "ARC_preserved", "items": ["t31-arc_challenge-0023eeaec118", "t31-arc_challenge-02673549496a"]},
+    {"benchmark": "arc_challenge", "group": "ARC_regressed", "items": ["t31-arc_challenge-0004953a0c79", "t31-arc_challenge-0137edcf18bd"]},
+    {"benchmark": "math-long (dev)", "group": "long_math_success", "items": ["t33-synth-368fd174e88ec815b4d4", "t33-synth-8b4ec8cd7a453a13532a"]},
+    {"benchmark": "math-long (dev)", "group": "long_math_failure", "items": ["t33-synth-03b7a220954e515902a8", "t33-synth-05d36f01db881001dd0e"]}
+  ],
+  "coverage_note": "All 24 outcome-stratified samples (12 groups x 2) were read in full from TRACE_SAMPLES.md. Counts below describe the audit set only; global quantities live in FINAL_SCORES.json, dev metrics, and PAIRED_ANALYSIS.json and are not extrapolated from this sample.",
+  "required_categories": {
+    "dropped_premises": {
+      "observed_in_audit": true,
+      "observations": [
+        "t31-gsm8k-001e092a011a (t33 wrong): '20% of 50' was not converted to 10; the model subtracted the literal 20 from the running total. The premise's quantifier was dropped while the surface operation (subtraction) was retained.",
+        "t31-arc_challenge-0137edcf18bd (t33 wrong): the question's core premise (deep-sea organisms produce light) was re-labeled as a generic 'biotic factors include all living things' preamble before any engagement with the specific premise, and the budget expired before an answer."
+      ],
+      "note": "premise_retention remains NOT_AUTOMATICALLY_ESTABLISHED in the frozen derivation audit by design; these are qualitative audit findings, not global measurements."
+    },
+    "failed_running_totals": {
+      "observed_in_audit": true,
+      "observations": [
+        "t33-synth-03b7a220954e515902a8 (long_math_failure): the very first state was corrupted by a division arithmetic slip — (97-7)/6 = 90/6 stated as 16 instead of 15 — and every subsequent chained operation inherited the wrong state (final 469 vs gold 481). The chain mechanics (each op consuming the previous result) were followed correctly throughout; the failure is arithmetic, not procedural.",
+        "t33-synth-05d36f01db881001dd0e (long_math_failure): after a correct probability setup (30/38 * 29/37 = 870/1369), fraction bookkeeping slipped in the chained operations (e.g. '13710/1369-2 = 13482/1369' instead of 10972/1369; '438/10+7 = 478/10' style improper-fraction addition in the sibling failure).",
+        "t31-gsm8k-00ada270dd6f (t33 wrong): a compensating pair of invented state updates (+5 then -5 relative to what the problem stated) produced a net offset from the true total."
+      ],
+      "note": "On both math-long successes (t33-synth-368fd174..., t33-synth-8b4ec8cd...), every chained operation consumed the previous result correctly end-to-end, including a fraction-free state. The trained state-threading format itself works on-distribution; failures are arithmetic/bookkeeping slips inside it."
+    },
+    "wrong_substitutions": {
+      "observed_in_audit": true,
+      "observations": [
+        "t31-gsm8k-001e092a011a (t33 wrong): the percent premise ('20% of 50') was substituted into the computation as its unprocessed surface value (20) — substitution of the wrong quantity, not a downstream arithmetic error.",
+        "t31-math500-013c07aba3bd (t33 wrong): the running-total logic was correct, but the wrong positional state was substituted into the endpoint — the third sequence term (3^3) was boxed instead of the requested term (18; gold 45). Correct process, wrong state selection for the requested answer."
+      ],
+      "note": "Where algebra substitution was required (t31-math500-01b1258edf9f), the model skipped intermediate substitution arithmetic entirely and asserted an endpoint inconsistent with its own equation — see endpoint_inconsistency below."
+    },
+    "repetition_loops": {
+      "observed_in_audit": true,
+      "observations": [
+        "Positive effect on t33: in t31-math500-0baabc521e23 the t32 arm entered a degenerate multiple-enumeration loop and hit the 1024-token budget (finish=length, wrong); the t33 arm produced a compact correct derivation and stopped. In t31-math500-15fc93fd27db the base and t30 arms both degenerated into loops that truncated; t33 answered correctly.",
+        "No repetition loop was observed in any of the 24 t33-generated samples; loop-type finish=length failures visible in this audit belong to the base/t30/t32 comparison arms, not t33."
+      ],
+      "note": "This is the clearest replicable win attributable to the verified-derivation training: the enumerated-step + state-threading format replaced loop-prone enumeration habits."
+    },
+    "premature_answers": {
+      "observed_in_audit": true,
+      "observations": [
+        "t31-math500-01b1258edf9f (t33 wrong): the model asserted the endpoint ('Solving for x, we find x=68') without performing the intermediate solving steps, and the asserted value (68) contradicts the equation it had itself stated one line earlier (whose root is 56). This is a premature endpoint assertion, not a derivation with a later arithmetic slip.",
+        "t31-gsm8k-0073a3c25214 (t33 wrong): the derivation line '(90-3)/7-1=11' appears with no preceding work that could produce it — the answer was effectively asserted via an unexplained expression (gold 13)."
+      ],
+      "note": "The compressed one-liner style seen here is a style regression relative to the trained format: on in-distribution math-long failures (03b7a220, 05d36f01) the model DID enumerate steps; on out-of-distribution math500 items it sometimes reverts to the answer-first style."
+    },
+    "truncation": {
+      "observed_in_audit": true,
+      "observations": [
+        "MC budget interaction is the dominant regression mechanism visible in the audit: in t31-arc_easy-0197f0fb8a6c the t33 arm began option-elimination reasoning ('B is incorrect... C is incorrect...') — derivation-style behavior leaking into direct mode — and the 32-token budget truncated it before any answer was emitted (invalid).",
+        "t31-arc_challenge-0137edcf18bd (t33 wrong): same mechanism with a definition-first preamble ('Biotic factors include all living things...') truncating before any answer.",
+        "t31-arc_challenge-0023eeaec118 (preserved): a justification-first response had its box truncated mid-'\\text{A' at the 32-token budget; the scorer still recovered A. t33 was one budget-hazard away from being counted wrong.",
+        "On preserved ARC samples, t33's direct mode usually emits the boxed answer early (t31-arc_easy-001194ee270e) or completes cleanly within budget (t31-arc_challenge-02673549496a: finish=stop, correct, cleaner than the t30/t32 length finishes on the same item).",
+        "No truncation was observed in any audited math500/gsm8k t33 arm."
+      ],
+      "note": "The 16 ARC losses concentrated in these two leakage/truncation shapes plus confident wrong-option naming; the frozen 32-token budget and frozen scorer were not modified and must not be."
+    },
+    "endpoint_inconsistency": {
+      "observed_in_audit": true,
+      "observations": [
+        "t31-math500-00a7be5d6e30 (t33 wrong): the derivation correctly produced the quadratic (x+2)(x-1)=0, then boxed -1 — dropping the root -2 and boxing a value the stated factorization does not admit. Answer/reasoning inconsistency.",
+        "t31-math500-01b1258edf9f (t33 wrong): boxed x=68 contradicts the model's own stated equation (root 56).",
+        "t33-synth-05d36f01db881001dd0e (long_math_failure): the final state was stated as a fraction (105856.5/1369) but the boxed answer dropped the denominator (105856.5) — the endpoint is inconsistent with the derivation's own final state.",
+        "These are all T33-fresh endpoint failures of the kind the frozen derivation audit flags as final_answer_consistency violations where the final state is observed; they persisted despite verification-style training."
+      ],
+      "note": "Verified arithmetic at training time did not eliminate endpoint inconsistency at generation time; the model is not checking its own box against its own last step."
+    }
+  },
+  "additional_observed_mechanisms": {
+    "style_leak_into_direct_mode": "Derivation-trained formatting (enumeration, elimination, preambles) appears in MC (direct-mode) outputs at test time; combined with the frozen 32-token MC budget this produces unanswered (invalid) outputs and truncation-hazard answers. Directly consistent with the -17.5pp/-16.7pp ARC deltas and elevated ARC invalid fractions in the dev/locked metrics.",
+    "knowledge_reversion_on_mc": "In t31-arc_easy-00f02b479850 and t31-arc_challenge-0004953a0c79 the t33 arm confidently named a wrong option (C and D respectively) where the t32 arm (and in the latter case even base and t30) were correct — the math-curriculum retraining overwrote some MC option-discrimination knowledge rather than merely changing format.",
+    "skipped_intermediate_arithmetic_compression": "On out-of-distribution math items the model sometimes compresses to an answer-first one-liner (01b1258edf9f) instead of enumerating states — the decoupling is imperfect in the direction of old short-answer policy on new-style prompts.",
+    "win_side_attribution": "Wins come from (a) loop avoidance replacing degenerate enumeration (2/2 math500 t32-wrong wins and the base-arm loops), (b) faithful state threading on chained operations (both long-math successes and gsm8k 09f4a934bf73), and (c) cleaner percentage handling (gsm8k 06b5b5dcbb41). None of the audited wins came from improved symbolic manipulation."
+  },
+  "hypothesis_verdict_from_traces": "The verified-derivation curriculum taught a correct, loop-resistant state-threading format that works in-distribution (math-long successes) and reduces degenerate loops out-of-distribution. It did NOT restore mathematical capability: failures persist as arithmetic slips inside the correct format, premise-quantification failures, and endpoint inconsistencies (asserted endpoints contradicting the model's own derivation), and the curriculum actively damaged MC behavior via style leakage into direct mode and knowledge reversion — all at frozen budgets and frozen scorer. Consistent with the predeclared FAIL decision path; see DECISION.json when written."
+}

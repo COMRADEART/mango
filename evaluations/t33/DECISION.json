@@ -1,0 +1,15 @@
+{
+  "status": "FAIL — REGRESSION",
+  "decision": "MANGO_T33_VERIFIED_DERIVATION_FAIL",
+  "selected": "t33-C",
+  "selected_eligible": false,
+  "both_math_floors": false,
+  "preservation": {
+    "arc_easy": false,
+    "arc_challenge": false,
+    "sciq": false
+  },
+  "T33_attributable_failures": 0,
+  "unknown_failures": 0,
+  "t34_started": false
+}

@@ -16,3 +16,9 @@ t33-A development 528/560 elapsed=972.1s
 COMPLETE t33-A development
 Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 8389.90it/s]
 COMPLETE t33-A development
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 6319.97it/s]
+COMPLETE t33-A development
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 7542.19it/s]
+COMPLETE t33-A development
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 6940.33it/s]
+COMPLETE t33-A development

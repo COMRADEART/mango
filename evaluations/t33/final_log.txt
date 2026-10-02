@@ -1,0 +1,184 @@
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at C:\Users\allam\.cache\huggingface\datasets\openai___gsm8k\main\0.0.0\740312add88f781978c0658806c59bc2815b9866 (last modified on Mon Aug 31 13:10:19 2026).
+Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at C:\Users\allam\.cache\huggingface\datasets\HuggingFaceH4___math-500\default\0.0.0\6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Wed Sep 30 01:00:44 2026).
+Using the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'ARC-Easy' at C:\Users\allam\.cache\huggingface\datasets\allenai___ai2_arc\ARC-Easy\0.0.0\210d026faf9955653af8916fad021475a3f00453 (last modified on Wed Sep 30 01:00:42 2026).
+Using the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'ARC-Challenge' at C:\Users\allam\.cache\huggingface\datasets\allenai___ai2_arc\ARC-Challenge\0.0.0\210d026faf9955653af8916fad021475a3f00453 (last modified on Mon Aug 31 13:10:31 2026).
+Using the latest cached version of the dataset since allenai/sciq couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at C:\Users\allam\.cache\huggingface\datasets\allenai___sciq\default\0.0.0\2c94ad3e1aafab77146f384e23536f97a4849815 (last modified on Mon Aug 31 13:10:34 2026).
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 6933.10it/s]
+t33-C gsm8k 8/1319 elapsed=16.3s
+t33-C gsm8k 48/1319 elapsed=109.2s
+t33-C gsm8k 88/1319 elapsed=196.6s
+t33-C gsm8k 128/1319 elapsed=294.4s
+t33-C gsm8k 168/1319 elapsed=394.4s
+t33-C gsm8k 208/1319 elapsed=466.4s
+t33-C gsm8k 248/1319 elapsed=559.7s
+t33-C gsm8k 288/1319 elapsed=632.7s
+t33-C gsm8k 328/1319 elapsed=728.0s
+t33-C gsm8k 368/1319 elapsed=813.8s
+t33-C gsm8k 408/1319 elapsed=889.7s
+t33-C gsm8k 448/1319 elapsed=976.1s
+t33-C gsm8k 488/1319 elapsed=1055.0s
+t33-C gsm8k 528/1319 elapsed=1130.9s
+t33-C gsm8k 568/1319 elapsed=1210.7s
+t33-C gsm8k 608/1319 elapsed=1302.9s
+t33-C gsm8k 648/1319 elapsed=1384.0s
+t33-C gsm8k 688/1319 elapsed=1458.1s
+t33-C gsm8k 728/1319 elapsed=1539.7s
+t33-C gsm8k 768/1319 elapsed=1611.7s
+t33-C gsm8k 808/1319 elapsed=1697.0s
+t33-C gsm8k 848/1319 elapsed=1769.8s
+t33-C gsm8k 888/1319 elapsed=1844.4s
+t33-C gsm8k 928/1319 elapsed=1917.6s
+t33-C gsm8k 968/1319 elapsed=1990.7s
+t33-C gsm8k 1008/1319 elapsed=2068.8s
+t33-C gsm8k 1048/1319 elapsed=2176.3s
+t33-C gsm8k 1088/1319 elapsed=2268.6s
+t33-C gsm8k 1128/1319 elapsed=2351.4s
+t33-C gsm8k 1168/1319 elapsed=2438.1s
+t33-C gsm8k 1208/1319 elapsed=2513.6s
+t33-C gsm8k 1248/1319 elapsed=2617.9s
+t33-C gsm8k 1288/1319 elapsed=2694.9s
+t33-C math500 8/500 elapsed=2828.5s
+t33-C math500 48/500 elapsed=2992.0s
+t33-C math500 88/500 elapsed=3152.9s
+t33-C math500 128/500 elapsed=3418.3s
+t33-C math500 168/500 elapsed=3558.9s
+t33-C math500 208/500 elapsed=3760.7s
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at C:\Users\allam\.cache\huggingface\datasets\openai___gsm8k\main\0.0.0\740312add88f781978c0658806c59bc2815b9866 (last modified on Mon Aug 31 13:10:19 2026).
+Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at C:\Users\allam\.cache\huggingface\datasets\HuggingFaceH4___math-500\default\0.0.0\6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Wed Sep 30 01:00:44 2026).
+Using the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'ARC-Easy' at C:\Users\allam\.cache\huggingface\datasets\allenai___ai2_arc\ARC-Easy\0.0.0\210d026faf9955653af8916fad021475a3f00453 (last modified on Wed Sep 30 01:00:42 2026).
+Using the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'ARC-Challenge' at C:\Users\allam\.cache\huggingface\datasets\allenai___ai2_arc\ARC-Challenge\0.0.0\210d026faf9955653af8916fad021475a3f00453 (last modified on Mon Aug 31 13:10:31 2026).
+Using the latest cached version of the dataset since allenai/sciq couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at C:\Users\allam\.cache\huggingface\datasets\allenai___sciq\default\0.0.0\2c94ad3e1aafab77146f384e23536f97a4849815 (last modified on Mon Aug 31 13:10:34 2026).
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 7989.44it/s]
+t33-C math500 240/500 elapsed=32.4s
+t33-C math500 280/500 elapsed=220.3s
+t33-C math500 320/500 elapsed=765.0s
+t33-C math500 360/500 elapsed=1011.7s
+t33-C math500 400/500 elapsed=1123.1s
+t33-C math500 440/500 elapsed=1294.1s
+t33-C math500 480/500 elapsed=1513.2s
+t33-C arc_easy 8/2376 elapsed=1617.2s
+t33-C arc_easy 48/2376 elapsed=1633.4s
+t33-C arc_easy 88/2376 elapsed=1649.6s
+t33-C arc_easy 128/2376 elapsed=1666.5s
+t33-C arc_easy 168/2376 elapsed=1683.0s
+t33-C arc_easy 208/2376 elapsed=1698.8s
+t33-C arc_easy 248/2376 elapsed=1714.3s
+t33-C arc_easy 288/2376 elapsed=1729.6s
+t33-C arc_easy 328/2376 elapsed=1745.8s
+t33-C arc_easy 368/2376 elapsed=1761.3s
+t33-C arc_easy 408/2376 elapsed=1776.8s
+t33-C arc_easy 448/2376 elapsed=1791.8s
+t33-C arc_easy 488/2376 elapsed=1807.3s
+t33-C arc_easy 528/2376 elapsed=1822.7s
+t33-C arc_easy 568/2376 elapsed=1838.3s
+t33-C arc_easy 608/2376 elapsed=1854.4s
+t33-C arc_easy 648/2376 elapsed=1870.5s
+t33-C arc_easy 688/2376 elapsed=1886.5s
+t33-C arc_easy 728/2376 elapsed=1902.1s
+t33-C arc_easy 768/2376 elapsed=1917.6s
+t33-C arc_easy 808/2376 elapsed=1933.6s
+t33-C arc_easy 848/2376 elapsed=1948.6s
+t33-C arc_easy 888/2376 elapsed=1965.4s
+t33-C arc_easy 928/2376 elapsed=1981.2s
+t33-C arc_easy 968/2376 elapsed=1997.3s
+t33-C arc_easy 1008/2376 elapsed=2012.9s
+t33-C arc_easy 1048/2376 elapsed=2029.1s
+t33-C arc_easy 1088/2376 elapsed=2044.6s
+t33-C arc_easy 1128/2376 elapsed=2060.3s
+t33-C arc_easy 1168/2376 elapsed=2076.1s
+t33-C arc_easy 1208/2376 elapsed=2090.5s
+t33-C arc_easy 1248/2376 elapsed=2105.7s
+t33-C arc_easy 1288/2376 elapsed=2121.8s
+t33-C arc_easy 1328/2376 elapsed=2138.2s
+t33-C arc_easy 1368/2376 elapsed=2155.2s
+t33-C arc_easy 1408/2376 elapsed=2170.7s
+t33-C arc_easy 1448/2376 elapsed=2186.4s
+t33-C arc_easy 1488/2376 elapsed=2202.3s
+t33-C arc_easy 1528/2376 elapsed=2219.6s
+t33-C arc_easy 1568/2376 elapsed=2236.5s
+t33-C arc_easy 1608/2376 elapsed=2251.4s
+t33-C arc_easy 1648/2376 elapsed=2269.0s
+t33-C arc_easy 1688/2376 elapsed=2283.8s
+t33-C arc_easy 1728/2376 elapsed=2299.2s
+t33-C arc_easy 1768/2376 elapsed=2315.4s
+t33-C arc_easy 1808/2376 elapsed=2332.5s
+t33-C arc_easy 1848/2376 elapsed=2351.5s
+t33-C arc_easy 1888/2376 elapsed=2368.2s
+t33-C arc_easy 1928/2376 elapsed=2384.5s
+t33-C arc_easy 1968/2376 elapsed=2399.6s
+t33-C arc_easy 2008/2376 elapsed=2414.8s
+t33-C arc_easy 2048/2376 elapsed=2430.5s
+t33-C arc_easy 2088/2376 elapsed=2446.7s
+t33-C arc_easy 2128/2376 elapsed=2461.4s
+t33-C arc_easy 2168/2376 elapsed=2477.1s
+t33-C arc_easy 2208/2376 elapsed=2492.9s
+t33-C arc_easy 2248/2376 elapsed=2509.8s
+t33-C arc_easy 2288/2376 elapsed=2525.1s
+t33-C arc_easy 2328/2376 elapsed=2540.0s
+t33-C arc_easy 2368/2376 elapsed=2557.1s
+t33-C arc_challenge 8/1172 elapsed=2564.0s
+t33-C arc_challenge 48/1172 elapsed=2580.7s
+t33-C arc_challenge 88/1172 elapsed=2599.5s
+t33-C arc_challenge 128/1172 elapsed=2616.2s
+t33-C arc_challenge 168/1172 elapsed=2635.5s
+t33-C arc_challenge 208/1172 elapsed=2656.8s
+t33-C arc_challenge 248/1172 elapsed=2676.0s
+t33-C arc_challenge 288/1172 elapsed=2695.6s
+t33-C arc_challenge 328/1172 elapsed=2714.5s
+t33-C arc_challenge 368/1172 elapsed=2732.9s
+t33-C arc_challenge 408/1172 elapsed=2752.9s
+t33-C arc_challenge 448/1172 elapsed=2770.7s
+t33-C arc_challenge 488/1172 elapsed=2788.6s
+t33-C arc_challenge 528/1172 elapsed=2806.5s
+t33-C arc_challenge 568/1172 elapsed=2825.7s
+t33-C arc_challenge 608/1172 elapsed=2844.3s
+t33-C arc_challenge 648/1172 elapsed=2862.9s
+t33-C arc_challenge 688/1172 elapsed=2882.5s
+t33-C arc_challenge 728/1172 elapsed=2900.8s
+t33-C arc_challenge 768/1172 elapsed=2916.9s
+t33-C arc_challenge 808/1172 elapsed=2933.1s
+t33-C arc_challenge 848/1172 elapsed=2949.3s
+t33-C arc_challenge 888/1172 elapsed=2967.9s
+t33-C arc_challenge 928/1172 elapsed=2985.0s
+t33-C arc_challenge 968/1172 elapsed=3000.6s
+t33-C arc_challenge 1008/1172 elapsed=3016.8s
+t33-C arc_challenge 1048/1172 elapsed=3032.5s
+t33-C arc_challenge 1088/1172 elapsed=3048.6s
+t33-C arc_challenge 1128/1172 elapsed=3066.4s
+t33-C arc_challenge 1168/1172 elapsed=3081.7s
+t33-C sciq 8/1000 elapsed=3087.6s
+t33-C sciq 48/1000 elapsed=3102.4s
+t33-C sciq 88/1000 elapsed=3117.7s
+t33-C sciq 128/1000 elapsed=3133.2s
+t33-C sciq 168/1000 elapsed=3148.6s
+t33-C sciq 208/1000 elapsed=3165.7s
+t33-C sciq 248/1000 elapsed=3180.0s
+t33-C sciq 288/1000 elapsed=3200.2s
+t33-C sciq 328/1000 elapsed=3220.6s
+t33-C sciq 368/1000 elapsed=3237.6s
+t33-C sciq 408/1000 elapsed=3253.2s
+t33-C sciq 448/1000 elapsed=3268.9s
+t33-C sciq 488/1000 elapsed=3286.0s
+t33-C sciq 528/1000 elapsed=3303.7s
+t33-C sciq 568/1000 elapsed=3319.3s
+t33-C sciq 608/1000 elapsed=3336.7s
+t33-C sciq 648/1000 elapsed=3350.4s
+t33-C sciq 688/1000 elapsed=3365.4s
+t33-C sciq 728/1000 elapsed=3384.9s
+t33-C sciq 768/1000 elapsed=3403.3s
+t33-C sciq 808/1000 elapsed=3420.4s
+t33-C sciq 848/1000 elapsed=3437.7s
+t33-C sciq 888/1000 elapsed=3457.2s
+t33-C sciq 928/1000 elapsed=3474.0s
+t33-C sciq 968/1000 elapsed=3491.2s
+COMPLETE t33-C final

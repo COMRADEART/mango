@@ -40,3 +40,6 @@ C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\peft\ut
   "adapter_sha256": "fbe3e1256b32614be8788822925ecab08d990073d20a109f4cc377b85b5d6938",
   "reload_ok": true
 }
+Verified complete receipt; training skipped
+Verified complete receipt; training skipped
+Verified complete receipt; training skipped

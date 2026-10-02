@@ -1,0 +1,212 @@
+{
+  "selected": "t33-C",
+  "selected_eligible": false,
+  "selection_type": "DIAGNOSTIC_INELIGIBLE_FALLBACK",
+  "protocol_sha256": "368a7c8f5ac87223ad2adc1fe8d3b4f7ae86c4a3ab11e896728d8cebbf9ae31e",
+  "candidates": {
+    "t33-A": {
+      "eligible": false,
+      "checks": {
+        "gsm_material": false,
+        "competition_material": false,
+        "short_improves": true,
+        "long_improves": false,
+        "arc_easy_preserved": false,
+        "arc_challenge_preserved": false,
+        "sciq_preserved": false,
+        "format": false,
+        "contamination": true,
+        "t33_regressions": true
+      },
+      "deltas_pp": {
+        "gsm-style": -15.624999999999995,
+        "competition-style": -15.625,
+        "ARC-style MC": -12.5,
+        "ARC-Challenge-style MC": -14.0625,
+        "SciQ-style MC": -9.375,
+        "math-short": 6.25,
+        "math-medium": 6.25,
+        "math-long": -14.583333333333332
+      },
+      "ranking": [
+        -15.625,
+        0.10416666666666667,
+        -0.048214285714285716,
+        -65
+      ]
+    },
+    "t33-B": {
+      "eligible": false,
+      "checks": {
+        "gsm_material": false,
+        "competition_material": false,
+        "short_improves": false,
+        "long_improves": false,
+        "arc_easy_preserved": false,
+        "arc_challenge_preserved": true,
+        "sciq_preserved": false,
+        "format": true,
+        "contamination": true,
+        "t33_regressions": true
+      },
+      "deltas_pp": {
+        "gsm-style": -15.624999999999995,
+        "competition-style": -10.416666666666668,
+        "ARC-style MC": -3.125,
+        "ARC-Challenge-style MC": 1.5625,
+        "SciQ-style MC": -5.2083333333333375,
+        "math-short": -8.333333333333325,
+        "math-medium": -2.0833333333333313,
+        "math-long": -10.416666666666666
+      },
+      "ranking": [
+        -15.624999999999995,
+        0.14583333333333334,
+        -0.0,
+        -66
+      ]
+    },
+    "t33-C": {
+      "eligible": false,
+      "checks": {
+        "gsm_material": false,
+        "competition_material": false,
+        "short_improves": false,
+        "long_improves": false,
+        "arc_easy_preserved": false,
+        "arc_challenge_preserved": false,
+        "sciq_preserved": false,
+        "format": false,
+        "contamination": true,
+        "t33_regressions": true
+      },
+      "deltas_pp": {
+        "gsm-style": -12.5,
+        "competition-style": -4.166666666666669,
+        "ARC-style MC": -18.75,
+        "ARC-Challenge-style MC": -21.875,
+        "SciQ-style MC": -13.541666666666663,
+        "math-short": -10.416666666666663,
+        "math-medium": -22.916666666666664,
+        "math-long": -18.75
+      },
+      "ranking": [
+        -12.5,
+        0.0625,
+        -0.05357142857142857,
+        -67
+      ]
+    }
+  },
+  "final_results_used_for_selection": false
+}
+Traceback (most recent call last):
+  File "C:\Users\allam\Documents\new\model\scripts\t33_select.py", line 57, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "C:\Users\allam\Documents\new\model\scripts\t33_select.py", line 53, in main
+    if path.exists(): assert json.loads(path.read_text())==freeze
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+{
+  "selected": "t33-C",
+  "selected_eligible": false,
+  "selection_type": "DIAGNOSTIC_INELIGIBLE_FALLBACK",
+  "protocol_sha256": "368a7c8f5ac87223ad2adc1fe8d3b4f7ae86c4a3ab11e896728d8cebbf9ae31e",
+  "candidates": {
+    "t33-A": {
+      "eligible": false,
+      "checks": {
+        "gsm_material": false,
+        "competition_material": false,
+        "short_improves": true,
+        "long_improves": false,
+        "arc_easy_preserved": false,
+        "arc_challenge_preserved": false,
+        "sciq_preserved": false,
+        "format": false,
+        "contamination": true,
+        "t33_regressions": true
+      },
+      "deltas_pp": {
+        "gsm-style": -15.624999999999995,
+        "competition-style": -15.625,
+        "ARC-style MC": -12.5,
+        "ARC-Challenge-style MC": -14.0625,
+        "SciQ-style MC": -9.375,
+        "math-short": 6.25,
+        "math-medium": 6.25,
+        "math-long": -14.583333333333332
+      },
+      "ranking": [
+        -15.625,
+        0.10416666666666667,
+        -0.048214285714285716,
+        -65
+      ]
+    },
+    "t33-B": {
+      "eligible": false,
+      "checks": {
+        "gsm_material": false,
+        "competition_material": false,
+        "short_improves": false,
+        "long_improves": false,
+        "arc_easy_preserved": false,
+        "arc_challenge_preserved": true,
+        "sciq_preserved": false,
+        "format": true,
+        "contamination": true,
+        "t33_regressions": true
+      },
+      "deltas_pp": {
+        "gsm-style": -15.624999999999995,
+        "competition-style": -10.416666666666668,
+        "ARC-style MC": -3.125,
+        "ARC-Challenge-style MC": 1.5625,
+        "SciQ-style MC": -5.2083333333333375,
+        "math-short": -8.333333333333325,
+        "math-medium": -2.0833333333333313,
+        "math-long": -10.416666666666666
+      },
+      "ranking": [
+        -15.624999999999995,
+        0.14583333333333334,
+        -0.0,
+        -66
+      ]
+    },
+    "t33-C": {
+      "eligible": false,
+      "checks": {
+        "gsm_material": false,
+        "competition_material": false,
+        "short_improves": false,
+        "long_improves": false,
+        "arc_easy_preserved": false,
+        "arc_challenge_preserved": false,
+        "sciq_preserved": false,
+        "format": false,
+        "contamination": true,
+        "t33_regressions": true
+      },
+      "deltas_pp": {
+        "gsm-style": -12.5,
+        "competition-style": -4.166666666666669,
+        "ARC-style MC": -18.75,
+        "ARC-Challenge-style MC": -21.875,
+        "SciQ-style MC": -13.541666666666663,
+        "math-short": -10.416666666666663,
+        "math-medium": -22.916666666666664,
+        "math-long": -18.75
+      },
+      "ranking": [
+        -12.5,
+        0.0625,
+        -0.05357142857142857,
+        -67
+      ]
+    }
+  },
+  "final_results_used_for_selection": false
+}

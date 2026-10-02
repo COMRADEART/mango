@@ -144,6 +144,5 @@
       "arithmetic_state_errors_observed": 65,
       "constraint_satisfaction": "endpoint score and exact-state observations; no full-proof claim"
     }
-  },
-  "wall_seconds": 1272.2239155769348
+  }
 }

@@ -177,7 +177,7 @@ def main():
     if not args.final:
         write(ROOT/f'evaluations/t33/development/{args.label}_metrics.json',
               {'identity':identity,'protocol_sha256':sha(protocol_path),'membership_sha256':protocol['development_sha256'],
-               'suites':metrics(allraw,dev),'wall_seconds':time.time()-start_time})
+               'suites':metrics(allraw,dev)})
     print('COMPLETE',args.label,'final' if args.final else 'development',flush=True)
 
 if __name__=='__main__': main()

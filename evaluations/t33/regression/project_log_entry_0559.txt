@@ -16,7 +16,7 @@
 ........................................................................ [ 25%]
 ........................................................................ [ 27%]
 ........................................................................ [ 28%]
-.......................................FFFF.........F.............F..... [ 30%]
+...............................F.......FFFF.........F.............F..... [ 30%]
 ..............FF.................FF.F........F.............F............ [ 31%]
 .................F...................................................... [ 33%]
 ..........F.F....................F...................................... [ 35%]
@@ -914,6 +914,31 @@ E        +  where False = t21r8_hash_matches(WindowsPath('C:/Users/allam/Documen
 E        +    where '5cb8cd1c77e5ae6cfbd756ba20e8cca1d0367dc7bec422fc1ebb51eed39fb3aa' = _sha_group('src/sciencemath/code')
 
 tests\test_t19_post_merge_audit_cleanup.py:135: AssertionError
+_________________ test_protocol_imports_are_side_effect_free __________________
+
+    def test_protocol_imports_are_side_effect_free():
+        protocol_paths = sorted((ROOT / "t21_protocol").glob("*.py"))
+        helper_names = ("t21r_fixtures", "t21r12_fixtures", "t21r13_fixtures", "t21r14_fixtures")
+        paths = [
+            *protocol_paths,
+            *(ROOT / "scripts" / f"{name}.py" for name in helper_names),
+            *sorted((ROOT / "tests").glob("test_t21*.py")),
+        ]
+        assert static_import_write_audit(paths)["status"] == "PASS"
+        modules = [f"t21_protocol.{path.stem}" for path in protocol_paths if path.stem not in {"__init__", "doctor"}]
+        modules += list(helper_names)
+>       assert dynamic_import_write_audit(ROOT, modules)["status"] == "PASS"
+E       AssertionError: assert 'FAIL' == 'PASS'
+E         
+E         - PASS
+E         + FAIL
+
+tests\test_t21_protocol_kernel.py:356: AssertionError
+---------------------------- Captured stdout call -----------------------------
+prior milestones 12
+coverage 100.0 unwired 0
+negatives FAIL 44 / 45
+synthetic PASS
 _______________________ test_real_r15_paths_are_absent ________________________
 
     def test_real_r15_paths_are_absent():
@@ -1118,8 +1143,8 @@ E          },
 E          "synthetic_seal_status": "PASS",
 E          "runtime_rows_executed": 0,
 E          "bindings": {
-E           "tested_git_head": "638f308c4159fce8199726c750442121be9c2c66",
-E           "tested_git_tree_sha": "96a57a28dbbec3a250b394c0b228646e588e6416",
+E           "tested_git_head": "9aa8072bdd22de0f5c1c2a3149354103ded3139d",
+E           "tested_git_tree_sha": "c578697a5df6cb84301f8ce503bc2b30dd8f6f9b",
 E           "binding_note": "Git identity is the audited base; the complete uncommitted qualification overlay is bound by the following byte hashes.",
 E           "qualified_overlay_root_sha256": "3c3df1a0ea6b33f2017d0555e382bf94e2bf0f38bb7ab35b32d592b413d6dbec",
 E           "preconstruction_script_sha256": "2b53ae075098ebec18dcd8ed0cf9ca8c9fafcd8c599c8adfc5982f444fa4fd01",
@@ -1247,7 +1272,7 @@ __________ test_remediation_provenance_binds_every_production_change __________
 >       assert all(change["sha256"] == _sha(ROOT / change["file"])
                    for change in changes)
 E       assert False
-E        +  where False = all(<generator object test_remediation_provenance_binds_every_production_change.<locals>.<genexpr> at 0x0000029A2AA972E0>)
+E        +  where False = all(<generator object test_remediation_provenance_binds_every_production_change.<locals>.<genexpr> at 0x000002A12E3F8310>)
 
 tests\test_t21r11_preconstruction.py:207: AssertionError
 ____________ test_every_real_r11_blind_and_exposure_path_is_absent ____________
@@ -1737,7 +1762,7 @@ ______________________ test_real_t23_paths_remain_absent ______________________
     def test_real_t23_paths_remain_absent() -> None:
 >       assert not any((ROOT / relative).exists() for relative in PATHS.values())
 E       assert not True
-E        +  where True = any(<generator object test_real_t23_paths_remain_absent.<locals>.<genexpr> at 0x0000029A31A6EA80>)
+E        +  where True = any(<generator object test_real_t23_paths_remain_absent.<locals>.<genexpr> at 0x000002A13055AA80>)
 
 tests\test_t23_production.py:135: AssertionError
 _________________ test_ledger_binds_full_experiment_identity __________________
@@ -1755,7 +1780,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x0000029A2F451C70>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A1323CE0C0>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_ledger_binds_full_experim0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -1782,7 +1807,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x0000029A2F451760>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A1323CFF20>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_missing_binding_fails_clo0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -1809,7 +1834,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x0000029A2F451820>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A12FF4F740>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_unknown_binding_fails_clo0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -1838,7 +1863,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002997D770FE0>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A1323CD460>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_author_provenance_is_requ0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -1865,7 +1890,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x0000029A39352420>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A05E3521B0>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_deleted_ledger_cannot_rec0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -1892,7 +1917,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x0000029A31368680>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A13058B710>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_zero_fixture_full_constru0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -1919,7 +1944,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x0000029A3136B830>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A13058A240>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_full_construction_lifecyc0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -1946,7 +1971,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x0000029A31369730>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A130589340>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_failure_rehearsal_semanti0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -1973,7 +1998,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x0000029A31369C40>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A12FF4FFB0>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_store_verify_detects_tamp0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -2000,7 +2025,7 @@ tests\test_t26_construction_infrastructure.py:31: in _make_store
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = <t26_protocol.lifecycle.T26PrivateStore object at 0x0000029A3136B320>
+self = <t26_protocol.lifecycle.T26PrivateStore object at 0x000002A12FF4EEA0>
 root = WindowsPath('C:/Users/allam/Documents/new/model/evaluations/t33/regression/pytest_tmp/test_store_verify_rejects_miss0/T26-STORE-01')
 public_repo = WindowsPath('C:/Users/allam/Documents/new/model')
 
@@ -2459,6 +2484,7 @@ tests\test_t27_preconstruction.py:88: AssertionError
 =========================== short test summary info ===========================
 FAILED tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged
 FAILED tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched
+FAILED tests/test_t21_protocol_kernel.py::test_protocol_imports_are_side_effect_free
 FAILED tests/test_t21_protocol_kernel.py::test_real_r15_paths_are_absent - As...
 FAILED tests/test_t21_protocol_kernel.py::test_construction_phase_api_twice_stops_at_sealed
 FAILED tests/test_t21_protocol_kernel.py::test_full_synthetic_protocol_twice_uses_separate_phases
@@ -2517,4 +2543,4 @@ ERROR tests/test_t23_construction_remediation.py::test_gate_design_controls[wron
 ERROR tests/test_t23_construction_remediation.py::test_gate_design_controls[missing_family]
 ERROR tests/test_t23_construction_remediation.py::test_manifest_missing_artifact_and_seal_root_mismatch
 ERROR tests/test_t23_construction_remediation.py::test_unknown_construction_state_and_author_lock_refused
-49 failed, 4453 passed, 1 skipped, 11 errors in 3622.22s (1:00:22)
+50 failed, 4452 passed, 1 skipped, 11 errors in 5459.92s (1:30:59)
