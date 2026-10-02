@@ -1,0 +1,11 @@
+{
+  "math": 1069,
+  "repairs": 224,
+  "direct": 300,
+  "development": 560,
+  "candidates": {
+    "A": 1593,
+    "B": 1893,
+    "C": 1893
+  }
+}

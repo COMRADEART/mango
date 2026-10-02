@@ -1,0 +1,8 @@
+{
+  "candidate_development_results_measured": false,
+  "correction": "Propagate each faulty core state through all remaining operations; use a value-changing mistaken substitution in a systems problem; preserve dedicated premature/restart pairs.",
+  "candidate": "T33-A initial attempt",
+  "issue": "Initial bad reasoning pairs mixed category errors with omitted final score operations; substitution example did not isolate a value-changing substitution.",
+  "recovery": "Preserve old corpus, protocol, logs and checkpoints; restart entire candidate from T32-A with fresh optimizer/scheduler/RNG; never call it an equivalent resume.",
+  "status": "INVALID_CORPUS_CONSTRUCTION"
+}

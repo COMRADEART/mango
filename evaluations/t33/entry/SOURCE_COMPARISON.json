@@ -1,0 +1,34 @@
+{
+  "tests.test_t31_concurrency::test_concurrent_observations_lose_nothing_and_never_mix": {
+    "failed_at_t31_closure": false,
+    "t31_tracked_source_present": false,
+    "t32_tracked_source_present": false,
+    "working_source_sha256": "f979dfe665414bc06dd0328e160f09ab1cf81672216cc68f609a2063449ce5e9",
+    "t31_vs_t32_tracked_source_equal": null,
+    "source_note": "State Engine and tests were already untracked WIP at T33 entry; they are unrelated to T32 model changes."
+  },
+  "tests.test_t31_concurrency::test_the_event_log_never_gains_a_torn_line": {
+    "failed_at_t31_closure": false,
+    "t31_tracked_source_present": false,
+    "t32_tracked_source_present": false,
+    "working_source_sha256": "f979dfe665414bc06dd0328e160f09ab1cf81672216cc68f609a2063449ce5e9",
+    "t31_vs_t32_tracked_source_equal": null,
+    "source_note": "State Engine and tests were already untracked WIP at T33 entry; they are unrelated to T32 model changes."
+  },
+  "tests.test_t31_concurrency::test_readers_never_see_a_half_published_state": {
+    "failed_at_t31_closure": false,
+    "t31_tracked_source_present": false,
+    "t32_tracked_source_present": false,
+    "working_source_sha256": "f979dfe665414bc06dd0328e160f09ab1cf81672216cc68f609a2063449ce5e9",
+    "t31_vs_t32_tracked_source_equal": null,
+    "source_note": "State Engine and tests were already untracked WIP at T33 entry; they are unrelated to T32 model changes."
+  },
+  "tests.test_t31_concurrency::test_concurrent_transitions_are_all_durable": {
+    "failed_at_t31_closure": true,
+    "t31_tracked_source_present": false,
+    "t32_tracked_source_present": false,
+    "working_source_sha256": "f979dfe665414bc06dd0328e160f09ab1cf81672216cc68f609a2063449ce5e9",
+    "t31_vs_t32_tracked_source_equal": null,
+    "source_note": "State Engine and tests were already untracked WIP at T33 entry; they are unrelated to T32 model changes."
+  }
+}

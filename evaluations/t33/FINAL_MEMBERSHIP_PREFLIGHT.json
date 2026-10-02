@@ -1,0 +1,22 @@
+{
+  "gsm8k": {
+    "count": 1319,
+    "suite_hash": "a105481b6461e992dc8ae0a18332f91d7049efc26b17b50154b57294a8051608"
+  },
+  "math500": {
+    "count": 500,
+    "suite_hash": "4257a3b724a609eba487c34cdab10bb20f241e9f3d24164fa88289b83378541c"
+  },
+  "arc_easy": {
+    "count": 2376,
+    "suite_hash": "db95bb705616c3aa56510d648c3c7a499920c54d86a2e044a69afa6f8720a95c"
+  },
+  "arc_challenge": {
+    "count": 1172,
+    "suite_hash": "908e1da4612da3f672cf74b70b34fb2742db30f5597792c0f3bf2b6d2e7a43d0"
+  },
+  "sciq": {
+    "count": 1000,
+    "suite_hash": "acf9ca9e146222981c9a1f0692c526a323434c65f4f4e5fcdab1dcb8a6521d1f"
+  }
+}

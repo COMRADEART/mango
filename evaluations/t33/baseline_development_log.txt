@@ -1,0 +1,18 @@
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 7587.90it/s]
+t32-A development 8/560 elapsed=16.2s
+t32-A development 48/560 elapsed=90.7s
+t32-A development 88/560 elapsed=159.8s
+t32-A development 128/560 elapsed=493.5s
+t32-A development 168/560 elapsed=824.9s
+t32-A development 208/560 elapsed=1018.3s
+t32-A development 248/560 elapsed=1036.0s
+t32-A development 288/560 elapsed=1054.1s
+t32-A development 328/560 elapsed=1072.8s
+t32-A development 368/560 elapsed=1089.3s
+t32-A development 408/560 elapsed=1105.6s
+t32-A development 448/560 elapsed=1167.1s
+t32-A development 488/560 elapsed=1256.0s
+t32-A development 528/560 elapsed=1385.2s
+COMPLETE t32-A development
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 3341.87it/s]
+COMPLETE t32-A development

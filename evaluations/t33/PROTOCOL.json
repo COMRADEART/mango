@@ -1,0 +1,160 @@
+{
+  "experiment": "T33 verified derivation + output-mode decoupling",
+  "development_sha256": "b4b7a81ab090de79ce976d5954b92450845df2af88768dc9a7862718b19bc790",
+  "development_suites": {
+    "gsm-style": 96,
+    "competition-style": 96,
+    "ARC-style MC": 64,
+    "ARC-Challenge-style MC": 64,
+    "SciQ-style MC": 96,
+    "math-short": 48,
+    "math-medium": 48,
+    "math-long": 48
+  },
+  "eligibility": {
+    "gsm-style_delta_vs_t32_A_pp": 5.0,
+    "competition-style_delta_vs_t32_A_pp": 5.0,
+    "math-short_delta_vs_t32_A_pp": 0.0,
+    "math-long_delta_vs_t32_A_pp": 0.0,
+    "short_long_comparison": "strictly greater",
+    "ARC-style MC_floor_vs_t32_A_pp": -2.0,
+    "ARC-Challenge-style MC_floor_vs_t32_A_pp": -2.0,
+    "SciQ-style MC_floor_vs_t32_A_pp": -2.0,
+    "format_invalid_max_fraction": 0.05,
+    "contamination_required": true,
+    "t33_attributable_regressions": 0
+  },
+  "selection": "Eligible candidates: maximize min(gsm delta,competition delta), then math-long accuracy, then lower invalid fraction, then A/B/C order. If none eligible, select exactly one diagnostic candidate by the same order over all three and record INELIGIBLE; cannot earn PASS.",
+  "candidates": {
+    "A": {
+      "records": 1593,
+      "train_sha256": "cb66843344ce23af849cf73b3bef51ba99c2f19ab2858901ba8eb9a0c9def292",
+      "learning_rate": 0.0001,
+      "effective_epochs": 1,
+      "seed": 42,
+      "sequence_length": 2048,
+      "curriculum": {
+        "A": 327,
+        "B": 583,
+        "C": 383,
+        "D": 300
+      },
+      "lora": {
+        "r": 32,
+        "alpha": 64,
+        "dropout": 0.05,
+        "modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ]
+      },
+      "starting_adapter": "training/adapters/t32-A-math-restore",
+      "starting_adapter_sha256": "64c2787f3457526ccd5aee571a0c106b8dc67b820886260714d3f55169318acb",
+      "batch_size": 1,
+      "gradient_accumulation": 16,
+      "optimizer": "adamw_torch",
+      "scheduler": "cosine",
+      "warmup_ratio": 0.03,
+      "quantization": "NF4 double quantization",
+      "precision": "bfloat16",
+      "sampling": "sequential frozen curriculum; randomized within each stage with seed 42; optimizer/scheduler uninterrupted across stages"
+    },
+    "B": {
+      "records": 1893,
+      "train_sha256": "08c01199736edcbfe0258e4e913af15df2d4cd6741ab76f1085702a3cd40c907",
+      "learning_rate": 0.0001,
+      "effective_epochs": 1,
+      "seed": 42,
+      "sequence_length": 2048,
+      "curriculum": {
+        "A": 327,
+        "B": 583,
+        "C": 383,
+        "D": 600
+      },
+      "lora": {
+        "r": 32,
+        "alpha": 64,
+        "dropout": 0.05,
+        "modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ]
+      },
+      "starting_adapter": "training/adapters/t32-A-math-restore",
+      "starting_adapter_sha256": "64c2787f3457526ccd5aee571a0c106b8dc67b820886260714d3f55169318acb",
+      "batch_size": 1,
+      "gradient_accumulation": 16,
+      "optimizer": "adamw_torch",
+      "scheduler": "cosine",
+      "warmup_ratio": 0.03,
+      "quantization": "NF4 double quantization",
+      "precision": "bfloat16",
+      "sampling": "sequential frozen curriculum; randomized within each stage with seed 42; optimizer/scheduler uninterrupted across stages"
+    },
+    "C": {
+      "records": 1893,
+      "train_sha256": "08c01199736edcbfe0258e4e913af15df2d4cd6741ab76f1085702a3cd40c907",
+      "learning_rate": 3e-05,
+      "effective_epochs": 1,
+      "seed": 42,
+      "sequence_length": 2048,
+      "curriculum": {
+        "A": 327,
+        "B": 583,
+        "C": 383,
+        "D": 600
+      },
+      "lora": {
+        "r": 32,
+        "alpha": 64,
+        "dropout": 0.05,
+        "modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ]
+      },
+      "starting_adapter": "training/adapters/t32-A-math-restore",
+      "starting_adapter_sha256": "64c2787f3457526ccd5aee571a0c106b8dc67b820886260714d3f55169318acb",
+      "batch_size": 1,
+      "gradient_accumulation": 16,
+      "optimizer": "adamw_torch",
+      "scheduler": "cosine",
+      "warmup_ratio": 0.03,
+      "quantization": "NF4 double quantization",
+      "precision": "bfloat16",
+      "sampling": "sequential frozen curriculum; randomized within each stage with seed 42; optimizer/scheduler uninterrupted across stages"
+    }
+  },
+  "differences": {
+    "A": "Derivation and correction only; natural prompts; no direct science replay.",
+    "B": "Identical mathematical derivations/corrections plus 300 or fewer re-gated direct science records, explicit task instructions, interleaved Stage D. Extra MC rows increase steps; disclosed data-treatment consequence.",
+    "C": "Exact B data, order, steps and settings; ONLY learning rate 1e-4 -> 3e-5."
+  },
+  "final_floor": {
+    "gsm8k_min_t30_delta_pp": 5,
+    "math500_min_t30_delta_pp": 5,
+    "both_strictly_exceed_t32": true,
+    "arc_easy_vs_t30_min_pp": -2,
+    "arc_challenge_vs_t30_min_pp": -2,
+    "sciq_vs_t30_min_pp": -2
+  },
+  "resume_policy": "Never reconstruct optimizer/scheduler/RNG for an equivalent run. An incomplete attempt is invalid; preserve and restart entire candidate from T32-A under identical frozen recipe.",
+  "feasibility_policy": "Run isolated 3 optimizer-step longest-example GPU test at 2048 before full training. Fail closed on any target/premise shortening or clipping. No CPU-only substitute.",
+  "validation_policy": "One deterministic curriculum pass; no early stopping or loss-based candidate tuning. Candidate selection exclusively frozen dev metrics."
+}

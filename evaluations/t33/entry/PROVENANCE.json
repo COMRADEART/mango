@@ -1,0 +1,13 @@
+{
+  "t31_final_commit": "5a646aec4205a21ad83de7d07f7a63fbbce98b0c",
+  "t32_branch": "t32-math-remediation",
+  "t32_final_committed_tip": "9aa8072bdd22de0f5c1c2a3149354103ded3139d",
+  "t32_final_commit": null,
+  "t32_final_commit_explanation": "T32 closure is present as dirty/untracked evidence at this tip; no commit containing the final closure exists. The source snapshot and file hashes identify its actual final state.",
+  "t32_selected_candidate": "t32-A",
+  "t32_adapter_sha256": "64c2787f3457526ccd5aee571a0c106b8dc67b820886260714d3f55169318acb",
+  "t32_training_receipt_sha256": "0471232acaf14f31d318241dcfdf4e75424cb46561c2b61852c017f6f0aded36",
+  "t32_final_report_sha256": "87ed997c4932642df3bb172ff4083697e491e87861ee2e5c1a69885624300fa2",
+  "report_identity_explanation": "The Final model identities block references the frozen T31 baseline. Its branch, final_commit and report_sha256 are T31 identities; the separately stated T32 adapter SHA is the T32 model identity.",
+  "historical_outputs_modified": false
+}

@@ -1,0 +1,88 @@
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/311 [00:00<02:31,  2.05it/s]
+Loading weights:   1%|          | 2/311 [00:01<03:02,  1.70it/s]
+Loading weights:   1%|1         | 4/311 [00:01<01:20,  3.80it/s]
+Loading weights:   5%|4         | 15/311 [00:01<00:15, 18.92it/s]
+Loading weights:   8%|8         | 26/311 [00:01<00:08, 33.40it/s]
+Loading weights:  12%|#1        | 37/311 [00:01<00:05, 47.56it/s]
+Loading weights:  15%|#5        | 48/311 [00:01<00:04, 58.67it/s]
+Loading weights:  19%|#8        | 59/311 [00:01<00:03, 66.83it/s]
+Loading weights:  23%|##2       | 70/311 [00:01<00:03, 73.27it/s]
+Loading weights:  26%|##6       | 81/311 [00:02<00:02, 77.89it/s]
+Loading weights:  30%|##9       | 92/311 [00:02<00:02, 82.87it/s]
+Loading weights:  33%|###3      | 103/311 [00:02<00:02, 83.89it/s]
+Loading weights:  37%|###6      | 114/311 [00:02<00:02, 87.47it/s]
+Loading weights:  40%|####      | 125/311 [00:02<00:02, 88.32it/s]
+Loading weights:  44%|####3     | 136/311 [00:02<00:01, 87.62it/s]
+Loading weights:  47%|####7     | 147/311 [00:02<00:01, 89.39it/s]
+Loading weights:  51%|#####     | 158/311 [00:02<00:01, 90.60it/s]
+Loading weights:  54%|#####4    | 169/311 [00:03<00:01, 92.51it/s]
+Loading weights:  58%|#####7    | 180/311 [00:03<00:01, 92.94it/s]
+Loading weights:  61%|######1   | 191/311 [00:03<00:01, 88.09it/s]
+Loading weights:  65%|######5   | 203/311 [00:03<00:01, 89.63it/s]
+Loading weights:  69%|######8   | 214/311 [00:03<00:01, 91.62it/s]
+Loading weights:  72%|#######2  | 225/311 [00:03<00:00, 92.34it/s]
+Loading weights:  76%|#######5  | 236/311 [00:03<00:00, 93.78it/s]
+Loading weights:  79%|#######9  | 247/311 [00:03<00:00, 93.31it/s]
+Loading weights:  83%|########2 | 258/311 [00:04<00:00, 91.15it/s]
+Loading weights:  86%|########6 | 268/311 [00:04<00:00, 91.18it/s]
+Loading weights:  90%|########9 | 279/311 [00:04<00:00, 91.00it/s]
+Loading weights:  93%|#########3| 290/311 [00:04<00:00, 92.15it/s]
+Loading weights:  97%|#########6| 301/311 [00:04<00:00, 91.62it/s]
+Loading weights: 100%|##########| 311/311 [00:04<00:00, 67.70it/s]
+trainable params: 34,865,152 || all params: 1,755,440,128 || trainable%: 1.9861
+
+  0%|          | 0/3 [00:00<?, ?it/s]
+ 33%|###3      | 1/3 [00:01<00:03,  1.53s/it]
+                                             
+
+ 33%|###3      | 1/3 [00:01<00:03,  1.53s/it]
+ 67%|######6   | 2/3 [00:02<00:01,  1.07s/it]
+                                             
+
+ 67%|######6   | 2/3 [00:02<00:01,  1.07s/it]
+100%|##########| 3/3 [00:03<00:00,  1.08it/s]
+                                             
+
+100%|##########| 3/3 [00:03<00:00,  1.08it/s]C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\peft\utils\save_and_load.py:438: UserWarning: Could not find a config file in Qwen/Qwen3-1.7B - will assume that the vocabulary was not modified.
+  warnings.warn(
+
+                                             
+
+100%|##########| 3/3 [00:03<00:00,  1.08it/s]
+100%|##########| 3/3 [00:03<00:00,  1.21s/it]
+C:\Users\allam\AppData\Local\Programs\Python\Python312\Lib\site-packages\peft\utils\save_and_load.py:438: UserWarning: Could not find a config file in Qwen/Qwen3-1.7B - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'loss': '0.8492', 'grad_norm': '2.936', 'learning_rate': '0', 'epoch': '0.3333'}
+{'loss': '0.8002', 'grad_norm': '2.16', 'learning_rate': '0.0001', 'epoch': '0.6667'}
+{'loss': '0.5729', 'grad_norm': '1.147', 'learning_rate': '5e-05', 'epoch': '1'}
+{'train_runtime': '3.631', 'train_samples_per_second': '0.826', 'train_steps_per_second': '0.826', 'train_loss': '0.7408', 'epoch': '1'}
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/311 [00:00<01:14,  4.17it/s]
+Loading weights:   1%|          | 2/311 [00:00<01:13,  4.20it/s]
+Loading weights:   8%|8         | 26/311 [00:00<00:04, 63.89it/s]
+Loading weights:  16%|#5        | 49/311 [00:00<00:02, 106.14it/s]
+Loading weights:  23%|##2       | 70/311 [00:00<00:01, 134.35it/s]
+Loading weights:  30%|##9       | 92/311 [00:00<00:01, 158.25it/s]
+Loading weights:  37%|###6      | 114/311 [00:00<00:01, 173.34it/s]
+Loading weights:  44%|####3     | 136/311 [00:01<00:00, 184.42it/s]
+Loading weights:  51%|#####1    | 159/311 [00:01<00:00, 189.33it/s]
+Loading weights:  58%|#####8    | 181/311 [00:01<00:00, 196.92it/s]
+Loading weights:  65%|######5   | 203/311 [00:01<00:00, 201.02it/s]
+Loading weights:  73%|#######2  | 226/311 [00:01<00:00, 203.04it/s]
+Loading weights:  80%|#######9  | 248/311 [00:01<00:00, 207.23it/s]
+Loading weights:  89%|########8 | 276/311 [00:01<00:00, 222.61it/s]
+Loading weights:  96%|#########6| 299/311 [00:01<00:00, 221.54it/s]
+Loading weights: 100%|##########| 311/311 [00:01<00:00, 163.31it/s]
+{
+  "status": "COMPLETE",
+  "candidate": "B",
+  "steps": 3,
+  "peak_vram_bytes": 4020049920,
+  "training_seconds": 3.863299608230591,
+  "records_per_second": 0.7765382714839489,
+  "adapter_sha256": "66826fa2597eea43f62ebae0744463cc422e93f668c488c63daf102b6e45f138",
+  "reload_ok": true
+}

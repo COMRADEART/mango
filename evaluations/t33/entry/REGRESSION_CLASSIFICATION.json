@@ -1,0 +1,420 @@
+{
+  "historical_t32_counts": {
+    "tests": 4504,
+    "passed": 4438,
+    "failed_or_error": 65,
+    "skipped": 1
+  },
+  "entry_focused": "5 failed, 10 passed; additional event-only attempt 1 failed",
+  "counts": {
+    "PRE_EXISTING": 60,
+    "ENVIRONMENT_SPECIFIC": 7
+  },
+  "failures": {
+    "tests.test_scicomp_registry_active::test_scicomp_implementation_hash_unchanged": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t19_post_merge_audit_cleanup::test_historical_floors_checksums_and_planner_untouched": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21_protocol_kernel::test_protocol_imports_are_side_effect_free": {
+      "classification": "ENVIRONMENT_SPECIFIC",
+      "evidence": "T32 isolated stable-copy audit passed; whole-workspace audit observed concurrent training/log writes. Original evidence retained.",
+      "entry_reproduced": false,
+      "t31_failed": false
+    },
+    "tests.test_t21_protocol_kernel::test_real_r15_paths_are_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21_protocol_kernel::test_construction_phase_api_twice_stops_at_sealed": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21_protocol_kernel::test_full_synthetic_protocol_twice_uses_separate_phases": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21_protocol_kernel::test_real_mode_dry_rehearsal_stops_at_sealed": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21_protocol_kernel::test_construction_error_marks_ledger_failed": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r10_preconstruction::test_static_scanner_uniqueness_and_blindness_all_pass": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r10_preconstruction::test_end_to_end_nonblind_miniature_and_all_controls_pass": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r10_preconstruction::test_every_real_r10_holdout_and_exposure_path_remains_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r11_preconstruction::test_runtime_freeze_rehashes_every_component": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r11_preconstruction::test_evaluator_freeze_rehashes_every_component": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r11_preconstruction::test_remediation_provenance_binds_every_production_change": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r11_preconstruction::test_every_real_r11_blind_and_exposure_path_is_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r12_preconstruction::test_real_r12_paths_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r13_preconstruction::test_real_r13_paths_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r16_preconstruction::test_runtime_contract_is_derived_from_frozen_modules": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r16_preconstruction::test_real_r16_paths_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r17_preconstruction::test_real_r17_paths_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r3_blind_holdout_contract::test_runtime_composites_unchanged_since_freeze": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r4_blind_holdout_contract::test_runtime_composites_unchanged_since_freeze": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r5_blind_holdout_contract::test_runtime_composites_unchanged_since_freeze": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r8_holdout_freeze_protocol::test_root_anchor_exact_frozen_artifacts_and_helper_pass": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r9_preregistration::test_frozen_component_verifier_refuses_drift_and_missing_components": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t21r9_preregistration::test_runtime_and_evaluator_freezes_bind_current_components": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t22_preconstruction::test_real_t22_paths_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[candidate_commit]": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[candidate_tree]": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[preconstruction_freeze_sha256]": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[freeze_root]": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_frozen_identity_drift_refused[author_lock_sha256]": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_duplicate_ledger_and_second_attempt_refused": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_gate_design_controls[wrong_family_count]": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_gate_design_controls[wrong_total_rows]": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_gate_design_controls[missing_family]": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_manifest_missing_artifact_and_seal_root_mismatch": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_construction_remediation::test_unknown_construction_state_and_author_lock_refused": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_lifecycle::test_preconstruction_t23_paths_are_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_production::test_shadow_ledger_seal_and_exclusive_second_create": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t23_production::test_real_t23_paths_remain_absent": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_ledger_binds_full_experiment_identity": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_missing_binding_fails_closed": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_unknown_binding_fails_closed": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_author_provenance_is_required_and_verified_before_ledger": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_deleted_ledger_cannot_recreate_one_shot": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_zero_fixture_full_construction_lifecycle_rehearsal": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_full_construction_lifecycle_rehearsal": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_failure_rehearsal_semantics": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_store_verify_detects_tamper": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_construction_infrastructure::test_store_verify_rejects_missing_index_root": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_evaluation_v2::test_original_v3_explicit_component_set_remains_exact": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_evaluation_v2::test_addendum_and_freeze_reproduce_exactly": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_general_context_inspection::test_successor_addendum_and_freeze_reproduce": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_general_context_inspection::test_scorer_metrics_and_authority_are_unchanged": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_production_runner_binding::test_predecessor_addendum_and_construction_freeze_are_unchanged": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_production_runner_binding::test_runner_factory_identity_binds_frozen_production_stack": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_production_runner_binding::test_canonical_factory_builds_exact_wrapped_production_stack": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_production_runner_binding::test_real_factory_rejects_fixture_provider_before_ledger": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t26_production_runner_binding::test_failure_rehearsal_and_all_negative_controls_pass": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t27_preconstruction::test_doctor_and_freeze_reproduce": {
+      "classification": "PRE_EXISTING",
+      "evidence": "Same test ID failed in frozen T31 closure.",
+      "entry_reproduced": false,
+      "t31_failed": true
+    },
+    "tests.test_t31_concurrency::test_concurrent_observations_lose_nothing_and_never_mix": {
+      "classification": "ENVIRONMENT_SPECIFIC",
+      "evidence": "Reproduced Windows atomic os.replace access denial in pre-T33 untracked State Engine WIP; neither T32 model code nor T33 changes call or alter it. WIP is absent from both commits, so a commit-based source equality claim is unavailable.",
+      "entry_reproduced": true,
+      "t31_failed": false
+    },
+    "tests.test_t31_concurrency::test_the_event_log_never_gains_a_torn_line": {
+      "classification": "ENVIRONMENT_SPECIFIC",
+      "evidence": "Reproduced Windows atomic os.replace access denial in pre-T33 untracked State Engine WIP; neither T32 model code nor T33 changes call or alter it. WIP is absent from both commits, so a commit-based source equality claim is unavailable.",
+      "entry_reproduced": true,
+      "t31_failed": false
+    },
+    "tests.test_t31_concurrency::test_concurrent_transitions_are_all_durable": {
+      "classification": "ENVIRONMENT_SPECIFIC",
+      "evidence": "Reproduced Windows atomic os.replace access denial in pre-T33 untracked State Engine WIP; neither T32 model code nor T33 changes call or alter it. WIP is absent from both commits, so a commit-based source equality claim is unavailable.",
+      "entry_reproduced": true,
+      "t31_failed": true
+    },
+    "tests.test_t31_concurrency::test_readers_never_see_a_half_published_state": {
+      "classification": "ENVIRONMENT_SPECIFIC",
+      "evidence": "Reproduced Windows atomic os.replace access denial in pre-T33 untracked State Engine WIP; neither T32 model code nor T33 changes call or alter it. WIP is absent from both commits, so a commit-based source equality claim is unavailable.",
+      "entry_reproduced": true,
+      "t31_failed": false
+    },
+    "tests.test_t31_concurrency::test_the_history_chain_stays_contiguous_under_concurrency": {
+      "classification": "ENVIRONMENT_SPECIFIC",
+      "evidence": "Reproduced Windows atomic os.replace access denial in pre-T33 untracked State Engine WIP; neither T32 model code nor T33 changes call or alter it. WIP is absent from both commits, so a commit-based source equality claim is unavailable.",
+      "entry_reproduced": true,
+      "t31_failed": false
+    },
+    "tests.test_t31_concurrency::test_no_snapshot_is_stored_partially": {
+      "classification": "ENVIRONMENT_SPECIFIC",
+      "evidence": "Reproduced Windows atomic os.replace access denial in pre-T33 untracked State Engine WIP; neither T32 model code nor T33 changes call or alter it. WIP is absent from both commits, so a commit-based source equality claim is unavailable.",
+      "entry_reproduced": true,
+      "t31_failed": false
+    }
+  },
+  "t32_attributable": 0,
+  "source_comparison": "SOURCE_COMPARISON.json",
+  "training_entry_gate": "PASS: classifications explicit; no T32-attributable failure identified; no State Engine repair undertaken."
+}

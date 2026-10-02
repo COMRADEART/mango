@@ -1,0 +1,617 @@
+{
+  "status": "COMPLETE",
+  "candidate": "A",
+  "feasibility": false,
+  "base_repo": "Qwen/Qwen3-1.7B",
+  "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "base_weight_files": {
+    "model-00001-of-00002.safetensors": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+    "model-00002-of-00002.safetensors": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9"
+  },
+  "starting_adapter": "training/adapters/t32-A-math-restore",
+  "starting_adapter_sha256": "64c2787f3457526ccd5aee571a0c106b8dc67b820886260714d3f55169318acb",
+  "dataset_sha256": "cb66843344ce23af849cf73b3bef51ba99c2f19ab2858901ba8eb9a0c9def292",
+  "protocol_sha256": "368a7c8f5ac87223ad2adc1fe8d3b4f7ae86c4a3ab11e896728d8cebbf9ae31e",
+  "dataset_records": 1593,
+  "trained_records": 1593,
+  "family_counts": {
+    "number theory": 100,
+    "percentages": 119,
+    "probability": 82,
+    "fractions": 116,
+    "ratios": 94,
+    "systems of equations": 119,
+    "arithmetic": 88,
+    "algebraic manipulation": 83,
+    "geometry": 91,
+    "multi-step word problems": 122,
+    "counting": 95,
+    "linear equations": 124,
+    "sequences": 99,
+    "rates": 124,
+    "competition-style algebra": 89,
+    "basic combinatorics": 48
+  },
+  "stage_counts": {
+    "A": 327,
+    "B": 583,
+    "C": 383,
+    "D": 300
+  },
+  "target_length_statistics": {
+    "number theory": {
+      "target_characters": {
+        "median": 474,
+        "p75": 625,
+        "p90": 641,
+        "p95": 643,
+        "max": 653
+      },
+      "target_tokens": {
+        "median": 153,
+        "p75": 234,
+        "p90": 250,
+        "p95": 252,
+        "max": 262
+      },
+      "full_sequence_tokens": {
+        "median": 307,
+        "p75": 334,
+        "p90": 350,
+        "p95": 353,
+        "max": 364
+      }
+    },
+    "percentages": {
+      "target_characters": {
+        "median": 512,
+        "p75": 666,
+        "p90": 710,
+        "p95": 719,
+        "max": 727
+      },
+      "target_tokens": {
+        "median": 192,
+        "p75": 281,
+        "p90": 325,
+        "p95": 334,
+        "max": 342
+      },
+      "full_sequence_tokens": {
+        "median": 390,
+        "p75": 426,
+        "p90": 436,
+        "p95": 442,
+        "max": 452
+      }
+    },
+    "probability": {
+      "target_characters": {
+        "median": 453,
+        "p75": 692,
+        "p90": 714,
+        "p95": 732,
+        "max": 744
+      },
+      "target_tokens": {
+        "median": 189,
+        "p75": 299,
+        "p90": 325,
+        "p95": 343,
+        "max": 355
+      },
+      "full_sequence_tokens": {
+        "median": 271,
+        "p75": 402,
+        "p90": 431,
+        "p95": 447,
+        "max": 460
+      }
+    },
+    "fractions": {
+      "target_characters": {
+        "median": 517,
+        "p75": 668,
+        "p90": 690,
+        "p95": 697,
+        "max": 711
+      },
+      "target_tokens": {
+        "median": 175,
+        "p75": 263,
+        "p90": 285,
+        "p95": 292,
+        "max": 306
+      },
+      "full_sequence_tokens": {
+        "median": 351,
+        "p75": 374,
+        "p90": 392,
+        "p95": 393,
+        "max": 413
+      }
+    },
+    "ratios": {
+      "target_characters": {
+        "median": 391,
+        "p75": 614,
+        "p90": 623,
+        "p95": 632,
+        "max": 648
+      },
+      "target_tokens": {
+        "median": 144,
+        "p75": 242,
+        "p90": 251,
+        "p95": 260,
+        "max": 276
+      },
+      "full_sequence_tokens": {
+        "median": 227,
+        "p75": 346,
+        "p90": 356,
+        "p95": 365,
+        "max": 381
+      }
+    },
+    "systems of equations": {
+      "target_characters": {
+        "median": 529,
+        "p75": 645,
+        "p90": 669,
+        "p95": 676,
+        "max": 679
+      },
+      "target_tokens": {
+        "median": 175,
+        "p75": 250,
+        "p90": 274,
+        "p95": 281,
+        "max": 284
+      },
+      "full_sequence_tokens": {
+        "median": 333,
+        "p75": 353,
+        "p90": 369,
+        "p95": 377,
+        "max": 380
+      }
+    },
+    "arithmetic": {
+      "target_characters": {
+        "median": 384,
+        "p75": 618,
+        "p90": 630,
+        "p95": 634,
+        "max": 644
+      },
+      "target_tokens": {
+        "median": 141,
+        "p75": 250,
+        "p90": 262,
+        "p95": 266,
+        "max": 276
+      },
+      "full_sequence_tokens": {
+        "median": 217,
+        "p75": 347,
+        "p90": 361,
+        "p95": 366,
+        "max": 377
+      }
+    },
+    "algebraic manipulation": {
+      "target_characters": {
+        "median": 388,
+        "p75": 613,
+        "p90": 625,
+        "p95": 631,
+        "max": 633
+      },
+      "target_tokens": {
+        "median": 145,
+        "p75": 245,
+        "p90": 257,
+        "p95": 263,
+        "max": 265
+      },
+      "full_sequence_tokens": {
+        "median": 218,
+        "p75": 338,
+        "p90": 351,
+        "p95": 358,
+        "max": 362
+      }
+    },
+    "geometry": {
+      "target_characters": {
+        "median": 417,
+        "p75": 656,
+        "p90": 668,
+        "p95": 674,
+        "max": 682
+      },
+      "target_tokens": {
+        "median": 155,
+        "p75": 269,
+        "p90": 281,
+        "p95": 287,
+        "max": 295
+      },
+      "full_sequence_tokens": {
+        "median": 241,
+        "p75": 374,
+        "p90": 386,
+        "p95": 393,
+        "max": 401
+      }
+    },
+    "multi-step word problems": {
+      "target_characters": {
+        "median": 500,
+        "p75": 650,
+        "p90": 684,
+        "p95": 693,
+        "max": 704
+      },
+      "target_tokens": {
+        "median": 172,
+        "p75": 248,
+        "p90": 272,
+        "p95": 280,
+        "max": 288
+      },
+      "full_sequence_tokens": {
+        "median": 346,
+        "p75": 369,
+        "p90": 385,
+        "p95": 397,
+        "max": 406
+      }
+    },
+    "counting": {
+      "target_characters": {
+        "median": 405,
+        "p75": 625,
+        "p90": 642,
+        "p95": 643,
+        "max": 645
+      },
+      "target_tokens": {
+        "median": 141,
+        "p75": 236,
+        "p90": 253,
+        "p95": 254,
+        "max": 256
+      },
+      "full_sequence_tokens": {
+        "median": 220,
+        "p75": 335,
+        "p90": 352,
+        "p95": 354,
+        "max": 357
+      }
+    },
+    "linear equations": {
+      "target_characters": {
+        "median": 425,
+        "p75": 580,
+        "p90": 606,
+        "p95": 611,
+        "max": 621
+      },
+      "target_tokens": {
+        "median": 140,
+        "p75": 218,
+        "p90": 244,
+        "p95": 249,
+        "max": 259
+      },
+      "full_sequence_tokens": {
+        "median": 290,
+        "p75": 318,
+        "p90": 333,
+        "p95": 338,
+        "max": 349
+      }
+    },
+    "sequences": {
+      "target_characters": {
+        "median": 426,
+        "p75": 661,
+        "p90": 671,
+        "p95": 673,
+        "max": 675
+      },
+      "target_tokens": {
+        "median": 160,
+        "p75": 270,
+        "p90": 280,
+        "p95": 282,
+        "max": 284
+      },
+      "full_sequence_tokens": {
+        "median": 236,
+        "p75": 365,
+        "p90": 376,
+        "p95": 379,
+        "max": 382
+      }
+    },
+    "rates": {
+      "target_characters": {
+        "median": 441,
+        "p75": 596,
+        "p90": 617,
+        "p95": 621,
+        "max": 629
+      },
+      "target_tokens": {
+        "median": 144,
+        "p75": 226,
+        "p90": 247,
+        "p95": 251,
+        "max": 259
+      },
+      "full_sequence_tokens": {
+        "median": 274,
+        "p75": 338,
+        "p90": 360,
+        "p95": 364,
+        "max": 374
+      }
+    },
+    "competition-style algebra": {
+      "target_characters": {
+        "median": 463,
+        "p75": 703,
+        "p90": 719,
+        "p95": 731,
+        "max": 738
+      },
+      "target_tokens": {
+        "median": 195,
+        "p75": 310,
+        "p90": 326,
+        "p95": 338,
+        "max": 345
+      },
+      "full_sequence_tokens": {
+        "median": 271,
+        "p75": 407,
+        "p90": 424,
+        "p95": 436,
+        "max": 443
+      }
+    },
+    "basic combinatorics": {
+      "target_characters": {
+        "median": 636,
+        "p75": 650,
+        "p90": 662,
+        "p95": 666,
+        "max": 668
+      },
+      "target_tokens": {
+        "median": 241,
+        "p75": 255,
+        "p90": 267,
+        "p95": 271,
+        "max": 273
+      },
+      "full_sequence_tokens": {
+        "median": 340,
+        "p75": 355,
+        "p90": 369,
+        "p95": 371,
+        "max": 376
+      }
+    }
+  },
+  "truncation": 0,
+  "question_shortened": 0,
+  "config": {
+    "records": 1593,
+    "train_sha256": "cb66843344ce23af849cf73b3bef51ba99c2f19ab2858901ba8eb9a0c9def292",
+    "learning_rate": 0.0001,
+    "effective_epochs": 1,
+    "seed": 42,
+    "sequence_length": 2048,
+    "curriculum": {
+      "A": 327,
+      "B": 583,
+      "C": 383,
+      "D": 300
+    },
+    "lora": {
+      "r": 32,
+      "alpha": 64,
+      "dropout": 0.05,
+      "modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "starting_adapter": "training/adapters/t32-A-math-restore",
+    "starting_adapter_sha256": "64c2787f3457526ccd5aee571a0c106b8dc67b820886260714d3f55169318acb",
+    "batch_size": 1,
+    "gradient_accumulation": 16,
+    "optimizer": "adamw_torch",
+    "scheduler": "cosine",
+    "warmup_ratio": 0.03,
+    "quantization": "NF4 double quantization",
+    "precision": "bfloat16",
+    "sampling": "sequential frozen curriculum; randomized within each stage with seed 42; optimizer/scheduler uninterrupted across stages"
+  },
+  "effective_gradient_accumulation": 16,
+  "steps": 100,
+  "epochs": 1.0,
+  "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "peak_vram_bytes": 4120478720,
+  "training_seconds": 1184.817731142044,
+  "records_per_second": 1.344510601191383,
+  "environment": {
+    "recorded_at": "2026-10-02T06:24:24.980600+00:00",
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "torch": "2.5.1+cu121",
+    "cuda": "12.1",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.14.0",
+    "datasets": "5.0.1"
+  },
+  "checkpoint_history": [
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\checkpoints\\t33-A\\checkpoint-100",
+      "files": {
+        "adapter_config.json": "287463a733731b1afb067926814b7a7946edd8b62023f8f8bc55d904b76b58c9",
+        "adapter_model.safetensors": "bdb6752d9fe9da1f047cac4cd03d6cbd7036b39007db9f4967106b8f980e7b0b",
+        "optimizer.pt": "3b552a2670f8d72ec6a7e82e91d5877e46c4cbaee9c9096fefd76c4fa32a5d27",
+        "README.md": "9c16b7d5cbcd4e4f5060780db5dd68a18c3a3668fabcd564cf3fe34286d3310e",
+        "rng_state.pth": "c570f72dcb0b016005850862b616f10757f8b0cdbeb90c0bcd3c5be5a0ff6ba7",
+        "scheduler.pt": "f04599a4aa34097922cdd647aba4678c72acc560e125b5782f2db4943ff9e5fe",
+        "trainer_state.json": "5ea31e81c5d420f941cbb28a6c0c9ad8ccdabb07aa4fcffe4da3a1e1be87a0e7",
+        "training_args.bin": "ab44287b1fc314189f31dbc85f762502c9ecbd0a040f2a85b4c510b6cb1d5cdf"
+      }
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\checkpoints\\t33-A\\checkpoint-25",
+      "files": {}
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\checkpoints\\t33-A\\checkpoint-50",
+      "files": {
+        "adapter_config.json": "287463a733731b1afb067926814b7a7946edd8b62023f8f8bc55d904b76b58c9",
+        "adapter_model.safetensors": "e92d8f020e6e24e5591bb46ce62466e57d1744d68193a98fb03776647ea32b2d",
+        "optimizer.pt": "55c0e7106e8b7caabd35a30f7fa65791806f5a64edb0a43ae2caffbf98c1c011",
+        "README.md": "9c16b7d5cbcd4e4f5060780db5dd68a18c3a3668fabcd564cf3fe34286d3310e",
+        "rng_state.pth": "010f9dd3f86bf8b28e19de10571402580bdfa9187f0c5f766f475e96c9c0d9fa",
+        "scheduler.pt": "98f02718545c4eea12c1321a831ba74a86e53a9cfa93aa61298ebf11c80ee938",
+        "trainer_state.json": "7dbeabe33490a9411829f76207c6f5cc9227068577bf411a33942866be8b6967",
+        "training_args.bin": "ab44287b1fc314189f31dbc85f762502c9ecbd0a040f2a85b4c510b6cb1d5cdf"
+      }
+    },
+    {
+      "path": "C:\\Users\\allam\\Documents\\new\\model\\training\\checkpoints\\t33-A\\checkpoint-75",
+      "files": {
+        "adapter_config.json": "287463a733731b1afb067926814b7a7946edd8b62023f8f8bc55d904b76b58c9",
+        "adapter_model.safetensors": "cbf2e9c2713f6aa54d9f28fa139f07fd7f9e4dcb288586b91022e51acb215a53",
+        "optimizer.pt": "31dbcde0267aac357afd6d4845254a080789b20883cc74d1f931f0c2041e2432",
+        "README.md": "9c16b7d5cbcd4e4f5060780db5dd68a18c3a3668fabcd564cf3fe34286d3310e",
+        "rng_state.pth": "c665d680bcba41dec628fc2b868e0efb9a6b8b2a8e18b1bbb231ebf068259345",
+        "scheduler.pt": "7a35d36325bff6116b97fcfceae990830493fe7ab726f5b5bd03464297e884f9",
+        "trainer_state.json": "3e3a8ad164b218f4ebe05d084046c444856d71fef38442d698451b10375e9078",
+        "training_args.bin": "ab44287b1fc314189f31dbc85f762502c9ecbd0a040f2a85b4c510b6cb1d5cdf"
+      }
+    }
+  ],
+  "resume_history": [],
+  "restart_history": [
+    {
+      "preserved_checkpoint_path": "C:\\Users\\allam\\Documents\\new\\model\\training\\checkpoints\\t33-A-INVALID-20261002T060435",
+      "invalid_prior_run": true,
+      "restart_from": "T32-A",
+      "full_optimizer_scheduler_rng_restarted": true,
+      "equivalent_resume_claimed": false
+    }
+  ],
+  "prior_corpus_invalidation": {
+    "candidate_development_results_measured": false,
+    "correction": "Propagate each faulty core state through all remaining operations; use a value-changing mistaken substitution in a systems problem; preserve dedicated premature/restart pairs.",
+    "candidate": "T33-A initial attempt",
+    "issue": "Initial bad reasoning pairs mixed category errors with omitted final score operations; substitution example did not isolate a value-changing substitution.",
+    "recovery": "Preserve old corpus, protocol, logs and checkpoints; restart entire candidate from T32-A with fresh optimizer/scheduler/RNG; never call it an equivalent resume.",
+    "status": "INVALID_CORPUS_CONSTRUCTION"
+  },
+  "log_history": [
+    {
+      "loss": 1.6718786239624024,
+      "grad_norm": 1.5526249408721924,
+      "learning_rate": 9.905890884491195e-05,
+      "epoch": 0.10043942247332077,
+      "step": 10
+    },
+    {
+      "loss": 0.3499423980712891,
+      "grad_norm": 0.9561969637870789,
+      "learning_rate": 9.343558682590756e-05,
+      "epoch": 0.20087884494664154,
+      "step": 20
+    },
+    {
+      "loss": 0.30949647426605226,
+      "grad_norm": 0.5382809638977051,
+      "learning_rate": 8.329576125058406e-05,
+      "epoch": 0.3013182674199623,
+      "step": 30
+    },
+    {
+      "loss": 0.08493796586990357,
+      "grad_norm": 1.2336993217468262,
+      "learning_rate": 6.969378781246436e-05,
+      "epoch": 0.4017576898932831,
+      "step": 40
+    },
+    {
+      "loss": 0.025725454092025757,
+      "grad_norm": 0.2639901041984558,
+      "learning_rate": 5.4044022018070214e-05,
+      "epoch": 0.5021971123666039,
+      "step": 50
+    },
+    {
+      "loss": 0.030054783821105956,
+      "grad_norm": 0.7617356777191162,
+      "learning_rate": 3.7973752181687335e-05,
+      "epoch": 0.6026365348399246,
+      "step": 60
+    },
+    {
+      "loss": 0.03592755198478699,
+      "grad_norm": 0.20735441148281097,
+      "learning_rate": 2.315399131755081e-05,
+      "epoch": 0.7030759573132455,
+      "step": 70
+    },
+    {
+      "loss": 0.034984931349754333,
+      "grad_norm": 0.18427987396717072,
+      "learning_rate": 1.1125722466017547e-05,
+      "epoch": 0.8035153797865662,
+      "step": 80
+    },
+    {
+      "loss": 0.02702551782131195,
+      "grad_norm": 0.17428946495056152,
+      "learning_rate": 3.1396647496828247e-06,
+      "epoch": 0.903954802259887,
+      "step": 90
+    },
+    {
+      "loss": 0.024807198345661162,
+      "grad_norm": 0.12721037864685059,
+      "learning_rate": 2.6221547724253337e-08,
+      "epoch": 1.0,
+      "step": 100
+    },
+    {
+      "train_runtime": 1184.5396,
+      "train_samples_per_second": 1.345,
+      "train_steps_per_second": 0.084,
+      "total_flos": 3745190460825600.0,
+      "train_loss": 0.25947808995842936,
+      "epoch": 1.0,
+      "step": 100
+    }
+  ],
+  "completed_utc": "2026-10-02T06:24:25.062674+00:00",
+  "adapter_sha256": "bdb6752d9fe9da1f047cac4cd03d6cbd7036b39007db9f4967106b8f980e7b0b",
+  "reload_ok": true
+}

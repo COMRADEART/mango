@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "verified_derivations": 1293,
+  "verified_contrastive_pairs": 224,
+  "canonical_problem_stem_contamination": {
+    "input_count": 1593,
+    "kept": 1593,
+    "removed": 0,
+    "policy": "normalized fingerprint; complete character-4-gram Jaccard >=0.90; no search cap; all references searched",
+    "reference_count": 6367
+  },
+  "B_C_data_byte_identical": true,
+  "A_B_derivation_targets_identical": true,
+  "ordered_curriculum": true
+}

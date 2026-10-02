@@ -1,0 +1,7 @@
+{
+  "old_thresholds_equal_new": true,
+  "old_selection_equal_new": true,
+  "actual_development_ids_questions_choices_gold_equal": true,
+  "candidate_results_before_refreeze": false,
+  "invalid_previous_attempt_preserved": "evaluations/t33/invalid-corpus-v1/INVALIDATION.json"
+}

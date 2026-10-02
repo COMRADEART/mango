@@ -1,0 +1,18 @@
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 3443.20it/s]
+t33-A development 8/560 elapsed=16.8s
+t33-A development 48/560 elapsed=92.6s
+t33-A development 88/560 elapsed=217.9s
+t33-A development 128/560 elapsed=376.8s
+t33-A development 168/560 elapsed=509.6s
+t33-A development 208/560 elapsed=597.5s
+t33-A development 248/560 elapsed=615.4s
+t33-A development 288/560 elapsed=634.0s
+t33-A development 328/560 elapsed=653.8s
+t33-A development 368/560 elapsed=674.0s
+t33-A development 408/560 elapsed=697.2s
+t33-A development 448/560 elapsed=749.9s
+t33-A development 488/560 elapsed=831.9s
+t33-A development 528/560 elapsed=972.1s
+COMPLETE t33-A development
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 8389.90it/s]
+COMPLETE t33-A development

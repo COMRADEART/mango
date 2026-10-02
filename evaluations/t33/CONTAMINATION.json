@@ -1,0 +1,39 @@
+{
+  "development": {
+    "input_count": 560,
+    "kept": 560,
+    "removed": 0,
+    "policy": "normalized fingerprint; complete character-4-gram Jaccard >=0.90; no search cap; all references searched",
+    "reference_count": 6367
+  },
+  "math": {
+    "input_count": 1152,
+    "kept": 1069,
+    "removed": 83,
+    "policy": "normalized fingerprint; complete character-4-gram Jaccard >=0.90; no search cap; all references searched",
+    "reference_count": 7677
+  },
+  "repairs": {
+    "input_count": 224,
+    "kept": 224,
+    "removed": 0,
+    "policy": "normalized fingerprint; complete character-4-gram Jaccard >=0.90; no search cap; all references searched",
+    "reference_count": 7677
+  },
+  "direct": {
+    "input_count": 300,
+    "kept": 300,
+    "removed": 0,
+    "policy": "normalized fingerprint; complete character-4-gram Jaccard >=0.90; no search cap; all references searched",
+    "reference_count": 7677
+  },
+  "final_reference_count": 6367,
+  "passed": true,
+  "reference_hashes": {
+    "gsm8k": "0dde92a01616d2d39418f0c1e23e3dc14c86a72b2335a2fba997878a692b3ed3",
+    "math500": "1136251184fb190c790c2e0b4e223db49571c72b84eb794b01cb42ebd9651832",
+    "arc_easy": "671f8b81fab93a783e4d3c5d76ec463e51e3a27783070931e7587f8187aff8fc",
+    "arc_challenge": "6a3d22a7bf81874c62ec3302b958b6802d7369b62c2097ef779365a2ad2d9b37",
+    "sciq": "9f661ed1832daeceaf8f22d514f083ec11631e2c4352a50a082942e78c9487d2"
+  }
+}

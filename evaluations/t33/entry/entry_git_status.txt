@@ -1,0 +1,105 @@
+ D evaluations/t21r10/suites/mango-t21r10-adversarial-holdout-v1/holdout.jsonl
+ D evaluations/t21r10/suites/mango-t21r10-citation-claim-holdout-v1/holdout.jsonl
+ D evaluations/t21r10/suites/mango-t21r10-conflict-abstention-holdout-v1/holdout.jsonl
+ D evaluations/t21r10/suites/mango-t21r10-crossdomain-holdout-v1/holdout.jsonl
+ D evaluations/t21r10/suites/mango-t21r10-multihop-holdout-v1/holdout.jsonl
+ D evaluations/t21r10/suites/mango-t21r10-retrieval-holdout-v1/holdout.jsonl
+ D evaluations/t21r10/suites/mango-t21r10-singlehop-holdout-v1/holdout.jsonl
+ D evaluations/t21r10/suites/mango-t21r10-temporal-holdout-v1/holdout.jsonl
+ M evaluations/t32/development/OPS_NOTES.md
+ M evaluations/t32/development/recovery_focused_junit.xml
+ D rag/gk_holdout_t21r10/chunks.jsonl
+ D rag/gk_holdout_t21r10/corpus_manifest.json
+ D rag/gk_holdout_t21r10/sources.jsonl
+ D rag/gk_holdout_t21r10/world.jsonl
+ M scripts/t32_chain.py
+ M src/sciencemath/t32/closure.py
+ M src/sciencemath/t32/final_eval.py
+ M src/sciencemath/t32/trace_audit.py
+ M src/sciencemath/t32/train_candidate.py
+?? .audit_t21r10/
+?? .audit_t21r11_after_pytest.txt
+?? .audit_t21r11_baseline_junit.xml
+?? .audit_t21r11_baseline_pytest.txt
+?? .cline-profiles.json
+?? .codex-t21-protocol-kernel/
+?? .codex-t21r8-infra-repair/
+?? .codex-t21r9-preconstruction/
+?? .codex-t22-promotion/
+?? .codex-t23-freeze-repro/
+?? .codex-t23-real-construction/
+?? .codex-t23-repro/
+?? .wt-mango-hf-release/
+?? .wt-readme-hf/
+?? .wt-t26-preconstruction/
+?? .wt-t26-remediation-final3/
+?? .wt-t26-repro-final/
+?? .wt-t26-repro/
+?? .wt-t30-official-evaluation/
+?? .wt-t30-preconstruction/
+?? .wt-t30-promotion/
+?? .wt-t30-real-construction/
+?? artifacts/.pytest_t21r7_final/
+?? artifacts/.pytest_t21r7_fullgreen/
+?? artifacts/.pytest_t21r7_shimcheck2/
+?? artifacts/.pytest_t21r7_subset/
+?? artifacts/.pytest_t21r7_subset2/
+?? artifacts/t31_baseline/
+?? artifacts/t31_design/
+?? evaluations/t21r11/qualification_applicable_junit.xml
+?? evaluations/t21r11/qualification_focused_junit.xml
+?? evaluations/t21r11/qualification_remediation_junit.xml
+?? evaluations/t21r13/T21R13_CONSTRUCTION_REFUSAL_EVIDENCE.json
+?? evaluations/t32/SHA256SUMS
+?? evaluations/t32/development/chain_restart_error.txt
+?? evaluations/t32/development/chain_restart_log.txt
+?? evaluations/t32/development/closure_log.txt
+?? evaluations/t32/development/final_log.txt
+?? evaluations/t32/development/handoff_current_junit.xml
+?? evaluations/t32/development/isolated_import_audit/
+?? evaluations/t32/development/paired_log.txt
+?? evaluations/t32/development/recovery_focused_log.txt
+?? evaluations/t32/development/recovery_review_log.txt
+?? evaluations/t32/development/run_isolated_import_audit.py
+?? evaluations/t32/development/t32-A_artifact_hash.json
+?? evaluations/t32/development/t32-B_artifact_hash.json
+?? evaluations/t32/development/t32-C_artifact_hash.json
+?? evaluations/t32/development/trace_log.txt
+?? evaluations/t32/development/trace_review_checks_junit.xml
+?? evaluations/t32/final/
+?? evaluations/t32/manifests/T32_ORIGINAL_DIRECTIVE.txt
+?? evaluations/t32/manifests/T32_PACK_VERIFICATION.json
+?? evaluations/t32/manifests/T32_TRAINING_RECEIPT.json
+?? evaluations/t32/paired/
+?? evaluations/t32/reports/
+?? evaluations/t33/
+?? scripts/t33_entry.py
+?? src/sciencemath/state_engine/
+?? t21r16_eval_runner/
+?? tests/t31_support.py
+?? tests/test_t31_actions.py
+?? tests/test_t31_authority_boundary.py
+?? tests/test_t31_canonical_serialization.py
+?? tests/test_t31_collector_degradation.py
+?? tests/test_t31_concurrency.py
+?? tests/test_t31_diff_engine.py
+?? tests/test_t31_event_integration.py
+?? tests/test_t31_history.py
+?? tests/test_t31_observation_quality.py
+?? tests/test_t31_pattern_brain_adapter.py
+?? tests/test_t31_persistence.py
+?? tests/test_t31_recovery.py
+?? tests/test_t31_schema_versioning.py
+?? tests/test_t31_snapshot_immutability.py
+?? tests/test_t31_snapshot_policy.py
+?? tests/test_t31_state_schema.py
+?? tests/test_t31_telemetry.py
+?? tests/test_t31_transitions.py
+?? tests/test_t31_validation_scenario.py
+?? training/adapters/t32-A-math-restore/
+?? training/adapters/t32-B-task-balanced/
+?? training/adapters/t32-C-conservative/
+?? training/t32/pools/fresh_pool.jsonl
+?? wt2.txt
+?? wtb.txt
+?? wtr.txt

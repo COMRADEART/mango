@@ -1,0 +1,14 @@
+Project pytest exit 1
+{
+  "measured_counts": {
+    "total": 4514,
+    "passed": 4452,
+    "failures": 50,
+    "errors": 11,
+    "skipped": 1
+  },
+  "classification_counts": {
+    "PRE_EXISTING": 60,
+    "ENVIRONMENT_SPECIFIC": 1
+  }
+}

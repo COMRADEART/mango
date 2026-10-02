@@ -1,0 +1,28 @@
+{
+  "status": "BLOCKED_EXECUTION_CHANNEL",
+  "recorded_at": "2026-10-02T05:47:33.3286359-04:00",
+  "completed_candidates": [
+    "A",
+    "B"
+  ],
+  "incomplete_candidate": "C",
+  "candidate_c_last_step": 75,
+  "candidate_c_failure": "PytorchStreamWriter failed writing optimizer checkpoint data/1082; optimizer.pt is incomplete",
+  "cause": "Undetermined; reported free disk approximately 3.3 GB after failure",
+  "final_selection_completed": false,
+  "final_benchmark_started": false,
+  "t33_closed": false,
+  "t34_started": false,
+  "execution_blocker": "Multiple require_escalated requests, including read-only Get-Date, returned sessions but remain pending without output; do not bypass approval",
+  "resume_policy": "Investigate storage/runtime; archive incomplete C attempt and restart from frozen T32-A with unchanged data, learning rate, and selection thresholds",
+  "pending_sessions": [
+    31112,
+    40114,
+    58656,
+    83853,
+    6575,
+    64466
+  ],
+  "chain_resume_command": "Python312/python.exe -u scripts/t33_chain.py",
+  "regression_session": 28168
+}

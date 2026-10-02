@@ -1,0 +1,140 @@
+diff --git a/scripts/t32_chain.py b/scripts/t32_chain.py
+index d8f8533..1d0400c 100644
+--- a/scripts/t32_chain.py
++++ b/scripts/t32_chain.py
+@@ -46,7 +46,24 @@ def run(step: str, argv: list[str]) -> int:
+ 
+ def train_done(tag: str) -> bool:
+     m = ROOT / "training" / "adapters" / CANDS[tag] / "training_manifest.json"
+-    return m.exists()
++    receipt = DEV / f"train_Mango-T32-{tag}-{CANDS[tag].split('-', 2)[2]}.json"
++    if not m.exists() or not receipt.exists():
++        return False
++    summary = json.loads(receipt.read_text(encoding="utf-8")).get("summary", {})
++    return summary.get("status") == "COMPLETE" and summary.get("reload_ok") is True
++
++
++def final_rows_complete(label: str) -> bool:
++    counts = {"gsm8k": 1319, "math500": 500, "arc_easy": 2376,
++              "arc_challenge": 1172, "sciq": 1000}
++    for benchmark, count in counts.items():
++        path = ROOT / "evaluations/t32/final" / label / f"{benchmark}.jsonl"
++        if not path.exists():
++            return False
++        rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
++        if len(rows) != count or len({r["item_id"] for r in rows}) != count:
++            return False
++    return True
+ 
+ 
+ def dev_metrics(label: str) -> dict | None:
+@@ -133,10 +150,7 @@ def main() -> int:
+     log("selection", f"selected={selected}")
+ 
+     # ---- 5. Phase 9 final locked eval (ONE run) ----
+-    if (ROOT / "evaluations" / "t32" / "final" / selected).exists() and \
+-            all((ROOT / "evaluations" / "t32" / "final" / selected /
+-                 f"{b}.jsonl").exists() for b in
+-                ("gsm8k", "math500", "arc_easy", "arc_challenge", "sciq")):
++    if final_rows_complete(selected):
+         log("final", "fresh arm rows already complete; skipping")
+     else:
+         t = time.time()
+diff --git a/src/sciencemath/t32/closure.py b/src/sciencemath/t32/closure.py
+index f369586..057c52d 100644
+--- a/src/sciencemath/t32/closure.py
++++ b/src/sciencemath/t32/closure.py
+@@ -181,16 +181,19 @@ def main():
+               '## Final benchmark table', '', '| Benchmark | Base % | T30 % | T32 % | Δ vs T30 pp | Δ vs base pp |', '|---|---:|---:|---:|---:|---:|']
+     for b, m in table.items():
+         lines.append(f"| {b} | {m['base']*100:.2f} | {m['t30']*100:.2f} | {m['t32']*100:.2f} | {m['delta_vs_t30_pp']:+.2f} | {m['delta_vs_base_pp']:+.2f} |")
++    review_path = PACK / 'reports/T32_QUALITATIVE_REVIEW.json'
++    review_text = (json.dumps(read(review_path), indent=2, ensure_ascii=False)
++                   if review_path.exists() else 'Qualitative review pending.')
+     lines += ['', '## Paired analysis', '', 'Exact McNemar tests and paired-delta normal 95% intervals are recorded per benchmark in `paired/T32_PAIRED_ANALYSIS.json`. Intervals use the variance of per-item paired correctness differences; no scores are pooled.', '',
+               '## Math restoration', '', f"GSM8K: {table['gsm8k']['delta_vs_t30_pp']:+.2f} pp. MATH-500: {table['math500']['delta_vs_t30_pp']:+.2f} pp. Both meet the +5 pp floor: {math_ok}.", '',
+               '## Capability preservation', '', json.dumps(preserved_gains), '',
+-              '## Trace audit', '', f'`final/T32_TRACE_AUDIT_{label}.md` contains deterministic samples of T30-wrong/T32-right, T30-right/T32-wrong and base-right/T32-wrong for both math and ARC benchmarks. Human qualitative conclusions require inspection of these traces.', '',
++              '## Trace audit', '', f'`final/T32_TRACE_AUDIT_{label}.md` contains deterministic samples of T30-wrong/T32-right, T30-right/T32-wrong and base-right/T32-wrong for both math and ARC benchmarks.', '', review_text, '',
+               '## Contamination audit', '', json.dumps(contamination, indent=2), '',
+               '## Tests', '', reg['command'], '', f"{current['passed']} passed, {current['failed_or_error']} failures/errors, {current['skipped']} skipped.", '',
+               '## Regression classification', '', f'{len(existing)} failed test IDs also failed in the T31 closure run; {len(reviewed)} were reviewed as environment/concurrency failures with passing isolated or focused checks; {len(new)} remain new or unclassified. Original failures are retained. Details: `reports/T32_REGRESSION_CLASSIFICATION.json`.', '',
+               '## Artifacts', '', 'Diagnostics, development rows and selection, fresh final generations with scored fields, paired analysis, trace samples, frozen candidate manifests, training receipt, gate results and SHA256SUMS are retained. Final raw text is preserved on every scored row.', '',
+               '## Known limitations', '',
+-              'The base/T30 arms reuse historical frozen generations rather than fresh runs. The development protocol omitted a model-generated schema-validity metric, so schema preservation is not established. Diagnostic hypotheses are observational and the explicit-derivation probe uses a selected failure set. Paired normal intervals are approximate. Training checkpoint interruptions and restart history are disclosed in the operational notes and receipt. Candidate B resumed model weights at step 500 with recreated optimizer, scheduler and RNG after interruption at step 574; its altered optimization history limits interpretation as a pure mixture ablation. Final trace samples require qualitative review before interpreting mechanism.', '',
++              'The base/T30 arms reuse historical frozen generations rather than fresh runs. The development protocol omitted a model-generated schema-validity metric, so schema preservation is not established. Diagnostic hypotheses are observational and the explicit-derivation probe uses a selected failure set. Paired normal intervals are approximate. Training checkpoint interruptions and restart history are disclosed in the operational notes and receipt. Candidate B resumed model weights at step 500 with recreated optimizer, scheduler and RNG after interruption at step 574; its altered optimization history limits interpretation as a pure mixture ablation. Outcome-stratified trace samples have been reviewed; they are not prevalence estimates. Frozen endpoint scores do not validate intermediate reasoning, and sampled T30 gold-matching answers sometimes contain invalid derivations. Root-cause labels are observational interpretations rather than causal proof. The final focused concurrency check passed nine tests and failed two with Windows os.replace PermissionError in unchanged frozen state-index publication; see reports/T32_CONCURRENCY_REVIEW.json. These remain unresolved and the regression gate fails.', '',
+               '## Gate results', '', '| Gate | Result |', '|---|---|']
+     lines += [f"| {k} | {'PASS' if v else 'FAIL'} |" for k, v in gates.items()]
+     lines += ['', '## Decision', '', f'`{decision}`', '']
+diff --git a/src/sciencemath/t32/final_eval.py b/src/sciencemath/t32/final_eval.py
+index 7e6af67..b978e3e 100644
+--- a/src/sciencemath/t32/final_eval.py
++++ b/src/sciencemath/t32/final_eval.py
+@@ -126,6 +126,17 @@ def main() -> int:
+             if row["adapter_sha256"] != identity["weights_sha256"]:
+                 raise SystemExit(f"Adapter drift in {path}")
+         pending = [it for it in items if it.item_id not in done]
++        item_map = {it.item_id: it for it in items}
++        for row in raws:
++            text = prompt_text(item_map[row["item_id"]], kind)
++            expected_prompt = hashlib.sha256(("\x00" + text).encode("utf-8")).hexdigest()
++            expected_rendered = hashlib.sha256(render_chat(tok, text, enable_thinking=False).encode("utf-8")).hexdigest()
++            if (row.get("config_hash") != frozen["config_sha256"]
++                    or row.get("prompt_sha256") != expected_prompt
++                    or row.get("rendered_prompt_sha256") != expected_rendered
++                    or row.get("max_new_tokens") != budgets[b]
++                    or row.get("model_revision") != identity["base_revision"]):
++                raise SystemExit(f"Frozen measurement drift in persisted row {row['item_id']}")
+         for start in range(0, len(pending), BATCH):
+             chunk = pending[start:start + BATCH]
+             texts = [prompt_text(it, kind) for it in chunk]
+diff --git a/src/sciencemath/t32/trace_audit.py b/src/sciencemath/t32/trace_audit.py
+index 82c42cd..dcd5489 100644
+--- a/src/sciencemath/t32/trace_audit.py
++++ b/src/sciencemath/t32/trace_audit.py
+@@ -52,8 +52,8 @@ def main() -> int:
+         "# T32 Phase 10 — qualitative trace audit",
+         "",
+         f"Fresh arm: `{args.arm_label}`; frozen arms: `base`, `adapter "
+-        f"(T30)`; samples are the sorted head of item_id per benchmark "
+-        f"(deterministic; no model-dependent selection).",
++        f"(T30)`; samples are the sorted head of item_id within the declared "
++        f"outcome groups per benchmark (deterministic; post-selection audit only).",
+         "",
+     ]
+     for b in [s for s in args.benchmarks.split(",") if s]:
+@@ -86,7 +86,7 @@ def main() -> int:
+                     + f", {row.get('output_tokens')} tok] "
+                     f"extracted: {row.get('extracted_answer')!r}",
+                     "", "```text",
+-                    (row.get("raw_generation") or "")[:2000],
++                    (row.get("raw_generation") or ""),
+                     "```", ""]
+     path = OUT / f"T32_TRACE_AUDIT_{args.arm_label}.md"
+     path.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+diff --git a/src/sciencemath/t32/train_candidate.py b/src/sciencemath/t32/train_candidate.py
+index 501987f..b2c0fd4 100644
+--- a/src/sciencemath/t32/train_candidate.py
++++ b/src/sciencemath/t32/train_candidate.py
+@@ -104,6 +104,14 @@ def main() -> int:
+     out.mkdir(parents=True, exist_ok=True)
+     record = {"candidate": cand["artifact_name"], "recipe_echo": echoed,
+               "summary": summary}
++    recovery_path = out / f"{name}_RECOVERY_RECORD.json"
++    if recovery_path.exists():
++        recovery = json.loads(recovery_path.read_text(encoding="utf-8-sig"))
++        record["interruption_recovery"] = recovery
++        adapter_manifest_path = Path(cand["adapter_output_dir"]) / "training_manifest.json"
++        adapter_manifest = json.loads(adapter_manifest_path.read_text(encoding="utf-8"))
++        adapter_manifest["interruption_recovery"] = recovery
++        adapter_manifest_path.write_text(json.dumps(adapter_manifest, indent=2, default=str) + "\n", encoding="utf-8")
+     path = out / f"train_{cand['artifact_name']}.json"
+     path.write_text(json.dumps(record, indent=2, default=str) + "\n",
+                     encoding="utf-8", newline="\n")
+@@ -118,4 +126,4 @@ def main() -> int:
+ 
+ 
+ if __name__ == "__main__":
+-    raise SystemExit(main())
+\ No newline at end of file
++    raise SystemExit(main())

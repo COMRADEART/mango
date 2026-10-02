@@ -1,0 +1,399 @@
+{
+  "families": {
+    "number theory": {
+      "target_characters": {
+        "median": 474,
+        "p75": 625,
+        "p90": 641,
+        "p95": 643,
+        "max": 653
+      },
+      "target_tokens": {
+        "median": 153,
+        "p75": 234,
+        "p90": 250,
+        "p95": 252,
+        "max": 262
+      },
+      "full_sequence_tokens": {
+        "median": 298,
+        "p75": 359,
+        "p90": 375,
+        "p95": 378,
+        "max": 389
+      }
+    },
+    "percentages": {
+      "target_characters": {
+        "median": 512,
+        "p75": 666,
+        "p90": 710,
+        "p95": 719,
+        "max": 727
+      },
+      "target_tokens": {
+        "median": 192,
+        "p75": 281,
+        "p90": 325,
+        "p95": 334,
+        "max": 342
+      },
+      "full_sequence_tokens": {
+        "median": 356,
+        "p75": 411,
+        "p90": 457,
+        "p95": 466,
+        "max": 477
+      }
+    },
+    "probability": {
+      "target_characters": {
+        "median": 453,
+        "p75": 692,
+        "p90": 714,
+        "p95": 732,
+        "max": 744
+      },
+      "target_tokens": {
+        "median": 189,
+        "p75": 299,
+        "p90": 325,
+        "p95": 343,
+        "max": 355
+      },
+      "full_sequence_tokens": {
+        "median": 296,
+        "p75": 427,
+        "p90": 456,
+        "p95": 472,
+        "max": 485
+      }
+    },
+    "fractions": {
+      "target_characters": {
+        "median": 517,
+        "p75": 668,
+        "p90": 690,
+        "p95": 697,
+        "max": 711
+      },
+      "target_tokens": {
+        "median": 175,
+        "p75": 263,
+        "p90": 285,
+        "p95": 292,
+        "max": 306
+      },
+      "full_sequence_tokens": {
+        "median": 337,
+        "p75": 387,
+        "p90": 410,
+        "p95": 418,
+        "max": 431
+      }
+    },
+    "ratios": {
+      "target_characters": {
+        "median": 391,
+        "p75": 614,
+        "p90": 623,
+        "p95": 632,
+        "max": 648
+      },
+      "target_tokens": {
+        "median": 144,
+        "p75": 242,
+        "p90": 251,
+        "p95": 260,
+        "max": 276
+      },
+      "full_sequence_tokens": {
+        "median": 252,
+        "p75": 371,
+        "p90": 381,
+        "p95": 390,
+        "max": 406
+      }
+    },
+    "systems of equations": {
+      "target_characters": {
+        "median": 430,
+        "p75": 655,
+        "p90": 673,
+        "p95": 679,
+        "max": 679
+      },
+      "target_tokens": {
+        "median": 160,
+        "p75": 260,
+        "p90": 278,
+        "p95": 284,
+        "max": 284
+      },
+      "full_sequence_tokens": {
+        "median": 259,
+        "p75": 379,
+        "p90": 400,
+        "p95": 403,
+        "max": 405
+      }
+    },
+    "arithmetic": {
+      "target_characters": {
+        "median": 384,
+        "p75": 618,
+        "p90": 630,
+        "p95": 634,
+        "max": 644
+      },
+      "target_tokens": {
+        "median": 141,
+        "p75": 250,
+        "p90": 262,
+        "p95": 266,
+        "max": 276
+      },
+      "full_sequence_tokens": {
+        "median": 242,
+        "p75": 372,
+        "p90": 386,
+        "p95": 391,
+        "max": 402
+      }
+    },
+    "algebraic manipulation": {
+      "target_characters": {
+        "median": 443,
+        "p75": 598,
+        "p90": 623,
+        "p95": 628,
+        "max": 633
+      },
+      "target_tokens": {
+        "median": 150,
+        "p75": 230,
+        "p90": 255,
+        "p95": 260,
+        "max": 265
+      },
+      "full_sequence_tokens": {
+        "median": 298,
+        "p75": 348,
+        "p90": 375,
+        "p95": 379,
+        "max": 387
+      }
+    },
+    "geometry": {
+      "target_characters": {
+        "median": 417,
+        "p75": 656,
+        "p90": 668,
+        "p95": 674,
+        "max": 682
+      },
+      "target_tokens": {
+        "median": 155,
+        "p75": 269,
+        "p90": 281,
+        "p95": 287,
+        "max": 295
+      },
+      "full_sequence_tokens": {
+        "median": 266,
+        "p75": 399,
+        "p90": 411,
+        "p95": 418,
+        "max": 426
+      }
+    },
+    "multi-step word problems": {
+      "target_characters": {
+        "median": 500,
+        "p75": 650,
+        "p90": 684,
+        "p95": 693,
+        "max": 704
+      },
+      "target_tokens": {
+        "median": 172,
+        "p75": 248,
+        "p90": 272,
+        "p95": 280,
+        "max": 288
+      },
+      "full_sequence_tokens": {
+        "median": 340,
+        "p75": 387,
+        "p90": 410,
+        "p95": 422,
+        "max": 431
+      }
+    },
+    "counting": {
+      "target_characters": {
+        "median": 405,
+        "p75": 625,
+        "p90": 642,
+        "p95": 643,
+        "max": 645
+      },
+      "target_tokens": {
+        "median": 141,
+        "p75": 236,
+        "p90": 253,
+        "p95": 254,
+        "max": 256
+      },
+      "full_sequence_tokens": {
+        "median": 245,
+        "p75": 360,
+        "p90": 377,
+        "p95": 379,
+        "max": 382
+      }
+    },
+    "linear equations": {
+      "target_characters": {
+        "median": 425,
+        "p75": 580,
+        "p90": 606,
+        "p95": 611,
+        "max": 621
+      },
+      "target_tokens": {
+        "median": 140,
+        "p75": 218,
+        "p90": 244,
+        "p95": 249,
+        "max": 259
+      },
+      "full_sequence_tokens": {
+        "median": 276,
+        "p75": 330,
+        "p90": 358,
+        "p95": 363,
+        "max": 374
+      }
+    },
+    "sequences": {
+      "target_characters": {
+        "median": 426,
+        "p75": 661,
+        "p90": 671,
+        "p95": 673,
+        "max": 675
+      },
+      "target_tokens": {
+        "median": 160,
+        "p75": 270,
+        "p90": 280,
+        "p95": 282,
+        "max": 284
+      },
+      "full_sequence_tokens": {
+        "median": 261,
+        "p75": 390,
+        "p90": 401,
+        "p95": 404,
+        "max": 407
+      }
+    },
+    "rates": {
+      "target_characters": {
+        "median": 441,
+        "p75": 596,
+        "p90": 617,
+        "p95": 621,
+        "max": 629
+      },
+      "target_tokens": {
+        "median": 144,
+        "p75": 226,
+        "p90": 247,
+        "p95": 251,
+        "max": 259
+      },
+      "full_sequence_tokens": {
+        "median": 299,
+        "p75": 363,
+        "p90": 385,
+        "p95": 389,
+        "max": 399
+      }
+    },
+    "competition-style algebra": {
+      "target_characters": {
+        "median": 463,
+        "p75": 703,
+        "p90": 719,
+        "p95": 731,
+        "max": 738
+      },
+      "target_tokens": {
+        "median": 195,
+        "p75": 310,
+        "p90": 326,
+        "p95": 338,
+        "max": 345
+      },
+      "full_sequence_tokens": {
+        "median": 296,
+        "p75": 432,
+        "p90": 449,
+        "p95": 461,
+        "max": 468
+      }
+    },
+    "basic combinatorics": {
+      "target_characters": {
+        "median": 636,
+        "p75": 650,
+        "p90": 662,
+        "p95": 666,
+        "max": 668
+      },
+      "target_tokens": {
+        "median": 241,
+        "p75": 255,
+        "p90": 267,
+        "p95": 271,
+        "max": 273
+      },
+      "full_sequence_tokens": {
+        "median": 365,
+        "p75": 380,
+        "p90": 394,
+        "p95": 396,
+        "max": 401
+      }
+    },
+    "science MC": {
+      "target_characters": {
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "p95": 1,
+        "max": 1
+      },
+      "target_tokens": {
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "p95": 3,
+        "max": 3
+      },
+      "full_sequence_tokens": {
+        "median": 64,
+        "p75": 69,
+        "p90": 74,
+        "p95": 77,
+        "max": 103
+      }
+    }
+  },
+  "records": 1893,
+  "truncation_count": 0,
+  "question_shortened": 0,
+  "dropped": 0
+}

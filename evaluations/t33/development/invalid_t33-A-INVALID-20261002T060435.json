@@ -1,0 +1,5 @@
+{
+  "status": "INVALID_INTERRUPTED",
+  "preserved_path": "C:\\Users\\allam\\Documents\\new\\model\\training\\checkpoints\\t33-A-INVALID-20261002T060435",
+  "policy": "Whole candidate restarted from frozen T32-A; not called an equivalent resume"
+}
