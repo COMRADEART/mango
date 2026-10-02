@@ -1,0 +1,55 @@
+{
+  "artifact": "T21R13_PRECONSTRUCTION_INTERFACE_REPAIR",
+  "bindings": {
+    "construction_gate_sha256": "fdc34b4394bade6493078dc9f31bc5292d610fb3010cd4b541be6e6c579ef9f1",
+    "holdout_construction_contract_sha256": "0cf9525d6941bfe1c07c165ece4bbf67bca65a472cea87649d68a59047b17b07",
+    "prior_exclusion_sha256": "6444fabbaa69522200b98aa995a392a4add31803a6240a9ea6b644d7e18dc051"
+  },
+  "blocker": {
+    "classification": "FROZEN_PRIOR_EXCLUSION_ARTIFACT_STRUCTURAL_INTEGRITY_FAILURE",
+    "consequence": "Repaired exclusion validators fail closed (refuse raw values); historical exclusion cannot be proven overlap=0; real construction cannot proceed",
+    "findings": [
+      "T21R11_INVALID_SEALED milestone stores RAW blind values (not SHA-256 fingerprints) across all 8 dimensions; violates registered raw_values_included=false and hash-only blindness rule; sample case_ids=r11b-av-0000",
+      "T21R12_FAILED_PARTIAL_BLIND milestone uses wrong/empty dimension names (answer, query, ...) with None payloads and is MISSING all 8 canonical dimensions",
+      "artifact internal contradiction: historical_milestone_count=13 vs historical_milestones=12 (milestone_order omits T21R12)"
+    ],
+    "required_next": "Authorized preconstruction amendment to rebuild the prior-exclusion artifact with hash-only fingerprints for all 13 milestones x 8 dimensions, with the exclusion fingerprint builder re-qualified, before any new T21R13 construction authorization",
+    "scope": "outside authorized pre-ledger interface repair scope",
+    "severity": "BLOCKING"
+  },
+  "candidate": {
+    "changed": false,
+    "commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+    "tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b"
+  },
+  "construction_ledger_created": false,
+  "exposure": {
+    "candidate_R13_rows_executed": 0,
+    "official_evaluator_invocations": 0,
+    "real_R13_rows": 0,
+    "runtime_rows_executed": 0
+  },
+  "gate_interface_repair": {
+    "canonical_implementation": "evaluate_levels (unchanged)",
+    "files_changed": [
+      "scripts/t21r13_construction_gate.py",
+      "scripts/t21r13_static_gold_audit.py",
+      "scripts/t21r13_blind_author.py",
+      "scripts/t21r13_freeze_holdout.py",
+      "scripts/t21r13_uniqueness.py",
+      "scripts/t21r13_preconstruction.py",
+      "scripts/t21r13_spec_author.py"
+    ],
+    "live_verification": "50/50 gate checks PASS with zero-exposure metrics; 38/38 exact-design; CLI/API equivalent; cross-check 0 disagreements",
+    "new_files": [
+      "scripts/t21r13_exact_design_auditor.py"
+    ],
+    "restored": "build_gate_report(contract, metrics, rows, context=..., miniature=...)",
+    "status": "PASS"
+  },
+  "one_shot_budget_consumed": false,
+  "repair_scope": "PRELEDGER_CONSTRUCTION_GATE_INTERFACE",
+  "runtime_root_unchanged": true,
+  "status": "T21R13_REAL_BLIND_CONSTRUCTION_READINESS_FAIL",
+  "verdict": "T21R13_REAL_BLIND_CONSTRUCTION_READINESS_FAIL"
+}

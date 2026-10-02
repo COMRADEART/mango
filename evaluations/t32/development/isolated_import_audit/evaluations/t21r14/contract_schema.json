@@ -1,0 +1,352 @@
+{
+  "artifact": "T21R14_CONTRACT_SCHEMA",
+  "field_count": 26,
+  "fields": [
+    {
+      "canonical_representation": "string",
+      "consumers": [
+        "t21r14_world.py",
+        "t21r14_build_suites.py",
+        "t21r14_freeze_holdout.py",
+        "t21r14_construction_gate.py"
+      ],
+      "example": "mango-r14b-v1",
+      "field_path": "blind_namespace",
+      "json_type": "string",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "non-empty string; must equal preregistered namespace"
+    },
+    {
+      "canonical_representation": "string",
+      "consumers": [
+        "t21r14_build_suites.py",
+        "t21r14_blind_author.py"
+      ],
+      "example": "r14b-",
+      "field_path": "case_id_prefix",
+      "json_type": "string",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "non-empty string ending with hyphen; separate from blind_namespace"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_build_suites.py",
+        "t21r14_construction_gate.py"
+      ],
+      "example": {
+        "mango-t21r14-adversarial-holdout-v1": 650,
+        "mango-t21r14-citation-claim-holdout-v1": 450,
+        "mango-t21r14-conflict-abstention-holdout-v1": 800,
+        "mango-t21r14-crossdomain-holdout-v1": 700,
+        "mango-t21r14-multihop-holdout-v1": 800,
+        "mango-t21r14-retrieval-holdout-v1": 600,
+        "mango-t21r14-singlehop-holdout-v1": 550,
+        "mango-t21r14-temporal-holdout-v1": 250
+      },
+      "field_path": "suite_target_exact",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "map of suite_id -> exact integer count; sum == total_rows_exact"
+    },
+    {
+      "canonical_representation": "integer",
+      "consumers": [
+        "t21r14_construction_gate.py",
+        "t21r14_build_suites.py"
+      ],
+      "example": 4800,
+      "field_path": "total_rows_exact",
+      "json_type": "integer",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "exact integer 4800"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py",
+        "t21r14_exact_design_lib.py",
+        "t21r14_blind_author.py"
+      ],
+      "example": null,
+      "field_path": "multihop_exact_design",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "exact-design leaf object; leaf types per exact_design_schema"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py",
+        "t21r14_exact_design_lib.py",
+        "t21r14_blind_author.py"
+      ],
+      "example": null,
+      "field_path": "crossdomain_exact_design",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "exact-design leaf object; leaf types per exact_design_schema"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py",
+        "t21r14_exact_design_lib.py",
+        "t21r14_blind_author.py"
+      ],
+      "example": null,
+      "field_path": "citation_exact_design",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "exact-design leaf object; leaf types per exact_design_schema"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py",
+        "t21r14_exact_design_lib.py",
+        "t21r14_blind_author.py"
+      ],
+      "example": null,
+      "field_path": "conflict_exact_design",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "exact-design leaf object; leaf types per exact_design_schema"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py",
+        "t21r14_exact_design_lib.py",
+        "t21r14_blind_author.py"
+      ],
+      "example": null,
+      "field_path": "temporal_exact_design",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "exact-design leaf object; leaf types per exact_design_schema"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py",
+        "t21r14_exact_design_lib.py",
+        "t21r14_blind_author.py"
+      ],
+      "example": null,
+      "field_path": "security_exact_design",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "exact-design leaf object; leaf types per exact_design_schema"
+    },
+    {
+      "canonical_representation": "array",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "abstention_required_scenarios",
+      "json_type": "array",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for abstention_required_scenarios"
+    },
+    {
+      "canonical_representation": "string",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "artifact",
+      "json_type": "string",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for artifact"
+    },
+    {
+      "canonical_representation": "boolean",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "blind_data_authorized",
+      "json_type": "boolean",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for blind_data_authorized"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "builder_firewall",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for builder_firewall"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "candidate_repair_policy",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for candidate_repair_policy"
+    },
+    {
+      "canonical_representation": "boolean",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "disposable_allowed",
+      "json_type": "boolean",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for disposable_allowed"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "exact_design_mechanical_rule",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for exact_design_mechanical_rule"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "freeze_rule_after_materialization",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for freeze_rule_after_materialization"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "independence",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for independence"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "path_achievability",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for path_achievability"
+    },
+    {
+      "canonical_representation": "boolean",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "pre_seal_exact_design_audit_required",
+      "json_type": "boolean",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for pre_seal_exact_design_audit_required"
+    },
+    {
+      "canonical_representation": "array",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "prohibited_real_paths_before_authorization",
+      "json_type": "array",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for prohibited_real_paths_before_authorization"
+    },
+    {
+      "canonical_representation": "object",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "retrieval_mirror",
+      "json_type": "object",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for retrieval_mirror"
+    },
+    {
+      "canonical_representation": "integer",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "runtime_execution_maximum",
+      "json_type": "integer",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for runtime_execution_maximum"
+    },
+    {
+      "canonical_representation": "array",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "seal_must_bind",
+      "json_type": "array",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for seal_must_bind"
+    },
+    {
+      "canonical_representation": "string",
+      "consumers": [
+        "t21r14_construction_gate.py"
+      ],
+      "example": null,
+      "field_path": "version",
+      "json_type": "string",
+      "producer": "holdout_construction_contract.json / preregistration",
+      "required": true,
+      "validation_rule": "retain R12 semantics for version"
+    }
+  ],
+  "rules": {
+    "blind_namespace_must_not_be_object": true,
+    "case_id_prefix_is_sibling_not_child": true,
+    "no_implicit_structural_assumptions": true,
+    "unknown_contract_fields": "fail_closed"
+  },
+  "version": "t21r14-v1"
+}

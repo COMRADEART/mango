@@ -1,1 +1,189 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="6" time="15.790" timestamp="2026-10-01T12:39:43.117110-04:00" hostname="comrade"><testcase classname="tests.test_t31_concurrency" name="test_concurrent_observations_lose_nothing_and_never_mix" time="1.405" /><testcase classname="tests.test_t31_concurrency" name="test_readers_never_see_a_half_published_state" time="12.316" /><testcase classname="tests.test_t32_handoff" name="test_selection_uses_percentage_points_and_normalized_candidate_labels" time="0.082" /><testcase classname="tests.test_t32_handoff" name="test_large_mcnemar_table_stays_finite_and_symmetric" time="0.003" /><testcase classname="tests.test_t32_handoff" name="test_paired_analysis_rejects_missing_members_and_changed_prompts" time="0.001" /><testcase classname="tests.test_t32_handoff" name="test_closure_builds_receipts_and_a_verified_pack" time="0.518" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="11" time="34.644" timestamp="2026-10-02T01:20:57.773706-04:00" hostname="comrade"><testcase classname="tests.test_t31_concurrency" name="test_concurrent_observations_lose_nothing_and_never_mix" time="1.061"><failure message="sciencemath.state_engine.errors.StateStoreError: could not write state_index.json: PermissionError">self = &lt;sciencemath.state_engine.store.FileStateStore object at 0x000001551A1339E0&gt;
+path = WindowsPath('C:/Users/allam/Documents/new/model/tests/.pytest_tmp/test_concurrent_observations_l0/state/state_index.json')
+obj = {'schema_version': 1, 'run_id': 'state-4c8b1f71c48042b8', 'snapshots': [{'snapshot_id': 'snap4a0856bce93f', 'schema_ve...ma_version': 1, 'timestamp': '2026-01-01T00:00:06.000000Z', 'boundary': 'PERIODIC', ...}, ...], 'transitions': [], ...}
+
+    def _write_json(self, path: Path, obj: Any) -&gt; None:
+        """Atomic JSON write via the repository's existing helper."""
+        from sciencemath.utils.io_utils import write_json
+        try:
+&gt;           write_json(path, obj, atomic=True)
+
+src\sciencemath\state_engine\store.py:343: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/allam/Documents/new/model/tests/.pytest_tmp/test_concurrent_observations_l0/state/state_index.json')
+obj = {'schema_version': 1, 'run_id': 'state-4c8b1f71c48042b8', 'snapshots': [{'snapshot_id': 'snap4a0856bce93f', 'schema_ve...ma_version': 1, 'timestamp': '2026-01-01T00:00:06.000000Z', 'boundary': 'PERIODIC', ...}, ...], 'transitions': [], ...}
+atomic = True
+
+    def write_json(path: str | os.PathLike, obj, atomic: bool = True) -&gt; None:
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if not atomic:
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(obj, f, ensure_ascii=False, indent=2)
+            return
+        fd, tmp = tempfile.mkstemp(dir=str(path.parent), suffix=".tmp")
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                json.dump(obj, f, ensure_ascii=False, indent=2)
+&gt;           os.replace(tmp, path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\allam\\Documents\\new\\model\\tests\\.pytest_tmp\\test_concurrent_observations_l0\\state\\tmpu8z6stbw.tmp' -&gt; 'C:\\Users\\allam\\Documents\\new\\model\\tests\\.pytest_tmp\\test_concurrent_observations_l0\\state\\state_index.json'
+
+src\sciencemath\utils\io_utils.py:78: PermissionError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Users/allam/Documents/new/model/tests/.pytest_tmp/test_concurrent_observations_l0')
+
+    def test_concurrent_observations_lose_nothing_and_never_mix(tmp_path):
+        shared = {"n": 1}
+        engine = StateEngine(root=tmp_path / "state",
+                             collectors=[_Correlated(shared, clock=S.StepClock())],
+                             clock=S.StepClock())
+        engine.observe()
+    
+        stopper = threading.Event()
+        flipper = threading.Thread(target=_flipper, args=(shared, stopper),
+                                   daemon=True)
+        flipper.start()
+        try:
+            def worker(_index):
+                return engine.observe(boundary="PERIODIC", force=True)
+    
+            with ThreadPoolExecutor(max_workers=THREADS) as pool:
+&gt;               results = list(pool.map(worker, range(THREADS * ROUNDS)))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_t31_concurrency.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:619: in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:317: in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py:59: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_t31_concurrency.py:85: in worker
+    return engine.observe(boundary="PERIODIC", force=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\sciencemath\state_engine\engine.py:226: in observe
+    snapshot = self._publish(domains, boundary, stamp, ctx=ctx,
+src\sciencemath\state_engine\engine.py:303: in _publish
+    self.store.save_snapshot(candidate)
+src\sciencemath\state_engine\store.py:381: in save_snapshot
+    self._save_index()
+src\sciencemath\state_engine\store.py:337: in _save_index
+    self._write_json(self.index_path, index)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;sciencemath.state_engine.store.FileStateStore object at 0x000001551A1339E0&gt;
+path = WindowsPath('C:/Users/allam/Documents/new/model/tests/.pytest_tmp/test_concurrent_observations_l0/state/state_index.json')
+obj = {'schema_version': 1, 'run_id': 'state-4c8b1f71c48042b8', 'snapshots': [{'snapshot_id': 'snap4a0856bce93f', 'schema_ve...ma_version': 1, 'timestamp': '2026-01-01T00:00:06.000000Z', 'boundary': 'PERIODIC', ...}, ...], 'transitions': [], ...}
+
+    def _write_json(self, path: Path, obj: Any) -&gt; None:
+        """Atomic JSON write via the repository's existing helper."""
+        from sciencemath.utils.io_utils import write_json
+        try:
+            write_json(path, obj, atomic=True)
+        except Exception as exc:  # noqa: BLE001
+&gt;           raise StateStoreError(
+                f"could not write {path.name}: {type(exc).__name__}") from exc
+E           sciencemath.state_engine.errors.StateStoreError: could not write state_index.json: PermissionError
+
+src\sciencemath\state_engine\store.py:345: StateStoreError</failure></testcase><testcase classname="tests.test_t31_concurrency" name="test_the_history_chain_stays_contiguous_under_concurrency" time="12.476" /><testcase classname="tests.test_t31_concurrency" name="test_no_snapshot_is_stored_partially" time="3.638" /><testcase classname="tests.test_t31_concurrency" name="test_concurrent_action_records_are_all_kept_and_distinct" time="0.363" /><testcase classname="tests.test_t31_concurrency" name="test_the_event_log_never_gains_a_torn_line" time="3.599"><failure message="sciencemath.state_engine.errors.StateStoreError: could not write state_index.json: PermissionError">self = &lt;sciencemath.state_engine.store.FileStateStore object at 0x0000015524EA3E60&gt;
+path = WindowsPath('C:/Users/allam/Documents/new/model/tests/.pytest_tmp/test_the_event_log_never_gains0/state/state_index.json')
+obj = {'schema_version': 1, 'run_id': 'state-627ec1bce03b4e4a', 'snapshots': [{'snapshot_id': 'snap16c230482d28', 'schema_ve...on': 1, 'timestamp': '2026-01-01T00:00:06.000000Z', 'boundary': 'MODEL_TRANSITION', ...}, ...], 'transitions': [], ...}
+
+    def _write_json(self, path: Path, obj: Any) -&gt; None:
+        """Atomic JSON write via the repository's existing helper."""
+        from sciencemath.utils.io_utils import write_json
+        try:
+&gt;           write_json(path, obj, atomic=True)
+
+src\sciencemath\state_engine\store.py:343: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/allam/Documents/new/model/tests/.pytest_tmp/test_the_event_log_never_gains0/state/state_index.json')
+obj = {'schema_version': 1, 'run_id': 'state-627ec1bce03b4e4a', 'snapshots': [{'snapshot_id': 'snap16c230482d28', 'schema_ve...on': 1, 'timestamp': '2026-01-01T00:00:06.000000Z', 'boundary': 'MODEL_TRANSITION', ...}, ...], 'transitions': [], ...}
+atomic = True
+
+    def write_json(path: str | os.PathLike, obj, atomic: bool = True) -&gt; None:
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if not atomic:
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(obj, f, ensure_ascii=False, indent=2)
+            return
+        fd, tmp = tempfile.mkstemp(dir=str(path.parent), suffix=".tmp")
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                json.dump(obj, f, ensure_ascii=False, indent=2)
+&gt;           os.replace(tmp, path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\allam\\Documents\\new\\model\\tests\\.pytest_tmp\\test_the_event_log_never_gains0\\state\\tmpufjyu4sg.tmp' -&gt; 'C:\\Users\\allam\\Documents\\new\\model\\tests\\.pytest_tmp\\test_the_event_log_never_gains0\\state\\state_index.json'
+
+src\sciencemath\utils\io_utils.py:78: PermissionError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Users/allam/Documents/new/model/tests/.pytest_tmp/test_the_event_log_never_gains0')
+
+    def test_the_event_log_never_gains_a_torn_line(tmp_path):
+        engine, world, _clock = S.make_engine(tmp_path)
+    
+        def worker(index):
+            world.model = f"model-{index}"
+            engine.observe(boundary="MODEL_TRANSITION", force=True)
+    
+        with ThreadPoolExecutor(max_workers=THREADS) as pool:
+&gt;           list(pool.map(worker, range(THREADS * ROUNDS)))
+
+tests\test_t31_concurrency.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:619: in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:317: in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py:59: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_t31_concurrency.py:178: in worker
+    engine.observe(boundary="MODEL_TRANSITION", force=True)
+src\sciencemath\state_engine\engine.py:226: in observe
+    snapshot = self._publish(domains, boundary, stamp, ctx=ctx,
+src\sciencemath\state_engine\engine.py:303: in _publish
+    self.store.save_snapshot(candidate)
+src\sciencemath\state_engine\store.py:381: in save_snapshot
+    self._save_index()
+src\sciencemath\state_engine\store.py:337: in _save_index
+    self._write_json(self.index_path, index)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;sciencemath.state_engine.store.FileStateStore object at 0x0000015524EA3E60&gt;
+path = WindowsPath('C:/Users/allam/Documents/new/model/tests/.pytest_tmp/test_the_event_log_never_gains0/state/state_index.json')
+obj = {'schema_version': 1, 'run_id': 'state-627ec1bce03b4e4a', 'snapshots': [{'snapshot_id': 'snap16c230482d28', 'schema_ve...on': 1, 'timestamp': '2026-01-01T00:00:06.000000Z', 'boundary': 'MODEL_TRANSITION', ...}, ...], 'transitions': [], ...}
+
+    def _write_json(self, path: Path, obj: Any) -&gt; None:
+        """Atomic JSON write via the repository's existing helper."""
+        from sciencemath.utils.io_utils import write_json
+        try:
+            write_json(path, obj, atomic=True)
+        except Exception as exc:  # noqa: BLE001
+&gt;           raise StateStoreError(
+                f"could not write {path.name}: {type(exc).__name__}") from exc
+E           sciencemath.state_engine.errors.StateStoreError: could not write state_index.json: PermissionError
+
+src\sciencemath\state_engine\store.py:345: StateStoreError</failure></testcase><testcase classname="tests.test_t31_concurrency" name="test_concurrent_transitions_are_all_durable" time="5.429" /><testcase classname="tests.test_t31_concurrency" name="test_readers_never_see_a_half_published_state" time="3.816" /><testcase classname="tests.test_t31_concurrency" name="test_the_memory_store_is_equally_safe" time="2.049" /><testcase classname="tests.test_t31_concurrency" name="test_concurrent_reads_do_not_disturb_the_counters" time="0.100" /><testcase classname="tests.test_t31_concurrency" name="test_the_same_state_hashes_the_same_whatever_the_schedule" time="0.178" /><testcase classname="tests.test_t31_concurrency" name="test_there_is_no_cross_process_lock_to_get_wrong" time="0.172" /></testsuite></testsuites>

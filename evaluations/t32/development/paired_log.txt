@@ -1,0 +1,65 @@
+{
+  "gsm8k": {
+    "base_vs_t32-A": {
+      "delta_pp": -18.65,
+      "p": 1.4918028223803155e-37,
+      "identical": true
+    },
+    "t30_vs_t32-A": {
+      "delta_pp": 4.02,
+      "p": 0.002577831838148681,
+      "identical": true
+    }
+  },
+  "math500": {
+    "base_vs_t32-A": {
+      "delta_pp": -28.0,
+      "p": 5.0755162646804316e-30,
+      "identical": true
+    },
+    "t30_vs_t32-A": {
+      "delta_pp": 1.4,
+      "p": 0.5154257318838875,
+      "identical": true
+    }
+  },
+  "arc_easy": {
+    "base_vs_t32-A": {
+      "delta_pp": 9.51,
+      "p": 1.0298203030445155e-35,
+      "identical": true
+    },
+    "t30_vs_t32-A": {
+      "delta_pp": 1.3,
+      "p": 0.0029291945870261005,
+      "identical": true
+    }
+  },
+  "arc_challenge": {
+    "base_vs_t32-A": {
+      "delta_pp": 14.93,
+      "p": 1.3086736911138075e-28,
+      "identical": true
+    },
+    "t30_vs_t32-A": {
+      "delta_pp": -0.77,
+      "p": 0.37417441760470044,
+      "identical": true
+    }
+  },
+  "sciq": {
+    "base_vs_t32-A": {
+      "delta_pp": 3.9,
+      "p": 0.0001783572223101386,
+      "identical": true
+    },
+    "t30_vs_t32-A": {
+      "delta_pp": 1.9,
+      "p": 0.009399241523873097,
+      "identical": true
+    }
+  }
+}
+written: evaluations\t32\paired\T32_PAIRED_ANALYSIS.json
+
+===== paired relaunch 2026-10-02 01:00:30 =====

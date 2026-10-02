@@ -104,3 +104,8 @@ The full suite recorded 54 failures, 11 errors, 4438 passes and one skip. Sixty-
 
 The redundant whole-workspace audit rerun was stopped after the isolated import audit and focused concurrency/handoff checks completed. It did not produce a complete JUnit report; recovery_focused_junit.xml and isolated_import_audit_result.json are the completed rerun evidence.
 
+
+## Continuation restart after candidate C training
+
+At the 19:03 Eastern status check, no T32 Python processes were running. Candidate C training had completed successfully at 17:48:55 Eastern, but its development log was empty and no evaluation rows were saved. The cause of termination is not recorded. Restarting the serial chain skips all three completed training runs and the completed A/B development evaluations. No candidate C training is repeated.
+

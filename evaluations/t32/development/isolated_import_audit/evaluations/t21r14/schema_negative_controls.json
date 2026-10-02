@@ -1,0 +1,67 @@
+{
+  "R12_NAMESPACE_SHAPE_REGRESSION": {
+    "canonical_blind_namespace_shape": "PASS",
+    "legacy_incompatible_namespace_shape": "rejected",
+    "suite_materializer_exact_contract_parse": "PASS"
+  },
+  "artifact": "T21R14_SCHEMA_NEGATIVE_CONTROLS",
+  "passed": 9,
+  "registered": 9,
+  "results": [
+    {
+      "error": "reached_validation: ValueError: exact suite counts differ: {'mango-t21r14-adversarial-holdout-v1': 0, 'mango-t21r14-citation-claim-holdout-v1': 0, 'mango-t21r14-conflict-abstention-holdout-v1': 0, 'mango-t21r14-crossdomain-holdout-v1': 0, 'mango-t21r14-multihop-holdout-v1': 0, 'mango-t21r14-retrieval-holdout-v1': 0, 'mango-t21r14-singlehop-holdout-v1': 0, 'mango-t21r14-temporal-holdout-v1': 0} != {'mango-t21r14-adversarial-holdout-v1': 650, 'mango-t21r14-citation-claim-holdout-v1': 450, 'mango-t21r14-conflict-abstention-holdout-v1': 800, 'mango-t21r14-crossdomain-holdout-v1': 700, 'mango-t21r14-multihop-holdout-v1': 800, 'mango-t21r14-retrieval-holdout-v1': 600, 'mango-t21r14-singlehop-holdout-v1': 550, 'mango-t21r14-temporal-holdout-v1': 250}",
+      "expect_fail": false,
+      "id": "canonical_blind_namespace_string",
+      "passed": true
+    },
+    {
+      "error": "ValueError: blind_namespace must be a string per contract_schema",
+      "expect_fail": true,
+      "id": "R12_NAMESPACE_SHAPE_REGRESSION_legacy_object",
+      "passed": true
+    },
+    {
+      "error": "ValueError: blind_namespace must be a string per contract_schema",
+      "expect_fail": true,
+      "id": "blind_namespace_missing",
+      "passed": true
+    },
+    {
+      "error": "ValueError: blind_namespace must be a string per contract_schema",
+      "expect_fail": true,
+      "id": "blind_namespace_wrong_type",
+      "passed": true
+    },
+    {
+      "error": "KeyError: 'case_id_prefix'",
+      "expect_fail": true,
+      "id": "case_id_prefix_missing",
+      "passed": true
+    },
+    {
+      "error": "ValueError: exact suite counts differ: {'mango-t21r14-adversarial-holdout-v1': 0, 'mango-t21r14-citation-claim-holdout-v1': 0, 'mango-t21r14-conflict-abstention-holdout-v1': 0, 'mango-t21r14-crossdomain-holdout-v1': 0, 'mango-t21r14-multihop-holdout-v1': 0, 'mango-t21r14-retrieval-holdout-v1': 0, 'mango-t21r14-singlehop-holdout-v1': 0, 'mango-t21r14-temporal-holdout-v1': 0} != {'mango-t21r14-adversarial-holdout-v1': 650, 'mango-t21r14-citation-claim-holdout-v1': 450, 'mango-t21r14-conflict-abstention-holdout-v1': 800, 'mango-t21r14-crossdomain-holdout-v1': 700, 'mango-t21r14-multihop-holdout-v1': 800, 'mango-t21r14-retrieval-holdout-v1': 600, 'mango-t21r14-singlehop-holdout-v1': 550, 'mango-t21r14-temporal-holdout-v1': 250}",
+      "expect_fail": true,
+      "id": "case_id_prefix_wrong_type",
+      "passed": true
+    },
+    {
+      "error": "ValueError: exact suite counts differ: {'b': 0, 'a': 0, 'd': 0} != bad",
+      "expect_fail": true,
+      "id": "suite_target_exact_wrong_type",
+      "passed": true
+    },
+    {
+      "error": "ValueError: exact suite counts differ: {'mango-t21r14-adversarial-holdout-v1': 0, 'mango-t21r14-citation-claim-holdout-v1': 0, 'mango-t21r14-conflict-abstention-holdout-v1': 0, 'mango-t21r14-crossdomain-holdout-v1': 0, 'mango-t21r14-multihop-holdout-v1': 0, 'mango-t21r14-retrieval-holdout-v1': 0, 'mango-t21r14-singlehop-holdout-v1': 0, 'mango-t21r14-temporal-holdout-v1': 0} != {'mango-t21r14-adversarial-holdout-v1': 650, 'mango-t21r14-citation-claim-holdout-v1': 450, 'mango-t21r14-conflict-abstention-holdout-v1': 800, 'mango-t21r14-crossdomain-holdout-v1': 700, 'mango-t21r14-multihop-holdout-v1': 800, 'mango-t21r14-retrieval-holdout-v1': 600, 'mango-t21r14-singlehop-holdout-v1': 550, 'mango-t21r14-temporal-holdout-v1': 250}",
+      "expect_fail": true,
+      "id": "exact_design_object_wrong_type",
+      "passed": true
+    },
+    {
+      "error": "ValueError: exact suite counts differ: {'mango-t21r14-adversarial-holdout-v1': 0, 'mango-t21r14-citation-claim-holdout-v1': 0, 'mango-t21r14-conflict-abstention-holdout-v1': 0, 'mango-t21r14-crossdomain-holdout-v1': 0, 'mango-t21r14-multihop-holdout-v1': 0, 'mango-t21r14-retrieval-holdout-v1': 0, 'mango-t21r14-singlehop-holdout-v1': 0, 'mango-t21r14-temporal-holdout-v1': 0} != {'mango-t21r14-adversarial-holdout-v1': 650, 'mango-t21r14-citation-claim-holdout-v1': 450, 'mango-t21r14-conflict-abstention-holdout-v1': 800, 'mango-t21r14-crossdomain-holdout-v1': 700, 'mango-t21r14-multihop-holdout-v1': 800, 'mango-t21r14-retrieval-holdout-v1': 600, 'mango-t21r14-singlehop-holdout-v1': 550, 'mango-t21r14-temporal-holdout-v1': 250}",
+      "expect_fail": true,
+      "id": "unknown_required_contract_field_removed_total_rows",
+      "passed": true
+    }
+  ],
+  "status": "PASS"
+}

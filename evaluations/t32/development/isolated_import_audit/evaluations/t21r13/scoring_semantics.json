@@ -1,0 +1,43 @@
+{
+  "artifact": "T21R13_SCORING_SEMANTICS",
+  "canonical_definition_sha256": "59dbe67b8ffb87676a26859536055cba9fbcd983c7dcd829a7fe8180d9e9f163",
+  "definition": {
+    "answer_row_correctness": {
+      "applies_when": "gold expect_status is ANSWER",
+      "conjunction": [
+        "status_match",
+        "contains_ok",
+        "citations_ok",
+        "required_sources_ok",
+        "required_domains_ok",
+        "claims_supported",
+        "zero_tolerance_all_zero"
+      ],
+      "required_domains_ok": {
+        "evidence_scope": "sources_actually_cited",
+        "source_field": "KnowledgeSourceRecord.topic_tags",
+        "unknown_domain_policy": "evaluator_invalid"
+      },
+      "required_sources_ok": {
+        "evidence_scope": "sources_actually_cited",
+        "path_semantics": "PATH_REQUIRED_SOURCE proves a gold edge; OPTIONAL_CORROBORATION cannot substitute"
+      }
+    },
+    "citation_denominator": "all gold ANSWER rows",
+    "non_answer_row_correctness": {
+      "answer_only_fields": "not applicable",
+      "applies_when": "gold expect_status is not ANSWER",
+      "conjunction": [
+        "status_match",
+        "zero_tolerance_all_zero"
+      ]
+    },
+    "source_diversity_denominator": "multihop and crossdomain rows declaring at least two required sources",
+    "unknown_or_unresolvable_information_policy": "EVALUATOR_INVALID",
+    "zero_tolerance_policy": "any nonzero counter makes the row incorrect"
+  },
+  "milestone": "T21R13",
+  "semantic_difference": [],
+  "t21r10_definition_sha256": "59dbe67b8ffb87676a26859536055cba9fbcd983c7dcd829a7fe8180d9e9f163",
+  "version": "t21r13-v1"
+}

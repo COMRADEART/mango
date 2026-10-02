@@ -1,0 +1,53 @@
+{
+  "HOLDOUT_FROZEN_sha256": "8e7e273a143430ad20d826cf65640f7e56fe1df4a5fccb5aae8d1f59f2364b3f",
+  "artifact": "T21R13_CONSTRUCTION_RUN_LEDGER",
+  "authoring_profile_sha256": "53b5c2071bae6e71aafbe8ed43a31cf52b5ed8d7ac1d38ddb11634b9df52e4b3",
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_rows_executed": 0,
+  "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+  "completed_at": "2026-09-20T04:31:33.432350+00:00",
+  "construction_attempt": 1,
+  "construction_attempts": 1,
+  "construction_audit_sha256": "704c75c2d4eff8ff1a4c7349c215c48bbfd38589703ae5d6edc7fd567afaef23",
+  "construction_gate_report_sha256": "846693e8c7219a606c1593839952bdc2fdecb5c689bb152b70fbc93fc996a092",
+  "corpus_materializations": 1,
+  "evaluator_root": "0a310a1e748fb36a38e4b1250da068fce8b9da508df1a08ff194af8ede97a9e4",
+  "exact_design_audit_sha256": "8f62a34c4a6eef50c1b02934bcc24e4a3b1676efd5c84a49275bac8615a9f1e4",
+  "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+  "freeze_point": "T21R13_REAL_CONSTRUCTION_FREEZE_POINT",
+  "freeze_root_sha256": "c4c9c946f6dbfbc79f674ae8a43659063c6881d3ac376e034b4765ebd84f68b8",
+  "gate_auditor_crosscheck_sha256": "f5bb4917926332b49c53ee4c066460bd7b87eea33e0cc987eb2e2bb734b86df7",
+  "holdout_blindness_sha256": "1c2113faa0e24a50b54844e46bde4158ee4434498202524d637595623affa607",
+  "holdout_manifest_sha256": "c7c1de07e5920f8e3f5c5664442e9faa4cf73a6a0319865ab9f8bee5f788dd16",
+  "holdout_uniqueness_sha256": "96fd9554c178572ce4141458c423907d1204235882bee683b6c0a80ecee10532",
+  "official_evaluator_invocations": 0,
+  "one_shot": {
+    "automatic_retry": "FORBIDDEN",
+    "existing_construction_ledger": "REFUSE",
+    "mode": "one-shot"
+  },
+  "post_seal_full_suite": {
+    "classification": {
+      "LIVE_R13_REGRESSION": 0,
+      "OBSOLETE_HISTORICAL_ASSERTION_R13_SEALED": 1,
+      "UNKNOWN": 0,
+      "obsolete_test": "tests/test_t21r13_preconstruction.py::test_real_r13_paths_absent",
+      "reason": "asserts absence of real R13 paths; R13 real material is authorized, constructed and sealed; same committed classification category as the R10/R11/R12 path-absence analogues in current_test_applicability.json",
+      "registry_mapped_historical_or_superseded": 14
+    },
+    "collected": 3148,
+    "errors": 0,
+    "failed": 15,
+    "passed": 3133,
+    "skipped": 0
+  },
+  "preconstruction_commit": "ce14e26fc6899ec5bd65e3611060b88f3487a08f",
+  "preconstruction_tree": "d08848a1ae01d9763bc954601fd6c36d3536461a",
+  "prior_exclusion_sha256": "7c65b86e00143a3529c7bd334ca3d6fa085822ccf84833693eb42498749d33f0",
+  "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "runtime_rows_executed": 0,
+  "started_at": "2026-09-20T04:11:29.651870+00:00",
+  "static_gold_audit_sha256": "820b50c71456ee7fe16792259c011e32de2047c07d179012781cbcf2a2c321fc",
+  "status": "complete",
+  "suite_materializations": 1
+}

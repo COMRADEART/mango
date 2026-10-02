@@ -1,0 +1,58 @@
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:  60%|######    | 187/311 [00:00<00:00, 1757.07it/s]Loading weights: 100%|##########| 311/311 [00:00<00:00, 2548.06it/s]
+{
+ "base_repo_id": "Qwen/Qwen3-1.7B",
+ "base_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "adapter_dir": "C:/Users/allam/Documents/new/model/training/adapters/t32-A-math-restore",
+ "weights_sha256": "64c2787f3457526ccd5aee571a0c106b8dc67b820886260714d3f55169318acb"
+}
+[   20.7s] gsm8k: 8/1319
+[  363.7s] gsm8k: 168/1319
+[  694.2s] gsm8k: 328/1319
+[ 1004.7s] gsm8k: 488/1319
+[ 1388.6s] gsm8k: 648/1319
+[ 1795.6s] gsm8k: 808/1319
+[ 2228.2s] gsm8k: 968/1319
+[ 2674.1s] gsm8k: 1128/1319
+[ 3520.0s] gsm8k: 1288/1319
+[ 3623.3s] gsm8k: DONE n=1319 acc=0.6240 sha=55e14355aced5698
+[ 3750.7s] math500: 8/500
+[ 6812.8s] math500: 168/500
+[10348.5s] math500: 328/500
+[13378.8s] math500: 488/500
+[13573.8s] math500: DONE n=500 acc=0.3180 sha=d6f4ca071ef7e8cd
+[13579.7s] arc_easy: 8/2376
+[13683.0s] arc_easy: 168/2376
+[13774.4s] arc_easy: 328/2376
+[13870.7s] arc_easy: 488/2376
+[13970.4s] arc_easy: 648/2376
+[14071.1s] arc_easy: 808/2376
+[14163.2s] arc_easy: 968/2376
+[14267.2s] arc_easy: 1128/2376
+[14366.2s] arc_easy: 1288/2376
+[14459.0s] arc_easy: 1448/2376
+[14549.9s] arc_easy: 1608/2376
+[14653.7s] arc_easy: 1768/2376
+[14756.3s] arc_easy: 1928/2376
+[14856.0s] arc_easy: 2088/2376
+[14969.9s] arc_easy: 2248/2376
+[15047.0s] arc_easy: DONE n=2376 acc=0.8897 sha=ab7683fc98aff5d8
+[15052.0s] arc_challenge: 8/1172
+[15146.3s] arc_challenge: 168/1172
+[15240.4s] arc_challenge: 328/1172
+[15342.3s] arc_challenge: 488/1172
+[15432.3s] arc_challenge: 648/1172
+[15557.9s] arc_challenge: 808/1172
+[15726.8s] arc_challenge: 968/1172
+[15823.6s] arc_challenge: 1128/1172
+[15855.8s] arc_challenge: DONE n=1172 acc=0.7654 sha=647871adb017874d
+[15861.7s] sciq: 8/1000
+[15978.1s] sciq: 168/1000
+[16107.8s] sciq: 328/1000
+[16206.0s] sciq: 488/1000
+[16291.3s] sciq: 648/1000
+[16372.7s] sciq: 808/1000
+[16452.3s] sciq: 968/1000
+[16467.8s] sciq: DONE n=1000 acc=0.8880 sha=19d8b3b6ec927941
+T32 arm generation complete; run sciencemath.t32.paired for the three-arm join
+
+===== final relaunch 2026-10-01 19:54:30 =====

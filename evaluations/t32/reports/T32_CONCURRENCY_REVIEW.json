@@ -1,0 +1,7 @@
+{
+  "mechanism": "PermissionError WinError 5 at os.replace for state_index.json under concurrent observations",
+  "focused_result": "9 passed, 2 failed",
+  "classification": "Unresolved Windows atomic replacement failures in unchanged frozen runtime",
+  "interpretation": "The event-log test fails before its torn-line assertion because state-index publication is denied. This is a reproducible runtime/environment interaction, not evidence of adapter inference drift. No frozen runtime changes made. Regression gate remains FAIL.",
+  "artifact": "evaluations/t32/development/recovery_focused_junit.xml"
+}

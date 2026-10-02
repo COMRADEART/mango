@@ -52,8 +52,8 @@ def main() -> int:
         "# T32 Phase 10 — qualitative trace audit",
         "",
         f"Fresh arm: `{args.arm_label}`; frozen arms: `base`, `adapter "
-        f"(T30)`; samples are the sorted head of item_id per benchmark "
-        f"(deterministic; no model-dependent selection).",
+        f"(T30)`; samples are the sorted head of item_id within the declared "
+        f"outcome groups per benchmark (deterministic; post-selection audit only).",
         "",
     ]
     for b in [s for s in args.benchmarks.split(",") if s]:
@@ -86,7 +86,7 @@ def main() -> int:
                     + f", {row.get('output_tokens')} tok] "
                     f"extracted: {row.get('extracted_answer')!r}",
                     "", "```text",
-                    (row.get("raw_generation") or "")[:2000],
+                    (row.get("raw_generation") or ""),
                     "```", ""]
     path = OUT / f"T32_TRACE_AUDIT_{args.arm_label}.md"
     path.write_text("\n".join(lines), encoding="utf-8", newline="\n")

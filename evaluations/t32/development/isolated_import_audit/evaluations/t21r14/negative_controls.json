@@ -1,0 +1,424 @@
+{
+  "artifact": "T21R14_NEGATIVE_CONTROLS",
+  "controls": [
+    {
+      "detail": "exists=False",
+      "kind": "infrastructure",
+      "name": "missing_holdout_manifest",
+      "status": "PASS"
+    },
+    {
+      "detail": "exists=False",
+      "kind": "infrastructure",
+      "name": "missing_HOLDOUT_FROZEN",
+      "status": "PASS"
+    },
+    {
+      "detail": "exists=False",
+      "kind": "infrastructure",
+      "name": "missing_real_corpus",
+      "status": "PASS"
+    },
+    {
+      "detail": "exists=False",
+      "kind": "infrastructure",
+      "name": "missing_real_suites",
+      "status": "PASS"
+    },
+    {
+      "detail": "exists=False",
+      "kind": "infrastructure",
+      "name": "absent_evaluation_ledger",
+      "status": "PASS"
+    },
+    {
+      "detail": "exists=False",
+      "kind": "infrastructure",
+      "name": "absent_raw_results",
+      "status": "PASS"
+    },
+    {
+      "detail": "exists=False",
+      "kind": "infrastructure",
+      "name": "absent_holdout_results",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.multihop_exact_design.ambiguous_bridge_entities",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.multihop_exact_design.invalid_terminal_evidence",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.multihop_exact_design.led_by_relations",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.multihop_exact_design.missing_second_hop",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.multihop_exact_design.partial_paths",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.multihop_exact_design.relation_aliases",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.multihop_exact_design.two_hop_bridges",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.multihop_exact_design.wrong_bridge_distractors",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.crossdomain_exact_design.novel_pair_families",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.crossdomain_exact_design.prior_exact_pair_templates_forbidden",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "FORBIDDEN_OVERLAP",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.crossdomain_exact_design.rows_per_pair",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "EXACT_DISTRIBUTION",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.citation_exact_design.missing_citation",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.citation_exact_design.multi_source_claim",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.citation_exact_design.partial_citation",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.citation_exact_design.right_source_wrong_chunk",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.citation_exact_design.spoofed_locator",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.citation_exact_design.wrong_chunk",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.citation_exact_design.wrong_locator",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.citation_exact_design.wrong_source",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.conflict_exact_design.authority_ranked_contradiction",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.conflict_exact_design.fresh_stale_disagreement",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.conflict_exact_design.identity_disagreement",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.conflict_exact_design.numeric_disagreement",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.conflict_exact_design.relation_disagreement",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.conflict_exact_design.resolvable_conflicts",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.conflict_exact_design.same_rank_contradiction",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.conflict_exact_design.unresolvable_conflicts",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.temporal_exact_design.explicit_current",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.temporal_exact_design.historical_as_of",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.temporal_exact_design.stale_snapshot",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.temporal_exact_design.static_unnecessary_web",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.security_exact_design.citation_id_spoof",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.security_exact_design.memory_backfill",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.security_exact_design.prompt_injection",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.security_exact_design.retrieved_code_execution",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.security_exact_design.source_authority_escalation",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.security_exact_design.unauthorized_memory_write",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    },
+    {
+      "kind": "exact_design_leaf",
+      "name": "exact_design.security_exact_design.unauthorized_network",
+      "negative_control": "PASS",
+      "positive_control": "PASS",
+      "requirement_type": "COUNT",
+      "status": "PASS"
+    }
+  ],
+  "failed": 0,
+  "passed": 45,
+  "registered_count": 54,
+  "schema_controls": {
+    "R12_NAMESPACE_SHAPE_REGRESSION": {
+      "canonical_blind_namespace_shape": "PASS",
+      "legacy_incompatible_namespace_shape": "rejected",
+      "suite_materializer_exact_contract_parse": "PASS"
+    },
+    "artifact": "T21R14_SCHEMA_NEGATIVE_CONTROLS",
+    "passed": 9,
+    "registered": 9,
+    "results": [
+      {
+        "error": "reached_validation: ValueError: exact suite counts differ: {'mango-t21r14-adversarial-holdout-v1': 0, 'mango-t21r14-citation-claim-holdout-v1': 0, 'mango-t21r14-conflict-abstention-holdout-v1': 0, 'mango-t21r14-crossdomain-holdout-v1': 0, 'mango-t21r14-multihop-holdout-v1': 0, 'mango-t21r14-retrieval-holdout-v1': 0, 'mango-t21r14-singlehop-holdout-v1': 0, 'mango-t21r14-temporal-holdout-v1': 0} != {'mango-t21r14-adversarial-holdout-v1': 650, 'mango-t21r14-citation-claim-holdout-v1': 450, 'mango-t21r14-conflict-abstention-holdout-v1': 800, 'mango-t21r14-crossdomain-holdout-v1': 700, 'mango-t21r14-multihop-holdout-v1': 800, 'mango-t21r14-retrieval-holdout-v1': 600, 'mango-t21r14-singlehop-holdout-v1': 550, 'mango-t21r14-temporal-holdout-v1': 250}",
+        "expect_fail": false,
+        "id": "canonical_blind_namespace_string",
+        "passed": true
+      },
+      {
+        "error": "ValueError: blind_namespace must be a string per contract_schema",
+        "expect_fail": true,
+        "id": "R12_NAMESPACE_SHAPE_REGRESSION_legacy_object",
+        "passed": true
+      },
+      {
+        "error": "ValueError: blind_namespace must be a string per contract_schema",
+        "expect_fail": true,
+        "id": "blind_namespace_missing",
+        "passed": true
+      },
+      {
+        "error": "ValueError: blind_namespace must be a string per contract_schema",
+        "expect_fail": true,
+        "id": "blind_namespace_wrong_type",
+        "passed": true
+      },
+      {
+        "error": "KeyError: 'case_id_prefix'",
+        "expect_fail": true,
+        "id": "case_id_prefix_missing",
+        "passed": true
+      },
+      {
+        "error": "ValueError: exact suite counts differ: {'mango-t21r14-adversarial-holdout-v1': 0, 'mango-t21r14-citation-claim-holdout-v1': 0, 'mango-t21r14-conflict-abstention-holdout-v1': 0, 'mango-t21r14-crossdomain-holdout-v1': 0, 'mango-t21r14-multihop-holdout-v1': 0, 'mango-t21r14-retrieval-holdout-v1': 0, 'mango-t21r14-singlehop-holdout-v1': 0, 'mango-t21r14-temporal-holdout-v1': 0} != {'mango-t21r14-adversarial-holdout-v1': 650, 'mango-t21r14-citation-claim-holdout-v1': 450, 'mango-t21r14-conflict-abstention-holdout-v1': 800, 'mango-t21r14-crossdomain-holdout-v1': 700, 'mango-t21r14-multihop-holdout-v1': 800, 'mango-t21r14-retrieval-holdout-v1': 600, 'mango-t21r14-singlehop-holdout-v1': 550, 'mango-t21r14-temporal-holdout-v1': 250}",
+        "expect_fail": true,
+        "id": "case_id_prefix_wrong_type",
+        "passed": true
+      },
+      {
+        "error": "ValueError: exact suite counts differ: {'b': 0, 'a': 0, 'd': 0} != bad",
+        "expect_fail": true,
+        "id": "suite_target_exact_wrong_type",
+        "passed": true
+      },
+      {
+        "error": "ValueError: exact suite counts differ: {'mango-t21r14-adversarial-holdout-v1': 0, 'mango-t21r14-citation-claim-holdout-v1': 0, 'mango-t21r14-conflict-abstention-holdout-v1': 0, 'mango-t21r14-crossdomain-holdout-v1': 0, 'mango-t21r14-multihop-holdout-v1': 0, 'mango-t21r14-retrieval-holdout-v1': 0, 'mango-t21r14-singlehop-holdout-v1': 0, 'mango-t21r14-temporal-holdout-v1': 0} != {'mango-t21r14-adversarial-holdout-v1': 650, 'mango-t21r14-citation-claim-holdout-v1': 450, 'mango-t21r14-conflict-abstention-holdout-v1': 800, 'mango-t21r14-crossdomain-holdout-v1': 700, 'mango-t21r14-multihop-holdout-v1': 800, 'mango-t21r14-retrieval-holdout-v1': 600, 'mango-t21r14-singlehop-holdout-v1': 550, 'mango-t21r14-temporal-holdout-v1': 250}",
+        "expect_fail": true,
+        "id": "exact_design_object_wrong_type",
+        "passed": true
+      },
+      {
+        "error": "ValueError: exact suite counts differ: {'mango-t21r14-adversarial-holdout-v1': 0, 'mango-t21r14-citation-claim-holdout-v1': 0, 'mango-t21r14-conflict-abstention-holdout-v1': 0, 'mango-t21r14-crossdomain-holdout-v1': 0, 'mango-t21r14-multihop-holdout-v1': 0, 'mango-t21r14-retrieval-holdout-v1': 0, 'mango-t21r14-singlehop-holdout-v1': 0, 'mango-t21r14-temporal-holdout-v1': 0} != {'mango-t21r14-adversarial-holdout-v1': 650, 'mango-t21r14-citation-claim-holdout-v1': 450, 'mango-t21r14-conflict-abstention-holdout-v1': 800, 'mango-t21r14-crossdomain-holdout-v1': 700, 'mango-t21r14-multihop-holdout-v1': 800, 'mango-t21r14-retrieval-holdout-v1': 600, 'mango-t21r14-singlehop-holdout-v1': 550, 'mango-t21r14-temporal-holdout-v1': 250}",
+        "expect_fail": true,
+        "id": "unknown_required_contract_field_removed_total_rows",
+        "passed": true
+      }
+    ],
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "total": 45,
+  "version": "t21r14-v1"
+}

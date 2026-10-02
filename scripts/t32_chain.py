@@ -46,7 +46,24 @@ def run(step: str, argv: list[str]) -> int:
 
 def train_done(tag: str) -> bool:
     m = ROOT / "training" / "adapters" / CANDS[tag] / "training_manifest.json"
-    return m.exists()
+    receipt = DEV / f"train_Mango-T32-{tag}-{CANDS[tag].split('-', 2)[2]}.json"
+    if not m.exists() or not receipt.exists():
+        return False
+    summary = json.loads(receipt.read_text(encoding="utf-8")).get("summary", {})
+    return summary.get("status") == "COMPLETE" and summary.get("reload_ok") is True
+
+
+def final_rows_complete(label: str) -> bool:
+    counts = {"gsm8k": 1319, "math500": 500, "arc_easy": 2376,
+              "arc_challenge": 1172, "sciq": 1000}
+    for benchmark, count in counts.items():
+        path = ROOT / "evaluations/t32/final" / label / f"{benchmark}.jsonl"
+        if not path.exists():
+            return False
+        rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+        if len(rows) != count or len({r["item_id"] for r in rows}) != count:
+            return False
+    return True
 
 
 def dev_metrics(label: str) -> dict | None:
@@ -133,10 +150,7 @@ def main() -> int:
     log("selection", f"selected={selected}")
 
     # ---- 5. Phase 9 final locked eval (ONE run) ----
-    if (ROOT / "evaluations" / "t32" / "final" / selected).exists() and \
-            all((ROOT / "evaluations" / "t32" / "final" / selected /
-                 f"{b}.jsonl").exists() for b in
-                ("gsm8k", "math500", "arc_easy", "arc_challenge", "sciq")):
+    if final_rows_complete(selected):
         log("final", "fresh arm rows already complete; skipping")
     else:
         t = time.time()

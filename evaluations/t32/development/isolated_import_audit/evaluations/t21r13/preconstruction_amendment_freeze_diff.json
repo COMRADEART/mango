@@ -1,0 +1,30 @@
+{
+  "applicability": {
+    "committed_old_at_parent": "cd4932d39bc857c32eb8a3db8bcf35d812d9c6315052762d636ccaa527e40598",
+    "new_sha256": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836",
+    "old_sha256": "32c6e48fcf984097cebdbeed5d96d098fc59cf4a9be9e233e359a98e9a8ba3e8",
+    "working_tree_before_enrich_sha256": "32c6e48fcf984097cebdbeed5d96d098fc59cf4a9be9e233e359a98e9a8ba3e8"
+  },
+  "artifact": "T21R13_PRECONSTRUCTION_AMENDMENT_FREEZE_DIFF",
+  "candidate_diff": "none",
+  "changed_evaluator_components": [
+    {
+      "new_sha256": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836",
+      "old_sha256": "cd4932d39bc857c32eb8a3db8bcf35d812d9c6315052762d636ccaa527e40598",
+      "path": "evaluations/t21r13/current_test_applicability.json",
+      "reason": "commit expanded 14-node current-applicable deselect/adjudication manifest"
+    }
+  ],
+  "evaluator_root": {
+    "new": "9d25ecbdc21dadea7fab2f26d1e11f10390579529624b7b36de899b85183f1bc",
+    "old": "3e8243d2aa8e075ab117f26e9e2e9c01b43bd21849a1b5e1b12ddb567f3e5c18"
+  },
+  "final_applicability_sha256": "1fc7ef92ab7e044811fc855f5a68e6404ba296225b67e4e90ecb56e3ceae9836",
+  "final_evaluator_root": "9d25ecbdc21dadea7fab2f26d1e11f10390579529624b7b36de899b85183f1bc",
+  "floor_diff": "none",
+  "parent_commit": "b1401d4c2dbca58e6b16349aedd071b6d1de16fe",
+  "runtime_diff": "none",
+  "semantic_change_class": "test applicability metadata / qualification binding only",
+  "timestamp": "2026-09-19T20:16:33.177909+00:00",
+  "unauthorized_changes": 0
+}

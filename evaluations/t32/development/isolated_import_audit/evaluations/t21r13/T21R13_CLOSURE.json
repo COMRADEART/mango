@@ -1,0 +1,49 @@
+{
+  "HOLDOUT_FROZEN_sha256": "8e7e273a143430ad20d826cf65640f7e56fe1df4a5fccb5aae8d1f59f2364b3f",
+  "artifact": "T21R13_CLOSURE",
+  "capability_verdict": "NONE",
+  "capability_verdict_reason": "official scorer never executed; zero rows scored; no valid capability measurement exists",
+  "closed_at": "2026-09-20T14:23:33.216807+00:00",
+  "construction_commit": "78a2c84e02b989d7ea4aed284975e70420d95c7e",
+  "evaluation": {
+    "attempts": 1,
+    "candidate_changes": false,
+    "evaluator_changes": false,
+    "floor_changes": false,
+    "holdout_changes": false,
+    "holdout_results": "ABSENT",
+    "official_scorer_run": false,
+    "rows_attempted": 1956,
+    "rows_completed": 1955,
+    "rows_executed": 1955,
+    "rows_scored": 0,
+    "runtime_changes": false
+  },
+  "evaluation_commit": "a8fbafd8107a9fa019750f8ad77760f22b7cb893",
+  "evaluation_ledger_sha256": "fd1f1fca53c4e78f4959c74dd987309bff998bef7bbc8851d9650b3f7cdaab1c",
+  "failure": {
+    "cause": "FROZEN_EVALUATOR_HOLDOUT_DOMAIN_TAXONOMY_INCOMPATIBILITY",
+    "classification": "T21R13_OFFICIAL_EVALUATION_INFRASTRUCTURE_FAILURE",
+    "detail": "sealed R13 crossdomain gold.required_domains labels natural_philosophy and civic_architecture are outside the frozen R6-lineage DOMAIN_TAXONOMY; evaluator failed loudly (T21R6_EVALUATOR_INVALID) by design",
+    "error": "T21R6_EVALUATOR_INVALID: required_domains label(s) outside the frozen DOMAIN_TAXONOMY: ['natural_philosophy']"
+  },
+  "historical_exclusion_milestone": "T21R13_SEALED_PARTIAL_OFFICIAL_EXPOSURE",
+  "holdout_manifest_sha256": "c7c1de07e5920f8e3f5c5664442e9faa4cf73a6a0319865ab9f8bee5f788dd16",
+  "is_official_evaluation_pass": false,
+  "is_valid_capability_failure": false,
+  "one_shot": {
+    "future_attempt_behavior": "T21R13_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
+    "mechanism": "the retained evaluation_run_ledger.json makes every future preflight fail closed (one-shot exposure artifact exists); no deletion or reset is permitted",
+    "official_evaluation": "PERMANENTLY_CONSUMED",
+    "reason": "ONE_SHOT_CONSUMED"
+  },
+  "preserved_forensics": [
+    "evaluations/t21r13/evaluation_run_ledger.json",
+    "evaluations/t21r13/raw_results.jsonl",
+    "evaluations/t21r13/T21R13_EVALUATION_PROVENANCE.json",
+    "evaluations/t21r13/holdout_manifest.json",
+    "evaluations/t21r13/HOLDOUT_FROZEN"
+  ],
+  "raw_results_sha256": "aed95c61f198db57d5c8dacada9675f4a457f5a410b831a155a3577de06a16c3",
+  "status": "CLOSED / OFFICIAL_EVALUATION_INFRASTRUCTURE_FAILURE"
+}

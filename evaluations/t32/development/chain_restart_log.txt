@@ -1,0 +1,14 @@
+chain [train_A] manifest exists; skipping training for t32-A-math-restore
+chain [dev_A] metrics exist; skipping dev eval
+chain [train_B] manifest exists; skipping training for t32-B-task-balanced
+chain [dev_B] metrics exist; skipping dev eval
+chain [train_C] manifest exists; skipping training for t32-C-conservative
+chain [dev_C] exit=0
+chain [dev_C] wall 3024s
+chain [selection] exit=0
+chain [selection] selected=t32-A
+chain [final] exit=0
+chain [final] wall 18360s
+chain [paired] exit=0
+chain [trace] exit=0
+chain [closure] exit=0

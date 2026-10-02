@@ -1,0 +1,19 @@
+{
+  "artifact": "T21R14_REAL_BLIND_CONSTRUCTION_READINESS",
+  "audit_rerun_classification": "NON_SEMANTIC_READ_ONLY_AUDIT_INVOCATION_CORRECTION",
+  "construction_ledger_created": false,
+  "created_at": "2026-09-20T19:04:32.673350+00:00",
+  "exposure": {
+    "candidate_R14_rows_executed": 0,
+    "official_evaluator_invocations": 0,
+    "real_R14_rows": 0,
+    "runtime_rows_executed": 0
+  },
+  "holdout_tainted": false,
+  "next_authorization_required": "T21R14_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+  "post_construction_protocol_status": "T21R13_POST_CONSTRUCTION_PROTOCOL_AUDIT_PASS",
+  "runtime_execution_count": 0,
+  "status": "PASS",
+  "verdict": "T21R14_REAL_BLIND_CONSTRUCTION_READINESS_PASS",
+  "version": "t21r14-v1"
+}

@@ -1,0 +1,15 @@
+{
+  "artifact": "T21R12_CONSTRUCTION_GATE_REPORT",
+  "levels_required_before_seal": [
+    "L1_freeze",
+    "L2_corpus",
+    "L3_suites",
+    "L4_exact_design",
+    "L5_exclusion",
+    "L6_blindness",
+    "L7_exposure"
+  ],
+  "note": "Real suite/corpus metrics absent until construction authorization",
+  "runtime_execution_count": 0,
+  "status": "PRECONSTRUCTION"
+}

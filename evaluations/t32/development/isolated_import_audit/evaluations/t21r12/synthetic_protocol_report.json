@@ -1,0 +1,49 @@
+{
+  "all_deliberate_violations_rejected": true,
+  "all_valid_cases_PASS": true,
+  "artifact": "T21R12_SYNTHETIC_PROTOCOL_REPORT",
+  "candidate_R12_rows_executed": 0,
+  "deliberate_violations": [
+    {
+      "rejected": true,
+      "status": "FAIL",
+      "violated_leaf": "multihop_exact_design.ambiguous_bridge_entities"
+    },
+    {
+      "rejected": true,
+      "status": "FAIL",
+      "violated_leaf": "crossdomain_exact_design.novel_pair_families"
+    },
+    {
+      "rejected": true,
+      "status": "FAIL",
+      "violated_leaf": "citation_exact_design.missing_citation"
+    },
+    {
+      "rejected": true,
+      "status": "FAIL",
+      "violated_leaf": "conflict_exact_design.authority_ranked_contradiction"
+    },
+    {
+      "rejected": true,
+      "status": "FAIL",
+      "violated_leaf": "temporal_exact_design.explicit_current"
+    },
+    {
+      "rejected": true,
+      "status": "FAIL",
+      "violated_leaf": "security_exact_design.citation_id_spoof"
+    }
+  ],
+  "official_evaluator_invocations": 0,
+  "real_R12_rows": 0,
+  "status": "PASS",
+  "valid_fixture": {
+    "failed": 0,
+    "leaf_requirements_total": 38,
+    "passed": 38,
+    "status": "PASS",
+    "unhandled": 0
+  },
+  "version": "t21r12-v1"
+}

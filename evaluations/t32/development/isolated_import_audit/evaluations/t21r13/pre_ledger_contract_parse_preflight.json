@@ -1,0 +1,12 @@
+{
+  "artifact": "T21R13_PRE_LEDGER_CONTRACT_PARSE_PREFLIGHT",
+  "results": {
+    "audit": "PASS",
+    "construction_gate": "PASS",
+    "manifest_builder": "PASS",
+    "seal_builder": "PASS",
+    "suite_materializer": "PASS",
+    "world_builder": "PASS"
+  },
+  "status": "PASS"
+}

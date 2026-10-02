@@ -1,0 +1,13 @@
+{
+  "artifact": "T21R14_CLOSURE",
+  "candidate_rows": 0,
+  "construction_attempts": 0,
+  "corpus_materialized": false,
+  "official_evaluator_rows": 0,
+  "one_shot_consumed": false,
+  "preserve_preconstruction_and_audit_evidence": true,
+  "reason": "T21_PROTOCOL_INFRASTRUCTURE_NOT_CLOSED",
+  "status": "CLOSED / PRECONSTRUCTION_PROTOCOL_INTEGRATION_FAILURE",
+  "suites_materialized": false,
+  "version": "t21r14-closure-v1"
+}

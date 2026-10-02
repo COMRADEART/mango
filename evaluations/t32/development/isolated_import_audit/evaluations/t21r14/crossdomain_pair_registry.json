@@ -1,0 +1,61 @@
+{
+  "artifact": "T21R14_CROSSDOMAIN_PAIR_REGISTRY",
+  "canonical_contract": "evaluations/t21r14/domain_taxonomy_contract.json",
+  "labels_registered_in_canonical_taxonomy": true,
+  "pair_families": 7,
+  "pairs": [
+    {
+      "domain_a": "arts",
+      "domain_b": "biography",
+      "exact_design_family": "arts_to_biography",
+      "pair_id": "arts_to_biography",
+      "row_target": 100
+    },
+    {
+      "domain_a": "civic_architecture",
+      "domain_b": "biography",
+      "exact_design_family": "civic_architecture_to_biography",
+      "pair_id": "civic_architecture_to_biography",
+      "row_target": 100
+    },
+    {
+      "domain_a": "culture",
+      "domain_b": "biography",
+      "exact_design_family": "culture_to_biography",
+      "pair_id": "culture_to_biography",
+      "row_target": 100
+    },
+    {
+      "domain_a": "history",
+      "domain_b": "biography",
+      "exact_design_family": "history_to_biography",
+      "pair_id": "history_to_biography",
+      "row_target": 100
+    },
+    {
+      "domain_a": "literature",
+      "domain_b": "biography",
+      "exact_design_family": "literature_to_biography",
+      "pair_id": "literature_to_biography",
+      "row_target": 100
+    },
+    {
+      "domain_a": "natural_philosophy",
+      "domain_b": "biography",
+      "exact_design_family": "natural_philosophy_to_biography",
+      "pair_id": "natural_philosophy_to_biography",
+      "row_target": 100
+    },
+    {
+      "domain_a": "technology_history",
+      "domain_b": "biography",
+      "exact_design_family": "technology_history_to_biography",
+      "pair_id": "technology_history_to_biography",
+      "row_target": 100
+    }
+  ],
+  "rows_per_pair": 100,
+  "total_rows": 700,
+  "unknown_pair_label_behavior": "reject pair creation",
+  "version": "t21r14-v1"
+}

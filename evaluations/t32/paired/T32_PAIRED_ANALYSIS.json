@@ -1,0 +1,298 @@
+{
+  "schema_version": "t32-paired-v1",
+  "artifact": "T32_PAIRED_ANALYSIS",
+  "fresh_arm": "t32-A",
+  "note": "base and T30 adapter columns reuse the FROZEN T31 scored rows (identical membership and prompts); the T32 arm was generated fresh under the identical frozen config; McNemar exact = two-sided binomial on the discordant pairs; no pooling across benchmarks",
+  "benchmarks": {
+    "gsm8k": {
+      "base_vs_t32-A": {
+        "benchmark": "gsm8k",
+        "frozen_arm": "base",
+        "fresh_arm": "t32-A",
+        "n_shared": 1319,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.8105,
+        "accuracy_fresh": 0.624,
+        "delta_pp": -18.65,
+        "delta_pp_normal_95_ci": [
+          -21.423,
+          -15.878
+        ],
+        "table": {
+          "both_correct": 749,
+          "base_correct_only": 320,
+          "t32-A_correct_only": 74,
+          "neither_correct": 176
+        },
+        "discordant": {
+          "frozen_only_correct": 320,
+          "fresh_only_correct": 74
+        },
+        "mcnemar_exact_p": 1.4918028223803155e-37,
+        "effect_size_g": -0.3122,
+        "membership_and_prompts_identical": true
+      },
+      "t30_vs_t32-A": {
+        "benchmark": "gsm8k",
+        "frozen_arm": "t30",
+        "fresh_arm": "t32-A",
+        "n_shared": 1319,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.5838,
+        "accuracy_fresh": 0.624,
+        "delta_pp": 4.02,
+        "delta_pp_normal_95_ci": [
+          1.458,
+          6.579
+        ],
+        "table": {
+          "both_correct": 647,
+          "t30_correct_only": 123,
+          "t32-A_correct_only": 176,
+          "neither_correct": 373
+        },
+        "discordant": {
+          "frozen_only_correct": 123,
+          "fresh_only_correct": 176
+        },
+        "mcnemar_exact_p": 0.002577831838148681,
+        "effect_size_g": 0.0886,
+        "membership_and_prompts_identical": true
+      }
+    },
+    "math500": {
+      "base_vs_t32-A": {
+        "benchmark": "math500",
+        "frozen_arm": "base",
+        "fresh_arm": "t32-A",
+        "n_shared": 500,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.598,
+        "accuracy_fresh": 0.318,
+        "delta_pp": -28.0,
+        "delta_pp_normal_95_ci": [
+          -32.517,
+          -23.483
+        ],
+        "table": {
+          "both_correct": 143,
+          "base_correct_only": 156,
+          "t32-A_correct_only": 16,
+          "neither_correct": 185
+        },
+        "discordant": {
+          "frozen_only_correct": 156,
+          "fresh_only_correct": 16
+        },
+        "mcnemar_exact_p": 5.0755162646804316e-30,
+        "effect_size_g": -0.407,
+        "membership_and_prompts_identical": true
+      },
+      "t30_vs_t32-A": {
+        "benchmark": "math500",
+        "frozen_arm": "t30",
+        "fresh_arm": "t32-A",
+        "n_shared": 500,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.304,
+        "accuracy_fresh": 0.318,
+        "delta_pp": 1.4,
+        "delta_pp_normal_95_ci": [
+          -2.212,
+          5.012
+        ],
+        "table": {
+          "both_correct": 113,
+          "t30_correct_only": 39,
+          "t32-A_correct_only": 46,
+          "neither_correct": 302
+        },
+        "discordant": {
+          "frozen_only_correct": 39,
+          "fresh_only_correct": 46
+        },
+        "mcnemar_exact_p": 0.5154257318838875,
+        "effect_size_g": 0.0412,
+        "membership_and_prompts_identical": true
+      }
+    },
+    "arc_easy": {
+      "base_vs_t32-A": {
+        "benchmark": "arc_easy",
+        "frozen_arm": "base",
+        "fresh_arm": "t32-A",
+        "n_shared": 2376,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.7946,
+        "accuracy_fresh": 0.8897,
+        "delta_pp": 9.51,
+        "delta_pp_normal_95_ci": [
+          8.012,
+          11.011
+        ],
+        "table": {
+          "both_correct": 1825,
+          "base_correct_only": 63,
+          "t32-A_correct_only": 289,
+          "neither_correct": 199
+        },
+        "discordant": {
+          "frozen_only_correct": 63,
+          "fresh_only_correct": 289
+        },
+        "mcnemar_exact_p": 1.0298203030445155e-35,
+        "effect_size_g": 0.321,
+        "membership_and_prompts_identical": true
+      },
+      "t30_vs_t32-A": {
+        "benchmark": "arc_easy",
+        "frozen_arm": "t30",
+        "fresh_arm": "t32-A",
+        "n_shared": 2376,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.8767,
+        "accuracy_fresh": 0.8897,
+        "delta_pp": 1.3,
+        "delta_pp_normal_95_ci": [
+          0.469,
+          2.14
+        ],
+        "table": {
+          "both_correct": 2047,
+          "t30_correct_only": 36,
+          "t32-A_correct_only": 67,
+          "neither_correct": 226
+        },
+        "discordant": {
+          "frozen_only_correct": 36,
+          "fresh_only_correct": 67
+        },
+        "mcnemar_exact_p": 0.0029291945870261005,
+        "effect_size_g": 0.1505,
+        "membership_and_prompts_identical": true
+      }
+    },
+    "arc_challenge": {
+      "base_vs_t32-A": {
+        "benchmark": "arc_challenge",
+        "frozen_arm": "base",
+        "fresh_arm": "t32-A",
+        "n_shared": 1172,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.616,
+        "accuracy_fresh": 0.7654,
+        "delta_pp": 14.93,
+        "delta_pp_normal_95_ci": [
+          12.336,
+          17.527
+        ],
+        "table": {
+          "both_correct": 676,
+          "base_correct_only": 46,
+          "t32-A_correct_only": 221,
+          "neither_correct": 229
+        },
+        "discordant": {
+          "frozen_only_correct": 46,
+          "fresh_only_correct": 221
+        },
+        "mcnemar_exact_p": 1.3086736911138075e-28,
+        "effect_size_g": 0.3277,
+        "membership_and_prompts_identical": true
+      },
+      "t30_vs_t32-A": {
+        "benchmark": "arc_challenge",
+        "frozen_arm": "t30",
+        "fresh_arm": "t32-A",
+        "n_shared": 1172,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.773,
+        "accuracy_fresh": 0.7654,
+        "delta_pp": -0.77,
+        "delta_pp_normal_95_ci": [
+          -2.272,
+          0.737
+        ],
+        "table": {
+          "both_correct": 861,
+          "t30_correct_only": 45,
+          "t32-A_correct_only": 36,
+          "neither_correct": 230
+        },
+        "discordant": {
+          "frozen_only_correct": 45,
+          "fresh_only_correct": 36
+        },
+        "mcnemar_exact_p": 0.37417441760470044,
+        "effect_size_g": -0.0556,
+        "membership_and_prompts_identical": true
+      }
+    },
+    "sciq": {
+      "base_vs_t32-A": {
+        "benchmark": "sciq",
+        "frozen_arm": "base",
+        "fresh_arm": "t32-A",
+        "n_shared": 1000,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.849,
+        "accuracy_fresh": 0.888,
+        "delta_pp": 3.9,
+        "delta_pp_normal_95_ci": [
+          1.906,
+          5.894
+        ],
+        "table": {
+          "both_correct": 816,
+          "base_correct_only": 33,
+          "t32-A_correct_only": 72,
+          "neither_correct": 79
+        },
+        "discordant": {
+          "frozen_only_correct": 33,
+          "fresh_only_correct": 72
+        },
+        "mcnemar_exact_p": 0.0001783572223101386,
+        "effect_size_g": 0.1857,
+        "membership_and_prompts_identical": true
+      },
+      "t30_vs_t32-A": {
+        "benchmark": "sciq",
+        "frozen_arm": "t30",
+        "fresh_arm": "t32-A",
+        "n_shared": 1000,
+        "n_only_frozen_rows": 0,
+        "n_only_fresh_rows": 0,
+        "accuracy_frozen": 0.869,
+        "accuracy_fresh": 0.888,
+        "delta_pp": 1.9,
+        "delta_pp_normal_95_ci": [
+          0.533,
+          3.267
+        ],
+        "table": {
+          "both_correct": 854,
+          "t30_correct_only": 15,
+          "t32-A_correct_only": 34,
+          "neither_correct": 97
+        },
+        "discordant": {
+          "frozen_only_correct": 15,
+          "fresh_only_correct": 34
+        },
+        "mcnemar_exact_p": 0.009399241523873097,
+        "effect_size_g": 0.1939,
+        "membership_and_prompts_identical": true
+      }
+    }
+  }
+}

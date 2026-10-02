@@ -1,0 +1,318 @@
+{
+  "artifact": "T21R14_CONTRACT_CONSUMER_MATRIX",
+  "consumers_mapped": 6,
+  "fields_mapped": 26,
+  "rows": [
+    {
+      "consumer": "t21r14_world.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "string",
+      "field": "blind_namespace",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_build_suites.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "string",
+      "field": "blind_namespace",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_freeze_holdout.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "string",
+      "field": "blind_namespace",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "string",
+      "field": "blind_namespace",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_build_suites.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "string",
+      "field": "case_id_prefix",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_blind_author.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "string",
+      "field": "case_id_prefix",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_build_suites.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "suite_target_exact",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "suite_target_exact",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "integer",
+      "field": "total_rows_exact",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_build_suites.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "integer",
+      "field": "total_rows_exact",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "multihop_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_exact_design_lib.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "multihop_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_blind_author.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "multihop_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "crossdomain_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_exact_design_lib.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "crossdomain_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_blind_author.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "crossdomain_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "citation_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_exact_design_lib.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "citation_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_blind_author.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "citation_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "conflict_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_exact_design_lib.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "conflict_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_blind_author.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "conflict_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "temporal_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_exact_design_lib.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "temporal_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_blind_author.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "temporal_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "security_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_exact_design_lib.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "security_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_blind_author.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "security_exact_design",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "array",
+      "field": "abstention_required_scenarios",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "string",
+      "field": "artifact",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "boolean",
+      "field": "blind_data_authorized",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "builder_firewall",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "candidate_repair_policy",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "boolean",
+      "field": "disposable_allowed",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "exact_design_mechanical_rule",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "freeze_rule_after_materialization",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "independence",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "path_achievability",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "boolean",
+      "field": "pre_seal_exact_design_audit_required",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "array",
+      "field": "prohibited_real_paths_before_authorization",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "object",
+      "field": "retrieval_mirror",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "integer",
+      "field": "runtime_execution_maximum",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "array",
+      "field": "seal_must_bind",
+      "notes": "validated against contract_schema.json"
+    },
+    {
+      "consumer": "t21r14_construction_gate.py",
+      "consumer_compatibility": "PASS",
+      "declared_type": "string",
+      "field": "version",
+      "notes": "validated against contract_schema.json"
+    }
+  ],
+  "type_disagreements": 0,
+  "unknown_consumers": 0,
+  "version": "t21r14-v1"
+}

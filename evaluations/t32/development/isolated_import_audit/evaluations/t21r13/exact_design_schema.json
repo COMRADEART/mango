@@ -1,0 +1,377 @@
+{
+  "artifact": "T21R13_EXACT_DESIGN_SCHEMA",
+  "fail_closed_on": [
+    "unknown contract field",
+    "unhandled contract leaf",
+    "missing design tag",
+    "unknown construction tag",
+    "count mismatch",
+    "distribution mismatch",
+    "forbidden overlap",
+    "suite mismatch",
+    "annotation violation",
+    "runtime execution"
+  ],
+  "gate_handlers_registered": 38,
+  "handler_names": [
+    "check_exact_design_count",
+    "check_exact_design_distribution",
+    "check_forbidden_overlap",
+    "check_novel_pair_families"
+  ],
+  "leaf_requirements_registered": 38,
+  "leaves": [
+    {
+      "contract_path": "multihop_exact_design.ambiguous_bridge_entities",
+      "gate_function": "check_exact_design_count",
+      "leaf": "ambiguous_bridge_entities",
+      "object": "multihop_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "multihop_exact_design.invalid_terminal_evidence",
+      "gate_function": "check_exact_design_count",
+      "leaf": "invalid_terminal_evidence",
+      "object": "multihop_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "multihop_exact_design.led_by_relations",
+      "gate_function": "check_exact_design_count",
+      "leaf": "led_by_relations",
+      "object": "multihop_exact_design",
+      "required": 50,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "multihop_exact_design.missing_second_hop",
+      "gate_function": "check_exact_design_count",
+      "leaf": "missing_second_hop",
+      "object": "multihop_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "multihop_exact_design.partial_paths",
+      "gate_function": "check_exact_design_count",
+      "leaf": "partial_paths",
+      "object": "multihop_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "multihop_exact_design.relation_aliases",
+      "gate_function": "check_exact_design_count",
+      "leaf": "relation_aliases",
+      "object": "multihop_exact_design",
+      "required": 50,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "multihop_exact_design.two_hop_bridges",
+      "gate_function": "check_exact_design_count",
+      "leaf": "two_hop_bridges",
+      "object": "multihop_exact_design",
+      "required": 200,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "multihop_exact_design.wrong_bridge_distractors",
+      "gate_function": "check_exact_design_count",
+      "leaf": "wrong_bridge_distractors",
+      "object": "multihop_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "crossdomain_exact_design.novel_pair_families",
+      "gate_function": "check_novel_pair_families",
+      "leaf": "novel_pair_families",
+      "object": "crossdomain_exact_design",
+      "required": 7,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "crossdomain_exact_design.prior_exact_pair_templates_forbidden",
+      "gate_function": "check_forbidden_overlap",
+      "leaf": "prior_exact_pair_templates_forbidden",
+      "object": "crossdomain_exact_design",
+      "required": true,
+      "requirement_type": "FORBIDDEN_OVERLAP",
+      "source_field": "prior_exclusion_fingerprints"
+    },
+    {
+      "contract_path": "crossdomain_exact_design.rows_per_pair",
+      "gate_function": "check_exact_design_distribution",
+      "leaf": "rows_per_pair",
+      "object": "crossdomain_exact_design",
+      "required": 100,
+      "requirement_type": "EXACT_DISTRIBUTION",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "citation_exact_design.missing_citation",
+      "gate_function": "check_exact_design_count",
+      "leaf": "missing_citation",
+      "object": "citation_exact_design",
+      "required": 50,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "citation_exact_design.multi_source_claim",
+      "gate_function": "check_exact_design_count",
+      "leaf": "multi_source_claim",
+      "object": "citation_exact_design",
+      "required": 60,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "citation_exact_design.partial_citation",
+      "gate_function": "check_exact_design_count",
+      "leaf": "partial_citation",
+      "object": "citation_exact_design",
+      "required": 50,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "citation_exact_design.right_source_wrong_chunk",
+      "gate_function": "check_exact_design_count",
+      "leaf": "right_source_wrong_chunk",
+      "object": "citation_exact_design",
+      "required": 60,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "citation_exact_design.spoofed_locator",
+      "gate_function": "check_exact_design_count",
+      "leaf": "spoofed_locator",
+      "object": "citation_exact_design",
+      "required": 50,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "citation_exact_design.wrong_chunk",
+      "gate_function": "check_exact_design_count",
+      "leaf": "wrong_chunk",
+      "object": "citation_exact_design",
+      "required": 60,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "citation_exact_design.wrong_locator",
+      "gate_function": "check_exact_design_count",
+      "leaf": "wrong_locator",
+      "object": "citation_exact_design",
+      "required": 60,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "citation_exact_design.wrong_source",
+      "gate_function": "check_exact_design_count",
+      "leaf": "wrong_source",
+      "object": "citation_exact_design",
+      "required": 60,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "conflict_exact_design.authority_ranked_contradiction",
+      "gate_function": "check_exact_design_count",
+      "leaf": "authority_ranked_contradiction",
+      "object": "conflict_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "conflict_exact_design.fresh_stale_disagreement",
+      "gate_function": "check_exact_design_count",
+      "leaf": "fresh_stale_disagreement",
+      "object": "conflict_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "conflict_exact_design.identity_disagreement",
+      "gate_function": "check_exact_design_count",
+      "leaf": "identity_disagreement",
+      "object": "conflict_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "conflict_exact_design.numeric_disagreement",
+      "gate_function": "check_exact_design_count",
+      "leaf": "numeric_disagreement",
+      "object": "conflict_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "conflict_exact_design.relation_disagreement",
+      "gate_function": "check_exact_design_count",
+      "leaf": "relation_disagreement",
+      "object": "conflict_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "conflict_exact_design.resolvable_conflicts",
+      "gate_function": "check_exact_design_count",
+      "leaf": "resolvable_conflicts",
+      "object": "conflict_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "conflict_exact_design.same_rank_contradiction",
+      "gate_function": "check_exact_design_count",
+      "leaf": "same_rank_contradiction",
+      "object": "conflict_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "conflict_exact_design.unresolvable_conflicts",
+      "gate_function": "check_exact_design_count",
+      "leaf": "unresolvable_conflicts",
+      "object": "conflict_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "temporal_exact_design.explicit_current",
+      "gate_function": "check_exact_design_count",
+      "leaf": "explicit_current",
+      "object": "temporal_exact_design",
+      "required": 70,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "temporal_exact_design.historical_as_of",
+      "gate_function": "check_exact_design_count",
+      "leaf": "historical_as_of",
+      "object": "temporal_exact_design",
+      "required": 50,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "temporal_exact_design.stale_snapshot",
+      "gate_function": "check_exact_design_count",
+      "leaf": "stale_snapshot",
+      "object": "temporal_exact_design",
+      "required": 70,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "temporal_exact_design.static_unnecessary_web",
+      "gate_function": "check_exact_design_count",
+      "leaf": "static_unnecessary_web",
+      "object": "temporal_exact_design",
+      "required": 60,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "security_exact_design.citation_id_spoof",
+      "gate_function": "check_exact_design_count",
+      "leaf": "citation_id_spoof",
+      "object": "security_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "security_exact_design.memory_backfill",
+      "gate_function": "check_exact_design_count",
+      "leaf": "memory_backfill",
+      "object": "security_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "security_exact_design.prompt_injection",
+      "gate_function": "check_exact_design_count",
+      "leaf": "prompt_injection",
+      "object": "security_exact_design",
+      "required": 150,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "security_exact_design.retrieved_code_execution",
+      "gate_function": "check_exact_design_count",
+      "leaf": "retrieved_code_execution",
+      "object": "security_exact_design",
+      "required": 75,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "security_exact_design.source_authority_escalation",
+      "gate_function": "check_exact_design_count",
+      "leaf": "source_authority_escalation",
+      "object": "security_exact_design",
+      "required": 100,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "security_exact_design.unauthorized_memory_write",
+      "gate_function": "check_exact_design_count",
+      "leaf": "unauthorized_memory_write",
+      "object": "security_exact_design",
+      "required": 50,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    },
+    {
+      "contract_path": "security_exact_design.unauthorized_network",
+      "gate_function": "check_exact_design_count",
+      "leaf": "unauthorized_network",
+      "object": "security_exact_design",
+      "required": 75,
+      "requirement_type": "COUNT",
+      "source_field": "construction_tags"
+    }
+  ],
+  "objects": [
+    "multihop_exact_design",
+    "crossdomain_exact_design",
+    "citation_exact_design",
+    "conflict_exact_design",
+    "temporal_exact_design",
+    "security_exact_design"
+  ],
+  "unhandled_leaves": 0,
+  "version": "t21r13-v1"
+}

@@ -1,0 +1,177 @@
+{
+  "abstention_required_scenarios": [
+    "missing_evidence",
+    "partial_evidence",
+    "missing_bridge",
+    "invalid_terminal",
+    "irrelevant_retrieval",
+    "conflicting_evidence"
+  ],
+  "artifact": "T21R13_HOLDOUT_CONSTRUCTION_CONTRACT",
+  "blind_data_authorized": false,
+  "blind_namespace": "mango-r13b-v1",
+  "builder_firewall": {
+    "forbidden_calls": [
+      "answer_knowledge",
+      "resolve_path",
+      "retrieve",
+      "run_answer_row",
+      "evaluate"
+    ],
+    "forbidden_modules": [
+      "sciencemath",
+      "pipeline",
+      "router",
+      "retrieval",
+      "evidence_paths",
+      "relations",
+      "conflicts",
+      "citations",
+      "injection",
+      "t21r11_run_eval"
+    ],
+    "historical_blind_paths_forbidden": true,
+    "remediation_validation_paths_forbidden": true,
+    "scripts": [
+      "scripts/t21r11_world.py",
+      "scripts/t21r11_build_suites.py"
+    ]
+  },
+  "candidate_repair_policy": {
+    "holdout_driven_repair": "FORBIDDEN",
+    "new_candidate_modification_requires_new_freeze_before_construction": true
+  },
+  "case_id_prefix": "r13b-",
+  "citation_exact_design": {
+    "missing_citation": 50,
+    "multi_source_claim": 60,
+    "partial_citation": 50,
+    "right_source_wrong_chunk": 60,
+    "spoofed_locator": 50,
+    "wrong_chunk": 60,
+    "wrong_locator": 60,
+    "wrong_source": 60
+  },
+  "conflict_exact_design": {
+    "authority_ranked_contradiction": 100,
+    "fresh_stale_disagreement": 100,
+    "identity_disagreement": 100,
+    "numeric_disagreement": 100,
+    "relation_disagreement": 100,
+    "resolvable_conflicts": 100,
+    "same_rank_contradiction": 100,
+    "unresolvable_conflicts": 100
+  },
+  "crossdomain_exact_design": {
+    "novel_pair_families": 7,
+    "prior_exact_pair_templates_forbidden": true,
+    "rows_per_pair": 100
+  },
+  "disposable_allowed": false,
+  "exact_design_mechanical_rule": {
+    "match": "exact string equality to contract leaf name",
+    "post_hoc_remapping": false,
+    "source_field": "construction_tags",
+    "synonyms": false
+  },
+  "freeze_rule_after_materialization": {
+    "construction_gate": "immutable",
+    "contract": "immutable",
+    "evaluator_freeze": "immutable",
+    "floor_contract": "immutable",
+    "on_mismatch": "T21R13_CONSTRUCTION_FAILED",
+    "patch_gate": "FORBIDDEN",
+    "refresh_freeze": "FORBIDDEN",
+    "runtime_freeze": "immutable",
+    "tag_vocabulary": "immutable"
+  },
+  "independence": {
+    "historical_dimensions": 8,
+    "historical_milestones": 12,
+    "includes_T21R11_INVALID_SEALED": true,
+    "prior_fingerprint_artifact": "evaluations/t21r13/prior_exclusion.json",
+    "remediation_fingerprint_artifact": "evaluations/t21r13/remediation_exclusion.json"
+  },
+  "multihop_exact_design": {
+    "ambiguous_bridge_entities": 100,
+    "invalid_terminal_evidence": 100,
+    "led_by_relations": 50,
+    "missing_second_hop": 100,
+    "partial_paths": 100,
+    "relation_aliases": 50,
+    "two_hop_bridges": 200,
+    "wrong_bridge_distractors": 100
+  },
+  "path_achievability": {
+    "bridge_identity": "exact NFKC casefold whitespace identity",
+    "equal_rank_contradiction": "CONFLICTING_EVIDENCE",
+    "first_edge": "safe FactEdge from derived top-8 matching exact normalized start identity and canonical first relation",
+    "hop2_and_terminal_validated_separately": true,
+    "leader_ranking": [
+      "authority_rank",
+      "freshness_rank"
+    ],
+    "selected_value_must_equal_bridge": true,
+    "terminal_evidence": "required and independently validated"
+  },
+  "pre_seal_exact_design_audit_required": true,
+  "prohibited_real_paths_before_authorization": [
+    "rag/gk_holdout_t21r13",
+    "evaluations/t21r13/suites",
+    "evaluations/t21r13/holdout_manifest.json",
+    "evaluations/t21r13/HOLDOUT_FROZEN",
+    "evaluations/t21r13/evaluation_run_ledger.json",
+    "evaluations/t21r13/raw_results.jsonl",
+    "evaluations/t21r13/holdout_results.json"
+  ],
+  "retrieval_mirror": {
+    "builder_declared_initial_window_forbidden": true,
+    "candidate_multiplier": 3,
+    "implementation": "scripts/t21r11_retrieval_mirror.py",
+    "initial_window_source": "derived_by_static_audit",
+    "parity_with_frozen_production_required": true,
+    "stages": [
+      "normalization",
+      "BM25",
+      "reranking",
+      "same_source_dedup",
+      "source_reservation",
+      "top_8"
+    ],
+    "top_k": 8
+  },
+  "runtime_execution_maximum": 0,
+  "seal_must_bind": [
+    "construction_gate_report_sha256",
+    "contract_gate_coverage_sha256",
+    "holdout_construction_contract_sha256",
+    "exact_design_tag_vocabulary_sha256"
+  ],
+  "security_exact_design": {
+    "citation_id_spoof": 100,
+    "memory_backfill": 100,
+    "prompt_injection": 150,
+    "retrieved_code_execution": 75,
+    "source_authority_escalation": 100,
+    "unauthorized_memory_write": 50,
+    "unauthorized_network": 75
+  },
+  "suite_target_exact": {
+    "mango-t21r13-adversarial-holdout-v1": 650,
+    "mango-t21r13-citation-claim-holdout-v1": 450,
+    "mango-t21r13-conflict-abstention-holdout-v1": 800,
+    "mango-t21r13-crossdomain-holdout-v1": 700,
+    "mango-t21r13-multihop-holdout-v1": 800,
+    "mango-t21r13-retrieval-holdout-v1": 600,
+    "mango-t21r13-singlehop-holdout-v1": 550,
+    "mango-t21r13-temporal-holdout-v1": 250
+  },
+  "temporal_exact_design": {
+    "explicit_current": 70,
+    "historical_as_of": 50,
+    "stale_snapshot": 70,
+    "static_unnecessary_web": 60
+  },
+  "total_rows_exact": 4800,
+  "version": "t21r13-v1"
+}

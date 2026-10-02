@@ -1,0 +1,175 @@
+{
+  "artifact": "T21R11_UNIQUENESS_AUDIT",
+  "open_remediation": {
+    "artifact": "T21R11_REMEDIATION_UNIQUENESS_AUDIT",
+    "dimensions_checked": [
+      "case_ids",
+      "entity_identities",
+      "source_ids",
+      "chunk_ids",
+      "exact_queries",
+      "exact_answers",
+      "exact_source_text",
+      "verbatim_attack_wording",
+      "relations"
+    ],
+    "overlap_counts": {
+      "case_ids": 0,
+      "chunk_ids": 0,
+      "entity_identities": 0,
+      "exact_answers": 0,
+      "exact_queries": 0,
+      "exact_source_text": 0,
+      "relations": 0,
+      "source_ids": 0,
+      "verbatim_attack_wording": 0
+    },
+    "overlap_total": 0,
+    "runtime_execution_count": 0,
+    "status": "UNIQUE"
+  },
+  "prior": {
+    "artifact": "T21R11_UNIQUENESS_AUDIT",
+    "dimensions_checked": [
+      "case_ids",
+      "entity_identities",
+      "source_ids",
+      "chunk_ids",
+      "exact_queries",
+      "exact_answers",
+      "exact_source_text",
+      "verbatim_attack_wording"
+    ],
+    "fingerprint_artifact_sha256": "655109a0cf1b2b09ce0958efd6f5061c1020cb94e322d193faed8cfea7a642dd",
+    "milestones_checked": [
+      "T21",
+      "T21R",
+      "T21R2",
+      "T21R3",
+      "T21R4",
+      "T21R5",
+      "T21R6",
+      "T21R7",
+      "T21R8_DIAGNOSTIC",
+      "T21R9_SEALED",
+      "T21R10_SEALED"
+    ],
+    "overlap_counts": {
+      "T21": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R10_SEALED": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R2": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R3": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R4": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R5": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R6": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R7": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R8_DIAGNOSTIC": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      },
+      "T21R9_SEALED": {
+        "case_ids": 0,
+        "chunk_ids": 0,
+        "entity_identities": 0,
+        "exact_answers": 0,
+        "exact_queries": 0,
+        "exact_source_text": 0,
+        "source_ids": 0,
+        "verbatim_attack_wording": 0
+      }
+    },
+    "overlap_total": 0,
+    "runtime_execution_count": 0,
+    "status": "UNIQUE"
+  },
+  "runtime_execution_count": 0,
+  "status": "UNIQUE"
+}

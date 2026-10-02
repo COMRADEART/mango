@@ -1,0 +1,151 @@
+{
+  "artifact": "T21R13_RUNTIME_FREEZE",
+  "auto_refresh": false,
+  "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+  "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+  "candidate_unchanged_since_r11": true,
+  "changed_production_files": [
+    "src/sciencemath/knowledge/conflicts.py",
+    "src/sciencemath/knowledge/corpus.py",
+    "src/sciencemath/knowledge/pipeline.py",
+    "src/sciencemath/knowledge/relations.py"
+  ],
+  "component_root_sha256": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+  "component_sha256": {
+    "src/sciencemath/knowledge/citations.py": "d48a5bb8ac4e28178cdaf332e9b7867a611d6d851f853858582a752b9039bb48",
+    "src/sciencemath/knowledge/claim_gate.py": "3cf7593f131c081a7a1fcf777d7f27ca995f9dae993efbd68c566e565803f883",
+    "src/sciencemath/knowledge/conflicts.py": "f9c984d1fd10ec4053e78ca373e0c13e9d705c3db7c2a4afa3e09cb2a0c272d2",
+    "src/sciencemath/knowledge/corpus.py": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d",
+    "src/sciencemath/knowledge/evidence.py": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d",
+    "src/sciencemath/knowledge/evidence_paths.py": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375",
+    "src/sciencemath/knowledge/freshness.py": "9793fa94f137b550451de2186b9f558040019eca14485bbd39595b16974abf99",
+    "src/sciencemath/knowledge/index.py": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1",
+    "src/sciencemath/knowledge/injection.py": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0",
+    "src/sciencemath/knowledge/pipeline.py": "0959ac026ad08566e723011d653a0924ece3d285d3ad2895ae26f466c7ed0889",
+    "src/sciencemath/knowledge/provenance_spoof.py": "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212",
+    "src/sciencemath/knowledge/relations.py": "e0ed89e99c42b0d8d92952951b78696a50a3b377a537ef4c2a03ce344a35376f",
+    "src/sciencemath/knowledge/retrieval.py": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9",
+    "src/sciencemath/knowledge/routing.py": "0f8441cdfaaadbcbda3067f080b357ab5491eae078b6170c2175a97ca8fd7260",
+    "src/sciencemath/knowledge/schema.py": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135"
+  },
+  "components": [
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/citations.py",
+      "sha256": "d48a5bb8ac4e28178cdaf332e9b7867a611d6d851f853858582a752b9039bb48"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/claim_gate.py",
+      "sha256": "3cf7593f131c081a7a1fcf777d7f27ca995f9dae993efbd68c566e565803f883"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/conflicts.py",
+      "sha256": "f9c984d1fd10ec4053e78ca373e0c13e9d705c3db7c2a4afa3e09cb2a0c272d2"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/corpus.py",
+      "sha256": "5856f76096e9e1ec7b2fb1650a4bfa8759b6d3ded74f55be8eb2d44ecebf400d"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/evidence.py",
+      "sha256": "f7d192efbb011eb85f42b793ed190805eb63d33281954c9b01a1c2375e72de9d"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/evidence_paths.py",
+      "sha256": "191e5b7491f161ed4c79d46ad0a1507440070bebbca78d991dcac6f6ea55f375"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/freshness.py",
+      "sha256": "9793fa94f137b550451de2186b9f558040019eca14485bbd39595b16974abf99"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/index.py",
+      "sha256": "cd05b028279ea1fd8316c9fda068b3b4a29e7c48305417dc6428edab6acf39e1"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/injection.py",
+      "sha256": "1affdca508d2153759ac9069e60e04890ff3cdf96e0d5753d0101e01dfc90df0"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/pipeline.py",
+      "sha256": "0959ac026ad08566e723011d653a0924ece3d285d3ad2895ae26f466c7ed0889"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/provenance_spoof.py",
+      "sha256": "c7116f649bace7d49fb31f4545786438e276b4730402ee755cd84ecdf1c72212"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/relations.py",
+      "sha256": "e0ed89e99c42b0d8d92952951b78696a50a3b377a537ef4c2a03ce344a35376f"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/retrieval.py",
+      "sha256": "a86f7aeec26817f5500fc7481e98e786c29a69fab7625837f0aabed5e207bef9"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/routing.py",
+      "sha256": "0f8441cdfaaadbcbda3067f080b357ab5491eae078b6170c2175a97ca8fd7260"
+    },
+    {
+      "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+      "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+      "path": "src/sciencemath/knowledge/schema.py",
+      "sha256": "f08c23cb7253a1bbd01721ae1191b5ba2642cab6b76a3eba805b76c9512a7135"
+    }
+  ],
+  "disk_component_hash_mismatches": 0,
+  "fallback": false,
+  "frozen_before_real_blind_construction": true,
+  "identity": {
+    "HEAD": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+    "branch": "t21r11-clean-seal",
+    "candidate_base": "247f13656a8392472b0c669d6e1c113071979a62",
+    "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+    "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+    "parent": "247f13656a8392472b0c669d6e1c113071979a62",
+    "remote_HEAD": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+    "tree_sha": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+    "working_tree": "CLEAN",
+    "working_tree_status": []
+  },
+  "note": "Component hashes and component_root_sha256 copied from R11 runtime freeze; disk rehash matched all component sha256 values.",
+  "remediation_report": {
+    "path": "T21R11_REMEDIATION_REPORT.md",
+    "sha256": "df3588264bb232058c9053045019054197ab407b1e6a2560a30e22be723b5e91"
+  },
+  "remediation_test": {
+    "path": "tests/test_t21r11_remediation.py",
+    "sha256": "b60ce60b54e0e0e97291ed2016a04d36e7f1714f3fb4472935b34b039f27371c"
+  },
+  "root_sha256": "cc9aff7c9ba45d9784a57922774134f17e2c40b05e844b2035d6938363ebbf6a",
+  "runtime_execution_count": 0,
+  "status": "FROZEN",
+  "version": "t21r13-v1"
+}

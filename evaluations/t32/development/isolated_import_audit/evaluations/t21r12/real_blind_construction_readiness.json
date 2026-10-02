@@ -1,0 +1,86 @@
+{
+  "artifact": "T21R12_REAL_BLIND_CONSTRUCTION_READINESS",
+  "classification_summary": {
+    "ENVIRONMENT_ONLY_FAILURE": 0,
+    "LIVE_R12_REGRESSION": 0,
+    "OBSOLETE_HISTORICAL_ASSERTION": 4,
+    "SUPERSEDED_BY_CURRENT_FROZEN_COVERAGE": 9,
+    "UNKNOWN": 0
+  },
+  "current_applicable_suite": {
+    "collected": 3105,
+    "errors": 0,
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 3105,
+    "skipped": 0
+  },
+  "exact_design": {
+    "gate_handlers": 38,
+    "leaf_requirements": 38,
+    "negative_leaf_controls_reject": 38,
+    "note": "Reconfirmed via sealed synthetic_protocol_report + contract_gate_coverage + negative_controls artifacts",
+    "positive_controls_pass": 38,
+    "unhandled": 0
+  },
+  "exclusions": {
+    "OPEN_REMEDIATION_MATERIAL_included": true,
+    "R11_INVALID_SEALED_included": true,
+    "dimensions": 8,
+    "historical_milestones": 12
+  },
+  "exposure": {
+    "candidate_R12_rows_executed": 0,
+    "official_evaluator_invocations": 0,
+    "real_R12_rows": 0
+  },
+  "fail_reasons": [],
+  "full_repository_suite": {
+    "collected": 3118,
+    "errors": 0,
+    "failed": 13,
+    "historical_or_superseded_failures": 13,
+    "live_current_failures": 0,
+    "passed": 3105,
+    "skipped": 0,
+    "unknown_failures": 0
+  },
+  "identity": {
+    "HEAD": "c2ba63687f299e07dd211b6a6991e3ee558a3945",
+    "branch": "t21r12-preconstruction",
+    "candidate_commit": "d4b1902c9b93cae4931a348e460ce2da3e776c6f",
+    "candidate_tree": "dc3ca7f14375e3e71356b166a2e78a24ac3f668b",
+    "evaluator_root": "054be7b0ab70a2cd8edd702af21aaacc34bc7fe086ce27355755d55a1491bdd1",
+    "floor_hash": "4656be728db91c8a3dee0873797c52f9050b4c22d266effb265a04909ae50baa",
+    "parent": "283442e468fd04de391ee8fbf4a05a281d6f74c5",
+    "remote_HEAD": null,
+    "runtime_root": "7bba4d0d2e381d741727e5f8d2d6a50cd82df8c054f2ec18610999a818ce1b80",
+    "tree": "2c6a41e53d19b92b5b8d011e82e01a9cbf8fd510",
+    "working_tree": " M evaluations/t21r12/evaluator_freeze.json\n?? evaluations/t21r12/current_test_applicability.json\n?? evaluations/t21r12/real_blind_construction_readiness.json\n?? evaluations/t21r12/test_failure_adjudication.json\n"
+  },
+  "negative_controls_total": {
+    "passed": 45,
+    "status": "PASS",
+    "total": 45
+  },
+  "next_authorization_required": "T21R12_REAL_BLIND_HOLDOUT_CONSTRUCTION_AUTHORIZATION",
+  "real_r12_paths": {
+    "HOLDOUT_FROZEN": false,
+    "construction_run_ledger.json": false,
+    "evaluation_run_ledger.json": false,
+    "evaluations/t21r12/suites": false,
+    "holdout_manifest.json": false,
+    "holdout_results.json": false,
+    "rag/gk_holdout_t21r12": false,
+    "raw_results.jsonl": false
+  },
+  "root_of_trust": {
+    "evaluator_components": 26,
+    "evaluator_hash_mismatches": 0,
+    "runtime_components": 15,
+    "runtime_hash_mismatches": 0
+  },
+  "timestamp": "2026-09-19T10:36:26.326383-04:00",
+  "verdict": "T21R12_REAL_BLIND_CONSTRUCTION_READINESS_PASS",
+  "version": "t21r12-v1"
+}

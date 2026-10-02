@@ -126,6 +126,17 @@ def main() -> int:
             if row["adapter_sha256"] != identity["weights_sha256"]:
                 raise SystemExit(f"Adapter drift in {path}")
         pending = [it for it in items if it.item_id not in done]
+        item_map = {it.item_id: it for it in items}
+        for row in raws:
+            text = prompt_text(item_map[row["item_id"]], kind)
+            expected_prompt = hashlib.sha256(("\x00" + text).encode("utf-8")).hexdigest()
+            expected_rendered = hashlib.sha256(render_chat(tok, text, enable_thinking=False).encode("utf-8")).hexdigest()
+            if (row.get("config_hash") != frozen["config_sha256"]
+                    or row.get("prompt_sha256") != expected_prompt
+                    or row.get("rendered_prompt_sha256") != expected_rendered
+                    or row.get("max_new_tokens") != budgets[b]
+                    or row.get("model_revision") != identity["base_revision"]):
+                raise SystemExit(f"Frozen measurement drift in persisted row {row['item_id']}")
         for start in range(0, len(pending), BATCH):
             chunk = pending[start:start + BATCH]
             texts = [prompt_text(it, kind) for it in chunk]

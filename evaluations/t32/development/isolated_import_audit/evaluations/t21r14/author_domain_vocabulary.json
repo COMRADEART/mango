@@ -1,0 +1,37 @@
+{
+  "artifact": "T21R14_AUTHOR_DOMAIN_VOCABULARY",
+  "canonical_contract": "evaluations/t21r14/domain_taxonomy_contract.json",
+  "enumeration": "mechanically finite; asserted subset of the canonical taxonomy contract at author import time (t21r14_blind_author.AUTHOR_DOMAIN_VOCABULARY)",
+  "no_dynamic_label_invention": true,
+  "possible_gold_labels": [
+    "arts",
+    "biography",
+    "civic_architecture",
+    "culture",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "natural_philosophy",
+    "technology_history"
+  ],
+  "possible_source_topic_tags": [
+    "arts",
+    "biography",
+    "civic_architecture",
+    "culture",
+    "geography",
+    "government_civics",
+    "history",
+    "literature",
+    "natural_philosophy",
+    "technology_history"
+  ],
+  "registered_but_unused_by_author": [
+    "computing",
+    "economics",
+    "education_reference",
+    "natural_world"
+  ],
+  "version": "t21r14-v1"
+}

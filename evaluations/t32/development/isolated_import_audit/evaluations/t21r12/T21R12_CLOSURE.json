@@ -1,0 +1,52 @@
+{
+  "artifact": "T21R12_CLOSURE",
+  "automatic_retry": false,
+  "bindings": {
+    "branch": "origin/t21r12-construction-failed",
+    "construction_failure_classification_sha256": "beb60833df28db046c70dc4ed545ffc9a7c23c3c354aec11c565134a201df842",
+    "construction_run_ledger_sha256": "bc99006e2198bda1fa452a0baab20968a943bc85f88fa49c81ec145d90c3e8b3",
+    "corpus_hashes": {
+      "chunk_count": 6728,
+      "chunks.jsonl": "fdbdf13a45d43d4260ea36905b04d646b78c3db7901c0e563e550b5e30bdeaba",
+      "corpus_manifest.json": "350265b15795c31c955a8f150e1c977619be714bb358eb1bb21c33217ff11f72",
+      "manifest_checksum": "e315b94cdc3076954d57a8ef6cc710e22b8560129b15c0c55a1aea7ab220cbff",
+      "source_count": 16,
+      "sources.jsonl": "fd45e2fa12b5a857b2a6d5c558bfce4bbcaf1b58685c7beb3403cd2793af22d8",
+      "world.jsonl": "2ad029edd46741a37048de649fb3392b013230985794b585851f4bcf8d9a16ff"
+    },
+    "failed_construction_commit": "6b449c05a14c2dc5de04ab96242f65caed9e6ca9",
+    "failed_construction_tree": "219886fb167e5d1b41e7750d8a0ab7d119663834",
+    "preconstruction_commit": "85312e530891a9f6fe9915894b0e6eb3a9b63bea",
+    "private_spec_fingerprints": {
+      "private_suites_spec.json": "c84ac646e30653ccaadf7878c44e475c0710e7f7419641a7f485a0b138d61335",
+      "private_world_spec.json": "a88b57e38ee39df9a595dc7c4386afed5737a8ad32e6e725795f9f1553bbe3f0"
+    }
+  },
+  "candidate_capability_result": "NONE",
+  "candidate_rows_executed": 0,
+  "construction_attempts": 1,
+  "corpus_materializations": 1,
+  "failure_class": "FROZEN_CONTRACT_SUITE_MATERIALIZER_SCHEMA_INCOMPATIBILITY",
+  "immutable_preserved_paths": [
+    "evaluations/t21r12/construction_run_ledger.json",
+    "evaluations/t21r12/construction_failure_classification.json",
+    "rag/gk_holdout_t21r12/",
+    "evaluations/t21r12/_private_specs/"
+  ],
+  "official_evaluation_executed": false,
+  "official_evaluation_policy": {
+    "candidate_rows_on_invocation": 0,
+    "reason": "NO_VALID_SEALED_HOLDOUT",
+    "refusal_code": "T21R12_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
+    "status": "PERMANENTLY_REFUSED"
+  },
+  "project_state": "CLOSED / NON_PROMOTIONAL_CONSTRUCTION_INFRASTRUCTURE_FAILURE",
+  "regeneration_attempted": false,
+  "repair_attempted": false,
+  "runtime_rows_executed": 0,
+  "seal_attempted": false,
+  "stage": "suite_materialization",
+  "status": "CLOSED_NON_PROMOTIONAL_CONSTRUCTION_INFRASTRUCTURE_FAILURE",
+  "suite_materializations": 0,
+  "version": "t21r12-closure-v1"
+}

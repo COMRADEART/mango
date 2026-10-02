@@ -1,0 +1,18 @@
+{
+  "allowed_inputs": [
+    "evaluation contracts",
+    "hash-only exclusions",
+    "independent private blind specification"
+  ],
+  "artifact": "T21R12_BLINDNESS_POLICY",
+  "ast_audit": "scripts/t21r11_blindness_audit.py",
+  "candidate_decision_traces_forbidden": true,
+  "candidate_failures_forbidden": true,
+  "candidate_outputs_forbidden": true,
+  "candidate_runtime_imports_forbidden": true,
+  "candidate_source_implementation_details_forbidden": true,
+  "individual_t21r10_failures_forbidden": true,
+  "raw_historical_material_available_to_builder": false,
+  "t21r11_remediation_validation_outputs_forbidden": true,
+  "version": "t21r12-v1"
+}

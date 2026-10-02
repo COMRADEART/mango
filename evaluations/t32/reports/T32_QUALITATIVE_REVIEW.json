@@ -1,0 +1,180 @@
+{
+  "artifact": "T32_QUALITATIVE_REVIEW",
+  "review_status": "COMPLETE",
+  "sampling": "GSM8K: three smallest IDs per outcome group, eight unique items. MATH-500: two smallest IDs per outcome group, six unique items. Post-selection qualitative samples; candidate selection was already frozen. ARC-Easy: two smallest IDs per outcome group, six unique items. ARC-Challenge: two smallest IDs per outcome group, five unique items (one overlap). The larger retained trace audit supplies additional context.",
+  "benchmarks_reviewed": [
+    "gsm8k",
+    "math500",
+    "arc_easy",
+    "arc_challenge"
+  ],
+  "gsm8k": {
+    "outcome_population": {
+      "t30_wrong_t32_right": 176,
+      "t30_right_t32_wrong": 123,
+      "base_right_t32_wrong": 320
+    },
+    "actual_reasoning_recovery": [
+      {
+        "item_id": "t31-gsm8k-021666193ea2",
+        "observation": "T32 correctly applies the net first-stop change and second-stop removal to reach 100; T30 repeatedly reapplies the first-stop figures and answers 167."
+      },
+      {
+        "item_id": "t31-gsm8k-02464a7e6ee9",
+        "observation": "T32 computes 180 minutes and divides by the 30-minute drinking interval to reach 6; T30 uses inconsistent rate conversions and answers 2.25."
+      },
+      {
+        "item_id": "t31-gsm8k-049740b453aa",
+        "observation": "T32 computes two pounds of supplies costing 20, revenue 40, and net profit 20; T30 miscomputes the material cost and answers 40."
+      }
+    ],
+    "reasoning_regressions": [
+      {
+        "item_id": "t31-gsm8k-0263fba48ddc",
+        "observation": "T32 subtracts the transferred apples from Boris but omits adding them to Beck, giving 13 rather than 3."
+      },
+      {
+        "item_id": "t31-gsm8k-09f4a934bf73",
+        "observation": "T32 computes the half-pile theft but never subtracts it from the running banana count, giving 65 rather than 43."
+      },
+      {
+        "item_id": "t31-gsm8k-0bd224446d7c",
+        "observation": "T32 omits the extra 11 points in Nikita's score, giving 417 rather than 428."
+      }
+    ],
+    "persistent_base_gap": [
+      {
+        "item_id": "t31-gsm8k-0073a3c25214",
+        "observation": "The base accounts for annual operating cost and strict positive profit; T32 invents a denominator of 9 and answers 10 rather than 13."
+      },
+      {
+        "item_id": "t31-gsm8k-023f4e1c7199",
+        "observation": "The base correctly solves the simultaneous linear relations; T32 repeatedly substitutes terms, forms an incorrect equation, and declares no solution."
+      }
+    ],
+    "format_vs_content": "T30 and T32 both produce boxed answers in all reviewed items. The sample gains change intermediate arithmetic and the final numerical answer, rather than merely restoring extraction compatibility.",
+    "protocol_intrusion": "No Mango planning/handoff schema or coordination language was observed in the eight reviewed T32 GSM8K generations. This is a sample observation, not a corpus-wide absence claim.",
+    "reasoning_style": "Several correct T32 traces are shorter than T30's incorrect traces; brevity alone does not explain success. Regressions show omitted premises despite valid boxed formatting.",
+    "scope_limit": "Outcome-stratified qualitative sample; not representative of overall prevalence."
+  },
+  "math500": {
+    "outcome_population": {
+      "t30_wrong_t32_right": 46,
+      "t30_right_t32_wrong": 39,
+      "base_right_t32_wrong": 156
+    },
+    "format_vs_content": "Both gains contain valid boxed endpoints and improved intermediate reasoning. One sampled regression is truncation/extraction failure; another violates the digit-sum constraint despite valid formatting.",
+    "protocol_intrusion": "No Mango planning or handoff schema was observed in these six T32 samples; this does not establish corpus-wide absence.",
+    "scope_limit": "Outcome-stratified sample is qualitative. Frozen benchmark scores assess answer endpoints, not proof validity; two T30 endpoint matches in this sample contain invalid derivations.",
+    "persistent_base_gap": [
+      {
+        "observation": "T30 and T32 use the end-to-end difference 72 as an adjacent arithmetic-sequence difference, giving 81 instead of the mean 45.",
+        "item_id": "t31-math500-013c07aba3bd"
+      },
+      {
+        "observation": "T32 derives allowable exponent ranges 0..2 and 0..1 for x cubed dividing 10 factorial, but counts four rather than multiplying three by two. Its intermediate setup improves while the endpoint remains wrong.",
+        "item_id": "t31-math500-033e9ead6dae"
+      }
+    ],
+    "actual_reasoning_recovery": [
+      {
+        "observation": "T32 correctly counts nine four-mile walks in February, yielding 36. T30 adds an unjustified extra walk and answers 40.",
+        "item_id": "t31-math500-0b44398fcec3"
+      },
+      {
+        "observation": "T32 parameterizes n=3k+1 and m=32-4k, then minimizes |31-7k| to obtain 3. T30 drops terms in its algebra and answers 0.",
+        "item_id": "t31-math500-0c188bd66bb8"
+      }
+    ],
+    "reasoning_regressions": [
+      {
+        "observation": "T32 repeats its logarithm analysis until the 1024-token limit and supplies no valid final answer. T30 matches gold 501 but its derivation drops 4/x and admits invalid logarithm arguments; its scored endpoint does not demonstrate correct reasoning.",
+        "item_id": "t31-math500-03592e465db4"
+      },
+      {
+        "observation": "T32 falsely treats all 15 listed two-digit primes as having digit sum eight. T30 matches gold count 3 but lists composite 44 and omits 53; the endpoint match masks invalid reasoning.",
+        "item_id": "t31-math500-089a90557aba"
+      }
+    ]
+  },
+  "arc_easy": {
+    "actual_reasoning_recovery": [
+      {
+        "observation": "T32 selects the correct invention sequence: printing press, microscope, telephone; T30 chooses another sequence.",
+        "item_id": "t31-arc_easy-00f02b479850"
+      },
+      {
+        "observation": "T32 identifies the red-giant stage instead of T30 quasar. Both explanations truncate at the frozen 32-token budget but their answer endpoints are extractable.",
+        "item_id": "t31-arc_easy-08b4696f6b96"
+      }
+    ],
+    "format_vs_content": "Sample gains change selected concepts and remain extractable under the frozen budget. Short answer-only traces limit causal interpretation of some losses.",
+    "persistent_base_gap": [
+      {
+        "observation": "T32 and T30 choose A instead of color and mass after melting a crayon; T32 provides no explanatory trace.",
+        "item_id": "t31-arc_easy-09245b5ef023"
+      },
+      {
+        "observation": "Both adapters identify commensalism instead of mutualism despite the question describing benefit to both organisms.",
+        "item_id": "t31-arc_easy-10bf86fe982e"
+      }
+    ],
+    "scope_limit": "Outcome-stratified qualitative sample; short or truncated explanations cannot establish full reasoning validity.",
+    "outcome_population": {
+      "t30_wrong_t32_right": 67,
+      "base_right_t32_wrong": 63,
+      "t30_right_t32_wrong": 36
+    },
+    "protocol_intrusion": "No Mango planning or handoff schema observed in six sampled T32 generations.",
+    "reasoning_regressions": [
+      {
+        "observation": "T32 gives only C instead of gold B for protein transport; no derivation is available to establish its mechanism.",
+        "item_id": "t31-arc_easy-0c72be11a481"
+      },
+      {
+        "observation": "T32 attributes an iguana tail to camouflage instead of swimming, despite T30 correctly identifying swimming.",
+        "item_id": "t31-arc_easy-171c79971c3d"
+      }
+    ]
+  },
+  "arc_challenge": {
+    "protocol_intrusion": "No Mango planning or handoff schema observed in the five sampled T32 outputs.",
+    "persistent_base_gap": [
+      {
+        "observation": "Both adapters choose A instead of the ice-floating consequence of the less dense crystal structure.",
+        "item_id": "t31-arc_challenge-031eeab00110"
+      },
+      {
+        "observation": "The heat-versus-electromagnetic regression also loses a base-correct endpoint.",
+        "item_id": "t31-arc_challenge-04e28c0e53d4"
+      }
+    ],
+    "outcome_population": {
+      "t30_right_t32_wrong": 45,
+      "t30_wrong_t32_right": 36,
+      "base_right_t32_wrong": 46
+    },
+    "format_vs_content": "Includes conceptual gains and losses plus an answer/explanation inconsistency in T30. Frozen 32-token traces and answer-only outputs limit mechanism conclusions.",
+    "actual_reasoning_recovery": [
+      {
+        "observation": "T32 selects apple core as fastest to decay. T30 discusses decay correctly in part but boxes A, illustrating endpoint/explanation inconsistency.",
+        "item_id": "t31-arc_challenge-0402fa99f016"
+      },
+      {
+        "observation": "T32 selects crust heated by nearby magma; T30 incorrectly selects crust reaching deep into Earth.",
+        "item_id": "t31-arc_challenge-103db695de32"
+      }
+    ],
+    "reasoning_regressions": [
+      {
+        "observation": "T32 answers heat instead of electromagnetic energy for producing light; T30 identifies electromagnetic waves.",
+        "item_id": "t31-arc_challenge-04e28c0e53d4"
+      },
+      {
+        "observation": "T32 selects fur color as least inheritable, with no explanation. Its endpoint regresses from T30; mechanism cannot be established.",
+        "item_id": "t31-arc_challenge-0518b2af9184"
+      }
+    ],
+    "scope_limit": "Outcome-stratified qualitative sample; no prevalence or proof-validity claim."
+  }
+}

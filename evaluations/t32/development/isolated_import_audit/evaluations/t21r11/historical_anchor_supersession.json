@@ -1,0 +1,101 @@
+{
+  "applicable_gate_accounting": {
+    "do_not_merge_into_single_excluded_count": true,
+    "historical_anchor_supersessions": 5,
+    "historical_exclusions": 6
+  },
+  "artifact": "T21R11_HISTORICAL_ANCHOR_SUPERSESSION",
+  "authorization": "T21R11 \u2014 HISTORICAL CODE_RUNTIME ANCHOR SUPERSESSION AUTHORIZATION",
+  "changed_production_files": [
+    "src/sciencemath/code/editor.py"
+  ],
+  "classification": "HISTORICAL_ANCHOR_NOT_APPLICABLE_TO_CURRENT_R11_TREE",
+  "current_r11_code_runtime_sha256": "5cb8cd1c77e5ae6cfbd756ba20e8cca1d0367dc7bec422fc1ebb51eed39fb3aa",
+  "editor_py_sha256_lf": "58b477a2230f87382a6368b5b8af18881092dfcffb735dad4396e6001570e3f5",
+  "editor_py_sha256_windows_working_tree_crlf": "87a0cda508315ee111b913df518ac56dad54e740bf060fc377f3fc4f5c295b8f",
+  "historical_artifacts_modified": false,
+  "historical_code_runtime_sha256": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+  "historical_exclusions_unchanged": [
+    "tests/test_t21r10_preconstruction.py::test_every_real_r10_holdout_and_exposure_path_remains_absent",
+    "tests/test_t21r10_preconstruction.py::test_static_scanner_uniqueness_and_blindness_all_pass",
+    "tests/test_t21r10_preconstruction.py::test_end_to_end_nonblind_miniature_and_all_controls_pass",
+    "tests/test_t21r9_preregistration.py::test_frozen_component_verifier_refuses_drift_and_missing_components",
+    "tests/test_t21r9_preregistration.py::test_runtime_and_evaluator_freezes_bind_current_components",
+    "tests/test_t21r8_holdout_freeze_protocol.py::test_root_anchor_exact_frozen_artifacts_and_helper_pass"
+  ],
+  "historical_expectations_rewritten": false,
+  "live_security_behavior_nodes_included": false,
+  "reason": "Authorized T21R11 symlink-hardening security remediation changed src/sciencemath/code/editor.py, which changes the code_runtime composite. The five listed tests are historical exact-hash anchors, not live security behavior tests.",
+  "replacement_freeze": "evaluations/t21r11/code_runtime_freeze.json",
+  "replacement_tests": "tests/test_t21r11_code_runtime_freeze.py",
+  "security_candidate_commit": "741a245664ce2bd0b916eafe521da05688852155",
+  "status": "SUPERSEDED_FOR_CURRENT_R11_ONLY",
+  "superseded_nodes": [
+    {
+      "artifact": "evaluations/t19/frozen_components.json",
+      "artifact_hash_unchanged": true,
+      "artifact_key": "composites.code",
+      "classification": "HISTORICAL_ANCHOR_NOT_APPLICABLE_TO_CURRENT_R11_TREE",
+      "comparison": "t21r8_hash_matches(code_runtime) against CODE_IMPL historical",
+      "freeze_commit": "8843ce1c57f6988af40cf4d65e93a001ecd84c08",
+      "historical_match": true,
+      "historical_recompute_sha256": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "live_security_behavior": false,
+      "milestone": "T19",
+      "nodeid": "tests/test_scicomp_registry_active.py::test_scicomp_implementation_hash_unchanged"
+    },
+    {
+      "artifact": "evaluations/t19/frozen_components.json",
+      "artifact_hash_unchanged": true,
+      "artifact_key": "composites.code",
+      "classification": "HISTORICAL_ANCHOR_NOT_APPLICABLE_TO_CURRENT_R11_TREE",
+      "comparison": "t21r8_hash_matches(code_runtime) against frozen composites.code",
+      "freeze_commit": "8843ce1c57f6988af40cf4d65e93a001ecd84c08",
+      "historical_match": true,
+      "historical_recompute_sha256": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "live_security_behavior": false,
+      "milestone": "T19",
+      "nodeid": "tests/test_t19_post_merge_audit_cleanup.py::test_historical_floors_checksums_and_planner_untouched"
+    },
+    {
+      "artifact": "evaluations/t21r3/runtime_freeze.json",
+      "artifact_hash_unchanged": true,
+      "artifact_key": "runtime_composites.code_runtime",
+      "classification": "HISTORICAL_ANCHOR_NOT_APPLICABLE_TO_CURRENT_R11_TREE",
+      "comparison": "sha_group(code_runtime) vs freeze, with t21r8_hash_matches exception only",
+      "freeze_commit": "b0c03a0d8a974aa3248c07bf1dbc2ced4501b28d",
+      "historical_match": true,
+      "historical_recompute_sha256": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "live_security_behavior": false,
+      "milestone": "T21R3",
+      "nodeid": "tests/test_t21r3_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "artifact": "evaluations/t21r4/runtime_freeze.json",
+      "artifact_hash_unchanged": true,
+      "artifact_key": "runtime_composites.code_runtime",
+      "classification": "HISTORICAL_ANCHOR_NOT_APPLICABLE_TO_CURRENT_R11_TREE",
+      "comparison": "sha_group(code_runtime) vs freeze, with t21r8_hash_matches exception only",
+      "freeze_commit": "c1227ab789bdc50b9c2a8c0a2da0c991fda01f78",
+      "historical_match": true,
+      "historical_recompute_sha256": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "live_security_behavior": false,
+      "milestone": "T21R4",
+      "nodeid": "tests/test_t21r4_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    },
+    {
+      "artifact": "evaluations/t21r5/runtime_freeze.json",
+      "artifact_hash_unchanged": true,
+      "artifact_key": "runtime_composites.code_runtime",
+      "classification": "HISTORICAL_ANCHOR_NOT_APPLICABLE_TO_CURRENT_R11_TREE",
+      "comparison": "sha_group(code_runtime) vs freeze, with t21r8_hash_matches exception only",
+      "freeze_commit": "d8076beb1012f83723e1ccd91967cee2b5af2ab8",
+      "historical_match": true,
+      "historical_recompute_sha256": "cf9dc3c640d9410ee147e2ba8ca5ce42a2feeb36155d5ba61b462c94a988e627",
+      "live_security_behavior": false,
+      "milestone": "T21R5",
+      "nodeid": "tests/test_t21r5_blind_holdout_contract.py::test_runtime_composites_unchanged_since_freeze"
+    }
+  ],
+  "tests_deleted_or_xfailed": false
+}

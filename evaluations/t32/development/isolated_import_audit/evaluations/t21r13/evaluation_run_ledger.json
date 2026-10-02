@@ -1,0 +1,8 @@
+{
+  "artifact": "T21R13_OFFICIAL_EXPOSURE_LEDGER",
+  "error": "T21R6_EVALUATOR_INVALID: required_domains label(s) outside the frozen DOMAIN_TAXONOMY: ['natural_philosophy']",
+  "manifest_sha256": "c7c1de07e5920f8e3f5c5664442e9faa4cf73a6a0319865ab9f8bee5f788dd16",
+  "official_runtime_exposures": 1,
+  "phase": "failed",
+  "recorded_at": "2026-09-20T06:06:56.926869+00:00"
+}

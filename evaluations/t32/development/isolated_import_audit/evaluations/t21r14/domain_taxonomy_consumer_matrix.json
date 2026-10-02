@@ -1,0 +1,76 @@
+{
+  "artifact": "T21R14_DOMAIN_TAXONOMY_CONSUMER_MATRIX",
+  "canonical_source": "evaluations/t21r14/domain_taxonomy_contract.json",
+  "consumers": [
+    {
+      "consumes_labels": true,
+      "module": "scripts/t21r14_blind_author.py",
+      "normalization": "exact canonical label emission",
+      "produces_labels": true,
+      "source_of_allowed_labels": "domain_taxonomy_contract.json (asserted subset at import)",
+      "unknown_label_behavior": "import-time assertion failure"
+    },
+    {
+      "consumes_labels": false,
+      "module": "scripts/t21r14_world.py",
+      "normalization": "exact canonical label emission",
+      "produces_labels": true,
+      "source_of_allowed_labels": "private spec validated against contract vocabulary",
+      "unknown_label_behavior": "preflight rejection"
+    },
+    {
+      "consumes_labels": true,
+      "module": "scripts/t21r14_build_suites.py",
+      "normalization": "exact canonical label validation",
+      "produces_labels": false,
+      "source_of_allowed_labels": "holdout_construction_contract + domain_taxonomy_contract",
+      "unknown_label_behavior": "suite validation error"
+    },
+    {
+      "consumes_labels": true,
+      "module": "scripts/t21r14_official_eval.py",
+      "normalization": "exact canonical membership",
+      "produces_labels": false,
+      "source_of_allowed_labels": "domain_taxonomy_contract.json (gold-schema preflight)",
+      "unknown_label_behavior": "preflight abort before ledger creation"
+    },
+    {
+      "consumes_labels": true,
+      "module": "scripts/t21r14_run_eval.py",
+      "normalization": "t21r6_run_eval.normalize_domain",
+      "produces_labels": false,
+      "source_of_allowed_labels": "domain_taxonomy_contract.json (rebinds t21r6_run_eval.DOMAIN_TAXONOMY and t21r8_run_eval.DOMAIN_TAXONOMY)",
+      "unknown_label_behavior": "T21R6_EVALUATOR_INVALID loud failure"
+    },
+    {
+      "consumes_labels": true,
+      "module": "scripts/t21r6_run_eval.py",
+      "normalization": "normalize_domain",
+      "produces_labels": false,
+      "source_of_allowed_labels": "rebound from canonical contract by t21r14_run_eval (historical literal set overridden; not an independent authority)",
+      "unknown_label_behavior": "T21R6_EVALUATOR_INVALID loud failure"
+    },
+    {
+      "consumes_labels": true,
+      "module": "scripts/t21r8_run_eval.py",
+      "normalization": "inherits t21r6_run_eval",
+      "produces_labels": false,
+      "source_of_allowed_labels": "rebound from canonical contract by t21r14_run_eval",
+      "unknown_label_behavior": "T21R6_EVALUATOR_INVALID loud failure"
+    },
+    {
+      "consumes_labels": false,
+      "module": "scripts/t21r14_freeze_holdout.py",
+      "normalization": "n/a",
+      "produces_labels": false,
+      "source_of_allowed_labels": "binds domain_taxonomy_contract.json into the seal",
+      "unknown_label_behavior": "n/a"
+    }
+  ],
+  "independent_hardcoded_conflicting_taxonomies": 0,
+  "normalization_rule": "strip surrounding whitespace, casefold, map hyphen/whitespace runs to a single underscore; identical to t21r6_run_eval.normalize_domain; no aliasing, no fuzzy inference, no silent coercion",
+  "producer_consumer_disagreements": 0,
+  "unknown_consumers": 0,
+  "unknown_label_behavior": "loud failure (T21R6_EVALUATOR_INVALID at evaluation; preflight abort before ledger creation)",
+  "version": "t21r14-v1"
+}

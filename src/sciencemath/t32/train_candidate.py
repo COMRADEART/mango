@@ -104,6 +104,14 @@ def main() -> int:
     out.mkdir(parents=True, exist_ok=True)
     record = {"candidate": cand["artifact_name"], "recipe_echo": echoed,
               "summary": summary}
+    recovery_path = out / f"{name}_RECOVERY_RECORD.json"
+    if recovery_path.exists():
+        recovery = json.loads(recovery_path.read_text(encoding="utf-8-sig"))
+        record["interruption_recovery"] = recovery
+        adapter_manifest_path = Path(cand["adapter_output_dir"]) / "training_manifest.json"
+        adapter_manifest = json.loads(adapter_manifest_path.read_text(encoding="utf-8"))
+        adapter_manifest["interruption_recovery"] = recovery
+        adapter_manifest_path.write_text(json.dumps(adapter_manifest, indent=2, default=str) + "\n", encoding="utf-8")
     path = out / f"train_{cand['artifact_name']}.json"
     path.write_text(json.dumps(record, indent=2, default=str) + "\n",
                     encoding="utf-8", newline="\n")

@@ -1,0 +1,8 @@
+{
+  "artifact": "T21R13_HOLDOUT_FROZEN",
+  "freeze_root_sha256": "c4c9c946f6dbfbc79f674ae8a43659063c6881d3ac376e034b4765ebd84f68b8",
+  "holdout_manifest_sha256": "c7c1de07e5920f8e3f5c5664442e9faa4cf73a6a0319865ab9f8bee5f788dd16",
+  "official_runtime_exposures": 0,
+  "runtime_rows_executed": 0,
+  "schema_version": "t21r13-seal-v1"
+}

@@ -1,0 +1,18 @@
+{
+  "artifact": "T21R13_REAL_BLIND_HOLDOUT_CONSTRUCTION_REFUSAL_EVIDENCE",
+  "timestamp": "2026-09-19T21:05:00+00:00",
+  "preconstruction_commit": "e59bc53291dd77a4c5a810eaba18853b231e83fc",
+  "preconstruction_tree": "4e2ca9d02c0bdbed6a6469523918d04a7399e2f1",
+  "identity_gate": "PASS",
+  "real_paths_before_ledger": "ALL ABSENT",
+  "construction_ledger_created": false,
+  "refusal_trigger": "T21R13_PRE_LEDGER_CONTRACT_COMPATIBILITY_DRY_RUN_FAILURE",
+  "defect": {
+    "summary": "Frozen dry-run compatibility path (t21r13_blind_author.py --prevalidate) crashes: t21r13_construction_gate.py has no build_gate_report, but t21r13_static_gold_audit.py and t21r13_blind_author.prevalidate call gate.build_gate_report. R10/R11 gate scripts define build_gate_report; the R13 rewrite dropped it without updating its two callers.",
+    "consequence": "Real construction would deterministically abort at the static gold audit stage (a required seal input per t21r13_freeze_holdout.AUDIT_FILES), burning the one-shot ledger. Repairing the frozen gate/static-audit scripts is forbidden by the construction freeze.",
+    "evidence": "AttributeError: module 't21r13_construction_gate' has no attribute 'build_gate_report' (t21r13_blind_author.py line 1743, invoked via scripts/t21r13_blind_author.py --prevalidate fast against exact committed contract bytes; see t21r13_prevalidate_out.txt)"
+  },
+  "no_repair_attempted": true,
+  "no_freeze_refresh": true,
+  "verdict": "T21R13_REAL_BLIND_HOLDOUT_CONSTRUCTION_REFUSED"
+}

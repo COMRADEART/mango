@@ -1,0 +1,812 @@
+
+
+<pasted_content id="b128">
+# MANGO T32 — MATH REGRESSION REMEDIATION
+
+You are continuing Mango from the completed:
+
+`MANGO_T31_PUBLIC_COMPARABILITY_PASS`
+
+T31 is CLOSED.
+
+Do not rewrite T31.
+
+Do not modify T31 raw generations, scored rows, reports, manifests, hashes, or historical conclusions.
+
+Create a new branch:
+
+`T32-math-remediation`
+
+or follow the repository's established naming convention.
+
+---
+
+# T32 MISSION
+
+T31 established a specific capability split:
+
+```text
+GSM8K:
+base   81.05%
+T30    58.38%
+delta -22.67 pp
+
+MATH-500:
+base   59.80%
+T30    30.40%
+delta -29.40 pp
+
+ARC-Easy:
+base   79.46%
+T30    87.67%
+delta  +8.21 pp
+
+ARC-Challenge:
+base   61.60%
+T30    77.30%
+delta +15.70 pp
+
+SciQ:
+base   84.90%
+T30    86.90%
+delta  +2.00 pp
+```
+
+T32 answers:
+
+> Why did the T30 adapter gain structured/science multiple-choice capability while catastrophically reducing free-form mathematical capability, and can that regression be repaired without destroying the demonstrated ARC/SciQ gains?
+
+T32 changes **Object A only**.
+
+Object B — Mango runtime:
+FROZEN.
+
+Object C — T30/T31 scorer/evidence methodology:
+FROZEN except for new T32-specific measurement artifacts.
+
+---
+
+# CORE PRINCIPLE
+
+Do not solve the math regression by changing the test.
+
+Do not:
+
+- alter answer extraction to make Mango look better
+- change benchmark prompts independently for Mango
+- hide incorrect generations
+- route math through the runtime
+- use symbolic tools during model-only evaluation
+- modify the base comparison
+- weaken content-valid scoring
+- attribute runtime correctness to weights
+
+Fix the adapter.
+
+---
+
+# PHASE 0 — FREEZE T31
+
+Record and verify:
+
+- T31 final commit
+- base revision
+- T30 adapter hash
+- T31 frozen config hash
+- T31 prompt-policy hash
+- T31 report hash
+- T31 model-only benchmark table
+
+Verify T31 files are unchanged before T32 work begins.
+
+If T31 evidence differs from the published closure record:
+
+STOP.
+
+---
+
+# PHASE 1 — DIAGNOSE THE MATH REGRESSION
+
+Use the T31 diagnostic handoff.
+
+Analyze:
+
+## A. Base-right / Mango-wrong
+
+Especially:
+
+- GSM8K
+- MATH-500
+
+## B. Base-wrong / Mango-right
+
+Determine what T30 actually taught successfully.
+
+## C. Both-wrong
+
+Separate inherited base weakness from adapter-induced regression.
+
+For each math disagreement, classify where possible:
+
+```text
+arithmetic_error
+algebra_error
+reasoning_chain_error
+premature_final_answer
+format_overfit
+protocol_intrusion
+multiple_choice_bias
+abstention_bias
+verbosity/truncation
+instruction_interference
+answer_extraction_issue
+other
+```
+
+Do not label an item manually when evidence is ambiguous.
+
+Create machine-readable counts.
+
+---
+
+# PHASE 2 — TEST THE PRIMARY HYPOTHESES
+
+T32 must explicitly investigate at least these hypotheses.
+
+## H1 — Protocol overfitting
+
+The adapter learned Mango plan/handoff/coordination behavior at the expense of ordinary free-form mathematical completion.
+
+Test whether T30 generations inject:
+
+- planning schema
+- coordination language
+- unnecessary structure
+- refusal behavior
+- handoff behavior
+- constrained answer formats
+
+into ordinary math tasks.
+
+## H2 — Catastrophic forgetting
+
+The LoRA update damaged useful base-model math behavior.
+
+Compare base and adapter token/generation behavior on the same failure set.
+
+## H3 — Data imbalance
+
+Determine whether the T30 training mixture disproportionately rewarded protocol/science/MC behavior relative to mathematical reasoning.
+
+## H4 — Sequence-length/truncation effects
+
+Determine whether the 1024-token training regime disproportionately damaged long reasoning traces.
+
+## H5 — Final-answer supervision weakness
+
+Determine whether training emphasized schemas/protocols more strongly than correct mathematical endpoints.
+
+## H6 — Multiple-choice specialization
+
+Determine whether the adapter became substantially better at selecting among bounded choices while becoming worse at unconstrained generation.
+
+Produce evidence for/against every hypothesis.
+
+---
+
+# PHASE 3 — DO NOT TRAIN ON T31 TEST ITEMS
+
+T31 GSM8K/MATH-500/ARC/SciQ evaluation rows are diagnostic evidence.
+
+Do NOT copy benchmark test questions or gold answers into T32 training.
+
+Do NOT directly fine-tune on:
+
+- GSM8K test
+- MATH-500 evaluation items
+- ARC evaluation items
+- SciQ evaluation items
+
+Training examples must come from legitimate training sources or newly constructed examples that do not duplicate the evaluation items.
+
+Perform exact and fuzzy deduplication where practical.
+
+Record contamination checks.
+
+---
+
+# PHASE 4 — BUILD T32 TRAINING MIXTURE
+
+Construct a new training mixture with explicit categories.
+
+Recommended logical mixture:
+
+```text
+A. free-form mathematical reasoning
+B. protocol-shaped mathematical reasoning
+C. ordinary science QA
+D. Mango planning/handoff behavior
+E. abstain/refuse examples
+F. recovery/replan examples
+```
+
+The central change is that mathematical reasoning must be represented in BOTH:
+
+```text
+ordinary assistant form
+and
+Mango-compatible structured form
+```
+
+Do not teach Mango that every problem requires orchestration.
+
+---
+
+# MATH DATA REQUIREMENTS
+
+Increase useful math reasoning supervision substantially beyond T30.
+
+Include diverse training examples covering:
+
+```text
+arithmetic
+fractions
+percentages
+ratios
+word problems
+algebra
+equations
+geometry
+probability
+counting
+number theory
+multi-step symbolic reasoning
+```
+
+Prefer high-quality solutions over sheer volume.
+
+Every training example should have a verified final answer where feasible.
+
+Use deterministic verification for generated/synthetic mathematical data wherever possible.
+
+Reject synthetic examples whose answer cannot be verified.
+
+---
+
+# PHASE 5 — SEPARATE PROTOCOL FROM CONTENT
+
+T32 training examples should make this distinction explicit:
+
+```text
+content correctness
+!=
+protocol correctness
+```
+
+A mathematically incorrect plan must not receive positive supervision solely because its schema is valid.
+
+For structured examples, validate:
+
+1. schema validity
+2. mathematical final answer
+
+Training acceptance should fail if mathematical content fails.
+
+---
+
+# PHASE 6 — ABLATION MATRIX
+
+Do not train one candidate and declare victory.
+
+Train controlled candidates that isolate the cause.
+
+At minimum:
+
+## Candidate A — Math restoration
+
+Increase verified free-form math reasoning while minimizing other recipe changes.
+
+## Candidate B — Protocol-balanced
+
+Math restoration + protocol-shaped examples.
+
+## Candidate C — Reduced-LoRA-strength or conservative adaptation
+
+Test whether T30's update magnitude caused excessive base capability displacement.
+
+Possible controlled variables include:
+
+```text
+LoRA rank
+LoRA alpha
+learning rate
+number of steps
+target modules
+math/protocol mixture ratio
+```
+
+Do not vary everything simultaneously.
+
+Each candidate must have an exact recipe.
+
+---
+
+# PREFERRED EXPERIMENTAL ORDER
+
+Change as few variables as possible.
+
+Recommended sequence:
+
+### Experiment 1
+
+Keep:
+
+```text
+base model
+LoRA architecture
+rank
+alpha
+target modules
+optimizer family
+```
+
+Change primarily:
+
+```text
+training mixture
+```
+
+If this repairs math, stop blaming the backbone.
+
+### Experiment 2
+
+Only if needed, adjust optimization intensity:
+
+```text
+learning rate
+steps
+effective batch
+```
+
+### Experiment 3
+
+Only if still needed, alter LoRA structure.
+
+Do not jump to a 4B/8B backbone during T32.
+
+Backbone sensitivity belongs to a later stage.
+
+---
+
+# PHASE 7 — DEVELOPMENT EVALUATION
+
+Create T32 development evaluations that are distinct from the frozen T31 final comparison.
+
+Use development data for iteration.
+
+Do not repeatedly inspect T31 final benchmark scores after every training experiment.
+
+Track at minimum:
+
+```text
+math development accuracy
+structured/protocol validity
+science development accuracy
+MC development accuracy
+format failure rate
+```
+
+Pick the T32 candidate using the development protocol defined BEFORE candidate results are known.
+
+Do not manually select whichever checkpoint looks best on T31 final tests.
+
+---
+
+# PHASE 8 — CANDIDATE SELECTION RULE
+
+Define the selection rule before final evaluation.
+
+Suggested rule:
+
+A T32 candidate is eligible only if:
+
+```text
+1. math development performance materially improves over T30
+2. protocol/schema behavior does not collapse
+3. no major science/MC regression appears on development sets
+4. training/evaluation contamination gates pass
+5. candidate artifacts are complete and reproducible
+```
+
+Among eligible candidates, select according to the predeclared development metric.
+
+Do not use T31 test outcomes to select the candidate.
+
+---
+
+# PHASE 9 — ONE FINAL LOCKED T31 RE-EVALUATION
+
+After selecting ONE T32 candidate:
+
+freeze it.
+
+Record:
+
+- base revision
+- candidate adapter SHA
+- training manifest
+- training config
+- dataset manifest
+- contamination report
+- candidate-selection receipt
+
+Then run the frozen T31 model-only benchmark methodology exactly once against:
+
+```text
+Qwen3-1.7B base
+T30 adapter
+T32 candidate
+```
+
+Use identical:
+
+- prompts
+- chat templates
+- scorer
+- decoding
+- benchmark membership
+- answer extraction
+
+Do not change anything because of the result.
+
+---
+
+# T32 FINAL TABLE
+
+Produce:
+
+| Benchmark | Base | T30 | T32 | T32 vs T30 Δ | T32 vs Base Δ |
+|---|---:|---:|---:|---:|---:|
+| GSM8K | 81.05 | 58.38 | | | |
+| MATH-500 | 59.80 | 30.40 | | | |
+| ARC-Easy | 79.46 | 87.67 | | | |
+| ARC-Challenge | 61.60 | 77.30 | | | |
+| SciQ | 84.90 | 86.90 | | | |
+
+Use exact measured values.
+
+Do not hide regressions.
+
+---
+
+# PRIMARY T32 SUCCESS CONDITION
+
+T32 is NOT about maximizing pooled accuracy.
+
+The large T31 benchmarks have different sizes and pooled accuracy can obscure capability tradeoffs.
+
+The primary goal is:
+
+> Recover a substantial portion of the free-form math regression while preserving most of the demonstrated multiple-choice/science gains.
+
+Do not permit a huge ARC score to conceal broken math.
+
+---
+
+# REQUIRED MATH FLOOR
+
+A T32 capability promotion should require BOTH GSM8K and MATH-500 to materially improve relative to T30.
+
+Do not declare capability remediation if only one moves.
+
+Record exact deltas.
+
+---
+
+# PRESERVATION FLOOR
+
+ARC-Easy, ARC-Challenge and SciQ must be reported independently.
+
+If math recovery destroys the ARC improvements, report the tradeoff rather than averaging it away.
+
+A candidate may be rejected for excessive preservation loss according to the predeclared development/promotion policy.
+
+---
+
+# STATISTICAL ANALYSIS
+
+Retain paired evaluation.
+
+For every benchmark compute:
+
+```text
+T30 correct / T32 correct
+T30 correct / T32 wrong
+T30 wrong / T32 correct
+T30 wrong / T32 wrong
+```
+
+Also compare T32 to base.
+
+Use paired statistical tests where appropriate.
+
+Report effect size and uncertainty.
+
+---
+
+# PHASE 10 — QUALITATIVE TRACE AUDIT
+
+Select a deterministic sample from:
+
+```text
+T30-wrong / T32-right math
+T30-right / T32-wrong math
+base-right / T32-wrong
+T32 ARC improvements
+T32 ARC regressions
+```
+
+Inspect the generations.
+
+Answer:
+
+- Did reasoning behavior improve?
+- Did protocol language leak into normal math?
+- Did T32 merely change answer formatting?
+- Did T32 recover actual reasoning or only extraction compatibility?
+- Did T32 preserve useful bounded-choice behavior?
+
+Document evidence.
+
+---
+
+# PHASE 11 — TRAINING RECEIPT
+
+Publish a complete T32 training receipt.
+
+At minimum:
+
+```text
+base revision
+training dataset identities
+dataset row counts
+deduplication policy
+contamination policy
+LoRA rank
+LoRA alpha
+target modules
+learning rate
+scheduler
+steps
+batch/effective batch
+sequence length
+precision
+quantization
+optimizer
+seed
+hardware
+software versions
+training duration
+final adapter SHA
+```
+
+No unverifiable headline numbers.
+
+---
+
+# PHASE 12 — T32 ARTIFACTS
+
+Suggested structure:
+
+```text
+training/t32/
+evaluations/t32/
+  diagnostics/
+  development/
+  final/
+  paired/
+  reports/
+  manifests/
+```
+
+Preserve:
+
+- configs
+- candidate recipes
+- diagnostics
+- training manifests
+- candidate-selection receipt
+- final raw generations
+- scored rows
+- paired rows
+- contamination report
+- final report
+- SHA256SUMS
+
+---
+
+# T32 QUALITY GATES
+
+Evaluate all gates explicitly.
+
+## GATE 1 — T31 frozen
+
+No T31 evidence changed.
+
+## GATE 2 — math regression diagnosis complete
+
+Evidence-backed root-cause analysis exists.
+
+## GATE 3 — no T31 test leakage
+
+Training contamination controls pass.
+
+## GATE 4 — T32 training mixture frozen
+
+Exact manifest exists.
+
+## GATE 5 — candidate ablation completed
+
+Controlled candidate comparison exists.
+
+## GATE 6 — candidate selected using development criteria
+
+No final-test selection.
+
+## GATE 7 — GSM8K final comparison complete
+
+Base / T30 / T32.
+
+## GATE 8 — MATH-500 final comparison complete
+
+Base / T30 / T32.
+
+## GATE 9 — ARC-Easy preservation measured
+
+## GATE 10 — ARC-Challenge preservation measured
+
+## GATE 11 — SciQ preservation measured
+
+## GATE 12 — paired analysis complete
+
+## GATE 13 — training receipt complete
+
+## GATE 14 — full regression suite classified honestly
+
+Pre-existing failures remain separated from T32-attributable failures.
+
+## GATE 15 — final evidence pack verifies
+
+---
+
+# DECISION CLASSES
+
+The final report must distinguish:
+
+## REMEDIATION_SUCCESS
+
+Free-form math is materially recovered and useful T30 gains are substantially preserved.
+
+## TRADEOFF
+
+Math improves but important T30 gains regress materially.
+
+## NO_EFFECT
+
+T32 does not materially repair math.
+
+## REGRESSION
+
+T32 worsens the target capability or introduces unacceptable new losses.
+
+Do not force PASS from a tradeoff.
+
+---
+
+# REQUIRED FINAL REPORT
+
+Output:
+
+# MANGO T32 MATH REGRESSION REMEDIATION REPORT
+
+## Status
+
+PASS / PARTIAL / FAIL
+
+## T31 baseline
+
+Exact frozen T31 results.
+
+## Root-cause analysis
+
+Evidence for H1–H6.
+
+## Training changes
+
+Exact differences from T30.
+
+## Candidate ablation
+
+All candidates and development results.
+
+## Candidate selection
+
+Predeclared criterion and selected candidate.
+
+## Final model identities
+
+Base, T30, T32 hashes/revisions.
+
+## Final benchmark table
+
+Base vs T30 vs T32.
+
+## Paired analysis
+
+Per benchmark.
+
+## Math restoration
+
+Exact GSM8K and MATH-500 recovery.
+
+## Capability preservation
+
+ARC-Easy, ARC-Challenge, SciQ.
+
+## Trace audit
+
+Observed qualitative behavior changes.
+
+## Contamination audit
+
+Exact result.
+
+## Tests
+
+Exact commands and measured results.
+
+## Regression classification
+
+Pre-existing vs T32-attributable.
+
+## Artifacts
+
+Complete list.
+
+## Known limitations
+
+Complete list.
+
+## Gate results
+
+GATE 1–15 individually.
+
+## Decision
+
+Exactly one:
+
+`MANGO_T32_MATH_REMEDIATION_PASS`
+
+`MANGO_T32_MATH_REMEDIATION_PARTIAL`
+
+`MANGO_T32_MATH_REMEDIATION_FAIL`
+
+---
+
+# FINAL RULE
+
+T32 exists to repair the demonstrated math regression in the weights.
+
+Do not strengthen the runtime to compensate.
+
+Do not change the scorer to compensate.
+
+Do not average the failure away.
+
+Do not start T33.
+
+Measure whether the adapter itself becomes better.
+
+When the T32 report is complete, STOP.
+</pasted_content id="b128">
+

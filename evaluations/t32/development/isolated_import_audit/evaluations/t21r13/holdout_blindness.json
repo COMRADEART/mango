@@ -1,0 +1,39 @@
+{
+  "artifact": "T21R13_BLINDNESS_AUDIT",
+  "candidate_leakage": [],
+  "forbidden_calls": [
+    "answer_knowledge",
+    "evaluate",
+    "official_evaluation",
+    "resolve_path",
+    "retrieve_structured",
+    "run_answer_row"
+  ],
+  "forbidden_modules": [
+    "sciencemath",
+    "pipeline",
+    "router",
+    "retrieval",
+    "evidence_paths",
+    "relations",
+    "conflicts",
+    "citation",
+    "injection",
+    "run_eval"
+  ],
+  "historical_blind_leakage": [],
+  "remediation_validation_leakage": [],
+  "runtime_execution_count": 0,
+  "scripts": {
+    "t21r13_build_suites.py": "f9f6bb12ba8f01a404487cc69854b2a8514b57221f5e50d9cbfdb1d7aa0102bb",
+    "t21r13_construction_audit.py": "625f260fb808abdf787b49a2b5fc0912a9b9c3cf013e51fc4a57c119853446e0",
+    "t21r13_construction_gate.py": "fdc34b4394bade6493078dc9f31bc5292d610fb3010cd4b541be6e6c579ef9f1",
+    "t21r13_retrieval_mirror.py": "e8a96202336da805bb0178ad78b0389a7975919b079c3417787a6c43df242fa5",
+    "t21r13_static_gold_audit.py": "e8dddfb3de7a5fc332f4510780f3b8b4819ae2acfd0ffc9a67f8e7e9aa3cb203",
+    "t21r13_static_semantics.py": "b33a5abf82b7edc6f7ed4ac38c61460727f49853c891f2bb644b5491b5677b06",
+    "t21r13_uniqueness.py": "1fbdccfc33556aeb8aaeeec95bb7e931123bd95ac3de69f3d4b78ac314c8c9c8",
+    "t21r13_world.py": "b95ca92202b66273add5ae489cd7adab37263eb0b2223b6e892e6e6f185e5585"
+  },
+  "status": "PASS",
+  "violations": []
+}

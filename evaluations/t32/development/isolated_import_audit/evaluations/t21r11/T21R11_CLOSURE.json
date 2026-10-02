@@ -1,0 +1,47 @@
+{
+  "ROOT_CAUSE": "CONSTRUCTION_GATE_DID_NOT_ENFORCE_PREREGISTERED_EXACT_DESIGN",
+  "SECONDARY": "SEALED_ROWS_DID_NOT_MECHANICALLY_SATISFY_EXACT_DESIGN_LABEL_CONTRACT",
+  "artifact": "T21R11_CLOSURE",
+  "bindings": {
+    "HOLDOUT_FROZEN_sha256": "ac4248a54d643fcfcc61c2901d2188e00a9f9befdef7928a1b1a2a3e2ad94234",
+    "construction_commit": "283442e468fd04de391ee8fbf4a05a281d6f74c5",
+    "exact_design_audit_sha256": "1eb86c0d8cd8697aa7ce68b2de27aae3674a334bbd98a1b0fdcf37a4f394beea",
+    "exact_design_audit_verdict": "T21R11_SEALED_HOLDOUT_EXACT_DESIGN_AUDIT_FAIL",
+    "freeze_root_sha256": "e4dc49bb914c40a7d80206560d605f4476c5acdaffe3ae814f80e4ad140c628d",
+    "holdout_manifest_sha256": "5501a2cf214c28a477f69e3b634f9123286cefb1bb4e036f2bd444292f986a53",
+    "tree_sha": "eff56228c2133429ad83a57e9d570d432cca53ff"
+  },
+  "candidate_reuse": "permitted subject to freeze",
+  "candidate_rows_executed": 0,
+  "classification": "PREREGISTERED_HOLDOUT_CONSTRUCTION_CONFORMANCE_FAILURE",
+  "exact_design_objects_unenforced_before_seal": [
+    "multihop_exact_design",
+    "crossdomain_exact_design",
+    "citation_exact_design",
+    "conflict_exact_design",
+    "temporal_exact_design",
+    "security_exact_design"
+  ],
+  "exact_design_total": 38,
+  "failed": 27,
+  "holdout_reuse": "forbidden",
+  "mango_capability_judgment": "NONE",
+  "not": [
+    "MODEL_CAPABILITY_FAILURE",
+    "INFRASTRUCTURE_RUNTIME_FAILURE"
+  ],
+  "official_evaluation_executed": false,
+  "official_evaluation_policy": "T21R11_OFFICIAL_EVALUATION_PERMANENTLY_REFUSED",
+  "official_evaluator_invocations": 0,
+  "passed": 11,
+  "post_materialization_gate_alignment": {
+    "blind-dependent modification": false,
+    "cured_exact_design_unenforcement": false,
+    "note": "Gate alignment did not enforce the six preregistered exact-design objects before sealing."
+  },
+  "reason": "PREREGISTERED_EXACT_DESIGN_CONFORMANCE_FAILURE",
+  "runtime_rows_executed": 0,
+  "status": "CLOSED_INVALID_UNEVALUATED_HOLDOUT",
+  "unverifiable": 0,
+  "version": "t21r11-closure-v1"
+}
