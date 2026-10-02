@@ -1,0 +1,13 @@
+{
+  "selected": "t32-A",
+  "rule": "NO candidate eligible; final locked evaluation runs the highest math_dev_mean overall (DEV_PROTOCOL \u00a76 fallback)",
+  "eligible": [],
+  "not_eligible": [
+    "t32-A",
+    "t32-B",
+    "t32-C"
+  ],
+  "written": "evaluations\\t32\\development\\T32_PHASE8_SELECTION.json"
+}
+
+===== selection relaunch 2026-10-01 19:54:29 =====

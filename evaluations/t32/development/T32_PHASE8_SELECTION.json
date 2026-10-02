@@ -1,0 +1,86 @@
+{
+  "anchors": {
+    "base": {
+      "math_dev_mean": 0.7425,
+      "acc_mc_dev": 0.72,
+      "acc_sciq_dev": 0.86
+    },
+    "t30-anchor": {
+      "math_dev_mean": 0.49,
+      "acc_mc_dev": 0.835,
+      "acc_sciq_dev": 0.8733
+    }
+  },
+  "candidates": {
+    "t32-A": {
+      "math_dev_mean": 0.5075,
+      "acc_gsm8k_dev": 0.68,
+      "acc_math_dev": 0.335,
+      "acc_mc_dev": 0.865,
+      "acc_sciq_dev": 0.9,
+      "delta_math_dev_mean_vs_t30": 1.75,
+      "delta_mc_dev_vs_t30": 3.0,
+      "delta_sciq_dev_vs_t30": 2.67,
+      "gates": {
+        "g1_math_restoration": false,
+        "g2_mc_preservation": true,
+        "g3_sciq_preservation": true,
+        "g4_contamination_clean": true,
+        "g5_training_manifest_recorded": true
+      },
+      "eligible": false,
+      "experiment_index": 1
+    },
+    "t32-B": {
+      "math_dev_mean": 0.4775,
+      "acc_gsm8k_dev": 0.665,
+      "acc_math_dev": 0.29,
+      "acc_mc_dev": 0.86,
+      "acc_sciq_dev": 0.92,
+      "delta_math_dev_mean_vs_t30": -1.25,
+      "delta_mc_dev_vs_t30": 2.5,
+      "delta_sciq_dev_vs_t30": 4.67,
+      "gates": {
+        "g1_math_restoration": false,
+        "g2_mc_preservation": true,
+        "g3_sciq_preservation": true,
+        "g4_contamination_clean": true,
+        "g5_training_manifest_recorded": true
+      },
+      "eligible": false,
+      "experiment_index": 2
+    },
+    "t32-C": {
+      "math_dev_mean": 0.485,
+      "acc_gsm8k_dev": 0.67,
+      "acc_math_dev": 0.3,
+      "acc_mc_dev": 0.855,
+      "acc_sciq_dev": 0.8867,
+      "delta_math_dev_mean_vs_t30": -0.5,
+      "delta_mc_dev_vs_t30": 2.0,
+      "delta_sciq_dev_vs_t30": 1.34,
+      "gates": {
+        "g1_math_restoration": false,
+        "g2_mc_preservation": true,
+        "g3_sciq_preservation": true,
+        "g4_contamination_clean": true,
+        "g5_training_manifest_recorded": true
+      },
+      "eligible": false,
+      "experiment_index": 3
+    }
+  },
+  "eligible": [],
+  "not_eligible": [
+    "t32-A",
+    "t32-B",
+    "t32-C"
+  ],
+  "selected": "t32-A",
+  "selection_rule_applied": "NO candidate eligible; final locked evaluation runs the highest math_dev_mean overall (DEV_PROTOCOL \u00a76 fallback)",
+  "gate_thresholds": {
+    "math_restoration_pp": 5.0,
+    "mc_preservation_pp": 3.0,
+    "sciq_preservation_pp": 3.0
+  }
+}
